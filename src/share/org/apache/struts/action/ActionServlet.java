@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.32 2000/11/04 01:53:22 craigmcc Exp $
- * $Revision: 1.32 $
- * $Date: 2000/11/04 01:53:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.33 2000/11/09 20:44:19 mschachter Exp $
+ * $Revision: 1.33 $
+ * $Date: 2000/11/09 20:44:19 $
  *
  * ====================================================================
  *
@@ -200,7 +200,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.32 $ $Date: 2000/11/04 01:53:22 $
+ * @version $Revision: 1.33 $ $Date: 2000/11/09 20:44:19 $
  */
 
 public class ActionServlet
@@ -327,6 +327,35 @@ public class ActionServlet
      * Are we using the new configuration file format?
      */
     protected boolean validate = false;
+    
+        /**
+     * The size in bytes of the buffer used to read files from a client upload
+     */
+    protected int bufferSize = 4096;
+    
+    /**
+     * The maximum size allowed for a client upload.  A suffix of "K"
+     * represents Kilobytes, a suffix of "M" represents "Megabytes", 
+     * a suffix of "G" represents Gigabytes, and no suffix is taken
+     * as bytes.
+     */
+    protected String maxFileSize = "250M";
+    
+    /**
+     * The MultipartRequestHandler class name used for handling
+     * multipart form requests.  This is the global default value,
+     * the handler can also be set in individual mapping entries
+     */
+    protected String multipartClass = "org.apache.struts.upload.DiskMultipartRequestHandler";
+    
+    /**
+     * The directory used to store temporary files for the DiskMultipartRequestHandler
+     * multipart implementation
+     */
+    protected String tempDir;
+
+
+
 
 
     // ---------------------------------------------------- HttpServlet Methods
@@ -366,6 +395,7 @@ public class ActionServlet
 	    throw new UnavailableException
 		(internal.getMessage("configIO", config));
 	}
+        initUpload();
 	initOther();
 
     }
@@ -483,6 +513,18 @@ public class ActionServlet
 	return (mappings.findMapping(path));
 
     }
+    
+    /** 
+     * Get the buffer size (how large of a chunk of data is
+     * recieved by the input stream at once) used for file
+     * uploading.
+     * 
+     * @return The size in bytes of the buffer
+     */
+    public int getBufferSize() {
+        return bufferSize;
+    }
+
 
 
     /**
@@ -526,6 +568,25 @@ public class ActionServlet
 	return (this.mappingClass);
 
     }
+    
+    
+    /**
+     * Get the maximum file size.  See {@link #setMaxFileSize(java.lang.String) setMaxFileSize}
+     * for information on the number format used.
+     */
+    public String getMaxFileSize() {
+        return maxFileSize;
+    }
+    
+    /**
+     * Get the class name of the MultipartRequestHandler implementation
+     * 
+     * @return A qualified classname of the MultipartRequestHandler implementation
+     */
+     public String getMultipartClass() {
+        return multipartClass;
+    }
+
 
 
     /**
@@ -536,6 +597,16 @@ public class ActionServlet
 	return (application);
 
     }
+    
+    /**
+     * Get the directory used to temporarily store form files
+     *
+     * @return A platform-dependant String representing the path to the temporary directory
+     */
+    public String getTempDir() {
+        return tempDir;
+    }
+
 
 
     /**
@@ -617,6 +688,18 @@ public class ActionServlet
 
     }
 
+    
+    /** 
+     * Set the buffer size (how large of a chunk of data is
+     * recieved by the input stream at once) used for file
+     * uploading.
+     *
+     * @param bufferSize The size in bytes of the buffer
+     */
+    public void setBufferSize(int bufferSize) {
+        this.bufferSize = bufferSize;
+    }
+
 
     /**
      * Set the Java class name of the class used to instantiate
@@ -654,6 +737,39 @@ public class ActionServlet
 
         this.mappingClass = mappingClass;
 
+    }
+    
+    /**
+     * Set the maximum file size that a client can upload,  number String with a trailing
+     * letter indicating the size.  "K" indicates "kilobytes", "M" indicates "megabytes",
+     * "G" indicates "gigabytes".  If there's no trailing letter the suffix is assumed to
+     * indicate the number is in bytes.  For example, to set a maximum file size of
+     * 500 megabytes, you'd call <code>setMaxFileSize</code>("<i>500M</i>").
+     *
+     * @param maxFileSize A String representing the maximum file size.
+     */
+    public void setMaxFileSize(String maxFileSize) {
+        this.maxFileSize = maxFileSize;
+    }
+    
+    /**
+     * Set the class name of the MultipartRequestHandler implementation
+     *
+     * @param multipartClass A qualified classname of the MultipartRequestHandler implementation
+     */
+    public void setMultipartClass(String multipartClass) {
+        this.multipartClass = multipartClass;
+    }
+
+    
+    /**
+     * Set the directory used to temporarily store files for MultipartRequestHandler
+     * implementations that write to the disk
+     *
+     * @param tempDir A platform-dependant String representing the path to the temporary directory
+     */
+    public void setTempDir(String tempDir) {
+        this.tempDir = tempDir;
     }
 
 
@@ -1007,6 +1123,56 @@ public class ActionServlet
 	getServletContext().setAttribute(Action.MAPPINGS_KEY, mappings);
 
     }
+    
+    
+    /**
+     * Initialize upload parameters and "bufferSize", "multipartClass",
+     * "maxFileSize", "tempDir"
+     *
+     * @exception ServletException if there are invalid parameters
+     */
+    protected void initUpload() throws ServletException {
+      
+        //buffer size
+        String bufferValue = getServletConfig().getInitParameter("bufferSize");
+        
+        if ((bufferValue != null) && (bufferValue.length() > 0)) {
+            int oldBufferSize = bufferSize;
+            try {
+                bufferSize = Integer.parseInt(bufferValue, 10);
+            }
+            catch (NumberFormatException nfe) {
+                if (debug > 0) {
+                    log("initUpload(): invalid value \"" + bufferSize + "\" for " +
+                        "init-parameter \"buffer size\"" +
+                        ", defaulting to \"" + oldBufferSize + "\"");
+                }
+                bufferSize = oldBufferSize;
+            }
+        }
+        
+        //multipart class
+        String classValue = getServletConfig().getInitParameter("multipartClass");
+        
+        if ((classValue != null) && (classValue.length() > 0)) {
+            multipartClass = classValue;
+        }
+        
+        //maximum file size
+        String maxsizeValue = getServletConfig().getInitParameter("maxFileSize");
+        
+        if ((maxsizeValue != null) && (maxsizeValue.length() > 0)) {
+            maxFileSize = maxsizeValue;
+        }
+        
+        //temp directory
+        String tempDirValue = getServletConfig().getInitParameter("tempDir");
+        
+        if ((tempDirValue != null) && (tempDirValue.length() > 0)) {
+            tempDir = tempDirValue;
+        }
+    }
+
 
 
     /**
@@ -1152,7 +1318,6 @@ public class ActionServlet
             try {
                 Class clazz = Class.forName(className);
                 instance = (ActionForm) clazz.newInstance();
-                instance.setServlet(this);
             } catch (Throwable t) {
                 log("Error creating ActionForm instance of class '" +
                     className + "'", t);
@@ -1416,11 +1581,21 @@ public class ActionServlet
 
         if (formInstance == null)
             return;
+        //set the servlet of the ActionForm
+        formInstance.setServlet(this);
 
         // Populate the bean properties of this ActionForm instance
         if (debug >= 1)
             log(" Populating bean properties from this request");
         formInstance.reset(mapping, request);
+        //place the mapping's multipart request handler class
+        //into the request to be read by the BeanUtils.populate
+        //method in the event of a multipart request
+        request.setAttribute("org.apache.struts.action.mapping.multipartclass", 
+                                mapping.getMultipartClass());
+        //also pass the mapping through the request
+        request.setAttribute("org.apache.struts.action.mapping.instance",
+                                mapping);
         BeanUtils.populate(formInstance, mapping.getPrefix(),
                            mapping.getSuffix(), request);
 
@@ -1474,6 +1649,16 @@ public class ActionServlet
             if (debug >= 1)
                 log("  No errors detected, accepting input");
             return (true);
+        }
+        
+        //does our form have a multipart request?
+        if (formInstance.getMultipartRequestHandler() != null) {
+            //rollback the request
+            if (debug > 1) {
+                log("  Rolling back the multipart request");
+            }
+            
+            formInstance.getMultipartRequestHandler().rollback();
         }
 
 	// Save our error messages and return to the input form if possible

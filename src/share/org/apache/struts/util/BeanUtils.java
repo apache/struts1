@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.13 2000/09/23 23:19:33 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2000/09/23 23:19:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.14 2000/11/09 20:44:19 mschachter Exp $
+ * $Revision: 1.14 $
+ * $Date: 2000/11/09 20:44:19 $
  *
  * ====================================================================
  *
@@ -77,6 +77,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.PageContext;
 
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionServlet;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
+import org.apache.struts.upload.MultipartRequestHandler;
+
 
 /**
  * Utility methods for populating JavaBeans properties via reflection.
@@ -84,7 +90,7 @@ import javax.servlet.jsp.PageContext;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.13 $ $Date: 2000/09/23 23:19:33 $
+ * @version $Revision: 1.14 $ $Date: 2000/11/09 20:44:19 $
  */
 
 public final class BeanUtils {
@@ -617,8 +623,109 @@ public final class BeanUtils {
 	throws ServletException {
 
 	// Build a list of relevant request parameters from this request
-	Hashtable properties = new Hashtable();
-	Enumeration names = request.getParameterNames();
+        Hashtable properties = new Hashtable();
+        //Enumeration of parameter names
+        Enumeration names = null;
+        //Hashtable for multipart values
+        Hashtable multipartElements = null;
+        
+        boolean isMultipart = false;
+        
+        if (request.getContentType().startsWith("multipart/form-data")) {
+            isMultipart = true;
+            //initialize a MultipartRequestHandler
+            MultipartRequestHandler multipart = null;
+            
+            //get an instance of ActionServlet
+            ActionServlet servlet;
+            
+            if (bean instanceof ActionForm) {
+                
+                servlet = ((ActionForm) bean).getServlet();
+            }
+            else {
+                throw new ServletException("bean that's supposed to be " +
+                    "populated from a multipart request is not of type " +
+                    "\"org.apache.struts.action.ActionForm\", but type " +
+                    "\"" + bean.getClass().getName() + "\"");
+            }
+            String multipartClass = (String)
+                                request.getAttribute("org.apache.struts.action.mapping.multipartclass");
+            
+            request.removeAttribute("org.apache.struts.action.mapping.multipartclass");
+            
+            if (multipartClass != null) {
+                //try to initialize the mapping specific request handler
+                try {
+                    multipart = (MultipartRequestHandler) Class.forName(multipartClass).newInstance();
+                }
+                catch (ClassNotFoundException cnfe) {
+                    servlet.log("MultipartRequestHandler class \"" + 
+                                 multipartClass + "\" in mapping class not found, " +
+                                 "defaulting to global multipart class");
+                }
+                catch (InstantiationException ie) {
+                    servlet.log("InstantiaionException when instantiating " +
+                                "MultipartRequestHandler \"" + multipartClass + "\", " +
+                                "defaulting to global multipart class, exception: " +
+                                ie.getMessage());
+                }
+                catch (IllegalAccessException iae) {
+                    servlet.log("IllegalAccessException when instantiating " +
+                                "MultipartRequestHandler \"" + multipartClass + "\", " +
+                                "defaulting to global multipart class, exception: " +
+                                iae.getMessage());
+                }
+            }
+            
+            if (multipart == null) {
+                //try to initialize the global multipart class
+                try {
+                    multipart = (MultipartRequestHandler) Class.forName(servlet.getMultipartClass()).newInstance();
+                }
+                catch (ClassNotFoundException cnfe) {
+                    throw new ServletException("Cannot find multipart class \"" +
+                                               servlet.getMultipartClass() + "\"" +
+                                               ", exception: " + cnfe.getMessage());
+                }
+                catch (InstantiationException ie) {
+                    throw new ServletException("InstantiaionException when instantiating " +
+                                               "multipart class \"" + servlet.getMultipartClass() +
+                                               "\", exception: " + ie.getMessage());
+                }
+                catch (IllegalAccessException iae) {
+                    throw new ServletException("IllegalAccessException when instantiating " +
+                                               "multipart class \"" + servlet.getMultipartClass() +
+                                               "\", exception: " + iae.getMessage());
+                }
+            }
+            
+            
+            //set the multipart request handler for our ActionForm
+            //if the bean isn't an ActionForm, an exception would have been
+            //thrown earlier, so it's safe to assume that our bean is
+            //in fact an ActionForm
+            ((ActionForm) bean).setMultipartRequestHandler(multipart);
+            
+            //set servlet and mapping info            
+            multipart.setServlet(servlet);            
+            multipart.setMapping((ActionMapping) 
+                request.getAttribute("org.apache.struts.action.mapping.instance"));
+            request.removeAttribute("org.apache.struts.action.mapping.instance");
+            
+            //initialize request class handler
+            multipart.handleRequest(request);
+            
+            //retrive form values and put into properties
+            multipartElements = multipart.getAllElements();
+            names = multipartElements.keys();
+        }
+        
+        if (!isMultipart) {        
+            names = request.getParameterNames();
+        }
+        
+        
 	while (names.hasMoreElements()) {
 	    String name = (String) names.nextElement();
 	    String stripped = name;
@@ -636,7 +743,12 @@ public final class BeanUtils {
 		stripped =
 		  stripped.substring(0, stripped.length() - suffix.length());
 	    }
-	    properties.put(stripped, request.getParameterValues(name));
+            if (isMultipart) {
+                properties.put(stripped, multipartElements.get(name));
+            }
+            else {
+                properties.put(stripped, request.getParameterValues(name));
+            }
 	}
 
 	// Set the corresponding properties of our bean
@@ -735,6 +847,9 @@ public final class BeanUtils {
 		if (value instanceof String) {
 		    parameters[0] = convert((String) value,
 					    parameterTypes[0]);
+                }
+                else if (value instanceof FormFile) {
+		      	parameters[0] = value;
 		} else {
 		    parameters[0] = convert( ((String[]) value)[0],
 					     parameterTypes[0]);
