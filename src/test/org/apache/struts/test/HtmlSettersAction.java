@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/HtmlSettersAction.java,v 1.1 2001/01/08 00:17:43 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/08 00:17:43 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/HtmlSettersAction.java,v 1.2 2001/01/08 22:20:38 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/01/08 22:20:38 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.action.ActionMapping;
  * or the main menu (if "Cancel" was pressed).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/01/08 00:17:43 $
+ * @version $Revision: 1.2 $ $Date: 2001/01/08 22:20:38 $
  */
 
 public class HtmlSettersAction extends Action {
@@ -106,7 +106,7 @@ public class HtmlSettersAction extends Action {
         if (isCancelled(request))
             return (mapping.findForward("index"));
         else
-            return (mapping.findForward("html-setters"));
+            return (mapping.findForward("input"));
 
     }
 

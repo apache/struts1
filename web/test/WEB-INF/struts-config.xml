@@ -7,21 +7,29 @@
 <struts-config>
 
   <form-beans>
-    <form-bean name="setnew"
+    <form-bean name="testbean"
                type="org.apache.struts.test.TestBean"/>
   </form-beans>
 
   <global-forwards>
     <forward   name="index"                path="/index.jsp"/>
-    <forward   name="html-setters"         path="/html-setters.jsp"/>
   </global-forwards>
 
   <action-mappings>
+    <action    path="/html-multibox"
+               type="org.apache.struts.test.HtmlSettersAction"
+               name="testbean"
+              scope="session"
+           validate="false">
+      <forward name="input"                path="/html-multibox.jsp"/>
+    </action>
     <action    path="/html-setters"
                type="org.apache.struts.test.HtmlSettersAction"
-               name="setnew"
+               name="testbean"
               scope="session"
-           validate="false"/>
+           validate="false">
+      <forward name="input"                path="/html-setters.jsp"/>
+    </action>
   </action-mappings>
 
 </struts-config>

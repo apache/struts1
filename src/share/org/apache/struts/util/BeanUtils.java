@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.22 2001/01/08 20:34:55 craigmcc Exp $
- * $Revision: 1.22 $
- * $Date: 2001/01/08 20:34:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.23 2001/01/08 22:20:26 craigmcc Exp $
+ * $Revision: 1.23 $
+ * $Date: 2001/01/08 22:20:26 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.upload.FormFile;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.22 $ $Date: 2001/01/08 20:34:55 $
+ * @version $Revision: 1.23 $ $Date: 2001/01/08 22:20:26 $
  */
 
 public final class BeanUtils {
@@ -179,8 +179,6 @@ public final class BeanUtils {
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
      *  propety cannot be found
-     *
-     * @deprecated Does not deal correctly with non-String array properties
      */
     public static String[] getArrayProperty(Object bean, String name)
         throws IllegalAccessException, InvocationTargetException,
@@ -190,7 +188,15 @@ public final class BeanUtils {
         if (value == null) {
             return (null);
         } else if (value instanceof Collection) {
-            ArrayList values = new ArrayList((Collection) value);
+            ArrayList values = new ArrayList();
+            Iterator items = ((Collection) value).iterator();
+            while (items.hasNext()) {
+                Object item = items.next();
+                if (item == null)
+                    values.add((String) null);
+                else
+                    values.add(item.toString());
+            }
             return ((String[]) values.toArray(new String[values.size()]));
         } else if (value.getClass().isArray()) {
             ArrayList values = new ArrayList();
