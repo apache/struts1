@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.14 2002/10/21 22:30:22 jholmes Exp $
- * $Revision: 1.14 $
- * $Date: 2002/10/21 22:30:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.15 2002/10/26 15:08:16 jholmes Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/10/26 15:08:16 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2002/10/21 22:30:22 $
+ * @version $Revision: 1.15 $ $Date: 2002/10/26 15:08:16 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {
@@ -277,7 +277,7 @@ public class MultiboxTag extends BaseHandlerTag {
 	}
 	results.append(prepareEventHandlers());
 	results.append(prepareStyles());
-	results.append(" />");
+	results.append(">");
 
         // Render this element to our response
         ResponseUtils.write(pageContext, results.toString());

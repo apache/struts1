@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.7 2002/10/21 22:30:22 jholmes Exp $
- * $Revision: 1.7 $
- * $Date: 2002/10/21 22:30:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.8 2002/10/26 15:08:16 jholmes Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/10/26 15:08:16 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * used to call the ActionServlet.
  *
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.7 $ $Date: 2002/10/21 22:30:22 $
+ * @version $Revision: 1.8 $ $Date: 2002/10/26 15:08:16 $
  */
 
 public class BaseTag extends TagSupport {
@@ -133,7 +133,7 @@ public class BaseTag extends TagSupport {
         buf.append(target);
         buf.append("\"");
     }
-    buf.append(" />");
+    buf.append(">");
     JspWriter out = pageContext.getOut();
     try {
         out.write(buf.toString());
