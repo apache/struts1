@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.8 2002/06/16 05:32:50 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/06/16 05:32:50 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.9 2002/06/23 03:45:07 jholmes Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/06/23 03:45:07 $
  *
  * ====================================================================
  *
@@ -80,7 +80,6 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.MessageResources;
 
 
@@ -90,7 +89,7 @@ import org.apache.struts.util.MessageResources;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/06/16 05:32:50 $
+ * @version $Revision: 1.9 $ $Date: 2002/06/23 03:45:07 $
  */
 
 public final class SaveRegistrationAction extends Action {
