@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.5 2001/02/12 21:49:55 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/02/12 21:49:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.6 2001/04/21 23:53:42 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/04/21 23:53:42 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib.logic;
 
 
 import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
@@ -81,7 +82,7 @@ import org.apache.struts.util.RequestUtils;
  * ActionForwards collection associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/02/12 21:49:55 $
+ * @version $Revision: 1.6 $ $Date: 2001/04/21 23:53:42 $
  */
 
 public class ForwardTag extends TagSupport {
@@ -153,9 +154,12 @@ public class ForwardTag extends TagSupport {
 	// Forward or redirect to the corresponding actual path
 	String path = forward.getPath();
 	if (forward.getRedirect()) {
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
 	    HttpServletResponse response =
 		(HttpServletResponse) pageContext.getResponse();
 	    try {
+                path = request.getContextPath() + path;
 		response.sendRedirect(response.encodeRedirectURL(path));
 	    } catch (Exception e) {
                 RequestUtils.saveException(pageContext, e);
