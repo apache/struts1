@@ -55,10 +55,6 @@ public class ShaleViewHandler extends ViewHandler {
      */
     public ShaleViewHandler(ViewHandler original) {
         this.original = original;
-        if (log.isDebugEnabled()) {
-            log.debug("ImplViewHandler instance is decorating " +
-              original.toString());
-        }
     }
 
 
@@ -170,9 +166,10 @@ public class ShaleViewHandler extends ViewHandler {
      * @param context <code>FacesContext</code> for the current request
      */
     private ViewControllerMapper getViewControllerMapper(FacesContext context) {
-        if (mapper != null) {
-            Map map = context.getExternalContext().getApplicationMap();
-            mapper = (ViewControllerMapper) map.get(ShaleConstants.VIEW_MAPPER);
+        if (mapper == null) {
+            mapper = (ViewControllerMapper)
+              context.getExternalContext().getApplicationMap().
+              get(ShaleConstants.VIEW_MAPPER);
         }
         return mapper;
     }
@@ -198,7 +195,7 @@ public class ShaleViewHandler extends ViewHandler {
         }
         String viewId = view.getViewId();
         if (log.isDebugEnabled()) {
-            log.debug("setupViewController(" + viewId + ")");
+            log.debug("setupViewController(" + viewId + "," + postBack + ")");
         }
 
         // Map our view identifier to a corresponding managed bean name

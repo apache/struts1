@@ -16,6 +16,9 @@
 
 package org.apache.shale.faces;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import org.apache.shale.view.DefaultViewControllerMapper;
 
 import javax.faces.FactoryFinder;
@@ -36,6 +39,16 @@ import java.io.IOException;
  */
 
 public class ShaleApplicationFilter implements Filter {
+
+
+    // -------------------------------------------------------- Static Variables
+
+
+    /**
+     * <p>The <code>Log</code> instance for this class.</p>
+     */
+    private static final Log log =
+      LogFactory.getLog(ShaleApplicationFilter.class);
 
 
     // ------------------------------------------------------ Instance Variables
@@ -67,12 +80,14 @@ public class ShaleApplicationFilter implements Filter {
      */
     public void destroy() {
 
-        config = null;
-        context = null;
+        log.info("Finalizing Shale application filter");
+
         if (phaseListener != null) {
             getLifecycle().removePhaseListener(phaseListener);
         }
         phaseListener = null;
+        context = null;
+        config = null;
 
     }
     
@@ -100,6 +115,8 @@ public class ShaleApplicationFilter implements Filter {
      * @param config <code>FilterConfig</code> for this filter
      */
     public void init(FilterConfig config) throws ServletException {
+
+        log.info("Initializing Shale application filter");
 
         this.config = config;
         context = config.getServletContext();

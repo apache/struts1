@@ -36,7 +36,7 @@ public interface ShaleConstants {
      * is stored.</p>
      */
     public static final String VIEW_MAPPER =
-      "org.apache.shale.impl.VIEW_MAPPER";
+      "org.apache.shale.faces.VIEW_MAPPER";
 
 
     /**
@@ -44,7 +44,7 @@ public interface ShaleConstants {
      * for the view that will actually be rendered (if any) is stored.</p>
      */
     public static final String VIEW_RENDERED =
-      "org.apache.shale.impl.VIEW_RENDERED";
+      "org.apache.shale.faces.VIEW_RENDERED";
 
 
     /**
@@ -53,7 +53,7 @@ public interface ShaleConstants {
      * for the current request are stored.</p>
      */
     public static final String VIEWS_INITIALIZED =
-      "org.apache.shale.impl.VIEWS_INITIALIZED";
+      "org.apache.shale.faces.VIEWS_INITIALIZED";
 
 
 }
