@@ -181,9 +181,10 @@
 
 <pre><code><![CDATA[
 <global>
-    <constant
-        name="zip"
-        value="^\d{5}(-\d{4})?$" />
+    <constant>
+        <constant-name>zip</constant-name>
+        <constant-value>^\d{5}(-\d{4})?$</constant-value>
+    </constant>
 </global>
 
 <field
