@@ -5,93 +5,92 @@
     <author>Robert Leland</author>
     <author>Ted Husted</author>
     <author>Martin Cooper</author>
-    <title>Struts Release Notes (Nightly Build)</title>
+    <title>Struts Release Notes (since 1.1)</title>
   </properties>
   <body>
       <section name="Introduction" href="Introduction">
-        <p>This section contains release notes for
-        <strong>nightly build</strong>of the Struts Framework, for changes that have taken place since
-        <a href="release-notes-1.1.html">Version 1.1</a>was released.</p>
+        <p>This section contains release notes for changes that have taken place since
+        <a href="release-notes-1.1.html">Version 1.1</a> was released.</p>
       </section>
       <section name="What's Included?" href="Included">
         <p>The binary distribution of this release includes the following files relevant to Struts:</p>
         <ul>
           <li>
-          <code>INSTALL.txt</code>- Brief installation instructions. For more detail, see the
+          <code>INSTALL.txt</code> - Brief installation instructions. For more detail, see the
           <code>Struts User Guide</code>, either through the Struts Documentation application or online at
           <a href="http://jakarta.apache.org/struts/">http://jakarta.apache.org/struts/</a>.</li>
           <li>
-          <code>LICENSE.txt</code>- The Apache Software Foundation license that defines the terms under which you can use Struts (and other software licensed by Apache).</li>
+          <code>LICENSE.txt</code> - The Apache Software Foundation license that defines the terms under which you can use Struts (and other software licensed by Apache).</li>
           <li>
-          <code>README.txt</code>- A brief introduction to Struts.</li>
+          <code>README.txt</code> - A brief introduction to Struts.</li>
           <li>
-          <code>contrib/</code>- Additional libraries developed by the Struts team which are not yet part of the core distribution.</li>
+          <code>contrib/</code> - Additional libraries developed by the Struts team which are not yet part of the core distribution.</li>
           <li>
-          <code>lib/</code>- Directory containing files you will need in your own applications. The individual files of interest are:
+          <code>lib/</code> - Directory containing files you will need in your own applications. The individual files of interest are:
           <ul>
             <li>
-            <code>antlr-#.#.jar</code>- ANTLR, ANother Tool for Language Recognition, a public domain library made available by
+            <code>antlr-#.#.jar</code> - ANTLR, ANother Tool for Language Recognition, a public domain library made available by
             <a href="http://www.antlr.org/">antlr.org</a>.</li>
             <li>
-            <code>commons-*-#.#.jar</code>- Various packages from the
-            <a href="http://jakarta.apache.org/commons/">Jakarta Commons Project</a>that Struts relies on. You are welcome to use these classes in your own applications. These JAR files should be copied into the
-            <code>/WEB-INF/lib</code>directory of your web application.</li>
+            <code>commons-*-#.#.jar</code> - Various packages from the
+            <a href="http://jakarta.apache.org/commons/">Jakarta Commons Project</a> that Struts relies on. You are welcome to use these classes in your own applications. These JAR files should be copied into the
+            <code>/WEB-INF/lib</code> directory of your web application.</li>
             <li>
-            <code>jakarta-oro-#.#.jar</code>- JAR file containing the Jakarta ORO package, utilitied by the Struts Valdiator. You must place this file in the
-            <code>/WEB-INF/lib</code>directory of your web application to use the Struts Validator package.</li>
+            <code>jakarta-oro-#.#.jar</code> - JAR file containing the Jakarta ORO package, utilitied by the Struts Valdiator. You must place this file in the
+            <code>/WEB-INF/lib</code> directory of your web application to use the Struts Validator package.</li>
             <li>
-            <code>struts-#.#.jar</code>- JAR file that contains the compiled Java classes of Struts. You must place this file in the
-            <code>/WEB-INF/lib</code>directory of your web application.</li>
+            <code>struts-#.#.jar</code> - JAR file that contains the compiled Java classes of Struts. You must place this file in the
+            <code>/WEB-INF/lib</code> directory of your web application.</li>
             <li>
-            <code>struts-*.tld</code>- The tag library descriptor files for the Struts tag libraries (bean, html, logic, and nested). When these taglibs are used, you must place these files in the
-            <code>/WEB-INF</code>directory of your web application and reference them with appropriate
-            <code>&lt;taglib&gt;</code>directives in your web.xml file.</li>
+            <code>struts-*.tld</code> - The tag library descriptor files for the Struts tag libraries (bean, html, logic, and nested). When these taglibs are used, you must place these files in the
+            <code>/WEB-INF</code> directory of your web application and reference them with appropriate
+            <code>&lt;taglib&gt;</code> directives in your web.xml file.</li>
             <li>
-            <code>struts-config_1_2.dtd</code>- The Document Type Definition (DTD) for the Struts 1.2 configuration file (which is typically named
+            <code>struts-config_1_2.dtd</code> - The Document Type Definition (DTD) for the Struts 1.2 configuration file (which is typically named
+            <code>/WEB-INF/struts-config.xml</code>). Your configuration file will be validated against an internal copy of this DTD -- this copy is available for reference purposes only.</li>
+            <li>
+            <code>struts-config_1_1.dtd</code> - The Document Type Definition (DTD) for the Struts 1.1 configuration file (which is typically named
+            <code>/WEB-INF/struts-config.xml</code>). Your configuration file will be validated against an internal copy of this DTD -- this copy is available for reference purposes only.</li>
+            <li>
+            <code>struts-config_1_0.dtd</code> - The Document Type Definition (DTD) for the Struts 1.0 configuration file (which is typically named
             <code>/WEB-INF/struts-config.xml</code>. Your configuration file will be validated against an internal copy of this DTD -- this copy is available for reference purposes only.</li>
             <li>
-            <code>struts-config_1_1.dtd</code>- The Document Type Definition (DTD) for the Struts 1.1 configuration file (which is typically named
-            <code>/WEB-INF/struts-config.xml</code>. Your configuration file will be validated against an internal copy of this DTD -- this copy is available for reference purposes only.</li>
+            <code>web-app_2_2.dtd</code> - The Document Type Definition (DTD) for web.xml files conforming to the Servlet 2.2 specification. This copy is for reference purposes only.</li>
             <li>
-            <code>struts-config_1_0.dtd</code>- The Document Type Definition (DTD) for the Struts 1.0 configuration file (which is typically named
-            <code>/WEB-INF/struts-config.xml</code>. Your configuration file will be validated against an internal copy of this DTD -- this copy is available for reference purposes only.</li>
-            <li>
-            <code>web-app_2_2.dtd</code>- The Document Type Definition (DTD) for web.xml files conforming to the Servlet 2.2 specification. This copy is for reference purposes only.</li>
-            <li>
-            <code>web-app_2_3.dtd</code>- The Document Type Definition (DTD) for web.xml files conforming to the Servlet 2.3 specification. This copy is for reference purposes only.</li>
+            <code>web-app_2_3.dtd</code> - The Document Type Definition (DTD) for web.xml files conforming to the Servlet 2.3 specification. This copy is for reference purposes only.</li>
           </ul></li>
           <li>
-          <code>webapps/</code>- Web Application Archive (WAR) files for the web applications that are included with Struts.</li>
+          <code>webapps/</code> - Web Application Archive (WAR) files for the web applications that are included with Struts.</li>
         </ul>
         <p>For the version requirements of each library, see the
         <a href="installation.html">Installation chapter</a>.</p>
       </section>
       <section name="What's new?" href="New">
         <p>This section highlights new features added and critical changes made since the last release. Other interesting changes are listed in the
-        <a href="#Changes">What Changed?</a>section. Subscribers to the
+        <a href="#Changes">What Changed?</a> section. Subscribers to the
         <a href="../using.html#Lists">struts-dev mailing list</a>, receive reports of all changes as they are made.</p>
         <p>
-        <strong>Deprecations</strong>- Many constructs were deprecated for the Struts 1.1 release, most of which have now been removed. Before moving to this release, you should clean-compile your application with deprecation warnings enabled. Alternatives should be available for all decprecated constructs.
-        <strong>You are strongly advised</strong>to resolve all Struts 1.1. deprecations before moving to this release. Removed constructs most likely to affect developers are:</p>
+        <strong>Deprecations</strong> - Many constructs were deprecated for the Struts 1.1 release, most of which have now been removed. Before moving to this release, you should clean-compile your application with deprecation warnings enabled. Alternatives should be available for all decprecated constructs.
+        <strong>You are strongly advised</strong> to resolve all Struts 1.1. deprecations before moving to this release. Removed constructs most likely to affect developers are:</p>
         <ul>
           <li>
-          <code>org.apache.struts.Action</code>statics: Use
-          <code>org.apache.struts.Global</code>statics instead.</li>
+          <code>org.apache.struts.Action</code> statics: Use
+          <code>org.apache.struts.Global</code> statics instead.</li>
           <li>
           <code>Action.perform</code>: Use
-          <code>Action.execute</code>instead.</li>
+          <code>Action.execute</code> instead.</li>
         </ul>
         <p>Although not removed, in many cases
-        <strong>you should replace</strong>the deprecated
-        <code>ActionErrors</code>with the preferred
-        <code>ActionMessages</code>to ensure correct operation.</p>
+        <strong>you should replace</strong> the deprecated
+        <code>ActionErrors</code> with the preferred
+        <code>ActionMessages</code> to ensure correct operation.</p>
         <p>
-        <strong>TagUtils and ModuleUtils</strong>- Many utility methods previously found in
-        <code>org.apache.struts.utils.RequestUtils</code>have been moved to
-        <code>org.apache.struts.taglibs.TagUtils</code>or
+        <strong>TagUtils and ModuleUtils</strong> - Many utility methods previously found in
+        <code>org.apache.struts.utils.RequestUtils</code> have been moved to
+        <code>org.apache.struts.taglibs.TagUtils</code> or
         <code>org.apache.struts.utils.ModuleUtils</code>.</p>
         <p>
-        <strong>GenericDataSource / GenericConnection implementations removed</strong>- The datasources manager is still supported, but our own datasource
+        <strong>GenericDataSource / GenericConnection implementations removed</strong> - The datasources manager is still supported, but our own datasource
         <em>implementation</em>is not. You are welcome to plug in your own DataSource implementation, but we do not have the resources to maintain one of our own. If your container does not supply a DataSource implementation, the DBCP package from the Jakarta Commons is suggested.</p>
         <p>
           <strong>Validator enhancements</strong>
@@ -99,44 +98,48 @@
         <ul>
           <li>ValidWhen? - The Struts Validator now supports a ValidWhen rule, so that one validation can be dependant on another.
           <a href="dev_validator.html#validWhen">Details ...</a></li>
-          <li>IntRange now checks select-one and radio fields. Example: This allows populating combo boxes with valid choices plus one additional choice with a caption something like "Choose one" and a value 0f "-1". Then when the user attempts to submit the form, you can look for the value of "-1" and yell at them if they failed to pick something.</li>
+          <li>IntRange now checks select-one and radio fields. Example: This allows populating combo boxes with valid choices plus one additional choice with a caption something like "Choose one" and a value 0f "-1". Then when the user attempts to submit the form, you can look for the value of "-1" and advise if nothing was selected.</li>
           <li>You can now force the clientside Javascript validation to check all constraints, instead of stopping at the first error. By setting a new property,
           <code>stopOnFirstError</code>, on the Validator PlugIn to false.
           <a href="dev_validator.html#stopOnFirstError">Details ...</a></li>
           <li>The "required" validation can now handle checkboxes, radio,select-one, and select-multiple field types. See the updated Validator example application to see these new features in action.</li>
           <li>A standard
-          <code>validateUrl</code>rule lets you check if a property contains a well-formed URL.</li>
+          <code>validateUrl</code> rule lets you check if a property contains a well-formed URL.</li>
         </ul>
         <p>
-        <strong>DigestingPlugIn</strong>- A new standard PlugIn that helps you create your own object graph in application scope. This is handy way to create business objects for Actions to call. Check the latest MailReader eaxmple application to see the DigestingPlugin in action.</p>
+        <strong>DigestingPlugIn</strong> - A new standard PlugIn that helps you create your own object graph in application scope. This is handy way to create business objects for Actions to call. Check the latest MailReader eaxmple application to see the DigestingPlugin in action.</p>
         <p>
-        <strong>ModuleConfigVerifier</strong>- While not exactly new, a standard class for verifying module configurations is also available in the PlugIn packages. As it stands, the
-        <code>ModuleConfigVerifier</code>mainly confirms that various components of the Struts object graph were loaded. However, ambitious developers could extend this class with additional checks to ensure the Struts configuration is internally consistent.</p>
+        <strong>ModuleConfigVerifier</strong> - While not exactly new, a standard class for verifying module configurations is also available in the PlugIn packages. As it stands, the
+        <code>ModuleConfigVerifier</code> mainly confirms that various components of the Struts object graph were loaded. However, ambitious developers could extend this class with additional checks to ensure the Struts configuration is internally consistent.</p>
         <p>
-        <strong>Maven project files</strong>- While still under development, significant progress has been made toward putting the Struts build process under
+        <strong>Maven project files</strong> - While still under development, significant progress has been made toward putting the Struts build process under
         <a href="http://maven.apache.org">Maven</a>. The core JAR and TLDs can be built using Maven, leveraging the shared Maven repository for our many dependencies. You can find the current maven.xml and project.xml in the root directory of the Struts source distribution. However, at this time, the original Ant build files are still the official mechanism for building Struts.</p>
         <p>
-        <strong>New Configuration DTD</strong>- The
+        <strong>New Configuration DTD</strong> - The
         <code>
           <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">struts-config_1_2.dtd</a>
-        </code>is preferred to the deprecated Struts Configuration 1.1 DTD. The new DTD adds two new elements &lt;display-name&gt; and &lt;description&gt; to the struts-config element. These elements are for use by struts config file tools and document generation. In the Struts 1.2.x series, existing Struts configuration files can be loaded using either DTD version.</p>
+        </code> is preferred to the deprecated Struts Configuration 1.1 DTD. The new DTD adds two new elements &lt;display-name&gt; and &lt;description&gt; to the struts-config element. These elements are for use by struts config file tools and document generation. In the Struts 1.2.x series, existing Struts configuration files can be loaded using either DTD version.</p>
         <p>
-        <strong>New Committers</strong>- We are pleased to welcome Steve Raeburn, Don Brown, and Joe Germuska to the team of Struts Committers.</p>
+        <strong>New Committers</strong> - We are pleased to welcome Steve Raeburn, Don Brown, and Joe Germuska to the team of Struts Committers.</p>
         <p>
-        <strong>Struts-Chain</strong>- Still experimental, this new "contrib" package utilizes the new Chain of Responsibilty package in the Jakarta Sandbox to create a new breed of RequestProcessor. Look for this to become the default implementation in a future release.</p>
+        <strong>Struts-Chain</strong> - Still experimental, this new "contrib" package utilizes the new Chain of Responsibilty package in the Jakarta Sandbox to create a new breed of RequestProcessor. Look for this to become the default implementation in a future release.</p>
         <p>
-        <strong>MappingDispatchAction</strong>- A new standard Action that dispatches to a method named by the ActionMapping parameter.</p>
+        <strong>MappingDispatchAction</strong> - A new standard Action that dispatches to a method named by the ActionMapping parameter.</p>
         <p>
-        <strong>Cancel handlers</strong>- DispatchAction, LookupDispatchAction, and MappingDispatchAction - Now provide default cancel handler that can be overridden. It also also possible to specify the default handler name.</p>
+        <strong>Cancel handlers</strong> - DispatchAction, LookupDispatchAction, and MappingDispatchAction - Now provide default cancel handler that can be overridden. It also also possible to specify the default handler name.</p>
         <p>
-        <strong>Session-scoped ActionMessages</strong>- You can now save ActionMessages in the session and have them cleaned up after the first use. There is now an alternate form of Action.saveMessages() that stores messages in the session. ActionMessages.isAccessed() returns true after the messages have been retrieved one time. RequestProcessor.processCachedMessages() queries isAccessed() to determine if it should remove the messages from the session.</p>
+        <strong>Session-scoped ActionMessages</strong> - You can now save ActionMessages in the session and have them cleaned up after the first use. There is now an alternate form of Action.saveMessages() that stores messages in the session. ActionMessages.isAccessed() returns true after the messages have been retrieved one time. RequestProcessor.processCachedMessages() queries isAccessed() to determine if it should remove the messages from the session.</p>
         <p>
-        <strong>JA Mailreader</strong>- The Struts Mailreader Example application now includes a Japanese resource file.</p>
+        <strong>JA Mailreader</strong> - The Struts Mailreader Example application now includes a Japanese resource file.</p>
         <p>
-        <strong>Tiles EL</strong>- The Tiles tags are now avaiable through the Struts EL taglib, which is based on JSTL.</p>
+        <strong>Tiles EL</strong> - The Tiles tags are now avaiable through the Struts EL taglib, which is based on JSTL.</p>
         <p>
-        <strong>Wildcard Mappings</strong>- You can now use wildcards in your action-mappings. For details see
-        <a href="building_controller.html#action_mapping_wildcards">Using Wildcards in ActionMappings</a>as well as the Struts Mailreader Example application.</p>
+        <strong>Wildcard Mappings</strong> - You can now use wildcards in your action-mappings. For details see
+        <a href="building_controller.html#action_mapping_wildcards">Using Wildcards in ActionMappings</a> as well as the Struts Mailreader Example application.</p>
+        <p>
+       <strong>Module attribute</strong> - A new "module" attribute is available on the forward element as well as several of the core tags. This attribute allows you to specify another module by name (or "prefix") to create direct links between modules. The new module attribute is preferered to the <code>contextRelative</code> attribute and can often be used in lieu of a "SwitchAction".
+        </p>
+
       </section>
       <section name="What Changed?" href="Changes">
         <p>This section highlights some of the changes that have taken place since the last release. For a complete review of all changes, see the
@@ -156,7 +159,7 @@
           <li>2003-08-08 - maven.xml,project.xml - Maven build files.</li>
         </ul>
         <p>
-        <strong>Configuration Changes</strong>[
+        <strong>Configuration Changes</strong> [
         <code>/conf/shared</code>]</p>
         <ul>
           <li>2003-08-09 - Add two new elements &lt;description-short%gt; and &lt;description-long&gt; for use by struts config file tools and document generation.</li>
@@ -165,21 +168,21 @@
           <li>2003-07-04 - struts-config_1_2.dtd: Added 1.2 struts-config.dtd. This is a copy of the 1.1 DTD except that the &lt;data-source&gt; "type" attribute is now required because Struts does not supply a default DataSource implementation.</li>
         </ul>
         <p>
-        <strong>Project-wide Changes</strong>[
+        <strong>Project-wide Changes</strong> [
         </p>
           <ul>
               <li>2004-01-14 - Update License format to please Maven Checkstyle reports.</li>
               <li>2004-01-10 - Removed @author javadoc tags from all classes; updated volunteers.xml to list missing people.</li>
          </ul>
         <p>
-        <strong>Default Package Changes</strong>[
+        <strong>Default Package Changes</strong> [
         <code>org.apache.struts</code>]</p>
         <ul>
           <li>2003-07-04 - Globals: Removed deprecated APPLICATION_KEY.</li>
           <li>2003-07-03 - Globals,ActionServlet,RequestUtils: Moved initialization of module prefix list to the new ActionServlet.initModulePrefixes() method from RequestUtils.getModulePrefixes() because of a potential race condition documented in PR# 21091. This also required a move of the RequestUtils.PREFIXES constant to Globals.MODULE_PREFIXES_KEY.</li>
         </ul>
         <p>
-        <strong>Action Package Changes</strong>[
+        <strong>Action Package Changes</strong> [
         <code>org.apache.struts.action</code>]</p>
         <ul>
           <li>2003-09-29 - RequestProcessor,ActionMappingMatcher,WildcardHelper: Added optional wildcard support for action mappings.</li>
@@ -207,7 +210,7 @@
           <li>2003-07-01 - Action: Removed deprecated constants and toHex() method.</li>
         </ul>
         <p>
-        <strong>Actions Package Changes</strong>[
+        <strong>Actions Package Changes</strong> [
         <code>org.apache.struts.actions</code>]</p>
         <ul>
           <li>2003-12-22 - DispatchAction: Add detection of recursive calls.</li>
@@ -221,7 +224,7 @@
           <li>2003-07-03 - LookupDispatchAction: Fixed synchronization problem (PR# 21224). Also refactored some code into a new initLookupMap() method.</li>
         </ul>
         <p>
-        <strong>Config Package</strong>[
+        <strong>Config Package</strong> [
         <code>org.apache.struts.config</code>]</p>
         <ul>
             <li>2004-01-10 - Changed WildcardHelper methods from statics to instance methods to allow subclasses to override and customize behavior. Changed WildcardHelper.match() to accept a generic Map parameter rather than HashMap.</li>
@@ -237,7 +240,7 @@
           <li>ApplicationConfig: removed in favor of ModuleConfig.</li>
         </ul>
         <p>
-        <strong>Contrib Packages</strong>[
+        <strong>Contrib Packages</strong> [
         <code>/contrib</code>]</p>
         <ul>
             <li>2004-01-15 - struts-chain: Add Tiles support. Add null check for type, to support forward actions; also add commons loggging</li>
@@ -261,13 +264,13 @@
           <li>2003-07-26 - strutsel: Updated tags to match recent attribute changes to tags in base library.</li>
         </ul>
         <p>
-        <strong>Plugins Package</strong>[
+        <strong>Plugins Package</strong> [
         <code>org.apache.struts.plugins</code>]</p>
         <ul>
           <li>2003-08-07 - DigestingPlugIn.java: Added DigestingPlugIn.</li>
         </ul>
         <p>
-        <strong>Taglib Package Changes</strong>[
+        <strong>Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib</code>]</p>
         <ul>
           <li>2003-09-09 - TagUtils: Log error message when keys or bundles are missing.</li>
@@ -283,7 +286,7 @@
           <li>2003-07-26 - TagUtils,RequestUtils: Added TagUtils class for taglibs to use instead of RequestUtils. We should migrate any method in RequestUtils that takes a PageContext parameter and/or throws JspException. A clean separation will help keep RequestUtils smaller and allow the taglibs to be easily split off of the core Struts distribution.</li>
         </ul>
         <p>
-        <strong>Bean Taglib Package Changes</strong>[
+        <strong>Bean Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.bean</code>]</p>
         <ul>
           <li>2004-01-14 - WriteTag: Use client locale when applying date format.</li>
@@ -296,7 +299,7 @@
           <li>2003-07-13 - MessageTag: Simplified args[] creation, deprecated unused defaultLocale variable.</li>
         </ul>
         <p>
-        <strong>HTML Taglib Package Changes</strong>[
+        <strong>HTML Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.html</code>]:</p>
         <ul>
           <li>2004-01-09 - Add disabled element to TLD.</li>
@@ -319,7 +322,7 @@
           <li>2003-07-02 - ErrorsTag: Don't render new lines</li>
         </ul>
         <p>
-        <strong>Logic Taglib Package Changes</strong>[
+        <strong>Logic Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.logic</code>]:</p>
         <ul>
            <li>2004-01-16 - logic:redirect - Add action attribute.</li>
@@ -328,7 +331,7 @@
           <li>2003-07-31 - PresentTag,RedirectTag: Replace depricated method calls with non-deprecated ones.</li>
         </ul>
         <p>
-        <strong>Nested Taglib Package Changes</strong>[
+        <strong>Nested Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.nested</code>]:</p>
         <ul>
           <li>2004-01-01 - Correct operation of NestedMessage* tags by implementing NestedPropertySupport rather than NestedNameSupport.</li>
@@ -340,7 +343,7 @@
           <li>2003-07-03 - struts-nested.xml: Added styleId to nested:hidden</li>
         </ul>
         <p>
-        <strong>Tiles Taglib Package Changes</strong>[
+        <strong>Tiles Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.tiles</code>]:</p>
         <ul>
           <li>2003-09-07 - ImportAttributeTag,UseAttributeTag: Removing "final" from class declaration, to allow class to be extended in "tiles-el" (or other classes).</li>
@@ -352,7 +355,7 @@
           <li>2003-07-04 - ActionController: Call Action.execute() instead of perform().</li>
         </ul>
         <p>
-        <strong>Tiles Package Changes</strong>[
+        <strong>Tiles Package Changes</strong> [
         <code>org.apache.struts.tiles</code>]:</p>
         <ul>
           <li>2003-09-13 - Controller: Added execute() method to Tiles Controller interface.</li>
@@ -377,7 +380,7 @@
           <li>2003-07-02 - Changed UntyppedAttribute class name to UntypedAttribute (spelling error).</li>
         </ul>
         <p>
-        <strong>Upload Package Changes</strong>[
+        <strong>Upload Package Changes</strong> [
         <code>org.apache.struts.upload</code>]:</p>
         <ul>
           <li>2003-11-26 - DiskMultipartRequestHandler: Deprecate DiskMultipartRequestHandler and friends, which is the buggy old upload implementation, no longer used as the default as of Struts 1.1. This will be removed after 1.2 (meaning as of 1.3/2.0).</li>
@@ -386,7 +389,7 @@
           <li>2003-07-31 - MultipartElement: Remove deprecated methods.</li>
         </ul>
         <p>
-        <strong>Utility Package Changes</strong>[
+        <strong>Utility Package Changes</strong> [
         <code>org.apache.struts.util</code>]:</p>
         <ul>
           <li>2003-09-22 - LabelValueBean: Implement Comparable interface.</li>
@@ -406,7 +409,7 @@
           <li>2003-07-02 - LabelValueBean: Added default constructor.</li>
         </ul>
         <p>
-        <strong>Validator Package Changes</strong>[
+        <strong>Validator Package Changes</strong> [
         <code>org.apache.struts.validator</code>]</p>
         <ul>
           <li>2003-12-21 - Add rest of form to fr.CA formset to correct operation; Use action form of html:link;</li>
@@ -428,14 +431,14 @@
           <li>2003-07-01 - Add validwhen validation to package.</li>
         </ul>
         <p>
-        <strong>Documentation Application Changes</strong>[
+        <strong>Documentation Application Changes</strong> [
         <code>struts-documentation.war</code>]:</p>
         <ul>
           <li>2003-11-27 - resource: Move resource area to
           <a href="http://struts.sf.net/">Struts SourceForge site</a>.</li>
         </ul>
         <p>
-        <strong>MailReader Example Application Changes</strong>[
+        <strong>MailReader Example Application Changes</strong> [
         <code>struts-example.war</code>]:</p>
         <ul>
           <li>2004-01-08 - Use (new) DigestingPlugIn to create the menu of server types.</li>
@@ -449,7 +452,7 @@
           <li>2003-08-16 - Changed ActionError to ActionMessage.</li>
         </ul>
         <p>
-        <strong>Combined Examples Application</strong>[
+        <strong>Combined Examples Application</strong> [
         <code>struts-examples.war</code>]</p>
         <ul>
           <li>2004-01-16 - exercises: Add test pages for html:img and logic:forward,redirect. Add test pages for html:img and logic:forward,redirect tags</li>
