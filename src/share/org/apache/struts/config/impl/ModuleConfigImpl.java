@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.3 2002/12/22 05:31:14 rleland Exp $
- * $Revision: 1.3 $
- * $Date: 2002/12/22 05:31:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.4 2003/02/04 02:34:09 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/04 02:34:09 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -89,7 +89,7 @@ import org.apache.struts.config.ModuleConfigFactory;
  *
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/12/22 05:31:14 $
+ * @version $Revision: 1.4 $ $Date: 2003/02/04 02:34:09 $
  * @since Struts 1.1
  */
 public class ModuleConfigImpl implements Serializable, ModuleConfig {

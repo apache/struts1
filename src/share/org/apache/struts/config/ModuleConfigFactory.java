@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfigFactory.java,v 1.2 2003/02/04 02:31:39 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/04 02:31:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfigFactory.java,v 1.3 2003/02/04 02:34:09 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/04 02:34:09 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 2001-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -69,7 +69,7 @@ import org.apache.commons.logging.LogFactory;
  * A factory interface for creating {@link ModuleConfig}s.
  *
  * @author Robert Leland
- * @version $Revision: 1.2 $ $Date: 2003/02/04 02:31:39 $ 
+ * @version $Revision: 1.3 $ $Date: 2003/02/04 02:34:09 $ 
  *
  * @see ModuleConfig
  */
