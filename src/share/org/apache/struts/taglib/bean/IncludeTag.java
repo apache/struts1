@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.19 2002/11/29 19:54:22 dgraham Exp $
+ * $Id: IncludeTag.java,v 1.20 2003/07/26 17:40:52 rleland Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -72,6 +72,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Define the contents of a specified intra-application request as a
@@ -84,7 +85,7 @@ import org.apache.struts.util.RequestUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2002/11/29 19:54:22 $
+ * @version $Revision: 1.20 $ $Date: 2003/07/26 17:40:52 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -204,7 +205,7 @@ public class IncludeTag extends TagSupport {
 
         // Set up a URLConnection to read the requested resource
         Map params =
-            RequestUtils.computeParameters(
+            TagUtils.getInstance().computeParameters(
                 pageContext,
                 null,
                 null,

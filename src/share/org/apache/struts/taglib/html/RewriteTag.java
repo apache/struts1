@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.10 2003/06/20 04:09:57 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2003/06/20 04:09:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.11 2003/07/26 17:40:52 rleland Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/07/26 17:40:52 $
  *
  * ====================================================================
  *
@@ -66,13 +66,14 @@ import java.util.Map;
 import javax.servlet.jsp.JspException;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
+import org.apache.struts.taglib.TagUtils;
 
 
 /**
  * Generate a URL-encoded URI as a string.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2003/06/20 04:09:57 $
+ * @version $Revision: 1.11 $ $Date: 2003/07/26 17:40:52 $
  */
 public class RewriteTag extends LinkTag {
 
@@ -88,7 +89,7 @@ public class RewriteTag extends LinkTag {
     public int doStartTag() throws JspException {
 
         // Generate the hyperlink URL
-        Map params = RequestUtils.computeParameters
+        Map params = TagUtils.getInstance().computeParameters
             (pageContext, paramId, paramName, paramProperty, paramScope,
              name, property, scope, transaction);
              

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.28 2002/12/29 17:00:15 husted Exp $
- * $Revision: 1.28 $
- * $Date: 2002/12/29 17:00:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.29 2003/07/26 17:40:52 rleland Exp $
+ * $Revision: 1.29 $
+ * $Date: 2003/07/26 17:40:52 $
  *
  * ====================================================================
  *
@@ -71,13 +71,14 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 import org.apache.struts.taglib.logic.IterateTag;
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
  * @author James Turner
- * @version $Revision: 1.28 $ $Date: 2002/12/29 17:00:15 $
+ * @version $Revision: 1.29 $ $Date: 2003/07/26 17:40:52 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -459,7 +460,7 @@ public class LinkTag extends BaseHandlerTag {
     protected String calculateURL() throws JspException {
 
         // Identify the parameters we will add to the completed URL
-        Map params = RequestUtils.computeParameters
+        Map params = TagUtils.getInstance().computeParameters
             (pageContext, paramId, paramName, paramProperty, paramScope,
              name, property, scope, transaction);
 

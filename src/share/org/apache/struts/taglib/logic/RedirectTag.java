@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.16 2003/07/13 23:40:46 dgraham Exp $
- * $Revision: 1.16 $
- * $Date: 2003/07/13 23:40:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.17 2003/07/26 17:40:52 rleland Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/07/26 17:40:52 $
  *
  * ====================================================================
  *
@@ -71,12 +71,13 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Generate a URL-encoded redirect to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2003/07/13 23:40:46 $
+ * @version $Revision: 1.17 $ $Date: 2003/07/26 17:40:52 $
  */
 public class RedirectTag extends TagSupport {
 
@@ -279,7 +280,7 @@ public class RedirectTag extends TagSupport {
      */
     protected String generateRedirectURL() throws JspException {
         Map params =
-            RequestUtils.computeParameters(
+            TagUtils.getInstance().computeParameters(
                 pageContext,
                 paramId,
                 paramName,
