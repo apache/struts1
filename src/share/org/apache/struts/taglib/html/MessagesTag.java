@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.12 2003/02/28 02:37:30 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/02/28 02:37:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.13 2003/03/04 04:43:44 martinc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/03/04 04:43:44 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.ResponseUtils;
  * to the default <code>ErrorsTag</code>.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.12 $ $Date: 2003/02/28 02:37:30 $
+ * @version $Revision: 1.13 $ $Date: 2003/03/04 04:43:44 $
  * @since Struts 1.1
 */
 public class MessagesTag extends BodyTagSupport {
@@ -228,8 +228,14 @@ public class MessagesTag extends BodyTagSupport {
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
+        // Initialize for a new request.
+        processed = false;
+
         // Were any messages specified?
         ActionMessages messages = null;
+
+        // Make a local copy of the name attribute that we can modify.
+        String name = this.name;
 
         if (message != null && "true".equalsIgnoreCase(message)) {
             name = Globals.MESSAGE_KEY;
@@ -305,18 +311,18 @@ public class MessagesTag extends BodyTagSupport {
         }
 
         // Decide whether to iterate or quit
-    if (iterator.hasNext()) {
-           ActionMessage report = (ActionMessage)iterator.next();
-           String msg = RequestUtils.message(pageContext, bundle,
-                                             locale, report.getKey(),
-                                             report.getValues());
+        if (iterator.hasNext()) {
+               ActionMessage report = (ActionMessage)iterator.next();
+               String msg = RequestUtils.message(pageContext, bundle,
+                                                 locale, report.getKey(),
+                                                 report.getValues());
 
-       pageContext.setAttribute(id, msg);
+           pageContext.setAttribute(id, msg);
 
-       return (EVAL_BODY_TAG);
-    } else {
-       return (SKIP_BODY);
-    }
+           return (EVAL_BODY_TAG);
+        } else {
+           return (SKIP_BODY);
+        }
 
     }
 
