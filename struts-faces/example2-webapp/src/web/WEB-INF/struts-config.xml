@@ -85,8 +85,8 @@
 
   <!-- ========== Global Forward Definitions ============================== -->
   <global-forwards>
-    <forward   name="logoff"               path="/logoff.do"/>
-    <forward   name="logon"                path="/logon.faces"/>
+    <forward   name="logoff"               path=".welcome"/>
+    <forward   name="logon"                path=".logon"/>
     <forward   name="registration"         path=".registration"/>
     <forward   name="subscription"         path=".subscription"/>
     <forward   name="success"              path=".mainMenu"/>
