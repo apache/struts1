@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.1 2000/06/16 07:12:18 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/16 07:12:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.2 2000/06/24 23:26:22 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/24 23:26:22 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ package org.apache.struts.action;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/06/16 07:12:18 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/24 23:26:22 $
  */
 
 public class ActionForward {
@@ -127,6 +127,7 @@ public class ActionForward {
     public ActionForward(String path, boolean redirect) {
 
 	super();
+	setName(null);
 	setPath(path);
 	setRedirect(redirect);
 
@@ -139,20 +140,20 @@ public class ActionForward {
     /**
      * The logical name of this forward.
      */
-    private String name = null;
+    protected String name = null;
 
 
     /**
      * The context-relative (for a forward) or relative or absolute (for a
      * redirect) URI path to be forwarded to.
      */
-    private String path = null;
+    protected String path = null;
 
 
     /**
      * Should this be a redirect instead of a forward?
      */
-    private boolean redirect = false;
+    protected boolean redirect = false;
 
 
     // ------------------------------------------------------------- Properties
