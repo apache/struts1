@@ -247,12 +247,6 @@ public ActionForward perform(ActionMapping mapping,
         
 
       <p>
-        For every &lt;form-bean&gt; tag in your <code>struts-config.xml</code>
-        file, you must have a corresponding Java class. The same holds true for
-        each &lt;action-mapping&gt; tag.
-      </p>
-
-      <p>
         The <code>struts-config.xml</code> file from the example application includes
         the following mapping entry for the "log on" function, which we will use
         to illustrate the requirements.  Note that the entries for all the other actions
