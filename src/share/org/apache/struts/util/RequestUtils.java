@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.138 2003/12/20 21:40:27 husted Exp $
- * $Revision: 1.138 $
- * $Date: 2003/12/20 21:40:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.139 2003/12/20 22:42:52 husted Exp $
+ * $Revision: 1.139 $
+ * $Date: 2003/12/20 22:42:52 $
  *
  * ====================================================================
  *
@@ -106,7 +106,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.138 $ $Date: 2003/12/20 21:40:27 $
+ * @version $Revision: 1.139 $ $Date: 2003/12/20 22:42:52 $
  */
 public class RequestUtils {
 
@@ -190,236 +190,6 @@ public class RequestUtils {
         return (applicationClass(className).newInstance());
 
     }
-
-    /**
-     * <p>Compute a set of query parameters that will be dynamically added to
-     * a generated URL. The returned Map is keyed by parameter name, and the
-     * values are either null (no value specified), a String (single value
-     * specified), or a String[] array (multiple values specified). Parameter
-     * names correspond to the corresponding attributes of the
-     * <code>&lt;html:link&gt;</code> tag.  If no query parameters are
-     * identified, return <code>null</code>.</p>
-     *
-     * @param pageContext PageContext we are operating in
-
-     * @param paramId Single-value request parameter name (if any)
-     * @param paramName Bean containing single-value parameter value
-     * @param paramProperty Property (of bean named by <code>paramName</code>
-     *  containing single-value parameter value
-     * @param paramScope Scope containing bean named by
-     *  <code>paramName</code>
-     *
-     * @param name Bean containing multi-value parameters Map (if any)
-     * @param property Property (of bean named by <code>name</code>
-     *  containing multi-value parameters Map
-     * @param scope Scope containing bean named by
-     *  <code>name</code>
-     *
-     * @param transaction Should we add our transaction control token?
-     * @return Map of query parameters
-     * @exception JspException if we cannot look up the required beans
-     * @exception JspException if a class cast exception occurs on a
-     *  looked-up bean or property
-     * @deprecated This will be removed after Struts 1.2.
-     * Use {@link org.apache.struts.taglib.TagUtils#computeParameters(PageContext,String,String,String,String,String,String,String,boolean)} instead.
-     */
-    public static Map computeParameters(
-            PageContext pageContext,
-            String paramId,
-            String paramName,
-            String paramProperty,
-            String paramScope,
-            String name,
-            String property,
-            String scope,
-            boolean transaction)
-            throws JspException {
-        // :TODO: Remove after Struts 1.2
-
-        return TagUtils.getInstance().computeParameters(pageContext, paramId, paramName, paramProperty, paramScope,
-                                                        name, property, scope, transaction);
-
-    }
-
-
-    /**
-     * <p>Compute a hyperlink URL based on the <code>forward</code>,
-     * <code>href</code> or <code>page</code> parameter
-     * that is not null.</p>
-     *
-     * @deprecated This will be removed after Struts 1.2
-     * Use {@link RequestUtils#computeURL(PageContext, String, String, String, String, Map, String, boolean)} instead.
-     *
-     * @param pageContext PageContext for the tag making this call
-     * @param forward Logical forward name for which to look up
-     *  the context-relative URI (if specified)
-     * @param href URL to be utilized unmodified (if specified)
-     * @param page Module-relative page for which a URL should
-     *  be created (if specified)
-     * @param params Map of parameters to be dynamically included (if any)
-     * @param anchor Anchor to be dynamically included (if any)
-     * @param redirect Is this URL for a <code>response.sendRedirect()</code>?
-
-     * @return URL with session identifier
-     * @exception MalformedURLException if a URL cannot be created
-     *  for the specified parameters
-     */
-    public static String computeURL(
-            PageContext pageContext,
-            String forward,
-            String href,
-            String page,
-            Map params,
-            String anchor,
-            boolean redirect)
-            throws MalformedURLException {
-        // :TODO: Remove after Struts 1.2
-
-        return computeURL(pageContext, forward, href, page, null, params,
-                          anchor, redirect);
-
-    }
-
-
-    /**
-     * <p>Compute a hyperlink URL based on the <code>forward</code>,
-     * <code>href</code>, <code>action</code> or <code>page</code> parameter
-     * that is not null.
-     * The returned URL will have already been passed to
-     * <code>response.encodeURL()</code> for adding a session identifier.</p>
-     *
-     * @param pageContext PageContext for the tag making this call
-     * @param forward Logical forward name for which to look up
-     *  the context-relative URI (if specified)
-     * @param href URL to be utilized unmodified (if specified)
-     * @param page Module-relative page for which a URL should
-     *  be created (if specified)
-     * @param action Logical action name for which to look up
-     *  the context-relative URI (if specified)
-     * @param params Map of parameters to be dynamically included (if any)
-     * @param anchor Anchor to be dynamically included (if any)
-     * @param redirect Is this URL for a <code>response.sendRedirect()</code>?
-
-     * @return URL with session identifier
-     * @exception MalformedURLException if a URL cannot be created
-     *  for the specified parameters
-     * @deprecated This will be removed after Struts 1.2.
-     * Use {@link org.apache.struts.taglib.TagUtils#computeURL(PageContext,String,String,String,String,Map,String,boolean)} instead.
-     */
-    public static String computeURL(
-            PageContext pageContext,
-            String forward,
-            String href,
-            String page,
-            String action,
-            Map params,
-            String anchor,
-            boolean redirect)
-            throws MalformedURLException {
-        // :TODO: Remove after Struts 1.2
-
-        return TagUtils.getInstance().computeURL(
-                pageContext,
-                forward,
-                href,
-                page,
-                action,
-                params,
-                anchor,
-                redirect);
-    }
-
-
-    /**
-     * <p>Compute a hyperlink URL based on the <code>forward</code>,
-     * <code>href</code>, <code>action</code> or <code>page</code> parameter
-     * that is not null.
-     * The returned URL will have already been passed to
-     * <code>response.encodeURL()</code> for adding a session identifier.
-     * </p>
-     *
-     * @param pageContext PageContext for the tag making this call
-     * @param forward Logical forward name for which to look up
-     *  the context-relative URI (if specified)
-     * @param href URL to be utilized unmodified (if specified)
-     * @param page Module-relative page for which a URL should
-     *  be created (if specified)
-     * @param action Logical action name for which to look up
-     *  the context-relative URI (if specified)
-     * @param params Map of parameters to be dynamically included (if any)
-     * @param anchor Anchor to be dynamically included (if any)
-     * @param redirect Is this URL for a <code>response.sendRedirect()</code>?
-     * @param encodeSeparator This is only checked if redirect is set to false (never
-     * encoded for a redirect).  If true, query string parameter separators are encoded
-     * as &gt;amp;, else &amp; is used.
-
-     * @return URL with session identifier
-     * @exception MalformedURLException if a URL cannot be created
-     *  for the specified parameters
-     * @deprecated This will be removed after Struts 1.2.
-     * Use {@link org.apache.struts.taglib.TagUtils#computeURL(PageContext,String,String,String,String,Map,String,boolean,boolean)} instead.
-     */
-    public static String computeURL(
-            PageContext pageContext,
-            String forward,
-            String href,
-            String page,
-            String action,
-            Map params,
-            String anchor,
-            boolean redirect,
-            boolean encodeSeparator)
-            throws MalformedURLException {
-        // :TODO: Remove after Struts 1.2
-
-        return (TagUtils.getInstance().computeURL(
-                pageContext,
-                forward,
-                href,
-                page,
-                action,
-                params,
-                anchor,
-                redirect,
-                encodeSeparator));
-    }
-
-
-    /**
-     * <p>Return the form action converted into an action mapping path.  The
-     * value of the <code>action</code> property is manipulated as follows in
-     * computing the name of the requested mapping:</p>
-     * <ul>
-     * <li>Any filename extension is removed (on the theory that extension
-     *     mapping is being used to select the controller servlet).</li>
-     * <li>If the resulting value does not start with a slash, then a
-     *     slash is prepended.</li>
-     * </ul>
-     * @deprecated  This will be removed after Struts 1.2.
-     * Use {@link org.apache.struts.taglib.TagUtils#getActionMappingName(String)} instead.
-     */
-    public static String getActionMappingName(String action) {
-        // :TODO: Remove after Struts 1.2
-
-        return TagUtils.getInstance().getActionMappingName(action);
-
-    }
-
-
-    /**
-     * <p>Return the form action converted into a server-relative URL.</p>
-     * @deprecated This will be removed after Struts 1.2.
-     * Use {@link org.apache.struts.taglib.TagUtils#getActionMappingURL(String,PageContext)} instead.
-     */
-    public static String getActionMappingURL(
-            String action,
-            PageContext pageContext) {
-        // :TODO: Remove after Struts 1.2
-
-        return TagUtils.getInstance().getActionMappingURL(action, pageContext);
-
-    }
-
 
     /**
      * <p>Create (if necessary) and return an <code>ActionForm</code> instance appropriate
@@ -548,109 +318,6 @@ public class RequestUtils {
 
 
     /**
-     * <p>Locate and return the specified bean, from an optionally specified
-     * scope, in the specified page context. If no such bean is found,
-     * return <code>null</code> instead. If an exception is thrown, it will
-     * have already been saved via a call to <code>saveException</code>.</p>
-     *
-     * @param pageContext Page context to be searched
-     * @param name Name of the bean to be retrieved
-     * @param scopeName Scope to be searched (page, request, session, application)
-     *  or <code>null</code> to use <code>findAttribute()</code> instead
-     *
-     * @return JavaBean in the specified page context
-     * @exception JspException if an invalid scope name
-     *  is requested
-     * @deprecated This will be removed after Struts 1.2.
-     * Use {@link org.apache.struts.taglib.TagUtils#lookup(PageContext,String,String)} instead.
-     */
-    public static Object lookup(PageContext pageContext, String name, String scopeName)
-            throws JspException {
-        // :TODO: Remove after Struts 1.2
-
-        return TagUtils.getInstance().lookup(pageContext, name, scopeName);
-
-    }
-
-
-    /**
-     * <p>Converts the scope name into its corresponding PageContext constant value.</p>
-     *
-     * @param scopeName Can be "page", "request", "session", or "application" in any
-     * case
-     *
-     * @return The constant representing the scope (ie. PageContext.REQUEST_SCOPE).
-     * @throws JspException if the scopeName is not a valid name.
-     * @since Struts 1.1
-     * @deprecated This will be removed after Struts 1.2.
-     * Use {@link org.apache.struts.taglib.TagUtils#getScope(String)} instead.
-
-     */
-    public static int getScope(String scopeName) throws JspException {
-        // :TODO: Remove after Struts 1.2
-
-        return TagUtils.getInstance().getScope(scopeName);
-
-    }
-
-
-    /**
-     * <p>Locate and return the specified property of the specified bean, from
-     * an optionally specified scope, in the specified page context. If an
-     * exception is thrown, it will have already been saved via a call to
-     * <code>saveException</code>.</p>
-     *
-     * @param pageContext Page context to be searched
-     * @param name Name of the bean to be retrieved
-     * @param property Name of the property to be retrieved, or
-     *  <code>null</code> to retrieve the bean itself
-     * @param scope Scope to be searched (page, request, session, application)
-     *  or <code>null</code> to use <code>findAttribute()</code> instead
-     *
-     * @return property of specified JavaBean
-     * @exception JspException if an invalid scope name
-     *  is requested
-     * @exception JspException if the specified bean is not found
-     * @exception JspException if accessing this property causes an
-     *  IllegalAccessException, IllegalArgumentException,
-     *  InvocationTargetException, or NoSuchMethodException
-     * @deprecated This will be removed after Struts 1.2.
-     * Use {@link org.apache.struts.taglib.TagUtils#lookup(PageContext,String,String,String)} instead.
-
-     */
-    public static Object lookup(
-            PageContext pageContext,
-            String name,
-            String property,
-            String scope)
-            throws JspException {
-        // :TODO: Remove after Struts 1.2
-
-        return TagUtils.getInstance().lookup(pageContext, name, property, scope);
-
-    }
-
-
-    /**
-     * <p>Look up and return current user locale, based on the specified parameters.</p>
-     *
-     * @param pageContext The PageContext associated with this request
-     * @param locale Name of the session attribute for our user's Locale.  If this is
-     * <code>null</code>, the default locale key is used for the lookup.
-     *
-     * @return current user locale
-     * @deprecated This will be removed after Struts 1.2.
-     * Use {@link org.apache.struts.taglib.TagUtils#getUserLocale(PageContext,String)} instead.
-     */
-    public static Locale retrieveUserLocale(PageContext pageContext, String locale) {
-        // :TODO: Remove after Struts 1.2
-
-        return TagUtils.getInstance().getUserLocale(pageContext, locale);
-
-    }
-
-
-    /**
      * <p>Look up and return current user locale, based on the specified parameters.</p>
      *
      * @param request The request used to lookup the Locale
@@ -680,66 +347,6 @@ public class RequestUtils {
 
         return userLocale;
 
-    }
-
-
-    /**
-     * <p>Look up and return a message string, based on the specified parameters.</p>
-     *
-     * @param pageContext The PageContext associated with this request
-     * @param bundle Name of the servlet context attribute for our
-     *  message resources bundle
-     * @param locale Name of the session attribute for our user's Locale
-     * @param key Message key to be looked up and returned
-     *
-     * @return message string
-     * @exception JspException if a lookup error occurs (will have been
-     *  saved in the request already)
-     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#message(PageContext,String,String,String)} instead.
-     * This will be removed after Struts 1.2.
-     */
-    public static String message(
-            PageContext pageContext,
-            String bundle,
-            String locale,
-            String key)
-            throws JspException {
-        // :TODO: Remove afer Strutgs 1.2
-
-        return TagUtils.getInstance().message(pageContext, bundle, locale, key);
-
-    }
-
-
-    /**
-     * Look up and return a message string, based on the specified parameters.
-     *
-     * @param pageContext The PageContext associated with this request
-     * @param bundle Name of the servlet context attribute for our
-     *  message resources bundle
-     * @param locale Name of the session attribute for our user's Locale
-     * @param key Message key to be looked up and returned
-     * @param args Replacement parameters for this message
-     * @return message string
-     * @exception JspException if a lookup error occurs (will have been
-     *  saved in the request already)
-     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#message(PageContext,String,String,String,Object[])} instead.
-     * This will be removed after Struts 1.2.
-     */
-    public static String message(
-            PageContext pageContext,
-            String bundle,
-            String locale,
-            String key,
-            Object args[])
-            throws JspException {
-
-        return TagUtils.getInstance().message(
-                pageContext,
-                bundle,
-                locale,
-                key,
-                args);
     }
 
 
@@ -1028,35 +635,6 @@ public class RequestUtils {
 
 
     /**
-     * <p>Return true if a message string for the specified message key
-     * is present for the specified Locale.</p>
-     *
-     * @param pageContext The PageContext associated with this request
-     * @param bundle Name of the servlet context attribute for our
-     *  message resources bundle
-     * @param locale Name of the session attribute for our user's Locale
-     * @param key Message key to be looked up and returned
-     *
-     * @return true if a message string for message key exists
-     * @exception JspException if a lookup error occurs (will have been
-     *  saved in the request already)
-     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#present(PageContext ,String,String,String)} instead.
-     * This will be removed after Struts 1.2.
-     */
-    public static boolean present(
-            PageContext pageContext,
-            String bundle,
-            String locale,
-            String key)
-            throws JspException {
-        // :TODO: Remove after Struts 1.2
-
-        return TagUtils.getInstance().present(pageContext, bundle, locale, key);
-
-    }
-
-
-    /**
      * <p>Compute the printable representation of a URL, leaving off the
      * scheme/host/port part if no host is specified. This will typically
      * be the case for URLs that were originally created from relative
@@ -1231,30 +809,6 @@ public class RequestUtils {
 
 
     /**
-     * <p>Return the context-relative URL that corresponds to the specified
-     * <code>page</code> attribute value, calculated based on the
-     * <code>pagePattern</code> property of the current module's
-     * {@link ModuleConfig}.</p>
-     *
-     * @param request The servlet request we are processing
-     * @param page The module-relative URL to be substituted in
-     *  to the <code>pagePattern</code> pattern for the current module
-     *  (<strong>MUST</strong> start with a slash)
-
-     * @return context-relative URL
-     * @since Struts 1.1
-     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#pageURL(HttpServletRequest,String)} instead.
-     * This will be removed after Struts 1.2.
-     */
-    public static String pageURL(HttpServletRequest request, String page) {
-
-        return TagUtils.getInstance().pageURL(request, page);
-        //:TODO: Remove after Struts 1.2
-
-    }
-
-
-    /**
      * <p>Return the URL representing the current request. This is equivalent
      * to <code>HttpServletRequest.getRequestURL</code> in Servlet 2.3.</p>
      *
@@ -1377,21 +931,8 @@ public class RequestUtils {
     }
 
 
-    /**
-     * <p>Save the specified exception as a request attribute for later use.</p>
-     *
-     * @param pageContext The PageContext for the current page
-     * @param exception The exception to be saved
-     *
-     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#saveException(PageContext,Throwable)} instead.
-     * This will be removed after Struts 1.2.
-     */
-    public static void saveException(PageContext pageContext, Throwable exception) {
+    // ------------------------------------- Deprecated in favor of ModuleUtils
 
-        TagUtils.getInstance().saveException(pageContext, exception);
-        // :TODO: Remove after Struts 1.2
-
-    }
 
 
     /**
@@ -1516,24 +1057,6 @@ public class RequestUtils {
 
 
     /**
-     * <p>Return the <code>ModuleConfig</code> object if it exists, null if otherwise.</p>
-     *
-     * @param pageContext The page context.
-     *
-     * @return the ModuleConfig object
-     * @since Struts 1.1
-     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#getModuleConfig(PageContext)} instead.
-     * This will be removed after Struts 1.2.
-     */
-    public static ModuleConfig getModuleConfig(PageContext pageContext) {
-        // :TODO: Remove after Struts 1.2
-
-        return TagUtils.getInstance().getModuleConfig(pageContext);
-
-    }
-
-
-    /**
      * <p>Return the list of module prefixes that are defined for
      * this web application. <strong>NOTE</strong> -
      * the "" prefix for the default module is not included in this list.</p>
@@ -1549,6 +1072,490 @@ public class RequestUtils {
         // :TODO: Remove after Struts 1.2
 
         return ModuleUtils.getInstance().getModulePrefixes(context);
+
+    }
+
+
+    // ---------------------------------------- Deprecated in favor of TagUtils
+
+
+    /**
+     * <p>Compute a set of query parameters that will be dynamically added to
+     * a generated URL. The returned Map is keyed by parameter name, and the
+     * values are either null (no value specified), a String (single value
+     * specified), or a String[] array (multiple values specified). Parameter
+     * names correspond to the corresponding attributes of the
+     * <code>&lt;html:link&gt;</code> tag.  If no query parameters are
+     * identified, return <code>null</code>.</p>
+     *
+     * @param pageContext PageContext we are operating in
+
+     * @param paramId Single-value request parameter name (if any)
+     * @param paramName Bean containing single-value parameter value
+     * @param paramProperty Property (of bean named by <code>paramName</code>
+     *  containing single-value parameter value
+     * @param paramScope Scope containing bean named by
+     *  <code>paramName</code>
+     *
+     * @param name Bean containing multi-value parameters Map (if any)
+     * @param property Property (of bean named by <code>name</code>
+     *  containing multi-value parameters Map
+     * @param scope Scope containing bean named by
+     *  <code>name</code>
+     *
+     * @param transaction Should we add our transaction control token?
+     * @return Map of query parameters
+     * @exception JspException if we cannot look up the required beans
+     * @exception JspException if a class cast exception occurs on a
+     *  looked-up bean or property
+     * @deprecated This will be removed after Struts 1.2.
+     * Use {@link org.apache.struts.taglib.TagUtils#computeParameters(PageContext,String,String,String,String,String,String,String,boolean)} instead.
+     */
+    public static Map computeParameters(
+            PageContext pageContext,
+            String paramId,
+            String paramName,
+            String paramProperty,
+            String paramScope,
+            String name,
+            String property,
+            String scope,
+            boolean transaction)
+            throws JspException {
+        // :TODO: Remove after Struts 1.2
+
+        return TagUtils.getInstance().computeParameters(pageContext, paramId, paramName, paramProperty, paramScope,
+                                                        name, property, scope, transaction);
+
+    }
+
+
+    /**
+     * <p>Compute a hyperlink URL based on the <code>forward</code>,
+     * <code>href</code> or <code>page</code> parameter
+     * that is not null.</p>
+     *
+     * @param pageContext PageContext for the tag making this call
+     * @param forward Logical forward name for which to look up
+     *  the context-relative URI (if specified)
+     * @param href URL to be utilized unmodified (if specified)
+     * @param page Module-relative page for which a URL should
+     *  be created (if specified)
+     * @param params Map of parameters to be dynamically included (if any)
+     * @param anchor Anchor to be dynamically included (if any)
+     * @param redirect Is this URL for a <code>response.sendRedirect()</code>?
+
+     * @return URL with session identifier
+     * @exception MalformedURLException if a URL cannot be created
+     *  for the specified parameters
+     * @deprecated This will be removed after Struts 1.2
+     * Use {@link RequestUtils#computeURL(PageContext, String, String, String, String, Map, String, boolean)} instead.
+     */
+    public static String computeURL(
+            PageContext pageContext,
+            String forward,
+            String href,
+            String page,
+            Map params,
+            String anchor,
+            boolean redirect)
+            throws MalformedURLException {
+        // :TODO: Remove after Struts 1.2
+
+        return computeURL(pageContext, forward, href, page, null, params,
+                          anchor, redirect);
+
+    }
+
+
+    /**
+     * <p>Compute a hyperlink URL based on the <code>forward</code>,
+     * <code>href</code>, <code>action</code> or <code>page</code> parameter
+     * that is not null.
+     * The returned URL will have already been passed to
+     * <code>response.encodeURL()</code> for adding a session identifier.</p>
+     *
+     * @param pageContext PageContext for the tag making this call
+     * @param forward Logical forward name for which to look up
+     *  the context-relative URI (if specified)
+     * @param href URL to be utilized unmodified (if specified)
+     * @param page Module-relative page for which a URL should
+     *  be created (if specified)
+     * @param action Logical action name for which to look up
+     *  the context-relative URI (if specified)
+     * @param params Map of parameters to be dynamically included (if any)
+     * @param anchor Anchor to be dynamically included (if any)
+     * @param redirect Is this URL for a <code>response.sendRedirect()</code>?
+
+     * @return URL with session identifier
+     * @exception MalformedURLException if a URL cannot be created
+     *  for the specified parameters
+     * @deprecated This will be removed after Struts 1.2.
+     * Use {@link org.apache.struts.taglib.TagUtils#computeURL(PageContext,String,String,String,String,Map,String,boolean)} instead.
+     */
+    public static String computeURL(
+            PageContext pageContext,
+            String forward,
+            String href,
+            String page,
+            String action,
+            Map params,
+            String anchor,
+            boolean redirect)
+            throws MalformedURLException {
+        // :TODO: Remove after Struts 1.2
+
+        return TagUtils.getInstance().computeURL(
+                pageContext,
+                forward,
+                href,
+                page,
+                action,
+                params,
+                anchor,
+                redirect);
+    }
+
+
+    /**
+     * <p>Compute a hyperlink URL based on the <code>forward</code>,
+     * <code>href</code>, <code>action</code> or <code>page</code> parameter
+     * that is not null.
+     * The returned URL will have already been passed to
+     * <code>response.encodeURL()</code> for adding a session identifier.
+     * </p>
+     *
+     * @param pageContext PageContext for the tag making this call
+     * @param forward Logical forward name for which to look up
+     *  the context-relative URI (if specified)
+     * @param href URL to be utilized unmodified (if specified)
+     * @param page Module-relative page for which a URL should
+     *  be created (if specified)
+     * @param action Logical action name for which to look up
+     *  the context-relative URI (if specified)
+     * @param params Map of parameters to be dynamically included (if any)
+     * @param anchor Anchor to be dynamically included (if any)
+     * @param redirect Is this URL for a <code>response.sendRedirect()</code>?
+     * @param encodeSeparator This is only checked if redirect is set to false (never
+     * encoded for a redirect).  If true, query string parameter separators are encoded
+     * as &gt;amp;, else &amp; is used.
+
+     * @return URL with session identifier
+     * @exception MalformedURLException if a URL cannot be created
+     *  for the specified parameters
+     * @deprecated This will be removed after Struts 1.2.
+     * Use {@link org.apache.struts.taglib.TagUtils#computeURL(PageContext,String,String,String,String,Map,String,boolean,boolean)} instead.
+     */
+    public static String computeURL(
+            PageContext pageContext,
+            String forward,
+            String href,
+            String page,
+            String action,
+            Map params,
+            String anchor,
+            boolean redirect,
+            boolean encodeSeparator)
+            throws MalformedURLException {
+        // :TODO: Remove after Struts 1.2
+
+        return (TagUtils.getInstance().computeURL(
+                pageContext,
+                forward,
+                href,
+                page,
+                action,
+                params,
+                anchor,
+                redirect,
+                encodeSeparator));
+    }
+
+
+    /**
+     * <p>Return the form action converted into an action mapping path.  The
+     * value of the <code>action</code> property is manipulated as follows in
+     * computing the name of the requested mapping:</p>
+     * <ul>
+     * <li>Any filename extension is removed (on the theory that extension
+     *     mapping is being used to select the controller servlet).</li>
+     * <li>If the resulting value does not start with a slash, then a
+     *     slash is prepended.</li>
+     * </ul>
+     * @deprecated  This will be removed after Struts 1.2.
+     * Use {@link org.apache.struts.taglib.TagUtils#getActionMappingName(String)} instead.
+     */
+    public static String getActionMappingName(String action) {
+        // :TODO: Remove after Struts 1.2
+
+        return TagUtils.getInstance().getActionMappingName(action);
+
+    }
+
+
+    /**
+     * <p>Return the form action converted into a server-relative URL.</p>
+     * @deprecated This will be removed after Struts 1.2.
+     * Use {@link org.apache.struts.taglib.TagUtils#getActionMappingURL(String,PageContext)} instead.
+     */
+    public static String getActionMappingURL(
+            String action,
+            PageContext pageContext) {
+        // :TODO: Remove after Struts 1.2
+
+        return TagUtils.getInstance().getActionMappingURL(action, pageContext);
+
+    }
+
+
+    /**
+     * <p>Locate and return the specified bean, from an optionally specified
+     * scope, in the specified page context. If no such bean is found,
+     * return <code>null</code> instead. If an exception is thrown, it will
+     * have already been saved via a call to <code>saveException</code>.</p>
+     *
+     * @param pageContext Page context to be searched
+     * @param name Name of the bean to be retrieved
+     * @param scopeName Scope to be searched (page, request, session, application)
+     *  or <code>null</code> to use <code>findAttribute()</code> instead
+     *
+     * @return JavaBean in the specified page context
+     * @exception JspException if an invalid scope name
+     *  is requested
+     * @deprecated This will be removed after Struts 1.2.
+     * Use {@link org.apache.struts.taglib.TagUtils#lookup(PageContext,String,String)} instead.
+     */
+    public static Object lookup(PageContext pageContext, String name, String scopeName)
+            throws JspException {
+        // :TODO: Remove after Struts 1.2
+
+        return TagUtils.getInstance().lookup(pageContext, name, scopeName);
+
+    }
+
+
+    /**
+     * <p>Converts the scope name into its corresponding PageContext constant value.</p>
+     *
+     * @param scopeName Can be "page", "request", "session", or "application" in any
+     * case
+     *
+     * @return The constant representing the scope (ie. PageContext.REQUEST_SCOPE).
+     * @throws JspException if the scopeName is not a valid name.
+     * @since Struts 1.1
+     * @deprecated This will be removed after Struts 1.2.
+     * Use {@link org.apache.struts.taglib.TagUtils#getScope(String)} instead.
+
+     */
+    public static int getScope(String scopeName) throws JspException {
+        // :TODO: Remove after Struts 1.2
+
+        return TagUtils.getInstance().getScope(scopeName);
+
+    }
+
+
+    /**
+     * <p>Locate and return the specified property of the specified bean, from
+     * an optionally specified scope, in the specified page context. If an
+     * exception is thrown, it will have already been saved via a call to
+     * <code>saveException</code>.</p>
+     *
+     * @param pageContext Page context to be searched
+     * @param name Name of the bean to be retrieved
+     * @param property Name of the property to be retrieved, or
+     *  <code>null</code> to retrieve the bean itself
+     * @param scope Scope to be searched (page, request, session, application)
+     *  or <code>null</code> to use <code>findAttribute()</code> instead
+     *
+     * @return property of specified JavaBean
+     * @exception JspException if an invalid scope name
+     *  is requested
+     * @exception JspException if the specified bean is not found
+     * @exception JspException if accessing this property causes an
+     *  IllegalAccessException, IllegalArgumentException,
+     *  InvocationTargetException, or NoSuchMethodException
+     * @deprecated This will be removed after Struts 1.2.
+     * Use {@link org.apache.struts.taglib.TagUtils#lookup(PageContext,String,String,String)} instead.
+
+     */
+    public static Object lookup(
+            PageContext pageContext,
+            String name,
+            String property,
+            String scope)
+            throws JspException {
+        // :TODO: Remove after Struts 1.2
+
+        return TagUtils.getInstance().lookup(pageContext, name, property, scope);
+
+    }
+
+
+    /**
+     * <p>Look up and return current user locale, based on the specified parameters.</p>
+     *
+     * @param pageContext The PageContext associated with this request
+     * @param locale Name of the session attribute for our user's Locale.  If this is
+     * <code>null</code>, the default locale key is used for the lookup.
+     *
+     * @return current user locale
+     * @deprecated This will be removed after Struts 1.2.
+     * Use {@link org.apache.struts.taglib.TagUtils#getUserLocale(PageContext,String)} instead.
+     */
+    public static Locale retrieveUserLocale(PageContext pageContext, String locale) {
+        // :TODO: Remove after Struts 1.2
+
+        return TagUtils.getInstance().getUserLocale(pageContext, locale);
+
+    }
+
+
+    /**
+     * <p>Look up and return a message string, based on the specified parameters.</p>
+     *
+     * @param pageContext The PageContext associated with this request
+     * @param bundle Name of the servlet context attribute for our
+     *  message resources bundle
+     * @param locale Name of the session attribute for our user's Locale
+     * @param key Message key to be looked up and returned
+     *
+     * @return message string
+     * @exception JspException if a lookup error occurs (will have been
+     *  saved in the request already)
+     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#message(PageContext,String,String,String)} instead.
+     * This will be removed after Struts 1.2.
+     */
+    public static String message(
+            PageContext pageContext,
+            String bundle,
+            String locale,
+            String key)
+            throws JspException {
+        // :TODO: Remove afer Struts 1.2
+
+        return TagUtils.getInstance().message(pageContext, bundle, locale, key);
+
+    }
+
+
+    /**
+     * Look up and return a message string, based on the specified parameters.
+     *
+     * @param pageContext The PageContext associated with this request
+     * @param bundle Name of the servlet context attribute for our
+     *  message resources bundle
+     * @param locale Name of the session attribute for our user's Locale
+     * @param key Message key to be looked up and returned
+     * @param args Replacement parameters for this message
+     * @return message string
+     * @exception JspException if a lookup error occurs (will have been
+     *  saved in the request already)
+     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#message(PageContext,String,String,String,Object[])} instead.
+     * This will be removed after Struts 1.2.
+     */
+    public static String message(
+            PageContext pageContext,
+            String bundle,
+            String locale,
+            String key,
+            Object args[])
+            throws JspException {
+        // :TODO: Remove afer Struts 1.2
+
+        return TagUtils.getInstance().message(
+                pageContext,
+                bundle,
+                locale,
+                key,
+                args);
+    }
+
+
+    /**
+     * <p>Return true if a message string for the specified message key
+     * is present for the specified Locale.</p>
+     *
+     * @param pageContext The PageContext associated with this request
+     * @param bundle Name of the servlet context attribute for our
+     *  message resources bundle
+     * @param locale Name of the session attribute for our user's Locale
+     * @param key Message key to be looked up and returned
+     *
+     * @return true if a message string for message key exists
+     * @exception JspException if a lookup error occurs (will have been
+     *  saved in the request already)
+     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#present(PageContext ,String,String,String)} instead.
+     * This will be removed after Struts 1.2.
+     */
+    public static boolean present(
+            PageContext pageContext,
+            String bundle,
+            String locale,
+            String key)
+            throws JspException {
+        // :TODO: Remove after Struts 1.2
+
+        return TagUtils.getInstance().present(pageContext, bundle, locale, key);
+
+    }
+
+
+    /**
+     * <p>Return the context-relative URL that corresponds to the specified
+     * <code>page</code> attribute value, calculated based on the
+     * <code>pagePattern</code> property of the current module's
+     * {@link ModuleConfig}.</p>
+     *
+     * @param request The servlet request we are processing
+     * @param page The module-relative URL to be substituted in
+     *  to the <code>pagePattern</code> pattern for the current module
+     *  (<strong>MUST</strong> start with a slash)
+
+     * @return context-relative URL
+     * @since Struts 1.1
+     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#pageURL(HttpServletRequest,String)} instead.
+     * This will be removed after Struts 1.2.
+     */
+    public static String pageURL(HttpServletRequest request, String page) {
+
+        return TagUtils.getInstance().pageURL(request, page);
+        //:TODO: Remove after Struts 1.2
+
+    }
+
+
+    /**
+     * <p>Save the specified exception as a request attribute for later use.</p>
+     *
+     * @param pageContext The PageContext for the current page
+     * @param exception The exception to be saved
+     *
+     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#saveException(PageContext,Throwable)} instead.
+     * This will be removed after Struts 1.2.
+     */
+    public static void saveException(PageContext pageContext, Throwable exception) {
+
+        TagUtils.getInstance().saveException(pageContext, exception);
+        // :TODO: Remove after Struts 1.2
+
+    }
+
+
+    /**
+     * <p>Return the <code>ModuleConfig</code> object if it exists, null if otherwise.</p>
+     *
+     * @param pageContext The page context.
+     *
+     * @return the ModuleConfig object
+     * @since Struts 1.1
+     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#getModuleConfig(PageContext)} instead.
+     * This will be removed after Struts 1.2.
+     */
+    public static ModuleConfig getModuleConfig(PageContext pageContext) {
+        // :TODO: Remove after Struts 1.2
+
+        return TagUtils.getInstance().getModuleConfig(pageContext);
 
     }
 
