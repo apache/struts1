@@ -1,118 +1,175 @@
 a {
 	color: #023264;
 }
-
 body {
+	margin: 0;
+	padding: 21px 16px;
 	background: #FFFFFF;
 	color: #000000;
+}
+div.indent {
+	padding: 0 5%;
+}
+div.notice {
+	width: 80%;
+	margin-left: 8%;
+	padding: 0 2%;
+	border: 1px solid #000000;
+	background: #00FFFF;
+}
+h1 {
+	padding: 5px;
+	background: #023264;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+h1 a, h2 a, h3 a {
+	color: #FFFFFF;
+}
+h1, h2 , h3 {
+	margin: 1em 0;
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+}
+h2 {
+	padding: 3px 5px;
+	background: #023264;
+	font-size: 1.1em;
+	font-weight: normal;
+}
+h3 {
+	padding: 2px 5px;
+	background: #023264;
+	font-size: 1em;
+	font-weight: normal;
+}
+h4 {
+	font-size: 1.1em;
+}
+hr {
+	border: none;
+	background: #CCCCCC;
+	height: 1px;
+}
+hr.section {
+	border: none;
+	background: #023264;
+	height: 1px;
 }
 img {
 	border: none;
 }
+img.book {
+	margin: 10px;
+}
 q {
 	font-family: Arial, Helvetica, sans-serif;
 }
-
-.footer {
-	font-size: 0.83em;
-	font-style: italic;
-	color: #023264;
+table {
+	border: 2px solid #CCCCCC;
+	border-collapse: collapse;
+}
+table.noborder, table.noborder td, table.noborder td th {
+	border: none;
+}
+table.tag-attributes{
+	width: 100%;
+}
+table.taglib-summary {
+	width: 100%;
+}
+table.task-list {
+	width: 100%;
+}
+td,th {
+	border: 1px solid #CCCCCC;
+	padding: 3px;
+}
+thead {
+	border: 2px solid #CCCCCC;
+}
+.center {
 	text-align: center;
 }
-
-.chapter-title{
-	background: #023264;
-	color: #FFFFFF;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.1em;
-	font-weight: bold;
+.float-left {
+	float: left;
 }
-
-.chapter-title a {
-	color: #FFFFFF;
+.float-right {
+	float: right;
 }
-
-.section-title{
-	background: #023264;
-	color: #FFFFFF;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.1em;
-	font-weight: bold;
+.left {
+	text-align: left;
 }
-
-.section-title a {
-	color: #FFFFFF;
+.right{
+	text-align: right;
 }
-
-.subsection-title{
-	background: #023264;
-	color: #FFFFFF;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1em;
-	font-weight: bold;
-}
-
-.subsection-title a {
-	color: #FFFFFF;
-}
-
-.taglib-title{
-	background: #023264;
-	color: #FFFFFF;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.1em;
-	font-weight: bold;
-}
-
-.taglib-title a {
-	color: #FFFFFF;
-}
-
-.tag-title{
-	background: #023264;
-	color: #FFFFFF;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: medium;
-}
-
-.tag-title a {
-	color: #FFFFFF;
-}
-
-.tasklist{
-	background: #023264;
-	color: #FFFFFF;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.1em;
-}
-
-.menu-title {
-	color: #023264;
-}
-
-.menu-item, .menuitem a {
-	font-size: 0.8em;
-}
-
 .version {
-	font-size: 0.8em;
-	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	font: 0.7em Arial, Helvetica, sans-serif;
+	color: #999;
 }
-
 .warning {
 	color: #FF0000;
 	font-weight: bold;
 }
-
-
-@media print {
-.menu {
-	display: none;
-}	
+#footer {
+	clear: both;
+	border-top: 1px solid #333333;
+	padding-top: 10px;
+	color: #023264;
+	font-size: 0.83em;
+	font-style: italic;
+	text-align: center;
+}
+#heading {
+	border-bottom: 1px solid #333333;
+	margin-bottom: 0.5em;
+	position: relative;
+	height: 100px;
+}
 #jakarta-logo {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#main {
+	width: 85%;
+	float: right;
+	margin-bottom: 1em;
+}
+#menu {
+	margin: 1em 86% 1em 0;
+	padding: 0.2em;
+}
+#menu li {
+	margin: 0 0 0.5em 2em;
+	font-size: 0.84em;
+	font-weight: normal;
+}
+#menu p {
+	margin: 0.5em;
+	color: #023264;
+	font-weight: bold;
+}
+#menu ul {
+	margin: 0 0 1em;
+	padding: 0;
+	list-style: none;
+}
+#powered-logo {
+	float: right;
+	margin-bottom: 20px;
+}
+#struts-logo {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+@media print {
+.noprint, #menu, #jakarta-logo {
 	display: none;
 }
-.noprint{
-	display: none;
+#main {
+	width: 100%;
 }
 }

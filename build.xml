@@ -790,6 +790,7 @@
 <target name="compile.website"
         description="Compile main website">
         <ant antfile="build-webapps.xml" target="compile.docs"/>
+        <ant antfile="build-webapps.xml" target="validate.docs"/>        
 </target>
 
 

@@ -173,7 +173,7 @@
         The "compile" target causes non-generic compile activity required
         for specific tag libraries to be executed.
 -->
-<target name="compile" depends="compile.generic,compile.docs"
+<target name="compile" depends="compile.generic,compile.docs, validate.docs"
         description="Compile individual web applications">
 
     <!-- Create the Tiles documentation -->
@@ -189,26 +189,23 @@
     <!-- Copy the tiles documentation files -->
     <copy      todir="${build.home}/tiles-documentation">
       <fileset   dir="${doc.dir}">
-        <include name="**/*.css"/>
-        <include name="**/*.gif"/>
-        <include name="**/*.html"/>
-        <include name="**/*.jpg"/>
-        <include name="**/*.js"/>
+        <include name="*.css"/>
+        <include name="images/*.gif"/>
+        <include name="images/*.jpg"/>
       </fileset>
     </copy>
 
-    <!-- Compile Tiles contrib -->
-    <!--
-    <ant  antFile="build.xml"  dir="contrib/tiles"  target="compile.for.struts">
-      <property name="struts.home"      value="${struts.home}"/>
-      <property name="struts.libs"      value="${struts.libs}"/>
-      <property name="build.home"       value="${build.home}/tiles"/>
-      <property name="dist.home"        value="${dist.home}"/>
-      <property name="app.name"         value="tiles"/>
-      <property name="project.name"     value="Tiles"/>
-    </ant>  
-    -->
-    
+    <!-- Validate tiles docs -->
+    <xmlvalidate warn="yes" failonerror="yes" lenient="no">
+       <fileset dir="${build.home}/tiles-documentation" includes="**/*.html"/>
+
+      <!-- Reference local DTDS to avoid network lookup -->
+      <dtd publicId="-//W3C//DTD XHTML 1.0 Strict//EN"
+       location="${doc.dir}/dtds/xhtml1-strict.dtd"/>
+      <dtd publicId="-//W3C//DTD XHTML 1.0 Transitional//EN"
+       location="${doc.dir}/dtds/xhtml1-transitional.dtd"/>
+
+   </xmlvalidate>
     
 </target>
 
@@ -298,6 +295,28 @@
     </copy>
     
 </target>
+
+
+<!--
+        The "validate.docs" target validates the generated XHTML 
+        documentation against the DTDs
+-->
+<target name="validate.docs" description="Validate generated XHTML documents">
+    <xmlvalidate warn="yes" failonerror="yes" lenient="no">
+       <fileset dir="${build.home}/documentation">
+        <include name="**/*.html"/>
+        <exclude name="api/**"/>
+      </fileset>
+       
+      <!-- Reference local DTDS to avoid network lookup -->
+      <dtd publicId="-//W3C//DTD XHTML 1.0 Strict//EN"
+       location="${doc.dir}/dtds/xhtml1-strict.dtd"/>
+      <dtd publicId="-//W3C//DTD XHTML 1.0 Transitional//EN"
+       location="${doc.dir}/dtds/xhtml1-transitional.dtd"/>
+
+   </xmlvalidate>
+</target>
+
 
 <!--
         The "dist.generic" target causes the "dist" target of each

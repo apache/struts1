@@ -1,18 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: struts.xsl,v 1.11 2003/09/08 01:35:53 sraeburn Exp $ -->
+<!-- $Id: struts.xsl,v 1.12 2003/09/09 21:29:10 sraeburn Exp $ -->
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                version="1.0">
 
 
   <!-- Output method -->
+  <!-- omit-xml-declaration="yes"   ensures browsers don't display file in  -->
+  <!--                             'quirks' mode.                           -->
+  <!-- encoding="utf-8"             xmlvalidate ant task only recognizes    -->
+  <!--                              charset if declared in xml declaration. -->
+  <!--                              defaults to utf-8 otherwise             -->
   <xsl:output method="xml" 
   	      version="1.0" 
-  	      encoding="iso-8859-1" 
+  	      encoding="utf-8" 
   	      omit-xml-declaration="yes" 
-  	      doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN" 
-  	      doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" 
+  	      doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" 
+  	      doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" 
   	      indent="yes" 
   	      media-type="text/html"/>
 
@@ -48,7 +54,7 @@
       </xsl:otherwise>
     </xsl:choose>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />   
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
 
     <xsl:for-each select="properties/author">
     <xsl:variable name="author">
@@ -58,65 +64,51 @@
     </xsl:for-each>
 
     <xsl:variable name="css">
-      <xsl:value-of select="$relative-path"/>/struts.css
+      <xsl:value-of select="$relative-path"/>
+      <xsl:value-of select="$css-path"/>
     </xsl:variable>	    
     <link rel="stylesheet" type="text/css" href="{$css}"/>
     </head>
 
     <body>
- 
-    <table border="0" width="100%" cellspacing="5">
+         
+        <div id="heading">
 
-      <tr><td colspan="2">
-
-        <xsl:comment>JAKARTA LOGO</xsl:comment>
         <xsl:variable name="src">
           <xsl:value-of select="$relative-path"/><xsl:value-of select="$home-logo"/>
         </xsl:variable>
         <a href="http://jakarta.apache.org/">
-        <img src="{$src}" align="left" alt="The Jakarta Project" border="0" id="jakarta-logo"/>
+            <img src="{$src}" alt="The Jakarta Project" id="jakarta-logo"/>
         </a>
 
-        <xsl:comment>STRUTS LOGO</xsl:comment>
         <xsl:variable name="src">
-          <xsl:value-of select="$relative-path"/><xsl:value-of select="$project-logo"/>
+            <xsl:value-of select="$relative-path"/><xsl:value-of select="$project-logo"/>
         </xsl:variable>
         <a href="http://jakarta.apache.org/struts/">
-        <img src="{$src}" align="right" alt="Struts Framework" border="0"/>
+            <img src="{$src}" alt="Struts Framework" id="struts-logo"/>
         </a>
-
-      </td></tr>
-
-      <tr><td colspan="2">
-        <hr/>
-      </td></tr>
-
-      <tr>
-          <td width="120" valign="top" class="menu">
-            <xsl:apply-templates select="$project"/>
-          </td>
-
-        <td valign="top">
-          <xsl:apply-templates select="body"/>
-        </td>
-      </tr>
-
-      <tr><td colspan="2">
-        <hr/>
-      </td></tr>
-
-      <tr><td colspan="2">
-        <div class="footer">
-        Copyright (c) 2000-2003, Apache Software Foundation <span class="noprint">- <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsDocComments">Comments?</a></span>
         </div>
 
-          <xsl:variable name="src">
-            <xsl:value-of select="$relative-path"/><xsl:value-of select="$powered-logo"/>
-          </xsl:variable>
-          <img src="{$src}" alt="Powered by Struts" align="right" border="0"/>
-      </td></tr>
+        <div id="content">
 
-    </table>
+        <div id="main">
+            <xsl:apply-templates select="body"/>
+        </div>
+
+        <div id="menu">
+            <xsl:apply-templates select="$project"/>
+        </div>
+        
+        </div>
+
+      <div id="footer">
+        <xsl:variable name="src">
+          <xsl:value-of select="$relative-path"/><xsl:value-of select="$powered-logo"/>
+        </xsl:variable>
+        <img src="{$src}" alt="Powered by Struts" id="powered-logo"/>
+        Copyright (c) 2000-2003, Apache Software Foundation <span class="noprint">- <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsDocComments">Comments?</a></span>
+      </div>
+
     </body>
     </html>
 
@@ -135,32 +127,21 @@
 
   <!-- Process a menu for the navigation bar -->
   <xsl:template match="menu">
-    <table border="0" cellspacing="5">
-      <tr>
-        <th colspan="2" align="left">
-          <span class="menu-title">
-            <xsl:value-of select="@name"/>
-          </span>
-        </th>
-      </tr>
-      <xsl:apply-templates/>
-    </table>
+    <p><xsl:value-of select="@name"/></p>
+    <ul>
+       <xsl:apply-templates/>
+    </ul>
   </xsl:template>
 
 
   <!-- Process a menu item for the navigation bar -->
   <xsl:template match="item">
-    <tr>
-      <td align="center" width="15"></td>
-      <td>
-        <span class="menu-item">
-        <xsl:variable name="href">
-          <xsl:value-of select="@href"/>
-        </xsl:variable>
-        <a href="{$href}"><xsl:value-of select="@name"/></a>
-        </span>
-      </td>
-    </tr>
+    <li>
+      <xsl:variable name="href">
+        <xsl:value-of select="@href"/>
+      </xsl:variable>
+      <a href="{$href}"><xsl:value-of select="@name"/></a>
+    </li>
   </xsl:template>
 
 
@@ -170,95 +151,72 @@
   </xsl:template>
   
 
-  <!-- Process an entire chapter (assumes one chapter per page) -->
+  <!-- Process an entire chapter -->
   <xsl:template match="chapter">
-    <xsl:choose>
-      <xsl:when test="@href">
-        <xsl:variable name="href">
-          <xsl:value-of select="@href"/>
-        </xsl:variable>
-        <a name="{$href}"></a>
-      </xsl:when>
-    </xsl:choose>
-    <table border="0" cellspacing="5" cellpadding="5" width="100%">
-      <tr><td class="chapter-title">
-          <xsl:value-of select="@name"/>
-      </td></tr>
-      <tr><td><p>Contributors: </p><ul>
-    <xsl:for-each select="/document/properties/author">
-    <li><xsl:value-of select="."/></li>
-    </xsl:for-each>
-    </ul>
-      </td></tr>
-    </table>
+    <xsl:element name="h1">
+      <xsl:if test="@href">
+        <xsl:attribute name="id">
+          <xsl:value-of select="@href" />
+        </xsl:attribute> 
+      </xsl:if>
+      <xsl:value-of select="@name"/>
+    </xsl:element>
     <xsl:apply-templates select="section" />
   </xsl:template>
-  
+
 
   <!-- Process a documentation section -->
   <xsl:template match="section">
     <xsl:choose>
-      <xsl:when test="@href">
-        <xsl:variable name="href">
-          <xsl:value-of select="@href"/>
-        </xsl:variable>
-        <a name="{$href}"></a>
-      </xsl:when>
+    <xsl:when test="@name">
+    <xsl:element name="h2">
+      <xsl:if test="@href">
+        <xsl:attribute name="id">
+          <xsl:value-of select="@href" />
+        </xsl:attribute> 
+      </xsl:if>
+      <xsl:value-of select="@name"/>
+    </xsl:element>
+    </xsl:when>
+    <xsl:otherwise>
+      <hr class="section"/>
+    </xsl:otherwise>
     </xsl:choose>
-    <table border="0" cellspacing="5" cellpadding="5" width="100%">
-      <tr><td class="section-title">
-          <xsl:value-of select="@name"/>
-      </td></tr>
-      <tr><td>
-        <blockquote>
-          <xsl:apply-templates/>
-        </blockquote>
-      </td></tr>
-    </table>
+    <div class="indent">
+    <xsl:apply-templates />
+    </div>
   </xsl:template>
 
 
   <!-- Process a documentation subsection -->
   <xsl:template match="subsection">
-    <xsl:choose>
-      <xsl:when test="@href">
-        <xsl:variable name="href">
-          <xsl:value-of select="@href"/>
-        </xsl:variable>
-        <a name="{$href}"></a>
-      </xsl:when>
-    </xsl:choose>
-    <table border="0" cellspacing="5" cellpadding="5" width="100%">
-      <tr><td class="subsection-title">
-          <xsl:value-of select="@name"/>
-      </td></tr>
-      <tr><td>
-        <blockquote>
-          <xsl:apply-templates/>
-        </blockquote>
-      </td></tr>
-    </table>
+    <xsl:element name="h3">
+      <xsl:if test="@href">
+        <xsl:attribute name="id">
+          <xsl:value-of select="@href" />
+        </xsl:attribute> 
+      </xsl:if>
+      <xsl:value-of select="@name"/>
+    </xsl:element>
+    <div class="indent">
+    <xsl:apply-templates />
+    </div>
   </xsl:template>
-
-
+  
+  
   <!-- Process a tag library section -->
   <xsl:template match="taglib">
-    <table border="0" cellspacing="5" cellpadding="5" width="100%">
-      <tr><td class="taglib-title">
-          <strong><xsl:value-of select="display-name"/></strong>
-      </td></tr>
-      <tr><td>
-        <blockquote>
-          <xsl:apply-templates select="info"/>
-        </blockquote>
-      </td></tr>
-      <tr><td>
-        <blockquote>
-          <table border="1" cellspacing="2" cellpadding="2">
-            <tr>
-              <th width="15%">Tag Name</th>
+       <h2 id="top"><xsl:value-of select="display-name"/></h2>
+       <div class="indent">      
+
+       <xsl:apply-templates select="info"/>
+       <table class="taglib-summary">
+           <thead>
+           <tr>
+              <th>Tag Name</th>
               <th>Description</th>
             </tr>
+            </thead>
             <xsl:for-each select="tag">
               <tr>
                 <td align="center">
@@ -273,9 +231,7 @@
               </tr>
             </xsl:for-each>
           </table>
-        </blockquote>
-      </td></tr>
-    </table>
+    </div>
     <xsl:apply-templates select="tag"/>
   </xsl:template>
 
@@ -284,35 +240,30 @@
     <xsl:variable name="name">
       <xsl:value-of select="name"/>
     </xsl:variable>
-    <a name="{$name}"></a>
-    <table border="0" cellspacing="2" cellpadding="2">
-      <tr><td class="tag-title">
-          <strong><xsl:value-of select="name"/></strong> -
-          <xsl:value-of select="summary"/>
-      </td></tr>
-      <tr><td>
-        <blockquote>
-          <xsl:apply-templates select="info"/>
-        </blockquote>
-      </td></tr>
-      <xsl:if test="not(@document-attributes)">
-        <xsl:call-template name="document-tag-attributes" />
+    <h3 id="{$name}"><strong><xsl:value-of select="name"/></strong> - <xsl:value-of select="summary"/></h3>
+    
+    <div class="indent">      
+
+      <xsl:apply-templates select="info"/>
+
+      <xsl:if test="child::task">
+        <xsl:apply-templates select="attribute"/>
       </xsl:if>
-      <xsl:if test="@document-attributes='true'">
-        <xsl:call-template name="document-tag-attributes" />
-      </xsl:if>
-    </table>
+
+      </div>
+      <p><a href="#top">Back to top</a></p>
+
   </xsl:template>
 
   <!-- Create the table of documentation for a tag -->
   <xsl:template name="document-tag-attributes">
-    <tr><td>
-      <blockquote>
-        <table border="1" cellspacing="2" cellpadding="2">
+        <table class="tag-attributes">
+         <thead>
           <tr>
-            <th width="15%">Attribute Name</th>
+            <th>Attribute Name</th>
             <th>Description</th>
           </tr>
+          </thead>
           <xsl:for-each select="attribute">
             <tr>
               <td align="center">
@@ -333,8 +284,6 @@
             </tr>
           </xsl:for-each>
         </table>
-      </blockquote>
-    </td></tr>
   </xsl:template>
 
 
@@ -346,33 +295,32 @@
 
   <!-- Process a task list section -->
   <xsl:template match="task-list">
-    <xsl:choose>
-      <xsl:when test="@href">
-        <xsl:variable name="href">
-          <xsl:value-of select="@href"/>
-        </xsl:variable>
-        <a name="{$href}"></a>
-      </xsl:when>
-    </xsl:choose>
-    <table border="0" cellspacing="5" cellpadding="5" width="100%">
-      <tr><td class="tasklist">
-          <xsl:value-of select="@name"/>
-      </td></tr>
-      <tr><td>
-        <xsl:apply-templates select="info"/>
-      </td></tr>
-      <tr><td>
-        <blockquote>
-          <table border="1" cellspacing="5" cellpadding="5" width="100%">
-            <tr>
-              <th width="75%">Description</th>
-              <th width="25%">Volunteer</th>
-            </tr>
-            <xsl:apply-templates select="task"/>
-          </table>
-        </blockquote>
-      </td></tr>
-    </table>
+    <xsl:element name="h2">
+      <xsl:if test="@href">
+        <xsl:attribute name="id">
+          <xsl:value-of select="@href" />
+        </xsl:attribute> 
+      </xsl:if>
+      <xsl:value-of select="@name"/>
+    </xsl:element>
+
+    <div class="indent">
+    
+    <xsl:apply-templates select="info"/>
+    
+    <xsl:if test="child::task">
+    
+    <table class="task-list">
+      <thead>
+      <tr>
+        <th>Description</th>
+        <th>Volunteer</th>
+      </tr>
+      </thead>
+      <xsl:apply-templates select="task"/>
+     </table>
+     </xsl:if>
+     </div>
   </xsl:template>
 
 
@@ -389,6 +337,15 @@
       </td>
       <td><xsl:value-of select="assigned"/></td>
     </tr>
+  </xsl:template>
+
+<!-- Contributors -->
+  <xsl:template match="contributors">
+    <ul>
+    <xsl:for-each select="/document/properties/author">
+    <li><xsl:value-of select="."/></li>
+    </xsl:for-each>
+    </ul>
   </xsl:template>
 
 
