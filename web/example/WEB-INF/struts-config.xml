@@ -140,5 +140,10 @@
                             /WEB-INF/validation.xml"/>
   </plug-in>
 
+  <plug-in className="org.apache.struts.plugins.DigestingPlugIn">
+    <set-property property="key" value="serverTypes"/>
+    <set-property property="configPath" value="/WEB-INF/server-types.xml"/>
+    <set-property property="digesterPath" value="/WEB-INF/lvb-digester-rules.xml"/>
+  </plug-in>
 
 </struts-config>
