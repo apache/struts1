@@ -1,10 +1,19 @@
 <form-validation>
    <global>
-      <constant name="phone" value="^\(?(\d{3})\)?[-| ]?(\d{3})[-| ]?(\d{4})$" />
-      <constant name="zip" value="^\d{5}\d*$" />
+      <constant>
+        <constant-name>phone</constant-name>
+        <constant-value>^\(?(\d{3})\)?[-| ]?(\d{3})[-| ]?(\d{4})$</constant-value>
+      </constant>         	   
+      <constant>
+        <constant-name>zip</constant-name>
+        <constant-value>^\d{5}\d*$</constant-value>
+      </constant>         	   
    </global>
    <formset>
-      <constant name="zip" value="^\d{5}(-\d{4})?$" />
+      <constant>
+        <constant-name>zip</constant-name>
+        <constant-value>^\d{5}(-\d{4})?$</constant-value>
+      </constant>         	   
       
       <form    name="registrationForm">
          <field    property="firstName"
