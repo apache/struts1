@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.38 2002/03/23 01:14:04 craigmcc Exp $
- * $Revision: 1.38 $
- * $Date: 2002/03/23 01:14:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.39 2002/06/24 16:56:31 husted Exp $
+ * $Revision: 1.39 $
+ * $Date: 2002/06/24 16:56:31 $
  *
  * ====================================================================
  *
@@ -109,7 +109,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.38 $ $Date: 2002/03/23 01:14:04 $
+ * @version $Revision: 1.39 $ $Date: 2002/06/24 16:56:31 $
  */
 
 public class Action {
@@ -121,6 +121,8 @@ public class Action {
     /**
      * The context attributes key under which our <code>ActionServlet</code>
      * instance will be stored.
+     *
+     * @since Struts 1.1
      */
     public static final String ACTION_SERVLET_KEY =
         "org.apache.struts.action.ACTION_SERVLET";
@@ -136,6 +138,8 @@ public class Action {
      * <code>ApplicationConfig</code> object for the application selected by
      * the request URI currently being processed will also be exposed under
      * this key as a request attribute.</p>
+     *
+     * @since Struts 1.1
      */
     public static final String APPLICATION_KEY =
         "org.apache.struts.action.APPLICATION";
@@ -230,6 +234,8 @@ public class Action {
      * The request attributes key under which your action should store an
      * <code>org.apache.struts.action.ActionMessages</code> object, if you
      * are using the corresponding custom tag library elements.
+     *
+     * @since Struts 1.1
      */
     public static final String MESSAGE_KEY =
       "org.apache.struts.action.ACTION_MESSAGE";
@@ -353,6 +359,7 @@ public class Action {
      *
      * @exception Exception if the application business logic throws
      *  an exception
+     * @since Struts 1.1
      */
     public ActionForward execute(ActionMapping mapping,
                                  ActionForm form,
@@ -378,6 +385,7 @@ public class Action {
      *
      * @exception Exception if the application business logic throws
      *  an exception
+     * @since Struts 1.1
      */
     public ActionForward execute(ActionMapping mapping,
                                  ActionForm form,
@@ -664,6 +672,7 @@ public class Action {
      *
      * @param request   The servlet request we are processing
      * @param messages  Messages object
+     * @since Struts 1.1
      */
     protected void saveMessages(HttpServletRequest request,
                     ActionMessages messages) {
