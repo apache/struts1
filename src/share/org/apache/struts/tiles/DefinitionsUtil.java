@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.12 2003/07/08 23:35:54 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/07/08 23:35:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.13 2003/07/08 23:55:35 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/07/08 23:55:35 $
  *
  * ====================================================================
  *
@@ -69,13 +69,10 @@ import java.util.Map;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.jsp.PageContext;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.taglib.tiles.ComponentConstants;
-import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
 
 /**
  * Utilities class for definitions factory.
@@ -84,30 +81,38 @@ import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
  */
 public class DefinitionsUtil extends TilesUtil implements ComponentConstants {
 
-    /** Commons Logging instance. */
+    /** 
+     * Commons Logging instance. 
+     */
     protected static Log log = LogFactory.getLog(DefinitionsUtil.class);
 
-    /** Global user defined debug level */
+    /** 
+     * Global user defined debug level.
+     * @deprecated This will be removed in a release after Struts 1.2. 
+     */
     public static int userDebugLevel = 0;
 
-    /** User Debug level */
+    /** 
+     * User Debug level. 
+     * @deprecated This will be removed in a release after Struts 1.2. 
+     */
     public static final int NO_DEBUG = 0;
 
-    /**
-     * Name of init property carrying debug level
-     * @deprecated use DEFINITIONS_CONFIG_USER_DEBUG_LEVEL instead.
+    /** 
+     * Name of init property carrying debug level. 
      */
-    public static final String INSTANCES_CONFIG_USER_DEBUG_LEVEL = "instances-debug";
-
-    /** Name of init property carrying debug level */
     public static final String DEFINITIONS_CONFIG_USER_DEBUG_LEVEL =
         "definitions-debug";
 
-    /** Name of init property carrying factory class name */
+    /** 
+     * Name of init property carrying factory class name. 
+     */
     public static final String DEFINITIONS_FACTORY_CLASSNAME =
         "definitions-factory-class";
 
-    /** Constant name used to store factory in context */
+    /** 
+     * Constant name used to store factory in context. 
+     */
     public static final String DEFINITIONS_FACTORY =
         "org.apache.struts.tiles.DEFINITIONS_FACTORY";
 
@@ -117,46 +122,6 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants {
      */
     public static final String ACTION_DEFINITION =
         "org.apache.struts.tiles.ACTION_DEFINITION";
-
-    /**
-     * Set user debug level. This property control level of errors output.
-     * @deprecated Use commons-logging package instead.
-     * @param level
-     */
-    public static void setUserDebugLevel(int level) {
-        userDebugLevel = level;
-    }
-
-    /**
-    * Init user debug level.
-    *
-    * @param servletConfig
-    * @deprecated Use commons-logging package instead.
-    */
-    public static void initUserDebugLevel(ServletConfig servletConfig) {
-        // Set user debug level
-        try {
-            String str =
-                servletConfig.getInitParameter(DEFINITIONS_CONFIG_USER_DEBUG_LEVEL);
-            
-            if (str == null) { // Check if we use old keyword
-                str =
-                    servletConfig.getInitParameter(
-                        INSTANCES_CONFIG_USER_DEBUG_LEVEL);
-            }
-            
-            if (str != null) {
-                int level = Integer.parseInt(str);
-                setUserDebugLevel(level);
-                if (userDebugLevel > 1)
-                    log.debug(
-                        "Component Definitions debug level = " + userDebugLevel);
-            }
-        } catch (Exception ex) {
-            log.debug("Set user level fail");
-            ex.printStackTrace();
-        }
-    }
 
     /**
      * Create Definition factory.
@@ -174,23 +139,23 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants {
         Map properties,
         String classname)
         throws DefinitionsFactoryException {
-            
+
         // Create config object
         DefinitionsFactoryConfig factoryConfig = new DefinitionsFactoryConfig();
         // populate it from map.
         try {
             factoryConfig.populate(properties);
-            
+
         } catch (Exception ex) {
             throw new DefinitionsFactoryException(
                 "Error - createDefinitionsFactory : Can't populate config object from properties map",
                 ex);
         }
-        
+
         // Add classname
         if (classname != null)
             factoryConfig.setFactoryClassname(classname);
-            
+
         // Create factory using config object
         return createDefinitionsFactory(servletContext, factoryConfig);
     }
@@ -268,117 +233,20 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants {
     }
 
     /**
-     * Create Definition factory from provided classname.
-     * Factory class must extends TilesDefinitionsFactory.
-     * @deprecated No direct replacement. Use createDefinitionFactory
-     * {@link TilesUtil#createDefinitionsFactory(ServletContext, DefinitionsFactoryConfig)}.
-     * @param classname Class name of the factory to create.
-     * @return newly created factory.
-     * @throws DefinitionsFactoryException If an error occur while initializing factory
-     */
-    static public DefinitionsFactory createDefinitionFactoryInstance(String classname)
-        throws DefinitionsFactoryException {
-
-        try {
-            Class factoryClass = applicationClass(classname);
-            Object factory = factoryClass.newInstance();
-            // Backward compatibility : if factory classes implements old interface,
-            // provide appropriate wrapper
-            if (factory instanceof ComponentDefinitionsFactory) {
-                factory =
-                    new ComponentDefinitionsFactoryWrapper(
-                        (ComponentDefinitionsFactory) factory);
-            }
-            return (DefinitionsFactory) factory;
-
-        } catch (ClassCastException ex) { // Bad classname
-            throw new DefinitionsFactoryException(
-                "Error - createDefinitionsFactory : Factory class '"
-                    + classname
-                    + " must implements 'TilesDefinitionsFactory'.",
-                ex);
-
-        } catch (ClassNotFoundException ex) { // Bad classname
-            throw new DefinitionsFactoryException(
-                "Error - createDefinitionsFactory : Bad class name '"
-                    + classname
-                    + "'.",
-                ex);
-
-        } catch (InstantiationException ex) { // Bad constructor or error
-            throw new DefinitionsFactoryException(ex);
-
-        } catch (IllegalAccessException ex) {
-            throw new DefinitionsFactoryException(ex);
-        }
-
-    }
-
-    /**
-     * Set definition factory in appropriate servlet context.
-     * @param factory Factory to store.
-     * @param servletContext Servlet context that will hold factory.
-     * @deprecated since 20020708. Replaced by makeFactoryAccessible()
-     */
-    static protected void setDefinitionsFactory(
-        ComponentDefinitionsFactory factory,
-        ServletContext servletContext) {
-
-        servletContext.setAttribute(DEFINITIONS_FACTORY, factory);
-    }
-
-    /**
-     * Get a component / template definition by its name.
-     * First, retrieve instance factory, and then get requested instance.
-     * Throw appropriate exception if definition is not found.
-     * @deprecated Use {@link TilesUtil#getDefinition(String, ServletRequest, ServletContext)}
-     * @param definitionName Name of requested definition.
-     * @param pageContext Current pageContext
-     * @throws FactoryNotFoundException Can't find definition factory.
-     * @throws DefinitionsFactoryException General error in factory while getting definition.
-     * @throws NoSuchDefinitionException No definition found for specified name
-     */
-    static public ComponentDefinition getDefinition(
-        String definitionName,
-        PageContext pageContext)
-        throws FactoryNotFoundException, DefinitionsFactoryException {
-
-        return getDefinition(
-            definitionName,
-            (HttpServletRequest) pageContext.getRequest(),
-            pageContext.getServletContext());
-    }
-
-    /**
      * Get definition factory from appropriate servlet context.
      * @return Definitions factory or null if not found.
      * @deprecated Use {@link TilesUtil#getDefinitionsFactory(ServletRequest, ServletContext)}
      * @since 20020708
      */
-    static public DefinitionsFactory getDefinitionsFactory(ServletContext servletContext) {
+    public static DefinitionsFactory getDefinitionsFactory(ServletContext servletContext) {
         return (DefinitionsFactory) servletContext.getAttribute(DEFINITIONS_FACTORY);
-    }
-
-    /**
-     * Make definition factory accessible to Tags.
-     * Factory is stored in servlet context.
-     * @deprecated Use {@link TilesUtil#createDefinitionsFactory(ServletContext, DefinitionsFactoryConfig)}
-     * @param factory Factory to make accessible
-     * @param servletContext Current servlet context
-     * @since 20020708
-     */
-    static public void makeDefinitionsFactoryAccessible(
-        DefinitionsFactory factory,
-        ServletContext servletContext) {
-
-        servletContext.setAttribute(DEFINITIONS_FACTORY, factory);
     }
 
     /**
      * Get Definition stored in jsp context by an action.
      * @return ComponentDefinition or null if not found.
      */
-    static public ComponentDefinition getActionDefinition(ServletRequest request) {
+    public static ComponentDefinition getActionDefinition(ServletRequest request) {
         return (ComponentDefinition) request.getAttribute(ACTION_DEFINITION);
     }
 
@@ -386,10 +254,10 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants {
      * Store definition in jsp context.
      * Mainly used by Struts to pass a definition defined in an Action to the forward.
      */
-    static public void setActionDefinition(
+    public static void setActionDefinition(
         ServletRequest request,
         ComponentDefinition definition) {
-            
+
         request.setAttribute(ACTION_DEFINITION, definition);
     }
 
@@ -397,10 +265,10 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants {
      * Remove Definition stored in jsp context.
      * Mainly used by Struts to pass a definition defined in an Action to the forward.
      */
-    static public void removeActionDefinition(
+    public static void removeActionDefinition(
         ServletRequest request,
         ComponentDefinition definition) {
-            
+
         request.removeAttribute(ACTION_DEFINITION);
     }
 
@@ -415,7 +283,7 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants {
      * @see org.apache.commons.beanutils.BeanUtils
      * @since tiles 20020708
      */
-    static public void populateDefinitionsFactoryConfig(
+    public static void populateDefinitionsFactoryConfig(
         DefinitionsFactoryConfig factoryConfig,
         ServletConfig servletConfig)
         throws IllegalAccessException, InvocationTargetException {
@@ -432,25 +300,25 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants {
      * @exception DefinitionsFactoryException if this <code>PlugIn</code> cannot
      *  be successfully initialized
      */
-    static protected DefinitionsFactoryConfig readFactoryConfig(ServletConfig servletConfig)
+    protected static DefinitionsFactoryConfig readFactoryConfig(ServletConfig servletConfig)
         throws DefinitionsFactoryException {
-            
+
         // Create tiles definitions config object
         DefinitionsFactoryConfig factoryConfig = new DefinitionsFactoryConfig();
-        
+
         // Get init parameters from web.xml files
         try {
             DefinitionsUtil.populateDefinitionsFactoryConfig(
                 factoryConfig,
                 servletConfig);
-                
+
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new DefinitionsFactoryException(
                 "Can't populate DefinitionsFactoryConfig class from 'web.xml'.",
                 ex);
         }
-        
+
         return factoryConfig;
     }
 
