@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.8 2003/04/19 19:06:02 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/04/19 19:06:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.9 2003/09/11 04:27:21 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/09/11 04:27:21 $
  *
  * ====================================================================
  * 
@@ -88,7 +88,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.8 $ $Date: 2003/04/19 19:06:02 $
+ * @version $Revision: 1.9 $ $Date: 2003/09/11 04:27:21 $
  */
 public class PropertyMessageResources extends MessageResources {
 
@@ -107,7 +107,7 @@ public class PropertyMessageResources extends MessageResources {
                                     String config) {
 
         super(factory, config);
-        log.info("Initializing, config='" + config + "'");
+        log.trace("Initializing, config='" + config + "'");
 
     }
 
@@ -124,7 +124,7 @@ public class PropertyMessageResources extends MessageResources {
                                     String config, boolean returnNull) {
 
         super(factory, config, returnNull);
-        log.info("Initializing, config='" + config +
+        log.trace("Initializing, config='" + config +
                  "', returnNull=" + returnNull);
 
     }
@@ -143,8 +143,8 @@ public class PropertyMessageResources extends MessageResources {
     /**
      * The <code>Log</code> instance for this class.
      */
-    protected static final Log log =
-        LogFactory.getLog(PropertyMessageResources.class);
+	protected static final Log log =
+		LogFactory.getLog(PropertyMessageResources.class);
 
 
     /**
@@ -273,6 +273,7 @@ public class PropertyMessageResources extends MessageResources {
         if (locales.get(localeKey) != null) {
             return;
         }
+        
         locales.put(localeKey, localeKey);
 
         // Set up to load the property resource for this locale key, if we can
@@ -280,6 +281,7 @@ public class PropertyMessageResources extends MessageResources {
         if (localeKey.length() > 0) {
             name += "_" + localeKey;
         }
+        
         name += ".properties";
         InputStream is = null;
         Properties props = new Properties();
