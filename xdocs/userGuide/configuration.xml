@@ -167,6 +167,16 @@
         </li>
 
         <li>
+        <strong>memFileSize</strong> - The maximum size (in bytes) of a file whose 
+        contents will be retained in memory after uploading. Files larger than this
+        threshold will be written to some alternative storage medium, typically
+        a hard disk. Can be expressed as a number followed by a "K", "M", or
+        "G", which are interpreted to mean kilobytes, megabytes, or gigabytes,
+        respectively.
+        [256K] (optional)
+        </li>
+
+        <li>
         <strong>multipartClass</strong> - The fully qualified Java class name of the
         multipart request handler class to be used with this module.
         [org.apache.struts.upload.CommonsMultipartRequestHandler] (optional)
