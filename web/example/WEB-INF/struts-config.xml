@@ -7,12 +7,6 @@
 <!--
      This is the Struts configuration file for the example application,
      using the proposed new syntax.
-
-     NOTE:  You would only flesh out the details in the "form-bean"
-     declarations if you had a generator tool that used them to create
-     the corresponding Java classes for you.  Otherwise, you would
-     need only the "form-bean" element itself, with the corresponding
-     "name" and "type" attributes.
 -->
 
 
@@ -45,20 +39,9 @@
   <!-- ========== Form Bean Definitions =================================== -->
   <form-beans>
 
-    <!-- Logon form bean can be one of 3 types -->
-<!--
-    <form-bean      name="logonForm"
-                    type="org.apache.struts.webapp.example.LogonForm"/>
--->
-<!--
-    <form-bean      name="logonForm"
-                    type="org.apache.struts.action.DynaActionForm">
-      <form-property name="username" type="java.lang.String"/>
-      <form-property name="password" type="java.lang.String"/>
-    </form-bean>
--->
-    <form-bean      name="logonForm"
-                    type="org.apache.struts.validator.DynaValidatorForm">
+    <!-- Logon form bean -->
+    <form-bean       name="logonForm"
+                     type="org.apache.struts.validator.DynaValidatorForm">
       <form-property name="username" type="java.lang.String"/>
       <form-property name="password" type="java.lang.String"/>
     </form-bean>
