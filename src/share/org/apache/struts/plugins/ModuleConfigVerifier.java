@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/ModuleConfigVerifier.java,v 1.2 2003/03/23 05:46:23 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/03/23 05:46:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/ModuleConfigVerifier.java,v 1.3 2003/12/30 16:28:35 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/12/30 16:28:35 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.RequestUtils;
  * calls to <code>ServletContext.log()</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/03/23 05:46:23 $
+ * @version $Revision: 1.3 $ $Date: 2003/12/30 16:28:35 $
  * @since Struts 1.1
  */
 
@@ -174,6 +174,7 @@ public class ModuleConfigVerifier implements PlugIn {
         log(servlet.getInternal().getMessage("configVerifying"));
 
         // Perform detailed validations of each portion of ModuleConfig
+        // :TODO: Complete methods to verify Action, Controller, et al, configurations.
         /*
         if (!verifyActionConfigs()) {
             ok = false;
