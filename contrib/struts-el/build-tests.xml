@@ -458,7 +458,9 @@ For JDK 1.4 logging, add the following properties with "jvmarg" elements:
         <formatter  type="plain" usefile="false"/>
 
         <!-- Tests for org.apache.struts.action -->
+        <!--
         <test       name="org.apache.struts.action.XXXX"/>
+        -->
 
         <!-- Tests for org.apache.struts.util -->
         <batchtest fork="yes">
