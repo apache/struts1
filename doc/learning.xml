@@ -134,7 +134,7 @@
     If you have any questions about how Struts actually works, do not hesitate 
     to <em>use the source</em>. 
     For the complete, buildable source code to the entire Struts framework, 
-    see the "src" folder in the 
+    see the "src" folder in
     <a href="http://jakarta.apache.org/site/sourceindex.html"><strong>your source 
     distribution</strong></a>.
     </p>
@@ -162,11 +162,11 @@
         <li>
             Upload - Demonstrates using the file upload facilities. (Based on Commons Upload.)</li>
         <li>
-            Validator - Demonstrate using the Validator extension.</li>
+            Validator - Demonstrates using the Validator extension.</li>
     </ul>
 
     <p>
-        These applications provided as standalone WARs in the binary distribution.
+        These applications are provided as standalone WARs in the binary distribution.
         The source code for each application is available under <code>WEB-INF/src</code> in the binaries and under the
         <code>web</code> package in the source distribution.
     </p>
