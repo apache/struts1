@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfig.java,v 1.7 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfig.java,v 1.8 2004/04/14 23:46:15 husted Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/04/14 23:46:15 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -28,7 +28,7 @@ package org.apache.struts.config;
  * string) is selected, which is elegantly backwards compatible with the
  * previous Struts behavior that only supported one module.</p>
  *
- * @version $Revision: 1.7 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Revision: 1.8 $ $Date: 2004/04/14 23:46:15 $
  * @since Struts 1.1
  */
 public interface ModuleConfig {
@@ -140,17 +140,17 @@ public interface ModuleConfig {
     void addFormBeanConfig(FormBeanConfig config);
 
     /**
-     * The default class name to be used when creating global forward instances.
+     * The default class name to be used when creating action forward instances.
      */
-    String getGlobalForwardClass();
+    String getActionForwardClass();
 
     /**
-     * The default class name to be used when creating global forward instances.
+     * The default class name to be used when creating action forward instances.
      *
-     * @param globalForwardClass default class name to be used when creating
-     *                           global forward instances.
+     * @param actionForwardClass default class name to be used when creating
+     *                           action forward instances.
      */
-    void setGlobalForwardClass(String globalForwardClass);
+    void setActionForwardClass(String actionForwardClass);
 
     /**
      * Add a new <code>ForwardConfig</code> instance to the set of global

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.13 2004/04/08 22:53:18 mrdon Exp $
- * $Revision: 1.13 $
- * $Date: 2004/04/08 22:53:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.14 2004/04/14 23:46:15 husted Exp $
+ * $Revision: 1.14 $
+ * $Date: 2004/04/14 23:46:15 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -45,7 +45,7 @@ import org.apache.struts.config.PlugInConfig;
  * string) is selected, which is elegantly backwards compatible with the
  * previous Struts behavior that only supported one module.</p>
  *
- * @version $Revision: 1.13 $ $Date: 2004/04/08 22:53:18 $
+ * @version $Revision: 1.14 $ $Date: 2004/04/14 23:46:15 $
  * @since Struts 1.1
  */
 public class ModuleConfigImpl implements Serializable, ModuleConfig {
@@ -63,7 +63,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         this.actionConfigList = new ArrayList();
         this.actionFormBeanClass = "org.apache.struts.action.ActionFormBean";
         this.actionMappingClass = "org.apache.struts.action.ActionMapping";
-        this.globalForwardClass = "org.apache.struts.action.ActionForward";
+        this.actionForwardClass = "org.apache.struts.action.ActionForward";
         this.configured = false;
         this.controllerConfig = null;
         this.dataSources = new HashMap();
@@ -241,20 +241,20 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
     }
 
     /**
-     * The default class name to be used when creating global forward instances.
+     * The default class name to be used when creating action forward instances.
      */
-    public String getGlobalForwardClass() {
-        return this.globalForwardClass;
+    public String getActionForwardClass() {
+        return this.actionForwardClass;
     }
 
     /**
-     * The default class name to be used when creating global forward instances.
+     * The default class name to be used when creating action forward instances.
      *
-     * @param globalForwardClass default class name to be used when creating 
-     *                           action mapping instances.
+     * @param actionForwardClass default class name to be used when creating
+     *                           action forward instances.
      */
-    public void setGlobalForwardClass(String globalForwardClass) {
-        this.globalForwardClass = globalForwardClass;
+    public void setActionForwardClass(String actionForwardClass) {
+        this.actionForwardClass= actionForwardClass;
     }
 
     /**
@@ -704,9 +704,9 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
     protected String actionMappingClass = "org.apache.struts.action.ActionMapping";
     
     /**
-     * The default class name to be used when creating global forward instances.
+     * The default class name to be used when creating action forward instances.
      */
-    protected String globalForwardClass = "org.apache.struts.action.ActionForward";
+    protected String actionForwardClass = "org.apache.struts.action.ActionForward";
     
     /**
      * Matches action config paths against compiled wildcard patterns
