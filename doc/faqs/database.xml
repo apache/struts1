@@ -207,8 +207,8 @@ public ActionForward
 </code></pre>
 
     <p>
-    <i>Note: Since Struts is now using commons-dbcp for all it's data-source
-    needs, the query you provide for the pingQuery attribute (if you choose to
+    <i>Note: If you use the Commons BasicDataSource with Struts,
+    the query you provide for the pingQuery attribute (if you choose to
     include it) must return at least one row.</i>
     </p>
 

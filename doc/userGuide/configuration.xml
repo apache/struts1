@@ -396,7 +396,7 @@
 
     <p>
     In Struts 1.1, the GenericDataSource is deprecated, and it is
-    recommended that you use the Commons BasicDataSource directly.
+    recommended that you use the Commons BasicDataSource instead.
     In practice, if you need to use the DataSource manager, you should use
     whatever DataSource implementation works best with your container or
     database.
