@@ -529,7 +529,8 @@ public class FormTag extends TagSupport {
     }
 
     /**
-     * Generates a hidden input field with token information, if any.
+     * Generates a hidden input field with token information, if any. The
+     * field is added within a div element for HTML 4.01 Strict compliance.
      * @return A hidden input field containing the token.
      * @since Struts 1.1
      */
@@ -542,7 +543,7 @@ public class FormTag extends TagSupport {
                 (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
                 
             if (token != null) {
-                results.append("<input type=\"hidden\" name=\"");
+                results.append("<div><input type=\"hidden\" name=\"");
                 results.append(Constants.TOKEN_KEY);
                 results.append("\" value=\"");
                 results.append(token);
@@ -551,6 +552,7 @@ public class FormTag extends TagSupport {
                 } else {
                     results.append("\">");
                 }
+                results.append("</div>");
             }
         }
 
