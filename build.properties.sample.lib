@@ -35,7 +35,7 @@
 # All the dependencies will be automatically downloaded and installed for
 # you.
 #
-# $Id: build.properties.sample.lib,v 1.1 2004/07/08 13:19:57 husted Exp $
+# $Id: build.properties.sample.lib,v 1.2 2004/07/22 13:31:24 husted Exp $
 # -----------------------------------------------------------------------------
 
 compile.deprecation=true
@@ -51,9 +51,9 @@ compile.deprecation=true
 struts-lib.home=./lib
 
 # servlet.home - Where JAR file containing the Servlet API classes is kept
-servlet.home=/opt/JavaSoft/lib
-# Compile against either version 2.2 or 2.3
-servlet.jar=${servlet.home}/servletapi.jar
+# You may copy it to the struts-lib home or change this reference 
+# Struts 1.2.x should compile against either version 2.2 or 2.3
+servlet.jar=${struts-lib.home}/servlet.jar
 
 
 # -- required for "contrib" -----------------
