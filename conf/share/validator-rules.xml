@@ -81,6 +81,17 @@
 
       </validator>
 
+      <validator name="requiredif"
+                 classname="org.apache.struts.util.StrutsValidator"
+                 method="validateRequiredIf"
+                 methodParams="java.lang.Object,
+                               org.apache.commons.validator.ValidatorAction,
+                               org.apache.commons.validator.Field,
+                               org.apache.struts.action.ActionErrors,
+                               org.apache.commons.validator.Validator,
+                               javax.servlet.http.HttpServletRequest"
+                 msg="errors.required">
+      </validator>
 
       <validator name="minlength"
             classname="org.apache.struts.util.StrutsValidator"
@@ -586,10 +597,10 @@
 
       </validator>
 
-
+<!-- range is deprecated use rangeInt instead -->
       <validator name="range"
             classname="org.apache.struts.util.StrutsValidator"
-               method="validateRange"
+               method="validateIntRange"
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
@@ -599,33 +610,8 @@
                   msg="errors.range">
 
          <javascript><![CDATA[
-            function validateRange(form) {
-                var bValid = true;
-                var focusField = null;
-                var i = 0;
-                var fields = new Array();
-                oRange = new range();
-                for (x in oRange) {
-                    if ((form[oRange[x][0]].type == 'text' ||
-                         form[oRange[x][0]].type == 'textarea') &&
-                        (form[oRange[x][0]].value.length > 0)) {
-                        var iMin = parseInt(oRange[x][2]("min"));
-                        var iMax = parseInt(oRange[x][2]("max"));
-                        var iValue = parseInt(form[oRange[x][0]].value);
-                        if (!(iValue >= iMin && iValue <= iMax)) {
-                            if (i == 0) {
-                                focusField = form[oRange[x][0]];
-                            }
-                            fields[i++] = oRange[x][1];
-                            bValid = false;
-                        }
-                    }
-                }
-                if (fields.length > 0) {
-                    focusField.focus();
-                    alert(fields.join('\n'));
-                }
-                return bValid;
+            function validateRange(form) {               
+                return validIntRange(form);
             }]]>
          </javascript>
 
