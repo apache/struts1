@@ -887,6 +887,18 @@
                 associated with our current form. This tag is only valid when
                 nested inside a form tag body.
             </p>
+            <p>
+                As with the corresponding HTML &lt;input&gt; element, the
+                enclosing form element must specify "POST" for the <code>method</code>
+                attribute, and "multipart/form-data" for the <code>enctype</code>
+                attribute. For example:
+            </p>
+            <p>
+    <pre>
+    &lt;html:form method="POST" enctype="multipart/form-data"&gt;
+        &lt;html:file property="theFile" /&gt;
+    &lt;/html:form&gt;</pre>
+            </p>
         </info>
 
         <attribute>

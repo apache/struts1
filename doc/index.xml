@@ -91,7 +91,7 @@
   builds so you know what you are getting!</p>
 
   <p>Access to the CVS source repository for Struts is available through both
-  <a href="http://jakarta.apache.org/cvsweb/index.cgi/jakarta-struts/">web
+  <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">web
   browser</a> and
   <a href="http://jakarta.apache.org/getinvolved/cvsindex.html">CVS client</a>
   interfaces.</p>
