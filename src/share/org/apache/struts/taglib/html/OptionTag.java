@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.17 2003/05/17 03:40:27 dgraham Exp $
- * $Revision: 1.17 $
- * $Date: 2003/05/17 03:40:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.18 2003/05/17 03:42:00 dgraham Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/05/17 03:42:00 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.17 $ $Date: 2003/05/17 03:40:27 $
+ * @version $Revision: 1.18 $ $Date: 2003/05/17 03:42:00 $
  */
 public class OptionTag extends BodyTagSupport {
 
@@ -86,6 +86,7 @@ public class OptionTag extends BodyTagSupport {
 
     /**
      * The default locale for our server.
+     * @deprecated Use Locale.getDefault() directly.
      */
     protected static final Locale defaultLocale = Locale.getDefault();
 
