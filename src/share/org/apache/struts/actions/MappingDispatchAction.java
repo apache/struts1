@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/MappingDispatchAction.java,v 1.3 2003/08/12 14:13:13 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2003/08/12 14:13:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/MappingDispatchAction.java,v 1.4 2003/08/13 17:19:58 rleland Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/08/13 17:19:58 $
  *
  * ====================================================================
  *
@@ -165,7 +165,8 @@ import org.apache.struts.action.ActionMapping;
  * @author Ted Husted
  * @author Anthony Kay
  * @author Steve Raeburn
- * @version $Revision: 1.3 $ $Date: 2003/08/12 14:13:13 $
+ * @author Leonardo Quijano
+ * @version $Revision: 1.4 $ $Date: 2003/08/13 17:19:58 $
  * @since Struts 1.2
  */
 public class MappingDispatchAction extends DispatchAction {
@@ -212,15 +213,9 @@ public class MappingDispatchAction extends DispatchAction {
 		HttpServletRequest request,
 		HttpServletResponse response)
 		throws Exception {
-
-		// Identify the method name to be dispatched to
-		String name = mapping.getParameter();
-		if (name == null) {
-			return unspecified(mapping, form, request, response);
-		}
-
-		// Invoke the named method, and return the result
-		return dispatchMethod(mapping, form, request, response, name);
+        
+        // Use the overridden getMethodName. 
+        return super.execute(mapping, form, request, response);
 	}
 
 
@@ -256,5 +251,29 @@ public class MappingDispatchAction extends DispatchAction {
 
 		throw new ServletException(message);
 	}
+
+    /**
+     * Returns the method name, given a parameter's value.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The HTTP request we are processing
+     * @param response The HTTP response we are creating
+     * @param parameter The <code>ActionMapping</code> parameter's name
+     *
+     * @return The method's name.
+     * @since Struts 1.2.1
+     */
+    protected String getMethodName(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response,
+        String parameter)
+        throws Exception {
+        
+        // Return the unresolved mapping parameter.
+        return parameter;
+    }
 
 }
