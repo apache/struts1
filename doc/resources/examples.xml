@@ -10,6 +10,10 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Projects and Examples">
+
+<p><a href="http://www.codeczar.com/products/logweb/index.html">LogWeb</a> by Nathan Coast - A Struts webapp for configuring Log4J at runtime within a servlet container.</p>
+<p><a href="http://raibledesigns.com/wiki/Wiki.jsp?page=StrutsResume"><b>Struts Resume</b></a> by Matt Raible - A resume hosting application built using AppFuse.</p>
+<p><a href="http://raibledesigns.com/wiki/Wiki.jsp?page=AppFuse"><b>AppFuse</b></a> by Matt Raible - Demonstrates how to use XDoclet with Struts to generate your Forms, web.xml, struts-config.xml, and validation.xml. AppFuse also shows how you can use the different security packages (i.e. form-based authentication, SSLExt) and advanced Struts techniques (i.e. Tiles, Validator) to build your webapps. AppFuse integrates with Hibernate on the backend to do database persistence.</p>
 <p><a href="http://www.reumann.net/do/struts/main"><b>Struttin' with Struts</b></a> by Rick Reumann - How to use iBATIS Database Layer with Struts, lessons and examples.</p>
 <p><a href="http://www.ajug.org/meetings/download/struts_demo.zip"><b>AJUG Presentation Demo Application</b></a> by Chuck Cavaness - The demo application uses OJB and Hypersonic.</p>
 <p><a href="http://www.ehatchersolutions.com/JavaDevWithAnt/"><b>JavaDevWithAnt</b></a> by Erik Hatchter - Demonstrates using Ant, XDoclet, Struts, JUnit, Cactus, and Lucene within the same application.</p>

@@ -18,7 +18,7 @@
 <section href="status" name="Development Roadmap">
 
     <p>
-    <font size="-2">$Id: status.xml,v 1.38 2003/08/30 02:45:34 husted Exp $</font>
+    <font size="-2">$Id: status.xml,v 1.39 2003/08/30 14:59:50 husted Exp $</font>
     </p>
 
     <p>
@@ -84,7 +84,8 @@
     </p>
 
     <p>
-        Throughout the 1.x series, there will be a continued emphasis on expanding unit test coverage for the framework.
+        Throughout the 1.x series, there will be a continued emphasis on expanding unit test coverage for the
+        framework.
         Bug reports should include a failing test case when possible.
         Proposals for new features should include a working test suite.
         (Creating features through Test Driven Development is strongly encouraged.)
@@ -338,6 +339,11 @@
         <a href="http://cvs.apache.org/viewcvs/jakarta-commons-sandbox/chain/">Commons Chain of Responsiblity
         package</a>
         </li>
+
+        <li>
+        <a href="http://cvs.apache.org/viewcvs/jakarta-struts/contrib/struts-chain/">CoRe Request Processor</a>
+        </li>
+
 
         <li>
         <a href="proposals/release-plan_1_2_0.html">Release Plan 1.2.0</a> -- unratified DRAFT document

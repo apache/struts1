@@ -12,6 +12,11 @@
 <section name="Other Struts-Related Utilities">
 
     <p>
+        <a href="http://www.jplates.com/">JPlates</a> produces standards-based software tools that dramatically improve
+        productivity for all template-based applications, including Struts JSP/Velocity/XLST applications.
+    </p>
+
+    <p>
         <a href="http://ultrawork.org/wtk/index.html"><b>Web Toolkit</b></a> - provides a component-based approach to
         building markup-driven applications (not Struts specific). Alternative to the Template and Tiles taglibs.
     </p>
