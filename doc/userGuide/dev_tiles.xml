@@ -182,8 +182,8 @@ To enable Tiles you need to:
 
 <p>
 A concise 
-<a href="http://jakarta.apache.org/struts/api/org/apache/struts/taglib/template/package-summary.html#package_description">Tiles API Guide</a> is available to help you get started 
-with the Tiles framework. [:TODO: Change link to Tiles API Guide when available.]
+<a href="http://jakarta.apache.org/struts/api/org/apache/struts/taglib/tiles/package-summary.html">Tiles API Guide</a> is available to help you get started 
+with the Tiles framework. [:TODO: change link to #package_description when available.]
 </p>
 
 </section>

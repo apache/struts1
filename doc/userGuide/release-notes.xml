@@ -275,10 +275,16 @@
     <li>Deprecated (Struts 0.5) configuration file format: Remove support.</li>
     <li>Deprecated (Struts 0.5) methods: Remove from codebase.</li>
     </ul>
+    <p><strong>Added Config Package</strong></p>
+    <ul>
+    <li>Various classes to support modular applications</li>
+    </ul>
     <p><strong>Action Package Changes</strong></p>
     <p>The following changes and bug fixes have occurred in the basic
     controller framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
+    <li>ActionServlet: Added convertNull parameter to simulate the Struts 1.0 behavior when populating forms. If set to true, the numeric Java wrapper class types (like java.lang.Integer) will default to null (rather than 0).</li>
+    <li>ActionServlet: Added "config/$foo" parameter and deprecated several others in favor of components in the new config package. </li>
     <li>ActionForms and related classes: now use a StringBuffer when responding a toString request in order to conserve resources.</li>
     <li>LookupDispatchAction: Added standard Action to help select between internationalized buttons.</li>
     <li>ActionForm class: Modified to use ActionServletWrapper rather than expose ActionServlet.</li>
@@ -522,7 +528,7 @@ multipart requests.</li>
       <li>getResources()</li>
       <li>perform</li>
     </ul>
-    <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">actionActionServlet</a></p>
+    <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">ActionServlet</a></p>
     <ul>
       <li>findDataSource</li>
       <li>findFormBean</li>

@@ -15,6 +15,15 @@
 
 </section>
 
+<section href="tiles" name="Validator API Guide">
+
+<p>
+A concise 
+<a href="http://jakarta.apache.org/struts/api/org/apache/struts/validator/package-summary.html#package_description">Struts Validator API Guide</a> is available to help you get started. 
+</p>
+
+</section>
+
 <section href="resources" name="Validator Resources">
 
 <p><b><u>Validating Input</u></b> by David Winterfeldt and Ted Husted. 
