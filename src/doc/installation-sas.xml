@@ -18,27 +18,22 @@
       application. Call the file &quot;<code>struts-example-depl-plan.xml</code>&quot;. 
       You can use the following contents for the file</li>
 </ul>
-
 <hr/>
-
-<p>----- cut here -----</p>
-
 <pre>
+----- cut here -----
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE warJarOptions PUBLIC
-  &quot;-//SilverStream Software, Inc.//DTD J2EE WAR Deployment Plan//EN&quot;
-  &quot;deploy_war.dtd&quot;&gt;
+&quot;-//SilverStream Software, Inc.//DTD J2EE WAR Deployment Plan//EN&quot;
+&quot;deploy_war.dtd&quot;&gt;
 &lt;warJarOptions&gt;
 &lt;warJar&gt;
-&lt;warJarName&gt;struts-example.war&lt;/warJarName&gt;
+&lt;warJarName&gt;struts-documentation.war&lt;/warJarName&gt;
 &lt;isEnabled&gt;true&lt;/isEnabled&gt;
-&lt;urls&gt;&lt;el&gt;struts-example&lt;/el&gt;&lt;/urls&gt;
+&lt;urls&gt;&lt;el&gt;struts-documentation&lt;/el&gt;&lt;/urls&gt;
 &lt;/warJar&gt;
 &lt;/warJarOptions&gt;
+----- cut here -----
 </pre>
-
-<p>----- cut here -----</p>
-
 <hr/>
 
 <p>Create an XML deployment plan for the &quot;<code>struts-documentation.war</code>&quot; 

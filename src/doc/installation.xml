@@ -226,24 +226,22 @@ build dist         &lt;-- Windows platform
 </ul>
 <h3>Status of various containers</h3>
 <ul>
-  <li>iPlanet Application Server - Service Pack 2 is recommended. See notes regarding 
-    Example Application.</li>
-  <li>Tomcat 3.1 and prior - Not recommended. Use Tomcat 3.2.1 or later.</li>
-  <li>Tomcat 3.2.1+ "standalone" - No additional steps required.</li>
-  <li>Resin 2.1+ "standalone" - No additional steps required.</li>
-  <li>WebLogic 6.0+ - No additional steps required.</li>
-</ul>
-<ul>
   <li>Bluestone Universal Business Server - <a href="installation-ubs.html">Additional 
     steps required.</a></li>
+  <li>iPlanet Application Server - Service Pack 2 is recommended. Note that the database 
+  object in the Struts-Example application is not compatible with this container.</li>
   <li>iPlanet Web Server - <a href="installation-ip.html">Additional steps required.</a></li>
   <li>JRUN - <a href="installation-jrun.html">Additional steps required.</a></li>
   <li>Orion Application Server - <a href="installation-oas.html">Additional steps 
     required.</a></li>
+  <li>Resin 2.1+ "standalone" - No additional steps required.</li>
   <li>Silverstream - - <a href="installation-sas.html">Additional steps required.</a></li>
+  <li>Tomcat 3.1 and prior - Not recommended. Use Tomcat 3.2.1 or later.</li>
+  <li>Tomcat 3.2.1+ "standalone" - No additional steps required.</li>
   <li>Tomcat 3.2.1 with Apache - <a href="installation-tc.html">Additional steps 
     required.</a></li>
   <li>Weblogic - <a href="installation-wls.html">Additional steps required.</a></li>
+  <li>WebLogic 6.0+ - No additional steps required.</li>
   <li>WebSphere - <a href="installation-was.html">Additional steps required.</a></li>
 </ul>
 </section> 
