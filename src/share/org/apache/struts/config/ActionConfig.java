@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.8 2002/09/22 06:13:56 martinc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/09/22 06:13:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.9 2002/11/06 04:48:29 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/11/06 04:48:29 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import java.util.HashMap;
  * module configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/09/22 06:13:56 $
+ * @version $Revision: 1.9 $ $Date: 2002/11/06 04:48:29 $
  * @since Struts 1.1
  */
 
@@ -108,19 +108,41 @@ public class ActionConfig implements Serializable {
 
 
     /**
-     * The application configuration with which we are associated.
+     * The module configuration with which we are associated.
      */
-    protected ApplicationConfig applicationConfig = null;
+    protected ModuleConfig moduleConfig = null;
 
-    public ApplicationConfig getApplicationConfig() {
-        return (this.applicationConfig);
+    /**
+     * The module configuration with which we are associated.
+     * @deprecated  {@link #getModuleConfig()}
+     */
+    public ModuleConfig getApplicationConfig() {
+        return (getModuleConfig());
     }
 
-    public void setApplicationConfig(ApplicationConfig applicationConfig) {
+    /**
+     * The module configuration with which we are associated.
+     */
+    public ModuleConfig getModuleConfig() {
+        return (this.moduleConfig);
+    }
+
+    /**
+     * The module configuration with which we are associated.
+     * @deprecated  {@link #setModuleConfig(ModuleConfig)}
+     */
+    public void setApplicationConfig(ModuleConfig moduleConfig) {
+       setModuleConfig(moduleConfig);
+    }
+
+    /**
+     * The module configuration with which we are associated.
+     */
+    public void setModuleConfig(ModuleConfig moduleConfig) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
-        this.applicationConfig = applicationConfig;
+        this.moduleConfig = moduleConfig;
     }
 
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.5 2002/11/01 04:54:47 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2002/11/01 04:54:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.6 2002/11/06 04:48:28 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/11/06 04:48:28 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * developer to create a Java class for each type of form bean.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/11/01 04:54:47 $
+ * @version $Revision: 1.6 $ $Date: 2002/11/06 04:48:28 $
  * @since Struts 1.1
  */
 
@@ -149,7 +149,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
             return;
         }
         FormBeanConfig config =
-            mapping.getApplicationConfig().findFormBeanConfig(name);
+            mapping.getModuleConfig().findFormBeanConfig(name);
         if (config == null) {
             return;
         }

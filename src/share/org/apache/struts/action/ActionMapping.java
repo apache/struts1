@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.25 2002/07/05 22:09:21 craigmcc Exp $
- * $Revision: 1.25 $
- * $Date: 2002/07/05 22:09:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.26 2002/11/06 04:48:28 rleland Exp $
+ * $Revision: 1.26 $
+ * $Date: 2002/11/06 04:48:28 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.config.ForwardConfig;
  * are using.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.25 $ $Date: 2002/07/05 22:09:21 $
+ * @version $Revision: 1.26 $ $Date: 2002/11/06 04:48:28 $
  */
 
 public class ActionMapping extends ActionConfig {
@@ -116,7 +116,7 @@ public class ActionMapping extends ActionConfig {
             }
 
             // Check for a globally defined handler
-            config = getApplicationConfig().findExceptionConfig(name);
+            config = getModuleConfig().findExceptionConfig(name);
             if (config != null) {
                 return (config);
             }
@@ -146,7 +146,7 @@ public class ActionMapping extends ActionConfig {
 
         ForwardConfig config = findForwardConfig(name);
         if (config == null) {
-            config = getApplicationConfig().findForwardConfig(name);
+            config = getModuleConfig().findForwardConfig(name);
         }
         return ((ActionForward) config);
 
@@ -178,7 +178,7 @@ public class ActionMapping extends ActionConfig {
      */
     public ActionForward getInputForward() {
 
-        if (getApplicationConfig().getControllerConfig().getInputForward()) {
+        if (getModuleConfig().getControllerConfig().getInputForward()) {
             return (findForward(getInput()));
         } else {
             return (new ActionForward(getInput()));
