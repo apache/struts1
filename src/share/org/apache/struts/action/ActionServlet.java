@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.167 2003/08/10 06:00:49 sraeburn Exp $
- * $Revision: 1.167 $
- * $Date: 2003/08/10 06:00:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.168 2003/08/12 00:38:40 dgraham Exp $
+ * $Revision: 1.168 $
+ * $Date: 2003/08/12 00:38:40 $
  *
  * ====================================================================
  *
@@ -232,7 +232,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.167 $ $Date: 2003/08/10 06:00:49 $
+ * @version $Revision: 1.168 $ $Date: 2003/08/12 00:38:40 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -942,23 +942,13 @@ public class ActionServlet extends HttpServlet {
             return (configDigester);
         }
 
-        // Check the status of the "validating" initialization parameter
-        boolean validating = true;
-        String value = getServletConfig().getInitParameter("validating");
-        if ("false".equalsIgnoreCase(value)
-            || "no".equalsIgnoreCase(value)
-            || "n".equalsIgnoreCase(value)
-            || "0".equalsIgnoreCase(value)) {
-
-            validating = false;
-        }
-
         // Create a new Digester instance with standard capabilities
         configDigester = new Digester();
         configDigester.setNamespaceAware(true);
-        configDigester.setValidating(validating);
+        configDigester.setValidating(this.isValidating());
         configDigester.setUseContextClassLoader(true);
         configDigester.addRuleSet(new ConfigRuleSet());
+        
         for (int i = 0; i < registrations.length; i += 2) {
             URL url = this.getClass().getResource(registrations[i+1]);
             if (url != null) {
@@ -966,11 +956,25 @@ public class ActionServlet extends HttpServlet {
             }
         }
 
-        // Add any custom RuleSet instances that have been specified
+        this.addRuleSets();
+
+        // Return the completely configured Digester instance
+        return (configDigester);
+    }
+
+
+    /**
+     * Add any custom RuleSet instances to configDigester that have 
+     * been specified in the <code>rulesets</code> init. parameter.
+     * @throws ServletException
+     */
+    private void addRuleSets() throws ServletException {
+        
         String rulesets = getServletConfig().getInitParameter("rulesets");
         if (rulesets == null) {
             rulesets = "";
         }
+        
         rulesets = rulesets.trim();
         String ruleset = null;
         while (rulesets.length() > 0) {
@@ -982,20 +986,39 @@ public class ActionServlet extends HttpServlet {
                 ruleset = rulesets.substring(0, comma).trim();
                 rulesets = rulesets.substring(comma + 1).trim();
             }
+            
             if (log.isDebugEnabled()) {
                 log.debug("Configuring custom Digester Ruleset of type " + ruleset);
             }
+            
             try {
                 RuleSet instance = (RuleSet) RequestUtils.applicationInstance(ruleset);
-                configDigester.addRuleSet(instance);
+                this.configDigester.addRuleSet(instance);
             } catch (Exception e) {
                 log.error("Exception configuring custom Digester RuleSet", e);
                 throw new ServletException(e);
             }
         }
+    }
 
-        // Return the completely configured Digester instance
-        return (configDigester);
+    /**
+     * Check the status of the <code>validating</code> initialization parameter. 
+     * @return true if the module Digester should validate.
+     */
+    private boolean isValidating() {
+        
+        boolean validating = true;
+        String value = getServletConfig().getInitParameter("validating");
+        
+        if ("false".equalsIgnoreCase(value)
+            || "no".equalsIgnoreCase(value)
+            || "n".equalsIgnoreCase(value)
+            || "0".equalsIgnoreCase(value)) {
+        
+            validating = false;
+        }
+        
+        return validating;
     }
 
     /**
