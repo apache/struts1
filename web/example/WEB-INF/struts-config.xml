@@ -151,7 +151,7 @@
 
   <controller>
     <!-- The "input" parameter on "action" elements is the name of a
-         local or global "forward" rather than a subapp-relative path -->
+         local or global "forward" rather than a module-relative path -->
     <set-property property="inputForward" value="true"/>
   </controller>
 

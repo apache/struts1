@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.120 2002/09/22 05:46:51 martinc Exp $
- * $Revision: 1.120 $
- * $Date: 2002/09/22 05:46:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.121 2002/10/18 15:27:42 jholmes Exp $
+ * $Revision: 1.121 $
+ * $Date: 2002/10/18 15:27:42 $
  *
  * ====================================================================
  *
@@ -302,7 +302,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.120 $ $Date: 2002/09/22 05:46:51 $
+ * @version $Revision: 1.121 $ $Date: 2002/10/18 15:27:42 $
  */
 
 public class ActionServlet
@@ -727,7 +727,7 @@ public class ActionServlet
      * Gracefully terminate use of the data source associated with this
      * application (if any).
      *
-     * @deprecated Will no longer be required with multi-module support
+     * @deprecated Will no longer be required with module support
      */
     protected void destroyDataSources() {
 

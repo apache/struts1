@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.4 2002/10/10 16:32:27 cedric Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/10 16:32:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.5 2002/10/18 15:27:42 jholmes Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/10/18 15:27:42 $
  *
  * ====================================================================
  *
@@ -441,7 +441,7 @@ public class DefinitionsUtil implements ComponentConstants
   /**
    * Create FactoryConfig and initialize it from web.xml.
    *
-   * @param servletConfig ServletConfig for the sub-application with which
+   * @param servletConfig ServletConfig for the module with which
    *  this plug in is associated
    * @exception DefinitionsFactoryException if this <code>PlugIn</code> cannot
    *  be successfully initialized

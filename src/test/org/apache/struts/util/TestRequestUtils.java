@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.11 2002/10/13 01:59:32 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2002/10/13 01:59:32 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.12 2002/10/18 15:27:43 jholmes Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/10/18 15:27:43 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.mock.TestMockBase;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/10/13 01:59:32 $
+ * @version $Revision: 1.12 $ $Date: 2002/10/18 15:27:43 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -481,7 +481,7 @@ public class TestRequestUtils extends TestMockBase {
     // ----------------------------------------------------------- computeURL()
 
 
-    // Default subapp -- Forward only
+    // Default module -- Forward only
     public void testComputeURL1a() {
 
         request.setPathElements("/myapp", "/action.do", null, null);
@@ -502,7 +502,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Default subapp -- Href only
+    // Default module -- Href only
     public void testComputeURL1b() {
 
         request.setPathElements("/myapp", "/action.do", null, null);
@@ -523,7 +523,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Default subapp -- Page only
+    // Default module -- Page only
     public void testComputeURL1c() {
 
         request.setPathElements("/myapp", "/action.do", null, null);
@@ -544,7 +544,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Default subapp -- Forward with pattern
+    // Default module -- Forward with pattern
     public void testComputeURL1d() {
 
         appConfig.getControllerConfig().setForwardPattern
@@ -567,7 +567,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Default subapp -- Page with pattern
+    // Default module -- Page with pattern
     public void testComputeURL1e() {
 
         appConfig.getControllerConfig().setPagePattern
@@ -590,7 +590,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Default subapp -- Forward with relative path (non-context-relative)
+    // Default module -- Forward with relative path (non-context-relative)
     public void testComputeURL1f() {
 
         request.setPathElements("/myapp", "/action.do", null, null);
@@ -611,7 +611,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Default subapp -- Forward with relative path (context-relative)
+    // Default module -- Forward with relative path (context-relative)
     public void testComputeURL1g() {
 
         request.setPathElements("/myapp", "/action.do", null, null);
@@ -632,7 +632,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Default subapp -- Forward with external path
+    // Default module -- Forward with external path
     public void testComputeURL1h() {
 
         request.setPathElements("/myapp", "/action.do", null, null);
@@ -652,7 +652,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Second subapp -- Forward only
+    // Second module -- Forward only
     public void testComputeURL2a() {
 
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
@@ -674,7 +674,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Second subapp -- Href only
+    // Second module -- Href only
     public void testComputeURL2b() {
 
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
@@ -696,7 +696,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Second subapp -- Page only
+    // Second module -- Page only
     public void testComputeURL2c() {
 
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
@@ -718,7 +718,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Default subapp -- Forward with pattern
+    // Default module -- Forward with pattern
     public void testComputeURL2d() {
 
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
@@ -742,7 +742,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Second subapp -- Page with pattern
+    // Second module -- Page with pattern
     public void testComputeURL2e() {
 
         appConfig2.getControllerConfig().setPagePattern
@@ -766,7 +766,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Second subapp -- Forward with relative path (non-context-relative)
+    // Second module -- Forward with relative path (non-context-relative)
     public void testComputeURL2f() {
 
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
@@ -788,7 +788,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Second subapp -- Forward with relative path (context-relative)
+    // Second module -- Forward with relative path (context-relative)
     public void testComputeURL2g() {
 
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
@@ -810,7 +810,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Second subapp -- Forward with external path
+    // Second module -- Forward with external path
     public void testComputeURL2h() {
 
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
@@ -973,7 +973,7 @@ public class TestRequestUtils extends TestMockBase {
 
 
 
-    // Default subapp -- No ActionForm should be created
+    // Default module -- No ActionForm should be created
     public void testCreateActionForm1a() {
 
         request.setPathElements("/myapp", "/noform.do", null, null);
@@ -987,7 +987,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Second subapp -- No ActionForm should be created
+    // Second module -- No ActionForm should be created
     public void testCreateActionForm1b() {
 
         request.setPathElements("/myapp", "/2/noform.do", null, null);
@@ -1001,7 +1001,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Default subapp -- Standard ActionForm should be created
+    // Default module -- Standard ActionForm should be created
     public void testCreateActionForm2a() {
 
         request.setPathElements("/myapp", "/static.do", null, null);
@@ -1024,7 +1024,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Second subapp -- Standard ActionForm should be created
+    // Second module -- Standard ActionForm should be created
     public void testCreateActionForm2b() {
 
         request.setPathElements("/myapp", "/2/static.do", null, null);
@@ -1047,7 +1047,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Default subapp -- Dynamic ActionForm should be created
+    // Default module -- Dynamic ActionForm should be created
     public void testCreateActionForm3a() {
 
         request.setPathElements("/myapp", "/dynamic.do", null, null);
@@ -1070,7 +1070,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Second subapp -- Dynamic ActionForm should be created
+    // Second module -- Dynamic ActionForm should be created
     public void testCreateActionForm3b() {
 
         request.setPathElements("/myapp", "/2/dynamic2.do", null, null);
@@ -1116,7 +1116,7 @@ public class TestRequestUtils extends TestMockBase {
     // ---------------------------------------------------- selectApplication()
 
 
-    // Map to the default subapp -- direct
+    // Map to the default module -- direct
     public void testSelectApplication1a() {
 
         request.setPathElements("/myapp", "/noform.do", null, null);
@@ -1131,7 +1131,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Map to the second webapp -- direct
+    // Map to the second module -- direct
     public void testSelectApplication1b() {
 
         request.setPathElements("/myapp", "/2/noform.do", null, null);
@@ -1146,7 +1146,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Map to the default subapp -- include
+    // Map to the default module -- include
     public void testSelectApplication2a() {
 
         request.setPathElements("/myapp", "/2/noform.do", null, null);
@@ -1163,7 +1163,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Map to the second subapp -- include
+    // Map to the second module -- include
     public void testSelectApplication2b() {
 
         request.setPathElements("/myapp", "/noform.do", null, null);

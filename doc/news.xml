@@ -532,8 +532,8 @@ Scioworks Camino is a visual tool for Struts application development.
 What's new in v2.0:
 </p>
 <ul>
-<li>Supports Struts 1.1 features - Manages multiple sub-apps on multiple Storyboards, declarative exception handling, dynamic FormBeans, etc.</li>
-<li>Enhanced Zoomable Storyboards - Manages each sub-app on its own Storyboard with cross sub-application connectivities. Supports zooming, snap-to-grid, auto-alignment and multiple segements paths.</li>
+<li>Supports Struts 1.1 features - Manages multiple modules on multiple Storyboards, declarative exception handling, dynamic FormBeans, etc.</li>
+<li>Enhanced Zoomable Storyboards - Manages each module on its own Storyboard with cross module connectivities. Supports zooming, snap-to-grid, auto-alignment and multiple segements paths.</li>
 <li>Built-in JSP source editor with syntax-highlighting - Automatic two-way synchronization between the editors and the Storyboards.</li>
 <li>Auto file synchronization - Detects external modifications of the JSPs.</li>
 <li>Inspector and Cross Referencing Tool - Allows quick viewing and modifying attributes of the elements and provide powerful cross-referencing facility.</li>

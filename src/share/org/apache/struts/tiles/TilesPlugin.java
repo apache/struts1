@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.4 2002/10/10 16:32:27 cedric Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/10 16:32:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.5 2002/10/18 15:27:42 jholmes Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/10/18 15:27:42 $
  *
  * ====================================================================
  *
@@ -111,12 +111,12 @@ public class TilesPlugin implements PlugIn {
   protected DefinitionsFactory definitionFactory;
 
   /**
-   * <p>Receive notification that the specified sub-applicaiton is being
+   * <p>Receive notification that the specified module is being
    * started up.</p>
    *
-   * @param servlet ActionServlet that is managing all the sub-applications
+   * @param servlet ActionServlet that is managing all the modules
    *  in this web application
-   * @param config ApplicationConfig for the sub-application with which
+   * @param config ApplicationConfig for the module with which
    *  this plug in is associated
    *
    * @exception ServletException if this <code>PlugIn</code> cannot
@@ -170,9 +170,9 @@ public class TilesPlugin implements PlugIn {
   /**
    * Create FactoryConfig and initialize it from web.xml and struts-config.xml.
    *
-   * @param servlet ActionServlet that is managing all the sub-applications
+   * @param servlet ActionServlet that is managing all the modules
    *  in this web application
-   * @param config ApplicationConfig for the sub-application with which
+   * @param config ApplicationConfig for the module with which
    *  this plug in is associated
    * @exception ServletException if this <code>PlugIn</code> cannot
    *  be successfully initialized
@@ -214,9 +214,9 @@ public class TilesPlugin implements PlugIn {
    * Find original properties set in the struts PlugInConfig object.
    * First, need to find the index of this plugin. Then retrieve array of configs
    * and then the object for this plugin.
-   * @param servlet ActionServlet that is managing all the sub-applications
+   * @param servlet ActionServlet that is managing all the modules
    *  in this web application
-   * @param config ApplicationConfig for the sub-application with which
+   * @param config ApplicationConfig for the module with which
    *  this plug in is associated
    *
    * @exception ServletException if this <code>PlugIn</code> cannot
@@ -252,7 +252,7 @@ public class TilesPlugin implements PlugIn {
    * appropriate TilesRequestProcessor class. If no, set processor class to
    * TilesRequestProcessor
    *
-   * @param config ApplicationConfig for the sub-application with which
+   * @param config ApplicationConfig for the module with which
    *  this plug in is associated
    * @throws ServletException If an error occur
    */

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.5 2002/07/27 23:26:09 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/07/27 23:26:09 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.6 2002/10/18 15:27:43 jholmes Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/10/18 15:27:43 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * environment was set up correctly.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/07/27 23:26:09 $
+ * @version $Revision: 1.6 $ $Date: 2002/10/18 15:27:43 $
  */
 
 public class TestMockBase extends TestCase {
@@ -138,15 +138,15 @@ public class TestMockBase extends TestCase {
         response = new MockHttpServletResponse();
         page = new MockPageContext(config, request, response);
 
-        // Set up application configurations for our supported subapps
+        // Set up application configurations for our supported modules
         setUpDefaultApp();
         setUpSecondApp();
 
         // NOTE - we do not initialize the request attribute
-        // for the selected subapp so that fallbacks to the
-        // default subapp can be tested.  To select a subapp,
+        // for the selected module so that fallbacks to the
+        // default module can be tested.  To select a module,
         // tests should set the request attribute Action.APPLICATION_KEY
-        // to the ApplicationConfig instance for the selected subapp
+        // to the ApplicationConfig instance for the selected module
 
     }
 
@@ -337,13 +337,13 @@ public class TestMockBase extends TestCase {
         assertEquals("session-->context",
                      context, session.getServletContext());
 
-        // Validate the configuration for the default subapp
+        // Validate the configuration for the default module
         assertNotNull("appConfig is present", appConfig);
         assertEquals("context-->appConfig",
                      appConfig,
                      context.getAttribute(Action.APPLICATION_KEY));
 
-        // Validate the configuration for the second subapp
+        // Validate the configuration for the second module
         assertNotNull("appConfig2 is present", appConfig2);
         assertEquals("context-->appConfig2",
                      appConfig2,

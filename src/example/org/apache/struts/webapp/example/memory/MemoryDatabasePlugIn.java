@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.3 2002/06/15 23:12:31 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/06/15 23:12:31 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.4 2002/10/18 15:27:42 jholmes Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/18 15:27:42 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.webapp.example.UserDatabase;
  * of your servlet container.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/06/15 23:12:31 $
+ * @version $Revision: 1.4 $ $Date: 2002/10/18 15:27:42 $
  */
 
 public final class MemoryDatabasePlugIn implements PlugIn {
@@ -106,7 +106,7 @@ public final class MemoryDatabasePlugIn implements PlugIn {
 
 
     /**
-     * The application configuration for our owning sub-application.
+     * The application configuration for our owning module.
      */
     private ApplicationConfig config = null;
 
@@ -179,7 +179,7 @@ public final class MemoryDatabasePlugIn implements PlugIn {
      * Initialize and load our initial database from persistent storage.
      *
      * @param servlet The ActionServlet for this web application
-     * @param config The ApplicationConfig for our owning sub-application
+     * @param config The ApplicationConfig for our owning module
      *
      * @exception ServletException if we cannot configure ourselves correctly
      */

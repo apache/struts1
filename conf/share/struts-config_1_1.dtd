@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.30 2002/10/02 03:51:56 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.31 2002/10/18 15:27:41 jholmes Exp $
 -->
 
 
@@ -521,7 +521,7 @@ The "form-bean" element describes a particular form bean, which is a
                      custom tags using it is mapped to a context-relative URL
                      of the corresponding resource.  This value may consist of
                      any combination of the following:
-                     - "$A" - Replaced by the app prefix of this subapp
+                     - "$A" - Replaced by the app prefix of this module
                      - "$P" - Replaced by the value of the "page" attribute
                      - "$$" - Causes a literal dollar sign to be rendered
                      - "$x" - (Where "x" is any character not defined above)

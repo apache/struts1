@@ -658,7 +658,7 @@ public ActionForward execute(ActionMapping mapping,
     <p>
     Struts has builtin support for internationalization (I18N).
     You can define one or more <code>&lt;message-resources&gt;</code> elements
-    for your webapp; sub-applications can define their own resource bundles.
+    for your webapp; modules can define their own resource bundles.
     Different bundles can be used simultaneously in your application, the
     'key' attribute is used to specify the desired bundle.
     </p>
@@ -1117,7 +1117,7 @@ http://www.mycompany.com/myapplication/logon.do
           Back in Struts 1.0, a few "boot-strap" options were placed in the web.xml file,
           and the bulk of the configuration was done in a single struts-config.xml file.
           Obviously, this wasn't ideal for a team environment, since multiple users had
-          to share the same configuration file.  Sub-applications to the rescue!
+          to share the same configuration file.  Modules to the rescue!
         </p>
         <p>
           With the advent of modules, a given module has it's
@@ -1132,12 +1132,12 @@ http://www.mycompany.com/myapplication/logon.do
           In struts 1.0, you listed your configuration file as an initialization parameter
           to the action servlet in web.xml.  This is still done in 1.1, but it's augmented
           a little.  In order to tell the Struts machinery about your different
-          sub-applications, you specify multiple config initialization parameters, with a
+          modules, you specify multiple config initialization parameters, with a
           slight twist.  You'll still use "config" to tell the action servlet about your
-          "default" sub-application, however, for each additional sub-application, you will
+          "default" module, however, for each additional module, you will
           list an initialization parameter named "config/module", where module is the name
-          of your sub-application (this gets used when determining which URIs fall under a
-          given sub-application, so choose something meaningful!).  For example:
+          of your module (this gets used when determining which URIs fall under a
+          given module, so choose something meaningful!).  For example:
         </p>
         <pre>
             ...
@@ -1168,7 +1168,7 @@ http://www.mycompany.com/myapplication/logon.do
           Fronting your pages with actions is <i>essential</i> when using modules,
           since doing so is the only way you involve the controller in the request -- and
           you want to!  The controller puts the application configuration in the request,
-          which makes available all of your sub-application-specific configuration data (including
+          which makes available all of your module-specific configuration data (including
           which plug-ins you are using, message resources, datasources, etc).
         </p>
         <p>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.7 2002/10/10 16:32:27 cedric Exp $
- * $Revision: 1.7 $
- * $Date: 2002/10/10 16:32:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.8 2002/10/18 15:27:42 jholmes Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/10/18 15:27:42 $
  *
  * ====================================================================
  *
@@ -114,13 +114,13 @@ public class TilesRequestProcessor extends RequestProcessor
      */
   protected void initDefinitionsMapping() throws ServletException
     {
-      // Retrieve and set factory for this subapps
+      // Retrieve and set factory for this modules
     definitionsFactory = DefinitionsUtil.getDefinitionsFactory(getServletContext());
     if( definitionsFactory == null )
       {  // problem !
         if(log.isErrorEnabled())
           {
-            log.error( "Definition Factory not found for subapp '"
+            log.error( "Definition Factory not found for module '"
                 + appConfig.getPrefix() + "'. "
                 + "Have you declared the appropriate plugin in struts-config.xml ?" );
           }

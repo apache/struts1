@@ -617,7 +617,7 @@
           (<a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=10191">#10191</a>)
       </li>
       <li>Validator does not work with Struts application modules other than
-          the default module (or sub-app).
+          the default module.
           (<a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=10348">#10348</a>)
       </li>
       <li>Validator does not successfully validate empty date fields.
