@@ -4,7 +4,7 @@
 <%@ taglib uri="/WEB-INF/struts-html-el.tld" prefix="html-el" %>
 <%@ taglib uri="/WEB-INF/struts-logic-el.tld" prefix="logic-el" %>
 <%@ taglib uri="/WEB-INF/c.tld" prefix="c" %>
-<html-el:html>
+<html-el:html locale="${!empty pageScope}" xhtml="${!empty pageScope}">
 <head>
 <title>Test html-el:link Tag</title>
 <%
