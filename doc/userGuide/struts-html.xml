@@ -2239,12 +2239,13 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-              <p>Set to <code>true</code> in order to render an
-              <code>xml:lang</code> attribute on the generated
-              <code>html</code> element.  This also causes all other
-              html tags to render as xhtml.
+              <p>Set to <code>true</code> in order to render 
+              <code>xml:lang</code> and <code>xmlns</code> attributes 
+              on the generated <code>html</code> element.  This also 
+              causes all other html tags to render as xhtml.
               </p>
             </info>
+            <since>Struts 1.1</since>
           </attribute>
 
         </tag>
