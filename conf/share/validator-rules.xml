@@ -600,7 +600,7 @@
 
       </validator>
 
-<!-- range is deprecated use rangeInt instead -->
+<!-- range is deprecated use intRange instead -->
       <validator name="range"
             classname="org.apache.struts.validator.FieldChecks"
                method="validateIntRange"
@@ -614,7 +614,7 @@
 
          <javascript><![CDATA[
             function validateRange(form) {
-                return validIntRange(form);
+                return validateIntRange(form);
             }]]>
          </javascript>
 
