@@ -185,15 +185,21 @@
         <include name="**/*.js"/>
       </fileset>
     </copy>
-	
-	<!-- Compile Tiles contrib -->
+    <!-- Copy the legacy documentation -->
+    <copy      todir="${build.home}/documentation">
+      <fileset   dir="legacy">
+        <include name="**/*.*"/>
+      </fileset>
+    </copy>
+    
+    <!-- Compile Tiles contrib -->
     <ant  antFile="build.xml"  dir="contrib/tiles"  target="compile.for.struts">
       <property name="struts.libs"      value="../../${struts.libs}"/>
       <property name="build.home"       value="../../${build.home}/tiles"/>
       <property name="dist.home"        value="../../${dist.home}"/>
       <property name="app.name"         value="tiles"/>
       <property name="project.name"     value="Tiles"/>
-    </ant>	
+    </ant>  
 
 </target>
 
@@ -240,8 +246,8 @@
 -->
 <target name="dist" depends="dist.generic"
         description="Create distribution output of web applications">
-		
-	<!-- Compile Tiles dist -->
+        
+    <!-- Compile Tiles dist -->
     <ant  antFile="build.xml"  dir="contrib/tiles"  target="dist.for.struts">
       <property name="struts.libs"      value="../../${struts.libs}"/>
       <property name="build.home"       value="../../${build.home}/tiles"/>
