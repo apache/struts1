@@ -18,7 +18,7 @@
           <li>
           <code>INSTALL.txt</code> - Brief installation instructions. For more detail, see the
           <code>Struts User Guide</code>, either through the Struts Documentation application or online at
-          <a href="http://jakarta.apache.org/struts/">http://jakarta.apache.org/struts/</a>.</li>
+          <a href="http://struts.apache.org/">http://struts.apache.org/</a>.</li>
           <li>
           <code>LICENSE.txt</code> - The Apache Software Foundation license that defines the terms under which you can use Struts (and other software licensed by Apache).</li>
           <li>
@@ -115,10 +115,10 @@
         <p>
         <strong>New Configuration DTD</strong> - The
         <code>
-          <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">struts-config_1_2.dtd</a>
+          <a href="http://struts.apache.org/dtds/struts-config_1_2.dtd">struts-config_1_2.dtd</a>
         </code> is preferred to the deprecated Struts Configuration 1.1 DTD. The new DTD adds two new elements &lt;display-name&gt; and &lt;description&gt; to the struts-config element. These elements are for use by struts config file tools and document generation. In the Struts 1.2.x series, existing Struts configuration files can be loaded using either DTD version.</p>
         <p>
-        <strong>New Committers</strong> - We are pleased to welcome Steve Raeburn, Don Brown, and Joe Germuska to the team of Struts Committers.</p>
+        <strong>New Committers</strong> - We are pleased to welcome Steve Raeburn, Don Brown, Joe Germuska and Niall Pemberton to the team of Struts Committers.</p>
         <p>
         <strong>Struts-Chain</strong> - Still experimental, this new "contrib" package utilizes the new Chain of Responsibilty package in the Jakarta Sandbox to create a new breed of RequestProcessor. Look for this to become the default implementation in a future release.</p>
         <p>
