@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.15 2003/07/02 03:32:34 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/07/02 03:32:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.16 2003/07/25 23:51:31 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/07/25 23:51:31 $
  *
  * ====================================================================
  *
@@ -82,25 +82,44 @@ import org.apache.struts.util.MessageResources;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.15 $ $Date: 2003/07/02 03:32:34 $
+ * @version $Revision: 1.16 $ $Date: 2003/07/25 23:51:31 $
  * @since Struts 1.1
  */
 public class Resources  {
 
+    /**
+     * Resources key the <code>ServletContext</code> is stored under.
+     */
+    private static String SERVLET_CONTEXT_PARAM = "javax.servlet.ServletContext";
+
    /**
     * Resources key the <code>ServletContext</code> is stored under.
+    * @deprecated This will be removed after Struts 1.2
     */
-   public static String SERVLET_CONTEXT_KEY = "javax.servlet.ServletContext";
+   public static String SERVLET_CONTEXT_KEY = SERVLET_CONTEXT_PARAM;
 
    /**
     * Resources key the <code>HttpServletRequest</code> is stored under.
     */
-   public static String HTTP_SERVLET_REQUEST_KEY = "javax.servlet.http.HttpServletRequest";
+    private static String HTTP_SERVLET_REQUEST_PARAM =
+        "javax.servlet.http.HttpServletRequest";
+
+   /**
+    * Resources key the <code>HttpServletRequest</code> is stored under.
+    * @deprecated This will be removed after Struts 1.2
+    */
+    public static String HTTP_SERVLET_REQUEST_KEY = HTTP_SERVLET_REQUEST_PARAM;
+
+    /**
+     * Resources key the <code>ActionErrors</code> is stored under.
+     */
+    private static String ACTION_ERRORS_PARAM = "org.apache.struts.action.ActionErrors";
 
    /**
     * Resources key the <code>ActionErrors</code> is stored under.
+    * @deprecated This will be removed after Struts 1.2
     */
-   public static String ACTION_ERRORS_KEY = "org.apache.struts.action.ActionErrors";
+   public static String ACTION_ERRORS_KEY = ACTION_ERRORS_PARAM;
 
   /**
    * Retrieve <code>ValidatorResources</code> for the current module.
@@ -271,10 +290,10 @@ public class Resources  {
     
         validator.setPage(page);
     
-        validator.addResource(SERVLET_CONTEXT_KEY, application);
-        validator.addResource(HTTP_SERVLET_REQUEST_KEY, request);
+        validator.addResource(SERVLET_CONTEXT_PARAM, application);
+        validator.addResource(HTTP_SERVLET_REQUEST_PARAM, request);
         validator.addResource(Validator.LOCALE_KEY, locale);
-        validator.addResource(ACTION_ERRORS_KEY, errors);
+        validator.addResource(ACTION_ERRORS_PARAM, errors);
         validator.addResource(Validator.BEAN_KEY, bean);
     
         return validator;
