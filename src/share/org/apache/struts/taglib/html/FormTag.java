@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.53 2003/07/26 18:51:36 dgraham Exp $
- * $Revision: 1.53 $
- * $Date: 2003/07/26 18:51:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.54 2003/07/31 00:25:39 dgraham Exp $
+ * $Revision: 1.54 $
+ * $Date: 2003/07/31 00:25:39 $
  *
  * ====================================================================
  *
@@ -80,7 +80,6 @@ import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * Custom tag that represents an input form, associated with a bean whose
@@ -90,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  * @author Martin Cooper
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.53 $ $Date: 2003/07/26 18:51:36 $
+ * @version $Revision: 1.54 $ $Date: 2003/07/31 00:25:39 $
  */
 public class FormTag extends TagSupport {
 
@@ -520,7 +519,7 @@ public class FormTag extends TagSupport {
 
         results.append(this.renderToken());
 
-        ResponseUtils.write(pageContext, results.toString());
+        TagUtils.getInstance().write(pageContext, results.toString());
 
         // Store this tag itself as a page attribute
         pageContext.setAttribute(Constants.FORM_KEY, this, PageContext.REQUEST_SCOPE);

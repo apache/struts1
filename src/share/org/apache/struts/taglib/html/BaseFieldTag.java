@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.19 2003/07/26 17:22:27 rleland Exp $
- * $Revision: 1.19 $
- * $Date: 2003/07/26 17:22:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.20 2003/07/31 00:25:39 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/07/31 00:25:39 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,15 +62,15 @@
 package org.apache.struts.taglib.html;
 
 import javax.servlet.jsp.JspException;
-import org.apache.struts.util.RequestUtils;
-import org.apache.struts.util.ResponseUtils;
+
 import org.apache.struts.taglib.TagUtils;
+import org.apache.struts.util.ResponseUtils;
 
 /**
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2003/07/26 17:22:27 $
+ * @version $Revision: 1.20 $ $Date: 2003/07/31 00:25:39 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -136,7 +136,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
      */
     public int doStartTag() throws JspException {
         
-        ResponseUtils.write(this.pageContext, this.renderInputElement());
+        TagUtils.getInstance().write(this.pageContext, this.renderInputElement());
 
         return (EVAL_BODY_TAG);
 

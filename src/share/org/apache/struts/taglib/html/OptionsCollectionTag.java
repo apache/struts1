@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsCollectionTag.java,v 1.11 2003/07/27 07:13:04 rleland Exp $
- * $Revision: 1.11 $
- * $Date: 2003/07/27 07:13:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsCollectionTag.java,v 1.12 2003/07/31 00:25:39 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/07/31 00:25:39 $
  * 
  * ====================================================================
  *
@@ -90,10 +90,9 @@ import org.apache.struts.taglib.TagUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Martin Cooper
- * @version $Revision: 1.11 $ $Date: 2003/07/27 07:13:04 $
+ * @version $Revision: 1.12 $ $Date: 2003/07/31 00:25:39 $
  * @since Struts 1.1
  */
-
 public class OptionsCollectionTag extends TagSupport {
 
     // ----------------------------------------------------- Instance Variables
@@ -292,8 +291,7 @@ public class OptionsCollectionTag extends TagSupport {
             addOption(sb, stringLabel, stringValue, selectTag.isMatched(stringValue));
         }
 
-        // Render this element to our writer
-        ResponseUtils.write(pageContext, sb.toString());
+        TagUtils.getInstance().write(pageContext, sb.toString());
 
         return SKIP_BODY;
     }

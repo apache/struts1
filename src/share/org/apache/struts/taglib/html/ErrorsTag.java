@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.26 2003/07/27 07:13:04 rleland Exp $
- * $Revision: 1.26 $
- * $Date: 2003/07/27 07:13:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.27 2003/07/31 00:25:39 dgraham Exp $
+ * $Revision: 1.27 $
+ * $Date: 2003/07/31 00:25:39 $
  *
  * ====================================================================
  *
@@ -72,7 +72,6 @@ import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * Custom tag that renders error messages if an appropriate request attribute
@@ -95,7 +94,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.26 $ $Date: 2003/07/27 07:13:04 $
+ * @version $Revision: 1.27 $ $Date: 2003/07/31 00:25:39 $
  */
 public class ErrorsTag extends TagSupport {
 
@@ -267,7 +266,7 @@ public class ErrorsTag extends TagSupport {
             results.append(message);
         }
 
-        ResponseUtils.write(pageContext, results.toString());
+        TagUtils.getInstance().write(pageContext, results.toString());
 
         return (EVAL_BODY_INCLUDE);
 

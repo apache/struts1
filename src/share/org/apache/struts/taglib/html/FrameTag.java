@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FrameTag.java,v 1.8 2002/11/16 06:05:21 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2002/11/16 06:05:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FrameTag.java,v 1.9 2003/07/31 00:25:39 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/07/31 00:25:39 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,13 +59,11 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
 
-
 import javax.servlet.jsp.JspException;
-import org.apache.struts.util.ResponseUtils;
 
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Generate an HTML <code>&lt;frame&gt;</code> tag with similar capabilities
@@ -86,10 +84,9 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Joe Germuska
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/11/16 06:05:21 $
+ * @version $Revision: 1.9 $ $Date: 2003/07/31 00:25:39 $
  * @since Struts 1.1
  */
-
 public class FrameTag extends LinkTag {
 
 
@@ -244,10 +241,9 @@ public class FrameTag extends LinkTag {
         }
         results.append(prepareStyles());
         results.append(getElementClose());
-        ResponseUtils.write(pageContext,results.toString());
+        TagUtils.getInstance().write(pageContext,results.toString());
 
-    // Skip the body of this tag
-    return (SKIP_BODY);
+        return (SKIP_BODY);
 
     }
 

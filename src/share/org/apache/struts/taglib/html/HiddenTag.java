@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HiddenTag.java,v 1.5 2003/07/26 17:22:27 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2003/07/26 17:22:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HiddenTag.java,v 1.6 2003/07/31 00:25:39 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/07/31 00:25:39 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,23 +59,19 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
 
-
 import javax.servlet.jsp.JspException;
-import org.apache.struts.util.RequestUtils;
-import org.apache.struts.util.ResponseUtils;
-import org.apache.struts.taglib.TagUtils;
 
+import org.apache.struts.taglib.TagUtils;
+import org.apache.struts.util.ResponseUtils;
 
 /**
  * Custom tag for input fields of type "hidden".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2003/07/26 17:22:27 $
+ * @version $Revision: 1.6 $ $Date: 2003/07/31 00:25:39 $
  */
-
 public class HiddenTag extends BaseFieldTag {
 
 
@@ -144,8 +140,7 @@ public class HiddenTag extends BaseFieldTag {
             }
         }
 
-        // Render the result to the output writer
-        ResponseUtils.write(pageContext, results);
+        TagUtils.getInstance().write(pageContext, results);
         return (EVAL_BODY_TAG);
 
     }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.15 2003/07/27 06:54:28 rleland Exp $
- * $Revision: 1.15 $
- * $Date: 2003/07/27 06:54:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.16 2003/07/31 00:25:39 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/07/31 00:25:39 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * Custom tag that retrieves an internationalized messages string (with
@@ -78,7 +77,7 @@ import org.apache.struts.util.ResponseUtils;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2003/07/27 06:54:28 $
+ * @version $Revision: 1.16 $ $Date: 2003/07/31 00:25:39 $
  */
 public class MessageTag extends TagSupport {
 
@@ -282,10 +281,8 @@ public class MessageTag extends TagSupport {
             throw e;
         }
 
-        // Print the retrieved message to our output writer
-        ResponseUtils.write(pageContext, message);
+        TagUtils.getInstance().write(pageContext, message);
 
-        // Continue processing this page
         return (SKIP_BODY);
 
     }

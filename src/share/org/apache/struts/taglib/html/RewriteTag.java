@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.13 2003/07/27 07:13:04 rleland Exp $
- * $Revision: 1.13 $
- * $Date: 2003/07/27 07:13:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.14 2003/07/31 00:25:39 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/07/31 00:25:39 $
  *
  * ====================================================================
  *
@@ -63,16 +63,16 @@ package org.apache.struts.taglib.html;
 
 import java.net.MalformedURLException;
 import java.util.Map;
-import javax.servlet.jsp.JspException;
-import org.apache.struts.util.ResponseUtils;
-import org.apache.struts.taglib.TagUtils;
 
+import javax.servlet.jsp.JspException;
+
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Generate a URL-encoded URI as a string.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2003/07/27 07:13:04 $
+ * @version $Revision: 1.14 $ $Date: 2003/07/31 00:25:39 $
  */
 public class RewriteTag extends LinkTag {
 
@@ -114,7 +114,7 @@ public class RewriteTag extends LinkTag {
                 (messages.getMessage("rewrite.url", e.toString()));
         }
 
-        ResponseUtils.write(pageContext, url);
+        TagUtils.getInstance().write(pageContext, url);
 
         return (SKIP_BODY);
 

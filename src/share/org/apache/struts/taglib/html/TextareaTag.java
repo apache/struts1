@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.14 2003/05/18 18:57:13 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2003/05/18 18:57:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.15 2003/07/31 00:25:39 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/07/31 00:25:39 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@ package org.apache.struts.taglib.html;
 
 import javax.servlet.jsp.JspException;
 
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.ResponseUtils;
 
 /**
@@ -70,7 +71,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.14 $ $Date: 2003/05/18 18:57:13 $
+ * @version $Revision: 1.15 $ $Date: 2003/07/31 00:25:39 $
  */
 public class TextareaTag extends BaseInputTag {
 
@@ -103,7 +104,7 @@ public class TextareaTag extends BaseInputTag {
      */
     public int doStartTag() throws JspException {
         
-        ResponseUtils.write(pageContext, this.renderTextareaElement());
+        TagUtils.getInstance().write(pageContext, this.renderTextareaElement());
 
         return (EVAL_BODY_TAG);
     }
