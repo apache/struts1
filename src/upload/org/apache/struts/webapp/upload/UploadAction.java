@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.2 2001/04/11 22:56:23 mschachter Exp $
- * $Revision: 1.2 $
- * $Date: 2001/04/11 22:56:23 $
+ * $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.3 2001/04/14 12:54:09 rleland Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/04/14 12:54:09 $
  *
  * ====================================================================
  *
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -87,7 +87,7 @@ import org.apache.struts.action.ForwardingActionForward;
  * page to display them
  *
  * @author Mike Schachter
- * @version $Revision: 1.2 $ $Date: 2001/04/11 22:56:23 $
+ * @version $Revision: 1.3 $ $Date: 2001/04/14 12:54:09 $
  */
 
 
@@ -113,7 +113,7 @@ public class UploadAction extends Action {
 
                         //retrieve the content type
                         String contentType = file.getContentType();
-                        
+
                         boolean writeFile = theForm.getWriteFile();
 
                         //retrieve the file size
@@ -141,7 +141,7 @@ public class UploadAction extends Action {
                                             " and has not been written to stream." +
                                             " File Size: " + file.getFileSize() + " bytes. This is a" +
                                             " limitation of this particular web application, hard-coded" +
-                                            " in org.apache.struts.upload.UploadAction");
+                                            " in org.apache.struts.webapp.upload.UploadAction");
                                     }
                                 }
                                 else {
