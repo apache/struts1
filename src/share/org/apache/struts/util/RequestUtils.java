@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.2 2001/01/07 22:39:08 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/07 22:39:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.3 2001/01/08 00:17:43 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/01/08 00:17:43 $
  *
  * ====================================================================
  *
@@ -66,7 +66,10 @@ package org.apache.struts.util;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.PageContext;
@@ -83,7 +86,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/01/07 22:39:08 $
+ * @version $Revision: 1.3 $ $Date: 2001/01/08 00:17:43 $
  */
 
 public class RequestUtils {
@@ -201,8 +204,8 @@ public class RequestUtils {
         throws ServletException {
 
         // Build a list of relevant request parameters from this request
-        Hashtable properties = new Hashtable();
-        //Enumeration of parameter names
+        HashMap properties = new HashMap();
+        // Iterator of parameter names
         Enumeration names = null;
         //Hashtable for multipart values
         Hashtable multipartElements = null;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/TestBean.java,v 1.2 2000/09/07 01:38:37 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/09/07 01:38:37 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/TestBean.java,v 1.3 2001/01/08 00:17:43 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/01/08 00:17:43 $
  *
  * ====================================================================
  *
@@ -63,14 +63,19 @@
 package org.apache.struts.test;
 
 
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
+
+
 /**
  * General purpose test bean for Struts custom tag tests.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/09/07 01:38:37 $
+ * @version $Revision: 1.3 $ $Date: 2001/01/08 00:17:43 $
  */
 
-public class TestBean {
+public class TestBean extends ActionForm {
 
 
     // ------------------------------------------------------------- Properties
@@ -228,6 +233,21 @@ public class TestBean {
 
     public void setStringProperty(String stringProperty) {
         this.stringProperty = stringProperty;
+    }
+
+
+    // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Reset the properties that will be received as input.
+     */
+    public void reset(ActionMapping mapping, HttpServletRequest request) {
+
+        booleanProperty = false;
+        if (nested != null)
+            nested.reset(mapping, request);
+
     }
 
 

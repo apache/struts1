@@ -19,6 +19,11 @@
 <li><a href="bean-write.jsp">&lt;struts-bean:write&gt;</a></li>
 </ul>
 
+<h3>HTML Tags</h3>
+<ul>
+<li><a href="html-setters.jsp">Property Setters</a></li>
+</ul>
+
 <h3>LOGIC Tags</h3>
 <ul>
 <li><a href="logic-compare.jsp">Comparison Tags</a></li>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
+
+<struts-config>
+
+  <form-beans>
+    <form-bean name="setnew"
+               type="org.apache.struts.test.TestBean"/>
+  </form-beans>
+
+  <global-forwards>
+    <forward   name="index"                path="/index.jsp"/>
+    <forward   name="html-setters"         path="/html-setters.jsp"/>
+  </global-forwards>
+
+  <action-mappings>
+    <action    path="/html-setters"
+               type="org.apache.struts.test.HtmlSettersAction"
+               name="setnew"
+              scope="session"
+           validate="false"/>
+  </action-mappings>
+
+</struts-config>
