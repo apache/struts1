@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.5 2000/10/30 06:02:09 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/10/30 06:02:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.6 2000/12/28 02:09:08 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/12/28 02:09:08 $
  *
  * ====================================================================
  *
@@ -65,7 +65,7 @@ package org.apache.struts.taglib.bean;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Vector;
+import java.util.ArrayList;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
@@ -82,7 +82,7 @@ import org.apache.struts.util.PropertyUtils;
  * cookie received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/10/30 06:02:09 $
+ * @version $Revision: 1.6 $ $Date: 2000/12/28 02:09:08 $
  */
 
 public class CookieTag extends TagSupport {
@@ -153,7 +153,7 @@ public class CookieTag extends TagSupport {
     public int doStartTag() throws JspException {
 
         // Retrieve the required cookie value(s)
-        Vector values = new Vector();
+        ArrayList values = new ArrayList();
         Cookie cookies[] =
             ((HttpServletRequest) pageContext.getRequest()).getCookies();
         if (cookies == null)
@@ -161,7 +161,7 @@ public class CookieTag extends TagSupport {
 
         for (int i = 0; i < cookies.length; i++) {
             if (name.equals(cookies[i].getName()))
-                values.addElement(cookies[i]);
+                values.add(cookies[i]);
         }
         if (values.size() < 1) {
             JspException e = new JspException
@@ -173,7 +173,7 @@ public class CookieTag extends TagSupport {
 
         // Expose an appropriate variable containing these results
         if (multiple == null) {
-            Cookie cookie = (Cookie) values.elementAt(0);
+            Cookie cookie = (Cookie) values.get(0);
             pageContext.setAttribute(id, cookie);
         } else {
             cookies = new Cookie[values.size()];

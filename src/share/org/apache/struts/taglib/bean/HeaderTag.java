@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTag.java,v 1.4 2000/10/30 06:02:11 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/10/30 06:02:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTag.java,v 1.5 2000/12/28 02:09:09 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/12/28 02:09:09 $
  *
  * ====================================================================
  *
@@ -65,8 +65,8 @@ package org.apache.struts.taglib.bean;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.Vector;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
@@ -82,7 +82,7 @@ import org.apache.struts.util.PropertyUtils;
  * header received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/10/30 06:02:11 $
+ * @version $Revision: 1.5 $ $Date: 2000/12/28 02:09:09 $
  */
 
 public class HeaderTag extends TagSupport {
@@ -168,11 +168,11 @@ public class HeaderTag extends TagSupport {
 	}
 
 	// Deal with multiple header values
-	Vector values = new Vector();
+	ArrayList values = new ArrayList();
 	Enumeration items =
 	  ((HttpServletRequest) pageContext.getRequest()).getHeaders(name);
 	while (items.hasMoreElements())
-	    values.addElement(items.nextElement());
+	    values.add(items.nextElement());
 	String headers[] = new String[values.size()];
 	if (headers.length == 0) {
 	    JspException e = new JspException
