@@ -234,6 +234,86 @@
             <p>In addition to the two books mentioned above, I also write for a number of publications, including WIRED and the aforementioned Christian Science Monitor. You can get a look at my portfolio 
             <a href="http://www.blackbear.com/monitor.html">here</a>
             </p>
+            <h4 id="ekbush">Eddie Bush -- Committer</h4>
+
+            <p>
+              My first experiences with Java made me wince.  The language
+              was young-ish still and growing by leaps and bounds all the time.
+              To me, it seemed unintelligent to invest any significant
+              intellectual resources in learning it because I perceived it as
+              such a &quot;moving target&quot;.  Of course, that has changed.
+            </p>
+
+            <p>
+              I'd been looking for a way to really do heavy-duty processing of
+              web requests that was higher-level than CGI.  In particular, I
+              was on a quest to find somethiong that did not involve using
+              Microsoft &trade; technologies.  A friend of mine started
+              chatting up the idea of Java servlets and JSP pages.  I didn't
+              really like the idea of using Java because of my previously
+              formed opinion, but, having a great deal of respect for my
+              friend's opinion, I set out on an exursion to delve into the
+              world of Java-driven dynamic web page generation.
+            </p>
+
+            <p>
+              The language (and myself) had matured considerably by this time,
+              and I found my previous inhibitions were no longer well founded.
+              However, as much as I liked the technology, I was dissatisfied.
+              There just had to be a better way!  I loved the concept of
+              having a controller servlet, but, lacking experience in building
+              externally-configurable Java &quot;thingies&quot;, I was
+              hard-coding a lot, and, after a point, that started to really
+              rub me wrong.  At this point, I started buying books and really
+              &quot;studying&quot; the technology more seriously.
+            </p>
+
+            <p>
+              I honestly don't recall where I stumbled onto Struts, but I do
+              recall having toyed with a number of different frameworks - none
+              of which I really recall now.  I quickly fell in love with
+              Struts -- partially because it was an Apache project, and
+              partially because it was evident to me that the project had a
+              really great user-base.
+            </p>
+
+            <p>
+              As time rocked along, I found myself becoming more deeply
+              involved in the project.  I studied the source and learned a
+              great deal about architecting configurable Java
+              &quot;thingies&quot;, and learned a fantastic amount about
+              actually using the framework.
+            </p>
+
+            <p>
+              In time, I got comfortable enough with how Struts was structured
+              that I began submitting patches - mostly documentation, which
+              Ted Husted &quot;massaged&quot; and applied.  I enjoyed the
+              feeling of gratification I got from helping to make Struts
+              better, even if minorly.
+            </p>
+
+            <p>
+              My last patch submitted as a non-committer was for ActionServlet.
+              This was back when Struts 1.1 was working toward GA release.  It
+              was the first patch I hadn't had applied within a few days of
+              submission and I grew impatient.  Modules did not work properly
+              without it and they did with it!  &quot;How can they not apply
+              that patch when it's so critical to Struts?&quot; I thought to
+              myself.
+            </p>
+
+            <p>
+              Well, to keep this book from becoming a novel, I started a
+              campaign to have the patch applied which resulted in
+              my gaining committer status and applying the patch myself!
+              I should note that Steve Ditlinger and myself collaborated on the
+              patch.  I submitted a version, he made some suggestions and
+              submitted an altered patch, and then we, collectively, decided
+              to make a couple of other modifications, which I applied just
+              before committing the patch.
+            </p>
+
          </section>
 
          <section>
