@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.61 2003/06/28 06:16:34 dgraham Exp $
- * $Revision: 1.61 $
- * $Date: 2003/06/28 06:16:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.62 2003/07/01 01:24:10 dgraham Exp $
+ * $Revision: 1.62 $
+ * $Date: 2003/07/01 01:24:10 $
  *
  * ====================================================================
  *
@@ -110,206 +110,13 @@ import org.apache.struts.util.TokenProcessor;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.61 $ $Date: 2003/06/28 06:16:34 $
+ * @version $Revision: 1.62 $ $Date: 2003/07/01 01:24:10 $
  */
 public class Action {
 
-
-    // ----------------------------------------------------- Manifest Constants
-
-
-    // NOTE - The definitions of manifest constant values have moved from
-    // here to the org.apache.struts.Globals class, so that they can be
-    // referenced without having to maintain a reference to the Action class
-    // itself.  Any future new constant values should be defined there
-    // instead of here.
-
-
-    /**
-     * The context attributes key under which our <code>ActionServlet</code>
-     * instance will be stored.
-     * @deprecated Use Globals.ACTION_SERVLET_KEY instead.
-     * @since Struts 1.1
-     */
-    public static final String ACTION_SERVLET_KEY = Globals.ACTION_SERVLET_KEY;
-
-
-    /**
-     * <p>The base of the context attributes key under which our
-     * <code>ModuleConfig</code> data structure will be stored.  This
-     * will be suffixed with the actual module prefix (including the
-     * leading "/" character) to form the actual attributes key.</p>
-     *
-     * <p>For each request processed by the controller servlet, the
-     * <code>ModuleConfig</code> object for the module selected by
-     * the request URI currently being processed will also be exposed under
-     * this key as a request attribute.</p>
-     *
-     * @since Struts 1.1
-     * @deprecated  Replaced by {@link org.apache.struts.Globals#MODULE_KEY}
-     */
-    public static final String APPLICATION_KEY = Globals.MODULE_KEY;
-
-
-    /**
-     * The context attributes key under which our <strong>default</strong>
-     * configured data source (which must implement
-     * <code>javax.sql.DataSource</code>) is stored,
-     * if one is configured for this module.
-     * @deprecated  Replaced by {@link org.apache.struts.Globals#DATA_SOURCE_KEY}
-     */
-    public static final String DATA_SOURCE_KEY = Globals.DATA_SOURCE_KEY;
-
-
-    /**
-     * The request attributes key under which your action should store an
-     * <code>org.apache.struts.action.ActionErrors</code> object, if you
-     * are using the corresponding custom tag library elements.
-     * @deprecated  Replaced by {@link org.apache.struts.Globals#ERROR_KEY}
-     */
-    public static final String ERROR_KEY = Globals.ERROR_KEY;
-
-
-    /**
-     * The request attributes key under which Struts custom tags might store a
-     * <code>Throwable</code> that caused them to report a JspException at
-     * runtime.  This value can be used on an error page to provide more
-     * detailed information about what really went wrong.
-     * @deprecated  Replaced by {@link org.apache.struts.Globals#EXCEPTION_KEY}
-     */
-    public static final String EXCEPTION_KEY = Globals.EXCEPTION_KEY;
-
-
-    /**
-     * The context attributes key under which our
-     * <code>org.apache.struts.action.ActionFormBeans</code> collection
-     * is normally stored, unless overridden when initializing our
-     * ActionServlet.
-     *
-     * @deprecated Replaced by collection in ModuleConfig
-     */
-    public static final String FORM_BEANS_KEY = Globals.FORM_BEANS_KEY;
-
-
-    /**
-     * The context attributes key under which our
-     * <code>org.apache.struts.action.ActionForwards</code> collection
-     * is normally stored, unless overridden when initializing our
-     * ActionServlet.
-     *
-     * @deprecated Replaced by collection in ModuleConfig.
-     */
-    public static final String FORWARDS_KEY = Globals.FORWARDS_KEY;
-
-
-    /**
-     * The session attributes key under which the user's selected
-     * <code>java.util.Locale</code> is stored, if any.  If no such
-     * attribute is found, the system default locale
-     * will be used when retrieving internationalized messages.  If used, this
-     * attribute is typically set during user login processing.
-     * @deprecated  Replaced by {@link org.apache.struts.Globals#LOCALE_KEY}
-     */
-    public static final String LOCALE_KEY = Globals.LOCALE_KEY;
-
-
-    /**
-     * The request attributes key under which our
-     * <code>org.apache.struts.ActionMapping</code> instance
-     * is passed.
-     * @deprecated  Replaced by {@link org.apache.struts.Globals#MAPPING_KEY}
-     */
-    public static final String MAPPING_KEY = Globals.MAPPING_KEY;
-
-
-    /**
-     * The context attributes key under which our
-     * <code>org.apache.struts.action.ActionMappings</code> collection
-     * is normally stored, unless overridden when initializing our
-     * ActionServlet.
-     *
-     * @deprecated Replaced by collection in ModuleConfig
-     */
-    public static final String MAPPINGS_KEY = Globals.MAPPINGS_KEY;
-
-
-    /**
-     * The request attributes key under which your action should store an
-     * <code>org.apache.struts.action.ActionMessages</code> object, if you
-     * are using the corresponding custom tag library elements.
-     *
-     * @since Struts 1.1
-     * @deprecated  Replaced by {@link org.apache.struts.Globals#MESSAGE_KEY}
-     */
-    public static final String MESSAGE_KEY = Globals.MESSAGE_KEY;
-
-
-    /**
-     * <p>The base of the context attributes key under which our
-     * module <code>MessageResources</code> will be stored.  This
-     * will be suffixed with the actual module prefix (including the
-     * leading "/" character) to form the actual resources key.</p>
-     *
-     * <p>For each request processed by the controller servlet, the
-     * <code>MessageResources</code> object for the module selected by
-     * the request URI currently being processed will also be exposed under
-     * this key as a request attribute.</p>
-     * @deprecated Use Globals.MESSAGES_KEY instead.
-     */
-    public static final String MESSAGES_KEY = Globals.MESSAGES_KEY;
-
-
-    /**
-     * The request attributes key under which our multipart class is stored.
-     * @deprecated Use Globals.MULTIPART_KEY instead.
-     */
-    public static final String MULTIPART_KEY = Globals.MULTIPART_KEY;
-
-
-    /**
-     * <p>The base of the context attributes key under which an array of
-     * <code>PlugIn</code> instances will be stored.  This
-     * will be suffixed with the actual module prefix (including the
-     * leading "/" character) to form the actual attributes key.</p>
-     * @since Struts 1.1
-     * @deprecated  Replaced by {@link org.apache.struts.Globals#PLUG_INS_KEY}
-     */
-    public static final String PLUG_INS_KEY = Globals.PLUG_INS_KEY;
-
-
-    /**
-     * <p>The base of the context attributes key under which our
-     * <code>RequestProcessor</code> instance will be stored.  This
-     * will be suffixed with the actual module prefix (including the
-     * leading "/" character) to form the actual attributes key.</p>
-     * @since Struts 1.1
-     * @deprecated Use Globals.REQUEST_PROCESSOR_KEY instead.
-     */
-    public static final String REQUEST_PROCESSOR_KEY =
-        Globals.REQUEST_PROCESSOR_KEY;
-
-
-    /**
-     * The context attributes key under which we store the mapping defined
-     * for our controller serlet, which will be either a path-mapped pattern
-     * (<code>/action/*</code>) or an extension mapped pattern
-     * (<code>*.do</code>).
-     * @deprecated Use Globals.SERVLET_KEY instead.
-     */
-    public static final String SERVLET_KEY = Globals.SERVLET_KEY;
-
-
-    /**
-     * The session attributes key under which our transaction token is
-     * stored, if it is used.
-     * @deprecated Use Globals.TRANSACTION_TOKEN_KEY instead.
-     */
-    public static final String TRANSACTION_TOKEN_KEY =
-        Globals.TRANSACTION_TOKEN_KEY;
-
     /**
      * An instance of TokenProcessor to use for token functionality.
-     * @TODO We can make this variable protected and remove Action's token methods
+     * TODO We can make this variable protected and remove Action's token methods
      * or leave it private and allow the token methods to delegate their calls.
      */
     private static TokenProcessor token = TokenProcessor.getInstance();
@@ -760,17 +567,5 @@ public class Action {
         session.setAttribute(Globals.LOCALE_KEY, locale);
 
     }
-
-
-    /**
-     * Convert a byte array to a String of hexadecimal digits and return it.
-     *
-     * @param buffer The byte array to be converted
-     * @deprecated This method will be removed in a release after Struts 1.1.
-     */
-    protected String toHex(byte buffer[]) {
-        return token.toHex(buffer);
-    }
-
 
 }
