@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.21 2003/08/19 23:38:24 dgraham Exp $
- * $Revision: 1.21 $
- * $Date: 2003/08/19 23:38:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.22 2003/09/09 03:49:29 rleland Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/09/09 03:49:29 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * to the default <code>ErrorsTag</code>.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.21 $ $Date: 2003/08/19 23:38:24 $
+ * @version $Revision: 1.22 $ $Date: 2003/09/09 03:49:29 $
  * @since Struts 1.1
  */
 public class MessagesTag extends BodyTagSupport {
@@ -91,11 +91,6 @@ public class MessagesTag extends BodyTagSupport {
      */
     protected static MessageResources messageResources =
        MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
-
-    /**
-     * Commons Logging instance.
-     */
-    private static final Log log = LogFactory.getLog(MessagesTag.class);
 
     /**
      * Iterator of the elements of this error collection, while we are actually
@@ -263,14 +258,6 @@ public class MessagesTag extends BodyTagSupport {
             pageContext.setAttribute(id, msg);
         } else {
             pageContext.removeAttribute(id);
-
-            // log missing key to ease debugging
-            if (log.isDebugEnabled()) {
-                log.debug(
-                    messageResources.getMessage(
-                        "messageTag.resources",
-                        report.getKey()));
-            }
         }
 
         if (header != null && header.length() > 0) {
