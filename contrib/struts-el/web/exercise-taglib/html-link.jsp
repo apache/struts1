@@ -43,7 +43,22 @@ main menu.
     </td>
     <th align="right">intProperty</th>
     <td align="left">
-      <html-el:text property="intProperty" size="16"/>
+      <html-el:text property="intProperty" size="16" title="intProperty"
+                    accesskey="i" tabindex="27" styleId="abc"
+                    onblur="showevent(event)"
+                    onchange="showevent(event)"
+                    onclick="showevent(event)"
+                    ondblclick="showevent(event)"
+                    onfocus="showevent(event)"
+                    onkeydown="showevent(event)"
+                    onkeypress="showevent(event)"
+                    onkeyup="showevent(event)"
+                    onmousedown="showevent(event)"
+                    onmousemove="showevent(event)"
+                    onmouseout="showevent(event)"
+                    onmouseover="showevent(event)"
+                    onmouseup="showevent(event)"
+      />
     </td>
   </tr>
 
@@ -85,7 +100,8 @@ main menu.
 
   <tr>
     <td colspan="4" align="center">
-      <html-el:link page="/html-link.do">
+      <html-el:link page="/html-link.do" accesskey="1" tabindex="5"
+                    title="No modifications at all" styleId="def">
         No modifications at all
       </html-el:link>
     </td>
@@ -93,7 +109,9 @@ main menu.
 
   <tr>
     <td colspan="4" align="center">
-      <html-el:link page="/html-link.do?doubleProperty=321.321&amp;longProperty=321321">
+      <html-el:link page="/html-link.do?doubleProperty=321.321&amp;longProperty=321321"
+                    accesskey="2" tabindex="4"
+                    title="Double and long via hard coded changes">
         Double and long via hard coded changes
       </html-el:link>
     </td>
@@ -101,8 +119,9 @@ main menu.
 
   <tr>
     <td colspan="4" align="center">
-      <html-el:link page="/html-link.do"
-              paramId="stringProperty" paramName="newValue">
+      <html-el:link page="/html-link.do" accesskey="3" tabindex="3"
+                    paramId="stringProperty" paramName="newValue"
+                    title="String via paramId and paramName">
         String via paramId and paramName
       </html-el:link>
     </td>
@@ -110,9 +129,10 @@ main menu.
 
   <tr>
     <td colspan="4" align="center">
-      <html-el:link page="/html-link.do"
-              paramId="booleanProperty"
-            paramName="testbean" paramProperty="nested.booleanProperty">
+      <html-el:link page="/html-link.do" accesskey="4" tabindex="2"
+                    paramId="booleanProperty"
+                    paramName="testbean" paramProperty="nested.booleanProperty"
+                    title="Boolean via paramId, paramName, and paramValue">
         Boolean via paramId, paramName, and paramValue
       </html-el:link>
     </td>
@@ -120,8 +140,22 @@ main menu.
 
   <tr>
     <td colspan="4" align="center">
-      <html-el:link page="/html-link.do"
-                 name="newValues">
+      <html-el:link page="/html-link.do" accesskey="5" tabindex="1"
+                    name="newValues"
+                    title="Float, int, and stringArray via name (Map)"
+                    onblur="showevent(event)"
+                    onclick="showevent(event)"
+                    ondblclick="showevent(event)"
+                    onfocus="showevent(event)"
+                    onkeydown="showevent(event)"
+                    onkeypress="showevent(event)"
+                    onkeyup="showevent(event)"
+                    onmousedown="showevent(event)"
+                    onmousemove="showevent(event)"
+                    onmouseout="showevent(event)"
+                    onmouseover="showevent(event)"
+                    onmouseup="showevent(event)"
+      >
         Float, int, and stringArray via name (Map)
       </html-el:link>
     </td>
@@ -142,5 +176,11 @@ main menu.
 
 </html-el:form>
 
+  <script>
+   <!--
+    function showevent(evt) { window.status = evt.type; }
+    // -->
+  </script>
 
+</body>
 </html-el:html>
