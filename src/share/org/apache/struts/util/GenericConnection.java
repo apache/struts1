@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericConnection.java,v 1.1 2000/11/26 05:11:31 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/26 05:11:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericConnection.java,v 1.2 2000/11/29 23:17:29 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/11/29 23:17:29 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import javax.sql.DataSource;
  * JDBC driver.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/11/26 05:11:31 $
+ * @version $Revision: 1.2 $ $Date: 2000/11/29 23:17:29 $
  */
 
 public class GenericConnection implements Connection {
@@ -116,6 +116,8 @@ public class GenericConnection implements Connection {
             this.map = conn.getTypeMap();
         } catch (SQLException e) {
             ;   // PostgreSQL throws a "not yet implemented" exception
+        } catch (UnsupportedOperationException e) {
+            ;   // JDBC-ODBC bridge throws this
         }
         this.readOnly = readOnly;
 
