@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.14 2003/07/02 03:29:27 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2003/07/02 03:29:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.15 2003/07/02 03:32:34 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/07/02 03:32:34 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.14 $ $Date: 2003/07/02 03:29:27 $
+ * @version $Revision: 1.15 $ $Date: 2003/07/02 03:32:34 $
  * @since Struts 1.1
  */
 public class Resources  {
@@ -179,10 +179,10 @@ public class Resources  {
    public static String getMessage(MessageResources messages, Locale locale,
                                    ValidatorAction va, Field field) {
 
-      String arg[] = getArgs(va.getName(), messages, locale, field);
+      String args[] = getArgs(va.getName(), messages, locale, field);
       String msg = (field.getMsg(va.getName()) != null ? field.getMsg(va.getName()) : va.getMsg());
 
-      return messages.getMessage(locale, msg, arg[0], arg[1], arg[2], arg[3]);
+      return messages.getMessage(locale, msg, args);
    }
 
    /**
