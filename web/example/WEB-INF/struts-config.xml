@@ -55,6 +55,7 @@
 
   <!-- ========== Global Forward Definitions ============================== -->
   <global-forwards>
+    <forward   name="logoff"               path="/logoff.do"/>
     <forward   name="logon"                path="/logon.jsp"/>
     <forward   name="success"              path="/mainMenu.jsp"/>
   </global-forwards>
