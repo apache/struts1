@@ -243,7 +243,10 @@
     package (package <code>org.apache.struts.upload</code>):</p>
     <ul>
     <li>Correct MultiboxTagdoAfterBody() to return SKIP_BODY instead of SKIP_PAGE.</li>
-    <li>Improved error-handling on out of bounds conditions.</li>
+    <li>Fixed lost byte problem in BufferedMultipartInputStream</li>
+    <li>Fixed ArrayIndexOutOfBoundsException situations</li>
+    <li>Better reporting for premature closing of input streams while reading
+multipart requests.</li>
     <li>Additional fix for file corruption problem with uploads and new line characters.</li>
     </ul>
 
