@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.11 2003/04/15 00:18:45 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2003/04/15 00:18:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.12 2003/08/16 18:37:33 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/08/16 18:37:33 $
  *
  * ====================================================================
  *
@@ -83,9 +83,8 @@ import java.io.Serializable;
  *
  * @author David Geary
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2003/04/15 00:18:45 $
+ * @version $Revision: 1.12 $ $Date: 2003/08/16 18:37:33 $
  */
-
 public class ActionErrors extends ActionMessages implements Serializable {
 
     // ----------------------------------------------------- Manifest Constants
@@ -122,6 +121,8 @@ public class ActionErrors extends ActionMessages implements Serializable {
      *
      * @param property Property name (or ActionErrors.GLOBAL_ERROR)
      * @param error The error message to be added
+     * @deprecated Use add(String, ActionMessage) instead.  This will be
+     * removed after Struts 1.2.
      */
     public void add(String property, ActionError error) {
 
