@@ -441,11 +441,11 @@ public ActionForward execute(ActionMapping mapping,
       Your execute method should process the Exception and return an ActionForward
       object to tell Struts where to forward to next.  Then you configure your 
       handler in struts-config.xml like this:<br/>
-		<pre>
-		&lt;global-exceptions&gt;
-    		&lt;exception key="some.key" type="java.io.IOException" handler="com.yourcorp.ExceptionHandler"/&gt;
-    	&lt;/global-exceptions&gt;
-    	</pre>
+        <pre>
+        &lt;global-exceptions&gt;
+            &lt;exception key="some.key" type="java.io.IOException" handler="com.yourcorp.ExceptionHandler"/&gt;
+        &lt;/global-exceptions&gt;
+        </pre>
       <br/>
       That configuration says that com.yourcorp.ExceptionHandler.execute() will be called 
       when any IOException is thrown by an Action.  The key is a key from your message resources
@@ -710,14 +710,14 @@ public ActionForward execute(ActionMapping mapping,
         struts-config_1_1.dtd.
       </p>
       <p>
-      	This example uses the default values for several controller parameters.  If you only want default
-      	behavior you can omit the controller section altogether.<br/>
-      	<pre>
-      	&lt;controller 
-      		processorClass="org.apache.struts.action.RequestProcessor"
-      		debug="0"
-      		contentType="text/html"/&gt;
-      	</pre>
+        This example uses the default values for several controller parameters.  If you only want default
+        behavior you can omit the controller section altogether.<br/>
+        <pre>
+        &lt;controller 
+            processorClass="org.apache.struts.action.RequestProcessor"
+            debug="0"
+            contentType="text/html"/&gt;
+        </pre>
       </p>
       </section>
 
@@ -778,12 +778,12 @@ public ActionForward execute(ActionMapping mapping,
     <code>&lt;set-property&gt;</code> element is available.
         </p>
         <p>
-        	This is an example using the Tiles plugin:<br/>
-        	<pre>
-        	&lt;plug-in className="org.apache.struts.tiles.TilesPlugin" &gt;
-   				&lt;set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml"/&gt;
-			&lt;/plug-in&gt;
-			</pre>
+            This is an example using the Tiles plugin:<br/>
+            <pre>
+            &lt;plug-in className="org.apache.struts.tiles.TilesPlugin" &gt;
+                &lt;set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml"/&gt;
+            &lt;/plug-in&gt;
+            </pre>
         </p>
     </section>
 
@@ -851,10 +851,10 @@ public ActionForward execute(ActionMapping mapping,
         <i>Note: Since Struts is now using commons-dbcp for all it's
            data-source needs, the query you provide for the pingQuery
            attribute must return at least one row.</i><br/>
-	<br/>
+    <br/>
         <b>Example:</b> <code>SELECT COUNT(*) FROM VALIDTABLE</code><br/>
-	<br/>
-	Just be sure you to replace "VALIDTABLE" with the name of a valid table in your database.
+    <br/>
+    Just be sure you to replace "VALIDTABLE" with the name of a valid table in your database.
       </p>
 
 
@@ -1386,6 +1386,21 @@ http://www.mycompany.com/myapplication/logon.do
       </section>
 
       <section name="4.9 Commons Logging Interface" href="logging">
+      <p>
+        Struts doesn't configure logging itself -- it's all done by
+        commons-logging under the covers. The default algorithm is a search:
+      </p>
+      <ul>
+        <li>
+           If Log4J is there, use it.
+        </li>
+        <li>
+           If JDK 1.4 is there, use it.
+        </li>
+        <li>
+           Otherwise, use SimpleLog.
+        </li>
+      </ul>
       <p>
         The commons-logging interface is an <i>ultra-thin</i> bridge to
         many different logging implementations.  The intent is to remove
