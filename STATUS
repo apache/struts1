@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.37 2002/07/21 01:11:51 craigmcc Exp $
+$Id: STATUS,v 1.38 2002/07/21 20:07:31 husted Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -11,6 +11,7 @@ $Id: STATUS,v 1.37 2002/07/21 01:11:51 craigmcc Exp $
 
 Controller:
 ----------
+11021 ActionForward or <html:link> tag does not support absolute URIs
 
 
 Custom Tags:
