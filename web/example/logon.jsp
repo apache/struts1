@@ -35,7 +35,7 @@
 
   <tr>
     <td align="right">
-      <html:submit property="submit" value="Submit"/>
+      <html:submit value="Submit"/>
     </td>
     <td align="left">
       <html:reset/>

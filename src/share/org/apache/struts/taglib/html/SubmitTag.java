@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.8 2002/06/25 00:45:41 husted Exp $
- * $Revision: 1.8 $
- * $Date: 2002/06/25 00:45:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.9 2002/07/06 23:36:29 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/07/06 23:36:29 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  * Tag for input fields of type "submit".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/06/25 00:45:41 $
+ * @version $Revision: 1.9 $ $Date: 2002/07/06 23:36:29 $
  */
 
 public class SubmitTag extends BaseHandlerTag {
@@ -96,7 +96,7 @@ public class SubmitTag extends BaseHandlerTag {
     /**
      * The name of the generated input field.
      */
-    protected String property = "submit";
+    protected String property = null;
 
 
     /**
@@ -211,8 +211,12 @@ public class SubmitTag extends BaseHandlerTag {
 
         // Generate an HTML element
         StringBuffer results = new StringBuffer();
-        results.append("<input type=\"submit\" name=\"");
-        results.append(property);
+        results.append("<input type=\"submit\"");
+        if (property != null) {
+            results.append(" name=\"");
+            results.append(property);
+            results.append("\"");
+        }
         // * @since Struts 1.1
         if( indexed )
                 prepareIndex( results, null );
@@ -249,7 +253,7 @@ public class SubmitTag extends BaseHandlerTag {
     public void release() {
 
         super.release();
-        property = "submit";
+        property = null;
         text = null;
         value = null;
 

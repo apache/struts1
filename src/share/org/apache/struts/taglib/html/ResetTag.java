@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.5 2001/12/11 17:54:28 oalexeev Exp $
- * $Revision: 1.5 $
- * $Date: 2001/12/11 17:54:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.6 2002/07/06 23:36:29 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/07/06 23:36:29 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "reset".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/12/11 17:54:28 $
+ * @version $Revision: 1.6 $ $Date: 2002/07/06 23:36:29 $
  */
 
 public class ResetTag extends BaseHandlerTag {
@@ -95,7 +95,7 @@ public class ResetTag extends BaseHandlerTag {
     /**
      * The name of the generated input field.
      */
-    protected String name = "reset";
+    protected String property = null;
 
 
     /**
@@ -116,9 +116,9 @@ public class ResetTag extends BaseHandlerTag {
     /**
      * Return the field name.
      */
-    public String getName() {
+    public String getProperty() {
 
-	return (this.name);
+	return (this.property);
 
     }
 
@@ -126,11 +126,11 @@ public class ResetTag extends BaseHandlerTag {
     /**
      * Set the field name.
      *
-     * @param name The field name
+     * @param property The field name
      */
-    public void setName(String name) {
+    public void setProperty(String property) {
 
-	this.name = name;
+	this.property = property;
 
     }
 
@@ -208,9 +208,12 @@ public class ResetTag extends BaseHandlerTag {
 
 	// Generate an HTML element
 	StringBuffer results = new StringBuffer();
-	results.append("<input type=\"reset\" name=\"");
-	results.append(name);
-	results.append("\"");
+	results.append("<input type=\"reset\"");
+        if (property != null) {
+            results.append(" name=\"");
+            results.append(property);
+            results.append("\"");
+        }
 	if (accesskey != null) {
 	    results.append(" accesskey=\"");
 	    results.append(accesskey);
@@ -243,7 +246,7 @@ public class ResetTag extends BaseHandlerTag {
     public void release() {
 
 	super.release();
-	name = "reset";
+	property = null;
         text = null;
 	value = null;
 

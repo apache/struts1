@@ -4932,6 +4932,15 @@
         </attribute>
 
         <attribute>
+            <name>property</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Name of the input field that will be generated.
+            </info>
+        </attribute>
+
+        <attribute>
             <name>style</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
