@@ -98,6 +98,7 @@
       <pathelement location="${commons-pool.jar}"/>
       <pathelement location="${commons-resources.jar}"/>
       <pathelement location="${commons-validator.jar}"/>
+      <pathelement location="${httpunit.jar}"/>
       <pathelement location="${aspectjrt.jar}"/>
       <pathelement location="${cactus.jar}"/>
       <pathelement location="${junit.jar}"/>
@@ -135,6 +136,9 @@
         <!-- Create directory where servlet engines will run -->
         <mkdir dir="${out.test.dir}/servers"/>
 
+        <!-- Create directory where servlet engines will run -->
+        <mkdir dir="${out.test.dir}/WEB-INF"/>
+
         <!-- Create a lib directory where needed libs for the test war will
              be put -->
         <mkdir dir="${out.test.dir}/lib"/>
@@ -160,6 +164,12 @@
         <copy todir="${out.test.dir}/classes">
             <fileset dir="${conf.test.dir}" includes="**/*.properties"/>
         </copy>
+        <copy todir="${out.test.dir}/WEB-INF">
+            <fileset dir="${build.home}/library" includes="struts-*.tld"/>
+        </copy>
+        <copy todir="${out.test.dir}/WEB-INF">
+            <fileset dir="${conf.test.dir}" includes="struts-config.xml"/>
+        </copy>
 
     </target>
 
@@ -172,6 +182,7 @@
         <copy file="${build.home}/library/${app.name}.jar"
             todir="${out.test.dir}/lib"/>
         <copy file="${aspectjrt.jar}" todir="${out.test.dir}/lib"/>
+        <copy file="${httpunit.jar}"  todir="${out.test.dir}/lib"/>
         <copy file="${junit.jar}"     todir="${out.test.dir}/lib"/>
         <copy file="${log4j.jar}"     todir="${out.test.dir}/lib"/>
         <copy file="${cactus.jar}"    todir="${out.test.dir}/lib"/>
@@ -205,9 +216,7 @@
 
             <lib dir="${out.test.dir}/lib"/>
 
-            <webinf dir="${conf.test.dir}">
-                <include name="struts-config.xml"/>
-            </webinf>
+            <webinf dir="${out.test.dir}/WEB-INF" includes="**/*.*"/>
 
         </war>
 
@@ -242,6 +251,13 @@
             <batchtest fork="yes">
               <fileset dir="${out.test.dir}/classes">
                 <include name="org/apache/struts/taglib/logic/Test*.class" />
+              </fileset>
+            </batchtest>
+
+            <!-- Bean Taglib Tests -->
+            <batchtest fork="yes">
+              <fileset dir="${out.test.dir}/classes">
+                <include name="org/apache/struts/taglib/bean/Test*.class" />
               </fileset>
             </batchtest>
 
