@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.31 2003/07/02 02:30:28 dgraham Exp $
- * $Revision: 1.31 $
- * $Date: 2003/07/02 02:30:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.32 2003/07/02 04:06:53 dgraham Exp $
+ * $Revision: 1.32 $
+ * $Date: 2003/07/02 04:06:53 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.31 $ $Date: 2003/07/02 02:30:28 $
+ * @version $Revision: 1.32 $ $Date: 2003/07/02 04:06:53 $
  * @since Struts 1.1
  */
 public class RequestProcessor {
@@ -1094,11 +1094,11 @@ public class RequestProcessor {
      * web application.
      *
      * @param message The message to be logged
+     * @deprecated Use commons-logging instead.  This will be removed in a release
+     * after Struts 1.2.
      */
     protected void log(String message) {
-
         servlet.log(message);
-
     }
 
 
@@ -1108,11 +1108,11 @@ public class RequestProcessor {
      *
      * @param message The message to be logged
      * @param exception The exception to be logged
+     * @deprecated Use commons-logging instead.  This will be removed in a release
+     * after Struts 1.2.
      */
     protected void log(String message, Throwable exception) {
-
         servlet.log(message, exception);
-
     }
 
 
