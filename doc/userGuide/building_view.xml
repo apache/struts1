@@ -224,6 +224,7 @@
 &lt;title&gt;
   &lt;bean:message key="logon.title"/&gt;
 &lt;/title&gt;
+&lt;/head&gt;
 &lt;body bgcolor="white"&gt;
 &lt;html:errors/&gt;
 &lt;html:form action="/logon" focus="username"&gt;
