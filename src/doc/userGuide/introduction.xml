@@ -17,7 +17,7 @@
   			<p>
 	  			In the MVC design pattern, the application flow is controlled by a central <i>Controller</i>,
 	  			which utilizes an implementation of the Mediator design pattern to delegate requests to the
-	  			appropriate handler, which is tied with a <i>Model</i>. The Model is responsible for containg the
+	  			appropriate handler, which is tied with a <i>Model</i>. The Model is responsible for containing the
 	  			application logic.  The control is then forwarded to the appropriate <i>View</i> back through the 
 	  			Controller. The appropriate View which to forward the request to is acquired by resolving, 
 	  			from a configuration file or database, the logical name passed to the Controller.  This provides

@@ -153,8 +153,12 @@
     </copy>
 
     <!-- Create dynamically generated documentation -->
+    <!-- Create the taglib documentation -->
     <style   basedir="src/doc" destdir="${build.home}/documentation"
            extension=".html" style="stylesheets/struts.xsl" includes="*.xml"/>
+    <!-- Create the user guide -->
+    <style   basedir="src/doc/userGuide" destdir="${build.home}/documentation"
+           extension=".html" style="../stylesheets/userGuide.xsl" includes="*.xml"/>
     <copy      todir="${build.home}/documentation">
       <fileset   dir="src/doc">
         <include name="**/*.css"/>
