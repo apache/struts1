@@ -35,6 +35,7 @@ their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a
   </ul>
 </section>
 
+
 <section href="actionforms" name="Wither ActionForms?">
 <p>
 http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19281.html<br/>
@@ -42,6 +43,7 @@ http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html<br/>
 http://www.mail-archive.com/struts-user@jakarta.apache.org/msg20833.html<br/>
 </p>
 </section>
+
 
 <section href="checkbox" name="Why are my checkboxes not being set from ON to OFF?">
 <p>
@@ -69,6 +71,7 @@ when the ActionForm might kept in session scope.
 </p>
 </section>
 
+
 <section href="scriptlets" name="Can't I just create some of my JavaBeans in the JSP using a scriptlet?">
 <p>
 Struts is designed to encourage a 
@@ -92,6 +95,46 @@ scriplet-free applications and recommend the JSP tag approach to others.
 For help with Model 1 techniques and scriptlets, you might consider joining the 
 <a href="http://archives.java.sun.com/jsp-interest.html">Javasoft JSP-interest 
 mailing list</a>, where there are more people still using these approaches. 
+</p>
+</section>
+
+
+<section name="How do I access my database?">
+<p>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24621.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24709.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24626.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24331.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24102.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23501.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23455.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23375.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23321.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23098.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22713.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21974.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21026.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg18323.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14975.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14914.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14435.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01562.html
+</p>
+<p>
+Transformation/Data Transfer<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24480.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23623.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10195.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10205.html
+</p>
+</section>
+
+
+<section name="How can I authenticate my users?">
+<p>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24504.html<br/>
+http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22949.html
 </p>
 </section>
 
