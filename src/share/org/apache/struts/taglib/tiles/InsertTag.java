@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.19 2003/07/07 23:29:46 dgraham Exp $
- * $Revision: 1.19 $
- * $Date: 2003/07/07 23:29:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.20 2003/07/07 23:40:12 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/07/07 23:40:12 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.tiles.TilesUtil;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.19 $ $Date: 2003/07/07 23:29:46 $
+ * @version $Revision: 1.20 $ $Date: 2003/07/07 23:40:12 $
  */
 public class InsertTag
     extends DefinitionTagSupport
@@ -914,44 +914,40 @@ public class InsertTag
 
                 doInclude(page);
 
-            } catch (IOException ex) {
-                processException(
-                    ex,
-                    "Can't insert page '" + page + "' : " + ex.getMessage());
+            } catch (IOException e) {
+                String msg = "Can't insert page '" + page + "' : " + e.getMessage();
+                log.error(msg, e);
+                throw new JspException(msg);
 
-            } catch (IllegalArgumentException ex) { // Can't resolve page uri
-                // Do we ignore bad page uri errors ?
+            } catch (IllegalArgumentException e) {
+                // Can't resolve page uri, should we ignore it?
                 if (!(page == null && isErrorIgnored)) {
-                    // Don't ignore bad page uri errors
-                    processException(
-                        ex,
-                        "Tag 'insert' can't insert page '"
+                    String msg =
+                        "Can't insert page '"
                             + page
                             + "'. Check if it exists.\n"
-                            + ex.getMessage());
+                            + e.getMessage();
+
+                    log.error(msg, e);
+                    throw new JspException(msg);
                 }
 
-            } catch (ServletException ex) {
-                Throwable realEx = ex;
-                if (ex.getRootCause() != null) {
-                    realEx = ex.getRootCause();
+            } catch (ServletException e) {
+                Throwable cause = e;
+                if (e.getRootCause() != null) {
+                    cause = e.getRootCause();
                 }
-                processException(
-                    realEx,
-                    "[ServletException in:"
-                        + page
-                        + "] "
-                        + realEx.getMessage()
-                        + "'");
 
-            } catch (Exception ex) {
-                processException(
-                    ex,
-                    "[Exception in:" + page + "] " + ex.getMessage());
+                String msg =
+                    "ServletException in '" + page + "': " + cause.getMessage();
+
+                log.error(msg, e);
+                throw new JspException(msg);
+
 
             } finally {
-                // restore old context
-                // done only if currentContext not null (bug with Silverstream ?; related by Arvindra Sehmi 20010712)
+                // restore old context only if currentContext not null 
+                // (bug with Silverstream ?; related by Arvindra Sehmi 20010712)
                 if (currentContext != null) {
                     pageContext.setAttribute(
                         ComponentConstants.COMPONENT_CONTEXT,
@@ -959,6 +955,7 @@ public class InsertTag
                         PageContext.REQUEST_SCOPE);
                 }
             }
+            
             return EVAL_PAGE;
         }
 
@@ -968,6 +965,7 @@ public class InsertTag
          * its message in output page.
          * @param ex Exception
          * @param msg An additional message to show in console and to propagate if we can't output exception.
+         * @deprecated This method will be removed in a release after Struts 1.2.
          */
         protected void processException(Throwable ex, String msg)
             throws JspException {
