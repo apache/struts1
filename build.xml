@@ -832,31 +832,6 @@
 </target>
 
 
-
-
-
-
-<target name="checkSource"
-        description="Checks source code against coding guidelines"
-        depends="init">
-    <taskdef name="checkstyle"
-             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask"
-             classpath="${checkstyle.classpath}" />
-    <checkstyle properties="${shared.java.dir}/Config/checkstyle.properties"
-                headerFile="${shared.java.dir}/Config/checkstyle.header">
-        <formatter type="plain"/>
-        <fileset dir="${basedir}" includes="**/*.java"/>
-    </checkstyle>
-</target>
-
-
-
-
-
-
-
-
-
 <!--
         Run tests on all servers not commented out in the build.properties file.
 -->
