@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.30 2003/07/07 23:46:35 dgraham Exp $
- * $Revision: 1.30 $
- * $Date: 2003/07/07 23:46:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.31 2003/07/08 00:05:10 dgraham Exp $
+ * $Revision: 1.31 $
+ * $Date: 2003/07/08 00:05:10 $
  *
  * ====================================================================
  *
@@ -93,7 +93,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.30 $ $Date: 2003/07/07 23:46:35 $
+ * @version $Revision: 1.31 $ $Date: 2003/07/08 00:05:10 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -138,6 +138,13 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * the method name of the main JavaScript method that the form calls to perform validations.
      */
     protected String methodName = null;
+    
+    /**
+     * Include language attribute in the &lt;script&gt; element.  This property is 
+     * ignored in XHTML mode.
+     * @since Struts 1.2
+     */
+    protected boolean scriptLanguage = true;
 
     /**
      * The static JavaScript methods will only be printed if this is set to "true".
@@ -690,13 +697,13 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     }
 
     /**
-     * Constructs the beginning &lt;script&gt; element depending on xhtml status.
+     * Constructs the beginning &lt;script&gt; element depending on XHTML status.
      */
     private String getStartElement() {
         StringBuffer start = new StringBuffer("<script type=\"text/javascript\"");
 
-        // there is no language attribute in xhtml
-        if (!this.isXhtml()) {
+        // there is no language attribute in XHTML
+        if (!this.isXhtml() && this.scriptLanguage) {
             start.append(" language=\"Javascript1.1\"");
         }
 
@@ -729,6 +736,25 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      */
     public void setCdata(String cdata) {
         this.cdata = cdata;
+    }
+
+    /**
+     * Gets whether or not the &lt;script&gt; element will include the 
+     * language attribute.
+     * @return true if language attribute will be included.
+     * @since Struts 1.2
+     */
+    public boolean getScriptLanguage() {
+        return this.scriptLanguage;
+    }
+
+    /**
+     * Sets whether or not the &lt;script&gt; element will include the 
+     * language attribute.
+     * @since Struts 1.2
+     */
+    public void setScriptLanguage(boolean scriptLanguage) {
+        this.scriptLanguage = scriptLanguage;
     }
 
 }

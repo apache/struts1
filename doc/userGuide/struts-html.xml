@@ -1522,7 +1522,19 @@
                 <code>ActionMapping</code>.
             </deprecated>
         </attribute>
-
+        
+		<attribute>
+            <name>scriptLanguage</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The form's focus &lt;script&gt; element will not contain a language attribute
+                when this is set to false.  The default is true but this property is ignored
+                in XHMTL mode.
+            </info>
+            <since>Struts 1.2</since>
+        </attribute>
+        
         <attribute>
             <name>style</name>
             <required>false</required>
@@ -3316,6 +3328,19 @@
                </p>
             </info>
         </attribute>
+        
+        <attribute>
+            <name>scriptLanguage</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The &lt;script&gt; element will not contain a language attribute
+                when this is set to false.  The default is true but this property is ignored
+                in XHMTL mode.
+            </info>
+            <since>Struts 1.2</since>
+        </attribute>
+        
         <attribute>
             <name>src</name>
             <required>false</required>

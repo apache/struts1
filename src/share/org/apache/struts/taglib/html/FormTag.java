@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.49 2003/07/03 02:46:59 dgraham Exp $
- * $Revision: 1.49 $
- * $Date: 2003/07/03 02:46:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.50 2003/07/08 00:05:10 dgraham Exp $
+ * $Revision: 1.50 $
+ * $Date: 2003/07/08 00:05:10 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  * @author Martin Cooper
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.49 $ $Date: 2003/07/03 02:46:59 $
+ * @version $Revision: 1.50 $ $Date: 2003/07/08 00:05:10 $
  */
 public class FormTag extends TagSupport {
 
@@ -165,6 +165,13 @@ public class FormTag extends TagSupport {
      * is stored.
      */
     protected String scope = null;
+    
+    /**
+     * Include language attribute in the focus script's &lt;script&gt; element.  This
+     * property is ignored in XHTML mode.
+     * @since Struts 1.2
+     */
+    protected boolean scriptLanguage = true;
 
     /**
      * The ActionServlet instance we are associated with (so that we can
@@ -699,7 +706,7 @@ public class FormTag extends TagSupport {
 
         results.append(lineEnd);
         results.append("<script type=\"text/javascript\"");
-        if (!this.isXhtml()) {
+        if (!this.isXhtml() && this.scriptLanguage) {
             results.append(" language=\"JavaScript\"");
         }
         results.append(">");
@@ -861,6 +868,25 @@ public class FormTag extends TagSupport {
      */
     public void setFocusIndex(String focusIndex) {
         this.focusIndex = focusIndex;
+    }
+
+    /**
+     * Gets whether or not the focus script's &lt;script&gt; element will include the 
+     * language attribute.
+     * @return true if language attribute will be included.
+     * @since Struts 1.2
+     */
+    public boolean getScriptLanguage() {
+        return this.scriptLanguage;
+    }
+
+    /**
+     * Sets whether or not the focus script's &lt;script&gt; element will include the 
+     * language attribute.
+     * @since Struts 1.2
+     */
+    public void setScriptLanguage(boolean scriptLanguage) {
+        this.scriptLanguage = scriptLanguage;
     }
 
 }
