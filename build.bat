@@ -32,7 +32,7 @@ rem                         [../xml-xerces]  This is required only if you wish
 rem                         to deploy Struts directly to the Tomcat 4.0 build
 rem                         directory - otherwise it is optional
 rem
-rem $Id: build.bat,v 1.12 2001/02/19 02:09:04 craigmcc Exp $
+rem $Id: build.bat,v 1.13 2001/03/01 16:53:11 craigmcc Exp $
 rem ---------------------------------------------------------------------------
 
 
