@@ -28,7 +28,7 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Select the <code>Locale</code> to be used for this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2004/03/08 02:50:53 $
+ * @version $Rev$ $Date$
  */
 
 public abstract class AbstractSelectLocale implements Command {

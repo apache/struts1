@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/utils/TestFormBean.java,v 1.4 2004/06/24 01:02:01 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2004/06/24 01:02:01 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/wizard/http/Form.java,v 1.4 2004/03/14 07:15:07 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 07:15:07 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -36,7 +34,7 @@ import org.apache.struts.action.ActionMapping;
 
 
 /**
- * @version $Revision: 1.4 $ $dateString: 2001/10/25 $
+ * @version $Rev$ $Date$
  */
 public class Form extends ActionForm {
 // public final class Form extends ValidatorForm {

@@ -37,7 +37,7 @@ import org.apache.commons.logging.LogFactory;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2004/07/06 03:21:32 $
+ * @version $Rev$ $Date$
  */
 
 public class CreateAction implements Command {

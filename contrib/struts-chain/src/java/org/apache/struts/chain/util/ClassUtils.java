@@ -20,7 +20,7 @@ package org.apache.struts.chain.util;
  * <p>Utility methods to load application classes and create instances.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2004/03/08 02:50:54 $
+ * @version $Rev$ $Date$
  */
 
 public final class ClassUtils {

@@ -29,7 +29,7 @@ import org.apache.struts.config.ModuleConfig;
  * any validation errors, execute the child commands in our chain; otherwise,
  * proceed normally.</p>
  *
- * @version $Revision: 1.4 $ $Date: 2004/06/24 01:26:41 $
+ * @version $Rev$ $Date$
  */
 
 public class SelectInput extends AbstractSelectInput {

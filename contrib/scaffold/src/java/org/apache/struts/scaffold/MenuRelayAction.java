@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/MenuRelayAction.java,v 1.3 2004/03/14 07:15:03 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 07:15:03 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -38,7 +36,7 @@ import javax.servlet.http.HttpServletResponse;
  * given as a runtime parameter (?dispatch=),
  * after running any model classes.
  *
- * @version $Revision: 1.3 $ $Date: 2004/03/14 07:15:03 $
+ * @version $Rev$ $Date$
  */
 public final class MenuRelayAction extends BaseAction {
 

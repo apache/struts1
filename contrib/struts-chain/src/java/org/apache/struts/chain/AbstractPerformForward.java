@@ -27,7 +27,7 @@ import org.apache.struts.config.ForwardConfig;
  * <code>ForwardConfig</code> (if any).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2004/04/29 03:08:44 $
+ * @version $Rev$ $Date$
  */
 
 public abstract class AbstractPerformForward implements Command {

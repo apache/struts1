@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELIncludeTag.java,v 1.5 2004/03/14 07:15:04 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 07:15:04 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -33,7 +31,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * attribute values to be specified as expressions utilizing the JavaServer
  * Pages Standard Library expression language.
  *
- * @version $Revision: 1.5 $
+ * @version $Rev$
  */
 public class ELIncludeTag extends IncludeTag {
 

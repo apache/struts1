@@ -28,7 +28,7 @@ import org.apache.struts.chain.AbstractSetContentType;
  * response.</p>
  *
  * @author Don Brown
- * @version $Revision: 1.3 $ $Date: 2004/06/24 01:27:31 $
+ * @version $Rev$ $Date$
  */
 
 public class SetContentType extends AbstractSetContentType {

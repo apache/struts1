@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/keys/Access.java,v 1.3 2004/03/14 07:15:06 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 07:15:06 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -35,7 +33,7 @@ import org.apache.artimus.keys.sql.Commands;
 /**
  * Data access methods for Articles application.
  * <p>
- * @version $Revision: 1.3 $ $Date: 2004/03/14 07:15:06 $
+ * @version $Rev$ $Date$
  */
 public final class Access {
 
@@ -52,7 +50,7 @@ public final class Access {
      * keys for other tables (CollectionS and ARTICLE).
      * <p>
      * @exception SQL exception if SQL error occurs
-     * @version $Revision: 1.3 $ $Date: 2004/03/14 07:15:06 $
+     * @version $Rev$ $Date$
      **/
     public static final void createTable() throws ModelException {
 

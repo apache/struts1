@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tag-doc/src/java/org/apache/struts/taskdefs/TaglibDoc.java,v 1.5 2004/03/14 07:15:06 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 07:15:06 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -39,7 +37,13 @@ import org.apache.tools.ant.BuildException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-/** * Given a list of files compatible with the Tag-Library * Descriptor (TLD) format, generates a JavaDoc like * documentation for each Tag-Library. * * @version $Revision: 1.5 $ $Date: 2004/03/14 07:15:06 $ */
+/**
+ * Given a list of files compatible with the Tag-Library
+ * Descriptor (TLD) format, generates a JavaDoc like
+ * documentation for each Tag-Library.
+ *
+ * @version $Rev$ $Date$
+ */
 public class TaglibDoc extends EnhMatchingTask {
 	private File destdir;
 	/**

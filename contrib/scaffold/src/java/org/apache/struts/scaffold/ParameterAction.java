@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/ParameterAction.java,v 1.6 2004/03/14 07:15:03 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 07:15:03 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -39,7 +37,7 @@ import org.apache.struts.action.ActionMapping;
  * This class extends BaseAction to provide
  * cross-compatibility with Struts 1.1 and 1.0
  *
- * @version $Revision: 1.6 $ $Date: 2004/03/14 07:15:03 $
+ * @version $Rev$ $Date$
  */
 public class ParameterAction extends BaseAction {
 

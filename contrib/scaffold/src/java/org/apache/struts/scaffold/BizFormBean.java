@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/BizFormBean.java,v 1.3 2004/03/14 07:15:03 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 07:15:03 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -27,7 +25,7 @@ import org.apache.struts.action.ActionFormBean;
 /**
  * An <code>ActionFormBean</code> for specifying a <code>BizForm</code>.
  *
- * @version $Revision: 1.3 $ $Date: 2004/03/14 07:15:03 $
+ * @version $Rev$ $Date$
  */
 public class BizFormBean extends ActionFormBean {
 

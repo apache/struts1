@@ -31,7 +31,7 @@ import org.apache.struts.config.ModuleConfig;
  * action to be used for processing this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2004/03/08 02:50:53 $
+ * @version $Rev$ $Date$
  */
 
 public abstract class AbstractSelectAction implements Command {

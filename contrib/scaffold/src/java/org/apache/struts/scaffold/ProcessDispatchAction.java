@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/ProcessDispatchAction.java,v 1.12 2004/03/14 14:32:19 husted Exp $
- * $Revision: 1.12 $
- * $Date: 2004/03/14 14:32:19 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -50,7 +48,7 @@ import org.apache.commons.scaffold.util.ResultListBase;
  * with the signature "Object method(Object)" as the parameter.
  * [org.apache.cerebus.Account;store].
  *
- * @version $Revision: 1.12 $ $Date: 2004/03/14 14:32:19 $
+ * @version $Rev$ $Date$
  */
 public class ProcessDispatchAction extends ProcessFormAction {
 

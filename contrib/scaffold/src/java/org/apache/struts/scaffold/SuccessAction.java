@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/SuccessAction.java,v 1.4 2004/03/14 07:15:03 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 07:15:03 $
+ * $Id$ 
  *
  * Copyright 2004 The Apache Software Foundation.
  * 
@@ -42,7 +40,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * Useful for prototyping flow during development,
  * and for creating blank forms for new input.
  *
- * @version $Revision: 1.4 $ $Date: 2004/03/14 07:15:03 $
+ * @version $Rev$ $Date$
  */
 public final class SuccessAction extends Action {
 

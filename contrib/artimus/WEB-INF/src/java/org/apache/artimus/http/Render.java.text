@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/http/Render.java.text,v 1.2 2004/03/14 07:15:04 sraeburn Exp $
- * $Revision: 1.2 $
- * $Date: 2004/03/14 07:15:04 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -51,7 +49,7 @@ import org.apache.struts.action.ActionServlet;
  * Convert result bean to channel and render as response.
  * <p>
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2004/03/14 07:15:04 $
+ * @version $Rev$ $Date$
  */
 public final class Render extends Action {
 

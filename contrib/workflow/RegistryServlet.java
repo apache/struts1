@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/workflow/RegistryServlet.java,v 1.3 2004/03/14 07:15:07 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 07:15:07 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -73,7 +71,7 @@ import simple.workflow.base.BaseRegistry;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2004/03/14 07:15:07 $
+ * @version $Rev$ $Date$
  */
 
 

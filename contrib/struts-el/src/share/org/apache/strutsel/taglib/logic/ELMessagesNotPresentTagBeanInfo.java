@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELMessagesNotPresentTagBeanInfo.java,v 1.4 2004/06/24 01:13:41 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2004/06/24 01:13:41 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

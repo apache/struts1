@@ -29,7 +29,7 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Cache the <code>ActionConfig</code> instance for the
  * action to be used for processing this request.</p>
  *
- * @version $Revision: 1.5 $ $Date: 2004/06/24 01:26:41 $
+ * @version $Rev$ $Date$
  */
 
 public class SelectAction extends AbstractSelectAction {

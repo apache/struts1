@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/ExistsAttributeAction.java,v 1.5 2004/03/14 07:15:03 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 07:15:03 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -37,7 +35,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * Remove an object from the user's session.
  * The name of the attribute is passed via the parameter property.
  *
- * @version $Revision: 1.5 $ $Date: 2004/03/14 07:15:03 $
+ * @version $Rev$ $Date$
  */
 public final class ExistsAttributeAction extends BaseAction {
 

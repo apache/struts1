@@ -31,7 +31,7 @@ import org.apache.struts.config.ForwardConfig;
  * <p>Invoke the appropriate <code>Action</code> for this request, and cache
  * the returned <code>ActionForward</code>.</p>
  *
- * @version $Revision: 1.4 $ $Date: 2004/06/24 01:16:44 $
+ * @version $Rev$ $Date$
  */
 
 public class ExecuteAction extends AbstractExecuteAction {

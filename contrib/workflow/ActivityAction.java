@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/workflow/ActivityAction.java,v 1.3 2004/03/14 07:15:07 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 07:15:07 $
+ * $Id$ 
  *
  * Copyright 2001,2004 The Apache Software Foundation.
  * 
@@ -53,7 +51,7 @@ import org.apache.commons.workflow.web.WebContext;
 /**
  * @author Craig McClanahan
  * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2004/03/14 07:15:07 $
+ * @version $Rev$ $Date$
  */
 public class ActivityAction extends Action implements ContextListener {
 

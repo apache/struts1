@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELForwardTag.java,v 1.8 2004/03/14 07:15:05 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/14 07:15:05 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -34,7 +32,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * be specified as expressions utilizing the JavaServer Pages Standard Library
  * expression language.
  *
- * @version $Revision: 1.8 $
+ * @version $Rev$
  */
 public class ELForwardTag extends ForwardTag {
 

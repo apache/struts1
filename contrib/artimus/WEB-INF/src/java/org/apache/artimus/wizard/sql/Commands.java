@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/wizard/sql/Commands.java,v 1.3 2004/03/14 07:15:07 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 07:15:07 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -24,7 +22,7 @@ package org.apache.artimus.wizard.sql;
 /**
  * SQL command constants and custom statements
  * for the Article package.
- * @version $Revision: 1.3 $ $Date: 2004/03/14 07:15:07 $
+ * @version $Rev$ $Date$
  */
 public final class Commands {
 

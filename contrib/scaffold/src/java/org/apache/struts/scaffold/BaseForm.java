@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/BaseForm.java,v 1.15 2004/03/14 14:32:19 husted Exp $
- * $Revision: 1.15 $
- * $Date: 2004/03/14 14:32:19 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -47,7 +45,7 @@ import org.apache.commons.scaffold.text.ConvertUtils;
 /**
  * Enhanced base ActionForm.
  * :TODO: Extend from DynaValidatorForm in 1.1 version.
- * @version $Revision: 1.15 $ $Date: 2004/03/14 14:32:19 $
+ * @version $Rev$ $Date$
  */
 public class BaseForm extends ValidatorForm {
 

@@ -27,7 +27,7 @@ import org.apache.struts.config.ActionConfig;
 /**
  * <p>Determine if the action is authorized for the given roles.</p>
  *
- * @version $Revision: 1.5 $ $Date: 2004/06/24 01:03:00 $
+ * @version $Rev$ $Date$
  */
 
 public class AuthorizeAction extends AbstractAuthorizeAction {

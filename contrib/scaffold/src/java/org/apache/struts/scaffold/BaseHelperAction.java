@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/BaseHelperAction.java,v 1.5 2004/03/14 14:32:19 husted Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 14:32:19 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -40,7 +38,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * Multiple helper classes may be specified in a semi-colon delimited list,
  * which will be instantiated in the helpers array in the order given.
  *
- * @version $Revision: 1.5 $ $Date: 2004/03/14 14:32:19 $
+ * @version $Rev$ $Date$
  */
 public class BaseHelperAction extends BaseAction {
 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/search/Engine.java,v 1.5 2004/03/14 07:15:07 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 07:15:07 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -51,7 +49,7 @@ import org.apache.scaffold.search.LuceneUtils;
 /**
  * Search engine methods for Articles application.
  * <p>
- * @version $Revision: 1.5 $ $Date: 2004/03/14 07:15:07 $
+ * @version $Rev$ $Date$
 **/
 public final class Engine {
 

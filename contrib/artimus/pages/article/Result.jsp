@@ -2,7 +2,7 @@
 /**
 * List of articles that match query.
 *
-* @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:08 $
+* @version $Rev$ $Date$
 */
 --%>
 

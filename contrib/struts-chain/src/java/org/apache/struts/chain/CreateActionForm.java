@@ -39,7 +39,7 @@ import org.apache.commons.logging.LogFactory;
  * <p>Create (if necessary) and cache a form bean for this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2004/07/05 19:00:30 $
+ * @version $Rev$ $Date$
  */
 
 public class CreateActionForm implements Command {

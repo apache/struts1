@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/http/CreateIndex.java,v 1.5 2004/03/14 07:15:04 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 07:15:04 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -47,7 +45,7 @@ import org.apache.artimus.article.Access;
 
 /**
  * Create search engine indexes used by application.
- * @version $Revision: 1.5 $ $Date: 2004/03/14 07:15:04 $
+ * @version $Rev$ $Date$
 **/
 public final class CreateIndex extends Action {
 

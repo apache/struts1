@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/article/http/Form.java,v 1.5 2004/03/14 07:15:07 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 07:15:07 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -35,7 +33,7 @@ import org.apache.struts.action.ActionMapping;
  * available to the rest of a Web application, usually by transferring data
  * to an internal object that uses native types and implements a business
  * logic interface.
- * @version $Revision: 1.5 $ $Date: 2004/03/14 07:15:07 $
+ * @version $Rev$ $Date$
  */
 public class Form extends ActionForm {
 

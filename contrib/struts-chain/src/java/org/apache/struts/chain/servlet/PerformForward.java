@@ -32,7 +32,7 @@ import org.apache.struts.util.RequestUtils;
  * <p>Perform forwarding or redirection based on the specified
  * <code>ForwardConfig</code> (if any).</p>
  *
- * @version $Revision: 1.6 $ $Date: 2004/06/24 01:26:41 $
+ * @version $Rev$ $Date$
  */
 
 public class PerformForward extends AbstractPerformForward {

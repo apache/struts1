@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/utils/DOMHelper.java,v 1.6 2004/03/14 07:15:06 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 07:15:06 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

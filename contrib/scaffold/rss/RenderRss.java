@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/rss/RenderRss.java,v 1.2 2004/03/14 07:15:06 sraeburn Exp $
- * $Revision: 1.2 $
- * $Date: 2004/03/14 07:15:06 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -51,7 +49,7 @@ import org.apache.struts.scaffold.BaseAction;
  * Convert result bean to channel and render as response.
  *
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2004/03/14 07:15:06 $
+ * @version $Rev$ $Date$
  */
 public final class RenderRss extends BaseAction {
 

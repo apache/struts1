@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/SetPathsAction.java,v 1.4 2004/03/14 07:15:03 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 07:15:03 $
+ * $Id$ 
  *
  * Copyright 2004 The Apache Software Foundation.
  * 
@@ -39,7 +37,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * Standard Action to set the paths from
  * enumerated forwards as request attributes.
  *
- * @version $Revision: 1.4 $ $Date: 2004/03/14 07:15:03 $
+ * @version $Rev$ $Date$
  */
 public final class SetPathsAction extends BaseAction {
 

@@ -28,7 +28,7 @@ import org.apache.struts.chain.AbstractSelectLocale;
 /**
  * <p>Select the <code>Locale</code> to be used for this request.</p>
  *
- * @version $Revision: 1.4 $ $Date: 2004/06/24 01:27:31 $
+ * @version $Rev$ $Date$
  */
 
 public class SelectLocale extends AbstractSelectLocale {

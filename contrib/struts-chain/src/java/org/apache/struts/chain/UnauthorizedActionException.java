@@ -20,7 +20,7 @@ package org.apache.struts.chain;
  *  for the current request.</p>
  *
  *@author     Don Brown
- *@version    $Revision: 1.2 $ $Date: 2004/03/08 02:50:53 $
+ *@version    $Rev$ $Date$
  */
 
 public class UnauthorizedActionException extends Exception {

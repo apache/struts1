@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELRedirectTagBeanInfo.java,v 1.5 2004/03/14 07:15:05 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 07:15:05 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

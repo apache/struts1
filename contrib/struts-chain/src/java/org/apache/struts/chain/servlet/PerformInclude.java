@@ -29,7 +29,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * <p>Perform forwarding or redirection based on the specified
  * include uri (if any).</p>
  *
- * @version $Revision: 1.5 $ $Date: 2004/06/24 01:26:41 $
+ * @version $Rev$ $Date$
  */
 
 public class PerformInclude extends AbstractPerformInclude {

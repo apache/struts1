@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tag-doc/src/java/org/apache/struts/taskdefs/Util.java,v 1.4 2004/03/14 07:15:06 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 07:15:06 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -31,7 +29,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-/** * General purpose utility class. * * @version $Revision: 1.4 $ $Date: 2004/03/14 07:15:06 $
+/**
+ * General purpose utility class.
+ *
+ * @version $Rev$ $Date$
  */
 public class Util {
 	/**

@@ -31,7 +31,7 @@ import org.apache.struts.chain.Constants;
  * this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2004/06/24 01:27:31 $
+ * @version $Rev$ $Date$
  */
 
 public class SelectModule extends AbstractSelectModule {

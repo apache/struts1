@@ -33,7 +33,7 @@ import org.apache.struts.config.ActionConfig;
  * <p>Populate the form bean (if any) for this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2004/04/29 03:08:44 $
+ * @version $Rev$ $Date$
  */
 
 public abstract class AbstractPopulateActionForm implements Command {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/article/SearchProperty.java,v 1.3 2004/03/14 07:15:05 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 07:15:05 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -33,7 +31,7 @@ import org.apache.scaffold.model.ModelResultBase;
 
 /**
  * Search for article author.
- * @version $Revision: 1.3 $ $Date: 2004/03/14 07:15:05 $
+ * @version $Rev$ $Date$
  */
 public class SearchProperty extends Bean {
 

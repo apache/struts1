@@ -28,7 +28,7 @@ import org.apache.struts.config.ModuleConfig;
  * and if so, request no cache flags to be set.</p>
  *
  * @author Don Brown
- * @version $Revision: 1.3 $ $Date: 2004/04/29 03:08:44 $
+ * @version $Rev$ $Date$
  */
 
 public abstract class AbstractRequestNoCache implements Command {

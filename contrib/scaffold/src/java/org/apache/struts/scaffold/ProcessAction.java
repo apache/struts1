@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/ProcessAction.java,v 1.13 2004/03/14 14:32:19 husted Exp $
- * $Revision: 1.13 $
- * $Date: 2004/03/14 14:32:19 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -40,7 +38,7 @@ import java.util.Map;
  * Advanced framework class to instantiate and execute helper beans
  * and process the result.
  *
- * @version $Revision: 1.13 $ $Date: 2004/03/14 14:32:19 $
+ * @version $Rev$ $Date$
  * @deprecated Use BizAction instead
  */
 public class ProcessAction extends BaseHelperAction {

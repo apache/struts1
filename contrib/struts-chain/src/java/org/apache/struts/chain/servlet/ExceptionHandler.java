@@ -37,7 +37,7 @@ import org.apache.struts.config.ModuleConfig;
 /**
  * <p>Handle the specified exception.</p>
  *
- * @version $Revision: 1.4 $ $Date: 2004/03/08 02:50:54 $
+ * @version $Rev$ $Date$
  */
 
 public class ExceptionHandler extends AbstractExceptionHandler {

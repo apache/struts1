@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/exercise-taglib/org/apache/struts/webapp/exercise/TestBean.java,v 1.3 2004/03/14 07:15:06 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 07:15:06 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -35,7 +33,7 @@ import org.apache.struts.util.LabelValueBean;
  *
  * @author Craig R. McClanahan
  * @author Martin F N Cooper
- * @version $Revision: 1.3 $ $Date: 2004/03/14 07:15:06 $
+ * @version $Rev$ $Date$
  */
 
 public class TestBean extends ActionForm {

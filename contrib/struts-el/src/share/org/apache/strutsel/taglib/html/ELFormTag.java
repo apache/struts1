@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.14 2004/07/24 02:40:53 niallp Exp $
- * $Revision: 1.14 $
- * $Date: 2004/07/24 02:40:53 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -34,7 +32,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * be specified as expressions utilizing the JavaServer Pages Standard Library
  * expression language.
  *
- * @version $Revision: 1.14 $
+ * @version $Rev$
  */
 public class ELFormTag extends FormTag {
 

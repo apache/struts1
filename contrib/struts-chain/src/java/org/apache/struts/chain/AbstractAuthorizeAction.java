@@ -32,7 +32,7 @@ import org.apache.struts.util.MessageResources;
  * message of some kind.</p>
  *
  * @author Don Brown
- * @version $Revision: 1.4 $ $Date: 2004/04/29 03:08:44 $
+ * @version $Rev$ $Date$
  */
 
 public abstract class AbstractAuthorizeAction implements Command {

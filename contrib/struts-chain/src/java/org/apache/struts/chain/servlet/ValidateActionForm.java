@@ -37,7 +37,7 @@ import org.apache.struts.Globals;
  *
  * @author Craig R. McClanahan
  * @author Don Brown
- * @version $Revision: 1.7 $ $Date: 2004/09/02 21:39:18 $
+ * @version $Rev$ $Date$
  */
 
 public class ValidateActionForm extends AbstractValidateActionForm {

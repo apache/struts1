@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/article/Access.java,v 1.5 2004/03/14 07:15:05 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 07:15:05 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -58,7 +56,7 @@ import org.apache.lucene.index.Term;
  * <p>
  * This class could be based on an interface if another
  * (non-SQL) type of access was needed.
- * @version $Revision: 1.5 $ $Date: 2004/03/14 07:15:05 $
+ * @version $Rev$ $Date$
 **/
 public final class Access {
 

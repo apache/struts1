@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/wizard/Model.java,v 1.4 2004/03/14 07:15:06 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 07:15:06 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -44,7 +42,7 @@ import org.apache.artimus.wizard.sql.Statements;
  * <p>
  * This class could be based on an interface if another
  * (non-SQL) type of access was needed.
- * @version $Revision: 1.4 $ $Date: 2004/03/14 07:15:06 $
+ * @version $Rev$ $Date$
  */
 public final class Model {
 
@@ -52,7 +50,7 @@ public final class Model {
      * Return next key for WIZARD table.
      * @return The Integer key value to be inserted
      * @exception ModelException if SQL error occurs
-     * @version $Revision: 1.4 $ $Date: 2004/03/14 07:15:06 $
+     * @version $Rev$ $Date$
     **/
     public synchronized static final Integer allocateKey()
             throws ModelException {
@@ -124,7 +122,7 @@ public final class Model {
      * @exception ModelException if SQL error occurs
      * @param key
      * @param target Object object to create Collection from ResultSet
-     * @version $Revision: 1.4 $ $Date: 2004/03/14 07:15:06 $
+     * @version $Rev$ $Date$
     **/
     public static final Collection select(Object target, int key)
             throws ModelException {

@@ -32,7 +32,7 @@ import org.apache.struts.config.ActionConfig;
  * proceed normally.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2004/04/29 03:08:44 $
+ * @version $Rev$ $Date$
  */
 
 public abstract class AbstractValidateActionForm implements Command {

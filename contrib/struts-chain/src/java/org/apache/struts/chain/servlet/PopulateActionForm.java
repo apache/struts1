@@ -32,7 +32,7 @@ import org.apache.commons.logging.LogFactory;
  * <p>Populate the form bean (if any) for this request.  Sets the multipart
  * class from the action config in the request attributes.</p>
  *
- * @version $Revision: 1.5 $ $Date: 2004/03/08 02:50:54 $
+ * @version $Rev$ $Date$
  */
 
 public class PopulateActionForm extends AbstractPopulateActionForm {

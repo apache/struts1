@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFileTagBeanInfo.java,v 1.4 2004/03/14 07:15:01 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 07:15:01 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

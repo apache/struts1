@@ -2,7 +2,7 @@
 /**
  * Display data entered form (read-only).
  *
- * @version $Revision: 1.3 $ $dateString: 2001/08/23 $
+ * @version $Rev$ $Date$
 */
 --%>
 <%@ page language="java" %>

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELSizeTagBeanInfo.java,v 1.7 2004/06/24 01:16:44 jmitchell Exp $
- * $Revision: 1.7 $
- * $Date: 2004/06/24 01:16:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

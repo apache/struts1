@@ -29,7 +29,7 @@ import org.apache.struts.config.ActionConfig;
  * <code>ActionConfig</code> if specified.</p>
  *
  * @author Don Brown
- * @version $Revision: 1.3 $ $Date: 2004/04/29 03:08:44 $
+ * @version $Rev$ $Date$
  */
 
 public class SelectInclude implements Command {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/BizFormImpl.java,v 1.5 2004/03/14 07:15:03 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 07:15:03 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -47,7 +45,7 @@ import org.apache.commons.scaffold.util.MessagesImpl;
  *
  * :FIXME: This implementation can only be used with the default module.
  *
- * @version $Revision: 1.5 $ $Date: 2004/03/14 07:15:03 $
+ * @version $Rev$ $Date$
  */
 public class BizFormImpl extends BaseForm implements BizForm {
     

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/wizard/SearchKey.java,v 1.3 2004/03/14 07:15:06 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 07:15:06 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -32,7 +30,7 @@ import org.apache.scaffold.model.ModelResultBase;
 
 /**
  * Select article by primary key.
- * @version $Revision: 1.3 $ $Date: 2004/03/14 07:15:06 $
+ * @version $Rev$ $Date$
  */
 public class SearchKey extends Bean {
 

@@ -31,7 +31,7 @@ import org.apache.struts.config.ForwardConfig;
  * the returned <code>ActionForward</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2004/03/08 02:50:53 $
+ * @version $Rev$ $Date$
  */
 
 public abstract class AbstractExecuteAction implements Command {

@@ -28,7 +28,7 @@ import org.apache.struts.config.ModuleConfig;
  * <code>String</code> (if any).</p>
  *
  * @author Don Brown
- * @version $Revision: 1.4 $ $Date: 2004/04/29 03:08:44 $
+ * @version $Rev$ $Date$
  */
 
 public abstract class AbstractPerformInclude implements Command {

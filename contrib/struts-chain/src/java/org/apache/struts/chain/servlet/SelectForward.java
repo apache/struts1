@@ -28,7 +28,7 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Create and return a <code>ForwardConfig</code> representing the
  * specified module-relative destination.</p>
  *
- * @version $Revision: 1.4 $ $Date: 2004/06/24 01:26:41 $
+ * @version $Rev$ $Date$
  */
 
 public class SelectForward extends AbstractSelectForward {

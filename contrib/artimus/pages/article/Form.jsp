@@ -2,7 +2,7 @@
 /**
  * Data entry page.
  *
- * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:08 $
+ * @version $Rev$ $Date$
  */
 --%>
 

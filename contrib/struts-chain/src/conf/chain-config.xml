@@ -24,7 +24,7 @@
     This file contains definitions of the standard Chain Of Responsibility
     chains that emulate Struts 1.x processing functionality.
 
-    $Id: chain-config.xml,v 1.10 2004/03/08 03:10:48 craigmcc Exp $
+    $Id$
 -->
 
 

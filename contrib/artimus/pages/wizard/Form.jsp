@@ -2,7 +2,7 @@
 /**
  * Form to enter data.
  *
- * @version $Revision: 1.3 $ $dateString: 2001/09/25 $
+ * @version $Rev$ $Date$
 */
 --%>
 <%@ page language="java" %>

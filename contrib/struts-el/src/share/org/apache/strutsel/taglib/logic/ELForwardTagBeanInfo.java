@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELForwardTagBeanInfo.java,v 1.4 2004/06/24 01:12:48 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2004/06/24 01:12:48 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

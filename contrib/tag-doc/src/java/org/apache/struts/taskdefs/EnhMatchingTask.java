@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tag-doc/src/java/org/apache/struts/taskdefs/EnhMatchingTask.java,v 1.4 2004/03/14 07:15:06 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 07:15:06 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -29,7 +27,12 @@ import org.apache.tools.ant.DirectoryScanner;
 import org.apache.tools.ant.taskdefs.MatchingTask;
 import org.apache.tools.ant.types.FileSet;
 
-/** * ENHanced-MatchingTask - enhances the MatchingTask by allowing * the subclasses to act as a FileSet container as well as allowing * the implicit FileSet. * * @version $Revision: 1.4 $ $Date: 2004/03/14 07:15:06 $
+/**
+ * ENHanced-MatchingTask - enhances the MatchingTask by allowing
+ * the subclasses to act as a FileSet container as well as allowing
+ * the implicit FileSet.
+ *
+ * @version $Rev$ $Date$
  */
 
 public abstract class EnhMatchingTask extends MatchingTask {

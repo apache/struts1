@@ -44,7 +44,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * whatever chain is stored under id <code>servlet-standard</code> (currently
  * hardcoded; needs to be made configurable) to process this request.</p>
  *
- * @version $Revision: 1.8 $ $Date: 2004/06/24 01:08:22 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

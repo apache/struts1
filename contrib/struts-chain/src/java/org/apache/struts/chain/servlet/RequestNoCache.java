@@ -27,7 +27,7 @@ import org.apache.struts.chain.AbstractRequestNoCache;
  * <p>Check to see if the controller is configured to prevent caching,
  * and if so, set the no cache HTTP response headers.</p>
  *
- * @version $Revision: 1.5 $ $Date: 2004/06/24 01:26:41 $
+ * @version $Rev$ $Date$
  */
 
 public class RequestNoCache extends AbstractRequestNoCache {

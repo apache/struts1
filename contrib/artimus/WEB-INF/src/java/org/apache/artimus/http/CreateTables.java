@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/http/CreateTables.java,v 1.4 2004/03/14 07:15:04 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 07:15:04 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -46,7 +44,7 @@ import org.apache.struts.action.ActionMapping;
  * @see <strong>Commands.java</strong> for table names and
  * definitions.
  * <p>
- * @version $Revision: 1.4 $ $Date: 2004/03/14 07:15:04 $
+ * @version $Rev$ $Date$
  */
 public final class CreateTables extends Action {
 
