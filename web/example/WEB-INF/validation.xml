@@ -7,7 +7,7 @@
 <!--
     Validation Rules for the Struts Example Web Application
 
-    $Id: validation.xml,v 1.6 2002/10/26 00:25:24 jholmes Exp $
+    $Id: validation.xml,v 1.7 2002/11/04 06:27:59 jmitchell Exp $
 -->
 
 <form-validation>
@@ -36,7 +36,8 @@
             </field>
 
             <field property="password"
-                    depends="minlength,maxlength">
+                    depends="minlength,maxlength"
+                    bundle="alternate">
                 <arg0   key="prompt.password"/>
                 <arg1   key="${var:minlength}" name="minlength"
                    resource="false"/>

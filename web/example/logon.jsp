@@ -26,7 +26,7 @@
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.password"/>:
+      <bean:message key="prompt.password" bundle="alternate"/>:
     </th>
     <td align="left">
       <html:password property="password" size="16" maxlength="18"
