@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.2 2002/01/22 03:30:50 arron Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/22 03:30:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.3 2002/01/22 23:27:48 arron Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/01/22 23:27:48 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,7 +76,7 @@ import org.apache.struts.taglib.html.FormTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.2 $ $Date: 2002/01/22 03:30:50 $
+ * @version $Revision: 1.3 $ $Date: 2002/01/22 23:27:48 $
  */ 
 public class NestedPropertyHelper {
   
@@ -231,6 +231,12 @@ public class NestedPropertyHelper {
    * @return qualified nested property that the property param is to the parent
    */
   private static String getRelativeProperty(String property, String parent) {
+    
+    /* Special case... reference my parent's nested property.
+       Otherwise impossible for things like indexed properties */
+    if ("./".equals(property)) {
+      return parent;
+    }
     /* remove the stepping from the property */
     String stepping = property.substring(0,property.lastIndexOf('/')+1);
     /* isolate the property */
