@@ -142,6 +142,12 @@
       that return the value (to be returned to the server) and the label (to
       be displayed to the user) from a single collection.  The previous
       support for processing parallel collections is still available.</li>
+  <li>The <code>form</code> tag has been enhanced to look up the name of the
+      form bean, it's Java class, and the scope in which the bean should be
+      created or accessed, from the corresponding action mapping entry in the
+      "struts-config.xml" file, if the <code>name</code>, <code>scope</code>,
+      and <code>type</code> attributes are not specified.  This removes the
+      need to make changes in two places when these values are changed.</li>
   </ul>
 
   <p>The following major new features have been added to the
