@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionsCollectionTag.java,v 1.4 2002/10/03 05:02:32 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/03 05:02:32 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionsCollectionTag.java,v 1.5 2002/10/14 03:18:38 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/10/14 03:18:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,7 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import org.apache.struts.taglib.html.OptionsCollectionTag;
 import javax.servlet.jsp.JspException;
-import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
+import org.apache.strutsel.taglib.utils.EvalHelper;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
@@ -84,9 +84,36 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ELOptionsCollectionTag extends OptionsCollectionTag {
+
+    /**
+     * String value of the "filter" attribute.
+     */
+    private String   filterExpr;
+
+    /**
+     * Returns the string value of the "filter" attribute.
+     */
+    public  String   getFilterExpr() { return (filterExpr); }
+
+    /**
+     * Sets the string value of the "filter" attribute.  This attribute is
+     * mapped to this method by the <code>ELOptionsCollectionTagBeanInfo</code>
+     * class.
+     */
+    public  void     setFilterExpr(String filterExpr)
+    { this.filterExpr  = filterExpr; }
+
+    /**
+     * Resets attribute values for tag reuse.
+     */
+    public void release()
+    {
+        super.release();
+        setFilterExpr(null);
+    }
 
     /**
      * Process the start tag.
@@ -100,7 +127,8 @@ public class ELOptionsCollectionTag extends OptionsCollectionTag {
     
     /**
      * Evaluates and returns a single attribute value, given the attribute
-     * name, attribute value, and attribute type.  It uses
+     * name, attribute value, and attribute type.  It uses the
+     * <code>EvalHelper</code> class to interface to
      * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
      * it passes to this the name of the current tag, the <code>this</code>
      * pointer, and the current pageContext.
@@ -108,6 +136,8 @@ public class ELOptionsCollectionTag extends OptionsCollectionTag {
      * @param attrName attribute name being evaluated
      * @param attrValue String value of attribute to be evaluated using EL
      * @param attrType Required resulting type of attribute value
+     * @exception NullAttributeException if either the <code>attrValue</code>
+     * was null, or the resulting evaluated value was null.
      * @return Resulting attribute value
      */
     private Object   evalAttr(String   attrName,
@@ -115,9 +145,8 @@ public class ELOptionsCollectionTag extends OptionsCollectionTag {
                               Class    attrType)
         throws JspException, NullAttributeException
     {
-        return (ExpressionUtil.evalNotNull("optionsCollection", attrName,
-                                           attrValue, attrType,
-                                           this, pageContext));
+        return (EvalHelper.eval("optionsCollection", attrName, attrValue,
+                                attrType, this, pageContext));
     }
     
     /**
@@ -130,7 +159,7 @@ public class ELOptionsCollectionTag extends OptionsCollectionTag {
      */
     private void evaluateExpressions() throws JspException {
         try {
-            setFilter(((Boolean) evalAttr("filter", getFilter() + "", 
+            setFilter(((Boolean) evalAttr("filter", getFilterExpr(), 
                                           Boolean.class)).
                       booleanValue());
         } catch (NullAttributeException ex) {

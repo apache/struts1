@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTag.java,v 1.4 2002/10/03 05:03:44 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/03 05:03:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTag.java,v 1.5 2002/10/14 03:18:38 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/10/14 03:18:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,7 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import org.apache.struts.taglib.html.LinkTag;
 import javax.servlet.jsp.JspException;
-import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
+import org.apache.strutsel.taglib.utils.EvalHelper;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
@@ -75,9 +75,51 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ELLinkTag extends LinkTag {
+
+    /**
+     * String value of the "transaction" attribute.
+     */
+    private String   transactionExpr;
+    /**
+     * String value of the "indexed" attribute.
+     */
+    private String   indexedExpr;
+
+    /**
+     * Returns the string value of the "transaction" attribute.
+     */
+    public  String   getTransactionExpr() { return (transactionExpr); }
+    /**
+     * Returns the string value of the "indexed" attribute.
+     */
+    public  String   getIndexedExpr() { return (indexedExpr); }
+
+    /**
+     * Sets the string value of the "transaction" attribute.  This attribute is
+     * mapped to this method by the <code>ELLinkTagBeanInfo</code> class.
+     */
+    public  void     setTransactionExpr(String transactionExpr)
+    { this.transactionExpr  = transactionExpr; }
+
+    /**
+     * Sets the string value of the "indexed" attribute.  This attribute is
+     * mapped to this method by the <code>ELButtonTagBeanInfo</code> class.
+     */
+    public  void     setIndexedExpr(String indexedExpr)
+    { this.indexedExpr  = indexedExpr; }
+    
+    /**
+     * Resets attribute values for tag reuse.
+     */
+    public void release()
+    {
+        super.release();
+        setTransactionExpr(null);
+        setIndexedExpr(null);
+    }
 
     /**
      * Process the start tag.
@@ -91,7 +133,8 @@ public class ELLinkTag extends LinkTag {
 
     /**
      * Evaluates and returns a single attribute value, given the attribute
-     * name, attribute value, and attribute type.  It uses
+     * name, attribute value, and attribute type.  It uses the
+     * <code>EvalHelper</code> class to interface to
      * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
      * it passes to this the name of the current tag, the <code>this</code>
      * pointer, and the current pageContext.
@@ -99,6 +142,8 @@ public class ELLinkTag extends LinkTag {
      * @param attrName attribute name being evaluated
      * @param attrValue String value of attribute to be evaluated using EL
      * @param attrType Required resulting type of attribute value
+     * @exception NullAttributeException if either the <code>attrValue</code>
+     * was null, or the resulting evaluated value was null.
      * @return Resulting attribute value
      */
     private Object   evalAttr(String   attrName,
@@ -106,8 +151,8 @@ public class ELLinkTag extends LinkTag {
                               Class    attrType)
         throws JspException, NullAttributeException
     {
-        return (ExpressionUtil.evalNotNull("link", attrName, attrValue,
-                                           attrType, this, pageContext));
+        return (EvalHelper.eval("link", attrName, attrValue, attrType,
+                                this, pageContext));
     }
     
     /**
@@ -146,7 +191,7 @@ public class ELLinkTag extends LinkTag {
         }
 
         try {
-            setIndexed(((Boolean) evalAttr("indexed", getIndexed() + "",
+            setIndexed(((Boolean) evalAttr("indexed", getIndexedExpr(),
                                            Boolean.class)).
                        booleanValue());
         } catch (NullAttributeException ex) {
@@ -359,7 +404,7 @@ public class ELLinkTag extends LinkTag {
 
         try {
             setTransaction(((Boolean) evalAttr("transaction",
-                                               getTransaction() + "", 
+                                               getTransactionExpr(), 
                                                Boolean.class)).
                            booleanValue());
         } catch (NullAttributeException ex) {
