@@ -446,7 +446,7 @@ HttpServletRequest request);
     <p>
     The <code>validate</code> method is called by the controller servlet after
     the  bean properties have been populated, but before the corresponding 
-    action class's <code>perform</code> method is invoked. 
+    action class's <code>execute</code> method is invoked. 
     The <code>validate</code> method has the following options:
     </p>
 
