@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.46 2002/07/28 00:17:27 craigmcc Exp $
- * $Revision: 1.46 $
- * $Date: 2002/07/28 00:17:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.47 2002/09/22 05:46:51 martinc Exp $
+ * $Revision: 1.47 $
+ * $Date: 2002/09/22 05:46:51 $
  *
  * ====================================================================
  *
@@ -67,7 +67,6 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
-import java.util.Hashtable;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -80,7 +79,6 @@ import org.apache.struts.Globals;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.upload.MultipartRequestHandler;
 
 
 /**
@@ -113,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.46 $ $Date: 2002/07/28 00:17:27 $
+ * @version $Revision: 1.47 $ $Date: 2002/09/22 05:46:51 $
  */
 
 public class Action {
@@ -414,7 +412,7 @@ public class Action {
      * this method.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param form The optional ActionForm bean for this request (if any)
      * @param request The non-HTTP request we are processing
      * @param response The non-HTTP response we are creating
      *
@@ -448,7 +446,7 @@ public class Action {
      * already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
@@ -691,7 +689,7 @@ public class Action {
                 session.removeAttribute(TRANSACTION_TOKEN_KEY);
 
             // Retrieve the transaction token included in this request
-            String token = (String) request.getParameter(Constants.TOKEN_KEY);
+            String token = request.getParameter(Constants.TOKEN_KEY);
             if (token == null)
                 return (false);
 

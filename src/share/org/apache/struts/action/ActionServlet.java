@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.119 2002/07/27 21:53:13 martinc Exp $
- * $Revision: 1.119 $
- * $Date: 2002/07/27 21:53:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.120 2002/09/22 05:46:51 martinc Exp $
+ * $Revision: 1.120 $
+ * $Date: 2002/09/22 05:46:51 $
  *
  * ====================================================================
  *
@@ -302,7 +302,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.119 $ $Date: 2002/07/27 21:53:13 $
+ * @version $Revision: 1.120 $ $Date: 2002/09/22 05:46:51 $
  */
 
 public class ActionServlet
@@ -789,7 +789,7 @@ public class ActionServlet
      * Look up and return the {@link RequestProcessor} responsible for the
      * specified application module, creating a new one if necessary.
      *
-     * @param appConfig The application module configuration for which to
+     * @param config The application module configuration for which to
      *  acquire and return a RequestProcessor.
      *
      * @exception ServletException if we cannot instantiate a RequestProcessor

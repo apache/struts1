@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.7 2002/06/25 01:30:40 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/06/25 01:30:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.8 2002/09/22 05:46:51 martinc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/09/22 05:46:51 $
  *
  * ====================================================================
  *
@@ -64,10 +64,6 @@ package org.apache.struts.action;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.HashMap;
 
 
 /**
@@ -90,7 +86,7 @@ import java.util.HashMap;
  *
  * @author David Geary
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/06/25 01:30:40 $
+ * @version $Revision: 1.8 $ $Date: 2002/09/22 05:46:51 $
  */
 
 public class ActionErrors extends ActionMessages implements Serializable {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.8 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.9 2002/09/22 05:46:51 martinc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/09/22 05:46:51 $
  *
  * ====================================================================
  *
@@ -64,8 +64,6 @@ package org.apache.struts.action;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.collections.FastHashMap;
@@ -76,7 +74,7 @@ import org.apache.commons.collections.FastHashMap;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.9 $ $Date: 2002/09/22 05:46:51 $
  *
  * @deprecated Replaced by collection of ActionConfig instances in
  *  ApplicationConfig

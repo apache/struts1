@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.18 2002/08/27 00:38:12 craigmcc Exp $
- * $Revision: 1.18 $
- * $Date: 2002/08/27 00:38:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.19 2002/09/22 05:46:52 martinc Exp $
+ * $Revision: 1.19 $
+ * $Date: 2002/09/22 05:46:52 $
  *
  * ====================================================================
  *
@@ -77,9 +77,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ApplicationConfig;
-import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.ExceptionConfig;
-import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.taglib.html.Constants;
@@ -96,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.18 $ $Date: 2002/08/27 00:38:12 $
+ * @version $Revision: 1.19 $ $Date: 2002/09/22 05:46:52 $
  * @since Struts 1.1
  */
 
