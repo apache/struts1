@@ -1,0 +1,756 @@
+<!--
+     DTD for the Struts Application Configuration File
+
+     To support validation of your configuration file, include the following
+     DOCTYPE element at the beginning (after the "xml" declaration):
+
+     <!DOCTYPE struts-config PUBLIC
+       "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+       "http://jakarta.apache.org/struts/dtds/struts-jericho-config_2_0.dtd">
+
+     $Id: struts-jericho-config_2_0.dtd,v 1.1 2003/12/17 20:50:35 husted Exp $
+-->
+
+
+<!-- ========== Defined Types ============================================= -->
+
+
+<!-- An "Identifier" is the name of a programming construct and must conform
+     to the rules for identifiers in the Java language.
+-->
+<!ENTITY % Identifier "CDATA">
+
+
+<!-- An "AttributeName" is the identifier of a page, request, session, or
+     application scope attribute.
+-->
+<!ENTITY % AttributeName "CDATA">
+
+
+<!-- A "PropObject" is the identifier of an object, such as a form,
+     and also serves as the name of the corresponding scripting variable
+     and the name of the attribute under which the object is accessed.
+     Therefore, it must conform to the rules for an Identifier.
+-->
+<!ENTITY % PropObject "CDATA">
+
+
+<!-- A "Boolean" is the string representation of a boolean (true or false)
+     variable.
+-->
+<!ENTITY % Boolean "(true|false)">
+
+
+<!-- A "ClassName" is the fully qualified name of a compiled class that is
+     instantiated to provide the functionality of the enclosing element.
+-->
+<!ENTITY % ClassName "CDATA">
+
+
+<!-- An "Integer" is a character string consisting solely of numeric digits,
+     optionally preceeded by a minus sign, that can be converted to a
+     32-bit integer.
+-->
+<!ENTITY % Integer "CDATA">
+
+
+<!-- A "Resource" is a relative path, delimited by "/" characters, that
+     defines the location of a resource relative to the location of the
+     Struts configuration file itself.
+-->
+<!ENTITY % Resource "#PCDATA">
+
+
+<!-- A "PropName" is the name of an object property, and must begin with
+     a lower case letter and contain only characters that are legal in a
+     identifier.
+-->
+<!ENTITY % PropName "CDATA">
+
+
+<!-- A "RequestPath" is an application-relative URI path, beginning with a
+     slash, that identifies a mapped resource (such as a server page or a
+     servlet) within this web application.
+-->
+<!ENTITY % RequestPath "CDATA">
+
+
+<!-- The name of a scope within which a object, such as a form handler, may be accessed.
+-->
+<!ENTITY % Scope "(request|session|application)">
+
+
+<!-- ========== Top Level Elements ======================================== -->
+
+
+<!-- The "struts-config" element is the root of the configuration file
+     hierarchy, and contains nested elements for all of the other
+     configuration settings.
+-->
+<!ELEMENT struts-config (
+ display-name?,
+ description?,
+ property*,
+ catalog*,
+ forms?,
+ locations?,
+ exceptions?,
+ processors?,
+ mappings?,
+ bundles,
+ plug-in*)>
+
+<!ATTLIST struts-config  id             ID              #IMPLIED>
+
+<!-- The <property> element refers to the location of a properties file,
+     relative to the Struts configuration file, that contains replacement
+     variables to use when processing the elements. The properties defined
+     can be referred to using the standard "shell" notation: ${property}.
+
+     Properties can be used to avoid redundacy. For example, an often-used
+     class name can be listed in the properties file:
+
+         formHandler = app.struts.MyFormHandler
+
+     and then referred to as the value for an attribute:
+
+         handler = ${formHandler}
+
+     The following attribute is defined:
+
+     resource        The path to the properties file, relative to the Struts
+                     Configuration file being processed.
+-->
+<!ELEMENT property>
+<!ATTLIST property           id          ID              #IMPLIED>
+<!ATTLIST property           resource    %Resource;      #REQUIRED>
+
+
+<!-- The <catalog> element refers to the location of a Catalog file,
+     relative to the Struts configuration file, that contains a registry
+     of Command Chains that can be referred to in the "command" attributes
+     of other elements.
+
+     The following attribute is defined:
+
+     resource        The path to the Catalog file, relative to the Struts
+                     Configuration file being processed.
+-->
+<!ELEMENT property>
+<!ATTLIST property           id          ID              #IMPLIED>
+<!ATTLIST property           resource    %Resource;      #REQUIRED>
+
+
+<!-- The "forms" element describes the set of form descriptors.
+The following attribute is defined:
+
+     config          Fully qualified Java class to use when instantiating
+                     Form objects. If specified, the object must implement
+                     org.apache.struts.core.Form.
+                     ["org.apache.struts.core.FormBase"]
+
+     handler         Fully qualified Java class to use when instantiating
+                     FormHandler objects. If specified, the object must implement
+                     org.apache.struts.core.FormHandler.
+                     ["org.apache.struts.core.DynaFormHandlerBase"]
+-->
+<!ELEMENT forms (form*)>
+<!ATTLIST forms id              ID              #IMPLIED>
+<!ATTLIST forms config          %ClassName;     #IMPLIED>
+<!ATTLIST forms handler         %ClassName;     #IMPLIED>
+
+
+<!-- The "form" element describes a FormHandler (org.apache.struts.core.FormHandler)
+     instance that can be referenced by a Mapping instance.
+
+     name            The unique identifier for this form descriptor.
+                     Referenced by the "form" attribute of the <mapping> element
+                     to specify which form to use with a matching request. May also
+                     be referenced by an "extends" attribute in another <form> element.
+
+     extends         Name of a form descriptor that is used as a value template for
+                     this element. All attributes from the template are available to
+                     the new element. Any attribute inherited from the template can
+                     be overloaded by providing a new value.
+
+     config          Fully qualified class name of the Form class to use with
+                     this form that implements org.apache.struts.core.Form.
+                     ["org.apache.struts.core.FormBase"]
+
+     handler         Fully qualified class name of the FormHandler class to use with
+                     this form that implements org.apache.struts.core.FormHandler.
+                     ["org.apache.struts.core.DynaFormHandlerBase"]
+
+-->
+<!ELEMENT form (icon?, display-name?, description?, set-property*, form-property*)>
+<!ATTLIST form      id              ID              #IMPLIED>
+<!ATTLIST form      name            CDATA           #REQUIRED>
+<!ATTLIST form      extends         CDATA           #IMPLIED>
+<!ATTLIST form      config          %ClassName;     #IMPLIED>
+<!ATTLIST form      handler         %ClassName;     #REQUIRED>
+
+
+<!-- The "form-property" element describes an object property that can be used to
+     configure an instance of a DynaFormHandler. This element is only utilized when the
+     "handler" attribute of the enclosing <form> element implements
+     org.apache.struts.core.DynaFormHandler.
+
+     name            The name of the object property described by this element.
+
+     extends         Name of a form descriptor that is used as a value template for
+                     this element. All attributes from the template are available to
+                     the new element. Any attribute inherited from the template can
+                     be overloaded by providing a new value.
+
+     config          Fully qualified Java class to use when instantiating
+                     DynaFormProperty objects. If specified, the object must implement
+                     org.apache.struts.core.DynaFormProperty.
+                     ["org.apache.struts.core.DynaFormPropertyBase"]
+
+     handler         Fully qualified class name of the field that will handle this
+                     property, optionally followed by "[]" to indicate that the
+                     field is indexed.
+
+     initial         String representation of the initial value for this property.
+                     If not specified, primitives will be initialized to zero and
+                     objects initialized to the zero-argument instantiation of that
+                     object class.  For example, Strings will be initialized to ""
+
+     size            The number of array elements to create if the value of the
+                     "handler" attribute specifies an array, but there is no value
+                     specified for the "initial" attribute.
+-->
+<!ELEMENT form-property  (set-property*)>
+<!ATTLIST form-property  name            CDATA          #REQUIRED>
+<!ATTLIST form-property  extends         CDATA          #IMPLIED>
+<!ATTLIST form-property  config         %ClassName;     #IMPLIED>
+<!ATTLIST form-property  handler        %ClassName;     #REQUIRED>
+<!ATTLIST form-property  initial        CDATA           #IMPLIED>
+<!ATTLIST form-property  size           %Integer;       #IMPLIED>
+
+
+<!-- The "locations" element describes a set of Location objects
+     (org.apache.struts.core.Location) that may be referenced by other elements
+     and returned by an MappingHandler's execute method. The individual Locations
+     are configured through nested <location> elements. Other elements, such
+     as <exception> and <mapping>, may also provide nested locations specific
+     to that element (local scope). The following attribute is defined:
+
+     handler        Fully qualified Java class to use when instantiating
+                    Location objects. If specified, the object must implement
+                    org.apache.struts.core.Location.
+                    ["org.apache.struts.core.LocationBase"]
+-->
+<!ELEMENT locations (location*)>
+<!ATTLIST locations id            ID              #IMPLIED>
+<!ATTLIST locations className     %ClassName;     #IMPLIED>
+
+
+<!-- The <location> element is referenced by
+     a logical name and encapsulates a URI or a reference to a mapping. A
+     "location" element may be used to describe both global and local locations.
+     Global locations are available to all the elements. Local locations can be
+     nested within an <exception> or <mapping> element and only available when it
+     is invoked in that context.
+
+     name            The unique identifier for this location. Referenced by
+                     other elements and by the MappingHandler object at runtime
+                     to select - by its logical name - the resource that should
+                     complete the request/response. May also be referenced by
+                     an "extends" attribute of anohter <location> element.
+
+     extends         Name of a form descriptor that is used as a value template for
+                     this element. All attributes from the template are available to
+                     the new element. Any attribute inherited from the template can
+                     be overridden by providing a new value.
+
+     command         Name of a Command to execute before forwarding control to
+                     the resource for this element. The Command can be used to
+                     prepare the contexts for the resource.
+
+     resource        The module-relative or context-relative path to the resource
+                     that is encapsulated by the logical name of this Location.
+                     If the path is to be considered relative to the root application
+                     context when used in a modular application, then the "appRelative"
+                     attribute should be set to "true". This value should begin with
+                     a slash ("/") character.
+
+     mappingRef      Set to "true" if the path specified for "resource" is a reference
+                     to a Mapping. If "true", calling getResource will return a URI to
+                     the Mapping with the appropriate prefix or extension resolved.
+                     ["false"]
+
+     appRelative     Set to "true" if, in a modular application, the resource
+                     attribute starts with a slash "/" and should be considered
+                     relative to application root rather than the current module.
+                     ["false"]
+
+     redirect        Set to "true" if a redirect instruction should be issued to
+                     the user-agent so that a new request is issued for this
+                     Location's resource. If "true", RequestDispatcher.Redirect is
+                     called. If "false", RequestDispatcher.forward is called instead.
+                     ["false"]
+-->
+<!ELEMENT location (icon?, display-name?, description?, set-property*)>
+<!ATTLIST location        id             ID              #IMPLIED>
+<!ATTLIST location        name           CDATA           #IMPLIED>
+<!ATTLIST location        extends        CDATA           #IMPLIED>
+<!ATTLIST location        command        CDATA           #IMPLIED>
+<!ATTLIST location        resource       %RequestPath;   #REQUIRED>
+<!ATTLIST location        mappingRef     %Boolean;       #IMPLIED>
+<!ATTLIST location        appRelative    %Boolean;       #IMPLIED>
+<!ATTLIST location        redirect       %Boolean;       #IMPLIED>
+
+
+<!-- The <exceptions> element describes a set of exceptions that might be
+     thrown by an MappingHandler object. The handling of individual exception
+     classes can be configured through nested exception elements.
+     If a <mapping> element registers a local exception handler for the same
+     exception type, the local handler overrides the global exception handler.
+     The following attribute is defined:
+
+     handler        Fully qualified Java class to use when instantiating
+                    ExceptionConfig objects. If specified, the object must implement
+                    org.apache.struts.core.ExceptionConfig.
+-->
+<!ELEMENT exceptions (exception*)>
+<!ATTLIST exceptions id          ID              #IMPLIED>
+
+
+<!-- The <exception> element registers an ExceptionHandler
+    (org.apache.struts.core.ExceptionHandler) for an exception class.
+     The following attributes are defined:
+
+     name            A unique identifier for this <exception> element so that it
+                     can be referenced by an "extends" attribute.
+
+     extends         Name of an <exception> element that is used as a value template
+                     for this element. All attributes from the template are available
+                     to the new element. Any attribute inherited from the template
+                     can be overridden by providing a new value.
+
+     config          Fully qualified class name to use when instantiating
+                     ExceptionConfig objects. If specified, the object must implement
+                     org.apache.struts.core.ExceptionConfig.
+                     ["org.apache.struts.core.ExceptionConfigBase"]
+
+     handler         Fully qualified class name of the exception handler to use
+                     with this exception.
+                     ["org.apache.struts.core.ExceptionHandlerBase"]
+
+     location        The name of the <location> element (local or global) that will
+                     complete the request/response if the Exception specified by the
+                     "trigger" attribute is thrown.
+
+     scope           The scope ("request" or "session") that is used to access
+                     the Message object (org.apache.struts.core.Message)
+                     for this exception.
+
+     bundleName      Attribute name for the message bundle associated with this
+                     handler. [org.apache.struts.core.Keys.BUNDLE_KEY]
+
+     key             The key to use with this handler's message bundle
+                     that will retrieve the message template to use with this
+                     exception.
+
+     trigger         Fully qualified class name of the Exception class to
+                     register with this handler.
+-->
+<!ELEMENT exception (icon?, display-name?, description?, set-property*, location*)>
+<!ATTLIST exception      id             ID              #IMPLIED>
+<!ATTLIST exception      name           CDATA           #IMPLIED>
+<!ATTLIST exception      extends        CDATA           #IMPLIED>
+<!ATTLIST exception      config         %ClassName;     #IMPLIED>
+<!ATTLIST exception      handler        %ClassName;     #IMPLIED>
+<!ATTLIST exception      location       CDATA           #IMPLIED>
+<!ATTLIST exception      scope          %Scope;         #IMPLIED>
+<!ATTLIST exception      bundleName     %AttributeName; #IMPLIED>
+<!ATTLIST exception      key            CDATA           #REQUIRED>
+<!ATTLIST exception      trigger        %ClassName;     #REQUIRED>
+
+
+<!-- The <processors> element describes a set of Processor objects
+     (org.apache.struts.core.Processor) that are available to process
+     requests. The individual Processors are configured through nested
+     <processor> elements. The following attributes are defined:
+
+     config         Fully qualified class name to use when instantiating
+                    Processor objects. If specified, the object must implement
+                    org.apache.struts.core.Processor.
+                    ["org.apache.struts.core.ProcessorBase"]
+-->
+<!ELEMENT processors (processor*)>
+<!ATTLIST processors id             ID              #IMPLIED>
+<!ATTLIST processors config         %ClassName;     #IMPLIED>
+
+
+<!-- The <processor> element describes the a Processor object
+     [org.apache.struts.core.Processor] that is used to manage a
+     request/response event. Each <mapping> element can specify
+     its own Processor object, if needed. The following attributes
+     are defined:
+
+     name            A unique identifier for this <processor> element so that it
+                     can be referenced by an "extends" attribute.
+
+     extends         Name of an <processor> element that is used as a value template
+                     for this element. All attributes from the template are available
+                     to the new element. Any attribute inherited from the template
+                     can be overridden by providing a new value.
+
+     config          Fully qualified class name to use when instantiating
+                     Processor objects. If specified, the object must implement
+                     org.apache.struts.core.Processor.
+                     ["org.apache.struts.core.ProcessorBase"]
+
+     handler         The fully qualified class name of the
+                     RequestHandler subclass to be used with this module.
+                     ["org.apache.struts.core.RequestHandler"]
+
+     bufferSize      The size of the input buffer used when processing
+                     file uploads.
+                     ["4096"]
+
+     contentType     Default content type (and optional character encoding) to
+                     be set on each response. May be overridden by the Action,
+                     server page, or other resource to which the request is forwarded.
+                     ["text/html"]
+
+     forwardPattern  Replacement pattern defining how the "resource" attribute of a
+                     <location> element is mapped to a context-relative URL when
+                     it starts with a slash (and when the appRelative
+                     property is false). This value may consist of any
+                     combination of the following:
+                     - "$M" - Replaced by the module prefix of this module
+                     - "$R" - Replaced by the "resource" attribute of the
+                     selected "location" element
+                     - "$P" - Same as "$R".
+                     - "$$" - Causes a literal dollar sign to be rendered
+                     - "$x" - (Where "x" is any character not defined above)
+                     Silently swallowed, reserved for future use
+                     ["$M$R"]
+
+     locale          Set to "false" if you do not want a Locale object stored in the
+                     user's session.
+                     ["true"]
+
+     maxFileSize     The maximum size (in bytes) of a file to be accepted as a
+                     file upload.  Can be expressed as a number followed by a
+                     "K", "M", or "G", which are interpreted to mean kilobytes,
+                     megabytes, or gigabytes, respectively.
+                     ["250M"]
+
+     memFileSize     The maximum size (in bytes) of a file whose contents will
+                     be retained in memory after uploading. Files larger than
+                     this threshold will be written to some alternative storage
+                     medium, typically a hard disk. Can be expressed as a number
+                     followed by a "K", "M", or "G", which are interpreted to
+                     mean kilobytes, megabytes, or gigabytes, respectively.
+                     ["256K"]
+
+     multipartClass  The fully qualified Java class name of the multipart
+                     request handler class to be used with this module.
+                     ["org.apache.struts.upload.CommonsMultipartRequestHandler"]
+
+     nocache         Set to "true" if you want the controller to add HTTP
+                     headers for defeating caching to every response from
+                     this module.
+                     ["false"]
+
+     pagePattern     Replacement pattern defining how the "page" attribute of
+                     custom tags using it is mapped to a context-relative URL
+                     of the corresponding resource.  This value may consist of
+                     any combination of the following:
+                     - "$M" - Replaced by the module prefix of this module
+                     - "$P" - Replaced by the value of the "page" attribute
+                     - "$$" - Causes a literal dollar sign to be rendered
+                     - "$x" - (Where "x" is any character not defined above)
+                              Silently swallowed, reserved for future use
+                     ["$M$P"]
+
+     tempDir         Temporary working directory to use when processing
+                     file uploads.
+                     [{Directory provided by servlet container}]
+-->
+<!ELEMENT processor     (set-property*)>
+<!ATTLIST processor     id             ID              #IMPLIED>
+<!ATTLIST processor     name           CDATA           #IMPLIED>
+<!ATTLIST processor     extends        CDATA           #IMPLIED>
+<!ATTLIST processor     config         %ClassName;     #IMPLIED>
+<!ATTLIST processor     handler        %ClassName;     #IMPLIED>
+<!ATTLIST processor     bufferSize     %Integer;       #IMPLIED>
+<!ATTLIST processor     contentType    CDATA           #IMPLIED>
+<!ATTLIST processor     forwardPattern CDATA           #IMPLIED>
+<!ATTLIST processor     locale         %Boolean;       #IMPLIED>
+<!ATTLIST processor     maxFileSize    CDATA           #IMPLIED>
+<!ATTLIST processor     memFileSize    CDATA           #IMPLIED>
+<!ATTLIST processor     multipartClass %ClassName;     #IMPLIED>
+<!ATTLIST processor     nocache        %Boolean;       #IMPLIED>
+<!ATTLIST processor     pagePattern    CDATA           #IMPLIED>
+<!ATTLIST processor     tempDir        CDATA           #IMPLIED>
+
+
+<!-- The <mappings> element describes a set of Mapping objects
+     (org.apache.struts.core.Mapping) that are available to process
+     requests. The individual Mappings are configured through nested
+     <mapping> elements. The following attributes are defined:
+
+     config         Fully qualified class name to use when instantiating
+                    Mapping objects. If specified, the object must implement
+                    org.apache.struts.core.Mapping.
+                    ["org.apache.struts.core.MappingBase"]
+-->
+<!ELEMENT mappings (action*)>
+<!ATTLIST mappings id             ID              #IMPLIED>
+<!ATTLIST mappings config         %ClassName;     #IMPLIED>
+
+
+<!-- The <mapping> element describes an Mapping object that is to be used
+     to process a request. The following attributes are defined:
+
+     name            A unique identifier for this exception element so that it
+                     can be referenced by an "extends" attribute. (This is *not*
+                     a reference to a <form> element!)
+
+     extends         Name of an <mapping> element that is used as a value template
+                     for this element. All attributes from the template are available
+                     to the new element. Any attribute inherited from the template
+                     can be overridden by providing a new value.
+
+     config          The fully qualified class name of the Mapping object to use
+                     with this instance. Defaults to the type specified by the
+                     enclosing <mappings> element or to
+                     "org.apache.struts.core.MappingBase" if not specified.
+                     ["org.apache.struts.core.MappingBase"]
+
+     command         Name of a Command to execute in order to process this
+                     request. The Command is passed a StrutsContext object wrapping
+                     the request. If the Command returns "false", the Location
+                     object is processed to complete the response.
+                     (org.apache.struts.action.Action now implements Command
+                     and provides default behavior for backward compatibility.)
+
+     forward         Location indicating some other resource that will process this
+                     request, instead of a FormHandler class specified by "handler".
+                     Exactly one of "command", "forward", or "include" must be
+                     specified.
+
+     include         Location indicating some other resource that will process this
+                     request, instead of a FormHandler class specified by "handler".
+                     Exactly one of "command", "forward", or "include" must be
+                     specified.
+
+     matches         The path to match against the submitted request,
+                     starting with a "/" character, and without the filename extension
+                     if extension mapping is used.
+
+                     NOTE:  Do *not* include a period in your path name,
+                     because it will look like a filename extension and
+                     may cause your Mapping not to found.
+
+    processor        Name of a Processor object to use when handling this request.
+                     If not specified, the "unnamed" processor is used.
+
+    default          Set to "true" if this object should be configured as the
+                     default mapping. If a request does not match another mapping,
+                     it will be passed to the Mapping object with default set to
+                     "true". Only one Mapping can be marked as "default" within a
+                     module.
+                     [false]
+
+     roles           Comma-delimited list of security role names that are allowed
+                     access to this Mapping object.
+
+     parameter       General-purpose configuration parameter that can be used to
+                     pass extra information to the Command object selected by
+                     this mapping.
+
+     attribute       Name of the request-scope or session-scope attribute that
+                     is used to access our FormHandler object, if it is other than
+                     the object's default "form". Optional if "form" is specified,
+                     else not valid.
+
+     form            Name of the form, if any, to use with this mapping.
+
+     scope           The scope ("request" or "session") that is used to
+                     access our FormHandler, if any. Optional if "name" is
+                     specified, else not valid.
+
+     validate        Set to "true" if the validate method of the FormHandler
+                     should be called prior to calling the MappingHandler for this
+                     request, or set to "false" if you do not want the
+                     validate method called.
+                     [true]
+
+     invalid         Name of a local or global Location that should handle the
+                     response if a validation message is generated.
+                     Valid only when "form" is specified.
+                     Required if "form" is specified and the FormHandler returns
+                     validation messages.
+                     Optional if "form" is specified and the
+                     FormHandler does not return validation messages.
+
+     cancel          Name of a local or global Location that should handle the
+                     response if "cancel" is signaled in the request.
+ -->
+<!ELEMENT mapping (icon?, display-name?, description?, set-property*, exception*, location*)>
+<!ATTLIST mapping         id             ID              #IMPLIED>
+<!ATTLIST mapping         name           CDATA           #IMPLIED>
+<!ATTLIST mapping         extends        CDATA           #IMPLIED>
+<!ATTLIST mapping         config         %ClassName;     #IMPLIED>
+<!ATTLIST mapping         command        CDATA           #IMPLIED>
+<!ATTLIST mapping         forward        %RequestPath;   #IMPLIED>
+<!ATTLIST mapping         include        %RequestPath;   #IMPLIED>
+<!ATTLIST mapping         matches        %RequestPath;   #REQUIRED>
+<!ATTLIST mapping         processor      CDATA           #IMPLIED>
+<!ATTLIST mapping         default        %Boolean;       #IMPLIED>
+<!ATTLIST mapping         roles          CDATA           #IMPLIED>
+<!ATTLIST mapping         parameter      CDATA           #IMPLIED>
+<!ATTLIST mapping         attribute      %PropName;      #IMPLIED>
+<!ATTLIST mapping         form           CDATA;          #IMPLIED>
+<!ATTLIST mapping         scope          %Scope;         #IMPLIED>
+<!ATTLIST mapping         validate       %Boolean;       #IMPLIED>
+<!ATTLIST mapping         invalid        CDATA           #IMPLIED>
+<!ATTLIST mapping         cancel         CDATA           #IMPLIED>
+
+
+<!-- The <bundles> element describes a set of Bundle objects
+     (org.apache.struts.core.Bundle) that are available to provide
+     message bundles. The individual Bundles are configured through nested
+     <bundle> elements. The following attributes are defined:
+
+     config         Fully qualified class name to use when instantiating
+                    Bundle objects. If specified, the object must implement
+                    org.apache.struts.core.MessageBundle.
+                    ["org.apache.struts.core.MessageBundleBase"]
+-->
+<!ELEMENT bundles (processor*)>
+<!ATTLIST bundles id             ID              #IMPLIED>
+<!ATTLIST bundles config         %ClassName;     #IMPLIED>
+
+
+<!-- The <bundle> element describes a MessageBundle object with
+     message templates for this module. The following attributes are defined:
+
+     name            A unique identifier for this bundle element so that it
+                     can be referenced by an "extends" attribute.
+
+     extends         Name of an <bundle> element that is used as a value template
+                     for this element. All attributes from the template are available
+                     to the new element. Any attribute inherited from the template
+                     can be overridden by providing a new value.
+
+     config          The fully qualified class name of the MessageBundle object to use
+                     with this instance. Defaults to the type specified by the
+                     enclosing <bundles> element or to
+                     "org.apache.struts.core.MessageBundleBase" if not specified.
+                     ["org.apache.struts.core.MappingBase"]
+
+     factory         Fully qualified Java class name of the
+                     MessageBundleFactory subclass to use for this message
+                     bundle object.
+                     ["org.apache.struts.util.PropertyMessageBundleFactory"]
+
+     key             Servlet context attribute under which this message
+                     bundle will be stored. The default attribute is
+                     the value specified by the string constant at
+                     [Keys.BUNDLE_KEY]. The application module prefix (if
+                     any) is appended to the key (${key}${prefix}).
+                     [org.apache.struts.core.Keys.BUNDLE_KEY]
+
+                     NOTE: The application module prefix includes the leading
+                     slash, so the default message resource bundle for a module
+                     named "foo" is stored under
+                     "org.apache.struts.core.BUNDLE/foo".
+
+     null            Set to "true" if you want this message bundle to return a
+                     null string for unknown message keys, or "false" to return a
+                     message with the bad key value.
+
+     parameter       Configuration parameter to be passed to the createBundle
+                     method of our factory object.
+-->
+<!ELEMENT bundle (set-property*)>
+<!ATTLIST bundle id          ID              #IMPLIED>
+<!ATTLIST bundle handler     %ClassName;     #IMPLIED>
+<!ATTLIST bundle factory     %ClassName;     #IMPLIED>
+<!ATTLIST bundle key         %AttributeName; #IMPLIED>
+<!ATTLIST bundle null        %Boolean;       #IMPLIED>
+<!ATTLIST bundle parameter   CDATA           #REQUIRED>
+
+
+<!-- The "plug-in" element specifies the fully qualified class name of a
+     general-purpose application plug-in module that receives notification of
+     application startup and shutdown events. An instance of the specified class
+     is created for each element, and can be configured with nested <set-property>
+     elements. The following attributes are supported:
+
+     handler         Fully qualified Java class name of the plug-in class; must
+                     implement [org.apache.struts.action.PlugIn].
+-->
+<!ELEMENT plug-in           (set-property*)>
+<!ATTLIST plug-in           id          ID              #IMPLIED>
+<!ATTLIST plug-in           handler     %ClassName;     #REQUIRED>
+
+
+<!-- ========== Subordinate Elements ====================================== -->
+
+
+<!-- The "description" element contains descriptive (paragraph length) text
+     about the surrounding element, suitable for use in GUI tools.
+-->
+<!ELEMENT description    (#PCDATA)>
+<!ATTLIST description    id             ID              #IMPLIED>
+
+
+<!-- The "display-name" element contains a short (one line) description of
+     the surrounding element, suitable for use in GUI tools.
+-->
+<!ELEMENT display-name (#PCDATA)>
+<!ATTLIST display-name   id             ID              #IMPLIED>
+
+
+<!-- The "icon" element contains a small-icon and large-icon element which
+     specify the location, relative to the Struts configuration file, for small
+     and large images used to represent the surrounding element in GUI tools.
+-->
+<!ELEMENT icon           (small-icon?, large-icon?)>
+<!ATTLIST icon           id             ID              #IMPLIED>
+
+
+<!-- The "large-icon" element specifies the location, relative to the Struts
+     configuration file, of a resource containing a large (32x32 pixel)
+     icon image.
+-->
+<!ELEMENT large-icon     (%Location;)>
+<!ATTLIST large-icon     id             ID              #IMPLIED>
+
+
+<!-- The "set-property" element specifies the method name and initial value of
+     an additional JavaBean configuration property. When the object representing
+     the surrounding element is instantiated, the accessor for the indicated
+     property is called and passed the indicated value. The "set-property"
+     element is especially useful when a custom subclass is used with
+     <data-source>, <forward>, <action>, or <plug-in> elements. The subclass
+     can be passed whatever other properties may be required to configure the
+     object without changing how the struts-config is parsed.
+
+     property        Name of the JavaBeans property whose setter method
+                     will be called.
+
+     value           String representation of the value to which this
+                     property will be set, after suitable type conversion
+-->
+<!ELEMENT set-property   EMPTY>
+<!ATTLIST set-property   id             ID              #IMPLIED>
+<!ATTLIST set-property   property       %PropName;      #REQUIRED>
+<!ATTLIST set-property   value          CDATA           #REQUIRED>
+
+
+<!-- The "small-icon" element specifies the location, relative to the Struts
+     configuration file, of a resource containing a small (16x16 pixel)
+     icon image.
+-->
+<!ELEMENT small-icon     (%Location;)>
+<!ATTLIST small-icon     id             ID              #IMPLIED>
+
