@@ -2291,6 +2291,19 @@
           object, if there is one.</p>
           </info>
 
+	  <attribute>
+            <name>lang</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                 Renders a lang attribute with the locale stored in the user's session.  If not 
+                 found in the session, the language from the <code>Accept-Language</code>
+                 HTTP header is used.  If still not found, the default language for the server 
+                 is used.
+            </info>
+			<since>Struts 1.2</since>
+        </attribute>
+
           <attribute>
             <name>locale</name>
             <required>false</required>
@@ -2302,6 +2315,10 @@
               if one does not already exist.  The lang attribute is rendered with the
               appropriate language code.</p>
             </info>
+            <deprecated>
+                Creating a session is undesirable for apps that don't support them.  Use the lang
+                attribute to acheive the same functionality without creating a session.
+            </deprecated>
           </attribute>
 
           <attribute>

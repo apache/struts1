@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.13 2003/07/10 04:10:05 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2003/07/10 04:10:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.14 2003/07/11 04:22:15 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/07/11 04:22:15 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.13 $ $Date: 2003/07/10 04:10:05 $
+ * @version $Revision: 1.14 $ $Date: 2003/07/11 04:22:15 $
  */
 public class HtmlTag extends TagSupport {
   
@@ -97,34 +97,58 @@ public class HtmlTag extends TagSupport {
 
     /**
      * Should we set the current Locale for this user if needed?
+     * @deprecated This will be removed after Struts 1.2.
      */
     protected boolean locale = false;
 
+    /**
+     * @deprecated This will be removed after Struts 1.2.
+     */
     public boolean getLocale() {
         return (locale);
     }
 
+    /**
+     * @deprecated This will be removed after Struts 1.2.
+     */
     public void setLocale(boolean locale) {
         this.locale = locale;
     }
-
 
     /**
      * Are we rendering an xhtml page?
      */
     protected boolean xhtml = false;
+    
+    /**
+     * Are we rendering a lang attribute?
+     * @since Struts 1.2
+     */
+    protected boolean lang = false;
 
     public boolean getXhtml() {
-        return (xhtml);
+        return this.xhtml;
     }
 
     public void setXhtml(boolean xhtml) {
         this.xhtml = xhtml;
     }
+    
+    /**
+     * Returns true if the tag should render a lang attribute.
+     * @since Struts 1.2
+     */
+    public boolean getLang() {
+        return this.lang;
+    }
 
-
-    // --------------------------------------------------------- Public Methods
-
+    /**
+     * Sets whether the tag should render a lang attribute.
+     * @since Struts 1.2
+     */
+    public void setLang(boolean lang) {
+        this.lang = lang;
+    }
 
     /**
      * Process the start of this tag.
@@ -146,29 +170,38 @@ public class HtmlTag extends TagSupport {
         StringBuffer sb = new StringBuffer("<html");
 
         // Use the current Locale to set our language preferences
-        Locale currentLocale = this.getCurrentLocale();
-        String lang = currentLocale.getLanguage();
+        String language = null;
+        if (this.locale) {
+            // provided for 1.1 backward compatibility, remove after 1.2
+            language = this.getCurrentLocale().getLanguage();
+        } else {
+            language =
+                RequestUtils
+                    .retrieveUserLocale(pageContext, Globals.LOCALE_KEY)
+                    .getLanguage();
+        }
 
         // Does the locale have a language?
-        boolean validLanguage = ((lang != null) && (lang.length() > 0));
+        boolean validLanguage = ((language != null) && (language.length() > 0));
 
         if (this.xhtml) {
             this.pageContext.setAttribute(
                 Globals.XHTML_KEY,
                 "true",
                 PageContext.PAGE_SCOPE);
+                
             sb.append(" xmlns=\"http://www.w3.org/1999/xhtml\"");
         }
 
-        if ((this.locale || this.xhtml) && validLanguage) {
+        if ((this.lang || this.locale || this.xhtml) && validLanguage) {
             sb.append(" lang=\"");
-            sb.append(lang);
+            sb.append(language);
             sb.append("\"");
         }
 
         if (this.xhtml && validLanguage) {
             sb.append(" xml:lang=\"");
-            sb.append(lang);
+            sb.append(language);
             sb.append("\"");
         }
 
@@ -196,10 +229,9 @@ public class HtmlTag extends TagSupport {
      * Release any acquired resources.
      */
     public void release() {
-
-        locale = false;
-        xhtml = false;
-
+        this.locale = false;
+        this.xhtml = false;
+        this.lang=false;
     }
 
 
@@ -212,6 +244,7 @@ public class HtmlTag extends TagSupport {
      * client's Accept-Language header or the server's default locale and store it in the 
      * session.  This will always return a Locale and never null.
      * @since Struts 1.1
+     * @deprecated This will be removed after Struts 1.2.
      */
     protected Locale getCurrentLocale() {
 
@@ -225,5 +258,7 @@ public class HtmlTag extends TagSupport {
 
         return userLocale;
     }
+
+
 
 }
