@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.14 2003/02/18 04:01:07 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2003/02/18 04:01:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.15 2003/07/10 02:59:06 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/07/10 02:59:06 $
  *
  * ====================================================================
  *
@@ -59,15 +59,15 @@
  *
  */
 
-
 package org.apache.struts.actions;
-
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
@@ -75,7 +75,6 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.MessageResources;
-
 
 /**
  * <p>An abstract <strong>Action</strong> that dispatches to a public
@@ -126,9 +125,8 @@ import org.apache.struts.util.MessageResources;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.14 $ $Date: 2003/02/18 04:01:07 $
+ * @version $Revision: 1.15 $ $Date: 2003/07/10 02:59:06 $
  */
-
 public abstract class DispatchAction extends Action {
 
 
@@ -168,9 +166,12 @@ public abstract class DispatchAction extends Action {
      * The set of argument type classes for the reflected method call.  These
      * are the same for all calls, so calculate them only once.
      */
-    protected Class types[] = {
-        ActionMapping.class, ActionForm.class,
-        HttpServletRequest.class, HttpServletResponse.class };
+    protected Class[] types =
+        {
+            ActionMapping.class,
+            ActionForm.class,
+            HttpServletRequest.class,
+            HttpServletResponse.class };
 
 
 
