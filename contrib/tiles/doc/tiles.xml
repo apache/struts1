@@ -201,6 +201,38 @@
       </info>
     </attribute>
 
+    <attribute>
+      <name>controllerUrl</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      Url of a controller called immediately before page is inserted.<br></br> 
+	  Url usually denote a Struts action. Controller (action) is used to prepare data
+	  to be render by inserted Tile.
+	  <br></br>
+	  See also controlerClass
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>controllerClass</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      Class type of a controller called immediately before page is inserted.<br></br> 
+	  Controller is used to prepare data to be render by inserted Tile.
+	  <br></br>
+	  See also controlerUrl
+	  <br></br>
+	  Class must implements or extends one of the following :
+	  <ul>
+	    <li>org.apache.struts.tiles.Controller</li>
+	    <li>org.apache.struts.tiles.ControllerSupport</li>
+	    <li>org.apache.struts.action.Action (wrapper org.apache.struts.action.ActionController is used)</li>
+	  </ul>
+      </info>
+    </attribute>
+
   </tag>
 
   <tag>
