@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.25 2003/08/23 00:22:12 dgraham Exp $
- * $Revision: 1.25 $
- * $Date: 2003/08/23 00:22:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.26 2003/09/09 03:44:42 rleland Exp $
+ * $Revision: 1.26 $
+ * $Date: 2003/09/09 03:44:42 $
  *
  * ====================================================================
  *
@@ -101,7 +101,7 @@ import org.apache.struts.util.RequestUtils;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.25 $
+ * @version $Revision: 1.26 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -121,7 +121,7 @@ public class TagUtils {
      * TODO We need to move the relevant messages out of this properties file.
      */
     private static final MessageResources messages =
-        MessageResources.getMessageResources("org.apache.struts.taglib.LocalStrings");
+            MessageResources.getMessageResources("org.apache.struts.taglib.LocalStrings");
 
     /**
      * Java 1.4 encode method to use instead of deprecated 1.3 version.
@@ -139,15 +139,15 @@ public class TagUtils {
      * Java 1.4 method if available.
      */
     static {
-        
+
         try {
             // get version of encode method with two String args 
-            Class[] args = new Class[] { String.class, String.class };
+            Class[] args = new Class[]{String.class, String.class};
             encode = URLEncoder.class.getMethod("encode", args);
         } catch (NoSuchMethodException e) {
             log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
         }
-        
+
         scopes.put("page", new Integer(PageContext.PAGE_SCOPE));
         scopes.put("request", new Integer(PageContext.REQUEST_SCOPE));
         scopes.put("session", new Integer(PageContext.SESSION_SCOPE));
@@ -167,7 +167,7 @@ public class TagUtils {
     public static TagUtils getInstance() {
         return instance;
     }
-    
+
     /**
      * Compute a set of query parameters that will be dynamically added to
      * a generated URL.  The returned Map is keyed by parameter name, and the
@@ -199,16 +199,16 @@ public class TagUtils {
      *  looked-up bean or property
      */
     public Map computeParameters(
-        PageContext pageContext,
-        String paramId,
-        String paramName,
-        String paramProperty,
-        String paramScope,
-        String name,
-        String property,
-        String scope,
-        boolean transaction)
-        throws JspException {
+            PageContext pageContext,
+            String paramId,
+            String paramName,
+            String paramProperty,
+            String paramScope,
+            String name,
+            String property,
+            String scope,
+            boolean transaction)
+            throws JspException {
 
         // Short circuit if no parameters are specified
         if ((paramId == null) && (name == null) && !transaction) {
@@ -220,17 +220,17 @@ public class TagUtils {
         try {
             if (name != null) {
                 map =
-                    (Map) TagUtils.getInstance().lookup(
-                        pageContext,
-                        name,
-                        property,
-                        scope);
+                        (Map) TagUtils.getInstance().lookup(
+                                pageContext,
+                                name,
+                                property,
+                                scope);
             }
         } catch (ClassCastException e) {
             saveException(pageContext, e);
             throw new JspException(
-                messages.getMessage("parameters.multi", name, property, scope));
-                
+                    messages.getMessage("parameters.multi", name, property, scope));
+
         } catch (JspException e) {
             saveException(pageContext, e);
             throw e;
@@ -250,12 +250,12 @@ public class TagUtils {
             Object paramValue = null;
             try {
                 paramValue =
-                    TagUtils.getInstance().lookup(
-                        pageContext,
-                        paramName,
-                        paramProperty,
-                        paramScope);
-                        
+                        TagUtils.getInstance().lookup(
+                                pageContext,
+                                paramName,
+                                paramProperty,
+                                paramScope);
+
             } catch (JspException e) {
                 saveException(pageContext, e);
                 throw e;
@@ -273,13 +273,13 @@ public class TagUtils {
                 Object mapValue = results.get(paramId);
                 if (mapValue == null) {
                     results.put(paramId, paramString);
-                    
+
                 } else if (mapValue instanceof String) {
                     String newValues[] = new String[2];
                     newValues[0] = (String) mapValue;
                     newValues[1] = paramString;
                     results.put(paramId, newValues);
-                    
+
                 } else {
                     String oldValues[] = (String[]) mapValue;
                     String newValues[] = new String[oldValues.length + 1];
@@ -299,7 +299,7 @@ public class TagUtils {
             if (session != null) {
                 token = (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
             }
-            
+
             if (token != null) {
                 results.put(Constants.TOKEN_KEY, token);
             }
@@ -309,6 +309,7 @@ public class TagUtils {
         return (results);
 
     }
+
     /**
      * Compute a hyperlink URL based on the <code>forward</code>,
      * <code>href</code>, <code>action</code> or <code>page</code> parameter
@@ -335,26 +336,26 @@ public class TagUtils {
      *  for the specified parameters
      */
     public String computeURL(
-        PageContext pageContext,
-        String forward,
-        String href,
-        String page,
-        String action,
-        Map params,
-        String anchor,
-        boolean redirect)
-        throws MalformedURLException {
+            PageContext pageContext,
+            String forward,
+            String href,
+            String page,
+            String action,
+            Map params,
+            String anchor,
+            boolean redirect)
+            throws MalformedURLException {
 
         return computeURL(
-            pageContext,
-            forward,
-            href,
-            page,
-            action,
-            params,
-            anchor,
-            redirect,
-            true);
+                pageContext,
+                forward,
+                href,
+                page,
+                action,
+                params,
+                anchor,
+                redirect,
+                true);
     }
 
     /**
@@ -386,16 +387,16 @@ public class TagUtils {
      *  for the specified parameters
      */
     public String computeURL(
-        PageContext pageContext,
-        String forward,
-        String href,
-        String page,
-        String action,
-        Map params,
-        String anchor,
-        boolean redirect,
-        boolean encodeSeparator)
-        throws MalformedURLException {
+            PageContext pageContext,
+            String forward,
+            String href,
+            String page,
+            String action,
+            Map params,
+            String anchor,
+            boolean redirect,
+            boolean encodeSeparator)
+            throws MalformedURLException {
 
         // TODO All the computeURL() methods need refactoring!
 
@@ -550,11 +551,11 @@ public class TagUtils {
                 return (response.encodeURL(url.toString()));
             }
         } else {
-             return (url.toString());
-         }
+            return (url.toString());
+        }
 
     }
-    
+
     /**
      * Use the new URLEncoder.encode() method from Java 1.4 if available, else
      * use the old deprecated version.  This method uses reflection to find the 
@@ -567,7 +568,7 @@ public class TagUtils {
 
             // encode url with new 1.4 method and UTF-8 encoding
             if (encode != null) {
-                return (String) encode.invoke(null, new Object[] { url, "UTF-8" });
+                return (String) encode.invoke(null, new Object[]{url, "UTF-8"});
             }
 
         } catch (IllegalAccessException e) {
@@ -578,7 +579,7 @@ public class TagUtils {
 
         return URLEncoder.encode(url);
     }
-    
+
     /**
      * Filter the specified string for characters that are senstive to
      * HTML interpreters, returning the string with these characters replaced
@@ -595,29 +596,29 @@ public class TagUtils {
         char content[] = new char[value.length()];
         value.getChars(0, value.length(), content, 0);
         StringBuffer result = new StringBuffer(content.length + 50);
-        
+
         for (int i = 0; i < content.length; i++) {
             switch (content[i]) {
-            case '<':
-                result.append("&lt;");
-                break;
-            case '>':
-                result.append("&gt;");
-                break;
-            case '&':
-                result.append("&amp;");
-                break;
-            case '"':
-                result.append("&quot;");
-                break;
-            case '\'':
-                result.append("&#39;");
-                break;
-            default:
-                result.append(content[i]);
+                case '<':
+                    result.append("&lt;");
+                    break;
+                case '>':
+                    result.append("&gt;");
+                    break;
+                case '&':
+                    result.append("&amp;");
+                    break;
+                case '"':
+                    result.append("&quot;");
+                    break;
+                case '\'':
+                    result.append("&#39;");
+                    break;
+                default:
+                    result.append(content[i]);
             }
         }
-        
+
         return result.toString();
     }
 
@@ -633,7 +634,7 @@ public class TagUtils {
      * after Struts 1.2.
      */
     public ActionErrors getActionErrors(PageContext pageContext, String paramName)
-        throws JspException {
+            throws JspException {
 
         ActionErrors errors = new ActionErrors();
 
@@ -645,15 +646,15 @@ public class TagUtils {
 
             } else if (value instanceof String) {
                 errors.add(
-                    ActionMessages.GLOBAL_MESSAGE,
-                    new ActionMessage((String) value));
+                        ActionMessages.GLOBAL_MESSAGE,
+                        new ActionMessage((String) value));
 
             } else if (value instanceof String[]) {
                 String keys[] = (String[]) value;
                 for (int i = 0; i < keys.length; i++) {
                     errors.add(
-                        ActionMessages.GLOBAL_MESSAGE,
-                        new ActionMessage(keys[i]));
+                            ActionMessages.GLOBAL_MESSAGE,
+                            new ActionMessage(keys[i]));
                 }
 
             } else if (value instanceof ActionErrors) {
@@ -661,21 +662,21 @@ public class TagUtils {
 
             } else {
                 throw new JspException(
-                    messages.getMessage(
-                        "actionErrors.errors",
-                        value.getClass().getName()));
+                        messages.getMessage(
+                                "actionErrors.errors",
+                                value.getClass().getName()));
             }
 
         } catch (JspException e) {
             throw e;
-            
+
         } catch (Exception e) {
             log.debug(e, e);
         }
 
         return errors;
     }
-    
+
     /**
      * Return the form action converted into an action mapping path.  The
      * value of the <code>action</code> property is manipulated as follows in
@@ -694,13 +695,13 @@ public class TagUtils {
         if (question >= 0) {
             value = value.substring(0, question);
         }
-        
+
         int slash = value.lastIndexOf("/");
         int period = value.lastIndexOf(".");
         if ((period >= 0) && (period > slash)) {
             value = value.substring(0, period);
         }
-        
+
         return value.startsWith("/") ? value : ("/" + value);
     }
 
@@ -712,19 +713,19 @@ public class TagUtils {
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         StringBuffer value = new StringBuffer(request.getContextPath());
         ModuleConfig config = ModuleUtils.getInstance().getModuleConfig(request);
-        
+
         if (config != null) {
             value.append(config.getPrefix());
         }
 
         // Use our servlet mapping, if one is specified
         String servletMapping =
-            (String) pageContext.getAttribute(
-                Globals.SERVLET_KEY,
-                PageContext.APPLICATION_SCOPE);
+                (String) pageContext.getAttribute(
+                        Globals.SERVLET_KEY,
+                        PageContext.APPLICATION_SCOPE);
 
         if (servletMapping != null) {
-            
+
             String queryString = null;
             int question = action.indexOf("?");
             if (question >= 0) {
@@ -738,7 +739,7 @@ public class TagUtils {
 
             } else if (servletMapping.endsWith("/*")) {
                 value.append(
-                    servletMapping.substring(0, servletMapping.length() - 2));
+                        servletMapping.substring(0, servletMapping.length() - 2));
                 value.append(actionMapping);
 
             } else if (servletMapping.equals("/")) {
@@ -760,7 +761,7 @@ public class TagUtils {
 
         return value.toString();
     }
-    
+
     /**
      * Retrieves the value from request scope and if it isn't already an 
      * <code>ActionMessages</code>, some classes are converted to one.
@@ -771,9 +772,9 @@ public class TagUtils {
      * @throws JspException
      */
     public ActionMessages getActionMessages(
-        PageContext pageContext,
-        String paramName)
-        throws JspException {
+            PageContext pageContext,
+            String paramName)
+            throws JspException {
 
         ActionMessages am = new ActionMessages();
 
@@ -784,34 +785,34 @@ public class TagUtils {
                 ;
             } else if (value instanceof String) {
                 am.add(
-                    ActionMessages.GLOBAL_MESSAGE,
-                    new ActionMessage((String) value));
-                
+                        ActionMessages.GLOBAL_MESSAGE,
+                        new ActionMessage((String) value));
+
             } else if (value instanceof String[]) {
                 String keys[] = (String[]) value;
-                for (int i = 0; i < keys.length; i++){
+                for (int i = 0; i < keys.length; i++) {
                     am.add(
-                        ActionMessages.GLOBAL_MESSAGE,
-                        new ActionMessage(keys[i]));
+                            ActionMessages.GLOBAL_MESSAGE,
+                            new ActionMessage(keys[i]));
                 }
-                 
+
             } else if (value instanceof ActionErrors) {
                 ActionMessages m = (ActionMessages) value;
                 am.add(m);
-                
+
             } else if (value instanceof ActionMessages) {
                 am = (ActionMessages) value;
-                
+
             } else {
                 throw new JspException(
-                    messages.getMessage(
-                        "actionMessages.errors",
-                        value.getClass().getName()));
+                        messages.getMessage(
+                                "actionMessages.errors",
+                                value.getClass().getName()));
             }
-            
+
         } catch (JspException e) {
             throw e;
-            
+
         } catch (Exception e) {
             ;
         }
@@ -826,8 +827,8 @@ public class TagUtils {
      */
     public ModuleConfig getModuleConfig(PageContext pageContext) {
         return ModuleUtils.getInstance().getModuleConfig(
-            (HttpServletRequest) pageContext.getRequest(),
-            pageContext.getServletContext());
+                (HttpServletRequest) pageContext.getRequest(),
+                pageContext.getServletContext());
     }
 
     /**
@@ -857,18 +858,18 @@ public class TagUtils {
      */
     public Locale getUserLocale(PageContext pageContext, String locale) {
         return RequestUtils.getUserLocale(
-            (HttpServletRequest) pageContext.getRequest(),
-            locale);
+                (HttpServletRequest) pageContext.getRequest(),
+                locale);
     }
-    
+
     /**
      * Returns true if the custom tags are in XHTML mode.
      */
     public boolean isXhtml(PageContext pageContext) {
         String xhtml =
-            (String) pageContext.getAttribute(
-                Globals.XHTML_KEY,
-                PageContext.PAGE_SCOPE);
+                (String) pageContext.getAttribute(
+                        Globals.XHTML_KEY,
+                        PageContext.PAGE_SCOPE);
 
         return "true".equalsIgnoreCase(xhtml);
     }
@@ -888,7 +889,7 @@ public class TagUtils {
      *  is requested
      */
     public Object lookup(PageContext pageContext, String name, String scopeName)
-        throws JspException {
+            throws JspException {
 
         if (scopeName == null) {
             return pageContext.findAttribute(name);
@@ -903,6 +904,7 @@ public class TagUtils {
         }
 
     }
+
     /**
      * Locate and return the specified property of the specified bean, from
      * an optionally specified scope, in the specified page context.  If an
@@ -925,11 +927,11 @@ public class TagUtils {
      *  InvocationTargetException, or NoSuchMethodException
      */
     public Object lookup(
-        PageContext pageContext,
-        String name,
-        String property,
-        String scope)
-        throws JspException {
+            PageContext pageContext,
+            String name,
+            String property,
+            String scope)
+            throws JspException {
 
         // Look up the requested bean, and return if requested
         Object bean = lookup(pageContext, name, scope);
@@ -939,8 +941,8 @@ public class TagUtils {
                 e = new JspException(messages.getMessage("lookup.bean.any", name));
             } else {
                 e =
-                    new JspException(
-                        messages.getMessage("lookup.bean", name, scope));
+                        new JspException(
+                                messages.getMessage("lookup.bean", name, scope));
             }
             saveException(pageContext, e);
             throw e;
@@ -957,7 +959,7 @@ public class TagUtils {
         } catch (IllegalAccessException e) {
             saveException(pageContext, e);
             throw new JspException(
-                messages.getMessage("lookup.access", property, name));
+                    messages.getMessage("lookup.access", property, name));
 
         } catch (InvocationTargetException e) {
             Throwable t = e.getTargetException();
@@ -966,16 +968,16 @@ public class TagUtils {
             }
             saveException(pageContext, t);
             throw new JspException(
-                messages.getMessage("lookup.target", property, name));
+                    messages.getMessage("lookup.target", property, name));
 
         } catch (NoSuchMethodException e) {
             saveException(pageContext, e);
             throw new JspException(
-                messages.getMessage("lookup.method", property, name));
+                    messages.getMessage("lookup.method", property, name));
         }
 
     }
-    
+
     /**
      * Look up and return a message string, based on the specified parameters.
      *
@@ -990,16 +992,16 @@ public class TagUtils {
      *  saved in the request already)
      */
     public String message(
-        PageContext pageContext,
-        String bundle,
-        String locale,
-        String key)
-        throws JspException {
+            PageContext pageContext,
+            String bundle,
+            String locale,
+            String key)
+            throws JspException {
 
         return message(pageContext, bundle, locale, key, null);
 
     }
-    
+
     /**
      * Look up and return a message string, based on the specified parameters.
      *
@@ -1014,26 +1016,30 @@ public class TagUtils {
      *  saved in the request already)
      */
     public String message(
-        PageContext pageContext,
-        String bundle,
-        String locale,
-        String key,
-        Object args[])
-        throws JspException {
+            PageContext pageContext,
+            String bundle,
+            String locale,
+            String key,
+            Object args[])
+            throws JspException {
 
         MessageResources resources =
-            retrieveMessageResources(pageContext, bundle, false);
+                retrieveMessageResources(pageContext, bundle, false);
 
         Locale userLocale = getUserLocale(pageContext, locale);
-        
+        String message = null;
         if (args == null) {
-            return resources.getMessage(userLocale, key);
+            message = resources.getMessage(userLocale, key);
         } else {
-            return resources.getMessage(userLocale, key, args);
+            message = resources.getMessage(userLocale, key, args);
         }
-
+        if ((message == null) && log.isDebugEnabled()) {
+            // log missing key to ease debugging
+            log.debug(resources.getMessage("message.resources", key, bundle, locale));
+        }
+        return message;
     }
-    
+
     /**
      * <p>Return the context-relative URL that corresponds to the specified
      * <code>page</code> attribute value, calculated based on the
@@ -1051,24 +1057,24 @@ public class TagUtils {
         StringBuffer sb = new StringBuffer();
         ModuleConfig moduleConfig = ModuleUtils.getInstance().getModuleConfig(request);
         String pagePattern = moduleConfig.getControllerConfig().getPagePattern();
-        
+
         if (pagePattern == null) {
             sb.append(moduleConfig.getPrefix());
             sb.append(page);
-            
+
         } else {
             boolean dollar = false;
             for (int i = 0; i < pagePattern.length(); i++) {
                 char ch = pagePattern.charAt(i);
                 if (dollar) {
                     switch (ch) {
-                        case 'M' :
+                        case 'M':
                             sb.append(moduleConfig.getPrefix());
                             break;
-                        case 'P' :
+                        case 'P':
                             sb.append(page);
                             break;
-                        case '$' :
+                        case '$':
                             sb.append('$');
                             break;
                         default :
@@ -1076,19 +1082,19 @@ public class TagUtils {
                     }
                     dollar = false;
                     continue;
-                    
+
                 } else if (ch == '$') {
                     dollar = true;
-                    
+
                 } else {
                     sb.append(ch);
                 }
             }
         }
-        
+
         return sb.toString();
     }
-    
+
     /**
      * Return true if a message string for the specified message key
      * is present for the specified Locale.
@@ -1103,20 +1109,20 @@ public class TagUtils {
      *  saved in the request already)
      */
     public boolean present(
-        PageContext pageContext,
-        String bundle,
-        String locale,
-        String key)
-        throws JspException {
+            PageContext pageContext,
+            String bundle,
+            String locale,
+            String key)
+            throws JspException {
 
         MessageResources resources =
-            retrieveMessageResources(pageContext, bundle, true);
+                retrieveMessageResources(pageContext, bundle, true);
 
         Locale userLocale = getUserLocale(pageContext, locale);
 
         return resources.isPresent(userLocale, key);
     }
-    
+
     /**
      * Returns the appropriate MessageResources object for the current module and 
      * the given bundle.
@@ -1128,11 +1134,11 @@ public class TagUtils {
      * @throws JspException if the MessageResources object could not be found.
      */
     private MessageResources retrieveMessageResources(
-        PageContext pageContext,
-        String bundle,
-        boolean checkPageScope)
-        throws JspException {
-            
+            PageContext pageContext,
+            String bundle,
+            boolean checkPageScope)
+            throws JspException {
+
         MessageResources resources = null;
 
         if (bundle == null) {
@@ -1141,29 +1147,29 @@ public class TagUtils {
 
         if (checkPageScope) {
             resources =
-                (MessageResources) pageContext.getAttribute(
-                    bundle,
-                    PageContext.PAGE_SCOPE);
+                    (MessageResources) pageContext.getAttribute(
+                            bundle,
+                            PageContext.PAGE_SCOPE);
         }
 
         if (resources == null) {
             resources =
-                (MessageResources) pageContext.getAttribute(
-                    bundle,
-                    PageContext.REQUEST_SCOPE);
+                    (MessageResources) pageContext.getAttribute(
+                            bundle,
+                            PageContext.REQUEST_SCOPE);
         }
 
         if (resources == null) {
             ModuleConfig config = getModuleConfig(pageContext);
             resources =
-                (MessageResources) pageContext.getAttribute(
-                    bundle + config.getPrefix(),
-                    PageContext.APPLICATION_SCOPE);
+                    (MessageResources) pageContext.getAttribute(
+                            bundle + config.getPrefix(),
+                            PageContext.APPLICATION_SCOPE);
         }
 
         if (resources == null) {
             JspException e =
-                new JspException(messages.getMessage("message.bundle", bundle));
+                    new JspException(messages.getMessage("message.bundle", bundle));
             saveException(pageContext, e);
             throw e;
         }
@@ -1180,12 +1186,12 @@ public class TagUtils {
     public void saveException(PageContext pageContext, Throwable exception) {
 
         pageContext.setAttribute(
-            Globals.EXCEPTION_KEY,
-            exception,
-            PageContext.REQUEST_SCOPE);
+                Globals.EXCEPTION_KEY,
+                exception,
+                PageContext.REQUEST_SCOPE);
 
     }
-    
+
     /**
      * Write the specified text as the response to the writer associated with
      * this page.  <strong>WARNING</strong> - If you are writing body content
@@ -1199,17 +1205,17 @@ public class TagUtils {
      * @exception JspException if an input/output error occurs (already saved)
      */
     public void write(PageContext pageContext, String text)
-        throws JspException {
+            throws JspException {
 
         JspWriter writer = pageContext.getOut();
-        
+
         try {
             writer.print(text);
-            
+
         } catch (IOException e) {
             TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException
-                (messages.getMessage("write.io", e.toString()));
+                    (messages.getMessage("write.io", e.toString()));
         }
 
     }
@@ -1225,20 +1231,20 @@ public class TagUtils {
      * @exception JspException if an input/output error occurs (already saved)
      */
     public void writePrevious(PageContext pageContext, String text)
-        throws JspException {
+            throws JspException {
 
         JspWriter writer = pageContext.getOut();
-        if (writer instanceof BodyContent){
+        if (writer instanceof BodyContent) {
             writer = ((BodyContent) writer).getEnclosingWriter();
         }
-        
+
         try {
             writer.print(text);
-            
+
         } catch (IOException e) {
             TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException
-                (messages.getMessage("write.io", e.toString()));
+                    (messages.getMessage("write.io", e.toString()));
         }
 
     }
