@@ -1,8 +1,8 @@
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.56 2003/02/25 04:58:29 dgraham Exp $
- * $Revision: 1.56 $
- * $Date: 2003/02/25 04:58:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.57 2003/03/13 01:55:09 dgraham Exp $
+ * $Revision: 1.57 $
+ * $Date: 2003/03/13 01:55:09 $
  *
  * ====================================================================
  *
@@ -115,9 +115,8 @@ import org.apache.struts.util.RequestUtils;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.56 $ $Date: 2003/02/25 04:58:29 $
+ * @version $Revision: 1.57 $ $Date: 2003/03/13 01:55:09 $
  */
-
 public class Action {
 
 
@@ -134,7 +133,7 @@ public class Action {
     /**
      * The context attributes key under which our <code>ActionServlet</code>
      * instance will be stored.
-     *
+     * @deprecated Use Globals.ACTION_SERVLET_KEY instead.
      * @since Struts 1.1
      */
     public static final String ACTION_SERVLET_KEY = Globals.ACTION_SERVLET_KEY;
@@ -260,12 +259,14 @@ public class Action {
      * <code>MessageResources</code> object for the module selected by
      * the request URI currently being processed will also be exposed under
      * this key as a request attribute.</p>
+     * @deprecated Use Globals.MESSAGES_KEY instead.
      */
     public static final String MESSAGES_KEY = Globals.MESSAGES_KEY;
 
 
     /**
      * The request attributes key under which our multipart class is stored.
+     * @deprecated Use Globals.MULTIPART_KEY instead.
      */
     public static final String MULTIPART_KEY = Globals.MULTIPART_KEY;
 
@@ -287,6 +288,7 @@ public class Action {
      * will be suffixed with the actual module prefix (including the
      * leading "/" character) to form the actual attributes key.</p>
      * @since Struts 1.1
+     * @deprecated Use Globals.REQUEST_PROCESSOR_KEY instead.
      */
     public static final String REQUEST_PROCESSOR_KEY =
         Globals.REQUEST_PROCESSOR_KEY;
@@ -297,6 +299,7 @@ public class Action {
      * for our controller serlet, which will be either a path-mapped pattern
      * (<code>/action/*</code>) or an extension mapped pattern
      * (<code>*.do</code>).
+     * @deprecated Use Globals.SERVLET_KEY instead.
      */
     public static final String SERVLET_KEY = Globals.SERVLET_KEY;
 
@@ -304,6 +307,7 @@ public class Action {
     /**
      * The session attributes key under which our transaction token is
      * stored, if it is used.
+     * @deprecated Use Globals.TRANSACTION_TOKEN_KEY instead.
      */
     public static final String TRANSACTION_TOKEN_KEY =
         Globals.TRANSACTION_TOKEN_KEY;
