@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.144 2003/03/11 05:24:55 dgraham Exp $
- * $Revision: 1.144 $
- * $Date: 2003/03/11 05:24:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.145 2003/04/17 04:03:47 dgraham Exp $
+ * $Revision: 1.145 $
+ * $Date: 2003/04/17 04:03:47 $
  *
  * ====================================================================
  *
@@ -306,7 +306,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.144 $ $Date: 2003/03/11 05:24:55 $
+ * @version $Revision: 1.145 $ $Date: 2003/04/17 04:03:47 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -1440,16 +1440,18 @@ public class ActionServlet extends HttpServlet {
     private void defaultControllerConfig(ModuleConfig config) {
 
         String value = null;
-
         ControllerConfig cc = config.getControllerConfig();
+        
         value = getServletConfig().getInitParameter("bufferSize");
         if (value != null) {
             cc.setBufferSize(Integer.parseInt(value));
         }
+        
         value = getServletConfig().getInitParameter("content");
         if (value != null) {
             cc.setContentType(value);
         }
+        
         value = getServletConfig().getInitParameter("locale");
         if (value != null) {
             if (value.equalsIgnoreCase("true") ||
@@ -1459,23 +1461,24 @@ public class ActionServlet extends HttpServlet {
                 cc.setLocale(false);
             }
         }
+        
         value = getServletConfig().getInitParameter("maxFileSize");
         if (value != null) {
             cc.setMaxFileSize(value);
         }
+        
         value = getServletConfig().getInitParameter("nocache");
-        if (value != null) {
-            if (value.equalsIgnoreCase("true") ||
-                value.equalsIgnoreCase("yes")) {
-                cc.setNocache(true);
-            } else {
-                cc.setNocache(false);
-            }
+        if ("true".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value)) {
+            cc.setNocache(true);
+        } else {
+            cc.setNocache(false);
         }
+        
         value = getServletConfig().getInitParameter("multipartClass");
         if (value != null) {
             cc.setMultipartClass(value);
         }
+        
         value = getServletConfig().getInitParameter("tempDir");
         if (value != null) {
             cc.setTempDir(value);
