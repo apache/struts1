@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.7 2003/07/27 05:38:38 rleland Exp $
- * $Revision: 1.7 $
- * $Date: 2003/07/27 05:38:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.8 2003/08/04 12:07:34 jmitchell Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/08/04 12:07:34 $
  *
  * ====================================================================
  *
@@ -71,7 +71,6 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.apache.struts.Globals;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
@@ -111,7 +110,7 @@ import org.apache.struts.util.MessageResources;
  * @since Struts 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.7 $ $Date: 2003/07/27 05:38:38 $
+ * @version $Revision: 1.8 $ $Date: 2003/08/04 12:07:34 $
  */
 public class ConfigHelper implements ConfigHelperInterface {
 
