@@ -52,6 +52,11 @@ public class MultipartIterator {
     protected boolean contentRead = false;
     
     /**
+     * The maximum file size in bytes allowed. Ignored if -1
+     */
+    protected long maxSize = -1;
+    
+    /**
      * The amount of data read from a request at a time.
      * This also represents the maximum size in bytes of
      * a line read from the request
@@ -59,21 +64,57 @@ public class MultipartIterator {
      */
     protected int bufferSize = 4 * 1024;
 
-    
+    /**
+     * Constructs a MultipartIterator with a default buffer size and no file size
+     * limit
+     * 
+     * @param request The multipart request to iterate
+     */
     public MultipartIterator(HttpServletRequest request) throws ServletException{
+        this(request, -1);
+    }
+    
+    /**
+     * Constructs a MultipartIterator with the specified buffer size and
+     * no file size limit
+     *
+     * @param request The multipart request to iterate
+     * @param bufferSize The size in bytes that should be read from the input
+     *                   stream at a times
+     */
+    public MultipartIterator(HttpServletRequest request, int bufferSize) throws ServletException {        
+       this (request, bufferSize, -1);
+    }
+    
+    /**
+     * Constructs a MultipartIterator with the specified buffer size and
+     * the specified file size limit in bytes
+     *
+     * @param request The multipart request to iterate
+     * @param bufferSize The size in bytes that should be read from the input
+     *                   stream at a times
+     * @param maxSize The maximum size in bytes allowed for a multipart element's data
+     */
+    public MultipartIterator(HttpServletRequest request, int bufferSize, long maxSize) 
+                                                                 throws ServletException {
         this.request = request;
-        
+        this.maxSize = maxSize;
+        if (bufferSize > -1) {
+            this.bufferSize = bufferSize;
+        }
         parseRequest();
     }
     
     /**
      * Retrieves the next element in the iterator if one exists.
      *
+     * @throws a ServletException if the post size exceeds the maximum file size
+     *         passed in the 3 argument constructor
      * @return a {@link org.apache.struts.upload.MultipartElement MultipartElement}
      *         representing the next element in the request data
      *
      */
-    public MultipartElement getNextElement() {
+    public MultipartElement getNextElement() throws ServletException {
         
         //retrieve the "Content-Disposition" header
         //and parse
@@ -120,10 +161,19 @@ public class MultipartIterator {
             
             //parse for text data
             line = readLine();
+            long totalReadLength = (long) line.getBytes().length;
          
             while ((line != null) && (!line.startsWith(boundary))) {
                 textData += line;
                 line = readLine();
+                totalReadLength += (long) line.getBytes().length;
+                
+                if (maxSize > -1) {
+                    if (totalReadLength > maxSize) {
+                        throw new ServletException("Multipart data size exceeds the maximum " +
+                            "allowed post size");
+                    }
+                }
             }
             
             //remove the "\r\n" if it's there
@@ -170,6 +220,23 @@ public class MultipartIterator {
      */
     public int getBufferSize() {
         return bufferSize;
+    }
+    
+    /**
+     * Set the maximum post data size allowed for a multipart request
+     * @param maxSize The maximum post data size in bytes, set to <code>-1</code>
+     *                for no limit
+     */
+    public void setMaxSize(long maxSize) {
+        this.maxSize = maxSize;
+    }
+    
+    /** 
+     * Get the maximum post data size allowed for a multipart request
+     * @return The maximum post data size in bytes
+     */
+    public long getMaxSize() {
+        return maxSize;
     }
     
     /**

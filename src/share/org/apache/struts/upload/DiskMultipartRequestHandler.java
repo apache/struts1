@@ -46,10 +46,12 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      * A Hashtable representing all elemnents
      */
     protected Hashtable allElements;
-
-
+    
     public void handleRequest(HttpServletRequest request) throws ServletException {
-        MultipartIterator iterator = new MultipartIterator(request);
+        
+        MultipartIterator iterator = new MultipartIterator(request,
+                                                            servlet.getBufferSize(),
+                                                            getMaxSizeFromServlet());
         MultipartElement element;
 
         textElements = new Hashtable();
@@ -208,4 +210,36 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
         return mapping;
     }
 
+    /**
+     * Gets the maximum post data size in bytes from the string
+     * representation in ActionServlet
+     */
+    protected long getMaxSizeFromServlet() throws ServletException{
+        String stringSize = servlet.getMaxFileSize();
+        long size = -1;
+        int multiplier = 1;
+        
+        if (stringSize.endsWith("K")) {
+            multiplier = 1024;
+            stringSize = stringSize.substring(0, stringSize.length()-1);
+        }
+        if (stringSize.endsWith("M")) {
+            multiplier = 1024*1024;
+            stringSize = stringSize.substring(0, stringSize.length()-1);
+        }
+        else if (stringSize.endsWith("G")) {
+            multiplier = 1024*1024*1024;
+            stringSize = stringSize.substring(0, stringSize.length()-1);
+        }
+        
+        try {
+            size = Long.parseLong(stringSize);
+        }
+        catch (NumberFormatException nfe) {
+            throw new ServletException("Invalid format for maximum file size: \"" +
+                servlet.getMaxFileSize() + "\"");
+        }
+                
+        return (size * multiplier);
+    }       
 }
