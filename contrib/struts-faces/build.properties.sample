@@ -6,7 +6,7 @@
 # source code.  To use this file, make a copy of it in "build.properties" and
 # customize the values as required.
 #
-# $Id: build.properties.sample,v 1.4 2003/12/28 22:03:27 craigmcc Exp $
+# $Id: build.properties.sample,v 1.5 2004/03/08 01:03:37 craigmcc Exp $
 
 
 # ---------------------------- BUILD MODE -------------------------------------
@@ -25,8 +25,8 @@
 # (JWSDP) Version 1.2 or later installation directory
 jwsdp.home=/usr/local/jwsdp-1.2
 
-# The absolute or relative pathname of the JavaServer Faces Beta Distribution
-# Directory
+# The absolute or relative pathname of the JavaServer Faces Final Release
+# Distribution Directory
 jsf.home=/usr/local/jsf-1_0
 
 # The absolute or relative pathname of the JSP Standard Tag Library 1.0 or later

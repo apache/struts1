@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example2/org/apache/struts/webapp/example2/LinkSubscriptionTag.java,v 1.1 2003/12/31 07:17:48 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/12/31 07:17:48 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example2/org/apache/struts/webapp/example2/LinkSubscriptionTag.java,v 1.2 2004/03/08 01:03:37 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/03/08 01:03:37 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import javax.faces.webapp.UIComponentTag;
  * associated query parameters selecting a specified Subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/12/31 07:17:48 $
+ * @version $Revision: 1.2 $ $Date: 2004/03/08 01:03:37 $
  */
 
 public class LinkSubscriptionTag extends UIComponentTag {
@@ -151,7 +151,7 @@ public class LinkSubscriptionTag extends UIComponentTag {
         if (name != null) {
             if (isValueReference(name)) {
                 ValueBinding vb =
-                    context.getApplication().createValueBinding(name);
+                    getFacesContext().getApplication().createValueBinding(name);
                 component.setValueBinding("name", vb);
             } else {
                 component.getAttributes().put("name", name);
@@ -160,7 +160,7 @@ public class LinkSubscriptionTag extends UIComponentTag {
         if (page != null) {
             if (isValueReference(page)) {
                 ValueBinding vb =
-                    context.getApplication().createValueBinding(page);
+                    getFacesContext().getApplication().createValueBinding(page);
                 component.setValueBinding("page", vb);
             } else {
                 component.getAttributes().put("page", page);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example2/org/apache/struts/webapp/example2/LoggedOn.java,v 1.1 2003/12/31 07:17:48 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/12/31 07:17:48 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example2/org/apache/struts/webapp/example2/LoggedOn.java,v 1.2 2004/03/08 01:03:37 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/03/08 01:03:37 $
  *
  * ====================================================================
  *
@@ -117,7 +117,7 @@ public class LoggedOn {
     private void forward(FacesContext context, String url) {
 
         try {
-            context.getExternalContext().dispatchMessage(url);
+            context.getExternalContext().dispatch(url);
         } catch (IOException e) {
             throw new FacesException(e);
         } finally {

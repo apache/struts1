@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example2/org/apache/struts/webapp/example2/Attic/FacesPlugIn.java,v 1.1 2003/12/31 07:17:48 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/12/31 07:17:48 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example2/org/apache/struts/webapp/example2/Attic/FacesPlugIn.java,v 1.2 2004/03/08 01:03:37 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/03/08 01:03:37 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.config.ModuleConfig;
  * <p>PlugIn to register application-specific JavaServer Faces classes.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/12/31 07:17:48 $
+ * @version $Revision: 1.2 $ $Date: 2004/03/08 01:03:37 $
  */
 
 public class FacesPlugIn implements PlugIn {
@@ -106,9 +106,10 @@ public class FacesPlugIn implements PlugIn {
         RenderKitFactory factory = (RenderKitFactory)
             FactoryFinder.getFactory(FactoryFinder.RENDER_KIT_FACTORY);
         RenderKit renderKit =
-            factory.getRenderKit(RenderKitFactory.DEFAULT_RENDER_KIT);
+            factory.getRenderKit(null, RenderKitFactory.HTML_BASIC_RENDER_KIT);
         renderKit.addRenderer
-            ("LinkSubscription",
+            ("javax.faces.Output",
+             "org.apache.struts.webapp.example.LinkSubscription",
              new LinkSubscriptionRenderer());
 
     }
