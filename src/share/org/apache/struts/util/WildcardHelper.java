@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/WildcardHelper.java,v 1.3 2004/01/10 21:20:48 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2004/01/10 21:20:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/WildcardHelper.java,v 1.4 2004/01/10 21:29:12 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/10 21:29:12 $
  *
  * ====================================================================
  *
@@ -61,25 +61,29 @@
  
 package org.apache.struts.util;
 
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class is an utility class that perform wilcard-patterns matching and
  * isolation taken from Apache Cocoon.
  *
- *         (Apache Software Foundation)
- * @version CVS $Id: WildcardHelper.java,v 1.3 2004/01/10 21:20:48 dgraham Exp $
+ * @since Struts 1.2
+ * @version CVS $Id: WildcardHelper.java,v 1.4 2004/01/10 21:29:12 dgraham Exp $
  */
 public class WildcardHelper {
 
     /** The int representing '*' in the pattern <code>int []</code>. */
     protected static final int MATCH_FILE = -1;
+    
     /** The int representing '**' in the pattern <code>int []</code>. */
     protected static final int MATCH_PATH = -2;
+    
     /** The int representing begin in the pattern <code>int []</code>. */
     protected static final int MATCH_BEGIN = -4;
+    
     /** The int representing end in pattern <code>int []</code>. */
     protected static final int MATCH_THEEND = -5;
+    
     /** The int value that terminates the pattern <code>int []</code>. */
     protected static final int MATCH_END = -3;
 
@@ -117,8 +121,7 @@ public class WildcardHelper {
      *         value (don't consider the array length).
      * @exception NullPointerException If data is null.
      */
-    public static int[] compilePattern(String data)
-    throws NullPointerException {
+    public int[] compilePattern(String data) {
 
         // Prepare the arrays
         int expr[] = new int[data.length() + 2];
@@ -182,8 +185,7 @@ public class WildcardHelper {
      * @return True if a match
      * @throws NullPointerException If any parameters are null
      */
-    public static boolean match (HashMap map, String data,
-            int[] expr) throws NullPointerException {
+    public boolean match(Map map, String data, int[] expr) {
         if (map == null) {
             throw new NullPointerException ("No map provided");
         }    
@@ -315,7 +317,7 @@ public class WildcardHelper {
         }
     }
 
-    /**
+     /**
       * Get the offset of a part of an int array within a char array.
       * <br>
       * This method return the index in d of the first occurrence after dpos of
@@ -330,8 +332,9 @@ public class WildcardHelper {
       * @return The offset in d of the part of r matched in d or -1 if that was
       *         not found.
       */
-    protected static int indexOfArray (int r[], int rpos, int rend,
+    protected int indexOfArray (int r[], int rpos, int rend,
             char d[], int dpos) {
+                
         // Check if pos and len are legal
         if (rend < rpos) {
             throw new IllegalArgumentException ("rend < rpos");
@@ -372,7 +375,7 @@ public class WildcardHelper {
         return (-1);
     }
 
-    /**
+     /**
       * Get the offset of a last occurance of an int array within a char array.
       * <br>
       * This method return the index in d of the last occurrence after dpos of
@@ -387,7 +390,7 @@ public class WildcardHelper {
       * @return The offset in d of the last part of r matched in d or -1 if 
       *         that was not found.
       */
-    protected static int lastIndexOfArray (int r[], int rpos, int rend,
+    protected int lastIndexOfArray (int r[], int rpos, int rend,
             char d[], int dpos) {
         // Check if pos and len are legal
         if (rend < rpos) {
@@ -432,7 +435,7 @@ public class WildcardHelper {
         return (-1);
     }
 
-    /**
+     /**
       * Matches elements of array r from rpos to rend with array d, starting 
       * from dpos.
       * <br>
@@ -446,7 +449,7 @@ public class WildcardHelper {
       * @param dpos The starting offset in d for the matching.
       * @return true if array d starts from portion of array r.
       */
-    protected static boolean matchArray (int r[], int rpos, int rend,
+    protected boolean matchArray (int r[], int rpos, int rend,
             char d[], int dpos) {
         if (d.length - dpos < rend - rpos) {
             return (false);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.6 2004/01/10 21:03:33 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2004/01/10 21:03:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.7 2004/01/10 21:29:12 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/10 21:29:12 $
  *
  * ====================================================================
  *
@@ -77,10 +77,11 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.util.WildcardHelper;
 
 /**
- *  Matches paths against pre-compiled wildcard expressions pulled from 
- *  action configs. It uses the wildcard matcher from the Apache
- *  Cocoon project.
+ * Matches paths against pre-compiled wildcard expressions pulled from 
+ * action configs. It uses the wildcard matcher from the Apache
+ * Cocoon project.
  *
+ * @since Struts 1.2
  */
 public class ActionConfigMatcher implements Serializable {
 
@@ -89,6 +90,11 @@ public class ActionConfigMatcher implements Serializable {
      */
     private static final Log log =
         LogFactory.getLog(ActionConfigMatcher.class);
+        
+    /**
+     * Handles all wildcard pattern matching.
+     */
+    private static final WildcardHelper wildcard = new WildcardHelper();
     
     /**  
      * The compiled paths and their associated ActionConfig's 
@@ -117,18 +123,17 @@ public class ActionConfigMatcher implements Serializable {
                 if (log.isDebugEnabled()) {
                     log.debug("Compiling action config path '" + path + "'");
                 }    
-                pattern = WildcardHelper.compilePattern(path);
+                pattern = wildcard.compilePattern(path);
                 compiledPaths.add(new Mapping(pattern, configs[x]));
             }    
         }
     }
 
     /**
-     *  Matches the path against the compiled wildcard patterns.
+     * Matches the path against the compiled wildcard patterns.
      *
-     * @param  path             The portion of the request URI for selecting a
-     *      config
-     * @return                  The action config if matched, else null
+     * @param path The portion of the request URI for selecting a config.
+     * @return The action config if matched, else null
      */
     public ActionConfig match(String path) {
 
@@ -145,7 +150,7 @@ public class ActionConfigMatcher implements Serializable {
             HashMap vars = new HashMap();
             for (Iterator i = compiledPaths.iterator(); i.hasNext();) {
                 m = (Mapping) i.next();
-                if (WildcardHelper.match(vars, path, m.getPattern())) {
+                if (wildcard.match(vars, path, m.getPattern())) {
                     config = convertActionConfig(
                             path,
                             (ActionConfig) m.getActionConfig(),
