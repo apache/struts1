@@ -119,10 +119,13 @@ by Victor Cekvenich - Practical Application with Database Access and Struts Exte
 <section name="Books with Struts coverage">
 
 <p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0521520592/hitchhikeguidetoA/">Java Frameworks and Components: Accelerate Your Web Application Development</a> by Michael Nash, June 2003
+<a href="http://www.amazon.com/exec/obidos/ISBN=0471486566/hitchhikeguidetoA/"><strong></strong></a> by Leon Shklar and Richard Rosen, October 2003
 </p>
 <p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0131422464/hitchhikeguidetoA/">Core J2EE Patterns: Best Practices and Design Strategies, Second Edition</a> by Deepak Alur, Dan Malks, John Crupi, June 2003
+<a href="http://www.amazon.com/exec/obidos/ISBN=0521520592/hitchhikeguidetoA/"><strong>Java Frameworks and Components: Accelerate Your Web Application Development</strong></a> by Michael Nash, June 2003
+</p>
+<p>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0131422464/hitchhikeguidetoA/"><strong>Core J2EE Patterns: Best Practices and Design Strategies, Second Edition</strong></a> by Deepak Alur, Dan Malks, John Crupi, June 2003
 </p>
 <p>
 <a href="http://www.amazon.com/exec/obidos/ISBN=1861008317/hitchhikeguidetoA/"><strong>Beginning JSP 2.0</strong></a> by Galbraith et al. Wrox Press February 2003 - Chapters 15 and 16 cover web development using Struts.

@@ -10,39 +10,35 @@
 <section name="Struts Resources">
 
  <ul>
+     <li><a href="archives.html">Archives (mailing list)</a></li>
+     <li><a href="articles.html">Articles and Presentations</a></li>
+     <li><a href="books.html"><storng>Books</strong></a></li>
+     <li><a href="enabling.html">Enabling Technologies</a></li>
+     <li><a href="examples.html">Examples and Projects</a></li>
+     <li><a href="extensions.html">Extensions</a></li>
+     <li><a href="sigs.html">Interest Groups</a></li>
+     <li><a href="hosts.html">ISPs for Struts and Java</a></li>
+     <li><a href="models.html">Models (data access systems)</a></li>
+     <li><a href="seminars.html">Seminars</a></li>
+     <li><a href="taglibs.html">Taglibs</a></li>
+     <li><a href="tools.html">Tools and IDEs</a></li>
+     <li><a href="tutorials.html">Tutorials</a></li>
+     <li><a href="views.html">Views (presentation systems)</a> (XLST, Velocity)</li>
+ </ul>
+
+ <ul>
     <li><a href="1st.html"><strong>Read Me First - A path for newbies</strong></a></li>
-    <li><a href="tutorials.html">Tutorials</a></li>
-     <li><a href="examples.html">Projects and Examples</a></li>
-    <li><a href="articles.html">Articles and Presentations</a></li>
-    <li><a href="books.html">Books</a></li>
-    <li><a href="seminars.html">Seminars</a></li>
-<!--    <li><a href="guides.html">User Guide Translations</a></li> -->
-    <li><a href="archives.html">Mailing List Archives</a></li>
- </ul>
-
- <ul>
-    <li><a href="models.html">Data Access Systems</a></li>
-    <li><a href="views.html">Presentation Systems</a> (XLST, Velocity)</li>
-    <li><a href="guis.html">Code Generators and GUIs</a></li>
-    <li><a href="taglibs.html">Contributor Taglibs</a></li>
-    <li><a href="extensions.html">Contributor Extensions</a></li>
- </ul>
-
- <ul>
-    <li><a href="sigs.html">Struts Special Interest Groups</a></li>
-    <li><a href="consultants.html">Struts Consultants</a></li>
-    <li><a href="powered.html">Powered by Struts</a></li>
-    <li><a href="http://sourceforge.net/search/?type_of_search=soft&amp;words=struts">Struts projects on SourceForge</a></li>
-    <li><a href="hosts.html">Java / Struts ISPs</a></li>
- </ul>
-
- <ul>
-    <li><a href="enabling.html">Enabling Technologies</a></li>
     <li><a href="utilities.html">Other Struts-Related Utilities</a></li>
     <li><a href="related.html">Other Struts-Related Articles</a></li>
     <li><a href="related_books.html">Other Development Books</a></li>
     <li><a href="resources.html">Other Resource Pages</a></li>
  </ul>
+
+ <ul>
+    <li>Struts IRC Channel - <code>irc.darkmyst.org #struts_users</code></li>
+    <li><a href="http://sourceforge.net/search/?type_of_search=soft&amp;words=struts">Struts projects on SourceForge</a></li>
+  </ul>
+
 </section>
 
 </body></document>

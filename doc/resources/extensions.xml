@@ -12,6 +12,7 @@
 <p><a href=""></a> by . </p>
 -->
 <section name="Contributor Extensions">
+<p><a href="http://www.twdata.org/struts-spring">Spring Framework Integration Library for Struts</a> by Don Brown.</p>
 <p><a href="http://struts.sf.net/strutsdoc/"><strong>StrutsDoc</strong></a> - A JavaDoc-type documentation tool for Struts and Struts-related configuration files</p>
 <p><a href="http://www.twdata.org/struts-wildcard/"><strong>Wildcard-Matched Actions</strong></a> by Don Brown - Allows wildcards to be used in Struts 1.1+ action mappings.</p>
 <p><a href="http://alphaworks.ibm.com/tech/strutsscripting"><strong>Struts Action Scripting</strong></a> by IBM AlphaWorks - a Struts plug-in that allows development of Struts actions using the power and simplicity of any favorite scripting language.</p>
