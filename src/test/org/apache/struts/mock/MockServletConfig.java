@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockServletConfig.java,v 1.1 2002/07/02 01:55:27 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/02 01:55:27 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockServletConfig.java,v 1.2 2003/02/28 02:43:12 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:43:12 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,12 +63,9 @@
 package org.apache.struts.mock;
 
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Set;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 
@@ -88,7 +85,7 @@ import javax.servlet.ServletContext;
  * threaded environment, no synchronization is performed.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/07/02 01:55:27 $
+ * @version $Revision: 1.2 $ $Date: 2003/02/28 02:43:12 $
  */
 
 public class MockServletConfig implements ServletConfig {

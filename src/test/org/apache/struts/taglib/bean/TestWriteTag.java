@@ -54,24 +54,16 @@
  */
 package org.apache.struts.taglib.bean;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import junit.framework.Test;
 import junit.framework.TestSuite;
+
 import org.apache.cactus.JspTestCase;
-import org.apache.cactus.WebRequest;
 import org.apache.cactus.WebResponse;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.SimpleBeanForTesting;
-import org.apache.struts.util.LabelValueBean;
 import org.apache.struts.util.ResponseUtils;
 
 /**

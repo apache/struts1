@@ -1,7 +1,7 @@
 /*
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,16 +62,12 @@ import java.util.StringTokenizer;
 import javax.servlet.ServletException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.BodyContent;
-
 import junit.framework.Test;
 import junit.framework.TestSuite;
+
 import org.apache.cactus.JspTestCase;
-import org.apache.cactus.WebRequest;
 import org.apache.cactus.WebResponse;
 import org.apache.struts.taglib.SimpleBeanForTesting;
-import org.apache.struts.taglib.bean.MessageTag;
-import org.apache.struts.util.LabelValueBean;
 
 
 /**

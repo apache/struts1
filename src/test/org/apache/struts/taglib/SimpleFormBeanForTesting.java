@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/SimpleFormBeanForTesting.java,v 1.1 2003/02/22 02:52:27 jmitchell Exp $
- * $Revision: 1.1 $
- * $Date: 2003/02/22 02:52:27 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/SimpleFormBeanForTesting.java,v 1.2 2003/02/28 02:43:12 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:43:12 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -64,8 +64,7 @@ package org.apache.struts.taglib;
 
 
 import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
+
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.validator.ValidatorForm;
 
@@ -75,7 +74,7 @@ import org.apache.struts.validator.ValidatorForm;
  * Feel free to add whatever you need to help with testing.
  *
  * @author James Mitchell
- * @version $Revision: 1.1 $ $Date: 2003/02/22 02:52:27 $
+ * @version $Revision: 1.2 $ $Date: 2003/02/28 02:43:12 $
  */
 
 public final class SimpleFormBeanForTesting extends ValidatorForm  {

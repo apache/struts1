@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/tiles/TestTilesPlugin.java,v 1.1 2002/12/27 11:02:54 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/12/27 11:02:54 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/tiles/TestTilesPlugin.java,v 1.2 2003/02/28 02:42:15 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:42:15 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,42 +63,26 @@
 package org.apache.struts.tiles;
 
 
-import java.net.MalformedURLException;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.jsp.JspException;
 import javax.servlet.ServletException;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletConfig;
-
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionServlet;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.action.PlugIn;
-import org.apache.struts.config.ApplicationConfig;
-import org.apache.struts.mock.TestMockBase;
-import org.apache.struts.mock.MockActionServlet;
-
-
-import org.apache.struts.config.ModuleConfigFactory;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.config.ModuleConfigFactory;
 import org.apache.struts.config.PlugInConfig;
-
+import org.apache.struts.mock.MockActionServlet;
+import org.apache.struts.mock.TestMockBase;
 import org.apache.struts.util.RequestUtils;
-import org.apache.commons.beanutils.BeanUtils;
 
 /**
  * <p>Unit tests for <code>org.apache.struts.tiles.*</code>.</p>
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2002/12/27 11:02:54 $
+ * @version $Revision: 1.2 $ $Date: 2003/02/28 02:42:15 $
  */
 
 public class TestTilesPlugin extends TestMockBase {

@@ -1,7 +1,7 @@
 /*
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,10 +54,7 @@
  */
 package org.apache.struts.taglib.html;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.StringTokenizer;
 
 import javax.servlet.jsp.PageContext;
 import junit.framework.Test;
@@ -65,7 +62,6 @@ import junit.framework.TestSuite;
 
 import org.apache.cactus.JspTestCase;
 import org.apache.struts.Globals;
-import org.apache.struts.taglib.SimpleBeanForTesting;
 
 /**
  * Suite of unit tests for the

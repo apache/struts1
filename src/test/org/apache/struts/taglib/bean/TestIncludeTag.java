@@ -54,19 +54,11 @@
  */
 package org.apache.struts.taglib.bean;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import javax.servlet.ServletException;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 import junit.framework.Test;
 import junit.framework.TestSuite;
+
 import org.apache.cactus.JspTestCase;
-import org.apache.cactus.WebRequest;
 import org.apache.cactus.WebResponse;
-import org.apache.struts.util.LabelValueBean;
 
 /**
  * Suite of unit tests for the
