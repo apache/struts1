@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.1 2000/05/31 22:28:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:14 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.2 2000/06/15 18:00:01 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/15 18:00:01 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.MessageResources;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:14 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/15 18:00:01 $
  */
 
 public final class LogonAction extends ActionBase {
@@ -123,32 +123,25 @@ public final class LogonAction extends ActionBase {
 	Vector errors = new Vector();
 	String username = ((LogonForm) form).getUsername();
 	if ((username == null) || (username.length() < 1))
-	    errors.addElement(messages.getMessage(locale,
-			      "error.username.required"));
+	    errors.addElement("error.username.required");
 	String password = ((LogonForm) form).getPassword();
 	if ((password == null) || (password.length() < 1))
-	    errors.addElement(messages.getMessage(locale,
-			      "error.password.required"));
+	    errors.addElement("error.password.required");
 	Hashtable database = (Hashtable)
 	  servlet.getServletContext().getAttribute(Constants.DATABASE_KEY);
 	if (database == null)
-	    errors.addElement(messages.getMessage(locale,
-			      "error.database.missing"));
+	    errors.addElement("error.database.missing");
 	else {
 	    user = (User) database.get(username);
 	    if ((user != null) && !user.getPassword().equals(password))
 		user = null;
 	    if (user == null)
-	        errors.addElement(messages.getMessage(locale,
-				  "error.password.mismatch"));
+		errors.addElement("error.password.mismatch");
 	}
 
 	// Report any errors we have discovered back to the original form
 	if (errors.size() > 0) {
-	    String results[] = new String[errors.size()];
-	    for (int i = 0; i < results.length; i++)
-	        results[i] = (String) errors.elementAt(i);
-	    request.setAttribute(ERROR_KEY, results);
+	    saveErrors(request, errors);
 	    String uri = ((ApplicationMapping) mapping).getFailure();
 	    RequestDispatcher rd =
 	      servlet.getServletContext().getRequestDispatcher(uri);

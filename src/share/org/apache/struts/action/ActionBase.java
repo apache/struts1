@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionBase.java,v 1.1 2000/05/31 22:28:11 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionBase.java,v 1.2 2000/06/15 18:00:05 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/15 18:00:05 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.action;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -77,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * useful utility methods for use by Action classes.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:11 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/15 18:00:05 $
  */
 
 public abstract class ActionBase implements Action {
@@ -143,6 +144,33 @@ public abstract class ActionBase implements Action {
     protected MessageResources getResources(ActionServlet servlet) {
 
 	return (servlet.getResources());
+
+    }
+
+
+    /**
+     * Save the specified error messages keys into the appropriate request
+     * attribute for use by the &lt;struts:errors&gt; tag, if any messages
+     * are required.  Otherwise, ensure that the request attribute is not
+     * created.
+     *
+     * @param request The servlet request we are processing
+     * @param messages Vector containing message keys for looking
+     *  up errors in the application resources
+     */
+    protected void saveErrors(HttpServletRequest request, Vector messages) {
+
+	// Remove any error messages attribute if none are required
+	if ((messages == null) || (messages.size() == 0)) {
+	    request.removeAttribute(ERROR_KEY);
+	    return;
+	}
+
+	// Construct and save the error messages we need
+	String results[] = new String[messages.size()];
+	for (int i = 0; i < results.length; i++)
+	    results[i] = (String) messages.elementAt(i);
+	request.setAttribute(ERROR_KEY, results);
 
     }
 

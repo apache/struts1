@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.3 2000/06/14 19:28:55 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/14 19:28:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.4 2000/06/15 18:00:08 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/15 18:00:08 $
  *
  * ====================================================================
  *
@@ -76,19 +76,22 @@ import org.apache.struts.util.MessageResources;
 
 /**
  * Custom tag that renders error messages if an appropriate request attribute
- * has been created.  Correct operation of this tag depends on the application
- * message resources containing messages for the following keys:
+ * has been created.  The tag looks for a request attribute with a reserved
+ * key, and assumes that it is either a String, or a String array, containing
+ * message keys to be looked up in the application's MessageResources.
+ * <p>
+ * The following optional message keys will be utilized if corresponding
+ * messages exist for them in the application resources:
  * <ul>
- * <li><b>errors.header</b> - Text inserted before the list of errors
- * <li><b>errors.detail</b> - Text that will be generated for each error message,
- *     with the text of the error passed as argument zero.
- * <li><b>errors.footer</b> - Text inserted after the list of errors
- * <li><b>errors.ioException</b> - Text thrown as a JspException if an IOException
- *     is encountered while rendering the error messages
+ * <li><b>errors.header</b> - If present, the corresponding message will be
+ *     rendered prior to the individual list of error messages.
+ * <li><b>errors.footer</b> - If present, the corresponding message will be
+ *     rendered following the individual list of error messages.
+ * <li><b>
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/14 19:28:55 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/15 18:00:08 $
  */
 
 public final class ErrorsTag extends TagSupport {
@@ -175,20 +178,32 @@ public final class ErrorsTag extends TagSupport {
 	MessageResources messages = (MessageResources)
 	  pageContext.getAttribute(Action.MESSAGES_KEY,
 				   PageContext.APPLICATION_SCOPE);
+	String message = null;
 	StringBuffer results = new StringBuffer();
-	results.append(messages.getMessage(locale, "errors.header"));
-	for (int i = 0; i < errors.length; i++)
-	    results.append
-	      (messages.getMessage(locale, "errors.detail", errors[i]));
-	results.append(messages.getMessage(locale, "errors.footer"));
+	message = messages.getMessage(locale, "errors.header");
+	if (message != null) {
+	    results.append(message);
+	    results.append("\r\n");
+	}
+	for (int i = 0; i < errors.length; i++) {
+	    message = messages.getMessage(locale, errors[i]);
+	    if (message != null) {
+		results.append(message);
+		results.append("\r\n");
+	    }
+	}
+	message = messages.getMessage(locale, "errors.footer");
+	if (message != null) {
+	    results.append(message);
+	    results.append("\r\n");
+	}
 
 	// Print the results to our output writer
 	JspWriter writer = pageContext.getOut();
 	try {
 	    writer.print(results.toString());
 	} catch (IOException e) {
-	    throw new JspException
-		(messages.getMessage("errors.ioException", e.toString()));
+	    throw new JspException(e.toString());
 	}
 
 	// Continue processing this page

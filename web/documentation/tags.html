@@ -346,14 +346,15 @@ with at least the following message keys:</p>
 <li><b>errors.header</b> - Text that will be rendered before the error
     messages list.  Typically, this message text ends with
     <code>&lt;ul&gt;</code> to start the error messages list.</li>
-<li><b>errors.detail</b> - Text that will be rendered for each error message,
-    with <code>{0}</code> replacement text for the message actually generated
-    by the business logic component.  A typical value for this message text is
-    <code>"&lt;li&gt;{0}&lt;/li&gt;"</code>.</li>
 <li><b>errors.footer</b> - Text that will be rendered after the error messages
     list.  Typically, this message text begins with
     <code>&lt;/ul&gt;</code> to end the error messages list.</li>
 </ul>
+
+<p>In an action class or other validation method, create a String array
+containing the message keys of the error messages you wish to display, and
+store the array as a request attribute under the key specified by the
+<code>name</code> attribute described below.</p>
 
 <table width="100%" border="1">
   <tr>

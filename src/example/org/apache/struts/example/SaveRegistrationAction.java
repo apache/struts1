@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.1 2000/05/31 22:28:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:14 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.2 2000/06/15 18:00:01 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/15 18:00:01 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:14 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/15 18:00:01 $
  */
 
 public final class SaveRegistrationAction extends ActionBase {
@@ -157,43 +157,41 @@ public final class SaveRegistrationAction extends ActionBase {
 	Vector errors = new Vector();
 	value = regform.getUsername();
 	if ((value == null) || (value.length() < 1))
-	    errors.addElement(messages.getMessage(locale,
-	                      "error.username.required"));
+	    errors.addElement("error.username.required");
 	if (("Create".equals(action)) &&
 	    (database.get(value) != null))
-	    errors.addElement(messages.getMessage(locale,
-	                      "error.username.unique"));
+	    errors.addElement("error.username.unique");
+	if ("Create".equals(action)) {
+	    value = regform.getPassword();
+	    if ((value == null) || (value.length() <1))
+		errors.addElement("error.password.required");
+	    value = regform.getPassword2();
+	    if ((value == null) || (value.length() < 1))
+		errors.addElement("error.password2.required");
+	}
 	if (!regform.getPassword().equals(regform.getPassword2()))
-	    errors.addElement(messages.getMessage(locale,
-			      "error.password.match"));
+	    errors.addElement("error.password.match");
 	value = regform.getFromAddress();
 	if ((value == null) || (value.length() < 1))
-	    errors.addElement(messages.getMessage(locale,
-			      "error.fromAddress.required"));
+	    errors.addElement("error.fromAddress.required");
 	else {
 	    int atSign = value.indexOf("@");
 	    if ((atSign < 1) || (atSign >= (value.length() - 1)))
-		errors.addElement(messages.getMessage(locale,
-				  "error.fromAddress.format"));
+		errors.addElement("error.fromAddress.format");
 	}
 	value = regform.getFullName();
 	if ((value == null) || (value.length() < 1))
-	    errors.addElement(messages.getMessage(locale,
-			      "error.fullName.required"));
+	    errors.addElement("error.fullName.required");
 	value = regform.getReplyToAddress();
 	if ((value != null) && (value.length() > 0)) {
 	    int atSign = value.indexOf("@");
 	    if ((atSign < 1) || (atSign >= (value.length() - 1)))
-		errors.addElement(messages.getMessage(locale,
-				  "error.replyToAddress.format"));
+		errors.addElement("error.replyToAddress.format");
 	}
 
 	// Report any errors we have discovered back to the original form
 	if (errors.size() > 0) {
-	    String results[] = new String[errors.size()];
-	    for (int i = 0; i < results.length; i++)
-	        results[i] = (String) errors.elementAt(i);
-	    request.setAttribute(ERROR_KEY, results);
+	    saveErrors(request, errors);
 	    String uri = ((ApplicationMapping) mapping).getFailure();
 	    RequestDispatcher rd =
 	      servlet.getServletContext().getRequestDispatcher(uri);

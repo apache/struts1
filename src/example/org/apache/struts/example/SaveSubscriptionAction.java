@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.1 2000/05/31 22:28:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:14 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.2 2000/06/15 18:00:02 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/15 18:00:02 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:14 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/15 18:00:02 $
  */
 
 public final class SaveSubscriptionAction extends ActionBase {
@@ -186,30 +186,22 @@ public final class SaveSubscriptionAction extends ActionBase {
 	Vector errors = new Vector();
 	value = subform.getHost();
 	if ((value == null) || (value.length() < 1))
-	    errors.addElement(messages.getMessage(locale,
-	                      "error.host.required"));
+	    errors.addElement("error.host.required");
 	value = subform.getUsername();
 	if ((value == null) || (value.length() < 1))
-	    errors.addElement(messages.getMessage(locale,
-	                      "error.username.required"));
+	    errors.addElement("error.username.required");
 	value = subform.getPassword();
 	if ((value == null) || (value.length() < 1))
-	    errors.addElement(messages.getMessage(locale,
-			      "error.password.required"));
+	    errors.addElement("error.password.required");
 	value = subform.getType();
 	if ((value == null) || (value.length() < 1))
-	    errors.addElement(messages.getMessage(locale,
-	                      "error.type.required"));
+	    errors.addElement("error.type.required");
 	else if (!"imap".equals(value) && !"pop3".equals(value))
-	    errors.addElement(messages.getMessage(locale,
-	                      "error.type.invalid"));
+	    errors.addElement("error.type.invalid");
 
 	// Report any errors we have discovered back to the original form
 	if (errors.size() > 0) {
-	    String results[] = new String[errors.size()];
-	    for (int i = 0; i < results.length; i++)
-	        results[i] = (String) errors.elementAt(i);
-	    request.setAttribute(ERROR_KEY, results);
+	    saveErrors(request, errors);
 	    String uri = ((ApplicationMapping) mapping).getFailure();
 	    RequestDispatcher rd =
 	      servlet.getServletContext().getRequestDispatcher(uri);
