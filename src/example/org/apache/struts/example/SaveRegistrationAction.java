@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.11 2000/10/16 16:50:04 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2000/10/16 16:50:04 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.12 2000/12/29 22:33:54 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2000/12/29 22:33:54 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.PropertyUtils;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2000/10/16 16:50:04 $
+ * @version $Revision: 1.12 $ $Date: 2000/12/29 22:33:54 $
  */
 
 public final class SaveRegistrationAction extends Action {
@@ -187,7 +187,11 @@ public final class SaveRegistrationAction extends Action {
 	    user.setUsername(regform.getUsername());
 	}
         try {
+            String oldPassword = user.getPassword();
             PropertyUtils.copyProperties(user, regform);
+            if ((regform.getPassword() == null) ||
+                (regform.getPassword().length() < 1))
+                user.setPassword(oldPassword);
         } catch (InvocationTargetException e) {
             Throwable t = e.getTargetException();
             if (t == null)
