@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.2 2002/07/07 23:15:36 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/07 23:15:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.3 2002/07/11 16:22:27 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/07/11 16:22:27 $
  *
  * ====================================================================
  *
@@ -98,7 +98,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
 public class TilesRequestProcessor extends RequestProcessor
 {
     /** Definitions factory */
-  private ComponentDefinitionsFactory definitionsFactory;
+  private DefinitionsFactory definitionsFactory;
 
     /**
      * Initialize this request processor instance.
@@ -111,26 +111,25 @@ public class TilesRequestProcessor extends RequestProcessor
       throws ServletException
     {
     super.init(servlet, appConfig);
-    initComponentDefinitionsMapping();
+    initDefinitionsMapping();
     }
 
     /**
      * Read component instance mapping configuration file.
      * This is where we read files properties.
      */
-  public void initComponentDefinitionsMapping() throws ServletException // IOException,
+  protected void initDefinitionsMapping() throws ServletException
     {
-     try
-      {
-        // init component instances
-      definitionsFactory = DefinitionsUtil.createDefinitionsFactory(getServletContext(), servlet.getServletConfig());
+      // Retrieve and set factory for this subapps
+    definitionsFactory = DefinitionsUtil.getDefinitionsFactory(getServletContext());
+    if( definitionsFactory == null )
+      {  // problem !
+      log( "Error - TilesRequestProcessor : Definition Factory not found for subapp '"
+          + appConfig.getPrefix() + "'. "
+          + "Do you have declared appropriate plugin in struts-config.xml ?" );
+      return;
       }
-     catch( DefinitionsFactoryException ex )
-      {
-      log( "Fail to load Tiles definition factory from processor", ex);
-      throw new ServletException( ex.getMessage(), ex );
-      }
-    log( "Tiles definition factory loaded for processor " );
+    log( "Tiles definition factory found for request processor '" + appConfig.getPrefix() + "'.");
     }
 
 
@@ -147,6 +146,7 @@ public class TilesRequestProcessor extends RequestProcessor
   protected void doForward(String uri, HttpServletRequest request, HttpServletResponse response)
  	  throws IOException, ServletException
     {
+    //System.out.println("doForward(" + uri + ")");
       // Do we do a forward (original behavior) or an include ?
     boolean doInclude = false;
       // Controller associated to a definition, if any
