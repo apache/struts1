@@ -160,6 +160,11 @@
     <!-- Create the taglib documentation -->
     <style   basedir="${doc.dir}" destdir="${build.home}/documentation"
            extension=".html" style="stylesheets/struts.xsl" includes="*.xml"/>
+    <!-- Create the proposals -->
+    <style   basedir="${doc.dir}/proposals"
+             destdir="${build.home}/documentation/proposals"
+           extension=".html" style="../stylesheets/proposals.xsl"
+            includes="*.xml"/>
     <!-- Create the user guide -->
     <style   basedir="${doc.dir}/userGuide"
              destdir="${build.home}/documentation/userGuide"
@@ -185,10 +190,24 @@
         <include name="**/*.js"/>
       </fileset>
     </copy>
-    <!-- Copy the legacy documentation -->
-    <copy      todir="${build.home}/documentation">
-      <fileset   dir="legacy">
-        <include name="**/*.*"/>
+    <!-- Copy the proposal files -->
+    <copy      todir="${build.home}/documentation/proposals">
+      <fileset   dir="${doc.dir}/proposals">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
+    <!-- Copy the basic user guide files -->
+    <copy      todir="${build.home}/documentation/userGuide">
+      <fileset   dir="${doc.dir}/userGuide">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
       </fileset>
     </copy>
     

@@ -304,10 +304,10 @@
             <fileset dir="${conf.share.dir}" includes="*.dtd"/>
             <fileset dir="${conf.share.dir}" includes="*.tld"/>
         </copy>
-        <style basedir="${doc.dir}"
+        <style basedir="${doc.dir}/userGuide"
             destdir="${build.home}/library"
             extension=".tld"
-            style="stylesheets/tld.xsl"
+            style="../stylesheets/tld.xsl"
             includes="struts-*.xml"/>
         <copy todir="${build.home}/library/classes/META-INF/tlds">
             <fileset dir="${build.home}/library" includes="struts-*.tld"/>
@@ -528,6 +528,70 @@
     <target name="all" depends="clean,compile.library,compile.webapps"
      description="Clean and build library and web applications"/>
 
+
+<!--
+        Compile Website documenation
+-->
+
+<target name="clean.website" depends="clean,compile.website"/>
+<target name="compile.website" 
+        description="Compile main website">
+    <!-- Create the taglib documentation -->
+    <style   basedir="${doc.dir}" destdir="${build.home}/documentation"
+           extension=".html" style="stylesheets/struts.xsl" includes="*.xml"/>
+    <!-- Create the proposals -->
+    <style   basedir="${doc.dir}/proposals"
+             destdir="${build.home}/documentation/proposals"
+           extension=".html" style="../stylesheets/proposals.xsl"
+            includes="*.xml"/>
+    <!-- Create the user guide -->
+    <style   basedir="${doc.dir}/userGuide"
+             destdir="${build.home}/documentation/userGuide"
+           extension=".html" style="../stylesheets/userGuide.xsl"
+            includes="*.xml"/>
+    <!-- Copy the basic documentation files -->
+    <copy      todir="${build.home}/documentation">
+      <fileset   dir="${doc.dir}">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
+    <!-- Copy the basic user guide files -->
+    <copy      todir="${build.home}/documentation/userGuide">
+      <fileset   dir="${doc.dir}/userGuide">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
+    <!-- Copy the proposal files -->
+    <copy      todir="${build.home}/documentation/proposals">
+      <fileset   dir="${doc.dir}/proposals">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
+    <!-- Copy the basic user guide files -->
+    <copy      todir="${build.home}/documentation/userGuide">
+      <fileset   dir="${doc.dir}/userGuide">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
+</target>
+
+
 <!--
         Run tests on all servers not commented out in the build.properties file.
 -->
@@ -586,6 +650,7 @@
         <ant antfile="build-tests.xml" target="test.tomcat.40"/>
     
     </target>
+
 
     <!-- ========== Non-Cactus Unit Tests ================================= -->
 
