@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.27 2003/07/31 00:25:39 dgraham Exp $
- * $Revision: 1.27 $
- * $Date: 2003/07/31 00:25:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.28 2003/08/16 17:39:11 dgraham Exp $
+ * $Revision: 1.28 $
+ * $Date: 2003/08/16 17:39:11 $
  *
  * ====================================================================
  *
@@ -68,8 +68,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.Globals;
-import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -94,7 +94,7 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.27 $ $Date: 2003/07/31 00:25:39 $
+ * @version $Revision: 1.28 $ $Date: 2003/08/16 17:39:11 $
  */
 public class ErrorsTag extends TagSupport {
 
@@ -197,13 +197,13 @@ public class ErrorsTag extends TagSupport {
             TagUtils.getInstance().present(pageContext, bundle, locale, "errors.header");
 
         boolean footerPresent =
-        TagUtils.getInstance().present(pageContext, bundle, locale, "errors.footer");
+            TagUtils.getInstance().present(pageContext, bundle, locale, "errors.footer");
 
         boolean prefixPresent =
-        TagUtils.getInstance().present(pageContext, bundle, locale, "errors.prefix");
+            TagUtils.getInstance().present(pageContext, bundle, locale, "errors.prefix");
 
         boolean suffixPresent =
-        TagUtils.getInstance().present(pageContext, bundle, locale, "errors.suffix");
+            TagUtils.getInstance().present(pageContext, bundle, locale, "errors.suffix");
 
         // Render the error messages appropriately
         StringBuffer results = new StringBuffer();
@@ -212,7 +212,7 @@ public class ErrorsTag extends TagSupport {
         Iterator reports = (property == null) ? errors.get() : errors.get(property);
 
         while (reports.hasNext()) {
-            ActionError report = (ActionError) reports.next();
+            ActionMessage report = (ActionMessage) reports.next();
             if (!headerDone) {
                 if (headerPresent) {
                     message =
