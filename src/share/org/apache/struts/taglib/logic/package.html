@@ -12,29 +12,25 @@
 	<a name="doc.Description"></a>
 	
 	<p>
-		<div align="center">
-			<a href="#doc.Intro">[Introduction]</a>
-			<a href="#doc.Functionality">[Logic Functionality]</a>
-			<a href="#doc.Properties">[Logic Properties]</a>
-			<a href="#doc.Usage">[Logic Usage]</a>
-		</div>
+		
+<div align="center"> <a href="#doc.Introduction">[Introduction]</a> <a href="#doc.Functionality">[Logic 
+  Functionality]</a> <a href="#doc.Properties">[Logic Properties]</a> <a href="#doc.Examples">[Logic 
+  Examples]</a> </div>
 	<p></p>
 	
 	<hr />
-	
-	<a name="doc.Intro"></a>
-	<h3>Introduction</h3>
+<a name="doc.Intro"></a> 
+<h3>Introduction<a name="doc.Introduction"></a></h3>
 	
 	<p>
 		The Logic library supplies tags that are useful for manipulating presentation logic
 		without the use of scriptlets.
 	</p>
 	
-	<a name="doc.Functionality"></a>
-	<h3>Logic Tag Functionality</h3>
 	
-	
-<p> The functionality of the logic tag can be divided into four groups:</p>
+<a name="doc.Functionality"></a> 
+<h3>Logic Tag Functionality<a name="doc.Functionality"></a></h3>
+<p> The functionality of the logic tags can be divided into four groups:</p>
 <p><b>Value Comparisions -</b> The purpose of these tags is to print out the body 
   of the tag if the comparision evaluates to <i>true. </i></p>
 <ul>
@@ -59,7 +55,7 @@
 <ul>
   <li><a href="/struts-logic.html#iterate"><b>iterate</b></a> </li>
 </ul>
-<h3>Logic Tag Properties</h3>
+<h3>Logic Tag Properties<a name="doc.Properties"></a></h3>
 <p>Each of the four groups of logic tags have a common set of attributes associated 
   with them. :</p>
 <blockquote> 
@@ -68,7 +64,7 @@
   <p>Each of the value comparision tags takes a <i>value</i> and compares it to 
     the value of a comparision attribute. If the value given can be successfully 
     converted to a <i>float</i> or <i>double</i>, then a number comparision is 
-    performed the value given and the value of the comparision attribute. Otherwise 
+    performed on the value given and the value of the comparision attribute. Otherwise 
     a String comparision is performed. You have to specify one of the comparision 
     attributes: <i>cookie</i>, <i>header</i>, <i>parameter</i>, <i>property</i> 
     or <i>name. </i>For each of the examples, the tag &quot;<i>someComparisionTag&quot;</i>can 
@@ -156,8 +152,8 @@
 
 
 Basically, in this short example, a request parameter &quot;action&quot; 
-was compared to see if was equal to the String value &quot;processLogin&quot;.
-In this case, <i>matchTag</i> would have to be logic:match.</pre>
+was compared to see if it was equal to the String value &quot;processLogin&quot;.
+In this case, <i>matchTag</i> would have to be &lt;logic:match&gt;.</pre>
         </li>
       </ul>
     </li>
@@ -171,9 +167,9 @@ In this case, <i>matchTag</i> would have to be logic:match.</pre>
   </ul>
   <p>The <i>forward</i> tag is responsible for either redirecting or forwarding 
     to a specified global action forward. To define a global ActionForward, see 
-    The <a href="../../../../../../building_controller.html#config">Action Mappings Configuration 
-    File</a>. You can specify whether the forward re-directs or forwards when 
-    executed in the config file. The forward tag has one attribute:</p>
+    The <a href="../../../../../../building_controller.html#config">Action Mappings 
+    Configuration File</a>. You can specify whether the forward re-directs or 
+    forwards when executed in the config file. The forward tag has one attribute:</p>
   <ul>
     <li>name - The logical name of the ActionForward to use</li>
   </ul>
@@ -257,10 +253,137 @@ In this case, <i>matchTag</i> would have to be logic:match.</pre>
   </ul>
 </blockquote>
 <p>&nbsp;</p>
-<h3>Logic Tag Usage</h3>
-<blockquote>
-  <p>TODO: content for this section...</p>
-  <p>&nbsp;</p>
+<h3>Logic Examples</h3>
+<blockquote> 
+  <p><b>Value Comparisions</b></p>
+  <blockquote> 
+    <p><u></u><u></u><u>Logic Equivalence Tags (equal, notEqual, greaterEqual, 
+      lessEqual, lessThan, greaterThan)</u></p>
+    <blockquote> 
+      <p>You can compare these tags to the &quot;==&quot;, &quot;!=&quot; ,&quot;&gt;=&quot;, 
+        &quot;&lt;=&quot;, &quot;&lt;&quot;, and &quot;&gt;&quot;logic operators 
+        in most languages. Their usage is fairly straightforward for numbers. 
+        For an example, we'll create a small &quot;Guess That Number&quot; game 
+        that uses request parameters from a form input to play. The number will 
+        be hardcoded as &quot;7&quot;, because this is just an example. Note that 
+        this is actually putting application logic inside of jsp pages, and isn't 
+        the recommended development method for Struts. It's just an easy way to 
+        show how these tags are used:</p>
+      <p>The first step is to develop the form that will call on the processing 
+        jsp page. This form will use the &quot;GET&quot; method so that you can 
+        see the request parameter in the URL. The POST method can also be used 
+        with no problem or changes.</p>
+      <p>[numberGuess.jsp]</p>
+      <pre>&lt;form action=&quot;numberProcess.jsp&quot; method=&quot;GET&quot;&gt;
+	Please Enter a Number From 1-10: &lt;input type=&quot;text&quot; name=&quot;number&quot; /&gt;&lt;br /&gt;
+
+	&lt;center&gt;
+		&lt;input type=&quot;submit&quot; name=&quot;Guess Number&quot; /&gt;
+
+	&lt;/center&gt;
+&lt;/form&gt;
+
+</pre>
+      The next step is to create the processing page. It uses the struts-logic 
+      taglib. For information on how to set this tag library up in your application 
+      to use, see <a href="../../../../../../building_controller.html#dd_config">The 
+      Web Application Deployment Descriptor</a><br>
+      <br>
+      <p>[numberProcess.jsp]</p>
+      <pre>&lt;%@ page language=&quot;java&quot; %&gt;
+&lt;%@ taglib uri=&quot;/WEB-INF/struts-logic.tld&quot; prefix=&quot;logic&quot; %&gt;
+
+
+
+
+
+
+&lt;!-- Is the number guess right? --&gt;
+&lt;logic:equal parameter=&quot;number&quot; value=&quot;7&quot;&gt;
+	You guessed right!  You win a high speed blender!
+&lt;/logic:equal&gt;
+
+
+&lt;!-- If the number guessed was wrong --&gt;
+&lt;logic:notEqual parameter=&quot;number&quot; value=&quot;7&quot;&gt;
+	&lt;logic:lessThan parameter=&quot;number&quot; value=&quot;7&quot;&gt;
+		A little lower...
+	&lt;/logic:lessEqual&gt;
+	&lt;logic:greaterThan parameter=&quot;number&quot; value=&quot;7&quot;&gt;
+		A little higher...
+	&lt;/logic:greaterEqual&gt;
+&lt;/logic:notEqual&gt;
+
+</pre>
+      <p>Basically, the numberProcess.jsp page uses the equal tag to check if 
+        the guess is 7, and if so, prints out a congratulatory message. If the 
+        number isn't equal, specified by the use of the &lt;logic:notEqual&gt; 
+        tag, it uses the greaterThan and lessThan tags to check if the number 
+        is higher or lower than 7, and prints out a hint. As said before, this 
+        is a horribly designed small application, with no validity checks on the 
+        number input, but shows the basic usage of the logic equal tags</p>
+      <p>For String comparisions, the equal tags use the java.lang.String.compareTo() 
+        method. See the javadocs on the compareTo() method for more information, 
+        located <a href="http://www.javasoft.com/products/jdk/1.2/docs/api/java/lang/String.html#compareTo(java.lang.Object)">here</a>.</p>
+    </blockquote>
+    <p><u>Match and Present Tags (match, notMatch, present, notPresent)</u></p>
+    <blockquote> 
+      <p>You use the match tags in conjunction with the present tags in order 
+        to do substring matches. For an example using this we'll use headers, 
+        specifically the &quot;Referer&quot; header. The HTTP referer header gives 
+        the URL of the document that refers to the requested URL. We'll use this 
+        to check if the user is coming from a link specified by a <a href="http://www.google.com">Google</a> 
+        search, and offer a personalized greeting, frightening users that find 
+        our site through the search engine with our amazing intimate knowledge 
+        of their browsing habits:</p>
+      <p>[sneaky.jsp]</p>
+      <pre>&lt;%@ page language=&quot;java&quot; %&gt;
+
+&lt;%@ taglib uri=&quot;/WEB-INF/struts-logic.tld&quot; prefix=&quot;logic&quot; %&gt;
+
+
+&lt;!-- Check to see if the &quot;Referer&quot; header is present --&gt;
+&lt;logic:present header=&quot;Referer&quot;&gt;
+	&lt;logic:match header=&quot;Referer&quot; value=&quot;google.com&quot;&gt;
+		I see you found our site through Google... interesting.
+	&lt;/logic:match&gt;
+&lt;/logic:present&gt;
+
+&lt;!-- If the header is not present --&gt;
+&lt;logic:notPresent header=&quot;Referer&quot;&gt;
+	Hi, welcome to our site.  Please fill out our &lt;a href=&quot;nonExistantForm.jsp&quot;&gt;Form&lt;/a&gt; and
+	tell us where you're coming from.
+&lt;/logic:notPresent&gt;</pre>
+      <p>Note: Another interesting usage of these tags and headers would be to 
+        use the &quot;User-Agent&quot; header to display browser-specific javascript.</p>
+    </blockquote>
+  </blockquote>
+  <p><b>Collection Utilities (iterate)</b></p>
+  <blockquote>
+    <p>For an example of using the &lt;logic:iterate&gt; tag, we'll use the javax.servlet.ServletRequest 
+      object and it's parameterMap property to iterate through parameter names 
+      and print them out. See the javadocs for <a href="http://www.javasoft.com/products/servlet/2.3/javadoc/javax/servlet/ServletRequest.html#getParameterMap()">javax.servletRequest.getParameterMap()</a> 
+      for more information. Note that this example uses the &lt;bean:write&gt; 
+      tag. More information on the &lt;bean:write&gt; tag can be found in the 
+      Bean Tag User Guide.</p>
+    <p>[iterate.jsp]</p>
+    <pre>&lt;%@ page language=&quot;java&quot; %&gt;
+&lt;%@ taglib uri=&quot;/WEB-INF/struts-bean.tld&quot; prefix=&quot;bean&quot; %&gt;
+&lt;%@ taglib uri=&quot;/WEB-INF/struts-logic.tld&quot; prefix=&quot;logic&quot; %&gt;
+
+
+&lt;logic:iterate name=&quot;request&quot; property=&quot;parameterMap&quot; id=&quot;parameterName&quot;&gt;
+	Parameter: &lt;bean:write name=&quot;parameterName&quot; /&gt;
+&lt;/logic:iterate&gt;</pre>
+    <pre>&nbsp;</pre>
+  </blockquote>
+  <pre>&nbsp;</pre>
+  <blockquote>
+    <blockquote>
+      <pre>&nbsp;</pre>
+    </blockquote>
+    <blockquote>&nbsp;</blockquote>
+  </blockquote>
 </blockquote>
 </body>
 </html>
