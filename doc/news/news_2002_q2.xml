@@ -86,7 +86,7 @@ further contributions.
 <p>
 [10] <a href="http://nagoya.apache.org/eyebrowse/ReadMsg?listName=struts-dev@jakarta.apache.org&amp;msgNo=8691">dev #8691</a> 
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020624"></a>24 June 2002 - Tiles article in DeveloperWorks</h3>
@@ -95,7 +95,7 @@ The IBM DeveloperWorks site is featuring a new article entitled
 "<a href="http://www-106.ibm.com/developerworks/java/library/j-strutstiles.html?loc=j">
 <b>Struts and Tiles aid component-based development</b></a>" by Wellie Chao.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020612.1"></a>12 June 2002 - Struts Console version 1.12.1</h3>
 <p>
@@ -133,7 +133,7 @@ Changes with Struts Console v1.12.1
      correctly set the classpath for invoking the
      standalone Struts Console.</li>
 </ul>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020612.2"></a>12 June 2002 - Easy Struts 0.2</h3>
@@ -160,7 +160,7 @@ More :
 <li>http://sourceforge.net/projects/easystruts</li>
 <li>http://easystruts.sourceforge.net/</li>
 </ul>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020612"></a>12 June 2002 - Artimus 0.4</h3>
@@ -196,7 +196,7 @@ Other goodies include:
 <p>
 Most of these come out of the updated Scaffold package that is bundled in this distribution. The versions of Artimus and Scaffold in the Apache-Struts CVS will be updated shortly.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020611.1"></a>11 June 2002 - Struts Builder v0.4 beta</h3>
@@ -225,7 +225,7 @@ The tool is available at: <a href="http://rivernorth.sourceforge.net">rivernorth
 <p>
 This project is actively seeking feedback and contributors.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020611"></a>11 June 2002 - JavaPro Articles on Struts</h3>
 <p>
@@ -237,7 +237,7 @@ In case you missed them, here's the links:
 <li><a href="http://www.fawcette.com/javapro/mags/2002_05/magazine/columns/weblication/default.asp"><b>Applying the MVC Design Pattern Using Struts</b></a> by Peter Varhol</li>
 <li><a href="http://www.fawcette.com/javapro/2002_04/magazine/features/tholloway/"><b>Struts: a Solid Web-App Framework</b></a> by Tim Holloway</li>
 </ul>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020607.1"></a>07 Jun 2002 - O'Reilly Chapter 7</h3>
@@ -257,7 +257,7 @@ applications, as well extensive support for user input acceptance, validation, a
 all of which make it easier for the developer to focus on business requirements. This chapter
 concludes the three-part discussion of how the Struts framework implements the MVC pattern.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020607"></a>07 Jun 2002 - Introduction to Struts Presentation</h3>
 <p>
@@ -266,7 +266,7 @@ A general introduction to Struts by Dave Hay. Appropriate for team meetings. Use
 <p>
 <a href="http://www.husted.com/struts/resources/struts-intro.ppt">www.husted.com/struts/resources/struts-intro.ppt</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020606"></a>06 Jun 2002 - Wanted: Struts Newsletter Editors</h3>
 <p>Our parent project, Apache-Jakarta, is organizing a joint newsletter</p>
@@ -279,7 +279,7 @@ of what's happening on the lists would be welcome.</p>
 <p>Followup thread:</p>
 <p><a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg32915.html">
 www.mail-archive.com/struts-user@jakarta.apache.org/msg32915.html</a></p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020605"></a>05 Jun 2002 - Struts Console version 1.12</h3>
 <p>
@@ -326,7 +326,7 @@ Updated Message Resources screen to also show the
 Messages key.
 </li>
 </ul>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020607"></a>07 Jun 2002 - Easy Struts on SourceForge</h3>
 <p>
@@ -336,7 +336,7 @@ at sourceforge.net.
 <p>
 <a href="http://easystruts.sourceforge.net/index.html">EasyStruts on Sourceforge</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020604"></a>04 Jun 2002 - FL Child Support Payments: Powered by Struts</h3>
 <p>
@@ -379,7 +379,7 @@ For more, see the <a href="http://www.mail-archive.com/struts-user@jakarta.apach
 <p>
 <a href=""></a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020603"></a>03 Jun 2002 - strutsGuessingGame1.0</h3>
 <p>
@@ -389,7 +389,7 @@ For more, see the <a href="http://www.mail-archive.com/struts-user@jakarta.apach
 A guessing game written with Struts like the one that comes with Tomcat's examples, includes sources, ANT build script 
 and a Struts jar distribution
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020527.2"></a>27 May 2002 - Struts Tips</h3>
@@ -409,7 +409,7 @@ Struts Tips archives<br/>
 - <a href="http://jguru.com/faq/subtopic.jsp?topicID=893704">jguru.com/faq/subtopic.jsp?topicID=893704</a><br/>
 - <a href="http://www.husted.com/struts/tips">www.husted.com/struts/tips</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020527.1"></a>27 May 2002 - Struts Action Plug-in Extension 1.0</h3>
@@ -421,25 +421,23 @@ authentication, workflow, etc.) for Struts actions in an application.
 <p>
 <a href="http://www.asqdotcom.be/struts/">www.asqdotcom.be/struts</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020527"></a>27 May 2002 - Eclipse Struts Wizard v2.0</h3>
 <p>
 Same user interface as our JBuilder Wizard but:
 </p>
-<p>
-Features:
+<p>Features:</p>
 <ul>
 <li>ActionForm, Action, input JSP and struts-config.xml generation powered by eclipse framework.</li>
 <li>Compatible with Tomcat plugin from Sysdeo.</li>
 <li>And some bug fixes ... </li>
 </ul>
-</p>
 <p>
 Available at <a href="http://www.mycgiserver.com/~eboudrant/">www.mycgiserver.com/~eboudrant/</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020525"></a>25 May 2002 - Struts Console version 1.11</h3>
@@ -461,7 +459,7 @@ Changes with Struts Console v1.11
 <li>Updated code to be more efficient and use less memory.</li>
 <li>Changed distribution to have a master directory (i.e. struts-console-1.11).</li>
 </ul>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020522.1"></a>22 May 2002 - O'Reilly Chapter 10</h3>
@@ -480,7 +478,7 @@ allow them to gracefully respond when things don't go as expected. Special atten
 given to the differences between performing the exception handling programmatically and
 using the new declarative feature added to the new version of Struts. 
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020522"></a>22 May 2002 - Struts Console v1.10</h3>
@@ -503,7 +501,7 @@ Changes with Struts Console v1.10
 <li>Removed unnecessary duplicate of JDOM classes from console.jar thus making downloads smaller.</li>
 <li>Updated help/installation documentation.</li>
 </ul>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020513.1"></a>13 May 2002 - Struts Wizard v1.0.2 for JBuilder</h3>
@@ -516,7 +514,7 @@ Updated in 1.0.2 release:
 <li>Some JBuilder 6 problems (about jbuilder test path) with java code generation fixed. </li>
 <li>String initializer don't need quotes (except null).</li>
 </ul>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020513"></a>13 May 2002 - Struts SOS Service</h3>
@@ -529,7 +527,7 @@ See <a href="http://sos.multitask.com.au/">http://sos.multitask.com.au</a>
 <p>
 Support requests can be placed after purchasing support, however the rest of the information is available for free.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020510"></a>10 May 2002 - ReviewAlert - Powered by Struts</h3>
@@ -544,7 +542,7 @@ on, and a link to get you there.
 <p>
 <a href="http://www.reviewalert.com/">www.reviewalert.com/</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <p><a name="20020522.1"></a>10 May 2002 - O'Reilly Chapters 5 and 6</p>
@@ -572,7 +570,7 @@ the roles and responsibilities of the model components within the Struts framewo
 implementation for the storefront application. Special attention will be given to using a persistence framework that can be easily and effortlessly
 integrated into a Struts application. 
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020504"></a>04 May 2002 - Chinese Translation of Struts User Guide</h3>
@@ -586,7 +584,7 @@ Preview can be found at<br/>
 www.beaconsystem.com/pub/doc/Struts/userGuide_CN/index.html
 </a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020502"></a>02 May 2002 - Struts Wizard v1.0 final for JBuilder</h3>
@@ -607,7 +605,7 @@ More info: <a href="http://www.mycgiserver.com/~eboudrant/">http://www.mycgiserv
 <p>
 You can download it at: <a href="http://codecentral.borland.com/codecentral/ccweb.exe/listing?id=17849">http://codecentral.borland.com/codecentral/ccweb.exe/listing?id=17849</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020501"></a>01 May 2002 - stxx 0.9.5 is available</h3>
@@ -636,7 +634,7 @@ The idea of stxx is to remove the need to be use JSP and TagLibs for the
 presentation layer of this framework. However, stxx does not force you 
 to go the XML/XSL route, both technologies work side by side.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020428"></a>28 Apr 2002 - StrutsTestCase v1.7 Released</h3>
@@ -656,7 +654,7 @@ Notes for this release can be found here:<br/>
 <p>
 Questions and comments are always welcome!
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020425"></a>25 Apr 2002 - O'Reilly Chapters 1 and 2</h3>
 <p>
@@ -679,7 +677,7 @@ web container. For Struts developers, understanding how the web container proces
 understanding of the framework itself. This chapter illustrates the various components that are part of the web container and what each
 component's responsibilities are.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020424"></a>24 Apr 2002  - Struts1.1 UML Class diagrams</h3>
@@ -689,7 +687,7 @@ from Strut 1.0, are available at:</p>
 <p>
 <a href="http://www.mycgiserver.com/~eboudrant/">http://www.mycgiserver.com/~eboudrant/</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020423.1"></a>23 Apr 2002 - Synthis Corporation announces support for the Apache Struts J2EE Architecture</h3>
 <p>
@@ -725,7 +723,7 @@ details on the Adalon Struts Community Edition and the Adalon Developer Edition,
 <p>
 To download a 30-day evaluation version of Adalon, please visit <a href="http://www.synthis.com/downloads/index.jsp">www.synthis.com/downloads</a>.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020423"></a>23 Apr 2002 - JForms: a visual tool for Struts-based Web forms</h3>
@@ -750,7 +748,7 @@ an email to sales@solanasoft.com to sign up for the beta program.
 The site address is:<br/>
 <a href="http://www.solanasoft.com">http://www.solanasoft.com</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020422"></a>22 Apr 2002 - Expresso 4.1 rc2</h3>
@@ -780,7 +778,7 @@ prepare the way for a production quality stable 4.1. There will probably one
 more release candidate before the final release. Expresso is an
 architectural framework which has more than 91,000 downloads and ~4700
 people on it's listserv.</p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020416"></a>16 Apr 2002  - Struts Console v1.8</h3>
@@ -802,7 +800,7 @@ Added support for new 1.1 config file elements:
 </li>
 <li>Fixed Oracle JDeveloper Addin to support JDeveloper 9i RC2 and future versions.</li>
 </ul>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020409"></a>09 Apr 2002  - Struts Tutorial (Wiesner)</h3>
@@ -812,7 +810,7 @@ An easy step by step introduction to Struts.
 <p>
 <a href="http://rzserv2.fhnon.de/~lg002556/struts/">rzserv2.fhnon.de/~lg002556/struts</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020405"></a>05 Apr 2002  - Struts Tutorial in Spanish (Izura)</h3>
@@ -831,7 +829,7 @@ Hasta otra!
 <p>
 <a href="http://rzserv2.fhnon.de/~lg002556/struts/">rzserv2.fhnon.de/~lg002556/struts</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020404"></a>04 Apr 2002  - struts-layout 0.4 released</h3>
@@ -850,7 +848,7 @@ done (creation of data, edition of data, inspection of data).
 For more information about struts-layout please visit<br/> 
 <a href="http://struts.application-servers.com">http://struts.application-servers.com</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <p align="center">
 <a href="news_2002_q1.html">

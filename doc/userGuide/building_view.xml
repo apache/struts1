@@ -496,8 +496,8 @@ HttpServletRequest request);
 <section name="3.3.5 The Struts Validator" href="validator">
 
     <p>
-    Configuring the Validator to perform form validation is easy.<br/>
-    
+    Configuring the Validator to perform form validation is easy.
+    </p>
     <ol>
     
     <li>
@@ -536,7 +536,6 @@ value="/WEB-INF/validator-rules.xml,
 
         </li>
     </ol>
-    </p>
     
     <p>
     <strong>Note:</strong> If your required form property is one of the Java object representations of 
@@ -836,24 +835,23 @@ return(null);
     of "rtexprvalue"s (runtime scriptlet expressions) to evaluate dynamic
     attribute values.  For instance, to print a message from a properties
     file based on a resource key, you would use the
-    <code>bean:write</code> tag, perhaps like this:
+    <code>bean:write</code> tag, perhaps like this:</p>
     <pre><code>
     <![CDATA[<bean:message key='<%= stringvar %>'/>]]>
     </code></pre>
-    </p>
 
     <p>
     This assumes that <code>stringvar</code> exists as a JSP scripting
     variable.  If you're using the <strong>Struts-EL</strong> library, the
-    reference looks very similar, but slightly different, like this:
+    reference looks very similar, but slightly different, like this:</p>
     <pre><code>
     <![CDATA[<bean-el:message key="${stringvar}"/>]]>
     </code></pre>
-    </p>
 
     <p>
     If you want to know how to properly use the <strong>Struts-EL</strong>
     tag library, there are two important things you need to know:
+    </p>
     
     <ul>
     
@@ -867,7 +865,6 @@ return(null);
 
     </ul>
 
-    </p>
 
     <p>
     Once you understand how to use these two, consider Struts tag

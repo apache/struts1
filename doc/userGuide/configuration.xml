@@ -1071,6 +1071,7 @@
     All that's required to install the struts tag libraries is to copy
     struts.jar into your /WEB-INF/lib directory and reference the tags in
     your code like this:
+    </p>
 
     <pre><code>
     &lt;%@ taglib
@@ -1078,11 +1079,11 @@
         prefix="html" %&gt;
     </code></pre>
 
+    <p>
     Note that you <b>must use the full uri</b> defined in the various struts
     tlds so that the container knows where to find the tag's class files.
     You don't have to alter your web.xml file or copy tlds into any
     application directories.
-
     </p>
 
 </section>

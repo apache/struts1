@@ -7,38 +7,34 @@
 <title>Resources - Read Me First - Jakarta Struts</title>
 </properties>
 <body> 
-<chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
+<chapter name="Struts Resources"> 
 
 <section name="Read Me First">
-<ul><b>Why we need Struts:</b>
+<b>Why we need Struts:</b>
 <ul>
   <li><a href="http://www.servlets.com/soapbox/problems-jsp.html"><b>The Problem with JSP</b></a> by Jason Hunter - Critiques model 1 development</li>
   <li><a href="http://www.javaworld.com/javaworld/jw-12-1999/jw-12-ssj-jspmvc.html"><b>Understanding JavaServer Pages Model 2 architecture</b></a> by Govind Seshadri - Seminal article on model 2</li>
 </ul>
-</ul>
-<ul><b>From Ground Zero:</b>
+<b>From Ground Zero:</b>
   <ul>
     <li><a href="http://java.sun.com/docs/books/tutorial/getStarted/cupojava/index.html">Your First Cup of Java</a></li>
     <li><a href="http://java.sun.com/docs/books/tutorial/getStarted/cupojava/index.html">Getting Started</a></li>
     <li><a href="http://java.sun.com/docs/books/tutorial/java/index.html">Learning the Language</a></li>
     <li><i>Optional:</i> <a href="http://java.sun.com/docs/books/tutorial/essential/index.html">Essential Classes</a></li>
   </ul>
-</ul>
-<ul><b>Core Prerequesites:</b>
+<b>Core Prerequesites:</b>
   <ul>
     <li><a href="http://java.sun.com/docs/books/tutorial/collections/index.html">The Java Tutorial - Trail: Collections</a></li>
     <li><a href="http://java.sun.com/docs/books/tutorial/javabeans/index.html">The Java Tutorial - Trail: JavaBeans</a></li>
     <li><a href="http://java.sun.com/docs/books/tutorial/servlets/index.html">The Java Tutorial - Trail: Servlets</a></li>
   </ul>
-</ul>
-<ul><b>JSP/Taglib Prerequisites:</b>
+<b>JSP/Taglib Prerequisites:</b>
   <ul>
     <li><a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPIntro.html">The J2EE Tutorial - JavaServer Pages</a> </li>
     <li><a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPBeans.html">The J2EE Tutorial - JavaBeans Components in JSP Pages</a></li>
     <li><a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPTags.html">The J2EE Tutorial - Custom Tags in JSP Pages </a></li>
   </ul>
-</ul>
-<ul><b>Optional:</b>
+<b>Optional:</b>
   <ul>
     <li>
       <i>Optional:</i> <a href="http://java.sun.com/docs/books/tutorial/i18n/index.html">The Java Tutorial - Trail: Internationalization</a></li>
@@ -56,9 +52,8 @@
     </ul>
     </li>
   </ul>
-</ul>
 
-<ul><b>Struts Specific:</b>
+<b>Struts Specific:</b>
 <ul>
   <li><a href="http://www-106.ibm.com/developerworks/library/j-struts/?n-j-2151">Struts, an open-source MVC implementation</a> -- <a href="mailto:malcolm@nuearth.com">Malcom Davis</a>.</li>
   <li><a href="http://jakarta.apache.org/tomcat/tomcat-3.2-doc/appdev/index.html">Developing Applications with Tomcat</a> (<i>Even if you are using something else!</i>) 
@@ -69,12 +64,10 @@
   <li><a href="http://jakarta.apache.org/struts/api/index.html"><b>Struts JavaDocs</b> </a> -- <i>a good read, really!</i></li>
   <li><a href="http://husted.com/struts/catalog.html"><b>The Struts Catalog</b> </a> -- Recommended design patterns and strategies</li>
 </ul>
-</ul>
 
-<ul><b><a name="too">readMe.Too</a></b>
+<b><a name="too">readMe.Too</a></b>
 <ul>
 <li><b><a href="http://barracuda.enhydra.org/cvs_source/Barracuda/docs/landscape.html">Surveying the MVC Landscape</a></b> - Contrasts other frameworks (including Struts) with Barracuda</li>
-</ul>
 </ul>
 </section>
 

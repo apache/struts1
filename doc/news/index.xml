@@ -15,7 +15,7 @@
         <a href="http://www.apache.org/dist/jakarta/struts/binaries/">Struts 1.1.0</a> (29 June 2003).
     </p>
 
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <ul>
     <li>
@@ -42,7 +42,7 @@
     </li>
     </ul>
 
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <p>
         Struts is a completely open product. The <a href="http://jakarta.apache.org/struts/volunteers.html">Struts
@@ -62,7 +62,7 @@
 <p>
 <a href=""></a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 -->
 
         <h3><a name="20030829"></a>29 Aug 2003 - Core J2EE Patterns -- Expanded and Updated in Second Edition</h3>
@@ -103,9 +103,9 @@
             Find links to <b>Core J2EE Patterns</b> and other great books in the
             <a href="http://jakarta.apache.org/struts/resources/related_books.html">Struts Resource section</a>.
         </p>
-        <hr size="1" noshade=""/>
+        <hr size="1" noshade="noshade"/>
 
-        <h3><a name=""></a>28 Aug 2003 - Commons Validator 1.1.0 Alpha is now available for testing</h3>
+        <h3>28 Aug 2003 - Commons Validator 1.1.0 Alpha is now available for testing</h3>
         <p>
             Please refer to <a href="http://jakarta.apache.org/commons/validator/tasks.html">
                 http://jakarta.apache.org/commons/validator/tasks.html</a>
@@ -130,7 +130,7 @@
             as defined by the Apache HTTPD project.
             Subsequent votes may reclassify the release, either to promote it or to demote it, as need be.
         </p>
-        <hr size="1" noshade=""/>
+        <hr size="1" noshade="noshade"/>
 
         <h3><a name="20030828"></a> - ASF Protest Euopean Software Patentability Rule Changes</h3>
         <p>
@@ -152,7 +152,7 @@
             For further information please see <a href="http://swpat.ffii.org">http://swpat.ffii.org</a> and
             <a href="http://petition.eurolinux.org">http://petition.eurolinux.org</a>.
         </p>
-        <hr size="1" noshade=""/>
+        <hr size="1" noshade="noshade"/>
 
 
         <h3><a name="20030825"></a>25 Aug 2003 - Model-driven Development for Struts/EJB</h3>
@@ -197,7 +197,7 @@
         <p>
         Learn more and download a free evaluation at <a href="http://www.metanology.com">"www.metanology.com</a>.
         </p>
-        <hr size="1" noshade=""/>
+        <hr size="1" noshade="noshade"/>
 
         <h3><a name="20030820"></a>20 Aug 2003 - Introduction to Hibernate presentation</h3>
         <p>
@@ -221,7 +221,7 @@
             facility planning purposes. So, please RSVP for the meeting by sending an
             email to me with "Struts User September Meeting" as the subject.
         </p>
-        <hr size="1" noshade=""/>
+        <hr size="1" noshade="noshade"/>
 
         <h3><a name="20030730"></a>30 Jul 2003 - StrutsDoc 0.3.1 Released</h3>
         <p>
@@ -241,9 +241,9 @@
             <a href="http://www.systemmobile.com/strutsdoc/struts-example">
                 http://www.systemmobile.com/strutsdoc/struts-example</a>
         </p>
-        <hr size="1" noshade=""/>
+        <hr size="1" noshade="noshade"/>
 
-        <h3><a name=""></a>27 Jul 2003 - Log4J Administration Webapp built with struts</h3>
+        <h3><a name="20030727"></a>27 Jul 2003 - Log4J Administration Webapp built with struts</h3>
         <p>
             Just thought I'd let you know that LogWeb, a fully functional administration interface for Log4J,
             has been implemented with Struts.
@@ -258,9 +258,9 @@
         <p>
             Thanks to the struts team. Without struts, LogWeb would have taken much longer to develop.
         </p>
-        <hr size="1" noshade=""/>
+        <hr size="1" noshade="noshade"/>
 
-        <h3><a name=""></a>24 Jul 2003 - brief example using iBATIS from Struts</h3>
+        <h3><a name="20030724"></a>24 Jul 2003 - brief example using iBATIS from Struts</h3>
         <p>
             There are often newbie requests asking how to deal with a database layer
             from Struts. Since there are so many ways this can be done,
@@ -291,7 +291,7 @@
             the basicPortal application that you can check out
             here: <a href="http://www.basicportal.com/">http://www.basicportal.com/</a>
         </p>
-        <hr size="1" noshade=""/>
+        <hr size="1" noshade="noshade"/>
 
         <h3><a name="20030717"></a>17 Jul 2003 - Velocity Tools 1.0 released</h3>
         <p>
@@ -321,7 +321,7 @@
             site (<a href="http://www.apache.org/dist/jakarta/velocity-tools/KEYS">
             http://www.apache.org/dist/jakarta/velocity-tools/KEYS</a>) when downloading from a mirror.
         </p>
-        <hr size="1" noshade=""/>
+        <hr size="1" noshade="noshade"/>
 
         <h3><a name="20030714"></a>14 Jul 2003 - Struts updated in Out-of-the-Box 2.1 release</h3>
         <p>
@@ -349,7 +349,7 @@
             Please visit <a href="http://www.ejbsolutions.com">http://www.ejbsolutions.com</a> for details or to
             download the free Community Edition.
         </p>
-        <hr size="1" noshade=""/>
+        <hr size="1" noshade="noshade"/>
 
         <h3><a name="20030711"></a>11 Jul 2003 - new release of bP</h3>
         <p>
@@ -362,9 +362,9 @@
             Also three are few new newsgroups added to new.baseBeans.com (new: Oracle, MS SQL, C#, old are JDO,
             Eclipse, JavaScript, etc.) so refresh your news reader if you are using news.basebeans.com
         </p>
-        <hr size="1" noshade=""/>
+        <hr size="1" noshade="noshade"/>
 
-        <h3><a name=""></a>09 Jul 2003 - Struts Studio Professional</h3>
+        <h3><a name="20030709"></a>09 Jul 2003 - Struts Studio Professional</h3>
         <p>
             Building on the tremendous success of the first release of Struts Studio and incorporating substantial
             feedback from the Struts community, Exadel, Inc. has now unveiled a powerful new Web Integrated Development
@@ -394,7 +394,7 @@
             <li>Ability to print Web Flow diagram with zooming</li>
             <li>And many others...</li>
          </ul>
-        <hr size="1" noshade=""/>
+        <hr size="1" noshade="noshade"/>
 
 <p align="center">
 <a href="news_2003_q2.html">

@@ -15,10 +15,10 @@
     <p>
     <a href=""></a>
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
     -->
 
-    <h3><a name=""></a>28 Mar 2003 - StrutsDoc</h3>
+    <h3><a name="20030328"></a>28 Mar 2003 - StrutsDoc</h3>
     <p>
         StrutsDoc allows you to generate two new types of taglib documentation.
     </p>
@@ -37,7 +37,7 @@
         StrutsDoc is available at the Struts SourceForge site: <a href="http://struts.sf.net/strutsdoc/index.html">
         http://struts.sf.net/strutsdoc</a>
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030327"></a>27 Mar 2003 - Tampa/St.Pete Struts User Group</h3>
     <p>
@@ -59,7 +59,7 @@
     <p>
         Hope to hear from you.
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030325"></a>25 Mar 2003 - Scripting Actions with BSF</h3>
     <p>
@@ -88,9 +88,9 @@
     <p>
         <a href="http://www.twdata.org/struts-bsf">http://www.twdata.org/struts-bsf</a>
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
-    <h3><a name=""></a>26 Mar 2003 - Struts-Silicon-Valley meeting on April 2nd in Palo Alto</h3>
+    <h3><a name="20030326"></a>26 Mar 2003 - Struts-Silicon-Valley meeting on April 2nd in Palo Alto</h3>
     <p>
         The inaugural meeting of the Silicon Valley Struts user group will be a
         dinner meeting at 7:30pm on Wednesday, April 2nd, in Palo Alto at Jing Jing:
@@ -126,9 +126,9 @@
         P.P.S. Yes, they do serve beer at Jing Jing unless your name is Mark
         Galbreath. Just seeing who actually reads to the end of this message. ;-)
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
-    <h3><a name=""></a>25 Mar 2003 - Struts-Atlanta meeting</h3>
+    <h3><a name="20030325"></a>25 Mar 2003 - Struts-Atlanta meeting</h3>
     <p>
         If you are interested in coming to the Struts Atlanta users group
         meeting, it is tonight.
@@ -141,14 +141,14 @@
     <p>
         Plan to be there early if you want a seat.
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
-    <h3><a name=""></a>20 Mar 2003 - Meeting in Paris this Saturday</h3>
+    <h3><a name="20030320"></a>20 Mar 2003 - Meeting in Paris this Saturday</h3>
     <p>
         For those interested to discuss with me about Struts and Tiles, I will be this Saturday 22 march in Paris at
         the bookstore "Le Monde en 'tique'" from 16h to 18h (www.lmet.fr).
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030319"></a>19 Mar 2003 - NJ MVC Open Source Meeting (njmvcopensource)</h3>
     <p>
@@ -170,7 +170,7 @@
         <a href="http://groups.yahoo.com/group/njmvcopensource">http://groups.yahoo.com/group/njmvcopensource</a><br />
         <a href="http://www.gti.net/mocolib1/compass.html">http://www.gti.net/mocolib1/compass.html</a>
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030318"></a>18 Mar 2003 - Struts-Faces Integration Library Available</h3>
     <p>
@@ -211,9 +211,9 @@
       classes), as well as an extensive <code>README.txt</code> that documents
       how to utilize the library in your own applications.
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
-    <h3><a name=""></a>15 Mar 2003 - Easy Struts 0.6.4 &gt; compatible Eclipse 2.1</h3>
+    <h3><a name="20030315"></a>15 Mar 2003 - Easy Struts 0.6.4 &gt; compatible Eclipse 2.1</h3>
     <p>
         Easy Struts 0.6.4 is available, now it's working with both Eclipse 2.0 and Eclipse
         2.1. Here are the changes logs:
@@ -237,7 +237,7 @@
     <a href="http://easystruts.sf.net">http://easystruts.sf.net</a><br />
     <a href="http://easystruts.sourceforge.net/update.html">http://easystruts.sourceforge.net/update.html</a>
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030310"></a>10 Mar 2003 - Struttin' With Struts beta (newbies esp. welcome)</h3>
     <p>
@@ -273,7 +273,7 @@
         Struttin' with Struts: <br />
         <a href="http://www.reumann.net/do/struts/main">http://www.reumann.net/do/struts/main</a>
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030223.1"></a>23 Feb 2003 - New Nested Tags -or- Nesters, lend me your containers</h3>
     <pre>
@@ -324,7 +324,7 @@
     <p>
         Thanks again, and happy nesting.
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030223"></a>23 Feb 2003 - Struts 1.1 Release Candidate 1 Released</h3>
     <p>
@@ -364,7 +364,7 @@
         <a href="http://jakarta.apache.org/struts/userGuide/release-notes-1.1-rc1.html">
         http://jakarta.apache.org/struts/userGuide/release-notes-1.1-rc1.html</a>
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030217"></a>17 Feb 2003 - Struts talk .. &amp; labs live online w/ 4 Authors</h3>
     <p>
@@ -393,7 +393,7 @@
         - Best Training by readers of JDJ<br />
         - Project recovery
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030216"></a>16 Feb 2003 - Struts talks at Lone Star</h3>
     <p>
@@ -434,7 +434,7 @@
         For more about the Lone Star Symposium, and others in this series,
         visit <a href="http://www.nofluffjuststuff.com/">http://www.nofluffjuststuff.com/</a>.
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030215"></a>15 Feb 2003 - Struts quiz online at java.sun.com</h3>
     <p>
@@ -450,7 +450,7 @@
         So, pop over and have a bit of fun testing your Struts knowledge,
         and maybe even learn something at the same time. =:0)
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030211"></a>11 Feb 2003 - Scioworks Camino 3.0</h3>
     <p>
@@ -458,7 +458,7 @@
         For general information and list of new features, see
         <a href="">http://www.scioworks.net/servlets/ShowPage?pid=48&amp;dp=2</a>
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030206.1"></a>06 Feb 2003 - Expresso 5.0.3 Available for Download</h3>
     <p>
@@ -480,7 +480,7 @@
     <p>
         For the last reason, it is recommended that all Expresso 5.0 users upgrade to 5.0.3 as soon as possible.
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
 
     <h3><a name="20030206"></a>06 Feb 2003 -  Easy Struts 0.6.3 for Eclipse is out</h3>
@@ -497,7 +497,7 @@
         * Fix roles generation in &lt;action.../><br/>
         * XML elements forward/form-property/exception/set-property respect DTD order
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030205"></a>05 Feb 2003 - Live Internet based Intermediate Struts Training by "Best Training"
         as voted by Java Developers Journal.</h3>
@@ -640,7 +640,7 @@
     <p>
     Vic Cekvenich &lt;<a href="mailto:vic@basebeans.com">vic@basebeans.com</a>&gt;
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
 
     <h3><a name="20030204"></a>04 Feb 2003 - Struts Console v3.2</h3>
@@ -718,7 +718,7 @@
          size and location.
         </li>
     </ul>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030118"></a>18 Jan 2003 - Struts Training in DC and NYC</h3>
     <p>
@@ -780,7 +780,7 @@
         This is not intro to Struts, you must know some MVC (and JAVA and SQL well),
         I do not like teaching intro.
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20031701"></a>17 Jan 2003 - JSP taglibs + FreeMarker</h3>
     <p>
@@ -804,7 +804,7 @@
         improvements in areas of macro handling, namespaces, automatic escaping of
         interpolations and whitespace handling.
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <h3><a name="20030106"></a>06 Jan 2003 - neteye actioncache 1.1</h3>
     <p>
@@ -821,9 +821,9 @@
         Sources and documentation can be found at
         <a href="http://actioncache.neteye.de">http://actioncache.neteye.de</a>
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
-    <h3><a name=""></a>4 Jan 2003 - JBoss Handbook</h3>
+    <h3><a name="20030104"></a>4 Jan 2003 - JBoss Handbook</h3>
     <p>
         I am pleased to announce the availability of the book
         "JBoss 3.0 Deployment and Administration Handbook".
@@ -862,7 +862,7 @@
         <a href="http://www.amazon.com/exec/obidos/ISBN=1861008120/hitchhikeguidetoA/">
         Amazon</a> [ISBN # 1861008120].
     </p>
-    <hr size="1" noshade=""/>
+    <hr size="1" noshade="noshade"/>
 
     <p align="center">
         <a href="news_2002_q4.html">

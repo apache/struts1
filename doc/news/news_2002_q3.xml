@@ -17,7 +17,7 @@
 <!--
 <h3><a name=""></a></h3>
 <p><a href=""></a></p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 -->
 
 <h3><a name="20020830"></a>30 Aug 2002 - Struts book moves ahead</h3>
@@ -34,7 +34,7 @@ Several other Struts books are slated for release. Links are available on the St
 <p>
 <a href="http://jakarta.apache.org/struts/resources/books.html">http://jakarta.apache.org/struts/resources/books.html</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020831.4"></a>30 Aug 2002 - MockObjects 0.4 released</h3>
 <p>Unit testing is a hot topic among Struts developers. <a href="http://strutstestcase.sourceforge.net/">StrutsTestCase</a> provides a slick mock object for testing Struts Actions with JUnit (or Cactus). The MockObjects projects provides a base API for creating tests for the rest of the objects in your Java application. </p>
@@ -42,14 +42,14 @@ Several other Struts books are slated for release. Links are available on the St
 <p>
 Developers working with the MockObjects project include Struts committers Vincent Massol and Ted Husted.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020830.2"></a>30 Aug 2002 - Artimus 1.0 beta 2 available</h3>
 <p>Artimus is a sample Struts application for posting news articles that uses JDBC, Lucene, and the Scaffold toolkit.</p>
 <p>Artimus may be downloaded from the Struts Example Application site on SourceForge </p>
 <p><a href="http://sourceforge.net/projects/struts">http://sourceforge.net/projects/struts</a></p>
 <p>Other developers with example applications that they would like to donate to the community are invited to join the Struts Sourceforge site.</p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020830.1"></a>30 Aug 2002 - Struts Console v2.1.1</h3>
 <p>Struts Console version 2.1.1 is now available.
@@ -87,7 +87,7 @@ Changes with Struts Console v2.1.1
      &lt;form-property> element couldn't be changed once
      it had been set.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020830.3"></a>28 Aug 2002 - Easy Struts 0.5.2 for Eclipse</h3>
 <p>
@@ -109,13 +109,13 @@ Demo : http://easystruts.sourceforge.net/editor.html (4Mo, be patient)
 <a href="http://easystruts.sourceforge.net">http://easystruts.sourceforge.net</a><br/>
 <a href="http://sourceforge.net/projects/easystruts">http://sourceforge.net/projects/easystruts</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020826"></a>26 Aug 2002 - Struts Workflow Extension Package V0.9.1</h3>
 <p>The Bugfix-Version 0.9.1 of the Struts Workflow Extension Package is now available.</p>
 <p>It fixes a bug in the test application's web.xml file, some users have stumbled over.</p>
 <p>Also the web site <a href="http://www.livinglogic.de/Struts/">http://www.livinglogic.de/Struts/</a> has been updated to describe how to use the extension together with Struts 1.1.</p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020822"></a>22 Aug 2002 - Easy Struts Editor 0.5.1 for Eclipse</h3>
 <p>
@@ -125,7 +125,7 @@ Re-Hello, I fix some bugs from Easy Struts 0.5. Here the changes:<br/>
   - [FIX] When editor is re-open (after closed), struts-config.xml was in read only mode.<br/>
   - [FIX] Some editor bugs... I include some screenshots:<a href="http://easystruts.sourceforge.net/editor.html">http://easystruts.sourceforge.net</a><br/>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020820"></a>20 Aug 2002 - Struts Console v2.1</h3>
 <p>
@@ -158,7 +158,7 @@ when it wasn't specified.
 Added plugin support for IntelliJ IDEA.
 </li>
 </ul>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020813"></a>12 Aug 2002 - Struts 1.1 Beta 2 Released</h3>
 <p>The Struts team is proud to announce the release of Struts 1.1 Beta 2. This
@@ -193,7 +193,7 @@ which can be found here:
 <p>
   http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b2.html
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020808"></a>08 Aug 2002 - JPetStore in Scioworks Camino</h3>
 <p>
@@ -216,7 +216,7 @@ Struts that provides a visual drag-and-connect GUI for rapid development
 and re-wiring of web applications, automatically generates code based on
 the visual flow of an app, and also features round-trip engineering.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020804"></a>O'Reilly Struts book available for ordering</h3>
 <p>The O'Reilly Struts book by Chuck Cavaness, "Programming Jakarta Struts" is
@@ -225,7 +225,7 @@ now available for pre-ordering from Amazon.
 <p>
 http://www.amazon.com/exec/obidos/ISBN=0596003285/hitchhikeguidetoA/
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020803"></a>3 Aug 2002 - Starting Struts User Group in New Jersey</h3>
 <p>Is anyone interested in joining?  Looks like we have a group of 3-5 people
@@ -237,7 +237,7 @@ speaker.</p>
 <p>Anyone interested in participating please contact me at
 <a href="mailto:john@eagleinfosystems.com">john at eagleinfosystems.com</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020728"></a>28 Jul 2002 - New Howto available on basicportal</h3>
 <p>The install instructions for <a href="http://basicportal.sourceforge.net">basicportal</a> now include a
@@ -246,7 +246,7 @@ reorganized the source and we are working towards developing a howto for
 basicportal and eclipse.</p>
 <p>I'm looking forward to basicportal growing!  We are already talking about
 the addition of the shopping cart module.  Next few months will be
-interesting.</p><hr size="1" noshade=""/>
+interesting.</p><hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020730"></a>30 July 2002 - Struts Console version 2.0.1</h3>
@@ -276,7 +276,7 @@ Changes with Struts Console v2.0.1
 <li>Fixed bug where NetBeans module was not remembering where the Struts Console window was docked.</li>
 <li>Fixed bug where JBuilder plugin wasn't properly generating XML output when certain elements were modified.</li>
 </ul>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 
@@ -307,7 +307,7 @@ Project page :
 <li><a href="http://easystruts.sourceforge.net/">http://easystruts.sourceforge.net/</a></li>
 <li><a href="http://sourceforge.net/projects/easystruts">http://sourceforge.net/projects/easystruts</a></li>
 </ul>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020724"></a>24 July 2002 - ObjectAssembler 2.0</h3>
@@ -332,8 +332,7 @@ We also have a new support forum here:
 <a href="http://support.objectventure.net">http://support.objectventure.net</a>
 </p>
 <p>NEW FEATURES IN v2.0:</p>
-<p>
-Standard Edition:
+<p>Standard Edition:</p>
 <ul>
 <li>Complete Struts 1.1 support, including multiple configuration files.</li>
 <li>Import existing Struts configuration files and components.</li>
@@ -346,9 +345,7 @@ Standard Edition:
 <li>New User Manual</li>
 <li>And more...</li>
 </ul>
-</p>
-<p>
-Professional Edition:
+<p>Professional Edition:</p>
 <ul>
 <li>All Standard Edition features, plus</li>
 <li>Complete EJB 2.0 support for visually building components and EJB JARs.</li>
@@ -357,9 +354,7 @@ Professional Edition:
 <li>Integrated deployment to Weblogic 7.x and HPAS 8.x. More to come!</li>
 <li>And more...</li>
 </ul>
-</p>
-<p>
-Enterprise Edition:
+<p>Enterprise Edition:</p>
 <ul>
 <li>All Professional Edition features, plus</li>
 <li>New visual pattern development environment based on XML that supports the open Pattern and Component Markup Language (PCML) effort.</li>
@@ -372,9 +367,7 @@ Enterprise Edition:
 <li>Real-time validation of patterns and applied pattern strategies.</li>
 <li>And more...</li>
 </ul>
-</p>
-<p>
-Other features of interest:
+<p>Other features of interest:</p>
 <ul>
 <li>Visual JSP development</li>
 <li>Automated component and assembly (EAR, EJB-JAR, JAR, and WAR) generation with automated handling of accessory files.</li>
@@ -384,15 +377,14 @@ Other features of interest:
 <li>Real-time validation of all components and assemblies as you work, including automated corrective actions where appropriate.</li>
 <li>And much more...</li>
 </ul>
-</p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020724"></a>24 July 2002 - JavaPro Struts Tutorial</h3>
 <p><a href="http://www.fawcette.com/javapro/2002_07/online/kjones/"><b>Create Better Web Apps with Struts</b></a> by Kevin Jones.</p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
-<h3><a name=""></a>23 Jul 2002 - STL (Standard Tags) + Struts (MVC) live web Demo</h3>
+<h3><a name="20020723"></a>23 Jul 2002 - STL (Standard Tags) + Struts (MVC) live web Demo</h3>
 <p>If you are starting a Java Web, you should use MVC and Standard tags,
 this "kit" is a sample of "best" (at least good) practices.
 </p><p>
@@ -428,7 +420,7 @@ http://www.netbean.net/mailman/listinfo/mvc-programmers
 To keep in touch with open source projects go to
 http://news.netbean.net/cgi-bin/webnews.cgi
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020723"></a>23 Jul 2002 - STL (Standard Tags) + Struts (MVC) live web Demo</h3>
@@ -467,13 +459,13 @@ http://www.netbean.net/mailman/listinfo/mvc-programmers
 To keep in touch with open source projects go to
 http://news.netbean.net/cgi-bin/webnews.cgi
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020718"></a>18 July 2002 - JavaBoutique Struts Tutorials</h3>
 <p><a href="http://javaboutique.internet.com/tutorials/Struts/"><b>Stepping through Jakarta Struts</b></a> by Keld H. Hansen.</p>
 <p><a href="http://javaboutique.internet.com/tutorials/Struts2/"><b>Coding your second Jakarta Struts Application</b></a> by Keld H. Hansen.</p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020717"></a>17 July 2002 - StrutsTestCase v1.8 Released</h3>
@@ -494,7 +486,7 @@ Notes for this release can be found here:
 <p>
 <a href="http://sourceforge.net/project/shownotes.php?release_id=99980">http://sourceforge.net/project/shownotes.php?release_id=99980</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020711"></a>11 July 2002 - Scioworks Camino v2.0</h3>
@@ -519,7 +511,7 @@ What's new in v2.0:
 <p>
 Download: <a href="http://www.scioworks.com/">http://www.scioworks.com/</a>
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020711"></a>11 July 2002 - Easy Struts v0.4 for Eclipse / JBuilder</h3>
 <p>
@@ -547,7 +539,7 @@ Project page :
 <li><a href="http://easystruts.sourceforge.net/">http://easystruts.sourceforge.net/</a></li>
 <li><a href="http://sourceforge.net/projects/easystruts">http://sourceforge.net/projects/easystruts</a></li>
 </ul>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020710"></a>10 July 2002 - Using Struts in Oracle JDeveloper 9i Tutorial</h3>
@@ -555,7 +547,7 @@ Project page :
 <a href="http://otn.oracle.com/products/jdev/howtos/jsp/StrutsHowTo.html">
 <b>How Do I use Jakarta Struts with Oracle9i JDeveloper?</b></a> by Oracle Corporation.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020709"></a>9 July 2002 - Struts Console version 2.0</h3>
 <p>
@@ -597,7 +589,7 @@ Changes with Struts Console v2.0
 <li>Updated Data Sources screen to be more consistent with the other screens.</li>
 <li>Extensive refactorings to improve performance and reduce code size.</li>
 </ul>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20020709"></a>09 July 2002 - Struts Adoption article</h3>
@@ -605,7 +597,7 @@ Changes with Struts Console v2.0
 <a href="http://www.scioworks.net/devnews/articles/struts_adoption_issues/index.html">
 <b>Issues In Struts Adoption</b></a> by Harry Rusli and John Yu.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020708"></a>08 July 2002 - Struts article in e-Promagazine</h3>
 <p>
@@ -613,14 +605,14 @@ The e-Promag.com site is featuring a new article entitled
 "<a href="http://www.e-promag.com/eparchive/index.cfm?fuseaction=viewarticle&amp;ContentID=1742">
 <b>Struts: A Standard Architecture for Web Applications</b></a>" by Don Denoncourt.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 <h3><a name="20020708"></a>08 July 2002 - JAAS article highlighting Authorization and Authentication with Struts</h3>
 <p>
 <a href="http://www.mooreds.com/jaas.html">
 <b>Using JAAS for Authorization and Authentication</b></a> by Dan Moore.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <p align="center">

@@ -569,14 +569,12 @@ public static boolean validateTwoFields(
     validator.xml.
     Additionally, commons-validator now maintains a unified validator.dtd.
     Change all validator.xml DTD references to:
-
-<pre><small><![CDATA[
+    </p>
+<pre><![CDATA[
 <!DOCTYPE form-validation PUBLIC
 "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
 "http://jakarta.apache.org/commons/dtds/validator_1_0.dtd">
-]]></small></pre>
-
-    </p>
+]]></pre>
 
     <p>
     <strong>Blank fields.</strong>

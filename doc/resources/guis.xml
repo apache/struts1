@@ -4,7 +4,7 @@
 <title>Ooops - Jakarta Struts</title>
 </properties>
 <body> 
-<chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
+<chapter name="Struts Resources"> 
 	
 <section name="Code Generators and GUIs">
 <p>

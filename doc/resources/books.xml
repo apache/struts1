@@ -7,7 +7,7 @@
 <title>Resources - Books - Jakarta Struts</title>
 </properties>
 <body>
-<chapter name="Struts Resources" href="http://husted.com/struts/resources">
+<chapter name="Struts Resources">
 
 <section name="Books about Struts">
 <table>
@@ -15,7 +15,7 @@
 <tr>
 <td>
 <a href="http://www.amazon.com/exec/obidos/ISBN=0596005199/hitchhikeguidetoA/">
-<img border="0" src="../images/books/0596005199.gif" width="50" height="83" align="left"/>
+<img border="0" src="../images/books/0596005199.gif" width="50" height="83" align="left" alt=""/>
 </a>
 </td>
 <td>
@@ -27,7 +27,7 @@ by Chuck Cavaness, Brian Keeton. May 2003.
 <tr>
 <td>
 <a href="http://www.amazon.com/exec/obidos/ISBN=1861007817/hitchhikeguidetoA/">
-<img border="0" src="../images/books/1861007817.jpg" width="49" height="60" align="left"/></a>
+<img border="0" src="../images/books/1861007817.jpg" width="49" height="60" align="left" alt=""/></a>
 </td>
 <td>
 <a href="http://www.amazon.com/exec/obidos/ISBN=1861007817/hitchhikeguidetoA/">
@@ -40,7 +40,7 @@ by John Carnell, Jeff Linwood, Maciej Zawadzki - March 2003.
 <tr>
 <td>
 <a href="http://www.amazon.com/exec/obidos/ISBN=0672324725/hitchhikeguidetoA/">
-<img border="0" src="../images/books/0672324725.jpg" width="49" height="60" align="left"/>
+<img border="0" src="../images/books/0672324725.jpg" width="49" height="60" align="left" alt=""/>
 </a>
 </td>
 <td>
@@ -52,7 +52,7 @@ by James Turner and Kevin Bedell - December 2002. [<a href="http://www.strutskic
 <tr>
 <td>
 <a href="http://www.amazon.com/exec/obidos/ISBN=0596003285/hitchhikeguidetoA/">
-<img border="0" src="../images/books/0596003285.jpg" width="49" height="60" align="left"/>
+<img border="0" src="../images/books/0596003285.jpg" width="49" height="60" align="left" alt=""/>
 </a>
 </td>
 <td>
@@ -64,7 +64,7 @@ by Chuck Cavaness. November 2002. [<a href="http://www.oreilly.com/catalog/jakar
 <tr>
 <td>
 <a href="http://www.amazon.com/exec/obidos/ISBN=1558608621/hitchhikeguidetoA/">
-<img border="0" src="../images/books/1558608621.jpg" width="49" height="60" align="left"/>
+<img border="0" src="../images/books/1558608621.jpg" width="49" height="60" align="left" alt=""/>
 </a>
 </td>
 <td>
@@ -77,7 +77,7 @@ by Sue Spielman. November 2002.
 <tr>
 <td>
 <a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/">
-<img border="0" src="../images/books/1930110502.jpg" width="49" height="60" align="left"/>
+<img border="0" src="../images/books/1930110502.jpg" width="49" height="60" align="left" alt=""/>
 </a>
 </td>
 <td>
@@ -90,7 +90,7 @@ by Ted Husted, Cedric Dumoulin, George Franciscus, and David Winterfeldt; Forewo
 <tr>
 <td>
 <a href="http://www.amazon.com/exec/obidos/ISBN=0471213020/hitchhikeguidetoA/">
-<img border="0" src="../images/books/0471213020.jpg" width="49" height="60" align="left"/>
+<img border="0" src="../images/books/0471213020.jpg" width="49" height="60" align="left" alt=""/>
 </a>
 </td>
 <td>
@@ -103,7 +103,7 @@ by James Goodwill. August 2002. [<a href="http://wiley.com/cda/product/0,,047121
 <tr>
 <td>
 <a href="http://www.amazon.com/exec/obidos/ISBN=0971661901/hitchhikeguidetoA/">
-<img border="0" src="../images/books/0971661901.jpg" width="49" height="60" align="left"/>
+<img border="0" src="../images/books/0971661901.jpg" width="49" height="60" align="left" alt=""/>
 </a>
 </td>
 <td>

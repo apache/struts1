@@ -7,21 +7,18 @@
 <title>Resources - Mailing List Archives - Jakarta Struts</title>
 </properties>
 <body> 
-<chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
+<chapter name="Struts Resources"> 
 
 <section name="Mailing List Archives">
-<p><a href="http://www.catb.org/~esr/faqs/smart-questions.html"><b>How To Ask Questions The Smart Way</b></a>
-<ul><li><a href="http://expita.com/nomime.html">Turn off HTML</a></li>
+<p><a href="http://www.catb.org/~esr/faqs/smart-questions.html"><b>How To Ask Questions The Smart Way</b></a></p>
+<ul>
+<li><a href="http://expita.com/nomime.html">Turn off HTML</a></li>
 <li><a href="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html">How to Report Bugs Effectively</a></li>
-</ul></p>
+</ul>
 <p><a href="http://nagoya.apache.org/eyebrowse/"><b>ASF List Archive</b></a></p>
 <p><a href="http://mail-archive.com/"><b>mail-archive.com</b></a>.</p>
 <p><a href="http://news.basebeans.com/forums.jsp"><b>BaseBeans Struts Newsgroup</b></a></p>
 <p><a href="http://archive.covalent.net/"><b>covalent.net</b></a>.</p>
-<!--
-This was a dead link and I couldn't find where it should point.
-<p><b><a href="FAQ/index.htm"> Struts Treads</a>  - </b> Clippings from the User Lists</p>
--->
 </section>
 
 </chapter></body></document>

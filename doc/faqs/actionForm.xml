@@ -184,7 +184,7 @@
         The <b>password</b> tag is used similarly.
         The difference is that the browser will echo asterisk characters,
         instead of the input value, as the user types their password.
-        </li>.
+        </li>
 
         <li>
         The <b>submit</b> and<b>reset</b> tags generate the corresponding

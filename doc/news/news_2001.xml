@@ -20,7 +20,7 @@ Inigo Serrano has released a new version of
 <b>ISValidator</b></a>, a collection of Java routines to 
 validate data Struts forms, is now available in English. 
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20011217"></a>17 Dec 2001 - Mapper ActionForm-to-Value Object and back</h3>
@@ -30,7 +30,7 @@ Andrej Sobkowski has
 released an extension</a> to help map ActionForm 
 properties to more business-oriented value objects.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20011210"></a>10 Dec 3001 - eContent 2.0 released</h3>
@@ -57,7 +57,7 @@ A full list of
 <a href="http://www.jcorporate.com/product/econtent.html">
 new demo is also available online</a>.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20011113"></a>13 Nov 2001 - Expresso version 4.0 released</h3>
@@ -80,7 +80,7 @@ http://www.jcorporate.com/product/expresso.html.
       registration objects, configuration management, automatic database
       maintenance...and so on.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20011130"></a>30 Nov 2001 - Struts/MVC Book and Training Seminars</h3>
@@ -153,7 +153,7 @@ http://www.jcorporate.com/product/expresso.html.
       For more information, please visit the 
       <a href="http://www.basebeans.com">BaseBeans Engineering</a> web site. 
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20011127"></a>27 Nov 2001 - Routines to validate Data in Struts</h3>
@@ -165,7 +165,7 @@ in different scenarios, command line arguments, Servlets Parameters,
 and so forth. Support has now been added to use ISValidator with
 Struts 1.0. 
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3>27 Nov 2001 - Struts 1.0.1-rc1 Released</h3>
@@ -180,7 +180,7 @@ Struts 1.0.
   and the source distribution is available
   <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.1-rc1/src/">here</a>.
 </p>
-<hr size="1" noshade=""/>
+<hr size="1" noshade="noshade"/>
 
 
 <h3><a name="20011005"></a>05 Oct 2001 - Free remote JSP/java debugger for Tomcat</h3>
@@ -191,7 +191,7 @@ Day Corp.'s
 Tomcat. it's based on JPDA 1.0 (Java Platform Debugger Architecture),
 which is the official debugging support for the Java 2 platform.
 </p>
-<hr noshade="" size="1"/>
+<hr noshade="noshade" size="1"/>
 
 
 <h3><a name="20010615"></a>15 Jun 2001 - Struts 1.0 Released</h3>
@@ -204,7 +204,7 @@ Struts Framework.  The binary distribution for Struts 1.0 is available
 and the source distribution is available
 <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0/src/">here</a>. 
 </p>
-<hr noshade="" size="1"/>
+<hr noshade="noshade" size="1"/>
 
 
 <h3><a name="20010602"></a>02 Jun 2001 - Struts 1.0-beta-3 Released </h3>
@@ -220,7 +220,7 @@ final release, and report them to our bug tracking system at
 and the source distribution of Struts 1.0-beta-3 is available
 <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0-b3/src/">here</a>.
 </p>
-<hr noshade="" size="1"/>
+<hr noshade="noshade" size="1"/>
 
 
 <h3><a name="20010519"></a>19 May 2001 - Jakarta Struts 1.0-b2 Released</h3>
@@ -231,7 +231,7 @@ documented in the
 Notes</a>.  Get your copy of this latest release
 <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0-b2/">here</a>.
 </p>
-<hr noshade="" size="1"/>
+<hr noshade="noshade" size="1"/>
 
 
 <h3><a name="20010223"></a>23 Feb 2001 - Struts 1.0 Beta 1 Released </h3>
@@ -246,7 +246,7 @@ Notes</a>.  Get your copy of this latest release
   Struts encourages application architectures based on the
   Model-View-Controller (MVC) design paradigm.
 </p>
-<hr noshade="" size="1"/>
+<hr noshade="noshade" size="1"/>
 
 
 <h3><a name="20010107"></a>07 Jan 2001 - MySQL Database Admin Tool</h3>
@@ -269,7 +269,7 @@ available online at
       iterate tag, indexed properties, template, form:select, jdbc connection
       and so forth.
 </p>
-<hr noshade="" size="1"/>
+<hr noshade="noshade" size="1"/>
 
   </section>
 

@@ -1,0 +1,109 @@
+a {
+	color: #023264;
+}
+
+body {
+	background: #FFFFFF;
+	color: #000000;
+}
+
+q {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer {
+	font-size: 0.83em;
+	font-style: italic;
+	color: #023264;
+	text-align: center;
+}
+
+.chapter-title{
+	background: #023264;
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+.chapter-title a {
+	color: #FFFFFF;
+}
+
+.section-title{
+	background: #023264;
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+.section-title a {
+	color: #FFFFFF;
+}
+
+.subsection-title{
+	background: #023264;
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	font-weight: bold;
+}
+.subsection-title a {
+	color: #FFFFFF;
+}
+
+.taglib-title{
+	background: #023264;
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+.taglib-title a {
+	color: #FFFFFF;
+}
+
+
+.tag-title{
+	background: #023264;
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: medium;
+}
+.tag-title a {
+	color: #FFFFFF;
+}
+
+
+.tasklist{
+	background: #023264;
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.5em;
+}
+
+.menu-title {
+	color: #023264;
+}
+
+.menu-item, .menuitem a {
+	font-size: 0.8em;
+}
+
+.version {
+	font-size: 0.8em;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.warning {
+	color: #f00;
+	font-weight: bold;
+}
+
+@media print {
+.menu {
+	display: none;
+}	
+#apache-logo {
+	display: none;
+}
+}

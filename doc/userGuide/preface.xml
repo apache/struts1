@@ -36,7 +36,7 @@
     For your convenience, links to further information are provided if you would like to learn more about a technology.
     </p>
 
-    <p><a target="#Java Web Services Tutorial"></a>If you are familiar with Java, but not these technologies,
+    <p><a target="JavaWebServicesTutorial"></a>If you are familiar with Java, but not these technologies,
     the best overall starting point is
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html"><b>The Java Web Services Tutorial</b></a>.
     This document is also available for download in
@@ -49,7 +49,7 @@
     useful in any Java project.
     </p>
 
-    <p><a target="#jt"></a>If you are not familiar with the Java language generally,
+    <p><a target="jt"></a>If you are not familiar with the Java language generally,
     then the best starting point is
     <a href="http://java.sun.com/docs/books/tutorial/index.html"><b>The Java Tutorial</b></a>.
     This overlaps with the Java Web Services Tutorial in some places, but the two work well together.

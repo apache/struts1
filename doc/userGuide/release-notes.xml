@@ -174,10 +174,7 @@
     <p><strong>Action Package Additions</strong></p>
     <p>The following new features have been added to the basic controller
     framework [<code>org.apache.struts.action</code>]:</p>
-    <ul>
-      <li></li>
-      <li></li>
-    </ul>
+
     <p><strong>Actions Package Additions</strong></p>
     <p>The following new features have been added to the adapters between the
         incoming HTTP request and the corresponding business logic
@@ -192,8 +189,6 @@
     <p><strong>Util Package Additions</strong></p>
     <p>The following new features have been added to the utility classes
     [<code>org.apache.struts.util</code>]:</p>
-    <ul>
-    </ul>
 
     <p><strong>Validator Package Additions</strong></p>
     <p>The following new features have been added to the validator classes
@@ -226,21 +221,15 @@
     <p><strong>HTML Taglib Package Additions</strong></p>
     <p>The following new features have been added to the
     <em>struts-html</em> custom tag library [<code>org.apache.struts.taglib.html</code>]:</p>
-    <ul>
-    </ul>
 
     <p><strong>Logic Taglib Package Additions</strong></p>
     <p>The following new features have been added to the
     <em>struts-logic</em> custom tag library [<code>org.apache.struts.taglib.logic</code>]:</p>
-    <ul>
-    </ul>
 
 
     <p><strong>Documentation Additions</strong></p>
     <p>The following new features have been added to the Struts Documentation
     application (and corresponding contents on the Struts web site):</p>
-    <ul>
-    </ul>
 
   </section>
 
@@ -250,16 +239,13 @@
     <p>The following changes and bug fixes have occurred in the configuration
     files related to Struts:</p>
     <ul>
-        Japanese resources updates for Struts, its example, upload, tiles-documentation.
+        <li>Japanese resources updates for Struts, its example, upload, tiles-documentation.</li>
     </ul>
     <p><strong>Config Package</strong></p>
-    <ul>
-    </ul>
+
     <p><strong>Action Package Changes</strong></p>
     <p>The following changes and bug fixes have occurred in the basic
     controller framework (package <code>org.apache.struts.action</code>):</p>
-    <ul>
-    </ul>
 
     <p><strong>Upload Package Changes</strong></p>
     <p>The following changes and bug fixes have occurred in the file upload
@@ -279,15 +265,11 @@
     <p>The following changes and bug fixes have occurred in the
     <em>struts-bean</em> custom tag library
     [<code>org.apache.struts.taglib.bean</code>]:</p>
-    <ul>
-    </ul>
 
     <p><strong>HTML Taglib Package Changes</strong></p>
     <p>The following changes and bug fixes have occurred in the
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
-    <ul>
-    </ul>
 
     <p><strong>Logic Taglib Package Changes</strong></p>
     <p>The following changes and bug fixes have occurred in the
@@ -301,14 +283,10 @@
     <p>The following changes and bug fixes to the Struts Documentation
     application (and corresponding contents on the Struts web site) have
     occurred:</p>
-    <ul>
-    </ul>
 
     <p><strong>MailReader Example Application Changes</strong></p>
     <p>The following changes and bug fixes to the Struts MailReader Example Application
     have occurred:</p>
-    <ul>
-    </ul>
 
     <p><strong>Template Example Application Changes</strong></p>
     <p>The following changes and bug fixes to the Struts Template Example
@@ -320,8 +298,6 @@
     <p><strong>Exercise Taglib Example Application Changes</strong></p>
     <p>The following changes and bug fixes to the Struts Exercise Taglib Example
     Application have occurred:</p>
-    <ul>
-    </ul>
 
   </section>
 
@@ -340,37 +316,25 @@
 
     <p><strong>Packages added in Struts 1.2</strong></p>
 
-    <ul>
-    </ul>
 
     <p><strong>Classes added in Struts 1.2</strong></p>
     <p>action</p>
-    <ul>
-    </ul>
+
     <p>actions</p>
-    <ul>
-    </ul>
+
     <p>taglib.html</p>
-    <ul>
-    </ul>
+
     <p>taglib.logic</p>
-    <ul>
-    </ul>
+
     <p>upload</p>
-    <ul>
-    </ul>
+
     <p>util</p>
-    <ul>
-    </ul>
     
     <p><strong>Classes with members added in Struts 1.2</strong></p>
     <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">action.A</a><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">ActionServlet</a></p>
     <ul>
       <li>initModuleConfigFactory()</li>
-      <li>methods created for backward-compatiblity only
-        <ul>
-        </ul>
-      </li>
+      <li>methods created for backward-compatiblity only</li>
     </ul>
     <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/validator/ValidatorPlugin.html">validator.html</a></p>
     <ul>
@@ -386,14 +350,9 @@
     <p><strong>Classes with members deprecated between Struts 1.1 and Struts 1.2</strong></p>
     <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/xxxx/xxxx.html">class.method</a></p>
 
-    <ul>
-    </ul>
-    
+  
     <p><strong>Classes with members removed between Struts 1.1 and Struts 1.2</strong></p>
     <p>validator-rules.xml, range() - use intRange() instead.</p>
-
-    <ul>
-    </ul>
 
 </section>
 

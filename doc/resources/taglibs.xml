@@ -7,7 +7,7 @@
 <title>Resources - Contributor Taglibs - Jakarta Struts</title>
 </properties>
 <body>
-<chapter name="Struts Resources" href="http://husted.com/struts/resources">
+<chapter name="Struts Resources">
 
 <section name="Contributor Taglibs">
 <p><a href="http://sourceforge.net/projects/struts-wml"><b>WML Tag Support #2</b></a> by Davor Cengija - Struts support for WML markup.</p>

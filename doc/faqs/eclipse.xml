@@ -118,111 +118,111 @@ Add a build.xml file to the project root.  I use something like this:
     <ol>
         <li>
             Create a new project.<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style01.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style01.jpg"></img><br/><br/><br/>
         </li>
         <li>
             New Java Project<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style02.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style02.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Browse for the folder you created for your project.<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style03.jpg"></img><br/><br/><br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style04.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style03.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style04.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Eclipse will detect your source folders from any subdirectories under your project.<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style05.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style05.jpg"></img><br/><br/><br/>
         </li>
         <li>
             In our case, this is where the src folder was placed.<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style06.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style06.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Default standard libs are automatically added depending on the type of project.<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style07.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style07.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Add the existing web app jars.<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style08.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style08.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Now we need to add a few jars from the file system.<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style09.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style09.jpg"></img><br/><br/><br/>
         </li>
         <li>
             We always need this one (servlet.jar)<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style10.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style10.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Ahhhh...everything looks ok for now.  You can always go back and modify these settings <br/>
             later.<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style11.jpg"></img><br/><br/><br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style12.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style11.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style12.jpg"></img><br/><br/><br/>
         </li>
         <li>
             When everything settles down, you should see something like this (of course, it might 
             look different depending on your installation/customization):<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style13.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style13.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Compilation warnings and errors are detected immediately.  In this screenshot, I drill down<br/>
             into the source folder, package, file, class, and double click on the method....which <br/>
             brings up the source editor.  I hover the mouse over the offending warning to see <br/>
             a description of what's wrong.<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style14.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style14.jpg"></img><br/><br/><br/>
         </li>
         <li>
             I changed ApplicationConfig to ModuleConfig, then saved and now I see new errors.<br/>
             You can right click and import ModuleConfig right from the error.<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style15.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style15.jpg"></img><br/><br/><br/>
         </li>
         <li>
             A quick look at the import section.<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style18.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style18.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Right click, Source, Organize Imports<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style20.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style20.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Ahhhh...better<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style21.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style21.jpg"></img><br/><br/><br/>
         </li>
         <li>
             From the Package Explorer, right click your build.xml and run Ant:<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style22.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style22.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Is this cool or what?<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style23.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style23.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Oh crap!<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style24.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style24.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Quick look at what jars are being used to process my build.<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style26.jpg"></img><br/><br/><br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style25.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style26.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style25.jpg"></img><br/><br/><br/>
         </li>
         <li>
             I simply removed all the existing jars from the IDE's Ant configuration and<br/>
             added all from my own installation.<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style27.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style27.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Can't forget that last one<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style28.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style28.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Everything went ok (for me)<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style30.jpg"></img><br/><br/><br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style29.jpg"></img><br/><br/><br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style31.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style30.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style29.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style31.jpg"></img><br/><br/><br/>
         </li>
         <li>
             Time to test-drive<br/>
-            <img src="../images/how-to/eclipse/developing-eclipse-style32.jpg"></img><br/><br/><br/>
+            <img alt="" src="../images/how-to/eclipse/developing-eclipse-style32.jpg"></img><br/><br/><br/>
         </li>
     </ol>
 

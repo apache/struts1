@@ -79,7 +79,8 @@
                 border="0" 
                 src="images/books/0471213020.jpg" 
                 width="49" 
-                height="60" />
+                height="60" 
+                alt=""/>
             </a>
         </td>
 
@@ -89,7 +90,8 @@
                 border="0" 
                 src="images/books/0596003285.jpg" 
                 width="49" 
-                height="60" />
+                height="60"
+                alt=""/>
             </a>
         </td>
 
@@ -99,7 +101,8 @@
                 border="0" 
                 src="images/books/0672324725.jpg" 
                 width="49" 
-                height="60" />
+                height="60" 
+                alt=""/>
             </a>
         </td>
 
@@ -109,7 +112,8 @@
                 border="0" 
                 src="images/books/0971661901.jpg" 
                 width="49" 
-                height="60" />
+                height="60"
+                alt=""/>
             </a>
         </td>
 
@@ -119,7 +123,8 @@
                 border="0" 
                 src="images/books/1558608621.jpg" 
                 width="49" 
-                height="60" />
+                height="60" 
+                alt=""/>
             </a>
         </td>
 
@@ -129,7 +134,8 @@
                 border="0" 
                 src="images/books/1861007817.jpg"
                 width="49" 
-                height="60" />
+                height="60"
+                alt=""/>
             </a>
         </td>
 
@@ -139,7 +145,8 @@
                   border="0"
                   src="images/books/1930110502.jpg"
                   width="49"
-                  height="60" />
+                  height="60" 
+                  alt=""/>
               </a>
           </td>
 

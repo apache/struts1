@@ -936,14 +936,13 @@ XHTML specification</a></p>
 Yes. If your <code>Action</code> does not need any data and it does not need to make any
 data available to the view or controller component that it forwards to, it doesn't need
 a form. A good example of an <code>Action</code> with no <code>ActionForm</code> is the
-<code>LogoffAction</code> in the struts example application:
+<code>LogoffAction</code> in the struts example application:</p>
 <pre>
     &lt;action path="/logoff"
         type="org.apache.struts.webapp.example.LogoffAction"&gt;
       &lt;forward name="success" path="/index.jsp"/&gt;
     &lt;/action&gt;
-</pre></p>
-
+</pre>
 <p>
 This action needs no data other than the user's session, which it can get from the
 <code>Request</code>, and it doesn't need to prepare any view elements for display,
@@ -964,7 +963,7 @@ so it does not need a form.
      which is almost certainly what you want to use, since it is much easier and
      more powerful.  It will be available in the first release after 1.1 ships.
      The example shown below could be coded with validwhen as:</p>
-     <pre>
+<pre>
 &lt;form name="medicalStatusForm"&gt;
 
 &lt;field
