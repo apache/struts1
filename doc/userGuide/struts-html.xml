@@ -1595,6 +1595,19 @@
                 corresponding bean property value]
             </info>
         </attribute>
+
+        <attribute>
+            <name>write</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Should the value of this field also be rendered to the
+                response page to make it visible, in addition to creating
+                an HTML type="hidden" element?  By default, only the
+                hidden element is created.
+            </info>
+        </attribute>
+
     </tag>
 
 

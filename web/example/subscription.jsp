@@ -57,8 +57,7 @@
       </logic:equal>
       <logic:notEqual name="subscriptionForm" property="action"
                      scope="request" value="Create">
-        <bean:write   name="subscriptionForm" property="host"/>
-        <html:hidden property="host"/>
+        <html:hidden property="host" write="true"/>
       </logic:notEqual>
     </td>
   </tr>

@@ -39,9 +39,11 @@
       </logic:equal>
       <logic:equal name="registrationForm" property="action"
                   scope="request" value="Edit">
+<%--
         <bean:write name="registrationForm" property="username"
                    scope="request" filter="true"/>
-	<html:hidden property="username"/>
+--%>
+	<html:hidden property="username" write="true"/>
       </logic:equal>
     </td>
   </tr>

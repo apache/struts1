@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HiddenTag.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HiddenTag.java,v 1.2 2002/03/17 01:44:41 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/03/17 01:44:41 $
  *
  * ====================================================================
  * 
@@ -63,15 +63,22 @@
 package org.apache.struts.taglib.html;
 
 
+import javax.servlet.jsp.JspException;
+import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ResponseUtils;
+
+
 /**
  * Custom tag for input fields of type "text".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/01/06 21:50:39 $
+ * @version $Revision: 1.2 $ $Date: 2002/03/17 01:44:41 $
  */
 
 public class HiddenTag extends BaseFieldTag {
 
+
+    // ----------------------------------------------------------- Constructors
 
     /**
      * Construct a new instance of this tag.
@@ -80,6 +87,74 @@ public class HiddenTag extends BaseFieldTag {
 
 	super();
 	this.type = "hidden";
+
+    }
+
+
+    // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Should the value of this field also be rendered to the response?
+     */
+    protected boolean write = false;
+
+    public boolean getWrite() {
+        return (this.write);
+    }
+
+    public void setWrite(boolean write) {
+        this.write = write;
+    }
+
+
+    // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Generate the required input tag, followed by the optional rendered text.
+     * Support for <code>write</code> property since 1.1.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
+    public int doStartTag() throws JspException {
+
+        // Render the <html:input type="hidden"> tag as before
+        super.doStartTag();
+
+        // Is rendering the value separately requested?
+        if (!write) {
+            return (EVAL_BODY_TAG);
+        }
+
+        // Calculate the value to be rendered separately
+        String results = null;
+        if (value != null) {
+            results = ResponseUtils.filter(value);
+        } else {
+            Object value = RequestUtils.lookup(pageContext, name, property,
+                                               null);
+            if (value == null) {
+                results = "";
+            } else {
+                results = ResponseUtils.filter(value.toString());
+            }
+        }
+
+        // Render the result to the output writer
+        ResponseUtils.write(pageContext, results);
+        return (EVAL_BODY_TAG);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+        super.release();
+        write = false;
 
     }
 
