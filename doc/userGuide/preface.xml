@@ -38,18 +38,18 @@
     <p><a target="#jwst"></a>If you are familiar with Java, but not these technologies,
     the best overall starting point is
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html"><b>The Java Web Services Tutorial</b></a>.
-    This is also available for download as a
-    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JavaWSTutorial.pdf">PDF</a>.
+    This is also available for download in
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JavaWSTutorial.pdf">PDF</a> format.
     </p>
 
-    <p>If you've created web applications for other platforms, you may able to follow along
+    <p>If you've created web applications for other platforms, you may be able to follow along
     and visit the other references as needed. The core technologies used by Struts are
     also used by most other Java web development products, so the background information will be
     useful in any Java project.
     </p>
 
     <p><a target="#jt"></a>If you are not familiar with the Java language generally,
-    then the best start starting point is
+    then the best starting point is
     <a href="http://java.sun.com/docs/books/tutorial/index.html"><b>The Java Tutorial</b></a>.
     This overlaps with the Java Web Services Tutorial in some places, but the two work well together.
     </p>
@@ -64,7 +64,7 @@
      a HTML document. The browser then formats and displays the document to its user. HTTP is used to
     transport more than HTML, but HTML is the lingua franca of the Web and web applications. </p>
 
-    <p>Some Java engineers working web applications write their own HTML. Others leave that to the
+    <p>While building web applications, some Java developers will write their own HTML. Others leave that responsibility to the
     page designers.</p>
 
     <p>For more about HTTP, HTML, and User Agents, see:</p>
@@ -184,7 +184,7 @@
     <p>Java applications, including web applications, are often configured using
     <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/Properties.html">Properties</a>
     files. Properties files are the basis for the
-    <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/ResourceBundle.html">ResourceBundles</a> that Struts uses to provide messages resources
+    <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/ResourceBundle.html">ResourceBundles</a> that Struts uses to provide message resources
     to an application. </p>
 
     <p>For more about Properties files, see: </p>
@@ -211,7 +211,7 @@
     <section name="0.7 Java Servlets" href="servlets">
     <p>Much of the <a href="#cycle">HTTP Request/Response cycle</a> nuts-and-bolts are handled by Sun's
     <a href="http://java.sun.com/products/servlet/">Java Servlet</a> platform. This casts HTTP
-    into an object-orientated form so that developers can better concentrate what
+    into an object-orientated form so that developers can better concentrate on what
     they need their application to do -- rather than the mechanics of HTTP.</p>
 
     <p>Struts provides a ready-to-use servlet for your application. As a Struts developer, you
@@ -334,7 +334,7 @@
           parses the request URI (contextPath, servletPath, and pathInfo) are
           available separately.</li>
       <li><em>User Information</em> - If you are using
-          <a href="#security">Container Managed Security</a>, you can ask
+          <a href="#security">Container Managed Security</a>, you can ask for
           the username of the authenticated user, retrieve a
           <code>Principal</code> object representing the current user, and
           whether the current user is authorized for a specified role.</li>
