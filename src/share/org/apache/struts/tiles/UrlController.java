@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/UrlController.java,v 1.3 2003/02/27 19:20:50 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2003/02/27 19:20:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/UrlController.java,v 1.4 2003/09/13 00:30:50 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/09/13 00:30:50 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,56 +59,59 @@
  *
  */
 
-
 package org.apache.struts.tiles;
 
 import java.io.IOException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.RequestDispatcher;
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Tiles controller including a local URL.
  * @author Cedric Dumoulin
  */
+public class UrlController implements Controller {
 
-public class UrlController implements Controller
-{
+	/** 
+	 * URL associated with this controller. 
+	 */
+	protected String url = null;
 
-    /** Url associated with this controller. */
-  protected String url;
+	/**
+	 * Constructor.
+	 * @param url URL.
+	 */
+	public UrlController(String url) {
+		this.url = url;
+	}
 
-    /**
-     * Constructor.
-     * @param url URL.
-     */
-  public UrlController( String url )
-  {
-  this.url=url;
-  }
+	/**
+	 * Method associated to a tile and called immediately before the tile 
+	 * is included.  This implementation calls an <code>Action</code>. 
+	 * No servlet is set by this method.
+	 *
+	 * @param tileContext Current tile context.
+	 * @param request Current request.
+	 * @param response Current response.
+	 * @param servletContext Current servlet context.
+	 */
+	public void perform(
+		ComponentContext tileContext,
+		HttpServletRequest request,
+		HttpServletResponse response,
+		ServletContext servletContext)
+		throws ServletException, IOException {
 
-   /**
-    * Method associated to a tile and called immediately before the tile is included.
-    * This implementation calls a Struts Action. No servlet is set by this method.
-    *
-    * @param tileContext Current tile context.
-    * @param request Current request.
-    * @param response Current response.
-    * @param servletContext Current servlet context.
-    */
-   public void perform(ComponentContext tileContext,
-                       HttpServletRequest request, HttpServletResponse response,
-                       ServletContext servletContext)
-     throws ServletException, IOException
-   {
-   RequestDispatcher rd = servletContext.getRequestDispatcher( url );
-   if( rd == null )
-     throw new ServletException( "Controller can't find url '" + url + "'." );
+		RequestDispatcher rd = servletContext.getRequestDispatcher(url);
+		if (rd == null) {
+			throw new ServletException(
+				"Controller can't find url '" + url + "'.");
+		}
 
-   rd.include( request, response );
-   }
+		rd.include(request, response);
+	}
 
 }

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Controller.java,v 1.2 2002/11/05 14:14:24 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/05 14:14:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Controller.java,v 1.3 2003/09/13 00:30:50 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/09/13 00:30:50 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,32 +59,35 @@
  *
  */
 
-
 package org.apache.struts.tiles;
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletContext;
 
 /**
  * A controller is a piece of code called before rendering a jsp page.
- * A controller can be associated to a tile. See <insert> or <definition> for
- * association syntax.
+ * A controller can be associated to a tile. See &lt;insert&gt; or 
+ * &lt;definition&gt; for association syntax.
+ * @author Cedric Dumoulin
  */
-public interface Controller
-{
+public interface Controller {
 
-   /**
-    * Method associated to a tile and called immediately before the tile is included.
-    * @param tileContext Current tile context.
-    * @param request Current request
-    * @param response Current response
-    * @param servletContext Current servlet context
-    */
-   public void perform(ComponentContext tileContext,
-                       HttpServletRequest request, HttpServletResponse response,
-                       ServletContext servletContext)
-        throws ServletException, IOException;
+	/**
+	 * Method associated to a tile and called immediately before the tile 
+     * is included.
+	 * @param tileContext Current tile context.
+	 * @param request Current request
+	 * @param response Current response
+	 * @param servletContext Current servlet context
+	 */
+	public void perform(
+		ComponentContext tileContext,
+		HttpServletRequest request,
+		HttpServletResponse response,
+		ServletContext servletContext)
+		throws ServletException, IOException;
 }

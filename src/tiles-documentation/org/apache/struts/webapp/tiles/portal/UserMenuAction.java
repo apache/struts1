@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserMenuAction.java,v 1.4 2003/08/16 18:20:08 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/08/16 18:20:08 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserMenuAction.java,v 1.5 2003/09/13 00:30:50 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/09/13 00:30:50 $
  *
  * ====================================================================
  *
@@ -109,259 +109,265 @@ import org.apache.struts.tiles.beans.MenuItem;
  * </ul>
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.4 $ $Date: 2003/08/16 18:20:08 $
+ * @version $Revision: 1.5 $ $Date: 2003/09/13 00:30:50 $
  */
 public final class UserMenuAction extends TilesAction implements Controller {
 
-    /** 
-     * Commons Logging instance.
-     */
-    private static Log log = LogFactory.getLog(UserMenuAction.class);
+	/** 
+	 * Commons Logging instance.
+	 */
+	private static Log log = LogFactory.getLog(UserMenuAction.class);
 
-    /** 
-     * Tile attribute containing name used to store user settings in session 
-     * context.
-     */
-    public static String USER_SETTINGS_NAME_ATTRIBUTE = "userSettingsName";
+	/** 
+	 * Tile attribute containing name used to store user settings in session 
+	 * context.
+	 */
+	public static String USER_SETTINGS_NAME_ATTRIBUTE = "userSettingsName";
 
-    /** 
-     * Default name used to store settings in session context. 
-     */
-    public static String DEFAULT_USER_SETTINGS_NAME =
-        "tiles.examples.portal.USER_MENU_SETTINGS";
+	/** 
+	 * Default name used to store settings in session context. 
+	 */
+	public static String DEFAULT_USER_SETTINGS_NAME =
+		"tiles.examples.portal.USER_MENU_SETTINGS";
 
-    /** 
-     * Default name used to store menu catalog in application scope.
-     */
-    public static String DEFAULT_MENU_CATALOG_NAME =
-        "tiles.examples.portal.MenuCatalog";
+	/** 
+	 * Default name used to store menu catalog in application scope.
+	 */
+	public static String DEFAULT_MENU_CATALOG_NAME =
+		"tiles.examples.portal.MenuCatalog";
 
-    /** 
-     * Tile attribute containing name used to store menu catalog in application 
-     * scope.
-     */
-    public static String MENU_CATALOG_NAME_ATTRIBUTE = "catalogName";
+	/** 
+	 * Tile attribute containing name used to store menu catalog in application 
+	 * scope.
+	 */
+	public static String MENU_CATALOG_NAME_ATTRIBUTE = "catalogName";
 
-    /** 
-     * Tile attribute containing name of the settings definition used to 
-     * initialize catalog. 
-     */
-    public static final String CATALOG_SETTING_ATTRIBUTE = "catalogSettings";
+	/** 
+	 * Tile attribute containing name of the settings definition used to 
+	 * initialize catalog. 
+	 */
+	public static final String CATALOG_SETTING_ATTRIBUTE = "catalogSettings";
 
-    /** 
-     * Tile attribute containing items to render.
-     */
-    public static String USER_ITEMS_ATTRIBUTE = "items";
+	/** 
+	 * Tile attribute containing items to render.
+	 */
+	public static String USER_ITEMS_ATTRIBUTE = "items";
 
-    /**
-     * Struts' action perform().
-     * Process the specified HTTP request, and create the corresponding HTTP
-     * response (or forward to another web component that will create it).
-     * Return an <code>ActionForward</code> instance describing where and how
-     * control should be forwarded, or <code>null</code> if the response has
-     * already been completed.
-     *
-     * @param context The current Tile context, containing Tile attributes.
-     * @param mapping The ActionMapping used to select this instance.
-     * @param form The optional ActionForm bean for this request (if any).
-     * @param request The HTTP request we are processing.
-     * @param response The HTTP response we are creating.
-     *
-     * @exception Exception if the application business logic throws
-     *  an exception
-     * @since Struts 1.1
-     */
-    public ActionForward execute(
-        ComponentContext context,
-        ActionMapping mapping,
-        ActionForm form,
-        HttpServletRequest request,
-        HttpServletResponse response)
-        throws Exception {
+	/**
+	 * Struts' action perform().
+	 * Process the specified HTTP request, and create the corresponding HTTP
+	 * response (or forward to another web component that will create it).
+	 * Return an <code>ActionForward</code> instance describing where and how
+	 * control should be forwarded, or <code>null</code> if the response has
+	 * already been completed.
+	 *
+	 * @param context The current Tile context, containing Tile attributes.
+	 * @param mapping The ActionMapping used to select this instance.
+	 * @param form The optional ActionForm bean for this request (if any).
+	 * @param request The HTTP request we are processing.
+	 * @param response The HTTP response we are creating.
+	 *
+	 * @exception Exception if the application business logic throws
+	 *  an exception
+	 * @since Struts 1.1
+	 */
+	public ActionForward execute(
+		ComponentContext context,
+		ActionMapping mapping,
+		ActionForm form,
+		HttpServletRequest request,
+		HttpServletResponse response)
+		throws Exception {
 
-        perform(context, request, response, getServlet().getServletContext());
-        return null; //(mapping.findForward("success"));
-    }
+		this.perform(
+			context,
+			request,
+			response,
+			getServlet().getServletContext());
+            
+		return null;
+	}
 
-    /**
-     * Method associated to a tile and called immediately before tile is included.
-     * @param tileContext Current tile context.
-     * @param request Current request
-     * @param response Current response
-     * @param servletContext Current servlet context
-     */
-    public void perform(
-        ComponentContext context,
-        HttpServletRequest request,
-        HttpServletResponse response,
-        ServletContext servletContext)
-        throws ServletException, IOException {
+	/**
+	 * Method associated to a tile and called immediately before tile is included.
+	 * @param tileContext Current tile context.
+	 * @param request Current request
+	 * @param response Current response
+	 * @param servletContext Current servlet context
+	 */
+	public void perform(
+		ComponentContext context,
+		HttpServletRequest request,
+		HttpServletResponse response,
+		ServletContext servletContext)
+		throws ServletException, IOException {
 
-        log.debug("Enter action UserMenuAction");
+		log.debug("Enter action UserMenuAction");
 
-        // Load user settings from user context
-        MenuSettings settings = getUserSettings(request, context);
+		// Load user settings from user context
+		MenuSettings settings = getUserSettings(request, context);
 
-        // Set parameters for rendering page
-        context.putAttribute(USER_ITEMS_ATTRIBUTE, settings.getItems());
+		// Set parameters for rendering page
+		context.putAttribute(USER_ITEMS_ATTRIBUTE, settings.getItems());
 
-        log.debug("settings=" + settings);
-        log.debug("Exit action UserMenuAction");
+		log.debug("settings=" + settings);
+		log.debug("Exit action UserMenuAction");
 
-    }
+	}
 
-    /**
-     * Load user setting.
-     * This implementation load setting from user context.
-     * If settings are not found, initialized them from default items defined
-     * in Tile's context.
-     * If settings are not found, initialized them.
-     */
-    public static MenuSettings getUserSettings(
-        HttpServletRequest request,
-        ComponentContext context)
-        throws ServletException {
+	/**
+	 * Load user setting.
+	 * This implementation load setting from user context.
+	 * If settings are not found, initialized them from default items defined
+	 * in Tile's context.
+	 * If settings are not found, initialized them.
+	 */
+	public static MenuSettings getUserSettings(
+		HttpServletRequest request,
+		ComponentContext context)
+		throws ServletException {
 
-        // Get current session.
-        HttpSession session = request.getSession();
+		// Get current session.
+		HttpSession session = request.getSession();
 
-        // Retrieve attribute name used to store settings.
-        String userSettingsName =
-            (String) context.getAttribute(USER_SETTINGS_NAME_ATTRIBUTE);
+		// Retrieve attribute name used to store settings.
+		String userSettingsName =
+			(String) context.getAttribute(USER_SETTINGS_NAME_ATTRIBUTE);
 
-        if (userSettingsName == null) {
-            userSettingsName = DEFAULT_USER_SETTINGS_NAME;
-        }
+		if (userSettingsName == null) {
+			userSettingsName = DEFAULT_USER_SETTINGS_NAME;
+		}
 
-        // Get user list from user context
-        MenuSettings settings =
-            (MenuSettings) session.getAttribute(userSettingsName);
+		// Get user list from user context
+		MenuSettings settings =
+			(MenuSettings) session.getAttribute(userSettingsName);
 
-        // If settings don't exist, create and initialize them
-        // Initialization is done from context attribute denoted by ITEMS
-        if (settings == null) {
-            // List doesn't exist, create it and initialize it from Tiles parameters
-            settings = new MenuSettings();
-            try {
-                settings.addItems((List) context.getAttribute(USER_ITEMS_ATTRIBUTE));
-            } catch (ClassCastException ex) {
-                throw new ServletException("Can't initialize user menu : default items must be a list of items");
-            }
-            // Save user settings in session
-            session.setAttribute(userSettingsName, settings);
-        }
+		// If settings don't exist, create and initialize them
+		// Initialization is done from context attribute denoted by ITEMS
+		if (settings == null) {
+			// List doesn't exist, create it and initialize it from Tiles parameters
+			settings = new MenuSettings();
+			try {
+				settings.addItems(
+					(List) context.getAttribute(USER_ITEMS_ATTRIBUTE));
+			} catch (ClassCastException ex) {
+				throw new ServletException("Can't initialize user menu : default items must be a list of items");
+			}
 
-        return settings;
-    }
+			// Save user settings in session
+			session.setAttribute(userSettingsName, settings);
+		}
 
-    /**
-     * Get catalog of available menu entries.
-     * This implementation create catalog list from the provided menu bar entries.
-     *
-     * as Tiles attribute.
-     * Create it from default values if needed.
-     */
-    public static List getCatalog(
-        ComponentContext context,
-        HttpServletRequest request,
-        ServletContext servletContext)
-        throws ServletException {
+		return settings;
+	}
 
-        // Retrieve name used to store catalog in application context.
-        // If not found, use default name
-        String catalogName =
-            (String) context.getAttribute(MENU_CATALOG_NAME_ATTRIBUTE);
+	/**
+	 * Get catalog of available menu entries.
+	 * This implementation creates catalog list from the provided menu bar 
+	 * entries.
+	 */
+	public static List getCatalog(
+		ComponentContext context,
+		HttpServletRequest request,
+		ServletContext servletContext)
+		throws ServletException {
 
-        if (catalogName == null) {
-            catalogName = DEFAULT_MENU_CATALOG_NAME;
-        }
+		// Retrieve name used to store catalog in application context.
+		// If not found, use default name
+		String catalogName =
+			(String) context.getAttribute(MENU_CATALOG_NAME_ATTRIBUTE);
 
-        // Get catalog from context
-        List catalog = (List) servletContext.getAttribute(catalogName);
+		if (catalogName == null) {
+			catalogName = DEFAULT_MENU_CATALOG_NAME;
+		}
 
-        // If not found, initialize it from provided default menu
-        if (catalog == null) {
-            Object menuBar = context.getAttribute(CATALOG_SETTING_ATTRIBUTE);
-            if (menuBar == null) {
-                throw new ServletException(
-                    "Attribute '"
-                        + CATALOG_SETTING_ATTRIBUTE
-                        + "' must be set. It define entries used in catalog");
-            }
+		// Get catalog from context
+		List catalog = (List) servletContext.getAttribute(catalogName);
 
-            catalog = new ArrayList();
-            extractItems(catalog, menuBar, request, servletContext);
-            if (catalog.size() == 0) {
-                throw new ServletException("Can't initialize menu items catalog");
-            }
+		// If not found, initialize it from provided default menu
+		if (catalog == null) {
+			Object menuBar = context.getAttribute(CATALOG_SETTING_ATTRIBUTE);
+			if (menuBar == null) {
+				throw new ServletException(
+					"Attribute '"
+						+ CATALOG_SETTING_ATTRIBUTE
+						+ "' must be set. It define entries used in catalog");
+			}
 
-            // save it for future use
-            servletContext.setAttribute(catalogName, catalog);
-        }
+			catalog = new ArrayList();
+			extractItems(catalog, menuBar, request, servletContext);
+			if (catalog.size() == 0) {
+				throw new ServletException("Can't initialize menu items catalog");
+			}
 
-        return catalog;
-    }
+			// save it for future use
+			servletContext.setAttribute(catalogName, catalog);
+		}
 
-    /**
-     * Extract menu items from passed object. Items are stored in parameter 'result'.
-     * This method allows to create a list of menu entries from existing menus.
-     * Check object type class :
-     * <li>
-     *   <ul>MenuItems : add it</ul>
-     *   <ul>ComponentDefinition : get attribute items, or list if not found.
-     *       Call ExtractItems with resulting attribute.
-     *   </ul>
-     *   <ul>List : iterate on list, and call ExtractItems for each element.
-     * </li>
-     * @param result result list (should be initialized)
-     * @param object object to add (MenuItems, Definition, ...)
-     * @param request current request
-     * @param servletContext current servlet context.
-     */
-    private static void extractItems(
-        List result,
-        Object object,
-        HttpServletRequest request,
-        ServletContext servletContext) {
+		return catalog;
+	}
 
-        log.debug("Extract menu item from '" + object + "'");
+	/**
+	 * Extract menu items from passed object. Items are stored in 
+	 * <code>result</code> parameter. 
+	 * This method allows to create a list of menu entries from existing menus.
+	 * Check object type class :
+	 * <li>
+	 *   <ul>MenuItems : add it</ul>
+	 *   <ul>ComponentDefinition : get attribute items, or list if not found.
+	 *       Call ExtractItems with resulting attribute.
+	 *   </ul>
+	 *   <ul>List : iterate on list, and call ExtractItems for each element.
+	 * </li>
+	 * @param result result list (should be initialized)
+	 * @param object object to add (MenuItems, Definition, ...)
+	 * @param request current request
+	 * @param servletContext current servlet context.
+	 */
+	private static void extractItems(
+		List result,
+		Object object,
+		HttpServletRequest request,
+		ServletContext servletContext) {
 
-        if (object instanceof String) { // definition name
-            try {
-                ComponentDefinition def =
-                    DefinitionsUtil.getDefinition(
-                        (String) object,
-                        request,
-                        servletContext);
+		log.debug("Extract menu item from '" + object + "'");
 
-                extractItems(result, def, request, servletContext);
+		if (object instanceof String) { // definition name
+			try {
+				ComponentDefinition def =
+					DefinitionsUtil.getDefinition(
+						(String) object,
+						request,
+						servletContext);
 
-            } catch (Exception ex) { // silently fail
-            }
+				extractItems(result, def, request, servletContext);
 
-        } else if (object instanceof List) {
-            List list = (List) object;
-            Iterator iter = list.iterator();
-            while (iter.hasNext()) {
-                extractItems(result, iter.next(), request, servletContext);
-            }
+			} catch (Exception ex) { // silently fail
+			}
 
-        } else if (object instanceof ComponentDefinition) {
-            ComponentDefinition definition = (ComponentDefinition) object;
-            Object attribute = definition.getAttribute("items");
-            if (attribute == null) {
-                attribute = definition.getAttribute("list");
-            }
+		} else if (object instanceof List) {
+			List list = (List) object;
+			Iterator iter = list.iterator();
+			while (iter.hasNext()) {
+				extractItems(result, iter.next(), request, servletContext);
+			}
 
-            if (attribute == null) {
-                return;
-            }
+		} else if (object instanceof ComponentDefinition) {
+			ComponentDefinition definition = (ComponentDefinition) object;
+			Object attribute = definition.getAttribute("items");
+			if (attribute == null) {
+				attribute = definition.getAttribute("list");
+			}
 
-            extractItems(result, attribute, request, servletContext);
+			if (attribute == null) {
+				return;
+			}
 
-        } else if (object instanceof MenuItem) {
-            result.add(object);
-        }
-    }
+			extractItems(result, attribute, request, servletContext);
+
+		} else if (object instanceof MenuItem) {
+			result.add(object);
+		}
+	}
 
 }
