@@ -127,12 +127,197 @@
         so that other developers can explore alternatives.
     </p>
 
-    <p>
-        More detail regarding Struts 1.x enhancements can be found on the
-        <a href="Milestones.html">Milestones</a> page.
+    </section>
 
-    </p>
+    <section href="Struts_1_3_x" name="Struts 1.3.x and beyond">
 
+        <p>
+            An outline of the Struts 1.x enhancements proposed here can be found on the
+            <a href="Milestones.html">Milestones</a> page.
+        </p>
+
+        <p>
+            As planned, in Struts 1.3.x we would integrate Struts Chain from config and add
+            an "extends" attribute to all the configruation elements (a la Tiles). While
+            we're at it, I'd also like to add a Ant-style properties file to make variable
+            substitutions within the XML elements. We use this in iBATIS, and it can be a
+            helpful way to configure applications and reduce redundancy.
+        </p>
+
+        <p>
+            <b>Experimental Members</b>
+        </p>
+
+        <p>
+            Those items by themselves seem like enough for a release, but we might add a
+            few "experimental" classes and interfaces to give us a chance to play with
+            Struts Chain in our own applications. We came up with two experimental classes
+            and an experimental interface: ActionCommand, ActionContext, and ViewContext.
+        </p>
+
+        <p>
+            <b>ActionCommand</b> - A Chain Command-like interface with one method:
+        </p>
+
+        <p><code>void Execute(ActionContext context)</code></p>
+
+        <p>
+            Support for conventional Actions would stay in place, but as an alternative, a
+            class could implement ActionCommand and unbind itself from the HTTP API.
+        </p>
+
+        <p>
+            <b>ActionContext</b> - A <i>Chain Context</i> that implements the logical Action class API.
+        </p>
+
+        <p>
+            Existing code could be converted by changing references to context.* and so
+            forth. The context could be constructed by the Request Processor, as an optional
+            Command in the Chain, so that it could be exposed this through thread-local,
+            opening the door for POJO actions that don't implement a particular interface.
+        </p>
+
+        <p>
+            <b>ViewContext</b> - A <i>Chain Context</i> that implements the logical "Velocity Tools" API.
+        </p>
+
+        <p>
+            In a later release, we could move the taglib dependencies from the
+            servlet contexts to the ViewContext. View technologies could then look
+            exclusively to the ViewContext rather than poke around in the various servlet
+            contexts. (Of course, support for the original architecture would remain for
+            some time, to give third party libraries the chance to migrate.)
+        </p>
+
+        <p>
+            After having a chance to work with ActionContext and ViewContext ourselves, we
+            could introduce more support for these members in a later release. But for 1.3,
+            they could be marked "experimental".
+        </p>
+
+        <p>
+            The Commons Chaain WebContext we now pass around Struts Chain could be called the
+            "StrutsContext" to differentiate it from the ActionContext and ViewContext.
+        </p>
+
+        <p>
+            (Are we now starting to call everything "Context" instead of "Action"? Not
+            really. We use the "Context" suffix when a member extends Chain Context. This
+            convention is unlike the current "Action" soup, since "Context" is a suffix
+            that identifies a member's "family" history.)
+        </p>
+
+        <p><b>Subproject Distributions</b></p>
+
+        <p>
+            Also as planned, we would extract the Taglibs package into its own subproject.
+            (Giving us a chance to make the Taglibs 1.0.1 release utilize the ViewContext.)
+            We might also consider extracting "Actions" (plural) and "Plugins" into a
+            separate "Extras" subproject. While the members here are popular, they are
+            optional, and not essential to the core.
+        </p>
+
+        <p>
+            We've mentioned that each subproject should have its own release cycle. We've
+            also mentioned the idea of "bundling" subprojects into a master distribution.
+            We might consider taking that idea a step further and utilize the "Linux"
+            approach. The Struts "1.3.0" distribution could be an aggregation of "Core
+            1.0.x", "Taglibs 1.0.x", and "Extras 1.0.x".
+        </p>
+
+        <p>
+            Later, if we end up with a Taglibs 1.0.1 GA before there is another Core 1.0.x
+            GA, we could assemble a "Struts 1.3.1" distribution that aggregates (for
+            example) "Core 1.0.0", "Taglibs 1.0.1", and "Extras 1.0.0".
+        </p>
+
+        <p>
+            The Struts aggregate distribution doesn't have to be complicated, perhaps just
+            a ZIP of whatever subproject GA distributions work with the "best available"
+            core.
+        </p>
+
+        <p><b>1.4 considerations</b></p>
+
+        <p>
+            One we get past 1.3.x, there are some other things that we might consider.
+        </p>
+
+        <p>
+            <b>Consider combining DTDs.</b> Right now, using "standard" extensions like Tiles and
+            Validator mean using more than one configuration file. While using multiple
+            configurations files can be a good thing, we should also try and support the
+            idea of having a single configuration file. This might not work-out for Tiles,
+            but we might be able to at least integrate the Validator configuration with the
+            DynaForm configuration.
+        </p>
+
+        <p>
+            <b>Consider adding catalog element.</b> Depending on how the work goes with the
+            experimental ActionCommand interface, we might identifiy a need to add a
+            catalog element to the Struts configuration, to support using a Chain of
+            ActionCommands.
+        </p>
+
+        <p>
+            <b>Consider refactoring for Spring.</b> We identified the need for adding a IOC
+            container to Struts some time ago, but stalled on the point of which to use.
+            Since then, Spring has gained a lot of momentum. Spring is used by the MyFaces
+            and Beehive teams, and its on the radar for Shale. There is already a
+            Struts-Spring component in the Spring distribution and other common ground.
+       </p>
+
+        <p><b>1.5 considerations</b></p>
+
+        <p>
+            Based on our own work with the "experimental" members inroduced in 1.3.x, we
+            might consider some other changes.
+        </p>
+
+        <p>
+            <b>Consider a "smart" action type.</b> The idea is that a command in Struts chain
+            could look at the type indicated by the ActionMapping so both Action classes
+            and ActionCommand implementations are supported. People could then
+            mix-and-match Actions with ActionCommands (or even chains of ActionCommands).
+            We might even support placing an ActionCommand interface on ActionForm, so
+            people could skip having a sepate Action or ActionCommand class. The ActionForm
+            could do it all.
+        </p>
+
+        <p>
+            <b>Consider a "populate" method on ActionForm.</b> From an OOP standpoint, it might be
+            cleaner if an ActionForm populated itself rather than rely on an "god" class to
+            populate it from the outside.
+        </p>
+
+        <p>
+            <b>Consider a "FormContext" mechanism.</b> Rather than "throw-away" a request-based
+            ActionForm, the object could be seralized as a hidden-field or session-object
+            and restored on the next request. Many other frameworks support this behavior
+            now. Struts would have a slightly different spin, since we look at the form as
+            an named entity rather than as an anonymous aggregation of other objects.
+        </p>
+
+        <p><b>1.6 considerations</b></p>
+
+        <p>
+            <b>Consider multiple controllers.</b> One reason we introduced modules was because
+            "there can only be one" Struts controller in an application. With the
+            context-based changes we making, we might be able to introduce a mechanism to
+            support a collection of Struts controllers, each identified by its servlet or
+            filter name, each with it's own URI pattern. The key to being able to do
+            something like this is for view members to look to the ViewContext rather than
+            the various servlet contexts. Each Struts controller would place the
+            appropriate ViewContext in its own requests.
+        </p>
+
+        <p>
+            <b>Consider an alternate configuration file.</b> There are idiosyncrasies in the
+            element/attribute names of the struts-config which often confuse new
+            developers. By either supporting alternative configuration loaders, or applying
+            a stylesheet to a XML configuration, we could support both the "classic" and a
+            new configuration.
+        </p>
     </section>
 
     <section href="Struts_2_0" name="Struts 2.0.x">
@@ -274,12 +459,12 @@
         </p>
         <p>
            As JSF comes into broader use, it is expected that
-           Struts developers will continue to offer enhancements to make it even easier to use Struts with JSF.
+           Struts developers will continue to offer enhancements to make it even easier to use Struts with JSF,
+           such as the <a href="http://wiki.apache.org/struts/StrutsShale">Struts Shale</a> proposal.
         </p>
 
         <p>
-            The SourceForge <a href="http://sf.net/projects/myfaces">MyFaces</a> team is in the process of
-            joining the Apache Software Founcation. Once the Apache MyFaces team has access to the Apache TCK, it
+            The <a href="http://incubator.apache.org/myfaces/">MyFaces team</a> is in the process of joining the Apache Software Founcation. Once the Apache MyFaces team has access to the Apache TCK, it
             is expected to be recognized as a certified JSF implementation.
         </p>
 
