@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/factory/Attic/FactoryService.java,v 1.1 2001/07/14 22:41:57 oalexeev Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/14 22:41:57 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/factory/Attic/FactoryService.java,v 1.2 2001/07/18 04:22:20 oalexeev Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/07/18 04:22:20 $
  *
  * ====================================================================
  *
@@ -71,14 +71,14 @@ import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.struts.digester.Digester;
-import org.apache.struts.digester.Rule;
+import org.apache.commons.digester.Digester;
+import org.apache.commons.digester.Rule;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.BeanUtils;
-import org.apache.struts.util.ConvertUtils;
-import org.apache.struts.util.PropertyUtils;
-import org.apache.struts.util.FastHashMap;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.collections.FastHashMap;
 import org.apache.struts.service.Service;
 import org.apache.struts.service.ServiceManager;
 import org.apache.struts.service.ServletServiceManager;

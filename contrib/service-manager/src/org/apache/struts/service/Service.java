@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/Attic/Service.java,v 1.1 2001/07/14 22:41:57 oalexeev Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/14 22:41:57 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/Attic/Service.java,v 1.2 2001/07/18 04:22:19 oalexeev Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/07/18 04:22:19 $
  *
  * ====================================================================
  *
@@ -62,11 +62,11 @@
 package org.apache.struts.service;
 
 import java.io.Serializable;
-import org.apache.struts.digester.Digester;
+import org.apache.commons.digester.Digester;
 
 /** 
  * @author Oleg V Alexeev
- * @version $Revision: 1.1 $ $Date: 2001/07/14 22:41:57 $
+ * @version $Revision: 1.2 $ $Date: 2001/07/18 04:22:19 $
  */
 public class Service implements Serializable {
 

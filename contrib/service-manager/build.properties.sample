@@ -1,3 +1,6 @@
 struts.lib=../../dist/lib/struts.jar
 jdbc20ext.jar=../jdbc2_0-stdext.jar
 servlet.jar=../jakarta-servletapi/lib/servlet.jar
+commons-beanutils.jar=../../../jakarta-commons/beanutils/dist/commons-beanutils.jar
+commons-collections.jar=../../../jakarta-commons/collections/dist/commons-collections.jar
+commons-digester.jar=../../../jakarta-commons/digester/dist/commons-digester.jar

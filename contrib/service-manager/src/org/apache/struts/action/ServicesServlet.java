@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/action/Attic/ServicesServlet.java,v 1.1 2001/07/14 22:41:56 oalexeev Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/14 22:41:56 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/action/Attic/ServicesServlet.java,v 1.2 2001/07/18 04:22:19 oalexeev Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/07/18 04:22:19 $
  *
  * ====================================================================
  *
@@ -71,12 +71,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.struts.digester.Digester;
-import org.apache.struts.digester.Rule;
-import org.apache.struts.util.BeanUtils;
-import org.apache.struts.util.ConvertUtils;
-import org.apache.struts.util.PropertyUtils;
-import org.apache.struts.util.FastHashMap;
+import org.apache.commons.digester.Digester;
+import org.apache.commons.digester.Rule;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.collections.FastHashMap;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.service.ServiceManager;
@@ -87,7 +87,7 @@ import org.xml.sax.SAXException;
 
 /** 
  * @author Oleg V Alexeev
- * @version $Revision: 1.1 $ $Date: 2001/07/14 22:41:56 $
+ * @version $Revision: 1.2 $ $Date: 2001/07/18 04:22:19 $
  */
 public class ServicesServlet
     extends ActionServlet {
