@@ -17,7 +17,8 @@
     <action    path="/upload"
                type="org.apache.struts.webapp.upload.UploadAction"
                name="uploadForm"
-               input="/upload.jsp">
+              scope="request"
+              input="/upload.jsp">
         <forward name="display" path="/display.jsp" />
    </action>
 
