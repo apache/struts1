@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.72 2003/09/30 20:28:35 rleland Exp $
- * $Revision: 1.72 $
- * $Date: 2003/09/30 20:28:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.73 2003/12/19 03:20:44 husted Exp $
+ * $Revision: 1.73 $
+ * $Date: 2003/12/19 03:20:44 $
  *
  * ====================================================================
  *
@@ -79,61 +79,63 @@ import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.TokenProcessor;
 
 /**
- * An <strong>Action</strong> is an adapter between the contents of an incoming
+ * <p>An <strong>Action</strong> is an adapter between the contents of an incoming
  * HTTP request and the corresponding business logic that should be executed to
- * process this request.  The controller (ActionServlet) will select an
+ * process this request. The controller (RequestProcessor) will select an
  * appropriate Action for each request, create an instance (if necessary),
- * and call the <code>perform</code> method.</p>
+ * and call the <code>execute</code> method.</p>
  *
  * <p>Actions must be programmed in a thread-safe manner, because the
  * controller will share the same instance for multiple simultaneous
- * requests.  This means you should design with the following items in mind:
+ * requests. This means you should design with the following items in mind:
  * </p>
  * <ul>
  * <li>Instance and static variables MUST NOT be used to store information
- *     related to the state of a particular request.  They MAY be used to
+ *     related to the state of a particular request. They MAY be used to
  *     share global resources across requests for the same action.</li>
  * <li>Access to other resources (JavaBeans, session variables, etc.) MUST
- *     be synchronized if those resources require protection.  (Generally,
+ *     be synchronized if those resources require protection. (Generally,
  *     however, resource classes should be designed to provide their own
  *     protection where necessary.</li>
  * </ul>
  *
  * <p>When an <code>Action</code> instance is first created, the controller
- * servlet will call <code>setServlet()</code> with a non-null argument to
- * identify the controller servlet instance to which this Action is attached.
- * When the controller servlet is to be shut down (or restarted), the
- * <code>setServlet()</code> method will be called with a <code>null</code>
+ * will call <code>setServlet</code> with a non-null argument to
+ * identify the servlet instance to which this Action is attached.
+ * When the servlet is to be shut down (or restarted), the
+ * <code>setServlet</code> method will be called with a <code>null</code>
  * argument, which can be used to clean up any allocated resources in use
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.72 $ $Date: 2003/09/30 20:28:35 $
+ * @version $Revision: 1.73 $ $Date: 2003/12/19 03:20:44 $
  */
 public class Action {
 
     /**
-     * An instance of TokenProcessor to use for token functionality.
-     * TODO We can make this variable protected and remove Action's token methods
-     * or leave it private and allow the token methods to delegate their calls.
+     * <p>An instance of <code>TokenProcessor</code> to use for token functionality.</p>
      */
     private static TokenProcessor token = TokenProcessor.getInstance();
+    // :TODO: We can make this variable protected and remove Action's token methods
+    // or leave it private and allow the token methods to delegate their calls.
 
 
     // ----------------------------------------------------- Instance Variables
 
 
     /**
-     * The system default Locale.
-     * @deprecated Use Locale.getDefault() directly.  This will be removed after
+     * <p>The system default Locale.</p>
+     *
+     * @deprecated Use Locale.getDefault directly.  This will be removed after
      * Struts 1.2.
      */
     protected static Locale defaultLocale = Locale.getDefault();
+    // :TODO: Remove after Struts 1.2
 
 
     /**
-     * The controller servlet to which we are attached.
+     * <p>The servlet to which we are attached.</p>
      */
     protected ActionServlet servlet = null;
 
@@ -142,7 +144,7 @@ public class Action {
 
 
     /**
-     * Return the controller servlet instance to which we are attached.
+     * <p>Return the servlet instance to which we are attached.</p>
      */
     public ActionServlet getServlet() {
 
@@ -152,15 +154,17 @@ public class Action {
 
 
     /**
-     * Set the controller servlet instance to which we are attached (if
+     * <p>Set the servlet instance to which we are attached (if
      * <code>servlet</code> is non-null), or release any allocated resources
-     * (if <code>servlet</code> is null).
+     * (if <code>servlet</code> is null).</p>
      *
      * @param servlet The new controller servlet, if any
      */
     public void setServlet(ActionServlet servlet) {
 
         this.servlet = servlet;
+        // :FIXME: Is this suppose to release resources?
+
 
     }
 
@@ -169,16 +173,16 @@ public class Action {
 
 
     /**
-     * Process the specified non-HTTP request, and create the
+     * <p>Process the specified non-HTTP request, and create the
      * corresponding non-HTTP response (or forward to another web
      * component that will create it), with provision for handling
      * exceptions thrown by the business logic.
      * Return an {@link ActionForward} instance describing where and how
      * control should be forwarded, or <code>null</code> if the response has
-     * already been completed.
-     * <p>
-     * The default implementation attempts to forward to the HTTP
-     * version of this method.
+     * already been completed.</p>
+     *
+     * <p>The default implementation attempts to forward to the HTTP
+     * version of this method.</p>
      *
      * @param mapping The ActionMapping used to select this instance
      * @param form The optional ActionForm bean for this request (if any)
@@ -211,12 +215,12 @@ public class Action {
 
 
     /**
-     * Process the specified HTTP request, and create the corresponding HTTP
+     * <p>Process the specified HTTP request, and create the corresponding HTTP
      * response (or forward to another web component that will create it),
      * with provision for handling exceptions thrown by the business logic.
      * Return an {@link ActionForward} instance describing where and how
      * control should be forwarded, or <code>null</code> if the response
-     * has already been completed.
+     * has already been completed.</p>
      *
      * @param mapping The ActionMapping used to select this instance
      * @param form The optional ActionForm bean for this request (if any)
@@ -243,8 +247,8 @@ public class Action {
 
 
     /**
-     * Generate a new transaction token, to be used for enforcing a single
-     * request for a particular transaction.
+     * <p>Generate a new transaction token, to be used for enforcing a single
+     * request for a particular transaction.</p>
      *
      * @param request The request we are processing
      */
@@ -254,7 +258,7 @@ public class Action {
 
 
     /**
-     * Return the default data source for the current module.
+     * <p>Return the default data source for the current module.</p>
      *
      * @param request The servlet request we are processing
      *
@@ -269,7 +273,7 @@ public class Action {
 
 
     /**
-     * Return the specified data source for the current module.
+     * <p>Return the specified data source for the current module.</p>
      *
      * @param request The servlet request we are processing
      * @param key The key specified in the
@@ -290,16 +294,19 @@ public class Action {
 
 
     /**
-     * Return the user's currently selected Locale.
+     * <p>Return the user's currently selected Locale.</p>
      *
      * @param request The request we are processing
      */
     protected Locale getLocale(HttpServletRequest request) {
+
         return RequestUtils.getUserLocale(request, null);
+
     }
 
+
     /**
-     * Return the default message resources for the current module.
+     * <p>Return the default message resources for the current module.</p>
      *
      * @param request The servlet request we are processing
      * @since Struts 1.1
@@ -310,8 +317,9 @@ public class Action {
 
     }
 
+
     /**
-     * Return the specified message resources for the current module.
+     * <p>Return the specified message resources for the current module.</p>
      *
      * @param request The servlet request we are processing
      * @param key The key specified in the
@@ -356,10 +364,10 @@ public class Action {
 
 
     /**
-     * Return <code>true</code> if there is a transaction token stored in
+     * <p>Return <code>true</code> if there is a transaction token stored in
      * the user's current session, and the value submitted as a request
-     * parameter with this action matches it.  Returns <code>false</code>
-     * under any of the following circumstances:
+     * parameter with this action matches it. Returns <code>false</code>
+     * under any of the following circumstances:</p>
      * <ul>
      * <li>No session associated with this request</li>
      * <li>No transaction token saved in the session</li>
@@ -378,9 +386,9 @@ public class Action {
 
 
     /**
-     * Return <code>true</code> if there is a transaction token stored in
+     * <p>Return <code>true</code> if there is a transaction token stored in
      * the user's current session, and the value submitted as a request
-     * parameter with this action matches it.  Returns <code>false</code>
+     * parameter with this action matches it. Returns <code>false</code>.</p>
      * <ul>
      * <li>No session associated with this request</li>
      * <li>No transaction token saved in the session</li>
@@ -393,27 +401,31 @@ public class Action {
      * @param reset Should we reset the token after checking it?
      */
     protected boolean isTokenValid(HttpServletRequest request, boolean reset) {
+
         return token.isTokenValid(request, reset);
+
     }
 
 
     /**
-     * Reset the saved transaction token in the user's session.  This
+     * <p>Reset the saved transaction token in the user's session. This
      * indicates that transactional token checking will not be needed
-     * on the next request that is submitted.
+     * on the next request that is submitted.</p>
      *
      * @param request The servlet request we are processing
      */
     protected void resetToken(HttpServletRequest request) {
+
         token.resetToken(request);
+
     }
 
 
     /**
-     * Save the specified error messages keys into the appropriate request
+     * <p>Save the specified error messages keys into the appropriate request
      * attribute for use by the &lt;html:errors&gt; tag, if any messages
-     * are required.  Otherwise, ensure that the request attribute is not
-     * created.
+     * are required. Otherwise, ensure that the request attribute is not
+     * created.</p>
      *
      * @param request The servlet request we are processing
      * @param errors Error messages object
@@ -421,14 +433,18 @@ public class Action {
      * This will be removed after Struts 1.2.
      */
     protected void saveErrors(HttpServletRequest request, ActionErrors errors) {
+
         this.saveErrors(request,(ActionMessages)errors);
+        // :TODO: Remove after Struts 1.2.
+
     }
 
+
     /**
-     * Save the specified error messages keys into the appropriate request
+     * <p>Save the specified error messages keys into the appropriate request
      * attribute for use by the &lt;html:errors&gt; tag, if any messages
-     * are required.  Otherwise, ensure that the request attribute is not
-     * created.
+     * are required. Otherwise, ensure that the request attribute is not
+     * created.</p>
      *
      * @param request The servlet request we are processing
      * @param errors Error messages object
@@ -447,11 +463,12 @@ public class Action {
 
     }
 
+
     /**
-     * Save the specified messages keys into the appropriate request
+     * <p>Save the specified messages keys into the appropriate request
      * attribute for use by the &lt;html:messages&gt; tag (if
-     * messages="true" is set), if any messages are required.  Otherwise,
-     * ensure that the request attribute is not created.
+     * messages="true" is set), if any messages are required. Otherwise,
+     * ensure that the request attribute is not created.</p>
      *
      * @param request The servlet request we are processing.
      * @param messages The messages to save. <code>null</code> or empty
@@ -473,11 +490,12 @@ public class Action {
         request.setAttribute(Globals.MESSAGE_KEY, messages);
     }
 
+
     /**
-     * Save the specified messages keys into the appropriate session
+     * <p>Save the specified messages keys into the appropriate session
      * attribute for use by the &lt;html:messages&gt; tag (if
-     * messages="true" is set), if any messages are required.  Otherwise,
-     * ensure that the session attribute is not created.
+     * messages="true" is set), if any messages are required. Otherwise,
+     * ensure that the session attribute is not created.</p>
      *
      * @param session The session to save the messages in.
      * @param messages The messages to save. <code>null</code> or empty
@@ -499,9 +517,10 @@ public class Action {
         session.setAttribute(Globals.MESSAGE_KEY, messages);
     }
 
+
     /**
-     * Save a new transaction token in the user's current session, creating
-     * a new session if necessary.
+     * <p>Save a new transaction token in the user's current session, creating
+     * a new session if necessary.</p>
      *
      * @param request The servlet request we are processing
      */
@@ -509,8 +528,10 @@ public class Action {
         token.saveToken(request);
     }
 
+
     /**
-     * Set the user's currently selected Locale into their HttpSession.
+     * <p>Set the user's currently selected <code>Locale</code> into their
+     * <code>HttpSession</code>.</p>
      *
      * @param request The request we are processing
      * @param locale The user's selected Locale to be set, or null

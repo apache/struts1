@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionError.java,v 1.11 2003/09/29 04:26:23 rleland Exp $
- * $Revision: 1.11 $
- * $Date: 2003/09/29 04:26:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionError.java,v 1.12 2003/12/19 03:20:44 husted Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/12/19 03:20:44 $
  *
  * ====================================================================
  *
@@ -67,7 +67,7 @@ import java.io.Serializable;
 
 /**
  * <p>An encapsulation of an individual error message returned by the
- * <code>validate()</code> method of an <code>ActionForm</code>, consisting
+ * <code>validate</code> method of an <code>ActionForm</code>, consisting
  * of a message key (to be used to look up message text in an appropriate
  * message resources database) plus up to four placeholder objects that can
  * be used for parametric replacement in the message text.</p>
@@ -79,10 +79,9 @@ import java.io.Serializable;
  * <p>Since Struts 1.1 <code>ActionError</code> extends <code>ActionMessage</code>.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2003/09/29 04:26:23 $
+ * @version $Revision: 1.12 $ $Date: 2003/12/19 03:20:44 $
  * @deprecated Please use <code>ActionMessage</code> instead, deprecated in struts 1.2.1 
  */
-
 public class ActionError extends ActionMessage implements Serializable {
 
 
@@ -90,7 +89,7 @@ public class ActionError extends ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action error with no replacement values.
+     * <p>Construct an action error with no replacement values.</p>
      *
      * @param key Message key for this error message
      */
@@ -102,7 +101,7 @@ public class ActionError extends ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action error with the specified replacement values.
+     * <p>Construct an action error with the specified replacement values.</p>
      *
      * @param key Message key for this error message
      * @param value0 First replacement value
@@ -115,7 +114,7 @@ public class ActionError extends ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action error with the specified replacement values.
+     * <p>Construct an action error with the specified replacement values.</p>
      *
      * @param key Message key for this error message
      * @param value0 First replacement value
@@ -129,7 +128,7 @@ public class ActionError extends ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action error with the specified replacement values.
+     * <p>Construct an action error with the specified replacement values.</p>
      *
      * @param key Message key for this error message
      * @param value0 First replacement value
@@ -145,7 +144,7 @@ public class ActionError extends ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action error with the specified replacement values.
+     * <p>Construct an action error with the specified replacement values.</p>
      *
      * @param key Message key for this error message
      * @param value0 First replacement value
@@ -162,7 +161,7 @@ public class ActionError extends ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action error with the specified replacement values.
+     * <p>Construct an action error with the specified replacement values.</p>
      *
      * @param key Message key for this message
      * @param values Array of replacement values
