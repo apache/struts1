@@ -17,35 +17,41 @@
 
   <body>
   <chapter name="7. Configuring Applications" href="config_apps">
-  
+
  <section name="7.1 Overview" href="config-overview">
 
     <p>
-    [:TODO:]
+    Before you can build an application, you need to lay a solid foundation.
+    There are several setup tasks you need to perform before deploying your Struts application.
+    These include components in the Struts configuration file
+    and in the Web Application Deployment Descriptor.
     </p>
-        
+
  </section>
-    
+
  <section name="7.2 The Struts configuration file"  href="struts-config">
-        
+
     <p>
-    The <a href="building_controller.html#config">Building Controller 
-    Components</a> chapter covered writing the form-bean and action-mapping 
-    portions of the Struts configuration file. 
-    These elements usually play an important role in the development of a 
+    The <a href="building_controller.html#config">Building Controller
+    Components</a> chapter covered writing the form-bean and action-mapping
+    portions of the Struts configuration file.
+    These elements usually play an important role in the development of a
     Struts application.
-    The other elements in Struts configuration file tend to be static: 
-    you set them once and leave them alone. 
+    The other elements in Struts configuration file tend to be static:
+    you set them once and leave them alone.
     </p>
-    
+
     <p>
     These "static" configuration elements are :
     </p>
-    
+
     <ul>
-        <li>[:TODO:]</li>
+        <li>controller</li>
+        <li>message-resources</li>
+        <li>plug-in</li>
+        <li>data-sources</li>
     </ul>
-    
+
  </section>
 
  <section name="7.2.1 Controller Configuration" href="controller_config">
@@ -56,7 +62,7 @@
         <code>web.xml</code> file but have been moved to this section of
         <code>struts-config.xml</code> in order to allow different modules
         in the same web application to be configured differently.
-        For full details on available parameters see the 
+        For full details on available parameters see the
         <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">struts-config_1_1.dtd</a>
         or the list below.
       </p>
@@ -152,22 +158,22 @@
       </ul>
       </blockquote>
       <p>
-        This example uses the default values for several controller parameters.  
+        This example uses the default values for several controller parameters.
         If you only want default behavior you can omit the controller section altogether.
       </p>
-<pre><![CDATA[
-<controller 
+<pre><code><![CDATA[
+<controller
     processorClass="org.apache.struts.action.RequestProcessor"
              debug="0"
        contentType="text/html"/>;
-]]></pre>
-      </section>
+]]></code></pre>
+</section>
 
  <section name="7.2.2 Message Resources Configuration" href="resources_config">
 
     <p>
     Struts has built in support for internationalization (I18N).
-    You can define one or more <code>&lt;message-resources&gt;</code> elements for your webapp; 
+    You can define one or more <code>&lt;message-resources&gt;</code> elements for your webapp;
     modules can define their own resource bundles.
     Different bundles can be used simultaneously in your application, the 'key' attribute is used to specify the desired bundle.
     </p>
@@ -198,11 +204,11 @@
     </blockquote>
 
     <p>Example configuration:</p>
-<pre>
-&lt;message-resources
-parameter="MyWebAppResources"
-null="false" />
-</pre>
+<pre><code><![CDATA[
+<message-resources
+    parameter="MyWebAppResources"
+    null="false" />
+]]></code></pre>
 
     <p>
     This would set up a message resource bundle provided in the file
@@ -210,9 +216,9 @@ null="false" />
     Missing resource keys would be displayed as '<i>???keyname???</i>'.
     </p>
 
-    </section>
+</section>
 
-    <section name="7.2.3 PlugIn Configuration" href="plugin_config">
+<section name="7.2.3 PlugIn Configuration" href="plugin_config">
 
     <p>
     Struts PlugIns are configured using the <code>&lt;plug-in&gt;</code> element within
@@ -230,17 +236,17 @@ null="false" />
     This is an example using the Tiles plugin:
     </p>
 
-<pre>
-&lt;plug-in className="org.apache.struts.tiles.TilesPlugin" &gt;
-&lt;set-property 
-  property="definitions-config" 
-  value="/WEB-INF/tiles-defs.xml"/&gt;
-&lt;/plug-in&gt;
-</pre>
+<pre><code><![CDATA[
+<plug-in className="org.apache.struts.tiles.TilesPlugin" >
+<set-property
+  property="definitions-config"
+  value="/WEB-INF/tiles-defs.xml"/>
+</plug-in>
+]]></code></pre>
 
-    </section>
+</section>
 
-      <section name="7.2.4 Data Source Configuration" href="data-source_config">
+<section name="7.2.4 Data Source Configuration" href="data-source_config">
 
       <p>
       Besides the objects related to defining ActionMappings, the Struts configuration may
@@ -252,62 +258,62 @@ null="false" />
       This is how you would specify a basic data source for your application inside of struts-config.xml:
       </p>
 
-<pre><![CDATA[
+<pre><code><![CDATA[
 <struts-config>
 <data-sources>
 <!-- configuration for GenericDataSource wrapper -->
 <data-source>
-  <set-property 
+  <set-property
     property="autoCommit"
     value="false"/>
-  <set-property 
+  <set-property
     property="description"
     value="Example Data Source Configuration"/>
-  <set-property 
+  <set-property
     property="driverClass"
     value="org.postgresql.Driver"/>
   <set-property
     property="maxCount"
     value="4"/>
-  <set-property 
+  <set-property
     property="minCount"
     value="2"/>
-  <set-property 
+  <set-property
     property="password"
     value="mypassword"/>
-  <set-property 
+  <set-property
     property="url"
     value="jdbc:postgresql://localhost/mydatabase"/>
-  <set-property 
+  <set-property
     property="user"
     value="myusername"/>
 </data-source>
 
 <!-- configuration for commons BasicDataSource -->
 <data-source type="org.apache.commons.dbcp.BasicDataSource">
-    <set-property 
+    <set-property
       property="driverClassName"
       value="org.postgresql.Driver" />
-    <set-property 
+    <set-property
       property="url"
       value="jdbc:postgresql://localhost/mydatabase" />
-    <set-property 
+    <set-property
       property="maxActive"
       value="10" />
-    <set-property 
+    <set-property
       property="maxWait"
       value="5000" />
-    <set-property 
+    <set-property
       property="defaultAutoCommit"
       value="false" />
-    <set-property 
+    <set-property
       property="defaultReadOnly"
       value="false" />
 
 </data-source>
 </data-sources>
 </struts-config>
-]]></pre>
+]]></code></pre>
 
     <p>
     For information on how to retrieve the data source, see the
@@ -319,18 +325,18 @@ null="false" />
     data-source needs, the query you provide for the pingQuery
     attribute must return at least one row.</i>
     </p>
-    
+
     <p>
     <b>Example:</b> <code>SELECT COUNT(*) FROM VALIDTABLE</code>
     </p>
-    
+
     <p>
     Just be sure you to replace "VALIDTABLE" with the name of a valid table in your database.
     </p>
 
-    </section>
+</section>
 
-      <section name="7.2.5 Configuring your application for modules" href="dd_config_modules">
+<section name="7.3 Configuring your application for modules" href="dd_config_modules">
         <p>
         Very little is required in order to start taking advantage of the Struts
         application module feature.  Just go through the following steps:
@@ -340,9 +346,9 @@ null="false" />
           <li>Inform the controller of your module.</li>
           <li>Use actions to refer to your pages.</li>
         </ol>
-      </section>
+</section>
 
-      <section name="7.2.5.1 Module Configuration Files" href="module_config-files">
+<section name="7.3.1 Module Configuration Files" href="module_config-files">
         <p>
           Back in Struts 1.0, a few "boot-strap" options were placed in the web.xml file,
           and the bulk of the configuration was done in a single struts-config.xml file.
@@ -355,9 +361,9 @@ null="false" />
           developed by a single team) has their own configuration file, and there should
           be a lot less contention when trying to modify it.
         </p>
-      </section>
+</section>
 
-      <section name="7.2.5.2 Informing the Controller" href="module_config-inform_conroller">
+<section name="7.3.2 Informing the Controller" href="module_config-inform_conroller">
         <p>
           In struts 1.0, you listed your configuration file as an initialization parameter
           to the action servlet in web.xml.  This is still done in 1.1, but it's augmented
@@ -369,18 +375,18 @@ null="false" />
           of your module (this gets used when determining which URIs fall under a
           given module, so choose something meaningful!).  For example:
         </p>
-<pre>
+<pre><code><![CDATA[
     ...
-    &lt;init-param&gt;
-      &lt;param-name&gt;config&lt;/param-name&gt;
-      &lt;param-value&gt;/WEB-INF/conf/struts-default.xml&lt;/param-value&gt;
-    &lt;/init-param&gt;
-    &lt;init-param&gt;
-      &lt;param-name&gt;config/module1&lt;/param-name&gt;
-      &lt;param-value&gt;/WEB-INF/conf/struts-module1.xml&lt;/param-value&gt;
-    &lt;/init-param&gt;
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/conf/struts-default.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/module1</param-name>
+      <param-value>/WEB-INF/conf/struts-module1.xml</param-value>
+    </init-param>
     ...
-</pre>
+]]></code></pre>
         <p>
           This says I have two modules.  One happens to be the "default" module,
           which has no "/module" in it's name, and one named "module1" (config/module1).  I've told
@@ -392,10 +398,9 @@ null="false" />
           (My struts-default.xml would be equivalent to what most folks call struts-config.xml.  I just
           like the symmetry of having all my Struts module files being named struts-&lt;module&gt;.xml)
         </p>
+</section>
 
-      </section>
-
-    <section name="7.2.6 Switching Modules" href="module_config-switching">
+<section name="7.3.3 Switching Modules" href="module_config-switching">
     <p>
     There are two basic methods to switching from one module to another.
      You can either use a forward (global or local) and specify the
@@ -406,71 +411,70 @@ null="false" />
      Here's an example of a global forward:
     </p>
     <p>
-    <pre>
+<pre><code><![CDATA[
     ...
-    &lt;struts-config&gt;
+    <struts-config>
     ...
-    &lt;global-forwards&gt;
-    &lt;forward name="toModuleB"
+    <global-forwards>
+    <forward name="toModuleB"
        contextRelative="true"
        path="/moduleB/index.do"
-       redirect="true"/&gt;
+       redirect="true"/>
     ...
-    &lt;/global-forwards&gt;
+    </global-forwards>
     ...
-    &lt;/struts-config&gt;
-    </pre>
+    </struts-config>
+]]></code></pre>
     </p>
     <p>
      You could do the same thing with a local forward declared in an
      ActionMapping:
     </p>
     <p>
-    <pre>
+<pre><code><![CDATA[
     ...
-    &lt;struts-config&gt;
+    <struts-config>
     ...
-    &lt;action-mappings&gt;
+    <action-mappings>
     ...
-    &lt;action ... &gt;
-    &lt;forward name="success"
+    <action ... >
+    <forward name="success"
          contextRelative="true"
          path="/moduleB/index.do"
-         redirect="true"/&gt;
-    &lt;/action&gt;
+         redirect="true"/>
+    </action>
     ...
-    &lt;/action-mappingss&gt;
+    </action-mappings>
     ...
-    &lt;/struts-config&gt;
-    </pre>
+    </struts-config>
+]]></code></pre>
     </p>
     <p>
      Finally, you could use <code>org.apache.struts.actions.SwitchAction
      </code>, like so:
     </p>
     <p>
-    <pre>
+<pre><code><![CDATA[
     ...
-    &lt;action-mappings&gt;
-    &lt;action path="/toModule"
-    type="org.apache.struts.actions.SwitchAction"/&gt;
+    <action-mappings>
+    <action path="/toModule"
+    type="org.apache.struts.actions.SwitchAction"/>
     ...
-    &lt;/action-mappingss&gt;
+    </action-mappings>
     ...
-    </pre> 
+]]></code></pre>
     </p>
     <p>
      Now, to change to ModuleB, we would use a URI like this:
     </p>
-    <p>
-    <code>http://localhost:8080/toModule.do?prefix=moduleB&amp;page=index.do</code>
-    </p>
+<pre><code>http://localhost:8080/toModule.do?prefix=moduleB&amp;page=index.do</code></pre>
     <p>
     That's all there is to it!  Happy module-switching!
     </p>
+
 </section>
 
-    <section name="7.3 The Web Application Deployment Descriptor" href="dd_config">
+<section name="7.4 The Web Application Deployment Descriptor" href="dd_config">
       <p>
         The final step in setting up the application is to configure the application
         deployment descriptor (stored in file <code>WEB-INF/web.xml</code>) to include
@@ -478,16 +482,16 @@ null="false" />
         for the example application as a guide, we see that the following entries need
         to be created or modified.
       </p>
-    </section>
+</section>
 
-      <section name="7.3.1 Configure the Action Servlet Instance" href="dd_config_servlet">
+<section name="7.4.1 Configure the Action Servlet Instance" href="dd_config_servlet">
 
         <p>
           Add an entry defining the action servlet itself, along with the appropriate
           initialization parameters. Such an entry might look like this:
         </p>
 
-<pre><![CDATA[
+<pre><code><![CDATA[
 <servlet>
   <servlet-name>action</servlet-name>
   <servlet-class>
@@ -517,7 +521,7 @@ null="false" />
   </init-param>
   <load-on-startup>2</load-on-startup>
 </servlet>
-]]></pre>
+]]></code></pre>
 
         <p>
           The initialization parameters supported by the controller servlet are
@@ -646,9 +650,9 @@ null="false" />
      <em>DEPRECATED - Configure this using the "tempDir" attribute of
      the &lt;controller&gt; element.</em></li>
  </ul>
-      </section>
+</section>
 
-      <section name="7.3.2 Configure the Action Servlet Mapping" href="dd_config_mapping">
+<section name="7.4.2 Configure the Action Servlet Mapping" href="dd_config_mapping">
 
         <p>
           <strong>Note:</strong> The material in this section is not specific to
@@ -669,20 +673,18 @@ null="false" />
           entry might look like this:
         </p>
 
-<pre>
-  &lt;servlet-mapping&gt;
-     &lt;servlet-name&gt;action&lt;/servlet-name&gt;
-     &lt;url-pattern&gt;/do/*&lt;/url-pattern&gt;
-   &lt;/servlet-mapping&gt;
-</pre>
+<pre><code><![CDATA[
+  <servlet-mapping>
+     <servlet-name>action</servlet-name>
+     <url-pattern>/do/*</url-pattern>
+   </servlet-mapping>
+]]></code></pre>
 
         <p>
           which means that a request URI to match the <code>/logon</code> path
           described earlier might look like this:</p>
 
-<pre>
-http://www.mycompany.com/myapplication/do/logon
-</pre>
+<pre><code>http://www.mycompany.com/myapplication/do/logon</code></pre>
 
         <p>
           where <code>/myapplication</code> is the context path under which your
@@ -698,21 +700,19 @@ http://www.mycompany.com/myapplication/do/logon
           implies "do something"), the mapping entry would look like this:
         </p>
 
-<pre>
-  &lt;servlet-mapping&gt;
-     &lt;servlet-name&gt;action&lt;/servlet-name&gt;
-     &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
-   &lt;/servlet-mapping&gt;
-</pre>
+<pre><code><![CDATA[
+  <servlet-mapping>
+     <servlet-name>action</servlet-name>
+     <url-pattern>*.do</url-pattern>
+   </servlet-mapping>
+]]></code></pre>
 
         <p>
           and a request URI to match the <code>/logon</code> path described
           earlier might look like this:
         </p>
 
-<pre>
-http://www.mycompany.com/myapplication/logon.do
-</pre>
+<pre><code>http://www.mycompany.com/myapplication/logon.do</code></pre>
 
         <p><font color="red"><strong>WARNING</strong></font> - Struts will not
         operate correctly if you define more than one
@@ -723,9 +723,9 @@ http://www.mycompany.com/myapplication/logon.do
         the new module support in Struts 1.1, you should be aware
         that <strong>only</strong> extension mapping is supported.</p>
 
-      </section>
+</section>
 
-      <section name="7.3.3 Configure the Struts Tag Library" href="dd_config_taglib">
+<section name="7.4.3 Configure the Struts Tag Library" href="dd_config_taglib">
         <p>
           Next, you must add an entry defining the Struts tag library. There are six taglibs
           included with the Struts distribution.
@@ -764,40 +764,40 @@ http://www.mycompany.com/myapplication/logon.do
           In practice, you would only specify the taglibs that your application uses:
         </p>
 
-<pre>
-&lt;taglib&gt;
-  &lt;taglib-uri&gt;
+<pre><code><![CDATA[
+<taglib>
+  <taglib-uri>
     /tags/struts-bean
-  &lt;/taglib-uri&gt;
-  &lt;taglib-location&gt;
+  </taglib-uri>
+  <taglib-location>
     /WEB-INF/struts-bean.tld
-  &lt;/taglib-location&gt;
-&lt;/taglib&gt;
-&lt;taglib&gt;
-  &lt;taglib-uri&gt;
+  </taglib-location>
+</taglib>
+<taglib>
+  <taglib-uri>
     /tags/struts-html
-  &lt;/taglib-uri&gt;
-  &lt;taglib-location&gt;
+  </taglib-uri>
+  <taglib-location>
     /WEB-INF/struts-html.tld
-  &lt;/taglib-location&gt;
-&lt;/taglib&gt;
-&lt;taglib&gt;
-  &lt;taglib-uri&gt;
+  </taglib-location>
+</taglib>
+<taglib>
+  <taglib-uri>
     /tags/struts-logic
-  &lt;/taglib-uri&gt;
-  &lt;taglib-location&gt;
+  </taglib-uri>
+  <taglib-location>
     /WEB-INF/struts-logic.tld
-  &lt;/taglib-location&gt;
-&lt;/taglib&gt;
-&lt;taglib&gt;
-  &lt;taglib-uri&gt;
+  </taglib-location>
+</taglib>
+<taglib>
+  <taglib-uri>
     /tags/struts-tiles
-  &lt;/taglib-uri&gt;
-  &lt;taglib-location&gt;
+  </taglib-uri>
+  <taglib-location>
     /WEB-INF/struts-tiles.tld
-  &lt;/taglib-location&gt;
-&lt;/taglib&gt;
-</pre>
+  </taglib-location>
+</taglib>
+]]></code></pre>
 
         <p>
           This tells the JSP system where to find the tag library descriptor
@@ -806,7 +806,7 @@ http://www.mycompany.com/myapplication/logon.do
         </p>
       </section>
 
-      <section name="7.3.3.1 Configure the Struts Tag Library (Servlet 2.3)" href="dd_config_taglib_23">
+      <section name="7.4.3.1 Configure the Struts Tag Library (Servlet 2.3)" href="dd_config_taglib_23">
       <p>
         <b>Servlet 2.3 Users only:</b> The Servlet 2.3 specification simplifies the
         deployment and configuration of tag libraries.  The instructions above will work
@@ -824,9 +824,9 @@ http://www.mycompany.com/myapplication/logon.do
         knows where to find the tag's class files. You don't have to alter your web.xml file or
         copy tlds into any application directories.
        </p>
-     </section>
+</section>
 
-      <section name="7.4 Add Struts Components To Your Application" href="config_add">
+<section name="7.5 Add Struts Components To Your Application" href="config_add">
 
         <p>
          To use Struts, you must copy the .tld files that you require into
@@ -840,7 +840,7 @@ http://www.mycompany.com/myapplication/logon.do
          for how to avoid copying the tlds into your application.
         </p>
 
-      </section>
+</section>
 
 <section>
     <p>
