@@ -79,11 +79,16 @@ public class Field implements Cloneable, Serializable {
     */
     public final static String ARG_DEFAULT = "com.wintecinc.struts.validation.Field.DEFAULT";
     
+    public final static String TOKEN_INDEXED = "[]";
+    
     protected final static String TOKEN_START = "${";
     protected final static String TOKEN_END = "}";
     protected final static String TOKEN_VAR = "var:";
     
     protected String property = null;
+    protected String indexedProperty = null;
+    protected String indexedListProperty = null;
+    protected String key = null;
     protected String depends = null;
     protected int page = 0;
     protected int fieldOrder = 0;
@@ -143,7 +148,43 @@ public class Field implements Cloneable, Serializable {
     public void setProperty(String property) {
        this.property = property;	
     }
+    
+    /**
+     * Gets the indexed property name of the field.  This 
+     * is the method name that can take an <code>int</code> as 
+     * a parameter for indexed property value retrieval.
+    */
+    public String getIndexedProperty() {
+       return indexedProperty;	
+    }
 
+
+    /**
+     * Sets the indexed property name of the field.
+    */
+    public void setIndexedProperty(String indexedProperty) {
+       this.indexedProperty = indexedProperty;	
+    }
+
+    /**
+     * Gets the indexed property name of the field.  This 
+     * is the method name that will return an array or a 
+     * <code>Collection</code> used to retrieve the 
+     * list and then loop through the list performing the specified 
+     * validations.
+    */
+    public String getIndexedListProperty() {
+       return indexedListProperty;	
+    }
+
+
+    /**
+     * Sets the indexed property name of the field.
+    */
+    public void setIndexedListProperty(String indexedListProperty) {
+       this.indexedListProperty = indexedListProperty;	
+    }
+    
     /**
      * Gets the validation rules for this field.
     */
@@ -347,7 +388,34 @@ public class Field implements Cloneable, Serializable {
     public Map getVars() {
     	return Collections.unmodifiableMap(hVars);
     }
+
+    /**
+     * Gets a unique key based on the property and indexedProperty fields.
+    */
+    public String getKey() {
+       return key;
+    }
+
+    /**
+     * Sets a unique key for the field.  This can be used to change 
+     * the key temporarily to have a unique key for an indexed field.
+    */
+    public void setKey(String key) {
+       this.key = key;
+    }
     
+    /**
+     * If there is a value specified for the indexedProperty field then 
+     * <code>true</code> will be returned.  Otherwise it will be <code>false</code>.
+    */
+    public boolean isIndexed() {
+       if ((indexedProperty != null && indexedProperty.length() > 0) &&
+           (indexedListProperty != null && indexedListProperty.length() > 0))
+          return true;
+       else
+          return false;
+    }
+            
     /**
      * Replace constants with values in fields and process the depends field 
      * to create the dependency <code>Map</code>.
@@ -359,6 +427,13 @@ public class Field implements Cloneable, Serializable {
        hArg2.setFast(true);
        hArg3.setFast(true);
        hVars.setFast(true);
+
+       // If the field is indexed, combine property and 
+       // indexedProperty to make a unique key.
+       if (isIndexed())
+          key = indexedProperty + TOKEN_INDEXED + "." + property;
+       else
+          key = property;
        
        // Process FormSet Constants
        for (Iterator i = constants.keySet().iterator(); i.hasNext(); ) {

@@ -93,7 +93,7 @@ public class StrutsValidator implements Serializable {
        	  value = ValidatorUtil.getValueAsString(bean, field.getProperty());
 
        if (GenericValidator.isBlankOrNull(value)) {
-          errors.add(field.getProperty(), ValidatorUtil.getActionError(application, request, va, field));
+          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
 
           return false;
        } else {
@@ -125,7 +125,7 @@ public class StrutsValidator implements Serializable {
             
             try {
 	       if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.matchRegexp(value, mask)) {
-	          errors.add(field.getProperty(), ValidatorUtil.getActionError(application, request, va, field));
+	          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
             
                   return false;
                } else {
@@ -162,7 +162,7 @@ public class StrutsValidator implements Serializable {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
 
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isByte(value)) {
-          errors.add(field.getProperty(), ValidatorUtil.getActionError(application, request, va, field));
+          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
           return false;
        } else {
           return true;	
@@ -188,7 +188,7 @@ public class StrutsValidator implements Serializable {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
        
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isShort(value)) {
-          errors.add(field.getProperty(), ValidatorUtil.getActionError(application, request, va, field));
+          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
           return false;
        } else {
           return true;	
@@ -214,7 +214,7 @@ public class StrutsValidator implements Serializable {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
        
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isInt(value)) {
-          errors.add(field.getProperty(), ValidatorUtil.getActionError(application, request, va, field));
+          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
           return false;
        } else {
           return true;	
@@ -240,7 +240,7 @@ public class StrutsValidator implements Serializable {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
        
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isLong(value)) {
-          errors.add(field.getProperty(), ValidatorUtil.getActionError(application, request, va, field));
+          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
           return false;
        } else {
           return true;	
@@ -266,7 +266,7 @@ public class StrutsValidator implements Serializable {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
        
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isFloat(value)) {
-          errors.add(field.getProperty(), ValidatorUtil.getActionError(application, request, va, field));
+          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
           return false;
        } else {
           return true;	
@@ -292,7 +292,7 @@ public class StrutsValidator implements Serializable {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
        
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isDouble(value)) {
-          errors.add(field.getProperty(), ValidatorUtil.getActionError(application, request, va, field));
+          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
           return false;
        } else {
           return true;	
@@ -345,7 +345,7 @@ public class StrutsValidator implements Serializable {
         }
 
         if (!bValid)
-          errors.add(field.getProperty(), ValidatorUtil.getActionError(application, request, va, field));
+          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
         
         return bValid;
     }	
@@ -382,12 +382,12 @@ public class StrutsValidator implements Serializable {
              int max = Integer.parseInt(sMax);
              
              if (!GenericValidator.isInRange(iValue, min, max)) {
-                errors.add(field.getProperty(), ValidatorUtil.getActionError(application, request, va, field));
+                errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
                 
                 return false;
              }
           } catch (Exception e) {
-             errors.add(field.getProperty(), ValidatorUtil.getActionError(application, request, va, field));
+             errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
              return false;
           }
        }
@@ -418,7 +418,7 @@ public class StrutsValidator implements Serializable {
           String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
        
           if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isCreditCard(value)) {
-             errors.add(field.getProperty(), ValidatorUtil.getActionError(application, request, va, field));
+             errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
             
              return false;
           } else {
@@ -451,7 +451,7 @@ public class StrutsValidator implements Serializable {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
        
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isEmail(value)) {
-          errors.add(field.getProperty(), ValidatorUtil.getActionError(application, request, va, field));
+          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
           return false;
        } else {
        	  return true;
