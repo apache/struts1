@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.6 2001/06/02 23:13:39 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/06/02 23:13:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.7 2001/06/10 03:37:26 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/06/10 03:37:26 $
  *
  * ====================================================================
  *
@@ -178,7 +178,7 @@ import javax.sql.DataSource;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.6 $ $Date: 2001/06/02 23:13:39 $
+ * @version $Revision: 1.7 $ $Date: 2001/06/10 03:37:26 $
  */
 
 public class GenericDataSource implements DataSource {
@@ -816,7 +816,7 @@ public class GenericDataSource implements DataSource {
             ResultSet rs = null;
             Statement stmt = conn.createStatement();
             try {
-                rs = stmt.executeQuery(pingCommand);
+                rs = stmt.executeQuery(pingQuery);
                 while (rs.next()) {
                     ;
                 }
