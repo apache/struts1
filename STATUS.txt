@@ -23,7 +23,10 @@
 
 -Showstoppers-
 
-* None.
+* None
+
+-Concerns affecting 1.2.0 release quality-
+* Patch for "compartmentalize modules" broke interface compatability with struts 1.1, for     RequestUtils.forwardURL(). Compatability restored after 1.2.0 tagged.
 
 
 -Recent Changes-
@@ -32,7 +35,7 @@
 
 * Nightly build requires Commons Validation 1.1.2
 
-* Support for generating unique form names within a page
+* Support for validating multi-form pages via javascript by generating unique form names
 
 * Struts-Faces updated for JSF 1.0 final release
 
@@ -101,5 +104,5 @@
     * Joe Germuska (germuska at apache.org)
 
 
-$Id: STATUS.txt,v 1.4 2004/03/16 17:53:02 martinc Exp $
+$Id: STATUS.txt,v 1.5 2004/03/16 20:02:15 rleland Exp $
 ###
