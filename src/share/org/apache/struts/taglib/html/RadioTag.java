@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.12 2002/06/25 00:45:41 husted Exp $
- * $Revision: 1.12 $
- * $Date: 2002/06/25 00:45:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.13 2002/07/07 23:27:57 husted Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/07/07 23:27:57 $
  *
  * ====================================================================
  *
@@ -77,7 +77,8 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "radio".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2002/06/25 00:45:41 $
+ * @author Ted Husted
+ * @version $Revision: 1.13 $ $Date: 2002/07/07 23:27:57 $
  */
 
 public class RadioTag extends BaseHandlerTag {
@@ -123,6 +124,20 @@ public class RadioTag extends BaseHandlerTag {
      * The server value for this option.
      */
     protected String value = null;
+
+
+    /**
+     * Name of the bean (in some scope) that will return the
+     * value of the radio tag.
+     * <p>
+     * If an iterator is used to render a series of radio tags,
+     * this field may be used to specify the name of the bean
+     * exposed by the iterator. In this case, the value attribute is
+     * used as the name of a property on the <code>idName</code> bean
+     * that returns the value of the radio tag in this iteration.
+     */
+    protected String idName = null;
+
 
 
     // ------------------------------------------------------------- Properties
@@ -172,6 +187,32 @@ public class RadioTag extends BaseHandlerTag {
     }
 
 
+
+    /**
+     * Return the idName.
+     * @since Struts 1.1
+     */
+    public String getIdName() {
+
+        return (this.idName);
+
+    }
+
+
+    /**
+     * Set the idName.
+     * @since Struts 1.1
+     *
+     * @param value The new idName
+     */
+    public void setIdName(String idName) {
+
+        this.idName=idName;
+
+    }
+
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -190,9 +231,22 @@ public class RadioTag extends BaseHandlerTag {
             throw new JspException
                 (messages.getMessage("getter.bean", name));
         try {
+
             current = BeanUtils.getProperty(bean, property);
             if (current == null)
                 current = "";
+
+            // @since Struts 1.1
+            if (idName != null) {
+                Object idBean = pageContext.findAttribute(idName);
+                if (idBean == null)
+                   throw new JspException
+                    (messages.getMessage("getter.bean", idName));
+                value = BeanUtils.getProperty(idBean, value);
+                if (value == null) value = "";
+            }
+
+
             } catch (IllegalAccessException e) {
                 throw new JspException
                     (messages.getMessage("getter.access", property, name));
@@ -205,6 +259,8 @@ public class RadioTag extends BaseHandlerTag {
             throw new JspException
                 (messages.getMessage("getter.method", property, name));
         }
+
+
 
         // Create an appropriate "input" element based on our parameters
         StringBuffer results = new StringBuffer("<input type=\"radio\"");

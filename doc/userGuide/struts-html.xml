@@ -1289,24 +1289,24 @@
             </info>
         </attribute>
 
-		<attribute>
-			<name>title</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<info>
-			<p>The advisory title for this element.</p>
-			</info>
-		</attribute>
+        <attribute>
+            <name>title</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+            <p>The advisory title for this element.</p>
+            </info>
+        </attribute>
 
-		<attribute>
-			<name>titleKey</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<info>
-			<p>The message resources key for the advisory title
-			for this element.</p>
-			</info>
-		</attribute>
+        <attribute>
+            <name>titleKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+            <p>The message resources key for the advisory title
+            for this element.</p>
+            </info>
+        </attribute>
 
         <attribute>
             <name>value</name>
@@ -1951,24 +1951,24 @@
             </info>
         </attribute>
 
-		<attribute>
-			<name>title</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<info>
-			<p>The advisory title for this element.</p>
-			</info>
-		</attribute>
+        <attribute>
+            <name>title</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+            <p>The advisory title for this element.</p>
+            </info>
+        </attribute>
 
-		<attribute>
-			<name>titleKey</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<info>
-			<p>The message resources key for the advisory title
-			for this element.</p>
-			</info>
-		</attribute>
+        <attribute>
+            <name>titleKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+            <p>The message resources key for the advisory title
+            for this element.</p>
+            </info>
+        </attribute>
 
         <attribute>
             <name>value</name>
@@ -4511,9 +4511,18 @@
         </summary>
         <tagclass>org.apache.struts.taglib.html.RadioTag</tagclass>
         <info>
+            <p>
             Renders an HTML &lt;input&gt; element of type radio, populated from
             the specified property of the bean associated with our current form.
             This tag is only valid when nested inside a form tag body.
+            </p>
+            <p>
+            If an iterator is used to render a series of radio tags, the
+            idName attribute may be used to specify the name of the bean
+            exposed by the iterator. In this case, the value attribute is
+            used as the name of a property on the idName bean that returns
+            the value of the radio tag in this iteration.
+            </p>
         </info>
 
 
@@ -4744,6 +4753,22 @@
                             The value of the radio tag.
                         </info>
                 </attribute>
+
+        <attribute>
+            <name>idName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Name of the bean (in some scope) that will return the
+                value of the radio tag. Usually exposed
+                by an iterator. When the idName attribute is
+                present, the valueattribute is used as the name of the
+                property on the idName bean that will return the
+                value of the radio tag for this iteration.
+                Since Struts 1.1.
+            </info>
+        </attribute>
+
 
     </tag>
 
@@ -5487,24 +5512,24 @@
             </info>
         </attribute>
 
-		<attribute>
-			<name>title</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<info>
-			<p>The advisory title for this element.</p>
-			</info>
-		</attribute>
+        <attribute>
+            <name>title</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+            <p>The advisory title for this element.</p>
+            </info>
+        </attribute>
 
-		<attribute>
-			<name>titleKey</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<info>
-			<p>The message resources key for the advisory title
-			for this element.</p>
-			</info>
-		</attribute>
+        <attribute>
+            <name>titleKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+            <p>The message resources key for the advisory title
+            for this element.</p>
+            </info>
+        </attribute>
 
         <attribute>
             <name>value</name>
