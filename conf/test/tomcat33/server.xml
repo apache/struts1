@@ -150,7 +150,7 @@
              tomcatAuthentication="false"
              
           -->
-        <Ajp12Connector	 port="8007" />
+        <Ajp12Connector	 port="8008" />
 
       <!-- 
            Context definitions can be placed here ( not recommended ) or 
