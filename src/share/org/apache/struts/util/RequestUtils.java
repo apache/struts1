@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.60 2002/10/14 18:16:19 rleland Exp $
- * $Revision: 1.60 $
- * $Date: 2002/10/14 18:16:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.61 2002/10/15 17:37:25 ekbush Exp $
+ * $Revision: 1.61 $
+ * $Date: 2002/10/15 17:37:25 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.60 $ $Date: 2002/10/14 18:16:19 $
+ * @version $Revision: 1.61 $ $Date: 2002/10/15 17:37:25 $
  */
 
 public class RequestUtils {
@@ -1424,19 +1424,41 @@ public class RequestUtils {
         // Acquire the path used to compute the module
         String matchPath = (String)
             request.getAttribute(RequestProcessor.INCLUDE_SERVLET_PATH);
+	
         if (matchPath == null) {
             matchPath = request.getServletPath();
         }
 
-        // Match against the list of module prefixes
-        String prefix = "";
-        String prefixes[] = getApplicationPrefixes(context);
-        for (int i = 0; i < prefixes.length; i++) {
-            if (matchPath.startsWith(prefixes[i])) {
-                prefix = prefixes[i];
-                break;
+        if (LOG.isDebugEnabled())
+            {
+                LOG.debug("Selecting module for path " + matchPath);
+            }
+
+        String prefix = "";  // Initialize prefix before we try lookup
+        String prefixes[] =
+            getApplicationPrefixes(context); // Get all other possible prefixes
+        int lastSlash = 0;  // Initialize before loop
+        
+        while (prefix.equals("") &&
+               ((lastSlash = matchPath.lastIndexOf("/")) != 0)) {
+            
+            // We may be in a non-default sub-app.  Try to get it's prefix.
+            matchPath = matchPath.substring(0, lastSlash);
+            
+            // Match against the list of module prefixes
+            for (int i = 0; i < prefixes.length; i++) {
+                if (matchPath.equals(prefixes[i])) {
+                    prefix = prefixes[i];
+                    break;
+                }
             }
         }
+
+        if (LOG.isDebugEnabled())
+            {
+                LOG.debug("Activating module " +
+                          (prefix.equals("") ? "default" : prefix));
+            }
 
         // Expose the resources for this module
         selectApplication(prefix, request, context);
