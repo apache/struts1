@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestRadioTag2.java,v 1.1 2004/09/23 00:37:23 niallp Exp $
  * $Revision: 1.1 $
- * $Date: 2004/09/23 00:37:23 $
+ * $Date$
  *
  * Copyright 2004 The Apache Software Foundation.
  * 
@@ -80,11 +80,20 @@ public class TestRadioTag2 extends JspTestCase {
     public void testRadioPropertyStyle() throws Exception {
         runMyTest("testRadioPropertyStyle", "");
     }
+    public void testRadioPropertyErrorStyle() throws Exception {
+        runMyTest("testRadioPropertyErrorStyle", "");
+    }
     public void testRadioPropertyStyleClass() throws Exception {
         runMyTest("testRadioPropertyStyleClass", "");
     }
+    public void testRadioPropertyErrorStyleClass() throws Exception {
+        runMyTest("testRadioPropertyErrorStyleClass", "");
+    }
     public void testRadioPropertyStyleId() throws Exception {
         runMyTest("testRadioPropertyStyleId", "");
+    }
+    public void testRadioPropertyErrorStyleId() throws Exception {
+        runMyTest("testRadioPropertyErrorStyleId", "");
     }
     public void testRadioPropertyTitle() throws Exception {
         runMyTest("testRadioPropertyTitle", "");

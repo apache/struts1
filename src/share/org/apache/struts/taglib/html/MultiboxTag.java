@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.26 2004/09/23 00:34:14 niallp Exp $
  * $Revision: 1.26 $
- * $Date: 2004/09/23 00:34:14 $
+ * $Date$
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -37,7 +37,7 @@ import org.apache.struts.util.MessageResources;
  * "checked" if the value listed for the "value" attribute is present in the
  * values returned by the property getter.
  *
- * @version $Revision: 1.26 $ $Date: 2004/09/23 00:34:14 $
+ * @version $Revision: 1.26 $ $Date$
  */
 
 public class MultiboxTag extends BaseHandlerTag {
@@ -166,7 +166,7 @@ public class MultiboxTag extends BaseHandlerTag {
         // Create an appropriate "input" element based on our parameters
         StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
 
-        prepareAttribute(results, "name", getProperty());
+        prepareAttribute(results, "name", prepareName());
         prepareAttribute(results, "accesskey", getAccesskey());
         prepareAttribute(results, "tabindex", getTabindex());
         String value = prepareValue(results);
@@ -179,6 +179,17 @@ public class MultiboxTag extends BaseHandlerTag {
         TagUtils.getInstance().write(pageContext, results.toString());
 
         return EVAL_PAGE;
+    }
+
+
+    /**
+     * Prepare the name element
+     * @return The element name.
+     */
+    protected String prepareName() throws JspException {
+
+        return property;
+
     }
 
     /**

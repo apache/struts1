@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.37 2004/09/23 00:34:14 niallp Exp $
  * $Revision: 1.37 $
- * $Date: 2004/09/23 00:34:14 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -31,6 +31,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.taglib.logic.IterateTag;
 import org.apache.struts.util.MessageResources;
@@ -42,7 +43,7 @@ import org.apache.struts.util.RequestUtils;
  * the doStartTag() or doEndTag() methods. Subclasses should provide
  * appropriate implementations of these.
  *
- * @version $Revision: 1.37 $ $Date: 2004/09/23 00:34:14 $
+ * @version $Revision: 1.37 $ $Date$
  */
 public abstract class BaseHandlerTag extends BodyTagSupport {
 
@@ -146,6 +147,18 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
     /** Identifier associated with component.  */
     private String styleId = null;
+
+    /** The request attribute key for our error messages (if any). */
+    private String errorKey = Globals.ERROR_KEY;
+
+    /** Style attribute associated with component when errors exist. */
+    private String errorStyle = null;
+
+    /** Named Style class associated with component when errors exist. */
+    private String errorStyleClass = null;
+
+    /** Identifier associated with component when errors exist.  */
+    private String errorStyleId = null;
 
     // Other Common Attributes
 
@@ -407,6 +420,46 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return styleId;
     }
 
+    /** Returns the error key attribute. */
+    public String getErrorKey() {
+        return errorKey;
+    }
+
+    /** Sets the error key attribute. */
+    public void setErrorKey(String errorKey) {
+        this.errorKey = errorKey;
+    }
+
+    /** Returns the error style attribute. */
+    public String getErrorStyle() {
+        return errorStyle;
+    }
+
+    /** Sets the error style attribute. */
+    public void setErrorStyle(String errorStyle) {
+        this.errorStyle = errorStyle;
+    }
+
+    /** Returns the error style class attribute. */
+    public String getErrorStyleClass() {
+        return errorStyleClass;
+    }
+
+    /** Sets the error style class attribute. */
+    public void setErrorStyleClass(String errorStyleClass) {
+        this.errorStyleClass = errorStyleClass;
+    }
+
+    /** Returns the error style id attribute.  */
+    public String getErrorStyleId() {
+        return errorStyleId;
+    }
+
+    /** Sets the error style id attribute.  */
+    public void setErrorStyleId(String errorStyleId) {
+        this.errorStyleId = errorStyleId;
+    }
+
     // Other Common Elements
 
     /** Returns the alternate text attribute. */
@@ -481,6 +534,10 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         alt = null;
         altKey = null;
         bundle = null;
+        errorKey = Globals.ERROR_KEY;
+        errorStyle = null;
+        errorStyleClass = null;
+        errorStyleId = null;
         indexed = false;
         locale = Globals.LOCALE_KEY;
         onclick = null;
@@ -663,14 +720,62 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
         StringBuffer styles = new StringBuffer();
 
-        prepareAttribute(styles , "style", getStyle());
-        prepareAttribute(styles , "class", getStyleClass());
-        prepareAttribute(styles , "id", getStyleId());
+        boolean errorsExist = doErrorsExist();
+
+        if (errorsExist && getErrorStyleId() != null) {
+            prepareAttribute(styles , "id", getErrorStyleId());
+        } else {
+            prepareAttribute(styles , "id", getStyleId());
+        }
+
+        if (errorsExist && getErrorStyle() != null) {
+            prepareAttribute(styles , "style", getErrorStyle());
+        } else {
+            prepareAttribute(styles , "style", getStyle());
+        }
+
+        if (errorsExist && getErrorStyleClass() != null) {
+            prepareAttribute(styles , "class", getErrorStyleClass());
+        } else {
+            prepareAttribute(styles , "class", getStyleClass());
+        }
+
         prepareAttribute(styles , "title", message(getTitle(), getTitleKey()));
         prepareAttribute(styles , "alt", message(getAlt(), getAltKey()));
 
         return styles.toString();
 
+    }
+
+    /**
+     * Determine if there are errors for the component.
+     * @return Whether errors exist.
+     */
+    protected boolean doErrorsExist() throws JspException {
+
+        boolean errorsExist = false;
+
+        if (getErrorStyleId() != null ||
+            getErrorStyle() != null ||
+            getErrorStyleClass() != null) {
+            String actualName = prepareName();
+            if (actualName != null) {
+                ActionMessages errors = TagUtils.getInstance()
+                                                .getActionMessages(pageContext,
+                                                                   errorKey);
+                errorsExist = (errors != null && errors.size(actualName) > 0);
+            }
+        }
+        return errorsExist;
+
+    }
+
+    /**
+     * Prepares the actual name of the component.
+     * @return The actual component name.
+     */
+    protected String prepareName() throws JspException {
+        return null;
     }
 
     /**

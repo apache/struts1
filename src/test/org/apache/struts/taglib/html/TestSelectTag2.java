@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestSelectTag2.java,v 1.1 2004/09/23 00:37:23 niallp Exp $
  * $Revision: 1.1 $
- * $Date: 2004/09/23 00:37:23 $
+ * $Date$
  *
  * Copyright 2004 The Apache Software Foundation.
  * 
@@ -80,11 +80,20 @@ public class TestSelectTag2 extends JspTestCase {
     public void testSelectPropertyStyle() throws Exception {
         runMyTest("testSelectPropertyStyle", "");
     }
+    public void testSelectPropertyErrorStyle() throws Exception {
+        runMyTest("testSelectPropertyErrorStyle", "");
+    }
     public void testSelectPropertyStyleClass() throws Exception {
         runMyTest("testSelectPropertyStyleClass", "");
     }
+    public void testSelectPropertyErrorStyleClass() throws Exception {
+        runMyTest("testSelectPropertyErrorStyleClass", "");
+    }
     public void testSelectPropertyStyleId() throws Exception {
         runMyTest("testSelectPropertyStyleId", "");
+    }
+    public void testSelectPropertyErrorStyleId() throws Exception {
+        runMyTest("testSelectPropertyErrorStyleId", "");
     }
     public void testSelectPropertyTitle() throws Exception {
         runMyTest("testSelectPropertyTitle", "");

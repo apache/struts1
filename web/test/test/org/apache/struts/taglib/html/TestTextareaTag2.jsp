@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page import="junit.framework.Assert"%>
+<%@page import="org.apache.struts.Globals"%>
+<%@page import="org.apache.struts.action.ActionMessage"%>
+<%@page import="org.apache.struts.action.ActionMessages"%>
+
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
@@ -25,28 +29,73 @@
 
 <logic:equal name="runTest" value="testTextareaPropertyStyle">
 	<bean:define id="TEST_RESULTS" toScope="page">
-		<html:textarea  property="string" style="Put something here"/>
+		<html:textarea  property="string" style="Put something here" errorStyle="some error style"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		<textarea name="string" style="Put something here">Test Value</textarea>
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testTextareaPropertyErrorStyle">
+<%
+    ActionMessages errors = new ActionMessages();
+    errors.add("string",
+         new ActionMessage("default.testing.errors.tag"));
+    request.setAttribute("ALT_ERROR_KEY", errors);
+%>
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:textarea  property="string" style="Put something here" errorStyle="some error style" errorKey="ALT_ERROR_KEY"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<textarea name="string" style="some error style">Test Value</textarea>
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testTextareaPropertyStyleClass">
 	<bean:define id="TEST_RESULTS" toScope="page">
-		<html:textarea  property="string" styleClass="Put something here"/>
+		<html:textarea  property="string" styleClass="Put something here" errorStyleClass="some error style class"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		<textarea name="string" class="Put something here">Test Value</textarea>
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testTextareaPropertyErrorStyleClass">
+<%
+    ActionMessages errors = new ActionMessages();
+    errors.add("string",
+         new ActionMessage("default.testing.errors.tag"));
+    request.setAttribute(Globals.ERROR_KEY, errors);
+%>
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:textarea  property="string" styleClass="Put something here" errorStyleClass="some error style class"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<textarea name="string" class="some error style class">Test Value</textarea>
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testTextareaPropertyStyleId">
 	<bean:define id="TEST_RESULTS" toScope="page">
-		<html:textarea  property="string" styleId="Put something here"/>
+		<html:textarea  property="string" styleId="Put something here" errorStyleId="some error style id"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		<textarea name="string" id="Put something here">Test Value</textarea>
+	</bean:define>
+</logic:equal>
+
+<logic:equal name="runTest" value="testTextareaPropertyErrorStyleId">
+<%
+    ActionMessages errors = new ActionMessages();
+    errors.add("string",
+         new ActionMessage("default.testing.errors.tag"));
+    request.setAttribute(Globals.ERROR_KEY, errors);
+%>
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:textarea  property="string" styleId="Put something here" errorStyleId="some error style id"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<textarea name="string" id="some error style id">Test Value</textarea>
 	</bean:define>
 </logic:equal>
 

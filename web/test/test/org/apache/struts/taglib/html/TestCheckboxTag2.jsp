@@ -7,7 +7,7 @@
 
 <logic:equal name="runTest" value="testCheckboxPropertybooleanTrueStyle">
 	<bean:define id="TEST_RESULTS" toScope="page">
-		<html:checkbox property="checked" style="Put something here"/>
+		<html:checkbox property="checked" style="Put something here" errorStyle="some error style"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		<input type="checkbox" name="checked" value="on" checked="checked" style="Put something here">
@@ -16,7 +16,7 @@
 
 <logic:equal name="runTest" value="testCheckboxPropertybooleanTrueStyleClass">
 	<bean:define id="TEST_RESULTS" toScope="page">
-		<html:checkbox property="checked" styleClass="Put something here"/>
+		<html:checkbox property="checked" styleClass="Put something here"  errorStyleClass="some error style class"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		<input type="checkbox" name="checked" value="on" checked="checked" class="Put something here">
@@ -25,7 +25,7 @@
 
 <logic:equal name="runTest" value="testCheckboxPropertybooleanTrueStyleId">
 	<bean:define id="TEST_RESULTS" toScope="page">
-		<html:checkbox property="checked" styleId="Put something here"/>
+		<html:checkbox property="checked" styleId="Put something here"  errorStyleId="some error style id"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		<input type="checkbox" name="checked" value="on" checked="checked" id="Put something here">

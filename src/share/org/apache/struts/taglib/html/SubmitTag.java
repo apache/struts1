@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.22 2004/09/23 00:34:14 niallp Exp $
  * $Revision: 1.22 $
- * $Date: 2004/09/23 00:34:14 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -28,7 +28,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Tag for input fields of type "submit".
  *
- * @version $Revision: 1.22 $ $Date: 2004/09/23 00:34:14 $
+ * @version $Revision: 1.22 $ $Date$
  */
 public class SubmitTag extends BaseHandlerTag {
 
@@ -156,7 +156,7 @@ public class SubmitTag extends BaseHandlerTag {
         // Generate an HTML element
         StringBuffer results = new StringBuffer();
         results.append(getElementOpen());
-        prepareName(results);
+        prepareAttribute(results, "name", prepareName());
         prepareButtonAttributes(results);
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
@@ -177,20 +177,26 @@ public class SubmitTag extends BaseHandlerTag {
         return "<input type=\"submit\"";
     }
 
-    /**
-     * Render the name element
-     * @param results The StringBuffer that output will be appended to.
-     */
-    protected void prepareName(StringBuffer results) throws JspException {
 
-        if (property != null) {
-            results.append(" name=\"");
-            results.append(property);
-            // * @since Struts 1.1
-            if( indexed )
-                prepareIndex( results, null );
-            results.append("\"");
+    /**
+     * Prepare the name element
+     * @return The element name.
+     */
+    protected String prepareName() throws JspException {
+
+        if (property == null) {
+            return null;
         }
+
+        // * @since Struts 1.1
+        if(indexed) {
+            StringBuffer results = new StringBuffer();
+            results.append(property);
+            prepareIndex(results, null);
+            return results.toString();
+        }
+
+        return property;
 
     }
 

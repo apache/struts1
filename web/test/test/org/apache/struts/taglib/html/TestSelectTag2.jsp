@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page import="junit.framework.Assert"%>
+<%@page import="org.apache.struts.Globals"%>
+<%@page import="org.apache.struts.action.ActionMessage"%>
+<%@page import="org.apache.struts.action.ActionMessages"%>
+
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
@@ -7,28 +11,73 @@
 
 <logic:equal name="runTest" value="testSelectPropertyStyle">
 	<bean:define id="TEST_RESULTS" toScope="page">
-		<html:select  property="string" style="Put something here">Some Body Here</html:select>
+		<html:select  property="string" style="Put something here" errorStyle="some error style" >Some Body Here</html:select>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		<select name="string" style="Put something here">Some Body Here</select>
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testSelectPropertyErrorStyle">
+<%
+    ActionMessages errors = new ActionMessages();
+    errors.add("string",
+         new ActionMessage("default.testing.errors.tag"));
+    request.setAttribute("ALT_ERROR_KEY", errors);
+%>
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:select  property="string" style="Put something here" errorStyle="some error style" errorKey="ALT_ERROR_KEY">Some Body Here</html:select>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<select name="string" style="some error style">Some Body Here</select>
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testSelectPropertyStyleClass">
 	<bean:define id="TEST_RESULTS" toScope="page">
-		<html:select  property="string" styleClass="Put something here">Some Body Here</html:select>
+		<html:select  property="string" styleClass="Put something here" errorStyleClass="some error style class" >Some Body Here</html:select>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		<select name="string" class="Put something here">Some Body Here</select>
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testSelectPropertyErrorStyleClass">
+<%
+    ActionMessages errors = new ActionMessages();
+    errors.add("string",
+         new ActionMessage("default.testing.errors.tag"));
+    request.setAttribute(Globals.ERROR_KEY, errors);
+%>
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:select  property="string" styleClass="Put something here" errorStyleClass="some error style class" >Some Body Here</html:select>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<select name="string" class="some error style class">Some Body Here</select>
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testSelectPropertyStyleId">
 	<bean:define id="TEST_RESULTS" toScope="page">
-		<html:select  property="string" styleId="Put something here">Some Body Here</html:select>
+		<html:select  property="string" styleId="Put something here" errorStyleId="some error style id" >Some Body Here</html:select>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		<select name="string" id="Put something here">Some Body Here</select>
+	</bean:define>
+</logic:equal>
+
+<logic:equal name="runTest" value="testSelectPropertyErrorStyleId">
+<%
+    ActionMessages errors = new ActionMessages();
+    errors.add("string",
+         new ActionMessage("default.testing.errors.tag"));
+    request.setAttribute(Globals.ERROR_KEY, errors);
+%>
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:select  property="string" styleId="Put something here" errorStyleId="some error style id" >Some Body Here</html:select>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<select name="string" id="some error style id">Some Body Here</select>
 	</bean:define>
 </logic:equal>
 

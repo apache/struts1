@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.23 2004/09/23 00:34:14 niallp Exp $
  * $Revision: 1.23 $
- * $Date: 2004/09/23 00:34:14 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -33,7 +33,7 @@ import org.apache.struts.util.MessageResources;
  * bean property specified by our attributes.  This tag must be nested
  * inside a form tag.
  *
- * @version $Revision: 1.23 $ $Date: 2004/09/23 00:34:14 $
+ * @version $Revision: 1.23 $ $Date$
  */
 public class SelectTag extends BaseHandlerTag {
 
@@ -212,7 +212,7 @@ public class SelectTag extends BaseHandlerTag {
     protected String renderSelectStartElement() throws JspException {
         StringBuffer results = new StringBuffer("<select");
         
-        prepareName(results);
+        prepareAttribute(results, "name", prepareName());
         prepareAttribute(results, "accesskey", getAccesskey());
         if (multiple != null) {
             results.append(" multiple=\"multiple\"");
@@ -317,19 +317,24 @@ public class SelectTag extends BaseHandlerTag {
     }
 
     /**
-     * Render the name element
-     * @param results The StringBuffer that output will be appended to.
+     * Prepare the name element
+     * @return The element name.
      */
-    protected void prepareName(StringBuffer results) throws JspException {
+    protected String prepareName() throws JspException {
 
-        if (property != null) {
-            results.append(" name=\"");
-            // * @since Struts 1.1
-            if( indexed )
-                prepareIndex(results, name);
-            results.append(property);
-            results.append("\"");
+        if (property == null) {
+            return null;
         }
+
+        // * @since Struts 1.1
+        if(indexed) {
+            StringBuffer results = new StringBuffer();
+            prepareIndex(results, name);
+            results.append(property);
+            return results.toString();
+        }
+
+        return property;
 
     }
 

@@ -513,6 +513,34 @@
     </attribute>
 
     <attribute>
+      <name>errorKey</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleId</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -765,6 +793,34 @@
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>errorKey</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleId</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
     </attribute>
 
     <attribute>
@@ -1890,6 +1946,34 @@
     </attribute>
 
     <attribute>
+      <name>errorKey</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleId</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -2211,6 +2295,34 @@
     </attribute>
 
     <attribute>
+      <name>errorKey</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleId</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -2415,6 +2527,34 @@
     </attribute>
 
     <attribute>
+      <name>errorKey</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleId</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -2574,6 +2714,34 @@
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>errorKey</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleId</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
     </attribute>
 
     <attribute>
@@ -2942,6 +3110,34 @@
     </attribute>
 
     <attribute>
+      <name>errorKey</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleId</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -3139,6 +3335,34 @@
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>errorKey</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
+    </attribute>
+
+    <attribute>
+      <name>errorStyleId</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.5</since>
     </attribute>
 
     <attribute>

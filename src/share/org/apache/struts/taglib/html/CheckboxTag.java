@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.25 2004/09/23 00:34:14 niallp Exp $
  * $Revision: 1.25 $
- * $Date: 2004/09/23 00:34:14 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -28,7 +28,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Tag for input fields of type "checkbox".
  *
- * @version $Revision: 1.25 $ $Date: 2004/09/23 00:34:14 $
+ * @version $Revision: 1.25 $ $Date$
  */
 public class CheckboxTag extends BaseHandlerTag {
 
@@ -123,7 +123,7 @@ public class CheckboxTag extends BaseHandlerTag {
 
         // Create an appropriate "input" element based on our parameters
         StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
-        prepareName(results);
+        prepareAttribute(results, "name", prepareName());
         prepareAttribute(results, "accesskey", getAccesskey());
         prepareAttribute(results, "tabindex", getTabindex());
 
@@ -205,20 +205,26 @@ public class CheckboxTag extends BaseHandlerTag {
 
     }
 
-    /**
-     * Render the name element
-     * @param results The StringBuffer that output will be appended to.
-     */
-    protected void prepareName(StringBuffer results) throws JspException {
 
-        if (property != null) {
-            results.append(" name=\"");
-            // * @since Struts 1.1
-            if( indexed )
-                prepareIndex(results, name);
-            results.append(property);
-            results.append("\"");
+    /**
+     * Prepare the name element
+     * @return The element name.
+     */
+    protected String prepareName() throws JspException {
+
+        if (property == null) {
+            return null;
         }
+
+        // * @since Struts 1.1
+        if(indexed) {
+            StringBuffer results = new StringBuffer();
+            prepareIndex(results, name);
+            results.append(property);
+            return results.toString();
+        }
+
+        return property;
 
     }
 

@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CancelTag.java,v 1.17 2004/09/23 00:34:14 niallp Exp $
  * $Revision: 1.17 $
- * $Date: 2004/09/23 00:34:14 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -21,10 +21,13 @@
 
 package org.apache.struts.taglib.html;
 
+import javax.servlet.jsp.JspException;
+
+
 /**
  * Tag for input fields of type "cancel".
  *
- * @version $Revision: 1.17 $ $Date: 2004/09/23 00:34:14 $
+ * @version $Revision: 1.17 $ $Date$
  */
 
 public class CancelTag extends SubmitTag {
@@ -59,11 +62,11 @@ public class CancelTag extends SubmitTag {
     }
 
     /**
-     * Render the name element
-     * @param results The StringBuffer that output will be appended to.
+     * Prepare the name element
+     * @return The element name.
      */
-    protected void prepareName(StringBuffer results) {
-        prepareAttribute(results, "name", property);
+    protected String prepareName() throws JspException {
+        return property;
     }
 
     /**

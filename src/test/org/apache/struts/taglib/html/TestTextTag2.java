@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestTextTag2.java,v 1.1 2004/09/23 00:37:23 niallp Exp $
  * $Revision: 1.1 $
- * $Date: 2004/09/23 00:37:23 $
+ * $Date$
  *
  * Copyright 2004 The Apache Software Foundation.
  * 
@@ -86,11 +86,20 @@ public class TestTextTag2 extends JspTestCase {
     public void testTextPropertyStyle() throws Exception {
         runMyTest("testTextPropertyStyle", "");
     }
+    public void testTextPropertyErrorStyle() throws Exception {
+        runMyTest("testTextPropertyErrorStyle", "");
+    }
     public void testTextPropertyStyleClass() throws Exception {
         runMyTest("testTextPropertyStyleClass", "");
     }
+    public void testTextPropertyErrorStyleClass() throws Exception {
+        runMyTest("testTextPropertyErrorStyleClass", "");
+    }
     public void testTextPropertyStyleId() throws Exception {
         runMyTest("testTextPropertyStyleId", "");
+    }
+    public void testTextPropertyErrorStyleId() throws Exception {
+        runMyTest("testTextPropertyErrorStyleId", "");
     }
     public void testTextPropertyTitle() throws Exception {
         runMyTest("testTextPropertyTitle", "");

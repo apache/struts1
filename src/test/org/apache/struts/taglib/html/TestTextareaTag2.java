@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestTextareaTag2.java,v 1.1 2004/09/23 00:37:23 niallp Exp $
  * $Revision: 1.1 $
- * $Date: 2004/09/23 00:37:23 $
+ * $Date$
  *
  * Copyright 2004 The Apache Software Foundation.
  * 
@@ -86,11 +86,20 @@ public class TestTextareaTag2 extends JspTestCase {
     public void testTextareaPropertyStyle() throws Exception {
         runMyTest("testTextareaPropertyStyle", "");
     }
+    public void testTextareaPropertyErrorStyle() throws Exception {
+        runMyTest("testTextareaPropertyErrorStyle", "");
+    }
     public void testTextareaPropertyStyleClass() throws Exception {
         runMyTest("testTextareaPropertyStyleClass", "");
     }
+    public void testTextareaPropertyErrorStyleClass() throws Exception {
+        runMyTest("testTextareaPropertyErrorStyleClass", "");
+    }
     public void testTextareaPropertyStyleId() throws Exception {
         runMyTest("testTextareaPropertyStyleId", "");
+    }
+    public void testTextareaPropertyErrorStyleId() throws Exception {
+        runMyTest("testTextareaPropertyErrorStyleId", "");
     }
     public void testTextareaPropertyTitle() throws Exception {
         runMyTest("testTextareaPropertyTitle", "");

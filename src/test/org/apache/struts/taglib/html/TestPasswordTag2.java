@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestPasswordTag2.java,v 1.1 2004/09/23 00:37:23 niallp Exp $
  * $Revision: 1.1 $
- * $Date: 2004/09/23 00:37:23 $
+ * $Date$
  *
  * Copyright 2004 The Apache Software Foundation.
  * 
@@ -86,11 +86,20 @@ public class TestPasswordTag2 extends JspTestCase {
     public void testPasswordPropertyStyle() throws Exception {
         runMyTest("testPasswordPropertyStyle", "");
     }
+    public void testPasswordPropertyErrorStyle() throws Exception {
+        runMyTest("testPasswordPropertyErrorStyle", "");
+    }
     public void testPasswordPropertyStyleClass() throws Exception {
         runMyTest("testPasswordPropertyStyleClass", "");
     }
+    public void testPasswordPropertyErrorStyleClass() throws Exception {
+        runMyTest("testPasswordPropertyErrorStyleClass", "");
+    }
     public void testPasswordPropertyStyleId() throws Exception {
         runMyTest("testPasswordPropertyStyleId", "");
+    }
+    public void testPasswordPropertyErrorStyleId() throws Exception {
+        runMyTest("testPasswordPropertyErrorStyleId", "");
     }
     public void testPasswordPropertyTitle() throws Exception {
         runMyTest("testPasswordPropertyTitle", "");

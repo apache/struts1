@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.26 2004/09/23 00:34:14 niallp Exp $
  * $Revision: 1.26 $
- * $Date: 2004/09/23 00:34:14 $
+ * $Date$
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -27,7 +27,7 @@ import org.apache.struts.taglib.TagUtils;
 /**
  * Convenience base class for the various input tags for text fields.
  *
- * @version $Revision: 1.26 $ $Date: 2004/09/23 00:34:14 $
+ * @version $Revision: 1.26 $ $Date$
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -95,7 +95,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
         StringBuffer results = new StringBuffer("<input");
 
         prepareAttribute(results, "type", this.type);
-        prepareName(results);
+        prepareAttribute(results, "name", prepareName());
         prepareAttribute(results, "accesskey", getAccesskey());
         prepareAttribute(results, "accept", getAccept());
         prepareAttribute(results, "maxlength", getMaxlength());

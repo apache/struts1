@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseInputTag.java,v 1.7 2004/09/23 00:34:14 niallp Exp $
  * $Revision: 1.7 $
- * $Date: 2004/09/23 00:34:14 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -26,7 +26,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Abstract base class for the various input tags.
  *
- * @version $Revision: 1.7 $ $Date: 2004/09/23 00:34:14 $
+ * @version $Revision: 1.7 $ $Date$
  */
 public abstract class BaseInputTag extends BaseHandlerTag {
 
@@ -226,19 +226,24 @@ public abstract class BaseInputTag extends BaseHandlerTag {
     }
 
     /**
-     * Render the name element
-     * @param results The StringBuffer that output will be appended to.
+     * Prepare the name element
+     * @return The element name.
      */
-    protected void prepareName(StringBuffer results) throws JspException {
+    protected String prepareName() throws JspException {
 
-        if (property != null) {
-            results.append(" name=\"");
-            // * @since Struts 1.1
-            if( indexed )
-                prepareIndex(results, name);
-            results.append(property);
-            results.append("\"");
+        if (property == null) {
+            return null;
         }
+
+        // * @since Struts 1.1
+        if(indexed) {
+            StringBuffer results = new StringBuffer();
+            prepareIndex(results, name);
+            results.append(property);
+            return results.toString();
+        }
+
+        return property;
 
     }
 

@@ -732,6 +732,66 @@
           </info>
         </attribute>
 
+         <attribute>
+            <name>errorKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                  <p>Name of the request scope bean under which our error messages
+                  have been stored.  If not present, the name specified by the
+                  <code>Globals.ERROR_KEY</code> constant string will be used.</p>
+
+                  <p><strong>N.B.</strong> This is used in conjunction with the 
+                  <code>errorStyle</code>, <code>errorStyleClass</code> and 
+                  <code>errorStyleId</code> attributes and should be set to
+                  the same value as the <code>name</code> attribute on the
+                  &lt;html:errors/&gt; tag.</p> 
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+         <attribute>
+            <name>errorStyle</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS styles to be applied to this HTML element if
+                an error exists for it.</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>style</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS stylesheet class to be applied to this HTML element if
+                an error exists for it (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleClass</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Identifier to be assigned to this HTML element if
+                an error exists for it (renders an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleId</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
         <attribute>
             <name>indexed</name>
             <required>false</required>
@@ -902,7 +962,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS styles to be applied to this HTML element.
+                <p>CSS styles to be applied to this HTML element.</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyle</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -911,8 +974,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element
-                (renders a "class" attribute).
+                <p>CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleClass</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -921,8 +987,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element (renders
-                an "id" attribute).
+                <p>Identifier to be assigned to this HTML element (renders
+                an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleId</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -1183,6 +1252,66 @@
           </info>
         </attribute>
 
+         <attribute>
+            <name>errorKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                  <p>Name of the request scope bean under which our error messages
+                  have been stored.  If not present, the name specified by the
+                  <code>Globals.ERROR_KEY</code> constant string will be used.</p>
+
+                  <p><strong>N.B.</strong> This is used in conjunction with the 
+                  <code>errorStyle</code>, <code>errorStyleClass</code> and 
+                  <code>errorStyleId</code> attributes and should be set to
+                  the same value as the <code>name</code> attribute on the
+                  &lt;html:errors/&gt; tag.</p> 
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+         <attribute>
+            <name>errorStyle</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS styles to be applied to this HTML element if
+                an error exists for it.</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>style</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS stylesheet class to be applied to this HTML element if
+                an error exists for it (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleClass</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Identifier to be assigned to this HTML element if
+                an error exists for it (renders an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleId</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
         <attribute>
             <name>indexed</name>
             <required>false</required>
@@ -1372,7 +1501,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS styles to be applied to this HTML element.
+                <p>CSS styles to be applied to this HTML element.</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyle</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -1381,8 +1513,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element
-                (renders a "class" attribute).
+                <p>CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleClass</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -1391,8 +1526,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element (renders
-                an "id" attribute).
+                <p>Identifier to be assigned to this HTML element (renders
+                an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleId</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -4297,6 +4435,66 @@
           </info>
         </attribute>
 
+         <attribute>
+            <name>errorKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                  <p>Name of the request scope bean under which our error messages
+                  have been stored.  If not present, the name specified by the
+                  <code>Globals.ERROR_KEY</code> constant string will be used.</p>
+
+                  <p><strong>N.B.</strong> This is used in conjunction with the 
+                  <code>errorStyle</code>, <code>errorStyleClass</code> and 
+                  <code>errorStyleId</code> attributes and should be set to
+                  the same value as the <code>name</code> attribute on the
+                  &lt;html:errors/&gt; tag.</p> 
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+         <attribute>
+            <name>errorStyle</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS styles to be applied to this HTML element if
+                an error exists for it.</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>style</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS stylesheet class to be applied to this HTML element if
+                an error exists for it (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleClass</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Identifier to be assigned to this HTML element if
+                an error exists for it (renders an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleId</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
         <attribute>
             <name>name</name>
             <required>false</required>
@@ -4455,7 +4653,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS styles to be applied to this HTML element.
+                <p>CSS styles to be applied to this HTML element.</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyle</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -4464,8 +4665,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element
-                (renders a "class" attribute).
+                <p>CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleClass</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -4474,8 +4678,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element (renders
-                an "id" attribute).
+                <p>Identifier to be assigned to this HTML element (renders
+                an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleId</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -4978,6 +5185,66 @@
           </info>
         </attribute>
 
+         <attribute>
+            <name>errorKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                  <p>Name of the request scope bean under which our error messages
+                  have been stored.  If not present, the name specified by the
+                  <code>Globals.ERROR_KEY</code> constant string will be used.</p>
+
+                  <p><strong>N.B.</strong> This is used in conjunction with the 
+                  <code>errorStyle</code>, <code>errorStyleClass</code> and 
+                  <code>errorStyleId</code> attributes and should be set to
+                  the same value as the <code>name</code> attribute on the
+                  &lt;html:errors/&gt; tag.</p> 
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+         <attribute>
+            <name>errorStyle</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS styles to be applied to this HTML element if
+                an error exists for it.</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>style</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS stylesheet class to be applied to this HTML element if
+                an error exists for it (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleClass</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Identifier to be assigned to this HTML element if
+                an error exists for it (renders an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleId</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
         <attribute>
             <name>indexed</name>
             <required>false</required>
@@ -5184,7 +5451,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS styles to be applied to this HTML element.
+                <p>CSS styles to be applied to this HTML element.</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyle</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -5193,8 +5463,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element
-                (renders a "class" attribute).
+                <p>CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleClass</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -5203,8 +5476,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element (renders
-                an "id" attribute).
+                <p>Identifier to be assigned to this HTML element (renders
+                an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleId</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -5330,6 +5606,66 @@
           Set to <code>true</code> if this input field should be
           disabled.
           </info>
+        </attribute>
+
+         <attribute>
+            <name>errorKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                  <p>Name of the request scope bean under which our error messages
+                  have been stored.  If not present, the name specified by the
+                  <code>Globals.ERROR_KEY</code> constant string will be used.</p>
+
+                  <p><strong>N.B.</strong> This is used in conjunction with the 
+                  <code>errorStyle</code>, <code>errorStyleClass</code> and 
+                  <code>errorStyleId</code> attributes and should be set to
+                  the same value as the <code>name</code> attribute on the
+                  &lt;html:errors/&gt; tag.</p> 
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+         <attribute>
+            <name>errorStyle</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS styles to be applied to this HTML element if
+                an error exists for it.</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>style</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS stylesheet class to be applied to this HTML element if
+                an error exists for it (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleClass</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Identifier to be assigned to this HTML element if
+                an error exists for it (renders an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleId</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
         </attribute>
 
         <attribute>
@@ -5501,7 +5837,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS styles to be applied to this HTML element.
+                <p>CSS styles to be applied to this HTML element.</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyle</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -5510,8 +5849,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element
-                (renders a "class" attribute).
+                <p>CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleClass</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -5520,8 +5862,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element (renders
-                an "id" attribute).
+                <p>Identifier to be assigned to this HTML element (renders
+                an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleId</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -6164,6 +6509,66 @@
           </info>
         </attribute>
 
+         <attribute>
+            <name>errorKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                  <p>Name of the request scope bean under which our error messages
+                  have been stored.  If not present, the name specified by the
+                  <code>Globals.ERROR_KEY</code> constant string will be used.</p>
+
+                  <p><strong>N.B.</strong> This is used in conjunction with the 
+                  <code>errorStyle</code>, <code>errorStyleClass</code> and 
+                  <code>errorStyleId</code> attributes and should be set to
+                  the same value as the <code>name</code> attribute on the
+                  &lt;html:errors/&gt; tag.</p> 
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+         <attribute>
+            <name>errorStyle</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS styles to be applied to this HTML element if
+                an error exists for it.</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>style</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS stylesheet class to be applied to this HTML element if
+                an error exists for it (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleClass</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Identifier to be assigned to this HTML element if
+                an error exists for it (renders an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleId</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
         <attribute>
             <name>indexed</name>
             <required>false</required>
@@ -6346,7 +6751,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS styles to be applied to this HTML element.
+                <p>CSS styles to be applied to this HTML element.</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyle</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -6355,8 +6763,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element
-                (renders a "class" attribute).
+                <p>CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleClass</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -6365,8 +6776,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element (renders
-                an "id" attribute).
+                <p>Identifier to be assigned to this HTML element (renders
+                an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleId</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -6768,6 +7182,66 @@
           </info>
         </attribute>
 
+         <attribute>
+            <name>errorKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                  <p>Name of the request scope bean under which our error messages
+                  have been stored.  If not present, the name specified by the
+                  <code>Globals.ERROR_KEY</code> constant string will be used.</p>
+
+                  <p><strong>N.B.</strong> This is used in conjunction with the 
+                  <code>errorStyle</code>, <code>errorStyleClass</code> and 
+                  <code>errorStyleId</code> attributes and should be set to
+                  the same value as the <code>name</code> attribute on the
+                  &lt;html:errors/&gt; tag.</p> 
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+         <attribute>
+            <name>errorStyle</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS styles to be applied to this HTML element if
+                an error exists for it.</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>style</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS stylesheet class to be applied to this HTML element if
+                an error exists for it (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleClass</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Identifier to be assigned to this HTML element if
+                an error exists for it (renders an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleId</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
         <attribute>
             <name>indexed</name>
             <required>false</required>
@@ -6966,7 +7440,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS styles to be applied to this HTML element.
+                <p>CSS styles to be applied to this HTML element.</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyle</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -6975,8 +7452,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element
-                (renders a "class" attribute).
+                <p>CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleClass</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -6985,8 +7465,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element (renders
-                an "id" attribute).
+                <p>Identifier to be assigned to this HTML element (renders
+                an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleId</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -7101,6 +7584,66 @@
           Set to <code>true</code> if this input field should be
           disabled.
           </info>
+        </attribute>
+
+         <attribute>
+            <name>errorKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                  <p>Name of the request scope bean under which our error messages
+                  have been stored.  If not present, the name specified by the
+                  <code>Globals.ERROR_KEY</code> constant string will be used.</p>
+
+                  <p><strong>N.B.</strong> This is used in conjunction with the 
+                  <code>errorStyle</code>, <code>errorStyleClass</code> and 
+                  <code>errorStyleId</code> attributes and should be set to
+                  the same value as the <code>name</code> attribute on the
+                  &lt;html:errors/&gt; tag.</p> 
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+         <attribute>
+            <name>errorStyle</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS styles to be applied to this HTML element if
+                an error exists for it.</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>style</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS stylesheet class to be applied to this HTML element if
+                an error exists for it (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleClass</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
+            <name>errorStyleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Identifier to be assigned to this HTML element if
+                an error exists for it (renders an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, this overrides the 
+                <code>styleId</code> attribute in the event of an error.</p>
+            </info>
+            <since>Struts 1.2.5</since>
         </attribute>
 
         <attribute>
@@ -7292,7 +7835,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS styles to be applied to this HTML element.
+                <p>CSS styles to be applied to this HTML element.</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyle</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -7301,8 +7847,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element
-                (renders a "class" attribute).
+                <p>CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleClass</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 
@@ -7311,8 +7860,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element (renders
-                an "id" attribute).
+                <p>Identifier to be assigned to this HTML element (renders
+                an "id" attribute).</p>
+
+                <p><strong>N.B.</strong> If present, the <code>errorStyleId</code>
+                overrides this attribute in the event of an error for the element.</p>
             </info>
         </attribute>
 

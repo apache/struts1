@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFileTag2.java,v 1.9 2004/03/14 06:23:40 sraeburn Exp $
  * $Revision: 1.9 $
- * $Date: 2004/03/14 06:23:40 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -81,13 +81,25 @@ public class TestFileTag2 extends JspTestCase {
         runMyTest("testFilePropertyStyle", "");
         }
 
+    public void testFilePropertyErrorStyle() throws Exception {
+        runMyTest("testFilePropertyErrorStyle", "");
+    }
+
     public void testFilePropertyStyleClass() throws Exception {
         runMyTest("testFilePropertyStyleClass", "");
         }
 
+    public void testFilePropertyErrorStyleClass() throws Exception {
+        runMyTest("testFilePropertyErrorStyleClass", "");
+    }
+
     public void testFilePropertyStyleId() throws Exception {
         runMyTest("testFilePropertyStyleId", "");
         }
+
+    public void testFilePropertyErrorStyleId() throws Exception {
+        runMyTest("testFilePropertyErrorStyleId", "");
+    }
 
     public void testFilePropertyTabindex() throws Exception {
         runMyTest("testFilePropertyTabindex", "");

@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page import="junit.framework.Assert"%>
+<%@page import="org.apache.struts.Globals"%>
+<%@page import="org.apache.struts.action.ActionMessage"%>
+<%@page import="org.apache.struts.action.ActionMessages"%>
+
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
@@ -7,28 +11,73 @@
 
 <logic:equal name="runTest" value="testRadioPropertyStyle">
 	<bean:define id="TEST_RESULTS" toScope="page">
-		<html:radio property="string" style="Put something here" value="Put Some Value Here"/>
+		<html:radio property="string" style="Put something here" errorStyle="some error style" value="Put Some Value Here"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		<input type="radio" name="string" value="Put Some Value Here" style="Put something here">
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testRadioPropertyErrorStyle">
+<%
+    ActionMessages errors = new ActionMessages();
+    errors.add("string",
+         new ActionMessage("default.testing.errors.tag"));
+    request.setAttribute("ALT_ERROR_KEY", errors);
+%>
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:radio property="string" style="Put something here" errorStyle="some error style" errorKey="ALT_ERROR_KEY" value="Put Some Value Here"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<input type="radio" name="string" value="Put Some Value Here" style="some error style">
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testRadioPropertyStyleClass">
 	<bean:define id="TEST_RESULTS" toScope="page">
-		<html:radio property="string" styleClass="Put something here" value="Put Some Value Here"/>
+		<html:radio property="string" styleClass="Put something here" errorStyleClass="some error style class" value="Put Some Value Here"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		<input type="radio" name="string" value="Put Some Value Here" class="Put something here">
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testRadioPropertyErrorStyleClass">
+<%
+    ActionMessages errors = new ActionMessages();
+    errors.add("string",
+         new ActionMessage("default.testing.errors.tag"));
+    request.setAttribute(Globals.ERROR_KEY, errors);
+%>
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:radio property="string" styleClass="Put something here" errorStyleClass="some error style class" value="Put Some Value Here"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<input type="radio" name="string" value="Put Some Value Here" class="some error style class">
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testRadioPropertyStyleId">
 	<bean:define id="TEST_RESULTS" toScope="page">
-		<html:radio property="string" styleId="Put something here" value="Put Some Value Here"/>
+		<html:radio property="string" styleId="Put something here" errorStyleId="some error style id" value="Put Some Value Here"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		<input type="radio" name="string" value="Put Some Value Here" id="Put something here">
+	</bean:define>
+</logic:equal>
+
+<logic:equal name="runTest" value="testRadioPropertyErrorStyleId">
+<%
+    ActionMessages errors = new ActionMessages();
+    errors.add("string",
+         new ActionMessage("default.testing.errors.tag"));
+    request.setAttribute(Globals.ERROR_KEY, errors);
+%>
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:radio property="string" styleId="Put something here" errorStyleId="some error style id" value="Put Some Value Here"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<input type="radio" name="string" value="Put Some Value Here" id="some error style id">
 	</bean:define>
 </logic:equal>
 
