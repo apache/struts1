@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.73 2001/07/16 00:44:52 craigmcc Exp $
- * $Revision: 1.73 $
- * $Date: 2001/07/16 00:44:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.74 2001/08/15 06:15:51 martinc Exp $
+ * $Revision: 1.74 $
+ * $Date: 2001/08/15 06:15:51 $
  *
  * ====================================================================
  *
@@ -211,7 +211,8 @@ import org.xml.sax.SAXException;
  *     megabytes, or gigabytes, respectively.  [250M]</li>
  * <li><strong>multipartClass</strong> - The fully qualified name of the
  *     MultiplartRequestHandler implementation class to be used for processing
- *     file uploads.  [org.apache.struts.upload.DiskMultipartRequestHandler]
+ *     file uploads. If set to <code>none</code>, disables Struts multipart
+ *     request handling.  [org.apache.struts.upload.DiskMultipartRequestHandler]
  *     </li>
  * <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
  *     to every response intended to defeat browser caching of any response we
@@ -228,7 +229,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.73 $ $Date: 2001/07/16 00:44:52 $
+ * @version $Revision: 1.74 $ $Date: 2001/08/15 06:15:51 $
  */
 
 public class ActionServlet
@@ -1408,7 +1409,10 @@ public class ActionServlet
         String classValue = getServletConfig().getInitParameter("multipartClass");
         
         if ((classValue != null) && (classValue.length() > 0)) {
-            multipartClass = classValue;
+            if (classValue.equals("none"))
+                multipartClass = null;
+            else
+                multipartClass = classValue;
         }
         
         //maximum file size

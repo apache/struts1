@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.21 2001/08/05 19:00:29 martinc Exp $
- * $Revision: 1.21 $
- * $Date: 2001/08/05 19:00:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.22 2001/08/15 06:15:51 martinc Exp $
+ * $Revision: 1.22 $
+ * $Date: 2001/08/15 06:15:51 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.21 $ $Date: 2001/08/05 19:00:29 $
+ * @version $Revision: 1.22 $ $Date: 2001/08/15 06:15:51 $
  */
 
 public class RequestUtils {
@@ -646,105 +646,59 @@ public class RequestUtils {
         HashMap properties = new HashMap();
         // Iterator of parameter names
         Enumeration names = null;
-        //Hashtable for multipart values
+        // Hashtable for multipart values
         Hashtable multipartElements = null;
 
-        boolean isMultipart = false;
         String contentType = request.getContentType();
         String method = request.getMethod();
+        boolean isMultipart = false;
+
         if ((contentType != null) &&
             (contentType.startsWith("multipart/form-data")) &&
             (method.equalsIgnoreCase("POST"))) {
-            isMultipart = true;
-            //initialize a MultipartRequestHandler
-            MultipartRequestHandler multipart = null;
 
-            //get an instance of ActionServlet
+            // Get the ActionServlet from the form bean
             ActionServlet servlet;
-
             if (bean instanceof ActionForm) {
                 servlet = ((ActionForm) bean).getServlet();
             } else {
                 throw new ServletException("bean that's supposed to be " +
-                                           "populated from a multipart request is not of type " +
-                                           "\"org.apache.struts.action.ActionForm\", but type " +
-                                           "\"" + bean.getClass().getName() + "\"");
-            }
-            String multipartClass = (String)
-                request.getAttribute(Action.MULTIPART_KEY);
-            request.removeAttribute(Action.MULTIPART_KEY);
-
-            if (multipartClass != null) {
-                //try to initialize the mapping specific request handler
-                try {
-                    multipart = (MultipartRequestHandler) Class.forName(multipartClass).newInstance();
-                }
-                catch (ClassNotFoundException cnfe) {
-                    servlet.log("MultipartRequestHandler class \"" +
-                    multipartClass + "\" in mapping class not found, " +
-                    "defaulting to global multipart class");
-                }
-                catch (InstantiationException ie) {
-                    servlet.log("InstantiaionException when instantiating " +
-                    "MultipartRequestHandler \"" + multipartClass + "\", " +
-                    "defaulting to global multipart class, exception: " +
-                    ie.getMessage());
-                }
-                catch (IllegalAccessException iae) {
-                    servlet.log("IllegalAccessException when instantiating " +
-                    "MultipartRequestHandler \"" + multipartClass + "\", " +
-                    "defaulting to global multipart class, exception: " +
-                    iae.getMessage());
-                }
+                   "populated from a multipart request is not of type " +
+                   "\"org.apache.struts.action.ActionForm\", but type " +
+                   "\"" + bean.getClass().getName() + "\"");
             }
 
-            if (multipart == null) {
-                //try to initialize the global multipart class
-                try {
-                    multipart = (MultipartRequestHandler) Class.forName(servlet.getMultipartClass()).newInstance();
-                }
-                catch (ClassNotFoundException cnfe) {
-                    throw new ServletException("Cannot find multipart class \"" +
-                    servlet.getMultipartClass() + "\"" +
-                    ", exception: " + cnfe.getMessage());
-                }
-                catch (InstantiationException ie) {
-                    throw new ServletException("InstantiaionException when instantiating " +
-                    "multipart class \"" + servlet.getMultipartClass() +
-                    "\", exception: " + ie.getMessage());
-                }
-                catch (IllegalAccessException iae) {
-                    throw new ServletException("IllegalAccessException when instantiating " +
-                    "multipart class \"" + servlet.getMultipartClass() +
-                    "\", exception: " + iae.getMessage());
-                }
+            // Obtain a MultipartRequestHandler
+            MultipartRequestHandler multipartHandler =
+                getMultipartHandler(request, servlet);
+
+            // Set the multipart request handler for our ActionForm.
+            // If the bean isn't an ActionForm, an exception would have been
+            // thrown earlier, so it's safe to assume that our bean is
+            // in fact an ActionForm.
+            ((ActionForm) bean).setMultipartRequestHandler(multipartHandler);
+
+            if (multipartHandler != null) {
+                isMultipart = true;
+
+                // Set servlet and mapping info
+                multipartHandler.setServlet(servlet);
+                multipartHandler.setMapping((ActionMapping)
+                    request.getAttribute(Action.MAPPING_KEY));
+
+                // Initialize multipart request class handler
+                multipartHandler.handleRequest(request);
+
+                //retrive form values and put into properties
+                multipartElements = multipartHandler.getAllElements();
+                names = multipartElements.keys();
             }
-
-
-            //set the multipart request handler for our ActionForm
-            //if the bean isn't an ActionForm, an exception would have been
-            //thrown earlier, so it's safe to assume that our bean is
-            //in fact an ActionForm
-            ((ActionForm) bean).setMultipartRequestHandler(multipart);
-
-            //set servlet and mapping info
-            multipart.setServlet(servlet);
-            multipart.setMapping((ActionMapping)
-                                 request.getAttribute(Action.MAPPING_KEY));
             request.removeAttribute(Action.MAPPING_KEY);
-
-            //initialize request class handler
-            multipart.handleRequest(request);
-
-            //retrive form values and put into properties
-            multipartElements = multipart.getAllElements();
-            names = multipartElements.keys();
         }
 
         if (!isMultipart) {
             names = request.getParameterNames();
         }
-
 
         while (names.hasMoreElements()) {
             String name = (String) names.nextElement();
@@ -776,6 +730,93 @@ public class RequestUtils {
             throw new ServletException("BeanUtils.populate", e);
         }
 
+    }
+
+
+    /**
+     * Try to locate a multipart request handler for this request. First, look
+     * for a mapping-specific handler stored for us under an attribute. If one
+     * is not present, use the global multipart handler, if there is one.
+     *
+     * @param request The HTTP request for which the multipart handler should
+     *                be found.
+     * @param servlet The <code>ActionServlet</code> processing the supplied
+     *                request.
+     *
+     * @return the multipart handler to use, or <code>null</code> if none is
+     *         found.
+     *
+     * @exception ServletException if any exception is thrown while attempting
+     *                             to locate the multipart handler.
+     */
+    private static MultipartRequestHandler getMultipartHandler(
+            HttpServletRequest request, ActionServlet servlet)
+        throws ServletException {
+
+        MultipartRequestHandler multipartHandler = null;
+        String multipartClass = (String)
+            request.getAttribute(Action.MULTIPART_KEY);
+        request.removeAttribute(Action.MULTIPART_KEY);
+
+        // Try to initialize the mapping specific request handler
+        if (multipartClass != null) {
+            try {
+                multipartHandler = (MultipartRequestHandler)
+                    Class.forName(multipartClass).newInstance();
+            }
+            catch (ClassNotFoundException cnfe) {
+                servlet.log("MultipartRequestHandler class \"" +
+                    multipartClass + "\" in mapping class not found, " +
+                    "defaulting to global multipart class");
+            }
+            catch (InstantiationException ie) {
+                servlet.log("InstantiaionException when instantiating " +
+                    "MultipartRequestHandler \"" + multipartClass + "\", " +
+                    "defaulting to global multipart class, exception: " +
+                    ie.getMessage());
+            }
+            catch (IllegalAccessException iae) {
+                servlet.log("IllegalAccessException when instantiating " +
+                    "MultipartRequestHandler \"" + multipartClass + "\", " +
+                    "defaulting to global multipart class, exception: " +
+                    iae.getMessage());
+            }
+
+            if (multipartHandler != null)
+                return multipartHandler;
+        }
+
+        multipartClass = servlet.getMultipartClass();
+
+        // Try to initialize the global request handler
+        if (multipartClass != null) {
+            try {
+                multipartHandler = (MultipartRequestHandler)
+                    Class.forName(multipartClass).newInstance();
+            }
+            catch (ClassNotFoundException cnfe) {
+                throw new ServletException("Cannot find multipart class \"" +
+                    servlet.getMultipartClass() + "\"" +
+                    ", exception: " + cnfe.getMessage());
+            }
+            catch (InstantiationException ie) {
+                throw new ServletException(
+                    "InstantiaionException when instantiating " +
+                    "multipart class \"" + servlet.getMultipartClass() +
+                    "\", exception: " + ie.getMessage());
+            }
+            catch (IllegalAccessException iae) {
+                throw new ServletException(
+                    "IllegalAccessException when instantiating " +
+                    "multipart class \"" + servlet.getMultipartClass() +
+                    "\", exception: " + iae.getMessage());
+            }
+
+            if (multipartHandler != null)
+                return multipartHandler;
+        }
+
+        return multipartHandler;
     }
 
 
