@@ -586,7 +586,16 @@
     </p>
 
     <pre><code>
-    http://localhost:8080/toModule.do?prefix=moduleB&amp;page=/index.do
+    http://localhost:8080/toModule.do?prefix=/moduleB&amp;page=/index.do
+    </code></pre>
+
+    <p>
+    If you are using the "default" module as well as "named" modules (like "/moduleB"),
+    you can switch back to the "default" module with a URI like this:
+    </p>
+
+    <pre><code>
+    http://localhost:8080/toModule.do?prefix=&amp;page=/index.do
     </code></pre>
 
     <p>
