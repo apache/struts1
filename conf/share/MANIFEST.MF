@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Extension-Name: Struts Framework
+Specification-Title: Struts Framework
+Specification-Vendor: Apache Software Foundation
+Specification-Version: 1.0
+Implementation-Title: Struts Framework
+Implementation-Vendor: Apache Software Foundation
+Implementation-Vendor-Id: org.apache
+Implementation-Version: 1.0
+
