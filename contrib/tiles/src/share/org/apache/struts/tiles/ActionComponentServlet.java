@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.4 2001/12/27 17:35:37 cedric Exp $
- * $Revision: 1.4 $
- * $Date: 2001/12/27 17:35:37 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.5 2002/04/15 08:09:50 cedric Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/04/15 08:09:50 $
  * $Author: cedric $
  *
  */
@@ -74,6 +74,11 @@ public class ActionComponentServlet extends ActionServlet
 
 
     /**
+     * Overload struts1.0 counterpart in order to catch forward calls.
+     * This is an exact copy, except the call to RequestDispatcher.forward()
+     * replaced by doForward().
+     * This method is only used with Struts1.0.x
+     *
      * Forward to the specified destination, by the specified mechanism,
      * if an <code>ActionForward</code> instance was returned by the
      * <code>Action</code>.
@@ -101,13 +106,18 @@ public class ActionComponentServlet extends ActionServlet
                     path = request.getContextPath() + path;
 		response.sendRedirect(response.encodeRedirectURL(path));
 	    } else {
-        processForward( path, request, response );
+        doForward( path, request, response );
 	    }
 	}
 
     }
 
     /**
+     * Overload struts1.0 counterpart in order to catch forward calls.
+     * This is an exact copy, except the call to RequestDispatcher.forward()
+     * replaced by doForward().
+     * This method is only used with Struts1.0.x
+     *
      * Call the <code>validate()</code> method of the specified ActionForm,
      * and forward back to the input form if there are any errors.  Return
      * <code>true</code> if we should continue processing (and call the
@@ -182,21 +192,114 @@ public class ActionComponentServlet extends ActionServlet
         if (request instanceof MultipartRequestWrapper) {
             request = ((MultipartRequestWrapper) request).getRequest();
         }
-  processForward( uri, request, response);
+  doForward( uri, request, response);
 	return (false);
 
     }
 
     /**
-     * Process forward.
-     * Forward to requested uri.
-     * Uri can be a valid uri, or a definition name. If definition name, search
-     * definition and use definition path.
+     * Overload struts1.0 counterpart in order to catch forward calls.
+     * This is an exact copy, except the call to RequestDispatcher.forward()
+     * replaced by doForward().
+     * This method is only used with Struts1.0.x
+     *
+     * Process a forward requested by this mapping, if any.  Return
+     * <code>true</code> if processing of this request should continue (i.e.
+     * be processed by an Action class), or <code>false</code> if we have
+     * already handled this request.
+     *
+     * @param mapping The ActionMapping we are processing
+     * @param request The request we are processing
+     * @param response The response we are processing
+     *
+     * @exception IOException if the included resource throws an exception
+     * @exception ServletException if the included resource throws an
+     *  exception
+     */
+    protected boolean processForward(ActionMapping mapping,
+                                     HttpServletRequest request,
+                                     HttpServletResponse response)
+        throws IOException, ServletException {
+
+        // Are we going to process this request?
+        String forward = mapping.getForward();
+        if (forward == null)
+            return (true);
+
+        //unwrap the multipart request if there is one
+        if (request instanceof MultipartRequestWrapper) {
+            request = ((MultipartRequestWrapper) request).getRequest();
+        }
+        // process forward and give Tiles a chance to catch definition names
+        doForward( forward, request, response);
+        return (false);
+
+    }
+
+
+    /**
+     * Overload struts1.0 counterpart in order to catch include calls.
+     * This is an exact copy, except the call to RequestDispatcher.include()
+     * replaced by doInclude().
+     * This method is only used with Struts1.0.x
+     *
+     * Process an include requested by this mapping, if any.  Return
+     * <code>true</code> if processing of this request should continue (i.e.
+     * be processed by an Action class), or <code>false</code> if we have
+     * already handled this request.
+     *
+     * @param mapping The ActionMapping we are processing
+     * @param request The request we are processing
+     * @param response The response we are processing
+     *
+     * @exception IOException if the included resource throws an exception
+     * @exception ServletException if the included resource throws an
+     *  exception
+     */
+    protected boolean processInclude(ActionMapping mapping,
+                                     HttpServletRequest request,
+                                     HttpServletResponse response)
+        throws IOException, ServletException {
+
+        // Are we going to process this request?
+        String include = mapping.getInclude();
+        if (include == null)
+            return (true);
+
+        //unwrap the multipart request if there is one
+        if (request instanceof MultipartRequestWrapper) {
+            request = ((MultipartRequestWrapper) request).getRequest();
+        }
+        // process forward and give Tiles a chance to catch definition names
+        doForward( include, request, response);
+        return (false);
+
+    }
+
+    /**
+     * Do forward, and eventually catch uri containing Tiles definition.
+     * Method left for compatibility reasons.
      * @param uri Uri or Definition name to forward
      * @param request Current page request
      * @param response Current page response
+     * @deprecated use doForward instead
      */
   protected void processForward(String uri, HttpServletRequest request, HttpServletResponse response)
+ 	  throws IOException, ServletException
+    {
+    doForward( uri, request, response );
+    }
+
+    /**
+     * Do a forward, and eventually catch uri containing Tiles definition.
+     * If uri is a valid uri, do a forward to it.
+     * If uri is a valid definition name, Tiles context is created from definition,
+     * and definition path is used as uri.
+      * @param uri Uri or Definition name to forward
+     * @param request Current page request
+     * @param response Current page response
+     */
+  protected void doForward(String uri, HttpServletRequest request, HttpServletResponse response)
  	  throws IOException, ServletException
     {
       // Do we do a forward (original behavior) or an include ?
@@ -284,7 +387,6 @@ public class ActionComponentServlet extends ActionServlet
       rd.include(request, response);
      else
       rd.forward(request, response);   // original behavior
-
    }
 
 
