@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document url="./resources.xml">
+<properties>
+<author>Ted Husted</author> 
+<author>Cedric Dumoulin</author> 
+<title>The Struts User's Guide - Validating user input</title>
+</properties>
+<body> 
+<chapter name="Tiles Developer Guide"> 
+
+<section href="tiles" name="The Tiles Document Assembly Framework">
+
+<p>Tiles builds on the "include" feature provided by the JavaServer Page 
+specification to provided a full-featured, robost framework for assembling 
+presentation pages from component parts. Each part, or tile, can be 
+reused as often as needed throughout your application. This reduces the 
+amount of markup that needs to be maintained and makes it easier to 
+change the look and feel of a website. </p>
+
+</section>
+
+<section href="features" name="Overview of Tiles Features">
+
+               <ul>
+                  <li>
+                     Screen definitions 
+                     <ul>
+                        <li>
+                           Create a screen by assembling
+                           <strong><em>Tiles</em></strong> : header, footer,
+                           menu, body
+                        </li>
+                        <li>
+                           Definitions can take place : 
+                           <ul>
+                              <li>
+                                 in a centralized xml
+                                 file
+                              </li>
+                              <li>
+                                 directly in jsp page
+                              </li>
+                              <li>
+                                 in struts action
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           Definitions provide an inheritance
+                           mechanism : a definition can extends another one,
+                           and override parameters.
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     Templating 
+                     <ul>
+                        <li>
+                           <strong><em>Tiles</em></strong>
+                           framework is entirely compatible with
+                           <em>Templates</em> defined by David Geary and
+                           implemented in Struts
+                        </li>
+                        <li>
+                           You can replace <em>Templates</em>
+                           library by <strong><em>Tiles</em></strong>
+                           one
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     Layouts 
+                     <ul>
+                        <li>
+                           Define common page layouts and reuse
+                           them across your web site
+                        </li>
+                        <li>
+                           Define menu layouts, and use them by
+                           passing lists of items and links
+                        </li>
+                        <li>
+                           Define portal layout, use it by
+                           passing list of <strong><em>Tiles</em></strong>
+                           (pages) to show
+                        </li>
+                        <li>
+                           Reuse existing layouts, or define
+                           your owns
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     Dynamic page building 
+                     <ul>
+                        <li>
+                           Tiles are gather dynamically during
+                           page reload. It is possible to change any attributes
+                           : layout, list of Tiles in portal, list of menu
+                           items, ...
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     Reuse of <strong><em>Tiles</em></strong> /
+                     Components 
+                     <ul>
+                        <li>
+                           If well defined, a
+                           <strong><em>Tile</em></strong> can be reused in
+                           different location
+                        </li>
+                        <li>
+                           Dynamic attributes are used to
+                           parameterized <em><strong>Tiles</strong></em>
+                        </li>
+                        <li>
+                           It is possible to define library of
+                           reusable <em><strong>Tiles</strong></em>.
+                        </li>
+                        <li>
+                           Build a page by assembling predefined
+                           components, give them appropriate parameters
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     Internationalization (i18n)
+                  </li>
+                                  <ul>
+                  <li>
+                     It is possible to load different tiles
+                     according to Locale
+                  </li>
+                  <li>
+                     A mechanism similar to Java properties
+                     files is used for definitions files : you can have one
+                     definition file per Locale. The appropriate definition is
+                     loaded according to current Locale
+                  </li>
+                                  </ul>
+                  <li>
+                     Multi-channels
+                  </li>
+                                  <ul>
+                  <li>
+                     It is possible to load different Tiles
+                     according to a key stored in jsp session, or
+                     anywhere.
+                  </li>
+                                  
+                  <li>
+                     For example, key could be user provilege,
+                     browser type, ...
+                  </li>
+                                  
+                  <li>
+                     A mechanism similar to Java properties
+                     files is used for definitions files : you can have one
+                     definition file per key. The appropriate definition is
+                     loaded according to the key.
+                  </li>
+    </ul></ul>
+</section>
+
+<section href="setup" name="Enabling your application for Tiles">
+
+<p>The Tiles framework is bundled with Struts. It is not enabled by default. 
+To enable Tiles you need to:
+</p>
+
+<ul>
+<li>Setup the struts-tiles taglib in your web.xml</li>
+<li>Add the Tiles Request controller to your struts-config.xml</li>
+</ul>
+
+<p>[:TODO: additional detail.]</p>
+
+</section>
+
+<section href="tiles" name="Tiles API Guide">
+
+<p>
+A concise 
+<a href="http://jakarta.apache.org/struts/api/org/apache/struts/taglib/template/package-summary.html#package_description">Tiles API Guide</a> is available to help you get started 
+with the Tiles framework. [:TODO: Change link to Tiles API Guide when available.]
+</p>
+
+</section>
+
+<section href="resources" name="Tiles Resources">
+
+<p><a href="http://www-106.ibm.com/developerworks/java/library/j-strutstiles.html?loc=j">Struts and Tiles aid component-based development</a> by Wellie Chao.</p>
+
+<p><a href="http://www.javaworld.com/javaworld/jw-01-2002/jw-0104-tilestrut.html"><b>UI design with Tiles and Struts</b></a> by Prakash Malani.</p>
+
+<p><u>Developing applications with Tiles</u> by Cedric Dumoulin and Ted Husted. 
+Sample chapter from <u>Java Web Development with Struts</u>; available as a 
+<u>free download</u> (PDF).
+</p>
+
+</section>
+
+</chapter></body></document>
