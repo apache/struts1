@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.124 2002/10/28 01:29:39 dgraham Exp $
- * $Revision: 1.124 $
- * $Date: 2002/10/28 01:29:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.125 2002/11/01 13:59:02 rleland Exp $
+ * $Revision: 1.125 $
+ * $Date: 2002/11/01 13:59:02 $
  *
  * ====================================================================
  *
@@ -294,7 +294,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.124 $ $Date: 2002/10/28 01:29:39 $
+ * @version $Revision: 1.125 $ $Date: 2002/11/01 13:59:02 $
  */
 
 public class ActionServlet
@@ -1073,7 +1073,6 @@ public class ActionServlet
 
         // Create a new Digester instance with standard capabilities
         configDigester = new Digester();
-        configDigester.setDebug(detail);
         configDigester.setNamespaceAware(true);
         configDigester.setValidating(validating);
         configDigester.setUseContextClassLoader(true);
@@ -1125,7 +1124,7 @@ public class ActionServlet
      * be removed in a subsequent release.
      *
      * @deprecated Replaced by initApplicationDataSources() that takes
-     *  an ApplicationConfig argument
+     *  an ApplicationConfig argument. This method does nothing.
      */
     protected void initDataSources() throws javax.servlet.ServletException {
 
@@ -1223,7 +1222,6 @@ public class ActionServlet
         // Prepare a Digester to scan the web application deployment descriptor
         Digester digester = new Digester();
         digester.push(this);
-        digester.setDebug(this.debug);
         digester.setNamespaceAware(true);
         digester.setValidating(false);
 
