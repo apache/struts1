@@ -69,6 +69,8 @@ import org.apache.struts.util.RequestUtils;
 /**
  * Include the body if there are any error messages.
  *
+ * @deprecated This tag has an equivalent in Struts (see html:messagesPresent).
+ *
  * @author David Winterfeldt
  */
 

@@ -64,6 +64,8 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * Implementation of <code>TagExtraInfo</code> for the <b>errors</b>
  * tag, identifying the scripting object(s) to be made visible.
  *
+ * @deprecated This tag has an equivalent in Struts (see html:messages).
+ *
  * @author David Winterfeldt
 */
 public class ErrorsTei extends TagExtraInfo {

@@ -67,6 +67,8 @@ import com.wintecinc.struts.action.GenericAction;
 /**
  * Include the body if there are any messages.
  *
+ * @deprecated This tag has an equivalent in Struts (see html:messagesPresent).
+ *
  * @author David Winterfeldt
  */
 

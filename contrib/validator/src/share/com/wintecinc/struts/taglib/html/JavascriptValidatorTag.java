@@ -290,7 +290,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
           
                    jscriptVar = getNextVar(jscriptVar);
           
-                   results.append("	    this." + jscriptVar + " = new Array(\"" + field.getProperty() + "\", \"" + message + "\", ");
+                   results.append("	    this." + jscriptVar + " = new Array(\"" + field.getKey() + "\", \"" + message + "\", ");
                    
                    
                    results.append("new Function (\"varName\", \"");

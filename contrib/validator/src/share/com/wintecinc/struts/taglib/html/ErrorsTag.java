@@ -73,6 +73,8 @@ import org.apache.struts.util.ResponseUtils;
  * Alternative to the default struts ErrorsTag.  It iterates through messages 
  * so HTML formatting can be left out of the message resources.
  *
+ * @deprecated This tag has an equivalent in Struts (see html:messages).
+ *
  * @author David Winterfeldt
 */
 public class ErrorsTag extends BodyTagSupport {

@@ -73,6 +73,8 @@ import com.wintecinc.struts.action.GenericAction;
  * Similiar to the Errors Tag, but just for general message, not necessarily errors.  
  * It iterates through messages so HTML formatting can be left out of the message resources.
  *
+ * @deprecated This tag has an equivalent in Struts (see html:messages).
+ *
  * @author David Winterfeldt
 */
 public class MessagesTag extends BodyTagSupport {
