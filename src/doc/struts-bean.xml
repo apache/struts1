@@ -103,7 +103,8 @@
     <bodycontent>empty</bodycontent>
     <info>
     <p>Retrieve the value of a specified bean property, and define it
-    as a page scope attribute accessible to the remainder of the current
+    as an attribute (in the scope specified by the <code>toScope</code>
+    property) accessible to the remainder of the current
     page.  No type conversion is performed on the returned property value,
     unless it is a Java primitive type, in which case it is wrapped in the
     appropriate wrapper class (i.e. int is wrapped by java.lang.Integer).</p>
@@ -183,6 +184,17 @@
       <p>Specifies the variable scope searched to retrieve the bean specified
       by <code>name</code>.  If not specified, the default rules applied by
       <code>PageContext.findAttribute()</code> are applied.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>toScope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Specifies the variable scope into which the newly defined bean will
+      be created.  If not specified, the bean will be created in
+      <code>page</code> scope.</p>
       </info>
     </attribute>
 

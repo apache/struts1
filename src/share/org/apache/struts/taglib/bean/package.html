@@ -117,7 +117,7 @@ example, the following property reference in a getter (such as the
     getFoo().getBar().getBaz()
 </pre>
 <p>If a nested reference is used in a setter (such as when an input form is
-processed), the property setter is called on the <strong>last</code> property
+processed), the property setter is called on the <strong>last</strong> property
 in the chain.  For the above property reference, the equivalent Java
 expression would be:</p>
 <pre>
@@ -293,7 +293,7 @@ another bean).  This tag supports the "property" attribute, and therefore
 all the power of property references, as discused
 <a href="#doc.Properties.References">above</a>.  It can be used in a
 variety of different ways, described further below.  Unless you specify
-the "scope" attribute, all defined beans will be created in page scope.</p>
+the "toScope" attribute, all defined beans will be created in page scope.</p>
 
 <p><em>Introduce A String Constant</em> - You can create a new bean that has
 a constant String value (or the result of calculating a runtime expression):
@@ -319,9 +319,12 @@ Struts-based applications).</p>
 <p><em>Copy An Existing Bean Property</em> - You can create a new bean that
 is initialized to the value returned by a property getter.  The value of the
 "property" attribute can be any simple, nested, or indexed property reference
-that follows the rules described earlier.</p>
+that follows the rules described earlier.  In the first example below, we
+also illustrate accessing the property of a request scope bean, and creating
+the new bean in session scope (rather than the default page scope).</p>
 <pre>
-    &lt;bean:define id="foo" name="bar" property="baz"/&gt;
+    &lt;bean:define id="foo" name="bar" property="baz" scope="request"
+     toScope="session"/&gt;
     &lt;bean:define id="bop" name="user" property="role[3].name"/&gt;
 </pre>
 

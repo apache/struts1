@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.8 2001/01/07 22:39:07 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2001/01/07 22:39:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.9 2001/01/26 20:12:35 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/01/26 20:12:35 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.RequestUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2001/01/07 22:39:07 $
+ * @version $Revision: 1.9 $ $Date: 2001/01/26 20:12:35 $
  */
 
 public class DefineTag extends TagSupport {
@@ -150,6 +150,20 @@ public class DefineTag extends TagSupport {
 
     public void setScope(String scope) {
         this.scope = scope;
+    }
+
+
+    /**
+     * The scope within which the newly defined bean will be creatd.
+     */
+    protected String toScope = null;
+
+    public String getToScope() {
+        return (this.toScope);
+    }
+
+    public void setToScope(String toScope) {
+        this.toScope = toScope;
     }
 
 
@@ -243,7 +257,14 @@ public class DefineTag extends TagSupport {
         }
 
         // Expose this value as a scripting variable
-        pageContext.setAttribute(id, value);
+        int inScope = PageContext.PAGE_SCOPE;
+        if ("request".equals(toScope))
+            inScope = PageContext.REQUEST_SCOPE;
+        else if ("session".equals(toScope))
+            inScope = PageContext.SESSION_SCOPE;
+        else if ("application".equals(toScope))
+            inScope = PageContext.APPLICATION_SCOPE;
+        pageContext.setAttribute(id, value, inScope);
         return (SKIP_BODY);
 
     }
@@ -259,6 +280,7 @@ public class DefineTag extends TagSupport {
         name = null;
         property = null;
         scope = null;
+        toScope = "page";
         type = null;
 
     }
