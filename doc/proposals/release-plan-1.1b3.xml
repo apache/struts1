@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.8 2002/12/29 22:08:48 husted Exp $</font></p>
+  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.9 2003/01/20 12:41:18 husted Exp $</font></p>
 
   <p>The objective of the <strong>Struts 1.1 Beta 3</strong> release is to
   create a milestone release against which a final series of bug fixes and
@@ -70,7 +70,7 @@
   <p>Prior to the release of a subsequent Struts 1.1 release candidate, the
   following action items must be completed:</p>
   <ul>
-  <li>All <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfield=%5BBug+creation%5D&amp;chfieldfrom=1970-01-01&amp;chfieldto=2002-12-22&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=Bug+Number">Bugzilla bug reports</a>
+  <li>All <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=VERIFIED&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;version=Nightly+Build&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;newqueryname=&amp;order=Bug+Number">Bugzilla bug reports</a>
       against Struts 1.1 nightly builds MUST be marked as "Resolved", with any
       of the legal Bugzilla resolutions (FIXED, INVALID, WONTFIX, LATER,
       REMIND, WORKSFORME).</li>
@@ -104,7 +104,7 @@
       <td>ActionForward or &lt;html:link&gt; tag does not support absolute URIs</td>
     </tr>
     <tr>
-        <td nowrap="nowrap">[ ]</td>
+        <td nowrap="nowrap">[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=12302">12302</a></td>
       <td>Sporadic error in html:form action attribute</td>
@@ -116,13 +116,13 @@
       <td>Add action attribute to &lt;html:link&gt;</td>
     </tr>
     <tr>
-        <td nowrap="nowrap">[ ]</td>
+        <td nowrap="nowrap">[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15044">15044</a></td>
       <td>Taglib - Index Attribute in html:Checkbox doesn't set correctly</td>
     </tr>
     <tr>
-        <td nowrap="nowrap">[ ]</td>
+        <td nowrap="nowrap">[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15196">15196</a></td>
       <td>Bug on the RequestUtils.computeParameters using a DynaValidatorForm as map of the parameter</td>
@@ -151,13 +151,13 @@
       <td>ExceptionHandler does not obey controller inputForward rule</td>
     </tr>
     <tr>
-        <td>[ ]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=14054">14054</a></td>
       <td>Rename "Application" components to "Module"</td>
     </tr>
     <tr>
-        <td>[ ]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=14749">14749</a></td>
       <td>Action "input" not starting with '/' and not a valid forward will cause an internal server error</td>
@@ -185,7 +185,7 @@
       <td colspan="3"><strong>Utilities</strong></td>
     </tr>
     <tr>
-        <td>[ ]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=11932">11932</a></td>
       <td>(Message Resource is not multi-app aware) Multi-Resource not work in Multi-Appliction config environment</td>
@@ -196,12 +196,40 @@
       <td colspan="3"><strong>Unknown</strong></td>
     </tr>
     <tr>
-        <td>[ ]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=14042">14042</a></td>
       <td>Unknown Memory leaks with JBoss 3.x +(Tomcat/Jetty)</td>
     </tr>
 
+    <!-- Post Mortem -->
+    <tr>
+      <td colspan="3"><strong>Post Mortem -- These tickets were added after the release of Struts 1.1 B3 and need to be resolved before the next iteration</strong></td>
+    </tr>
+    <tr>
+        <td>[ ]</td>
+        <td>
+          <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15736">15736</a></td>
+      <td>Struts doesn't initialize under strict security manager</td>
+    </tr>
+    <tr>
+        <td>[ ]</td>
+        <td>
+          <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15799">15799</a></td>
+      <td>Nested tags picks up wrong bean for values</td>
+    </tr>
+    <tr>
+        <td>[ ]</td>
+        <td>
+          <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15883">15883</a></td>
+      <td>wrong resource file used in multi-application context</td>
+    </tr>
+    <tr>
+        <td>[ ]</td>
+        <td>
+          <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=16019">16019</a></td>
+      <td>LookupDispatchAction multiple MessageResources</td>
+    </tr>
   </table>
 
   </section>
