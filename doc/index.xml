@@ -14,16 +14,16 @@
   <section name="Welcome to Struts" href="Welcome">
 
   <p>
-  Welcome to the Struts Framework!  The goal of this project
+  Welcome to Struts!  The goal of this project
   is to provide an open source framework for building Web applications 
-  that integrates standard technologies like 
+  that integrates with standard technologies like 
   <a href="http://java.sun.com/products/servlet"> Java Servlets</a>, 
   <a href="http://java.sun.com/products/javabeans/">JavaBeans</a>, 
   and <a href="http://java.sun.com/products/jsp">JavaServer 
   Pages</a> (JSP). 
   </p>
   <p>
-  Struts encourages application architectures based the
+  Struts encourages application architectures based on the
   <b>Model-View-Controller</b> (MVC) design paradigm, colloquially known as
   <i>Model 2</i> in discussions on various Java mailing lists. Struts 
   provides its own <b>Controller</b> component and integrates 
@@ -89,20 +89,22 @@
   </blockquote>
 
   <p>
-  The <a href="kickstart.html"><b>Kickstart FAQ</b></a> quickly answers 
-  the most common questions about Struts. More technical questions are 
-  covered by the <a href="newbie.html">Struts Newbie FAQ</a>, and online in the Struts 
+  The <a href="kickstart.html"><b>Kickstart FAQ</b></a> answers the most common 
+  non-technical questions people first ask about Struts. The 
+  <a href="newbie.html">Struts Newbie FAQ</a> answers the most common 
+  technical questions asked by first-timer Struts developers. A more extensive 
+  Struts knowledgebase is available at the 
   <a href="http://jguru.com/faq/Struts">JGuru FAQ</a> and 
   <a href="http://jguru.com/forums/Struts">Forum</a>.
   </p>
 
   <p>
-  A concise <a href="userGuide/index.html"><b>Users Guide</b></a> is also provided 
-  with the distribution. The Users Guide introduces the Model-View-Controller 
-  architecture, and how it relates to the major components of Struts. Several <b>Developer 
-  Guides</b> supplement the Users Guide. These help you get started with the Struts JSP 
-  tag extensions and utility packages. The Users Guide also includes detailed installation 
-  instructions and release notes for each version of the framework.
+  The concise Struts <a href="userGuide/index.html"><b>Users Guide</b></a> introduces the 
+  Model-View-Controller architecture, and how it relates to the major components of Struts. 
+  To help you get started with the Struts JSP tag extensions and utility packages, 
+  several <b>Developer Guides</b> supplement the Users Guide. The Users Guide also 
+  includes detailed installation instructions and release notes for each version of the 
+  framework.
   </p>
 
   <p>
@@ -125,8 +127,8 @@
 
   <p>
   The Struts <a href="#Involved">Mailing Lists</a> are an treasure trove of useful, 
-  interactive information. The list tends to carry a high volume, so always check the 
-  published documentation and the 
+  interactive information. The user list tends to carry a high volume, so always check 
+  the published documentation and the 
   <a href="http://www.mail-archive.com/struts-user%40jakarta.apache.org/">
   <b>MAILING LIST ARCHIVE</b></a> before 
   <a href="http://www.tuxedo.org/~esr/faqs/smart-questions.html">posting a new question</a>. 
