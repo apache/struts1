@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.9 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.9 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.10 2004/03/23 06:27:06 martinc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/03/23 06:27:06 $
  *
  * Copyright 2003,2004 The Apache Software Foundation.
  * 
@@ -211,7 +211,7 @@ public class ActionConfigMatcher implements Serializable {
     /**
      *  Stores a compiled wildcard pattern and the ActionConfig it came from.
      */
-    private class Mapping {
+    private class Mapping implements Serializable {
 
         /**  The compiled pattern. */
         private int[] pattern;
