@@ -14,6 +14,10 @@
     <mkdir   dir="${build.home}"/>
     <mkdir   dir="${build.home}/library"/>
     <mkdir   dir="${build.home}/library/classes"/>
+    <mkdir   dir="${build.home}/library/classes/META-INF"/>
+    <mkdir   dir="${build.home}/library/classes/META-INF/tlds"/>
+    <copyfile src="src/conf/struts.tld"
+             dest="${build.home}/library/classes/META-INF/taglib.tld"/>
     <mkdir   dir="${build.home}/library/classes/org"/>
     <mkdir   dir="${build.home}/library/classes/org/apache"/>
     <mkdir   dir="${build.home}/library/classes/org/apache/struts"/>
@@ -95,6 +99,9 @@
     <style basedir="src/doc" destdir="${build.home}/library"
          extension=".tld" style="stylesheets/tld.xsl"
           includes="struts-*.xml"/>
+    <copydir src="${build.home}/library"
+            dest="${build.home}/library/classes/META-INF/tlds"
+        includes="struts-*.tld"/>
   </target>
 
   <!-- BUILD:  Compile documentation application components -->
