@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.6 2003/07/26 17:22:27 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2003/07/26 17:22:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.7 2003/07/26 17:40:20 rleland Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/07/26 17:40:20 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import java.util.Map;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
@@ -79,15 +80,17 @@ import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.Globals;
+import org.apache.struts.taglib.html.Constants;
 
 /**
  * Provides helper methods for JSP tags.
- * 
+ *
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.6 $
+ * @author Rob Leland
+ * @version $Revision: 1.7 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -110,8 +113,8 @@ public class TagUtils {
         MessageResources.getMessageResources("org.apache.struts.util.LocalStrings");
 
     /**
-     * Maps lowercase JSP scope names to their PageContext integer constant 
-     * values. 
+     * Maps lowercase JSP scope names to their PageContext integer constant
+     * values.
      */
     private static final Map scopes = new HashMap();
 
@@ -138,9 +141,134 @@ public class TagUtils {
     public static TagUtils getInstance() {
         return instance;
     }
+    /**
+     * Compute a set of query parameters that will be dynamically added to
+     * a generated URL.  The returned Map is keyed by parameter name, and the
+     * values are either null (no value specified), a String (single value
+     * specified), or a String[] array (multiple values specified).  Parameter
+     * names correspond to the corresponding attributes of the
+     * <code>&lt;html:link&gt;</code> tag.  If no query parameters are
+     * identified, return <code>null</code>.
+     *
+     * @param pageContext PageContext we are operating in
+
+     * @param paramId Single-value request parameter name (if any)
+     * @param paramName Bean containing single-value parameter value
+     * @param paramProperty Property (of bean named by <code>paramName</code>
+     *  containing single-value parameter value
+     * @param paramScope Scope containing bean named by
+     *  <code>paramName</code>
+     *
+     * @param name Bean containing multi-value parameters Map (if any)
+     * @param property Property (of bean named by <code>name</code>
+     *  containing multi-value parameters Map
+     * @param scope Scope containing bean named by
+     *  <code>name</code>
+     *
+     * @param transaction Should we add our transaction control token?
+     * @return Map of query parameters
+     * @exception JspException if we cannot look up the required beans
+     * @exception JspException if a class cast exception occurs on a
+     *  looked-up bean or property
+     */
+    public static Map computeParameters(
+        PageContext pageContext,
+        String paramId,
+        String paramName,
+        String paramProperty,
+        String paramScope,
+        String name,
+        String property,
+        String scope,
+        boolean transaction)
+        throws JspException {
+
+        // Short circuit if no parameters are specified
+        if ((paramId == null) && (name == null) && !transaction) {
+            return (null);
+        }
+
+        // Locate the Map containing our multi-value parameters map
+        Map map = null;
+        try {
+            if (name != null) {
+                map = (Map) TagUtils.getInstance().lookup(pageContext, name, property, scope);
+            }
+        } catch (ClassCastException e) {
+            saveException(pageContext, e);
+            throw new JspException(messages.getMessage("parameters.multi", name, property, scope));
+        } catch (JspException e) {
+            saveException(pageContext, e);
+            throw e;
+        }
+
+        // Create a Map to contain our results from the multi-value parameters
+        Map results = null;
+        if (map != null) {
+            results = new HashMap(map);
+        } else {
+            results = new HashMap();
+        }
+
+        // Add the single-value parameter (if any)
+        if ((paramId != null) && (paramName != null)) {
+
+            Object paramValue = null;
+            try {
+                paramValue = TagUtils.getInstance().lookup(pageContext, paramName, paramProperty, paramScope);
+            } catch (JspException e) {
+                saveException(pageContext, e);
+                throw e;
+            }
+
+            if (paramValue != null) {
+
+                String paramString = null;
+                if (paramValue instanceof String) {
+                    paramString = (String) paramValue;
+                } else {
+                    paramString = paramValue.toString();
+                }
+
+                Object mapValue = results.get(paramId);
+                if (mapValue == null) {
+                    results.put(paramId, paramString);
+                } else if (mapValue instanceof String) {
+                    String newValues[] = new String[2];
+                    newValues[0] = (String) mapValue;
+                    newValues[1] = paramString;
+                    results.put(paramId, newValues);
+                } else /* if (mapValue instanceof String[]) */ {
+                    String oldValues[] = (String[]) mapValue;
+                    String newValues[] = new String[oldValues.length + 1];
+                    System.arraycopy(oldValues, 0, newValues, 0, oldValues.length);
+                    newValues[oldValues.length] = paramString;
+                    results.put(paramId, newValues);
+                }
+
+            }
+
+        }
+
+        // Add our transaction control token (if requested)
+        if (transaction) {
+            HttpSession session = pageContext.getSession();
+            String token = null;
+            if (session != null) {
+                token = (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
+            }
+            if (token != null) {
+                results.put(Constants.TOKEN_KEY, token);
+            }
+        }
+
+        // Return the completed Map
+        return (results);
+
+    }
 
     /**
-     * Retrieves the value from request scope and if it isn't already an 
+     * Retrieves the value from request scope and if it isn't already an
      * <code>ErrorMessages</code> some classes are converted to one.
      *
      * @param pageContext The PageContext for the current page
@@ -221,7 +349,7 @@ public class TagUtils {
      * Look up and return current user locale, based on the specified parameters.
      *
      * @param pageContext The PageContext associated with this request
-     * @param locale Name of the session attribute for our user's Locale.  If this is 
+     * @param locale Name of the session attribute for our user's Locale.  If this is
      * <code>null</code>, the default locale key is used for the lookup.
      * @return current user locale
      */
