@@ -44,6 +44,8 @@
             href="proposals/workflow.html"/>
         <item name="Wish List"
             href="proposals/todo-1.1.html"/>
+        <item name="Struts 1.1 Beta 1 Release Plan"
+            href="proposals/release-plan-1.1b1.html"/>
     </menu>
 
 </project>
