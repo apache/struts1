@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.11 2002/11/17 01:48:33 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2002/11/17 01:48:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.12 2003/01/30 05:37:15 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/01/30 05:37:15 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -81,7 +81,8 @@ import org.apache.struts.util.MessageResources;
  * used to call the ActionServlet.
  *
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.11 $ $Date: 2002/11/17 01:48:33 $
+ * @author David Graham
+ * @version $Revision: 1.12 $ $Date: 2003/01/30 05:37:15 $
  */
 
 public class BaseTag extends TagSupport {
@@ -118,6 +119,9 @@ public class BaseTag extends TagSupport {
     public int doStartTag() throws JspException {
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         String serverName = request.getServerName();
+        String scheme = request.getScheme();
+        int port = request.getServerPort();
+        
         StringBuffer buf = new StringBuffer("<base href=\"");
         buf.append(request.getScheme());
         buf.append("://");
@@ -127,13 +131,13 @@ public class BaseTag extends TagSupport {
         }
 
         buf.append(serverName);
-        if ("http".equals(request.getScheme()) && (80 == request.getServerPort())) {
+        if ("http".equals(scheme) && (80 == port)) {
             ;
-        } else if ("https".equals(request.getScheme()) && (443 == request.getServerPort())) {
+        } else if ("https".equals(scheme) && (443 == port)) {
             ;
         } else {
             buf.append(":");
-            buf.append(request.getServerPort());
+            buf.append(port);
         }
         buf.append(request.getRequestURI());
         buf.append("\"");
