@@ -479,18 +479,19 @@ public class StrutsValidator implements Serializable {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
        String sMaxLength = field.getVarValue("maxlength");
 
-       // NullPointerException could occur, but it will be treated as failing the validation
-       try {
-          int max = Integer.parseInt(sMaxLength);
-          
-          if (!GenericValidator.maxLength(value, max)) {
-             errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
+       if (value != null) {
+          try {
+             int max = Integer.parseInt(sMaxLength);
              
+             if (!GenericValidator.maxLength(value, max)) {
+                errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
+                
+                return false;
+             }
+          } catch (Exception e) {
+             errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
              return false;
           }
-       } catch (Exception e) {
-          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
-          return false;
        }
        
        return true;
@@ -518,18 +519,19 @@ public class StrutsValidator implements Serializable {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
        String sMinLength = field.getVarValue("minlength");
 
-       // NullPointerException could occur, but it will be treated as failing the validation
-       try {
-          int min = Integer.parseInt(sMinLength);
-          
-          if (!GenericValidator.minLength(value, min)) {
-             errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
+       if (value != null) {
+          try {
+             int min = Integer.parseInt(sMinLength);
              
+             if (!GenericValidator.minLength(value, min)) {
+                errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
+                
+                return false;
+             }
+          } catch (Exception e) {
+             errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
              return false;
           }
-       } catch (Exception e) {
-          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
-          return false;
        }
        
        return true;
