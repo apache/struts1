@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.5 2002/08/15 09:28:50 cedric Exp $
- * $Revision: 1.5 $
- * $Date: 2002/08/15 09:28:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.6 2002/08/29 13:24:03 jholmes Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/08/29 13:24:03 $
  *
  * ====================================================================
  *
@@ -234,7 +234,7 @@ public class TilesRequestProcessor extends RequestProcessor
     if( doInclude )
       doInclude(uri, request, response);
      else
-      super.doForward(uri, request, response);   // original behavior
+      doForward(uri, request, response);   // original behavior
 
     return true;
     }
