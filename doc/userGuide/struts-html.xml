@@ -61,6 +61,14 @@
               <p>The window target for this base reference.</p>
             </info>
           </attribute>
+          <attribute>
+            <name>server</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+              <p>The server name to use instead of request.getServerName().</p>
+            </info>
+          </attribute>
 
         </tag>
 

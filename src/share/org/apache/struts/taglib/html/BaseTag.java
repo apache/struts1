@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.10 2002/11/16 06:05:22 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2002/11/16 06:05:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.11 2002/11/17 01:48:33 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/11/17 01:48:33 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * used to call the ActionServlet.
  *
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.10 $ $Date: 2002/11/16 06:05:22 $
+ * @version $Revision: 1.11 $ $Date: 2002/11/17 01:48:33 $
  */
 
 public class BaseTag extends TagSupport {
@@ -91,6 +91,11 @@ public class BaseTag extends TagSupport {
      */
     protected static MessageResources messages =
         MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
+
+    /**
+     * The server name to use instead of request.getServerName().
+     */
+    protected String server = null;
 
     /**
      * The target window for this base reference.
@@ -112,10 +117,16 @@ public class BaseTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+        String serverName = request.getServerName();
         StringBuffer buf = new StringBuffer("<base href=\"");
         buf.append(request.getScheme());
         buf.append("://");
-        buf.append(request.getServerName());
+
+        if (this.server != null) {
+            serverName = this.server;
+        }
+
+        buf.append(serverName);
         if ("http".equals(request.getScheme()) && (80 == request.getServerPort())) {
             ;
         } else if ("https".equals(request.getScheme()) && (443 == request.getServerPort())) {
@@ -134,7 +145,7 @@ public class BaseTag extends TagSupport {
 
         String xhtml =
             (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
-        
+
         if ("true".equalsIgnoreCase(xhtml)) {
             buf.append(" />");
         } else {
@@ -150,4 +161,21 @@ public class BaseTag extends TagSupport {
         }
         return EVAL_BODY_INCLUDE;
     }
+    
+    /**
+     * Returns the server.
+     * @return String
+     */
+    public String getServer() {
+        return server;
+    }
+
+    /**
+     * Sets the server.
+     * @param server The server to set
+     */
+    public void setServer(String server) {
+        this.server = server;
+    }
+
 }
