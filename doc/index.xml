@@ -68,8 +68,8 @@
 
   <p>
   The <b>official documentation</b> for the framework is provided both online 
-  and as a self-installing WAR in the distribution 
-  (<code>struts-documentation.war</code>). This includes the 
+  and as a self-installing WAR in the distribution. The 
+  <code>struts-documentation.war</code> includes the 
   <a href="kickstart.html">Kickstart</a> and
   <a href="newbie.html">Newbie</a> FAQs,   
   <a href="userGuide/index.html">Users Guide</a>, 

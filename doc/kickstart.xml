@@ -98,9 +98,9 @@
 <a href="http://jakarta.apache.org/struts/userGuide/index.html">Users Guide</a> to 
 introduce people to the framework and its underlying technologies. Various components 
 also have their own in-depth Developers Guide, to cover more advanced topics. Comprehesive 
-<a href="http://jakarta.apache.org/struts/api-1.0/index.html">Javadocs</a> are included 
+<a href="http://jakarta.apache.org/struts/api/index.html">Javadocs</a> are included 
 along with the <b>full source code</b>. For your convenience, these are bundled together as 
-a self-installing application (<code>struts-documentation.war</code>). This is the same 
+a self-installing application. The <code>struts-documentation.war</code> is the same 
 bundle that is deployed as the 
 <a href="http://jakarta.apache.org/struts/">Struts Web site</a>. 
 </p>
