@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: struts.xsl,v 1.20 2004/02/29 22:55:45 martinc Exp $ -->
+<!-- $Id: struts.xsl,v 1.21 2004/04/06 01:35:40 husted Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns="http://www.w3.org/1999/xhtml"
@@ -23,7 +23,7 @@
   	      media-type="text/html"/>
 
   <!-- Defined parameters (overrideable) -->
-  <xsl:param    name="home-logo"         select="'/images/jakarta-logo.gif'"/>
+  <xsl:param    name="home-logo"         select="'/images/asf_logo_wide.gif'"/>
   <xsl:param    name="powered-logo"      select="'/images/struts-power.gif'"/>
   <xsl:param    name="project-logo"      select="'/images/struts.gif'"/>
   <xsl:param    name="project-name"      select="'Struts Framework'"/>
@@ -76,14 +76,14 @@
         <xsl:variable name="src">
           <xsl:value-of select="$relative-path"/><xsl:value-of select="$home-logo"/>
         </xsl:variable>
-        <a href="http://jakarta.apache.org/">
-            <img src="{$src}" alt="The Jakarta Project" id="jakarta-logo"/>
+        <a href="http://apache.org/">
+            <img src="{$src}" alt="The Apache Project" id="asf_logo_wide"/>
         </a>
 
         <xsl:variable name="src">
             <xsl:value-of select="$relative-path"/><xsl:value-of select="$project-logo"/>
         </xsl:variable>
-        <a href="http://jakarta.apache.org/struts/">
+        <a href="http://struts.apache.org/">
             <img src="{$src}" alt="Struts Framework" id="struts-logo"/>
         </a>
         </div>
