@@ -65,6 +65,7 @@
                 	
                     if (field.type == 'text' ||
                         field.type == 'textarea' ||
+                        field.type == 'file' ||
                         field.type == 'select-one' ||
                         field.type == 'radio' ||
                         field.type == 'password') {
