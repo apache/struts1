@@ -75,6 +75,16 @@
     </attribute>
 
     <attribute>
+      <name>role</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      If the user is in the specified role, the content is stored for
+      subsequent access by the get tag; otherwise, the content is ignored.
+      </info>
+    </attribute>
+
+    <attribute>
       <name>content</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -115,6 +125,16 @@
       <rtexprvalue>true</rtexprvalue>
       <info>
       The name of the content to get from request scope.
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>role</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      If the user is in the specified role, the content is retrieved,
+      otherwise, the content is ignored.
       </info>
     </attribute>
 

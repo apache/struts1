@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/util/Attic/Content.java,v 1.1 2000/10/08 01:17:40 dgeary Exp $
- * $Revision: 1.1 $
- * $Date: 2000/10/08 01:17:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/util/Attic/Content.java,v 1.2 2001/01/16 23:48:41 dgeary Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/01/16 23:48:41 $
  *
  * ====================================================================
  *
@@ -76,9 +76,9 @@ package org.apache.struts.taglib.template.util;
  *  </p>
  *
  * @author David Geary
- * @revision $Revision: 1.1 $
+ * @revision $Revision: 1.2 $
  */
-public class Content {
+public class Content implements java.io.Serializable {
 
 // ----------------------------------------------------- Instance Variables
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.5 2001/01/12 19:29:42 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/01/12 19:29:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.6 2001/01/16 23:48:41 dgeary Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/01/16 23:48:41 $
  *
  * ====================================================================
  *
@@ -62,6 +62,7 @@ package org.apache.struts.taglib.template;
 
 import java.util.Hashtable;
 import java.util.Stack;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
@@ -73,7 +74,7 @@ import org.apache.struts.taglib.template.util.Content;
  * Tag handler for &lt;template:put&gt;, which puts content into request scope.
  *
  * @author David Geary
- * @version $Revision: 1.5 $ $Date: 2001/01/12 19:29:42 $
+ * @version $Revision: 1.6 $ $Date: 2001/01/16 23:48:41 $
  */
 public class PutTag extends BodyTagSupport {
 
@@ -85,6 +86,10 @@ public class PutTag extends BodyTagSupport {
      */
    private String name;
 
+   /**
+     * The role that the user must be in to store content.
+     */
+   private String role;
 
    /**
      * The content's URI (or text).
@@ -110,6 +115,15 @@ public class PutTag extends BodyTagSupport {
 
    }
 
+   /**
+     * 
+     * @param name The role the user must be in to store content.
+     */
+   public void setRole(String role) {
+
+      this.role = role;
+
+   }
 
    /**
      * Set the content's URI (if it's to be included) or text (if it's to
@@ -142,11 +156,16 @@ public class PutTag extends BodyTagSupport {
      */
    public int doEndTag() throws JspException {
 
+      HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+   	
+      if(role != null && !request.isUserInRole(role))
+      	return EVAL_PAGE;
+
       InsertTag insertTag = (InsertTag)getAncestor(
                               "org.apache.struts.taglib.template.InsertTag");
 
       if(insertTag == null)
-         throw new JspException("PutTag.doStartTag(): " +
+         throw new JspException("PutTag.doEndTag(): " +
                                 "No InsertTag ancestor");
 
       insertTag.put(name, new Content(getContent(), getDirect()));
@@ -161,7 +180,7 @@ public class PutTag extends BodyTagSupport {
      */
    public void release() {
 
-      name = content = direct = null;
+      name = content = direct = role = null;
 
    }
 

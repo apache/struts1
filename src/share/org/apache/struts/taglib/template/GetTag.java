@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.3 2000/10/12 23:05:21 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/12 23:05:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.4 2001/01/16 23:48:41 dgeary Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/01/16 23:48:41 $
  *
  * ====================================================================
  *
@@ -62,6 +62,7 @@ package org.apache.struts.taglib.template;
 
 import java.util.Hashtable;
 import java.util.Stack;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -74,7 +75,7 @@ import org.apache.struts.taglib.template.util.*;
  * it, depending upon the value of the content's direct attribute.
  *
  * @author David Geary
- * @version $Revision: 1.3 $ $Date: 2000/10/12 23:05:21 $
+ * @version $Revision: 1.4 $ $Date: 2001/01/16 23:48:41 $
  */
 public class GetTag extends TagSupport {
 
@@ -86,14 +87,28 @@ public class GetTag extends TagSupport {
      */
    private String name;
 
+   /**
+     * The role that the user must be in to retrieve content.
+     */
+   private String role;
 
    /**
-     * 
+     * Set the name attribute
      * @param name The name of the content to get.
      */
    public void setName(String name) {
 
       this.name = name;
+
+   }
+
+   /**
+     * Set the role attribute
+     * @param name The role the user must be in to retrieve content.
+     */
+   public void setRole(String role) {
+
+      this.role = role;
 
    }
 
@@ -105,9 +120,14 @@ public class GetTag extends TagSupport {
      */
    public int doStartTag() throws JspException {
 
+      HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+   	
+      if(role != null && !request.isUserInRole(role))
+      	return SKIP_BODY;
+
       ContentMap map = ContentMapStack.peek(pageContext);
       Content content = map.get(name);
-      
+
       if(content != null) {
          if(content.isDirect()) {
             try {
@@ -141,7 +161,7 @@ public class GetTag extends TagSupport {
      */
    public void release() {
 
-      name = null;
+      name = role = null;
 
    }
 
