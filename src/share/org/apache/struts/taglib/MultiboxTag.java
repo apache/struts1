@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MultiboxTag.java,v 1.2 2000/07/17 00:20:08 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/07/17 00:20:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MultiboxTag.java,v 1.3 2000/07/17 15:16:22 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/07/17 15:16:22 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/07/17 00:20:08 $
+ * @version $Revision: 1.3 $ $Date: 2000/07/17 15:16:22 $
  */
 
 public final class MultiboxTag extends BaseHandlerTag {
@@ -196,6 +196,9 @@ public final class MultiboxTag extends BaseHandlerTag {
 	    results.append(tabIndex);
 	    results.append("\"");
 	}
+	results.append(" value=\"");
+	results.append(this.value);
+	results.append("\"");
 	Object bean = pageContext.findAttribute(name);
 	String values[] = null;
 	if (bean == null)
