@@ -128,6 +128,9 @@
     <!-- Copy validator-rules.xml for the Struts validator application -->
     <copy tofile="${build.home}/validator/WEB-INF/validator-rules.xml"
             file="${basedir}/conf/share/validator-rules.xml"/>
+    <!-- Copy validator-rules.xml for the Struts blank application -->
+    <copy tofile="${build.home}/blank/WEB-INF/validator-rules.xml"
+            file="${basedir}/conf/share/validator-rules.xml"/>
 </target>
 
 
