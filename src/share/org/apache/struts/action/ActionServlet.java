@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.63 2001/03/11 02:50:10 craigmcc Exp $
- * $Revision: 1.63 $
- * $Date: 2001/03/11 02:50:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.64 2001/03/13 19:21:38 craigmcc Exp $
+ * $Revision: 1.64 $
+ * $Date: 2001/03/13 19:21:38 $
  *
  * ====================================================================
  *
@@ -230,7 +230,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.63 $ $Date: 2001/03/11 02:50:10 $
+ * @version $Revision: 1.64 $ $Date: 2001/03/13 19:21:38 $
  */
 
 public class ActionServlet
@@ -1712,6 +1712,12 @@ public class ActionServlet
 	    } else {
 		RequestDispatcher rd =
 		    getServletContext().getRequestDispatcher(path);
+                if (rd == null) {
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                                       internal.getMessage("requestDispatcher",
+                                                           path));
+                    return;
+                }
 		rd.forward(request, response);
 	    }
 	}
@@ -2044,6 +2050,12 @@ public class ActionServlet
 	    log("  Validation error(s), redirecting to: " + uri);
 	request.setAttribute(Action.ERROR_KEY, errors);
 	RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
+        if (rd == null) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                               internal.getMessage("requestDispatcher",
+                                                   uri));
+            return (false);
+        }
 	rd.forward(request, response);
 	return (false);
 
