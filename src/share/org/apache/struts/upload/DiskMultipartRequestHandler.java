@@ -21,41 +21,41 @@ import org.apache.struts.action.ActionMapping;
  * @author Mike Schachter
  */
 public class DiskMultipartRequestHandler implements MultipartRequestHandler {
-    
+
     /**
      * The ActionServlet instance used for this class
      */
     protected ActionServlet servlet;
-    
+
     /**
      * The ActionMapping instance used for this class
      */
     protected ActionMapping mapping;
-    
+
     /**
      * A Hashtable representing the form files uploaded
      */
     protected Hashtable fileElements;
-    
+
     /**
      * A Hashtable representing the form text input names and values
      */
     protected Hashtable textElements;
-    
+
     /**
-     * A Hashtable representing all elemnents 
+     * A Hashtable representing all elemnents
      */
     protected Hashtable allElements;
-    
-    
+
+
     public void handleRequest(HttpServletRequest request) throws ServletException {
         MultipartIterator iterator = new MultipartIterator(request);
         MultipartElement element;
-        
+
         textElements = new Hashtable();
         fileElements = new Hashtable();
         allElements = new Hashtable();
-        
+
         while ((element = iterator.getNextElement()) != null) {
             if (element.getContentType() == null) {
                 String textData;
@@ -65,7 +65,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
                 catch (UnsupportedEncodingException uee) {
                     textData = new String(element.getData());
                 }
-                
+
                 textElements.put(element.getName(), textData);
                 allElements.put(element.getName(), textData);
             }
@@ -77,16 +77,16 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
                 }
                 catch (IOException ioe) {
                     throw new ServletException("DiskMultipartRequestHandler." +
-                                               "handleRequest(), IOException: " +
-                                               ioe.getMessage());
+                    "handleRequest(), IOException: " +
+                    ioe.getMessage());
                 }
-            }             
+            }
         }
     }
-    
-    
+
+
     protected DiskFile writeFile(MultipartElement element) throws IOException,
-                                                                     ServletException {
+    ServletException {
         DiskFile theFile = null;
 
         //get a handle to some temporary file and open
@@ -95,12 +95,19 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
         if (tempDir == null) {
             //attempt to retrieve the servlet container's temporary directory
             ServletContext context = servlet.getServletConfig().getServletContext();
-            tempDir = (String) context.getAttribute("javax.servlet.context.tempdir");
+
+            try {
+                tempDir = (String) context.getAttribute("javax.servlet.context.tempdir");
+            }
+            catch (ClassCastException cce) {
+                tempDir = ((File) context.getAttribute("javax.servlet.context.tempdir")).getAbsolutePath();
+            }
             
+
             if (tempDir == null) {
-                //default to system-wide tempdir                
+                //default to system-wide tempdir
                 tempDir = System.getProperty("java.io.tmpdir");
-                
+
                 if (servlet.getDebug() > 1) {
                     servlet.log("DiskMultipartRequestHandler.handleRequest(): " +
                     "defaulting to java.io.tmpdir directory \"" +
@@ -108,14 +115,14 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
                 }
             }
         }
-        
+
         File tempDirectory = new File(tempDir);
-        
+
         if ((!tempDirectory.exists()) || (!tempDirectory.isDirectory())) {
             throw new ServletException("DiskMultipartRequestHandler: no " +
-                "temporary directory specified for disk write");
+            "temporary directory specified for disk write");
         }
-        
+
         File tempFile = File.createTempFile("strts", null, tempDirectory);
         FileOutputStream fos = new FileOutputStream(tempFile);
 
@@ -130,7 +137,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
             int offset = 0;
 
             while ((bytesRead = byteArray.read(bufferBytes,
-                                               offset, bufferSize)) != -1) {
+            offset, bufferSize)) != -1) {
                 fos.write(bufferBytes, offset, bytesRead);
                 bytesWritten += bytesRead;
                 offset += bytesRead;
@@ -146,37 +153,37 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
         theFile.setContentType(element.getContentType());
         theFile.setFileName(element.getFileName());
         theFile.setFileSize(element.getData().length);
-        
+
         fos.close();
-        
+
         return theFile;
     }
-    
+
     public Hashtable getAllElements() {
         return allElements;
     }
-    
+
     public Hashtable getTextElements() {
         return new Hashtable();
     }
-    
+
     public Hashtable getFileElements() {
         return new Hashtable();
     }
-    
+
     /**
      * Delete all the files uploaded
      */
     public void rollback() {
         Enumeration names = fileElements.keys();
-        
+
         while (names.hasMoreElements()) {
             String name = (String) names.nextElement();
             DiskFile theFile = (DiskFile) fileElements.get(name);
             theFile.destroy();
         }
     }
-    
+
     /**
      * Calls on {@link #rollback() rollback()} to delete
      * temporary files
@@ -184,21 +191,21 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
     public void finish() {
         rollback();
     }
-    
+
     public void setServlet(ActionServlet servlet) {
         this.servlet = servlet;
     }
-    
+
     public void setMapping(ActionMapping mapping) {
         this.mapping = mapping;
     }
-    
+
     public ActionServlet getServlet() {
         return servlet;
     }
-    
+
     public ActionMapping getMapping() {
         return mapping;
     }
-    
+
 }
