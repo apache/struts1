@@ -77,12 +77,6 @@ import org.apache.struts.taglib.SimpleBeanForTesting;
  * 
  *  TestCheckboxTag(3 and 4) - These test using a boolean property 
  *                             set to false on our form.
- * 
- *  TestCheckboxTag(5 and 6) - These test using a java.lang.Boolean property 
- *                             set to true on our form.
- * 
- *  TestCheckboxTag(7 and 8) - These test using a java.lang.Boolean property 
- *                             set to false on our form.
  *
  * @author James Mitchell
  */
