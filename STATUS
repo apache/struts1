@@ -1,12 +1,18 @@
 STATUS
 ======
-$Id: STATUS,v 1.61 2002/10/25 03:41:23 jmitchell Exp $
+$Id: STATUS,v 1.62 2002/10/26 00:57:28 dgraham Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b2 AND NIGHTLY BUILDS
             ====================================================
 
                             12 open bugs to swat!!
+
+
+This file is not actively maintained.  Use this bugzilla query to see the current
+open bugs:
+
+http://nagoya.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&email1=&emailtype1=substring&emailassigned_to1=1&email2=&emailtype2=substring&emailreporter2=1&bugidtype=include&bug_id=&changedin=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&product=Struts&short_desc=&short_desc_type=allwordssubstr&long_desc=&long_desc_type=allwordssubstr&bug_file_loc=&bug_file_loc_type=allwordssubstr&keywords=&keywords_type=anywords&field0-0-0=noop&type0-0-0=noop&value0-0-0=&cmdtype=doit&newqueryname=&order=Reuse+same+sort+as+last+time
 
 
 Controller:
