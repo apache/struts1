@@ -25,7 +25,7 @@
       
       <ul>
         <li>Write an <code>Action</code> class for each logical request that may 
-            be received (extend <code>org.apache.action.Action</code>).</li>
+            be received (extend <code>org.apache.struts.action.Action</code>).</li>
         <li>Configure a ActionMapping (in XML) for each logical request that may 
             be submitted. The XML configuration file is usually named
             <code>struts-config.xml</code>.</li>
