@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.131 2002/11/28 07:12:42 rleland Exp $
- * $Revision: 1.131 $
- * $Date: 2002/11/28 07:12:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.132 2002/11/28 07:47:37 rleland Exp $
+ * $Revision: 1.132 $
+ * $Date: 2002/11/28 07:47:37 $
  *
  * ====================================================================
  *
@@ -299,7 +299,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.131 $ $Date: 2002/11/28 07:12:42 $
+ * @version $Revision: 1.132 $ $Date: 2002/11/28 07:47:37 $
  */
 
 public class ActionServlet
@@ -429,7 +429,7 @@ public class ActionServlet
         destroyInternal();
         getServletContext().removeAttribute(Globals.ACTION_SERVLET_KEY);
 
-        // FIXME - destroy ApplicationConfig and message resource instances
+        // FIXME - destroy ModuleConfig and message resource instances
 
     }
 
@@ -461,7 +461,7 @@ public class ActionServlet
                 continue;
             }
             String prefix = name.substring(6);
-            moduleConfig = initApplicationConfig
+            moduleConfig = initModuleConfig
                 (prefix, getServletConfig().getInitParameter(name));
             initApplicationMessageResources(moduleConfig);
             initApplicationDataSources(moduleConfig);
@@ -1173,7 +1173,7 @@ public class ActionServlet
      * be removed in a subsequent release.
      *
      * @deprecated Replaced by initApplicationDataSources() that takes
-     *  an ApplicationConfig argument. This method does nothing.
+     *  an ModuleConfig argument. This method does nothing.
      */
     protected void initDataSources() throws javax.servlet.ServletException {
 
