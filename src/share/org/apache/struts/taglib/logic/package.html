@@ -290,29 +290,23 @@ In this case, <i>matchTag</i> would have to be &lt;logic:match&gt;.</pre>
       Web Application Deployment Descriptor</a><br>
       <br>
       <p>[numberProcess.jsp]</p>
-      <pre>&lt;%@ page language=&quot;java&quot; %&gt;
-&lt;%@ taglib uri=&quot;/WEB-INF/struts-logic.tld&quot; prefix=&quot;logic&quot; %&gt;
-
-
-
-
-
-
-&lt;!-- Is the number guess right? --&gt;
+      <pre>&lt;%@ page language=&quot;java&quot; %&gt;<br>&lt;%@ taglib uri=&quot;/WEB-INF/struts-logic.tld&quot; prefix=&quot;logic&quot; %&gt;</pre>
+      <pre>&lt;!-- Is the number guess right? --&gt;
 &lt;logic:equal parameter=&quot;number&quot; value=&quot;7&quot;&gt;
-	You guessed right!  You win a high speed blender!
-&lt;/logic:equal&gt;
-
-
-&lt;!-- If the number guessed was wrong --&gt;
+	You guessed right! You win a high speed blender!
+&lt;/logic:equal&gt;</pre>
+      <pre>&lt;!-- If the number guessed was wrong --&gt;
 &lt;logic:notEqual parameter=&quot;number&quot; value=&quot;7&quot;&gt;
+	&lt;!-- Less Than --&gt;
 	&lt;logic:lessThan parameter=&quot;number&quot; value=&quot;7&quot;&gt;
-		A little lower...
-	&lt;/logic:lessEqual&gt;
+         A little higher...
+	&lt;/logic:lessThan&gt;
+	&lt;!-- Greater Than --&gt;
 	&lt;logic:greaterThan parameter=&quot;number&quot; value=&quot;7&quot;&gt;
-		A little higher...
-	&lt;/logic:greaterEqual&gt;
-&lt;/logic:notEqual&gt;
+         A little lower...
+	&lt;/logic:greaterThan&gt;
+&lt;/logic:notEqual&gt;</pre>
+      <pre>&nbsp;
 
 </pre>
       <p>Basically, the numberProcess.jsp page uses the equal tag to check if 
@@ -338,7 +332,6 @@ In this case, <i>matchTag</i> would have to be &lt;logic:match&gt;.</pre>
         of their browsing habits:</p>
       <p>[sneaky.jsp]</p>
       <pre>&lt;%@ page language=&quot;java&quot; %&gt;
-
 &lt;%@ taglib uri=&quot;/WEB-INF/struts-logic.tld&quot; prefix=&quot;logic&quot; %&gt;
 
 
@@ -347,6 +340,10 @@ In this case, <i>matchTag</i> would have to be &lt;logic:match&gt;.</pre>
 	&lt;logic:match header=&quot;Referer&quot; value=&quot;google.com&quot;&gt;
 		I see you found our site through Google... interesting.
 	&lt;/logic:match&gt;
+	&lt;logic:notMatch header=&quot;Referer&quot; value=&quot;google.com&quot;&gt;
+		Welcome to the site, we're secretly logging what site you came from,
+		because we're shady...
+	&lt;/logic:notMatch&gt;
 &lt;/logic:present&gt;
 
 &lt;!-- If the header is not present --&gt;
@@ -359,31 +356,30 @@ In this case, <i>matchTag</i> would have to be &lt;logic:match&gt;.</pre>
     </blockquote>
   </blockquote>
   <p><b>Collection Utilities (iterate)</b></p>
-  <blockquote>
-    <p>For an example of using the &lt;logic:iterate&gt; tag, we'll use the javax.servlet.ServletRequest 
-      object and it's parameterMap property to iterate through parameter names 
-      and print them out. See the javadocs for <a href="http://www.javasoft.com/products/servlet/2.3/javadoc/javax/servlet/ServletRequest.html#getParameterMap()">javax.servletRequest.getParameterMap()</a> 
-      for more information. Note that this example uses the &lt;bean:write&gt; 
-      tag. More information on the &lt;bean:write&gt; tag can be found in the 
-      Bean Tag User Guide.</p>
+  <blockquote> 
+    <p>For an example of using the &lt;logic:iterate&gt; tag, we'll use one of 
+      the previous examples given, in it's entirety. This example uses the &lt;bean:write&gt; 
+      tag from the Bean Tag Library, see the User's Guide on the bean tag library 
+      for more information on it's usage:</p>
     <p>[iterate.jsp]</p>
-    <pre>&lt;%@ page language=&quot;java&quot; %&gt;
-&lt;%@ taglib uri=&quot;/WEB-INF/struts-bean.tld&quot; prefix=&quot;bean&quot; %&gt;
-&lt;%@ taglib uri=&quot;/WEB-INF/struts-logic.tld&quot; prefix=&quot;logic&quot; %&gt;
-
-
-&lt;logic:iterate name=&quot;request&quot; property=&quot;parameterMap&quot; id=&quot;parameterName&quot;&gt;
-	Parameter: &lt;bean:write name=&quot;parameterName&quot; /&gt;
-&lt;/logic:iterate&gt;</pre>
-    <pre>&nbsp;</pre>
+    <pre>&lt;%@ page language=&quot;java&quot; %&gt;<br>&lt;%@ taglib uri=&quot;/WEB-INF/struts-bean.tld&quot; prefix=&quot;bean&quot; %&gt;<br>&lt;%@ taglib uri=&quot;/WEB-INF/struts-logic.tld&quot; prefix=&quot;logic&quot; %&gt;</pre>
   </blockquote>
-  <pre>&nbsp;</pre>
-  <blockquote>
-    <blockquote>
-      <pre>&nbsp;</pre>
-    </blockquote>
-    <blockquote>&nbsp;</blockquote>
-  </blockquote>
+</blockquote>
+<pre>		&lt;%
+			java.util.ArrayList list = new java.util.ArrayList();
+      		list.add(&quot;First&quot;);
+       		list.add(&quot;Second&quot;);
+       		list.add(&quot;Third&quot;);
+       		list.add(&quot;Fourth&quot;);
+       		list.add(&quot;Fifth&quot;);
+       		pageContext.setAttribute(&quot;list&quot;, list, PageContext.PAGE_SCOPE);
+       %&gt;
+       
+       &lt;logic:iterate id=&quot;myCollectionElement&quot; name=&quot;list&quot;&gt;
+       		Element Value: &lt;bean:write name=&quot;myCollectionElement&quot; /&gt;&lt;br /&gt;
+       &lt;/logic:iterate&gt;</pre>
+<blockquote>
+  <blockquote>&nbsp;</blockquote>
 </blockquote>
 </body>
 </html>
