@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELCheckboxTagBeanInfo.java,v 1.2 2003/02/19 03:52:49 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/19 03:52:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELCheckboxTagBeanInfo.java,v 1.3 2003/03/09 05:51:09 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/03/09 05:51:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,6 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
+import java.util.ArrayList;
 import java.beans.SimpleBeanInfo;
 
 /**
@@ -70,92 +71,130 @@ import java.beans.SimpleBeanInfo;
  * to override the default mapping of custom tag attribute names to class
  * attribute names.
  *<p>
- * This is necessary because the base class,
- * <code>org.apache.struts.taglib.html.CheckboxTag</code> defines some
- * attributes whose type is not <code>java.lang.String</code>, so the subclass
- * needs to define setter methods of a different name, which this class maps
- * to.
- *<p>
- * Unfortunately, if a <code>BeanInfo</code> class needs to be provided to
- * change the mapping of one attribute, it has to specify the mappings of ALL
- * attributes, even if all the others use the expected mappings of "name" to
- * "method".
+ * This is because the value of the unevaluated EL expression has to be kept
+ * separately from the evaluated value, which is stored in the base class. This
+ * is related to the fact that the JSP compiler can choose to reuse different
+ * tag instances if they received the same original attribute values, and the
+ * JSP compiler can choose to not re-call the setter methods, because it can
+ * assume the same values are already set.
  */
 public class ELCheckboxTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[27];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("accesskey", ELCheckboxTag.class,
-                                               null, "setAccesskeyExpr");
-            result[1] = new PropertyDescriptor("alt", ELCheckboxTag.class,
-                                               null, "setAltExpr");
-            result[2] = new PropertyDescriptor("altKey", ELCheckboxTag.class,
-                                               null, "setAltKeyExpr");
-            result[3] = new PropertyDescriptor("disabled", ELCheckboxTag.class,
-                                               null, "setDisabledExpr");
-            result[4] = new PropertyDescriptor("indexed", ELCheckboxTag.class,
-                                               null, "setIndexedExpr");
-            result[5] = new PropertyDescriptor("name", ELCheckboxTag.class,
-                                               null, "setNameExpr");
-            result[6] = new PropertyDescriptor("onblur", ELCheckboxTag.class,
-                                               null, "setOnblurExpr");
-            result[7] = new PropertyDescriptor("onchange", ELCheckboxTag.class,
-                                               null, "setOnchangeExpr");
-            result[8] = new PropertyDescriptor("onclick", ELCheckboxTag.class,
-                                               null, "setOnclickExpr");
-            result[9] = new PropertyDescriptor("ondblclick",
-                                               ELCheckboxTag.class,
-                                               null, "setOndblclickExpr");
-            result[10] = new PropertyDescriptor("onfocus", ELCheckboxTag.class,
-                                               null, "setOnfocusExpr");
-            result[11] = new PropertyDescriptor("onkeydown",
-                                                ELCheckboxTag.class,
-                                               null, "setOnkeydownExpr");
-            result[12] = new PropertyDescriptor("onkeypress",
-                                                ELCheckboxTag.class,
-                                               null, "setOnkeypressExpr");
-            result[13] = new PropertyDescriptor("onkeyup", ELCheckboxTag.class,
-                                               null, "setOnkeyupExpr");
-            result[14] = new PropertyDescriptor("onmousedown",
-                                               ELCheckboxTag.class,
-                                               null, "setOnmousedownExpr");
-            result[15] = new PropertyDescriptor("onmousemove",
-                                               ELCheckboxTag.class,
-                                               null, "setOnmousemoveExpr");
-            result[16] = new PropertyDescriptor("onmouseout",
-                                               ELCheckboxTag.class,
-                                               null, "setOnmouseoutExpr");
-            result[17] = new PropertyDescriptor("onmouseover",
-                                               ELCheckboxTag.class,
-                                               null, "setOnmouseoverExpr");
-            result[18] = new PropertyDescriptor("onmouseup",
-                                                ELCheckboxTag.class,
-                                               null, "setOnmouseupExpr");
-            result[19] = new PropertyDescriptor("property", ELCheckboxTag.class,
-                                               null, "setPropertyExpr");
-            result[20] = new PropertyDescriptor("style", ELCheckboxTag.class,
-                                               null, "setStyleExpr");
-            result[21] = new PropertyDescriptor("styleClass",
-                                               ELCheckboxTag.class,
-                                               null, "setStyleClassExpr");
-            result[22] = new PropertyDescriptor("styleId", ELCheckboxTag.class,
-                                               null, "setStyleIdExpr");
-            result[23] = new PropertyDescriptor("tabindex", ELCheckboxTag.class,
-                                               null, "setTabindexExpr");
-            result[24] = new PropertyDescriptor("title", ELCheckboxTag.class,
-                                               null, "setTitleExpr");
-            result[25] = new PropertyDescriptor("titleKey", ELCheckboxTag.class,
-                                               null, "setTitleKeyExpr");
-            result[26] = new PropertyDescriptor("value", ELCheckboxTag.class,
-                                               null, "setValueExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("accesskey", ELCheckboxTag.class,
+                                                null, "setAccesskeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("alt", ELCheckboxTag.class,
+                                                null, "setAltExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("altKey", ELCheckboxTag.class,
+                                                null, "setAltKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("disabled", ELCheckboxTag.class,
+                                                null, "setDisabledExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("indexed", ELCheckboxTag.class,
+                                                null, "setIndexedExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("name", ELCheckboxTag.class,
+                                                null, "setNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onblur", ELCheckboxTag.class,
+                                                null, "setOnblurExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onchange", ELCheckboxTag.class,
+                                                null, "setOnchangeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onclick", ELCheckboxTag.class,
+                                                null, "setOnclickExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("ondblclick", ELCheckboxTag.class,
+                                                null, "setOndblclickExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onfocus", ELCheckboxTag.class,
+                                                null, "setOnfocusExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeydown", ELCheckboxTag.class,
+                                                null, "setOnkeydownExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeypress", ELCheckboxTag.class,
+                                                null, "setOnkeypressExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeyup", ELCheckboxTag.class,
+                                                null, "setOnkeyupExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmousedown", ELCheckboxTag.class,
+                                                null, "setOnmousedownExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmousemove", ELCheckboxTag.class,
+                                                null, "setOnmousemoveExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseout", ELCheckboxTag.class,
+                                                null, "setOnmouseoutExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseover", ELCheckboxTag.class,
+                                                null, "setOnmouseoverExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseup", ELCheckboxTag.class,
+                                                null, "setOnmouseupExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("property", ELCheckboxTag.class,
+                                                null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("style", ELCheckboxTag.class,
+                                                null, "setStyleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleClass", ELCheckboxTag.class,
+                                                null, "setStyleClassExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleId", ELCheckboxTag.class,
+                                                null, "setStyleIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("tabindex", ELCheckboxTag.class,
+                                                null, "setTabindexExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("title", ELCheckboxTag.class,
+                                                null, "setTitleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("titleKey", ELCheckboxTag.class,
+                                                null, "setTitleKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("value", ELCheckboxTag.class,
+                                                null, "setValueExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

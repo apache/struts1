@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTagBeanInfo.java,v 1.2 2003/02/27 14:21:27 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/27 14:21:27 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTagBeanInfo.java,v 1.3 2003/03/09 05:51:09 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/03/09 05:51:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,6 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
+import java.util.ArrayList;
 import java.beans.SimpleBeanInfo;
 
 /**
@@ -74,96 +75,175 @@ public class ELImgTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[41];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("accesskey", ELImgTag.class,
-                                               null, "setAccesskeyExpr");
-            result[1] = new PropertyDescriptor("align", ELImgTag.class,
-                                               null, "setAlignExpr");
-            result[2] = new PropertyDescriptor("alt", ELImgTag.class,
-                                               null, "setAltExpr");
-            result[3] = new PropertyDescriptor("altKey", ELImgTag.class,
-                                               null, "setAltKeyExpr");
-            result[4] = new PropertyDescriptor("border", ELImgTag.class,
-                                               null, "setBorderExpr");
-            result[5] = new PropertyDescriptor("bundle", ELImgTag.class,
-                                               null, "setBundleExpr");
-            result[6] = new PropertyDescriptor("height", ELImgTag.class,
-                                               null, "setHeightExpr");
-            result[7] = new PropertyDescriptor("hspace", ELImgTag.class,
-                                               null, "setHspaceExpr");
-            result[8] = new PropertyDescriptor("imageName", ELImgTag.class,
-                                               null, "setImageNameExpr");
-            result[9] = new PropertyDescriptor("ismap", ELImgTag.class,
-                                               null, "setIsmapExpr");
-            result[10] = new PropertyDescriptor("locale", ELImgTag.class,
-                                               null, "setLocaleExpr");
-            result[11] = new PropertyDescriptor("lowsrc", ELImgTag.class,
-                                               null, "setLowsrcExpr");
-            result[12] = new PropertyDescriptor("name", ELImgTag.class,
-                                               null, "setNameExpr");
-            result[13] = new PropertyDescriptor("onclick", ELImgTag.class,
-                                               null, "setOnclickExpr");
-            result[14] = new PropertyDescriptor("ondblclick", ELImgTag.class,
-                                               null, "setOndblclickExpr");
-            result[15] = new PropertyDescriptor("onkeydown", ELImgTag.class,
-                                               null, "setOnkeydownExpr");
-            result[16] = new PropertyDescriptor("onkeypress", ELImgTag.class,
-                                               null, "setOnkeypressExpr");
-            result[17] = new PropertyDescriptor("onkeyup", ELImgTag.class,
-                                               null, "setOnkeyupExpr");
-            result[18] = new PropertyDescriptor("onmousedown", ELImgTag.class,
-                                               null, "setOnmousedownExpr");
-            result[19] = new PropertyDescriptor("onmousemove", ELImgTag.class,
-                                               null, "setOnmousemoveExpr");
-            result[20] = new PropertyDescriptor("onmouseout", ELImgTag.class,
-                                               null, "setOnmouseoutExpr");
-            result[21] = new PropertyDescriptor("onmouseover", ELImgTag.class,
-                                               null, "setOnmouseoverExpr");
-            result[22] = new PropertyDescriptor("onmouseup", ELImgTag.class,
-                                               null, "setOnmouseupExpr");
-            result[23] = new PropertyDescriptor("page", ELImgTag.class,
-                                               null, "setPageExpr");
-            result[24] = new PropertyDescriptor("pageKey", ELImgTag.class,
-                                               null, "setPageKeyExpr");
-            result[25] = new PropertyDescriptor("paramId", ELImgTag.class,
-                                               null, "setParamIdExpr");
-            result[26] = new PropertyDescriptor("paramName", ELImgTag.class,
-                                               null, "setParamNameExpr");
-            result[27] = new PropertyDescriptor("paramProperty", ELImgTag.class,
-                                               null, "setParamPropertyExpr");
-            result[28] = new PropertyDescriptor("paramScope", ELImgTag.class,
-                                               null, "setParamScopeExpr");
-            result[29] = new PropertyDescriptor("property", ELImgTag.class,
-                                               null, "setPropertyExpr");
-            result[30] = new PropertyDescriptor("scope", ELImgTag.class,
-                                               null, "setScopeExpr");
-            result[31] = new PropertyDescriptor("src", ELImgTag.class,
-                                               null, "setSrcExpr");
-            result[32] = new PropertyDescriptor("srcKey", ELImgTag.class,
-                                               null, "setSrcKeyExpr");
-            result[33] = new PropertyDescriptor("style", ELImgTag.class,
-                                               null, "setStyleExpr");
-            result[34] = new PropertyDescriptor("styleClass", ELImgTag.class,
-                                               null, "setStyleClassExpr");
-            result[35] = new PropertyDescriptor("styleId", ELImgTag.class,
-                                               null, "setStyleIdExpr");
-            result[36] = new PropertyDescriptor("title", ELImgTag.class,
-                                               null, "setTitleExpr");
-            result[37] = new PropertyDescriptor("titleKey", ELImgTag.class,
-                                               null, "setTitleKeyExpr");
-            result[38] = new PropertyDescriptor("usemap", ELImgTag.class,
-                                               null, "setUsemapExpr");
-            result[39] = new PropertyDescriptor("vspace", ELImgTag.class,
-                                               null, "setVspaceExpr");
-            result[40] = new PropertyDescriptor("width", ELImgTag.class,
-                                               null, "setWidthExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("accesskey", ELImgTag.class,
+                                                null, "setAccesskeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("align", ELImgTag.class,
+                                                null, "setAlignExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("alt", ELImgTag.class,
+                                                null, "setAltExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("altKey", ELImgTag.class,
+                                                null, "setAltKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("border", ELImgTag.class,
+                                                null, "setBorderExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("bundle", ELImgTag.class,
+                                                null, "setBundleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("height", ELImgTag.class,
+                                                null, "setHeightExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("hspace", ELImgTag.class,
+                                                null, "setHspaceExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("imageName", ELImgTag.class,
+                                                null, "setImageNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("ismap", ELImgTag.class,
+                                                null, "setIsmapExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("locale", ELImgTag.class,
+                                                null, "setLocaleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("lowsrc", ELImgTag.class,
+                                                null, "setLowsrcExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("name", ELImgTag.class,
+                                                null, "setNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onclick", ELImgTag.class,
+                                                null, "setOnclickExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("ondblclick", ELImgTag.class,
+                                                null, "setOndblclickExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeydown", ELImgTag.class,
+                                                null, "setOnkeydownExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeypress", ELImgTag.class,
+                                                null, "setOnkeypressExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeyup", ELImgTag.class,
+                                                null, "setOnkeyupExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmousedown", ELImgTag.class,
+                                                null, "setOnmousedownExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmousemove", ELImgTag.class,
+                                                null, "setOnmousemoveExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseout", ELImgTag.class,
+                                                null, "setOnmouseoutExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseover", ELImgTag.class,
+                                                null, "setOnmouseoverExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseup", ELImgTag.class,
+                                                null, "setOnmouseupExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("page", ELImgTag.class,
+                                                null, "setPageExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("pageKey", ELImgTag.class,
+                                                null, "setPageKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("paramId", ELImgTag.class,
+                                                null, "setParamIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("paramName", ELImgTag.class,
+                                                null, "setParamNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("paramProperty", ELImgTag.class,
+                                                null, "setParamPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("paramScope", ELImgTag.class,
+                                                null, "setParamScopeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("property", ELImgTag.class,
+                                                null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("scope", ELImgTag.class,
+                                                null, "setScopeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("src", ELImgTag.class,
+                                                null, "setSrcExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("srcKey", ELImgTag.class,
+                                                null, "setSrcKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("style", ELImgTag.class,
+                                                null, "setStyleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleClass", ELImgTag.class,
+                                                null, "setStyleClassExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleId", ELImgTag.class,
+                                                null, "setStyleIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("title", ELImgTag.class,
+                                                null, "setTitleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("titleKey", ELImgTag.class,
+                                                null, "setTitleKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("usemap", ELImgTag.class,
+                                                null, "setUsemapExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("vspace", ELImgTag.class,
+                                                null, "setVspaceExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("width", ELImgTag.class,
+                                                null, "setWidthExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

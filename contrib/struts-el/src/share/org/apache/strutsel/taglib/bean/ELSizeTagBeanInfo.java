@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELSizeTagBeanInfo.java,v 1.4 2003/02/19 03:49:50 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2003/02/19 03:49:50 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELSizeTagBeanInfo.java,v 1.5 2003/03/09 05:51:08 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/03/09 05:51:08 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,6 +63,7 @@ package org.apache.strutsel.taglib.bean;
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
 import java.beans.SimpleBeanInfo;
+import java.util.ArrayList;
 import java.lang.reflect.Method;
 
 /**
@@ -71,39 +72,42 @@ import java.lang.reflect.Method;
  * to override the default mapping of custom tag attribute names to class
  * attribute names.
  *<p>
- * In particular, it provides for the mapping of the custom tag attribute
- * <code>collection</code> to the class attribute <code>collectionExpr</code>.
- *<p>
- * This is necessary because the base class,
- * <code>org.apache.struts.taglib.bean.SizeTag</code> already defines a
- * <code>collection</code> attribute of type <code>java.lang.Object</code>.
- * The <code>org.apache.strutsel.taglib.bean.ELSizeTag</code> subclass cannot
- * use this attribute because the custom tag attribute <code>collection</code>
- * has to be of type <code>java.lang.String</code> in order to be evaluated by
- * the JSTL EL engine.
+ * This is because the value of the unevaluated EL expression has to be kept
+ * separately from the evaluated value, which is stored in the base class. This
+ * is related to the fact that the JSP compiler can choose to reuse different
+ * tag instances if they received the same original attribute values, and the
+ * JSP compiler can choose to not re-call the setter methods, because it can
+ * assume the same values are already set.
  */
 public class ELSizeTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[5];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("collection", ELSizeTag.class,
-                                               null, "setCollectionExpr");
-            result[1] = new PropertyDescriptor("id", ELSizeTag.class,
-                                               null, "setIdExpr");
-            result[2] = new PropertyDescriptor("name", ELSizeTag.class,
-                                               null, "setNameExpr");
-            result[3] = new PropertyDescriptor("property", ELSizeTag.class,
-                                               null, "setPropertyExpr");
-            result[4] = new PropertyDescriptor("scope", ELSizeTag.class,
-                                               null, "setScopeExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("collection", ELSizeTag.class,
+                                                null, "setCollectionExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("id", ELSizeTag.class,
+                                                null, "setIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("name", ELSizeTag.class,
+                                                null, "setNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("property", ELSizeTag.class,
+                                                null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("scope", ELSizeTag.class,
+                                                null, "setScopeExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELTextareaTagBeanInfo.java,v 1.2 2003/02/19 03:54:38 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/19 03:54:38 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELTextareaTagBeanInfo.java,v 1.3 2003/03/09 05:51:09 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/03/09 05:51:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,6 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
+import java.util.ArrayList;
 import java.beans.SimpleBeanInfo;
 
 /**
@@ -70,98 +71,142 @@ import java.beans.SimpleBeanInfo;
  * needed to override the default mapping of custom tag attribute names to
  * class attribute names.
  *<p>
- * This is necessary because the base class,
- * <code>org.apache.struts.taglib.html.TextareaTag</code> defines some
- * attributes whose type is not <code>java.lang.String</code>, so the subclass
- * needs to define setter methods of a different name, which this class maps
- * to.
- *<p>
- * Unfortunately, if a <code>BeanInfo</code> class needs to be provided to
- * change the mapping of one attribute, it has to specify the mappings of ALL
- * attributes, even if all the others use the expected mappings of "name" to
- * "method".
+ * This is because the value of the unevaluated EL expression has to be kept
+ * separately from the evaluated value, which is stored in the base class. This
+ * is related to the fact that the JSP compiler can choose to reuse different
+ * tag instances if they received the same original attribute values, and the
+ * JSP compiler can choose to not re-call the setter methods, because it can
+ * assume the same values are already set.
  */
 public class ELTextareaTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[30];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("accesskey", ELTextareaTag.class,
-                                               null, "setAccesskeyExpr");
-            result[1] = new PropertyDescriptor("alt", ELTextareaTag.class,
-                                               null, "setAltExpr");
-            result[2] = new PropertyDescriptor("altKey", ELTextareaTag.class,
-                                               null, "setAltKeyExpr");
-            result[3] = new PropertyDescriptor("cols", ELTextareaTag.class,
-                                               null, "setColsExpr");
-            result[4] = new PropertyDescriptor("disabled", ELTextareaTag.class,
-                                               null, "setDisabledExpr");
-            result[5] = new PropertyDescriptor("indexed", ELTextareaTag.class,
-                                               null, "setIndexedExpr");
-            result[6] = new PropertyDescriptor("name", ELTextareaTag.class,
-                                               null, "setNameExpr");
-            result[7] = new PropertyDescriptor("onblur", ELTextareaTag.class,
-                                               null, "setOnblurExpr");
-            result[8] = new PropertyDescriptor("onchange", ELTextareaTag.class,
-                                               null, "setOnchangeExpr");
-            result[9] = new PropertyDescriptor("onclick", ELTextareaTag.class,
-                                               null, "setOnclickExpr");
-            result[10] = new PropertyDescriptor("ondblclick",
-                                               ELTextareaTag.class,
-                                               null, "setOndblclickExpr");
-            result[11] = new PropertyDescriptor("onfocus", ELTextareaTag.class,
-                                               null, "setOnfocusExpr");
-            result[12] = new PropertyDescriptor("onkeydown",
-                                                ELTextareaTag.class,
-                                               null, "setOnkeydownExpr");
-            result[13] = new PropertyDescriptor("onkeypress",
-                                                ELTextareaTag.class,
-                                               null, "setOnkeypressExpr");
-            result[14] = new PropertyDescriptor("onkeyup", ELTextareaTag.class,
-                                               null, "setOnkeyupExpr");
-            result[15] = new PropertyDescriptor("onmousedown",
-                                               ELTextareaTag.class,
-                                               null, "setOnmousedownExpr");
-            result[16] = new PropertyDescriptor("onmousemove",
-                                               ELTextareaTag.class,
-                                               null, "setOnmousemoveExpr");
-            result[17] = new PropertyDescriptor("onmouseout",
-                                               ELTextareaTag.class,
-                                               null, "setOnmouseoutExpr");
-            result[18] = new PropertyDescriptor("onmouseover",
-                                               ELTextareaTag.class,
-                                               null, "setOnmouseoverExpr");
-            result[19] = new PropertyDescriptor("onmouseup",
-                                                ELTextareaTag.class,
-                                               null, "setOnmouseupExpr");
-            result[20] = new PropertyDescriptor("property", ELTextareaTag.class,
-                                               null, "setPropertyExpr");
-            result[21] = new PropertyDescriptor("readonly", ELTextareaTag.class,
-                                               null, "setReadonlyExpr");
-            result[22] = new PropertyDescriptor("rows", ELTextareaTag.class,
-                                               null, "setRowsExpr");
-            result[23] = new PropertyDescriptor("style", ELTextareaTag.class,
-                                               null, "setStyleExpr");
-            result[24] = new PropertyDescriptor("styleClass",
-                                               ELTextareaTag.class,
-                                               null, "setStyleClassExpr");
-            result[25] = new PropertyDescriptor("styleId", ELTextareaTag.class,
-                                               null, "setStyleIdExpr");
-            result[26] = new PropertyDescriptor("tabindex", ELTextareaTag.class,
-                                               null, "setTabindexExpr");
-            result[27] = new PropertyDescriptor("title", ELTextareaTag.class,
-                                               null, "setTitleExpr");
-            result[28] = new PropertyDescriptor("titleKey", ELTextareaTag.class,
-                                               null, "setTitleKeyExpr");
-            result[29] = new PropertyDescriptor("value", ELTextareaTag.class,
-                                               null, "setValueExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("accesskey", ELTextareaTag.class,
+                                                null, "setAccesskeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("alt", ELTextareaTag.class,
+                                                null, "setAltExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("altKey", ELTextareaTag.class,
+                                                null, "setAltKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("cols", ELTextareaTag.class,
+                                                null, "setColsExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("disabled", ELTextareaTag.class,
+                                                null, "setDisabledExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("indexed", ELTextareaTag.class,
+                                                null, "setIndexedExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("name", ELTextareaTag.class,
+                                                null, "setNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onblur", ELTextareaTag.class,
+                                                null, "setOnblurExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onchange", ELTextareaTag.class,
+                                                null, "setOnchangeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onclick", ELTextareaTag.class,
+                                                null, "setOnclickExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("ondblclick", ELTextareaTag.class,
+                                                null, "setOndblclickExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onfocus", ELTextareaTag.class,
+                                                null, "setOnfocusExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeydown", ELTextareaTag.class,
+                                                null, "setOnkeydownExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeypress", ELTextareaTag.class,
+                                                null, "setOnkeypressExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeyup", ELTextareaTag.class,
+                                                null, "setOnkeyupExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmousedown", ELTextareaTag.class,
+                                                null, "setOnmousedownExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmousemove", ELTextareaTag.class,
+                                                null, "setOnmousemoveExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseout", ELTextareaTag.class,
+                                                null, "setOnmouseoutExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseover", ELTextareaTag.class,
+                                                null, "setOnmouseoverExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseup", ELTextareaTag.class,
+                                                null, "setOnmouseupExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("property", ELTextareaTag.class,
+                                                null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("readonly", ELTextareaTag.class,
+                                                null, "setReadonlyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("rows", ELTextareaTag.class,
+                                                null, "setRowsExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("style", ELTextareaTag.class,
+                                                null, "setStyleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleClass", ELTextareaTag.class,
+                                                null, "setStyleClassExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleId", ELTextareaTag.class,
+                                                null, "setStyleIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("tabindex", ELTextareaTag.class,
+                                                null, "setTabindexExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("title", ELTextareaTag.class,
+                                                null, "setTitleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("titleKey", ELTextareaTag.class,
+                                                null, "setTitleKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("value", ELTextareaTag.class,
+                                                null, "setValueExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELErrorsTagBeanInfo.java,v 1.1 2003/02/19 03:45:25 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2003/02/19 03:45:25 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELErrorsTagBeanInfo.java,v 1.2 2003/03/09 05:51:09 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/03/09 05:51:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,6 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
+import java.util.ArrayList;
 import java.beans.SimpleBeanInfo;
 
 /**
@@ -74,22 +75,27 @@ public class ELErrorsTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[4];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("bundle", ELErrorsTag.class,
-                                               null, "setBundleExpr");
-            result[1] = new PropertyDescriptor("locale", ELErrorsTag.class,
-                                               null, "setLocaleExpr");
-            result[2] = new PropertyDescriptor("name", ELErrorsTag.class,
-                                               null, "setNameExpr");
-            result[3] = new PropertyDescriptor("property", ELErrorsTag.class,
-                                               null, "setPropertyExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("bundle", ELErrorsTag.class,
+                                                null, "setBundleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("locale", ELErrorsTag.class,
+                                                null, "setLocaleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("name", ELErrorsTag.class,
+                                                null, "setNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("property", ELErrorsTag.class,
+                                                null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

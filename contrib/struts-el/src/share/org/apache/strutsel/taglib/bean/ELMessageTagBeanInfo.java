@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELMessageTagBeanInfo.java,v 1.1 2003/02/19 03:45:24 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2003/02/19 03:45:24 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELMessageTagBeanInfo.java,v 1.2 2003/03/09 05:51:08 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/03/09 05:51:08 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,6 +62,7 @@ package org.apache.strutsel.taglib.bean;
 
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
+import java.util.ArrayList;
 import java.beans.SimpleBeanInfo;
 
 /**
@@ -74,36 +75,55 @@ public class ELMessageTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[11];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("arg0", ELMessageTag.class,
-                                               null, "setArg0Expr");
-            result[1] = new PropertyDescriptor("arg1", ELMessageTag.class,
-                                               null, "setArg1Expr");
-            result[2] = new PropertyDescriptor("arg2", ELMessageTag.class,
-                                               null, "setArg2Expr");
-            result[3] = new PropertyDescriptor("arg3", ELMessageTag.class,
-                                               null, "setArg3Expr");
-            result[4] = new PropertyDescriptor("arg4", ELMessageTag.class,
-                                               null, "setArg4Expr");
-            result[5] = new PropertyDescriptor("bundle", ELMessageTag.class,
-                                               null, "setBundleExpr");
-            result[6] = new PropertyDescriptor("key", ELMessageTag.class,
-                                               null, "setKeyExpr");
-            result[7] = new PropertyDescriptor("locale", ELMessageTag.class,
-                                               null, "setLocaleExpr");
-            result[8] = new PropertyDescriptor("name", ELMessageTag.class,
-                                               null, "setNameExpr");
-            result[9] = new PropertyDescriptor("property", ELMessageTag.class,
-                                               null, "setPropertyExpr");
-            result[10] = new PropertyDescriptor("scope", ELMessageTag.class,
-                                                null, "setScopeExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("arg0", ELMessageTag.class,
+                                                null, "setArg0Expr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("arg1", ELMessageTag.class,
+                                                null, "setArg1Expr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("arg2", ELMessageTag.class,
+                                                null, "setArg2Expr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("arg3", ELMessageTag.class,
+                                                null, "setArg3Expr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("arg4", ELMessageTag.class,
+                                                null, "setArg4Expr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("bundle", ELMessageTag.class,
+                                                null, "setBundleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("key", ELMessageTag.class,
+                                                null, "setKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("locale", ELMessageTag.class,
+                                                null, "setLocaleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("name", ELMessageTag.class,
+                                                null, "setNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("property", ELMessageTag.class,
+                                                null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("scope", ELMessageTag.class,
+                                                null, "setScopeExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

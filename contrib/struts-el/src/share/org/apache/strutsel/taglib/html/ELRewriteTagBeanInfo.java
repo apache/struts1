@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRewriteTagBeanInfo.java,v 1.2 2003/02/19 03:53:49 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/19 03:53:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRewriteTagBeanInfo.java,v 1.3 2003/03/09 05:51:09 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/03/09 05:51:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,6 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
+import java.util.ArrayList;
 import java.beans.SimpleBeanInfo;
 
 /**
@@ -70,56 +71,70 @@ import java.beans.SimpleBeanInfo;
  * needed to override the default mapping of custom tag attribute names to
  * class attribute names.
  *<p>
- * This is necessary because the base class,
- * <code>org.apache.struts.taglib.html.RewriteTag</code> defines some
- * attributes whose type is not <code>java.lang.String</code>, so the subclass
- * needs to define setter methods of a different name, which this class maps
- * to.
- *<p>
- * Unfortunately, if a <code>BeanInfo</code> class needs to be provided to
- * change the mapping of one attribute, it has to specify the mappings of ALL
- * attributes, even if all the others use the expected mappings of "name" to
- * "method".
+ * This is because the value of the unevaluated EL expression has to be kept
+ * separately from the evaluated value, which is stored in the base class. This
+ * is related to the fact that the JSP compiler can choose to reuse different
+ * tag instances if they received the same original attribute values, and the
+ * JSP compiler can choose to not re-call the setter methods, because it can
+ * assume the same values are already set.
  */
 public class ELRewriteTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[12];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("anchor", ELRewriteTag.class,
-                                               null, "setAnchorExpr");
-            result[1] = new PropertyDescriptor("forward", ELRewriteTag.class,
-                                               null, "setForwardExpr");
-            result[2] = new PropertyDescriptor("href", ELRewriteTag.class,
-                                               null, "setHrefExpr");
-            result[3] = new PropertyDescriptor("name", ELRewriteTag.class,
-                                               null, "setNameExpr");
-            result[4] = new PropertyDescriptor("page", ELRewriteTag.class,
-                                                null, "setPageExpr");
-            result[5] = new PropertyDescriptor("paramId", ELRewriteTag.class,
-                                                null, "setParamIdExpr");
-            result[6] = new PropertyDescriptor("paramName", ELRewriteTag.class,
-                                                null, "setParamNameExpr");
-            result[7] = new PropertyDescriptor("paramProperty",
-                                                ELRewriteTag.class,
-                                                null, "setParamPropertyExpr");
-            result[8] = new PropertyDescriptor("paramScope",
-                                                ELRewriteTag.class,
-                                                null, "setParamScopeExpr");
-            result[9] = new PropertyDescriptor("property", ELRewriteTag.class,
-                                                null, "setPropertyExpr");
-            result[10] = new PropertyDescriptor("scope", ELRewriteTag.class,
-                                                null, "setScopeExpr");
-            result[11] = new PropertyDescriptor("transaction",
-                                                ELRewriteTag.class,
-                                                null, "setTransactionExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("anchor", ELRewriteTag.class,
+                                                null, "setAnchorExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("forward", ELRewriteTag.class,
+                                                null, "setForwardExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("href", ELRewriteTag.class,
+                                                null, "setHrefExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("name", ELRewriteTag.class,
+                                                null, "setNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("page", ELRewriteTag.class,
+                                                null, "setPageExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("paramId", ELRewriteTag.class,
+                                                null, "setParamIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("paramName", ELRewriteTag.class,
+                                                null, "setParamNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("paramProperty", ELRewriteTag.class,
+                                                null, "setParamPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("paramScope", ELRewriteTag.class,
+                                                null, "setParamScopeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("property", ELRewriteTag.class,
+                                                null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("scope", ELRewriteTag.class,
+                                                null, "setScopeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("transaction", ELRewriteTag.class,
+                                                null, "setTransactionExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

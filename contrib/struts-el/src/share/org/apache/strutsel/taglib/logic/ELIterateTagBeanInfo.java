@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTagBeanInfo.java,v 1.5 2003/02/19 03:54:38 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2003/02/19 03:54:38 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTagBeanInfo.java,v 1.6 2003/03/09 05:51:13 dmkarr Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/03/09 05:51:13 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,6 +63,7 @@ package org.apache.strutsel.taglib.logic;
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
 import java.beans.SimpleBeanInfo;
+import java.util.ArrayList;
 import java.lang.reflect.Method;
 
 /**
@@ -71,48 +72,58 @@ import java.lang.reflect.Method;
  * needed to override the default mapping of custom tag attribute names to
  * class attribute names.
  *<p>
- * In particular, it provides for the mapping of the custom tag attribute
- * <code>collection</code> to the class attribute <code>collectionExpr</code>.
- *<p>
- * This is necessary because the base class,
- * <code>org.apache.struts.taglib.bean.IterateTag</code> already defines a
- * <code>collection</code> attribute of type <code>java.lang.Object</code>.
- * The <code>org.apache.strutsel.taglib.bean.ELIterateTag</code> subclass cannot
- * use this attribute because the custom tag attribute <code>collection</code>
- * has to be of type <code>java.lang.String</code> in order to be evaluated by
- * the JSTL EL engine.
+ * This is because the value of the unevaluated EL expression has to be kept
+ * separately from the evaluated value, which is stored in the base class. This
+ * is related to the fact that the JSP compiler can choose to reuse different
+ * tag instances if they received the same original attribute values, and the
+ * JSP compiler can choose to not re-call the setter methods, because it can
+ * assume the same values are already set.
  */
 public class ELIterateTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[9];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] =
-                new PropertyDescriptor("collection", ELIterateTag.class,
-                                       null, "setCollectionExpr");
-            result[1] = new PropertyDescriptor("id", ELIterateTag.class,
-                                               null, "setIdExpr");
-            result[2] = new PropertyDescriptor("indexId", ELIterateTag.class,
-                                               null, "setIndexIdExpr");
-            result[3] = new PropertyDescriptor("length", ELIterateTag.class,
-                                               null, "setLengthExpr");
-            result[4] = new PropertyDescriptor("name", ELIterateTag.class,
-                                               null, "setNameExpr");
-            result[5] = new PropertyDescriptor("offset", ELIterateTag.class,
-                                               null, "setOffsetExpr");
-            result[6] = new PropertyDescriptor("property", ELIterateTag.class,
-                                               null, "setPropertyExpr");
-            result[7] = new PropertyDescriptor("scope", ELIterateTag.class,
-                                               null, "setScopeExpr");
-            result[8] = new PropertyDescriptor("type", ELIterateTag.class,
-                                               null, "setTypeExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("collection", ELIterateTag.class,
+                                                null, "setCollectionExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("id", ELIterateTag.class,
+                                                null, "setIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("indexId", ELIterateTag.class,
+                                                null, "setIndexIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("length", ELIterateTag.class,
+                                                null, "setLengthExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("name", ELIterateTag.class,
+                                                null, "setNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("offset", ELIterateTag.class,
+                                                null, "setOffsetExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("property", ELIterateTag.class,
+                                                null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("scope", ELIterateTag.class,
+                                                null, "setScopeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("type", ELIterateTag.class,
+                                                null, "setTypeExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

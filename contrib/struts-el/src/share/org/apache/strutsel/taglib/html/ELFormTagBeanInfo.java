@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTagBeanInfo.java,v 1.1 2003/02/19 03:45:25 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2003/02/19 03:45:25 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTagBeanInfo.java,v 1.2 2003/03/09 05:51:09 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/03/09 05:51:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,6 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
+import java.util.ArrayList;
 import java.beans.SimpleBeanInfo;
 
 /**
@@ -74,42 +75,67 @@ public class ELFormTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[14];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("action", ELFormTag.class,
-                                               null, "setActionExpr");
-            result[1] = new PropertyDescriptor("enctype", ELFormTag.class,
-                                               null, "setEnctypeExpr");
-            result[2] = new PropertyDescriptor("focus", ELFormTag.class,
-                                               null, "setFocusExpr");
-            result[3] = new PropertyDescriptor("focusIndex", ELFormTag.class,
-                                               null, "setFocusIndexExpr");
-            result[4] = new PropertyDescriptor("method", ELFormTag.class,
-                                               null, "setMethodExpr");
-            result[5] = new PropertyDescriptor("name", ELFormTag.class,
-                                               null, "setNameExpr");
-            result[6] = new PropertyDescriptor("onreset", ELFormTag.class,
-                                               null, "setOnresetExpr");
-            result[7] = new PropertyDescriptor("onsubmit", ELFormTag.class,
-                                               null, "setOnsubmitExpr");
-            result[8] = new PropertyDescriptor("scope", ELFormTag.class,
-                                               null, "setScopeExpr");
-            result[9] = new PropertyDescriptor("style", ELFormTag.class,
-                                               null, "setStyleExpr");
-            result[10] = new PropertyDescriptor("styleClass", ELFormTag.class,
-                                               null, "setStyleClassExpr");
-            result[11] = new PropertyDescriptor("styleId", ELFormTag.class,
-                                               null, "setStyleIdExpr");
-            result[12] = new PropertyDescriptor("target", ELFormTag.class,
-                                               null, "setTargetExpr");
-            result[13] = new PropertyDescriptor("type", ELFormTag.class,
-                                               null, "setTypeExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("action", ELFormTag.class,
+                                                null, "setActionExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("enctype", ELFormTag.class,
+                                                null, "setEnctypeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("focus", ELFormTag.class,
+                                                null, "setFocusExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("focusIndex", ELFormTag.class,
+                                                null, "setFocusIndexExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("method", ELFormTag.class,
+                                                null, "setMethodExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("name", ELFormTag.class,
+                                                null, "setNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onreset", ELFormTag.class,
+                                                null, "setOnresetExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onsubmit", ELFormTag.class,
+                                                null, "setOnsubmitExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("scope", ELFormTag.class,
+                                                null, "setScopeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("style", ELFormTag.class,
+                                                null, "setStyleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleClass", ELFormTag.class,
+                                                null, "setStyleClassExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleId", ELFormTag.class,
+                                                null, "setStyleIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("target", ELFormTag.class,
+                                                null, "setTargetExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("type", ELFormTag.class,
+                                                null, "setTypeExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELNotPresentTagBeanInfo.java,v 1.1 2003/02/19 03:45:25 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2003/02/19 03:45:25 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELNotPresentTagBeanInfo.java,v 1.2 2003/03/09 05:51:14 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/03/09 05:51:14 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,6 +63,7 @@ package org.apache.strutsel.taglib.logic;
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
 import java.beans.SimpleBeanInfo;
+import java.util.ArrayList;
 import java.lang.reflect.Method;
 
 /**
@@ -71,45 +72,54 @@ import java.lang.reflect.Method;
  * needed to override the default mapping of custom tag attribute names to
  * class attribute names.
  *<p>
- * In particular, it provides for the mapping of the custom tag attribute
- * <code>collection</code> to the class attribute <code>collectionExpr</code>.
- *<p>
- * This is necessary because the base class,
- * <code>org.apache.struts.taglib.logic.IterateTag</code> already defines a
- * <code>collection</code> attribute of type <code>java.lang.Object</code>.
- * The <code>org.apache.strutsel.taglib.logic.ELNotPresentTag</code> subclass cannot
- * use this attribute because the custom tag attribute <code>collection</code>
- * has to be of type <code>java.lang.String</code> in order to be evaluated by
- * the JSTL EL engine.
+ * This is because the value of the unevaluated EL expression has to be kept
+ * separately from the evaluated value, which is stored in the base class. This
+ * is related to the fact that the JSP compiler can choose to reuse different
+ * tag instances if they received the same original attribute values, and the
+ * JSP compiler can choose to not re-call the setter methods, because it can
+ * assume the same values are already set.
  */
 public class ELNotPresentTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[8];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("cookie", ELNotPresentTag.class,
-                                               null, "setCookieExpr");
-            result[1] = new PropertyDescriptor("header", ELNotPresentTag.class,
-                                               null, "setHeaderExpr");
-            result[2] = new PropertyDescriptor("name", ELNotPresentTag.class,
-                                               null, "setNameExpr");
-            result[3] = new PropertyDescriptor("parameter", ELNotPresentTag.class,
-                                               null, "setParameterExpr");
-            result[4] = new PropertyDescriptor("property", ELNotPresentTag.class,
-                                               null, "setPropertyExpr");
-            result[5] = new PropertyDescriptor("role", ELNotPresentTag.class,
-                                               null, "setRoleExpr");
-            result[6] = new PropertyDescriptor("scope", ELNotPresentTag.class,
-                                               null, "setScopeExpr");
-            result[7] = new PropertyDescriptor("user", ELNotPresentTag.class,
-                                               null, "setUserExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("cookie", ELNotPresentTag.class,
+                                                null, "setCookieExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("header", ELNotPresentTag.class,
+                                                null, "setHeaderExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("name", ELNotPresentTag.class,
+                                                null, "setNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("parameter", ELNotPresentTag.class,
+                                                null, "setParameterExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("property", ELNotPresentTag.class,
+                                                null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("role", ELNotPresentTag.class,
+                                                null, "setRoleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("scope", ELNotPresentTag.class,
+                                                null, "setScopeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("user", ELNotPresentTag.class,
+                                                null, "setUserExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

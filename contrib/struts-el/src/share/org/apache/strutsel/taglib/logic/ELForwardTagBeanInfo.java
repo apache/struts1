@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELForwardTagBeanInfo.java,v 1.1 2003/02/19 03:45:25 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2003/02/19 03:45:25 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELForwardTagBeanInfo.java,v 1.2 2003/03/09 05:51:13 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/03/09 05:51:13 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,6 +63,7 @@ package org.apache.strutsel.taglib.logic;
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
 import java.beans.SimpleBeanInfo;
+import java.util.ArrayList;
 import java.lang.reflect.Method;
 
 /**
@@ -71,31 +72,26 @@ import java.lang.reflect.Method;
  * needed to override the default mapping of custom tag attribute names to
  * class attribute names.
  *<p>
- * In particular, it provides for the mapping of the custom tag attribute
- * <code>collection</code> to the class attribute <code>collectionExpr</code>.
- *<p>
- * This is necessary because the base class,
- * <code>org.apache.struts.taglib.logic.IterateTag</code> already defines a
- * <code>collection</code> attribute of type <code>java.lang.Object</code>.
- * The <code>org.apache.strutsel.taglib.logic.ELForwardTag</code> subclass cannot
- * use this attribute because the custom tag attribute <code>collection</code>
- * has to be of type <code>java.lang.String</code> in order to be evaluated by
- * the JSTL EL engine.
+ * This is because the value of the unevaluated EL expression has to be kept
+ * separately from the evaluated value, which is stored in the base class. This
+ * is related to the fact that the JSP compiler can choose to reuse different
+ * tag instances if they received the same original attribute values, and the
+ * JSP compiler can choose to not re-call the setter methods, because it can
+ * assume the same values are already set.
  */
 public class ELForwardTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[1];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("name", ELForwardTag.class,
-                                               null, "setNameExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("name", ELForwardTag.class,
+                                                null, "setNameExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

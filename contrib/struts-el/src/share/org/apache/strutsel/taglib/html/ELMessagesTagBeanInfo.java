@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELMessagesTagBeanInfo.java,v 1.1 2003/02/19 03:45:25 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2003/02/19 03:45:25 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELMessagesTagBeanInfo.java,v 1.2 2003/03/09 05:51:09 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/03/09 05:51:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,6 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
+import java.util.ArrayList;
 import java.beans.SimpleBeanInfo;
 
 /**
@@ -74,30 +75,43 @@ public class ELMessagesTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[8];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("id", ELMessagesTag.class,
-                                               null, "setIdExpr");
-            result[1] = new PropertyDescriptor("bundle", ELMessagesTag.class,
-                                               null, "setBundleExpr");
-            result[2] = new PropertyDescriptor("locale", ELMessagesTag.class,
-                                               null, "setLocaleExpr");
-            result[3] = new PropertyDescriptor("name", ELMessagesTag.class,
-                                               null, "setNameExpr");
-            result[4] = new PropertyDescriptor("property", ELMessagesTag.class,
-                                               null, "setPropertyExpr");
-            result[5] = new PropertyDescriptor("header", ELMessagesTag.class,
-                                               null, "setHeaderExpr");
-            result[6] = new PropertyDescriptor("footer", ELMessagesTag.class,
-                                               null, "setFooterExpr");
-            result[7] = new PropertyDescriptor("message", ELMessagesTag.class,
-                                               null, "setMessageExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("id", ELMessagesTag.class,
+                                                null, "setIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("bundle", ELMessagesTag.class,
+                                                null, "setBundleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("locale", ELMessagesTag.class,
+                                                null, "setLocaleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("name", ELMessagesTag.class,
+                                                null, "setNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("property", ELMessagesTag.class,
+                                                null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("header", ELMessagesTag.class,
+                                                null, "setHeaderExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("footer", ELMessagesTag.class,
+                                                null, "setFooterExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("message", ELMessagesTag.class,
+                                                null, "setMessageExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

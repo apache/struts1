@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELCancelTagBeanInfo.java,v 1.2 2003/02/19 03:52:49 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/19 03:52:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELCancelTagBeanInfo.java,v 1.3 2003/03/09 05:51:09 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/03/09 05:51:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,6 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
+import java.util.ArrayList;
 import java.beans.SimpleBeanInfo;
 
 /**
@@ -73,88 +74,122 @@ import java.beans.SimpleBeanInfo;
  * In particular, it provides for the mapping of the custom tag attribute
  * <code>disabled</code> to the instance variable <code>disabledExpr</code>.
  *<p>
- * This is necessary because the base class,
- * <code>org.apache.struts.taglib.html.CancelTag</code> already defines this
- * attribute, of type <code>boolean</code>, and the <code>ELCancelTag</code>
- * class has to be able to see this values as a <code>String</code> type in
- * order to evaluate it with the JSTL EL engine.
- *<p>
- * Unfortunately, if a <code>BeanInfo</code> class needs to be provided to
- * change the mapping of one attribute, it has to specify the mappings of ALL
- * attributes, even if all the others use the expected mappings of "name" to
- * "method".
+ * This is because the value of the unevaluated EL expression has to be kept
+ * separately from the evaluated value, which is stored in the base class. This
+ * is related to the fact that the JSP compiler can choose to reuse different
+ * tag instances if they received the same original attribute values, and the
+ * JSP compiler can choose to not re-call the setter methods, because it can
+ * assume the same values are already set.
  */
 public class ELCancelTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[25];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("accesskey", ELCancelTag.class,
-                                               null, "setAccesskeyExpr");
-            result[1] = new PropertyDescriptor("alt", ELCancelTag.class,
-                                               null, "setAltExpr");
-            result[2] = new PropertyDescriptor("altKey", ELCancelTag.class,
-                                               null, "setAltKeyExpr");
-            result[3] = new PropertyDescriptor("disabled", ELCancelTag.class,
-                                               null, "setDisabledExpr");
-            result[4] = new PropertyDescriptor("onblur", ELCancelTag.class,
-                                               null, "setOnblurExpr");
-            result[5] = new PropertyDescriptor("onchange", ELCancelTag.class,
-                                               null, "setOnchangeExpr");
-            result[6] = new PropertyDescriptor("onclick", ELCancelTag.class,
-                                               null, "setOnclickExpr");
-            result[7] = new PropertyDescriptor("ondblclick",
-                                               ELCancelTag.class,
-                                               null, "setOndblclickExpr");
-            result[8] = new PropertyDescriptor("onfocus", ELCancelTag.class,
-                                               null, "setOnfocusExpr");
-            result[9] = new PropertyDescriptor("onkeydown",
-                                                ELCancelTag.class,
-                                               null, "setOnkeydownExpr");
-            result[10] = new PropertyDescriptor("onkeypress",
-                                                ELCancelTag.class,
-                                               null, "setOnkeypressExpr");
-            result[11] = new PropertyDescriptor("onkeyup", ELCancelTag.class,
-                                               null, "setOnkeyupExpr");
-            result[12] = new PropertyDescriptor("onmousedown",
-                                               ELCancelTag.class,
-                                               null, "setOnmousedownExpr");
-            result[13] = new PropertyDescriptor("onmousemove",
-                                               ELCancelTag.class,
-                                               null, "setOnmousemoveExpr");
-            result[14] = new PropertyDescriptor("onmouseout",
-                                               ELCancelTag.class,
-                                               null, "setOnmouseoutExpr");
-            result[15] = new PropertyDescriptor("onmouseover",
-                                               ELCancelTag.class,
-                                               null, "setOnmouseoverExpr");
-            result[16] = new PropertyDescriptor("onmouseup",
-                                                ELCancelTag.class,
-                                               null, "setOnmouseupExpr");
-            result[17] = new PropertyDescriptor("property", ELCancelTag.class,
-                                               null, "setPropertyExpr");
-            result[18] = new PropertyDescriptor("style", ELCancelTag.class,
-                                               null, "setStyleExpr");
-            result[19] = new PropertyDescriptor("styleClass",
-                                               ELCancelTag.class,
-                                               null, "setStyleClassExpr");
-            result[20] = new PropertyDescriptor("styleId", ELCancelTag.class,
-                                               null, "setStyleIdExpr");
-            result[21] = new PropertyDescriptor("tabindex", ELCancelTag.class,
-                                               null, "setTabindexExpr");
-            result[22] = new PropertyDescriptor("title", ELCancelTag.class,
-                                               null, "setTitleExpr");
-            result[23] = new PropertyDescriptor("titleKey", ELCancelTag.class,
-                                               null, "setTitleKeyExpr");
-            result[24] = new PropertyDescriptor("value", ELCancelTag.class,
-                                               null, "setValueExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("accesskey", ELCancelTag.class,
+                                                null, "setAccesskeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("alt", ELCancelTag.class,
+                                                null, "setAltExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("altKey", ELCancelTag.class,
+                                                null, "setAltKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("disabled", ELCancelTag.class,
+                                                null, "setDisabledExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onblur", ELCancelTag.class,
+                                                null, "setOnblurExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onchange", ELCancelTag.class,
+                                                null, "setOnchangeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onclick", ELCancelTag.class,
+                                                null, "setOnclickExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("ondblclick", ELCancelTag.class,
+                                                null, "setOndblclickExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onfocus", ELCancelTag.class,
+                                                null, "setOnfocusExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeydown", ELCancelTag.class,
+                                                null, "setOnkeydownExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeypress", ELCancelTag.class,
+                                                null, "setOnkeypressExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeyup", ELCancelTag.class,
+                                                null, "setOnkeyupExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmousedown", ELCancelTag.class,
+                                                null, "setOnmousedownExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmousemove", ELCancelTag.class,
+                                                null, "setOnmousemoveExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseout", ELCancelTag.class,
+                                                null, "setOnmouseoutExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseover", ELCancelTag.class,
+                                                null, "setOnmouseoverExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseup", ELCancelTag.class,
+                                                null, "setOnmouseupExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("property", ELCancelTag.class,
+                                                null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("style", ELCancelTag.class,
+                                                null, "setStyleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleClass", ELCancelTag.class,
+                                                null, "setStyleClassExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleId", ELCancelTag.class,
+                                                null, "setStyleIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("tabindex", ELCancelTag.class,
+                                                null, "setTabindexExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("title", ELCancelTag.class,
+                                                null, "setTitleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("titleKey", ELCancelTag.class,
+                                                null, "setTitleKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("value", ELCancelTag.class,
+                                                null, "setValueExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

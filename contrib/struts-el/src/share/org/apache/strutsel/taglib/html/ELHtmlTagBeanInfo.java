@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHtmlTagBeanInfo.java,v 1.1 2002/10/14 03:11:08 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/14 03:11:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHtmlTagBeanInfo.java,v 1.2 2003/03/09 05:51:09 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/03/09 05:51:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,6 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
+import java.util.ArrayList;
 import java.beans.SimpleBeanInfo;
 
 /**
@@ -70,34 +71,31 @@ import java.beans.SimpleBeanInfo;
  * to override the default mapping of custom tag attribute names to class
  * attribute names.
  *<p>
- * In particular, it provides for the mapping of the custom tag attribute
- * <code>xhtml</code> to the instance variable <code>xhtmlExpr</code>, and the
- * attribute <code>locale</code> to the instance variable
- * <code>localeExpr</code>.
- *<p>
- * This is necessary because the base class,
- * <code>org.apache.struts.taglib.html.HtmlTag</code> already defines these two
- * attributes, of type <code>boolean</code>, and the <code>ELHtmlTag</code>
- * class has to be able to see these values as <code>String</code> types in
- * order to evaluate them with the JSTL EL engine.
+ * This is because the value of the unevaluated EL expression has to be kept
+ * separately from the evaluated value, which is stored in the base class. This
+ * is related to the fact that the JSP compiler can choose to reuse different
+ * tag instances if they received the same original attribute values, and the
+ * JSP compiler can choose to not re-call the setter methods, because it can
+ * assume the same values are already set.
  */
 public class ELHtmlTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[2];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("xhtml", ELHtmlTag.class,
-                                               null, "setXhtmlExpr");
+            proplist.add(new PropertyDescriptor("xhtml", ELHtmlTag.class,
+                                                null, "setXhtmlExpr"));
+        } catch (IntrospectionException ex) {}
 
-            result[1] = new PropertyDescriptor("locale", ELHtmlTag.class,
-                                               null, "setLocaleExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+        try {
+            proplist.add(new PropertyDescriptor("locale", ELHtmlTag.class,
+                                                null, "setLocaleExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFileTagBeanInfo.java,v 1.2 2003/02/19 03:52:49 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/19 03:52:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFileTagBeanInfo.java,v 1.3 2003/03/09 05:51:09 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/03/09 05:51:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,6 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
+import java.util.ArrayList;
 import java.beans.SimpleBeanInfo;
 
 /**
@@ -70,98 +71,142 @@ import java.beans.SimpleBeanInfo;
  * to override the default mapping of custom tag attribute names to class
  * attribute names.
  *<p>
- * This is necessary because the base class,
- * <code>org.apache.struts.taglib.html.FileTag</code> defines some
- * attributes whose type is not <code>java.lang.String</code>, so the subclass
- * needs to define setter methods of a different name, which this class maps
- * to.
- *<p>
- * Unfortunately, if a <code>BeanInfo</code> class needs to be provided to
- * change the mapping of one attribute, it has to specify the mappings of ALL
- * attributes, even if all the others use the expected mappings of "name" to
- * "method".
+ * This is because the value of the unevaluated EL expression has to be kept
+ * separately from the evaluated value, which is stored in the base class. This
+ * is related to the fact that the JSP compiler can choose to reuse different
+ * tag instances if they received the same original attribute values, and the
+ * JSP compiler can choose to not re-call the setter methods, because it can
+ * assume the same values are already set.
  */
 public class ELFileTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[30];
+        ArrayList proplist = new ArrayList();
 
         try {
-            result[0] = new PropertyDescriptor("accesskey", ELFileTag.class,
-                                               null, "setAccesskeyExpr");
-            result[1] = new PropertyDescriptor("accept", ELFileTag.class,
-                                               null, "setAcceptExpr");
-            result[2] = new PropertyDescriptor("alt", ELFileTag.class,
-                                               null, "setAltExpr");
-            result[3] = new PropertyDescriptor("altKey", ELFileTag.class,
-                                               null, "setAltKeyExpr");
-            result[4] = new PropertyDescriptor("disabled", ELFileTag.class,
-                                               null, "setDisabledExpr");
-            result[5] = new PropertyDescriptor("indexed", ELFileTag.class,
-                                               null, "setIndexedExpr");
-            result[6] = new PropertyDescriptor("maxlength", ELFileTag.class,
-                                               null, "setMaxlengthExpr");
-            result[7] = new PropertyDescriptor("name", ELFileTag.class,
-                                               null, "setNameExpr");
-            result[8] = new PropertyDescriptor("onblur", ELFileTag.class,
-                                               null, "setOnblurExpr");
-            result[9] = new PropertyDescriptor("onchange", ELFileTag.class,
-                                               null, "setOnchangeExpr");
-            result[10] = new PropertyDescriptor("onclick", ELFileTag.class,
-                                               null, "setOnclickExpr");
-            result[11] = new PropertyDescriptor("ondblclick",
-                                               ELFileTag.class,
-                                               null, "setOndblclickExpr");
-            result[12] = new PropertyDescriptor("onfocus", ELFileTag.class,
-                                               null, "setOnfocusExpr");
-            result[13] = new PropertyDescriptor("onkeydown",
-                                                ELFileTag.class,
-                                               null, "setOnkeydownExpr");
-            result[14] = new PropertyDescriptor("onkeypress",
-                                                ELFileTag.class,
-                                               null, "setOnkeypressExpr");
-            result[15] = new PropertyDescriptor("onkeyup", ELFileTag.class,
-                                               null, "setOnkeyupExpr");
-            result[16] = new PropertyDescriptor("onmousedown",
-                                               ELFileTag.class,
-                                               null, "setOnmousedownExpr");
-            result[17] = new PropertyDescriptor("onmousemove",
-                                               ELFileTag.class,
-                                               null, "setOnmousemoveExpr");
-            result[18] = new PropertyDescriptor("onmouseout",
-                                               ELFileTag.class,
-                                               null, "setOnmouseoutExpr");
-            result[19] = new PropertyDescriptor("onmouseover",
-                                               ELFileTag.class,
-                                               null, "setOnmouseoverExpr");
-            result[20] = new PropertyDescriptor("onmouseup",
-                                                ELFileTag.class,
-                                               null, "setOnmouseupExpr");
-            result[21] = new PropertyDescriptor("property", ELFileTag.class,
-                                               null, "setPropertyExpr");
-            result[22] = new PropertyDescriptor("size", ELFileTag.class,
-                                               null, "setSizeExpr");
-            result[23] = new PropertyDescriptor("style", ELFileTag.class,
-                                               null, "setStyleExpr");
-            result[24] = new PropertyDescriptor("styleClass",
-                                               ELFileTag.class,
-                                               null, "setStyleClassExpr");
-            result[25] = new PropertyDescriptor("styleId", ELFileTag.class,
-                                               null, "setStyleIdExpr");
-            result[26] = new PropertyDescriptor("tabindex", ELFileTag.class,
-                                               null, "setTabindexExpr");
-            result[27] = new PropertyDescriptor("title", ELFileTag.class,
-                                               null, "setTitleExpr");
-            result[28] = new PropertyDescriptor("titleKey", ELFileTag.class,
-                                               null, "setTitleKeyExpr");
-            result[29] = new PropertyDescriptor("value", ELFileTag.class,
-                                               null, "setValueExpr");
-        }
-        catch (IntrospectionException ex) {
-            ex.printStackTrace();
-        }
+            proplist.add(new PropertyDescriptor("accesskey", ELFileTag.class,
+                                                null, "setAccesskeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("accept", ELFileTag.class,
+                                                null, "setAcceptExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("alt", ELFileTag.class,
+                                                null, "setAltExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("altKey", ELFileTag.class,
+                                                null, "setAltKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("disabled", ELFileTag.class,
+                                                null, "setDisabledExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("indexed", ELFileTag.class,
+                                                null, "setIndexedExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("maxlength", ELFileTag.class,
+                                                null, "setMaxlengthExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("name", ELFileTag.class,
+                                                null, "setNameExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onblur", ELFileTag.class,
+                                                null, "setOnblurExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onchange", ELFileTag.class,
+                                                null, "setOnchangeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onclick", ELFileTag.class,
+                                                null, "setOnclickExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("ondblclick", ELFileTag.class,
+                                                null, "setOndblclickExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onfocus", ELFileTag.class,
+                                                null, "setOnfocusExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeydown", ELFileTag.class,
+                                                null, "setOnkeydownExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeypress", ELFileTag.class,
+                                                null, "setOnkeypressExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeyup", ELFileTag.class,
+                                                null, "setOnkeyupExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmousedown", ELFileTag.class,
+                                                null, "setOnmousedownExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmousemove", ELFileTag.class,
+                                                null, "setOnmousemoveExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseout", ELFileTag.class,
+                                                null, "setOnmouseoutExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseover", ELFileTag.class,
+                                                null, "setOnmouseoverExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseup", ELFileTag.class,
+                                                null, "setOnmouseupExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("property", ELFileTag.class,
+                                                null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("size", ELFileTag.class,
+                                                null, "setSizeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("style", ELFileTag.class,
+                                                null, "setStyleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleClass", ELFileTag.class,
+                                                null, "setStyleClassExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleId", ELFileTag.class,
+                                                null, "setStyleIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("tabindex", ELFileTag.class,
+                                                null, "setTabindexExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("title", ELFileTag.class,
+                                                null, "setTitleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("titleKey", ELFileTag.class,
+                                                null, "setTitleKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("value", ELFileTag.class,
+                                                null, "setValueExpr"));
+        } catch (IntrospectionException ex) {}
         
-        return (result);
+        PropertyDescriptor[] result =
+            new PropertyDescriptor[proplist.size()];
+        return ((PropertyDescriptor[]) proplist.toArray(result));
     }
 }
