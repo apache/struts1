@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.8 2003/01/07 06:32:25 martinc Exp $
- * $Revision: 1.8 $
- * $Date: 2003/01/07 06:32:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.9 2003/04/15 00:14:28 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/04/15 00:14:28 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -87,7 +87,7 @@ import java.util.List;
  * @author Craig R. McClanahan
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.8 $ $Date: 2003/01/07 06:32:25 $
+ * @version $Revision: 1.9 $ $Date: 2003/04/15 00:14:28 $
  * @since Struts 1.1
  */
 
@@ -129,6 +129,7 @@ public class ActionMessages implements Serializable {
      * messages.
      * 
      * @param messages The messages to be initially added to this object.
+     * This parameter can be <code>null</code>.
      * @since Struts 1.1
      */
     public ActionMessages(ActionMessages messages) {
@@ -170,10 +171,14 @@ public class ActionMessages implements Serializable {
      * property.  If a message's property is not in the current list it is added to the end 
      * of the properties.
      * 
-     * @param messages The <code>ActionMessages</code> object to be added.
+     * @param messages The <code>ActionMessages</code> object to be added.  
+     * This parameter can be <code>null</code>.
      * @since Struts 1.1
      */
     public void add(ActionMessages messages) {
+        if (messages == null) {
+            return;
+        }
         // loop over properties
         Iterator props = messages.properties();
         while (props.hasNext()) {
@@ -185,7 +190,6 @@ public class ActionMessages implements Serializable {
                 ActionMessage msg = (ActionMessage) msgs.next();
                 this.add(property, msg);
             }
-
         }
     }
 
@@ -223,7 +227,7 @@ public class ActionMessages implements Serializable {
      */
     public Iterator get() {
 
-        if (messages.size() == 0) {
+        if (messages.isEmpty()) {
             return (Collections.EMPTY_LIST.iterator());
         }
 
@@ -313,10 +317,11 @@ public class ActionMessages implements Serializable {
 
         ActionMessageItem ami = (ActionMessageItem) messages.get(property);
 
-        if (ami == null)
+        if (ami == null) {
             return (0);
-        else
+        } else {
             return (ami.getList().size());
+        }
 
     }
 
