@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.8 2001/04/03 19:18:59 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2001/04/03 19:18:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.9 2001/04/19 21:13:58 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/04/19 21:13:58 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -444,7 +444,7 @@ public class ImgTag extends BaseHandlerTag {
         return (this.usemap);
     }
 
-    public void setUsemap(String Usemap) {
+    public void setUsemap(String usemap) {
         this.usemap = usemap;
     }
 
