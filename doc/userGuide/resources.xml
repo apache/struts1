@@ -8,24 +8,96 @@
 <body> 
 <chapter name="Struts Resources" href="resources"> 
 
+<section name="Contributor Tabligs" href="taglibs"> 
+
+<p><a href="http://husted.com/about/struts/indexed-tags.htm"><b>Indexed Tags</b></a> by Dave Hays - Produce indexed names 
+such as &lt;input type="text" name="parameter[0].value" value="Mac">. Link, Submit, and 
+Select tags are included too.</p>
+
+<p><a href="http://husted.com/about/struts/logic-niallp.htm"><b>Struts IF/THEN/ELSE and 
+SWITCH tags</b></a> by Niall Pemberton.</p>
+
+<p><a href="http://husted.com/about/struts/rowtag.zip"><b>RowTag</b></a> (ZIP file for 
+download) - Source for a Struts-compatible tag to generate alternating row colors in a 
+table by Niall Pemberton. [<i>NOTE: Requires a Struts build dated after 2001-04-28</i>]
+</p>
+
+</section>
+
 <section name="Contributor Extensions" href="extensions"> 
 
-<p>Here are some popular extensions to Struts that have not been made part of 
-the official distribution (yet).</p>
+<p><a href="http://www.rpsenterprises.com/struts/index.html"><b>Struts Transformer</b></a> 
+by Ron Smith - Transformations are responsible for taking an object in one form and 
+transforming it into another. A forward transformation takes an object from its primary form 
+to a secondary form (e.g. Date object to String). A reverse transformation takes an object 
+from a secondary form to its primary form (e.g. String to Date).</p>
 
-<p><a href="http://www.lifl.fr/~dumoulin/components/"><b>Components Library for building JSP views</b></a> by 
-Cedric Dumoulin - A component is a JSP page that can be inserted in another JSP page, 
-like templates, but can take "parameters" (URLs or 'direct' string intemplates). </p>
+<p><a href="http://www.rpsenterprises.com/struts/index.html"><b>Struts Extender</b></a> 
+by Ron Smith - Add extensions to the struts framework via entries in the Struts configuration 
+file.</p>
 
-<p><a href="http://home.earthlink.net/~dwinterfeldt/"><b>Struts Validator by David Winterfeldt</b></a> - Perform basic validations to check if a field
-is required, matches a regular expression, and some basic type checking. Different validation rules can be
-defined for different locales. The framework has basic support for user defined constants which can be used
-in some field attributes. The validation routines are modifiable in the validation.xml file so custom validation
-routines can be created and added to the framework.</p>
+<p><a href="http://husted.com/about/struts/mapper.zip"><b>Mapper</b></a> framework by Capco 
+- The Mapper framework can be used for automating the process of 
+validating/converting/transferring data fields. <font size="2">(See README to get
+started.)</font></p>
+
+<p><a href="http://husted.com/about/struts/StrutsCodeMaker.htm"><b>Struts CodeMaker</b></a> 
+by Ravindran Ramaiah - Generate Action and Form class by reading the JSP files</p>
 
 <p><a href="http://www.sura.ru/~gonza/bean-factory/"><b>Bean factory by Oleg V Alexeev</b></a> - 
 Adds the ability to easily link data bean creation to any Struts Action. All information 
-about databeans and actions mappings stored in the standard Struts configuraton file.</p>
+about databeans and actions mappings stored in the standard Struts configuraton file. </p>
+
+<p><a href="http://husted.com/about/struts/struts-menu.zip"><b>Struts Menu</b></a> 
+(ZIP file for download) - A Struts-compatible web menuing component by Scott Sayles 
+(early release - work in progress) - unzip to a &quot;struts-menu&quot; folder, and see 
+the README.</p>
+
+<p><a href="http://home.earthlink.net/~dwinterfeldt/"><b>Struts Validator by David 
+Winterfeldt</b></a> - Perform basic validations to check if a field
+is required, matches a regular expression, and some basic type checking. Different validation 
+rules can be defined for different locales. The framework has basic support for user-defined 
+constants which can be used in some field attributes. The validation routines are modifiable 
+in the validation.xml file so custom validation routines can be created and added to the 
+framework.</p>
+
+<p><a href="http://jakarta.apache.org/taglibs/doc/ultradev4-doc/intro.html"><b>UltraDev 4.0 
+Custom Tag Library Extension</b></a> - Hosted by Jakarta Taglibs.</p>
+
+<p><a href="http://www.lifl.fr/~dumoulin/components/"><b>Components Library for building JSP 
+views</b></a> by Cedric Dumoulin - A component is a JSP page that can be inserted in another 
+JSP page, like templates, but can take "parameters" (URLs or 'direct' string in 
+templates).</p>
+
+</section>
+
+<section name="Projects and Examples" href="example">
+
+<p><a href="http://mycart.cjb.net/"><b>myCart</b></a> - Example Shopping Cart application 
+using Struts - joint project with several contributors.</p>
+
+<p><a href="http://www.oakgrovesoftware.com/~rbackhouse"><b>Sample hdml/wireless based 
+Struts application</b></a> by Richard Backhouse.</p>
+
+<p><a href="http://husted.com/about/struts/struts-logon.zip"><b>Struts Login</b></a> 
+(WAR file zipped for download) - A minimalist Struts application demonstrating form 
+validation and tracking users with a session attribute (WAR file).</p>
+
+</section>
+
+<section name="Powered by Struts" href="powered">
+
+  <ul>
+    <li><b>Clickstart Tutoring</b> - <a href="http://www.clickstarttutoring.com/index.jsp">http://www.clickstarttutoring.com/</a></li>
+    <li><b>Enitel</b> - <a href="http://adminweb.enitel.no/login.jsp">http://adminweb.enitel.no/login.jsp</a></li>
+    <li><b>iKnowBase</b> - <a href="http://www.iknowbase.com/">http://www.iknowbase.com/</a></li>
+    <li><b>IronMax</b> - <a href="http://ironmax.com/">http://ironmax.com/</a> (see Equipment Information Products)</li>
+    <li><b>IPIPI</b> - <a href="http://www.ipipi.com/index.jsp">http://www.ipipi.com/index.jsp</a></li>
+    <li><b>Normad</b> - <a href="http://www.webappcabaret.com/normad">www.webappcabaret.com/normad</a></li>
+    <li><b>Povoglie</b> - <a href="http://www.penza.ru/povolgie">http://www.penza.ru/povolgie</a> - &quot;<font size="1">Goverment regional press services news center in Russia, middle Volga.&quot;</font></li>
+    <li><b>TeaTimeJ</b> - <a href="http://www.webappcabaret.com/teatimej/">http://www.webappcabaret.com/teatimej/</a></li>
+    <li><b>WXXI Spring MarketPlace 2001</b> - <a href="http://wxxi.org/">http://wxxi.org/</a></li>
+  </ul>
 
 </section>
 
@@ -34,8 +106,6 @@ about databeans and actions mappings stored in the standard Struts configuraton 
 <p><a href="http://developer.bluestone.com/scripts/SaISAPI.dll/Gallery.class/demos/trailMaps/index.jsp"><b>Welcome to the Struts Framework</b></a> by <a href="http://www.bluestone.com">Bluestone Software</a>.</p>
 
 <p><a href="http://www.jspinsider.com/tutorials/jsp/struts/strutsintro.html"><b>An Introduction to Struts</b></a> by Casey Kochmer.</p>
-
-<p><a href="http://www.oakgrovesoftware.com/~rbackhouse/"><b>Write hdml based jsps using Struts</b></a> by Richard Backhouse.</p>
 
 <p><a href="http://quark.newparticles.com/struts/"><b>Information about the Struts Framework by Steve Wilkinson</b></a> - Excerpt from Wrox book.</p>
 
@@ -59,7 +129,7 @@ about databeans and actions mappings stored in the standard Struts configuraton 
 
 <section name="Other Resource Pages" href="other"> 
 
-<p><a href="http://www.husted.com/about/struts/"><b>About Struts</b></a> by <a href="mailto:support@husted.com">Husted dot Com</a>.</p>
+<p><a href="http://www.husted.com/about/struts/"><b>More About Struts</b></a> by <a href="mailto:support@husted.com">Husted dot Com</a>.</p>
 
 <p><a href="http://habweb.de/struts/"><b>German Translation of Users Guide</b></a> by Hartmut Bernecker.</p>
 
@@ -70,6 +140,8 @@ about databeans and actions mappings stored in the standard Struts configuraton 
 <p><a href="http://archive.covalent.net/"><b>covalent.net</b></a>.</p>
 
 <p><a href="http://mail-archive.com/"><b>mail-archive.com</b></a>.</p>
+
+<p><b><a href="threads.htm">Struts Threads</a>  - </b> Clippings from the User Lists</p>
 
 </section>
 
