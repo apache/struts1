@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.129 2003/07/30 23:55:50 dgraham Exp $
- * $Revision: 1.129 $
- * $Date: 2003/07/30 23:55:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.130 2003/08/02 20:35:28 dgraham Exp $
+ * $Revision: 1.130 $
+ * $Date: 2003/08/02 20:35:28 $
  *
  * ====================================================================
  *
@@ -110,7 +110,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.129 $ $Date: 2003/07/30 23:55:50 $
+ * @version $Revision: 1.130 $ $Date: 2003/08/02 20:35:28 $
  */
 
 public class RequestUtils {
@@ -128,23 +128,6 @@ public class RequestUtils {
     private static MessageResources messages =
         MessageResources.getMessageResources("org.apache.struts.util.LocalStrings");
     
-    /**
-     * Java 1.4 encode method to use instead of deprecated 1.3 version.
-     */
-    private static Method encode = null;
-    
-    /**
-     * Initialize the encode variable with the 1.4 method if available.
-     */
-    static {
-        try {
-            // get version of encode method with two String args 
-            Class[] args = new Class[] { String.class, String.class };
-            encode = URLEncoder.class.getMethod("encode", args);
-        } catch (NoSuchMethodException e) {
-            log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
-        }
-    }
 
     // --------------------------------------------------------- Public Methods
 
@@ -1505,22 +1488,11 @@ public class RequestUtils {
      * method; if the reflection operations throw exceptions, this will return the url
      * encoded with the old URLEncoder.encode() method.
      * @return String - the encoded url.
+     * @deprecated Use TagUtils.encodeURL() instead.  This will be removed
+     * after Struts 1.2.
      */
     public static String encodeURL(String url) {
-        try {
-
-            // encode url with new 1.4 method and UTF-8 encoding
-            if (encode != null) {
-                return (String) encode.invoke(null, new Object[] { url, "UTF-8" });
-            }
-
-        } catch (IllegalAccessException e) {
-            log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
-        } catch (InvocationTargetException e) {
-            log.debug("Could not find Java 1.4 encode method. Using deprecated version.", e);
-        }
-
-        return URLEncoder.encode(url);
+        return TagUtils.getInstance().encodeURL(url);
     }
     
     /**

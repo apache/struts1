@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.17 2003/07/31 00:30:21 dgraham Exp $
- * $Revision: 1.17 $
- * $Date: 2003/07/31 00:30:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.18 2003/08/02 20:35:28 dgraham Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/08/02 20:35:28 $
  *
  * ====================================================================
  *
@@ -63,7 +63,9 @@ package org.apache.struts.taglib;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
@@ -99,7 +101,7 @@ import org.apache.struts.util.RequestUtils;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -122,15 +124,30 @@ public class TagUtils {
         MessageResources.getMessageResources("org.apache.struts.util.LocalStrings");
 
     /**
+     * Java 1.4 encode method to use instead of deprecated 1.3 version.
+     */
+    private static Method encode = null;
+
+    /**
      * Maps lowercase JSP scope names to their PageContext integer constant
      * values.
      */
     private static final Map scopes = new HashMap();
 
     /**
-     * Initialize the scope names map.
+     * Initialize the scope names map and the encode variable with the 
+     * Java 1.4 method if available.
      */
     static {
+        
+        try {
+            // get version of encode method with two String args 
+            Class[] args = new Class[] { String.class, String.class };
+            encode = URLEncoder.class.getMethod("encode", args);
+        } catch (NoSuchMethodException e) {
+            log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
+        }
+        
         scopes.put("page", new Integer(PageContext.PAGE_SCOPE));
         scopes.put("request", new Integer(PageContext.REQUEST_SCOPE));
         scopes.put("session", new Integer(PageContext.SESSION_SCOPE));
@@ -432,7 +449,7 @@ public class TagUtils {
                 url.setLength(hash);
             }
             url.append('#');
-            url.append(RequestUtils.encodeURL(anchor));
+            url.append(this.encodeURL(anchor));
         }
 
         // Add dynamic parameters if requested
@@ -472,7 +489,7 @@ public class TagUtils {
                     } else {
                         url.append(separator);
                     }
-                    url.append(RequestUtils.encodeURL(key));
+                    url.append(this.encodeURL(key));
                     url.append('='); // Interpret null as "no value"
                 } else if (value instanceof String) {
                     if (!question) {
@@ -481,9 +498,9 @@ public class TagUtils {
                     } else {
                         url.append(separator);
                     }
-                    url.append(RequestUtils.encodeURL(key));
+                    url.append(this.encodeURL(key));
                     url.append('=');
-                    url.append(RequestUtils.encodeURL((String) value));
+                    url.append(this.encodeURL((String) value));
                 } else if (value instanceof String[]) {
                     String values[] = (String[]) value;
                     for (int i = 0; i < values.length; i++) {
@@ -493,9 +510,9 @@ public class TagUtils {
                         } else {
                             url.append(separator);
                         }
-                        url.append(RequestUtils.encodeURL(key));
+                        url.append(this.encodeURL(key));
                         url.append('=');
-                        url.append(RequestUtils.encodeURL(values[i]));
+                        url.append(this.encodeURL(values[i]));
                     }
                 } else /* Convert other objects to a string */ {
                     if (!question) {
@@ -504,16 +521,16 @@ public class TagUtils {
                     } else {
                         url.append(separator);
                     }
-                    url.append(RequestUtils.encodeURL(key));
+                    url.append(this.encodeURL(key));
                     url.append('=');
-                    url.append(RequestUtils.encodeURL(value.toString()));
+                    url.append(this.encodeURL(value.toString()));
                 }
             }
 
             // Re-add the saved anchor (if any)
             if (anchor != null) {
                 url.append('#');
-                url.append(RequestUtils.encodeURL(anchor));
+                url.append(this.encodeURL(anchor));
             }
 
         }
@@ -530,6 +547,30 @@ public class TagUtils {
              return (url.toString());
          }
 
+    }
+    
+    /**
+     * Use the new URLEncoder.encode() method from Java 1.4 if available, else
+     * use the old deprecated version.  This method uses reflection to find the 
+     * appropriate method; if the reflection operations throw exceptions, this 
+     * will return the url encoded with the old URLEncoder.encode() method.
+     * @return String The encoded url.
+     */
+    public String encodeURL(String url) {
+        try {
+
+            // encode url with new 1.4 method and UTF-8 encoding
+            if (encode != null) {
+                return (String) encode.invoke(null, new Object[] { url, "UTF-8" });
+            }
+
+        } catch (IllegalAccessException e) {
+            log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
+        } catch (InvocationTargetException e) {
+            log.debug("Could not find Java 1.4 encode method. Using deprecated version.", e);
+        }
+
+        return URLEncoder.encode(url);
     }
     
     /**

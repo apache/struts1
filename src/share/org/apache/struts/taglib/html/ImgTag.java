@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.31 2003/07/31 00:19:04 dgraham Exp $
- * $Revision: 1.31 $
- * $Date: 2003/07/31 00:19:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.32 2003/08/02 20:35:28 dgraham Exp $
+ * $Revision: 1.32 $
+ * $Date: 2003/08/02 20:35:28 $
  *
  * ====================================================================
  *
@@ -72,7 +72,6 @@ import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 
 /**
  * Generate an IMG tag to the specified image URI.
@@ -85,7 +84,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.31 $
+ * @version $Revision: 1.32 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -615,7 +614,7 @@ public class ImgTag extends BaseHandlerTag {
             src.append('=');
             Object value = TagUtils.getInstance().lookup(pageContext, paramName, paramProperty, paramScope);
             if (value != null)
-                src.append(RequestUtils.encodeURL(value.toString()));
+                src.append(TagUtils.getInstance().encodeURL(value.toString()));
         }
 
         // Just return the URL if there is no bean to look up
@@ -666,7 +665,7 @@ public class ImgTag extends BaseHandlerTag {
                     }
                     src.append(key);
                     src.append('=');
-                    src.append(RequestUtils.encodeURL(values[i]));
+                    src.append(TagUtils.getInstance().encodeURL(values[i]));
                 }
             } else {
 
@@ -678,7 +677,7 @@ public class ImgTag extends BaseHandlerTag {
                 }
                 src.append(key);
                 src.append('=');
-                src.append(RequestUtils.encodeURL(value.toString()));
+                src.append(TagUtils.getInstance().encodeURL(value.toString()));
             }
         }
 
