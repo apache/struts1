@@ -143,6 +143,34 @@ public class ForwardConfig implements Serializable {
 
 
     /**
+     * The name of the ForwardConfig that this object should inherit properties
+     * from. 
+     */
+    protected String inherit = null;
+
+    public String getExtends() {
+        return (this.inherit);
+    }
+
+    public void setExtends(String inherit) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.inherit = inherit;
+    }
+
+
+    /**
+     * Have the inheritance values for this class been applied?
+     */ 
+    protected boolean extensionProcessed = false;
+
+    public boolean isExtensionProcessed() {
+        return extensionProcessed;
+    }
+    
+
+    /**
      * The unique identifier of this forward, which is used to reference it
      * in <code>Action</code> classes.
      */
@@ -234,6 +262,7 @@ public class ForwardConfig implements Serializable {
         this.redirect = redirect;
     }
 
+
     /**
      * <p>The name of a <code>commons-chain</code> command which should be
      * looked up and executed before Struts dispatches control to the view
@@ -252,6 +281,7 @@ public class ForwardConfig implements Serializable {
         this.command = command;
     }
 
+    
     /**
      * <p>The name of a <code>commons-chain</code> catalog in which <code>command</code>
      * should be looked up.  If this value is undefined, then the command will be
@@ -272,8 +302,236 @@ public class ForwardConfig implements Serializable {
     }
 
 
+    // ------------------------------------------------------ Protected Methods
+    
+    
+    /**
+     * <p>Traces the hierarchy of this object to check if any of the ancestors
+     * are extending this instance.</p>
+     * 
+     * @param moduleConfig  The {@link ModuleConfig} that this config is from.
+     * @param actionConfig  The {@link ActionConfig} that this config is from,
+     *                      if applicable.  This parameter must be null if this
+     *                      forward config is a global forward.
+     * 
+     * @return true if circular inheritance was detected.
+     */ 
+    protected boolean checkCircularInheritance(ModuleConfig moduleConfig,
+                                               ActionConfig actionConfig) {
+        String ancestorName = getExtends();
+        if (ancestorName == null) {
+            return false;
+        }
+        
+        // Find our ancestor
+        ForwardConfig ancestor = null;
+        
+        // First check the action config
+        if (actionConfig != null) {
+            ancestor = actionConfig.findForwardConfig(ancestorName);
+            
+            // If we found *this*, set ancestor to null to check for a global def
+            if (ancestor == this) {
+                ancestor = null;
+            }
+        }
+            
+        // Then check the global forwards
+        if (ancestor == null) {
+            ancestor = moduleConfig.findForwardConfig(ancestorName);
+            if (ancestor != null) {
+                // If the ancestor is a global forward, set actionConfig
+                //  to null so further searches are only done among
+                //  global forwards.
+                actionConfig = null;
+            }                
+        }
+        
+        while (ancestor != null) {
+            // Check if an ancestor is extending *this*
+            if (ancestor == this) {
+                return true;
+            }
+
+            // Get our ancestor's ancestor
+            ancestorName = ancestor.getExtends();
+            
+            // check against ancestors extending same named ancestors
+            if (ancestor.getName().equals(ancestorName)) {
+                // If the ancestor is extending a config with the same name
+                //  make sure we look for its ancestor in the global forwards.
+                //  If we're already at that level, we return false.
+                if (actionConfig == null) {
+                    return false;
+                } else {
+                    // Set actionConfig = null to force us to look for global
+                    //  forwards
+                    actionConfig = null;
+                }
+            }
+            
+            ancestor = null;
+            
+            // First check the action config
+            if (actionConfig != null) {
+                ancestor = actionConfig.findForwardConfig(ancestorName);
+            }
+            
+            // Then check the global forwards
+            if (ancestor == null) {
+                ancestor = moduleConfig.findForwardConfig(ancestorName);
+                if (ancestor != null) {
+                    // Limit further checks to moduleConfig.
+                    actionConfig = null;
+                }                
+            }
+        }
+        
+        return false;
+    }
+
+    
     // --------------------------------------------------------- Public Methods
 
+
+    /**
+     * <p>Inherit values that have not been overridden from the provided 
+     * config object.  Subclasses overriding this method should verify that
+     * the given parameter is of a class that contains a property it is trying
+     * to inherit:</p>
+     * 
+     * <pre>
+     * if (config instanceof MyCustomConfig) {
+     *     MyCustomConfig myConfig = 
+     *         (MyCustomConfig) config;
+     * 
+     *     if (getMyCustomProp() == null) {
+     *         setMyCustomProp(myConfig.getMyCustomProp());
+     *     } 
+     * }
+     * </pre>
+     * 
+     * <p>If the given <code>config</code> is extending another object, those 
+     * extensions should be resolved before it's used as a parameter to this 
+     * method.</p>
+     * 
+     * @param config    The object that this instance will be inheriting
+     *                  its values from.  
+     * @see #processExtends(ModuleConfig, ActionConfig)  
+     */ 
+    public void inheritFrom(ForwardConfig config) 
+            throws ClassNotFoundException, 
+            IllegalAccessException, 
+            InstantiationException {
+        
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+
+        // Inherit values that have not been overridden
+        if (getCatalog() == null) {
+            setCatalog(config.getCatalog());
+        }
+            
+        if (getCommand() == null) {
+            setCommand(config.getCommand());
+        }
+            
+        if (!getContextRelative()) {
+            setContextRelative(config.getContextRelative());
+        }
+
+        if (getModule() == null) {
+            setModule(config.getModule());
+        }
+
+        if (getName() == null) {
+            setName(config.getName());
+        }
+            
+        if (getPath() == null) {
+            setPath(config.getPath());
+        }
+            
+        if (!getRedirect()) {
+            setRedirect(config.getRedirect());
+        }
+
+    }
+
+    
+    /**
+     * <p>Inherit configuration information from the ForwardConfig that this
+     * instance is extending.  This method verifies that any forward config
+     * object that it inherits from has also had its processExtends() method
+     * called.</p>
+     * 
+     * @param moduleConfig  The {@link ModuleConfig} that this config is from.
+     * @param actionConfig  The {@link ActionConfig} that this config is from,
+     *                      if applicable.  This must be null for global
+     *                      forwards.
+     * 
+     * @see #inheritFrom(ForwardConfig) 
+     */ 
+    public void processExtends(ModuleConfig moduleConfig,
+                               ActionConfig actionConfig) 
+            throws ClassNotFoundException,
+                   IllegalAccessException,
+                   InstantiationException {
+
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        String ancestorName = getExtends();
+        if ((!extensionProcessed) && (ancestorName != null)) {
+            ForwardConfig baseConfig = null;
+            
+            // We only check the action config if we're not a global forward
+            boolean checkActionConfig = 
+                    (this != moduleConfig.findForwardConfig(getName()));
+            
+            // ... and the action config was provided
+            checkActionConfig &= actionConfig != null;
+            
+            // ... and we're not extending a config with the same name
+            // (because if we are, that means we're an action-level forward
+            //  extending a global forward).
+            checkActionConfig &= !ancestorName.equals(getName());
+            
+            // We first check in the action config's forwards
+            if (checkActionConfig) {
+                baseConfig = actionConfig.findForwardConfig(ancestorName);
+            }
+            
+            // Then check the global forwards
+            if (baseConfig == null) {
+                baseConfig = moduleConfig.findForwardConfig(ancestorName);
+            }
+            
+            if (baseConfig == null) {
+                throw new NullPointerException("Unable to find "
+                        + "forward '" + ancestorName + "' to extend.");
+            }
+            
+            // Check for circular inheritance and make sure the base config's
+            //  own extends have been processed already
+            if (checkCircularInheritance(moduleConfig, actionConfig)) {
+                throw new IllegalArgumentException(
+                        "Circular inheritance detected for forward " 
+                        + getName());
+            }
+            
+            if (!baseConfig.isExtensionProcessed()) {
+                baseConfig.processExtends(moduleConfig, actionConfig);
+            }
+
+            // copy values from the base config
+            inheritFrom(baseConfig);
+        }
+        
+        extensionProcessed = true;
+    }
+    
 
     /**
      * Freeze the configuration of this component.
@@ -301,6 +559,8 @@ public class ForwardConfig implements Serializable {
         sb.append(this.contextRelative);
         sb.append(",module=");
         sb.append(this.module);
+        sb.append(",extends=");
+        sb.append(this.inherit);
         sb.append(",catalog=");
         sb.append(this.catalog);
         sb.append(",command=");
@@ -309,6 +569,7 @@ public class ForwardConfig implements Serializable {
         return (sb.toString());
 
     }
+
 
 
 }

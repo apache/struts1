@@ -18,10 +18,14 @@
 
 package org.apache.struts.config;
 
+import org.apache.struts.util.RequestUtils;
+import org.apache.commons.beanutils.BeanUtils;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
+import java.lang.reflect.InvocationTargetException;
 
 
 /**
@@ -126,6 +130,48 @@ public class ActionConfig implements Serializable {
         this.attribute = attribute;
     }
 
+
+    /**
+     * <p>The path of the ActionConfig that this object should inherit 
+     * properties from.</p> 
+     */
+    protected String inherit = null;
+
+    /**
+     * <p>Returns the path of the ActionConfig that this object should inherit 
+     * properties from.</p>
+     * 
+     * @return  the path of the ActionConfig that this object should inherit 
+     * properties from.
+     */ 
+    public String getExtends() {
+        return (this.inherit);
+    }
+
+    /**
+     * <p>Set the path of the ActionConfig that this object should inherit 
+     * properties from.</p>
+     * 
+     * @param inherit the path of the ActionConfig that this object should 
+     * inherit properties from.
+     */ 
+    public void setExtends(String inherit) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.inherit = inherit;
+    }
+
+
+    /**
+     * Have the inheritance values for this class been applied?
+     */ 
+    protected boolean extensionProcessed = false;
+
+    public boolean isExtensionProcessed() {
+        return extensionProcessed;
+    }
+    
 
     /**
      * Context-relative path of the web application resource that will process
@@ -606,6 +652,134 @@ public class ActionConfig implements Serializable {
     }
 
 
+    // ------------------------------------------------------ Protected Methods
+    
+    
+    /**
+     * <p>Traces the hierarchy of this object to check if any of the ancestors
+     * is extending this instance.</p>
+     * 
+     * @param moduleConfig  The configuration for the module being configured.
+     * 
+     * @return true if circular inheritance was detected.
+     */ 
+    protected boolean checkCircularInheritance(ModuleConfig moduleConfig) {
+        
+        String ancestorPath = getExtends();
+        while (ancestorPath != null) {
+            // check if we have the same path as an ancestor
+            if (getPath().equals(ancestorPath)) {
+                return true;
+            }
+
+            // get our ancestor's ancestor
+            ActionConfig ancestor = 
+                    moduleConfig.findActionConfig(ancestorPath);
+            if (ancestor != null) {
+                ancestorPath = ancestor.getExtends();
+            } else {
+                ancestorPath = null;
+            }
+        }
+        
+        return false;
+    }
+
+    
+    /**
+     * <p>Compare the exception handlers of this action with that of the given
+     * and copy those that are not present.</p>
+     *
+     * @param baseConfig    The action config to copy handlers from.
+     *
+     * @see #inheritFrom(ActionConfig)
+     */
+    protected void inheritExceptionHandlers(ActionConfig baseConfig)
+            throws ClassNotFoundException,
+            IllegalAccessException,
+            InstantiationException, 
+            InvocationTargetException {
+
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        
+        // Inherit exception handler configs
+        ExceptionConfig[] baseHandlers = baseConfig.findExceptionConfigs();
+        for (int i = 0; i < baseHandlers.length; i++) {
+            ExceptionConfig baseHandler = baseHandlers[i];
+
+            // Do we have this handler?
+            ExceptionConfig copy =
+                    this.findExceptionConfig(baseHandler.getType());
+
+            if (copy == null) {
+
+                // We don't have this, so let's copy it
+                copy = (ExceptionConfig) RequestUtils
+                        .applicationInstance(baseHandler.getClass().getName());
+
+                BeanUtils.copyProperties(copy, baseHandler);
+                this.addExceptionConfig(copy);
+
+            } else {
+
+                // process any extension that this config might have
+                copy.processExtends(getModuleConfig(), this);
+                
+            }
+
+        }
+    }
+
+
+    /**
+     * <p>Compare the forwards of this action with that of the given and
+     * copy those that are not present.</p>
+     * 
+     * @param baseConfig    The action config to copy forwards from.
+     * 
+     * @see #inheritFrom(ActionConfig) 
+     */ 
+    protected void inheritForwards(ActionConfig baseConfig) 
+            throws ClassNotFoundException, 
+            IllegalAccessException, 
+            InstantiationException,
+            InvocationTargetException {
+        
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+
+        // Inherit forward configs
+        ForwardConfig[] baseForwards = baseConfig.findForwardConfigs();
+        for (int i = 0; i < baseForwards.length; i++) {
+            ForwardConfig baseForward = baseForwards[i];
+
+            // Do we have this forward? 
+            ForwardConfig copy = 
+                    this.findForwardConfig(baseForward.getName());
+            
+            if (copy == null) {
+                
+                // We don't have this, so let's copy it
+                copy = (ForwardConfig) RequestUtils
+                        .applicationInstance(baseForward.getClass().getName());                    
+                BeanUtils.copyProperties(copy, baseForward);
+                    
+                this.addForwardConfig(copy);
+
+            } else {
+
+                // process any extension for this forward
+                copy.processExtends(getModuleConfig(), this);
+
+            }
+
+        }
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -813,6 +987,165 @@ public class ActionConfig implements Serializable {
 
 
     /**
+     * <p>Inherit values that have not been overridden from the provided 
+     * config object.  Subclasses overriding this method should verify that
+     * the given parameter is of a class that contains a property it is trying
+     * to inherit:</p>
+     * 
+     * <pre>
+     * if (config instanceof MyCustomConfig) {
+     *     MyCustomConfig myConfig =
+     *         (MyCustomConfig) config;
+     * 
+     *     if (getMyCustomProp() == null) {
+     *         setMyCustomProp(myConfig.getMyCustomProp());
+     *     } 
+     * }
+     * </pre>
+     * 
+     * <p>If the given <code>config</code> is extending another object, those 
+     * extensions should be resolved before it's used as a parameter to this 
+     * method.</p>
+     * 
+     * @param config    The object that this instance will be inheriting
+     *                  its values from.  
+     * @see #processExtends(ModuleConfig)  
+     */ 
+    public void inheritFrom(ActionConfig config)
+            throws ClassNotFoundException, 
+            IllegalAccessException, 
+            InstantiationException,
+            InvocationTargetException {
+        
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+
+        // Inherit values that have not been overridden
+        if (getAttribute() == null) {
+            setAttribute(config.getAttribute());
+        }
+            
+        if (getCatalog() == null) {
+            setCatalog(config.getCatalog());
+        }
+
+        if (getCommand() == null) {
+            setCommand(config.getCommand());
+        }
+
+        if (getForward() == null) {
+            setForward(config.getForward());
+        }
+            
+        if (getInclude() == null) {
+            setInclude(config.getInclude());
+        }
+
+        if (getInput() == null) {
+            setInput(config.getInput());
+        }
+
+        if (getMultipartClass() == null) {
+            setMultipartClass(config.getMultipartClass());
+        }
+
+        if (getName() == null) {
+            setName(config.getName());
+        }
+
+        if (getParameter() == null) {
+            setParameter(config.getParameter());
+        }
+
+        if (getPath() == null) {
+            setPath(config.getPath());
+        }
+
+        if (getPrefix() == null) {
+            setPrefix(config.getPrefix());
+        }
+
+        if (getRoles() == null) {
+            setRoles(config.getRoles());
+        }
+
+        if (getScope().equals("session")) {
+            setScope(config.getScope());
+        }
+
+        if (getSuffix() == null) {
+            setSuffix(config.getSuffix());
+        }
+
+        if (getType() == null) {
+            setType(config.getType());
+        }
+
+        if (!getUnknown()) {
+            setUnknown(config.getUnknown());
+        }
+
+        if (getValidate()) {
+            setValidate(config.getValidate());
+        }
+
+        inheritExceptionHandlers(config);
+        inheritForwards(config);
+    }
+
+    
+    /**
+     * <p>Inherit configuration information from the ActionConfig that this
+     * instance is extending.  This method verifies that any action config
+     * object that it inherits from has also had its processExtends() method
+     * called.</p>
+     * 
+     * @param moduleConfig  The {@link ModuleConfig} that this bean is from.
+     * 
+     * @see #inheritFrom(ActionConfig)
+     */ 
+    public void processExtends(ModuleConfig moduleConfig) 
+            throws ClassNotFoundException,
+                   IllegalAccessException,
+                   InstantiationException,
+                   InvocationTargetException {
+
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        String ancestorPath = getExtends();
+        if ((!extensionProcessed) && (ancestorPath != null)) {
+            ActionConfig baseConfig =
+                    moduleConfig.findActionConfig(ancestorPath);
+            
+            if (baseConfig == null) {
+                throw new NullPointerException("Unable to find "
+                        + "action for '" + ancestorPath + "' to extend.");
+            }
+            
+            // Check against circular inheritance and make sure the base
+            //  config's own extends has been processed already
+            if (checkCircularInheritance(moduleConfig)) {
+                throw new IllegalArgumentException(
+                        "Circular inheritance detected for action "
+                        + getPath());
+            }
+            
+            // Make sure the ancestor's own extension has been processed.
+            if (!baseConfig.isExtensionProcessed()) {
+                baseConfig.processExtends(moduleConfig);
+            }
+
+            // Copy values from the base config
+            inheritFrom(baseConfig);
+        }
+        
+        extensionProcessed = true;
+    }
+    
+
+    /**
      * Remove the specified exception configuration instance.
      *
      * @param config ExceptionConfig instance to be removed
@@ -867,6 +1200,10 @@ public class ActionConfig implements Serializable {
         if (command != null) {
             sb.append(",command=");
             sb.append(command);
+        }
+        if (inherit != null) {
+            sb.append(",extends=");
+            sb.append(inherit);
         }
         if (forward != null) {
             sb.append(",forward=");

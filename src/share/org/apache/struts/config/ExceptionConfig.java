@@ -67,6 +67,34 @@ public class ExceptionConfig implements Serializable {
 
 
     /**
+     * The type of the ExceptionConfig that this object should inherit
+     * properties from.
+     */
+    protected String inherit = null;
+
+    public String getExtends() {
+        return (this.inherit);
+    }
+
+    public void setExtends(String inherit) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.inherit = inherit;
+    }
+
+
+    /**
+     * Have the inheritance values for this class been applied?
+     */
+    protected boolean extensionProcessed = false;
+
+    public boolean isExtensionProcessed() {
+        return extensionProcessed;
+    }
+
+
+    /**
      * The fully qualified Java class name of the exception handler class
      * which should be instantiated to handle this exception.
      */
@@ -156,7 +184,231 @@ public class ExceptionConfig implements Serializable {
     }
 
 
+    // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * <p>Traces the hierarchy of this object to check if any of the ancestors
+     * are extending this instance.</p>
+     *
+     * @param moduleConfig  The {@link ModuleConfig} that this config is from.
+     * @param actionConfig  The {@link ActionConfig} that this config is from,
+     *                      if applicable.  This parameter must be null if this
+     *                      is a global handler.
+     *
+     * @return true if circular inheritance was detected.
+     */
+    protected boolean checkCircularInheritance(ModuleConfig moduleConfig,
+                                               ActionConfig actionConfig) {
+        String ancestorType = getExtends();
+        if (ancestorType == null) {
+            return false;
+        }
+
+        // Find our ancestor
+        ExceptionConfig ancestor = null;
+
+        // First check the action config
+        if (actionConfig != null) {
+            ancestor = actionConfig.findExceptionConfig(ancestorType);
+
+            // If we found *this*, set ancestor to null to check for a global def
+            if (ancestor == this) {
+                ancestor = null;
+            }
+        }
+
+        // Then check the global handlers
+        if (ancestor == null) {
+            ancestor = moduleConfig.findExceptionConfig(ancestorType);
+            if (ancestor != null) {
+                // If the ancestor is a global handler, set actionConfig
+                //  to null so further searches are only done among
+                //  global handlers.
+                actionConfig = null;
+            }
+        }
+
+        while (ancestor != null) {
+            // Check if an ancestor is extending *this*
+            if (ancestor == this) {
+                return true;
+            }
+
+            // Get our ancestor's ancestor
+            ancestorType = ancestor.getExtends();
+
+            // check against ancestors extending same typed ancestors
+            if (ancestor.getType().equals(ancestorType)) {
+                // If the ancestor is extending a config for the same type,
+                //  make sure we look for its ancestor in the global handlers.
+                //  If we're already at that level, we return false.
+                if (actionConfig == null) {
+                    return false;
+                } else {
+                    // Set actionConfig = null to force us to look for global
+                    //  forwards
+                    actionConfig = null;
+                }
+            }
+
+            ancestor = null;
+
+            // First check the action config
+            if (actionConfig != null) {
+                ancestor = actionConfig.findExceptionConfig(ancestorType);
+            }
+
+            // Then check the global handlers
+            if (ancestor == null) {
+                ancestor = moduleConfig.findExceptionConfig(ancestorType);
+                if (ancestor != null) {
+                    // Limit further checks to moduleConfig.
+                    actionConfig = null;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
     // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * <p>Inherit values that have not been overridden from the provided
+     * config object.  Subclasses overriding this method should verify that
+     * the given parameter is of a class that contains a property it is trying
+     * to inherit:</p>
+     *
+     * <pre>
+     * if (config instanceof MyCustomConfig) {
+     *     MyCustomConfig myConfig =
+     *         (MyCustomConfig) config;
+     *
+     *     if (getMyCustomProp() == null) {
+     *         setMyCustomProp(myConfig.getMyCustomProp());
+     *     }
+     * }
+     * </pre>
+     *
+     * <p>If the given <code>config</code> is extending another object, those
+     * extensions should be resolved before it's used as a parameter to this
+     * method.</p>
+     *
+     * @param config    The object that this instance will be inheriting
+     *                  its values from.
+     * @see #processExtends(ModuleConfig, ActionConfig)
+     */
+    public void inheritFrom(ExceptionConfig config)
+            throws ClassNotFoundException,
+            IllegalAccessException,
+            InstantiationException {
+
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+
+        // Inherit values that have not been overridden
+        if (getBundle() == null) {
+            setBundle(config.getBundle());
+        }
+
+        if (getHandler().equals("org.apache.struts.action.ExceptionHandler")) {
+            setHandler(config.getHandler());
+        }
+
+        if (getKey() == null) {
+            setKey(config.getKey());
+        }
+
+        if (getPath() == null) {
+            setPath(config.getPath());
+        }
+
+        if (getScope().equals("request")) {
+            setScope(config.getScope());
+        }
+
+        if (getType() == null) {
+            setType(config.getType());
+        }
+    }
+
+
+    /**
+     * <p>Inherit configuration information from the ExceptionConfig that this
+     * instance is extending.  This method verifies that any exception config
+     * object that it inherits from has also had its processExtends() method
+     * called.</p>
+     *
+     * @param moduleConfig  The {@link ModuleConfig} that this config is from.
+     * @param actionConfig  The {@link ActionConfig} that this config is from,
+     *                      if applicable.  This must be null for global
+     *                      forwards.
+     *
+     * @see #inheritFrom(ExceptionConfig)
+     */
+    public void processExtends(ModuleConfig moduleConfig,
+                               ActionConfig actionConfig)
+            throws ClassNotFoundException,
+                   IllegalAccessException,
+                   InstantiationException {
+
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        String ancestorType = getExtends();
+        if ((!extensionProcessed) && (ancestorType != null)) {
+            ExceptionConfig baseConfig = null;
+
+            // We only check the action config if we're not a global handler
+            boolean checkActionConfig =
+                    (this != moduleConfig.findExceptionConfig(getType()));
+
+            // ... and the action config was provided
+            checkActionConfig &= actionConfig != null;
+            
+            // ... and we're not extending a config with the same type value
+            // (because if we are, that means we're an action-level handler
+            //  extending a global handler).
+            checkActionConfig &= !ancestorType.equals(getType());
+
+            
+            // We first check in the action config's exception handlers
+            if (checkActionConfig) {
+                baseConfig = actionConfig.findExceptionConfig(ancestorType);
+            }
+
+            // Then check the global exception handlers
+            if (baseConfig == null) {
+                baseConfig = moduleConfig.findExceptionConfig(ancestorType);
+            }
+
+            if (baseConfig == null) {
+                throw new NullPointerException("Unable to find "
+                        + "handler for '" + ancestorType + "' to extend.");
+            }
+
+            // Check for circular inheritance and make sure the base config's
+            //  own inheritance has been processed already
+            if (checkCircularInheritance(moduleConfig, actionConfig)) {
+                throw new IllegalArgumentException(
+                        "Circular inheritance detected for forward "
+                        + getType());
+            }
+
+            if (!baseConfig.isExtensionProcessed()) {
+                baseConfig.processExtends(moduleConfig, actionConfig);
+            }
+
+            // copy values from the base config
+            inheritFrom(baseConfig);
+        }
+
+        extensionProcessed = true;
+    }
 
 
     /**
@@ -181,6 +433,12 @@ public class ExceptionConfig implements Serializable {
             sb.append(",bundle=");
             sb.append(this.bundle);
         }
+        if (this.inherit != null) {
+            sb.append(",extends=");
+            sb.append(this.inherit);
+        }
+        sb.append(",handler=");
+        sb.append(this.handler);
         sb.append(",key=");
         sb.append(this.key);
         sb.append(",path=");

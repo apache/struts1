@@ -22,13 +22,17 @@ package org.apache.struts.config;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.lang.reflect.InvocationTargetException;
+
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.MutableDynaClass;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.DynaActionFormClass;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.validator.BeanValidatorForm;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -113,6 +117,35 @@ public class FormBeanConfig implements Serializable {
         ; // No action required
     }
 
+    
+    /**
+     * The name of the FormBeanConfig that this config inherits configuration
+     * information from.
+     */
+    protected String inherit = null;
+
+    public String getExtends() {
+        return (this.inherit);
+    }
+
+    public void setExtends(String extend) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.inherit = extend;
+    }
+
+
+    /**
+     * Have the inheritance values for this class been applied?
+     */ 
+    protected boolean extensionProcessed = false;
+
+    public boolean isExtensionProcessed() {
+        return extensionProcessed;
+    }
+    
+
     /**
      * The unique identifier of this form bean, which is used to reference this
      * bean in <code>ActionMapping</code> instances as well as for the name of
@@ -182,6 +215,77 @@ public class FormBeanConfig implements Serializable {
      */
     public void setRestricted(boolean restricted) {
         this.restricted = restricted;
+    }
+
+
+    // ------------------------------------------------------ Protected Methods
+    
+    
+    /**
+     * <p>Traces the hierarchy of this object to check if any of the ancestors
+     * is extending this instance.</p>
+     * 
+     * @param moduleConfig  The configuration for the module being configured.
+     * 
+     * @return true if circular inheritance was detected.
+     */ 
+    protected boolean checkCircularInheritance(ModuleConfig moduleConfig) {
+        
+        String ancestorName = getExtends();
+        while (ancestorName != null) {
+            // check if we have the same name as an ancestor
+            if (getName().equals(ancestorName)) {
+                return true;
+            }
+
+            // get our ancestor's ancestor
+            FormBeanConfig ancestor = 
+                    moduleConfig.findFormBeanConfig(ancestorName);
+            ancestorName = ancestor.getExtends();
+        }
+        
+        return false;
+    }
+
+    
+    /**
+     * <p>Compare the form properties of this bean with that of the given and
+     * copy those that are not present.</p>
+     * 
+     * @param config    The form bean config to copy properties from.
+     * 
+     * @see #inheritFrom(FormBeanConfig) 
+     */ 
+    protected void inheritFormProperties(FormBeanConfig config) 
+            throws ClassNotFoundException, 
+            IllegalAccessException, 
+            InstantiationException,
+            InvocationTargetException {
+        
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+
+        // Inherit form property configs
+        FormPropertyConfig[] baseFpcs = config.findFormPropertyConfigs();
+        for (int i = 0; i < baseFpcs.length; i++) {
+            FormPropertyConfig baseFpc = baseFpcs[i];
+
+            // Do we have this prop? 
+            FormPropertyConfig prop = 
+                    this.findFormPropertyConfig(baseFpc.getName());
+            
+            if (prop == null) {
+                
+                // We don't have this, so let's copy it
+                prop = (FormPropertyConfig) RequestUtils
+                        .applicationInstance(baseFpc.getClass().getName());                    
+
+                BeanUtils.copyProperties(prop, baseFpc);
+                this.addFormPropertyConfig(prop);
+            }
+            
+        }
     }
 
 
@@ -308,6 +412,108 @@ public class FormBeanConfig implements Serializable {
 
 
     /**
+     * <p>Inherit values that have not been overridden from the provided 
+     * config object.  Subclasses overriding this method should verify that
+     * the given parameter is of a class that contains a property it is trying
+     * to inherit:</p>
+     * 
+     * <pre>
+     * if (config instanceof MyCustomConfig) {
+     *     MyCustomConfig myConfig = 
+     *         (MyCustomConfig) config;
+     * 
+     *     if (getMyCustomProp() == null) {
+     *         setMyCustomProp(myConfig.getMyCustomProp());
+     *     } 
+     * }
+     * </pre>
+     * 
+     * <p>If the given <code>config</code> is extending another object, those 
+     * extensions should be resolved before it's used as a parameter to this 
+     * method.</p>
+     * 
+     * @param config    The object that this instance will be inheriting
+     *                  its values from.  
+     * @see #processExtends(ModuleConfig)  
+     */ 
+    public void inheritFrom(FormBeanConfig config) 
+            throws ClassNotFoundException, 
+            IllegalAccessException, 
+            InstantiationException,
+            InvocationTargetException {
+        
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+
+        // Inherit values that have not been overridden
+        if (getName() == null) {
+            setName(config.getName());
+        }
+            
+        if (!isRestricted()) {
+            setRestricted(config.isRestricted());
+        }
+
+        if (getType() == null) {
+            setType(config.getType());
+        }
+            
+        inheritFormProperties(config);
+    }
+
+    
+    /**
+     * <p>Inherit configuration information from the FormBeanConfig that this
+     * instance is extending.  This method verifies that any form bean config
+     * object that it inherits from has also had its processExtends() method
+     * called.</p>
+     * 
+     * @param moduleConfig  The {@link ModuleConfig} that this bean is from.
+     * 
+     * @see #inheritFrom(FormBeanConfig) 
+     */ 
+    public void processExtends(ModuleConfig moduleConfig) 
+            throws ClassNotFoundException,
+                   IllegalAccessException,
+                   InstantiationException,
+                   InvocationTargetException {
+
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        String ancestor = getExtends();
+        if ((!extensionProcessed) && (ancestor != null)) {
+            FormBeanConfig baseConfig = 
+                    moduleConfig.findFormBeanConfig(ancestor);
+            
+            if (baseConfig == null) {
+                throw new NullPointerException("Unable to find "
+                        + "form bean '" + ancestor + "' to extend.");
+            }
+            
+            // Check against circule inheritance and make sure the base config's
+            //  own extends have been processed already
+            if (checkCircularInheritance(moduleConfig)) {
+                throw new IllegalArgumentException(
+                        "Circular inheritance detected for form bean " 
+                        + getName());
+            }
+            
+            // Make sure the ancestor's own extension has been processed.
+            if (!baseConfig.isExtensionProcessed()) {
+                baseConfig.processExtends(moduleConfig);
+            }
+
+            // Copy values from the base config
+            inheritFrom(baseConfig);
+        }
+        
+        extensionProcessed = true;
+    }
+    
+
+    /**
      * Remove the specified form property configuration instance.
      *
      * @param config FormPropertyConfig instance to be removed
@@ -332,6 +538,8 @@ public class FormBeanConfig implements Serializable {
         sb.append(this.name);
         sb.append(",type=");
         sb.append(this.type);
+        sb.append(",extends=");
+        sb.append(this.inherit);
         sb.append("]");
         return (sb.toString());
 

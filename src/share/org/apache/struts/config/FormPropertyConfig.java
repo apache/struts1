@@ -239,7 +239,6 @@ public class FormPropertyConfig implements Serializable {
     }
 
 
-
     // --------------------------------------------------------- Public Methods
 
 
@@ -313,6 +312,50 @@ public class FormPropertyConfig implements Serializable {
             initialValue = null;
         }
         return (initialValue);
+
+    }
+
+
+    /**
+     * <p>Inherit values that have not been overridden from the provided 
+     * config object.  Subclasses overriding this method should verify that
+     * the given parameter is of a class that contains a property it is trying
+     * to inherit:</p>
+     * <pre>
+     * if (config instanceof MyCustomFormPropertyConfig) {
+     *     MyCustomFormPropertyConfig myConfig = 
+     *         (MyCustomFormPropertyConfig) config;
+     * 
+     *     if (getMyCustomProp() == null) {
+     *         setMyCustomProp(myConfig.getMyCustomProp());
+     *     } 
+     * }
+     * </pre>
+     * 
+     * @param config    The object that this instance will be inheriting
+     *                  its values from. 
+     */ 
+    public void inheritFrom(FormPropertyConfig config) {
+
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        
+        if (getInitial() == null) {
+            setInitial(config.getInitial());
+        }
+                    
+        if (getName() == null) {
+            setName(config.getName());
+        }
+                    
+        if (getSize() == 0) {
+            setSize(config.getSize());
+        }
+                    
+        if (getType() == null) {
+            setType(config.getType());
+        }
 
     }
 
