@@ -66,6 +66,10 @@
     <mkdir   dir="${build.home}/example/WEB-INF"/>
     <mkdir   dir="${build.home}/example/WEB-INF/classes"/>
     <mkdir   dir="${build.home}/example/WEB-INF/lib"/>
+    <mkdir   dir="${build.home}/example/WEB-INF/src"/>
+    <copy  todir="${build.home}/example/WEB-INF/src">
+      <fileset dir="src/example"/>
+    </copy>
     <copy  todir="${build.home}/example">
       <fileset dir="web/example"/>
     </copy>
@@ -80,6 +84,10 @@
     <mkdir   dir="${build.home}/test/WEB-INF"/>
     <mkdir   dir="${build.home}/test/WEB-INF/classes"/>
     <mkdir   dir="${build.home}/test/WEB-INF/lib"/>
+    <mkdir   dir="${build.home}/test/WEB-INF/src"/>
+    <copy  todir="${build.home}/test/WEB-INF/src">
+      <fileset dir="src/test"/>
+    </copy>
     <copy  todir="${build.home}/test">
       <fileset dir="web/test"/>
     </copy>
@@ -256,7 +264,6 @@
   <!-- BUILD: Compile upload example application components -->
   <target name="compile.upload"
           depends="dist.library,prepare.upload">
-
       <javac srcdir="web/upload"
              destdir="${build.home}/upload/WEB-INF/classes"
              classpath="${build.home}/library/classes:${servlet.jar}"
