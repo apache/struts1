@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.3 2002/07/11 16:22:27 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/07/11 16:22:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.4 2002/07/19 10:02:12 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/07/19 10:02:12 $
  *
  * ====================================================================
  *
@@ -69,6 +69,7 @@ import java.util.Locale;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionForward;
+import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
@@ -97,6 +98,8 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  */
 public class TilesRequestProcessor extends RequestProcessor
 {
+    /** Debug flag */
+  public static final boolean debug = true;
     /** Definitions factory */
   private DefinitionsFactory definitionsFactory;
 
@@ -134,16 +137,18 @@ public class TilesRequestProcessor extends RequestProcessor
 
 
     /**
-     * Do a forward using request dispatcher.
-     * Forward to requested uri.
-     * Uri can be a valid uri, or a definition name. If definition name, the
-     * definition is retrieved and included. Otherwise, a forward is done to
-     * original uri.
-     * @param uri Uri or Definition name to forward
+     * Process a Tile definition name.
+     * This method try to process parameter definitionName as a definition name.
+     * It return true if a definition has been processed, false otherwise.
+     * Parameter contextRelative is not use in this implementation.
+     *
+     * @param definitionName Definition name to insert.
+     * @param contextRelative Does the Definition is marked contextRelative ?
      * @param request Current page request
      * @param response Current page response
+     * @return True if the method has process uri as a definition name, false otherwise.
      */
-  protected void doForward(String uri, HttpServletRequest request, HttpServletResponse response)
+  protected boolean processTilesDefinition(String definitionName, boolean contextRelative, HttpServletRequest request, HttpServletResponse response)
  	  throws IOException, ServletException
     {
     //System.out.println("doForward(" + uri + ")");
@@ -151,6 +156,8 @@ public class TilesRequestProcessor extends RequestProcessor
     boolean doInclude = false;
       // Controller associated to a definition, if any
     Controller controller = null;
+      // Computed uri to include
+    String uri = null;
     ComponentContext tileContext = null;
 
      try
@@ -165,7 +172,7 @@ public class TilesRequestProcessor extends RequestProcessor
           // and definition is found.
         if( definitionsFactory != null )
           { // Get definition of tiles/component corresponding to uri.
-          definition = definitionsFactory.getDefinition(uri, request, getServletContext());
+          definition = definitionsFactory.getDefinition(definitionName, request, getServletContext());
           if( definition != null )
             { // We have a definition.
               // We use it to complete missing attribute in context.
@@ -211,48 +218,131 @@ public class TilesRequestProcessor extends RequestProcessor
         throw new ServletException( ex );
         }
 
+      // Have we found a definition ?
+    if(uri == null)
+      return false;
+
+      // Process the definition
       // Execute controller associated to definition, if any.
     if(controller !=null)
       {
       controller.perform( tileContext, request, response, getServletContext());
       } // end if
 
-      // Do dispatching : search dispatcher, then dispatch
-	  RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
-    if (rd == null)
-      { // error
-      response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                               getInternal().getMessage
-                               ("requestDispatcher", uri));
-      return;
-      } // end if
-
-    // Unwrap the multipart request, if there is one.
-    if (request instanceof MultipartRequestWrapper) {
-        request = ((MultipartRequestWrapper) request).getRequest();
-    }
-
       // If request comes from a previous Tile, do an include.
       // This allows to insert an action in a Tile.
     if( doInclude )
-      rd.include(request, response);
+      doInclude(uri, request, response);
      else
-      rd.forward(request, response);   // original behavior
-   }
+      super.doForward(uri, request, response);   // original behavior
+
+    return true;
+    }
 
     /**
-     * Do an include of specified uri.
-     * Uri can be a valid uri, or a definition name. If definition name, the
-     * definition is retrieved and included. Otherwise,
-     * original uri is included.
-     * @param uri Uri or Definition name to include
+     * Do a forward using request dispatcher.
+     *
+     * Uri is a valid uri. If response has already been commited, do an include
+     * instead.
+     * @param uri Uri or Definition name to forward
      * @param request Current page request
      * @param response Current page response
      */
-  protected void doInclude(String uri, HttpServletRequest request, HttpServletResponse response)
+  protected void doForward(String uri, HttpServletRequest request, HttpServletResponse response)
  	  throws IOException, ServletException
     {
-    doForward( uri, request, response );
+    if(response.isCommitted())
+      doInclude(uri, request, response);
+     else
+      super.doForward(uri, request, response);
+   }
+
+    /**
+     * Overloaded method from Struts RequestProcessor.
+     * Forward or redirect to the specified destination, by the specified
+     * mechanism.
+     * This method catch the struts actionForward call. It checks if the
+     * actionForward is done on a Tiles definition name. If true, process the
+     * definition, and insert it. If false, call the original parent's method.
+     * @param request The servlet request we are processing
+     * @param response The servlet response we are creating
+     * @param forward The ActionForward controlling where we go next
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     */
+    protected void processForwardConfig(HttpServletRequest request,
+                                        HttpServletResponse response,
+                                        ForwardConfig forward)
+        throws IOException, ServletException
+    {
+      // Required by struts contract
+    if (forward == null)
+      {
+      return;
+      }
+
+    if(debug)
+      System.out.println( "processActionForward("
+                        + forward.getPath() + ", "
+                        + forward.getContextRelative() + ")" );
+
+      // Try to process the definition.
+    if (processTilesDefinition( forward.getPath(), forward.getContextRelative(), request, response))
+      {
+      if(debug)
+        System.out.println( "  '" +forward.getPath() + "' - processed as definition" );
+      return;
+      }
+    if(debug)
+      System.out.println( "  '" +forward.getPath() + "' - processed as uri" );
+      // forward doesn't contains a definition, let parent do processing
+    super.processForwardConfig(request, response, forward );
+    }
+
+    /**
+     * Catch the call to a module relative forward.
+     * If the specified uri is a tiles definition name, insert it.
+     * Otherwise, parent processing is called
+     * Do a module relative forward to specified uri using request dispatcher.
+     * Uri is relative to the current module. The real uri is compute by prefixing
+     * the module name.
+     * This method is used internally and is not part of the public API. It is
+     * advice to not use it in subclasses.
+     * @param uri Module-relative URI to forward to
+     * @param request Current page request
+     * @param response Current page response
+     * @since Struts 1.1
+     */
+    protected void internalModuleRelativeForward(String uri, HttpServletRequest request,
+                             HttpServletResponse response)
+        throws IOException, ServletException
+    {
+    if( processTilesDefinition(uri, false, request, response) )
+      return;
+
+    super.internalModuleRelativeForward(uri, request, response);
+    }
+
+    /**
+     * Do a module relative include to specified uri using request dispatcher.
+     * Uri is relative to the current module. The real uri is compute by prefixing
+     * the module name.
+     * This method is used internally and is not part of the public API. It is
+     * advice to not use it in subclasses.
+     * @param uri Module-relative URI to forward to
+     * @param request Current page request
+     * @param response Current page response
+     * @since Struts 1.1
+     */
+    protected void internalModuleRelativeInclude(String uri, HttpServletRequest request,
+                             HttpServletResponse response)
+        throws IOException, ServletException
+    {
+    if( processTilesDefinition(uri, false, request, response) )
+      return;
+
+    super.internalModuleRelativeInclude(uri, request, response);
     }
 
 }
