@@ -1,0 +1,95 @@
+# -----------------------------------------------------------------------------
+# build.properties.sample
+#
+# This is an example "build.properties" file, used to customize building
+# Struts-EL for your local environment.  Copy this file to "build.properties"
+# in the same directory that contains the "build.xml" file, then make any
+# changes you need.
+#
+# $Id: build.properties.sample,v 1.7 2004/02/10 16:35:10 germuska Exp $
+# -----------------------------------------------------------------------------
+
+# struts.home is not used in build.xml; you only need to set it if you want
+# to use it in other property values.
+struts.home	= <path to struts distribution>
+struts.jar	= ${struts.home}/lib/struts.jar
+
+# jstl.home is not used in build.xml; you only need to set it if you want
+# to use it in other property values.
+jstl.home	= <path to JSTL distribution>
+jstl.jar		= ${jstl.home}/lib/jstl.jar
+jstl-standard.jar		= ${jstl.home}/lib/standard.jar
+jstl.tld.dir = ${jstl.home}/tld
+
+servlet.jar	= <path to servlet.jar>
+
+jdbc20ext.jar	= <path to JDBC 2.0 extension jar>
+
+# The JAR file containing version 1.0 (or later) of the Beanutils package
+# from the Jakarta Commons project.
+commons-beanutils.jar	= <path to commons-beanutils.jar>
+
+# The JAR file containing version 1.0 (or later) of the Collections package
+# from the Jakarta Commons project.
+commons-collections.jar	= <path to commons-collections.jar>
+
+# The JAR file containing version 1.0 (or later) of the Digester package
+# from the Jakarta Commons project.
+commons-digester.jar	= <path to commons.digester.jar>
+
+# The JAR file containing version 1.0 (or later) of the Logging package
+# from the Jakarta Commons project.
+commons-logging.jar	= <path to commons-logging.jar>
+
+# The JAR file containing version 1.0 (or later) of the POOL package
+# from the Jakarta Commons project.
+commons-pool.jar	= <path to commons-pool.jar>
+
+# The JAR file containing a recent version of the VALIDATOR package
+# from the Jakarta Commons project.
+commons-validator.jar	= <path to commons-validator.jar>
+
+# The JAR file containing version 2.06 (or later) of
+# the the Jakarta ORO project.
+jakarta-oro.jar	= <path to jakarta-oro.jar>
+
+# Properties related to Struts unit testing
+# -----------------------------------------
+
+log4j.jar	= <path to log4j.jar>
+
+cactus.home	= <path to cactus distribution>
+
+# Cactus jar for the Servlet API corresponding to the servlet.jar file
+# selected above (either 2.2 or 2.3)
+cactus.jar = ${cactus.home}/lib/cactus.jar
+
+# Cactus Ant custom tasks jar
+cactus.ant.jar = ${cactus.home}/lib/cactus-ant.jar
+
+# URL used to run tests for cactus, change to non standard port
+# if container is already running on that port.
+cactus.contextURL = http://localhost:9090/test
+
+aspectjrt.jar	= ${cactus.home}/lib/aspectjrt.jar
+
+# JUnit jar file
+junit.jar = <path to junit.jar>
+
+# HTTPUnit jar file
+httpunit.jar	= <path to httpunit.jar>
+
+# JTidy jar file
+jtidy.jar	= <path to jtidy.jar>
+
+commons-httpclient.jar	= <path to commons-httpclient.jar>
+
+xalanj.jar	= <path to xalan.jar>
+
+# Servlet engine locations for the tests
+
+# Note: If you don't want to run the test on a given servlet engine, just
+#       comment it's home property. For example, if you don't want to run the
+#       tests on Tomcat 4.0, comment the "tomcat.home.40" property.
+
+tomcat.home.40 = <path to Tomcat 4.0 distribution>
