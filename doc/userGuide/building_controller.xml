@@ -1365,7 +1365,7 @@ throws Exception;
 
     <p>
     As a Struts application grows in size, so will the number of action 
-    mappings.  Wildcards can be used to combine similiar mappings into one
+    mappings. Wildcards can be used to combine similiar mappings into one
     more generic mapping.  
     </p>
     <p>

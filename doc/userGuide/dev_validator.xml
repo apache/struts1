@@ -547,129 +547,74 @@ public static boolean validateTwoFields(
 
 </section>
 
-<section href="validator-changes" name="Changes and deprecations">
+<section href="conditionals" name="Conditionally required fields">
 
     <p>
-    <strong>New tag attributes.</strong>
-    </p>
-
-    <p>
-    The <a href="struts-html.html#javascript">&lt;html:javascript&gt; tag</a>
-    has new attributes defined.
-    </p>
-
-    <p>
-    <strong>Validating against the DTD in the commons-validator.jar.</strong>
-    </p>
-
-    <p>
-    The validator xml files now <strong>validates against the DTD stored
-    in the commons-validator.jar </strong>!
-    Struts no longer maintains a separate dtd for validator-rules.xml and
-    validator.xml.
-    Additionally, commons-validator now maintains a unified validator.dtd.
-    Change all validator.xml DTD references to:
-    </p>
-<pre><![CDATA[
-<!DOCTYPE form-validation PUBLIC
-"-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
-"http://jakarta.apache.org/commons/dtds/validator_1_0.dtd">
-]]></pre>
-
-    <p>
-    <strong>Blank fields.</strong>
-    </p>
-
-    <p>
-    The default validator-rules.xml now ignores blank fields for all the
-    basic validation types.
-    If you require a field to be present then to your applications
-    validator.xml field definition add "required" to the depends
-    attribute.
-    </p>
-
-    <p>
-    <strong>New range methods.</strong>
-    </p>
-
-    <p>
-    <code>intRange</code> &amp; <code>floatRange</code> methods in both
-    JavaScript and Java
-    </p>
-
-    <p>
-    <strong>Conditionally required fields.</strong>
-    </p>
-
-    <p>
-    The most fundamental change is the ability to conditionally require
-    validator fields based on the value of other fields. 
-    It allows you to define logic like "only validate this field if field X is
+    You can define logic like "only validate this field if field X is
     non-null and field Y equals 'male'".  The recommended way to do this will
     be with the <code>validwhen</code> rule, described above, and available
-    in the first release after 1.1.  The 
-    <code>requiredif</code> validation rule, which was added in Struts 1.1, 
-    will be deprecated in favor of this rule, and will be removed in a 
+    in the first release after 1.1.  The
+    <code>requiredif</code> validation rule, which was added in Struts 1.1,
+    will be deprecated in favor of this rule, and will be removed in a
     future release.  However, if you are using <code>requiredif</code>, here
     is a brief tutorial.
     </p>
 
-     <p>Let's assume you have a medical information form with three fields, sex, pregnancyTest, and testResult.  
+     <p>Let's assume you have a medical information form with three fields, sex, pregnancyTest, and testResult.
      If sex is 'f' or 'F', pregnancyTest is required.  If pregnancyTest is not blank, testResult is required.
      The entry in your validation.xml file would look like this:
      </p>
      <pre>
-&lt;form name="medicalStatusForm"&gt;
+<![CDATA[
+<form name="medicalStatusForm">
 
-&lt;field
-    property="pregnancyTest" depends="requiredif"&gt;
-  &lt;arg0 key="medicalStatusForm.pregnancyTest.label"/&gt;
-  &lt;var&gt;
-    &lt;var-name&gt;field[0]&lt;/var-name&gt;
-    &lt;var-value&gt;sex&lt;/var-value&gt;
-  &lt;/var&gt;
-  &lt;var&gt;
-    &lt;var-name&gt;fieldTest[0]&lt;/var-name&gt;
-    &lt;var-value&gt;EQUAL&lt;/var-value&gt;
-  &lt;/var&gt;
-  &lt;var&gt;
-    &lt;var-name&gt;fieldValue[0]&lt;/var-name&gt;
-    &lt;var-value&gt;F&lt;/var-value&gt;
-  &lt;/var&gt;
-  &lt;var&gt;
-    &lt;var-name&gt;field[1]&lt;/var-name&gt;
-    &lt;var-value&gt;sex&lt;/var-value&gt;
-  &lt;/var&gt;
-  &lt;var&gt;
-    &lt;var-name&gt;fieldTest[1]&lt;/var-name&gt;
-    &lt;var-value&gt;EQUAL&lt;/var-value&gt;
-  &lt;/var&gt;
-  &lt;var&gt;
-    &lt;var-name&gt;fieldValue[1]&lt;/var-name&gt;
-    &lt;var-value&gt;f&lt;/var-value&gt;
-  &lt;/var&gt;
-  &lt;var&gt;
-    &lt;var-name&gt;fieldJoin&lt;/var-name&gt;
-    &lt;var-value&gt;OR&lt;/var-value&gt;
-  &lt;/var&gt;
-&lt;/field&gt;
+<field
+    property="pregnancyTest" depends="requiredif">
+  <arg0 key="medicalStatusForm.pregnancyTest.label"/>
+  <var>
+    <var-name>field[0]</var-name>
+    <var-value>sex</var-value>
+  </var>
+  <var>
+    <var-name>fieldTest[0]</var-name>
+    <var-value>EQUAL</var-value>
+  </var>
+  <var>
+    <var-name>fieldValue[0]</var-name>
+    <var-value>F</var-value>
+  </var>
+  <var>
+    <var-name>field[1]</var-name>
+    <var-value>sex</var-value>
+  </var>
+  <var>
+    <var-name>fieldTest[1]</var-name>
+    <var-value>EQUAL</var-value>
+  </var>
+  <var>
+    <var-name>fieldValue[1]</var-name>
+    <var-value>f</var-value>
+  </var>
+  <var>
+    <var-name>fieldJoin</var-name>
+    <var-value>OR</var-value>
+  </var>
+</field>
 
-&lt;field
-    property="testResult" depends="requiredif"&gt;
-  &lt;arg0 key="medicalStatusForm.testResult.label"/&gt;
-  &lt;var&gt;
-    &lt;var-name&gt;field[0]&lt;/var-name&gt;
-    &lt;var-value&gt;pregnancyTest&lt;/var-value&gt;
-  &lt;/var&gt;
-  &lt;var&gt;
-    &lt;var-name&gt;fieldTest[0]&lt;/var-name&gt;
-    &lt;var-value&gt;NOTNULL&lt;/var-value&gt;
-  &lt;/var&gt;
-&lt;/field&gt;
-&lt;/form&gt;
-</pre>
-   
-     
+<field
+    property="testResult" depends="requiredif">
+  <arg0 key="medicalStatusForm.testResult.label"/>
+  <var>
+    <var-name>field[0]</var-name>
+    <var-value>pregnancyTest</var-value>
+  </var>
+  <var>
+    <var-name>fieldTest[0]</var-name>
+    <var-value>NOTNULL</var-value>
+  </var>
+</field>
+</form>
+]]></pre>
 
     <p>
     Here's a more complex example using indexed properties.
@@ -801,25 +746,34 @@ public static boolean validateTwoFields(
     the only restriction is that they must all be AND or OR, you can't mix.
     </p>
 
-    <p>
-    <strong>Deprecations.</strong>
-    </p>
-
-    <ul>
-
-        <li>
-        Deprecation of <code>range</code> methods in both JavaScript and Java.
-        </li>
-
-        <li>
-        Deprecation of StrutsValidator &amp; StrutsValidatorUtil.
-        </li>
-
-    </ul>
-
 </section>
 
-<section href="tiles" name="Validator API Guide">
+    <section heref="stopOnFirstError" name="Unstoppable JavaScript Validations">
+
+        <p>
+        You can now force the clientside Javascript validation to check all constraints, instead of stopping at the first error. By setting a new property, <code>stopOnFirstError</code>, on the Validator PlugIn to false.
+        </p>
+
+        <p>
+            Here's a sample configuration block that you could use in the struts-config.xml:
+        </p>
+
+      <pre>
+<code>
+<![CDATA[
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+  <set-property property="pathnames"
+   value="/WEB-INF/validation.xml,/WEB-INF/validator-rules.xml"/>
+  <set-property property="stopOnFirstError" value="true"/>
+  </plug-in>
+  ]]>
+
+</code>
+</pre>
+
+    </section>
+
+    <section href="api" name="Validator API Guide">
 
     <p>
     A concise
