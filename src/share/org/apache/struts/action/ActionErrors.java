@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.16 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.16 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.17 2004/09/02 02:13:42 niallp Exp $
+ * $Revision: 1.17 $
+ * $Date: 2004/09/02 02:13:42 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -30,7 +30,7 @@ import java.io.Serializable;
  * bean property (and, therefore, a particular input field on the corresponding
  * form).</p>
  *
- * <p>Each individual error is described by an <code>ActionError</code>
+ * <p>Each individual error is described by an <code>ActionMessage</code>
  * object, which contains a message key (to be looked up in an appropriate
  * message resources database), and up to four placeholder arguments used for
  * parametric substitution in the resulting message.</p>
@@ -40,7 +40,7 @@ import java.io.Serializable;
  * Therefore, no synchronization is required for access to internal
  * collections.</p>
  *
- * @version $Revision: 1.16 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Revision: 1.17 $ $Date: 2004/09/02 02:13:42 $
  */
 public class ActionErrors extends ActionMessages implements Serializable {
 
