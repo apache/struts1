@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.17 2003/10/05 17:48:57 dgraham Exp $
- * $Revision: 1.17 $
- * $Date: 2003/10/05 17:48:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.18 2003/11/27 19:20:31 dgraham Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/11/27 19:20:31 $
  *
  * ====================================================================
  *
@@ -70,7 +70,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -186,11 +185,11 @@ public abstract class LookupDispatchAction extends DispatchAction {
      * @exception Exception if an error occurs
      */
     public ActionForward execute(
-            ActionMapping mapping,
-            ActionForm form,
-            HttpServletRequest request,
-            HttpServletResponse response)
-            throws Exception {
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws Exception {
 
         if (isCancelled(request)) {
             ActionForward af = cancelled(mapping, form, request, response);
@@ -263,10 +262,12 @@ public abstract class LookupDispatchAction extends DispatchAction {
      * @return The method's localized name.
      * @throws ServletException if keyName cannot be resolved
      * @since Struts 1.2.0
-     */ protected String getLookupMapName(HttpServletRequest request,
-                                          String keyName,
-                                          ActionMapping mapping)
-            throws ServletException {
+     */ 
+    protected String getLookupMapName(
+        HttpServletRequest request,
+        String keyName,
+        ActionMapping mapping)
+        throws ServletException {
 
         // Based on this request's Locale get the lookupMap
         Map lookupMap = null;
@@ -312,17 +313,18 @@ public abstract class LookupDispatchAction extends DispatchAction {
      * @return The method's name.
      * @since Struts 1.2.0
      */
-    protected String getMethodName(ActionMapping mapping,
-                                   ActionForm form,
-                                   HttpServletRequest request,
-                                   HttpServletResponse response,
-                                   String parameter)
-            throws Exception {
+    protected String getMethodName(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response,
+        String parameter)
+        throws Exception {
 
         // Identify the method name to be dispatched to.
         // dispatchMethod() will call unspecified() if name is null
         String keyName = request.getParameter(parameter);
-        if (StringUtils.isEmpty(keyName)) {
+        if (keyName == null || keyName.length() == 0) {
             return null;
         }
 
