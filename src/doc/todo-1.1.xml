@@ -505,6 +505,17 @@
       </info>
     </task>
 
+    <task name="Enhanced Collections Support">
+      <info>
+        <p>Improve support in <code>BeanUtils</code>,
+        <code>ConvertUtils</code>, and <code>PropertyUtils</code> for property
+        values that implement <code>Collection</code>, <code>List</code>, or
+        <code>Set</code>, treating them in a manner similar to the way that
+        indexed or array-valued properties are handled.</p>
+        [Bugzilla #640]
+      </info>
+    </task>
+
   </task-list>
 
 
