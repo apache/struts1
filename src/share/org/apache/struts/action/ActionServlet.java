@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.166 2003/08/08 23:26:36 dgraham Exp $
- * $Revision: 1.166 $
- * $Date: 2003/08/08 23:26:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.167 2003/08/10 06:00:49 sraeburn Exp $
+ * $Revision: 1.167 $
+ * $Date: 2003/08/10 06:00:49 $
  *
  * ====================================================================
  *
@@ -106,7 +106,6 @@ import org.apache.struts.config.MessageResourcesConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.ModuleConfigFactory;
 import org.apache.struts.config.PlugInConfig;
-import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
 import org.apache.struts.util.ModuleUtils;
@@ -233,7 +232,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.166 $ $Date: 2003/08/08 23:26:36 $
+ * @version $Revision: 1.167 $ $Date: 2003/08/10 06:00:49 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -814,9 +813,6 @@ public class ActionServlet extends HttpServlet {
                 ds = (DataSource)
                     RequestUtils.applicationInstance(dscs[i].getType());
                 BeanUtils.populate(ds, dscs[i].getProperties());
-                if (ds instanceof GenericDataSource) {
-                    ((GenericDataSource) ds).open();
-                }
                 ds.setLogWriter(scw);
                 
             } catch (Exception e) {

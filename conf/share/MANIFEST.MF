@@ -14,4 +14,3 @@ Class-Path:
   commons-logging.jar
   commons-validator.jar
   jakarta-oro.jar
-  struts-legacy.jar

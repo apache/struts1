@@ -84,48 +84,13 @@
     The Jakarta Commons dbcp's BasicDataSource
     [<code>org.apache.commons.dbcp.BasicDataSource</code>] also works well
     with the DataSource manager, if a native component is not available.
-    The Struts distribution includes a Generic DataSource class in its util
-    package, but this is a very simple implementation.
-    The Generic DataSource is deprecated and will be removed in a future
-    release in favor of plugging in the BasicDataSource, or another
-    DataSource implementation.
     </p>
-
+    
     <p>
-    This is how you would specify a default data source for your application
-    from the struts-config.xml:
+    <b>Note:</b> The Generic DataSource which was included with previous 
+    versions of Struts has been removed as of release 1.2.0 in favor of 
+    plugging in the BasicDataSource, or another DataSource implementation.
     </p>
-
-<pre><code><![CDATA[
- <!-- configuration for GenericDataSource wrapper -->
- <data-source>
-   <set-property
-     property="autoCommit"
-     value="false"/>
-   <set-property
-     property="description"
-     value="Example Data Source Configuration"/>
-   <set-property
-     property="driverClass"
-     value="org.postgresql.Driver"/>
-   <set-property
-     property="maxCount"
-     value="4"/>
-   <set-property
-     property="minCount"
-     value="2"/>
-   <set-property
-     property="password"
-     value="mypassword"/>
-   <set-property
-     property="url"
-     value="jdbc:postgresql://localhost/mydatabase"/>
-   <set-property
-     property="user"
-     value="myusername"/>
- </data-source>
- </data-sources>
- ]]></code></pre>
 
     <p>
     This is how you would specify a DBCP BasicDataSource for your application:

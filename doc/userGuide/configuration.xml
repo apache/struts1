@@ -381,13 +381,6 @@
     And other sundry properties.
     </p>
 
-    <p>
-    As a further convenience, Struts provides a default DataSource
-    implementation, [<code>org.apache.struts.util.GenericDataSource</code>].
-    The <code>type</code> property can be used to specify another
-    implementation:
-    </p>
-
 <pre><code><![CDATA[
 <data-source type="org.apache.commons.dbcp.BasicDataSource">
 <!-- ... set-property elements ... -->
@@ -395,11 +388,11 @@
 ]]></code></pre>
 
     <p>
-    In Struts 1.1, the GenericDataSource is deprecated, and it is
-    recommended that you use the Commons BasicDataSource instead.
-    In practice, if you need to use the DataSource manager, you should use
-    whatever DataSource implementation works best with your container or
-    database.
+    In Struts 1.2.0, the GenericDataSource has been removed, and it is
+    recommended that you use the Commons BasicDataSource or other DataSource
+    implementation instead. In practice, if you need to use the DataSource 
+    manager, you should use whatever DataSource implementation works best 
+    with your container or database.
     </p>
 
     <p>

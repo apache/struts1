@@ -77,10 +77,6 @@
                                       servlet API classes you wish to
                                       compile against.
 
-        struts-legacy.jar             (required).  The path to the JAR file
-                                      of the Jakarta Struts Legacy
-                                      package (version 1.0 or later).
-
         struts.libs                   If specified, must be the pathname of a
                                       directory from which "struts.jar" will be
                                       copied to your WEB-INF/lib directory, and
@@ -181,7 +177,6 @@
   <pathelement location="${commons-validator.jar}"/>
   <pathelement location="${jdbc20ext.jar}"/>
   <pathelement location="${servlet.jar}"/>
-  <pathelement location="${struts-legacy.jar}"/>
   <pathelement location="${struts.libs}/struts.jar"/>
   <pathelement location="${struts.libs}/struts-el.jar"/>
   <pathelement location="${webapp.libs}"/>

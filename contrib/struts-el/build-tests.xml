@@ -111,7 +111,6 @@
       <pathelement location="${xalanj.jar}"/>
       <pathelement location="${jtidy.jar}"/>
       <pathelement location="${servlet.jar}"/>
-      <pathelement location="${struts-legacy.jar}"/>
       <pathelement location="${struts.jar}"/>
       <pathelement location="${jstl.jar}"/>
 	  <pathelement location="${jstl-standard.jar}"/>
@@ -202,8 +201,6 @@
         <copy file="${commons-logging.jar}"
                                       todir="${out.test.dir}/lib"/>
         <copy file="${commons-validator.jar}"
-                                      todir="${out.test.dir}/lib"/>
-        <copy file="${struts-legacy.jar}"
                                       todir="${out.test.dir}/lib"/>
 
         <war warfile="${out.test.dir}/test.war"

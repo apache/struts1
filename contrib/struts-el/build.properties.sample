@@ -6,7 +6,7 @@
 # in the same directory that contains the "build.xml" file, then make any
 # changes you need.
 #
-# $Id: build.properties.sample,v 1.5 2003/06/07 21:53:28 husted Exp $
+# $Id: build.properties.sample,v 1.6 2003/08/10 06:00:48 sraeburn Exp $
 # -----------------------------------------------------------------------------
 
 struts.home	= <path to struts distribution>
@@ -47,10 +47,6 @@ commons-validator.jar	= <path to commons-validator.jar>
 # The JAR file containing version 2.06 (or later) of
 # the the Jakarta ORO project.
 jakarta-oro.jar	= <path to jakarta-oro.jar>
-
-# The JAR file containing version 1.0 (or later) of the Struts Legacy package
-# from the Jakarta Struts contrib area.
-struts-legacy.jar	= <path to struts-legacy.jar>
 
 # Properties related to Struts unit testing
 # -----------------------------------------

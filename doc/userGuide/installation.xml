@@ -352,8 +352,6 @@ about how to configure additional security manager permissions.</p>
             Validator package JAR file from the Jakarta Commons project.</li>
         <li><strong>servletapi.home</strong> - Pathname to the directory of
             your binary distribution of the Servlet API classes.</li>
-        <li><strong>struts-legacy.jar</strong> - Pathname of the Struts Legacy
-            package JAR file from the Jakarta Struts contrib area.</li>
         <li><strong>tomcat.home</strong> - Pathname to the directory of your
             binary distribution of Tomcat 3.2 (required only if you wish to
             use the <code>deploy.tomcat</code> target).</li>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/DataSourceConfig.java,v 1.7 2002/07/24 05:28:05 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/07/24 05:28:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/DataSourceConfig.java,v 1.8 2003/08/10 06:00:49 sraeburn Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/08/10 06:00:49 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.Globals;
  * of them may be ignored by custom data source implementations.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/07/24 05:28:05 $
+ * @version $Revision: 1.8 $ $Date: 2003/08/10 06:00:49 $
  * @since Struts 1.1
  */
 
@@ -132,7 +132,7 @@ public class DataSourceConfig implements Serializable {
      * The fully qualified class name of the <code>javax.sql.DataSource</code>
      * implementation class.
      */
-    protected String type = "org.apache.struts.util.GenericDataSource";
+    protected String type;
 
     public String getType() {
         return (this.type);

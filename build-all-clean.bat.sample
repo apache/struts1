@@ -24,7 +24,7 @@ rem                    anymore. You'll need to copy the cactus.jar into the
 rem                    maven repository directory. I filed a bug report for this.
 rem              
 rem
-rem $Id: build-all-clean.bat.sample,v 1.8 2003/06/07 21:53:28 husted Exp $
+rem $Id: build-all-clean.bat.sample,v 1.9 2003/08/10 06:00:49 sraeburn Exp $
 
 cd ..
 
@@ -65,9 +65,6 @@ call ant %CLEAN% dist
 
 cd ..\fileupload
 call maven
-
-cd ..\..\jakarta-struts-current\contrib\struts-legacy
-call ant %CLEAN% dist
 
 cd ..\..\
 call ant %CLEAN% dist

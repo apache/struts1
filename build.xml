@@ -65,10 +65,6 @@
                                       compile against.
                                       [Version 2.2 or 2.3]
 
-        struts-legacy.jar             The path to the JAR file of the Jakarta
-                                      Struts Legacy package.
-                                      [Version 1.0 or later]
-
 
         OPTIONAL PROPERTIES
 
@@ -205,14 +201,10 @@
     <!-- Web directory -->
     <property name="web.dir" value="web"/>
 
-    <!-- Pointer to struts-legacy.jar -->
-    <property name="struts-legacy.jar" value="${basedir}/contrib/struts-legacy/dist/struts-legacy.jar"/>
-
     <!-- Compilation Classpath -->
     <path id="compile.classpath">
       <pathelement location="${commons-beanutils.jar}"/>
       <pathelement location="${commons-collections.jar}"/>
-      <pathelement location="${struts-legacy.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
       <pathelement location="${commons-fileupload.jar}"/>
       <pathelement location="${commons-lang.jar}"/>
@@ -266,8 +258,6 @@
             tofile="${build.home}/library/commons-beanutils.jar"/>
         <copy file="${commons-collections.jar}"
             tofile="${build.home}/library/commons-collections.jar"/>
-        <copy file="${struts-legacy.jar}"
-            tofile="${build.home}/library/struts-legacy.jar"/>
         <copy file="${commons-digester.jar}"
             tofile="${build.home}/library/commons-digester.jar"/>
         <copy file="${commons-fileupload.jar}"
@@ -415,14 +405,6 @@
         <copy file="README" tofile="${dist.home}/README"/>
     </target>
 
-<!--
-        Construct distributable struts legacy support for datasources
--->
-    <target name="dist.legacy" >
-        <ant antfile="build.xml" dir="contrib/struts-legacy"
-              target="dist"/>
-    </target>
-
 
 <!--
         Build the contrib modules that are packaged with the binary
@@ -448,7 +430,7 @@
         Construct complete binary distribution
 -->
     <target name="dist"
-         depends="dist.legacy,dist.library,dist.webapps,dist.source,dist.contrib"
+         depends="dist.library,dist.webapps,dist.source,dist.contrib"
      description="Construct binary distribution"/>
 
 <!--
@@ -740,14 +722,6 @@
     </target>
     
 <!--
-       Clean struts legacy distribution
--->
-    <target name="clean.legacy" >
-        <ant antfile="build.xml" dir="contrib/struts-legacy" 
-        inheritall="false" target="clean"/>
-    </target>
-
-<!--
        Clean contrib distribution
 -->
     <target name="clean.contrib" >
@@ -758,7 +732,7 @@
 <!--
         Clean up build and distribution directories
 -->
-    <target name="clean" depends="clean.legacy, clean.contrib"
+    <target name="clean" depends="clean.contrib"
      description="Clean build and distribution directories">
         <delete dir="${build.home}"/>
         <delete dir="${dist.home}"/>
