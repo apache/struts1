@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHtmlTag.java,v 1.8 2003/08/09 19:29:30 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2003/08/09 19:29:30 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHtmlTag.java,v 1.9 2003/08/10 00:50:47 dmkarr Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/08/10 00:50:47 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -75,7 +75,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class ELHtmlTag extends HtmlTag {
 
@@ -158,9 +158,9 @@ public class ELHtmlTag extends HtmlTag {
         Boolean bool    = null;
         String  string  = null;
 
-        if ((string = EvalHelper.evalString("lang", getLangExpr(),
-                                            this, pageContext)) != null)
-            setLangExpr(string);
+        if ((bool = EvalHelper.evalBoolean("lang", getLangExpr(),
+                                           this, pageContext)) != null)
+            setLang(bool.booleanValue());
 
         if ((bool = EvalHelper.evalBoolean("locale", getLocaleExpr(),
                                            this, pageContext)) != null)

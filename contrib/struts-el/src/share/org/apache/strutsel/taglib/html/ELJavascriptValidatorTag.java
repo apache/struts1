@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTag.java,v 1.9 2003/08/09 19:29:30 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2003/08/09 19:29:30 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTag.java,v 1.10 2003/08/10 00:51:46 dmkarr Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/08/10 00:51:46 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,7 +76,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
 
@@ -276,9 +276,9 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
                                               this, pageContext)) != null)
             setPage(integer.intValue());
 
-        if ((string = EvalHelper.evalString("scriptLanguage", getScriptLanguageExpr(),
-                                            this, pageContext)) != null)
-            setScriptLanguageExpr(string);
+        if ((bool = EvalHelper.evalBoolean("scriptLanguage", getScriptLanguageExpr(),
+                                           this, pageContext)) != null)
+            setScriptLanguage(bool.booleanValue());
 
         if ((string = EvalHelper.evalString("src", getSrcExpr(),
                                             this, pageContext)) != null)
