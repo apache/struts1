@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.8 2000/08/14 21:59:19 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/08/14 21:59:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.9 2000/09/20 04:17:03 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/09/20 04:17:03 $
  *
  * ====================================================================
  * 
@@ -142,7 +142,7 @@ import org.xml.sax.SAXParseException;
  * hard code the configuration logic.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/08/14 21:59:19 $
+ * @version $Revision: 1.9 $ $Date: 2000/09/20 04:17:03 $
  */
 
 public final class Digester extends HandlerBase {
@@ -611,7 +611,13 @@ public final class Digester extends HandlerBase {
 	// Return an input source to our alternative URL
 	if (debug >= 1)
 	    log(" Resolving to alternate DTD '" + dtdURL + "'");
-	return (new InputSource(dtdURL));
+        try {
+            URL url = new URL(dtdURL);
+            InputStream stream = url.openStream();
+            return (new InputSource(stream));
+        } catch (Exception e) {
+            throw new SAXException(e);
+        }
 
     }
 
@@ -777,6 +783,8 @@ public final class Digester extends HandlerBase {
      */
     public void register(String publicId, String dtdURL) {
 
+        if (debug >= 1)
+            log("register('" + publicId + "', '" + dtdURL + "'");
 	dtds.put(publicId, dtdURL);
 
     }
