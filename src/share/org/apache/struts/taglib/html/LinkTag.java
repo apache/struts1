@@ -402,6 +402,7 @@ public class LinkTag extends BaseHandlerTag {
         name = null;
         page = null;
         action = null;
+        module = null;
         paramId = null;
         paramName = null;
         paramProperty = null;
@@ -411,6 +412,8 @@ public class LinkTag extends BaseHandlerTag {
         target = null;
         text = null;
         transaction = false;
+        indexId = null;
+        useLocalEncoding = false;
 
     }
 
@@ -435,26 +438,16 @@ public class LinkTag extends BaseHandlerTag {
         // * @since Struts 1.1
         if( indexed ) {
 
-           // look for outer iterate tag
-           IterateTag iterateTag =
-               (IterateTag) findAncestorWithClass(this, IterateTag.class);
-           if (iterateTag == null) {
-               // This tag should only be nested in an iterate tag
-               // If it's not, throw exception
-               JspException e = new JspException
-                   (messages.getMessage("indexed.noEnclosingIterate"));
-               TagUtils.getInstance().saveException(pageContext, e);
-               throw e;
-           }
+           int indexValue = getIndexValue();
 
            //calculate index, and add as a parameter
            if (params == null) {
                params = new HashMap();             //create new HashMap if no other params
            }
            if (indexId != null) {
-            params.put(indexId, Integer.toString(iterateTag.getIndex()));
+              params.put(indexId, Integer.toString(indexValue));
            } else {
-              params.put("index", Integer.toString(iterateTag.getIndex()));
+              params.put("index", Integer.toString(indexValue));
            }
         }
 

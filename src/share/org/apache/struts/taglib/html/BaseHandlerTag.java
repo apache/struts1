@@ -669,44 +669,47 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      */
     protected void prepareIndex(StringBuffer handlers, String name)
         throws JspException {
-        int index = 0;
-        boolean found = false;
-
-        // look for outer iterate tag
-        IterateTag iterateTag =
-            (IterateTag) findAncestorWithClass(this, IterateTag.class);
-
-        // Look for JSTL loops
-        if (iterateTag == null) {
-            Integer i = getJstlLoopIndex();
-            if (i != null) {
-                index = i.intValue();
-                found = true;
-            }
-
-        } else {
-            index = iterateTag.getIndex();
-            found = true;
-        }
-
-        if (!found) {
-            // this tag should only be nested in iteratetag, if it's not, throw exception
-            JspException e =
-                new JspException(messages.getMessage("indexed.noEnclosingIterate"));
-            TagUtils.getInstance().saveException(pageContext, e);
-            throw e;
-        }
 
         if (name != null) {
             handlers.append(name);
         }
 
         handlers.append("[");
-        handlers.append(index);
+        handlers.append(getIndexValue());
         handlers.append("]");
+
         if (name != null) {
             handlers.append(".");
         }
+    }
+
+    /**
+     *  Appends bean name with index in brackets for tags with
+     *  'true' value in 'indexed' attribute.
+     *  @param handlers The StringBuffer that output will be appended to.
+     *  @exception JspException if 'indexed' tag used outside of iterate tag.
+     */
+    protected int getIndexValue() throws JspException {
+
+        // look for outer iterate tag
+        IterateTag iterateTag =
+            (IterateTag) findAncestorWithClass(this, IterateTag.class);
+        if (iterateTag != null) {
+            return iterateTag.getIndex();
+        }
+
+        // Look for JSTL loops
+        Integer i = getJstlLoopIndex();
+        if (i != null) {
+            return i.intValue();
+        }
+
+        // this tag should be nested in an IterateTag or JSTL loop tag, if it's not, throw exception
+        JspException e =
+             new JspException(messages.getMessage("indexed.noEnclosingIterate"));
+        TagUtils.getInstance().saveException(pageContext, e);
+        throw e;
+
     }
 
     /**
