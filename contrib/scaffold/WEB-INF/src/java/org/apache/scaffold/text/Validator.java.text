@@ -1,0 +1,108 @@
+package org.apache.scaffold.text;
+
+import java.util.Locale;
+import java.io.Serializable;
+
+// import com.capco.mapper.parser.ValidationData;
+
+/**
+ * Base class for all validators.
+ * A validator is a class capable of validating the value of an array of objects.
+ * This validation can be Locale sensitive.
+ * As a convenience, this base class already contains properties for holding
+ * a message and a message key that can be used for creating <CODE>ValidationFailure</CODE>s.
+ * @author François Rey
+ */
+public abstract class Validator implements Serializable
+{
+    public static final String EMPTY_STRING = "";
+
+        /** Holds value of property message. */
+    private String name = null;
+
+        /** Holds value of property message. */
+        private String message;
+
+        /** Holds value of property messageKey. */
+        private String messageKey;
+
+    public Validator() {
+        super();
+    }
+
+    public Validator(String name) {
+        this();
+        this.name = name;
+    }
+
+        /**
+         * Utility method that returns true if the given string is blank (it is empty when trimmed).
+         */
+        public static final boolean isBlank(String value) {
+            return (value!=null) && value.trim().length()==0;
+        }
+
+        /**
+         * Utility method that returns true if the given string is empty (zero length string).
+         */
+        public static final boolean isEmptyString(String value) {
+            return (value!=null) && value.length()==0;
+        }
+
+    /**
+     * Validation method that all validators must implement.
+     * @param objects The objects to validate. When this validator is called
+     * the whole set of source objects defined in the mapping,this array
+     * instance should be the same as the one contained in the
+     * <code>ValidationData</code> instance passed as parameter.
+     * @param locale The locale to use for the conversion. Same as the one in the
+     * <code>ValidationData</code> instance given as parameter.
+     * @param failures The collection of <code>ValidationFailure</code>s
+     * to populate if the validation fails.
+     * @return boolean The result of the validation (true if success, false otherwise).
+     */
+    public abstract boolean validate (Object[] objects, Locale locale);
+
+        /** Setter for property name.
+         * @param name New value of property name.
+         */
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        /** Getter for property name.
+         * @return Value of property name.
+         */
+        public String getName() {
+            return name;
+        }
+
+        /** Getter for property message.
+         * @return Value of property message.
+         */
+        public String getMessage() {
+            return message;
+        }
+
+        /** Setter for property message.
+         * @param message New value of property message.
+         */
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        /** Getter for property messageKey.
+         * @return Value of property messageKey.
+         */
+        public String getMessageKey() {
+            return messageKey;
+        }
+
+        /** Setter for property messageKey.
+         * @param messageKey New value of property messageKey.
+         */
+        public void setMessageKey(String messageKey) {
+            this.messageKey = messageKey;
+        }
+
+}

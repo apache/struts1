@@ -1,0 +1,66 @@
+- DAOExceptions (SQL, Remote, Create et al) -> Scaffold
+- http://java.sun.com/j2ee/j2sdkee/techdocs/api/javax/ejb/package-summary.html
+- http://java.sun.com/j2se/1.3.0/docs/api/java/sql/package-summary.html
+- http://java.sun.com/j2ee/blueprints/design_patterns/data_access_object/index.html
+- http://java.sun.com/j2ee/blueprints/book/eis-tier13.html
+
+CreateException
+The CreateException exception must be included in the throws clauses of all create(...) methods define in an enterprise Bean's remote interface.
+
+DuplicateKeyException
+The DuplicateKeyException exception is thrown if an entity EJB object cannot be created because an object with the same key already exists.
+
+EJBException
+The EJBException exception is thrown by an enterprise Bean instance to its container to report that the invoked business method or callback method could not be completed because of an unexpected error (e.g.
+
+FinderException
+The FinderException exception must be included in the throws clause of every findMETHOD(...) method of an entity Bean's home interface.
+
+NoSuchEntityException
+The NoSuchEntityException exception is thrown by an enterprise Bean instance to its container to report that the invoked business method or callback method could not be completed because of the underlying entity was removed from the database.
+
+ObjectNotFoundException
+The ObjectNotFoundException exception is thrown by a finder method to indicate that the specified EJB object does not exist.
+
+RemoveException
+The RemoveException exception is thrown at an attempt to remove an EJB object when the enterprise Bean or the container does not allow the EJB object to be removed.
+
+BatchUpdateException
+An exception thrown when an error occurs during a batch update operation.
+
+DataTruncation
+An exception that reports a DataTruncation warning (on reads) or throws a DataTruncation exception (on writes) when JDBC unexpectedly truncates a data value.
+
+SQLException
+An exception that provides information on a database access error or other errors.
+
+SQLWarning
+An exception that provides information on database access warnings.
+
+[]
+
+Date
+A thin wrapper around a millisecond value that allows JDBC to identify this as a SQL DATE.
+
+DriverManager
+The basic service for managing a set of JDBC drivers.
+NOTE: The DataSource interface, new in the JDBC 2.0 API, provides another way to connect to a
+data source.
+
+DriverPropertyInfo
+Driver properties for making a connection.
+
+SQLPermission
+The permission for which the SecurityManager will check when code that is running in an applet
+calls one of the setLogWriter methods.
+
+Time
+A thin wrapper around java.util.Date that allows JDBC to identify this as a SQL TIME value.
+
+Timestamp
+A thin wrapper around java.util.Date that allows the JDBC API to identify this as an SQL TIMESTAMP value.
+
+Types
+The class that defines the constants that are used to identify generic SQL types, called JDBC types.
+
+[]

@@ -1,6 +1,6 @@
 <!-- 
 @author Ted Husted
-@version $Revision: 1.1 $ $Date: 2001/11/10 11:38:23 $
+@version $Revision: 1.2 $ $Date: 2001/11/10 11:53:11 $
 -->
 <project name="scaffold" basedir="." default="project.deploy">
 <property name="dist.name" value="scaffold"/>
@@ -13,7 +13,7 @@
         <pathelement path ="lib/commons-digester.jar"/>
         <pathelement path ="lib/lucene.jar"/>
         <pathelement path ="lib/poolman.jar"/>
-        <pathelement path ="lib/struts-101.jar"/>
+        <pathelement path ="lib/struts.jar"/>
         <pathelement path ="classes"/>
         <pathelement path ="${classpath}"/>
     </path>
