@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <document url="./resources.xml">
 <properties>
 <author>Mike Schachter</author>
@@ -283,7 +283,11 @@
 
 
 <section name="Powered by Struts" href="powered">
-<p><b><font color="red">As of 2002-July-31, page linked must credit Struts or the Apache Software foundation (e.g., "This product includes software developed by the Apache Software Foundation").</font></b></p>
+
+<p><b><font color="red">As of 2002-July-31, pages linked here must credit
+Struts or the Apache Software Foundation (e.g. "This product includes software
+developed by the Apache Software Foundation").</font></b></p>
+
 <p><a href="http://www.application-servers.com/"><b>Application-Servers.com</b></a> - French site.</p>
 <p><a href="http://amalregistry.webhop.org/"><b>Alaskan Malamute Registry</b></a></p>
 <p><a href="http://www.clickstarttutoring.com/index.jsp"><b>Clickstart Tutoring</b></a> - One on one in home tutoring.</p>
@@ -317,8 +321,14 @@ Amazon.com for dvds, music cds, books on any topic.</p>
 
 
 <section name="Consultants" href="consultants">
-<p><b>Provided as a reference only. No endorsements given or implied. To be listed, post a documentation enhancement request in Bugzilla.</b></p>
-<p><b><font color="red">As of 2002-June-30, page linked must specifically mention Struts consulting. Listings that do not reference Struts will be removed.</font></b></p>
+
+<p><b>Provided as a reference only. No endorsements given or implied.
+To be listed, post a documentation enhancement request in Bugzilla.</b></p>
+
+<p><b><font color="red">As of 2002-June-30, pages linked here must specifically
+mention Struts consulting. Listings that do not reference Struts will be
+removed.</font></b></p>
+
 <p><a href="http://www.accessdc.com/">AccessData</a> - <a href="mailto:cassenza@Accessdc.com">Chris Assenza</a>.</p>
 <p><a href="http://www.aragost.com">aragost (Switzerland)</a> - <a href="mailto:klaus@aragost.com">Klaus Bucka-Lassen</a>.</p>
 <p><a href="http://www.athensgroup.com/">Athens Group</a> - <a href="mailto:flawlor@athensgroup.com">Frank Lawlor</a>.</p>
@@ -330,7 +340,7 @@ Amazon.com for dvds, music cds, books on any topic.</p>
 <p><a href="http://www.christopherbenson.com">Christopher Benson</a> - <a href="mailto:benson@mindspring.com"> Christopher Benson</a>.</p>  
 <p><a href="http://www.eblox.com/">eBlox</a> - <a href="mailto:andrewb@eblox.com">andrewb@eblox.com</a>.</p>
 <p><a href="http://www.etmint.com">ETM International</a> - <a href="mailto:mathias.bogaert@etmint.com">mathias.bogaert@etmint.com</a></p>
-<p><a href="htpp://www.sqli.com">Groupe SQLI</a> - <a href="mailto:sdiaz@sqli.com">Sébastien DIAZ</a></p>
+<p><a href="http://www.sqli.com">Groupe SQLI</a> - <a href="mailto:sdiaz@sqli.com">Sébastien DIAZ</a></p>
 <p><a href="http://husted.com/about/services">Husted dot Com</a> - <a href="mailto:ted@husted.com">Ted Husted</a>.</p>
 <p><a href="http://www.iontos.de">iontos</a></p>
 <p><a href="http://www.improve.fr">Improve</a> - <a href="mailto:didier.girard@improve.fr">Didier Girard</a></p>
