@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.1 2002/01/17 00:15:05 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/01/17 00:15:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.2 2002/01/18 03:46:52 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/01/18 03:46:52 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.action;
 
 import java.lang.reflect.Array;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletRequest;
@@ -83,7 +84,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * developer to create a Java class for each type of form bean.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/01/17 00:15:05 $
+ * @version $Revision: 1.2 $ $Date: 2002/01/18 03:46:52 $
  * @since Struts 1.1
  */
 
@@ -459,7 +460,47 @@ public class DynaActionForm extends ActionForm implements DynaBean {
             sb.append(',');
             sb.append(props[i].getName());
             sb.append('=');
-            sb.append(get(props[i].getName()));
+            Object value = get(props[i].getName());
+            if (value == null) {
+                sb.append("<NULL>");
+            } else if (value.getClass().isArray()) {
+                int n = Array.getLength(value);
+                sb.append("{");
+                for (int j = 0; j < n; j++) {
+                    if (j > 0) {
+                        sb.append(',');
+                    }
+                    sb.append(Array.get(value, j));
+                }
+                sb.append("}");
+            } else if (value instanceof List) {
+                int n = ((List) value).size();
+                sb.append("{");
+                for (int j = 0; j < n; j++) {
+                    if (j > 0) {
+                        sb.append(',');
+                    }
+                    sb.append(((List) value).get(j));
+                }
+                sb.append("}");
+            } else if (value instanceof Map) {
+                int n = 0;
+                Iterator keys = ((Map) value).keySet().iterator();
+                sb.append("{");
+                while (keys.hasNext()) {
+                    if (n > 0) {
+                        sb.append(',');
+                    }
+                    n++;
+                    String key = (String) keys.next();
+                    sb.append(key);
+                    sb.append('=');
+                    sb.append(((Map) value).get(key));
+                }
+                sb.append("}");
+            } else {
+                sb.append(value);
+            }
         }
         sb.append("]");
         return (sb.toString());
