@@ -114,7 +114,7 @@
   
   <!-- 
      Add multiple validator resource files by setting the pathnames property 
-     that are comma delimitted.
+     with a comma delimitted list of resource files to load. 
   -->
   <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
     <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
