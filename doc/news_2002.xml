@@ -35,9 +35,80 @@ lately)
 <hr size="1" noshade=""/>
 
 
+<h3>28 February 2002 - Struts Whitepaper</h3>
+<p>
+I've been collecting, in a document, Struts examples 
+and know how while I have been learning Struts.  I 
+have decided to make this available to everyone in 
+a white paper.
+</p>
+<p>
+It's available on my companies web-site at:<br/>
+<a href="http://stealthis.athensgroup.com/presentations/">
+http://stealthis.athensgroup.com/presentations/
+</a>
+</p>
+<p>
+It's under the Model_Layer_Framework heading.  The
+link to the paper is called Struts_Whitepaper.doc
+(it's a word document.)
+</p>
+<p>
+I hope others will find this to be useful.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3>28 February 2002 - Struts Workflow Extension Package</h3>
+<p>
+To all struts users!
+</p>
+<p>
+It has been quite some time since I first announced the Struts Workflow
+Extension Package. Since then, I have received several requests for an example
+application and pretty good ideas for further enhancements. Here now is the 
+first official release that includes an example application and most of the 
+suggested enhancements.
+</p>
+<p>
+I know that there is a proposal and already some work going on in the Jakarta
+Commons Project for a generic workflow package that is not directly based on 
+Struts, but should be easily integratable. Unfortunately this work is not 
+progressing as quickly as some struts user would like to see. Thus, if you have 
+a need (and in each Web-Application you normally have) for workflow control, try 
+this extension and check whether it is appropriate for you.
+</p>
+<p>
+For more information, the general concepts, documentation and downloading the 
+sources, visit
+</p>
+<p>
+<a href="http://www.livinglogic.de/Struts/">
+http://www.livinglogic.de/Struts/</a>
+</p>
+<p>
+Of course, your feedback is very welcome.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3>28 February 2002 - Tutorial for implementing i18n</h3>
+<p>
+I have posted a simple step by step tutorial of getting internationalization
+working with Struts.
+</p>
+<p>
+You can find it here:<br/>
+<a href="http://www.anassina.com/struts/i18n/i18n.html">
+http://www.anassina.com/struts/i18n/i18n.html</a>
+</p>
+<p>
+I welcome any comments, as I intend on improving it where necessary.
+</p>
+<hr size="1" noshade=""/>
+
 
 <h3><a name="20020212"></a>12 February 2002 - Stxx for transforming XML</h3>
-
 <p>
 <a href="http://www.oroad.com/opencode/">
 <b>Struts for transforming XML with XSL</b></a> (stxx) is an extension of 
