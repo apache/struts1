@@ -327,8 +327,41 @@
     </field>
     ]]></code></pre>
               </li>
+              <li><strong>url</strong> - validates url format.
+                  Has four <i>optional</i> variables (<code>allowallschemes</code>,
+                  <code>allow2slashes</code>, <code>nofragments</code> and <code>schemes</code>)
+                  which can be used to configure this validator.
+                  <ul>
+                    <li><strong>allowallschemes</strong> specifies whether all schemes are allowed. Valid
+                        values are <code>true</code> or <code>false</code> (default is <code>false</code>).
+                        If this is set to <code>true</code> then the <code>schemes</code> variable is ignored.</li>
+                    <li><strong>allow2slashes</strong> specifies whether double '/' characters are allowed. Valid
+                        values are <code>true</code> or <code>false</code> (default is <code>false</code>).</li>
+                    <li><strong>nofragments</strong> specifies whether fragements are allowed. Valid
+                        values are <code>true</code> or <code>false</code> (default is <code>false</code> - i.e. 
+                        fragments are allowed).</li>
+                    <li><strong>schemes</strong> - use to specify a comma separated list of valid schemes. If
+                        not specified then the defaults are used which are <code>http</code>, 
+                        <code>https</code> and <code>ftp</code>.</li>
+                  </ul>
+    <pre><code><![CDATA[
+    <field property="custUrl" depends="url">
+        <arg0 key="customer.url"/>
+    </field>
 
-
+    <field property="custUrl" depends="url">
+        <arg0 key="customer.url"/>
+        <var>
+           <var-name>nofragments</var-name>
+           <var-value>true</var-value>
+        </var>
+        <var>
+           <var-name>schemes</var-name>
+           <var-value>http,https,telnet,file</var-value>
+        </var>
+    </field>
+    ]]></code></pre>
+              </li>
             </ul>
     </section>
 
