@@ -201,7 +201,7 @@
       bean property.
     </summary>
     <tagclass>org.apache.struts.taglib.nested.bean.NestedDefineTag</tagclass>
-    <teiclass>org.apache.struts.taglib.bean.DefineTei</teiclass>
+    <teiclass>org.apache.struts.taglib.nested.bean.NestedDefineTei</teiclass>
     <bodycontent>empty</bodycontent>
     <info>
       <p>This tag is an extension of the
