@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.8 2000/07/17 16:37:44 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/07/17 16:37:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.9 2000/07/17 21:19:05 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/07/17 21:19:05 $
  *
  * ====================================================================
  *
@@ -76,13 +76,30 @@ import org.apache.struts.util.MessageResources;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/07/17 16:37:44 $
+ * @version $Revision: 1.9 $ $Date: 2000/07/17 21:19:05 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
 
 
     // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * Comma-delimited list of content types that a server processing this form
+     * will handle correctly.  This property is defined only for the
+     * <code>file</code> tag, but is implemented here because it affects the
+     * rendered HTML of the corresponding &lt;input&gt; tag.
+     */
+    protected String accept = null;
+
+    public String getAccept() {
+	return (this.accept);
+    }
+
+    public void setAccept(String accept) {
+	this.accept = accept;
+    }
 
 
     /**
@@ -125,6 +142,11 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	if (accessKey != null) {
 	    results.append(" accesskey=\"");
 	    results.append(accessKey);
+	    results.append("\"");
+	}
+	if (accept != null) {
+	    results.append(" accept=\"");
+	    results.append(accept);
 	    results.append("\"");
 	}
 	if (maxlength != null) {
@@ -190,6 +212,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
     public void release() {
 
 	super.release();
+	accept = null;
 	name = Constants.BEAN_KEY;
 	type = null;
 

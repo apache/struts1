@@ -593,6 +593,196 @@ store the array as a request attribute under the key specified by the
 <a href="#Top">Top</a>
 
 
+<a name="file"></a>
+<h1><i>file</i> - Render A File Select Input Field</h1>
+
+<p>Renders an HTML <code>&lt;input&gt;</code> element of type
+<code>file</code>, defaulting to the specified value or the specified
+property of the bean associated with our current <code>form</code>.  This
+tag is only valid when nested inside a <code>form</code> tag body.</p>
+
+<p><strong>NOTE</strong>:  The Struts controller servlet does not currently
+support parsing or processing of file uploads.  Therefore, you should ensure
+that the <code>action</code> attribute of this tag points at a suitable
+servlet that knows how to deal with the <code>multipart/form-data</code>
+content type.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">accessKey</td>
+    <td>
+      The keyboard character used to move focus immediately to this element.
+    </td>
+  </tr>
+  <tr>
+    <td align="accept">accept</td>
+    <td>
+      Comma-delimited set of content types that the server you submit to knows
+      how to process.  This list can be used by the client browser to limit
+      the set of file options that is made available for selection.  If not
+      specified, no content type list will be sent.
+    </td>
+  <tr>
+    <td align="center">maxlength</td>
+    <td>
+      Maximum number of input characters to accept.  [No limit]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      The attribute name of the bean whose properties are consulted when
+      rendering the current value of this input field.  If not specified,
+      the bean associated with the <code>form</code> tag we are nested
+      within is utilized.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onBlur</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onChange</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus
+      and its value has changed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onDblClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse double click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onFocus</td>
+    <td>
+      JavaScript event handler executed when this element receives input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyDown</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyPress</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed and released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyUp</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseDown</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseMove</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and the pointer is moved.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOut</td>
+    <td>
+      JavaScript event handler executed when this element was under the
+      mouse pointer but the pointer was moved outside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOver</td>
+    <td>
+      JavaScript event handler executed when this element was not under
+      the mouse pointer but the pointer is moved inside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseUp</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onSelect</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      some text is selected.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>String</code>.  It is
+      used to set the default filename selection choice.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">size</td>
+    <td>
+      Number of character positions to allocate.  [Browser default]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">style</td>
+    <td>
+      CSS styles to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">styleClass</td>
+    <td>
+      CSS stylesheet class to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">tabIndex</td>
+    <td>
+      The tab order (ascending positive integers) for this element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Default filename which should be preselected when this input
+      element is rendered.  [Use the corresponding bean property
+      value]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
 <a name="form"></a>
 <h1><i>form</i> - Define An Input Form</h1>
 
@@ -616,6 +806,15 @@ the input fields with the current property values from the bean.</p>
       [Form will be submitted to this page itself]
     </td>
   </tr>
+  <tr>
+    <td align="center">enctype</td>
+    <td>
+      The content encoding to be used to submit this form, if the method is
+      POST.  This must be set to <code>multipart/form-data</code> if you are
+      using the <code>file</code> tag to enable file upload.  If not specified,
+      the browser default (normally
+      <code>application/x-www-form-urlencoded</code>) is used.
+    </td>
   <tr>
     <td align="center">focus</td>
     <td>
@@ -2314,6 +2513,15 @@ tag body of this tag.  This tag is only valid when nested inside a
     </td>
   </tr>
   <tr>
+    <td align="center">multiple</td>
+    <td>
+      If set to any arbitrary value, the rendered <code>select</code> element
+      will support multiple selections.  You cannot simply say "multiple",
+      because this conflicts with XML syntax rules about attribute
+      minimization (which was allowed in HTML).
+    </td>
+  </tr>
+  <tr>
     <td align="center">name</td>
     <td>
       The attribute name of the bean whose properties are consulted when
@@ -2417,6 +2625,14 @@ tag body of this tag.  This tag is only valid when nested inside a
       Name of this input field, and the name of the corresponding bean
       property if <code>value</code> is not specified.  The corresponding
       bean property (if any) must be of type <code>String</code>.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">size</td>
+    <td>
+      Define the number of available options that will be displayed when
+      this <code>select</code> element is rendered.  If not specified, the
+      browser default value will be used (typically 1).
     </td>
   </tr>
   <tr>

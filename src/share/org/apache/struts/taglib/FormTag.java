@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.7 2000/07/17 16:37:46 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/07/17 16:37:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.8 2000/07/17 21:19:06 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/07/17 21:19:06 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/07/17 16:37:46 $
+ * @version $Revision: 1.8 $ $Date: 2000/07/17 21:19:06 $
  */
 
 public final class FormTag extends TagSupport {
@@ -91,6 +91,20 @@ public final class FormTag extends TagSupport {
      * The action URL to which this form should be submitted, if any.
      */
     private String action = null;
+
+
+    /**
+     * The content encoding to be used on a POST submit.
+     */
+    private String enctype = null;
+
+    public String getEnctype() {
+	return (this.enctype);
+    }
+
+    public void setEnctype(String enctype) {
+	this.enctype = enctype;
+    }
 
 
     /**
@@ -437,6 +451,11 @@ public final class FormTag extends TagSupport {
             results.append(styleClass);
             results.append("\"");
         }
+	if (enctype != null) {
+	    results.append(" enctype=\"");
+	    results.append(enctype);
+	    results.append("\"");
+	}
 	if (onReset != null) {
 	    results.append(" onreset=\"");
 	    results.append(onReset);
@@ -546,6 +565,7 @@ public final class FormTag extends TagSupport {
 
 	super.release();
 	action = null;
+	enctype = null;
 	focus = null;
 	method = "POST";
 	name = null;
