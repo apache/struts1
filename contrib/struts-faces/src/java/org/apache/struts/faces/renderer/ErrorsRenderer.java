@@ -17,6 +17,7 @@
 package org.apache.struts.faces.renderer;
 
 
+import java.beans.Beans;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Locale;
@@ -38,7 +39,7 @@ import org.apache.struts.util.MessageResources;
  * <p><code>Renderer</code> implementation for the <code>errors</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.7 $ $Date: 2004/06/09 02:38:12 $
+ * @version $Revision: 1.8 $ $Date: 2004/07/26 19:34:49 $
  */
 
 public class ErrorsRenderer extends AbstractRenderer {
@@ -52,6 +53,13 @@ public class ErrorsRenderer extends AbstractRenderer {
      */
     private static Log log = LogFactory.getLog(ErrorsRenderer.class);
 
+
+    /**
+     * The dummy message resources for this package.
+     */
+    protected static MessageResources dummy =
+      MessageResources.getMessageResources
+        ("org.apache.struts.faces.renderer.Dummy");
 
     // ---------------------------------------------------------- Public Methods
 
@@ -78,6 +86,9 @@ public class ErrorsRenderer extends AbstractRenderer {
 
         // Look up availability of our predefined resource keys
         MessageResources resources = resources(context, component);
+	if (Beans.isDesignTime() && (resources == null)) {
+	    resources = dummy;
+	}
         Locale locale = context.getViewRoot().getLocale();
         boolean headerPresent = resources.isPresent(locale, "errors.header");
         boolean footerPresent = resources.isPresent(locale, "errors.footer");

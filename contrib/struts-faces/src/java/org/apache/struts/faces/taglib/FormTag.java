@@ -24,7 +24,7 @@ import javax.faces.component.UIComponent;
  * <p>Render an input form that is submitted to a Struts <code>Action</code>,
  * for the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.7 $ $Date: 2004/06/09 02:28:28 $
+ * @version $Revision: 1.8 $ $Date: 2004/07/26 19:34:49 $
  */
 
 public class FormTag extends AbstractFacesTag {
@@ -78,16 +78,6 @@ public class FormTag extends AbstractFacesTag {
 
 
     /**
-     * <p>The submit method (GET or POST) to use.</p>
-     */
-    protected String method = null;
-
-    public void setMethod(String method) {
-        this.method = method;
-    }
-
-
-    /**
      * <p>The JavaScript reset event handler.</p>
      */
     protected String onreset = null;
@@ -104,36 +94,6 @@ public class FormTag extends AbstractFacesTag {
 
     public void setOnsubmit(String onsubmit) {
         this.onsubmit = onsubmit;
-    }
-
-
-    /**
-     * <p>The CSS styles to apply to this element.</p>
-     */
-    protected String style = null;
-
-    public void setStyle(String style) {
-        this.style = style;
-    }
-
-
-    /**
-     * <p>The CSS style class to apply to this element.</p>
-     */
-    protected String styleClass = null;
-
-    public void setStyleClass(String styleClass) {
-        this.styleClass = styleClass;
-    }
-
-
-    /**
-     * <p>The HTML element id for this element.</p>
-     */
-    protected String styleId = null;
-
-    public void setStyleId(String styleId) {
-        this.styleId = styleId;
     }
 
 
@@ -160,12 +120,8 @@ public class FormTag extends AbstractFacesTag {
         enctype = null;
         focus = null;
         focusIndex = null;
-        method = null;
         onreset = null;
         onsubmit = null;
-        style = null;
-        styleClass = null;
-        styleId = null;
         target = null;
 
     }
@@ -210,12 +166,8 @@ public class FormTag extends AbstractFacesTag {
         setStringAttribute(component, "enctype", enctype);
         setStringAttribute(component, "focus", focus);
         setStringAttribute(component, "focusIndex", focusIndex);
-        setStringAttribute(component, "method", method);
         setStringAttribute(component, "onreset", onreset);
         setStringAttribute(component, "onsubmit", onsubmit);
-        setStringAttribute(component, "style", style);
-        setStringAttribute(component, "styleClass", styleClass);
-        setStringAttribute(component, "styleId", styleId);
         setStringAttribute(component, "target", target);
 
     }

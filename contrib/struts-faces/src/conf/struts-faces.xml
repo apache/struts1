@@ -270,16 +270,6 @@
     </attribute>
 
     <attribute>
-      <name>method</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-      <description>
-        <p>Method by which this form submit will occur (GET, POST).
-        If not specified, POST is used.</p>
-      </description>
-    </attribute>
-
-    <attribute>
       <name>onreset</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -322,16 +312,6 @@
       <rtexprvalue>false</rtexprvalue>
       <description>
         CSS style class to use when rendering this component.
-      </description>
-    </attribute>
-
-    <attribute>
-      <name>styleId</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-      <description>
-        <p>Identifier to be assigned to this HTML element (renders an
-        "<code>id</code>" element).</p>
       </description>
     </attribute>
 

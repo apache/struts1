@@ -95,6 +95,87 @@
       org.apache.struts.faces.component.FormComponent
     </component-class>
 
+    <property>
+      <description>
+        Struts action to be executed.
+      </description>
+      <display-name>Struts Action</display-name>
+      <property-name>action</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+    <property>
+      <description>
+        Encoding type for form submit.
+      </description>
+      <display-name>Encoding Type</display-name>
+      <property-name>enctype</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+    <property>
+      <description>
+        Name of focus component identifier.
+      </description>
+      <display-name>Focus Component Name</display-name>
+      <property-name>focusIndex</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+    <property>
+      <description>
+        Index of focus component identifier.
+      </description>
+      <display-name>Focus Component Index</display-name>
+      <property-name>focusIndex</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+    <property>
+      <description>
+        JavaScript to execute on form reset.
+      </description>
+      <display-name>Form Reset Script</display-name>
+      <property-name>onreset</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+    <property>
+      <description>
+        JavaScript to execute on form submit.
+      </description>
+      <display-name>Form Submit Script</display-name>
+      <property-name>onsubmit</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+    <property>
+      <description>
+        CSS style(s) to render for this component.
+      </description>
+      <display-name>CSS Style(s)</display-name>
+      <property-name>style</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+    <property>
+      <description>
+        CSS style class(es) to render for this component.
+      </description>
+      <display-name>CSS Style Class(es)</display-name>
+      <property-name>styleClass</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+    <property>
+      <description>
+        Target frame for the response to this form submit.
+      </description>
+      <display-name>Target Frame</display-name>
+      <property-name>target</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
   </component>
 
 

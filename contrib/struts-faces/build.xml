@@ -46,8 +46,6 @@
                                     value="${struts.home}/lib/commons-digester.jar"/>
   <property name="commons-fileupload.jar"
                                     value="${struts.home}/lib/commons-fileupload.jar"/>
-  <property name="commons-lang.jar"
-                                    value="${struts.home}/lib/commons-lang.jar"/>
   <property name="commons-logging.jar"
                                     value="${struts.home}/lib/commons-logging.jar"/>
   <property name="commons-validator.jar"
@@ -147,8 +145,9 @@
     <copy todir="${build.home}/conf" filtering="on">
       <fileset dir="src/conf" includes="*.MF"/>
     </copy>
-    <copy todir="${build.home}/classes/META-INF"
-           file="src/conf/faces-config.xml"/>
+    <copy todir="${build.home}/classes/META-INF">
+      <fileset dir="src/conf" includes="*faces-config.xml"/>
+    </copy>
   </target>
 
 
@@ -275,8 +274,6 @@
     <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
                   file="${commons-fileupload.jar}"/>
     <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${commons-lang.jar}"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
                   file="${commons-logging.jar}"/>
     <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
                   file="${commons-validator.jar}"/>
@@ -395,8 +392,6 @@
                   file="${commons-digester.jar}"/>
     <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
                   file="${commons-fileupload.jar}"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${commons-lang.jar}"/>
     <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
                   file="${commons-logging.jar}"/>
     <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"

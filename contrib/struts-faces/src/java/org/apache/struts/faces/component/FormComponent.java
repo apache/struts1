@@ -40,7 +40,7 @@ import org.apache.struts.util.RequestUtils;
  * <code>javax.faces.component.UIForm</code> that supports automatic
  * creation of form beans in request or session scope.</p>
  *
- * @version $Revision: 1.11 $ $Date: 2004/07/08 01:11:28 $
+ * @version $Revision: 1.12 $ $Date: 2004/07/26 19:34:49 $
  */
 public class FormComponent extends UIForm {
 
@@ -54,10 +54,21 @@ public class FormComponent extends UIForm {
     protected static Log log = LogFactory.getLog(FormComponent.class);
 
 
-    // ---------------------------------------------------- Component Properties
+    // ------------------------------------------------------ Instance Variables
 
 
     private String action = null;
+    private String enctype = null;
+    private String focus = null;
+    private String focusIndex = null;
+    private String onreset = null;
+    private String onsubmit = null;
+    private String style = null;
+    private String styleClass = null;
+    private String target = null;
+
+
+    // ---------------------------------------------------- Component Properties
 
 
     /**
@@ -92,11 +103,242 @@ public class FormComponent extends UIForm {
 
 
     /**
+     * <p>Return the encoding type for this form submit.</p>
+     */
+    public String getEnctype() {
+
+        if (this.enctype != null) {
+            return (this.enctype);
+        }
+        ValueBinding vb = getValueBinding("enctype");
+        if (vb != null) {
+            return ((String) vb.getValue(getFacesContext()));
+        } else {
+            return (null);
+        }
+
+    }
+
+
+    /**
+     * <p>Set the encoding type for this form submit.</p>
+     *
+     * @param enctype The new enctype path
+     */
+    public void setEnctype(String enctype) {
+
+        this.enctype = enctype;
+
+    }
+
+
+    /**
      * <p>Return the component family to which this component belongs.</p>
      */
     public String getFamily() {
 
         return "org.apache.struts.faces.Form";
+
+    }
+
+
+    /**
+     * <p>Return the focus element name.</p>
+     */
+    public String getFocus() {
+
+        if (this.focus != null) {
+            return (this.focus);
+        }
+        ValueBinding vb = getValueBinding("focus");
+        if (vb != null) {
+            return ((String) vb.getValue(getFacesContext()));
+        } else {
+            return (null);
+        }
+
+    }
+
+
+    /**
+     * <p>Set the focus element name.</p>
+     *
+     * @param focus The new focus path
+     */
+    public void setFocus(String focus) {
+
+        this.focus = focus;
+
+    }
+
+
+    /**
+     * <p>Return the focus element index.</p>
+     */
+    public String getFocusIndex() {
+
+        if (this.focusIndex != null) {
+            return (this.focusIndex);
+        }
+        ValueBinding vb = getValueBinding("focusIndex");
+        if (vb != null) {
+            return ((String) vb.getValue(getFacesContext()));
+        } else {
+            return (null);
+        }
+
+    }
+
+
+    /**
+     * <p>Set the focus element index.</p>
+     *
+     * @param focusIndex The new focusIndex path
+     */
+    public void setFocusIndex(String focusIndex) {
+
+        this.focusIndex = focusIndex;
+
+    }
+
+
+    /**
+     * <p>Return the JavaScript to execute on form reset.</p>
+     */
+    public String getOnreset() {
+
+        if (this.onreset != null) {
+            return (this.onreset);
+        }
+        ValueBinding vb = getValueBinding("onreset");
+        if (vb != null) {
+            return ((String) vb.getValue(getFacesContext()));
+        } else {
+            return (null);
+        }
+
+    }
+
+
+    /**
+     * <p>Set the JavaScript to execute on form reset.</p>
+     *
+     * @param onreset The new onreset path
+     */
+    public void setOnreset(String onreset) {
+
+        this.onreset = onreset;
+
+    }
+
+
+    /**
+     * <p>Return the JavaScript to execute on form submit.</p>
+     */
+    public String getOnsubmit() {
+
+        if (this.onsubmit != null) {
+            return (this.onsubmit);
+        }
+        ValueBinding vb = getValueBinding("onsubmit");
+        if (vb != null) {
+            return ((String) vb.getValue(getFacesContext()));
+        } else {
+            return (null);
+        }
+
+    }
+
+
+    /**
+     * <p>Set the JavaScript to execute on form submit.</p>
+     *
+     * @param onsubmit The new onsubmit path
+     */
+    public void setOnsubmit(String onsubmit) {
+
+        this.onsubmit = onsubmit;
+
+    }
+
+
+    /**
+     * <p>Return the CSS style(s) to be rendered for this component.</p>
+     */
+    public String getStyle() {
+
+        ValueBinding vb = getValueBinding("style");
+        if (vb != null) {
+            return (String) vb.getValue(getFacesContext());
+        } else {
+            return style;
+        }
+
+    }
+
+
+    /**
+     * <p>Set the CSS style(s) to be rendered for this component.</p>
+     *
+     * @param style The new CSS style(s)
+     */
+    public void setStyle(String style) {
+
+        this.style = style;
+
+    }
+
+
+    /**
+     * <p>Return the CSS style class(es) to be rendered for this component.</p>
+     */
+    public String getStyleClass() {
+
+        ValueBinding vb = getValueBinding("styleClass");
+        if (vb != null) {
+            return (String) vb.getValue(getFacesContext());
+        } else {
+            return styleClass;
+        }
+
+    }
+
+
+    /**
+     * <p>Set the CSS style class(es) to be rendered for this component.</p>
+     *
+     * @param style The new CSS style class(es)
+     */
+    public void setStyleClass(String styleClass) {
+
+        this.styleClass = styleClass;
+
+    }
+
+
+    /**
+     * <p>Return the target frame for the response to this form submit.</p>
+     */
+    public String getTarget() {
+
+        ValueBinding vb = getValueBinding("target");
+        if (vb != null) {
+            return (String) vb.getValue(getFacesContext());
+        } else {
+            return target;
+        }
+
+    }
+
+
+    /**
+     * <p>Set the target frame for the response to this form submit.</p>
+     *
+     * @param target The new CSS target(s)
+     */
+    public void setTarget(String target) {
+
+        this.target = target;
 
     }
 
@@ -143,6 +385,14 @@ public class FormComponent extends UIForm {
         Object values[] = (Object[]) state;
         super.restoreState(context, values[0]);
         action = (String) values[1];
+	enctype = (String) values[2];
+	focus = (String) values[3];
+	focusIndex = (String) values[4];
+	onreset = (String) values[5];
+	onsubmit = (String) values[6];
+	style = (String) values[7];
+	styleClass = (String) values[8];
+	target = (String) values[9];
 
     }
 
@@ -154,9 +404,17 @@ public class FormComponent extends UIForm {
      */
     public Object saveState(FacesContext context) {
 
-        Object values[] = new Object[2];
+        Object values[] = new Object[10];
         values[0] = super.saveState(context);
         values[1] = action;
+	values[2] = enctype;
+	values[3] = focus;
+	values[4] = focusIndex;
+	values[5] = onreset;
+	values[6] = onsubmit;
+	values[7] = style;
+	values[8] = styleClass;
+	values[9] = target;
         return (values);
 
     }
