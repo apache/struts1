@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.3 2001/02/12 00:32:14 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/02/12 00:32:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.4 2002/06/28 01:08:39 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/28 01:08:39 $
  *
  * ====================================================================
  * 
@@ -68,6 +68,8 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Properties;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -85,7 +87,7 @@ import java.util.Properties;
  * the same locale + key combination.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/02/12 00:32:14 $
+ * @version $Revision: 1.4 $ $Date: 2002/06/28 01:08:39 $
  */
 
 public class PropertyMessageResources extends MessageResources {
@@ -105,6 +107,7 @@ public class PropertyMessageResources extends MessageResources {
                                     String config) {
 
         super(factory, config);
+        log.info("Initializing, config='" + config + "'");
 
     }
 
@@ -121,6 +124,8 @@ public class PropertyMessageResources extends MessageResources {
                                     String config, boolean returnNull) {
 
         super(factory, config, returnNull);
+        log.info("Initializing, config='" + config +
+                 "', returnNull=" + returnNull);
 
     }
 
@@ -133,6 +138,13 @@ public class PropertyMessageResources extends MessageResources {
      * by the value calculated in <code>localeKey()</code>.
      */
     protected HashMap locales = new HashMap();
+
+
+    /**
+     * The <code>Log</code> instance for this class.
+     */
+    protected static final Log log =
+        LogFactory.getLog(PropertyMessageResources.class);
 
 
     /**
@@ -159,6 +171,10 @@ public class PropertyMessageResources extends MessageResources {
      * @param key The message key to look up
      */
     public String getMessage(Locale locale, String key) {
+
+        if (log.isDebugEnabled()) {
+            log.debug("getMessage(" + locale + "," + key + ")");
+        }
 
         // Initialize variables we will require
         String localeKey = localeKey(locale);
@@ -247,6 +263,10 @@ public class PropertyMessageResources extends MessageResources {
      */
     protected void loadLocale(String localeKey) {
 
+        if (log.isTraceEnabled()) {
+            log.trace("loadLocale(" + localeKey + ")");
+        }
+
         // Have we already attempted to load messages for this locale?
         synchronized (locales) {
             if (locales.get(localeKey) != null)
@@ -264,12 +284,19 @@ public class PropertyMessageResources extends MessageResources {
 
         // Load the specified property resource
         try {
+            if (log.isTraceEnabled()) {
+                log.trace("  Loading resource '" + name + "'");
+            }
             is = this.getClass().getClassLoader().getResourceAsStream(name);
             if (is != null) {
                 props.load(is);
                 is.close();
             }
+            if (log.isTraceEnabled()) {
+                log.trace("  Loading resource completed");
+            }
         } catch (Throwable t) {
+            log.error("loadLocale()", t);
             if (is != null) {
                 try {
                     is.close();
@@ -286,6 +313,10 @@ public class PropertyMessageResources extends MessageResources {
             Enumeration names = props.keys();
             while (names.hasMoreElements()) {
                 String key = (String) names.nextElement();
+                if (log.isTraceEnabled()) {
+                    log.trace("  Saving message key '" +
+                              messageKey(localeKey, key));
+                }
                 messages.put(messageKey(localeKey, key),
                              props.getProperty(key));
             }
