@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.24 2001/11/21 14:00:28 husted Exp $
- * $Revision: 1.24 $
- * $Date: 2001/11/21 14:00:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.25 2001/11/21 18:48:42 oalexeev Exp $
+ * $Revision: 1.25 $
+ * $Date: 2001/11/21 18:48:42 $
  *
  * ====================================================================
  *
@@ -102,7 +102,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.24 $ $Date: 2001/11/21 14:00:28 $
+ * @version $Revision: 1.25 $ $Date: 2001/11/21 18:48:42 $
  */
 
 public class RequestUtils {
@@ -529,6 +529,22 @@ public class RequestUtils {
 
 
     /**
+     * Look up and return current user locale, based on the specified parameters.
+     * 
+     * @param pageContext The PageContext associated with this request
+     * @param locale Name of the session attribute for our user's Locale
+     */
+    public static Locale retrieveUserLocale( PageContext pageContext, String locale ) {
+        if (locale == null)
+            locale = Action.LOCALE_KEY;
+        Locale userLocale = (Locale)
+            pageContext.getAttribute(locale, PageContext.SESSION_SCOPE);
+        if (userLocale == null)
+            userLocale = defaultLocale;
+        return userLocale;
+    }
+
+    /**
      * Look up and return a message string, based on the specified parameters.
      *
      * @param pageContext The PageContext associated with this request
@@ -579,12 +595,7 @@ public class RequestUtils {
         }
 
         // Look up the requested Locale
-        if (locale == null)
-            locale = Action.LOCALE_KEY;
-        Locale userLocale = (Locale)
-            pageContext.getAttribute(locale, PageContext.SESSION_SCOPE);
-        if (userLocale == null)
-            userLocale = defaultLocale;
+        Locale userLocale = retrieveUserLocale( pageContext, locale );
 
         // Return the requested message
         if (args == null)
