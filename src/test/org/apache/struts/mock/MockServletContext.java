@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockServletContext.java,v 1.1 2002/07/01 22:10:35 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/01 22:10:35 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockServletContext.java,v 1.2 2002/12/27 11:02:09 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/27 11:02:09 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.commons.logging.LogFactory;
  * threaded environment, no synchronization is performed.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/07/01 22:10:35 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/27 11:02:09 $
  */
 
 public class MockServletContext implements ServletContext {
@@ -191,12 +191,14 @@ public class MockServletContext implements ServletContext {
 
 
     public URL getResource(String path) {
-        throw new UnsupportedOperationException();
+      return this.getClass().getResource(path);
+        //throw new UnsupportedOperationException();
     }
 
 
     public InputStream getResourceAsStream(String path) {
-        throw new UnsupportedOperationException();
+      return this.getClass().getResourceAsStream(path);
+        //throw new UnsupportedOperationException();
     }
 
 
