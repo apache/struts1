@@ -1,4 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@ page language="java" %>
+<%@ taglib uri="/WEB-INF/struts-html-el.tld"  prefix="html-el"  %>
 <html>
 <head>
 <title>Struts-EL Test Application</title>
@@ -50,6 +52,15 @@
 <ul>
 <li><a href="logic-compare.jsp">Comparison Tags</a>[<a href="showSource.jsp?path=/logic-compare.jsp">Source</a>]</li>
 <li><a href="logic-empty.jsp">Emptiness Tags</a>[<a href="showSource.jsp?path=/logic-empty.jsp">Source</a>]</li>
+</ul>
+
+<h2>Other Testable Features</h2>
+<ul>
+ <li>
+  <html-el:link page="/bean-dyna.do">
+   DynaActionForm References in EL[<a href="showSource.jsp?path=/bean-dyna.jsp">Source</a>]
+  </html-el:link>
+ </li>
 </ul>
 </body>
 </html>

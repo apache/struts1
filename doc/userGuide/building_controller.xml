@@ -71,12 +71,15 @@
             href="./building_view.html#form_validation">Action Form Validation</a>"
             for details. Of course, you can also ignore the ActionForm validation
             and provide your own in the Action object.</li>
+
         <li>Define a property (with associated <code>getXxx</code> and
-            <code>setXxx</code> methods) for each field that is present
-            in the form.  The field name and property name must match according
-            to the usual JavaBeans conventions.  For example, an input field named
-            <code>username</code> will cause the <code>setUsername</code> method
-            to be called.</li>
+        <code>setXxx</code> methods) for each field that is present in the
+        form.  The field name and property name must match according to the
+        usual JavaBeans conventions (see the javadoc for the
+        <code>java.beans.Introspector</code> class for a start on information
+        about this).  For example, an input field named <code>username</code>
+        will cause the <code>setUsername</code> method to be called.</li>
+
         <li>Buttons and other controls on your form can also be defined as properties.
             This can help determine which button or control was selected when the
             form was submitted. Remember, the ActionForm is meant to represent your
@@ -130,7 +133,27 @@
         <li>java.sql.Time</li>
         <li>java.sql.Timestamp</li>
       </ul>
-      <p>If you do not supply an initial attribute, numbers will be initialized to 0 and objects to null.</p>
+      <p>If you do not supply an initial attribute, numbers will be initialized
+      to 0 and objects to null.</p>
+      <p>In JSP pages using Struts custom tags, attributes of
+      <code>DynaActionForm</code> objects can be referenced just like ordinary
+      <code>ActionForm</code> objects.  However, when utilizing the JavaServer
+      Pages Standard Tag Library, only properties of ordinary
+      <code>ActionForm</code> objects can be directly accessed through the JSTL
+      expression language syntax.  However, <code>DynaActionForm</code>
+      properties can be accessed through a slightly different syntax.</p>
+      <p>In particular, whereas the JSTL EL syntax for referencing a property
+      of an <code>ActionForm</code> would be something like:</p>
+      <pre>
+       ${formbean.prop}</pre>
+      <p>The syntax for referencing a property of a <code>DynaActionForm</code>
+      would be:</p>
+      <pre>
+       ${dynabean.map.prop}</pre>
+      <p>The <code>map</code> property is a property of
+      <code>DynaActionForm</code> which represents the <code>HashMap</code>
+      containing the <code>DynaActionForm</code> properties.</p>
+
      </section>
 
     <section name="4.2.2 Map-backed ActionForms" href="map_action_form_classes">

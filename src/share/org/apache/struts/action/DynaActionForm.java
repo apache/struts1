@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.4 2002/10/27 06:10:59 rleland Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/27 06:10:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.5 2002/11/01 04:54:47 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/11/01 04:54:47 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * developer to create a Java class for each type of form bean.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/10/27 06:10:59 $
+ * @version $Revision: 1.5 $ $Date: 2002/11/01 04:54:47 $
  * @since Struts 1.1
  */
 
@@ -313,6 +313,28 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
     }
 
+    /**
+     * Returns the <code>Map</code> containing the property values.  This is
+     * done mostly to facilitate accessing the <code>DynaActionForm</code>
+     * through JavaBeans accessors, in order to use the JavaServer Pages
+     * Standard Tag Library.
+     *<p>
+     * For instance, the normal JSTL EL syntax for accessing an
+     * <code>ActionForm</code> would be something like this:
+     * <pre>
+     *  ${formbean.prop}</pre>
+     * The JSTL EL syntax for accessing a <code>DynaActionForm</code> looks
+     * something like this (because of the presence of this
+     * <code>getMap()</code> method):
+     * <pre>
+     *  ${dynabean.map.prop}</pre>
+     */
+    public  Map   getMap() {
+
+        return (dynaValues);
+
+    }
+    
 
     /**
      * Remove any existing value for the specified key on the
