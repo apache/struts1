@@ -1,7 +1,13 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/validator/org/apache/struts/webapp/validator/Attic/TypeForm.java,v 1.5 2003/09/24 03:42:03 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/09/24 03:42:03 $
+ *
+ * ====================================================================
+ *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 2000-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -17,7 +23,7 @@
  *    distribution.
  *
  * 3. The end-user documentation included with the redistribution, if
- *    any, must include the following acknowlegement:
+ *    any, must include the following acknowledgement:
  *       "This product includes software developed by the
  *        Apache Software Foundation (http://www.apache.org/)."
  *    Alternately, this acknowlegement may appear in the software itself,
@@ -29,8 +35,8 @@
  *    permission, please contact apache@apache.org.
  *
  * 5. Products derived from this software may not be called "Apache"
- *    nor may "Apache" appear in their names without prior written
- *    permission of the Apache Group.
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
  *
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -81,6 +87,10 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     private String sDouble = null;
     private String sDate = null;
     private String sCreditCard = null;
+    private String sSatisfaction = null;
+    private String[] sOsList = null;
+    private String sOverallSatisfaction = null;
+    private String[] sUsedLanguages = null;
 
     private List lNames = initNames();
 
@@ -172,6 +182,38 @@ public final class TypeForm extends ValidatorForm implements Serializable {
        	this.sCreditCard = sCreditCard;
     }
 
+    public String getSatisfaction() {
+       return sSatisfaction;
+    }
+
+    public void setSatisfaction(String sSatisfaction) {
+       	this.sSatisfaction = sSatisfaction;
+    }
+
+    public String[] getOsList() {
+       return sOsList;
+    }
+
+    public void setOsList(String[] anOsList) {
+       	this.sOsList = anOsList;
+    }
+
+    public String getOverallSatisfaction() {
+       return sOverallSatisfaction;
+    }
+
+    public void setOverallSatisfaction(String anOverallSatisfaction) {
+       	this.sOverallSatisfaction = anOverallSatisfaction;
+    }
+
+    public String[] getUsedLanguages() {
+       return sUsedLanguages;
+    }
+
+    public void setUsedLanguages(String[] anUsedLanguages) {
+       	this.sUsedLanguages = anUsedLanguages;
+    }
+
     public List getNameList() {
        return lNames;
     }
@@ -187,17 +229,23 @@ public final class TypeForm extends ValidatorForm implements Serializable {
      * @param request The servlet request we are processing
      */
     public void reset(ActionMapping mapping, HttpServletRequest request) {
-       action = null;
-       sByte = null;
-       sShort = null;
-       sInteger = null;
-       sLong = null;
-       sFloat = null;
-       sFloatRange = null;
-       sDouble = null;
-       sDate = null;
-       sCreditCard = null;
-
+       String reset = (String)request.getAttribute("typeForm.reset");
+       if ((null != reset)|| ("true".equals(reset))) {
+           action = null;
+           sByte = null;
+           sShort = null;
+           sInteger = null;
+           sLong = null;
+           sFloat = null;
+           sFloatRange = null;
+           sDouble = null;
+           sDate = null;
+           sCreditCard = null;
+           sSatisfaction = null;
+           sOsList = null;
+           sOverallSatisfaction = null;
+           sUsedLanguages = null;
+       }
        //lNames = initNames();
     }
 

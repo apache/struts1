@@ -86,12 +86,19 @@
     </action>
 
     <!-- JavaScript Type Action -->
+      <action    path="/editJsType"
+                 type="org.apache.struts.webapp.validator.EditTypeAction"
+                 scope="request"
+                 validate="false">
+         <forward name="success"              path="/jsType.jsp"/>
+      </action>
+
     <action    path="/jsType"
                type="org.apache.struts.webapp.validator.TypeAction"
                name="jsTypeForm"
                scope="request"
                validate="true"
-               input="/jsType.jsp">
+               input="/editJsType.do?typeForm.reset=false">
        <forward name="success"              path="/index.jsp"/>
     </action>
 

@@ -103,6 +103,53 @@
     </td>
   </tr>
   <tr>
+    <th align="left">
+      <bean:message key="typeForm.option.satisfaction"/>:
+    </th>
+    <td align="left">
+      <html:select property="satisfaction">
+		<html:option value="" key="typeForm.option.select.one"/>
+        <html:options collection="satisfactionList" property="value"
+                   labelProperty="label"/>
+      </html:select>
+    </td>
+  </tr>
+  <tr>
+    <th align="left">
+      <bean:message key="typeForm.option.os.list"/>:
+    </th>
+    <td align="left">
+      <html:select property="osList" multiple="true">
+		<html:option value="" key="typeForm.option.select.many"/>
+        <html:options collection="osTypes" property="value"
+                   labelProperty="label"/>
+      </html:select>
+    </td>
+  </tr>
+  <tr>
+    <th align="left">
+      <bean:message key="typeForm.radio.overall.satisfaction"/>:
+    </th>
+    <td align="left">
+      <logic:iterate id="satBean" name="satisfactionList" type="org.apache.struts.util.LabelValueBean">
+        <html:radio property="overallSatisfaction" value="<%=satBean.getValue()%>">
+          <%=satBean.getLabel()%>
+        </html:radio>
+      </logic:iterate>
+    </td>
+  </tr>
+  <tr>
+    <th align="left">
+      <bean:message key="typeForm.checkbox.used.languages"/>:
+    </th>
+    <td align="left">
+      <logic:iterate id="langBean" indexId="usedIndex" name="languageTypes" type="org.apache.struts.util.LabelValueBean">
+        <html:multibox property="usedLanguages" value="<%=langBean.getValue()%>"/><%=langBean.getLabel()%>
+
+      </logic:iterate>
+    </td>
+  </tr>
+  <tr>
     <td>
       <html:submit property="submit" onclick="bCancel=false;">
          <bean:message key="button.save"/>

@@ -47,7 +47,7 @@
       <bean:message key="typeForm.description"/>
    </li>
    <li>
-      <html:link page="/jsType.jsp"><bean:message key="jsTypeForm.title"/></html:link> -
+      <html:link page="/editJsType.do"><bean:message key="jsTypeForm.title"/></html:link> -
       <bean:message key="jsTypeForm.description"/>
    </li>
 </ul>

@@ -265,7 +265,7 @@
                        <var-value>3.14</var-value>
                      </var>
          </field>
-         <field    property="date"
+         <field   property="date"
          	   depends="required,date">
          	     <arg0 key="typeForm.date.displayname"/>
                      <var>
@@ -273,9 +273,25 @@
                        <var-value>MM/dd/yyyy</var-value>
                      </var>
          </field>
-         <field    property="creditCard"
-         	   depends="required,creditCard">
+         <field   property="creditCard"
+         	      depends="required,creditCard">
          	     <arg0 key="typeForm.creditCard.displayname"/>
+         </field>
+         <field   property="satisfaction"
+                  depends="required">
+                 <arg0 key="typeForm.option.satisfaction"/>
+         </field>
+         <field   property="osList"
+                  depends="required">
+                 <arg0 key="typeForm.option.os.list"/>
+         </field>
+         <field   property="overallSatisfaction"
+                  depends="required">
+                 <arg0 key="typeForm.radio.overall.satisfaction"/>
+         </field>
+         <field   property="usedLanguages"
+                  depends="required">
+                 <arg0 key="typeForm.checkbox.used.languages"/>
          </field>
       </form>
    </formset>

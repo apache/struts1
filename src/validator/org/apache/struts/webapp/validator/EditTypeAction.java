@@ -1,6 +1,6 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/validator/org/apache/struts/webapp/validator/Attic/RegistrationAction.java,v 1.5 2003/09/24 03:42:03 rleland Exp $
- * $Revision: 1.5 $
+ * $Header: /home/cvs/jakarta-struts/src/validator/org/apache/struts/webapp/validator/Attic/EditTypeAction.java,v 1.1 2003/09/24 03:42:03 rleland Exp $
+ * $Revision: 1.1 $
  * $Date: 2003/09/24 03:42:03 $
  *
  * ====================================================================
@@ -64,19 +64,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.ArrayList;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.util.LabelValueBean;
 
 /**
- * Implementation of <strong>Action</strong> that validates a registration form.
+ * Initializes ActionForm.
  *
- * @author David Wintefeldt
+ * @author Robert Leland
  */
-public final class RegistrationAction extends Action {
+public final class EditTypeAction extends Action {
 
     /**
      * Commons Logging instance.
@@ -99,47 +101,49 @@ public final class RegistrationAction extends Action {
      * @exception Exception if an input/output error or servlet exception occurs
      */
     public ActionForward execute(
-        ActionMapping mapping,
-        ActionForm form,
-        HttpServletRequest request,
-        HttpServletResponse response)
-        throws Exception {
+            ActionMapping mapping,
+            ActionForm form,
+            HttpServletRequest request,
+            HttpServletResponse response)
+            throws Exception {
 
         // Was this transaction cancelled?
-        if (isCancelled(request)) {
-            if (log.isInfoEnabled()) {
-                log.info(
-                    " "
-                        + mapping.getAttribute()
-                        + " - Registration transaction was cancelled");
-            }
 
-            removeFormBean(mapping, request);
-
-            return (mapping.findForward("success"));
-        }
+        initFormBeans(mapping, form, request);
 
         return mapping.findForward("success");
     }
 
     /**
-     * Convenience method for removing the obsolete form bean.
-     *
+     * Convenience method for initializing form bean.
      * @param mapping The ActionMapping used to select this instance
      * @param request The HTTP request we are processing
      */
-    protected void removeFormBean(
-        ActionMapping mapping,
-        HttpServletRequest request) {
-            
-        // Remove the obsolete form bean
-        if (mapping.getAttribute() != null) {
-            if ("request".equals(mapping.getScope())) {
-                request.removeAttribute(mapping.getAttribute());
-            } else {
-                HttpSession session = request.getSession();
-                session.removeAttribute(mapping.getAttribute());
-            }
-        }
+    protected void initFormBeans(
+            ActionMapping mapping, ActionForm form,
+            HttpServletRequest request) {
+
+        // Initialize
+        ArrayList satisfactionList = new ArrayList();
+        satisfactionList.add(new LabelValueBean("Very Satisfied", "4"));
+        satisfactionList.add(new LabelValueBean("Satisfied", "3"));
+        satisfactionList.add(new LabelValueBean("Not Very Satisfied", "2"));
+        satisfactionList.add(new LabelValueBean("Not Satisfied", "1"));
+        request.setAttribute("satisfactionList", satisfactionList);
+
+        ArrayList osTypes = new ArrayList();
+        osTypes.add(new LabelValueBean("Mac OsX", "OsX"));
+        osTypes.add(new LabelValueBean("Windows 95/98/Me", "Win32"));
+        osTypes.add(new LabelValueBean("Windows NT/2000/XP/2003", "WinNT"));
+        osTypes.add(new LabelValueBean("Linux", "Linux"));
+        osTypes.add(new LabelValueBean("BSD NetBSD/FreeBSD/OpenBSD", "BSD"));
+        request.setAttribute("osTypes", osTypes);
+
+        ArrayList languageTypes = new ArrayList();
+        languageTypes.add(new LabelValueBean("C++", "C++"));
+        languageTypes.add(new LabelValueBean("C#", "C#"));
+        languageTypes.add(new LabelValueBean("Java", "java"));
+        languageTypes.add(new LabelValueBean("Smalltalk", "Smalltalk"));
+        request.setAttribute("languageTypes", languageTypes);
     }
 }
