@@ -3,21 +3,26 @@
    will need to be edited to point to some jar files, java.home, and the application servers you want to 
    run the tests on.
 -->
-<project name="Struts Validator" default="javadocs" basedir=".">
+<project name="Struts Validator" default="jar" basedir=".">
   <!-- set global properties for this build -->
   <property file="build.properties"/>
   
   <property name="title" value="Struts Validator" />
-  <property name="name" value="Struts_Validator" />
+  <property name="name" value="validator" />
+  <property name="validator.jar" value="struts-validator.jar"/>
   <property name="src" value="src" />
   <property name="share" value="share" />
   <property name="example" value="example" />
   <property name="jdbc.example" value="jdbc-example" />
   <property name="web"  value="web" />
-  <property name="webapps"  value="webapps" />
-  <property name="build" value="build" />
-  <property name="build.javadocs" value="docs/api" />
   <property name="dist"  value="dist" />
+  <property name="webapps"  value="${dist}/webapps" />
+  <property name="build" value="build" />
+  <property name="target" value="target" />
+  <property name="web.classes" value="WEB-INF/classes" />
+  <property name="tlds" value="WEB-INF/tlds" />
+  <property name="docs" value="docs" />
+  <property name="build.javadocs" value="${dist}/${docs}/api" />
   <property name="package.root" value="com/wintecinc/struts"/>
   <property name="package" value="com/wintecinc/struts/action"/>
   <property name="package.example" value="com/wintecinc/struts/example/validator"/>
@@ -28,10 +33,11 @@
     <!-- Create the time stamp -->
     <tstamp/>
     <!-- Create the build directory structure used by compile -->
-    <mkdir dir="${build}" />
+    <mkdir dir="${build}"/>
+    <mkdir dir="${target}"/>
+    <mkdir dir="${target}/${example}/${web.classes}"/>
+    <mkdir dir="${target}/${jdbc.example}/${web.classes}"/>
   </target>
-  
-  <property name="validator.jar.prefix" value="${name}"/>
   
   <!-- Setting Classpath -->
   <path id="base.classpath">
@@ -47,7 +53,7 @@
   <path id="main.classpath">
      <path refid="base.classpath"/>
      <pathelement path="${cactus.jar}"/>
-     <pathelement path="${dist}/${validator.jar.prefix}-${DSTAMP}.jar" />
+     <pathelement path="${dist}/${validator.jar}" />
   </path>
 
   <path id="javadoc.classpath">
@@ -58,55 +64,49 @@
   <target name="compile" depends="prepare">
     <!-- Compile the java code from ${src} into ${build} -->
     <javac srcdir="${src}/${share}" 
-           destdir="${build}"
-           excludes="${package.example}/**">
+           destdir="${build}">
        <classpath refid="base.classpath" />
     </javac>
   </target>
 
-  <target name="dist" depends="compile">
+  <target name="jar" depends="compile">
     <!-- Create the ${dist}/lib directory -->
     <mkdir dir="${dist}" />
 
-    <!-- Put everything in ${build} into the Editor-${DSTAMP}.jar file -->
-    <!-- <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}" /> -->
-    <jar jarfile="${dist}/${validator.jar.prefix}-${DSTAMP}.jar" 
-         basedir="${build}" 
-         includes="${package.root}/**"
-         excludes="${package.example}/**,${package.test}/"/>
+    <!-- Put everything in ${build} -->
+    <jar jarfile="${dist}/${validator.jar}" 
+         basedir="${build}"/>
   </target>
 
-  <target name="compile_example" depends="dist">
+  <target name="compile_example" depends="jar">
     <!-- Compile the java code from ${src}/${example} into ${build} -->
     <javac srcdir="${src}/${example}" 
-           destdir="${build}">
+           destdir="${target}/${example}/${web.classes}">
        <classpath refid="main.classpath" />
     </javac>
 
     <!-- Compile the java code from ${src}/${jdbc.example} into ${build} -->
     <javac srcdir="${src}/${jdbc.example}" 
-           destdir="${build}">
+           destdir="${target}/${jdbc.example}/${web.classes}">
        <classpath refid="main.classpath" />
     </javac>
 
   </target>
 
   <target name="copy_example" depends="compile_example">
-     <copy todir="${build}" >
-       <fileset dir="${src}/${example}" 
-                includes="cactus.properties,${package.example}/*,${package.test}/" 
+     <copy todir="${target}/${example}/${web.classes}" >
+       <fileset dir="${src}/${example}"
                 excludes="**/*.java" 
        />
      </copy>
 
-     <copy todir="${build}" >
+     <copy todir="${target}/${jdbc.example}/${web.classes}" >
        <fileset dir="${src}/${jdbc.example}" 
-                includes="${package.jdbc.example}/*" 
                 excludes="**/*.java" 
        />
      </copy>
 
-     <copy todir="${web}/${example}/WEB-INF/tlds" >
+     <copy todir="${target}/${example}/${tlds}" >
        <fileset dir="${dist}" 
                 includes="struts-validator.tld"/>
        <fileset dir="${struts.tlds}">
@@ -114,7 +114,7 @@
        </fileset>
      </copy>
 
-     <copy todir="${web}/${jdbc.example}/WEB-INF/tlds" >
+     <copy todir="${target}/${jdbc.example}/${tlds}" >
        <fileset dir="${dist}" 
                 includes="struts-validator.tld"/>
        <fileset dir="${struts.tlds}">
@@ -133,34 +133,39 @@
     <copy file="${commons-collections.jar}" todir="lib"/>
     <copy file="${commons-digester.jar}" todir="lib"/>
     <copy file="${regexp.jar}" todir="lib"/>
-    
-    <war warfile="${webapps}/validator.war" webxml="${web}/${example}/WEB-INF/web.xml">
+
+    <copy todir="${target}/${example}" >
       <fileset dir="${web}/${example}">
          <include name="**/**" />
+      </fileset>
+    </copy>
+    
+    <war warfile="${webapps}/validator.war" webxml="${target}/${example}/WEB-INF/web.xml">
+      <fileset dir="${target}/${example}">
+         <include name="**/**" />
          <exclude name="WEB-INF/web.xml" />
       </fileset>
       <lib dir="${dist}">
-         <include name="${validator.jar.prefix}-${DSTAMP}.jar" />
+         <include name="${validator.jar}" />
       </lib>
       <lib dir="lib" />
-      <classes dir="${build}">
-         <include name="${package.example}/**" />
-         <include name="${package.test}/" />
-      </classes>
     </war>
 
-    <war warfile="${webapps}/jdbc-validator.war" webxml="${web}/${jdbc.example}/WEB-INF/web.xml">
+    <copy todir="${target}/${jdbc.example}" >
       <fileset dir="${web}/${jdbc.example}">
+         <include name="**/**" />
+      </fileset>
+    </copy>
+
+    <war warfile="${webapps}/jdbc-validator.war" webxml="${target}/${jdbc.example}/WEB-INF/web.xml">
+      <fileset dir="${target}/${jdbc.example}">
          <include name="**/**" />
          <exclude name="WEB-INF/web.xml" />
       </fileset>
       <lib dir="lib" />
       <lib dir="${dist}">
-         <include name="${validator.jar.prefix}-${DSTAMP}.jar" />
+         <include name="${validator.jar}" />
       </lib>
-      <classes dir="${build}">
-         <include name="${package.jdbc.example}/**" />
-      </classes>
     </war>
     
   </target>
@@ -180,6 +185,46 @@
     </javadoc>
   </target>
 
+  <target name="dist" depends="javadocs" description="Creates Distribution in target directory">
+    
+    <mkdir dir="${dist}/${src}"/>
+    <mkdir dir="${dist}/${web}"/>
+    <mkdir dir="${dist}/conf"/>
+    <mkdir dir="${dist}/sql"/>
+    <mkdir dir="${dist}/${docs}"/>
+    
+    <copy todir="${dist}/${src}" >
+      <fileset dir="${src}">
+         <include name="**/**" />
+      </fileset>
+    </copy>
+
+    <copy todir="${dist}/${web}" >
+      <fileset dir="${web}">
+         <include name="**/**" />
+      </fileset>
+    </copy>
+
+    <copy todir="${dist}/conf" >
+      <fileset dir="conf">
+         <include name="**/**" />
+      </fileset>
+    </copy>
+
+    <copy todir="${dist}/sql" >
+      <fileset dir="sql">
+         <include name="**/**" />
+      </fileset>
+    </copy>
+            
+    <copy todir="${dist}/${docs}" >
+      <fileset dir="${docs}">
+         <include name="**/**" />
+      </fileset>
+    </copy>
+
+  </target>
+  
 <!--
         Run tests on all servers not commented out in the build.properties file.
 -->
@@ -235,6 +280,14 @@
         <ant antfile="build-test.xml" target="tests_tomcat_40"/>
     
     </target>
-  
+
+    <!-- Dist target called by struts script -->
+    <target name="compile.for.struts" depends="compile"/>
+
+    <target name="dist.for.struts" depends="dist">
+        <copy file="${dist}/${validator.jar}" todir="${dist.home}/lib"/>
+	<copy file="${dist}/struts-validator.tld" todir="${dist.home}/lib"/>
+    </target>
+      
 </project>
 
