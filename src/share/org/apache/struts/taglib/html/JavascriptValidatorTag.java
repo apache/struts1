@@ -68,6 +68,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.Form;
 import org.apache.commons.validator.ValidatorAction;
@@ -78,6 +79,9 @@ import org.apache.struts.action.Action;
 import org.apache.struts.validator.ValidatorPlugIn;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.StrutsValidatorUtil;
+import org.apache.struts.util.RequestUtils;
+import org.apache.struts.Globals;
+import org.apache.struts.config.ApplicationConfig;
 
 
 /**
@@ -86,7 +90,7 @@ import org.apache.struts.util.StrutsValidatorUtil;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.4 $ $Date: 2002/07/09 23:58:52 $
+ * @version $Revision: 1.5 $ $Date: 2002/10/11 22:17:50 $
  * @since Struts 1.1
 */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -254,9 +258,10 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     public int doStartTag() throws JspException {
        StringBuffer results = new StringBuffer();
 
+       ApplicationConfig config = RequestUtils.getApplicationConfig(pageContext);
        ValidatorResources resources = (ValidatorResources)
-          pageContext.getAttribute(ValidatorPlugIn.VALIDATOR_KEY, PageContext.APPLICATION_SCOPE);
-
+           pageContext.getAttribute(ValidatorPlugIn.VALIDATOR_KEY +
+                config.getPrefix(),PageContext.APPLICATION_SCOPE);
        Locale locale = null;
        try {
            locale = (Locale) pageContext.getAttribute(Action.LOCALE_KEY, PageContext.SESSION_SCOPE);

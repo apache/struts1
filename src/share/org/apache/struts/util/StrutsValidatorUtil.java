@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.4 2002/07/10 00:00:19 husted Exp $
- * $Revision: 1.4 $
- * $Date: 2002/07/10 00:00:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.5 2002/10/11 22:17:51 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/10/11 22:17:51 $
  *
  * ====================================================================
  *
@@ -68,14 +68,14 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.util.MessageResources;
-import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.validator.Arg;
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
-import org.apache.commons.validator.ValidatorUtil;
 import org.apache.struts.validator.ValidatorPlugIn;
+import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.Globals;
 
 
 /**
@@ -83,7 +83,8 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * from different scopes of the application.</p>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.4 $ $Date: 2002/07/10 00:00:19 $
+ * @author Eddie Bush
+ * @version $Revision: 1.5 $ $Date: 2002/10/11 22:17:51 $
  * @since Struts 1.1
 */
 public class StrutsValidatorUtil  {
@@ -107,9 +108,21 @@ public class StrutsValidatorUtil  {
 
    /**
     * Retrieve <code>ValidatorResources</code> for the module.
+    *
+    * @deprecated This method can only return the resources for the default
+    *  module.  Use getValidatorResources(HttpServletRequest, ServletContext)
+    *  to get the resources for the current application module.
    */
    public static ValidatorResources getValidatorResources(ServletContext application) {
       return (ValidatorResources)application.getAttribute(ValidatorPlugIn.VALIDATOR_KEY);
+   }
+
+  /**
+   * Retrieve <code>ValidatorResources</code> for the current module.
+   */
+   public static ValidatorResources getValidatorResources(ServletContext application,HttpServletRequest request) {
+      return (ValidatorResources) application.getAttribute(ValidatorPlugIn.VALIDATOR_KEY +
+                           ((ApplicationConfig)request.getAttribute(Globals.APPLICATION_KEY)).getPrefix());
    }
 
    /**
@@ -291,7 +304,7 @@ public class StrutsValidatorUtil  {
                                          ServletContext application, HttpServletRequest request,
                                          ActionErrors errors, int page) {
 
-      ValidatorResources resources = StrutsValidatorUtil.getValidatorResources(application);
+      ValidatorResources resources = StrutsValidatorUtil.getValidatorResources(application,request);
       Locale locale = StrutsValidatorUtil.getLocale(request);
 
       Validator validator = new Validator(resources, key);

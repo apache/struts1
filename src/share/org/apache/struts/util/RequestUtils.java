@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.54 2002/10/08 06:16:41 martinc Exp $
- * $Revision: 1.54 $
- * $Date: 2002/10/08 06:16:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.55 2002/10/11 22:17:51 rleland Exp $
+ * $Revision: 1.55 $
+ * $Date: 2002/10/11 22:17:51 $
  *
  * ====================================================================
  *
@@ -90,7 +90,6 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
@@ -103,7 +102,6 @@ import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.taglib.html.Constants;
-import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
 
 
@@ -113,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.54 $ $Date: 2002/10/08 06:16:41 $
+ * @version $Revision: 1.55 $ $Date: 2002/10/11 22:17:51 $
  */
 
 public class RequestUtils {
@@ -1190,9 +1188,6 @@ public class RequestUtils {
      *
      * @param request The servlet request we are processing
      * @param forward ForwardConfig to be evaluated
-     * @param slashPrefixed If true, method takes care to prefix the forward path
-     * URL with a '/' if needed. If false, the '/' is added only if forward
-     * path is used after another prefix.
      * @since Struts 1.1b2
      */
     public static String forwardURL(HttpServletRequest request,
@@ -1452,6 +1447,20 @@ public class RequestUtils {
 
     }
 
+    /**
+     * Return the ApplicationConfig object is it exists, null otherwise.
+     * @param pageContext The page context.
+     * @return the ApplicationConfig object
+     */
+    public static ApplicationConfig getApplicationConfig(PageContext pageContext) {
+       ApplicationConfig appConfig = (ApplicationConfig)
+           pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+       if (appConfig == null) { // Backwards compatibility hack
+           appConfig = (ApplicationConfig)
+               pageContext.getServletContext().getAttribute(Action.APPLICATION_KEY);
+       }
+       return appConfig;
+    }
 
     /**
      * Return the list of module prefixes that are defined for
@@ -1474,8 +1483,6 @@ public class RequestUtils {
             if (!name.startsWith(Action.APPLICATION_KEY)) {
                 continue;
             }
-            ApplicationConfig config = (ApplicationConfig)
-                context.getAttribute(name);
             String prefix = name.substring(Action.APPLICATION_KEY.length());
             if (prefix.length() > 0) {
                 list.add(prefix);

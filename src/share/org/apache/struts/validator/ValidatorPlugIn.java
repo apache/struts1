@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.6 2002/07/10 00:00:27 husted Exp $
- * $Revision: 1.6 $
- * $Date: 2002/07/10 00:00:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.7 2002/10/11 22:17:51 rleland Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/10/11 22:17:51 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.config.ApplicationConfig;
  * configuration in the struts-config.xml.</p>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.6 $ $Date: 2002/07/10 00:00:27 $
+ * @version $Revision: 1.7 $ $Date: 2002/10/11 22:17:51 $
  * @since Struts 1.1
 */
 public class ValidatorPlugIn implements PlugIn {
@@ -165,7 +165,7 @@ public class ValidatorPlugIn implements PlugIn {
     // Load our database from persistent storage
     try {
         initResources();
-        servlet.getServletContext().setAttribute(VALIDATOR_KEY, resources);
+        servlet.getServletContext().setAttribute(VALIDATOR_KEY + config.getPrefix(), resources);
     } catch (Exception e) {
         log.error(e.getMessage(), e);
         throw new UnavailableException
