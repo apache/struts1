@@ -1251,165 +1251,235 @@
 
         </tag>
 
-      <tag> 
-          <name>image</name>
-          <summary>
-                Renders an input of type "image"
-          </summary>
-          <tagclass>org.apache.struts.taglib.html.ImageTag</tagclass>
-          <info>
-                This tag renders an input of type "image".  Use the "src" attribute
-                in conjunction with a non-null "isKey" attribute to retrieve a
-                property value from a resource bundle.  Use the "path"
-                attribute to specify a direct path to the image.  See info on
-                the "property" attribute if you would like to obtain the coordinates
-                of the mouse click submitted with the request.
-          </info>
-          <attribute> 
-            <name>locale</name> 
-            <required>false</required> 
-            <rtexprvalue>true</rtexprvalue> 
-            <info>
-                The locale to use to retrieve the key specified by "src".
-            </info>
-          </attribute> 
-          <attribute> 
-            <name>bundle</name> 
-            <required>false</required> 
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-                The servlet context attribute key for the MessageResources
-                instance to use.
-            </info>
-          </attribute> 
-          <attribute> 
-            <name>accesskey</name> 
-            <required>false</required> 
-            <rtexprvalue>true</rtexprvalue> 
-          </attribute> 
+        <tag> 
+                <name>image</name>
+                <summary>
+                Render an input tag of type "image"
+                </summary>
+                <tagclass>org.apache.struts.taglib.html.ImageTag</tagclass>
+                <info>
+
+                <p>Renders an HTML <code>&lt;input&gt;</code> tag of type
+                "image".  The base URL for this image is calculated directly
+                based on the value specified in the <code>src</code> or
+                <code>page</code> attributes, or indirectly by looking up a
+                message resource string based on the <code>srcKey</code> or
+                <code>pageKey</code> attributes.  You <strong>must</strong>
+                specify exactly one of these attributes.</p>
+
+                <p>If you would like to obtain the coordinates of the mouse
+                click that submitted this request, see the information below
+                on the <code>property</code> attribute.</p>
+
+                </info>
+
+        <attribute> 
+                <name>accesskey</name> 
+                <required>false</required> 
+                <rtexprvalue>true</rtexprvalue> 
+                <info>
+                <p>The keyboard character used to move focus immediately
+                to this element.</p>
+                </info>
+        </attribute> 
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this image.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                image.</p>
+                </info>
+        </attribute>
+
+        <attribute> 
+                <name>bundle</name> 
+                <required>false</required> 
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The servlet context attribute key for the MessageResources
+                instance to use.  If not specified, defaults to the
+                application resources configured for our action servlet.</p>
+                </info>
+        </attribute> 
+
+        <attribute> 
+                <name>locale</name> 
+                <required>false</required> 
+                <rtexprvalue>true</rtexprvalue> 
+                <info>
+                <p>The session attribute key for the Locale used to select
+                internationalized messages.  If not specified, defaults to the
+                Struts standard value.</p>
+                </info>
+        </attribute> 
+
           <attribute> 
             <name>onblur</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>onchange</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>onclick</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>ondblclick</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>onfocus</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>onkeydown</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>onkeypress</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>onkeyup</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>onmousedown</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>onmousemove</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>onmouseout</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>onmouseover</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>onmouseup</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute>
-          <attribute> 
-            <name>property</name> 
-            <required>false</required> 
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-                The name of this image tag.  The parameter names for the request
-                will appear as "property.x" and "property.y", the x and y
-                representing the coordinates of the mouse click for the image.
-                A way of retrieving these values through a form bean is to
-                define getX(), getY(), setX(), and setY() methods, and specify
-                your propery as a blank string (property="").
-          </info>
-          </attribute>
-          <attribute> 
-            <name>src</name> 
-            <required>true</required> 
-            <rtexprvalue>true</rtexprvalue> 
-            <info>
-                The "src" attribute of the input tag, or if "isKey" is not null,
-                the key of the bundle value to use for this attribute.
-            </info>
-          </attribute> 
+
+        <attribute>
+                <name>page</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The context-relative path of the image for this
+                input tag.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>pageKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The key of the message resources string specifying the
+                context-relative path of the image for this input tag.</p> 
+                </info>
+        </attribute>
+
+        <attribute> 
+                <name>property</name> 
+                <required>false</required> 
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The property name of this image tag.  The parameter names
+                for the request will appear as "property.x" and "property.y",
+                the x and y representing the coordinates of the mouse click
+                for the image.  A way of retrieving these values through a
+                form bean is to define getX(), getY(), setX(), and setY()
+                methods, and specify your propery as a blank string
+                (property="").</p>
+                </info>
+        </attribute>
+
+        <attribute> 
+                <name>src</name> 
+                <required>false</required> 
+                <rtexprvalue>true</rtexprvalue> 
+                <info>
+                <p>The source URL of the image for this input tag.</p>
+                </info>
+        </attribute> 
+
+        <attribute>
+                <name>srcKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The key of the message resources string specifying the
+                source URL of the image for this input tag.</p>
+                </info>
+        </attribute>
+
           <attribute> 
             <name>style</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>styleClass</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>tabindex</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
+
           <attribute> 
             <name>value</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
-          <attribute> 
-            <name>path</name> 
-            <required>false</required> 
-            <rtexprvalue>true</rtexprvalue> 
-            <info>
-                The path of image for image button.
-            </info>
-          </attribute> 
-          <attribute> 
-            <name>isKey</name> 
-            <required>false</required> 
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-                Whether or not the "src" attribute represents a ResourceBundle key.
-            </info>
-          </attribute> 
+
         </tag> 
 
 

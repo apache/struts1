@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.3 2001/01/08 21:36:06 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/01/08 21:36:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.4 2001/02/20 02:59:00 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/02/20 02:59:00 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -66,18 +66,22 @@ package org.apache.struts.taglib.html;
 import java.lang.reflect.Method;
 import java.io.IOException;
 import java.util.Locale;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
 import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Tag for input fields of type "image".
  *
  * @author Oleg V Alexeev
- * @version $Revision: 1.3 $ $Date: 2001/01/08 21:36:06 $
+ * @version $Revision: 1.4 $ $Date: 2001/02/20 02:59:00 $
  */
 
 public class ImageTag extends SubmitTag {
@@ -87,173 +91,138 @@ public class ImageTag extends SubmitTag {
 
 
     /**
-     * The source of image for image button.
+     * The default Locale for our server.
      */
-    protected String src = null;
+    protected static final Locale defaultLocale = Locale.getDefault();
 
-    /**
-     * The path of image for image button.
-     */
-    protected String path = null;
+
+    // ------------------------------------------------------------- Properties
+
     
     /**
-     * The name attribute for the image button
+     * The alternate text for this image.
      */
-    protected String property = "";
+    protected String alt = null;
+
+    public String getAlt() {
+        return (this.alt);
+    }
+
+    public void setAlt(String alt) {
+        this.alt = alt;
+    }
+
 
     /**
-     * If not null - src property will
-     * treated as key to retrieve string 
-     * from message bundle.
+     * The message resources key for the alternate text for this image.
      */
-    protected String isKey = null;
+    protected String altKey = null;
+
+    public String getAltKey() {
+        return (this.altKey);
+    }
+
+    public void setAltKey(String altKey) {
+        this.altKey = null;
+    }
+
 
     /**
      * The servlet context attribute key for our resources.
      */
     protected String bundle = Action.MESSAGES_KEY;
 
-
-    /**
-     * The default Locale for our server.
-     */
-    protected static final Locale defaultLocale = Locale.getDefault();
-
-
-    /**
-     * The session scope key under which our Locale is stored.
-     */
-    protected String localeKey = Action.LOCALE_KEY;
-
-    // ------------------------------------------------------------- Properties
-
-    
-    /**
-     * Return the property.
-     */
-    public String getProperty() {
-
-	return (this.property);
-
-    }
-
-
-    /**
-     * Set the property name.
-     *
-     * @param property The property name
-     */
-    public void setProperty(String property) {
-   
-	this.property = property;
-
-    }
-
-    /**
-     * Return the bundle key.
-     */
     public String getBundle() {
-
         return (this.bundle);
-
     }
 
-
-    /**
-     * Set the bundle key.
-     *
-     * @param bundle The new bundle key.
-     */
     public void setBundle(String bundle) {
-
         this.bundle = bundle;
-
     }
 
+
     /**
-     * Return the locale key.
+     * The session attribute key for our locale.
      */
+    protected String locale = Action.LOCALE_KEY;
+
     public String getLocale() {
-
-        return (this.localeKey);
-
+        return (this.locale);
     }
 
-
-    /**
-     * Set the locale key.
-     *
-     * @param locale The new locale key
-     */
     public void setLocale(String locale) {
-
-        this.localeKey = locale;
-
+        this.locale = locale;
     }
 
+
     /**
-     * Return the src of image.
+     * The context-relative URI of the image.
      */
+    protected String page = null;
+
+    public String getPage() {
+        return (this.page);
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
+
+
+    /**
+     * The message resources key of the context-relative URI of the image.
+     */
+    protected String pageKey = null;
+
+    public String getPageKey() {
+        return (this.pageKey);
+    }
+
+    public void setPageKey(String pageKey) {
+        this.pageKey = pageKey;
+    }
+
+
+    /**
+     * The name attribute for the image button.
+     */
+    protected String property = "";
+
+    public String getProperty() {
+	return (this.property);
+    }
+
+    public void setProperty(String property) {
+	this.property = property;
+    }
+
+
+    /**
+     * The URL of this image.
+     */
+    protected String src = null;
+
     public String getSrc() {
-
         return (this.src);
-
     }
 
-
-    /**
-     * Set the image src.
-     *
-     * @param value The image src.
-     */
     public void setSrc(String src) {
-
         this.src = src;
-
-    }
-
-    /**
-     * Return the path of image.
-     */
-    public String getPath() {
-
-        return (this.path);
-
     }
 
 
     /**
-     * Set the image path.
-     *
-     * @param value The image path.
+     * The message resources key for the URL of this image.
      */
-    public void setPath(String path) {
+    protected String srcKey = null;
 
-        this.path = path;
-
+    public String getSrcKey() {
+        return (this.srcKey);
     }
 
-    /**
-     * Return the isKey.
-     */
-    public String getIsKey() {
-
-        return (this.isKey);
-
+    public void setSrcKey(String srcKey) {
+        this.srcKey = srcKey;
     }
-
-
-    /**
-     * Set the isKey value.
-     *
-     * @param value The isKey switcher.
-     */
-    public void setIsKey(String isKey) {
-
-        this.isKey = isKey;
-
-    }
-
 
 
     // --------------------------------------------------------- Public Methods
@@ -279,42 +248,30 @@ public class ImageTag extends SubmitTag {
      */
     public int doEndTag() throws JspException {
 
-        if( isKey!=null ) {
-          MessageResources resources = (MessageResources)
-             pageContext.getAttribute( bundle, PageContext.APPLICATION_SCOPE);
-          if (resources == null)
-             throw new JspException
-                (messages.getMessage("messageTag.resources", bundle));
-          Locale locale = null;
-          try {
-              locale = (Locale)
-                  pageContext.getAttribute( localeKey, PageContext.SESSION_SCOPE);
-          } catch (IllegalStateException e) {     // Invalidated session
-              locale = null;
-          }
-          if (locale == null)
-              locale = defaultLocale;
-          src = resources.getMessage( locale, src);
-          if( src==null )
-           src = "";
-        }
-
-        // Acquire the alt label value we will be generating
-        String alt = value;
-        if ((alt== null) && (bodyContent != null))
-            alt = bodyContent.getString().trim();
-        if ((alt == null) || (alt.length() < 1))
-            alt = "Submit";
-
-        // Generate an HTML element
+        // Generate an HTML <input type="image"> element
+        HttpServletResponse response =
+            (HttpServletResponse) pageContext.getResponse();
+        String tmp = null;
         StringBuffer results = new StringBuffer();
         results.append("<input type=\"image\" name=\"");
         results.append(property);
-        results.append("\" alt=\"");
-        results.append(alt);
-        results.append("\" value=\"");
-        results.append(value);
-        results.append("\"");
+        tmp = src();
+        if (tmp != null) {
+            results.append(" src=\"");
+            results.append(response.encodeURL(ResponseUtils.filter(tmp)));
+            results.append("\"");
+        }
+        tmp = alt();
+        if (tmp != null) {
+            results.append(" alt=\"");
+            results.append(tmp);
+            results.append("\"");
+        }
+        if (value != null) {
+            results.append(" value=\"");
+            results.append(value);
+            results.append("\"");
+        }
         if (accesskey != null) {
             results.append(" accesskey=\"");
             results.append(accesskey);
@@ -325,24 +282,16 @@ public class ImageTag extends SubmitTag {
             results.append(tabindex);
             results.append("\"");
         }
-        results.append(" src=\"");
-        if( path != null )
-         results.append(path);         
-        results.append(src);
-        results.append("\"");
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
         results.append(">");
 
         // Render this element to our writer
-        JspWriter writer = pageContext.getOut();
-        try {
-            writer.print(results.toString());
-        } catch (IOException e) {
-            throw new JspException
-                (messages.getMessage("common.io", e.toString()));
-        }
+        ResponseUtils.write(pageContext, results.toString());
+
+        // Evaluate the remainder of this page
         return (EVAL_PAGE);
+
     }
 
 
@@ -352,7 +301,124 @@ public class ImageTag extends SubmitTag {
     public void release() {
 
         super.release();
-        src = "submit";
+        alt = null;
+        altKey = null;
+        bundle = Action.MESSAGES_KEY;
+        locale = Action.LOCALE_KEY;
+        page = null;
+        pageKey = null;
+        property = "";
+        src = null;
+        srcKey = null;
+
+    }
+
+
+    // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Return the alternate text to be included on this generated element,
+     * or <code>null</code> if there is no such text.
+     *
+     * @exception JspException if an error occurs
+     */
+    protected String alt() throws JspException {
+
+        if (this.alt != null) {
+            if (this.altKey != null) {
+                JspException e = new JspException
+                    (messages.getMessage("imgTag.alt"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            } else {
+                return (this.alt);
+            }
+        } else if (this.altKey != null) {
+            MessageResources resources = (MessageResources)
+                pageContext.getAttribute(this.bundle,
+                                         PageContext.APPLICATION_SCOPE);
+            if (resources == null) {
+                JspException e = new JspException
+                    (messages.getMessage("imgTag.bundle", this.bundle));
+                throw e;
+            }
+            Locale locale = null;
+            try {
+                locale = (Locale)
+                    pageContext.getAttribute(this.locale,
+                                             PageContext.SESSION_SCOPE);
+            } catch (IllegalStateException e) {
+                locale = null; // Invalidated session
+            }
+            if (locale == null)
+                locale = defaultLocale;
+            return (resources.getMessage(locale, this.altKey));
+        } else {
+            return (null);
+        }
+
+    }
+
+
+    /**
+     * Return the base source URL that will be rendered in the <code>src</code>
+     * property for this generated element, or <code>null</code> if there is
+     * no such URL.
+     *
+     * @exception JspException if an error occurs
+     */
+    protected String src() throws JspException {
+
+        // Deal with a direct context-relative page that has been specified
+        if (this.page != null) {
+            if ((this.src != null) || (this.srcKey != null) ||
+                (this.pageKey != null)) {
+                JspException e = new JspException
+                    (messages.getMessage("imgTag.src"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            return (request.getContextPath() + this.page);
+        }
+
+        // Deal with an indirect context-relative page that has been specified
+        if (this.pageKey != null) {
+            if ((this.src != null) || (this.srcKey != null)) {
+                JspException e = new JspException
+                    (messages.getMessage("imgTag.src"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            return (request.getContextPath() +
+                    RequestUtils.message(pageContext, bundle,
+                                         locale, this.pageKey));
+        }
+
+        // Deal with an absolute source that has been specified
+        if (this.src != null) {
+            if (this.srcKey != null) {
+                JspException e = new JspException
+                    (messages.getMessage("imgTag.src"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
+            return (this.src);
+        }
+
+        // Deal with an indirect source that has been specified
+        if (this.srcKey == null) {
+            JspException e = new JspException
+                (messages.getMessage("imgTag.src"));
+            RequestUtils.saveException(pageContext, e);
+            throw e;
+        }
+        return (RequestUtils.message(pageContext, bundle,
+                                     locale, this.srcKey));
 
     }
 

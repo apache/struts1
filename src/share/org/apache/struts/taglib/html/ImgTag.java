@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.6 2001/02/20 01:48:46 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/02/20 01:48:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.7 2001/02/20 02:59:00 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/02/20 02:59:00 $
  *
  * ====================================================================
  *
@@ -79,6 +79,7 @@ import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
@@ -96,7 +97,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -509,13 +510,14 @@ public class ImgTag extends BaseHandlerTag {
         String srcurl = url(tmp);
         if (srcurl != null) {
             results.append(" src=\"");
-            results.append(response.encodeURL(BeanUtils.filter(srcurl)));
+            results.append(response.encodeURL(ResponseUtils.filter(srcurl)));
             results.append("\"");
         }
         String lowsrcurl = url(this.lowsrc);
         if (lowsrcurl != null) {
             results.append(" lowsrc=\"");
-            results.append(response.encodeURL(BeanUtils.filter(lowsrcurl)));
+            results.append
+                (response.encodeURL(ResponseUtils.filter(lowsrcurl)));
             results.append("\"");
         }
         tmp = alt();
@@ -574,16 +576,9 @@ public class ImgTag extends BaseHandlerTag {
 	results.append(">");
 
 	// Print this element to our output writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.print(results.toString());
-	} catch (IOException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-	    throw new JspException
-		(messages.getMessage("common.io", e.toString()));
-	}
+        ResponseUtils.write(pageContext, results.toString());
 
+        // Evaluate the reaminder of this page
 	return (EVAL_PAGE);
 
     }
