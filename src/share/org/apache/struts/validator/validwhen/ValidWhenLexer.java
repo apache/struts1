@@ -1,11 +1,11 @@
 // $ANTLR 2.7.2: "validWhenParser.g" -> "ValidWhenLexer.java"$
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenLexer.java,v 1.8 2004/03/14 06:23:53 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenLexer.java,v 1.9 2004/08/19 17:37:53 niallp Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/08/19 17:37:53 $
  *
- * Copyright 2003,2004 The Apache Software Foundation.
+ * Copyright 2003-2004 The Apache Software Foundation.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,25 +22,33 @@
 
 package org.apache.struts.validator.validwhen;
 
-import java.io.InputStream;
-import java.io.Reader;
-import java.util.Hashtable;
+import java.util.Stack; 
+import org.apache.commons.validator.util.ValidatorUtils;
 
-import antlr.ANTLRHashString;
-import antlr.ByteBuffer;
-import antlr.CharBuffer;
-import antlr.CharStreamException;
-import antlr.CharStreamIOException;
-import antlr.InputBuffer;
-import antlr.LexerSharedInputState;
-import antlr.NoViableAltForCharException;
-import antlr.RecognitionException;
-import antlr.Token;
-import antlr.TokenStream;
+
+import java.io.InputStream;
 import antlr.TokenStreamException;
 import antlr.TokenStreamIOException;
 import antlr.TokenStreamRecognitionException;
+import antlr.CharStreamException;
+import antlr.CharStreamIOException;
+import antlr.ANTLRException;
+import java.io.Reader;
+import java.util.Hashtable;
+import antlr.CharScanner;
+import antlr.InputBuffer;
+import antlr.ByteBuffer;
+import antlr.CharBuffer;
+import antlr.Token;
+import antlr.CommonToken;
+import antlr.RecognitionException;
+import antlr.NoViableAltForCharException;
+import antlr.MismatchedCharException;
+import antlr.TokenStream;
+import antlr.ANTLRHashString;
+import antlr.LexerSharedInputState;
 import antlr.collections.impl.BitSet;
+import antlr.SemanticException;
 
 public class ValidWhenLexer extends antlr.CharScanner implements ValidWhenParserTokenTypes, TokenStream
  {
@@ -123,13 +131,13 @@ tryAgain:
 					theRetToken=_returnToken;
 					break;
 				}
-				case '.':  case 'a':  case 'b':  case 'c':
-				case 'd':  case 'e':  case 'f':  case 'g':
-				case 'h':  case 'i':  case 'j':  case 'k':
-				case 'l':  case 'm':  case 'n':  case 'o':
-				case 'p':  case 'q':  case 'r':  case 's':
-				case 't':  case 'u':  case 'v':  case 'w':
-				case 'x':  case 'y':  case 'z':
+				case '.':  case '_':  case 'a':  case 'b':
+				case 'c':  case 'd':  case 'e':  case 'f':
+				case 'g':  case 'h':  case 'i':  case 'j':
+				case 'k':  case 'l':  case 'm':  case 'n':
+				case 'o':  case 'p':  case 'q':  case 'r':
+				case 's':  case 't':  case 'u':  case 'v':
+				case 'w':  case 'x':  case 'y':  case 'z':
 				{
 					mIDENTIFIER(true);
 					theRetToken=_returnToken;
@@ -488,6 +496,11 @@ tryAgain:
 			match('.');
 			break;
 		}
+		case '_':
+		{
+			match('_');
+			break;
+		}
 		default:
 		{
 			throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());
@@ -520,6 +533,11 @@ tryAgain:
 			case '.':
 			{
 				match('.');
+				break;
+			}
+			case '_':
+			{
+				match('_');
 				break;
 			}
 			default:
@@ -621,12 +639,12 @@ tryAgain:
 	
 	
 	private static final long[] mk_tokenSet_0() {
-		long[] data = { 8358477528813282816L, 576460744384577536L, 0L, 0L};
+		long[] data = { 8358477528813282816L, 576460746532061184L, 0L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_0 = new BitSet(mk_tokenSet_0());
 	private static final long[] mk_tokenSet_1() {
-		long[] data = { 8358478061389227520L, 576460744384577536L, 0L, 0L};
+		long[] data = { 8358478061389227520L, 576460746532061184L, 0L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_1 = new BitSet(mk_tokenSet_1());
