@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.92 2003/03/11 02:04:19 dgraham Exp $
- * $Revision: 1.92 $
- * $Date: 2003/03/11 02:04:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.93 2003/03/11 03:08:59 dgraham Exp $
+ * $Revision: 1.93 $
+ * $Date: 2003/03/11 03:08:59 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.92 $ $Date: 2003/03/11 02:04:19 $
+ * @version $Revision: 1.93 $ $Date: 2003/03/11 03:08:59 $
  */
 
 public class RequestUtils {
@@ -1741,22 +1741,6 @@ public class RequestUtils {
     }
 
     /**
-     * Return the ModuleConfig object if it exists, null if otherwise.
-     * @param pageContext The page context.
-     * @return the ModuleConfig object
-     * @since 1.1
-     */
-    public static ModuleConfig getModuleConfig(PageContext pageContext) {
-        ModuleConfig moduleConfig =
-            (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
-        if (moduleConfig == null) { // Backwards compatibility hack
-            moduleConfig =
-                (ModuleConfig) pageContext.getServletContext().getAttribute(Globals.MODULE_KEY);
-        }
-        return moduleConfig;
-    }
-
-    /**
      * Return the current ModuleConfig object stored in request, if it exists,
      * null otherwise.
      * This method can be used by plugin to retrieve the current module config
@@ -1789,6 +1773,18 @@ public class RequestUtils {
             moduleConfig = (ModuleConfig) context.getAttribute(Globals.MODULE_KEY);
         }
         return moduleConfig;
+    }
+    
+    /**
+     * Return the ModuleConfig object if it exists, null if otherwise.
+     * @param pageContext The page context.
+     * @return the ModuleConfig object
+     * @since 1.1
+     */
+    public static ModuleConfig getModuleConfig(PageContext pageContext) {
+        return getModuleConfig(
+            (HttpServletRequest) pageContext.getRequest(),
+            pageContext.getServletContext());
     }
 
     /**
