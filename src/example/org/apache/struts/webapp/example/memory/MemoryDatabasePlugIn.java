@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.5 2002/11/26 02:44:15 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2002/11/26 02:44:15 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.6 2003/01/10 00:29:56 jmitchell Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/01/10 00:29:56 $
  *
  * ====================================================================
  *
@@ -63,18 +63,13 @@
 package org.apache.struts.webapp.example.memory;
 
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import javax.servlet.ServletException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
 import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.webapp.example.Constants;
 
 /**
  * <p><strong>MemoryDatabasePlugIn</strong> initializes and finalizes the
@@ -91,7 +86,7 @@ import org.apache.struts.webapp.example.Constants;
  * of your servlet container.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/11/26 02:44:15 $
+ * @version $Revision: 1.6 $ $Date: 2003/01/10 00:29:56 $
  */
 
 public final class MemoryDatabasePlugIn implements PlugIn {

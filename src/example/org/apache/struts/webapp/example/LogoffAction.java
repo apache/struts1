@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogoffAction.java,v 1.5 2002/06/23 04:59:33 jholmes Exp $
- * $Revision: 1.5 $
- * $Date: 2002/06/23 04:59:33 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogoffAction.java,v 1.6 2003/01/10 00:29:55 jmitchell Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/01/10 00:29:55 $
  *
  * ====================================================================
  *
@@ -63,17 +63,15 @@
 package org.apache.struts.webapp.example;
 
 
-import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.MessageResources;
 
 
 /**
@@ -81,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * user logoff.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/06/23 04:59:33 $
+ * @version $Revision: 1.6 $ $Date: 2003/01/10 00:29:55 $
  */
 
 public final class LogoffAction extends Action {

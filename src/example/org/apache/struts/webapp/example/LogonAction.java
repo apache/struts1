@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.12 2002/12/08 06:04:42 rleland Exp $
- * $Revision: 1.12 $
- * $Date: 2002/12/08 06:04:42 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.13 2003/01/10 00:29:55 jmitchell Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/01/10 00:29:55 $
  *
  * ====================================================================
  *
@@ -63,28 +63,23 @@
 package org.apache.struts.webapp.example;
 
 
-import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.ModuleException;
-import org.apache.struts.util.MessageResources;
-import org.apache.commons.beanutils.PropertyUtils;
 
 
 /**
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2002/12/08 06:04:42 $
+ * @version $Revision: 1.13 $ $Date: 2003/01/10 00:29:55 $
  */
 
 public final class LogonAction extends Action {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryUser.java,v 1.1 2002/03/05 04:23:57 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/03/05 04:23:57 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryUser.java,v 1.2 2003/01/10 00:29:56 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/01/10 00:29:56 $
  *
  * ====================================================================
  *
@@ -63,7 +63,6 @@
 package org.apache.struts.webapp.example.memory;
 
 
-import java.util.HashMap;
 import org.apache.struts.webapp.example.Subscription;
 import org.apache.struts.webapp.example.User;
 import org.apache.struts.webapp.example.UserDatabase;
@@ -74,7 +73,7 @@ import org.apache.struts.webapp.example.UserDatabase;
  * database backed by an XML data file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/03/05 04:23:57 $
+ * @version $Revision: 1.2 $ $Date: 2003/01/10 00:29:56 $
  * @since Struts 1.1
  */
 

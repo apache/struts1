@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryUserDatabase.java,v 1.1 2002/03/05 04:23:57 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/03/05 04:23:57 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryUserDatabase.java,v 1.2 2003/01/10 00:29:56 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/01/10 00:29:56 $
  *
  * ====================================================================
  *
@@ -63,19 +63,10 @@
 package org.apache.struts.webapp.example.memory;
 
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.util.HashMap;
 import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.ObjectCreationFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.webapp.example.Subscription;
 import org.apache.struts.webapp.example.User;
 import org.apache.struts.webapp.example.UserDatabase;
 import org.xml.sax.Attributes;
@@ -86,7 +77,7 @@ import org.xml.sax.Attributes;
  * database backed by an XML data file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/03/05 04:23:57 $
+ * @version $Revision: 1.2 $ $Date: 2003/01/10 00:29:56 $
  * @since Struts 1.1
  */
 
