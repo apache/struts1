@@ -772,6 +772,16 @@ public ActionForward execute(ActionMapping mapping,
         For information on how to retrieve the data source, see the
         <a href="building_model.html#databases">Accessing Relational Databases</a> section.
       </p>
+      <p>
+        <i>Note: Since Struts is now using commons-dbcp for all it's
+           data-source needs, the query you provide for the pingQuery
+           attribute must return at least one row.</i><br/>
+	<br/>
+        <b>Example:</b><code>SELECT COUNT(*) FROM VALIDTABLE</code><br/>
+	<br/>
+	Just be sure you to replace "VALIDTABLE" with the name of a valid table in your database.
+      </p>
+
 
     </section>
 
