@@ -9,7 +9,7 @@
 
   <body>
 
-  <section name="Welcome to Struts 1.0.1-b1" href="Welcome">
+  <section name="Welcome to Struts 1.0.1-rc1" href="Welcome">
 
   <p>Welcome to the Struts Framework!  The goal of this project
   is to provide an open source framework useful in building web applications
@@ -75,8 +75,8 @@
 
   <p>A <i>release candidate</i> for <strong>Struts 1.0.1</strong> has been created and
   made available at
-  <a href="http://jakarta.apache.org/builds/jakarta-struts/archives/v1.0.1-b1">
-  http://jakarta.apache.org/builds/jakarta-struts/archives/v1.0.1-b1</a>.</p>
+  <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.1-rc1">
+  http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.1-rc1</a>.</p>
 
   <p>Check the <a href="release-notes-1.0.1.html">Release Notes</a>
   for a summary of what new features have been added, and other significant
