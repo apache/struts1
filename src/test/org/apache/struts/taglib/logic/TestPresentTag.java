@@ -53,7 +53,7 @@
  *
  */
 package org.apache.struts.taglib.logic;
-
+ 
 import javax.servlet.ServletException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
@@ -245,18 +245,20 @@ public class TestPresentTag extends JspTestCase {
 		pt.setScope("application");
 		
 		pt.setProperty("value");
-		assertEquals("Property Value present (not null)", true, pt.condition(true));
+		assertEquals("Property present (not null)", true, pt.condition(true));
 	}
 
 	/**
-	 * Verify that there is an application scope object is not in scope using the <code>PresentTag</code>.
+	 * Verify that there is a LabelValueBean in application scope 
+	 * and test to see if it has a getValue() that returns null 
+	 * using the <code>PresentTag</code>.
 	*/
 	public void testApplicationScopePropertyNotPresent()
 		throws ServletException, JspException {
 		PresentTag pt = new PresentTag();
-		String testKey = "testApplicationScopePropertyNotPresent";
+		String testKey = "testApplicationScopePropertyPresent";
 		
-		String testStringValue = null; //"The Value";
+		String testStringValue = null;
 		LabelValueBean lvb = new LabelValueBean("The Key", testStringValue);
 		
 		pageContext.setAttribute(
@@ -268,10 +270,57 @@ public class TestPresentTag extends JspTestCase {
 		pt.setScope("application");
 		
 		pt.setProperty("value");
-		assertEquals("Property Value not present (null)", true, pt.condition(true));
-		
+		assertEquals("Property present (not null)", false, pt.condition(true));
 	}
 
+	/**
+	 * Verify that there is a LabelValueBean in Request scope 
+	 * and test to see if it has a getValue() using the <code>PresentTag</code>.
+	*/
+	public void testRequestScopePropertyPresent()
+		throws ServletException, JspException {
+		PresentTag pt = new PresentTag();
+		String testKey = "testRequestScopePropertyPresent";
+		
+		String testStringValue = "The Value";
+		LabelValueBean lvb = new LabelValueBean("The Key", testStringValue);
+		
+		pageContext.setAttribute(
+			testKey,
+			lvb,
+			PageContext.REQUEST_SCOPE);
+		pt.setPageContext(pageContext);
+		pt.setName(testKey);
+		pt.setScope("request");
+		
+		pt.setProperty("value");
+		assertEquals("Property present (not null)", true, pt.condition(true));
+	}
+
+	/**
+	 * Verify that there is a LabelValueBean in Request scope 
+	 * and test to see if it has a getValue() that returns null 
+	 * using the <code>PresentTag</code>.
+	*/
+	public void testRequestScopePropertyNotPresent()
+		throws ServletException, JspException {
+		PresentTag pt = new PresentTag();
+		String testKey = "testRequestScopePropertyPresent";
+		
+		String testStringValue = null;
+		LabelValueBean lvb = new LabelValueBean("The Key", testStringValue);
+		
+		pageContext.setAttribute(
+			testKey,
+			lvb,
+			PageContext.REQUEST_SCOPE);
+		pt.setPageContext(pageContext);
+		pt.setName(testKey);
+		pt.setScope("request");
+		
+		pt.setProperty("value");
+		assertEquals("Property present (not null)", false, pt.condition(true));
+	}
 
     /**
      * Create cookie for testCookiePresent method test.
