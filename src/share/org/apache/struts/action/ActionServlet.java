@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.14 2000/06/30 00:46:36 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2000/06/30 00:46:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.15 2000/06/30 01:19:32 craigmcc Exp $
+ * $Revision: 1.15 $
+ * $Date: 2000/06/30 01:19:32 $
  *
  * ====================================================================
  *
@@ -164,7 +164,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2000/06/30 00:46:36 $
+ * @version $Revision: 1.15 $ $Date: 2000/06/30 01:19:32 $
  */
 
 public class ActionServlet
@@ -594,6 +594,13 @@ public class ActionServlet
 	} catch (SAXException e) {
 	    throw new ServletException
 		(internal.getMessage("configParse", config), e);
+	}
+
+	// Connect all of our defined mappings to the global forwards
+	String paths[] = mappings.findMappings();
+	for (int i = 0; i < paths.length; i++) {
+	    ActionMapping mapping = mappings.findMapping(paths[i]);
+	    mapping.setForwards(forwards);
 	}
 
     }

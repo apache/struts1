@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.5 2000/06/30 00:46:35 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/06/30 00:46:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.6 2000/06/30 01:19:32 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/06/30 01:19:32 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.util.Hashtable;
  * subclassing this class and adding new "getter" and "setter" methods.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/06/30 00:46:35 $
+ * @version $Revision: 1.6 $ $Date: 2000/06/30 01:19:32 $
  */
 
 public class ActionMappingBase implements ActionMapping {
@@ -133,6 +133,12 @@ public class ActionMappingBase implements ActionMapping {
      * this <code>ActionMapping</code>.
      */
     protected ActionForwards forwards = new ActionForwards();
+
+
+    /**
+     * The global ActionForwards collection associated with this mapping.
+     */
+    protected ActionForwards globals = null;
 
 
     /**
@@ -262,6 +268,28 @@ public class ActionMappingBase implements ActionMapping {
 
 
     /**
+     * Return the global forwards collection associated with this mapping.
+     */
+    public ActionForwards getForwards() {
+
+	return (this.globals);
+
+    }
+
+
+    /**
+     * Set the global forwards collection associated with this mapping.
+     *
+     * @param forwards The associated forwards collection
+     */
+    public void setForwards(ActionForwards forwards) {
+
+	this.globals = forwards;
+
+    }
+
+
+    /**
      * Return the input form URI for this mapping.
      */
     public String getInputForm() {
@@ -363,13 +391,31 @@ public class ActionMappingBase implements ActionMapping {
 
     /**
      * Return the <code>ActionForward</code> with the specified name,
-     * if any; otherwise return <code>null</code>.
+     * if any; otherwise return <code>null</code>.  If there is no locally
+     * defined forwarding for the specified name, but a global forwards
+     * collection has been associated with this mapping, the global
+     * collection will also be searched before returning.
      *
      * @param name Name of the forward entry to be returned
      */
     public ActionForward findForward(String name) {
 
-	return (forwards.findForward(name));
+	ActionForward forward = forwards.findForward(name);
+	if ((forward == null) && (globals != null))
+	    forward = globals.findForward(name);
+	return (forward);
+
+    }
+
+
+    /**
+     * Return the logical names of all locally defined forwards for this
+     * mapping.  If there are no such forwards, a zero-length array
+     * is returned.
+     */
+    public String[] findForwards() {
+
+	return (forwards.findForwards());
 
     }
 

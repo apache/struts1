@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.1 2000/06/30 00:46:36 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/30 00:46:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.2 2000/06/30 01:19:32 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/30 01:19:32 $
  *
  * ====================================================================
  *
@@ -63,7 +63,9 @@
 package org.apache.struts.action;
 
 
+import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Vector;
 
 
 /**
@@ -71,7 +73,7 @@ import java.util.Hashtable;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/06/30 00:46:36 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/30 01:19:32 $
  */
 
 public class ActionMappings {
@@ -110,6 +112,23 @@ public class ActionMappings {
     public ActionMapping findMapping(String path) {
 
 	return ((ActionMapping) mappings.get(path));
+
+    }
+
+
+    /**
+     * Return the set of paths for mappings defined in this collection.
+     * If there are no such mappings, a zero-length array is returned.
+     */
+    public String[] findMappings() {
+
+	Vector paths = new Vector();
+	Enumeration keys = mappings.keys();
+	while (keys.hasMoreElements())
+	    paths.addElement(keys.nextElement());
+	String results[] = new String[paths.size()];
+	paths.copyInto(results);
+	return (results);
 
     }
 

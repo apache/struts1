@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.4 2000/06/20 16:34:05 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/06/20 16:34:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.5 2000/06/30 01:19:32 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/06/30 01:19:32 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ package org.apache.struts.action;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/06/20 16:34:05 $
+ * @version $Revision: 1.5 $ $Date: 2000/06/30 01:19:32 $
  */
 
 public interface ActionMapping {
@@ -177,6 +177,20 @@ public interface ActionMapping {
 
 
     /**
+     * Return the global forwards collection associated with this mapping.
+     */
+    public ActionForwards getForwards();
+
+
+    /**
+     * Set the global forwards collection associated with this mapping.
+     *
+     * @param forwards The associated forwards collection
+     */
+    public void setForwards(ActionForwards forwards);
+
+
+    /**
      * Return the input form URI for this mapping.
      */
     public String getInputForm();
@@ -231,11 +245,22 @@ public interface ActionMapping {
 
     /**
      * Return the <code>ActionForward</code> with the specified name,
-     * if any; otherwise return <code>null</code>.
+     * if any; otherwise return <code>null</code>.  If there is no locally
+     * defined forwarding for the specified name, but a global forwards
+     * collection has been associated with this mapping, the global
+     * collection will also be searched before returning.
      *
      * @param name Name of the forward entry to be returned
      */
     public ActionForward findForward(String name);
+
+
+    /**
+     * Return the logical names of all locally defined forwards for this
+     * mapping.  If there are no such forwards, a zero-length array
+     * is returned.
+     */
+    public String[] findForwards();
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionForwards.java,v 1.1 2000/06/30 00:46:35 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/30 00:46:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionForwards.java,v 1.2 2000/06/30 01:19:32 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/30 01:19:32 $
  *
  * ====================================================================
  *
@@ -63,7 +63,9 @@
 package org.apache.struts.action;
 
 
+import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Vector;
 
 
 /**
@@ -71,7 +73,7 @@ import java.util.Hashtable;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/06/30 00:46:35 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/30 01:19:32 $
  */
 
 public class ActionForwards {
@@ -110,6 +112,23 @@ public class ActionForwards {
     public ActionForward findForward(String name) {
 
 	return ((ActionForward) forwards.get(name));
+
+    }
+
+
+    /**
+     * Return the set of logical names for forwards defined in this collection.
+     * If there are no such forwards, a zero-length array is returned.
+     */
+    public String[] findForwards() {
+
+	Vector names = new Vector();
+	Enumeration keys = forwards.keys();
+	while (keys.hasMoreElements())
+	    names.addElement(keys.nextElement());
+	String results[] = new String[names.size()];
+	names.copyInto(results);
+	return (results);
 
     }
 
