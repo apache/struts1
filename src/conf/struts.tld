@@ -915,7 +915,7 @@
     <attribute>
       <name>value</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
     </attribute>
   </tag>
 
