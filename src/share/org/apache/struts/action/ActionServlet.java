@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.30 2000/10/15 03:29:15 craigmcc Exp $
- * $Revision: 1.30 $
- * $Date: 2000/10/15 03:29:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.31 2000/10/16 03:39:28 craigmcc Exp $
+ * $Revision: 1.31 $
+ * $Date: 2000/10/16 03:39:28 $
  *
  * ====================================================================
  *
@@ -200,7 +200,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.30 $ $Date: 2000/10/15 03:29:15 $
+ * @version $Revision: 1.31 $ $Date: 2000/10/16 03:39:28 $
  */
 
 public class ActionServlet
@@ -1042,6 +1042,10 @@ public class ActionServlet
         processContent(response);
 	processNoCache(response);
 
+        // General purpose preprocessing hook
+        if (!processPreprocess(request, response))
+            return;
+
 	// Look up the corresponding mapping
 	ActionMapping mapping = processMapping(path, request);
 	if (mapping == null) {
@@ -1358,6 +1362,33 @@ public class ActionServlet
 	if ((period >= 0) && (period > slash))
 	    path = path.substring(0, period);
 	return (path);
+
+    }
+
+
+    /**
+     * General purpose preprocessing hook that can be overridden to support
+     * application specific preprocessing activity.  This hook can examine
+     * and/or modify the properties of the request and response objects, and
+     * optionally complete the response if it wishes.
+     * <p>
+     * The default implementation does nothing.
+     *
+     * @param request The servlet request we are processing
+     * @param response The servlet response we are generating
+     *
+     * @return <code>true</code> if the remainder of the standard processing
+     *  should be performed, or <code>false</code> if the response has already
+     *  been created so the calling method should immediately exit
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     */
+    protected boolean processPreprocess(HttpServletRequest request,
+                                        HttpServletResponse response)
+        throws IOException, ServletException {
+
+        return (true);  // Default implementation does nothing
 
     }
 
