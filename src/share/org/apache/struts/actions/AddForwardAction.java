@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/Attic/AddForwardAction.java,v 1.1 2000/10/07 22:55:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/10/07 22:55:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/Attic/AddForwardAction.java,v 1.2 2001/01/07 22:39:06 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/01/07 22:39:06 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.BeanUtils;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -84,7 +84,7 @@ import org.apache.struts.util.BeanUtils;
  * parameters whose names match the properties of <code>ActionForward</code>.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/10/07 22:55:14 $
+ * @version $Revision: 1.2 $ $Date: 2001/01/07 22:39:06 $
  */
 
 public class AddForwardAction extends Action {
@@ -122,7 +122,7 @@ public class AddForwardAction extends Action {
         } catch (Throwable t) {
             throw new ServletException("ActionForward", t);
         }
-        BeanUtils.populate(forward, request);
+        RequestUtils.populate(forward, request);
 
         // Validate the parameters of the new instance
         boolean ok = true;

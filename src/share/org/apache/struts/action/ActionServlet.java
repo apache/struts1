@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.53 2001/01/07 04:37:06 craigmcc Exp $
- * $Revision: 1.53 $
- * $Date: 2001/01/07 04:37:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.54 2001/01/07 22:39:06 craigmcc Exp $
+ * $Revision: 1.54 $
+ * $Date: 2001/01/07 22:39:06 $
  *
  * ====================================================================
  *
@@ -84,10 +84,12 @@ import org.apache.struts.digester.Digester;
 import org.apache.struts.digester.Rule;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.util.BeanUtils;
+import org.apache.struts.util.ConvertUtils;
 import org.apache.struts.util.FastHashMap;
 import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
+import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ServletContextWriter;
 import org.xml.sax.AttributeList;
 import org.xml.sax.SAXException;
@@ -227,7 +229,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.53 $ $Date: 2001/01/07 04:37:06 $
+ * @version $Revision: 1.54 $ $Date: 2001/01/07 22:39:06 $
  */
 
 public class ActionServlet
@@ -1775,7 +1777,7 @@ public class ActionServlet
      * @param mapping The ActionMapping we are processing
      * @param request The servlet request we are processing
      *
-     * @exception ServletException if thrown by BeanUtils.populate()
+     * @exception ServletException if thrown by RequestUtils.populate()
      */
     protected void processPopulate(ActionForm formInstance,
                                    ActionMapping mapping,
@@ -1792,7 +1794,7 @@ public class ActionServlet
             log(" Populating bean properties from this request");
         formInstance.reset(mapping, request);
         //place the mapping's multipart request handler class
-        //into the request to be read by the BeanUtils.populate
+        //into the request to be read by the RequestUtils.populate
         //method in the event of a multipart request
         if (mapping.getMultipartClass() != null)
             request.setAttribute(Action.MULTIPART_KEY,
@@ -1800,8 +1802,8 @@ public class ActionServlet
         //also pass the mapping through the request
         request.setAttribute(Action.MAPPING_KEY,
                              mapping);
-        BeanUtils.populate(formInstance, mapping.getPrefix(),
-                           mapping.getSuffix(), request);
+        RequestUtils.populate(formInstance, mapping.getPrefix(),
+                              mapping.getSuffix(), request);
 
     }
 

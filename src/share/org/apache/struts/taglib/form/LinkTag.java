@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/LinkTag.java,v 1.7 2001/01/05 23:02:22 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/01/05 23:02:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/LinkTag.java,v 1.8 2001/01/07 22:39:07 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/01/07 22:39:07 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.RequestUtils;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/01/05 23:02:22 $
+ * @version $Revision: 1.8 $ $Date: 2001/01/07 22:39:07 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -454,7 +454,7 @@ public class LinkTag extends BaseHandlerTag {
                 href += '&';
             href += paramId;
             href += '=';
-            Object bean = BeanUtils.lookup(pageContext, paramName, paramScope);
+            Object bean = RequestUtils.lookup(pageContext, paramName, paramScope);
             if (bean != null) {
                 if (paramProperty == null)
                     href += bean.toString();
@@ -500,7 +500,7 @@ public class LinkTag extends BaseHandlerTag {
 	    return (href);
 
 	// Look up the map we will be using
-	Object bean = BeanUtils.lookup(pageContext, name, scope);
+	Object bean = RequestUtils.lookup(pageContext, name, scope);
         if (bean == null) {
 	    JspException e = new JspException
 		(messages.getMessage("getter.bean", name));

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/Attic/AddFormBeanAction.java,v 1.1 2000/10/07 22:55:13 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/10/07 22:55:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/Attic/AddFormBeanAction.java,v 1.2 2001/01/07 22:39:06 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/01/07 22:39:06 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.BeanUtils;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -86,7 +86,7 @@ import org.apache.struts.util.BeanUtils;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/10/07 22:55:13 $
+ * @version $Revision: 1.2 $ $Date: 2001/01/07 22:39:06 $
  */
 
 public class AddFormBeanAction extends Action {
@@ -124,7 +124,7 @@ public class AddFormBeanAction extends Action {
         } catch (Throwable t) {
             throw new ServletException("ActionFormBean", t);
         }
-        BeanUtils.populate(formBean, request);
+        RequestUtils.populate(formBean, request);
 
         // Validate the parameters of the new instance
         boolean ok = true;

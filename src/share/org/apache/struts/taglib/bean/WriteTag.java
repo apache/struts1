@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.8 2000/12/26 20:29:45 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/12/26 20:29:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.9 2001/01/07 22:39:07 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/01/07 22:39:07 $
  *
  * ====================================================================
  *
@@ -73,6 +73,7 @@ import org.apache.struts.action.Action;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -81,7 +82,7 @@ import org.apache.struts.util.PropertyUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/12/26 20:29:45 $
+ * @version $Revision: 1.9 $ $Date: 2001/01/07 22:39:07 $
  */
 
 public class WriteTag extends TagSupport {
@@ -187,7 +188,7 @@ public class WriteTag extends TagSupport {
 
             // Locate the specified bean
             try {
-                bean = BeanUtils.lookup(pageContext, name, scope);
+                bean = RequestUtils.lookup(pageContext, name, scope);
             } catch (IllegalArgumentException e) {
                 pageContext.setAttribute(Action.EXCEPTION_KEY, e,
                                          PageContext.REQUEST_SCOPE);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.5 2000/12/29 20:36:55 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/12/29 20:36:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.6 2001/01/07 22:39:07 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/01/07 22:39:07 $
  *
  * ====================================================================
  *
@@ -70,8 +70,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import org.apache.struts.action.Action;
-import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.PropertyUtils;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -79,7 +79,7 @@ import org.apache.struts.util.PropertyUtils;
  * is present for this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/12/29 20:36:55 $
+ * @version $Revision: 1.6 $ $Date: 2001/01/07 22:39:07 $
  */
 
 public class PresentTag extends ConditionalTagBase {
@@ -135,7 +135,7 @@ public class PresentTag extends ConditionalTagBase {
                 getHeader(header);
             present = (value != null);
         } else if (name != null) {
-            Object bean = BeanUtils.lookup(pageContext, name, scope);
+            Object bean = RequestUtils.lookup(pageContext, name, scope);
             if (property != null) {
                 if (bean == null) {
                     JspException e = new JspException

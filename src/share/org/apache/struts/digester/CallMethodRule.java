@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.4 2000/08/13 04:40:03 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/08/13 04:40:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.5 2001/01/07 22:39:06 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/01/07 22:39:06 $
  *
  * ====================================================================
  * 
@@ -65,7 +65,7 @@ package org.apache.struts.digester;
 
 import java.lang.reflect.Method;
 import org.xml.sax.AttributeList;
-import org.apache.struts.util.BeanUtils;
+import org.apache.struts.util.ConvertUtils;
 
 
 /**
@@ -75,7 +75,7 @@ import org.apache.struts.util.BeanUtils;
  * element.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/08/13 04:40:03 $
+ * @version $Revision: 1.5 $ $Date: 2001/01/07 22:39:06 $
  */
 
 public final class CallMethodRule extends Rule {
@@ -223,7 +223,7 @@ public final class CallMethodRule extends Rule {
 	Object paramValues[] = new Object[paramTypes.length];
 	for (int i = 0; i < this.paramTypes.length; i++)
 	    paramValues[i] =
-	      BeanUtils.convert(parameters[i], this.paramTypes[i]);
+	      ConvertUtils.convert(parameters[i], this.paramTypes[i]);
 
 	// Invoke the required method on the top object
 	Object top = digester.peek();

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.5 2000/11/03 18:40:07 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/11/03 18:40:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.6 2001/01/07 22:39:07 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/01/07 22:39:07 $
  *
  * ====================================================================
  *
@@ -69,8 +69,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import org.apache.struts.action.Action;
-import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.PropertyUtils;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -78,7 +78,7 @@ import org.apache.struts.util.PropertyUtils;
  * is a substring of the specified variable.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/11/03 18:40:07 $
+ * @version $Revision: 1.6 $ $Date: 2001/01/07 22:39:07 $
  */
 
 public class MatchTag extends ConditionalTagBase {
@@ -181,7 +181,7 @@ public class MatchTag extends ConditionalTagBase {
                 ((HttpServletRequest) pageContext.getRequest()).
                 getHeader(header);
         } else if (name != null) {
-            Object bean = BeanUtils.lookup(pageContext, name, scope);
+            Object bean = RequestUtils.lookup(pageContext, name, scope);
             if (bean == null) {
                 JspException e = new JspException
                     (messages.getMessage("logic.bean", name));
