@@ -1,4 +1,4 @@
-<%@ page language="java" import="org.apache.struts.action.*" %>
+<%@ page language="java" import="org.apache.struts.action.*, org.apache.struts.Globals" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <html>
 <head>
@@ -12,7 +12,7 @@
   errors.add("property3", new ActionError("property3error1"));
   errors.add("property3", new ActionError("property3error2"));
   errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("globalError"));
-  request.setAttribute(Action.ERROR_KEY, errors);
+  request.setAttribute(Globals.ERROR_KEY, errors);
 
   ActionMessages messages = new ActionMessages();
   messages.add("property1", new ActionMessage("property1message1"));
@@ -22,7 +22,7 @@
   messages.add("property3", new ActionMessage("property3message1"));
   messages.add("property3", new ActionMessage("property3message2"));
   messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage("globalMessage"));
-  request.setAttribute(Action.MESSAGE_KEY, messages);
+  request.setAttribute(Globals.MESSAGE_KEY, messages);
 %>
 </head>
 <body bgcolor="white">
