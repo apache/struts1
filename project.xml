@@ -186,18 +186,8 @@
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>1.6.1</version>
+      <version>1.7.0</version>
       <url>http://jakarta.apache.org/commons/beanutils.html</url>
-      <properties>
-        <war.bundle>true</war.bundle>
-        <cactus.bundle>true</cactus.bundle>
-      </properties>
-    </dependency>
-    <dependency>
-      <groupId>commons-collections</groupId>
-      <artifactId>commons-collections</artifactId>
-      <version>2.1</version>
-      <url>http://jakarta.apache.org/commons/collections.html</url>
       <properties>
         <war.bundle>true</war.bundle>
         <cactus.bundle>true</cactus.bundle>
