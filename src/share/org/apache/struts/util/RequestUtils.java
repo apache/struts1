@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.98 2003/04/25 00:36:10 dgraham Exp $
- * $Revision: 1.98 $
- * $Date: 2003/04/25 00:36:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.99 2003/05/06 23:39:47 dgraham Exp $
+ * $Revision: 1.99 $
+ * $Date: 2003/05/06 23:39:47 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.98 $ $Date: 2003/04/25 00:36:10 $
+ * @version $Revision: 1.99 $ $Date: 2003/05/06 23:39:47 $
  */
 
 public class RequestUtils {
@@ -502,10 +502,7 @@ public class RequestUtils {
             }
 
             // Define the parameter separator
-            String separator = "&amp;";
-            if (redirect) {
-                separator = "&";
-            }
+            String separator = redirect ? "&" : "&amp;";
 
             // Add the required request parameters
             boolean question = temp.indexOf('?') >= 0;
