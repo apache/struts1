@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/SimpleBeanForTesting.java,v 1.5 2003/03/08 19:03:56 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/03/08 19:03:56 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/SimpleBeanForTesting.java,v 1.6 2003/04/08 02:18:28 jmitchell Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/04/08 02:18:28 $
  *
  * ====================================================================
  *
@@ -92,11 +92,15 @@ public class SimpleBeanForTesting extends ActionForm {
 	public SimpleBeanForTesting(String string) {
 		this.string = string;
 	}
+	public SimpleBeanForTesting(String[] stringArray) {
+		this.stringArray = stringArray;
+	}
 	public SimpleBeanForTesting(Integer integerValue) {
 		this.integerValue = integerValue;
 	}
 
 	private String string;
+	private String[] stringArray;
 	private Integer integerValue;
 	private Double doubleValue;
 	private List lst;
@@ -167,6 +171,22 @@ public class SimpleBeanForTesting extends ActionForm {
 	 */
 	public void setString(String string) {
 		this.string = string;
+	}
+
+	/**
+	 * Returns an array of type String.
+	 * @return String[]
+	 */
+	public String[] getStringArray() {
+		return stringArray;
+	}
+
+	/**
+	 * Sets the string array.
+	 * @param string The string array to set
+	 */
+	public void setStringArray(String[] string) {
+		this.stringArray = stringArray;
 	}
 
 	/**
