@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.13 2003/02/07 07:00:49 martinc Exp $
- * $Revision: 1.13 $
- * $Date: 2003/02/07 07:00:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.14 2003/02/20 06:18:24 martinc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/02/20 06:18:24 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2003/02/07 07:00:49 $
+ * @version $Revision: 1.14 $ $Date: 2003/02/20 06:18:24 $
  * @since Struts 1.1
  */
 
@@ -199,7 +199,7 @@ public class ControllerConfig implements Serializable {
     /**
      * Should we store a Locale object in the user's session if needed?
      */
-    protected boolean locale = false;
+    protected boolean locale = true;
 
     public boolean getLocale() {
         return (this.locale);
