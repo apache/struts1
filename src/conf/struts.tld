@@ -1077,7 +1077,7 @@
     </attribute>
     <attribute>
       <name>property</name>
-      <required>name</required>
+      <required>true</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
@@ -1755,7 +1755,7 @@
     </attribute>
     <attribute>
       <name>property</name>
-      <required>name</required>
+      <required>true</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
