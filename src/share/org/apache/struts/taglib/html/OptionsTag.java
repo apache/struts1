@@ -3,7 +3,7 @@
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,7 +25,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -184,7 +184,6 @@ public class OptionsTag extends TagSupport {
 	if (selectTag == null)
 	    throw new JspException
 	        (messages.getMessage("optionsTag.select"));
-	String match = selectTag.getMatch();
 	StringBuffer sb = new StringBuffer();
 
         // If a collection was specified, use that mode to render options
@@ -219,7 +218,9 @@ public class OptionsTag extends TagSupport {
                         (messages.getMessage("getter.method",
                                              property, collection));
                 }
-                addOption(sb, value.toString(), label.toString(), match);
+                String stringValue = value.toString();
+                addOption(sb, stringValue, label.toString(),
+                          selectTag.isMatched(stringValue));
             }
         }
 
@@ -240,7 +241,8 @@ public class OptionsTag extends TagSupport {
                   String label = value;
                   if (labelsIterator.hasNext())
                       label = (String) labelsIterator.next();
-                  addOption(sb, value, label, match);
+                  addOption(sb, value, label,
+                            selectTag.isMatched(value));
               }
 	}
 
@@ -283,15 +285,15 @@ public class OptionsTag extends TagSupport {
      * @param sb StringBuffer accumulating our results
      * @param value Value to be returned to the server for this option
      * @param label Value to be shown to the user for this option
-     * @param match Match value that will cause this option to be selected
+     * @param matched Should this value be marked as selected?
      */
     protected void addOption(StringBuffer sb, String value, String label,
-                             String match) {
+                             boolean matched) {
 
         sb.append("<option value=\"");
         sb.append(value);
         sb.append("\"");
-        if (match.equals(value))
+        if (matched)
             sb.append(" selected");
         sb.append(">");
         sb.append(label);

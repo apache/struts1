@@ -16,6 +16,7 @@
   </global-forwards>
 
   <action-mappings>
+
     <action    path="/html-multibox"
                type="org.apache.struts.test.HtmlSettersAction"
                name="testbean"
@@ -23,6 +24,15 @@
            validate="false">
       <forward name="input"                path="/html-multibox.jsp"/>
     </action>
+
+    <action    path="/html-select"
+               type="org.apache.struts.test.HtmlSettersAction"
+               name="testbean"
+              scope="session"
+           validate="false">
+      <forward name="input"                path="/html-select.jsp"/>
+    </action>
+
     <action    path="/html-setters"
                type="org.apache.struts.test.HtmlSettersAction"
                name="testbean"

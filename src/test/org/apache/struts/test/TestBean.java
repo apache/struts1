@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/TestBean.java,v 1.5 2001/01/28 02:22:47 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/01/28 02:22:47 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/TestBean.java,v 1.6 2001/02/22 02:53:31 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/02/22 02:53:31 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.struts.action.ActionMapping;
  * General purpose test bean for Struts custom tag tests.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/01/28 02:22:47 $
+ * @version $Revision: 1.6 $ $Date: 2001/02/22 02:53:31 $
  */
 
 public class TestBean extends ActionForm {
@@ -186,6 +186,21 @@ public class TestBean extends ActionForm {
 
 
     /**
+     * A multiple-String SELECT element.
+     */
+    private String[] multipleSelect = { "Multiple 3", "Multiple 5",
+                                        "Multiple 7" };
+
+    public String[] getMultipleSelect() {
+        return (this.multipleSelect);
+    }
+
+    public void setMultipleSelect(String multipleSelect[]) {
+        this.multipleSelect = multipleSelect;
+    }
+
+
+    /**
      * A nested reference to another test bean (populated as needed).
      */
     private TestBean nested = null;
@@ -222,6 +237,20 @@ public class TestBean extends ActionForm {
 
     public void setShortProperty(short shortProperty) {
         this.shortProperty = shortProperty;
+    }
+
+
+    /**
+     * A single-String value for a SELECT element.
+     */
+    private String singleSelect = "Single 5";
+
+    public String getSingleSelect() {
+        return (this.singleSelect);
+    }
+
+    public void setSingleSelect(String singleSelect) {
+        this.singleSelect = singleSelect;
     }
 
 

@@ -23,6 +23,7 @@
 <h3>HTML Tags</h3>
 <ul>
 <li><a href="html-multibox.jsp">&lt;html:multibox&gt;</a></li>
+<li><a href="html-select.jsp">&lt;html:select&gt;</a></li>
 <li><a href="html-setters.jsp">Scalar Setters</a></li>
 </ul>
 

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.2 2001/01/08 21:36:11 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/08 21:36:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.3 2001/02/22 02:53:30 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/02/22 02:53:30 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -71,6 +71,8 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
@@ -79,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/01/08 21:36:11 $
+ * @version $Revision: 1.3 $ $Date: 2001/02/22 02:53:30 $
  */
 
 public class SelectTag extends BaseHandlerTag {
@@ -89,9 +91,9 @@ public class SelectTag extends BaseHandlerTag {
 
 
     /**
-     * The actual value we will match against, calculated in doStartTag().
+     * The actual values we will match against, calculated in doStartTag().
      */
-    protected String match = null;
+    protected String match[] = null;
 
 
     /**
@@ -137,6 +139,12 @@ public class SelectTag extends BaseHandlerTag {
 
 
     /**
+     * The saved body content of this tag.
+     */
+    protected String saveBody = null;
+
+
+    /**
      * How many available options should be displayed when this element
      * is rendered?
      */
@@ -161,11 +169,19 @@ public class SelectTag extends BaseHandlerTag {
 
 
     /**
-     * Return the actual match value (only valid from nested tags).
+     * Does the specified value match one of those we are looking for?
+     *
+     * @param value Value to be compared
      */
-    public String getMatch() {
+    public boolean isMatched(String value) {
 
-	return (this.match);
+        if ((match == null) || (value == null))
+            return (false);
+        for (int i = 0; i < match.length; i++) {
+            if (value.equals(match[i]))
+                return (true);
+        }
+        return (false);
 
     }
 
@@ -252,39 +268,40 @@ public class SelectTag extends BaseHandlerTag {
 	results.append(">");
 
 	// Print this field to our output writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.println(results.toString());
-	} catch (IOException e) {
-	    throw new JspException
-		(messages.getMessage("common.io", e.toString()));
-	}
+        ResponseUtils.write(pageContext, results.toString());
 
 	// Store this tag itself as a page attribute
 	pageContext.setAttribute(Constants.SELECT_KEY, this);
 
-	// Calculate the match value we will actually be using
+	// Calculate the match values we will actually be using
 	if (value != null) {
-	    match = value;
+	    match = new String[1];
+            match[0] = value;
         } else {
 	    Object bean = pageContext.findAttribute(name);
-	    if (bean == null)
-		throw new JspException
+	    if (bean == null) {
+                JspException e = new JspException                    
 		    (messages.getMessage("getter.bean", name));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
 	    try {
-		match = BeanUtils.getProperty(bean, property);
+		match = BeanUtils.getArrayProperty(bean, property);
 		if (match == null)
-		    match = "";
+		    match = new String[0];
 	    } catch (IllegalAccessException e) {
-		throw new JspException
+                RequestUtils.saveException(pageContext, e);
+                throw new JspException
 		    (messages.getMessage("getter.access", property, name));
 	    } catch (InvocationTargetException e) {
 		Throwable t = e.getTargetException();
+                RequestUtils.saveException(pageContext, t);
 		throw new JspException
 		    (messages.getMessage("getter.result",
 					 property, t.toString()));
 	    } catch (NoSuchMethodException e) {
-		throw new JspException
+                RequestUtils.saveException(pageContext, e);
+                throw new JspException
 		    (messages.getMessage("getter.method", property, name));
 	    }
 	}
@@ -294,6 +311,25 @@ public class SelectTag extends BaseHandlerTag {
 
     }
 
+
+
+    /**
+     * Save any body content of this tag, which will generally be the
+     * option(s) representing the values displayed to the user.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
+    public int doAfterBody() throws JspException {
+
+        if (bodyContent != null) {
+            String value = bodyContent.getString();
+            if (value == null)
+                value = "";
+            saveBody = value.trim();
+        }
+        return (SKIP_BODY);
+
+    }
 
 
     /**
@@ -308,18 +344,12 @@ public class SelectTag extends BaseHandlerTag {
 
 	// Render a tag representing the end of our current form
 	StringBuffer results = new StringBuffer();
-	if (bodyContent != null)
-	    results.append(bodyContent.getString());
+	if (saveBody != null)
+	    results.append(saveBody);
 	results.append("</select>");
 
 	// Print this value to our output writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.println(results.toString());
-	} catch (IOException e) {
-	    throw new JspException
-	        (messages.getMessage("common.io", e.toString()));
-	}
+        ResponseUtils.write(pageContext, results.toString());
 
 	// Continue processing this page
 	return (EVAL_PAGE);
@@ -337,6 +367,7 @@ public class SelectTag extends BaseHandlerTag {
 	multiple = null;
 	name = Constants.BEAN_KEY;
 	property = null;
+        saveBody = null;
 	size = null;
 	value = null;
 
