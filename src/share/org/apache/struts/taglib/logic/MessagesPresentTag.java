@@ -1,7 +1,7 @@
 /*
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,6 @@
  *
  */
 
-
 package org.apache.struts.taglib.logic;
 
 import java.util.Iterator;
@@ -64,7 +63,6 @@ import org.apache.struts.Globals;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.RequestUtils;
 
-
 /**
  * Evalute to <code>true</code> if an <code>ActionMessages</code> class or a
  * class that can be converted to an <code>ActionMessages</code> class is in
@@ -72,10 +70,9 @@ import org.apache.struts.util.RequestUtils;
  * class or for the property specified.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.6 $ $Date: 2003/01/05 00:40:04 $
+ * @version $Revision: 1.7 $ $Date: 2003/07/13 23:20:16 $
  * @since Struts 1.1
  */
-
 public class MessagesPresentTag extends ConditionalTagBase {
 
     /**
@@ -125,15 +122,12 @@ public class MessagesPresentTag extends ConditionalTagBase {
     protected boolean condition(boolean desired) throws JspException {
         ActionMessages am = null;
 
-        if (message != null && "true".equalsIgnoreCase(message))
+        if (message != null && "true".equalsIgnoreCase(message)){
            name = Globals.MESSAGE_KEY;
-
-        // Evaluate the presence of the specified value
-        boolean bMessages = false;
+        }
 
         try {
-            // Definitely know it should be an error so
-            // use method to retrieve errors.
+            // Definitely know it should be an error so use method to retrieve errors.
             if (Globals.ERROR_KEY.equals(name)) {
                 am = RequestUtils.getActionErrors(pageContext, name);
             } else {
@@ -144,17 +138,9 @@ public class MessagesPresentTag extends ConditionalTagBase {
             throw e;
         }
 
-        Iterator iterator = null;
+        Iterator iterator = (property == null) ? am.get() : am.get(property);
 
-        if (property == null)
-            iterator = am.get();
-        else
-            iterator = am.get(property);
-
-        if (iterator.hasNext())
-           bMessages = true;
-
-        return (bMessages == desired);
+        return (iterator.hasNext() == desired);
 
     }
 
