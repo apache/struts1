@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.18 2002/11/12 03:47:42 dgraham Exp $
- * $Revision: 1.18 $
- * $Date: 2002/11/12 03:47:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.19 2002/11/16 06:04:16 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2002/11/16 06:04:16 $
  *
  * ====================================================================
  *
@@ -66,6 +66,7 @@ import java.util.Locale;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.Tag;
+import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.logic.IterateTag;
@@ -79,7 +80,7 @@ import org.apache.struts.util.RequestUtils;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.18 $ $Date: 2002/11/12 03:47:42 $
+ * @version $Revision: 1.19 $ $Date: 2002/11/16 06:04:16 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -779,13 +780,22 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      * otherwise.
      * @since Struts 1.1
      */
-    protected static boolean isXhtml(Tag tag) {
-        HtmlTag htmlTag = (HtmlTag) findAncestorWithClass(tag, HtmlTag.class);
-        if (htmlTag == null) {
+    protected boolean isXhtml() {
+        String xhtml =
+            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
+        
+        if ("true".equalsIgnoreCase(xhtml)) {
+            return true;
+        } else {
             return false;
         }
-
-        return htmlTag.getXhtml();
+        
+//        HtmlTag htmlTag = (HtmlTag) findAncestorWithClass(tag, HtmlTag.class);
+//        if (htmlTag == null) {
+//            return false;
+//        }
+//
+//        return htmlTag.getXhtml();
     }
 
     /**
@@ -796,9 +806,9 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      * @return String - &gt; if xhtml is false, /&gt; if xhtml is true
      * @since Struts 1.1
      */
-    protected String getElementClose(Tag tag) {
-        if (this.isXhtml(tag)) {
-            return "/>";
+    protected String getElementClose() {
+        if (this.isXhtml()) {
+            return " />";
         } else {
             return ">";
         }
