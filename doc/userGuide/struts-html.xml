@@ -287,7 +287,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -557,7 +558,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -859,7 +861,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -1268,7 +1271,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -1498,7 +1502,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -1871,7 +1876,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                <p>CSS stylesheet class to be applied to this element.</p>
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -2143,7 +2149,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -2357,78 +2364,132 @@
             <name>onblur</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element loses input
+                focus.
+            </info>
           </attribute>
 
           <attribute>
             <name>onchange</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element loses input
+                focus and its value has changed.
+            </info>
           </attribute>
 
           <attribute>
             <name>onclick</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element receives a
+                mouse click.
+            </info>
           </attribute>
 
           <attribute>
             <name>ondblclick</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element receives a
+                mouse double click.
+            </info>
           </attribute>
 
           <attribute>
             <name>onfocus</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element receives input
+                focus.
+            </info>
           </attribute>
 
           <attribute>
             <name>onkeydown</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element has focus
+                and a key is depressed.
+            </info>
           </attribute>
 
           <attribute>
             <name>onkeypress</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element has focus
+                and a key is depressed and released.
+            </info>
           </attribute>
 
           <attribute>
             <name>onkeyup</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element has focus
+                and a key is released.
+            </info>
           </attribute>
 
           <attribute>
             <name>onmousedown</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under
+                the mouse pointer and a mouse button is depressed.
+            </info>
           </attribute>
 
           <attribute>
             <name>onmousemove</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under the
+                mouse pointer and the pointer is moved.
+            </info>
           </attribute>
 
           <attribute>
             <name>onmouseout</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element was under
+                the mouse pointer but the pointer was moved outside the
+                element.
+            </info>
           </attribute>
 
           <attribute>
             <name>onmouseover</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element was not
+                under the mouse pointer but the pointer is moved inside the
+                element.
+            </info>
           </attribute>
 
           <attribute>
             <name>onmouseup</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under the
+                mouse pointer and a mouse button is released.
+            </info>
           </attribute>
 
         <attribute>
@@ -2489,12 +2550,19 @@
             <name>style</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS styles to be applied to this HTML element.
+            </info>
           </attribute>
 
           <attribute>
             <name>styleClass</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
+            </info>
           </attribute>
 
         <attribute>
@@ -2511,6 +2579,9 @@
             <name>tabindex</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+                The tab order (ascending positive integers) for this element.
+            </info>
           </attribute>
 
                 <attribute>
@@ -3023,7 +3094,8 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p>CSS stylesheet class to be applied to this element.</p>
+                  CSS stylesheet class to be applied to this HTML element
+                  (renders a "class" attribute).
                   </info>
                 </attribute>
 
@@ -3622,7 +3694,8 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p>CSS stylesheet class to be applied to this element.</p>
+                  CSS stylesheet class to be applied to this HTML element
+                  (renders a "class" attribute).
                   </info>
                 </attribute>
 
@@ -4046,7 +4119,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -4191,7 +4265,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -4379,7 +4454,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
     </tag>
@@ -4476,7 +4552,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -4759,7 +4836,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -5063,7 +5141,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -5339,7 +5418,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -5830,7 +5910,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -6110,7 +6191,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -6419,7 +6501,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -6731,7 +6814,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
