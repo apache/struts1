@@ -65,6 +65,8 @@ import javax.servlet.jsp.JspException;
  * is not present for this request.
  *
  * @author David Winterfeldt
+ * @version $Revision: 1.2 $ $Date: 2002/06/25 00:53:41 $
+ * @since Struts 1.1
  */
 
 public class MessagesNotPresentTag extends MessagesPresentTag {

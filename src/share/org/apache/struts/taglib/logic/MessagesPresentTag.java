@@ -66,12 +66,14 @@ import org.apache.struts.util.RequestUtils;
 
 
 /**
- * Evalute to <code>true</code> if an <code>ActionMessages</code> class or a 
- * class that can be converted to an <code>ActionMessages</code> class is in 
- * request scope under the specified key and there is at least one message in the 
+ * Evalute to <code>true</code> if an <code>ActionMessages</code> class or a
+ * class that can be converted to an <code>ActionMessages</code> class is in
+ * request scope under the specified key and there is at least one message in the
  * class or for the property specified.
  *
  * @author David Winterfeldt
+ * @version $Revision: 1.3 $ $Date: 2002/06/25 00:53:41 $
+ * @since Struts 1.1
  */
 
 public class MessagesPresentTag extends ConditionalTagBase {
@@ -82,7 +84,7 @@ public class MessagesPresentTag extends ConditionalTagBase {
     */
     protected String message = null;
 
-    
+
     public MessagesPresentTag() {
         name = Action.ERROR_KEY;
     }
@@ -94,7 +96,7 @@ public class MessagesPresentTag extends ConditionalTagBase {
     public void setMessage(String message) {
         this.message = message;
     }
-    
+
     /**
      * Evaluate the condition that is being tested by this particular tag,
      * and return <code>true</code> if the nested body content of this tag
@@ -112,7 +114,7 @@ public class MessagesPresentTag extends ConditionalTagBase {
 
     /**
      * Evaluate the condition that is being tested by this particular tag,
-     * and return <code>true</code> if there is at least one message in the 
+     * and return <code>true</code> if there is at least one message in the
      * class or for the property specified.
      * This method must be implemented by concrete subclasses.
      *
@@ -121,8 +123,8 @@ public class MessagesPresentTag extends ConditionalTagBase {
      * @exception JspException if a JSP exception occurs
      */
     protected boolean condition(boolean desired) throws JspException {
-    	ActionMessages am = null;
-    	
+        ActionMessages am = null;
+
         if (message != null && "true".equalsIgnoreCase(message))
            name = Action.MESSAGE_KEY;
 
@@ -130,11 +132,11 @@ public class MessagesPresentTag extends ConditionalTagBase {
         boolean bMessages = false;
 
         try {
-            // Definitely know it should be an error so 
+            // Definitely know it should be an error so
             // use method to retrieve errors.
             if (Action.ERROR_KEY.equals(name))
                am = RequestUtils.getActionErrors(pageContext, name);
-            else 
+            else
                am = RequestUtils.getActionMessages(pageContext, name);
         } catch(JspException e) {
             RequestUtils.saveException(pageContext, e);
@@ -147,7 +149,7 @@ public class MessagesPresentTag extends ConditionalTagBase {
             iterator = am.get();
         else
             iterator = am.get(property);
-            
+
         if (iterator.hasNext())
            bMessages = true;
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/NotEmptyTag.java,v 1.1 2001/07/08 04:15:13 martinc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/08 04:15:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/NotEmptyTag.java,v 1.2 2002/06/25 00:53:41 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/06/25 00:53:41 $
  *
  * ====================================================================
  *
@@ -71,7 +71,8 @@ import javax.servlet.jsp.JspException;
  * is not empty for this request.
  *
  * @author Martin Cooper
- * @version $Revision: 1.1 $ $Date: 2001/07/08 04:15:13 $
+ * @version $Revision: 1.2 $ $Date: 2002/06/25 00:53:41 $
+ * @since Struts 1.1
  */
 
 public class NotEmptyTag extends EmptyTag {
