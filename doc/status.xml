@@ -18,7 +18,7 @@
 <section href="status" name="Development Roadmap">
 
     <p>
-    <font size="-2">$Id: status.xml,v 1.24 2003/01/07 04:27:20 craigmcc Exp $</font>
+    <font size="-2">$Id: status.xml,v 1.25 2003/01/19 00:42:49 craigmcc Exp $</font>
     </p>
 
     <p>
@@ -135,6 +135,10 @@
         <li>Moving to <a href="http://jakarta.apache.org/turbine/maven/index.html">
         Maven</a> for project management
         </li>
+
+        <li>Regardless of whether a move to Maven happens or not, we need to
+        refactor the source repositories and build scripts for less complexity
+        and easier maintenance.</li>
 
     </ul>
 
