@@ -230,16 +230,6 @@
         <include name="**/*.js"/>
       </fileset>
     </copy>
-    <!-- Copy the basic user guide files -->
-    <copy      todir="${build.home}/documentation/userGuide">
-      <fileset   dir="${doc.dir}/userGuide">
-        <include name="**/*.css"/>
-        <include name="**/*.gif"/>
-        <include name="**/*.html"/>
-        <include name="**/*.jpg"/>
-        <include name="**/*.js"/>
-      </fileset>
-    </copy>
     <!-- Create the Tiles documentation -->
     <style   basedir="${doc.dir}/tiles"
              destdir="${build.home}/tiles-documentation"
