@@ -36,7 +36,7 @@
   Application (or online at <a href="http://jakarta.apache.org/struts">
   http://jakarta.apache.org/struts</a>), you can learn more about using
   these tags in the
-  <a href="api/org/apache/struts/taglib/bean/package-summary.html#package_description">
+  <a href="../api/org/apache/struts/taglib/bean/package-summary.html#package_description">
   Bean Tags Developer's Guide</a>.</p>
   </info>
 
@@ -168,7 +168,7 @@
     name more than once in a single page.</p>
 
     <p>See the Bean Developer's Guide section on
-    <a href="api/org/apache/struts/taglib/bean/package-summary.html#doc.Creation">
+    <a href="../api/org/apache/struts/taglib/bean/package-summary.html#doc.Creation">
     bean creation</a> for more information about these differences, as well
     as alternative approaches to introducing beans into a JSP page.</p>
     </info>
