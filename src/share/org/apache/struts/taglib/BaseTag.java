@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseTag.java,v 1.1 2000/09/11 19:38:41 luis Exp $
- * $Revision: 1.1 $
- * $Date: 2000/09/11 19:38:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseTag.java,v 1.2 2000/09/12 19:36:17 luis Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/09/12 19:36:17 $
  *
  * ====================================================================
  *
@@ -68,6 +68,18 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.MessageResources;
 
+/**
+ * Renders an HTML <base> element with an href 
+ * attribute pointing to the absolute location of the enclosing JSP page. This 
+ * tag is only valid when nested inside a head tag body. The presence 
+ * of this tag allows the browser to resolve relative URL's to images, CSS stylesheets 
+ * and other resources in a manner independent of the URL used to call the ActionServlet. 
+ * There are no attributes associated with this tag.
+ *
+ * @author Luis Arias <luis@elysia.com>
+ * @version $Revision: 1.2 $ $Date: 2000/09/12 19:36:17 $
+ */
+
 public class BaseTag extends TagSupport {
   
   /**
@@ -76,6 +88,11 @@ public class BaseTag extends TagSupport {
   protected static MessageResources messages =
     MessageResources.getMessageResources("org.apache.struts.taglib.LocalStrings");
 
+  /**
+   * Process the start of this tag.
+   *
+   * @exception JspException if a JSP exception has occurred
+   */
   public int doStartTag() throws JspException {
     HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
     StringBuffer buf = new StringBuffer("<base href=\""); 
@@ -84,7 +101,6 @@ public class BaseTag extends TagSupport {
     buf.append(request.getServerName());
     buf.append(":");
     buf.append(request.getServerPort());
-    buf.append(request.getContextPath());
     buf.append(request.getRequestURI());
     buf.append("\">");
     JspWriter out = pageContext.getOut();
