@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: struts.xsl,v 1.23 2004/07/04 23:58:28 husted Exp $ -->
+<!-- $Id: struts.xsl,v 1.24 2004/07/09 14:19:46 germuska Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns="http://www.w3.org/1999/xhtml"
@@ -73,18 +73,18 @@
          
         <div id="heading">
 
-        <xsl:variable name="src">
+        <xsl:variable name="apache-logo-src">
           <xsl:value-of select="$relative-path"/><xsl:value-of select="$home-logo"/>
         </xsl:variable>
         <a href="http://apache.org/">
-            <img src="{$src}" alt="The Apache Project" id="asf_logo_wide"/>
+            <img src="{$apache-logo-src}" alt="The Apache Project" id="asf_logo_wide"/>
         </a>
 
-        <xsl:variable name="src">
+        <xsl:variable name="project-logo-src">
             <xsl:value-of select="$relative-path"/><xsl:value-of select="$project-logo"/>
         </xsl:variable>
         <a href="http://struts.apache.org/">
-            <img src="{$src}" alt="Struts Framework" id="struts-logo"/>
+            <img src="{$project-logo-src}" alt="Struts Framework" id="struts-logo"/>
         </a>
         </div>
         <xsl:comment>end heading</xsl:comment>
@@ -134,10 +134,10 @@
         <xsl:comment>end content</xsl:comment>
 
       <div id="footer">
-        <xsl:variable name="src">
+        <xsl:variable name="powered-src">
           <xsl:value-of select="$relative-path"/><xsl:value-of select="$powered-logo"/>
         </xsl:variable>
-        <img src="{$src}" alt="Powered by Struts" id="powered-logo"/>
+        <img src="{$powered-src}" alt="Powered by Struts" id="powered-logo"/>
         Copyright (c) 2000-2004, The Apache Software Foundation <span class="noprint">- 
         <a href="http://wiki.apache.org/struts/StrutsDocComments">Comments?</a></span>
       </div>
