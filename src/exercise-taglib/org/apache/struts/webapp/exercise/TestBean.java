@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.1 2001/04/11 01:55:37 rleland Exp $
- * $Revision: 1.1 $
- * $Date: 2001/04/11 01:55:37 $
+ * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.2 2001/05/04 21:49:27 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/05/04 21:49:27 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.struts.action.ActionMapping;
  * General purpose test bean for Struts custom tag tests.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/04/11 01:55:37 $
+ * @version $Revision: 1.2 $ $Date: 2001/05/04 21:49:27 $
  */
 
 public class TestBean extends ActionForm {
@@ -82,7 +82,7 @@ public class TestBean extends ActionForm {
 
 
     /**
-     * A boolean property.
+     * A boolean property whose initial value is true.
      */
     private boolean booleanProperty = true;
 
@@ -106,6 +106,20 @@ public class TestBean extends ActionForm {
 
     public void setDoubleProperty(double doubleProperty) {
         this.doubleProperty = doubleProperty;
+    }
+
+
+    /**
+     * A boolean property whose initial value is false
+     */
+    private boolean falseProperty = false;
+
+    public boolean getFalseProperty() {
+        return (falseProperty);
+    }
+
+    public void setFalseProperty(boolean falseProperty) {
+        this.falseProperty = falseProperty;
     }
 
 

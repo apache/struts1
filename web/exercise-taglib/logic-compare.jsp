@@ -13,6 +13,8 @@
 
 <jsp:useBean id="bean" scope="page" class="org.apache.struts.webapp.exercise.TestBean"/>
 <%
+  String bool1 = "true";
+  String bool2 = "false";
   String doub1 = "321.0";
   String doub2 = "111.0";
   String doub3 = "333.0";
@@ -34,6 +36,70 @@
     <th>Value Content </th>
     <th>Correct Value</th>
     <th>Test Result</th>
+  </tr>
+  <tr>
+    <td>boolean / EQ</td>
+    <td><bean:write name="bean" property="booleanProperty"/></td>
+    <td><%= bool1 %></td>
+    <td>equal</td>
+    <td>
+      <logic:equal name="bean" property="booleanProperty"
+                  value="<%= bool1 %>">
+        equal
+      </logic:equal>
+      <logic:notEqual name="bean" property="booleanProperty"
+                  value="<%= bool1 %>">
+        notEqual
+      </logic:notEqual>
+    </td>
+  </tr>
+  <tr>
+    <td>boolean / EQ</td>
+    <td><bean:write name="bean" property="falseProperty"/></td>
+    <td><%= bool2 %></td>
+    <td>equal</td>
+    <td>
+      <logic:equal name="bean" property="falseProperty"
+                  value="<%= bool2 %>">
+        equal
+      </logic:equal>
+      <logic:notEqual name="bean" property="falseProperty"
+                  value="<%= bool2 %>">
+        notEqual
+      </logic:notEqual>
+    </td>
+  </tr>
+  <tr>
+    <td>boolean / NE</td>
+    <td><bean:write name="bean" property="booleanProperty"/></td>
+    <td><%= bool2 %></td>
+    <td>notEqual</td>
+    <td>
+      <logic:equal name="bean" property="booleanProperty"
+                  value="<%= bool2 %>">
+        equal
+      </logic:equal>
+      <logic:notEqual name="bean" property="booleanProperty"
+                  value="<%= bool2 %>">
+        notEqual
+      </logic:notEqual>
+    </td>
+  </tr>
+  <tr>
+    <td>boolean / NE</td>
+    <td><bean:write name="bean" property="falseProperty"/></td>
+    <td><%= bool1 %></td>
+    <td>notEqual</td>
+    <td>
+      <logic:equal name="bean" property="falseProperty"
+                  value="<%= bool1 %>">
+        equal
+      </logic:equal>
+      <logic:notEqual name="bean" property="falseProperty"
+                  value="<%= bool1 %>">
+        notEqual
+      </logic:notEqual>
+    </td>
   </tr>
   <tr>
     <td>double / EQ</td>
