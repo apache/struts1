@@ -49,6 +49,9 @@
     <javac srcdir="src/share"     destdir="${build.home}/library/classes"
            classpath="${servlet.jar}"
 	   debug="true" optimize="false" deprecation="false"/>
+    <copydir src="src/share"         dest="${build.home}/library/classes">
+      <include name="**/*.properties" />
+    </copydir>
     <copydir src="src/conf" dest="${build.home}/library"/>
   </target>
 
@@ -75,6 +78,9 @@
           destdir="${build.home}/example/WEB-INF/classes"
         classpath="${build.home}/library/classes:${servlet.jar}"
             debug="true" optimize="false" deprecation="false"/>
+    <copydir src="src/example" dest="${build.home}/example/WEB-INF/classes">
+      <include name="**/*.properties" />
+    </copydir>
     <copydir  src="web/example" dest="${build.home}/example"/>
     <copyfile src="${dist.home}/lib/${app.name}.jar"
              dest="${build.home}/example/WEB-INF/lib/${app.name}.jar"/>
