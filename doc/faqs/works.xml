@@ -46,7 +46,7 @@
       <a href="http://java.sun.com">Java site</a>.<br/>
    </li>
    <li>
-      In the Struts configuration file(s), you associate abstract names with
+      In the Struts configuration file(s), you associate paths with
       the controller components of your application, known as
       <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/Action.html"><code>Action</code></a>
       classes (i.e. "login" ==&gt; LoginAction class). This tells the Struts
@@ -67,7 +67,7 @@
       least two: one for success, and one for failure).<br/>
 
       Your <code>Action</code> (the controller component you write) is based on
-      these <i>abstract</i> result mapping names. It reports back to the
+      these <i>logical</i> result mapping names. It reports back to the
       <code>ActionServlet</code> using words like "success", "failure",
       "ready", "ok", "UserIsIncompetent", etc.  The Struts system (through the
       configuration that you wrote) knows how to forward to the proper
@@ -95,7 +95,7 @@
       the view, and Actions in the controller.<br/>
 
       <strong>Note</strong>: You must be using some sort of server-side
-      technology (JSP, Velocity, etc.) for the view layer (going <i>to</i> the
+      technology (JSP, Velocity, XLST) for the view layer (going <i>to</i> the
       client) to see this data (plain HTML won't work). Struts works on the
       server side, so the client's view has to be composed there.<br/>
 
@@ -105,26 +105,41 @@
    </li>
    <li>
       Within your web application will be pages that represent the view your
-      users will see. These can be JSP, Velocity, etc. The preference of
-      the Struts system is that you use JSP, as this gives you a set of custom
-      tags that have been designed to work with Struts.<br/>
+      users will see. These can be JSP pages, Velocity Templates,
+      XLST pages, and so forth.
+      A set of JSP tags is bunded with the Struts distribution so that you
+      can get started right away, but any standard presentation technology
+      can be used with Struts.<br/>
 
-      It is not possible to use plain client-side HTML, as most of the features
-      of Struts are simply not available if your view layer is only processed
-      on the client side. This is not to say that plain HTML is out for your
-      entire web application, just that it won't "play" with Struts.<br/>
+      Even plain HTML files can be used within your Struts application,
+      although they will not take full advantage of all of the dynamic
+      features.<br/>
 
-      If you use a technology other than JSP for the view layer, then you will
-      have to have some sort of glue between the Struts system and that
-      technology. For example,
-      <a href="http://jakarta.apache.org/velocity/">Velocity</a> has a set of
-      <a href="http://cvs.apache.org/viewcvs/jakarta-velocity-tools/">tools</a>
-      that do this for you.
+      Following the example of the Struts JSP taglibs, several other
+      packages are available to make the framework easy to use with your
+      favorite presentation technology.
+      For Velocity templates, there are the
+      <a href="http://jakarta.apache.org/velocity/">Velocity</a> ViewTools
+      for Struts.
+      If you want to use XLST in you application, you can choose between
+      <a href="http://www.openroad.ca/opencode/">stxx</a> and
+      <a href="http://it.cappuccinonet.com/strutscx/">
+      StrutsCX</a>.<br/>
+
+      These packages make the standard Struts framework elements look and
+      feel like a seamless part of the original presentation technology.
+      Struts also makes it easy to mix and match.
+      If need be, you can use JSP, Velocity templates, and XLST all in
+      the same application!<br/>
+
+      Since Struts relies on standard Servlet technologies, you should be
+      able to use any Java presentation technology with Struts.
    </li>
    <li>
-      Since JSP is the standard for Struts, there are many custom tags that are
-      included to help you extract data from the Struts system for use in your
-      view. <br/>
+      While the focus of the Struts framework is on the controller,
+      the presentation layer is a significant part of any application.
+      The Struts JSP taglibs include a number of generic and Struts-specific
+      tags to help you use dynamic data in your view. <br/>
 
       The custom JSP tags account for a good deal of the Struts code base. It
       is educational to note that as of version 1.1b3 the Java code for the
@@ -133,11 +148,11 @@
 
       These tags help you glue your view layer to the controller layer without
       having to embed a lot of Java in the JSP. This gives the page an XML
-      look, and is easier for Web Designers to deal with than a plain JSP. It
+      look, and can be easier for web designers to deal with than a plain JSP. It
       also helps minimize dependencies between the controller and view.<br/>
 
       The custom tags are used to create forms (and invisibly interact with the
-      Bean mentioned previously), abstractly forward to other pages, and invoke
+      Bean mentioned previously), logically forward to other pages, and invoke
       other actions of the web application.<br/>
 
       There are also tags that help you with internationalization, error
@@ -149,8 +164,8 @@
 </ul>
 <p>
    It is important for you to remember that the mechanism described here is
-   only in effect when you allow the <code>ActionServlet</code> to be your
-   primary controller.
+   only in effect when the <code>ActionServlet</code> is handling the
+   request.
 </p>
 <p>
    Since this only happens when a request is submitted that causes your
