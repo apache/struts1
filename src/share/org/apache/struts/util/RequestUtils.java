@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.44 2002/07/05 22:03:16 craigmcc Exp $
- * $Revision: 1.44 $
- * $Date: 2002/07/05 22:03:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.45 2002/07/07 23:45:21 craigmcc Exp $
+ * $Revision: 1.45 $
+ * $Date: 2002/07/07 23:45:21 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.44 $ $Date: 2002/07/05 22:03:16 $
+ * @version $Revision: 1.45 $ $Date: 2002/07/07 23:45:21 $
  */
 
 public class RequestUtils {
@@ -1186,10 +1186,15 @@ public class RequestUtils {
     public static String forwardURL(HttpServletRequest request,
                                     ForwardConfig forward) {
 
+        String path = forward.getPath();
+
         // Handle a ForwardConfig marked as context relative
         StringBuffer sb = new StringBuffer();
         if (forward.getContextRelative()) {
-            sb.append(forward.getPath());
+            if (!path.startsWith("/")) {
+                sb.append("/");
+            }
+            sb.append(path);
             return (sb.toString());
         }
 
@@ -1201,7 +1206,10 @@ public class RequestUtils {
         if (forwardPattern == null) {
             // Performance optimization for previous default behavior
             sb.append(appConfig.getPrefix());
-            sb.append(forward.getPath());
+            if (!path.startsWith("/")) {
+                sb.append("/");
+            }
+            sb.append(path);
         } else {
             boolean dollar = false;
             for (int i = 0; i < forwardPattern.length(); i++) {
@@ -1212,7 +1220,10 @@ public class RequestUtils {
                         sb.append(appConfig.getPrefix());
                         break;
                     case 'P':
-                        sb.append(forward.getPath());
+                        if (!path.startsWith("/")) {
+                            sb.append("/");
+                        }
+                        sb.append(path);
                         break;
                     case '$':
                         sb.append('$');

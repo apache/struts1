@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.7 2002/07/02 01:52:15 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/07/02 01:52:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.8 2002/07/07 23:45:21 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/07/07 23:45:21 $
  *
  * ====================================================================
  *
@@ -102,7 +102,7 @@ import org.apache.struts.config.ForwardConfig;
  * are using.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/07/02 01:52:15 $
+ * @version $Revision: 1.8 $ $Date: 2002/07/07 23:45:21 $
  */
 
 public class ActionForward extends ForwardConfig {
@@ -159,6 +159,26 @@ public class ActionForward extends ForwardConfig {
         setName(name);
         setPath(path);
         setRedirect(redirect);
+
+    }
+
+
+    /**
+     * Construct a new instance with the specified values.
+     *
+     * @param name Name of this instance
+     * @param path Path for this instance
+     * @param redirect Redirect flag for this instance
+     * @param contextRelative Context relative flag for this instance
+     */
+    public ActionForward(String name, String path, boolean redirect,
+                         boolean contextRelative) {
+
+        super();
+        setName(name);
+        setPath(path);
+        setRedirect(redirect);
+        setContextRelative(contextRelative);
 
     }
 

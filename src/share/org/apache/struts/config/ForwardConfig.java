@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.5 2002/07/04 00:05:48 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/07/04 00:05:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.6 2002/07/07 23:45:21 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/07/07 23:45:21 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/07/04 00:05:48 $
+ * @version $Revision: 1.6 $ $Date: 2002/07/07 23:45:21 $
  * @since Struts 1.1
  */
 
@@ -105,6 +105,26 @@ public class ForwardConfig implements Serializable {
         setName(name);
         setPath(path);
         setRedirect(redirect);
+
+    }
+
+
+    /**
+     * Construct a new instance with the specified values.
+     *
+     * @param name Name of this forward
+     * @param path Path to which control should be forwarded or redirected
+     * @param redirect Should we do a redirect?
+     * @param contextRelative Is this path context relative?
+     */
+    public ForwardConfig(String name, String path, boolean redirect,
+                         boolean contextRelative) {
+
+        super();
+        setName(name);
+        setPath(path);
+        setRedirect(redirect);
+        setContextRelative(contextRelative);
 
     }
 

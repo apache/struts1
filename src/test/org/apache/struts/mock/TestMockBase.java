@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.2 2002/07/02 04:23:14 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/02 04:23:14 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.3 2002/07/07 23:45:21 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/07/07 23:45:21 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * environment was set up correctly.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/07/02 04:23:14 $
+ * @version $Revision: 1.3 $ $Date: 2002/07/07 23:45:21 $
  */
 
 public class TestMockBase extends TestCase {
@@ -162,7 +162,15 @@ public class TestMockBase extends TestCase {
 
         // Forward "foo" to "/bar.jsp"
         appConfig.addForwardConfig
-            (new ActionForward("foo", "/bar.jsp", false));
+            (new ActionForward("foo", "/bar.jsp", false, false));
+
+        // Forward "relative1" to "relative.jsp" non-context-relative
+        appConfig.addForwardConfig
+            (new ActionForward("relative1", "relative.jsp", false, false));
+
+        // Forward "relative2" to "relative.jsp" context-relative
+        appConfig.addForwardConfig
+            (new ActionForward("relative2", "relative.jsp", false, true));
 
         // Form Bean "static" is a standard ActionForm subclass
         formBean = new ActionFormBean
@@ -220,7 +228,15 @@ public class TestMockBase extends TestCase {
 
         // Forward "foo" to "/baz.jsp" (different from default)
         appConfig2.addForwardConfig
-            (new ActionForward("foo", "/baz.jsp", false));
+            (new ActionForward("foo", "/baz.jsp", false, false));
+
+        // Forward "relative1" to "relative.jsp" non-context-relative
+        appConfig2.addForwardConfig
+            (new ActionForward("relative1", "relative.jsp", false, false));
+
+        // Forward "relative2" to "relative.jsp" context-relative
+        appConfig2.addForwardConfig
+            (new ActionForward("relative2", "relative.jsp", false, true));
 
         // Form Bean "static" is a standard ActionForm subclass (same as default)
         formBean = new ActionFormBean
