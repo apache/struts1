@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.3 2000/10/12 23:17:16 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/12 23:17:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.4 2000/10/30 02:30:23 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/10/30 02:30:23 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.PropertyUtils;
  * web application resource.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/10/12 23:17:16 $
+ * @version $Revision: 1.4 $ $Date: 2000/10/30 02:30:23 $
  */
 
 public final class ResourceTag extends TagSupport {
@@ -160,9 +160,13 @@ public final class ResourceTag extends TagSupport {
         // Acquire an input stream to the specified resource
         InputStream stream =
 	  pageContext.getServletContext().getResourceAsStream(name);
-	if (stream == null)
-	    throw new JspException
+	if (stream == null) {
+	    JspException e = new JspException
 	      (messages.getMessage("getter.resource", name));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
 
 	// If we are returning an InputStream, do so and return
 	if (input != null) {

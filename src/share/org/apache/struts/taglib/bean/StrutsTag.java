@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.1 2000/10/08 00:40:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/10/08 00:40:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.2 2000/10/30 02:30:23 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/10/30 02:30:23 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.PropertyUtils;
  * internal configuraton object.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/10/08 00:40:49 $
+ * @version $Revision: 1.2 $ $Date: 2000/10/30 02:30:23 $
  */
 
 public final class StrutsTag extends TagSupport {
@@ -174,9 +174,13 @@ public final class StrutsTag extends TagSupport {
             n++;
         if (mapping != null)
             n++;
-        if (n != 1)
-            throw new JspException
+        if (n != 1) {
+            JspException e = new JspException
                 (messages.getMessage("struts.selector"));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
 
         // Retrieve the requested object to be exposed
         Object object = null;
@@ -200,9 +204,13 @@ public final class StrutsTag extends TagSupport {
             if (collection != null)
                 object = collection.findMapping(mapping);
         }
-        if (object == null)
-            throw new JspException
+        if (object == null) {
+            JspException e = new JspException
                 (messages.getMessage("struts.missing", selector));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
 
         // Expose this value as a scripting variable
         pageContext.setAttribute(id, object);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/PageTag.java,v 1.1 2000/10/08 00:40:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/10/08 00:40:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/PageTag.java,v 1.2 2000/10/30 02:30:22 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/10/30 02:30:22 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.struts.action.Action;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
@@ -77,7 +78,7 @@ import org.apache.struts.util.PropertyUtils;
  * item as a scripting variable and a page scope bean.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/10/08 00:40:49 $
+ * @version $Revision: 1.2 $ $Date: 2000/10/30 02:30:22 $
  */
 
 public final class PageTag extends TagSupport {
@@ -146,9 +147,13 @@ public final class PageTag extends TagSupport {
             object = pageContext.getResponse();
         else if ("session".equalsIgnoreCase(property))
             object = pageContext.getSession();
-        else
-            throw new JspException
+        else {
+            JspException e = new JspException
                 (messages.getMessage("page.selector", property));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
 
         // Expose this value as a scripting variable
         pageContext.setAttribute(id, object);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.2 2000/09/05 21:25:45 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/09/05 21:25:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.3 2000/10/30 02:30:22 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/30 02:30:22 $
  *
  * ====================================================================
  *
@@ -71,6 +71,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 
@@ -81,7 +82,7 @@ import org.apache.struts.util.PropertyUtils;
  * cookie received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/09/05 21:25:45 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/30 02:30:22 $
  */
 
 public final class CookieTag extends TagSupport {
@@ -162,9 +163,13 @@ public final class CookieTag extends TagSupport {
             if (name.equals(cookies[i].getName()))
                 values.addElement(cookies[i]);
         }
-        if (values.size() < 1)
-            throw new JspException
+        if (values.size() < 1) {
+            JspException e = new JspException
                 (messages.getMessage("getter.cookie", name));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
 
         // Expose an appropriate variable containing these results
         if (multiple == null) {

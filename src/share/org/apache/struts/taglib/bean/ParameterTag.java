@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTag.java,v 1.1 2000/08/30 02:15:06 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/08/30 02:15:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTag.java,v 1.2 2000/10/30 02:30:23 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/10/30 02:30:23 $
  *
  * ====================================================================
  *
@@ -68,6 +68,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 
@@ -78,7 +79,7 @@ import org.apache.struts.util.PropertyUtils;
  * parameter received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/08/30 02:15:06 $
+ * @version $Revision: 1.2 $ $Date: 2000/10/30 02:30:23 $
  */
 
 public final class ParameterTag extends TagSupport {
@@ -153,9 +154,13 @@ public final class ParameterTag extends TagSupport {
         if (multiple == null) {
 	    String value =
 	      pageContext.getRequest().getParameter(name);
-	    if (value == null)
-	        throw new JspException
+	    if (value == null) {
+	        JspException e = new JspException
 		  (messages.getMessage("getter.parameter", name));
+                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                         PageContext.REQUEST_SCOPE);
+                throw e;
+            }
 	    pageContext.setAttribute(id, value);
 	    return (SKIP_BODY);
 	}
@@ -163,9 +168,13 @@ public final class ParameterTag extends TagSupport {
 	// Deal with multiple parameter values
 	String values[] =
 	  pageContext.getRequest().getParameterValues(name);
-	if ((values == null) || (values.length == 0))
-	    throw new JspException
+	if ((values == null) || (values.length == 0)) {
+	    JspException e = new JspException
 	      (messages.getMessage("getter.parameter", name));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
 	pageContext.setAttribute(id, values);
         return (SKIP_BODY);
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.3 2000/10/12 23:17:15 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/12 23:17:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.4 2000/10/30 02:30:22 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/10/30 02:30:22 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.PropertyUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/10/12 23:17:15 $
+ * @version $Revision: 1.4 $ $Date: 2000/10/30 02:30:22 $
  */
 
 public final class DefineTag extends TagSupport {
@@ -186,9 +186,13 @@ public final class DefineTag extends TagSupport {
 	    bean = BeanUtils.lookup(pageContext, name, scope);
 
             // Locate the specified property
-            if (bean == null)
-                throw new JspException
+            if (bean == null) {
+                JspException e = new JspException
                     (messages.getMessage("getter.bean", name));
+                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                         PageContext.REQUEST_SCOPE);
+                throw e;
+            }
             if (property == null)
                 value = bean;
             else
