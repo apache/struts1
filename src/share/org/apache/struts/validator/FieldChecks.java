@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.12 2003/08/22 23:49:12 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/08/22 23:49:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.13 2003/09/26 18:12:24 turner Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/09/26 18:12:24 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.commons.validator.GenericTypeValidator;
 import org.apache.commons.validator.GenericValidator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorUtil;
-import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.RequestUtils;
 
 /**
@@ -111,14 +111,14 @@ public class FieldChecks implements Serializable {
      * @param va The <code>ValidatorAction</code> that is currently being performed.
      * @param field The <code>Field</code> object associated with the current 
      * field being validated.
-     * @param errors The <code>ActionErrors</code> object to add errors to if 
+     * @param errors The <code>ActionMessages</code> object to add errors to if 
      * any validation errors occur.
      * @param request Current request object.
      * @return true if meets stated requirements, false otherwise.
      */
     public static boolean validateRequired(Object bean,
                                            ValidatorAction va, Field field,
-                                           ActionErrors errors,
+                                           ActionMessages errors,
                                            HttpServletRequest request) {
 
         String value = null;
@@ -145,7 +145,7 @@ public class FieldChecks implements Serializable {
      * performed.
      * @param field The <code>Field</code> object associated with the current 
      * field being validated.
-     * @param errors The <code>ActionErrors</code> object to add errors to if 
+     * @param errors The <code>ActionMessages</code> object to add errors to if 
      * any validation errors occur.
      * @param validator The <code>Validator</code> instance, used to access 
      * other field values.
@@ -154,7 +154,7 @@ public class FieldChecks implements Serializable {
      */
     public static boolean validateRequiredIf(Object bean,
                                              ValidatorAction va, Field field,
-                                             ActionErrors errors,
+                                             ActionMessages errors,
                                              org.apache.commons.validator.Validator validator,
                                              HttpServletRequest request) {
                                                  
@@ -251,14 +251,14 @@ public class FieldChecks implements Serializable {
      * performed.
      * @param field The <code>Field</code> object associated with the current 
      * field being validated.
-     * @param errors   The <code>ActionErrors</code> object to add errors to if 
+     * @param errors   The <code>ActionMessages</code> object to add errors to if 
      * any validation errors occur.
      * @param request Current request object.
      * @return true if field matches mask, false otherwise.
      */
     public static boolean validateMask(Object bean,
                                        ValidatorAction va, Field field,
-                                       ActionErrors errors,
+                                       ActionMessages errors,
                                        HttpServletRequest request) {
 
         String mask = field.getVarValue("mask");
@@ -295,14 +295,14 @@ public class FieldChecks implements Serializable {
      *@param va The <code>ValidatorAction</code> that is currently being performed.
      *@param field The <code>Field</code> object associated with the current 
      *field being validated.
-     *@param errors The <code>ActionErrors</code> object to add errors to if 
+     *@param errors The <code>ActionMessages</code> object to add errors to if 
      *any validation errors occur.
      *@param request Current request object.
      *@return A Byte if valid, null otherwise.
      */
     public static Byte validateByte(Object bean,
                                     ValidatorAction va, Field field,
-                                    ActionErrors errors,
+                                    ActionMessages errors,
                                     HttpServletRequest request) {
 
         Byte result = null;
@@ -332,14 +332,14 @@ public class FieldChecks implements Serializable {
      * @param va The <code>ValidatorAction</code> that is currently being performed.
      * @param field The <code>Field</code> object associated with the current 
      * field being validated.
-     * @param errors The <code>ActionErrors</code> object to add errors to if 
+     * @param errors The <code>ActionMessages</code> object to add errors to if 
      * any validation errors occur.
      * @param request Current request object.
      * @return A Short if valid, otherwise null.
      */
     public static Short validateShort(Object bean,
                                       ValidatorAction va, Field field,
-                                      ActionErrors errors,
+                                      ActionMessages errors,
                                       HttpServletRequest request) {
         Short result = null;
         String value = null;
@@ -368,14 +368,14 @@ public class FieldChecks implements Serializable {
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
      * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
      * @return          An Integer if valid, a null otherwise.
      */
     public static Integer validateInteger(Object bean,
                                           ValidatorAction va, Field field,
-                                          ActionErrors errors,
+                                          ActionMessages errors,
                                           HttpServletRequest request) {
         Integer result = null;
         String value = null;
@@ -404,14 +404,14 @@ public class FieldChecks implements Serializable {
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
      * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
      * @return          A Long if valid, a null otherwise.
      */
     public static Long validateLong(Object bean,
                                     ValidatorAction va, Field field,
-                                    ActionErrors errors,
+                                    ActionMessages errors,
                                     HttpServletRequest request) {
         Long result = null;
         String value = null;
@@ -440,14 +440,14 @@ public class FieldChecks implements Serializable {
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
      * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
      * @return A Float if valid, a null otherwise.
      */
     public static Float validateFloat(Object bean,
                                       ValidatorAction va, Field field,
-                                      ActionErrors errors,
+                                      ActionMessages errors,
                                       HttpServletRequest request) {
         Float result = null;
         String value = null;
@@ -476,14 +476,14 @@ public class FieldChecks implements Serializable {
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
      * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
      * @return A Double if valid, a null otherwise.
      */
     public static Double validateDouble(Object bean,
                                         ValidatorAction va, Field field,
-                                        ActionErrors errors,
+                                        ActionMessages errors,
                                         HttpServletRequest request) {
         Double result = null;
         String value = null;
@@ -518,14 +518,14 @@ public class FieldChecks implements Serializable {
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
      * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
      * @return A Date if valid, a null if blank or invalid.
      */
     public static Date validateDate(Object bean,
                                     ValidatorAction va, Field field,
-                                    ActionErrors errors,
+                                    ActionMessages errors,
                                     HttpServletRequest request) {
 
         Date result = null;
@@ -564,19 +564,19 @@ public class FieldChecks implements Serializable {
      * Checks if a fields value is within a range (min &amp; max specified in the
      * vars attribute).
      * 
-     *@deprecated  As of Struts 1.1, replaced by {@link #validateIntRange(java.lang.Object,org.apache.commons.validator.ValidatorAction,org.apache.commons.validator.Field,org.apache.struts.action.ActionErrors,javax.servlet.http.HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link #validateIntRange(java.lang.Object,org.apache.commons.validator.ValidatorAction,org.apache.commons.validator.Field,org.apache.struts.action.ActionMessages,javax.servlet.http.HttpServletRequest)}
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
      *@param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     *@param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      *@param  request  Current request object.
      *@return          True if in range, false otherwise.
      */
     public static boolean validateRange(Object bean,
                                         ValidatorAction va, Field field,
-                                        ActionErrors errors,
+                                        ActionMessages errors,
                                         HttpServletRequest request) {
         return validateIntRange(bean, va, field, errors, request);
     }
@@ -589,14 +589,14 @@ public class FieldChecks implements Serializable {
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
      * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
      * @return True if in range, false otherwise.
      */
     public static boolean validateIntRange(Object bean,
                                            ValidatorAction va, Field field,
-                                           ActionErrors errors,
+                                           ActionMessages errors,
                                            HttpServletRequest request) {
 
         String value = null;
@@ -634,14 +634,14 @@ public class FieldChecks implements Serializable {
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
      * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
      * @return          True if in range, false otherwise.
      */
     public static boolean validateDoubleRange(Object bean,
                                               ValidatorAction va, Field field,
-                                              ActionErrors errors,
+                                              ActionMessages errors,
                                               HttpServletRequest request) {
 
         String value = null;
@@ -679,14 +679,14 @@ public class FieldChecks implements Serializable {
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
      * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
      * @return True if in range, false otherwise.
      */
     public static boolean validateFloatRange(Object bean,
                                              ValidatorAction va, Field field,
-                                             ActionErrors errors,
+                                             ActionMessages errors,
                                              HttpServletRequest request) {
 
         String value = null;
@@ -724,14 +724,14 @@ public class FieldChecks implements Serializable {
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
      * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
      * @return The credit card as a Long, a null if invalid, blank, or null.
      */
     public static Long validateCreditCard(Object bean,
                                           ValidatorAction va, Field field,
-                                          ActionErrors errors,
+                                          ActionMessages errors,
                                           HttpServletRequest request) {
 
         Long result = null;
@@ -761,14 +761,14 @@ public class FieldChecks implements Serializable {
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
      * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
      * @return True if valid, false otherwise.
      */
     public static boolean validateEmail(Object bean,
                                         ValidatorAction va, Field field,
-                                        ActionErrors errors,
+                                        ActionMessages errors,
                                         HttpServletRequest request) {
 
         String value = null;
@@ -795,14 +795,14 @@ public class FieldChecks implements Serializable {
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
      * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
      * @return True if stated conditions met.
      */
     public static boolean validateMaxLength(Object bean,
                                             ValidatorAction va, Field field,
-                                            ActionErrors errors,
+                                            ActionMessages errors,
                                             HttpServletRequest request) {
 
         String value = null;
@@ -839,14 +839,14 @@ public class FieldChecks implements Serializable {
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
      * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
      * @return True if stated conditions met.
      */
     public static boolean validateMinLength(Object bean,
                                             ValidatorAction va, Field field,
-                                            ActionErrors errors,
+                                            ActionMessages errors,
                                             HttpServletRequest request) {
 
         String value = null;

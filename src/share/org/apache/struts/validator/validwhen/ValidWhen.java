@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhen.java,v 1.7 2003/08/23 17:18:39 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/08/23 17:18:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhen.java,v 1.8 2003/09/26 18:12:24 turner Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/09/26 18:12:24 $
  *
  * ====================================================================
  *
@@ -68,7 +68,7 @@ import org.apache.commons.validator.Field;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorUtil;
-import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.validator.Resources;
 
 /**
@@ -99,7 +99,7 @@ public class ValidWhen {
      * @param field The <code>Field</code> object associated with the current
      *      field being validated.
      * 
-     * @param errors The <code>ActionErrors</code> object to add errors to if any
+     * @param errors The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * 
      * @param request Current request object.
@@ -111,7 +111,7 @@ public class ValidWhen {
         Object bean,
         ValidatorAction va,
         Field field,
-        ActionErrors errors,
+        ActionMessages errors,
         Validator validator,
         HttpServletRequest request) {
             
