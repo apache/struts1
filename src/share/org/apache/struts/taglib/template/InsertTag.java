@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.2 2000/10/12 23:05:21 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/10/12 23:05:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.3 2001/01/19 01:26:01 dgeary Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/01/19 01:26:01 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.taglib.template.util.*;
  * tags, which are accessed by &lt;template:get&gt; in the template.
  *
  * @author David Geary
- * @version $Revision: 1.2 $ $Date: 2000/10/12 23:05:21 $
+ * @version $Revision: 1.3 $ $Date: 2001/01/19 01:26:01 $
  */
 public class InsertTag extends TagSupport {
 
@@ -118,13 +118,11 @@ public class InsertTag extends TagSupport {
    }
 
    /**
-     * Process the end tag by including the template. The flush is necessary
-     * for some errant servlet containers.
+     * Process the end tag by including the template. 
      */
    public int doEndTag() throws JspException {
 
       try {
-         pageContext.getOut().flush();
          pageContext.include(template);
       }
       catch(Exception ex) { // IOException or ServletException
