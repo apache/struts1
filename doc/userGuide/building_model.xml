@@ -5,6 +5,8 @@
     <author>Craig R. McClanahan</author>
     <author>Mike Schachter</author>
     <author>Ted Husted</author>
+    <author>Martin Cooper</author>
+    <author>Ed Burns</author>
     <title>The Struts User's Guide - Building Model Components</title>
   </properties>
   
@@ -14,16 +16,18 @@
       <section name="2.1 Overview" href="overview">
         
         <p>
-          The application requirements document that you are using will likely
-        have focused on the user interface to be created.  However, you should ensure
-        that the processing required for each submitted request is also clearly
-        defined.  In general, the developer of the <i>Model</i> components will be
-        focusing on the creation of JavaBeans classes that support all of the
-        functional requirements.  The precise nature of the beans required by a
-        particular application will vary widely depending on those requirements,
-        but they can generally be classified into several categories discussed
-        below.  However, a brief review of the concept of "scope" as it relates
-        to beans is useful first.
+        Many requirements documents used for building web applications
+        focus on the <i>View</i>.  However, you should ensure that the
+        processing required for each submitted request is also clearly
+        defined from the <i>Model's</i> perspective.  In general, the
+        developer of the <i>Model</i> components will be focusing on
+        the creation of JavaBeans classes that support all of the
+        functional requirements.  The precise nature of the beans
+        required by a particular application will vary widely
+        depending on those requirements, but they can generally be
+        classified into several categories discussed below.  However,
+        a brief review of the concept of "scope" as it relates to
+        beans and JSP is useful first.
       </p>
     </section>
     
@@ -84,7 +88,8 @@
         The Struts framework generally assumes that you have created an
         <code>ActionForm</code> bean (that is, a Java class extending the
         <code>ActionForm</code> class) for each input form required in your
-        application.  If you define such beans in your <code>ActionMapping</code>
+        application. <code>ActionForm</code> beans are sometimes just called
+        "form beans". If you declare such beans in your <code>ActionMapping</code>
         configuration file (see "<a href="building_controller.html#config">
         Building the Controller Components</a>"), the Struts  controller servlet 
         will automatically perform the following services for you, before 
