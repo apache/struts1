@@ -18,6 +18,25 @@
       <form-property name="language" type="java.lang.String" />
       <form-property name="country" type="java.lang.String" />
     </form-bean>
+    <form-bean name="bundlesForm" type="org.apache.struts.validator.DynaValidatorForm">
+      <form-property name="name" type="java.lang.String" />
+      <form-property name="address" type="java.lang.String" />
+      <form-property name="phone" type="java.lang.String" />
+      <form-property name="dob" type="java.lang.String" />
+      <form-property name="age" type="java.lang.String" />
+    </form-bean>
+    <form-bean name="validWhenForm" type="org.apache.struts.validator.DynaValidatorForm">
+      <form-property name="firstName" type="java.lang.String" initial="Fred" />
+      <form-property name="lastName" type="java.lang.String" />
+      <form-property name="fieldA" type="java.lang.String" />
+      <form-property name="fieldB" type="java.lang.String" initial="XYZ" />
+      <form-property name="min" type="java.lang.String" initial="25" />
+      <form-property name="max" type="java.lang.String" initial="9" />
+      <form-property name="address1" type="java.lang.String" />
+      <form-property name="address2" type="java.lang.String" />
+      <form-property name="city" type="java.lang.String" initial="Boston" />
+      <form-property name="zip" type="java.lang.String" />
+    </form-bean>
   </form-beans>
   <!-- ======================================== Global Forward Definitions  -->
   <global-forwards>
@@ -54,6 +73,28 @@
     <action path="/jsType-submit" type="org.apache.struts.webapp.validator.TypeAction" name="jsTypeForm" scope="request" validate="true" input="/jsType.jsp">
       <forward name="success" path="/welcome.do" />
     </action>
+
+    <!-- Bundles Examples -->
+    <action path="/viewBundleExamples" forward="/bundleExamples.jsp" />
+    <action path="/validateBundleExamples" type="org.apache.struts.actions.ForwardAction" name="bundlesForm" scope="request" 
+            parameter="/validator/welcome.do" validate="true" input="input" >
+            <forward name="input" path="/viewBundleExamples.do" />
+    </action>
+
+    <!-- JavaScript Bundles Examples -->
+    <action path="/viewJsBundleExamples" forward="/bundleExamplesJS.jsp" />
+    <action path="/validateJsBundleExamples" type="org.apache.struts.actions.ForwardAction" name="bundlesForm" scope="request" 
+            parameter="/validator/welcome.do" validate="true" input="input" >
+            <forward name="input" path="/viewJsBundleExamples.do" />
+    </action>
+
+    <!-- validwhen Examples -->
+    <action path="/viewValidWhenExamples" forward="/validWhenExamples.jsp" />
+    <action path="/validateValidWhenExamples" type="org.apache.struts.actions.ForwardAction" name="validWhenForm" scope="request" 
+            parameter="/validator/welcome.do" validate="true" input="input" >
+            <forward name="input" path="/viewValidWhenExamples.do" />
+    </action>
+
     <!-- Locale Action -->
     <action path="/locale" type="org.apache.struts.webapp.validator.LocaleAction" name="localeForm" scope="request">
       <forward name="success" path="/welcome.do" />
@@ -63,6 +104,8 @@
   <controller inputForward="true" />
   <!-- ===================================== Message Resources Definitions  -->
   <message-resources parameter="org.apache.struts.webapp.validator.MessageResources" />
+  <message-resources key="other" parameter="org.apache.struts.webapp.validator.OtherMessageResources" />
+  <message-resources key="different" parameter="org.apache.struts.webapp.validator.DifferentMessageResources" />
   <!-- ============================================ Plug Ins Configuration  -->
   <!-- 
        Add multiple validator resource files by setting the pathnames property 

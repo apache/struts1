@@ -42,8 +42,6 @@
    </li>
 </ul>
 
-<p>&nbsp;</p>
-
 <h3><bean:message key="typeForm.title"/></h3>
 <ul>
    <li>
@@ -56,7 +54,25 @@
    </li>
 </ul>
 
-<p>&nbsp;</p>
+<h3><bean:message key="bundles.title"/></h3>
+<ul>
+   <li>
+      <html:link action="/viewBundleExamples"><bean:message key="bundlesExamples.title"/></html:link> -
+      <bean:message key="bundlesExamples.description"/>
+   </li>
+   <li>
+      <html:link action="/viewJsBundleExamples"><bean:message key="javascript.bundlesExamples.title"/></html:link> -
+      <bean:message key="javascript.bundlesExamples.description"/>
+   </li>
+</ul>
+
+<h3><bean:message key="validWhen.title"/></h3>
+<ul>
+   <li>
+      <html:link action="/viewValidWhenExamples"><bean:message key="validWhenExamples.title"/></html:link> -
+      <bean:message key="validWhenExamples.description"/>
+   </li>
+</ul>
 
 <h3>Change Language | Changez Le Langage</h3>
 <ul>
