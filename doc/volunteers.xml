@@ -82,14 +82,18 @@
                <li>
                <strong>James Turner</strong>
                (turner at blackbear.com)</li>
+               <li>
+               <strong>Hubert Rabago</strong>
+               (hrabago at apache.org)</li>
+               <li>
+               <strong>David Geary</strong>
+               (dgeary at apache.org)</li>
 
             </ul>
          </section>
 
          <section name="Emeritus Committers" href="comitters.emeritus">
             <ul>
-               <li>David Geary</li>
-
                <li>Luis Arias</li>
 
                <li>Pierre Delilse</li>
@@ -106,7 +110,7 @@
          </section>
 
          <section name="More About Us" href="about">
-            <h4 id="craigmcc">Craig R. McClanahan -- PMC Chair</h4>
+            <h4 id="craigmcc">Craig R. McClanahan -- PMC Member</h4>
 
             <p>I've been involved with servlet and JSP technology since around 1998. It started out that I needed a way to build some web applications for several projects, and liked Java a lot better than the alternatives. I also liked the price tag of open source software, and started using Apache JServ -- later, getting involved in the project (like many people, I was whining about the twelve months it took to get from version 0.9 to version 1.0, and my son said "Dad, you know Java -- go help them finish it!" -- so I did :-).</p>
 
@@ -148,7 +152,7 @@
 
             <p>From a professional point of view, I have a Ph.D. in computer science. I have worked for 3 years in the R&amp;D department of a worldwide company developing Internet banking solutions. I am now a researcher at a university, and work European research projects. My main research interest is WWW, Distributed Systems and Object Oriented Design. When developing code, I always try to first propose reusable pieces of code.</p>
 
-            <h4 id="martinc">Martin Cooper -- PMC Member</h4>
+            <h4 id="martinc">Martin Cooper -- PMC Chair</h4>
             <p>
               Early in the year 2000, I was asked, by my employer at that time,
               to investigate the best way to develop a new web-based application
