@@ -17,8 +17,6 @@
 package org.apache.struts.chain.commands;
 
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.chain.contexts.ActionContext;
@@ -36,7 +34,7 @@ import org.apache.struts.config.ModuleConfig;
  * @version $Rev$ $Date$
  */
 
-public abstract class AbstractExceptionHandler implements Command {
+public abstract class AbstractExceptionHandler extends ActionCommandBase {
 
 
     // ------------------------------------------------------ Instance Variables
@@ -62,8 +60,8 @@ public abstract class AbstractExceptionHandler implements Command {
      * @return <code>false</code> if a <code>ForwardConfig</code> is returned,
      *  else <code>true</code> to complete processing
      */
-    public boolean execute(Context context) throws Exception {
-        ActionContext actionCtx = (ActionContext) context;
+    public boolean execute(ActionContext actionCtx) throws Exception {
+
         // Look up the exception that was thrown
         Exception exception = actionCtx.getException();
         if (exception == null) {

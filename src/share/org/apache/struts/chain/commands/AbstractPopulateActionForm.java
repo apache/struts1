@@ -19,8 +19,6 @@ package org.apache.struts.chain.commands;
 
 import java.util.Map;
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.chain.contexts.ActionContext;
@@ -34,7 +32,7 @@ import org.apache.struts.config.ActionConfig;
  * @version $Rev$ $Date$
  */
 
-public abstract class AbstractPopulateActionForm implements Command {
+public abstract class AbstractPopulateActionForm extends ActionCommandBase {
 
 
     // ---------------------------------------------------------- Public Methods
@@ -47,9 +45,7 @@ public abstract class AbstractPopulateActionForm implements Command {
      *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(Context context) throws Exception {
-
-        ActionContext actionCtx = (ActionContext) context;
+    public boolean execute(ActionContext actionCtx) throws Exception {
         // Is there a form bean for this request?
         ActionForm actionForm = actionCtx.getActionForm();
 

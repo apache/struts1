@@ -19,8 +19,6 @@ package org.apache.struts.chain.commands;
 
 import java.util.Locale;
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.chain.contexts.ActionContext;
@@ -34,7 +32,7 @@ import org.apache.struts.config.ModuleConfig;
  * @version $Rev$ $Date$
  */
 
-public abstract class AbstractSelectLocale implements Command {
+public abstract class AbstractSelectLocale extends ActionCommandBase {
 
     private static final Log log = LogFactory.getLog(AbstractSelectLocale.class);
 
@@ -48,9 +46,7 @@ public abstract class AbstractSelectLocale implements Command {
      *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(Context context) throws Exception {
-        log.trace("execute(" + context + ")");
-        ActionContext actionCtx = (ActionContext) context;
+    public boolean execute(ActionContext actionCtx) throws Exception {
 
         // Are we configured to select Locale automatically?
         log.trace("retrieve config...");

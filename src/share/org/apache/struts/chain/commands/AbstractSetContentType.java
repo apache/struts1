@@ -17,8 +17,6 @@
 package org.apache.struts.chain.commands;
 
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ModuleConfig;
 
@@ -31,7 +29,7 @@ import org.apache.struts.config.ModuleConfig;
  * @version $Rev$ $Date$
  */
 
-public abstract class AbstractSetContentType implements Command {
+public abstract class AbstractSetContentType extends ActionCommandBase {
 
 
     // ---------------------------------------------------------- Public Methods
@@ -45,8 +43,7 @@ public abstract class AbstractSetContentType implements Command {
      *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(Context context) throws Exception {
-        ActionContext actionCtx = (ActionContext) context;
+    public boolean execute(ActionContext actionCtx) throws Exception {
         // Retrieve the ModuleConfig instance
         ModuleConfig moduleConfig = actionCtx.getModuleConfig();
             

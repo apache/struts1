@@ -38,7 +38,7 @@ import org.apache.struts.chain.contexts.ActionContext;
  * @version $Rev$ $Date$
  */
 
-public class ExceptionCatcher implements Filter {
+public class ExceptionCatcher extends ActionCommandBase implements Filter {
 
 
     // ------------------------------------------------------ Instance Variables
@@ -114,8 +114,7 @@ public class ExceptionCatcher implements Filter {
      *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(Context context) throws Exception {
-        ActionContext actionCtx = (ActionContext) context;
+    public boolean execute(ActionContext actionCtx) throws Exception {
         actionCtx.setException(null);
         return (false);
 

@@ -17,8 +17,6 @@
 package org.apache.struts.chain.commands;
 
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.chain.contexts.ActionContext;
@@ -35,7 +33,7 @@ import org.apache.struts.config.ModuleConfig;
  * @version $Rev$ $Date$
  */
 
-public abstract class AbstractSelectInput implements Command {
+public abstract class AbstractSelectInput extends ActionCommandBase {
 
 
     // ------------------------------------------------------ Instance Variables
@@ -54,9 +52,7 @@ public abstract class AbstractSelectInput implements Command {
      *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(Context context) throws Exception {
-
-        ActionContext actionCtx = (ActionContext) context;
+    public boolean execute(ActionContext actionCtx) throws Exception {
 
         // Skip processing if the current request is valid
         Boolean valid = actionCtx.getFormValid();

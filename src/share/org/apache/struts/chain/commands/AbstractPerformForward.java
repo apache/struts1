@@ -17,8 +17,6 @@
 package org.apache.struts.chain.commands;
 
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ForwardConfig;
 
@@ -31,7 +29,7 @@ import org.apache.struts.config.ForwardConfig;
  * @version $Rev$ $Date$
  */
 
-public abstract class AbstractPerformForward implements Command {
+public abstract class AbstractPerformForward extends ActionCommandBase {
 
 
  
@@ -47,8 +45,7 @@ public abstract class AbstractPerformForward implements Command {
      *
      * @return <code>true</code> so that processing completes
      */
-    public boolean execute(Context context) throws Exception {
-        ActionContext actionCtx = (ActionContext) context;
+    public boolean execute(ActionContext actionCtx) throws Exception {
         // Is there a ForwardConfig to be performed?
         ForwardConfig forwardConfig = actionCtx.getForwardConfig();
         if (forwardConfig == null) {

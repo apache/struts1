@@ -17,8 +17,6 @@
 package org.apache.struts.chain.commands;
 
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.chain.contexts.ActionContext;
@@ -34,7 +32,7 @@ import org.apache.struts.config.ForwardConfig;
  * @version $Rev$ $Date$
  */
 
-public abstract class AbstractExecuteAction implements Command {
+public abstract class AbstractExecuteAction extends ActionCommandBase {
 
 
     // ---------------------------------------------------------- Public Methods
@@ -51,9 +49,7 @@ public abstract class AbstractExecuteAction implements Command {
      *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(Context context) throws Exception {
-
-        ActionContext actionCtx = (ActionContext) context;
+    public boolean execute(ActionContext actionCtx) throws Exception {
 
         // Skip processing if the current request is not valid
         Boolean valid = actionCtx.getFormValid();

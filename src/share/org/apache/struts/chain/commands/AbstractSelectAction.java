@@ -17,8 +17,6 @@
 package org.apache.struts.chain.commands;
 
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ModuleConfig;
@@ -32,7 +30,7 @@ import org.apache.struts.config.ModuleConfig;
  * @version $Rev$ $Date$
  */
 
-public abstract class AbstractSelectAction implements Command {
+public abstract class AbstractSelectAction extends ActionCommandBase {
 
 
 
@@ -51,8 +49,7 @@ public abstract class AbstractSelectAction implements Command {
      *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(Context context) throws Exception {
-        ActionContext actionCtx = (ActionContext) context;
+    public boolean execute(ActionContext actionCtx) throws Exception {
 
         // Identify the matching path for this request
         String path = getPath(actionCtx);

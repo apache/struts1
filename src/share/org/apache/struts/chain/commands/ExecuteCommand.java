@@ -18,7 +18,6 @@ package org.apache.struts.chain.commands;
 import org.apache.commons.chain.Catalog;
 import org.apache.commons.chain.CatalogFactory;
 import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.chain.contexts.ActionContext;
@@ -35,7 +34,7 @@ import org.apache.struts.config.ActionConfig;
  * into the context, unless it has already dealt with the response.</p>
  * @version $Id$
  */
-public class ExecuteCommand implements Command {
+public class ExecuteCommand extends ActionCommandBase {
 
 
     // ------------------------------------------------------ Instance Variables
@@ -55,15 +54,13 @@ public class ExecuteCommand implements Command {
      * @return the result of the lookup command's <code>execute</code> method, if executed,
      * or <code>false</code> if it was not executed.
      */
-    public boolean execute(Context context) throws Exception {
-
-        ActionContext actionCtx = (ActionContext) context;
+    public boolean execute(ActionContext actionCtx) throws Exception {
         if (shouldProcess(actionCtx)) {
 
             Command command = getCommand(actionCtx);
 
             if (command != null) {
-                return (command.execute(context));
+                return (command.execute(actionCtx));
             } 
 
         }

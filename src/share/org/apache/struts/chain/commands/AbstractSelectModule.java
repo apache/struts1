@@ -17,8 +17,6 @@
 package org.apache.struts.chain.commands;
 
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.apache.struts.Globals;
 import org.apache.struts.chain.Constants;
 import org.apache.struts.chain.contexts.ActionContext;
@@ -35,7 +33,7 @@ import org.apache.struts.util.MessageResources;
  * @version $Rev$ $Date$
  */
 
-public abstract class AbstractSelectModule implements Command {
+public abstract class AbstractSelectModule extends ActionCommandBase {
 
 
     // ------------------------------------------------------ Instance Variables
@@ -61,10 +59,7 @@ public abstract class AbstractSelectModule implements Command {
      *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(Context context) throws Exception {
-
-        // Identify the module prefix for the current module
-        ActionContext actionCtx = (ActionContext) context;
+    public boolean execute(ActionContext actionCtx) throws Exception {
         String prefix = getPrefix(actionCtx);
 
         // Cache the corresponding ModuleConfig and MessageResources instances

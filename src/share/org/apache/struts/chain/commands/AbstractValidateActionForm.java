@@ -17,8 +17,6 @@
 package org.apache.struts.chain.commands;
 
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionErrors;
@@ -36,7 +34,7 @@ import org.apache.struts.config.ActionConfig;
  * @version $Rev$ $Date$
  */
 
-public abstract class AbstractValidateActionForm implements Command {
+public abstract class AbstractValidateActionForm extends ActionCommandBase {
 
 
     // ------------------------------------------------------ Instance Variables
@@ -56,8 +54,7 @@ public abstract class AbstractValidateActionForm implements Command {
      * @return <code>false</code> so that processing continues, if there are
      *  no validation errors; otherwise <code>true</code>
      */
-    public boolean execute(Context context) throws Exception {
-        ActionContext actionCtx = (ActionContext) context;
+    public boolean execute(ActionContext actionCtx) throws Exception {
 
         // Is there a form bean for this request?
         ActionForm actionForm = actionCtx.getActionForm();

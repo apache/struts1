@@ -17,8 +17,6 @@
 package org.apache.struts.chain.commands;
 
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.chain.contexts.ActionContext;
@@ -34,7 +32,7 @@ import org.apache.struts.config.ActionConfig;
  * @version $Rev$ $Date$
  */
 
-public abstract class AbstractAuthorizeAction implements Command {
+public abstract class AbstractAuthorizeAction extends ActionCommandBase {
 
 
     // ------------------------------------------------------ Instance Variables
@@ -55,9 +53,7 @@ public abstract class AbstractAuthorizeAction implements Command {
      * @return <code>false</code> if the user is authorized for the selected
      * action, else <code>true</code> to abort processing.
      */
-    public boolean execute(Context context) throws Exception {
-
-        ActionContext actionCtx = (ActionContext) context;
+    public boolean execute(ActionContext actionCtx) throws Exception {
 
         // Retrieve ActionConfig
         ActionConfig actionConfig = actionCtx.getActionConfig();

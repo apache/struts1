@@ -17,8 +17,6 @@
 package org.apache.struts.chain.commands;
 
 
-import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ModuleConfig;
 
@@ -31,7 +29,7 @@ import org.apache.struts.config.ModuleConfig;
  * @version $Rev$ $Date$
  */
 
-public abstract class AbstractRequestNoCache implements Command {
+public abstract class AbstractRequestNoCache extends ActionCommandBase {
 
 
     // ---------------------------------------------------------- Public Methods
@@ -45,10 +43,9 @@ public abstract class AbstractRequestNoCache implements Command {
      *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(Context context) throws Exception {
+    public boolean execute(ActionContext actionCtx) throws Exception {
 
         // Retrieve the ModuleConfig instance
-        ActionContext actionCtx = (ActionContext) context;
         ModuleConfig moduleConfig = actionCtx.getModuleConfig();
             
         // If the module is configured for no caching, request no caching    
