@@ -154,7 +154,7 @@ public class TestActionServlet extends ServletTestCase
     public void testInitApplicationOk1() throws ServletException
     {
         // initialize config
-        config.setInitParameter("application", "org.apache.struts.example.ApplicationResources");
+        config.setInitParameter("application", "org.apache.struts.webapp.example.ApplicationResources");
 
         ActionServlet servlet = new ActionServlet();
         servlet.init(config);        

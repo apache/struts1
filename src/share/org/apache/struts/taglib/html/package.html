@@ -102,11 +102,11 @@ via a Form Bean definition.</p>
 
 <p>Here's a clip from the Struts Example configuration:</p>
 
-<pre>&lt;action-mappings&gt;<br>  &lt;!-- Process a user logon --&gt;<br>  &lt;action path="/logon"<br>    type="org.apache.struts.example.LogonAction"<br>    name="logonForm"<br>    scope="request"<br>    input="/logon.jsp"&gt;<br>  &lt;/action&gt;<br>  &lt; ... /&gt;<br>&lt;/action-mappings&gt;<br>&lt;form-beans&gt;<br>  &lt;!-- Logon form bean --&gt;<br>  &lt;form-bean name="logonForm"<br>    type="org.apache.struts.example.LogonForm"/&gt;<br>  &lt; ... /&gt;<br>  &lt;/form-beans&gt;<br>&lt;/pre&gt;<br></pre>
+<pre>&lt;action-mappings&gt;<br>  &lt;!-- Process a user logon --&gt;<br>  &lt;action path="/logon"<br>    type="org.apache.struts.webapp.example.LogonAction"<br>    name="logonForm"<br>    scope="request"<br>    input="/logon.jsp"&gt;<br>  &lt;/action&gt;<br>  &lt; ... /&gt;<br>&lt;/action-mappings&gt;<br>&lt;form-beans&gt;<br>  &lt;!-- Logon form bean --&gt;<br>  &lt;form-bean name="logonForm"<br>    type="org.apache.struts.webapp.example.LogonForm"/&gt;<br>  &lt; ... /&gt;<br>  &lt;/form-beans&gt;<br>&lt;/pre&gt;<br></pre>
 
 <p>Given this configuration, the HTML form tag for <code>logon.jsp</code>
   will default to using "<code>logonForm</code>" as its name property and
-"<code> org.apache.struts.example.LogonForm</code>" as the attribute's type.
+"<code> org.apache.struts.webapp.example.LogonForm</code>" as the attribute's type.
 This way you can manage the namespace for your framework components from
 the configuration file.</p>
 

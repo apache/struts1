@@ -1148,7 +1148,7 @@ throws Exception;
     <form-beans>
         <form-bean
             name="logonForm"
-            type="org.apache.struts.example.LogonForm" />
+            type="org.apache.struts.webapp.example.LogonForm" />
      </form-beans>
     <global-forwards
         type="org.apache.struts.action.ActionForward" />
@@ -1160,7 +1160,7 @@ throws Exception;
     <action-mappings>
         <action
             path="/logon"
-            type="org.apache.struts.example.LogonAction"
+            type="org.apache.struts.webapp.example.LogonAction"
             name="logonForm"
             scope="request"
             input="/logon.jsp"
@@ -1172,7 +1172,7 @@ throws Exception;
 
     <p>
     First the form bean is defined.  
-    A basic bean of class "<code>org.apache.struts.example.LogonForm</code>"
+    A basic bean of class "<code>org.apache.struts.webapp.example.LogonForm</code>"
     is mapped to the logical name "<code>logonForm</code>". 
     This name is used as a session or request attribute name for the form 
     bean.
@@ -1206,7 +1206,7 @@ throws Exception;
 <pre><code><![CDATA[<!-- Edit mail subscription -->
 <action    
     path="/editSubscription"
-    type="org.apache.struts.example.EditSubscriptionAction"
+    type="org.apache.struts.webapp.example.EditSubscriptionAction"
     name="subscriptionForm"
     scope="request"
     validate="false">

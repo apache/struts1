@@ -496,7 +496,7 @@ null="false" />
   <init-param>
     <param-name>application</param-name>
     <param-value>
-      org.apache.struts.example.ApplicationResources
+      org.apache.struts.webapp.example.ApplicationResources
     </param-value>
   </init-param>
   <init-param>
@@ -512,7 +512,7 @@ null="false" />
   <init-param>
     <param-name>mapping</param-name>
     <param-value>
-      org.apache.struts.example.ApplicationMapping
+      org.apache.struts.webapp.example.ApplicationMapping
     </param-value>
   </init-param>
   <load-on-startup>2</load-on-startup>

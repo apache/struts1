@@ -33,7 +33,7 @@
 
     <!-- Example logon form bean 
     <form-bean      name="logonForm"
-                    type="org.apache.struts.example.LogonForm"/>
+                    type="org.apache.struts.webapp.example.LogonForm"/>
      -->
 
   </form-beans>
@@ -54,7 +54,7 @@
 
     <!-- Example logon action 
     <action    path="/logon"
-               type="org.apache.struts.example.LogonAction"
+               type="org.apache.struts.webapp.example.LogonAction"
                name="logonForm"
               scope="request"
               input="/logon.jsp">
@@ -63,7 +63,7 @@
 
     <!-- Example logoff action 
     <action    path="/logoff"
-               type="org.apache.struts.example.LogoffAction">
+               type="org.apache.struts.webapp.example.LogoffAction">
       <forward name="success"              path="/index.jsp"/>
     </action>
     -->
