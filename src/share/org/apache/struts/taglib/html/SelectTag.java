@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.18 2003/07/31 00:19:04 dgraham Exp $
- * $Revision: 1.18 $
- * $Date: 2003/07/31 00:19:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.19 2003/11/28 07:25:55 martinc Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/11/28 07:25:55 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.18 $ $Date: 2003/07/31 00:19:04 $
+ * @version $Revision: 1.19 $ $Date: 2003/11/28 07:25:55 $
  */
 public class SelectTag extends BaseHandlerTag {
 
@@ -367,6 +367,7 @@ public class SelectTag extends BaseHandlerTag {
         StringBuffer results = new StringBuffer();
         if (saveBody != null) {
             results.append(saveBody);
+            saveBody = null;
         }
         results.append("</select>");
 
