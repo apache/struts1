@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.7 2003/03/13 01:44:47 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/03/13 01:44:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.8 2003/04/19 19:06:02 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/04/19 19:06:02 $
  *
  * ====================================================================
  * 
@@ -62,6 +62,7 @@
 
 package org.apache.struts.util;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -86,7 +87,8 @@ import org.apache.commons.logging.LogFactory;
  * the same locale + key combination.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2003/03/13 01:44:47 $
+ * @author David Graham
+ * @version $Revision: 1.8 $ $Date: 2003/04/19 19:06:02 $
  */
 public class PropertyMessageResources extends MessageResources {
 
@@ -283,38 +285,40 @@ public class PropertyMessageResources extends MessageResources {
         Properties props = new Properties();
 
         // Load the specified property resource
-        try {
-            if (log.isTraceEnabled()) {
-                log.trace("  Loading resource '" + name + "'");
-            }
-            ClassLoader classLoader =
-                Thread.currentThread().getContextClassLoader();
-            if (classLoader == null) {
-                classLoader = this.getClass().getClassLoader();
-            }
-            is = classLoader.getResourceAsStream(name);
-            if (is != null) {
+        if (log.isTraceEnabled()) {
+            log.trace("  Loading resource '" + name + "'");
+        }
+        
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        if (classLoader == null) {
+            classLoader = this.getClass().getClassLoader();
+        }
+        
+        is = classLoader.getResourceAsStream(name);
+        if (is != null) {
+            try {
                 props.load(is);
-                is.close();
-            }
-            if (log.isTraceEnabled()) {
-                log.trace("  Loading resource completed");
-            }
-        } catch (Throwable t) {
-            log.error("loadLocale()", t);
-            if (is != null) {
+                
+            } catch (IOException e) {
+                log.error("loadLocale()", e);
+            } finally {
                 try {
                     is.close();
-                } catch (Throwable u) {
-                    ;
+                } catch (IOException e) {
+                    log.error("loadLocale()", e);
                 }
             }
+        }
+        
+        if (log.isTraceEnabled()) {
+            log.trace("  Loading resource completed");
         }
 
         // Copy the corresponding values into our cache
         if (props.size() < 1) {
             return;
         }
+        
         synchronized (messages) {
             Iterator names = props.keySet().iterator();
             while (names.hasNext()) {
