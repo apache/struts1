@@ -22,7 +22,7 @@
 # source code.  To use this file, make a copy of it in "build.properties" and
 # customize the values as required.
 #
-# $Id: build.properties.sample,v 1.7 2004/07/06 07:26:35 craigmcc Exp $
+# $Id: build.properties.sample,v 1.8 2004/07/07 19:40:29 craigmcc Exp $
 
 
 # ---------------------------- BUILD MODE -------------------------------------
@@ -32,22 +32,27 @@
 # than the Java Web Services Developer Pack (JWSDP) 1.2 or later, which makes
 # many of these libraries available to web applications already.
 
-# build.standalone=true
+build.standalone=true
 
 
 # ---------------------- DEPENDENCY HOME DIRECTORIES --------------------------
 
-# The absolute or relative pathname of the Java Web Services Developer Pack
-# (JWSDP) Version 1.2 or later installation directory
-jwsdp.home=/usr/local/jwsdp-1.2
 
-# The absolute or relative pathname of the JavaServer Faces Final Release
-# Distribution Directory
-jsf.home=/usr/local/jsf-1_0
+# The absolute or relative pathname to your installation of the JavaServer Faces
+# refererence implementation (version 1.1 or later).
+jsf.home=/usr/local/jsf-1_1
 
-# The absolute or relative pathname of the JSP Standard Tag Library 1.0 or later
-# distribution directory
-jstl.home=${jwsdp.home}/jstl
+# The absolute or relative pathname to your installation of the JSP Standard
+# Tag Library.  If you are running against a Servlet 2.3 / JSP 1.2 container
+# (such as Tomcat 4.1.x), use version 1.0.x of JSTL.  For a Servlet 2.4 /
+# JSP 2.0 container (such as Tomcat 5.0.x or any JWSDP release), use
+# version 1.1.x of JSTL.
+jstl.home=/usr/local/standard-1.0.3
+
+# The absolute or relative pathname to your installation of Tomcat 4.1.x,
+# Tomcat 5.0.x, or the Java Web Services Developer Pack (version 1.4 or later)
+# server.
+server.home=/usr/local/jakarta-tomcat-4.1.29
 
 # The absolute or relative pathname of the Struts 1.1 (or later)
 # Distribution Directory
@@ -89,7 +94,7 @@ jsf-impl.jar=${jsf.home}/lib/jsf-impl.jar
 # The absolute or relative pathname of the JSP 2.0 API Classes
 # (If you are compiling against a combined Servlet 2.3 / JSP 1.2 API
 # classes JAR file, this property can be omitted)
-jsp-api.jar=${jwsdp.home}/common/lib/jsp-api.jar
+jsp-api.jar=${server.home}/common/lib/jsp-api.jar
 
 # The absolute or relative pathname of the JSP Standard Tag Library
 # (JSTL) API Classes
@@ -97,7 +102,7 @@ jstl.jar=${jstl.home}/lib/jstl.jar
 
 # The absolute or relative pathname of the Servlet 2.4 API Classes
 # (or a combined Servlet 2.3 / JSP 1.2 API classes JAR file)
-servlet.jar=${jwsdp.home}/common/lib/servlet-api.jar
+servlet.jar=${servlet.home}/common/lib/servlet.jar
 
 # The absolute or relative pathname of the JSP Standard Tag Library
 # (JSTL) RI Classes

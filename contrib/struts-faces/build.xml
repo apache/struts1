@@ -31,9 +31,9 @@
 
 
   <!-- Dependency home directory defaults -->
-  <property name="jwsdp.home"       value="/usr/local/jwsdp-1.2"/>
-  <property name="jsf.home"         value="/usr/local/jsf-1_0"/>
-  <property name="jstl.home"        value="${jwsdp.home}/jstl"/>
+  <property name="jsf.home"         value="/usr/local/jsf-1_1"/>
+  <property name="jstl.home"        value="/usr/local/standard-1.0.3"/>
+  <property name="server.home"       value="/usr/local/jakarta-tomcat-4.1.29"/>
   <property name="struts.home"      value="/usr/local/jakarta-struts-1.1"/>
 
 
@@ -55,9 +55,9 @@
   <property name="jakarta-oro.jar"  value="${struts.home}/lib/jakarta-oro.jar"/>
   <property name="jsf-api.jar"      value="${jsf.home}/lib/jsf-api.jar"/>
   <property name="jsf-impl.jar"     value="${jsf.home}/lib/jsf-impl.jar"/>
-  <property name="jsp-api.jar"      value="${jwsdp.home}/common/lib/jsp-api.jar"/>
+  <property name="jsp-api.jar"      value="${server.home}/common/lib/jsp-api.jar"/>
   <property name="jstl.jar"         value="${jstl.home}/lib/jstl.jar"/>
-  <property name="servlet.jar"      value="${jwsdp.home}/common/lib/servlet-api.jar"/>
+  <property name="servlet.jar"      value="${server.home}/common/lib/servlet.jar"/>
   <property name="standard.jar"     value="${jstl.home}/lib/standard.jar"/>
   <property name="struts.jar"       value="${struts.home}/lib/struts.jar"/>
 
@@ -67,7 +67,7 @@
   <property name="dist.home"       value="${basedir}/dist"/>
   <property name="project.name"    value="Struts-Faces Integration Library"/>
   <property name="project.package" value="org.apache.struts.faces"/>
-  <property name="project.version" value="0.5"/>
+  <property name="project.version" value="1.0-dev"/>
 
 
   <!-- Compile Defaults -->
@@ -183,9 +183,11 @@
     <copy       tofile="${build.home}/classes/META-INF/struts-faces.tld"
                   file="${build.home}/conf/struts-faces.tld"/>
 
-    <!-- Copy license file -->
+    <!-- Copy license and notice files -->
     <copy       tofile="${build.home}/classes/META-INF/LICENSE.txt"
                   file="LICENSE.txt"/>
+    <copy       tofile="${build.home}/classes/META-INF/NOTICE.txt"
+                  file="NOTICE.txt"/>
 
   </target>
 
@@ -399,7 +401,7 @@
                   file="${commons-logging.jar}"/>
     <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
                   file="${commons-validator.jar}"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
                   file="${jakarta-oro.jar}"/>
     <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
                   file="${struts.jar}"/>
@@ -508,7 +510,9 @@
         <include name="META-INF/LICENSE.txt"/>
       </fileset>
       <fileset dir="${build.home}/webapps/example">
-        <exclude name="**/jsf-*.jar"/>   <!-- EA license so no redistrib -->
+<!-- Final RI license allows redistribution
+        <exclude name="**/jsf-*.jar"/>
+-->
       </fileset>
     </jar>
     <jar  destfile="${dist.home}/webapps/struts-faces2.war">
@@ -516,7 +520,9 @@
         <include name="META-INF/LICENSE.txt"/>
       </fileset>
       <fileset dir="${build.home}/webapps/example2">
-        <exclude name="**/jsf-*.jar"/>   <!-- EA license so no redistrib -->
+<!-- Final RI license allows redistribution
+        <exclude name="**/jsf-*.jar"/>
+-->
       </fileset>
     </jar>
 
