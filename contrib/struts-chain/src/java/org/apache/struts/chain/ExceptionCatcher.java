@@ -18,6 +18,7 @@ package org.apache.struts.chain;
 
 
 import org.apache.commons.chain.Catalog;
+import org.apache.commons.chain.CatalogFactory;
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
 import org.apache.commons.chain.Filter;
@@ -42,7 +43,7 @@ public class ExceptionCatcher implements Filter {
     // ------------------------------------------------------ Instance Variables
 
 
-    private String catalogKey = Constants.CATALOG_KEY;
+    private String catalogName = null;
     private String exceptionCommand = null;
     private String exceptionKey = Constants.EXCEPTION_KEY;
 
@@ -53,25 +54,25 @@ public class ExceptionCatcher implements Filter {
 
 
     /**
-     * <p>Return the context attribute key under which the
-     * <code>Catalog</code> we perform lookups in is stored.</p>
+     * <p>Return the name of the <code>Catalog</code> in which to perform
+     * lookups, or <code>null</code> for the default <code>Catalog</code>.</p>
      */
-    public String getCatalogKey() {
+    public String getCatalogName() {
 
-        return (this.catalogKey);
+        return (this.catalogName);
 
     }
 
 
     /**
-     * <p>Set the context attribute key under which the
-     * <code>Catalog</code> we perform lookups in is stored.</p>
+     * <p>Set the name of the <code>Catalog</code> in which to perform
+     * lookups, or <code>null</code> for the default <code>Catalog</code>.</p>
      *
-     * @param catalogKey The new context attribute key
+     * @param catalogName The new catalog name or <code>null</code>
      */
-    public void setCatalogKey(String catalogKey) {
+    public void setCatalogName(String catalogName) {
 
-        this.catalogKey = catalogKey;
+        this.catalogName = catalogName;
 
     }
 
@@ -169,17 +170,45 @@ public class ExceptionCatcher implements Filter {
 
         // Execute the specified command
         try {
-            Catalog catalog = (Catalog)
-                context.get(getCatalogKey());
-            Command command = catalog.getCommand(getExceptionCommand());
+            String catalogName = getCatalogName();
+            Catalog catalog = null;
+            if (catalogName == null) {
+                catalog = CatalogFactory.getInstance().getCatalog();
+                if (catalog == null) {
+                    log.error("Cannot find default catalog");
+                    throw new IllegalArgumentException
+                        ("Cannot find default catalog");
+                }
+            } else {
+                catalog = CatalogFactory.getInstance().getCatalog(catalogName);
+                if (catalog == null) {
+                    log.error("Cannot find catalog '" + catalogName + "'");
+                    throw new IllegalArgumentException
+                        ("Cannot find catalog '" + catalogName + "'");
+                }
+            }
+            String exceptionCommand = getExceptionCommand();
+            if (exceptionCommand == null) {
+                log.error("No exceptionCommand property specified");
+                throw new IllegalStateException
+                    ("No exceptionCommand property specfied");
+            }
+            Command command = catalog.getCommand(exceptionCommand);
+            if (command == null) {
+                log.error("Cannot find exceptionCommand '" +
+                          exceptionCommand + "'");
+                throw new IllegalStateException
+                    ("Cannot find exceptionCommand '" +
+                     exceptionCommand + "'");
+            }
             if (log.isTraceEnabled()) {
-                log.trace("Calling handler command '" + getExceptionCommand()
+                log.trace("Calling exceptionCommand '" + exceptionCommand
                           + "'");
             }
             command.execute(context);
         } catch (Exception e) {
-            log.warn("Exception from handler command '" +
-                     getExceptionCommand() + "'", e);
+            log.warn("Exception from exceptionCommand '" +
+                     exceptionCommand + "'", e);
             throw new IllegalStateException("Exception chain threw exception");
         }
         return (true);

@@ -22,13 +22,16 @@
 
 <!--
     This file contains definitions of the standard Chain Of Responsibility
-    chains that emulate Struts 1.x processing functionality.
+    chains that emulate Struts 1.x processing functionality.  These chains
+    are defined in a catalog named "struts" so that the application can
+    use the default catalog for its own purposes, without any potential for
+    name clashes.
 
     $Id$
 -->
 
 
-<catalog>
+<catalog       name="struts">
 
 
     <!-- ========== Servlet Complete Request Chain ========================= -->
@@ -51,7 +54,7 @@
       <!-- NOTE:  Can override request processor chain name if desired -->
       <command
           className="org.apache.commons.chain.generic.LookupCommand"
-         catalogKey="catalog"
+        catalogName="struts"
                name="servlet-complete-preprocess"
            optional="true"/>
 
@@ -59,7 +62,7 @@
       <!-- Delegate to the appropriate request processor chain -->
       <command
           className="org.apache.commons.chain.generic.LookupCommand"
-         catalogKey="catalog"
+        catalogName="struts"
             nameKey="requestProcessorChain"
            optional="false"/>
 
@@ -122,7 +125,7 @@
       <!-- Look up optional preprocess command -->
       <command
           className="org.apache.commons.chain.generic.LookupCommand"
-         catalogKey="catalog"
+        catalogName="struts"
                name="servlet-standard-preprocess"
            optional="true"/>
 

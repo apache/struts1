@@ -44,7 +44,6 @@ public abstract class AbstractValidateActionForm implements Command {
     private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
     private String actionFormKey = Constants.ACTION_FORM_KEY;
     private String cancelKey = Constants.CANCEL_KEY;
-    private String catalogKey = Constants.CATALOG_KEY;
     private String validKey = Constants.VALID_KEY;
 
     private static final Log log =
@@ -126,30 +125,6 @@ public abstract class AbstractValidateActionForm implements Command {
     public void setCancelKey(String cancelKey) {
 
         this.cancelKey = cancelKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>Catalog</code> we perform lookups in is stored.</p>
-     */
-    public String getCatalogKey() {
-
-        return (this.catalogKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>Catalog</code> we perform lookups in is stored.</p>
-     *
-     * @param catalogKey The new context attribute key
-     */
-    public void setCatalogKey(String catalogKey) {
-
-        this.catalogKey = catalogKey;
 
     }
 

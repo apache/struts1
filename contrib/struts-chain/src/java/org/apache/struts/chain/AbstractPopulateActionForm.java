@@ -167,7 +167,7 @@ public abstract class AbstractPopulateActionForm implements Command {
      * <p>Call the <code>reset()</code> method on the specified form bean.</p>
      *
      * @param context The context for this reqest
-     * @param actionConfing The actionConfig for this request
+     * @param actionConfig The actionConfig for this request
      * @param actionForm The form bean for this request
      */
     protected abstract void reset(Context context,

@@ -38,17 +38,42 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * <p><strong>ComposableRequestProcessor</strong> uses the <em>Chain Of
  * Resposibility</em> design pattern (as implemented by the commons-chain
  * package in Jakarta Commons) to support external configuration of command
- * chains to be used.  It expects that the default {@link Catalog} for
- * this web application will contain a chain named
- * <code>servlet-standard</code> that will be used to process this
- * request.  FIXME - both of these hard coded assumptions need to
- * be made configurable.</p>
+ * chains to be used.  It is configured via the following context initialization
+ * parameters:</p>
+ * <ul>
+ * <li><strong>org.apache.struts.chain.CATALOG_NAME</strong> - Name of the
+ *     <code>Catalog</code> in which we will look up the <code>Command</code>
+ *     to be executed for each request.  If not specified, the default value
+ *     is <code>struts</code>.</li>
+ * <li><strong>org.apache.struts.chain.COMMAND_NAME</strong> - Name of the
+ *     <code>Command</code> which we will execute for each request, to be
+ *     looked up in the specified <code>Catalog</code>.  If not specified,
+ *     the default value is <code>servlet-standard</code>.</li>
+ * </ul>
  *
  * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 
 public class ComposableRequestProcessor extends RequestProcessor {
+
+
+    // ------------------------------------------------------ Manifest Constants
+
+
+    /**
+     * <p>Name of the context initialization parameter containing the
+     * name of the <code>Catalog</code> we will use.</p>
+     */
+    private static final String CATALOG_NAME =
+        "org.apache.struts.chain.CATALOG_NAME";
+
+
+    /**
+     * <p>Name of the <code>Command</code> to be executed for each request.</p>
+     */
+    private static final String COMMAND_NAME =
+        "org.apache.struts.chain.COMMAND_NAME";
 
 
     // ------------------------------------------------------ Instance Variables
@@ -104,15 +129,27 @@ public class ComposableRequestProcessor extends RequestProcessor {
         log.info("Initializing composable request processor for module prefix '"
                  + moduleConfig.getPrefix() + "'");
         super.init(servlet, moduleConfig);
-        catalog = CatalogFactory.getInstance().getCatalog();
-        if (catalog == null) {
-            // FIXME - i18n
-            throw new ServletException("No Catalog has been configured");
+
+        String catalogName =
+            servlet.getServletContext().getInitParameter(CATALOG_NAME);
+        if (catalogName == null) {
+            catalogName = "struts";
         }
-        command = catalog.getCommand("servlet-standard");
+        catalog = CatalogFactory.getInstance().getCatalog(catalogName);
+        if (catalog == null) {
+            throw new ServletException("Cannot find catalog '" +
+                                       catalogName + "'");
+        }
+
+        String commandName =
+            servlet.getServletContext().getInitParameter(COMMAND_NAME);
+        if (commandName == null) {
+            commandName = "servlet-standard";
+        }
+        command = catalog.getCommand(commandName);
         if (command == null) {
-            // FIXME - i18n
-            throw new ServletException("No Command has been configured");
+            throw new ServletException("Cannot find command '" +
+                                       commandName + "'");
         }
 
     }
@@ -138,8 +175,6 @@ public class ComposableRequestProcessor extends RequestProcessor {
         // Create and populate a Context for this request
         ServletWebContext context = new ServletWebContext();
         context.initialize(getServletContext(), request, response);
-        context.put(Constants.CATALOG_KEY,
-                    this.catalog);
         context.put(Constants.ACTION_SERVLET_KEY,
                     this.servlet);
         context.put(Constants.MODULE_CONFIG_KEY,

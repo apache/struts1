@@ -67,13 +67,6 @@ public final class Constants {
 
 
     /**
-     * <p>The default context attribute under which our
-     * <code>Catalog</code> will be stored.</p>
-     */
-    public static final String CATALOG_KEY = "catalog";
-
-
-    /**
      * <p>The default context attribute under which an
      * <code>Exception</code> will be stored before passing
      * it to an exception handler chain.</p>
