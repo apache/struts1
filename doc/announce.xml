@@ -11,6 +11,35 @@
 
 <section name="Announcements">
 
+    <h4 id="a20040711">11 July 2004- Struts 1.2.1 (Beta) Available</h4>
+    <p>
+        The Struts team announces the release of Struts 1.2.1, currently ranked at Beta quality.
+    </p>
+    <p>
+        This release removes many features deprecated in prior releases (Struts 1.1 and Struts 1.0.2) and also provides several new features. Fixes to known problems have been applied. More detail is available at:
+    </p>
+    <ul>
+        <li>
+            <a href="http://struts.apache.org/userGuide/release-notes.html">http://struts.apache.org/userGuide/release-notes.html</a></li>
+    </ul>
+    <p>
+        The binary, source, and library distributions are available at
+        </p>
+    <ul>
+        <li>
+            <a href="http://cvs.apache.org/dist/struts/v1.2.1/">http://cvs.apache.org/dist/struts/v1.2.1/</a>
+         </li>
+    </ul>
+    <p>
+        The library distribution contains only the requisite JARs, without the documentation or example applications.
+    </p>
+    <p>
+        We invite your comments on how well this release works with your own applications. Based on feedback from the Struts community, this release may be dubbed "ready for prime time" and promoted to "General Availabilty" quality.
+     </p>
+    <p>
+        Please note that Struts now uses "Tomcat-style" releases. If the feedback on this release were positive, Struts 1.2.1 may be promoted directly to "GA", without creating yet-another distribution. If a serious problem were found and fixed, then we will issue Struts 1.2.2 and try again.
+    </p>
+
     <h4 id="a20030630">30 Jun 2003 - Struts 1.1 Final released</h4>
     <p>
         The Struts team is proud, and extremely pleased, to announce the Final
