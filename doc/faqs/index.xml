@@ -77,7 +77,13 @@
 
 </section>
 
-<section name="Offsite FAQs and Howtos">
+<section name="External FAQs and Howtos">
+
+<ul>
+   <li>
+   <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsProjectPages ">Apache Struts Wiki</a>
+   </li>
+</ul>
 
  <ul>
     <li>
@@ -85,15 +91,15 @@
     </li>
  </ul>
 
-    <ul>
-       <li>
-       <a href="http://www.husted.com/struts/tips">Struts Tips</a>
-       </li>
-    </ul>
+<ul>
+   <li>
+   <a href="http://www.husted.com/struts/tips">Struts Tips</a> by Ted Husted
+   </li>
+</ul>
 
  <ul>
     <li>
-    <a href="http://strutstestcase.sourceforge.net">Unit testing with Struts Use Case</a>
+    <a href="http://strutstestcase.sourceforge.net">Unit Testing with Struts TestCase</a> by Deryl Seale
     </li>
  </ul>
 
