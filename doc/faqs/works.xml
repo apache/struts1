@@ -95,7 +95,7 @@
       the view, and Actions in the controller.<br/>
 
       <strong>Note</strong>: You must be using some sort of server-side
-      technology (JSP, Velocity, XLST) for the view layer (going <i>to</i> the
+      technology (JSP, Velocity, XSLT) for the view layer (going <i>to</i> the
       client) to see this data (plain HTML won't work). Struts works on the
       server side, so the client's view has to be composed there.<br/>
 
@@ -106,7 +106,7 @@
    <li>
       Within your web application will be pages that represent the view your
       users will see. These can be JSP pages, Velocity Templates,
-      XLST pages, and so forth.
+      XSLT pages, and so forth.
       A set of JSP tags is bunded with the Struts distribution so that you
       can get started right away, but any standard presentation technology
       can be used with Struts.<br/>
@@ -121,7 +121,7 @@
       For Velocity templates, there are the
       <a href="http://jakarta.apache.org/velocity/">Velocity</a> ViewTools
       for Struts.
-      If you want to use XLST in you application, you can choose between
+      If you want to use XSLT in you application, you can choose between
       <a href="http://www.openroad.ca/opencode/">stxx</a> and
       <a href="http://it.cappuccinonet.com/strutscx/">
       StrutsCX</a>.<br/>
@@ -129,7 +129,7 @@
       These packages make the standard Struts framework elements look and
       feel like a seamless part of the original presentation technology.
       Struts also makes it easy to mix and match.
-      If need be, you can use JSP, Velocity templates, and XLST all in
+      If need be, you can use JSP, Velocity templates, and XSLT all in
       the same application!<br/>
 
       Since Struts relies on standard Servlet technologies, you should be
