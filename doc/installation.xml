@@ -273,8 +273,8 @@
     required.</a></li>
   <li>Weblogic - <a href="installation-wls.html">Additional steps required.</a></li>
   <li>WebLogic 6.0+ - No additional steps required.</li>
-  <li>WebSphere - <a href="installation-was.html">Additional steps required.</a></li>
-</ul>
+  <li>WebSphere - <a href="installation-was352.html">Additional steps required.</a></li>
+  <li>WebSphere - <a href="installation-was352-x.html">Steps for the Example Application.</a></li></ul>
 </section> 
 </body>
 </document>
