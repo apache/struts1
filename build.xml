@@ -357,6 +357,7 @@
             packagenames="org.apache.struts.*"
             author="true"
             private="true"
+            use="true"
             version="true"
             windowtitle="Apache Struts API Documentation"
             doctitle="&lt;h1&gt;Apache Struts Framework (Version ${project.version})&lt;/h1&gt;"
