@@ -138,5 +138,17 @@
   <put name="body"   value="body.jsp" direct="false" />
 </definition>
 
+  <!-- Test Struts Action and Tiles integration -->
+<definition name="test.struts.action" path="/test/layout.jsp" >
+  <put name="title"  value="Test Struts Action and Tiles integration : default title" direct="true" />
+  <put name="header" value="header.jsp"/>
+  <put name="body"   value="body.jsp" direct="false" />
+</definition>
+
+  <!-- Test Struts Action and Tiles integration -->
+<definition name="test.struts.action.fail" path="/test/failpage.jsp" >
+  <put name="title"  value="Test fail" direct="true" />
+</definition>
+
 
 </component-definitions>

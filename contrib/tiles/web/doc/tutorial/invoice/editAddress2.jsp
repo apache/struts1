@@ -1,5 +1,5 @@
 <%@ taglib uri="/WEB-INF/tiles.tld"    prefix="comp" %>
-<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
+<%@ taglib uri="/WEB-INF/extensions.tld"    prefix="ext" %>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 
 <%-- Edit an Address object
@@ -7,9 +7,8 @@
   @param compName UI Component name. Use as prefix for html fields and sub-components
 --%>
 <%-- Retrieve parameters from component context, and declare them as page variable --%>
-<comp:useAttribute id="prefix" name="property" classname="java.lang.String"/>
-<comp:importAttribute name="bean" />
-
+<comp:useAttribute id="addr" name="address" scope="page"  />
+<comp:useAttribute id="prefix" name="compName" classname="java.lang.String"/>
 <%-- Add a separator tothe component name, in order to have html fields prefix name : 'compName.'--%>
 <% prefix = prefix + "."; %>
 
@@ -23,9 +22,7 @@
 	  <%-- Declare an html input field. 										--%>
 	  <%-- We use a tag that extends Struts 'text' tag. This extension add 		--%>
 	  <%-- attribute 'prefix', allowing to give a prefix to the normal name  	--%>
-	  
-	  <html:text name="bean" property='<%=prefix+"street1"%>' size="50"/>
-	  
+	  <ext:text name="addr" prefix="<%=prefix%>" property="street1" size="50"/>
     </td>
   </tr>
 
@@ -34,7 +31,7 @@
       Street (con't)
     </th>
     <td align="left">
-        <ext:text property="street2" size="50"/>
+        <ext:text prefix="<%=prefix%>" name="addr" property="street2" size="50"/>
     </td>
   </tr>
 
@@ -43,7 +40,7 @@
       City
     </th>
     <td align="left">
-        <ext:text property="city" size="50"/>
+        <ext:text prefix="<%=prefix%>" name="addr" property="city" size="50"/>
     </td>
   </tr>
 
@@ -52,7 +49,7 @@
       Country
     </th>
     <td align="left">
-        <ext:text property="country" size="50"/>
+        <ext:text prefix="<%=prefix%>" name="addr" property="country" size="50"/>
     </td>
   </tr>
 
@@ -61,7 +58,7 @@
       Zip code
     </th>
     <td align="left">
-	  <ext:text property="zipCode" size="50"/>
+	  <ext:text prefix="<%=prefix%>" name="addr" property="zipCode" size="50"/>
     </td>
   </tr>
 

@@ -64,6 +64,20 @@
       <forward  name="success"        path="/tutorial/invoice/index.jsp"/>
   </action>
 
+    <!-- Test Struts action and Tiles integration -->
+  <action     path="/test/testAction"
+       		  type="org.apache.struts.example.tiles.test.TestActionTileAction">
+      <forward  name="success"        path="test.struts.action"/>
+      <forward  name="failure"        path="test.struts.action.fail"/>
+  </action>
+
+    <!-- Test Struts action and Tiles integration -->
+  <action     path="/test/testActionForwardJsp"
+       		  type="org.apache.struts.example.tiles.test.TestActionTileAction">
+      <forward  name="success"        path="/test/layout.jsp"/>
+      <forward  name="failure"        path="test.struts.action.fail"/>
+  </action>
+
   <!-- test, to be removed -->
     <action     path="/tutorial/testAction"
                 type="org.apache.struts.example.tiles.lang.SelectLocaleAction">

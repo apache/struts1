@@ -13,6 +13,7 @@ with the quick overview page from main site to check if all is ok</P>
   <LI><A href="testList.jsp">test lists</A> 
   <LI><A href="testDefinitions.jsp">test definitions</A> 
   <LI><A href="testRole.jsp">test role (With Tomcat, use 'tomcat' as userid and password)</A> 
+  <LI><A href="testStrutsAction.jsp">test struts action integration and behavior</A> 
   <LI><A href="testAll.jsp">All in 
 one</A> (main code + test 
 results)  </LI></UL>

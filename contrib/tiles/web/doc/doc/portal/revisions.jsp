@@ -2,11 +2,31 @@
 <tr>
 <th bgcolor="aqua"><FONT size=4>History</FONT></th></tr>
   <TR>
+    <TD><FONT size=2><STRONG> 09 sept. 2001</STRONG> </FONT></TD></TR>
+  <TR>
+    <TD>
+      <UL>
+        <LI><FONT size=2>   Modify 
+        ComponentActionServlet. It now  allows 
+        to :</FONT>
+		<ul>
+        <LI><FONT size=2>  use a Struts 
+        action as  the page 
+        attribute of an  &lt;insert&gt; 
+        or &lt;definition&gt;</FONT>
+        <LI><FONT size=2>modify tile attributes inside 
+        action</FONT>
+        <LI><FONT size=2>associate an action with a tile, 
+        and this for each tile.</FONT>
+		</ul>
+        <LI><FONT size=2>Update and modify the "invoice" 
+        example. </FONT></LI></UL></TD></TR> 
+  <TR>
     <TD><FONT size=2><STRONG> 30 jul. 2001</STRONG> </FONT></TD></TR>
   <TR>
     <TD>
       <UL>
-        <LI><FONT size=2>  Join Documentation 
+        <LI><FONT size=2>   Merge&nbsp;Documentation 
         and tutorial in  one 
         war file.</FONT></LI></UL></TD></TR> 
   <TR>
