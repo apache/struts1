@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionTagBeanInfo.java,v 1.1 2002/10/14 03:11:09 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/14 03:11:09 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionTagBeanInfo.java,v 1.2 2003/01/07 23:40:18 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/01/07 23:40:18 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -84,23 +84,25 @@ public class ELOptionTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[7];
+        PropertyDescriptor[]  result   = new PropertyDescriptor[8];
 
         try {
+            result[0] = new PropertyDescriptor("bundle", ELOptionTag.class,
+                                               null, "setBundle");
             // This attribute has a non-standard mapping.
-            result[0] = new PropertyDescriptor("disabled", ELOptionTag.class,
+            result[1] = new PropertyDescriptor("disabled", ELOptionTag.class,
                                                null, "setDisabledExpr");
-            result[1] = new PropertyDescriptor("key", ELOptionTag.class,
+            result[2] = new PropertyDescriptor("key", ELOptionTag.class,
                                                null, "setKey");
-            result[2] = new PropertyDescriptor("locale", ELOptionTag.class,
+            result[3] = new PropertyDescriptor("locale", ELOptionTag.class,
                                                null, "setLocale");
-            result[3] = new PropertyDescriptor("style", ELOptionTag.class,
+            result[4] = new PropertyDescriptor("style", ELOptionTag.class,
                                                null, "setStyle");
-            result[4] = new PropertyDescriptor("styleClass", ELOptionTag.class,
+            result[5] = new PropertyDescriptor("styleClass", ELOptionTag.class,
                                                null, "setStyleClass");
-            result[5] = new PropertyDescriptor("styleId", ELOptionTag.class,
+            result[6] = new PropertyDescriptor("styleId", ELOptionTag.class,
                                                null, "setStyleId");
-            result[6] = new PropertyDescriptor("value", ELOptionTag.class,
+            result[7] = new PropertyDescriptor("value", ELOptionTag.class,
                                                null, "setValue");
         }
         catch (IntrospectionException ex) {
