@@ -1,0 +1,252 @@
+<!--
+
+ Copyright 2002,2004 The Apache Software Foundation.
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+      http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+ $Id$
+
+-->
+
+
+<project name="Struts-Faces Integration Library" default="compile" basedir=".">
+
+
+  <!-- ===================== Initialize Property Values =================== -->
+
+
+  <!-- Initialize property values -->
+  <property file="build.properties"/>
+  <property file="../build.properties"/>
+  <property file="../../build.properties"/>
+  <property file="../../../build.properties"/>
+  <property file="${user.home}/build.properties"/>
+  <property name="dist.home" value="${basedir}/dist"/>
+
+  <!-- ======================== Delegation Targets ========================= -->
+
+
+  <target   name="clean"
+     description="Clean all build directories">
+
+    <delete  dir="${dist.home}"/>
+    <ant     dir="${basedir}/core-library"
+      inheritAll="false"
+          target="clean"/>
+    <ant     dir="${basedir}/example1-webapp"
+      inheritAll="false"
+          target="clean"/>
+    <ant     dir="${basedir}/example2-webapp"
+      inheritAll="false"
+          target="clean"/>
+    <ant     dir="${basedir}/sysclient-app"
+      inheritAll="false"
+          target="clean"/>
+    <ant     dir="${basedir}/systest1-webapp"
+      inheritAll="false"
+          target="clean"/>
+
+  </target>
+
+
+  <target   name="compile"
+     description="Install webapps on Tomcat">
+
+    <ant     dir="${basedir}/core-library"
+      inheritAll="false"
+          target="library"/>
+    <ant     dir="${basedir}/example1-webapp"
+      inheritAll="false"
+          target="compile"/>
+    <ant     dir="${basedir}/example2-webapp"
+      inheritAll="false"
+          target="compile"/>
+    <ant     dir="${basedir}/systest1-webapp"
+      inheritAll="false"
+          target="compile"/>
+
+  </target>
+
+
+  <target   name="dist:delegate">
+
+    <ant     dir="${basedir}/core-library"
+      inheritAll="false"
+          target="dist"/>
+    <ant     dir="${basedir}/example1-webapp"
+      inheritAll="false"
+          target="dist"/>
+    <ant     dir="${basedir}/example2-webapp"
+      inheritAll="false"
+          target="dist"/>
+    <ant     dir="${basedir}/systest1-webapp"
+      inheritAll="false"
+          target="dist"/>
+
+  </target>
+
+
+  <target   name="install"
+     description="Install webapps on Tomcat">
+
+    <ant     dir="${basedir}/core-library"
+      inheritAll="false"
+          target="library"/>
+    <ant     dir="${basedir}/example1-webapp"
+      inheritAll="false"
+          target="install"/>
+    <ant     dir="${basedir}/example2-webapp"
+      inheritAll="false"
+          target="install"/>
+    <ant     dir="${basedir}/systest1-webapp"
+      inheritAll="false"
+          target="install"/>
+
+  </target>
+
+
+  <target   name="reload"
+     description="Reload webapps on Tomcat">
+
+    <ant     dir="${basedir}/example1-webapp"
+      inheritAll="false"
+          target="reload"/>
+    <ant     dir="${basedir}/example2-webapp"
+      inheritAll="false"
+          target="reload"/>
+    <ant     dir="${basedir}/systest1-webapp"
+      inheritAll="false"
+          target="reload"/>
+
+  </target>
+
+
+  <target   name="remove"
+     description="Remove webapps from Tomcat">
+
+    <ant     dir="${basedir}/example1-webapp"
+      inheritAll="false"
+          target="remove"/>
+    <ant     dir="${basedir}/example2-webapp"
+      inheritAll="false"
+          target="remove"/>
+    <ant     dir="${basedir}/systest1-webapp"
+      inheritAll="false"
+          target="remove"/>
+
+  </target>
+
+
+  <target   name="test"
+     description="Execute unit and system integration tests">
+
+    <ant     dir="${basedir}/core-library"
+      inheritAll="false"
+          target="test"/>
+    <ant     dir="${basedir}/sysclient-app"
+      inheritAll="false"
+          target="test"/>
+
+  </target>
+
+
+  <!-- ====================== Construct Release Artifact =================== -->
+
+
+  <target        name="dist" depends="dist:delegate"
+          description="Create release artifact">
+
+    <mkdir        dir="${dist.home}"/>
+    <mkdir        dir="${dist.home}/docs"/>
+    <mkdir        dir="${dist.home}/lib"/>
+    <mkdir        dir="${dist.home}/src"/>
+    <mkdir        dir="${dist.home}/webapps"/>
+
+    <!-- Copy top-level files -->
+    <copy       todir="${dist.home}/src"
+                 file="build.xml"/>
+    <copy       todir="${dist.home}"
+                 file="LICENSE-JSF.txt"/>
+    <copy       todir="${dist.home}"
+                 file="README.txt"/>
+
+    <!-- Copy files from core-library -->
+    <copy       todir="${dist.home}">
+      <fileset    dir="core-library/dist">
+        <include name="LICENSE.txt"/>
+        <include name="NOTICE.txt"/>
+      </fileset>
+    </copy>
+    <copy       todir="${dist.home}/docs">
+      <fileset    dir="core-library/dist/docs"/>
+    </copy>
+    <copy       todir="${dist.home}/lib">
+      <fileset    dir="core-library/dist/conf"/>
+      <fileset    dir="core-library/dist/lib"/>
+    </copy>
+    <mkdir        dir="${dist.home}/src/core-library"/>
+    <copy       todir="${dist.home}/src/core-library"
+                 file="core-library/dist/build.xml"/>
+    <mkdir        dir="${dist.home}/src/core-library/src"/>
+    <copy       todir="${dist.home}/src/core-library/src">
+      <fileset    dir="core-library/dist/src"/>
+    </copy>
+
+    <!-- Copy files from example1-webapp -->
+    <copy       todir="${dist.home}/webapps">
+      <fileset    dir="example1-webapp/dist"
+             includes="*.war"/>
+    </copy>
+    <mkdir        dir="${dist.home}/src/example1-webapp"/>
+    <copy       todir="${dist.home}/src/example1-webapp"
+                 file="example1-webapp/dist/build.xml"/>
+    <mkdir        dir="${dist.home}/src/example1-webapp/src"/>
+    <copy       todir="${dist.home}/src/example1-webapp/src">
+      <fileset    dir="example1-webapp/dist/src"/>
+    </copy>
+
+    <!-- Copy files from example2-webapp -->
+    <copy       todir="${dist.home}/webapps">
+      <fileset    dir="example2-webapp/dist"
+             includes="*.war"/>
+    </copy>
+    <mkdir        dir="${dist.home}/src/example2-webapp"/>
+    <copy       todir="${dist.home}/src/example2-webapp"
+                 file="example2-webapp/dist/build.xml"/>
+    <mkdir        dir="${dist.home}/src/example2-webapp/src"/>
+    <copy       todir="${dist.home}/src/example2-webapp/src">
+      <fileset    dir="example2-webapp/dist/src"/>
+    </copy>
+
+    <!-- Copy files from sysclient-app -->
+    <mkdir        dir="${dist.home}/src/sysclient-app"/>
+    <copy       todir="${dist.home}/src/sysclient-app"
+                 file="sysclient-app/build.xml"/>
+    <mkdir        dir="${dist.home}/src/sysclient-app/src"/>
+    <copy       todir="${dist.home}/src/sysclient-app/src">
+      <fileset    dir="sysclient-app/src"/>
+    </copy>
+
+    <!-- Copy files from systest1-webapp -->
+    <mkdir        dir="${dist.home}/src/systest1-webapp"/>
+    <copy       todir="${dist.home}/src/systest1-webapp"
+                 file="systest1-webapp/dist/build.xml"/>
+    <mkdir        dir="${dist.home}/src/systest1-webapp/src"/>
+    <copy       todir="${dist.home}/src/systest1-webapp/src">
+      <fileset    dir="systest1-webapp/dist/src"/>
+    </copy>
+
+  </target>
+
+
+</project>
