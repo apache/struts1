@@ -4,7 +4,7 @@
     This file contains definitions of the standard Chain Of Responsibility
     chains that emulate Struts 1.x processing functionality.
 
-    $Id: chain-config.xml,v 1.5 2003/10/10 04:26:16 craigmcc Exp $
+    $Id: chain-config.xml,v 1.6 2003/10/24 02:35:02 mrdon Exp $
 -->
 
 
@@ -66,9 +66,9 @@
 
            processLocale           SelectLocale
 
-           processContent          NOT SUPPORTED YET
+           processContent          SetContentType
 
-           processNoCache          NOT SUPPORTED YET
+           processNoCache          RequestNoCache
 
            processPreprocess       LookupCommand with optional="true".  Multiple
                                    occurrences of this can easily be added, to
@@ -78,7 +78,7 @@
 
            processMapping          SelectAction (which also does processPath)
 
-           processRoles            NOT SUPPORTED YET
+           processRoles            AuthorizeAction
 
            processActionForm       CreateActionForm
 
@@ -86,7 +86,7 @@
 
            processValidate         ValidateActionForm / SelectInput
 
-           processForward          NOT SUPPORTED YET
+           processForward          SelectForward
 
            processInclude          NOT SUPPORTED YET
 
@@ -116,11 +116,26 @@
       <!-- Identify the Locale for this request -->
       <command
           className="org.apache.struts.chain.servlet.SelectLocale"/>
+          
+          
+      <!-- Set (if needed) no cache HTTP response headers -->
+      <command
+          className="org.apache.struts.chain.servlet.RequestNoCache"/>
+          
+          
+      <!-- Set (if needed) the HTTP response content type -->
+      <command
+          className="org.apache.struts.chain.servlet.SetContentType"/>        
 
 
       <!-- Identify the ActionConfig for this request -->
       <command
           className="org.apache.struts.chain.servlet.SelectAction"/>
+          
+          
+      <!-- Authorize the selected ActionConfig for this request -->
+      <command
+          className="org.apache.struts.chain.servlet.AuthorizeAction"/>    
 
 
       <!-- Create (if needed) the ActionForm for this request -->
@@ -141,6 +156,12 @@
       <!-- Select the appropriate ForwardConfig for return to input page -->
       <command
           className="org.apache.struts.chain.servlet.SelectInput"/>
+       
+       
+      <!-- Select the appropriate ForwardConfig for action mappings that only
+           have an ActionForward -->
+      <command
+          className="org.apache.struts.chain.servlet.SelectForward"/> 
 
 
       <!-- Create (if needed) the Action for this request -->
