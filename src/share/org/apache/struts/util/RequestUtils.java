@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.100 2003/05/10 17:37:43 dgraham Exp $
- * $Revision: 1.100 $
- * $Date: 2003/05/10 17:37:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.101 2003/05/10 18:06:39 dgraham Exp $
+ * $Revision: 1.101 $
+ * $Date: 2003/05/10 18:06:39 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.100 $ $Date: 2003/05/10 17:37:43 $
+ * @version $Revision: 1.101 $ $Date: 2003/05/10 18:06:39 $
  */
 
 public class RequestUtils {
@@ -881,13 +881,14 @@ public class RequestUtils {
             saveException(pageContext, e);
             throw e;
         }
+        
         if (property == null) {
-            return (bean);
+            return bean;
         }
 
         // Locate and return the specified property
         try {
-            return (PropertyUtils.getProperty(bean, property));
+            return PropertyUtils.getProperty(bean, property);
             
         } catch (IllegalAccessException e) {
             saveException(pageContext, e);

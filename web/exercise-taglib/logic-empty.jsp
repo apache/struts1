@@ -19,6 +19,31 @@
     <th>Test Result</th>
   </tr>
   <tr>
+    <td>missing bean, no property attribute</td>
+    <td>empty</td>
+    <td>
+      <logic:empty name="missingBean">
+        empty
+      </logic:empty>
+      <logic:notEmpty name="missingBean">
+        notEmpty
+      </logic:notEmpty>
+    </td>
+  </tr>
+  <tr>
+    <td>not-missing bean, no property attribute</td>
+    <td>notEmpty</td>
+    <td>
+      <logic:empty name="bean">
+        empty
+      </logic:empty>
+      <logic:notEmpty name="bean">
+        notEmpty
+      </logic:notEmpty>
+    </td>
+  </tr>
+
+  <tr>
     <td>null</td>
     <td>empty</td>
     <td>
