@@ -39,8 +39,14 @@
     <li><code>lib/</code> - Directory containing files you will need in
         your own applications.  The individual files of interest are:
         <ul>
+        <li><code>commons-*.jar</code> - Release packages from the
+            <a href="http://jakarta.apache.org/commons/">Jakarta Commons
+            Project</a> that Struts relies on.  You are welcome to use these
+            classes in your own applications.  These JAR files should be
+            copied into the <code>/WEB-INF/lib</code> dirctory of
+            your web application.</li>
         <li><code>struts.jar</code> - JAR file that contains the compiled
-            Java classes for both version 0.5 and 1.0 of Struts.  You must
+            Java classes of Struts.  You must
             place this file in the <code>/WEB-INF/lib</code> directory of
             your web application.</li>
         <li><code>struts-xxxxx.tld</code> - The tag library descriptor files
@@ -82,10 +88,55 @@
     <li><code>struts-config.dtd</code> in favor of <code>struts-config_1_1.dtd</code>.</li>
     </ul>
 
+    <p><strong>COMMONS PACKAGES</strong>:
+    Several components of Struts 1.0 have been found to be useful in
+    general Java development (and not just useful for building Struts-based
+    web applications), and have been migrated into the
+    <a href="http://jakarta.apache.org/commons/">Jakarta Commons Project</a>.
+    As a result, the current development version of Struts has been modified
+    to rely on the Commons packages containing these classes, rather than the
+    Struts internal versions.  In nearly every case, this involved changing
+    only the <code>import</code> statements at the top of your classes.  Any
+    applications that utilize these classes will need to be modified in the
+    same way.  The following Commons packages contain the replacements for the
+    corresponding Struts 1.0 classes:</p>
+    <ul>
+    <li><strong>BeanUtils Package</strong> (org.apache.commons.beanutils) -
+        <code>org.apache.struts.utils.BeanUtils</code>,
+        <code>org.apache.struts.utils.ConvertUtils</code>, and
+        <code>org.apache.struts.utils.PropertyUtils</code>.</li>
+    <li><strong>Collections Package</strong>
+        (org.apache.commons.collections) -
+        <code>org.apache.struts.util.ArrayStack</code>,
+        <code>org.apache.struts.util.FastArrayList</code>,
+        <code>org.apache.struts.util.FastHashMap</code>,
+        <code>org.apache.struts.util.FastTreeMap</code>.</li>
+    <li><strong>Digester Package</strong> -
+        (org.apache.commons.digester) -
+        <code>org.apache.struts.digester.*</code>.</li>
+    </ul>
+
+    <p><strong>XML PARSER PREREQUISITE UPDATED</strong>:  Struts now depends
+    on an XML parser that conforms to the JAXP/1.1 (rather than JAXP/1.0)
+    APIs.  Parser known to work include the JAXP/1.1 reference implementation,
+    and Xerces 1.3.1.</p>
+
+    <p><strong>CONTRIB Directory</strong>:
+    A new directory (<code>contrib</code>) in the CVS source repository has
+    been added to accumulate Struts add-on extensions that are generally
+    useful but have not yet been integrated into the standard code base.</p>
+
+    <p><strong>UNIT TESTING SUPPORT</strong>:  Support for running unit tests
+    on Struts components and custom tags is being added, utilizing the
+    <a href="http://jakarta.apache.org/commons/cactus/">Cactus</a> package
+    from the Jakarta Commons project.</p>
+
     <p>The following new features have been added to the basic controller
     framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
-    <li>None.</li>
+    <li>The new <code>ActionMessages</code> class will support a superset of
+        the capabilities of <code>ActionErrors</code>, and will be useful as
+        a collection of general purpose messages, not just errors.</li>
     </ul>
 
     <p>The following new features have been added to the utility classes
@@ -95,18 +146,35 @@
     </ul>
 
     <p>The following new features have been added to the
+    <em>struts-bean</em> custom tag library (package
+    <code>org.apache.struts.taglib.bean</code>):</p>
+    <ul>
+    <li>Added <code>name</code>, <code>property</code>, and
+        <code>scope</code> attributes to the <code>&lt;bean:message&gt;</code>
+        tag, so that the message source key can be obtained dynamically from
+        a bean or bean property.</li>
+    </ul>
+
+    <p>The following new features have been added to the
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>
-    <li>Added 'name', 'property' and 'scope' attributes to &lt;bean:message> so that
-  the message resource key can be obtained dynamically from a bean.</li>
+    <li>Added 'name', 'property' and 'scope' attributes to
+        <code>&lt;bean:message&gt;</code> so that
+        the message resource key can be obtained dynamically from a bean.</li>
+    <li>Added a new <code>&lt;html:messages&gt;</code> tag to iterate through
+        a message collection in the new <code>ActionMessages</code> class.</li>
     </ul>
 
     <p>The following new features have been added to the
     <em>struts-logic</em> custom tag library (package
     <code>org.apache.struts.taglib.logic</code>):</p>
     <ul>
-    <li>None.</li>
+    <li>Added <code>&lt;logic:empty&gt;</code> and
+        <code>&lt;logic:notEmpty&gt;</code> tags, which are similar to
+        <code>&lt;logic:present&gt;</code> and
+        <code>&lt;logic:notPresent&gt;</code> except for the treatment of
+        empty strings.</li>
     </ul>
 
     <p>The following new features have been added to the
@@ -137,7 +205,13 @@
     <p>The following changes and bug fixes have occurred in the basic
     controller framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
-    <li>None.</li>
+    <li>The <code>ActionForm</code> class is now truly serializable, because
+        the two non-serializable instance variables (servlet and
+        multipartRequestHandler) have been made transient.  However, if you
+        actually do serialize and deserialize such instances, it is your
+        responsibility to reset these two properties.</li>
+    <li>Removed deprecated Struts 0.5 methods, and support for the Struts 0.5
+        configuration file format.</li>
     </ul>
 
     <p>The following changes and bug fixes have occurred in the file upload
