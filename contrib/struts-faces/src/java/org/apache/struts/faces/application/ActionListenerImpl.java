@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/ActionListenerImpl.java,v 1.2 2003/07/27 06:41:27 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2003/07/27 06:41:27 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/ActionListenerImpl.java,v 1.3 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -62,7 +62,13 @@
 package org.apache.struts.faces.application;
 
 
+import javax.faces.application.Application;
+import javax.faces.application.NavigationHandler;
+import javax.faces.component.ActionSource;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
+import javax.faces.el.MethodBinding;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
@@ -77,6 +83,7 @@ import org.apache.struts.Globals;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.faces.Constants;
+import org.apache.struts.faces.component.FormComponent;
 import org.apache.struts.util.RequestUtils;
 
 
@@ -87,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/07/27 06:41:27 $
+ * @version $Revision: 1.3 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class ActionListenerImpl implements ActionListener {
@@ -107,17 +114,6 @@ public class ActionListenerImpl implements ActionListener {
 
 
     /**
-     * <p>Describe the phase identifier for which we are interested in
-     * processing events.</p>
-     */
-    public PhaseId getPhaseId() {
-
-        return (PhaseId.INVOKE_APPLICATION);
-
-    }
-
-
-    /**
      * <p>Process the specified <code>ActionEvent</code>.</p>
      *
      * @param event The <code>ActionEvent</code> to be processed
@@ -128,8 +124,44 @@ public class ActionListenerImpl implements ActionListener {
     public void processAction(ActionEvent event)
         throws AbortProcessingException {
 
-        // Acquire Servlet API Object References
+        // If this is an immediate action, or we are NOT nested in a
+        // Struts form, perform the standard processing
         FacesContext context = FacesContext.getCurrentInstance();
+        UIComponent component = event.getComponent();
+        ActionSource source = (ActionSource) component;
+        boolean standard = source.isImmediate();
+        if (!standard) {
+            UIComponent parent = component.getParent();
+            while (parent != null) {
+                if (parent instanceof UIForm) {
+                    if (!(parent instanceof FormComponent)) {
+                        standard = true;
+                    }
+                    break;
+                }
+                parent = parent.getParent();
+            }
+        }
+        if (standard) {
+            if (log.isDebugEnabled()) {
+                log.debug("Performing standard handling for event " +
+                          "from source component " +
+                          component.getClientId(context));
+            }
+            String outcome = null;
+            MethodBinding binding = source.getAction();
+            if (binding != null) {
+                outcome = (String) binding.invoke(context, null);
+            }
+            context.getApplication().getNavigationHandler().handleNavigation
+                (context,
+                 (binding == null) ? null : binding.getExpressionString(),
+                 outcome);
+            return;
+        }
+
+
+        // Acquire Servlet API Object References
         ServletContext servletContext = (ServletContext)
             context.getExternalContext().getContext();
         HttpServletRequest request = (HttpServletRequest)
@@ -139,9 +171,9 @@ public class ActionListenerImpl implements ActionListener {
 
         // Log this event if requested
         if (log.isDebugEnabled()) {
-            log.debug("Processing ActionEvent " + event +
+            log.debug("Performing Struts form submit for event " +
                       " from source component " +
-                      event.getComponent().getClientId(context));
+                      component.getClientId(context));
         }
 
         // Invoke the appropriate request processor for this request
@@ -161,6 +193,7 @@ public class ActionListenerImpl implements ActionListener {
                 log.trace("Invoking request processor instance " + processor);
             }
             processor.process(request, response);
+            context.responseComplete();
         } catch (Exception e) {
             log.error("Exception processing action event " + event, e);
         } finally {

@@ -3,7 +3,7 @@
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
 <%@ taglib prefix="s" uri="http://jakarta.apache.org/struts/tags-faces" %>
 
-<f:use_faces>
+<f:view>
 <s:html locale="true">
 <head>
   <title>
@@ -21,42 +21,42 @@
 
   <h:panel_grid
            columns="2"
-        panelClass="form-background"
+        styleClass="form-background"
        headerClass="form-header"
      columnClasses="form-prompt,form-field"
        footerClass="form-footer">
 
-    <!-- Grid header element -->
+    <%-- Grid header element --%>
 
     <f:facet name="header">
         <s:message key="logon.header"/>
     </f:facet>
 
-    <!-- Grid data elements -->
+    <%-- Grid data elements --%>
 
     <h:output_label for="username">
       <s:message key="prompt.username"/>
     </h:output_label>
 
     <h:input_text id="username" size="16"
-            valueRef="logonForm.username"/>
+               value="#{logonForm.map.username}"/>
 
     <h:output_label for="password">
       <s:message key="prompt.password"/>
     </h:output_label>
 
     <h:input_secret id="password" size="16"
-              valueRef="logonForm.password"/>
+                 value="#{logonForm.map.password}"/>
 
     <h:command_button id="submit" type="SUBMIT"
-            commandClass="command-single"
-             commandName="submit" label="Log On"/>
+              styleClass="command-single"
+                   value="Log On"/>
 
     <h:command_button id="reset" type="RESET"
-            commandClass="command-single"
-             commandName="reset" label="Reset"/>
+              styleClass="command-single"
+                   value="Reset"/>
 
-    <!-- Grid footer element -->
+    <%-- Grid footer element --%>
 
     <f:facet name="footer">
         <s:message key="logon.footer"/>
@@ -73,4 +73,4 @@
 
 </body>
 </s:html>
-</f:use_faces>
+</f:view>

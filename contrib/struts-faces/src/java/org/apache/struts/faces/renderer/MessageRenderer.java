@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/MessageRenderer.java,v 1.3 2003/07/27 06:43:16 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/27 06:43:16 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/MessageRenderer.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -66,8 +66,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIOutput;
 import javax.faces.component.UIParameter;
+import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.logging.Log;
@@ -81,13 +81,13 @@ import org.apache.struts.util.MessageResources;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/07/27 06:43:16 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class MessageRenderer extends WriteRenderer {
 
 
-    // ------------------------------------------------------- Static Variables
+    // -------------------------------------------------------- Static Variables
 
 
     /**
@@ -96,10 +96,10 @@ public class MessageRenderer extends WriteRenderer {
     private static Log log = LogFactory.getLog(MessageRenderer.class);
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
-    // ------------------------------------------------------ Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
 
     /**
@@ -116,7 +116,7 @@ public class MessageRenderer extends WriteRenderer {
     protected String getText(FacesContext context, UIComponent component) {
 
         // Look up the MessageResources bundle to be used
-        String bundle = (String) component.getAttribute("bundle");
+        String bundle = (String) component.getAttributes().get("bundle");
         if (bundle == null) {
             bundle = Globals.MESSAGES_KEY;
         }
@@ -128,31 +128,32 @@ public class MessageRenderer extends WriteRenderer {
         }
 
         // Look up the message key to be used
-        Object value = component.getAttribute("key");
+        Object value = component.getAttributes().get("key");
         if (value == null) {
-            value = ((UIOutput) component).currentValue(context);
+            value = ((ValueHolder) component).getValue();
         }
         if (value == null) { // FIXME - i18n
-            throw new NullPointerException("Component " +
-                                           component.getComponentId() +
-                                           " has no current value");
+            throw new NullPointerException("Component '" +
+                                           component.getClientId(context) +
+                                           "' has no current value");
         }
         String key = value.toString();
 
         // Build the substitution arguments list
         ArrayList list = new ArrayList();
-        Iterator kids = component.getChildren();
+        Iterator kids = component.getChildren().iterator();
         while (kids.hasNext()) {
             UIComponent kid = (UIComponent) kids.next();
             if (!(kid instanceof UIParameter)) {
                 continue;
             }
-            list.add(((UIParameter) kid).currentValue(context));
+            list.add(((UIParameter) kid).getValue());
         }
         Object args[] = (Object[]) list.toArray(new Object[list.size()]);
 
         // Look up the requested message
-        return (resources.getMessage(context.getLocale(), key, args));
+        return (resources.getMessage(context.getViewRoot().getLocale(),
+                                     key, args));
 
     }
 

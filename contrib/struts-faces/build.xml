@@ -13,7 +13,7 @@
 
   <!-- Dependency home directory defaults -->
   <property name="jwsdp.home"       value="/usr/local/jwsdp-1.2"/>
-  <property name="jsf-ri.home"      value="${jwsdp.home}/jsf"/>
+  <property name="jsf-impl.home"    value="${jwsdp.home}/jsf"/>
   <property name="struts.home"      value="../../dist"/>
 
 
@@ -36,12 +36,12 @@
                                     value="${jwsdp.home}/common/lib/commons-pool.jar"/>
   <property name="commons-validator.jar"
                                     value="${struts.home}/lib/commons-validator.jar"/>
-  <property name="jsf-api.jar"      value="${jsf-ri.home}/lib/jsf-api.jar"/>
-  <property name="jsf-ri.jar"       value="${jsf-ri.home}/lib/jsf-ri.jar"/>
+  <property name="jsf-api.jar"      value="${jsf-impl.home}/lib/jsf-api.jar"/>
+  <property name="jsf-impl.jar"       value="${jsf-impl.home}/lib/jsf-impl.jar"/>
   <property name="jsp.jar"          value="${jwsdp.home}/common/lib/jsp-api.jar"/>
-  <property name="jstl.jar"         value="${jsf-ri.home}/lib/jstl.jar"/>
+  <property name="jstl.jar"         value="${jsf-impl.home}/lib/jstl.jar"/>
   <property name="servlet.jar"      value="${jwsdp.home}/common/lib/servlet-api.jar"/>
-  <property name="standard.jar"     value="${jsf-ri.home}/lib/standard.jar"/>
+  <property name="standard.jar"     value="${jsf-impl.home}/lib/standard.jar"/>
   <property name="struts.jar"       value="${struts.home}/lib/struts.jar"/>
 
 
@@ -50,7 +50,7 @@
   <property name="dist.home"       value="${basedir}/dist"/>
   <property name="project.name"    value="Struts-Faces Integration Library"/>
   <property name="project.package" value="org.apache.struts.faces"/>
-  <property name="project.version" value="0.4"/>
+  <property name="project.version" value="0.5"/>
 
 
   <!-- Compile Defaults -->
@@ -67,6 +67,7 @@
     <pathelement location="${commons-digester.jar}"/>
     <pathelement location="${commons-logging.jar}"/>
     <pathelement location="${commons-pool.jar}"/>
+    <pathelement location="${commons-validator.jar}"/>
     <pathelement location="${jsf-api.jar}"/>
     <pathelement location="${jsp.jar}"/>
     <pathelement location="${jstl.jar}"/>
@@ -278,7 +279,7 @@
     <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
                   file="${jsf-api.jar}"/>
     <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${jsf-ri.jar}"/>
+                  file="${jsf-impl.jar}"/>
     <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
                   file="${jstl.jar}"/>
     <copy        todir="${build.home}/webapps/example/WEB-INF/lib"

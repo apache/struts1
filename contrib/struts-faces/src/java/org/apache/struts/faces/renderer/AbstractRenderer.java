@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/AbstractRenderer.java,v 1.3 2003/07/27 06:43:16 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/27 06:43:16 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/AbstractRenderer.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -68,13 +68,16 @@ import java.util.Map;
 import javax.faces.FactoryFinder;
 import javax.faces.application.Application;
 import javax.faces.application.ApplicationFactory;
-import javax.faces.application.MessageImpl;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.ConvertibleValueHolder;
 import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
+import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
+import javax.faces.el.ValueBinding;
 import javax.faces.render.Renderer;
 
 
@@ -84,82 +87,13 @@ import javax.faces.render.Renderer;
  * <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/07/27 06:43:16 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public abstract class AbstractRenderer extends Renderer {
 
 
-    // --------------------------------------------------------- Public Methods
-
-
-    /**
-     * <p>Return the client-side id for the argument component.</p>
-     *
-     * <p>The purpose of this method is to give Renderers a chance to
-     * define, in a rendering specific way, the client side id for this
-     * component.  The client side id should be derived from the
-     * component id, if present.  </p>
-     *
-     * <p>Look up this component's "clientId" attribute.  If non-null,
-     * return it.  Get the component id for the argument
-     * <code>UIComponent</code>.  If null, generate one using the closest
-     * naming container that is an ancestor of this UIComponent, then set
-     * the generated id as the componentId of this UIComponent.  Prepend
-     * to the component id the component ids of each naming container up
-     * to, but not including, the root, separated by the
-     * UIComponent.SEPARATOR_CHAR.  In all cases, save the result as the
-     * value of the "clientId" attribute.</p>
-     *
-     * <p>This method must not return null.</p>
-     */ 
-    public String getClientId(FacesContext context, UIComponent component) {
-
-	String clientId = null;
-	NamingContainer closestContainer = null;
-	UIComponent containerComponent = component;
-
-        // Search for an ancestor that is a naming container
-        while (null != (containerComponent = 
-                        containerComponent.getParent())) {
-            if (containerComponent instanceof NamingContainer) {
-                closestContainer = (NamingContainer) containerComponent;
-                break;
-            }
-        }
-
-        // If none is found, see if this is a naming container
-        if (null == closestContainer && component instanceof NamingContainer) {
-            closestContainer = (NamingContainer) component;
-        }
-
-        if (null != closestContainer) {
-
-            // If there is no componentId, generate one and store it
-            if (component.getComponentId() == null) {
-                // Don't call setComponentId() because it checks for
-                // uniqueness.  No need.
-                clientId = closestContainer.generateClientId();
-            } else {
-                clientId = component.getComponentId();
-            }
-
-            // build the client side id
-            containerComponent = (UIComponent) closestContainer;
-
-            // If this is the root naming container, break
-            if (null != containerComponent.getParent()) {
-                clientId = containerComponent.getClientId(context) +
-                    UIComponent.SEPARATOR_CHAR + clientId;
-            }
-        }
-
-        if (null == clientId) {
-	    throw new NullPointerException();
-	}
-	return (clientId);
-
-    }
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -171,15 +105,9 @@ public abstract class AbstractRenderer extends Renderer {
      * @param context FacesContext for the request we are processing
      * @param component UIComponent to be decoded
      *
-     * @return <code>true</code> if conversion was successful (or no
-     *  conversion processing was required), or <code>false</code> if
-     *  conversion was not successful
-     *
-     * @exception IOException if an input/output error occurs while decoding
      * @exception NullPointerException if context or component is null
      */
-    public void decode(FacesContext context, UIComponent component)
-        throws IOException {
+    public void decode(FacesContext context, UIComponent component) {
 
         // Enforce NPE requirements in the Javadocs
         if ((context == null) || (component == null)) {
@@ -188,13 +116,12 @@ public abstract class AbstractRenderer extends Renderer {
 
         // Only input components need to be decoded
         if (!(component instanceof UIInput)) {
-            component.setValid(true);
             return;
         }
         UIInput input = (UIInput) component;
 
         // Save the old value for use in generating ValueChangedEvents
-        Object oldValue = input.currentValue(context);
+        Object oldValue = input.getValue();
         if (oldValue instanceof String) {
             try {
                 oldValue = getAsObject(context, component, (String) oldValue);
@@ -222,88 +149,10 @@ public abstract class AbstractRenderer extends Renderer {
     }
 
 
-    /**
-     * <p>Render the beginning specified {@link UIComponent} to the
-     * output stream or writer associated with the response we are creating.
-     * If the conversion attempted in a previous call to <code>decode</code>
-     * for this component failed, the state information saved during execution
-     * of <code>decode()</code> should be utilized to reproduce the incorrect
-     * input.  If the conversion was successful, or if there was no previous
-     * call to <code>decode()</code>, the value to be displayed should be
-     * acquired by calling <code>component.currentValue()</code>, and
-     * rendering the value as appropriate.</p>
-     *
-     * @param context FacesContext for the request we are processing
-     * @param component UIComponent to be rendered
-     *
-     * @exception IOException if an input/output error occurs while rendering
-     * @exception NullPointerException if <code>context</code>
-     *  or <code>component</code> is null
-     */
-    public void encodeBegin(FacesContext context, UIComponent component)
-        throws IOException {
-
-        if ((context == null) || (component == null)) {
-            throw new NullPointerException();
-        }
-        ; // Default implementation does nothing
-
-    }
+    // --------------------------------------------------------- Package Methods
 
 
-    /**
-     * <p>Render the child components of this {@link UIComponent}, following
-     * the rules described for <code>encodeBegin()</code> to acquire the
-     * appropriate value to be rendered.  This method will only be called
-     * if the <code>rendersChildren</code> property of this component
-     * is <code>true</code>.</p>
-     *
-     * @param context FacesContext for the response we are creating
-     * @param component UIComponent whose children are to be rendered
-     *
-     * @exception IOException if an input/output error occurs while rendering
-     * @exception NullPointerException if <code>context</code>
-     *  is <code>null</code>
-     */
-    public void encodeChildren(FacesContext context, UIComponent component)
-        throws IOException {
-
-        if ((context == null) || (component == null)) {
-            throw new NullPointerException();
-        }
-        ; // Default implementation does nothing
-
-    }
-
-
-    /**
-     * <p>Render the ending of the current state of the specified
-     * {@link UIComponent}, following the rules described for
-     * <code>encodeBegin()</code> to acquire the appropriate value
-     * to be rendered.</p>
-     *
-     * @param context FacesContext for the response we are creating
-     * @param component UIComponent whose children are to be rendered
-     *
-     * @exception IOException if an input/output error occurs while rendering
-     * @exception NullPointerException if <code>context</code>
-     *  is <code>null</code>
-     */
-    public void encodeEnd(FacesContext context, UIComponent component)
-        throws IOException {
-
-        if ((context == null) || (component == null)) {
-            throw new NullPointerException();
-        }
-        ; // Default implementation does nothing
-
-    }
-
-
-    // -------------------------------------------------------- Package Methods
-
-
-    // ------------------------------------------------------ Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
 
     /**
@@ -318,23 +167,11 @@ public abstract class AbstractRenderer extends Renderer {
                                        UIComponent component,
                                        String text) {
 
-        MessageImpl message = new MessageImpl();
-        message.setSummary("Conversion Error on component '" +
-                           component.getClientId(context) +
-                           ": " + text);
-        context.addMessage(component, message);
-
-    }
-
-
-    /**
-     * <p>Return the <code>Application</code> instance for this webapp.</p>
-     */
-    protected Application getApplication() {
-
-        ApplicationFactory factory = (ApplicationFactory)
-            FactoryFinder.getFactory(FactoryFinder.APPLICATION_FACTORY);
-        return (factory.getApplication());
+        String clientId = component.getClientId(context);
+        FacesMessage message = new FacesMessage
+            (text,
+             "Conversion error on component '" + clientId + "'");
+        context.addMessage(clientId, message);
 
     }
 
@@ -355,15 +192,28 @@ public abstract class AbstractRenderer extends Renderer {
     protected Object getAsObject(FacesContext context, UIComponent component,
                                  String value) throws ConverterException {
 
-        // Is there a Converter associated with this component?
-        String converterId = component.getConverter();
-        if (converterId == null) {
-            return (value);
+        // Identify any Converter associated with this component value
+        ValueBinding vb = component.getValueBinding("value");
+        Converter converter = null;
+        if (component instanceof ConvertibleValueHolder) {
+            // Acquire explicitly assigned Converter (if any)
+            converter = ((ConvertibleValueHolder) component).getConverter();
+        }
+        if ((converter == null) && (vb != null)) {
+            Class type = vb.getType(context);
+            if ((type == null) || (type == String.class)) {
+                return (value); // No conversion required for Strings
+            }
+            // Acquire implicit by-type Converter (if any)
+            converter = context.getApplication().createConverter(type);
         }
 
-        // Look up the Converter instance and use it
-        Converter converter = getApplication().getConverter(converterId);
-        return (converter.getAsObject(context, component, value));
+        // Convert the result if we identified a Converter
+        if (converter != null) {
+            return (converter.getAsObject(context, component, value));
+        } else {
+            return (value);
+        }
 
     }
 
@@ -384,21 +234,31 @@ public abstract class AbstractRenderer extends Renderer {
     protected String getAsString(FacesContext context, UIComponent component,
                                  Object value) throws ConverterException {
 
-        // Is there a Converter associated with this component?
-        String converterId = component.getConverter();
-        if (converterId == null) {
-            if (value == null) {
-                return ("");
-            } else if (value instanceof String) {
-                return ((String) value);
-            } else {
-                return (value.toString());
+        // Identify any Converter associated with this component value
+        ValueBinding vb = component.getValueBinding("value");
+        Converter converter = null;
+        if (component instanceof ConvertibleValueHolder) {
+            // Acquire explicitly assigned Converter (if any)
+            converter = ((ConvertibleValueHolder) component).getConverter();
+        }
+        if ((converter == null) && (vb != null)) {
+            // Acquire implicit by-type Converter (if any)
+            Class type = vb.getType(context);
+            if (type != null) {
+                converter = context.getApplication().createConverter(type);
             }
         }
 
-        // Look up the Converter instance and use it
-        Converter converter = getApplication().getConverter(converterId);
-        return (converter.getAsString(context, component, value));
+        // Convert the result if we identified a Converter
+        if (converter != null) {
+            return (converter.getAsString(context, component, value));
+        } else if (value == null) {
+            return ("");
+        } else if (value instanceof String) {
+            return ((String) value);
+        } else {
+            return (value.toString());
+        }
 
     }
 

@@ -69,7 +69,7 @@
     <forward   name="logon"                path="/faces/logon.jsp"/>
     <forward   name="registration"         path="/faces/registration.jsp"/>
     <forward   name="subscription"         path="/faces/subscription.jsp"/>
-    <forward   name="success"              path="/mainMenu.jsp"/>
+    <forward   name="success"              path="/faces/mainMenu.jsp"/>
   </global-forwards>
 
 
@@ -91,7 +91,7 @@
           attribute="subscriptionForm"
               scope="request"
            validate="false">
-      <forward name="failure"              path="/mainMenu.jsp"/>
+      <forward name="failure"              path="/faces/mainMenu.jsp"/>
       <forward name="success"              path="/faces/subscription.jsp"/>
     </action>
 
@@ -126,7 +126,7 @@
                name="subscriptionForm"
               scope="request"
               input="subscription">
-      <forward name="success"         path="/editRegistration.do?action=Edit"/>
+      <forward name="success"         path="/faces/mainMenu.jsp"/>
     </action>
 
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/AbstractFacesTag.java,v 1.3 2003/07/27 06:45:04 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/27 06:45:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/AbstractFacesTag.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -63,7 +63,8 @@ package org.apache.struts.faces.taglib;
 
 
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIOutput;
+import javax.faces.component.ValueHolder;
+import javax.faces.el.ValueBinding;
 import javax.faces.webapp.UIComponentTag;
 
 
@@ -73,13 +74,13 @@ import javax.faces.webapp.UIComponentTag;
  *
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/07/27 06:45:04 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public abstract class AbstractFacesTag extends UIComponentTag {
 
 
-    // --------------------------------------------------------- Tag Attributes
+    // ---------------------------------------------------------- Tag Attributes
 
 
     /**
@@ -113,17 +114,7 @@ public abstract class AbstractFacesTag extends UIComponentTag {
     }
 
 
-    /**
-     * <p>The symbolic reference to the value to be rendered.</p>
-     */
-    protected String valueRef = null;
-
-    public void setValueRef(String valueRef) {
-        this.valueRef = valueRef;
-    }
-
-
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -149,12 +140,11 @@ public abstract class AbstractFacesTag extends UIComponentTag {
         this.bundle = null;
         this.styleClass = null;
         this.value = null;
-        this.valueRef = null;
 
     }
 
 
-    // ------------------------------------------------------ Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
 
     /**
@@ -162,31 +152,34 @@ public abstract class AbstractFacesTag extends UIComponentTag {
      *
      * @param component Component whose attributes should be overridden
      */
-    protected void overrideProperties(UIComponent component) {
+    protected void setProperties(UIComponent component) {
 
-        super.overrideProperties(component);
-        if ((bundle != null) &&
-            (component.getAttribute("bundle") == null)) {
-            component.setAttribute("bundle", bundle);
-        }
-        if ((styleClass != null) &&
-            (component.getAttribute("styleClass") == null)) {
-            component.setAttribute("styleClass", styleClass);
-        }
-        if (value != null) {
-            if ((component instanceof UIOutput) &&
-                (((UIOutput) component).getValue() == null)) {
-                ((UIOutput) component).setValue(value);
-            } else if (component.getAttribute("value") == null) {
-                component.setAttribute("value", value);
+        super.setProperties(component);
+        if (bundle != null) {
+            if (isValueReference(bundle)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(bundle);
+                component.setValueBinding("bundle", vb);
+            } else {
+                component.getAttributes().put("bundle", bundle);
             }
         }
-        if (valueRef != null) {
-            if ((component instanceof UIOutput) &&
-                (((UIOutput) component).getValueRef() == null)) {
-                ((UIOutput) component).setValueRef(valueRef);
-            } else if (component.getAttribute("valueRef") == null) {
-                component.setAttribute("valueRef", valueRef);
+        if (styleClass != null) {
+            if (isValueReference(styleClass)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(styleClass);
+                component.setValueBinding("styleClass", vb);
+            } else {
+                component.getAttributes().put("styleClass", styleClass);
+            }
+        }
+        if (value != null) {
+            if (isValueReference(value)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(value);
+                component.setValueBinding("value", vb);
+            } else {
+                ((ValueHolder) component).setValue(value);
             }
         }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/LifecycleListener.java,v 1.3 2003/07/27 06:45:04 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/27 06:45:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/LifecycleListener.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -88,14 +88,14 @@ import org.apache.struts.faces.application.PropertyResolverImpl;
  * <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/07/27 06:45:04 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class LifecycleListener
     implements ServletContextListener, ServletContextAttributeListener {
 
 
-    // ----------------------------------------------------- Instance Variables
+    // ------------------------------------------------------ Instance Variables
 
 
     /**
@@ -116,7 +116,7 @@ public class LifecycleListener
     protected ServletContext servletContext = null;
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -194,12 +194,13 @@ public class LifecycleListener
 
         log.info("contextInitialized()");
         servletContext = event.getServletContext();
-        createPropertyResolver();
+        // FIXME -- causes NPE looking up ApplicationFactory
+        // createPropertyResolver();
 
     }
 
 
-    // -------------------------------------------------------- Private Methods
+    // --------------------------------------------------------- Private Methods
 
 
     /**

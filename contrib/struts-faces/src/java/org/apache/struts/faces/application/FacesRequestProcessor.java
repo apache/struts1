@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesRequestProcessor.java,v 1.3 2003/09/21 02:30:11 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2003/09/21 02:30:11 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesRequestProcessor.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -65,13 +65,13 @@ package org.apache.struts.faces.application;
 import java.io.IOException;
 import javax.faces.FacesException;
 import javax.faces.FactoryFinder;
+import javax.faces.application.ViewHandler;
 import javax.faces.component.UICommand;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.faces.tree.Tree;
-import javax.faces.tree.TreeFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -82,6 +82,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.faces.Constants;
+import org.apache.struts.faces.component.FormComponent;
+
 
 
 /**
@@ -93,13 +95,13 @@ import org.apache.struts.faces.Constants;
  * requests as well.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/09/21 02:30:11 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class FacesRequestProcessor extends RequestProcessor {
 
 
-    // ----------------------------------------------------- Instance Variables
+    // ------------------------------------------------------ Instance Variables
 
 
     /**
@@ -109,7 +111,7 @@ public class FacesRequestProcessor extends RequestProcessor {
 
 
 
-    // ------------------------------------------------------ Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
 
     /**
@@ -132,20 +134,26 @@ public class FacesRequestProcessor extends RequestProcessor {
             log.trace("Forwarding to URI '" + uri + "'");
         }
 
-        // On a Faces request, select the new component tree
+        // On a Faces request, select the new view
         FacesContext context = FacesContext.getCurrentInstance();
+        /*
         if ((context != null) && !uri.startsWith("/faces/")) {
-            selectTree(context, uri);
+            selectView(context, uri);
         } else {
+        */
             if (response.isCommitted()) {
                 doInclude(uri, request, response);
             } else {
                 super.doForward(uri, request, response);
             }
+            /*
             if (context != null) {
                 context.responseComplete();
             }
+            */
+        /*
         }
+        */
 
     }
 
@@ -170,17 +178,23 @@ public class FacesRequestProcessor extends RequestProcessor {
             log.trace("Including to URI '" + uri + "'");
         }
 
-        // On a Faces request, select the new component tree
+        // On a Faces request, select the new view
         FacesContext context = FacesContext.getCurrentInstance();
+        /*
         if ((context != null)  && !uri.startsWith("/faces/")) {
             ; // FIXME - JSF spec is probably broken w.r.t includes!
-            selectTree(context, uri);
+            selectView(context, uri);
         } else {
+        */
             super.doInclude(uri, request, response);
+            /*
             if (context != null) {
                 context.responseComplete();
             }
+            */
+        /*
         }
+        */
 
     }
 
@@ -217,18 +231,18 @@ public class FacesRequestProcessor extends RequestProcessor {
             log.trace("Locating form parent for command component " +
                       event.getComponent());
         }
-        while (!(component instanceof UIForm)) {
+        while (!(component instanceof FormComponent)) {
             component = component.getParent();
             if (component == null) {
-                log.warn("command component was not nested in a form!");
+                log.warn("command component was not nested in a Struts form!");
                 return (null);
             }
         }
         if (log.isDebugEnabled()) {
             log.debug("Returning selected path of " +
-                      ((UIForm) component).getFormName());
+                      ((FormComponent) component).getAction());
         }
-        return (((UIForm) component).getFormName());
+        return (((FormComponent) component).getAction());
 
     }
 
@@ -275,7 +289,7 @@ public class FacesRequestProcessor extends RequestProcessor {
         UIComponent source = event.getComponent();
         if (source instanceof UICommand) {
             UICommand command = (UICommand) source;
-            if ("cancel".equals(((UICommand) source).getCommandName())) {
+            if ("cancel".equals(((UICommand) source).getId())) {
                 if (log.isTraceEnabled()) {
                     log.trace("Faces request with cancel button pressed");
                 }
@@ -286,31 +300,28 @@ public class FacesRequestProcessor extends RequestProcessor {
     }
 
 
-    // -------------------------------------------------------- Private Methods
+    // --------------------------------------------------------- Private Methods
 
 
     /**
-     * <p>Select the response component tree that corresponds to the specified
+     * <p>Select the response view that corresponds to the specified
      * URI, which is being forwarded to or included.</p>
      *
      * @param context FacesContext for the request we are processing
      * @param uri Context-relative URI of the new resource
      */
-    private void selectTree(FacesContext context, String uri) {
+    private void selectView(FacesContext context, String uri) {
 
         if (log.isTraceEnabled()) {
-            log.trace("Selecting tree '" + uri + "'");
+            log.trace("Selecting view '" + uri + "'");
         }
 
-        // Look up the Tree that corresponds to this URI
+        // Look up the view that corresponds to this URI
         try {
-            log.debug("selectTree(" + uri + ")");
-            TreeFactory tfactory = (TreeFactory)
-                FactoryFinder.getFactory(FactoryFinder.TREE_FACTORY);
-            Tree tree = tfactory.getTree(context, uri);
-            context.setTree(tree);
+            ViewHandler vh = context.getApplication().getViewHandler();
+            UIViewRoot view = vh.createView(context, uri);
         } catch (FacesException e) {
-            log.error("selectTree(" + uri + ")", e);
+            log.error("selectView(" + uri + ")", e);
         }
 
     }

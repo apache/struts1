@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/BaseRenderer.java,v 1.5 2003/09/21 00:41:56 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2003/09/21 00:41:56 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/BaseRenderer.java,v 1.6 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -78,13 +78,13 @@ import org.apache.commons.logging.LogFactory;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2003/09/21 00:41:56 $
+ * @version $Revision: 1.6 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class BaseRenderer extends AbstractRenderer {
 
 
-    // ------------------------------------------------------- Static Variables
+    // -------------------------------------------------------- Static Variables
 
 
     /**
@@ -93,14 +93,11 @@ public class BaseRenderer extends AbstractRenderer {
     private static Log log = LogFactory.getLog(BaseRenderer.class);
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
-     * <p>Render a combination of error messages from JavaServer Faces
-     * <code>Validator</code>s, and Struts messages from form bean
-     * <code>validate()</code> methods and corresponding business logic
-     * error checks.</p>
+     * <p>Render an HTML <code>base</code> element.</p>
      *
      * @param context FacesContext for the request we are processing
      * @param component UIComponent to be rendered
@@ -119,10 +116,33 @@ public class BaseRenderer extends AbstractRenderer {
         ResponseWriter writer = context.getResponseWriter();
         HttpServletRequest request = (HttpServletRequest)
             context.getExternalContext().getRequest();
-        writer.write("<base href=\"");
-        writer.write(request.getScheme());
-        writer.write("://");
-        writer.write(request.getServerName());
+        writer.startElement("base", component);
+        writer.writeURIAttribute("href", uri(request), null);
+        String target = (String) component.getAttributes().get("target");
+        if (target != null) {
+            writer.writeAttribute("target", target, "target");
+        }
+        writer.endElement("base");
+        writer.writeText("\n", null);
+
+    }
+
+
+
+    // ------------------------------------------------------- Protected Methods
+
+
+    /**
+     * <p>Return the absolute URI to be rendered as the value of the
+     * <code>href</code> attribute.</p>
+     *
+     * @param request The servlet request we are processing
+     */
+    protected String uri(HttpServletRequest request) {
+
+        StringBuffer sb = new StringBuffer(request.getScheme());
+        sb.append("://");
+        sb.append(request.getServerName());
         if ("http".equals(request.getScheme()) &&
             (80 == request.getServerPort())) {
             ;
@@ -130,36 +150,23 @@ public class BaseRenderer extends AbstractRenderer {
                    (443 == request.getServerPort())) {
             ;
         } else {
-            writer.write(":" + request.getServerPort());
+            sb.append(":" + request.getServerPort());
         }
-        if (request.getContextPath() != null) {
-            writer.write(request.getContextPath());
-        }
+        sb.append(request.getContextPath());
         String servletPath = request.getServletPath();
         if (servletPath != null) {
             if (servletPath.startsWith("/faces")) {
-                writer.write(servletPath.substring(6));
+                sb.append(servletPath.substring(6));
             } else {
-                writer.write(servletPath);
+                sb.append(servletPath);
             }
         }
         if (request.getPathInfo() != null) {
-            writer.write(request.getPathInfo());
+            sb.append(request.getPathInfo());
         }
-        writer.write("\"");
-        String target = (String) component.getAttribute("target");
-        if (target != null) {
-            writer.write(" target=\"");
-            writer.write(target);
-            writer.write("\"");
-        }
-        writer.write(">");
+        return (sb.toString());
 
     }
-
-
-
-    // ------------------------------------------------------ Protected Methods
 
 
 }

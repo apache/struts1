@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/StylesheetRenderer.java,v 1.3 2003/07/27 06:43:16 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/27 06:43:16 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/StylesheetRenderer.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -77,13 +77,13 @@ import org.apache.commons.logging.LogFactory;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/07/27 06:43:16 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class StylesheetRenderer extends AbstractRenderer {
 
 
-    // ------------------------------------------------------- Static Variables
+    // -------------------------------------------------------- Static Variables
 
 
     /**
@@ -92,7 +92,7 @@ public class StylesheetRenderer extends AbstractRenderer {
     private static Log log = LogFactory.getLog(StylesheetRenderer.class);
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -105,7 +105,7 @@ public class StylesheetRenderer extends AbstractRenderer {
      *
      * @exception IOException if an input/output error occurs while rendering
      * @exception NullPointerException if <code>context</code>
-     *  or <code>component</code> is null
+     *  or <code>component</code> is <code>null</code>
      */
     public void encodeEnd(FacesContext context, UIComponent component)
         throws IOException {
@@ -115,16 +115,21 @@ public class StylesheetRenderer extends AbstractRenderer {
         }
 
         ResponseWriter writer = context.getResponseWriter();
-        writer.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"");
-        writer.write(context.getExternalContext().getRequestContextPath());
-        writer.write((String) component.getAttribute("path"));
-        writer.write("\">");
+        writer.startElement("link", component);
+        writer.writeAttribute("rel", "stylesheet", null);
+        writer.writeAttribute("type", "text/css", null);
+        writer.writeURIAttribute
+            ("href",
+             context.getExternalContext().getRequestContextPath() +
+             (String) component.getAttributes().get("path"), "path");
+        writer.endElement("link");
+        writer.writeText("\n", null);
 
     }
 
 
 
-    // ------------------------------------------------------ Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
 
 }

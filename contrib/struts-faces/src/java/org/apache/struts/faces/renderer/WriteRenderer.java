@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/WriteRenderer.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:38:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/WriteRenderer.java,v 1.3 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -64,7 +64,7 @@ package org.apache.struts.faces.renderer;
 
 import java.io.IOException;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIOutput;
+import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import org.apache.commons.logging.Log;
@@ -77,13 +77,13 @@ import org.apache.struts.util.ResponseUtils;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
+ * @version $Revision: 1.3 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class WriteRenderer extends AbstractRenderer {
 
 
-    // ------------------------------------------------------- Static Variables
+    // -------------------------------------------------------- Static Variables
 
 
     /**
@@ -92,7 +92,7 @@ public class WriteRenderer extends AbstractRenderer {
     private static Log log = LogFactory.getLog(WriteRenderer.class);
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -102,31 +102,38 @@ public class WriteRenderer extends AbstractRenderer {
      * @param component Component to be rendered
      *
      * @exception IOException if an input/output error occurs
+     * @exception NullPointerException if <code>context</code>
+     *  or <code>component</code> is <code>null</code>
      */
     public void encodeEnd(FacesContext context, UIComponent component)
         throws IOException {
 
+        if ((context == null) || (component == null)) {
+            throw new NullPointerException();
+        }
+
         ResponseWriter writer = context.getResponseWriter();
-        String styleClass = (String) component.getAttribute("styleClass");
+        String styleClass =
+            (String) component.getAttributes().get("styleClass");
         if (styleClass != null) {
-            writer.write("<span class=\"");
-            writer.write(styleClass);
-            writer.write("\">");
+            writer.startElement("span", component);
+            writer.writeAttribute("class", styleClass, "styleClass");
+            writer.writeText("", null);
         }
         String text = getText(context, component);
         if (log.isTraceEnabled()) {
-            log.trace("encodeEnd(" + component.getComponentId() +
+            log.trace("encodeEnd(" + component.getClientId(context) +
                       "," + text + ")");
         }
         writer.write(text);
         if (styleClass != null) {
-            writer.write("</span>");
+            writer.endElement("span");
         }
 
     }
 
 
-    // ------------------------------------------------------ Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
 
     /**
@@ -138,13 +145,9 @@ public class WriteRenderer extends AbstractRenderer {
      */
     protected String getText(FacesContext context, UIComponent component) {
 
-        Object value = ((UIOutput) component).currentValue(context);
-        if (value == null) {
-            value = "";
-        }
-        String text = value.toString();
-
-        Boolean filter = (Boolean) component.getAttribute("filter");
+        String text = getAsString(context, component,
+                                  ((ValueHolder) component).getValue());
+        Boolean filter = (Boolean) component.getAttributes().get("filter");
         if (filter == null) {
             filter = Boolean.FALSE;
         }

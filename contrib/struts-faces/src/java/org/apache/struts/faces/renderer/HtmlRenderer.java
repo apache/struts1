@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/HtmlRenderer.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:38:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/HtmlRenderer.java,v 1.3 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -78,13 +78,13 @@ import org.apache.struts.Globals;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
+ * @version $Revision: 1.3 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class HtmlRenderer extends AbstractRenderer {
 
 
-    // ------------------------------------------------------- Static Variables
+    // -------------------------------------------------------- Static Variables
 
 
     /**
@@ -93,7 +93,7 @@ public class HtmlRenderer extends AbstractRenderer {
     private static Log log = LogFactory.getLog(HtmlRenderer.class);
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -104,7 +104,7 @@ public class HtmlRenderer extends AbstractRenderer {
      *
      * @exception IOException if an input/output error occurs while rendering
      * @exception NullPointerException if <code>context</code>
-     *  or <code>component</code> is null
+     *  or <code>component</code> is <code>null</code>
      */
     public void encodeBegin(FacesContext context, UIComponent component)
         throws IOException {
@@ -118,22 +118,19 @@ public class HtmlRenderer extends AbstractRenderer {
         boolean validLanguage = ((lang != null) && (lang.length() > 0));
 
         ResponseWriter writer = context.getResponseWriter();
-        writer.write("<html");
+        writer.startElement("html", component);
         if (isXhtml(component)) {
             // FIXME -- page scope attribute Globals.XHTML_KEY to "true"?
-            writer.write(" xmlns=\"http://www.w3.org/1999/xhtml\"");
+            writer.writeAttribute("xmlns",
+                                  "http://www.w3.org/1999/xhtml", null);
         }
         if ((isLocale(component) || isXhtml(component)) && validLanguage) {
-            writer.write(" lang=\"");
-            writer.write(lang);
-            writer.write("\"");
+            writer.writeAttribute("lang", lang, null);
         }
         if (isXhtml(component) && validLanguage) {
-            writer.write(" xml:lang=\"");
-            writer.write(lang);
-            writer.write("\"");
+            writer.writeAttribute("xml:lang", lang, null);
         }
-        writer.write(">\n");
+        writer.writeText("\n", null);
 
     }
 
@@ -156,7 +153,7 @@ public class HtmlRenderer extends AbstractRenderer {
         }
 
         ResponseWriter writer = context.getResponseWriter();
-        writer.write("</html>\n");
+        writer.endElement("html");
 
     }
 
@@ -204,7 +201,7 @@ public class HtmlRenderer extends AbstractRenderer {
      */
     protected boolean isLocale(UIComponent component) {
 
-        Boolean locale = (Boolean) component.getAttribute("locale");
+        Boolean locale = (Boolean) component.getAttributes().get("locale");
         if (locale != null) {
             return locale.booleanValue();
         } else {
@@ -221,7 +218,7 @@ public class HtmlRenderer extends AbstractRenderer {
      */
     protected boolean isXhtml(UIComponent component) {
 
-        Boolean xhtml = (Boolean) component.getAttribute("xhtml");
+        Boolean xhtml = (Boolean) component.getAttributes().get("xhtml");
         if (xhtml != null) {
             return xhtml.booleanValue();
         } else {

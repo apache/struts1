@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.2 2003/07/27 06:39:56 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2003/07/27 06:39:56 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.3 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.MessageResources;
  * updates the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/07/27 06:39:56 $
+ * @version $Revision: 1.3 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public final class SaveSubscriptionAction extends Action {
@@ -164,8 +164,12 @@ public final class SaveSubscriptionAction extends Action {
 	Subscription subscription =
 	  (Subscription) session.getAttribute(Constants.SUBSCRIPTION_KEY);
         if ("Create".equals(action)) {
+            if (log.isTraceEnabled()) {
+                log.trace(" Creating subscription for mail server '" +
+                          subform.getHost() + "'");
+            }
             subscription =
-                user.createSubscription(request.getParameter("host"));
+                user.createSubscription(subform.getHost());
         }
 	if (subscription == null) {
             if (log.isTraceEnabled()) {

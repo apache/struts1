@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/HtmlTag.java,v 1.3 2003/07/27 06:46:21 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/27 06:46:21 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/HtmlTag.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@ package org.apache.struts.faces.taglib;
 
 
 import javax.faces.component.UIComponent;
+import javax.faces.el.ValueBinding;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
@@ -74,21 +75,21 @@ import org.apache.struts.Globals;
  * the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/07/27 06:46:21 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class HtmlTag extends AbstractFacesTag {
 
 
-    // --------------------------------------------------------- Tag Attributes
+    // ---------------------------------------------------------- Tag Attributes
 
 
     /**
      * <p>Set a locale if not set yet.</p>
      */
-    private boolean locale = false;
+    private String locale = null;
 
-    public void setLocale(boolean locale) {
+    public void setLocale(String locale) {
         this.locale = locale;
     }
 
@@ -96,14 +97,14 @@ public class HtmlTag extends AbstractFacesTag {
     /**
      * <p>Render Struts HTML tags as xhtml.</p>
      */
-    private boolean xhtml = false;
+    private String xhtml = null;
 
-    public void setXhtml(boolean xhtml) {
+    public void setXhtml(String xhtml) {
         this.xhtml = xhtml;
     }
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -123,7 +124,7 @@ public class HtmlTag extends AbstractFacesTag {
     public int doStartTag() throws JspException {
 
         int result = super.doStartTag();
-        if (xhtml) {
+        if (xhtml != null) {
             pageContext.setAttribute(Globals.XHTML_KEY, "true",
                                      PageContext.PAGE_SCOPE);
         }
@@ -149,13 +150,13 @@ public class HtmlTag extends AbstractFacesTag {
     public void release() {
 
         super.release();
-        this.locale = false;
-        this.xhtml = false;
+        this.locale = null;
+        this.xhtml = null;
 
     }
 
 
-    // ------------------------------------------------------ Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
 
     /**
@@ -163,14 +164,28 @@ public class HtmlTag extends AbstractFacesTag {
      *
      * @param component Component whose attributes should be overridden
      */
-    protected void overrideProperties(UIComponent component) {
+    protected void setProperties(UIComponent component) {
 
-        super.overrideProperties(component);
-        if (component.getAttribute("locale") == null) {
-            component.setAttribute("locale", new Boolean(locale));
+        super.setProperties(component);
+        if (locale != null) {
+            if (isValueReference(locale)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(locale);
+                component.setValueBinding("locale", vb);
+            } else {
+                component.getAttributes().put
+                    ("locale", Boolean.valueOf(locale));
+            }
         }
-        if (component.getAttribute("xhtml") == null) {
-            component.setAttribute("xhtml", new Boolean(xhtml));
+        if (xhtml != null) {
+            if (isValueReference(xhtml)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(xhtml);
+                component.setValueBinding("xhtml", vb);
+            } else {
+                component.getAttributes().put
+                    ("xhtml", Boolean.valueOf(xhtml));
+            }
         }
 
     }

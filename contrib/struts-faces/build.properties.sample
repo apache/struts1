@@ -6,7 +6,7 @@
 # source code.  To use this file, make a copy of it in "build.properties" and
 # customize the values as required.
 #
-# $Id: build.properties.sample,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
+# $Id: build.properties.sample,v 1.3 2003/12/24 03:21:01 craigmcc Exp $
 
 
 # ---------------------------- BUILD MODE -------------------------------------
@@ -25,13 +25,13 @@
 # (JWSDP) Version 1.2 installation directory
 jwsdp.home=/usr/local/jwsdp-1.2
 
-# The absolute or relative pathname of the JavaServer Faces EA4 Distribution
+# The absolute or relative pathname of the JavaServer Faces Beta Distribution
 # Directory
-jsf-ri.home=${jwsdp.home}/jsf
+jsf.home=/usr/local/jsf-1_0
 
-# The absolute or relative pathname of the Struts 1.1 RC1 (or later)
+# The absolute or relative pathname of the Struts 1.1 (or later)
 # Distribution Directory
-struts.home=/usr/local/struts-1.1
+struts.home=/usr/local/jakarta-struts-1.1
 
 
 # ---------------------- DEPENDENCY LIBRARY PATHS -----------------------------
@@ -64,10 +64,10 @@ commons-pool.jar=${jwsdp.home}/common/lib/commons-pool.jar
 commons-validator.jar=${struts.home}/lib/commons-validator.jar
 
 # The absolute or relative pathname of the JavaServer Faces API Classes
-jsf-api.jar=${jsf-ri.home}/lib/jsf-api.jar
+jsf-api.jar=${jsf.home}/lib/jsf-api.jar
 
 # The absolute or relative pathname of the JavaServer Faces RI Classes
-jsf-ri.jar=${jsf-ri.home}/lib/jsf-ri.jar
+jsf-impl.jar=${jsf.home}/lib/jsf-impl.jar
 
 # The absolute or relative pathname of the JSP 2.0 API Classes
 # (If you are compiling against a combined Servlet 2.3 / JSP 1.2 API
@@ -76,7 +76,7 @@ jsp-api.jar=${jwsdp.home}/common/lib/jsp-api.jar
 
 # The absolute or relative pathname of the JSP Standard Tag Library
 # (JSTL) API Classes
-jstl.jar=${jsf-ri.home}/lib/jstl.jar
+jstl.jar=${jsf-impl.home}/lib/jstl.jar
 
 # The absolute or relative pathname of the Servlet 2.4 API Classes
 # (or a combined Servlet 2.3 / JSP 1.2 API classes JAR file)
@@ -84,7 +84,7 @@ servlet.jar=${jwsdp.home}/common/lib/servlet-api.jar
 
 # The absolute or relative pathname of the JSP Standard Tag Library
 # (JSTL) RI Classes
-standard.jar=${jsf-ri.home}/lib/standard.jar
+standard.jar=${jsf-impl.home}/lib/standard.jar
 
 # The absolute or relative pathname of the Struts Runtime Library
 struts.jar=${struts.home}/lib/struts.jar

@@ -7,7 +7,7 @@
 
 <%-- FIXME <a:checkLogon/> --%>
 
-<f:use_faces>
+<f:view>
 <s:html locale="true">
 <head>
   <title><c:choose>
@@ -33,11 +33,11 @@
 
 <s:form action="/saveSubscription" focus="host">
 
-  <h:input_hidden id="action" valueRef="subscriptionForm.action"/>
+  <h:input_hidden id="action" value="#{subscriptionForm.action}"/>
 
   <h:panel_grid
            columns="2"
-        panelClass="form-background"
+        styleClass="form-background"
        headerClass="form-header"
      columnClasses="form-prompt,form-field">
 
@@ -56,7 +56,7 @@
             <s:message id="headerEdit" key="subscription.title.edit"/>
           </c:when>
           <c:otherwise>
-            UNKNOWN ACTION
+            <h:output_text id="headerUnknown" value="UNKNOWN ACTION"/>
           </c:otherwise>
         </c:choose>
       </h:panel_group>
@@ -69,7 +69,7 @@
     </h:output_label>
 
     <s:write id="user" filter="true"
- valueRef="user.username"/>
+          value="#{user.username}"/>
 
     <h:output_label for="host">
       <s:message key="prompt.mailHostname"/>
@@ -78,13 +78,13 @@
     <c:choose>
       <c:when test="${subscriptionForm.action == 'Create'}">
         <h:input_text id="host" size="50"
-          valueRef="subscriptionForm.host"/>
+                   value="#{subscriptionForm.host}"/>
       </c:when>
       <c:otherwise>
         <h:panel_group id="hostGroup">
           <s:write id="hostDisplay" filter="true"
-                                    valueRef="subscriptionForm.host"/>
-          <h:input_hidden id="host" valueRef="subscriptionForm.host"/>
+                                     value="#{subscriptionForm.host}"/>
+          <h:input_hidden id="host"  value="#{subscriptionForm.host}"/>
         </h:panel_group>
       </c:otherwise>
     </c:choose>
@@ -94,23 +94,25 @@
     </h:output_label>
 
     <h:input_text id="username"
-                size="50" valueRef="subscriptionForm.username"/>
+                size="50"
+               value="#{subscriptionForm.username}"/>
 
     <h:output_label for="password">
       <s:message key="prompt.mailPassword"/>
     </h:output_label>
 
     <h:input_text id="password"
-                size="50" valueRef="subscriptionForm.password"/>
+                size="50"
+               value="#{subscriptionForm.password}"/>
 
     <h:output_label for="type">
       <s:message key="prompt.mailServerType"/>
     </h:output_label>
 
     <h:selectone_menu id="type"
-          valueRef="subscriptionForm.type">
-      <h:selectitem itemValue="imap" itemLabel="IMAP Protocol"/>
-      <h:selectitem itemValue="pop3" itemLabel="POP3 Protocol"/>
+                   value="#{subscriptionForm.type}">
+      <f:selectitem itemValue="imap" itemLabel="IMAP Protocol"/>
+      <f:selectitem itemValue="pop3" itemLabel="POP3 Protocol"/>
     </h:selectone_menu>
 
     <h:output_label for="autoConnect">
@@ -118,28 +120,32 @@
     </h:output_label>
 
     <h:selectboolean_checkbox id="autoConnect"
-                  valueRef="subscriptionForm.autoConnect"/>
+                           value="#{subscriptionForm.autoConnect}"/>
 
     <c:choose>
       <c:when test="${subscriptionForm.action == 'Delete'}">
-        <h:command_button id="submit" type="SUBMIT"
-                commandClass="command-single"
-                 commandName="submit" label="Confirm"/>  <%-- FIXME - i18n --%>
+        <h:command_button id="confirm"
+                        type="SUBMIT"
+                  styleClass="command-single"
+                       value="Confirm"/>  <%-- FIXME - i18n --%>
       </c:when>
       <c:otherwise>
-        <h:command_button id="submit" type="SUBMIT"
-                commandClass="command-single"
-                 commandName="submit" label="Save"/>     <%-- FIXME - i18n --%>
+        <h:command_button id="save"
+                        type="SUBMIT"
+                  styleClass="command-single"
+                       value="Save"/>     <%-- FIXME - i18n --%>
       </c:otherwise>
     </c:choose>
 
     <h:panel_group id="reset_and_cancel">
-      <h:command_button id="reset" type="RESET"
-              commandClass="command-multiple"
-               commandName="reset" label="Reset"/>       <%-- FIXME - i18n --%>
-      <h:command_button id="cancel" type="SUBMIT"
-              commandClass="command-multiple"
-               commandName="cancel" label="Cancel"/>     <%-- FIXME - i18n --%>
+      <h:command_button id="reset"
+                      type="RESET"
+                styleClass="command-multiple"
+                     value="Reset"/>       <%-- FIXME - i18n --%>
+      <h:command_button id="cancel"
+                      type="SUBMIT"
+                styleClass="command-multiple"
+                     value="Cancel"/>     <%-- FIXME - i18n --%>
     </h:panel_group>
 
   </h:panel_grid>
@@ -148,4 +154,4 @@
 
 </body>
 </s:html>
-</f:use_faces>
+</f:view>

@@ -1,17 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="a" uri="/WEB-INF/app.tld"     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
 <%@ taglib prefix="s" uri="http://jakarta.apache.org/struts/tags-faces" %>
 
-<%-- FIXME
-<c:if test="${registrationForm.action == 'Edit'}">
-  <a:checkLogon/>
-</c:if>
---%>
-
-<f:use_faces>
+<f:view>
 <s:html locale="true">
 <head>
   <title><c:choose>
@@ -35,11 +28,11 @@
 <s:form action="/saveRegistration" focus="username"
          onsubmit="return validateRegistrationForm(this);">
 
-  <h:input_hidden id="action" valueRef="registrationForm.action"/>
+  <h:input_hidden id="action" value="#{registrationForm.action}"/>
 
   <h:panel_grid
            columns="2"
-        panelClass="form-background"
+        styleClass="form-background"
        headerClass="form-header"
      columnClasses="form-prompt,form-field">
 
@@ -71,14 +64,14 @@
       <c:choose>
         <c:when test="${registrationForm.action == 'Create'}">
           <h:input_text id="username" size="16"
-            valueRef="registrationForm.username"/>
+                     value="#{registrationForm.username}"/>
         </c:when>
         <c:when test="${registrationForm.action == 'Edit'}">
           <h:panel_group id="usernameGroup">
             <s:write filter="true"
-             valueRef="registrationForm.username"/>
+                      value="#{registrationForm.username}"/>
             <h:input_hidden id="username"
-                valueRef="registrationForm.username"/>
+                         value="#{registrationForm.username}"/>
           </h:panel_group>
         </c:when>
         <c:otherwise>
@@ -92,47 +85,52 @@
     </h:output_label>
 
     <h:input_text id="password"
-                size="16" valueRef="registrationForm.password"/>
+                size="16"
+               value="#{registrationForm.password}"/>
 
     <h:output_label for="password2">
       <s:message key="prompt.password2"/>
     </h:output_label>
 
     <h:input_text id="password2"
-                size="16" valueRef="registrationForm.password2"/>
+                size="16"
+               value="#{registrationForm.password2}"/>
 
     <h:output_label for="fullName">
       <s:message key="prompt.fullName"/>
     </h:output_label>
 
     <h:input_text id="fullName"
-                size="50" valueRef="registrationForm.fullName"/>
+                size="50"
+               value="#{registrationForm.fullName}"/>
 
     <h:output_label for="fromAddress">
       <s:message key="prompt.fromAddress"/>
     </h:output_label>
 
     <h:input_text id="fromAddress"
-                size="50" valueRef="registrationForm.fromAddress"/>
+                size="50"
+               value="#{registrationForm.fromAddress}"/>
 
     <h:output_label for="replyToAddress">
       <s:message key="prompt.replyToAddress"/>
     </h:output_label>
 
     <h:input_text id="replyToAddress"
-                size="50" valueRef="registrationForm.replyToAddress"/>
+                size="50"
+               value="#{registrationForm.replyToAddress}"/>
 
-    <h:command_button id="submit" type="SUBMIT" commandName="submit"
-            commandClass="command-single"
-                   label="Save"/>                        <%-- FIXME - i18n --%>
+    <h:command_button id="submit" type="SUBMIT"
+              styleClass="command-single"
+                   value="Save"/>                        <%-- FIXME - i18n --%>
 
     <h:panel_group>
-      <h:command_button id="reset" type="RESET" commandName="reset"
-              commandClass="command-multiple"
-                     label="Reset"/>                     <%-- FIXME - i18n --%>
-      <h:command_button id="cancel" type="SUBMIT" commandName="cancel"
-              commandClass="command-multiple"
-                     label="Cancel"/>                    <%-- FIXME - i18n --%>
+      <h:command_button id="reset" type="RESET"
+                styleClass="command-multiple"
+                     value="Reset"/>                     <%-- FIXME - i18n --%>
+      <h:command_button id="cancel" type="SUBMIT"
+                styleClass="command-multiple"
+                     value="Cancel"/>                    <%-- FIXME - i18n --%>
     </h:panel_group>
 
   </h:panel_grid>
@@ -141,58 +139,80 @@
 
 <c:if test="${registrationForm.action == 'Edit'}">
 
-  <h:panel_list id="panel"
-     columnClasses="list-column-host,list-column-user,list-column-type,list-column-auto,list-column-action"
-       headerClass="list-header"
-        panelClass="list-background"
-        rowClasses="list-row-even,list-row-odd">
+<h:form id="subscriptions">
 
-    <%-- Column Headings --%>
-    <f:facet name="header">
-      <h:panel_group id="headers">
-        <s:message key="heading.host"/>
-        <s:message key="heading.user"/>
-        <s:message key="heading.type"/>
-        <s:message key="heading.autoConnect"/>
-        <s:message key="heading.action"/>
-      </h:panel_group>
-    </f:facet>
+  <h:data_table         id="table"
+             columnClasses="list-column-host,list-column-user,list-column-type,
+                            list-column-auto,list-column-action"
+               headerClass="list-header"
+                styleClass="list-background"
+                rowClasses="list-row-even,list-row-odd"
+                     value="#{user.subscriptions}"
+                       var="subscription">
 
-    <%-- List Data --%>
-    <h:panel_data id="data" var="subscription"
-       valueRef="user.subscriptions">
-      <h:output_text id="subhost"     valueRef="subscription.host"/>
-      <h:output_text id="subusername" valueRef="subscription.username"/>
-      <h:output_text id="subtype"     valueRef="subscription.type"/>
-      <h:output_text id="subconn"     valueRef="subscription.autoConnect"/>
-      <h:panel_group id="subactions">
-        <h:command_hyperlink id="delete" label="Delete"
-                                  commandClass="command-multiple"
-                                          href="editSubscription.do">
-          <f:parameter name="action"      value="Delete"/>
-          <f:parameter name="username" valueRef="subscription.user.username"/>
-          <f:parameter name="host"     valueRef="subscription.host"/>
-        </h:command_hyperlink>
-        <h:command_hyperlink id="edit"    label="Edit"
-                                   commandClass="command-multiple"
-                                           href="editSubscription.do">
-          <f:parameter name="action"      value="Edit"/>
-          <f:parameter name="username" valueRef="subscription.user.username"/>
-          <f:parameter name="host"     valueRef="subscription.host"/>
-        </h:command_hyperlink>
-      </h:panel_group>
-    </h:panel_data>
+    <h:column           id="hostColumn">
+      <f:facet        name="header">
+        <s:message      id="hostHeader"
+                       key="heading.host"/>
+      </f:facet>
+      <h:output_text    id="subhost"
+                     value="#{subscription.host}"/>
+    </h:column>
 
-  </h:panel_list>
+    <h:column           id="usernameColumn">
+      <f:facet        name="header">
+        <s:message      id="usernameHeader"
+                       key="heading.user"/>
+      </f:facet>
+      <h:output_text    id="subusername"
+                     value="#{subscription.username}"/>
+    </h:column>
 
-  <h:command_hyperlink id="add"           label="Create New Mail Subscription"
-                                           href="editSubscription.do">
-    <f:parameter name="action"            value="Create"/>
-    <f:parameter name="username"       valueRef="registrationForm.username"/>
-  </h:command_hyperlink>
+    <h:column           id="typeColumn">
+      <f:facet        name="header">
+        <s:message      id="typeHeader"
+                       key="heading.type"/>
+      </f:facet>
+      <h:output_text    id="subtype"
+                     value="#{subscription.type}"/>
+    </h:column>
+
+    <h:column           id="autoConnectColumn">
+      <f:facet        name="header">
+        <s:message      id="autoConnectHeader"
+                       key="heading.autoConnect"/>
+      </f:facet>
+      <h:output_text    id="subauto"
+                     value="#{subscription.autoConnect}"/>
+    </h:column>
+
+    <h:column           id="actionColumn">
+      <f:facet        name="header">
+        <s:message      id="actionHeader"
+                       key="heading.action"/>
+      </f:facet>
+      <h:command_button id="delete"
+                styleClass="command-multiple"
+                 immediate="true"
+                    action="#{registrationBacking.delete}"
+                     value="#{registrationBacking.deleteLabel}"/>
+      <h:command_button id="edit"
+                styleClass="command-multiple"
+                 immediate="true"
+                    action="#{registrationBacking.edit}"
+                     value="#{registrationBacking.editLabel}"/>
+    </h:column>
+
+  </h:data_table>
+
+  <h:command_button     id="create"
+                 immediate="true"
+                    action="#{registrationBacking.create}"
+                     value="Add New"/>
+
+</h:form>
 
 </c:if>
-
 
 <s:javascript formName="registrationForm"
      dynamicJavascript="true"
@@ -201,4 +221,4 @@
 
 </body>
 </s:html>
-</f:use_faces>
+</f:view>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LinkUserTag.java,v 1.2 2003/07/27 06:39:56 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2003/07/27 06:39:56 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LinkUserTag.java,v 1.3 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -80,13 +80,13 @@ import org.apache.struts.util.ResponseUtils;
  * associated query parameters selecting a specified User.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/07/27 06:39:56 $
+ * @version $Revision: 1.3 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class LinkUserTag extends TagSupport {
 
 
-    // ----------------------------------------------------- Instance Variables
+    // ------------------------------------------------------ Instance Variables
 
 
     /**

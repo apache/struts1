@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LinkSubscriptionTag.java,v 1.3 2003/07/27 06:37:37 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/27 06:37:37 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LinkSubscriptionTag.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.webapp.example;
 
 
 import javax.faces.component.UIComponent;
+import javax.faces.el.ValueBinding;
 import javax.faces.webapp.UIComponentTag;
 
 
@@ -72,13 +73,13 @@ import javax.faces.webapp.UIComponentTag;
  * associated query parameters selecting a specified Subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/07/27 06:37:37 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class LinkSubscriptionTag extends UIComponentTag {
 
 
-    // ------------------------------------------------------------- Attributes
+    // -------------------------------------------------------------- Attributes
 
 
     /**
@@ -101,7 +102,7 @@ public class LinkSubscriptionTag extends UIComponentTag {
     }
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -136,7 +137,7 @@ public class LinkSubscriptionTag extends UIComponentTag {
     }
 
 
-    // ------------------------------------------------------ Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
 
     /**
@@ -144,16 +145,26 @@ public class LinkSubscriptionTag extends UIComponentTag {
      *
      * @param component Component whose attributes should be overridden
      */
-    protected void overrideProperties(UIComponent component) {
+    protected void setProperties(UIComponent component) {
 
-        super.overrideProperties(component);
-        if ((name != null) &&
-            (component.getAttribute("name") == null)) {
-            component.setAttribute("name", name);
+        super.setProperties(component);
+        if (name != null) {
+            if (isValueReference(name)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(name);
+                component.setValueBinding("name", vb);
+            } else {
+                component.getAttributes().put("name", name);
+            }
         }
-        if ((page != null) &&
-            (component.getAttribute("page") == null)) {
-            component.setAttribute("page", page);
+        if (page != null) {
+            if (isValueReference(page)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(page);
+                component.setValueBinding("page", vb);
+            } else {
+                component.getAttributes().put("page", page);
+            }
         }
 
     }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/WriteTag.java,v 1.2 2003/06/04 17:38:14 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:38:14 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/WriteTag.java,v 1.3 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@ package org.apache.struts.faces.taglib;
 
 
 import javax.faces.component.UIComponent;
+import javax.faces.el.ValueBinding;
 
 
 /**
@@ -72,7 +73,7 @@ import javax.faces.component.UIComponent;
  *
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:14 $
+ * @version $Revision: 1.3 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class WriteTag extends AbstractFacesTag {
@@ -85,14 +86,14 @@ public class WriteTag extends AbstractFacesTag {
      * <p>Flag indicating that rendered content should be filtered for
      * characters that are sensitive in HTML.</p>
      */
-    private boolean filter = true;
+    private String filter = null;
 
-    public void setFilter(boolean filter) {
+    public void setFilter(String filter) {
         this.filter = filter;
     }
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -116,7 +117,18 @@ public class WriteTag extends AbstractFacesTag {
     }
 
 
-    // ------------------------------------------------------ Protected Methods
+    /**
+     * <p>Release resources allocated to this tag instance.</p>
+     */
+    public void release() {
+
+        super.release();
+        this.filter = null;
+
+    }
+
+
+    // ------------------------------------------------------- Protected Methods
 
 
     /**
@@ -124,14 +136,17 @@ public class WriteTag extends AbstractFacesTag {
      *
      * @param component Component whose attributes should be overridden
      */
-    protected void overrideProperties(UIComponent component) {
+    protected void setProperties(UIComponent component) {
 
-        super.overrideProperties(component);
-        if (component.getAttribute("filter") == null) {
-            if (filter) {
-                component.setAttribute("filter", Boolean.TRUE);
+        super.setProperties(component);
+        if (filter != null) {
+            if (isValueReference(filter)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(filter);
+                component.setValueBinding("filter", vb);
             } else {
-                component.setAttribute("filter", Boolean.FALSE);
+                component.getAttributes().put
+                    ("filter", Boolean.valueOf(filter));
             }
         }
 

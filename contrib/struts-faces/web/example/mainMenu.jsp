@@ -1,23 +1,35 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="/WEB-INF/app.tld" prefix="app" %>
-<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
-<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
-<app:checkLogon/>
-<jsp:useBean id="user" scope="session" type="org.apache.struts.webapp.example.User"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
+<%@ taglib prefix="s" uri="http://jakarta.apache.org/struts/tags-faces" %>
 
-<html:html>
+<f:view>
+<s:html locale="true">
 <head>
-<title><bean:message key="mainMenu.title"/></title>
-<html:base/>
+  <title>
+    <s:message key="mainMenu.title"/>
+  </title>
+  <s:base/>
+  <s:stylesheet path="/stylesheet.css"/>
 </head>
 <body bgcolor="white">
 
-<h3><bean:message key="mainMenu.heading"/>
-<jsp:getProperty name="user" property="username"/></h3>
+<h3>
+  <s:message key="mainMenu.heading"/>
+  <em><c:out value="${user.username}"/></em>
+</h3>
 <ul>
-<li><html:link page="/editRegistration.do?action=Edit"><bean:message key="mainMenu.registration"/></html:link></li>
-<li><html:link forward="logoff"><bean:message key="mainMenu.logoff"/></html:link></li>
+  <li><h:output_link value="editRegistration.do">
+        <f:parameter  name="action"
+                     value="Edit"/>
+        <s:message key="mainMenu.registration"/>
+      </h:output_link></li>
+  <li><h:output_link value="logoff.do">
+        <s:message key="mainMenu.logoff"/>
+      </h:output_link></li>
 </ul>
 
 </body>
-</html:html>
+</s:html>
+</f:view>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/FormTag.java,v 1.2 2003/06/04 17:38:14 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:38:14 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/FormTag.java,v 1.3 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@ package org.apache.struts.faces.taglib;
 
 
 import javax.faces.component.UIComponent;
+import javax.faces.el.ValueBinding;
 import org.apache.struts.faces.component.FormComponent;
 
 
@@ -71,13 +72,13 @@ import org.apache.struts.faces.component.FormComponent;
  * for the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:14 $
+ * @version $Revision: 1.3 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class FormTag extends AbstractFacesTag {
 
 
-    // --------------------------------------------------------- Tag Attributes
+    // ---------------------------------------------------------- Tag Attributes
 
 
     /**
@@ -194,7 +195,7 @@ public class FormTag extends AbstractFacesTag {
     }
 
 
-    // ------------------------------------------------------------ Tag Methods
+    // ------------------------------------------------------------- Tag Methods
 
 
     /**
@@ -218,7 +219,7 @@ public class FormTag extends AbstractFacesTag {
     }
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -242,7 +243,7 @@ public class FormTag extends AbstractFacesTag {
     }
 
 
-    // ------------------------------------------------------ Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
 
     /**
@@ -250,53 +251,109 @@ public class FormTag extends AbstractFacesTag {
      *
      * @param component Component whose attributes should be overridden
      */
-    protected void overrideProperties(UIComponent component) {
+    protected void setProperties(UIComponent component) {
 
-        super.overrideProperties(component);
-        if ((action != null) &&
-            ((FormComponent) component).getAction() == null) {
-            ((FormComponent) component).setAction(action);
+        super.setProperties(component);
+        if (action != null) {
+            if (isValueReference(action)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(action);
+                component.setValueBinding("action", vb);
+            } else {
+                ((FormComponent) component).setAction(action);
+            }
         }
-        if ((enctype != null) &&
-            (component.getAttribute("enctype") == null)) {
-            component.setAttribute("enctype", action);
+        if (enctype != null) {
+            if (isValueReference(enctype)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(enctype);
+                component.setValueBinding("enctype", vb);
+            } else {
+                component.getAttributes().put("enctype", enctype);
+            }
         }
-        if ((focus != null) &&
-            (component.getAttribute("focus") == null)) {
-            component.setAttribute("focus", focus);
+        if (focus != null) {
+            if (isValueReference(focus)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(focus);
+                component.setValueBinding("focus", vb);
+            } else {
+                component.getAttributes().put("focus", focus);
+            }
         }
-        if ((focusIndex != null) &&
-            (component.getAttribute("focusIndex") == null)) {
-            component.setAttribute("focusIndex", focusIndex);
+        if (focusIndex != null) {
+            if (isValueReference(focusIndex)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(focusIndex);
+                component.setValueBinding("focusIndex", vb);
+            } else {
+                component.getAttributes().put("focusIndex", focusIndex);
+            }
         }
-        if ((method != null) &&
-            (component.getAttribute("method") == null)) {
-            component.setAttribute("method", method);
+        if (method != null) {
+            if (isValueReference(method)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(method);
+                component.setValueBinding("method", vb);
+            } else {
+                component.getAttributes().put("method", method);
+            }
         }
-        if ((onreset != null) &&
-            (component.getAttribute("onreset") == null)) {
-            component.setAttribute("onreset", onreset);
+        if (onreset != null) {
+            if (isValueReference(onreset)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(onreset);
+                component.setValueBinding("onreset", vb);
+            } else {
+                component.getAttributes().put("onreset", onreset);
+            }
         }
-        if ((onsubmit != null) &&
-            (component.getAttribute("onsubmit") == null)) {
-            component.setAttribute("onsubmit", onsubmit);
+        if (onsubmit != null) {
+            if (isValueReference(onsubmit)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(onsubmit);
+                component.setValueBinding("onsubmit", vb);
+            } else {
+                component.getAttributes().put("onsubmit", onsubmit);
+            }
         }
-        if ((style != null) &&
-            (component.getAttribute("style") == null)) {
-            component.setAttribute("style", style);
+        if (style != null) {
+            if (isValueReference(style)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(style);
+                component.setValueBinding("style", vb);
+            } else {
+                component.getAttributes().put("style", style);
+            }
         }
-        if ((styleClass != null) &&
-            (component.getAttribute("styleClass") == null)) {
-            component.setAttribute("styleClass", styleClass);
+        if (styleClass != null) {
+            if (isValueReference(styleClass)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(styleClass);
+                component.setValueBinding("styleClass", vb);
+            } else {
+                component.getAttributes().put("styleClass", styleClass);
+            }
         }
-        if ((styleId != null) &&
-            (component.getAttribute("styleId") == null)) {
-            component.setAttribute("styleId", styleId);
+        if (styleId != null) {
+            if (isValueReference(styleId)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(styleId);
+                component.setValueBinding("styleId", vb);
+            } else {
+                component.getAttributes().put("styleId", styleId);
+            }
         }
-        if ((target != null) &&
-            (component.getAttribute("target") == null)) {
-            component.setAttribute("target", target);
+        if (target != null) {
+            if (isValueReference(target)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(target);
+                component.setValueBinding("target", vb);
+            } else {
+                component.getAttributes().put("target", target);
+            }
         }
+
 
     }
 

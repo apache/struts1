@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/FormRenderer.java,v 1.3 2003/07/27 06:43:16 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/27 06:43:16 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/FormRenderer.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -63,7 +63,9 @@ package org.apache.struts.faces.renderer;
 
 
 import java.io.IOException;
+import java.util.Map;
 
+import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -82,13 +84,13 @@ import org.apache.struts.faces.component.FormComponent;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/07/27 06:43:16 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class FormRenderer extends AbstractRenderer {
 
 
-    // ------------------------------------------------------- Static Variables
+    // -------------------------------------------------------- Static Variables
 
 
     /**
@@ -97,8 +99,7 @@ public class FormRenderer extends AbstractRenderer {
     private static Log log = LogFactory.getLog(FormRenderer.class);
 
 
-    // --------------------------------------------------------- Public Methods
-
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -108,20 +109,25 @@ public class FormRenderer extends AbstractRenderer {
      * @param context FacesContext for the request we are processing
      * @param component UIComponent to be processed
      *
-     * @exception IOException if an input/output error occurs while decoding
      * @exception NullPointerException if <code>context</code>
      *  or <code>component</code> is null
      */
-    public void decode(FacesContext context, UIComponent component)
-        throws IOException {
+    public void decode(FacesContext context, UIComponent component) {
 
         if ((context == null) || (component == null)) {
             throw new NullPointerException();
         }
+        String clientId = component.getClientId(context);
         if (log.isDebugEnabled()) {
-            log.debug("decode(" + component.getComponentId() + ")");
+            log.debug("decode(" + clientId + ")");
         }
-        component.setValid(true);
+        Map params = context.getExternalContext().getRequestParameterMap();
+        if (params.containsKey(clientId)) {
+            if (log.isTraceEnabled()) {
+                log.trace("  This form was submitted");
+            }
+            ((FormComponent) component).setSubmitted(true);
+        }
 
     }
 
@@ -143,19 +149,6 @@ public class FormRenderer extends AbstractRenderer {
         if ((context == null) || (component == null)) {
             throw new NullPointerException();
         }
-        if (log.isDebugEnabled()) {
-            log.debug("encodeBegin(" + component.getAttribute("formName") + ")");
-        }
-
-        // Look up attribute values we need
-        String enctype = (String) component.getAttribute("enctype");
-        String method = (String) component.getAttribute("method");
-        String onreset = (String) component.getAttribute("onreset");
-        String onsubmit = (String) component.getAttribute("onsubmit");
-        String style = (String) component.getAttribute("style");
-        String styleClass = (String) component.getAttribute("styleClass");
-        String styleId = (String) component.getAttribute("styleId");
-        String target = (String) component.getAttribute("target");
 
         // Calculate and cache the form name
         FormComponent form = (FormComponent) component;
@@ -163,57 +156,65 @@ public class FormRenderer extends AbstractRenderer {
         ModuleConfig moduleConfig = form.lookupModuleConfig(context);
         ActionConfig actionConfig = moduleConfig.findActionConfig(action);
         String beanName = actionConfig.getAttribute();
-        form.setAttribute("beanName", beanName);
+        form.getAttributes().put("beanName", beanName);
+
+        // Calculate and cache the form number
+        int formNumber = 0; // FIXME - The JSF RI should not require this!
+        form.getAttributes().put("com.sun.faces.FormNumber",
+                                 new Integer(formNumber));
+
+        // Look up attribute values we need
+        String clientId = component.getClientId(context);
+        if (log.isDebugEnabled()) {
+            log.debug("encodeBegin(" + clientId + ")");
+        }
+        String enctype = (String) component.getAttributes().get("enctype");
+        String method = (String) component.getAttributes().get("method");
+        String onreset = (String) component.getAttributes().get("onreset");
+        String onsubmit = (String) component.getAttributes().get("onsubmit");
+        String style = (String) component.getAttributes().get("style");
+        String styleClass =
+            (String) component.getAttributes().get("styleClass");
+        String styleId = (String) component.getAttributes().get("styleId");
+        String target = (String) component.getAttributes().get("target");
 
         // Render the beginning of this form
         ResponseWriter writer = context.getResponseWriter();
-        writer.write("<form name=\"");
-        writer.write(beanName);
-        writer.write("\" method=\"");
-        if (method != null) {
-            writer.write(method);
-        } else {
-            writer.write("post");
-        }
-        writer.write("\" action=\"");
-        writer.write(action(context, component));
-        writer.write("\"");
+        writer.startElement("form", form);
+        writer.writeAttribute("name", beanName, null);
+        writer.writeAttribute("method",
+                              (method == null) ? "POST" : method, "method");
+        writer.writeAttribute("action", action(context, component), "action");
         if (styleClass != null) {
-            writer.write(" class=\"");
-            writer.write(styleClass);
-            writer.write("\"");
+            writer.writeAttribute("class", styleClass, "styleClass");
         }
         if (enctype != null) {
-            writer.write(" enctype=\"");
-            writer.write(enctype);
-            writer.write("\"");
+            writer.writeAttribute("enctype", enctype, "enctype");
         }
         if (onreset != null) {
-            writer.write(" onreset=\"");
-            writer.write(onreset);
-            writer.write("\"");
+            writer.writeAttribute("onreset", onreset, "onreset");
         }
         if (onsubmit != null) {
-            writer.write(" onsubmit=\"");
-            writer.write(onsubmit);
-            writer.write("\"");
+            writer.writeAttribute("onsubmit", onsubmit, "onsubmit");
         }
         if (style != null) {
-            writer.write(" style=\"");
-            writer.write(style);
-            writer.write("\"");
+            writer.writeAttribute("style", style, "style");
         }
         if (styleId != null) {
-            writer.write(" id=\"");
-            writer.write(styleId);
-            writer.write("\"");
+            writer.writeAttribute("id", styleId, "styleId");
         }
         if (target != null) {
-            writer.write(" target=\"");
-            writer.write(target);
-            writer.write("\"");
+            writer.writeAttribute("target", target, "target");
         }
-        writer.write(">\n");
+        writer.writeText("\n", null);
+
+        // Add a marker used by our decode() method to note this form is submitted
+        writer.startElement("input", form);
+        writer.writeAttribute("type", "hidden", null);
+        writer.writeAttribute("name", clientId, null);
+        writer.writeAttribute("value", clientId, null);
+        writer.endElement("input");
+        writer.writeText("\n", null);
 
         // Add a transaction token if necessary
         HttpSession session = (HttpSession)
@@ -222,11 +223,13 @@ public class FormRenderer extends AbstractRenderer {
             String token = (String)
                 session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
             if (token != null) {
-                writer.write("<input type=\"hidden\" name=\"");
-                writer.write("org.apache.struts.taglib.html.TOKEN");
-                writer.write("\" value=\"");
-                writer.write(token);
-                writer.write("\">\n");
+                writer.startElement("input", form);
+                writer.writeAttribute("type", "hidden", null);
+                writer.writeAttribute
+                    ("name", "org.apache.struts.taglib.html.TOKEN", null);
+                writer.writeAttribute("value", token, null);
+                writer.endElement("input");
+                writer.writeText("\n", null);
             }
         }
 
@@ -234,6 +237,9 @@ public class FormRenderer extends AbstractRenderer {
         if (component instanceof FormComponent) {
             ((FormComponent) component).createActionForm(context);
         }
+
+        // Update the number of forms in this page
+        updateFormNumber(context, component);
 
     }
 
@@ -255,37 +261,43 @@ public class FormRenderer extends AbstractRenderer {
         if ((context == null) || (component == null)) {
             throw new NullPointerException();
         }
+        String clientId = component.getClientId(context);
         if (log.isDebugEnabled()) {
-            log.debug("encodeEnd(" + component.getComponentId() + ")");
+            log.debug("encodeEnd(" + clientId + ")");
         }
 
         // Render the ending of this form
         ResponseWriter writer = context.getResponseWriter();
-        writer.write("</form>\n");
+        writer.endElement("form");
+        writer.writeText("\n", null);
 
         // Render focus JavaScript if requested
         if (!(component instanceof FormComponent)) {
             return;
         }
-        String focus = (String) component.getAttribute("focus");
+        String focus = (String) component.getAttributes().get("focus");
         if (focus == null) {
             return;
         }
-        String focusIndex = (String) component.getAttribute("focusIndex");
-        writer.write("\n");
+        String focusIndex =
+            (String) component.getAttributes().get("focusIndex");
+        writer.writeText("\n", null);
         FormComponent form = (FormComponent) component;
-        writer.write("<script type=\"text/javascript\"");
+        writer.startElement("script", form);
+        writer.writeAttribute("type", "text/javascript", null);
         if (!isXhtml(component)) {
-            writer.write(" language=\"JavaScript\"");
+            writer.writeAttribute("language", "JavaScript", null);
         }
-        writer.write(">\n");
+        writer.writeText("\n", null);
         if (!isXhtml(component)) {
             writer.write("<!--\n");
         }
 
         StringBuffer sb = new StringBuffer("document[\"");
-        sb.append((String) component.getAttribute("beanName"));
+        sb.append((String) component.getAttributes().get("beanName"));
         sb.append("\"].elements[\"");
+        sb.append(component.getClientId(context));
+        sb.append(NamingContainer.SEPARATOR_CHAR);
         sb.append(focus);
         sb.append("\"]");
         String focusControl = sb.toString();
@@ -307,12 +319,13 @@ public class FormRenderer extends AbstractRenderer {
         if (!isXhtml(component)) {
             writer.write("// -->\n");
         }
-        writer.write("</script>\n");
+        writer.endElement("script");
+        writer.writeText("\n", null);
 
     }
 
 
-    // ------------------------------------------------------ Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
 
     /**
@@ -325,12 +338,13 @@ public class FormRenderer extends AbstractRenderer {
      */
     protected String action(FacesContext context, UIComponent component) {
 
-        String treeId = context.getTree().getTreeId();
+        String viewId = context.getViewRoot().getViewId();
         StringBuffer sb = new StringBuffer
             (context.getExternalContext().getRequestContextPath());
+        // FIXME - support for extension mapping to FacesServlet
         sb.append("/faces");
-        sb.append(treeId);
-        return (context.getExternalContext().encodeURL(sb.toString()));
+        sb.append(viewId);
+        return (context.getExternalContext().encodeActionURL(sb.toString()));
 
     }
 
@@ -343,6 +357,31 @@ public class FormRenderer extends AbstractRenderer {
     protected boolean isXhtml(UIComponent component) {
 
         return (false); // FIXME -- check up the hierarchy
+
+    }
+
+
+    /**
+     * <p>Store the current form number in a component attribute that is
+     * expected by the <code>CommandLinkRenderer</code> in the RI.  FIXME -
+     * this dependency is a bug in the JSF RI that needs to be addressed
+     * before FCS.</p>
+     *
+     * @param context <code>FacesContext</code> for the current request
+     * @param component <code>UIComponent</code> being rendered
+     */
+    protected void updateFormNumber(FacesContext context,
+                                    UIComponent component) {
+
+        Map requestMap = context.getExternalContext().getRequestMap();
+        int numForms = 0;
+        Integer formsInt = (Integer) requestMap.get("com.sun.faces.FormNumber");
+        if (formsInt != null) {
+            numForms = formsInt.intValue();
+        }
+        component.getAttributes().put("com.sun.faces.FormNumber",
+                                      new Integer(numForms));
+        requestMap.put("com.sun.faces.FormNumber", new Integer(++numForms));
 
     }
 

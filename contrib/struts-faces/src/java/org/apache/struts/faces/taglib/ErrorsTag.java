@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/ErrorsTag.java,v 1.3 2003/07/27 06:45:04 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/27 06:45:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/ErrorsTag.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -70,16 +70,16 @@ package org.apache.struts.faces.taglib;
  *
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/07/27 06:45:04 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class ErrorsTag extends AbstractFacesTag {
 
 
-    // --------------------------------------------------------- Tag Attributes
+    // ---------------------------------------------------------- Tag Attributes
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -103,7 +103,7 @@ public class ErrorsTag extends AbstractFacesTag {
     }
 
 
-    // ------------------------------------------------------ Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/ErrorsRenderer.java,v 1.3 2003/07/27 06:43:16 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/27 06:43:16 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/ErrorsRenderer.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -66,7 +66,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Locale;
 
-import javax.faces.application.Message;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -84,13 +84,13 @@ import org.apache.struts.util.MessageResources;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/07/27 06:43:16 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class ErrorsRenderer extends AbstractRenderer {
 
 
-    // ------------------------------------------------------- Static Variables
+    // -------------------------------------------------------- Static Variables
 
 
     /**
@@ -99,7 +99,7 @@ public class ErrorsRenderer extends AbstractRenderer {
     private static Log log = LogFactory.getLog(ErrorsRenderer.class);
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -124,7 +124,7 @@ public class ErrorsRenderer extends AbstractRenderer {
 
         // Look up availability of our predefined resource keys
         MessageResources resources = resources(context, component);
-        Locale locale = context.getLocale();
+        Locale locale = context.getViewRoot().getLocale();
         boolean headerPresent = resources.isPresent(locale, "errors.header");
         boolean footerPresent = resources.isPresent(locale, "errors.footer");
         boolean prefixPresent = resources.isPresent(locale, "errors.prefix");
@@ -132,14 +132,13 @@ public class ErrorsRenderer extends AbstractRenderer {
 
         // Set up to render the error messages appropriately
         boolean headerDone = false;
-        ResponseWriter writer = null;
+        ResponseWriter writer = context.getResponseWriter();
 
         // Render any JavaServer Faces messages
         Iterator messages = context.getMessages();
         while (messages.hasNext()) {
-            Message message = (Message) messages.next();
+            FacesMessage message = (FacesMessage) messages.next();
             if (!headerDone) {
-                writer = context.getResponseWriter();
                 if (headerPresent) {
                     writer.write
                         (resources.getMessage(locale, "errors.header"));
@@ -207,7 +206,7 @@ public class ErrorsRenderer extends AbstractRenderer {
     protected MessageResources resources(FacesContext context,
                                          UIComponent component) {
 
-        String bundle = (String) component.getAttribute("bundle");
+        String bundle = (String) component.getAttributes().get("bundle");
         if (bundle == null) {
             bundle = Globals.MESSAGES_KEY;
         }

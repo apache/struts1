@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/Attic/LinkSubscriptionRenderer.java,v 1.3 2003/07/27 06:37:37 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/27 06:37:37 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/Attic/LinkSubscriptionRenderer.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -86,13 +86,13 @@ import org.apache.struts.util.ResponseUtils;
  * <code>linkSubscription</code> tag for the Struts Example application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/07/27 06:37:37 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class LinkSubscriptionRenderer extends AbstractRenderer {
 
 
-    // ------------------------------------------------------- Static Variables
+    // -------------------------------------------------------- Static Variables
 
 
     /**
@@ -101,7 +101,7 @@ public class LinkSubscriptionRenderer extends AbstractRenderer {
     private static Log log = LogFactory.getLog(LinkSubscriptionRenderer.class);
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -126,16 +126,14 @@ public class LinkSubscriptionRenderer extends AbstractRenderer {
             context.getExternalContext().getRequest();
         HttpServletResponse response = (HttpServletResponse)
             context.getExternalContext().getResponse();
-        String name = (String) component.getAttribute("name");
-        String page = (String) component.getAttribute("page");
+        String name = (String) component.getAttributes().get("name");
+        String page = (String) component.getAttributes().get("page");
 
         // Generate the URL to be encoded
         StringBuffer url = new StringBuffer(request.getContextPath());
         url.append(page);
-        ApplicationFactory factory = (ApplicationFactory)
-            FactoryFinder.getFactory(FactoryFinder.APPLICATION_FACTORY);
-        Application application = factory.getApplication();
-        ValueBinding binding = application.getValueBinding(name);
+        Application application = context.getApplication();
+        ValueBinding binding = application.createValueBinding(name);
         Subscription subscription = (Subscription)
             binding.getValue(context);
         if (subscription == null) {
@@ -153,9 +151,9 @@ public class LinkSubscriptionRenderer extends AbstractRenderer {
         url.append(ResponseUtils.filter(subscription.getHost()));
 
         // Render the calculated hyperlink
-        writer.write("<a href=\"");
-        writer.write(response.encodeURL(url.toString()));
-        writer.write("\">");
+        writer.startElement("a", component);
+        writer.writeURIAttribute("href", response.encodeURL(url.toString()),
+                                 "page");
 
     }
 
@@ -178,12 +176,12 @@ public class LinkSubscriptionRenderer extends AbstractRenderer {
         }
 
         ResponseWriter writer = context.getResponseWriter();
-        writer.write("</a>");
+        writer.endElement("a");
 
     }
 
 
-    // ------------------------------------------------------ Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
 
 }

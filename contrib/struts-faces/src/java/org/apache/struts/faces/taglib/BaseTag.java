@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/BaseTag.java,v 1.2 2003/06/04 17:38:14 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:38:14 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/BaseTag.java,v 1.3 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@ package org.apache.struts.faces.taglib;
 
 
 import javax.faces.component.UIComponent;
+import javax.faces.el.ValueBinding;
 
 
 /**
@@ -71,13 +72,13 @@ import javax.faces.component.UIComponent;
  *
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:14 $
+ * @version $Revision: 1.3 $ $Date: 2003/12/24 03:21:01 $
  */
 
 public class BaseTag extends AbstractFacesTag {
 
 
-    // --------------------------------------------------------- Tag Attributes
+    // ---------------------------------------------------------- Tag Attributes
 
 
     /**
@@ -90,7 +91,7 @@ public class BaseTag extends AbstractFacesTag {
     }
 
 
-    // --------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -125,7 +126,7 @@ public class BaseTag extends AbstractFacesTag {
     }
 
 
-    // ------------------------------------------------------ Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
 
     /**
@@ -133,12 +134,17 @@ public class BaseTag extends AbstractFacesTag {
      *
      * @param component Component whose attributes should be overridden
      */
-    protected void overrideProperties(UIComponent component) {
+    protected void setProperties(UIComponent component) {
 
-        super.overrideProperties(component);
-        if ((target != null) &&
-            (component.getAttribute("target") == null)) {
-            component.setAttribute("target", target);
+        super.setProperties(component);
+        if (target != null) {
+            if (isValueReference(target)) {
+                ValueBinding vb =
+                    context.getApplication().createValueBinding(target);
+                component.setValueBinding("target", vb);
+            } else {
+                component.getAttributes().put("target", target);
+            }
         }
 
     }

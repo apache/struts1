@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/component/FormComponent.java,v 1.3 2003/07/27 06:41:39 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/27 06:41:39 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/component/FormComponent.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/24 03:21:01 $
  *
  * ====================================================================
  *
@@ -63,9 +63,10 @@ package org.apache.struts.faces.component;
 
 
 import java.io.IOException;
-
+import java.util.Map;
 import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
+import javax.faces.el.ValueBinding;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.DynaBean;
@@ -87,12 +88,12 @@ import org.apache.struts.util.RequestUtils;
  * creation of form beans in request or session scope.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/07/27 06:41:39 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
  */
 public class FormComponent extends UIForm {
 
 
-    // ------------------------------------------------------- Static Variables
+    // -------------------------------------------------------- Static Variables
 
 
     /**
@@ -101,36 +102,44 @@ public class FormComponent extends UIForm {
     protected static Log log = LogFactory.getLog(FormComponent.class);
 
 
-    // --------------------------------------------------- Component Properties
+    // ---------------------------------------------------- Component Properties
+
+
+    private String action = null;
 
 
     /**
      * <p>Return the Struts action path to which this form should be submitted.
-     * It is an alias for <code>formName</code> (and <code>value</code>) on the
-     * superclass <code>UIForm</code>.</p>
+     * </p>
      */
     public String getAction() {
 
-        return (getFormName());
+        if (this.action != null) {
+            return (this.action);
+        }
+        ValueBinding vb = getValueBinding("action");
+        if (vb != null) {
+            return ((String) vb.getValue(getFacesContext()));
+        } else {
+            return (null);
+        }
 
     }
 
 
     /**
-     * <p>Set the Struts action to which this form should be submitted.
-     * It is an alias for <code>formName</code> (and <code>value</code>) on the
-     * superclass <code>UIForm</code>.</p>
+     * <p>Set the Struts action to which this form should be submitted.</p>
      *
      * @param action The new action path
      */
     public void setAction(String action) {
 
-        setFormName(action);
+        this.action = action;
 
     }
 
 
-    // --------------------------------------------------------- UIForm Methods
+    // ---------------------------------------------------------- UIForm Methods
 
 
     /**
@@ -138,18 +147,22 @@ public class FormComponent extends UIForm {
      * delegating to the standard decoding process.</p>
      *
      * @param context FacesContext for the request we are processing
-     *
-     * @exception IOException if an input/output error occurs
-     *  during decoding
      */
-    public void processDecodes(FacesContext context) throws IOException {
+    public void processDecodes(FacesContext context) {
 
         if (context == null) {
             throw new NullPointerException();
         }
 
+        if (log.isDebugEnabled()) {
+            log.debug("processDecodes(" + getClientId(context) + ")");
+        }
+
         // Create the form bean (if necessary)
-        createActionForm(context);
+        Map params = context.getExternalContext().getRequestParameterMap();
+        if (params.containsKey(getClientId(context))) {
+            createActionForm(context);
+        }
 
         // Perform the standard decode processing
         super.processDecodes(context);
@@ -157,7 +170,38 @@ public class FormComponent extends UIForm {
     }
 
 
-    // --------------------------------------------------------- Public Methods
+    /**
+     * <p>Restore our state from the specified object.</p>
+     *
+     * @param context <code>FacesContext</code> for the current request
+     * @param state Object containing our saved state
+     */
+    public void restoreState(FacesContext context, Object state) {
+
+        Object values[] = (Object[]) state;
+        super.restoreState(context, values[0]);
+        action = (String) values[1];
+
+    }
+
+
+    /**
+     * <p>Create and return an object representing our state to be saved.</p>
+     *
+     * @param context <code>FacesContext</code> for the current request
+     */
+    public Object saveState(FacesContext context) {
+
+        Object values[] = new Object[2];
+        values[0] = super.saveState(context);
+        values[1] = action;
+        return (values);
+
+    }
+
+
+
+    // ---------------------------------------------------------- Public Methods
 
 
     /**

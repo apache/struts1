@@ -89,42 +89,6 @@
 
   <tag>
 
-    <name>body</name>
-    <summary>
-      Render nested JSP body content as a Faces component
-    </summary>
-    <tag-class>org.apache.struts.faces.taglib.OutputBodyTag</tag-class>
-    <body-content>JSP</body-content>
-    <description>
-      <p>Encapsulates the output of JSP content nested in this tag
-      as a JavaServer Faces <code>UIOutput</code> component rendered
-      with the <code>Text</code> renderer type.</p>
-    </description>
-
-    <attribute>
-      <name>id</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-      <description>
-        Component id of this component.
-      </description>
-    </attribute>
-
-    <attribute>
-      <name>rendered</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-      <description>
-        Boolean attribute indicating whether this component should be
-        rendered or not.
-      </description>
-    </attribute>
-
-  </tag>
-
-
-  <tag>
-
     <name>errors</name>
     <summary>
       Conditionally display a set of accumulated error messages
@@ -195,7 +159,7 @@
       present the appropriate label and input field elements.  This tag is
       distinguished from the tag in the standard HTML RenderKit because it
       accepts a Struts <code>&lt;action&gt;</code> path as a parameter,
-      instead of a generic form name.</p>
+      and triggers the creation of a Struts form bean if needed.</p>
     </description>
 
     <attribute>
@@ -390,14 +354,14 @@
       validation rules loaded by the <code>ValidatorPlugIn</code>.
     </summary>
     <tag-class>
-      org.apache.struts.taglib.html.JavascriptValidatorTag
+      org.apache.struts.faces.taglib.JavascriptValidatorTag
     </tag-class>
     <bodycontent>empty</bodycontent>
     <description>
       <p><strong>IMPLEMENTATION NOTE</strong> - Unlike other tags in this
       tag library, this does not correspond to a JavaServer Faces
-      user interface component.  It simply shares the tag implementation
-      class from the <code>struts-html</code> tag library.</p>
+      user interface component.  It is based on the tag implementation
+      class used in the <code>struts-html</code> tag library.</p>
 
       <p>Render JavaScript validation based on the
       validation rules loaded by the <code>ValidatorPlugIn</code>.
@@ -520,7 +484,7 @@
       exactly one of the following attributes:</p>
       <ul>
       <li><strong>key</strong> - Message key is specified directly.</li>
-      <li><strong>valueRef</strong> - Retrieve the value of the
+      <li><strong>value</strong> - Retrieve the value of the
           specified value reference, convert it to a String, and use that
           as the requested message key.</li>
       </ul>
@@ -566,7 +530,7 @@
       <rtexprvalue>false</rtexprvalue>
       <description>
         <p>Literal value of the message key to look up.  Exactly one of
-        <code>key</code> and <code>valueRef</code> must be specified.
+        <code>key</code> and <code>value</code> must be specified.
         </p>
       </description>
     </attribute>
@@ -591,13 +555,13 @@
     </attribute>
 
     <attribute>
-      <name>valueRef</name>
+      <name>value</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
       <description>
         <p>Value reference expression used to retrieve a dynamic value for
         the message key to look up.  Exactly one of <code>key</code> and
-        <code>valueRef</code> must be specified.</p>
+        <code>value</code> must be specified.</p>
       </description>
     </attribute>
 
@@ -662,9 +626,9 @@
       described by the optional attributes described below.  The text to be
       rendered is specified in exactly one of the following attributes:</p>
       <ul>
-      <li><strong>value</strong> - The literal text value to be rendered.</li>
-      <li><strong>valueRef</strong> - An expression language reference
-          to retrieve the text to be rendered.</li>
+      <li><strong>value</strong> - The literal text value to be rendered
+          or a value reference expression to retrieve the text to be
+          rendered.</li>
       </ul>
 
       <p>Additional control over the rendering process is specified by the
@@ -720,17 +684,8 @@
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
       <description>
-        <p>Literal text to be rendered.</p>
-      </description>
-    </attribute>
-
-    <attribute>
-      <name>valueRef</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-      <description>
-        <p>Value reference expression for use in retrieving the text
-        to be rendered.</p>
+        <p>Literal text to be rendered, or value reference expression
+        to retrieve the text to be rendered.</p>
       </description>
     </attribute>
 
