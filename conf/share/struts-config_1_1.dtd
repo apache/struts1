@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.38 2003/02/08 23:41:59 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.39 2003/02/21 05:25:24 dgraham Exp $
 -->
 
 
@@ -129,58 +129,6 @@
 <!ATTLIST data-source    type           %ClassName;     #IMPLIED>
 
 
-<!-- The "global-exceptions" element describes a set of exceptions that might be
-     thrown by an Action object. The handling of individual exception types is
-     configured through nested exception elements. An <action> element may
-     override a global exception handler by registering a local exception handler
-     for the same exception type. Since Struts 1.1.
--->
-<!ELEMENT global-exceptions (exception*)>
-<!ATTLIST global-exceptions id          ID              #IMPLIED>
-
-
-<!-- The "exception" element registers an ExceptionHandler for an exception type.
-     The following attributes are defined:
-
-    bundle           Servlet context attribute for the message resources bundle
-                     associated with this handler. The default attribute is the
-                     value specified by the string constant declared at
-                     Globals.MESSAGES_KEY.
-                     [org.apache.struts.Globals.MESSAGES_KEY]
-
-    className        The configuration bean for this ExceptionHandler object.
-                     If specified, className must be a subclass of the default
-                     configuration bean
-                     ["org.apache.struts.config.ExceptionConfig"]
-
-    handler          Fully qualified Java class name for this exception handler.
-                     ["org.apache.struts.action.ExceptionHandler"]
-
-    key              The key to use with this handler's message resource bundle
-                     that will retrieve the error message template for this
-                     exception.
-
-    path             The module-relative URI to the resource that will complete
-                     the request/response if this exception occurs.
-
-    scope            The context ("request" or "session") that is used to access
-                     the ActionError object [org.apache.struts.action.ActionError]
-                     for this exception.
-
-    type             Fully qualified Java class name of the exception type to
-                     register with this handler.
--->
-<!ELEMENT exception (icon?, display-name?, description?, set-property*)>
-<!ATTLIST exception      id             ID              #IMPLIED>
-<!ATTLIST exception      bundle         %AttributeName; #IMPLIED>
-<!ATTLIST exception      className      %ClassName;     #IMPLIED>
-<!ATTLIST exception      handler        %ClassName;     #IMPLIED>
-<!ATTLIST exception      key            CDATA           #REQUIRED>
-<!ATTLIST exception      path           %RequestPath;   #IMPLIED>
-<!ATTLIST exception      scope          CDATA           #IMPLIED>
-<!ATTLIST exception      type           %ClassName;     #REQUIRED>
-
-
 <!-- The "form-beans" element describes the set of form bean descriptors for this
      application module. The following attributes are defined:
 
@@ -269,6 +217,58 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST form-property  name           %PropName;      #REQUIRED>
 <!ATTLIST form-property  size           %Integer;       #IMPLIED>
 <!ATTLIST form-property  type           %ClassName;     #REQUIRED>
+
+
+<!-- The "global-exceptions" element describes a set of exceptions that might be
+     thrown by an Action object. The handling of individual exception types is
+     configured through nested exception elements. An <action> element may
+     override a global exception handler by registering a local exception handler
+     for the same exception type. Since Struts 1.1.
+-->
+<!ELEMENT global-exceptions (exception*)>
+<!ATTLIST global-exceptions id          ID              #IMPLIED>
+
+
+<!-- The "exception" element registers an ExceptionHandler for an exception type.
+     The following attributes are defined:
+
+    bundle           Servlet context attribute for the message resources bundle
+                     associated with this handler. The default attribute is the
+                     value specified by the string constant declared at
+                     Globals.MESSAGES_KEY.
+                     [org.apache.struts.Globals.MESSAGES_KEY]
+
+    className        The configuration bean for this ExceptionHandler object.
+                     If specified, className must be a subclass of the default
+                     configuration bean
+                     ["org.apache.struts.config.ExceptionConfig"]
+
+    handler          Fully qualified Java class name for this exception handler.
+                     ["org.apache.struts.action.ExceptionHandler"]
+
+    key              The key to use with this handler's message resource bundle
+                     that will retrieve the error message template for this
+                     exception.
+
+    path             The module-relative URI to the resource that will complete
+                     the request/response if this exception occurs.
+
+    scope            The context ("request" or "session") that is used to access
+                     the ActionError object [org.apache.struts.action.ActionError]
+                     for this exception.
+
+    type             Fully qualified Java class name of the exception type to
+                     register with this handler.
+-->
+<!ELEMENT exception (icon?, display-name?, description?, set-property*)>
+<!ATTLIST exception      id             ID              #IMPLIED>
+<!ATTLIST exception      bundle         %AttributeName; #IMPLIED>
+<!ATTLIST exception      className      %ClassName;     #IMPLIED>
+<!ATTLIST exception      handler        %ClassName;     #IMPLIED>
+<!ATTLIST exception      key            CDATA           #REQUIRED>
+<!ATTLIST exception      path           %RequestPath;   #IMPLIED>
+<!ATTLIST exception      scope          CDATA           #IMPLIED>
+<!ATTLIST exception      type           %ClassName;     #REQUIRED>
 
 
 <!-- The "global-forwards" element describes a set of ActionForward objects
