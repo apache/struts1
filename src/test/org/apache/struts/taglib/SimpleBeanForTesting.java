@@ -60,39 +60,43 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts.action.ActionForm;
+
 /**
  * Simple bean for unit tests. 
  *
  * @author James Mitchell
  */
-public class SimpleBeanForTesting {
-	public SimpleBeanForTesting(){
+public class SimpleBeanForTesting extends ActionForm {
+	public SimpleBeanForTesting() {
 		super();
 	}
-	public SimpleBeanForTesting(List lst){
+	public SimpleBeanForTesting(List lst) {
 		this.lst = lst;
 	}
-	public SimpleBeanForTesting(boolean checked){
+	public SimpleBeanForTesting(boolean checked) {
 		this.checked = checked;
 	}
-	public SimpleBeanForTesting(Boolean checked){
+	public SimpleBeanForTesting(Boolean checked) {
 		this.checkedWrapper = checkedWrapper;
 	}
-	public SimpleBeanForTesting(Map map){
+	public SimpleBeanForTesting(Map map) {
 		this.map = map;
 	}
-	public SimpleBeanForTesting(String string){
+	public SimpleBeanForTesting(String string) {
 		this.string = string;
 	}
-	public SimpleBeanForTesting(Integer integerValue){
+	public SimpleBeanForTesting(Integer integerValue) {
 		this.integerValue = integerValue;
 	}
 
-	private String string;	
+	private String string;
 	private Integer integerValue;
 	private Double doubleValue;
 	private List lst;
 	private Map map;
+	private String x;
+	private String y;
 	private Object nestedObject;
 	private Object[] array;
 	private Enumeration enumeration;
@@ -102,14 +106,14 @@ public class SimpleBeanForTesting {
 
 	//Copied right from the FAQ
 	private String strAry[] =
-    	{ "String 0", "String 1", "String 2", "String 3", "String 4" };
+		{ "String 0", "String 1", "String 2", "String 3", "String 4" };
 
-    public String getStringIndexed(int index) { 
-    	return (strAry[index]); 
-    }
-    public void setStringIndexed(int index, String value){ 
-    	strAry[index] = value; 
-    }
+	public String getStringIndexed(int index) {
+		return (strAry[index]);
+	}
+	public void setStringIndexed(int index, String value) {
+		strAry[index] = value;
+	}
 
 	/**
 	 * Returns the lst.
@@ -301,6 +305,38 @@ public class SimpleBeanForTesting {
 	 */
 	public void setCheckedWrapper(Boolean checkedWrapper) {
 		this.checkedWrapper = checkedWrapper;
+	}
+
+	/**
+	 * Returns the x.
+	 * @return String
+	 */
+	public String getX() {
+		return x;
+	}
+
+	/**
+	 * Returns the y.
+	 * @return String
+	 */
+	public String getY() {
+		return y;
+	}
+
+	/**
+	 * Sets the x.
+	 * @param x The x to set
+	 */
+	public void setX(String x) {
+		this.x = x;
+	}
+
+	/**
+	 * Sets the y.
+	 * @param y The y to set
+	 */
+	public void setY(String y) {
+		this.y = y;
 	}
 
 }

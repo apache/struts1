@@ -113,14 +113,6 @@ public class TestErrorsTag1 extends JspTestCase {
 		}
     }
     
-	private void formatAndTest(String compare, String output) {
-		//fix for introduced carriage return / line feeds
-		output = output.replaceAll("\r","");
-		output = output.replaceAll("\n","");
-		output = output.trim();
-	    assertEquals(compare, output);
-	}
-
     /*
      * Testing ErrorsTag.
      */

@@ -61,6 +61,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.apache.cactus.JspTestCase;
+import org.apache.cactus.WebRequest;
 import org.apache.cactus.WebResponse;
 
 /**
@@ -111,12 +112,15 @@ public class TestParameterTag extends JspTestCase {
 	    assertEquals(compare, output);
 	}
 
+    public void beginParameterTag(WebRequest webRequest) {
+      	webRequest.addParameter("testParam", "Test Value");
+    }
     public void testParameterTag() throws IOException, ServletException{
 		request.setAttribute("runTest", "testParameterTag");
 		pageContext.forward("/test/org/apache/struts/taglib/bean/TestParameterTag.jsp");
 	}
 	public void endParameterTag(WebResponse response){
-		formatAndTest(this.getClass().getName(), response.getText());
+		formatAndTest("Test Value", response.getText());
 	}
 
     public void testParameterTagValue() throws IOException, ServletException{
