@@ -943,7 +943,7 @@ public static boolean validateTwoFields(
   <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
   <set-property property="pathnames"
    value="/WEB-INF/validation.xml,/WEB-INF/validator-rules.xml"/>
-  <set-property property="stopOnFirstError" value="true"/>
+  <set-property property="stopOnFirstError" value="false"/>
   </plug-in>
   ]]>
 
