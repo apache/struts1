@@ -6,13 +6,11 @@
 # to "build.properties" in the same directory that contains the Struts
 # "build.xml" file.
 #
-# $Id: build.properties.sample,v 1.16 2002/10/18 15:20:53 jholmes Exp $
+# $Id: build.properties.sample,v 1.17 2002/10/26 05:38:07 rleland Exp $
 # -----------------------------------------------------------------------------
 
 # WARNING:  The relative paths below assume that the build.xml file is in the
-# top-level directory of the jakarta-struts source distribution (as it still
-# is at the moment).  If build.xml moves to under the "build" subdirectory,
-# we will need to add an extra level of "../" to each of these paths.
+# top-level directory of the jakarta-struts source distribution.
 
 # commons-lib.home Where the CVS toplevel commons live
 commons-lib.home=D:/Projects/Apache/jakarta-commons
@@ -25,7 +23,7 @@ apache.home=D:/Java/Programs/Apache
 # is the servlet container part of this distribution), from CVS module
 # "jakarta-tomcat-4.0" at jakarta.apache.org).  This is only required
 # if you are going to execute the "deploy.catalina" target.
-catalina.home=${apache.home}/jakarta-tomcat-4.0.4
+catalina.home=${apache.home}/jakarta-tomcat-4.0.6
 
 # The JAR file containing version 1.0 (or later) of the Beanutils package
 # from the Jakarta Commons project.
@@ -46,7 +44,7 @@ commons-digester.jar=${commons-lib.home}/digester/dist/commons-digester.jar
 
 # The JAR file containing version 1.0 (or later) of the FileUpload package
 # from the Jakarta Commons project.
-commons-fileupload.jar=${commons-sandbox-lib.home}/fileupload/target/commons-fileupload-1.0-dev.jar
+commons-fileupload.jar=${commons-lib.home}/fileupload/target/commons-fileupload-1.0-dev.jar
 
 # The JAR file containing version 1.0-b1 (or later) of the Lang package
 # from the Jakarta Commons project.
@@ -88,21 +86,24 @@ jdbc20ext.jar=../../../Java/Programs/sun/jdbc2_0-stdext.jar
 # version 2.2 or 2.3)
 servlet.jar=${apache.home}/jakarta-servletapi/lib/servlet.jar
 
-# The directory containing your binary distribution of Tomcat 3.2, from CVS
+# The directory containing your binary distribution of Tomcat 3.3, from CVS
 # module "jakarta-tomcat" (and branch "TOMCAT_32") at jakarta.apache.org.
 # This is only required if you are going to execute the "deploy.tomcat" target.
-tomcat.home=${apache.home}/jakarta-tomcat-3.2.3
+tomcat.home=${apache.home}/jakarta-tomcat-3.3.1
 
 # The JAR file containing the Xerces parser.  This is only required if you are
 # going to execute the "deploy.catalina" target.
 xerces.jar=${apache.home}/xerces-1_4_4/xerces.jar
+
+# Properties related to Struts Contrib 
+# -----------------------------------------
 
 # These links to the JSTL jar files are only required for building the
 # Struts-EL contrib library.  If they are not present, it will not build that
 # contrib library (although it doesn't prevent you from building it directly in
 # "contrib/struts-el".
 
-jstl.jar				= f:/applis/jakarta-taglibs/jstl-1.0/lib/jstl.jar
+jstl.jar		= f:/applis/jakarta-taglibs/jstl-1.0/lib/jstl.jar
 jstl-standard.jar	= f:/applis/jakarta-taglibs/jstl-1.0/lib/standard.jar
 
 # Properties related to Struts unit testing
@@ -119,6 +120,9 @@ cactus.jar = ${cactus.lib}/cactus.jar
 # Cactus Ant custom tasks jar
 cactus.ant.jar = ${cactus.lib}/cactus-ant.jar
 
+# Ant Optional Jars for Junit task
+ant.optional.jar = ${apache.home}/jakarta-ant-1.5.1/lib/optional.jar
+
 # AspectJ from Cactus distribution
 aspectjrt.jar = ${cactus.lib}/aspectjrt.jar
 
@@ -127,6 +131,7 @@ commons-httpclient.jar = ${commons-lib.home}/httpclient/dist/commons-httpclient.
 
 # Log4J from Jakrata-Commons
 log4j.jar = D:/Java/Programs/Apache/jakarta-log4j-1.2.6/dist/lib/log4j-1.2.6.jar
+
 # JUnit jar file
 junit.jar = /Java/Lib/Junit3.7/junit.jar
 
@@ -136,5 +141,5 @@ junit.jar = /Java/Lib/Junit3.7/junit.jar
 #       comment it's home property. For example, if you don't want to run the
 #       tests on Tomcat 4.0, comment the "tomcat.home.40" property.
 
-tomcat.home.32 = ${apache.home}/jakarta-tomcat-3.2.4
+tomcat.home.33 = ${apache.home}/jakarta-tomcat-3.3.1
 tomcat.home.40 = ${apache.home}/jakarta-tomcat-4.0.6

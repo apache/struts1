@@ -20,7 +20,7 @@ rem              anymore, you'll need to copy the cactus.jar into the
 rem              maven repository directoty. I filed a bug report for this.
 rem              
 rem
-rem $Id: build-all-clean.bat.sample,v 1.1 2002/10/16 15:04:47 rleland Exp $
+rem $Id: build-all-clean.bat.sample,v 1.2 2002/10/26 05:38:07 rleland Exp $
 
 cd ..
 
@@ -57,9 +57,10 @@ call ant clean dist
 cd ..\validator
 call ant clean dist
 
-cd ..\..\jakarta-commons-sandbox
 cd fileupload
 call maven
+
+cd ..\..\jakarta-commons-sandbox
 
 cd ..\resources
 call maven
