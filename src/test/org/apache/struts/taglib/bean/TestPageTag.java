@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestPageTag.java,v 1.10 2004/03/14 06:23:48 sraeburn Exp $
  * $Revision: 1.10 $
- * $Date: 2004/03/14 06:23:48 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -20,19 +20,19 @@
 package org.apache.struts.taglib.bean;
 
 import javax.servlet.jsp.PageContext;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.apache.cactus.JspTestCase;
 import org.apache.cactus.WebResponse;
-import org.apache.commons.lang.StringUtils;
+import org.apache.struts.taglib.TaglibTestBase;
 
 /**
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.bean.PageTag</code> class.
  *
  */
-public class TestPageTag extends JspTestCase {
+public class TestPageTag extends TaglibTestBase {
 
     protected final static String PAGETAG_KEY = "PAGETAG_KEY";
     protected final static String PAGETAG_VAL = "PAGETAG_VAL";
@@ -71,8 +71,8 @@ public class TestPageTag extends JspTestCase {
 
         private void formatAndTest(String compare, String output) {
                 //fix for introduced carriage return / line feeds
-                output = StringUtils.replace(output,"\r","");
-                output = StringUtils.replace(output,"\n","");
+                output = replace(output,"\r","");
+                output = replace(output,"\n","");
                 output = output.trim();
                 //System.out.println("Testing [" + compare + "] == [" + output + "]");
             assertEquals(compare, output);
