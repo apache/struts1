@@ -85,6 +85,19 @@ abstract class AbstractBacking {
 
 
     /**
+     * <p>Return the context relative base URL for the "logon"
+     * action.</p>
+     *
+     * @param context <code>FacesContext</code> for the current request
+     */
+    protected StringBuffer logon(FacesContext context) {
+
+        return (action(context, "/logon"));
+
+    }
+
+
+    /**
      * <p>Return the context relative base URL for the "edit registration"
      * action.</p>
      *

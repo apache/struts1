@@ -49,20 +49,6 @@
       </h:panelGroup>
     </f:facet>
 
-<%--
-    <h:outputLink   value="editRegistration.do"
-               styleClass="link">
-      <f:param       name="action"
-                    value="Edit"/>
-      <s:message      key="mainMenu.registration"/>
-    </h:outputLink>
-
-    <h:outputLink   value="logoff.do"
-               styleClass="link">
-      <s:message      key="mainMenu.logoff"/>
-    </h:outputLink>
---%>
-
     <s:commandLink     id="edit"
                    action="#{mainMenuBacking.edit}"
                 immediate="true"

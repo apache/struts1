@@ -28,6 +28,16 @@
 <faces-config>
 
 
+  <!-- Backing Bean for index.jsp -->
+  <managed-bean>
+    <managed-bean-name>indexBacking</managed-bean-name>
+    <managed-bean-class>
+      org.apache.struts.webapp.example.IndexBacking
+    </managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+
+
   <!-- Backing Bean for mainMenu.jsp -->
   <managed-bean>
     <managed-bean-name>mainMenuBacking</managed-bean-name>
@@ -47,5 +57,13 @@
     <managed-bean-scope>request</managed-bean-scope>
   </managed-bean>
 
+  <!-- Navigation Rules for index.jsp -->
+  <navigation-rule>
+    <from-view-id>/index.jsp</from-view-id>
+    <navigation-case>
+      <from-outcome>logon</from-outcome>
+      <to-view-id>/logon.jsp</to-view-id>
+    </navigation-case>
+  </navigation-rule>
 
 </faces-config>

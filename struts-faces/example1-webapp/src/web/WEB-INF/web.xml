@@ -85,7 +85,7 @@ MYFACES_END
 
   <!-- The Welcome File List -->
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>welcome.jsp</welcome-file>
   </welcome-file-list>
 
   <!-- Application Tag Library Descriptor -->

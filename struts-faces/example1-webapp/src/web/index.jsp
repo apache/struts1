@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
-<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
-<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
+<%@ taglib prefix="s" uri="http://struts.apache.org/tags-faces" %>
 
 <!--
 
@@ -22,13 +23,18 @@
 -->
 
 
-<html:html locale="true">
+<f:view>
+<s:html            locale="true">
 <head>
-<title><bean:message key="index.title"/></title>
-<html:base/>
+  <title>
+    <s:message        key="index.title"/>
+  </title>
+  <s:base/>
+  <s:stylesheet      path="/stylesheet.css"/>
 </head>
-<body bgcolor="white">
+<body>
 
+<%--
 <logic:notPresent name="database" scope="application">
   <font color="red">
     ERROR:  User database not loaded -- check servlet container logs
@@ -36,27 +42,56 @@
   </font>
   <hr>
 </logic:notPresent>
+--%>
 
+<%--
 <logic:notPresent name="org.apache.struts.action.MESSAGE" scope="application">
   <font color="red">
     ERROR:  Application resources not loaded -- check servlet container
     logs for error messages.
   </font>
 </logic:notPresent>
+--%>
 
-<h3><bean:message key="index.heading"/></h3>
-<ul>
-<li><html:link page="/editRegistration.do?action=Create"><bean:message key="index.registration"/></html:link></li>
-<li><html:link page="/logon.faces"><bean:message key="index.logon"/></html:link></li>
-</ul>
+<h:form                id="indexForm">
+
+  <h:panelGrid    columns="1"
+              headerClass="list header"
+               rowClasses="list row even,list row odd"
+               styleClass="list">
+
+    <f:facet         name="header">
+      <s:message      key="index.heading"/>
+    </f:facet>
+
+    <s:commandLink     id="create"
+                   action="#{indexBacking.create}"
+                immediate="true"
+               styleClass="link">
+      <f:param       name="action"
+                    value="Create"/>
+      <s:message      key="index.registration"/>
+    </s:commandLink>
+
+    <s:commandLink     id="logon"
+                   action="#{indexBacking.logon}"
+                immediate="true"
+               styleClass="link">
+      <s:message      key="index.logon"/>
+    </s:commandLink>
+
+  </h:panelGrid>
+
+</h:form>
 
 <p>&nbsp;</p>
-<html:link page="/tour.do">
-<font size="-1"><bean:message key="index.tour"/></font>
-</html:link>
+<h:outputLink value="tour.do">
+  <font size="-1"><s:message key="index.tour"/></font>
+</h:outputLink>
 <p>&nbsp;</p>
 
-<html:img page="/struts-power.gif" alt="Powered by Struts"/>
+<h:graphicImage value="/struts-power.gif" alt="Powered by Struts"/>
 
 </body>
-</html:html>
+</s:html>
+</f:view>
