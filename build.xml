@@ -218,7 +218,6 @@
   <path id="test.classpath">
     <pathelement location="${build.home}/library/classes"/>
     <pathelement location="${build.home}/test/classes"/>
-    <pathelement location="${cactus.jar}"/>
     <pathelement location="${commons-beanutils.jar}"/>
     <pathelement location="${commons-collections.jar}"/>
     <pathelement location="${commons-dbcp.jar}"/>
@@ -228,11 +227,13 @@
     <pathelement location="${commons-services.jar}"/>
     <pathelement location="${commons-validator.jar}"/>
     <pathelement location="${jakarta-oro.jar}"/>
-    <pathelement location="${servlet.jar}"/>
-    <pathelement location="${junit.jar}"/>
     <pathelement location="${jdbc20ext.jar}"/>
     <pathelement location="${servlet.jar}"/>
     <pathelement location="${xerces.jar}"/>
+    <fileset dir="${cactus.home}/lib">
+      <exclude name="log4j*.jar"/>
+      <include name="*.jar"/>
+    </fileset>
   </path>
 
   <!-- Should all tests fail if one does? -->
@@ -707,7 +708,9 @@
 
     <!-- ========== Non-Cactus Unit Tests ================================= -->
 
-    <target name="test" depends="test.compile,test.config"
+    <target name="test" depends="test.compile,
+                                 test.action,
+                                 test.config"
      description="Run all non-Cactus based unit tests">
     </target>
 
@@ -723,7 +726,24 @@
       <copy   todir="${build.home}/test/classes">
         <fileset dir="${src.test.dir}" excludes="**/*.java"/>
       </copy>
+      <copy   todir="${build.home}/test/classes">
+        <fileset dir="${conf.test.dir}" includes="cactus.properties"/>
+      </copy>
     </target>
+
+
+    <target name="test.action">
+      <echo message="Running Action Package tests ..."/>
+      <echo message="^^^^ Disabled due to Cactus-reported errors for now"/>
+<!--
+      <java classname="${test.runner}" fork="yes"
+          failonerror="${test.failonerror}">
+        <arg value="org.apache.struts.action.TestActionServlet"/>
+        <classpath refid="test.classpath"/>
+      </java>
+-->
+    </target>
+
 
     <target name="test.config">
       <echo message="Running Config Package tests ..."/>

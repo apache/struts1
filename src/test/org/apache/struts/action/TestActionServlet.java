@@ -59,6 +59,8 @@ import javax.servlet.*;
 import junit.framework.*;
 import org.apache.cactus.*;
 
+import org.apache.struts.util.MessageResources;
+
 /**
  * Suite of unit tests for the
  * <code>org.apache.struts.action.ActionServlet</code> class.
@@ -95,12 +97,41 @@ public class TestActionServlet extends ServletTestCase
         return new TestSuite(TestActionServlet.class);
     }
 
+
+    // ----------------------------- initInternal() and destroyInternal() tests
+
+
+    /**
+     * Verify that we can initialize and destroy our internal message
+     * resources object.
+     */
+    public void testInitDestroyInternal() {
+
+        ActionServlet servlet = new ActionServlet();
+        try {
+            servlet.initInternal();
+        } catch (ServletException e) {
+            fail("initInternal() threw exception: " + e);
+        }
+        assertTrue("internal was initialized",
+                   servlet.getInternal() != null);
+        assertTrue("internal of correct type",
+                   servlet.getInternal() instanceof MessageResources);
+        servlet.destroyInternal();
+        assertTrue("internal was destroyed",
+                   servlet.getInternal() == null);
+
+    }
+
+
+
     //----- Test initApplication() method --------------------------------------
 
     /**
      * Verify that nothing happens if no "application" property is defined in
      * the servlet configuration.
      */
+    /*
     public void testInitApplicationNull() throws ServletException
     {
         ActionServlet servlet = new ActionServlet();
@@ -111,13 +142,15 @@ public class TestActionServlet extends ServletTestCase
 
         // As no "application" object is found in the servlet config, no
         // attribute should be set in the context
-        assert(config.getServletContext().getAttribute(Action.MESSAGES_KEY) == null);
+        assertTrue(config.getServletContext().getAttribute(Action.MESSAGES_KEY) == null);
     }
+    */
 
     /**
      * Verify that eveything is fine when only a "application" parameter is
      * defined in the servlet configuration.
      */
+    /*
     public void testInitApplicationOk1() throws ServletException
     {
         // initialize config
@@ -129,13 +162,14 @@ public class TestActionServlet extends ServletTestCase
         // Test the initApplication() method
         servlet.initApplication();
 
-        assert(servlet.application != null);
-        assert(servlet.application.getReturnNull() == true);
+        assertTrue(servlet.application != null);
+        assertTrue(servlet.application.getReturnNull() == true);
 
-        assert(config.getServletContext().getAttribute(Action.MESSAGES_KEY) != null);
+        assertTrue(config.getServletContext().getAttribute(Action.MESSAGES_KEY) != null);
         assertEquals(servlet.application, config.getServletContext().getAttribute(Action.MESSAGES_KEY));
 
     }
+    */
 
     // [...]
 }

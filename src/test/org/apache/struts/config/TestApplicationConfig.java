@@ -57,6 +57,7 @@ package org.apache.struts.config;
 
 
 import java.io.InputStream;
+import java.util.Map;
 import java.net.URL;
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -69,7 +70,7 @@ import org.apache.struts.action.Action;
  * Unit tests for the <code>org.apache.struts.config</code> package.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/12/26 21:55:55 $
+ * @version $Revision: 1.2 $ $Date: 2002/06/16 00:37:12 $
  */
 
 public class TestApplicationConfig extends TestCase {
@@ -107,7 +108,7 @@ public class TestApplicationConfig extends TestCase {
      */
     public void setUp() {
 
-        config = new ApplicationConfig("", null);
+        config = new ApplicationConfig("");
 
     }
 
@@ -144,7 +145,6 @@ public class TestApplicationConfig extends TestCase {
         // Prepare a Digester for parsing a struts-config.xml file
         Digester digester = new Digester();
         digester.push(config);
-        digester.setDebug(0);
         digester.setNamespaceAware(true);
         digester.setValidating(true);
         digester.addRuleSet(new ConfigRuleSet());
@@ -170,9 +170,13 @@ public class TestApplicationConfig extends TestCase {
         DataSourceConfig dsc =
             config.findDataSourceConfig(Action.DATA_SOURCE_KEY);
         assertNotNull("Found our data source configuration", dsc);
+        assertEquals("Data source driverClass",
+                     "org.postgresql.Driver",
+                     (String) dsc.getProperties().get("driverClass"));
+
         assertEquals("Data source description",
                      "Example Data Source Configuration",
-                     dsc.getDescription());
+                     (String) dsc.getProperties().get("description"));
 
         FormBeanConfig fbcs[] = config.findFormBeanConfigs();
         assertNotNull("Found our form bean configurations", fbcs);
