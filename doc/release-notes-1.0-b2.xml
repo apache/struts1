@@ -136,6 +136,32 @@
         checking for cancellations.</li>
     </ul>
 
+    <p>The following new features have been added to the utility classes
+    (package <code>org.apache.struts.util</code>):</p>
+    <ul>
+    <li><code>PropertyUtils</code> can now correctly locate public methods
+        defined in a nested interface that is implemented by a bean.</li>
+    <li><code>PropertyUtils</code> methods now throw
+        <code>IllegalArgumentException</code> when you pass a null
+        <code>bean</code> reference or property <code>name</code>.</li>
+    <li><strong>DEPRECATIONS</strong> - The following classes have been
+        deprecated in their entirety, because they will be replaced by
+        corresponding classes (with identical functionality) from the
+        <a href="http://jakarta.apache.org/commons">Jakarta Commons Project</a>
+        at some point after Struts 1.0 final release.  The only change that
+        will ultimately be required in user code is to change the package
+        names on the <code>import</code> clauses:
+        <ul>
+        <li><code>org.apache.struts.util.FastArrayList</code></li>
+        <li><code>org.apache.struts.util.FastHashMap</code></li>
+        <li><code>org.apache.struts.util.FastTreeMap</code></li>
+        <li><code>org.apache.struts.util.BeanUtils</code></li>
+        <li><code>org.apache.struts.util.ConvertUtils</code></li>
+        <li><code>org.apache.struts.util.PropertyUtils</code></li>
+        </ul></li>
+    </ul>
+
+
     <p>The following new features have been added to the
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
