@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.10 2003/02/15 03:22:59 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2003/02/15 03:22:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.11 2003/02/16 05:29:46 martinc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/02/16 05:29:46 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.ResponseUtils;
  * to the default <code>ErrorsTag</code>.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.10 $ $Date: 2003/02/15 03:22:59 $
+ * @version $Revision: 1.11 $ $Date: 2003/02/16 05:29:46 $
  * @since Struts 1.1
 */
 public class MessagesTag extends BodyTagSupport {
@@ -261,12 +261,16 @@ public class MessagesTag extends BodyTagSupport {
                     report.getKey(),
                     report.getValues());
 
-            // log missing key to ease debugging
-            if (msg == null && log.isDebugEnabled()) {
-                log.debug(messageResources.getMessage("messageTag.resources", report.getKey()));
-            }
+            if (msg != null) {
+                pageContext.setAttribute(id, msg);
+            } else {
+                pageContext.removeAttribute(id);
 
-            pageContext.setAttribute(id, msg);
+                // log missing key to ease debugging
+                if (log.isDebugEnabled()) {
+                    log.debug(messageResources.getMessage("messageTag.resources", report.getKey()));
+                }
+            }
 
             if (header != null && header.length() > 0) {
                 String headerMessage = RequestUtils.message(pageContext, bundle, locale, header);
