@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document url="./index.xml">
+<properties>
+<author>Ted Husted</author>
+<title>FAQs and Howtos - Jakarta Struts</title>
+</properties>
+<body>
+
+<section name="Struts FAQs and Howtos">
+
+ <ul>
+    <li><a href="kickstart.html">Kickstart FAQ</a> (read me first)</li>
+    <li><a href="newbie.html">Newbie FAQ</a> </li>
+    <li><a href="helping.html">How to Help FAQ</a> </li>
+ </ul>
+
+ <ul>
+    <li><a href="ssl.html">SSL Howto</a></li>
+ </ul>
+
+</section>
+
+<section name="Offsite FAQs and Howtos">
+
+ <ul>
+    <li><a href="http://www.jguru.com/faq/home.jsp?topic=Struts">jGuru FAQ</a></li>
+ </ul>
+
+ <ul>
+    <li><a href="http://www.husted.com/struts/tips">Struts Tips</a></li>
+ </ul>
+
+</section>
+
+</body></document>

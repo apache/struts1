@@ -173,8 +173,8 @@
     <li><strong>lib/struts-*.tld</strong> - These are the "tag library
         descriptor" files that describe the custom tags in the various Struts
         tag libraries. They should be copied into the <code>WEB-INF</code>
-        directory of your web application. (Servlet 2.3 can omit this step 
-        if the <a href="building_controller.html#dd_config_taglib_23">standard uri</a> 
+        directory of your web application. (Servlet 2.3 can omit this step
+        if the <a href="building_controller.html#dd_config_taglib_23">standard uri</a>
         is referenced.)</li>
     <li><strong>webapps/struts-blank.war</strong> - This is a simple "web
         application archive" file containing a basic starting point for
@@ -229,8 +229,8 @@
         <code>WEB-INF/web.xml</code> file from the Struts example application
         for a detailed example of the required syntax.</li>
     <li>Modify the <code>WEB-INF/web.xml</code> file of your web application
-        to include the following tag library declarations (Servlet 2.3 can omit 
-        this step if the <a href="building_controller.html#dd_config_taglib_23">standard uri</a> 
+        to include the following tag library declarations (Servlet 2.3 can omit
+        this step if the <a href="building_controller.html#dd_config_taglib_23">standard uri</a>
         is referenced):</li>
     </ul>
 
@@ -418,7 +418,7 @@ about how to configure additional security manager permissions.</p>
 
 <section>
     <p>
-    Next: <a href="../newbie.html">Newbie FAQ</a>
+    Next: <a href="../faqs/index.html">FAQs and Howtos</a>
     </p>
 </section>
 

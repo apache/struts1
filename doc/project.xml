@@ -8,11 +8,10 @@
     <menu name="Welcome">
         <item name="Home"                    href="index.html"/>
         <item name="News &amp; Status"       href="news.html"/>
-        <item name="Kickstart FAQ"           href="kickstart.html"/>
+        <item name="FAQs and Howtos"         href="faqs/index.html"/>
         <item name="Resources"               href="resources/index.html"/>
-        <item name="Who We Are"              href="volunteers.html"/>
-        <item name="How to Help"             href="helping.html"/>
         <item name="List Archive"            href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42"/>
+        <item name="Who We Are"              href="volunteers.html"/>
     </menu>
 
     <menu name="Downloads">

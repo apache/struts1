@@ -58,10 +58,9 @@
   <p>
   The <b>official documentation</b> for the framework is provided both online
   and as a self-installing WAR in the distribution. The
-  <code>struts-documentation.war</code> includes the
-  <a href="kickstart.html">Kickstart</a>,
-  <a href="newbie.html">Newbie</a>, and
-  <a href="helping.html">How to Help</a> FAQs,
+  <code>struts-documentation.war</code> includes our
+  <a href="./faqs/index.html">FAQs and Howtos</a>,
+  <a href="./faqsnewbie.html">Newbie</a> along with the
   <a href="userGuide/index.html">Users Guide</a>,
   <a href="api/index.html">Javadocs</a>, and everything else you find here.
   You are invited to preview the documentation online, and then install the
@@ -79,11 +78,11 @@
   </blockquote>
 
   <p><a name="faqs"></a>
-  The <a href="kickstart.html"><b>Kickstart FAQ</b></a> answers the most common
+  The <a href="./faqs/kickstart.html"><b>Kickstart FAQ</b></a> answers the most common
   non-technical questions people first ask about Struts. The
-  <a href="newbie.html">Struts Newbie FAQ</a> answers the most common
+  <a href="./faqs/newbie.html">Struts Newbie FAQ</a> answers the most common
   technical questions asked by first-timer Struts developers. The
-  <a href="helping.html">How to Help</a> FAQ answers the most common questions
+  <a href="./faqs/helping.html">How to Help</a> FAQ answers the most common questions
   about contributing to the Jakarta-Struts project. A more extensive
   Struts knowledgebase is available at the
   <a href="http://jguru.com/faq/Struts">JGuru FAQ</a> and
@@ -330,7 +329,7 @@
   <a href="#Bugs">Bugzilla</a>.
   </p>
   <p>
-  For more, see the <a href="helping.html">How to Help FAQ</a>.
+  For more, see the <a href="./faqs/helping.html">How to Help FAQ</a>.
   </p>
 
   </section>
@@ -392,7 +391,7 @@
   All work on Struts and the other Jakarta subprojects is provided on a volunteer
   basis. For more about what you can do, see the
   <a href="http://jakarta.apache.org/site/getinvolved.html">Getting Involved
-  Overview</a> and the Struts <a href="helping.html">How to Help FAQ</a>.
+  Overview</a> and the Struts <a href="./faqs/helping.html">How to Help FAQ</a>.
   </p>
 
   </section>

@@ -45,7 +45,7 @@ Apache Jakarta Website.</p>
 </ul>
 </section>
 
-<section name="User Guide Contributors" href="contributors.documentation">
+<section name="Documentation Contributors" href="contributors.documentation">
 <ul>
     <li>Craig R. McClanahan</li>
     <li>David Geary</li>
@@ -76,6 +76,7 @@ Apache Jakarta Website.</p>
     <li>Eddie Bush</li>
     <li>Yann Cebron </li>
     <li>David Graham</li>
+    <li>Steve Ditlinger</li>
 </ul>
 </section>
 
@@ -94,6 +95,7 @@ Apache Jakarta Website.</p>
 <li><b>David M. Karr</b>       (dmkarr at apache.org)</li>
 <li><b>Eddie Bush</b>          (ekbush at apache.org)</li>
 <li><b>David Graham</b>        (dgraham at apache.org)</li>
+<li><b>James Mitchell</b>      (jmitchell at apache.org)</li>
 </ul>
 </section>
 
@@ -344,10 +346,10 @@ and good will. I am fortunate to be part of the struts team. </p>
 <h3><a name="dgraham">David Graham -- Committer</a></h3>
 
 <p>I, like many others, discovered Struts when contemplating writing my own
-MVC Java framework for the web.  Struts had everything I needed and more so I 
+MVC Java framework for the web.  Struts had everything I needed and more so I
 scrapped plans for my own and joined the mailing lists.  After playing with it
-for several months I started submitting documentation and a few source patches.  
-I'm excited about helping Struts evolve and am continually amazed by the framework 
+for several months I started submitting documentation and a few source patches.
+I'm excited about helping Struts evolve and am continually amazed by the framework
 and the community surrounding it.
 </p>
 

@@ -1,4 +1,4 @@
-<project name="Struts" default="compile.library" basedir=".">
+<project name="Struts" default="compile.website" basedir=".">
 
 <!--
         Struts main build.xml file for building everything related to Struts.
@@ -759,6 +759,11 @@
     <!-- Create the taglib documentation -->
     <style   basedir="${doc.dir}" destdir="${build.home}/documentation"
            extension=".html" style="stylesheets/struts.xsl" includes="*.xml"/>
+    <!-- Create the faqs -->
+    <style   basedir="${doc.dir}/faqs"
+             destdir="${build.home}/documentation/faqs"
+           extension=".html" style="../stylesheets/faqs.xsl"
+            includes="*.xml"/>
     <!-- Create the proposals -->
     <style   basedir="${doc.dir}/proposals"
              destdir="${build.home}/documentation/proposals"
@@ -784,9 +789,9 @@
         <include name="**/*.js"/>
       </fileset>
     </copy>
-    <!-- Copy the basic user guide files -->
-    <copy      todir="${build.home}/documentation/userGuide">
-      <fileset   dir="${doc.dir}/userGuide">
+    <!-- Copy the faq files -->
+    <copy      todir="${build.home}/documentation/faqs">
+      <fileset   dir="${doc.dir}/faqs">
         <include name="**/*.css"/>
         <include name="**/*.gif"/>
         <include name="**/*.html"/>

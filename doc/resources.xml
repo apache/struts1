@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <document url="./resources.xml">
 <properties>
-<author>Ted Husted</author> 
-<title>Resources - Jakarta Struts</title>
+<title>Page Moved - Jakarta Struts</title>
 </properties>
-<body> 
-<chapter name="Struts Resources"> 
+<body>
+<chapter name="Struts Resources">
 
 
-<section name="Resource Index">
+<section name="Ooops">
 
-<p>This page has moved to 
+<p>This page has moved to
 <a href="resources/index.html">http://jakarta.apache.org/struts/resources/</a></p>
 <p>Please update your hyperlinks.</p>
 
