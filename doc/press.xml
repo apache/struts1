@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <author email="husted@apache.org">Ted Husted</author>
+    <title>Press Releases</title>
+  </properties>
+
+<body>
+
+<section name="Press Releases">
+
+<h3 align="center">Struts 1.0 Released</h3>
+
+<p>
+(2001-June-15) The production release of Struts 1.0, an open source framework for building Web applications, is now available for download at jakarta.apache.org. Struts encourages application architectures based on the Model-View-Controller (MVC) pattern and provides services common
+to most Web applications. Struts helps developers deploy products that are reliable, scaleable, and easier to maintain.
+</p>
+
+<p>
+The Struts framework offers services in three primary areas:
+</p>
+
+<p>
+* A controller servlet to dispatch requests to specific Action classes (provided by the application developer).<br/>
+* JSP custom tags to help developers create interactive form-based applications.<br/>
+* Utility classes for XML parsing, automatic JavaBean population, and internationalization of prompts and messages.
+</p>
+
+<p>
+Struts' support for internationalization builds on top of the Java Locale API, and have made it a popular choice for applications worldwide. Struts contributors include developers from Australia, France, Russia, and other parts of the globe.
+</p>
+
+<p>
+In addition to the Struts official distribution, several third-party libraries are already available, which offer enhanced support for JSP templates, HTML form validation, and automatic JavaBean creation. Struts has also been integrated with the Expresso Framework distributed by
+JCorporate Ltd. (jcorporate.com).
+</p>
+
+<p>
+Struts can be used with a J2EE Application server to deploy distributed applications, but will run under any compliant Servlet container (Servlet API 2.2+, JSP 1.1+), including Tomcat 3.2 or later. In fact, Struts is already used as an informal compliance test for Java Servlet
+containers and J2EE Application servers
+</p> 
+
+<p>
+The Struts project was founded in May 2000 by Craig McClanahan. McClanahan is also the lead developer of Tomcat 4.0, Sun's reference implementation for Java Servlet and ServerPage containers. Both Tomcat and Struts are open source available under the Apache Software License,
+and may be downloaded at jakarta.apache.org.
+</p>
+
+<p>
+Twenty-six independent developers contributed to the creation of Struts 1.0, with the help of over 1300 subscribers to the Struts mailing lists.<br/>
+</p>
+
+<hr noshade="" size="1"/>
+
+</section>
+
+</body>
+</document>

@@ -160,7 +160,7 @@
     <em>struts-bean</em> custom tag library (package
     <code>org.apache.struts.taglib.bean</code>):</p>
     <ul>
-    <li>Add format, locale and bundle attributes to support values formatting according to current
+    <li>Add format, locale and bundle attributes to bean:write to support values formatting according to current
 user locale, format string from attribute or format string from string resources.</li>
     <li>Correct the generated scripting variable type when the &lt;bean:cookie>, &lt;bean:header>, or &lt;bean:parameter> tag is used with the "multiple" attribute.</li>
     <li>Added <code>name</code>, <code>property</code>, and
@@ -224,10 +224,13 @@ user locale, format string from attribute or format string from string resources
     <li>Remove deprecated support for the old (Struts 0.5) configuration file
   format.</li>
     </ul>
-
     <p>The following changes and bug fixes have occurred in the basic
     controller framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
+    <li>Add InvokeAction and CreateActionForm methods to allow direct chaining of Actions.</li>
+    <li>Add ContextHelper to expose framework elements to alternate presentation layers.</li>
+    <li>ActionForms and related classes now use a StringBuffer when responding a toString request in order to conserve resources.</li>
+    <li>Add standard LookupDispatchAction to help select between internationalized buttons.</li>
     <li>Modify ActionForm class to use ActionServletWrapper rather than expose ActionServlet.</li>
     <li>Add ActionServletWrapper class. Used by ActionForm to prevent the Public String properties of ActionServlet from being changed via a query string.</li>
     <li>Unconditionally pass the selected mapping as a request attribute under key Action.MAPPING_KEY, even if no form bean is specified.</li>
@@ -312,6 +315,7 @@ multipart requests.</li>
     <p>The following changes and bug fixes to the Struts Example Application
     have occurred:</p>
     <ul>
+    <li>Add Russiand and Japanese translations of the application resources and set the character set for the example JSP pages to "UTF-8" so that it can display either English or Japanese.</li>
     <li>Exchange "name" for "attribute" properties for Edit mappings in Struts configuration file.</li>
     <li>Remove references to saving database data from "tour" document, since this functionality was removed.</li>
     </ul>

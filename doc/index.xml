@@ -70,6 +70,12 @@
   everything else written about  Struts, including books, articles, tutorials, and sample 
   applications. There are also links to public sites "Powered by Struts". </p>
 
+  <p>
+  The Struts <a href="news.html"><b>News &amp; Status</b></a> page tracks changes to the 
+  Struts package, including proposals for new features and the latest additions to the 
+  resources page.
+  </p>
+
   </section>
 
   <section name="Acquiring Struts" href="Acquiring">

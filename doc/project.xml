@@ -7,6 +7,7 @@
 
     <menu name="Welcome">
         <item name="Home"                    href="index.html"/>
+        <item name="News &amp; Status"       href="news.html"/>
         <item name="Kickstart FAQ"           href="userGuide/kickstart.html"/> 
         <item name="User Guide"              href="userGuide/index.html"/>
         <item name="Resources"               href="userGuide/resources.html"/>
@@ -33,6 +34,8 @@
               href="api-1.0/org/apache/struts/taglib/html/package-summary.html#package_description"/>
         <item name="Logic Tags"
               href="api-1.0/org/apache/struts/taglib/logic/package-summary.html#package_description"/>
+        <item name="Nested Tags (since 1.1)"
+              href="api/org/apache/struts/taglib/nested/package-summary.html#package_description"/>
         <item name="Template Tags"
               href="api-1.0/org/apache/struts/taglib/template/package-summary.html#package_description"/>
         <item name="Digester"
@@ -48,6 +51,8 @@
               href="struts-html.html"/>
         <item name="Logic Tags"
               href="struts-logic.html"/>
+        <item name="Nested Tags"
+              href="struts-nested.html"/>
         <item name="Template Tags"
               href="struts-template.html"/>
     </menu>
