@@ -1,0 +1,164 @@
+$Id: INSTALL,v 1.1 2000/07/09 05:20:47 craigmcc Exp $
+
+				Struts
+				======
+
+This document contains notes that have been accumulated on getting the Struts
+applications (documentation and example) running in a variety of servlet
+container environments.
+
+
+ORION APPLICATION SERVER
+------------------------
+
+* In the steps below, $ORION_HOME refers to the directory in which you
+  have installed Orion, and $STRUTS_HOME is the directory in which you
+  unpacked the Struts binary distribution.
+
+* Modify the file "$ORION_HOME/config/application.xml" to define the two
+  new applications, by adding the following declarations, immediately
+  following the <web-module> directive for the default web application:
+
+	<web-module id="strutsDoc"
+         path="$STRUTS_HOME/webapps/struts-documentation.war"/>
+
+	<web-module id="strutsExample"
+         path="$STRUTS_HOME/webapps/struts-example.war"/>
+
+* Modify the file "$ORION_HOME/config/default-web-site.xml" (or the
+  configuration file for any other Orion web site) to include the following
+  declarations, after the declaration for the <default-web-app> if any:
+
+	<web-app application="default" name="strutsDoc"
+                 root="/struts-documentation"/>
+
+	<web-app application="default" name="strutsExample"
+                 root="/struts-example"/>
+
+* After you start Orion, you should now be able to access these applications
+  (assuming you haven't changed the port number from the default of 80) at:
+
+	http://localhost/struts-documentation
+
+	http://localhost/struts-example
+
+* Versions of Orion up to at least 1.0.3 have a bug related to
+  ServletContext.getResource() calls that prevent the Struts example
+  application from working out of the box.  This manifests itself as a
+  JSP error when you try to access the example application, with the
+  following message:
+
+	javax.servlet.jsp.JspException:  Missing resources attribute
+	  org.apache.struts.action.MESSAGE
+
+  followed by an error traceback.  There will also be an initialization
+  error message in the "$ORION_HOME/log/global-application.log" log file.
+  To work around this problem, you can take the following steps:
+
+  - Go to the "$STRUTS_HOME/webapps" directory, where you will note that
+    Orion has automatically expanded each web application into an
+    unpacked directory structure.
+
+  - Go to the "$STRUTS_HOME/webapps/struts-example/WEB-INF" directory,
+    and copy the file "action.xml" one directory up (that is, into
+    "$STRUTS_HOME/webapps/struts-example".
+
+  - Modify the "$STRUTS_HOME/webapps/struts-example/WEB-INF/web.xml" file,
+    changing the value of the "config" initialization parameter (for the
+    action servlet) from "/WEB-INF/action.xml" to "/action.xml".
+
+  - Restart Orion, and you should be able to access the example application.
+
+  Note that this workaround has a negative security-related side effect:
+  your "action.xml" file can now be retrieved by remote clients at the
+  following URL:
+
+	http://localhost/struts-example/action.xml
+
+  Therefore, you should be sure you do not store sensitive information
+  (such as database passwords) in this file.
+
+
+TOMCAT 3.1 (OR LATER) STAND-ALONE
+---------------------------------
+
+* Copy "struts-documentation.war" and "struts-example.war"
+  to your $TOMCAT_HOME/webapps directory
+
+* Restart Tomcat if it is already running
+
+
+TOMCAT 3.1 (OR LATER) WITH APACHE
+---------------------------------
+
+* These instructions assume you have successfully integrated
+  Tomcat with Apache according to the Tomcat documentation.
+
+* Copy "struts-documentation.war" and "struts-example.war"
+  to your $TOMCAT_HOME/webapps directory
+
+* Restart Tomcat if it is already running
+
+* Tomcat will generate a file "$TOMCAT_HOME/conf/tomcat-apache.conf"
+  that will be used by Apache.  This file is regenerated every time
+  you start Tomcat, so copy this file to a safe place (such as
+  your Apache configuration directory; on Unix systems this is usually
+  "/usr/local/apache/conf".
+
+* If you are running Tomcat 3.1, Tomcat will not have generated the
+  entries for your new applications.  Add the following lines to the
+  "tomcat-apache.conf" file that you have saved, replacing
+  $TOMCAT_HOME with the path to your Tomcat home directory:
+
+        Alias /struts-documentation "$TOMCAT_HOME/webapps/struts-documentation"
+	<Directory "$TOMCAT_HOME/webapps/struts-documentation>
+	  Options Indexes FollowSymLinks
+	</Directory>
+	ApJServMount /struts-documentation/servlet /struts-documentation
+	<Location "/struts-documentation/WEB-INF/">
+	  AllowOverride None
+	  deny from all
+	</Location>
+
+	Alias /struts-example "$TOMCAT_HOME/webapps/struts-example"
+	<Directory "$TOMCAT_HOME/webapps/struts-example>
+	  Options Indexes FollowSymLinks
+	</Directory>
+	ApJServMount /struts-example/servlet /struts-example
+	<Location "/struts-example/WEB-INF/">
+	  AllowOverride None
+	  deny from all
+	</Location>
+
+* On all versions of Tomcat, the generated file above does not
+  know anything about extension mappings defined in a web.xml file,
+  so the "*.do" URIs that go to the controller servlet will not be
+  recognized.  To fix this, add the following line to the saved
+  version of "tomcat-apache.conf", after the corresponding line
+  for the .jsp extension:
+
+	AddHandler jserv-servlet .do
+
+* Ensure that the saved version of "tomcat-apache.conf" is referenced
+  in your Apache "httpd.conf" configuration file.  A typical use would
+  have the following line at the bottom of "httpd.conf":
+
+	Include /usr/local/apache/conf/tomcat-apache.conf
+
+* In order to recognize "index.jsp" as a default page for web
+  applications, search in your "httpd.conf" for a "DirectoryIndex"
+  directive.  If you have one, add "index.jsp" to the end of the
+  list, so that it might look like this:
+
+	DirectoryIndex index.html index.jsp
+
+  If you do not have such an entry, add one like this:
+
+	DirectoryIndex index.jsp
+
+* Restart Apache to make it aware of the new applications.  You should
+  now be able to access the applications from a browser like this:
+
+	http://localhost/struts-documentation
+	http://localhost/struts-example
+

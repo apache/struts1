@@ -121,6 +121,7 @@
   <!-- DIST:  Copy sources -->
   <target name="dist.source" depends="prepare.dist">
     <copydir  src="."       dest="${dist.home}/etc"   includes="build.*"/>
+    <copyfile src="INSTALL" dest="${dist.home}/INSTALL"/>
     <copyfile src="LICENSE" dest="${dist.home}/LICENSE"/>
     <copyfile src="README"  dest="${dist.home}/README"/>
     <copyfile src="TODO"    dest="${dist.home}/TODO"/>

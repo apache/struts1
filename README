@@ -1,4 +1,4 @@
-$Id: README,v 1.5 2000/06/24 03:16:09 craigmcc Exp $
+$Id: README,v 1.6 2000/07/09 05:20:48 craigmcc Exp $
 
 				Struts
 				======
@@ -117,6 +117,9 @@ into your servlet container, and use a web browser to access a URL like this:
 
 	http://localhost:8080/struts-documentation
 
+For notes about installing Struts applications on various servlet containers,
+please see the INSTALL document in the same directory as this README file.
+
 
 The Struts Example Application
 ------------------------------
@@ -142,6 +145,9 @@ into your servlet container, and use a web browser to access a URL like this:
 You can register yourself as a new user, or log on with username "user" and
 password "pass".
 
+For notes about installing Struts applications on various servlet containers,
+please see the INSTALL document in the same directory as this README file.
+
 
 Using the Struts Source Distribution
 ------------------------------------
@@ -155,4 +161,3 @@ use a version later than the Ant 3.1 release).
 Before committing any changes to the Struts CVS repository, you must do a
 "build clean" followed by a "build dist", to ensure that everything compiles
 and builds cleanly.
-
