@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <document url="./resources.xml">
+
+<!--
+// ======================================================================== 78
+-->
+
 <properties>
   <author>David Winterfeldt</author> 
   <author>James Turner</author> 
   <author>Rob Leland</author> 
 <title>The Struts User's Guide - Validator Guide</title>
 </properties>
-<body> 
-<chapter name="Struts Validator Guide"> 
+
+<body>
+
+<chapter name="Struts Validator Guide">
 
 <section href="validator" name="Struts Validator">
 
@@ -17,219 +24,277 @@
 
 <p>
 Cover basic functionality as documented on David's web site.
-<a href="http://home.earthlink.net/~dwinterfeldt/">Validation Framework for Struts </a> 
+<a href="http://home.earthlink.net/~dwinterfeldt/">Validation Framework for 
+Struts </a> 
 </p>
 
 <p>
-Changes in the validator behavior and deprecation of functionality from original validator
+Changes in the validator behavior and deprecation of functionality from 
+original validator
 </p>
+
 <ul>
-<li>
-  The validator xml files now <strong>validates against the DTD stored in the commons-validator.jar </strong>!
-</li>
-<li>
-  The default validator-rules.xml now ignores blank fields for all the basic validation types.
-  If you require a field to be present then to your applications validator.xml 
-  field definition add "required" to the depends attribute.
-</li>
-<li>
-  The Javascript Tag has new attributes defined.
-</li>
-<li>
-  Deprecation of range() methods in both JavaScript and Java
-</li>
-<li>
-  Deprecation of StrutsValidator &amp; StrutsValidatorUtil
-</li>
+
+    <li>
+    The validator xml files now <strong>validates against the DTD stored in the 
+    commons-validator.jar </strong>!
+    </li>
+
+    <li>
+    The default validator-rules.xml now ignores blank fields for all the basic 
+    validation types.
+    If you require a field to be present then to your applications validator.xml 
+    field definition add "required" to the depends attribute.
+    </li>
+
+    <li>
+    The Javascript Tag has new attributes defined.
+    </li>
+
+    <li>
+    Deprecation of <code>range</code> methods in both JavaScript and Java
+    </li>
+
+    <li>
+    Deprecation of StrutsValidator &amp; StrutsValidatorUtil
+    </li>
+
 </ul>
+
 <p>
 Struts 1.1 has also added additional functionality over the original validator
 contributed by David Winterfeldt.
 </p>
 
 <ul>
+
 <li>
-  Conditionally required fields
+Conditionally required fields
 </li>
+
 <li>
-  intRange() &amp; floatRange() methods in both JavaScript and Java
+<code>intRange</code> &amp; <code>floatRange</code> methods in both JavaScript 
+and Java
 </li>
+
 </ul>
+
 </section>
+
 <section href="validator-bugs" name="Known Bugs">
-<p> Current know bugs can be found by clicking:
-<a href="http://nagoya.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=VERIFIED&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;version=1.1+Beta+1&amp;version=1.1+Beta+2&amp;version=Nightly+Build&amp;version=Unknown&amp;component=Validator+Framework&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;newqueryname=&amp;order=Reuse+same+sort+as+last+time">
-Validation Bugs</a> </p>
-<p>Since validation also relies on the commons-validator those bugs can be found
-<a href="http://nagoya.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=VERIFIED&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Commons&amp;version=&amp;component=Validator&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;newqueryname=&amp;order=Reuse+same+sort+as+last+time">
-here</a></p>
+
+    <p>
+    Current know bugs can be found by clicking:
+    <a href="http://nagoya.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=VERIFIED&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;version=1.1+Beta+1&amp;version=1.1+Beta+2&amp;version=Nightly+Build&amp;version=Unknown&amp;component=Validator+Framework&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;newqueryname=&amp;order=Reuse+same+sort+as+last+time">
+    Validation Bugs</a>
+    </p>
+    
+    <p>
+    Since validation also relies on the commons-validator those bugs can be found
+    <a href="http://nagoya.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=VERIFIED&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Commons&amp;version=&amp;component=Validator&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;newqueryname=&amp;order=Reuse+same+sort+as+last+time">
+    here</a>
+    </p>
+
 </section>
+
 <section href="validator-changes" name="Changes and deprecations">
 
-<p> <strong>Validating against the DTD in the commons-validator.jar. </strong></p>
-<p> Struts no longer maintains a separate dtd for validator-rules.xml and validator.xml.
+    <p>
+    <strong>Validating against the DTD in the commons-validator.jar.</strong>
+    </p>
+
+    <p>
+    Struts no longer maintains a separate dtd for validator-rules.xml and 
+    validator.xml.
     Additionally, commons-validator now maintains a unified validator.dtd.
     Change all validator.xml DTD references to: 
-<ol><pre>
-   &lt;!DOCTYPE form-validation PUBLIC
-          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
-          "http://jakarta.apache.org/commons/dtds/validator_1_0.dtd"&gt;
-</pre></ol>
+    </p>
+    
+<pre><small><![CDATA[
+<!DOCTYPE form-validation PUBLIC
+"-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
+"http://jakarta.apache.org/commons/dtds/validator_1_0.dtd">
+]]></small></pre>
 
-</p>
 </section>
+
 <section href="validator-new" name="New features">
-<p> <strong>Conditionally required fields. </strong></p>
-<p>
-The most fundamental change is the ability to conditionally
-require validator fields based on the value of other fields.
-It allows you to define logic like "only validate this field if field X is non-
-null and field Y equals "male".
-</p>
 
-<p>
-The syntax looks like this:
-</p>
+    <p>
+    <strong>Conditionally required fields.</strong>
+    </p>
 
-<p>
-If you have this in your struts-config.xml
-</p>
+    <p>
+    The most fundamental change is the ability to conditionally require 
+    validator fields based on the value of other fields.
+    It allows you to define logic like "only validate this field if field X is 
+    non-null and field Y equals 'male'".
+    </p>
 
-<ol>
+    <p>
+    The syntax looks like this:
+    </p>
+
+    <p>
+    If you have this in your struts-config.xml
+    </p>
+
 <pre><![CDATA[
-<form-bean name="dependentlistForm"
-           type="org.apache.struts.webapp.validator.forms.ValidatorForm">
-    <form-property name="dependents" 
-                   type="org.apache.struts.webapp.validator.Dependent[]"
-                   initial="{'','','','','','','','','','',''}"/>
-    <form-property name="insureDependents"
-                   type="java.lang.Boolean" 
-                   initial="false"/>
+<form-bean 
+    name="dependentlistForm"
+    type="org.apache.struts.webapp.validator.forms.ValidatorForm">
+    <form-property 
+        name="dependents" 
+        type="org.apache.struts.webapp.validator.Dependent[]"
+        initial="{'','','','','','','','','','',''}"/>
+    <form-property 
+        name="insureDependents"
+        type="java.lang.Boolean" 
+        initial="false"/>
 </form-bean>
 ]]></pre>
-</ol>
 
-<p>
-Where dependent is a bean that has properties lastName, firstName, dob, 
-coverageType
-</p>
+    <p>
+    Where dependent is a bean that has properties lastName, firstName, dob, 
+    coverageType
+    </p>
 
-<p>
-You can define a validation:
-</p>
+    <p>
+    You can define a validation:
+    </p>
 
 <pre><![CDATA[
-  <form name="dependentlistForm">
-    <field property="firstName" indexedListProperty="dependents"
-           depends="requiredif">
-      <arg0 key="dependentlistForm.firstName.label"/>
-      <var>
-        <var-name>field[0]</var-name>
-        <var-value>lastName</var-value>
-      </var>
-      <var>
-        <var-name>field-indexed[0]</var-name>
-        <var-value>true</var-value>
-      </var>
-      <var>
-        <var-name>field-test[0]</var-name>
-        <var-value>NOTNULL</var-value>
-      </var>
-    </field>
-    <field property="dob" indexedListProperty="dependents" 
-           depends="requiredif,date">
-      <arg0 key="dependentlistForm.dob.label"/>
-      <var>
-        <var-name>field[0]</var-name>
-        <var-value>lastName</var-value>
-      </var>
-      <var>
-        <var-name>field-indexed[0]</var-name> 
-        <var-value>true</var-value>
-      </var>
-      <var>
-        <var-name>field-test[0]</var-name>    
-        <var-value>NOTNULL</var-value>
-      </var>
-    </field>
 
-    <field property="coverageType" indexedListProperty="dependents"
-           depends="requiredif">
-      <arg0 key="dependentlistForm.coverageType.label"/>
-      <var>
-        <var-name>field[0]</var-name>  
-        <var-value>lastName</var-value>
-      </var>
-      <var>
-        <var-name>field-indexed[0]</var-name>
-        <var-value>true</var-value>
-      </var>
-      <var>
-        <var-name>field-test[0]</var-name>
-        <var-value>NOTNULL</var-value>
-      </var>
-      <var>
-        <var-name>field[1]</var-name>  
-        <var-value>insureDependents</var-value>
-      </var>
-      <var>
-        <var-name>field-test[1]</var-name>
-        <var-value>EQUAL</var-value>
-      </var>
-      <var>
-        <var-name>field-value[1]</var-name>
-        <var-value>true</var-value>
-      </var>
-      <var>
-        <var-name>field-join</var-name>
-        <var-value>AND</var-value>
-      </var>
-     </field>
-  </form>
+<form name="dependentlistForm">
+
+<field 
+    property="firstName" indexedListProperty="dependents"
+    depends="requiredif">
+  <arg0 key="dependentlistForm.firstName.label"/>
+  <var>
+    <var-name>field[0]</var-name>
+    <var-value>lastName</var-value>
+  </var>
+  <var>
+    <var-name>field-indexed[0]</var-name>
+    <var-value>true</var-value>
+  </var>
+  <var>
+    <var-name>field-test[0]</var-name>
+    <var-value>NOTNULL</var-value>
+  </var>
+</field>
+
+<field 
+    property="dob" 
+    indexedListProperty="dependents" 
+    depends="requiredif,date">
+  <arg0 key="dependentlistForm.dob.label"/>
+  <var>
+    <var-name>field[0]</var-name>
+    <var-value>lastName</var-value>
+  </var>
+  <var>
+    <var-name>field-indexed[0]</var-name> 
+    <var-value>true</var-value>
+  </var>
+  <var>
+    <var-name>field-test[0]</var-name>    
+    <var-value>NOTNULL</var-value>
+  </var>
+</field>
+
+<field 
+    property="coverageType" 
+    indexedListProperty="dependents"
+    depends="requiredif">
+  <arg0 key="dependentlistForm.coverageType.label"/>
+  <var>
+    <var-name>field[0]</var-name>  
+    <var-value>lastName</var-value>
+  </var>
+  <var>
+    <var-name>field-indexed[0]</var-name>
+    <var-value>true</var-value>
+  </var>
+  <var>
+    <var-name>field-test[0]</var-name>
+    <var-value>NOTNULL</var-value>
+  </var>
+  <var>
+    <var-name>field[1]</var-name>  
+    <var-value>insureDependents</var-value>
+  </var>
+  <var>
+    <var-name>field-test[1]</var-name>
+    <var-value>EQUAL</var-value>
+  </var>
+  <var>
+    <var-name>field-value[1]</var-name>
+    <var-value>true</var-value>
+  </var>
+  <var>
+    <var-name>field-join</var-name>
+    <var-value>AND</var-value>
+  </var>
+</field>
+
+</form>
+
 ]]></pre>
 
-<p>
-Which is read as follows:
-The firstName field is only required if the lastName field is non-null.  Since 
-field-indexed is true, it means that lastName must be a property of the same 
-indexed field as firstName.  Same thing for dob, except that we validate for 
-date if not blank.
-</p>
+    <p>
+    Which is read as follows:
+    The firstName field is only required if the lastName field is non-null.  
+    Since field-indexed is true, it means that lastName must be a property of
+    the same indexed field as firstName.  
+    Same thing for dob, except that we validate for date if not blank.
+    </p>
 
-<p>
-The coverageType is only required if the lastName for the same indexed bean is 
-not null, and also if the non-indexed field insureDependents is true.
-</p>
+    <p>
+    The coverageType is only required if the lastName for the same indexed 
+    bean is not null, and also if the non-indexed field insureDependents is 
+    true.
+    </p>
 
-<p>
-You can have an arbitrary number of fields by using the [n] syntax, the only 
-restriction is that they must all be AND or OR, you can't mix.
-</p>
+    <p>
+    You can have an arbitrary number of fields by using the [n] syntax, 
+    the only restriction is that they must all be AND or OR, you can't mix.
+    </p>
+
 </section>
 
 <section href="tiles" name="Validator API Guide">
 
-<p>
-A concise 
-<a href="http://jakarta.apache.org/struts/api/org/apache/struts/validator/package-summary.html#package_description">Struts Validator API Guide</a> is available to help you get started. 
-</p>
+    <p>
+    A concise 
+    <a href="http://jakarta.apache.org/struts/api/org/apache/struts/validator/package-summary.html#package_description">
+    Struts Validator API Guide</a> is available to help you get started. 
+    </p>
 
 </section>
 
 <section href="resources" name="Validator Resources">
-<p>
-<a href="http://www.strutskickstart.com/">
-<b>DynaForms and the Validator</b></a> by James Turner and Kevin Bedell.
-Sample chapter from 
-<a href="http://www.strutskickstart.com/">Struts Kickstart</a>; 
-available as a free download (PDF).
-</p>
-<p>
-<a href="http://www.manning.com/getpage.html?project=husted&amp;filename=chapters.html">
-<b>Validating user input</b></a> by David Winterfeldt and Ted Husted.
-Sample chapter from 
-<a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/">Struts in Action</a>; 
-available as a free download (PDF).
-</p>
+
+    <p>
+    <a href="http://www.strutskickstart.com/">
+    <b>DynaForms and the Validator</b></a> by James Turner and Kevin Bedell.
+    Sample chapter from 
+    <a href="http://www.strutskickstart.com/">Struts Kickstart</a>; 
+    available as a free download (PDF).
+    </p>
+
+    <p>
+    <a href="http://www.manning.com/getpage.html?project=husted&amp;filename=chapters.html">
+    <b>Validating user input</b></a> by David Winterfeldt and Ted Husted.
+    Sample chapter from 
+    <a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/">
+    Struts in Action</a>; 
+    available as a free download (PDF).
+    </p>
+
 </section>
-</chapter></body></document>
+
+</chapter>
+</body>
+</document>
