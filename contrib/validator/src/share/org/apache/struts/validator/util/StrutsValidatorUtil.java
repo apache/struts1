@@ -65,6 +65,7 @@ import org.apache.struts.util.MessageResources;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.validator.Arg;
 import org.apache.commons.validator.Field;
+import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
 import org.apache.commons.validator.ValidatorUtil;
@@ -78,6 +79,21 @@ import org.apache.struts.validator.action.ValidatorServlet;
  * @author David Winterfeldt
 */
 public class StrutsValidatorUtil  {
+
+   /**
+    * Resources key the <code>ServletContext</code> is stored under.
+   */
+   public static String SERVLET_CONTEXT_KEY = "javax.servlet.ServletContext";
+
+   /**
+    * Resources key the <code>HttpServletRequest</code> is stored under.
+   */
+   public static String HTTP_SERVLET_REQUEST_KEY = "javax.servlet.http.HttpServletRequest";
+
+   /**
+    * Resources key the <code>ActionErrors</code> is stored under.
+   */
+   public static String ACTION_ERRORS_KEY = "org.apache.struts.action.ActionErrors";
    
    private static Locale defaultLocale = Locale.getDefault();
 
@@ -90,9 +106,20 @@ public class StrutsValidatorUtil  {
 
    /**
     * Retrieve <code>MessageResources</code> for the application.
+    *
+    * @deprecated This method can only return the resources for the default
+    *  sub-application.  Use getMessageResources(HttpServletRequest) to get the
+    *  resources for the current sub-application.
    */
    public static MessageResources getMessageResources(ServletContext application) {
       return (MessageResources)application.getAttribute(Action.MESSAGES_KEY);
+   }
+
+   /**
+    * Retrieve <code>MessageResources</code> for the application.
+   */
+   public static MessageResources getMessageResources(HttpServletRequest request) {
+      return (MessageResources)request.getAttribute(Action.MESSAGES_KEY);
    }
 
    /**
@@ -128,8 +155,8 @@ public class StrutsValidatorUtil  {
    /**
     * Gets the <code>Locale</code> sensitive value based on the key passed in.
    */
-   public static String getMessage(ServletContext application, HttpServletRequest request, String key) {
-      MessageResources messages = getMessageResources(application);
+   public static String getMessage(HttpServletRequest request, String key) {
+      MessageResources messages = getMessageResources(request);
       
       return getMessage(messages, getLocale(request), key);
    }
@@ -151,10 +178,10 @@ public class StrutsValidatorUtil  {
     * Gets the <code>ActionError</code> based on the <code>ValidatorAction</code> message and the 
     * <code>Field</code>'s arg objects.
    */
-   public static ActionError getActionError(ServletContext application, HttpServletRequest request, 
+   public static ActionError getActionError(HttpServletRequest request, 
                                             ValidatorAction va, Field field) {
 
-      String arg[] = getArgs(va.getName(), getMessageResources(application), getLocale(request), field);
+      String arg[] = getArgs(va.getName(), getMessageResources(request), getLocale(request), field);
       String msg = (field.getMsg(va.getName()) != null ? field.getMsg(va.getName()) : va.getMsg());
       
       return new ActionError(msg, arg[0], arg[1], arg[2], arg[3]);
@@ -215,6 +242,9 @@ public class StrutsValidatorUtil  {
    
    /**
     * Writes a message based on the <code>Writer</code> defined in <code>MessageResources</code>.
+    *
+    * @deprecated This method can only return the resources for the default
+    *  sub-application.  Use Commons Logging package instead.
    */
    public static void log(ServletContext application, String message) {
       MessageResources messages = getMessageResources(application);
@@ -225,12 +255,43 @@ public class StrutsValidatorUtil  {
 
    /**
     * Writes a message based on the <code>Writer</code> defined in <code>MessageResources</code>.
+    *
+    * @deprecated This method can only return the resources for the default
+    *  sub-application.  Use Commons Logging package instead.
    */
    public static void log(ServletContext application, String message, Throwable t) {
       MessageResources messages = getMessageResources(application);
       
       if (messages != null)
          messages.log(message, t);
+   }
+
+   /**
+    * Initialize the <code>Validator</code> to perform validation.
+    *
+    * @param 	key		The key that the validation rules are under 
+    *				(the form elements name attribute).
+    * @param 	request		The current request object.
+    * @param 	errors		The object any errors will be stored in.
+   */
+   public static Validator initValidator(String key, Object bean,
+                                         ServletContext application, HttpServletRequest request, 
+                                         ActionErrors errors, int page) {
+
+	ValidatorResources resources = StrutsValidatorUtil.getValidatorResources(application);
+	Locale locale = StrutsValidatorUtil.getLocale(request);
+	
+	Validator validator = new Validator(resources, key);
+
+	validator.setPage(page);
+
+ 	validator.addResource(SERVLET_CONTEXT_KEY, application);
+	validator.addResource(HTTP_SERVLET_REQUEST_KEY, request);
+	validator.addResource(Validator.LOCALE_KEY, locale);
+	validator.addResource(ACTION_ERRORS_KEY, errors);
+	validator.addResource(Validator.BEAN_KEY, bean);
+       
+       return validator;    	
    }
    
 }
