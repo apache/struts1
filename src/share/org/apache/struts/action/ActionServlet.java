@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.143 2003/02/07 05:42:45 martinc Exp $
- * $Revision: 1.143 $
- * $Date: 2003/02/07 05:42:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.144 2003/03/11 05:24:55 dgraham Exp $
+ * $Revision: 1.144 $
+ * $Date: 2003/03/11 05:24:55 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -225,7 +225,7 @@ import org.xml.sax.InputSource;
  *     information is logged for this servlet. Accepts values 0 (off) and from
  *     1 (least serious) through 6 (most serious). [0]
  *     <em>DEPRECATED - Configure the logging detail level in your
- *     underlying logging implementation.</li>
+ *     underlying logging implementation.</em></li>
  * <li><strong>factory</strong> - The Java class name of the
  *     <code>MessageResourcesFactory</code> used to create the application
  *     <code>MessageResources</code> object.
@@ -306,11 +306,9 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.143 $ $Date: 2003/02/07 05:42:45 $
+ * @version $Revision: 1.144 $ $Date: 2003/03/11 05:24:55 $
  */
-
-public class ActionServlet
-    extends HttpServlet {
+public class ActionServlet extends HttpServlet {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -1129,6 +1127,7 @@ public class ActionServlet
     protected void initApplicationMessageResources(ModuleConfig config) throws ServletException {
        initModuleMessageResources(config);
     }
+    
     /**
      * <p>Initialize the application MessageResources for the specified
      * module.</p>
@@ -1211,8 +1210,9 @@ public class ActionServlet
         configDigester.addRuleSet(new ConfigRuleSet());
         for (int i = 0; i < registrations.length; i += 2) {
             URL url = this.getClass().getResource(registrations[i+1]);
-            if (url != null)
+            if (url != null) {
                 configDigester.register(registrations[i], url.toString());
+            }
         }
 
         // Add any custom RuleSet instances that have been specified
@@ -1358,8 +1358,9 @@ public class ActionServlet
         // Register our local copy of the DTDs that we can find
         for (int i = 0; i < registrations.length; i += 2) {
             URL url = this.getClass().getResource(registrations[i+1]);
-            if (url != null)
+            if (url != null) {
                 digester.register(registrations[i], url.toString());
+            }
         }
 
         // Configure the processing rules that we need
