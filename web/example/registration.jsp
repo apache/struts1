@@ -25,7 +25,7 @@
 <html:errors/>
 
 <html:form action="/saveRegistration"
-         onsubmit="return validateLogonForm(this);">
+         onsubmit="return validateRegistrationForm(this);">
 <html:hidden property="action"/>
 <table border="0" width="100%">
 
