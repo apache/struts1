@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditSubscriptionAction.java,v 1.11 2003/07/03 02:52:57 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2003/07/03 02:52:57 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditSubscriptionAction.java,v 1.12 2003/07/03 02:54:54 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/07/03 02:54:54 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.MessageResources;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2003/07/03 02:52:57 $
+ * @version $Revision: 1.12 $ $Date: 2003/07/03 02:54:54 $
  */
 public final class EditSubscriptionAction extends Action {
 
@@ -161,7 +161,12 @@ public final class EditSubscriptionAction extends Action {
             session.setAttribute(Constants.SUBSCRIPTION_KEY, subscription);
         }
 
-        // Populate the subscription form
+        /* The body of the if block below should *never* be executed.
+         * Since this Action has a RegistrationForm attribute, struts has
+         * already created the form.  The check below is just to guard against
+         * a null pointer exception in case someone inadvertently removes the 
+         * attribute="registrationForm" from struts-config-registration.xml
+         */
         if (form == null) {
             if (log.isTraceEnabled()) {
                 log.trace(
