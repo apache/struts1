@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.26 2002/11/24 22:04:06 dgraham Exp $
- * $Revision: 1.26 $
- * $Date: 2002/11/24 22:04:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.27 2003/03/12 00:42:18 jmitchell Exp $
+ * $Revision: 1.27 $
+ * $Date: 2003/03/12 00:42:18 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.26 $
+ * @version $Revision: 1.27 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -598,7 +598,7 @@ public class ImgTag extends BaseHandlerTag {
             if (src.toString().indexOf('?') < 0) {
                 src.append('?');
             } else {
-                src.append('&');
+                src.append("&amp;");
             }
             src.append(paramId);
             src.append('=');
@@ -636,7 +636,7 @@ public class ImgTag extends BaseHandlerTag {
             Object value = map.get(key);
             if (value == null) {
                 if (question) {
-                    src.append('&');
+                    src.append("&amp;");
                 } else {
                     src.append('?');
                     question = true;
@@ -648,7 +648,7 @@ public class ImgTag extends BaseHandlerTag {
                 String values[] = (String[]) value;
                 for (int i = 0; i < values.length; i++) {
                     if (question) {
-                        src.append('&');
+                        src.append("&amp;");
                     } else {
                         src.append('?');
                         question = true;
@@ -660,7 +660,7 @@ public class ImgTag extends BaseHandlerTag {
             } else {
 
                 if (question) {
-                    src.append('&');
+                    src.append("&amp;");
                 } else {
                     src.append('?');
                     question = true;
