@@ -240,11 +240,10 @@ public class Action {
 
 
 	/**
-	 * Adds the specified errors keys into the appropriate request
-	 * attribute for use by the for use by the &lt;html:errors&gt; tag,
-	 * if any messages are required.
-	 * Initialize the attribute if it has not already been.
-	 * Otherwise, ensure that the request attribute is not set.
+	 * Adds the specified errors keys into the appropriate request attribute
+     * for use by the &lt;html:errors&gt; tag, if any messages are required.
+	 * Initialize the attribute if it has not already been. Otherwise, ensure
+     * that the request attribute is not set.
 	 *
 	 * @param request   The servlet request we are processing
 	 * @param errors  Errors object
@@ -422,7 +421,8 @@ public class Action {
     /**
      * <p>Return <code>true</code> if there is a transaction token stored in
      * the user's current session, and the value submitted as a request
-     * parameter with this action matches it. Returns <code>false</code>.</p>
+     * parameter with this action matches it. Returns <code>false</code> under
+     * any of the following circumstances:</p>
      * <ul>
      * <li>No session associated with this request</li>
      * <li>No transaction token saved in the session</li>
