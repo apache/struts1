@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.2 2001/02/11 00:14:50 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/02/11 00:14:50 $
  *
  * ====================================================================
  *
@@ -77,11 +77,15 @@ import org.apache.struts.util.MessageResources;
  * there is a current Locale available in the user's session.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/01/06 21:50:39 $
+ * @version $Revision: 1.2 $ $Date: 2001/02/11 00:14:50 $
  */
 
 public class HtmlTag extends TagSupport {
   
+
+    // ------------------------------------------------------------- Properties
+
+
     /**
      * The message resources for this package.
      */
@@ -117,6 +121,9 @@ public class HtmlTag extends TagSupport {
     }
 
 
+    // --------------------------------------------------------- Public Methods
+
+
     /**
      * Process the start of this tag.
      *
@@ -125,19 +132,9 @@ public class HtmlTag extends TagSupport {
     public int doStartTag() throws JspException {
 
         StringBuffer sb = new StringBuffer("<html");
-        HttpSession session = pageContext.getSession();
-
-        // Set the current Locale if necessary
-        if (locale &&
-            (session.getAttribute(Action.LOCALE_KEY) == null)) {
-            Locale newLocale = pageContext.getRequest().getLocale();
-            if (newLocale != null)
-                session.setAttribute(Action.LOCALE_KEY, newLocale);
-        }
 
         // Use the current Locale to set our language preferences
-        Locale currentLocale =
-            (Locale) session.getAttribute(Action.LOCALE_KEY);
+        Locale currentLocale = currentLocale();
         if (currentLocale != null) {
             String lang = currentLocale.getLanguage();
             if ((lang != null) && (lang.length() > 0)) {
@@ -196,6 +193,40 @@ public class HtmlTag extends TagSupport {
 
         locale = false;
         xhtml = false;
+
+    }
+
+
+    // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Return the current Locale for this request, creating a new one if
+     * necessary.  If there is no current Locale, and locale support is not
+     * requested, return <code>null</code>.
+     */
+    protected Locale currentLocale() {
+
+        // Create a new session if necessary
+        HttpSession session = pageContext.getSession();
+        if (locale && (session == null))
+            session =
+                ((HttpServletRequest) pageContext.getRequest()).getSession();
+        if (session == null)
+            return (null);
+
+        // Return any currently set Locale in our session
+        Locale current = (Locale) session.getAttribute(Action.LOCALE_KEY);
+        if (current != null)
+            return (current);
+
+        // Configure a new current Locale, if requested
+        if (!locale)
+            return (null);
+        current = pageContext.getRequest().getLocale();
+        if (current != null)
+            session.setAttribute(Action.LOCALE_KEY, current);
+        return (current);
 
     }
 
