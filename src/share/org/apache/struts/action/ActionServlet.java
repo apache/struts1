@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.147 2003/04/17 05:33:12 dgraham Exp $
- * $Revision: 1.147 $
- * $Date: 2003/04/17 05:33:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.148 2003/04/19 00:01:28 dgraham Exp $
+ * $Revision: 1.148 $
+ * $Date: 2003/04/19 00:01:28 $
  *
  * ====================================================================
  *
@@ -309,7 +309,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.147 $ $Date: 2003/04/17 05:33:12 $
+ * @version $Revision: 1.148 $ $Date: 2003/04/19 00:01:28 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -1359,7 +1359,7 @@ public class ActionServlet extends HttpServlet {
             }
         }
 
-        // Backwards compatibility hack for form beans of Java wrapper classes
+        // Backwards compatibility for form beans of Java wrapper classes
         // Set to true for strict Struts 1.0 compatibility
         value = getServletConfig().getInitParameter("convertNull");
         if ("true".equalsIgnoreCase(value)
@@ -1367,9 +1367,8 @@ public class ActionServlet extends HttpServlet {
             || "on".equalsIgnoreCase(value)
             || "y".equalsIgnoreCase(value)
             || "1".equalsIgnoreCase(value)) {
+                
             convertNull = true;
-        } else {
-            convertNull = false;
         }
         
         if (convertNull) {
@@ -1513,12 +1512,14 @@ public class ActionServlet extends HttpServlet {
         }
         
         value = getServletConfig().getInitParameter("locale");        
-        if ("true".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value)) {
-            cc.setLocale(true);
-        } else {
-            cc.setLocale(false);
-        }
-        
+        // must check for null here 
+        if (value != null) {
+            if ("true".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value)) {
+                cc.setLocale(true);
+            } else {
+                cc.setLocale(false);
+            }
+        } 
         
         value = getServletConfig().getInitParameter("maxFileSize");
         if (value != null) {
@@ -1526,10 +1527,12 @@ public class ActionServlet extends HttpServlet {
         }
         
         value = getServletConfig().getInitParameter("nocache");
-        if ("true".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value)) {
-            cc.setNocache(true);
-        } else {
-            cc.setNocache(false);
+        if (value != null) {
+            if ("true".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value)) {
+                cc.setNocache(true);
+            } else {
+                cc.setNocache(false);
+            }
         }
         
         value = getServletConfig().getInitParameter("multipartClass");
