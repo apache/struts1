@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.7 2003/07/02 03:17:25 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/07/02 03:17:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.8 2003/09/28 18:09:08 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/09/28 18:09:08 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import java.io.Serializable;
  * @author Craig R. McClanahan
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.7 $ $Date: 2003/07/02 03:17:25 $
+ * @version $Revision: 1.8 $ $Date: 2003/09/28 18:09:08 $
  * @since Struts 1.1
  */
 public class ActionMessage implements Serializable {
@@ -196,6 +196,34 @@ public class ActionMessage implements Serializable {
         return (this.values);
 
     }
+    
+    /**
+     * Returns a String in the format: key[value1, value2, etc].
+     * @see java.lang.Object#toString()
+     */
+	public String toString() {
+		StringBuffer buff = new StringBuffer();
+		buff.append(this.key);
+		buff.append("[");
+
+		if (this.values != null) {
+
+			for (int i = 0; i < this.values.length; i++) {
+
+				buff.append(this.values[i]);
+
+                // don't append comma to last entry
+				if (i < this.values.length - 1) {
+					buff.append(", ");
+				}
+                
+			}
+		}
+
+		buff.append("]");
+
+		return buff.toString();
+	}
 
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.13 2003/09/28 17:21:51 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2003/09/28 17:21:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.14 2003/09/28 18:09:08 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/09/28 18:09:08 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import java.util.List;
  * @author Craig R. McClanahan
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.13 $ $Date: 2003/09/28 17:21:51 $
+ * @version $Revision: 1.14 $ $Date: 2003/09/28 18:09:08 $
  * @since Struts 1.1
  */
 public class ActionMessages implements Serializable {
@@ -298,9 +298,7 @@ public class ActionMessages implements Serializable {
      * property names.
      */
     public Iterator properties() {
-
-        return (messages.keySet().iterator());
-
+        return this.messages.keySet().iterator();
     }
 
     /**
@@ -332,6 +330,15 @@ public class ActionMessages implements Serializable {
 		ActionMessageItem item = (ActionMessageItem) messages.get(property);
 
 		return (item == null) ? 0 : item.getList().size();
+	}
+
+    /**
+     * Returns a String representation of this ActionMessages' 
+     * property name=message list mapping.
+     * @see java.lang.Object#toString()
+     */    
+	public String toString() {
+        return this.messages.toString();
 	}
 
     /**
@@ -369,6 +376,10 @@ public class ActionMessages implements Serializable {
 
         public void setOrder(int iOrder) {
             this.iOrder = iOrder;
+        }
+        
+        public String toString() {
+            return this.list.toString();
         }
 
     }
