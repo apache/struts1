@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.5 2003/07/03 03:08:44 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/07/03 03:08:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.6 2003/07/04 18:26:19 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/07/04 18:26:19 $
  *
  * ====================================================================
  *
@@ -69,10 +69,10 @@ import java.io.Serializable;
  * to the user, and a corresponding value to be returned to the server. One
  * example is the <code>&lt;html:options&gt;</code> tag.
  *
- * @author  Craig R. McClanahan
- * @author  Martin F N Cooper
+ * @author Craig R. McClanahan
+ * @author Martin F N Cooper
  * @author David Graham
- * @version $Revision: 1.5 $ $Date: 2003/07/03 03:08:44 $
+ * @version $Revision: 1.6 $ $Date: 2003/07/04 18:26:19 $
  */
 public class LabelValueBean implements Serializable {
 
@@ -177,6 +177,6 @@ public class LabelValueBean implements Serializable {
      * @see java.lang.Object#hashCode()
      */
     public int hashCode() {
-        return (getValue() == null) ? super.hashCode() : getValue().hashCode();
+        return (this.getValue() == null) ? 17 : this.getValue().hashCode();
     }
 }
