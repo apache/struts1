@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IterateTag.java,v 1.3 2000/06/25 01:36:20 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/25 01:36:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IterateTag.java,v 1.4 2000/07/09 03:36:49 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/07/09 03:36:49 $
  *
  * ====================================================================
  *
@@ -87,13 +87,19 @@ import org.apache.struts.util.MessageResources;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/25 01:36:20 $
+ * @version $Revision: 1.4 $ $Date: 2000/07/09 03:36:49 $
  */
 
 public final class IterateTag extends BodyTagSupport {
 
 
     // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The collection over which we will be iterating.
+     */
+    private Object collection = null;
 
 
     /**
@@ -159,6 +165,28 @@ public final class IterateTag extends BodyTagSupport {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Return the collection over which we will be iterating.
+     */
+    public Object getCollection() {
+
+	return (this.collection);
+
+    }
+
+
+    /**
+     * Set the collection over which we will be iterating.
+     *
+     * @param collection The new collection
+     */
+    public void setCollection(Object collection) {
+
+	this.collection = collection;
+
+    }
 
 
     /**
@@ -282,29 +310,31 @@ public final class IterateTag extends BodyTagSupport {
      */
     public int doStartTag() throws JspException {
 
-	// Acquire the collection we are going to enumerate
-	Object collection = null;
-	try {
-	    Object bean = pageContext.findAttribute(name);
-	    if (bean == null)
-	        throw new JspException
-	            (messages.getMessage("iterate.noBean", name));
-	    if (property == null)
-	        collection = bean;
-	    else {
-		String methodName = "get" + BeanUtils.capitalize(property);
-		Class paramTypes[] = new Class[0];
-		Method method =
-		  bean.getClass().getMethod(methodName, paramTypes);
-		collection = method.invoke(bean, new Object[0]);
+	// Acquire the collection we are going to iterate over (if necessary)
+	if (collection == null) {
+	    try {
+		Object bean = pageContext.findAttribute(name);
+		if (bean == null)
+		    throw new JspException
+			(messages.getMessage("iterate.noBean", name));
+		if (property == null)
+		    collection = bean;
+		else {
+		    String methodName = "get" + BeanUtils.capitalize(property);
+		    Class paramTypes[] = new Class[0];
+		    Method method =
+			bean.getClass().getMethod(methodName, paramTypes);
+		    collection = method.invoke(bean, new Object[0]);
+		}
+		if (collection == null)
+		    throw new JspException
+			(messages.getMessage("iterate.noProperty",
+					     name, property));
+	    } catch (Exception e) {
+		throw new JspException
+		    (messages.getMessage("iterate.noProperty",
+					 name, property));
 	    }
-	    if (collection == null)
-	        throw new JspException
-	            (messages.getMessage("iterate.noProperty",
-	                                 name, property));
-	} catch (Exception e) {
-	    throw new JspException
-	        (messages.getMessage("iterate.noProperty", name, property));
 	}
 
 	// Construct an iterator for this collection

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.2 2000/06/24 23:28:37 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/24 23:28:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.3 2000/07/09 03:36:49 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/07/09 03:36:49 $
  *
  * ====================================================================
  *
@@ -84,13 +84,19 @@ import org.apache.struts.util.MessageResources;
  * <b>FIXME</b> - Should support Java2 collection classes as well!
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/24 23:28:37 $
+ * @version $Revision: 1.3 $ $Date: 2000/07/09 03:36:49 $
  */
 
 public final class EnumerateTag extends BodyTagSupport {
 
 
     // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The collection over which we will be iterating.
+     */
+    private Object collection = null;
 
 
     /**
@@ -156,6 +162,28 @@ public final class EnumerateTag extends BodyTagSupport {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Return the collection over which we will be enumerating.
+     */
+    public Object getCollection() {
+
+	return (this.collection);
+
+    }
+
+
+    /**
+     * Set the collection over which we will be enumerating.
+     *
+     * @param collection The new collection
+     */
+    public void setCollection(Object collection) {
+
+	this.collection = collection;
+
+    }
 
 
     /**
@@ -279,29 +307,31 @@ public final class EnumerateTag extends BodyTagSupport {
      */
     public int doStartTag() throws JspException {
 
-	// Acquire the collection we are going to enumerate
-	Object collection = null;
-	try {
-	    Object bean = pageContext.findAttribute(name);
-	    if (bean == null)
-	        throw new JspException
-	            (messages.getMessage("enumerate.noBean", name));
-	    if (property == null)
-	        collection = bean;
-	    else {
-		String methodName = "get" + BeanUtils.capitalize(property);
-		Class paramTypes[] = new Class[0];
-		Method method =
-		  bean.getClass().getMethod(methodName, paramTypes);
-		collection = method.invoke(bean, new Object[0]);
+	// Acquire the collection we are going to enumerate (if necessary)
+	if (collection == null) {
+	    try {
+		Object bean = pageContext.findAttribute(name);
+		if (bean == null)
+		    throw new JspException
+			(messages.getMessage("enumerate.noBean", name));
+		if (property == null)
+		    collection = bean;
+		else {
+		    String methodName = "get" + BeanUtils.capitalize(property);
+		    Class paramTypes[] = new Class[0];
+		    Method method =
+			bean.getClass().getMethod(methodName, paramTypes);
+		    collection = method.invoke(bean, new Object[0]);
+		}
+		if (collection == null)
+		    throw new JspException
+			(messages.getMessage("enumerate.noProperty",
+					     name, property));
+	    } catch (Exception e) {
+		throw new JspException
+		    (messages.getMessage("enumerate.noProperty",
+					 name, property));
 	    }
-	    if (collection == null)
-	        throw new JspException
-	            (messages.getMessage("enumerate.noProperty",
-	                                 name, property));
-	} catch (Exception e) {
-	    throw new JspException
-	        (messages.getMessage("enumerate.noProperty", name, property));
 	}
 
 	// Construct an enumeration for this collection

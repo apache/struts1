@@ -466,7 +466,13 @@ must be an <code>Enumeration</code>, a <code>Hashtable</code>, a
 <code>Vector</code>, or an array of objects.  The collection to be enumerated
 is identified by the <code>name</code> or <code>name</code> and
 <code>property</code> attributes, and the element being processed is exposed
-as a page scope bean named by the <code>id</code> attribute.</p>
+as a page scope bean named by the <code>id</code> attribute.  Alternatively,
+you can specify the collection from a scripting variable directly,
+like this:</p>
+
+<pre>
+    &lt;struts:enumerate id="item" collection="&lt;%= myVector %&gt;"&gt;
+</pre>
 
 <p>On a Java2 (JDK 1.2 or later) platform, you might want to consider using
 the <a href="#iterate">iterate</a> tag instead, which provides a superset of
@@ -476,6 +482,13 @@ the capabilities of this tag.</p>
   <tr>
     <th width="15%">Attribute</th>
     <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">collection</td>
+    <td>
+      Collection over which enumeration should take place, initialized
+      with a runtime expression as described above.
+    </td>
   </tr>
   <tr>
     <td align="center">id</td>
@@ -1009,7 +1022,13 @@ whose elements will be interated over, or an array of objects.  The collection
 to be iterated over
 is identified by the <code>name</code> or <code>name</code> and
 <code>property</code> attributes, and the element being processed is exposed
-as a page scope bean named by the <code>id</code> attribute.</p>
+as a page scope bean named by the <code>id</code> attribute.  Alternatively,
+you can specify the collection from a scripting variable directly,
+like this:</p>
+
+<pre>
+    &lt;struts:iterate id="item" collection="&lt;%= myVector %&gt;"&gt;
+</pre>
 
 <p>This tag requires a Java2 (JDK 1.2 or later) platform.  For a JDK 1.1
 platform, the <a href="#enumerate">enumerate</a> tag provides similar
@@ -1019,6 +1038,13 @@ functionality.</p>
   <tr>
     <th width="15%">Attribute</th>
     <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">collection</td>
+    <td>
+      Collection over which iteration should take place, initialized
+      with a runtime expression as described above.
+    </td>
   </tr>
   <tr>
     <td align="center">id</td>

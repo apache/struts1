@@ -26,6 +26,11 @@
     <teiclass>org.apache.struts.taglib.EnumerateTei</teiclass>
     <bodycontent>JSP</bodycontent>
     <attribute>
+      <name>collection</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>id</name>
       <required>true</required>
       <rtexprvalue>false</rtexprvalue>
@@ -70,6 +75,11 @@
     <tagclass>org.apache.struts.taglib.IterateTag</tagclass>
     <teiclass>org.apache.struts.taglib.IterateTei</teiclass>
     <bodycontent>JSP</bodycontent>
+    <attribute>
+      <name>collection</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
     <attribute>
       <name>id</name>
       <required>true</required>
