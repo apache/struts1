@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<document url="./release-notes-1.01.xml">
+<document url="./release-notes-1.0.1.xml">
 
   <properties>
     <author>Craig R. McClanahan</author>
     <author>Robert Leland</author>
     <author>Ted Husted</author>
-    <title>Struts Release Notes (Version 1.1 Milestone 1)</title>
+    <title>Struts Release Notes (Version 1.0.1)</title>
   </properties>
 
   <body>
@@ -20,9 +20,11 @@
     <a href="#New">New Features</a> and <a href="#Changes">Changes</a>
     to Struts.</p>
 
-    <p>This version is unreleased, but available in the 
-    CVS as the STRUTS_1_0_BRANCH. This version is intended a near-term
-    release to cover bug-fixes only; no new functionality.</p>
+    <p>Struts 1.0.1 is not yet released, but a Release Candidate
+    is available for download
+    <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.1-rc1/">here</a>.
+    This version is intended as a near-term release to cover
+    bug-fixes only; no new functionality.</p>
 
   </section>
 
