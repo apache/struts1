@@ -787,6 +787,25 @@
         </pmd>
     </target>
 
+    <target name="findbugs" if="findbugs.home"
+            description="Detects bugs using well-known patterns"
+            depends="init">
+        <taskdef name="findbugs"
+                 classname="edu.umd.cs.findbugs.anttask.FindBugsTask" >
+            <classpath location="${findbugs.home}/lib/findbugs-ant.jar"/>
+        </taskdef>
+        <findbugs home="${findbugs.home}"
+                  output="xml"
+                  outputFile="${build.home}/findbugs.xml">
+            <class location="${build.home}/library/classes"/>
+            <auxClasspath>
+                <path refid="compile.classpath"/>
+            </auxClasspath>
+            <sourcePath path="${src.share.dir}"/>
+      </findbugs>
+  </target>
+
+
 <!--
         Compile Website documenation
 -->
