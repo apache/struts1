@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.12 2001/04/23 22:52:20 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2001/04/23 22:52:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.12.2.1 2002/03/16 05:07:02 craigmcc Exp $
+ * $Revision: 1.12.2.1 $
+ * $Date: 2002/03/16 05:07:02 $
  *
  * ====================================================================
  *
@@ -68,6 +68,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
 
@@ -76,11 +77,20 @@ import org.apache.struts.util.RequestUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2001/04/23 22:52:20 $
+ * @version $Revision: 1.12.2.1 $ $Date: 2002/03/16 05:07:02 $
  */
 
 public class DefineTag extends TagSupport {
 
+
+    // ---------------------------------------------------- Protected variables
+
+    /**
+     * The message resources for this package.
+     */
+    protected static MessageResources messages =
+        MessageResources.getMessageResources
+        ("org.apache.struts.taglib.bean.LocalStrings");
 
     // ------------------------------------------------------------- Properties
 
@@ -196,8 +206,15 @@ public class DefineTag extends TagSupport {
 
         // Retrieve the required property value
         Object value = this.value;
-        if (value == null)
+        if ((value == null) && (name != null)) {
             value = RequestUtils.lookup(pageContext, name, property, scope);
+        }
+        if (value == null) {
+            JspException e =
+                new JspException(messages.getMessage("define.null"));
+            RequestUtils.saveException(pageContext, e);
+            throw e;
+        }
 
         // Expose this value as a scripting variable
         int inScope = PageContext.PAGE_SCOPE;
