@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.4 2001/01/10 01:54:21 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/01/10 01:54:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.5 2001/02/12 00:32:14 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/02/12 00:32:14 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -63,6 +63,7 @@
 package org.apache.struts.util;
 
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
@@ -72,6 +73,7 @@ import java.util.Iterator;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -86,10 +88,22 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/01/10 01:54:21 $
+ * @version $Revision: 1.5 $ $Date: 2001/02/12 00:32:14 $
  */
 
 public class RequestUtils {
+
+
+    // ------------------------------------------------------- Static Variables
+
+
+    /**
+     * The message resources for this package.
+     */
+    private static MessageResources messages =
+	MessageResources.getMessageResources
+	("org.apache.struts.util.LocalStrings");
+
 
 
     // --------------------------------------------------------- Public Methods
@@ -121,18 +135,19 @@ public class RequestUtils {
     /**
      * Locate and return the specified bean, from an optionally specified
      * scope, in the specified page context.  If no such bean is found,
-     * return <code>null</code> instead.
+     * return <code>null</code> instead.  If an exception is thrown, it will
+     * have already been saved via a call to <code>saveException()</code>.
      *
      * @param pageContext Page context to be searched
      * @param name Name of the bean to be retrieved
      * @param scope Scope to be searched (page, request, session, application)
      *  or <code>null</code> to use <code>findAttribute()</code> instead
      *
-     * @exception IllegalArgumentException if an invalid scope name
+     * @exception JspException if an invalid scope name
      *  is requested
      */
     public static Object lookup(PageContext pageContext, String name,
-    String scope) {
+    String scope) throws JspException {
 
         Object bean = null;
         if (scope == null)
@@ -146,10 +161,72 @@ public class RequestUtils {
         else if (scope.equalsIgnoreCase("application"))
             bean =
                 pageContext.getAttribute(name, PageContext.APPLICATION_SCOPE);
-        else
-            throw new IllegalArgumentException(scope);
+        else {
+            JspException e = new JspException
+                (messages.getMessage("lookup.scope", scope));
+            saveException(pageContext, e);
+            throw e;
+        }
 
         return (bean);
+
+    }
+
+
+    /**
+     * Locate and return the specified property of the specified bean, from
+     * an optionally specified scope, in the specified page context.  If an
+     * exception is thrown, it will have already been saved via a call to
+     * <code>saveException()</code>.
+     *
+     * @param pageContext Page context to be searched
+     * @param name Name of the bean to be retrieved
+     * @param property Name of the property to be retrieved, or
+     *  <code>null</code> to retrieve the bean itself
+     * @param scope Scope to be searched (page, request, session, application)
+     *  or <code>null</code> to use <code>findAttribute()</code> instead
+     *
+     * @exception JspException if an invalid scope name
+     *  is requested
+     * @exception JspException if the specified bean is not found
+     * @exception JspException if accessing this property causes an
+     *  IllegalAccessException, IllegalArgumentException,
+     *  InvocationTargetException, or NoSuchMethodException
+     */
+    public static Object lookup(PageContext pageContext, String name,
+                                String property, String scope)
+        throws JspException {
+
+        // Look up the requested bean, and return if requested
+        Object bean = lookup(pageContext, name, scope);
+        if (property == null)
+            return (bean);
+        if (bean == null) {
+            JspException e = new JspException
+                (messages.getMessage("lookup.bean", name, scope));
+            saveException(pageContext, e);
+            throw e;
+        }
+
+        // Locate and return the specified property
+        try {
+            return (PropertyUtils.getProperty(bean, property));
+        } catch (IllegalAccessException e) {
+            saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("lookup.access", property, name));
+        } catch (InvocationTargetException e) {
+            Throwable t = e.getTargetException();
+            if (t == null)
+                t = e;
+            saveException(pageContext, t);
+            throw new JspException
+                (messages.getMessage("lookup.target", property, name));
+        } catch (NoSuchMethodException e) {
+            saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("lookup.method", property, name));
+        }
 
     }
 
@@ -334,6 +411,21 @@ public class RequestUtils {
         } catch (Exception e) {
             throw new ServletException("BeanUtils.populate", e);
         }
+
+    }
+
+
+    /**
+     * Save the specified exception as a request attribute for later use.
+     *
+     * @param pageContext The PageContext for the current page
+     * @param exception The exception to be saved
+     */
+    public static void saveException(PageContext pageContext,
+                                     Throwable exception) {
+
+        pageContext.setAttribute(Action.EXCEPTION_KEY, exception,
+                                 PageContext.REQUEST_SCOPE);
 
     }
 

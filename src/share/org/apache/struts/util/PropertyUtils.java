@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.12 2001/02/03 02:12:25 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2001/02/03 02:12:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.13 2001/02/12 00:32:14 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2001/02/12 00:32:14 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -117,7 +117,7 @@ import java.lang.reflect.Modifier;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.12 $ $Date: 2001/02/03 02:12:25 $
+ * @version $Revision: 1.13 $ $Date: 2001/02/12 00:32:14 $
  */
 
 public final class PropertyUtils {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ArrayStack.java,v 1.2 2001/02/12 00:32:12 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/02/12 00:32:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.1 2001/02/12 00:32:14 craigmcc Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/02/12 00:32:14 $
  *
  * ====================================================================
  *
@@ -63,123 +63,97 @@
 package org.apache.struts.util;
 
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.EmptyStackException;
+import java.io.IOException;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
+import org.apache.struts.action.Action;
 
 
 /**
- * Implementation of the <code>java.util.Stack</code> API that is based on
- * an <code>ArrayList</code> rather than a <code>Vector</code>.  This means
- * no synchronization locks are utilized internally, so you must synchronize
- * externally if an instance is referenced from multiple threads.
+ * General purpose utility methods related to generating a servlet response
+ * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/02/12 00:32:12 $
+ * @version $Revision: 1.1 $ $Date: 2001/02/12 00:32:14 $
  */
 
-public class ArrayStack implements Serializable {
+public class ResponseUtils {
 
 
-    // ----------------------------------------------------- Instance Variables
+    // ------------------------------------------------------- Static Variables
 
 
     /**
-     * The underlying collection class.
+     * The message resources for this package.
      */
-    protected ArrayList list = new ArrayList();
+    protected static MessageResources messages =
+        MessageResources.getMessageResources
+        ("org.apache.struts.util.LocalStrings");
+
 
 
     // --------------------------------------------------------- Public Methods
 
 
     /**
-     * Remove all elements from this stack.  After this call, the stack will
-     * be empty.
-     */
-    public void clear() {
-
-        list.clear();
-
-    }
-
-
-    /**
-     * Return <code>true</code> if this stack is currently empty.
-     */
-    public boolean empty() {
-
-        return (list.size() == 0);
-
-    }
-
-
-    /**
-     * Return the top item off of this stack without removing it.
+     * Filter the specified string for characters that are senstive to
+     * HTML interpreters, returning the string with these characters replaced
+     * by the corresponding character entities.
      *
-     * @exception EmptyStackExceptino if the stack is empty
+     * @param value The string to be filtered and returned
      */
-    public Object peek() throws EmptyStackException {
+    public static String filter(String value) {
 
-        return (peek(0));
+        if (value == null)
+            return (null);
+
+        char content[] = new char[value.length()];
+        value.getChars(0, value.length(), content, 0);
+        StringBuffer result = new StringBuffer(content.length + 50);
+        for (int i = 0; i < content.length; i++) {
+            switch (content[i]) {
+            case '<':
+                result.append("&lt;");
+                break;
+            case '>':
+                result.append("&gt;");
+                break;
+            case '&':
+                result.append("&amp;");
+                break;
+            case '"':
+                result.append("&quot;");
+                break;
+            default:
+                result.append(content[i]);
+            }
+        }
+        return (result.toString());
 
     }
 
 
     /**
-     * Return the n'th item down (zero-relative) from the top of this
-     * stack without removing it.
+     * Write the specified text as the response to the writer associated with
+     * this page.
      *
-     * @param n Number of items down to go
+     * @param pageContext The PageContext object for this page
+     * @param text The text to be written
      *
-     * @exception EmptyStackException if there are not enough items on the
-     *  stack to satisfy this request
+     * @exception JspException if an input/output error occurs (already saved)
      */
-    public Object peek(int n) throws EmptyStackException {
+    public static void write(PageContext pageContext, String text)
+        throws JspException {
 
-        int m = (list.size() - n) - 1;
-        if (m < 0)
-            throw new EmptyStackException();
-        else
-            return (list.get(m));
-
-    }
-
-
-    /**
-     * Pop the top item off of this stack and return it.
-     *
-     * @exception EmptyStackException if the stack is empty
-     */
-    public Object pop() throws EmptyStackException {
-
-        if (list.size() == 0)
-            throw new EmptyStackException();
-        return (list.remove(list.size() - 1));
-
-    }
-
-
-    /**
-     * Push a new item onto the top of this stack.  The pushed item is also
-     * returned.
-     *
-     * @param item Item to be added
-     */
-    public Object push(Object item) {
-
-        list.add(item);
-        return (item);
-
-    }
-
-
-    /**
-     * Return the number of items on this stack.
-     */
-    public int size() {
-
-        return (list.size());
+        JspWriter writer = pageContext.getOut();
+        try {
+            writer.print(text);
+        } catch (IOException e) {
+            RequestUtils.saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("write.io", e.toString()));
+        }
 
     }
 

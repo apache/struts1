@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.25 2001/01/28 04:51:13 craigmcc Exp $
- * $Revision: 1.25 $
- * $Date: 2001/01/28 04:51:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.26 2001/02/12 00:32:12 craigmcc Exp $
+ * $Revision: 1.26 $
+ * $Date: 2001/02/12 00:32:12 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -83,7 +83,7 @@ import java.util.Map;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.25 $ $Date: 2001/01/28 04:51:13 $
+ * @version $Revision: 1.26 $ $Date: 2001/02/12 00:32:12 $
  */
 
 public final class BeanUtils {
@@ -158,34 +158,12 @@ public final class BeanUtils {
      * by the corresponding character entities.
      *
      * @param value The string to be filtered and returned
+     *
+     * @deprecated Use ResponseUtils.filter() instead
      */
     public static String filter(String value) {
 
-        if (value == null)
-            return (null);
-
-        char content[] = new char[value.length()];
-        value.getChars(0, value.length(), content, 0);
-        StringBuffer result = new StringBuffer(content.length + 50);
-        for (int i = 0; i < content.length; i++) {
-            switch (content[i]) {
-            case '<':
-                result.append("&lt;");
-                break;
-            case '>':
-                result.append("&gt;");
-                break;
-            case '&':
-                result.append("&amp;");
-                break;
-            case '"':
-                result.append("&quot;");
-                break;
-            default:
-                result.append(content[i]);
-            }
-        }
-        return (result.toString());
+        return (ResponseUtils.filter(value));
 
     }
 

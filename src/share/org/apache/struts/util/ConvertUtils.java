@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.6 2001/02/02 02:57:50 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/02/02 02:57:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.7 2001/02/12 00:32:12 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/02/12 00:32:12 $
  *
  * ====================================================================
  *
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -77,7 +77,7 @@ import java.lang.reflect.Array;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.6 $ $Date: 2001/02/02 02:57:50 $
+ * @version $Revision: 1.7 $ $Date: 2001/02/12 00:32:12 $
  */
 
 public final class ConvertUtils {
