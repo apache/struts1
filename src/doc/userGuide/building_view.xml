@@ -397,7 +397,7 @@
           </li>
           <li><a href="struts-logic.html#notPresent">notPresent</a> the companion tag to 
               present, notPresent provides the same functionality when the specified attribute
-              is not present.           
+              is not present.</li>        
           <li><a href="struts-html.html#link">link</a> generates a HTML &lt;a&gt; element 
               as an anchor definition or a hyperlink to the specified URL, and automatically
               applies URL encoding to maintain session state in the absence of
