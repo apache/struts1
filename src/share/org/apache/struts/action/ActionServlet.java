@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.132 2002/11/28 07:47:37 rleland Exp $
- * $Revision: 1.132 $
- * $Date: 2002/11/28 07:47:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.133 2002/11/29 19:49:50 dgraham Exp $
+ * $Revision: 1.133 $
+ * $Date: 2002/11/29 19:49:50 $
  *
  * ====================================================================
  *
@@ -299,7 +299,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.132 $ $Date: 2002/11/28 07:47:37 $
+ * @version $Revision: 1.133 $ $Date: 2002/11/29 19:49:50 $
  */
 
 public class ActionServlet
@@ -893,9 +893,9 @@ public class ActionServlet
             input = getServletContext().getResourceAsStream(path);
             is.setByteStream(input);
             digester.parse(is);
-            input.close();
             getServletContext().setAttribute
                 (Globals.MODULE_KEY + prefix, config);
+                
         } catch (Throwable t) {
             log.error(internal.getMessage("configParse", path), t);
             throw new UnavailableException
