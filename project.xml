@@ -22,11 +22,13 @@
   <siteAddress>struts.apache.org</siteAddress>
   <siteDirectory>/www/jakarta.apache.org/struts</siteDirectory>
   <distributionDirectory>/www/apache.mirrors.pair.com/jakarta/struts/</distributionDirectory>
+<!--
   <repository>
     <connection>scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:jakarta-struts</connection>
     <developerConnection>scm:cvs:pserver:${cvs.developer.id}@${cvs.developer.host}:/home/cvs:jakarta-struts</developerConnection>
     <url>http://cvs.apache.org/viewcvs/jakarta-struts/</url>
   </repository>
+  -->
   <versions>
     <version>
       <id>1.0.2</id>
@@ -368,7 +370,7 @@
     <report>maven-jdepend-plugin</report>
     <report>maven-checkstyle-plugin</report>
     <report>maven-changes-plugin</report>
-    <report>maven-changelog-plugin</report>
+    <!-- report>maven-changelog-plugin</report -->
     <report>maven-file-activity-plugin</report>
     <report>maven-developer-activity-plugin</report>
     <report>maven-javadoc-plugin</report>
