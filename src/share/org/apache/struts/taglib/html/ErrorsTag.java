@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.8 2001/04/18 23:32:34 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2001/04/18 23:32:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.9 2001/06/24 03:22:55 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/06/24 03:22:55 $
  *
  * ====================================================================
  *
@@ -98,7 +98,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2001/04/18 23:32:34 $
+ * @version $Revision: 1.9 $ $Date: 2001/06/24 03:22:55 $
  */
 
 public class ErrorsTag extends TagSupport {
@@ -230,22 +230,25 @@ public class ErrorsTag extends TagSupport {
             RequestUtils.present(pageContext, bundle, locale, "errors.header");
         boolean footerPresent =
             RequestUtils.present(pageContext, bundle, locale, "errors.footer");
-        
+
         // Render the error messages appropriately
 	StringBuffer results = new StringBuffer();
         String message = null;
         if (headerPresent)
             message = RequestUtils.message(pageContext, bundle,
                                            locale, "errors.header");
-	if (message != null) {
-	    results.append(message);
-	    results.append("\r\n");
-	}
         Iterator reports = null;
         if (property == null)
             reports = errors.get();
         else
             reports = errors.get(property);
+       // Render header iff this is a global tag or there is an error for this property
+       boolean propertyMsgPresent = reports.hasNext();
+       if ((message != null)&&(property == null) || propertyMsgPresent) {
+           results.append(message);
+           results.append("\r\n");
+       }
+
         while (reports.hasNext()) {
             ActionError report = (ActionError) reports.next();
             message = RequestUtils.message(pageContext, bundle,
@@ -260,7 +263,8 @@ public class ErrorsTag extends TagSupport {
         if (footerPresent)
             message = RequestUtils.message(pageContext, bundle,
                                            locale, "errors.footer");
-	if (message != null) {
+
+        if ((message != null)&&(property == null) || propertyMsgPresent) {
 	    results.append(message);
 	    results.append("\r\n");
 	}
