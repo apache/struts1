@@ -1,0 +1,876 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <author email="husted@apache.org">Ted Husted</author>
+    <title>New and Status - Jakarta Struts</title>
+  </properties>
+
+<body>
+
+<section name="News" href="news">
+
+    <!--
+    <h3><a name=""></a> - </h3>
+    <p>
+    <a href=""></a>
+    </p>
+    <hr size="1" noshade=""/>
+    -->
+
+    <h3><a name=""></a>28 Mar 2003 - StrutsDoc</h3>
+    <p>
+        StrutsDoc allows you to generate two new types of taglib documentation.
+    </p>
+        <ul>
+            <li>TaglibDoc<br />
+                This is a JavaDoc-like set of html and css files for browsing the taglib documentation.
+            </li>
+            <li>TaglibReport<br />
+                This target will generate a grid-like view of the taglibs and their attributes so that you can see
+                every tag in a typical package side by side.
+                This helps when comparing which tags implement a certain attribute, by allowing you to view them side
+                by side and not have to look up each tag by hand.
+            </li>
+        </ul>
+    <p>
+        StrutsDoc is available at the Struts SourceForge site: <a href="http://struts.sf.net/strutsdoc/index.html">
+        http://struts.sf.net/strutsdoc</a>
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030327"></a>27 Mar 2003 - Tampa/St.Pete Struts User Group</h3>
+    <p>
+        The Atlanta Struts group meeting I went to this past Tuesday was great.
+        Unfortunately I don't think I can't make that drive up that often so I
+        was wondering if anyone was interested in getting a group together here
+        in the Tampa Bay Florida area?
+    </p>
+    <p>
+        I started a struts-tampa list here:
+    </p>
+    <p>
+        <a href="http://groups.yahoo.com/group/struts-tampa/">http://groups.yahoo.com/group/struts-tampa/</a>
+    </p>
+    <p>
+        Best to post on the above list, but feel free to e-mail me off list if
+        you like.
+    </p>
+    <p>
+        Hope to hear from you.
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030325"></a>25 Mar 2003 - Scripting Actions with BSF</h3>
+    <p>
+        I put together some code that allows Struts Actions to be written in the
+        scripting language of one's choice rather than as Java classes. It uses
+        the Beans Scripting Framework to allow scripts to be written in any
+        language BSF supports like Perl, Python, Ruby, JavaScript, BeanShell, and
+        I believe even VBScript. Currently, I've hardcoded it to use BeanShell,
+        but support for other languages will be soon coming.
+    </p>
+    <p>
+        In addition to the code, I modified the Struts example to exclusively use
+        scripted Actions.  I've never written BeanShell before today, so I'm sure
+        there are plenty of areas to improve.
+    </p>
+    <p>
+        As fate would have it, as I finished the struts-example demo, idle
+        googling found another project doing the same thing in pretty much the
+        same way: IBM Alphaworks Struts Scripting. Unfortunately, I don't believe
+        IBM's license is exactly open source, so perhaps there is still a need for
+        this project. If anyone knows anything further, please, do share.
+    </p>
+    <p>
+        Comments, suggestions, contributions welcome.
+    </p>
+    <p>
+        <a href="http://www.twdata.org/struts-bsf">http://www.twdata.org/struts-bsf</a>
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name=""></a>26 Mar 2003 - Struts-Silicon-Valley meeting on April 2nd in Palo Alto</h3>
+    <p>
+        The inaugural meeting of the Silicon Valley Struts user group will be a
+        dinner meeting at 7:30pm on Wednesday, April 2nd, in Palo Alto at Jing Jing:
+    </p>
+    <p>
+          <a href="http://www.jingjingonline.com/">http://www.jingjingonline.com/</a>
+    </p>
+    <p>
+        Please send your RSVPs directly to me by noon on
+        April 2nd. I have participated in several group meals at this restaurant and
+        the food is excellent. There are also plenty of vegetarian options to choose
+        from. I hope you can join us.
+    </p>
+    <p>
+        Please come prepared to discuss group logistics going forward. For starters:
+    </p>
+    <p>
+        1. What topics you would like to see covered at future meetings.<br />
+        2. Any suggestions you have with respect to potential speakers or meeting
+        venues. If you have contacts that might help us with lining up suggested
+        speakers or meeting venues, that would be even better.<br />
+        3. Of course, we will take some time to find out a bit about each other and
+        our own experiences with Struts too.
+    </p>
+    <p>
+        P.S. If you would like to get future struts-silicon-valley announcements,
+        you can join our mailing list here:
+    </p>
+    <p>
+        <a href="http://groups.yahoo.com/group/struts-silicon-valley">http://groups.yahoo.com/group/struts-silicon-valley</a>
+    </p>
+    <p>
+        P.P.S. Yes, they do serve beer at Jing Jing unless your name is Mark
+        Galbreath. Just seeing who actually reads to the end of this message. ;-)
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name=""></a>25 Mar 2003 - Struts-Atlanta meeting</h3>
+    <p>
+        If you are interested in coming to the Struts Atlanta users group
+        meeting, it is tonight.
+    </p>
+    <p>
+        Complete details about presentation and directions are available on our
+        web site:
+        <a href="http://struts.sourceforge.net/struts-atlanta/">http://struts.sourceforge.net/struts-atlanta/</a>
+    </p>
+    <p>
+        Plan to be there early if you want a seat.
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name=""></a>20 Mar 2003 - Meeting in Paris this Saturday</h3>
+    <p>
+        For those interested to discuss with me about Struts and Tiles, I will be this Saturday 22 march in Paris at
+        the bookstore "Le Monde en 'tique'" from 16h to 18h (www.lmet.fr).
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030319"></a>19 Mar 2003 - NJ MVC Open Source Meeting (njmvcopensource)</h3>
+    <p>
+        The NJMVCOPENSOURCE group will be having it's monthly meeting this Sunday at
+        the Morristown Public Library in Morristown NJ at 2:30
+    </p>
+    <p>
+        New members are welcome!!!
+    </p>
+    <p>
+        We are scheduled to talk about using JDeveloper / BC4J and PostgreSQL with
+        Struts to develop web applications.  Other topics may include the Struts
+        Menu.
+    </p>
+    <p>
+        For directions and information see
+    </p>
+    <p>
+        <a href="http://groups.yahoo.com/group/njmvcopensource">http://groups.yahoo.com/group/njmvcopensource</a><br />
+        <a href="http://www.gti.net/mocolib1/compass.html">http://www.gti.net/mocolib1/compass.html</a>
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030318"></a>18 Mar 2003 - Struts-Faces Integration Library Available</h3>
+    <p>
+      The <em>Struts-Faces Integration Library</em> is an add-on library
+      that supports the use of
+      <a href="http://java.sun.com/j2ee/javaserverfaces/">JavaServer Faces</a>
+      user interface technology in a Struts-based web application, in place of
+      the Struts custom tag libraries.  As a proof of concept, it also
+      includes the canonical "struts-example" example web application,
+      converted to use JavaServer Faces Tags, as well as tags from the JSP
+      Standard Tag Library (JSTL), version 1.0.
+    </p>
+    <p>
+      The source code for this library is in the
+      <code>contrib/struts-faces</code> directory of the Struts CVS repository,
+      and nightly builds are available at:
+    </p>
+    <p>
+      <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/struts-faces/">
+        http://jakarta.apache.org/builds/jakarta-struts/nightly/struts-faces/</a>
+    </p>
+    <p>
+      This library is EA quality code, and is not going to be integrated into
+      standard Struts releases until it has matured further, and until
+      JavaServer Faces goes to 1.0 final release status.  The library requires
+      a Struts 1.1 nightly build (20030216 or later), or the upcoming 1.1 RC2
+      or 1.1 final releases.  It also requires the EA3 version of the
+      JavaServer Faces reference implementation, available via:
+    </p>
+    <p>
+      <a href="http://java.sun.com/j2ee/javaserverfaces/download.html">
+      http://java.sun.com/j2ee/javaserverfaces/download.html</a>
+    </p>
+    <p>
+      The Struts-Faces integration download includes source code for the
+      library (useful to see how the integration was accomplished, and also
+      to learn how to build custom JavaServer Faces component and renderer
+      classes), as well as an extensive <code>README.txt</code> that documents
+      how to utilize the library in your own applications.
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name=""></a>15 Mar 2003 - Easy Struts 0.6.4 &gt; compatible Eclipse 2.1</h3>
+    <p>
+        Easy Struts 0.6.4 is available, now it's working with both Eclipse 2.0 and Eclipse
+        2.1. Here are the changes logs:
+        </p>
+    <ul>
+        <li>Eclipse 2.1 Compatible (build with Eclipse 2.1 RC-1)</li>
+        <li>Improve XSLT errors management</li>
+        <li>Improve add Struts support operation</li>
+        <li>Struts config tree is now sorted</li>
+        <li>XML elements message-resources/plug-in respect DTD order</li>
+        <li>Minor fix...</li>
+    </ul>
+    <p>
+        Planned features for next majors version:
+    </p>
+    <ul>
+        <li>Tiles editor (0.7)</li>
+        <li>Refactoring (no completion date)</li>
+    </ul>
+    <p>
+    <a href="http://easystruts.sf.net">http://easystruts.sf.net</a><br />
+    <a href="http://easystruts.sourceforge.net/update.html">http://easystruts.sourceforge.net/update.html</a>
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030310"></a>10 Mar 2003 - Struttin' With Struts beta (newbies esp. welcome)</h3>
+    <p>
+        I created a web site that walks new Struts users step by step
+        through the development of three VERY simple web applications in three
+        lessons. Each lesson adds a few more features so that they build upon
+        each other yet each stands alone such that if you follow the steps in
+        any lesson you'll have built a very basic application regardless of
+        which lesson you start with.
+    </p>
+    <p>
+        I created these because there seemed to be lacking some more recent
+        "walk through" Struts tutorials geared toward the very new Struts
+        developer. I think real newbies will find them especially useful, but
+        then again I could be way wrong:)
+    </p>
+    <p>
+        I'm considering the site a "beta" because I'm sure there will be some
+        mistakes. If anyone sees something I'm doing in a lesson that is way
+        off (or a very bad practice) please let me know. Some of the stuff I
+        know could be done in a more "best practice" way, but for the sake of
+        trying to also keep the lessons small and simple some ideas weren't
+        included (ie- I didn't use a constants interface for my forward
+        definitions).
+    </p>
+    <p>
+        If anyone wants to contribute, reword, or add anything please let me
+        know. The site is there to help others. I got really lazy in a lot of
+        places and didn't say much about certain things that I would have liked
+        to. Hopefully over time the site will improve.
+    </p>
+    <p>
+        Struttin' with Struts: <br />
+        <a href="http://www.reumann.net/do/struts/main">http://www.reumann.net/do/struts/main</a>
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030223.1"></a>23 Feb 2003 - New Nested Tags -or- Nesters, lend me your containers</h3>
+    <pre>
+        Avid Nesters,
+        (you know who you are,
+            no need to lie to yourself)
+    </pre>
+    <p>
+        Tomcat 4.1.18 is now on the radar!...
+    </p>
+    <p>
+        The nested tags internals have been re-written primarily to fix the problem
+        with them not working in the new tomcat 4.1.18 jasper engine. It also allows
+        them to be a little more flexible (can define other tags in the nesting), but
+        more on that later...
+    </p>
+    <p>
+        For now, I need to know that they work on all your current nested apps which
+        are working. I've run my own tests, but according to feedback, some of you
+        guys have a different take on using the nested tags than I do, so I need your
+        help.
+    </p>
+    <p>
+        It's also important for those of you using other containers, possibly never
+        intending to use tomcat, to try them out, as it is intended to get merged into
+        the Struts main line as soon as possible to help out those with the "can only
+        use released product woes", or just trying to get onto a faster JSP engine
+        that's free (gotta love the economics, but the new jasper engine does move.
+        The recursive tree app example now hums along akin to the speed of Resin. sweet).
+    </p>
+    <p>
+        To get the new classes, there's a jar at...
+    </p>
+    <p>
+            <a href="http://www.keyboardmonkey.com/downloads/km-nested-v2.jar">
+                http://www.keyboardmonkey.com/downloads/km-nested-v2.jar</a>
+    </p>
+    <p>
+          ...just throw it into the WEB-INF/lib directory, your classloader should
+        pick them up before struts.jar. If not, delete the tags from struts.jar and
+        give it another bash.
+    </p>
+    <p>
+        Anyways, I'm really seeking your feedback on this update (email direct or to
+        the list, I'm not fussed). The source is in the Jar if you want to simply say
+        my code's badly formatted (which it isn't, but anyways :P )...
+    </p>
+    <p>
+        Thanks again, and happy nesting.
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030223"></a>23 Feb 2003 - Struts 1.1 Release Candidate 1 Released</h3>
+    <p>
+        The Struts team is proud to announce the release of Struts 1.1 Release
+        Candidate 1. This release includes some new functionality, as well as
+        fixes for a number of bugs which were reported against earlier versions.
+        The Struts Team believes that this release is ready for prime time, hence
+        its designation as a release candidate.
+    </p>
+    <p>
+        The binary distribution is available at:
+    </p>
+    <p>
+        <a href="http://www.apache.org/dist/jakarta/struts/binaries/">
+        http://www.apache.org/dist/jakarta/struts/binaries/</a>
+    </p>
+    <p>
+        and the source distribution is available at:
+    </p>
+    <p>
+        <a href="http://www.apache.org/dist/jakarta/struts/source/">
+        http://www.apache.org/dist/jakarta/struts/source/</a>
+    </p>
+    <p>
+        In addition, the library distribution, which contains updated binaries
+        without the sample applications, is available at:
+    </p>
+    <p>
+        <a href="http://www.apache.org/dist/jakarta/struts/library/">
+        http://www.apache.org/dist/jakarta/struts/library/</a>
+    </p>
+    <p>
+        Details of the changes in this release are available in the Release
+        Notes, which can be found here:
+    </p>
+    <p>
+        <a href="http://jakarta.apache.org/struts/userGuide/release-notes-1.1-rc1.html">
+        http://jakarta.apache.org/struts/userGuide/release-notes-1.1-rc1.html</a>
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030217"></a>17 Feb 2003 - Struts talk .. &amp; labs live online w/ 4 Authors</h3>
+    <p>
+        Ted &amp; James have now both graciously agreed to join the WebEx labs.
+    </p>
+    <p>
+        Try to see them in person! <br />
+        (I just did DC 2 weeks ago).
+    </p>
+    <p>
+        This in addition to doing real labs for multi row master detail processing to DB, etc.
+        I just added extra sessions.
+        You can find out more and how to sign up at
+        <a href="http://www.mail-archive.com/mvc-programmers%40basebeans.net/msg00006.html">http://www.mail-archive.com/mvc-programmers%40basebeans.net/msg00006.html</a>
+    </p>
+    <p>
+        But if you can't ... you can see their presentation and hear them live from your home or work,
+        shortly after their live shows.
+    </p>
+    <p>
+        The qualifier is that this is not intro to Struts
+        and that you please do the hands on labs after each of the 5 sessions.
+    </p>
+    <p>
+        Vic Cekvenich <br />
+        - Best Training by readers of JDJ<br />
+        - Project recovery
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030216"></a>16 Feb 2003 - Struts talks at Lone Star</h3>
+    <p>
+        The Lone Star Software Symposium in Austin TX February 21-23 features Struts presentations by
+        Ted Husted as well as XDoclet presentations by Erik Hatcher.
+        Erik is the originator of the popular LookupDispatchAction
+        and has pioneered using XDoclet to create Struts ActionForms and other components.
+    </p>
+    <p>
+        For details about the symposium, visit <a href="http://www.nofluffjuststuff.com">http://www.nofluffjuststuff.com</a>.
+    </p>
+    <p>
+        Ted's "Building applications ... with Struts!" talk is Friday at 1:15pm:
+    </p>
+    <p>
+        "What is this web presentation tier framework that has gained such widespread popularity?
+        Struts, a Jakarta Model-View-Controller framework,
+        allows clean separation between business logic and its presentation.
+        This session will introduce Struts to those new to it or want a refresher on the basics.
+        An example application will be built during the presentation demonstrating the primary features discussed."
+    </p>
+    <p>
+        Sunday morning, Ted will be hosting a "More About Struts" talk:
+    </p>
+    <p>
+        "Simple sites are simple to build in Struts. But most of our projects are complex, not simple.
+        This session delves beyond the basics, into areas such as the Struts Validator, Struts TestCase,
+        the Scaffold toolkit, and how to design the business-logic end of your application."
+    </p>
+    <p>
+        Erik's XDoclet presentations are not Struts-specific,
+        but would be interest to any Struts practitioner.
+        (You can bet that Ted will be sitting in!)
+        Erik's "Introduction to XDoclet" and "eXtreme XDoclet" talks are on Sunday Feb 23.
+        Erik is also presenting talks on Lucene and Ant at the symposium.
+    </p>
+    <p>
+        For more about the Lone Star Symposium, and others in this series,
+        visit <a href="http://www.nofluffjuststuff.com/">http://www.nofluffjuststuff.com/</a>.
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030215"></a>15 Feb 2003 - Struts quiz online at java.sun.com</h3>
+    <p>
+        As part of an ongoing series, a Struts Quiz is available at the java.sun.com website
+        <a href="http://developer.java.sun.com/developer/Quizzes/misc.html">http://developer.java.sun.com/developer/Quizzes/misc.html</a>.
+    </p>
+    <p>
+        The quiz was written by Ted Husted, Struts Committer and lead author of Struts in Action.
+        The SIA quiz joins other recent Java quizzes on the topics of Ant and JMX.
+        The Struts questions are designed to point out some useful but underutilized aspects of the framework.
+    </p>
+    <p>
+        So, pop over and have a bit of fun testing your Struts knowledge,
+        and maybe even learn something at the same time. =:0)
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030211"></a>11 Feb 2003 - Scioworks Camino 3.0</h3>
+    <p>
+        Announcing Scioworks Camino 3.0, visual modelling tool for Jakarta Struts (v1.0 to v1.1-b3).
+        For general information and list of new features, see
+        <a href="">http://www.scioworks.net/servlets/ShowPage?pid=48&amp;dp=2</a>
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030206.1"></a>06 Feb 2003 - Expresso 5.0.3 Available for Download</h3>
+    <p>
+        [Side note:  As you may know, Version 4 of Expresso incorporated Struts for its
+        MVC patterns and since then we have never looked back!
+        Great job to the Struts development team!!!
+        We will probably have Struts 1.1 integrated by the next .1 release (5.1)]
+    </p>
+    <p>
+        The Expresso development team would like to announce the release of Expresso 5.0.3.
+        Changes in this release include the introduction of the JSTL tag library and
+        changes to allow full compatibility with JSTL's expression language.
+    </p>
+    <p>
+        Bugfixes of note include better support for JNDI connections, initialization race
+        condition fixes in the DBObject,
+        and a SQL Injection fix in DBObject.searchAndRetrieve(String).
+    </p>
+    <p>
+        For the last reason, it is recommended that all Expresso 5.0 users upgrade to 5.0.3 as soon as possible.
+    </p>
+    <hr size="1" noshade=""/>
+
+
+    <h3><a name="20030206"></a>06 Feb 2003 -  Easy Struts 0.6.3 for Eclipse is out</h3>
+    <p>
+        Easy Struts 0.6.3 for Eclipse is now available.
+        This release has no new features, only bug correction.
+    </p>
+    <p>
+    <a href="http://easystruts.sf.net">http://easystruts.sf.net</a>
+    </p>
+    <p>
+        Changes on 0.6.3<br/>
+        * Fix root dir problem with Tomcat Sysdeo plugin<br/>
+        * Fix roles generation in &lt;action.../><br/>
+        * XML elements forward/form-property/exception/set-property respect DTD order
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030205"></a>05 Feb 2003 - Live Internet based Intermediate Struts Training by "Best Training"
+        as voted by Java Developers Journal.</h3>
+
+    <p>
+    Live Internet based Intermediate Struts Training by "Best Training" as voted
+    by Java Developers Journal. Learn good (best?) practices of web application
+    development!
+    </p>
+
+    <ul>
+    <li>
+    Multi row processing to DB
+    </li>
+    <li>
+    Master/Detail processing
+    </li>
+    <li>
+    Java Script Navigation
+    </li>
+    <li>
+    and lots more, full agenda available, and it's all practical, no theory from me!
+    </li>
+    </ul>
+
+    <p>
+    The title of the class is "Pretenders vs. Pros" used to be Best and Worst
+    Practices. This is version 3 of my intermediate advanced class.
+    </p>
+
+    <p>
+    The class will meet online over 4 weeks, Saturdays at 10 AM Eastern on WebEx for
+    about an hour or a bit more or less. My goal is to start on the 2/22.
+    </p>
+
+    <p>
+    You should have a DSL or Cable connection, ( not sure how modem will work,
+    Web Ex says yeah, I say nay. Maybe you can go to work on Saturday?), and the
+    call in on a phone # to hear voice
+    </p>
+
+    <p>
+    You will have a mail list and newsgroup to ask questions on, I expect a lot
+    of questions on the labs.
+    </p>
+
+    <p>
+    This is NOT a intro to MVC, it is suitable for people that did one
+    Struts/MVC project or are very familiar with Servelts/JDBC/JSP/SQL. If you
+    are a Struts experienced, this is the class for you! If you are new to Java
+    / Web, this is not class for you. It help if you have production web/mvc
+    experience.
+    </p>
+
+    <p>
+    This is NOT for hands off types, it is lab based, for each hour of lecture,
+    there is at least 8 hours of labs each week. I promise the labs will be
+    challenging.
+    </p>
+
+    <p>
+    If you can't or don't do the web labs, the next lesson will make no sense to
+    you. Not doing "home work" labs, you will be invited not to attend the rest.
+    I want to avoid pretenders, and nurturer pros.
+    </p>
+
+    <p>
+    Scared?  The labs are doable. Clients like BEA, Borland, Cisco, IBM, etc.
+    already did the hand on in person labs. That is how baseBeans.com got voted
+    for "Best Training" by Java Developers Journal. I am willing to put it on
+    the line! by teaching the class over the web via WebEx.com.  I really want
+    to be the teach of the year next year as well!
+    </p>
+
+    <p>
+    I also did Struts project recovery, and worked on 40,000 concurrent users
+    Struts site, I guess I did more Struts training than all others combined,
+    plus more.
+    </p>
+
+    <p>
+    I am certified OO instructor, certified SQL performance and Tuning, J2EE
+    certified and Java Certified by 3 different J2EE vendors! You will enjoy the
+    class and learn, guranteed.
+    </p>
+
+    <p>
+    You charges will be mostly for the WebEx + voice, so you can see my screen.
+    When you register early, you will get a CD mailed to you with the lab
+    materials. (International clients will have another way)
+    </p>
+
+    <p>
+    If you register earlier, you get a cheaper price, goes up every few days,
+    just like for seminars, the later your register, the more you pay.
+    </p>
+
+    <p>
+    Since the cost is low, you can only register via the web, no P.O. or checks.
+    </p>
+
+    <p>
+    To find the price, to discuss the class before hand, as well as lab
+    questions later, etc. sign up at
+    </p>
+
+    <p>
+    <a href="http://www.basebeans.net:8080/mailman/listinfo/mvc-programmers">
+    http://www.basebeans.net:8080/mailman/listinfo/mvc-programmers
+    </a>
+    </p>
+
+    <p>
+    Please use the
+    <a href="http://www.basebeans.net:8080/mailman/listinfo/mvc-programmers">
+    MVC mail list</a>
+    for any questions regarding this!
+    </p>
+
+    <p>
+    </p>
+
+    <p>
+    Click here to register:
+    <br/>
+    <a href="http://www.basebeans.com/do/classReservation">http://www.basebeans.com/do/classReservation</a>
+    </p>
+
+    <p>
+    The seminar is being given at near cost, on Open Source principles.
+    </p>
+
+    <p>
+    Questions? Comments? On the
+    <a href="http://www.basebeans.net:8080/mailman/listinfo/mvc-programmers">
+    MVC mail list
+    </a>.
+    </p>
+
+    <p>
+    Vic Cekvenich &lt;<a href="mailto:vic@basebeans.com">vic@basebeans.com</a>&gt;
+    </p>
+    <hr size="1" noshade=""/>
+
+
+    <h3><a name="20030204"></a>04 Feb 2003 - Struts Console v3.2</h3>
+    <p>
+    Struts Console version 3.2 is now available.<br />
+    <a href="http://www.jamesholmes.com/struts/">http://www.jamesholmes.com/struts/</a>
+    </p>
+
+    <p>
+    Download Now: <br />
+    <a href="http://www.jamesholmes.com/struts/struts-console-3.2.zip">
+        http://www.jamesholmes.com/struts/struts-console-3.2.zip
+    </a>
+      -- OR --
+    <a href="http://www.jamesholmes.com/struts/struts-console-3.2.tar.gz">
+        http://www.jamesholmes.com/struts/struts-console-3.2.tar.gz
+    </a>
+    </p>
+
+    <p>
+        Struts Console is FREE software.
+    </p>
+
+    <p>
+    This release fixes some bugs and adds a few small
+    features.
+    </p>
+
+    <p>
+        Changes with Struts Console v3.2
+    </p>
+
+    <ul>
+        <li>
+      Fixed bug where Page and Forward Pattern were not
+         being displayed on the Controller screen for
+         Struts 1.1 config files.
+        </li>
+        <li>
+      Fixed bug where Form Bean add dialog would throw
+         exceptions if a type was not entered.
+        </li>
+        <li>
+      Fixed bug where Resource checkbox was not being
+         properly set for &lt;field> elements in Validator
+         config files.
+        </li>
+        <li>
+      Fixed bug where Page Converter dialog was
+         chopping off some of its tabs' contents.
+        </li>
+        <li>
+      Fixed bug in Page Converter to properly convert
+         &lt;img> tags.
+        </li>
+        <li>
+      Added support for new "size" attribute of
+         &lt;form-property> element.
+         </li>
+         <li>
+      Added missing "indexListProperty" field for
+         Validator config files.
+         </li>
+         <li>
+      Added support for turning off config file
+         validation in IDEA plugin.
+         </li>
+         <li>
+     Removed "Debug" field from Controller screen for
+         Struts 1.1 config files since it has been
+         deprecated.
+         </li>
+         <li>
+      Updated standalone version to preserve window
+         size and location.
+        </li>
+    </ul>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030118"></a>18 Jan 2003 - Struts Training in DC and NYC</h3>
+    <p>
+        Increase Your Struts Productivity - Attend the BaseBeans Public Struts
+        Training!!!!
+    </p>
+    <p>
+        We have a 11 hour public class in DC and in NYC in January.
+    </p>
+    <p>
+        Washington DC Class -- January 18th 2003
+        NYC Class  -- January 24th 2003
+    </p>
+    <p>
+        This class is taught by baseBeans Engineering, the company voted to have the
+        best hands on training class by JDJ for their "Fast Track to Struts" class.
+    </p>
+    <p>
+        Get your training from the #1 trainer with a money back guarantee!!!!
+    </p>
+    <p>
+        You will pay $50 to register and be billed the balance. Upon registration,
+        you will be shipped a CD that contains the tools needed for the class, such
+        as an IDE, App. Server, some sample working source code, Struts, etc.
+    </p>
+    <p>
+        Follow this link to register:  http://www.basebeans.com/do/classReservation
+    </p>
+    <p>
+        At the training, we will cover Struts, Java Server Faces, JDO, DAO,
+        JDBC,etc.
+    </p>
+    <p>
+        A pre-requisite for attendance is some Struts knowledge or at least Servlet
+        and SQL knowledge. This class is targeted at tech leads. Bring your
+        questions and receive practical advice from the baseBeans team.
+    </p>
+    <p>
+        You can FedEx a check or a PO for the balance to BaseBeans.
+    </p>
+    <p>
+        Prior paid students and clients are free for this class, as always, but we
+        need to know you are coming.
+    </p>
+    <p>
+        Hope to see you there,
+    </p>
+    <p>
+    #1. We are looking for more people to develop basicPortal.sf.net (baseBeans.com is on basicPortal).
+        Now we are working on setup.exe (currently in beta but available) that will install DB,
+        Tomcat (because people do not know how to set up JDBC realms in server.xml).
+        As you know bP demos master detail processing, XML, RSS, CMS, task tracking, contact management,
+        JDBC realms, BLOBs, CRUD,  JMeter, JaserReports, etc.
+        Just e-mail me if you know Struts and want to contribute to open source.
+    </p>
+    <p>
+    #2. Bring a laptop to public training in DC/NYC training to get *FREE* autographed "Struts in Action".
+        Prices goes up tmrw by 9:30 AM Eastern.
+        This is not intro to Struts, you must know some MVC (and JAVA and SQL well),
+        I do not like teaching intro.
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20031701"></a>17 Jan 2003 - JSP taglibs + FreeMarker</h3>
+    <p>
+        The new 2.2 version of the FreeMarker template engine now natively supports JSP tag libraries.
+        The first preview release of the new version is downloadable from the project home page at
+    </p>
+    <p>
+      <a href="http://freemarker.sourceforge.net">http://freemarker.sourceforge.net</a>
+    </p>
+    <p>
+        This new ability is of special significance to Jakarta Struts and Taglib
+        communities, since you are no longer forced into a tradeoff. Before now, you
+        had to make a choice: either you couldn't use a template engine, or you
+        couldn't use the taglibs. With FreeMarker, you no longer need to abandon any
+        of the valuable taglibs you came to know and love if you want to change your
+        view technology from JSP to a template engine.
+    </p>
+
+    <p>
+        Aside from the native JSP taglib support, FreeMarker 2.2 introduces many new
+        improvements in areas of macro handling, namespaces, automatic escaping of
+        interpolations and whitespace handling.
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030106"></a>06 Jan 2003 - neteye actioncache 1.1</h3>
+    <p>
+        The neteye actioncache is a Struts extension that caches the result of
+        actions and views. It can boost the performance of your website because
+        time expensive operations like data retrieval, JSP processing or XSLT
+        transformations are only performed when needed.
+    </p>
+    <p>
+        The new release now uses the Struts 1.1 Plugin and RequestProcessor
+        interfaces to handle request.
+    </p>
+    <p>
+        Sources and documentation can be found at
+        <a href="http://actioncache.neteye.de">http://actioncache.neteye.de</a>
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name=""></a>4 Jan 2003 - JBoss Handbook</h3>
+    <p>
+        I am pleased to announce the availability of the book
+        "JBoss 3.0 Deployment and Administration Handbook".
+        The book provides a comprehensive coverage of the JBoss 3.0 server, focusing on
+    </p>
+    <ul>
+        <li>
+        JBoss architecture
+        </li>
+        <li>
+        Deploying and configuring EJBs, web applications, EAR files, JCA resource adapters, JMX MBeans etc on JBoss
+        </li>
+        <li>
+        JBoss CMP 2.0 features
+        </li>
+        <li>
+        JBoss clustering
+        </li>
+        <li>
+        Configuring JMS and JCA
+        </li>
+        <li>
+        Configuring security, logging, JavaMail
+        </li>
+        <li>
+        JBoss custom features like scheduling
+        </li>
+        <li>
+        Administration and monitoring of the server.
+        </li>
+   </ul>
+
+    <p>
+        The book will be a valuable resource for anyone using JBoss in production and development.
+        The book is published by WROX Press and is available on
+        <a href="http://www.amazon.com/exec/obidos/ISBN=1861008120/hitchhikeguidetoA/">
+        Amazon</a> [ISBN # 1861008120].
+    </p>
+    <hr size="1" noshade=""/>
+
+    <p align="center">
+        <a href="news_2002_q4.html">
+    <b>MORE NEWS</b></a>
+    </p>
+
+</section>
+
+
+</body>
+</document>

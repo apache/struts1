@@ -148,7 +148,7 @@ http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b3.html</a>
     </p>
 <hr size="1" noshade=""/>
 
-<h3><a name="20021213"></a>12 December 2002 - Struts book #1 and #2</h3>
+<h3><a name="20021213"></a>12 Dec 2002 - Struts book #1 and #2</h3>
 <p>
 <a href="http://www.amazon.com/exec/obidos/ISBN=0672324725/hitchhikeguidetoA/">
 <b>Struts Kick Start</b></a> 
@@ -161,15 +161,118 @@ the whole family.
 </p>
 <hr size="1" noshade=""/>
 
-<h3><a name="20021212"></a>12 December 2002 - Struts book #1 and #2</h3>
+<h3><a name="20021212"></a>12 Dec 2002 - Struts book #1 and #2</h3>
 <p>
 <a href="http://www.amazon.com/exec/obidos/tg/browse/-/3610/1/002-5420337-0432053?rank=%2Bsalesrank&amp;submit.x=4&amp;submit.y=13"><img border="0" src="../images/books/topsellers.jpg" width="284" height="220" align="right" valign="top"/></a>
 Struts books top the #1 <strong>and</strong> #2 slots on Amazon's <a href="http://www.amazon.com/exec/obidos/tg/browse/-/3610/1/002-5420337-0432053?rank=%2Bsalesrank&amp;submit.x=4&amp;submit.y=13">Java Programming bestseller list</a>!
 </p>
 <hr size="1" noshade=""/>
 
+    <h3><a name=""></a>04 Dec 2002 - Struts WML Tag Library 'raw prerelease' available</h3>
+    <p>
+        Struts-wml taglib, 'raw prerelease' is available here:
+    </p>
+    <p>
+        https://sourceforge.net/projects/struts-wml/
+    </p>
+    <p>
+        Here's the release note:
+    </p>
+    <p>
+        This is a fully functional 'prerelease' which includes source code, sample
+        application, documentation, binary and libraries. It's still somewhat
+        unpolished (therefore raw prerelease). If you're willing to hack arround
+        with it a little bit, you're welcome to download it. Please don't forget to
+        contribute your changes back to the project!
+    </p>
+    <p>
+        Thanks to Jim Bonanno for code contributions, documentation, build scripts
+        etc, and to Daniel Honig for ideas, testing and support.
+    </p>
+    <p>
+        Unfortunatelly, I hadn't enough time to make different 'distributions', so
+        now we have just one file with everything in it. Future releases will
+        include 'full build', 'source only' etc.
+    </p>
+    <p>
+        CVS is also up and running. I probably messed up something but will
+        hopefully fix that in the forthcoming days.
+    </p>
+    <p>
+        And some remarks for the end:
+    </p>
+    <ul>
+        <li>Apache licence</li>
+        <li>Struts wml taglib is built against struts-1.1b2 source code, using ideas
+        from struts-html taglib.</li>
+        <li>It should be able to do whatever struts-html taglib is supposed to do,
+        but in the WML world, including validations, automatic field population and
+        other Struts goodies.</li>
+        <li>There's a special tag, wml:form. Since WML doesn't have &lt;form> element,
+        this taglib is introduced to take advantage of the Struts' functions such
+        as field population. It is not mandatory to use this tag, but without it,
+        it is not possible to have preselected lists etc. For more details, please
+        see the source code and the sample application.</li>
+        <li>Please ignore my, rather unpolished and somewhat confusing, English.</li>
+    </ul>
 
-<h3><a name="20021203"></a>3 December 2002 - Struts book rated 11 out of 10</h3>
+    <p>
+        As soon as my schedule allows me, I'm going to release v1.0.
+    </p>
+    <p>
+        Please use SourceForge provided functionalities (mailing lists, bug
+        tracker, forums). Don't hesitate to 'get dirty' with the code, but make
+        sure to contribute the changes back to the project. If you're willing to
+        use CVS, open the SourceForge account and mail me the username.
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20021203.1"></a>03 Dec 2002 - Best and Worst Development Practices -- Training in NYC and DC</h3>
+    <p>
+        Increase Your Struts Productivity - Attend the BaseBeans Public Struts
+        Training!!!!
+    </p>
+    <p>
+        We have a 11 hour public class in DC and in NYC in January. If you sign up
+        soon the price is $145. The regular price is $275 and it goes up as we
+        approach the date due to capacity planning.
+    </p>
+    <p>
+        This class is taught by baseBeans Engineering, the company voted to have the
+        best hands on training class by JDJ for their "Fast Track to Struts" class.
+    </p>
+    <p>
+        Get your training from the #1 trainer with a money back guarantee!!!!
+    </p>
+    <p>
+        You will pay $50 to register and be billed the balance. Upon registration,
+        you will be shipped a CD that contains the tools needed for the class, such
+        as an IDE, App. Server, some sample working source code, Struts, etc.
+    </p>
+    <p>
+        Follow this link to register:
+        <a href="http://64.253.60.21/do/classReservation">http://64.253.60.21/do/classReservation</a>
+
+    </p>
+    <p>
+        At the training, we will cover Struts, Java Server Faces, JDO, DAO,
+        JDBC,etc.
+    </p>
+    <p>
+        A pre-requisite for attendance is some Struts knowledge or at least Servlet
+        and SQL knowledge. This class is targeted at tech leads. Bring your
+        questions and receive practical advice from the baseBeans team.
+    </p>
+    <p>
+        You can FedEx a check or a PO for the balance to BaseBeans.
+    </p>
+    <p>
+        Prior paid students and clients are free for this class, as always, but we
+        need to know you are coming.
+    </p>
+    <hr size="1" noshade=""/>
+
+<h3><a name="20021203"></a>03 Dec 2002 - Struts book rated 11 out of 10</h3>
 <p>
 <small>(3 December 2002)</small><br /><strong>Struts in Action</strong> rated 11 out of 10 by <a href="http://books.slashdot.org/article.pl?sid=02/11/25/1731249&amp;mode=thread&amp;tid=156">Slashdot</a>.
 </p>
