@@ -14,7 +14,7 @@ The <b>stable production release</b> is <a href="http://jakarta.apache.org/build
 </p>
 
 <p>
-<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/">Struts 1.1b</a> is in its third <b>beta release</b> (30 December 2002).
+<a href="http://www.apache.org/dist/jakarta/struts/">Struts 1.1</a> is in its third <b>beta release</b> (30 December 2002).
 </p>
 
 <hr size="1" noshade=""/>
@@ -123,29 +123,34 @@ versions.
 The binary distribution is available at:
 </p>
 <p>
-<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/">http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/</a>
+<a href="http://www.apache.org/dist/jakarta/struts/binaries/">
+http://www.apache.org/dist/jakarta/struts/binaries/</a>
 </p>
 <p>
 and the source distribution is available at:
 </p>
 <p>
-<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/src/">http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/src/</a>
+<a href="http://www.apache.org/dist/jakarta/struts/source/">
+http://www.apache.org/dist/jakarta/struts/source/</a>
 </p>
 <p>
 In addition, the library distribution, which contains updated binaries
 without the sample applications, is available at:
 </p>
 <p>
-  http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/lib/
+<a href="http://www.apache.org/dist/jakarta/struts/library/">
+http://www.apache.org/dist/jakarta/struts/library/</a>
 </p>
 <p>
 Details of the changes in this release are available in the Release Notes,
 which can be found here:
 </p>
 <p>
-  http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b3.html
+<a href="http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b3.html">
+http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b3.html</a>
 </p>
 <hr size="1" noshade=""/>
+
 
 <h3><a name="20021213"></a>12 December 2002 - Struts book #1 and #2</h3>
 <p>
