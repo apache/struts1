@@ -224,12 +224,13 @@ To enable Tiles you need to:
 				</ul>
 			</section>
 			<section href="tiles" name="Tiles API Guide">
-				<p>
-A concise 
-<a href="http://jakarta.apache.org/struts/api/org/apache/struts/taglib/tiles/package-summary.html">Tiles API Guide</a> is available to help you get started 
-with the Tiles framework. [:TODO: change link to #package_description when available.]
-</p>
+<ul>
+<li>A concise 
+<a href="../api/org/apache/struts/tiles/package-summary.html#package_description">Tiles API Guide</a> is available to help you get started with the Tiles framework.</li>
+<li><a href="struts-tiles.html">Tiles Taglib Syntax Reference</a></li>
+</ul>
 			</section>
+			
 			<section href="resources" name="Tiles Resources">
 				<p>
 					<a href="http://www-106.ibm.com/developerworks/java/library/j-strutstiles.html?loc=j">
