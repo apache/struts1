@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.7 2003/01/11 03:08:23 jmitchell Exp $
- * $Revision: 1.7 $
- * $Date: 2003/01/11 03:08:23 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.8 2003/02/17 00:31:45 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/02/17 00:31:45 $
  *
  * ====================================================================
  *
@@ -68,12 +68,14 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.util.LabelValueBean;
 import org.apache.struts.webapp.example.Constants;
 
 /**
@@ -91,7 +93,7 @@ import org.apache.struts.webapp.example.Constants;
  * of your servlet container.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2003/01/11 03:08:23 $
+ * @version $Revision: 1.8 $ $Date: 2003/02/17 00:31:45 $
  */
 
 public final class MemoryDatabasePlugIn implements PlugIn {
@@ -207,10 +209,36 @@ public final class MemoryDatabasePlugIn implements PlugIn {
         servlet.getServletContext().setAttribute(Constants.DATABASE_KEY,
                                                  database);
 
+        // Setup and cache other required data
+        setupCache(servlet, config);
+
     }
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * <p>Cache commonly required data as servlet context attributes.</p>
+     *
+     * @param servlet The <code>ActionServlet</code> instance running
+     *  this webapp
+     * @param config The <code>ModuleConfig</code> for this application module
+     */
+    protected void setupCache(ActionServlet servlet, ModuleConfig config) {
+
+        // Set up list of server types under "serverTypes"
+        ArrayList serverTypes = new ArrayList();
+        serverTypes.add(new LabelValueBean("IMAP Protocol", "imap"));
+        serverTypes.add(new LabelValueBean("POP3 Protocol", "pop3"));
+        servlet.getServletContext().setAttribute("serverTypes", serverTypes);
+
+    }
+
+
 
 
     // -------------------------------------------------------- Private Methods

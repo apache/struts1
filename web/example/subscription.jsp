@@ -5,14 +5,6 @@
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <app:checkLogon/>
 
-<%-- In real life, these would be loaded from a database --%>
-<%
-  java.util.ArrayList list = new java.util.ArrayList();
-  list.add(new org.apache.struts.util.LabelValueBean("IMAP Protocol", "imap"));
-  list.add(new org.apache.struts.util.LabelValueBean("POP3 Protocol", "pop3"));
-  pageContext.setAttribute("serverTypes", list);
-%>
-
 <html:html>
 <head>
 <logic:equal name="subscriptionForm" property="action"
