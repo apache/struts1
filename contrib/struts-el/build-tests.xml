@@ -21,7 +21,10 @@
         servlet.jar                   The servlet jar (either 2.2 or 2.3)
 
         cactus.home                   The home directory of your Cactus
-                                      installation (version 1.3 required)
+                                      installation (version 1.3+ required)
+                                      
+        cactus.contextURL             The URL used for testing
+                                      
 
         aspectjrt.jar                 The AspectJ runtime jar that is
                                       included with Cactus 1.3
@@ -45,9 +48,6 @@
 
         jstl-standard.jar             The path to the JSTL 1.0 "standard" jar
                                       file.
-
-        tomcat.home.32                The home directory of where Tomcat 3.2
-                                      is installed
 
         tomcat.home.40                The home directory of where Tomcat 4.0
                                       is installed
@@ -277,82 +277,6 @@ For JDK 1.4 logging, add the following properties with "jvmarg" elements:
     </target>
 
 <!--
-        Prepare test directory structure for Tomcat 3.2 servlet engine
--->
-    <target name="prepare.test.tomcat.32" depends="prepare.test.war" if="tomcat.home.32">
-
-        <property name="out.tomcat.32.dir" value="${out.test.dir}/servers/tomcat32"/>
-        <filter token="out.tomcat.32.dir" value="${out.tomcat.32.dir}"/>
-
-        <mkdir dir="${out.tomcat.32.dir}/webapps"/>
-        <mkdir dir="${out.tomcat.32.dir}/conf"/>
-
-	<!-- Delete old directory so new war is unzipped -->
-        <delete dir="${out.tomcat.32.dir}/webapps/test"/>
-        
-        <!-- Copy war file -->
-        <copy file="${out.test.dir}/test.war" todir="${out.tomcat.32.dir}/webapps"/>
-    
-        <!-- Copy configuration files -->
-        <copy file="${conf.test.dir}/tomcat32/server.xml"
-            todir="${out.tomcat.32.dir}/conf" filtering="on"/>
-
-    </target>
-
-<!--
-        Run unit tests on Tomcat 3.2 servlet engine
--->
-    <target name="test.tomcat.32" depends="prepare.test.tomcat.32">
-
-        <!-- Start the servlet engine, wait for it to be started, run the
-             unit tests, stop the servlet engine, wait for it to be stopped.
-             The servlet engine is automatically stopped if the tests fail for
-             any reason.-->
-
-        <runservertests testURL="http://localhost:8080/test"
-            startTarget="start.tomcat.32"
-            stopTarget="stop.tomcat.32"
-            testTarget="run.test"/>
-
-    </target>
-
-<!--
-        Start Tomcat 3.2 servlet engine
--->
-    <target name="start.tomcat.32">
-
-        <java classname="org.apache.tomcat.startup.Tomcat" fork="yes">
-            <arg value="-config"/>
-            <arg value="${out.tomcat.32.dir}/conf/server.xml"/>
-            <classpath>            
-                <pathelement location="${java.home}/../lib/tools.jar"/>
-                <fileset dir="${tomcat.home.32}/lib">
-                    <include name="*.jar"/>
-                </fileset>
-            </classpath>
-        </java>
-
-    </target>
-
-<!--
-        Stop Tomcat 3.2 servlet engine
--->
-    <target name="stop.tomcat.32">
-
-        <java classname="org.apache.tomcat.startup.Tomcat" fork="yes">
-            <jvmarg value="-Dtomcat.home=${tomcat.home.32}"/>
-            <arg value="-stop"/>
-            <classpath>            
-                <pathelement location="${java.home}/../lib/tools.jar"/>
-                <fileset dir="${tomcat.home.32}/lib">
-                    <include name="*.jar"/>
-                </fileset>
-            </classpath>
-        </java>
-
-    </target>
-
-<!--
         Prepare test directory structure for Tomcat 4.0 servlet engine
 -->
     <target name="prepare.test.tomcat.40" depends="prepare.test.war" if="tomcat.home.40">
@@ -385,7 +309,7 @@ For JDK 1.4 logging, add the following properties with "jvmarg" elements:
              The servlet engine is automatically stopped if the tests fail for
              any reason.-->
 
-        <runservertests testURL="http://localhost:8080/test"
+        <runservertests testURL="${cactus.contextURL}"
             startTarget="start.tomcat.40"
             stopTarget="stop.tomcat.40"
             testTarget="run.test"/>
@@ -470,7 +394,7 @@ For JDK 1.4 logging, add the following properties with "jvmarg" elements:
              The servlet engine is automatically stopped if the tests fail for
              any reason.-->
 
-        <runservertests testURL="http://localhost:8080/test"
+        <runservertests testURL="${cactus.contextURL}"
             startTarget="start.tomcat.41"
             stopTarget="stop.tomcat.41"
             testTarget="run.test"/>
