@@ -11,14 +11,14 @@
 </head>
 <body bgcolor="white">
 
-<validator:errorsExist>
+<logic:messagesPresent>
    <bean:message key="errors.header"/>
    <ul>
-   <validator:errors id="error">
+   <html:messages id="error">
       <li><bean:write name="error"/></li>
-   </validator:errors>
+   </html:messages>
    </ul><hr>
-</validator:errorsExist>
+</logic:messagesPresent>
 
 
 <html:form action="type">

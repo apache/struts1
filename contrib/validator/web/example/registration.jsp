@@ -2,7 +2,6 @@
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
-<%@ taglib uri="/WEB-INF/struts-validator.tld" prefix="validator" %>
 
 <html:html>
 <head>
@@ -11,14 +10,14 @@
 </head>
 <body bgcolor="white">
 
-<validator:errorsExist>
+<logic:messagesPresent>
    <bean:message key="errors.header"/>
    <ul>
-   <validator:errors id="error">
+   <html:messages id="error">
       <li><bean:write name="error"/></li>
-   </validator:errors>
+   </html:messages>
    </ul><hr>
-</validator:errorsExist>
+</logic:messagesPresent>
 
 
 <html:form action="registration">
