@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELFrameTag.java,v 1.5 2003/07/26 05:48:03 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2003/07/26 05:48:03 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELFrameTag.java,v 1.6 2004/02/10 16:37:24 germuska Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/02/10 16:37:24 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -70,7 +70,6 @@ import junit.framework.TestSuite;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionServlet;
-import org.apache.struts.config.ApplicationConfig;
 import org.apache.strutsel.taglib.utils.DOMHelper;
 import org.apache.strutsel.taglib.utils.JspTagTestCase;
 import org.apache.strutsel.taglib.utils.TestHelper;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELFormTag.java,v 1.5 2003/07/26 05:48:03 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2003/07/26 05:48:03 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELFormTag.java,v 1.6 2004/02/10 16:37:24 germuska Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/02/10 16:37:24 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -77,24 +77,23 @@ import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.RequestUtils;
-import org.apache.struts.config.ApplicationConfig;
 import org.apache.strutsel.taglib.utils.DOMHelper;
 import org.apache.strutsel.taglib.utils.JspTagTestCase;
 import org.apache.strutsel.taglib.utils.TestHelper;
 import org.w3c.dom.Element;
 
-public class TestELFormTag extends JspTagTestCase 
+public class TestELFormTag extends JspTagTestCase
 {
 
     protected static final String   ACTION_NAME   = "stuff";
     protected static final String   FORM_BEAN_CLASS   =
         "org.apache.strutsel.taglib.utils.TestFormBean";
 
-    protected static final String REQUIRED_NAME_VALUE_KEY   = 
+    protected static final String REQUIRED_NAME_VALUE_KEY   =
             "RequiredNameValue";
-    protected static final String REQUIRED_METHOD_VALUE_KEY   = 
+    protected static final String REQUIRED_METHOD_VALUE_KEY   =
             "RequiredMethodValue";
-    protected static final String REQUIRED_ACTION_VALUE_KEY   = 
+    protected static final String REQUIRED_ACTION_VALUE_KEY   =
             "RequiredActionValue";
 
     protected ELFormTag elFormTag   = null;
@@ -218,9 +217,9 @@ public class TestELFormTag extends JspTagTestCase
     public void testDummy()
     {
     }
-    
+
 //     public void testPlain()
-//         throws ServletException, JspException 
+//         throws ServletException, JspException
 //     {
 //         ActionServlet   actionServlet  = new ActionServlet();
 //         actionServlet.init(pageContext.getServletConfig());
@@ -230,7 +229,7 @@ public class TestELFormTag extends JspTagTestCase
 
 // //         pageContext.setAttribute(Action.APPLICATION_KEY, appConfig,
 // //                                  PageContext.APPLICATION_SCOPE);
-        
+
 //         ActionMapping   mapping  = new ActionMapping();
 //         mapping.setName(ACTION_NAME);
 //         mapping.setPath(convertActionNameToPath(mapping.getName()));
@@ -268,17 +267,17 @@ public class TestELFormTag extends JspTagTestCase
 
 //             HashMap attrMap = new HashMap();
 
-//             DOMHelper.recordFoundAttributes(testResponse.getDOM(), 
+//             DOMHelper.recordFoundAttributes(testResponse.getDOM(),
 //                                             "/html/body/form", attrMap);
 //             DOMHelper.verifyAttributesPresent(attrMap,
 //                                               new String[] { "name", "method",
-//                                                              "action" }, 
+//                                                              "action" },
 //                                               false);
-//             checkAttrValue(attrMap, testResponse, REQUIRED_NAME_VALUE_KEY, 
+//             checkAttrValue(attrMap, testResponse, REQUIRED_NAME_VALUE_KEY,
 //                            "form", "name");
-//             checkAttrValue(attrMap, testResponse, REQUIRED_METHOD_VALUE_KEY, 
+//             checkAttrValue(attrMap, testResponse, REQUIRED_METHOD_VALUE_KEY,
 //                            "form", "method");
-//             checkAttrValue(attrMap, testResponse, REQUIRED_ACTION_VALUE_KEY, 
+//             checkAttrValue(attrMap, testResponse, REQUIRED_ACTION_VALUE_KEY,
 //                            "form", "action");
 //         } catch (Exception ex) {
 //             ex.printStackTrace();
@@ -287,7 +286,7 @@ public class TestELFormTag extends JspTagTestCase
 //     }
 
 //     public void testMethod()
-//         throws ServletException, JspException 
+//         throws ServletException, JspException
 //     {
 //         ActionServlet   actionServlet  = new ActionServlet();
 //         actionServlet.init(pageContext.getServletConfig());
@@ -297,7 +296,7 @@ public class TestELFormTag extends JspTagTestCase
 
 //         pageContext.setAttribute(Action.APPLICATION_KEY, appConfig,
 //                                  PageContext.APPLICATION_SCOPE);
-        
+
 //         ActionMapping   mapping  = new ActionMapping();
 //         mapping.setName(ACTION_NAME);
 //         mapping.setPath(convertActionNameToPath(mapping.getName()));
@@ -336,17 +335,17 @@ public class TestELFormTag extends JspTagTestCase
 
 //             HashMap attrMap = new HashMap();
 
-//             DOMHelper.recordFoundAttributes(testResponse.getDOM(), 
+//             DOMHelper.recordFoundAttributes(testResponse.getDOM(),
 //                                             "/html/body/form", attrMap);
 //             DOMHelper.verifyAttributesPresent(attrMap,
 //                                               new String[] { "name", "method",
-//                                                              "action" }, 
+//                                                              "action" },
 //                                               false);
-//             checkAttrValue(attrMap, testResponse, REQUIRED_NAME_VALUE_KEY, 
+//             checkAttrValue(attrMap, testResponse, REQUIRED_NAME_VALUE_KEY,
 //                            "form", "name");
-//             checkAttrValue(attrMap, testResponse, REQUIRED_METHOD_VALUE_KEY, 
+//             checkAttrValue(attrMap, testResponse, REQUIRED_METHOD_VALUE_KEY,
 //                            "form", "method");
-//             checkAttrValue(attrMap, testResponse, REQUIRED_ACTION_VALUE_KEY, 
+//             checkAttrValue(attrMap, testResponse, REQUIRED_ACTION_VALUE_KEY,
 //                            "form", "action");
 //         } catch (Exception ex) {
 //             ex.printStackTrace();
