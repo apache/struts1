@@ -112,6 +112,53 @@ which only just trails Tomcat:
 <hr size="1" noshade=""/>
 -->
 
+    <h3><a name="20030318"></a>18 Mar 2003 - Struts-Faces Integration Library Available</h3>
+
+    <p>
+      The <em>Struts-Faces Integration Library</em> is an add-on library
+      that supports the use of
+      <a href="http://java.sun.com/j2ee/javaserverfaces/">JavaServer Faces</a>
+      user interface technology in a Struts-based web application, in place of
+      the Struts custom tag libraries.  As a proof of concept, it also
+      includes the canonical "struts-example" example web application,
+      converted to use JavaServer Faces Tags, as well as tags from the JSP
+      Standard Tag Library (JSTL), version 1.0.
+    </p>
+
+    <p>
+      The source code for this library is in the
+      <code>contrib/struts-faces</code> directory of the Struts CVS repository,
+      and nightly builds are available at:
+    </p>
+
+    <p>
+      <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/struts-faces/">
+        http://jakarta.apache.org/builds/jakarta-struts/nightly/struts-faces/</a>
+    </p>
+
+    <p>
+      This library is EA quality code, and is not going to be integrated into
+      standard Struts releases until it has matured further, and until
+      JavaServer Faces goes to 1.0 final release status.  The library requires
+      a Struts 1.1 nightly build (20030216 or later), or the upcoming 1.1 RC2
+      or 1.1 final releases.  It also requires the EA3 version of the
+      JavaServer Faces reference implementation, available via:
+    </p>
+
+    <p>
+      <a href="http://java.sun.com/j2ee/javaserverfaces/download.html">
+      http://java.sun.com/j2ee/javaserverfaces/download.html</a>
+    </p>
+
+    <p>
+      The Struts-Faces integration download includes source code for the
+      library (useful to see how the integration was accomplished, and also
+      to learn how to build custom JavaServer Faces component and renderer
+      classes), as well as an extensive <code>README.txt</code> that documents
+      how to utilize the library in your own applications.
+    </p>
+
+
     <h3><a name="20030223"></a>23 Feb 2003 - Struts 1.1 Release Candidate 1 Released</h3>
     <p>
         The Struts team is proud to announce the release of Struts 1.1 Release
