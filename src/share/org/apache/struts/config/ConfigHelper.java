@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.13 2003/08/28 05:50:32 rleland Exp $
- * $Revision: 1.13 $
- * $Date: 2003/08/28 05:50:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.14 2003/09/05 15:32:40 rleland Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/09/05 15:32:40 $
  *
  * ====================================================================
  *
@@ -103,7 +103,7 @@ import org.apache.struts.util.RequestUtils;
  * @since Struts 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.13 $ $Date: 2003/08/28 05:50:32 $
+ * @version $Revision: 1.14 $ $Date: 2003/09/05 15:32:40 $
  */
 public class ConfigHelper implements ConfigHelperInterface {
 
@@ -217,7 +217,7 @@ public class ConfigHelper implements ConfigHelperInterface {
     // ------------------------------------------------ Application Context
 
     /**
-     * The strong>default</strong>
+     * The <strong>default</strong>
      * configured data source (which must implement
      * <code>javax.sql.DataSource</code>),
      * if one is configured for this application.
