@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.13 2003/07/26 19:04:07 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2003/07/26 19:04:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.14 2003/07/27 06:25:41 rleland Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/07/27 06:25:41 $
  *
  * ====================================================================
  *
@@ -64,10 +64,13 @@ package org.apache.struts.taglib;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Iterator;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
@@ -77,6 +80,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.Globals;
@@ -90,7 +94,7 @@ import org.apache.struts.taglib.html.Constants;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -275,6 +279,251 @@ public class TagUtils {
 
         // Return the completed Map
         return (results);
+
+    }
+    /**
+     * Compute a hyperlink URL based on the <code>forward</code>,
+     * <code>href</code>, <code>action</code> or <code>page</code> parameter
+     * that is not null.
+     * The returned URL will have already been passed to
+     * <code>response.encodeURL()</code> for adding a session identifier.
+     *
+     * @param pageContext PageContext for the tag making this call
+     *
+     * @param forward Logical forward name for which to look up
+     *  the context-relative URI (if specified)
+     * @param href URL to be utilized unmodified (if specified)
+     * @param page Module-relative page for which a URL should
+     *  be created (if specified)
+     * @param action Logical action name for which to look up
+     *  the context-relative URI (if specified)
+     *
+     * @param params Map of parameters to be dynamically included (if any)
+     * @param anchor Anchor to be dynamically included (if any)
+     *
+     * @param redirect Is this URL for a <code>response.sendRedirect()</code>?
+     * @return URL with session identifier
+     * @exception java.net.MalformedURLException if a URL cannot be created
+     *  for the specified parameters
+     */
+    public String computeURL(
+        PageContext pageContext,
+        String forward,
+        String href,
+        String page,
+        String action,
+        Map params,
+        String anchor,
+        boolean redirect)
+        throws MalformedURLException {
+
+        return computeURL(
+            pageContext,
+            forward,
+            href,
+            page,
+            action,
+            params,
+            anchor,
+            redirect,
+            true);
+    }
+
+    /**
+     * Compute a hyperlink URL based on the <code>forward</code>,
+     * <code>href</code>, <code>action</code> or <code>page</code> parameter
+     * that is not null.
+     * The returned URL will have already been passed to
+     * <code>response.encodeURL()</code> for adding a session identifier.
+     *
+     * @param pageContext PageContext for the tag making this call
+     *
+     * @param forward Logical forward name for which to look up
+     *  the context-relative URI (if specified)
+     * @param href URL to be utilized unmodified (if specified)
+     * @param page Module-relative page for which a URL should
+     *  be created (if specified)
+     * @param action Logical action name for which to look up
+     *  the context-relative URI (if specified)
+     *
+     * @param params Map of parameters to be dynamically included (if any)
+     * @param anchor Anchor to be dynamically included (if any)
+     *
+     * @param redirect Is this URL for a <code>response.sendRedirect()</code>?
+     * @param encodeSeparator This is only checked if redirect is set to false (never
+     * encoded for a redirect).  If true, query string parameter separators are encoded
+     * as &gt;amp;, else &amp; is used.
+     * @return URL with session identifier
+     * @exception java.net.MalformedURLException if a URL cannot be created
+     *  for the specified parameters
+     */
+    public String computeURL(
+        PageContext pageContext,
+        String forward,
+        String href,
+        String page,
+        String action,
+        Map params,
+        String anchor,
+        boolean redirect,
+        boolean encodeSeparator)
+        throws MalformedURLException {
+
+        // TODO All the computeURL() methods need refactoring!
+
+        // Validate that exactly one specifier was included
+        int n = 0;
+        if (forward != null) {
+            n++;
+        }
+        if (href != null) {
+            n++;
+        }
+        if (page != null) {
+            n++;
+        }
+        if (action != null) {
+            n++;
+        }
+        if (n != 1) {
+            throw new MalformedURLException(messages.getMessage("computeURL.specifier"));
+        }
+
+        // Look up the module configuration for this request
+        ModuleConfig config = instance.getModuleConfig(pageContext);
+
+        // Calculate the appropriate URL
+        StringBuffer url = new StringBuffer();
+        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+        if (forward != null) {
+            ForwardConfig fc = config.findForwardConfig(forward);
+            if (fc == null) {
+                throw new MalformedURLException(messages.getMessage("computeURL.forward", forward));
+            }
+            if (fc.getRedirect()) {
+                redirect = true;
+            }
+            if (fc.getPath().startsWith("/")) {
+                url.append(request.getContextPath());
+                url.append(RequestUtils.forwardURL(request, fc));
+            } else {
+                url.append(fc.getPath());
+            }
+        } else if (href != null) {
+            url.append(href);
+        } else if (action != null) {
+            url.append(instance.getActionMappingURL(action, pageContext));
+
+        } else /* if (page != null) */ {
+            url.append(request.getContextPath());
+            url.append(RequestUtils.pageURL(request, page));
+        }
+
+        // Add anchor if requested (replacing any existing anchor)
+        if (anchor != null) {
+            String temp = url.toString();
+            int hash = temp.indexOf('#');
+            if (hash >= 0) {
+                url.setLength(hash);
+            }
+            url.append('#');
+            url.append(RequestUtils.encodeURL(anchor));
+        }
+
+        // Add dynamic parameters if requested
+        if ((params != null) && (params.size() > 0)) {
+
+            // Save any existing anchor
+            String temp = url.toString();
+            int hash = temp.indexOf('#');
+            if (hash >= 0) {
+                anchor = temp.substring(hash + 1);
+                url.setLength(hash);
+                temp = url.toString();
+            } else {
+                anchor = null;
+            }
+
+            // Define the parameter separator
+            String separator = null;
+            if (redirect) {
+                separator = "&";
+            } else if (encodeSeparator) {
+                separator = "&amp;";
+            } else {
+                separator = "&";
+            }
+
+            // Add the required request parameters
+            boolean question = temp.indexOf('?') >= 0;
+            Iterator keys = params.keySet().iterator();
+            while (keys.hasNext()) {
+                String key = (String) keys.next();
+                Object value = params.get(key);
+                if (value == null) {
+                    if (!question) {
+                        url.append('?');
+                        question = true;
+                    } else {
+                        url.append(separator);
+                    }
+                    url.append(RequestUtils.encodeURL(key));
+                    url.append('='); // Interpret null as "no value"
+                } else if (value instanceof String) {
+                    if (!question) {
+                        url.append('?');
+                        question = true;
+                    } else {
+                        url.append(separator);
+                    }
+                    url.append(RequestUtils.encodeURL(key));
+                    url.append('=');
+                    url.append(RequestUtils.encodeURL((String) value));
+                } else if (value instanceof String[]) {
+                    String values[] = (String[]) value;
+                    for (int i = 0; i < values.length; i++) {
+                        if (!question) {
+                            url.append('?');
+                            question = true;
+                        } else {
+                            url.append(separator);
+                        }
+                        url.append(RequestUtils.encodeURL(key));
+                        url.append('=');
+                        url.append(RequestUtils.encodeURL(values[i]));
+                    }
+                } else /* Convert other objects to a string */ {
+                    if (!question) {
+                        url.append('?');
+                        question = true;
+                    } else {
+                        url.append(separator);
+                    }
+                    url.append(RequestUtils.encodeURL(key));
+                    url.append('=');
+                    url.append(RequestUtils.encodeURL(value.toString()));
+                }
+            }
+
+            // Re-add the saved anchor (if any)
+            if (anchor != null) {
+                url.append('#');
+                url.append(RequestUtils.encodeURL(anchor));
+            }
+
+        }
+
+        // Perform URL rewriting to include our session ID (if any)
+        if (pageContext.getSession() != null) {
+            HttpServletResponse response = (HttpServletResponse) pageContext.getResponse();
+            if (redirect) {
+                return (response.encodeRedirectURL(url.toString()));
+            } else {
+                return (response.encodeURL(url.toString()));
+            }
+        } else {
+             return (url.toString());
+         }
 
     }
 
