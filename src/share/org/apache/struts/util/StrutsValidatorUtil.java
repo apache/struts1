@@ -1,4 +1,10 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.2 2002/04/02 04:08:32 dwinterfeldt Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/04/02 04:08:32 $
+ *
+ * ====================================================================
+ *
  * The Apache Software License, Version 1.1
  *
  * Copyright (c) 1999 The Apache Software Foundation.  All rights
@@ -76,8 +82,9 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * <p>This class helps provides some useful methods for retrieving objects 
  * from different scopes of the application.</p>
  *
- * @since 1.1
  * @author David Winterfeldt
+ * @version $Revision: 1.2 $ $Date: 2002/04/02 04:08:32 $
+ * @since 1.1
 */
 public class StrutsValidatorUtil  {
 
