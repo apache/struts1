@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts Documentation -->
-<!-- $Id: struts.xsl,v 1.3 2000/08/29 23:57:13 craigmcc Exp $ -->
+<!-- $Id: struts.xsl,v 1.4 2000/09/15 00:40:56 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -230,6 +230,54 @@
     <p><xsl:apply-templates/><br/></p>
   </xsl:template>
 
+
+  <!-- Process a task list section -->
+  <xsl:template match="task-list">
+    <xsl:choose>
+      <xsl:when test="@href">
+        <xsl:variable name="href">
+          <xsl:value-of select="@href"/>
+        </xsl:variable>
+        <a name="{$href}"></a>
+      </xsl:when>
+    </xsl:choose>
+    <table border="0" cellspacing="5" cellpadding="5" width="100%">
+      <tr><td bgcolor="{$banner-bg}">
+        <font color="{$banner-fg}" face="arial,helvetica,sanserif" size="+1">
+          <xsl:value-of select="@name"/>
+        </font>
+      </td></tr>
+      <tr><td>
+        <xsl:apply-templates select="info"/>
+      </td></tr>
+      <tr><td>
+        <blockquote>
+          <table border="1" cellspacing="5" cellpadding="5" width="100%">
+            <tr>
+              <th width="75%">Description</th>
+              <th width="25%">Volunteer</th>
+            </tr>
+            <xsl:apply-templates select="task"/>
+          </table>
+        </blockquote>
+      </td></tr>
+    </table>
+  </xsl:template>
+
+  <!-- Process an individual task (in a TODO list) -->
+  <xsl:template match="task">
+    <tr>
+      <td>
+        <xsl:choose>
+          <xsl:when test="@name">
+            <em><xsl:value-of select="@name"/></em>.
+          </xsl:when>
+        </xsl:choose>
+        <xsl:value-of select="info"/>
+      </td>
+      <td><xsl:value-of select="assigned"/></td>
+    </tr>
+  </xsl:template>
 
   <!-- Process everything else by just passing it through -->
   <xsl:template match="*|@*">

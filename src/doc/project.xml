@@ -8,7 +8,8 @@
     <menu name="Overview">
         <item name="Home"               href="index.html"/>
         <item name="Installation"       href="installation.html"/>
-        <item name="API Javadoc"        href="api/index.html"/>
+        <item name="Javadoc"            href="api/index.html"/>
+        <item name="TODO List"          href="todo.html"/>
     </menu>
 
     <menu name="New Tag Library Reference">
@@ -21,7 +22,7 @@
 
     <menu name="Old Documents">
         <item name="Tag Library (Old)"  href="tags.html"/>
-        <item name="TODO"               href="todo.txt"/>
+        <item name="TODO (Old)"         href="todo.txt"/>
         <item name="User's Guide"       href="users_guide.html"/>
     </menu>
 
