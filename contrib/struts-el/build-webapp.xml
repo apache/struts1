@@ -77,10 +77,6 @@
                                       of the Jakarta Commons POOL
                                       package (version 1.0 or later).
 
-        commons-resources.jar         (required).  The path to the JAR file
-                                      of the Jakarta Commons Resources
-                                      package (version 1.0 or later).
-
         commons-validator.jar         (required).  The path to the JAR file
                                       of the Jakarta Commons VALIDATOR
                                       package (version 1.0 or later).
@@ -187,7 +183,6 @@
   <pathelement location="${commons-lang.jar}"/>
   <pathelement location="${commons-logging.jar}"/>
   <pathelement location="${commons-pool.jar}"/>
-  <pathelement location="${commons-resources.jar}"/>
   <pathelement location="${commons-validator.jar}"/>
   <pathelement location="${jdbc20ext.jar}"/>
   <pathelement location="${servlet.jar}"/>

@@ -210,8 +210,6 @@
         tofile="${build.home}/library/commons-logging.jar"/>
   <copy file="${commons-pool.jar}"
         tofile="${build.home}/library/commons-pool.jar"/>
-  <copy file="${commons-resources.jar}"
-        tofile="${build.home}/library/commons-resources.jar"/>
   <copy file="${commons-validator.jar}"
         tofile="${build.home}/library/commons-validator.jar"/>
   <copy file="${jakarta-oro.jar}"

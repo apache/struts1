@@ -109,20 +109,6 @@
       Nightly Build. 
   </li>
 
-  <li><strong>Jakarta Commons SandBox Packages</strong> - The current version of Struts utilizes several
-      packages from the <a href="http://jakarta.apache.org/commons/index.html#The Sandbox">Jakarta
-      Commons Sandbox Project</a>. Before the final release of Struts 1.1 these packages
-      will be migrated to the Jakarta Commons sections, and officially released. If you are utilizing a binary distribution of
-      Struts, the corresponding JAR files are included in the <code>lib</code>
-      directory. However, if you wish to build Struts from source, you will
-      need to download and install the following packages:
-      <ul>
-      <li><em>Resources</em> (Recent 
-        <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-resources">
-        Nightly Build</a>)</li>
-     </ul>
-  </li>
-  
   <li><strong>Jakarta ORO</strong> - 
   <a href="http://jakarta.apache.org/oro/index.html">Apache Jakarta ORO</a> 
   version 2.06 (or later) is  required to build Struts from source.</li>  
@@ -377,8 +363,6 @@ about how to configure additional security manager permissions.</p>
             Logging package JAR file from the Jakarta Commons project.</li>
         <li><strong>commons-pool.jar</strong> - Pathname of the
             Pool package JAR file from the Jakarta Commons project.</li>
-        <li><strong>commons-resources.jar</strong> - Pathname of the
-            Resources package JAR file from the Jakarta Commons project.</li>
         <li><strong>commons-validator.jar</strong> - Pathname of the
             Validator package JAR file from the Jakarta Commons project.</li>
         <li><strong>servletapi.home</strong> - Pathname to the directory of
