@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.9 2000/06/20 16:34:07 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/06/20 16:34:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.10 2000/06/20 20:05:58 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2000/06/20 20:05:58 $
  *
  * ====================================================================
  *
@@ -76,6 +76,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.struts.digester.Digester;
+import org.apache.struts.taglib.Constants;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.xml.sax.SAXException;
@@ -153,7 +154,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2000/06/20 16:34:07 $
+ * @version $Revision: 1.10 $ $Date: 2000/06/20 20:05:58 $
  */
 
 public class ActionServlet
@@ -745,6 +746,8 @@ public class ActionServlet
 	if (!(formInstance instanceof ValidatingActionForm))
 	    return (true);
 	if (mapping.getInputForm() == null)
+	    return (true);
+	if (request.getParameter(Constants.CANCEL_PROPERTY) != null)
 	    return (true);
 
 	// Perform the requested validation

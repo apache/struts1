@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SubscriptionForm.java,v 1.3 2000/06/20 16:33:52 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/20 16:33:52 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SubscriptionForm.java,v 1.4 2000/06/20 20:05:52 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/20 20:05:52 $
  *
  * ====================================================================
  *
@@ -76,14 +76,13 @@ import org.apache.struts.util.ErrorMessages;
  *     or Edit).
  * <li><b>host</b> - The mail host for this subscription.  [REQUIRED]
  * <li><b>password</b> - The password for this subscription.  [REQUIRED]
- * <li><b>submit</b> - The submit button that was pressed.
  * <li><b>type</b> - The subscription type (imap,pop3)
        for this subscription.  [REQUIRED]
  * <li><b>username</b> - The username of this subscription.  [REQUIRED]
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/20 16:33:52 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/20 20:05:52 $
  */
 
 public final class SubscriptionForm implements ValidatingActionForm  {
@@ -108,12 +107,6 @@ public final class SubscriptionForm implements ValidatingActionForm  {
      * The password.
      */
     private String password = "";
-
-
-    /**
-     * The submit button that was pressed.
-     */
-    private String submit = "";
 
 
     /**
@@ -207,31 +200,6 @@ public final class SubscriptionForm implements ValidatingActionForm  {
 
 
     /**
-     * Return the submit button that was pressed.
-     */
-    public String getSubmit() {
-
-	return (this.submit);
-
-    }
-
-
-    /**
-     * Set the submit button that was pressed.
-     *
-     * @param submit The new submit button
-     */
-    public void setSubmit(String submit) {
-
-	if (submit == null)
-	    this.submit = "";
-	else
-	    this.submit = submit;
-
-    }
-
-
-    /**
      * Return the subscription type.
      */
     public String getType() {
@@ -289,9 +257,6 @@ public final class SubscriptionForm implements ValidatingActionForm  {
      * message keys for any errors we encounter.
      */
     public String[] validate() {
-
-	if ("Cancel".equals(submit))
-	    return (null);
 
 	ErrorMessages errors = new ErrorMessages();
 	if ((host == null) || (host.length() < 1))

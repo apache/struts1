@@ -95,9 +95,9 @@
         <struts:message key="button.reset"/>
       </struts:reset>
       &nbsp;
-      <struts:submit>
+      <struts:cancel>
         <struts:message key="button.cancel"/>
-      </struts:submit>
+      </struts:cancel>
     </td>
   </tr>
 

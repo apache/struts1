@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.5 2000/06/20 16:33:49 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/06/20 16:33:49 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.6 2000/06/20 20:05:51 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/06/20 20:05:51 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.MessageResources;
  * created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/06/20 16:33:49 $
+ * @version $Revision: 1.6 $ $Date: 2000/06/20 20:05:51 $
  */
 
 public final class SaveRegistrationAction extends ActionBase {
@@ -135,10 +135,7 @@ public final class SaveRegistrationAction extends ActionBase {
 	    return (servlet.findForward("logon"));
 
 	// Was this transaction cancelled?
-	String submit = request.getParameter("submit");
-	if (submit == null)
-	    submit = "Submit";
-	if (submit.equals(messages.getMessage(locale, "button.cancel"))) {
+	if (isCancelled(request)) {
 	    if (servlet.getDebug() >= 1)
 	        servlet.log("SaveRegistrationAction:  Transaction '" + action +
 	                    "' was cancelled");

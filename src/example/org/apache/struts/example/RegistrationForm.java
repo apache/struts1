@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.3 2000/06/20 16:33:48 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/20 16:33:48 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.4 2000/06/20 20:05:50 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/20 20:05:50 $
  *
  * ====================================================================
  *
@@ -83,13 +83,12 @@ import org.apache.struts.util.ErrorMessages;
  *     when changing or setting.
  * <li><b>replyToAddress</b> - The "Reply-To" address to be included on
  *     sent messages.  [Same as from address]
- * <li><b>submit</b> - The submit button that was pressed.
  * <li><b>username</b> - The registered username, which must be unique.
  *     [REQUIRED]
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/20 16:33:48 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/20 20:05:50 $
  */
 
 public final class RegistrationForm implements ValidatingActionForm  {
@@ -133,12 +132,6 @@ public final class RegistrationForm implements ValidatingActionForm  {
      */
     private String replyToAddress = "";
 
-
-
-    /**
-     * The submit button that was pressed.
-     */
-    private String submit = "";
 
 
     /**
@@ -301,31 +294,6 @@ public final class RegistrationForm implements ValidatingActionForm  {
 
 
     /**
-     * Return the submit button that was pressed.
-     */
-    public String getSubmit() {
-
-	return (this.submit);
-
-    }
-
-
-    /**
-     * Set the submit button that was pressed.
-     *
-     * @param submit The new submit button
-     */
-    public void setSubmit(String submit) {
-
-	if (submit == null)
-	    this.submit = "";
-	else
-	    this.submit = submit;
-
-    }
-
-
-    /**
      * Return the username.
      */
     public String getUsername() {
@@ -358,9 +326,6 @@ public final class RegistrationForm implements ValidatingActionForm  {
      * message keys for any errors we encounter.
      */
     public String[] validate() {
-
-	if ("Cancel".equals(submit))
-	    return (null);
 
 	ErrorMessages errors = new ErrorMessages();
 	if ((username == null) || (username.length() < 1))

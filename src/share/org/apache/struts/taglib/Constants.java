@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Constants.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Constants.java,v 1.2 2000/06/20 20:06:02 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/20 20:06:02 $
  *
  * ====================================================================
  *
@@ -80,6 +80,12 @@ public class Constants {
      * The attribute key for the bean our form is related to.
      */
     public static final String BEAN_KEY = Package + ".BEAN";
+
+
+    /**
+     * The property under which a Cancel button press is reported.
+     */
+    public static final String CANCEL_PROPERTY = Package + ".CANCEL";
 
 
     /**

@@ -153,6 +153,141 @@ of this tag body.  This tag is only valid when nested inside a
 <a href="#Top">Top</a>
 
 
+<a name="cancel"></a>
+<h1><i>cancel</i> - Render a Cancel Button</h1>
+
+<p>Renders an HTML <code>&lt;input&gt;</code> element of type
+<code>submit</code>.  This tag is only valid when nested inside a
+<code>form</code> tag body.  Pressing of this submit button
+causes the action servlet to bypass calling the associated form bean
+<code>validate()</code> method.  The action is called normally.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">onBlur</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onChange</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus
+      and its value has changed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onDblClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse double click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onFocus</td>
+    <td>
+      JavaScript event handler executed when this element receives input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyDown</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyPress</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed and released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyUp</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseDown</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseMove</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and the pointer is moved.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOut</td>
+    <td>
+      JavaScript event handler executed when this element was under the
+      mouse pointer but the pointer was moved outside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOver</td>
+    <td>
+      JavaScript event handler executed when this element was not under
+      the mouse pointer but the pointer is moved inside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseUp</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of the request parameter that will be included with this
+      submission, set to the specified value. [org.apache.struts.taglib.CANCEL]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">style</td>
+    <td>
+      CSS styles to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">styleClass</td>
+    <td>
+      CSS stylesheet class to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value of the label to be placed on this button.  This value will
+      also be submitted as the value of the specified request parameter.
+      [Body of this tag (if any), or "Cancel"]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
 <a name="checkbox"></a>
 <h1><i>checkbox</i> - Render A Checkbox Input Field</h1>
 
