@@ -676,6 +676,20 @@
      </attribute>
 
      <attribute>
+         <name>footer</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+         <since>Struts 1.2.5</since>
+     </attribute>
+
+     <attribute>
+         <name>header</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+         <since>Struts 1.2.5</since>
+     </attribute>
+
+     <attribute>
          <name>locale</name>
          <required>false</required>
          <rtexprvalue>true</rtexprvalue>
@@ -688,9 +702,23 @@
      </attribute>
 
      <attribute>
+         <name>prefix</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+         <since>Struts 1.2.5</since>
+     </attribute>
+
+     <attribute>
        <name>property</name>
        <required>false</required>
        <rtexprvalue>true</rtexprvalue>
+     </attribute>
+
+     <attribute>
+         <name>suffix</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+         <since>Struts 1.2.5</since>
      </attribute>
   </tag>
 

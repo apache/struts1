@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestErrorsTag2.java,v 1.10 2004/03/14 06:23:40 sraeburn Exp $
  * $Revision: 1.10 $
- * $Date: 2004/03/14 06:23:40 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -213,5 +213,11 @@ public class TestErrorsTag2 extends JspTestCase {
         }
 
 
+    public void testErrorsCustomResources() throws Exception {
+        runMyTest("testErrorsCustomResources", "");
+    }
+    public void testErrorsCustomResourcesAltBundle() throws Exception {
+        runMyTest("testErrorsCustomResourcesAltBundle", "");
+    }
 
 }

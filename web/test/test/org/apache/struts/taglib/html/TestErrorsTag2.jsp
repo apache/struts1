@@ -480,6 +480,42 @@
 
 
 
+<logic:equal name="runTest" value="testErrorsCustomResources">
+<%
+//This should be done in your action.  I do it here to keep the tests simple.
+	ActionErrors errors = new ActionErrors();
+    errors.add(ActionErrors.GLOBAL_ERROR,
+         new ActionError("default.testing.errors.tag"));
+    errors.add(ActionErrors.GLOBAL_ERROR,
+         new ActionError("default.testing.errors.tag2"));
+    request.setAttribute(Globals.ERROR_KEY, errors);
+%>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		My Errors go here:<html:errors header="custom.errors.header" footer="custom.errors.footer" prefix="custom.errors.prefix" suffix="custom.errors.suffix"/>
+	</bean:define>
+	<bean:define id="TEST_RESULTS" toScope="page">
+		My Errors go here:custom_error_header<custom_error_prefix>My Errors Text<custom_error_suffix><custom_error_prefix>My Errors Text 2<custom_error_suffix>custom_error_footer
+	</bean:define>
+</logic:equal>
+
+<logic:equal name="runTest" value="testErrorsCustomResourcesAltBundle">
+<%
+//This should be done in your action.  I do it here to keep the tests simple.
+	ActionErrors errors = new ActionErrors();
+    errors.add(ActionErrors.GLOBAL_ERROR,
+         new ActionError("alternate.testing.errors.tag"));
+    errors.add(ActionErrors.GLOBAL_ERROR,
+         new ActionError("alternate.testing.errors.tag2"));
+    request.setAttribute(Globals.ERROR_KEY, errors);
+%>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		My Errors go here:<html:errors bundle="alternate" header="custom.alternate.errors.header" footer="custom.alternate.errors.footer" prefix="custom.alternate.errors.prefix" suffix="custom.alternate.errors.suffix"/>
+	</bean:define>
+	<bean:define id="TEST_RESULTS" toScope="page">
+		My Errors go here:custom_alternate_error_header<custom_alternate_error_prefix>My Alternate Errors Text<custom_alternate_error_suffix><custom_alternate_error_prefix>My Alternate Errors Text 2<custom_alternate_error_suffix>custom_alternate_error_footer
+	</bean:define>
+</logic:equal>
+
 <% 
 String expected = "";
 String compareTo = "";

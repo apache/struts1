@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.33 2004/03/14 06:23:46 sraeburn Exp $
  * $Revision: 1.33 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -52,7 +52,7 @@ import org.apache.struts.util.MessageResources;
  *     rendered after each individual error message.</li>
  * </ul>
  *
- * @version $Revision: 1.33 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.33 $ $Date$
  */
 public class ErrorsTag extends TagSupport {
 
@@ -129,6 +129,58 @@ public class ErrorsTag extends TagSupport {
         this.property = property;
     }
 
+    /**
+     * The message resource key for errors header.
+     */
+    protected String header = null;
+
+    public String getHeader() {
+        return header == null ? "errors.header" : header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
+    }
+
+    /**
+     * The message resource key for errors footer.
+     */
+    protected String footer = null;
+
+    public String getFooter() {
+        return footer == null ? "errors.footer" : footer;
+    }
+
+    public void setFooter(String footer) {
+        this.footer = footer;
+    }
+
+    /**
+     * The message resource key for errors prefix.
+     */
+    protected String prefix= null;
+
+    public String getPrefix() {
+        return prefix == null ? "errors.prefix" : prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix= prefix;
+    }
+
+    /**
+     * The message resource key for errors suffix.
+     */
+    protected String suffix= null;
+
+    public String getSuffix() {
+        return suffix == null ? "errors.suffix" : suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix= suffix;
+    }
+
     // ------------------------------------------------------- Public Methods
 
     /**
@@ -152,16 +204,16 @@ public class ErrorsTag extends TagSupport {
         }
 
         boolean headerPresent =
-            TagUtils.getInstance().present(pageContext, bundle, locale, "errors.header");
+            TagUtils.getInstance().present(pageContext, bundle, locale, getHeader());
 
         boolean footerPresent =
-            TagUtils.getInstance().present(pageContext, bundle, locale, "errors.footer");
+            TagUtils.getInstance().present(pageContext, bundle, locale, getFooter());
 
         boolean prefixPresent =
-            TagUtils.getInstance().present(pageContext, bundle, locale, "errors.prefix");
+            TagUtils.getInstance().present(pageContext, bundle, locale, getPrefix());
 
         boolean suffixPresent =
-            TagUtils.getInstance().present(pageContext, bundle, locale, "errors.suffix");
+            TagUtils.getInstance().present(pageContext, bundle, locale, getSuffix());
 
         // Render the error messages appropriately
         StringBuffer results = new StringBuffer();
@@ -178,7 +230,7 @@ public class ErrorsTag extends TagSupport {
                             pageContext,
                             bundle,
                             locale,
-                            "errors.header");
+                            getHeader());
                             
                     results.append(message);
                 }
@@ -191,7 +243,7 @@ public class ErrorsTag extends TagSupport {
                         pageContext,
                         bundle,
                         locale,
-                        "errors.prefix");
+                        getPrefix());
                 results.append(message);
             }
             
@@ -213,14 +265,14 @@ public class ErrorsTag extends TagSupport {
                         pageContext,
                         bundle,
                         locale,
-                        "errors.suffix");
+                        getSuffix());
                 results.append(message);
             }
         }
         
         if (headerDone && footerPresent) {
             message =
-                TagUtils.getInstance().message(pageContext, bundle, locale, "errors.footer");
+                TagUtils.getInstance().message(pageContext, bundle, locale, getFooter());
             results.append(message);
         }
 
@@ -239,6 +291,10 @@ public class ErrorsTag extends TagSupport {
         locale = Globals.LOCALE_KEY;
         name = Globals.ERROR_KEY;
         property = null;
+        header = null;
+        footer = null;
+        prefix = null;
+        suffix = null;
     }
 
 }

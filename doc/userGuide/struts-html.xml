@@ -982,20 +982,21 @@
                 <p>In order to use this tag successfully, you must have
                 defined an application scope <code>MessageResources</code>
                 bean under the default attribute name, with optional
-                definitions of the following message keys:</p>
+                definitions of message keys specified in the following
+                attributes:</p>
                 <ul>
-                <li><strong>errors.header</strong> - Text that will be rendered
+                <li><strong>header</strong> - Text that will be rendered
                 before the error messages list.  Typically, this message text
                 will end with <code>&lt;ul&gt;</code> to start the
-                error messages list.</li>
-                <li><strong>errors.footer</strong> - Text that will be rendered
+                error messages list (default "errors.header").</li>
+                <li><strong>footer</strong> - Text that will be rendered
                 after the error messages list.  Typically, this message text
                 will begin with <code>&lt;/ul&gt;</code> to end the error
-                messages list.</li>
-                <li><strong>errors.prefix</strong> - Text that will be rendered
-                before each individual error in the list.</li>
-                <li><strong>errors.suffix</strong> - Text that will be rendered
-                after each individual error in the list.</li>
+                messages list (default "errors.footer").</li>
+                <li><strong>prefix</strong> - Text that will be rendered
+                before each individual error in the list (default "errors.prefix").</li>
+                <li><strong>suffix</strong> - Text that will be rendered
+                after each individual error in the list (default "errors.suffix").</li>
                 </ul>
                 </info>
 
@@ -1008,6 +1009,30 @@
                     instance to use.  If not specified, defaults to the
                     application resources configured for our action servlet.
                     </info>
+                </attribute>
+
+                <attribute>
+                  <name>footer</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  This value is an optional message resource key that will
+                  be printed after the iteration of error messages has finished.
+                  Defaults to "errors.footer" if not specified.
+                  </info>
+                  <since>Struts 1.2.5</since>
+                </attribute>
+
+                <attribute>
+                  <name>header</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  This value is an optional message resource key that will
+                  be printed before the iteration of error messages begins.
+                  Defaults to "errors.header" if not specified.
+                  </info>
+                  <since>Struts 1.2.5</since>
                 </attribute>
 
                 <attribute>
@@ -1033,6 +1058,18 @@
                 </attribute>
 
                 <attribute>
+                  <name>prefix</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  This value is an optional message resource key that will
+                  be printed before an error message.
+                  Defaults to "errors.prefix" if not specified.
+                  </info>
+                  <since>Struts 1.2.5</since>
+                </attribute>
+
+                <attribute>
                   <name>property</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -1041,6 +1078,18 @@
                   displayed.  If not specified, all error messages (regardless
                   of property) are displayed.
                   </info>
+                </attribute>
+
+                <attribute>
+                  <name>suffix</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  This value is an optional message resource key that will
+                  be printed after an error message.
+                  Defaults to "errors.suffix" if not specified.
+                  </info>
+                  <since>Struts 1.2.5</since>
                 </attribute>
 
         </tag>
