@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.11 2003/07/13 23:55:00 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2003/07/13 23:55:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.12 2003/07/13 23:57:32 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/07/13 23:57:32 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.ResponseUtils;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2003/07/13 23:55:00 $
+ * @version $Revision: 1.12 $ $Date: 2003/07/13 23:57:32 $
  */
 public class MessageTag extends TagSupport {
 
@@ -164,6 +164,7 @@ public class MessageTag extends TagSupport {
 
     /**
      * The default Locale for our server.
+     * @deprecated This will be removed after Struts 1.2.
      */
     protected static final Locale defaultLocale = Locale.getDefault();
 
@@ -262,12 +263,7 @@ public class MessageTag extends TagSupport {
         }
 
         // Construct the optional arguments array we will be using
-        Object args[] = new Object[5];
-        args[0] = arg0;
-        args[1] = arg1;
-        args[2] = arg2;
-        args[3] = arg3;
-        args[4] = arg4;
+        Object args[] = new Object[] { arg0, arg1, arg2, arg3, arg4 };
 
         // Retrieve the message string we are looking for
         String message =
