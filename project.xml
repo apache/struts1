@@ -217,12 +217,6 @@ and proven design patterns.
     </dependency>
     
     <dependency>
-      <id>commons-lang</id>
-      <version>1.0.1</version>
-      <url>http://jakarta.apache.org/commons/lang.html</url>
-    </dependency>
-    
-    <dependency>
       <id>commons-logging</id>
       <version>1.0.3</version>
       <url>http://jakarta.apache.org/commons/logging.html</url>
@@ -262,6 +256,12 @@ and proven design patterns.
       <id>junit</id>
       <version>3.8.1</version>
       <url>http://www.junit.org</url>
+    </dependency>
+    
+    <dependency>
+      <id>commons-lang</id>
+      <version>1.0.1</version>
+      <url>http://jakarta.apache.org/commons/lang.html</url>
     </dependency>
     
     <dependency>
