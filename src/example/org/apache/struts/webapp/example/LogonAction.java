@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.23 2004/03/12 02:43:29 husted Exp $
- * $Revision: 1.23 $
- * $Date: 2004/03/12 02:43:29 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.24 2004/03/12 23:49:29 husted Exp $
+ * $Revision: 1.24 $
+ * $Date: 2004/03/12 23:49:29 $
  *
  * Copyright 2000-2004 Apache Software Foundation
  *
@@ -33,19 +33,19 @@ import org.apache.struts.action.ActionMessages;
 /**
  * <p>Validate a user logon.</p>
  *
- * @version $Revision: 1.23 $ $Date: 2004/03/12 02:43:29 $
+ * @version $Revision: 1.24 $ $Date: 2004/03/12 23:49:29 $
  */
 public final class LogonAction extends BaseAction {
 
     /**
      * Name of username field ["username"].
      */
-    private static String USERNAME = "username";
+    static String USERNAME = "username";
 
     /**
      * Name of password field ["password"].
      */
-    private static String PASSWORD = "password";
+    static String PASSWORD = "password";
 
     // ------------------------------------------------------ Protected Methods
 
@@ -62,7 +62,7 @@ public final class LogonAction extends BaseAction {
      * @throws ExpiredPasswordException to be handled by Struts exception
      * processor via the action-mapping
      */
-    protected User getUser(UserDatabase database, String username,
+    User getUser(UserDatabase database, String username,
                            String password, ActionMessages errors) throws ExpiredPasswordException {
 
         User user = null;
@@ -95,7 +95,7 @@ public final class LogonAction extends BaseAction {
      * @param request The request we are processing
      * @param user The user object returned from the database
      */
-    protected void SaveUser(HttpServletRequest request, User user) {
+    void SaveUser(HttpServletRequest request, User user) {
 
         HttpSession session = request.getSession();
         session.setAttribute(Constants.USER_KEY, user);
