@@ -28,6 +28,11 @@
 
   <display-name>Struts-Faces Integration Library Example</display-name>
 
+  <context-param>
+    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+    <param-value>client</param-value>
+  </context-param>
+
   <!-- JavaServer Faces Servlet Configuration -->
   <servlet>
     <servlet-name>faces</servlet-name>
