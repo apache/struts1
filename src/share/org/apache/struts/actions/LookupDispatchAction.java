@@ -230,7 +230,6 @@ public abstract class LookupDispatchAction extends DispatchAction {
         String key = (String) lookupMap.get(name);
 
         String methodName = (String) keyMethodMap.get(key);
-        Object args[] = { mapping, form, request, response };
 
         return dispatchMethod(mapping, form, request, response, methodName);
     }
