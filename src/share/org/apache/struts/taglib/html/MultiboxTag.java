@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.2 2001/02/09 20:50:18 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/02/09 20:50:18 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/01/06 21:50:39 $
+ * @version $Revision: 1.2 $ $Date: 2001/02/09 20:50:18 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {
@@ -276,7 +276,7 @@ public class MultiboxTag extends BaseHandlerTag {
     public void release() {
 
 	super.release();
-	name = null;
+	name = Constants.BEAN_KEY;
 	property = null;
 	value = null;
 
