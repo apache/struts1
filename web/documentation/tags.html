@@ -1124,7 +1124,8 @@ specified URL.  URL rewriting will be applied automatically to maintain
 session state in the absence of cookies.  The content displayed for this
 hyperlink will be taken from the body of this tag.</p>
 
-<p>Normally, the hyperlink you specify with the <code>href</code> attribute
+<p>Normally, the hyperlink you specify with the <code>forward</code> or
+<code>href</code> attribute
 will be unchanged (other than the fact that URL rewriting will be applied
 if necessary for session maintenance in the absence of cookies).  However,
 you can specify instructions for locating a Map implementation that defines
@@ -1155,12 +1156,26 @@ use of the <code>java.util.Map</code> interface.  For a similar tag based on a
     <th width="85%">Description</th>
   </tr>
   <tr>
+    <td align="center">forward</td>
+    <td>
+      Logical name of a global <code>ActionForward</code> that contains
+      the actual context-relative URI of the destination of this transfer.
+      This hyperlink may be dynamically modified by the inclusion of query
+      parameters if the <code>name</code> (or <code>name</code> and
+      <code>property</code>) attributes are also present on this tag.
+      You must specify either the <code>forward</code> attribute or the
+      <code>href</code> attribute.
+    </td>
+  </tr>
+  <tr>
     <td align="center">href</td>
     <td>
       URL to which this hyperlink will transfer if activated.  This
       hyperlink may be dynamically modified by the inclusion of query
       parameters if the <code>name</code> (or <code>name</code> and
       <code>property</code>) attributes are also present on this tag.
+      You must specify either the <code>forward</code> attribute or the
+      <code>href</code> attribute.
     </td>
   </tr>
   <tr>
@@ -1200,7 +1215,8 @@ specified URL.  URL rewriting will be applied automatically to maintain
 session state in the absence of cookies.  The content displayed for this
 hyperlink will be taken from the body of this tag.</p>
 
-<p>Normally, the hyperlink you specify with the <code>href</code> attribute
+<p>Normally, the hyperlink you specify with the <code>forward</code> or
+<code>href</code> attribute
 will be unchanged (other than the fact that URL rewriting will be applied
 if necessary for session maintenance in the absence of cookies).  However,
 you can specify instructions for locating a Dictionary implementation that
@@ -1232,12 +1248,26 @@ query parameter name may be created.</p>
     <th width="85%">Description</th>
   </tr>
   <tr>
+    <td align="center">forward</td>
+    <td>
+      Logical name of a global <code>ActionForward</code> that contains
+      the actual context-relative URI of the destination of this transfer.
+      This hyperlink may be dynamically modified by the inclusion of query
+      parameters if the <code>name</code> (or <code>name</code> and
+      <code>property</code>) attributes are also present on this tag.
+      You must specify either the <code>forward</code> attribute or the
+      <code>href</code> attribute.
+    </td>
+  </tr>
+  <tr>
     <td align="center">href</td>
     <td>
       URL to which this hyperlink will transfer if activated.  This
       hyperlink may be dynamically modified by the inclusion of query
       parameters if the <code>name</code> (or <code>name</code> and
       <code>property</code>) attributes are also present on this tag.
+      You must specify either the <code>forward</code> attribute or the
+      <code>href</code> attribute.
     </td>
   </tr>
   <tr>

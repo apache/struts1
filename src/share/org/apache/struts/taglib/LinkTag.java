@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.6 2000/07/16 22:29:05 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/07/16 22:29:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.7 2000/07/17 03:05:20 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/07/17 03:05:20 $
  *
  * ====================================================================
  *
@@ -67,11 +67,15 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -80,13 +84,19 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/07/16 22:29:05 $
+ * @version $Revision: 1.7 $ $Date: 2000/07/17 03:05:20 $
  */
 
 public class LinkTag extends TagSupport {
 
 
     // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The logical forward name from which to retrieve the hyperlink URI.
+     */
+    protected String forward = null;
 
 
     /**
@@ -122,6 +132,28 @@ public class LinkTag extends TagSupport {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Return the logical forward name.
+     */
+    public String getForward() {
+
+	return (this.forward);
+
+    }
+
+
+    /**
+     * Set the logical forward name.
+     *
+     * @param forward The new logical forward name
+     */
+    public void setForward(String forward) {
+
+	this.forward = forward;
+
+    }
 
 
     /**
@@ -222,6 +254,14 @@ public class LinkTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
+	// Validate our attributes
+	if ((forward == null) && (href == null))
+	    throw new JspException
+		(messages.getMessage("linkTag.destination"));
+	else if ((forward != null) && (href != null))
+	    throw new JspException
+		(messages.getMessage("linkTag.destination"));
+
 	// Generate the hyperlink start element
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
@@ -283,6 +323,23 @@ public class LinkTag extends TagSupport {
      * @exception JspException if an error occurs preparing the hyperlink
      */
     protected String hyperlink() throws JspException {
+
+	// If "forward" was specified, compute the "href" to forward to
+	if (forward != null) {
+	    ActionForwards forwards = (ActionForwards)
+		pageContext.getAttribute(Action.FORWARDS_KEY,
+					 PageContext.APPLICATION_SCOPE);
+	    if (forwards == null)
+		throw new JspException
+		    (messages.getMessage("linkTag.forwards"));
+	    ActionForward forward = forwards.findForward(this.forward);
+	    if (forward == null)
+		throw new JspException
+		    (messages.getMessage("linkTag.forward"));
+	    HttpServletRequest request =
+		(HttpServletRequest) pageContext.getRequest();
+	    this.href = request.getContextPath() + forward.getPath();
+	}
 
 	// Just return the "href" attribute if there is no bean to look up
 	if ((property != null) && (name == null))

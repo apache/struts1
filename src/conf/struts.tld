@@ -1712,8 +1712,13 @@
     <tagclass>org.apache.struts.taglib.LinkTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <attribute>
+      <name>forward</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>href</name>
-      <required>true</required>
+      <required>false</required>
       <rtexprvalue>true</rtexprvalue>
     </attribute>
     <attribute>
@@ -1739,8 +1744,13 @@
     <tagclass>org.apache.struts.taglib.Link1Tag</tagclass>
     <bodycontent>JSP</bodycontent>
     <attribute>
+      <name>forward</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>href</name>
-      <required>true</required>
+      <required>false</required>
       <rtexprvalue>true</rtexprvalue>
     </attribute>
     <attribute>
