@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.20 2003/08/07 00:39:05 dgraham Exp $
- * $Revision: 1.20 $
- * $Date: 2003/08/07 00:39:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.21 2003/08/16 17:50:10 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/08/16 17:50:10 $
  *
  * ====================================================================
  *
@@ -168,17 +168,45 @@ public class ExceptionHandler {
      * @param error - The error generated from the exception mapping
      * @param forward - The forward generated from the input path (from the form or exception mapping)
      * @param scope - The scope of the exception mapping.
+     * @deprecated Use storeException(HttpServletRequest, String, ActionMessage, ActionForward, String)
+     * instead.  This will be removed after Struts 1.2.
      */
-    protected void storeException(HttpServletRequest request,
-                        String property,
-                        ActionError error,
-                        ActionForward forward,
-                        String scope) {
-                            
+    protected void storeException(
+        HttpServletRequest request,
+        String property,
+        ActionError error,
+        ActionForward forward,
+        String scope) {
+
+        this.storeException(request, property, error, forward, scope);
+    }
+    
+    /**
+     * Default implementation for handling an <b>ActionMessage</b> generated
+     * from an Exception during <b>Action</b> delegation.  The default
+     * implementation is to set an attribute of the request or session, as
+     * defined by the scope provided (the scope from the exception mapping).  An
+     * <b>ActionErrors</b> instance is created, the error is added to the 
+     * collection and the collection is set under the Globals.ERROR_KEY.
+     *
+     * @param request - The request we are handling
+     * @param property  - The property name to use for this error
+     * @param error - The error generated from the exception mapping
+     * @param forward - The forward generated from the input path (from the form or exception mapping)
+     * @param scope - The scope of the exception mapping.
+     * @since Struts 1.2
+     */
+    protected void storeException(
+        HttpServletRequest request,
+        String property,
+        ActionMessage error,
+        ActionForward forward,
+        String scope) {
+
         ActionErrors errors = new ActionErrors();
         errors.add(property, error);
 
-        if ("request".equals(scope)){
+        if ("request".equals(scope)) {
             request.setAttribute(Globals.ERROR_KEY, errors);
         } else {
             request.getSession().setAttribute(Globals.ERROR_KEY, errors);
