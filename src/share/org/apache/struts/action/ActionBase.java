@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionBase.java,v 1.8 2000/09/23 22:51:45 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/09/23 22:51:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionBase.java,v 1.9 2001/02/21 00:35:41 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/02/21 00:35:41 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -71,7 +71,7 @@ package org.apache.struts.action;
  * directly, rather than this class.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/09/23 22:51:45 $
+ * @version $Revision: 1.9 $ $Date: 2001/02/21 00:35:41 $
  */
 
 public class ActionBase extends Action {

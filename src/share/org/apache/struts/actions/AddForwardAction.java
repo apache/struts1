@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/Attic/AddForwardAction.java,v 1.2 2001/01/07 22:39:06 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/07 22:39:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/Attic/AddForwardAction.java,v 1.3 2001/02/21 00:35:52 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/02/21 00:35:52 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -84,7 +84,7 @@ import org.apache.struts.util.RequestUtils;
  * parameters whose names match the properties of <code>ActionForward</code>.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/01/07 22:39:06 $
+ * @version $Revision: 1.3 $ $Date: 2001/02/21 00:35:52 $
  */
 
 public class AddForwardAction extends Action {

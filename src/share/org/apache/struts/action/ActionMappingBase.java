@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.9 2000/12/30 00:39:05 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/12/30 00:39:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.10 2001/02/21 00:35:45 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/02/21 00:35:45 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -71,7 +71,7 @@ package org.apache.struts.action;
  * @deprecated Now that ActionMapping is a class, you should use it intead
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2000/12/30 00:39:05 $
+ * @version $Revision: 1.10 $ $Date: 2001/02/21 00:35:45 $
  */
 
 public class ActionMappingBase extends ActionMapping {
