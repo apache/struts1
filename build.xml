@@ -744,11 +744,18 @@
         inheritall="false" target="clean"/>
     </target>
 
+<!--
+       Clean contrib distribution
+-->
+    <target name="clean.contrib" >
+        <ant dir="${basedir}/contrib/struts-el"
+             target="clean" inheritAll="false"/>
+     </target>
 
 <!--
         Clean up build and distribution directories
 -->
-    <target name="clean" depends="clean.legacy"
+    <target name="clean" depends="clean.legacy, clean.contrib"
      description="Clean build and distribution directories">
         <delete dir="${build.home}"/>
         <delete dir="${dist.home}"/>
