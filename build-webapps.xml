@@ -103,6 +103,9 @@
   <ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="upload"/>
   </ant>
+  <ant  antfile="build-webapp.xml"    target="static">
+    <property name="webapp.name"      value="validator"/>
+  </ant>
 </target>
 
 
@@ -119,6 +122,12 @@
     <!-- Copy required image for the Struts example application -->
     <copy tofile="${build.home}/example/struts-power.gif"
             file="${doc.dir}/images/struts-power.gif"/>
+    <!-- Copy required image for the Struts Validator example application -->
+    <copy tofile="${build.home}/validator/struts-power.gif"
+            file="${doc.dir}/images/struts-power.gif"/>
+    <!-- Copy validator-rules.xml for the Struts validator application -->
+    <copy tofile="${build.home}/validator/WEB-INF/validator-rules.xml"
+            file="${basedir}/conf/share/validator-rules.xml"/>
 </target>
 
 
@@ -147,6 +156,9 @@
   </ant-->
   <ant  antfile="build-webapp.xml"    target="compile">
     <property name="webapp.name"      value="upload"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="compile">
+    <property name="webapp.name"      value="validator"/>
   </ant>
 </target>
 
@@ -257,6 +269,10 @@
     <property name="webapp.name"      value="upload"/>
     <property name="webapp.war"       value="struts-upload.war"/>
   </ant>
+  <ant  antfile="build-webapp.xml"    target="dist">
+    <property name="webapp.name"      value="validator"/>
+    <property name="webapp.war"       value="struts-validator.war"/>
+  </ant>
 </target>
 
 
@@ -304,6 +320,9 @@
   </ant-->
   <ant  antfile="build-webapp.xml"    target="clean">
     <property name="webapp.name"      value="upload"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="validator"/>
   </ant>
 </target>
 
