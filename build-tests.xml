@@ -243,6 +243,13 @@
               </fileset>
             </batchtest>
 
+            <!-- org.apache.struts.util package Tests -->
+            <batchtest fork="yes">
+              <fileset dir="${out.test.dir}/classes">
+                <include name="org/apache/struts/util/Test*.class" />
+              </fileset>
+            </batchtest>
+
         </junit>
 
     </target>
@@ -502,10 +509,17 @@
         <classpath refid="compile.classpath"/>
         <formatter  type="plain" usefile="false"/>
 
-        <!-- Initiate test executions -->
+        <!-- Tests for org.apache.struts.action -->
         <test       name="org.apache.struts.action.TestDynaActionForm"/>
         <test       name="org.apache.struts.action.TestDynaActionFormClass"/>
         <test       name="org.apache.struts.config.TestApplicationConfig"/>
+
+        <!-- Tests for org.apache.struts.util -->
+        <batchtest fork="yes">
+          <fileset dir="${out.test.dir}/classes">
+            <include name="org/apache/struts/util/Test*.class"/>
+          </fileset>
+        </batchtest>
 
       </junit>
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockHttpServletResponse.java,v 1.1 2002/07/01 22:10:35 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/01 22:10:35 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockHttpServletResponse.java,v 1.2 2002/07/02 01:55:27 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/02 01:55:27 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import javax.servlet.http.HttpServletResponse;
  * threaded environment, no synchronization is performed.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/07/01 22:10:35 $
+ * @version $Revision: 1.2 $ $Date: 2002/07/02 01:55:27 $
  */
 
 public class MockHttpServletResponse implements HttpServletResponse {
@@ -131,22 +131,22 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
 
     public String encodeRedirectUrl(String url) {
-        throw new UnsupportedOperationException();
+        return (encodeRedirectURL(url));
     }
 
 
     public String encodeRedirectURL(String url) {
-        throw new UnsupportedOperationException();
+        return (url);
     }
 
 
     public String encodeUrl(String url) {
-        throw new UnsupportedOperationException();
+        return (encodeURL(url));
     }
 
 
     public String encodeURL(String url) {
-        throw new UnsupportedOperationException();
+        return (url);
     }
 
 

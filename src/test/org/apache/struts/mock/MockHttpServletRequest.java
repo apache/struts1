@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockHttpServletRequest.java,v 1.1 2002/07/01 22:10:35 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/01 22:10:35 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockHttpServletRequest.java,v 1.2 2002/07/02 01:55:27 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/02 01:55:27 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import javax.servlet.http.HttpSession;
  * threaded environment, no synchronization is performed.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/07/01 22:10:35 $
+ * @version $Revision: 1.2 $ $Date: 2002/07/02 01:55:27 $
  */
 
 public class MockHttpServletRequest implements HttpServletRequest {
@@ -485,22 +485,22 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 
     public String getScheme() {
-        throw new UnsupportedOperationException();
+        return ("http");
     }
 
 
     public String getServerName() {
-        throw new UnsupportedOperationException();
+        return ("localhost");
     }
 
 
     public int getServerPort() {
-        throw new UnsupportedOperationException();
+        return (8080);
     }
 
 
     public boolean isSecure() {
-        throw new UnsupportedOperationException();
+        return (false);
     }
 
 
