@@ -4,7 +4,7 @@
     This file contains definitions of the standard Chain Of Responsibility
     chains that emulate Struts 1.x processing functionality.
 
-    $Id: chain-config.xml,v 1.3 2003/08/31 21:53:00 craigmcc Exp $
+    $Id: chain-config.xml,v 1.4 2003/08/31 22:42:45 craigmcc Exp $
 -->
 
 
@@ -84,7 +84,7 @@
 
            processPopulate         PopulateActionForm
 
-           processValidate         ValidateActionForm
+           processValidate         ValidateActionForm / SelectInput
 
            processForward          NOT SUPPORTED YET
 
@@ -134,14 +134,9 @@
 
 
       <!-- Validate the ActionForm for this request -->
-      <chain
-          className="org.apache.struts.chain.servlet.ValidateActionForm">
-
-        <!-- Nested chain executed on validation failure only -->
-        <command
-          className="org.apache.struts.chain.servlet.PerformForward"/>
-
-      </chain>
+      <command
+          className="org.apache.struts.chain.servlet.ValidateActionForm"
+     failureCommand="servlet-validation-failure"/>
 
 
       <!-- Create (if needed) the Action for this request -->
@@ -154,7 +149,7 @@
           className="org.apache.struts.chain.servlet.ExecuteAction"/>
 
 
-      <!-- Follow the returned ActionForward (if any) -->
+      <!-- Follow the returned ForwardConfig (if any) -->
       <command
           className="org.apache.struts.chain.servlet.PerformForward"/>
 
@@ -179,7 +174,29 @@
       <command
           className="org.apache.struts.chain.servlet.ExceptionHandler"/>
 
-      <!-- Follow the returned ActionForward (if any) -->
+      <!-- Follow the returned ForwardConfig (if any) -->
+      <command
+          className="org.apache.struts.chain.servlet.PerformForward"/>
+
+    </chain>
+
+
+    <!-- ========== Servlet Validation Failure Chain ======================= -->
+
+    <chain     name="servlet-validation-failure">
+
+      <!--
+           This chain is designed to be invoked (by o.a.s.c.ValidateActionForm)
+           if a validation failure occurs.  The standard behavior is to obey
+           the "input" property of the current ActionConfig, and forward back
+           to the input page.
+      -->
+
+      <!-- Select the appropriate ForwardConfig for return to input page -->
+      <command
+          className="org.apache.struts.chain.servlet.SelectInput"/>
+
+      <!-- Follow the returned ForwardConfig (if any) -->
       <command
           className="org.apache.struts.chain.servlet.PerformForward"/>
 

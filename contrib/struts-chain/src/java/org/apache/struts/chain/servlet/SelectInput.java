@@ -1,6 +1,6 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/ValidateActionForm.java,v 1.2 2003/08/31 22:42:45 craigmcc Exp $
- * $Revision: 1.2 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/SelectInput.java,v 1.1 2003/08/31 22:42:45 craigmcc Exp $
+ * $Revision: 1.1 $
  * $Date: 2003/08/31 22:42:45 $
  *
  * ====================================================================
@@ -67,10 +67,13 @@ import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.chain.AbstractValidateActionForm;
+import org.apache.struts.chain.AbstractSelectInput;
 import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ActionConfig;
+import org.apache.struts.config.ForwardConfig;
+import org.apache.struts.config.ModuleConfig;
 
 
 /**
@@ -79,29 +82,29 @@ import org.apache.struts.config.ActionConfig;
  * proceed normally.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/08/31 22:42:45 $
+ * @version $Revision: 1.1 $ $Date: 2003/08/31 22:42:45 $
  */
 
-public class ValidateActionForm extends AbstractValidateActionForm {
+public class SelectInput extends AbstractSelectInput {
 
 
     // ------------------------------------------------------- Protected Methods
 
 
     /**
-     * <p>Call the <code>validate()</code> method of the specified form bean,
-     * and return the resulting <code>ActionErrors</code> object.</p>
+     * <p>Create and return a <code>ForwardConfig</code> representing the
+     * specified module-relative destination.</p>
      *
      * @param context The context for this request
-     * @param actionForm The form bean for this request
+     * @param moduleConfig The <code>ModuleConfig</code> for this request
+     * @param uri The module-relative URI to be the destination
      */
-    protected ActionErrors validate(Context context,
-                                    ActionConfig actionConfig,
-                                    ActionForm actionForm) {
+    protected ForwardConfig forward(Context context,
+                                    ModuleConfig moduleConfig,
+                                    String uri) {
 
-        ServletWebContext swcontext = (ServletWebContext) context;
-        return (actionForm.validate((ActionMapping) actionConfig,
-                                    swcontext.getRequest()));
+        return (new ActionForward(null, moduleConfig.getPrefix() + uri,
+                                  false, true));
 
     }
 

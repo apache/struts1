@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractValidateActionForm.java,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/11 04:55:34 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractValidateActionForm.java,v 1.2 2003/08/31 22:42:45 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/08/31 22:42:45 $
  *
  * ====================================================================
  *
@@ -62,33 +62,31 @@
 package org.apache.struts.chain;
 
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.chain.Catalog;
+import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
 import org.apache.commons.chain.impl.ChainBase;
 import org.apache.commons.chain.web.WebContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.ForwardConfig;
-import org.apache.struts.config.ModuleConfig;
 
 
 /**
  * <p>Validate the properties of the form bean for this request.  If there are
- * any validation errors, execute the child commands in our chain; otherwise,
+ * any validation errors, execute the specified command; otherwise,
  * proceed normally.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/11 04:55:34 $
+ * @version $Revision: 1.2 $ $Date: 2003/08/31 22:42:45 $
  */
 
-public abstract class AbstractValidateActionForm extends ChainBase {
+public abstract class AbstractValidateActionForm implements Command {
 
 
     // ------------------------------------------------------ Instance Variables
@@ -97,7 +95,11 @@ public abstract class AbstractValidateActionForm extends ChainBase {
     private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
     private String actionFormKey = Constants.ACTION_FORM_KEY;
     private String cancelKey = Constants.CANCEL_KEY;
-    private String forwardConfigKey = Constants.FORWARD_CONFIG_KEY;
+    private String catalogKey = Constants.CATALOG_KEY;
+    private String failureCommand = null;
+
+    private static final Log log =
+        LogFactory.getLog(AbstractValidateActionForm.class);
 
 
     // -------------------------------------------------------------- Properties
@@ -181,26 +183,48 @@ public abstract class AbstractValidateActionForm extends ChainBase {
 
     /**
      * <p>Return the context attribute key under which the
-     * <code>ForwardConfig</code> for the currently selected application
-     * action is stored.</p>
+     * <code>Catalog</code> we perform lookups in is stored.</p>
      */
-    public String getForwardConfigKey() {
+    public String getCatalogKey() {
 
-        return (this.forwardConfigKey);
+        return (this.catalogKey);
 
     }
 
 
     /**
      * <p>Set the context attribute key under which the
-     * <code>ForwardConfig</code> for the currently selected application
-     * action is stored.</p>
+     * <code>Catalog</code> we perform lookups in is stored.</p>
      *
-     * @param forwardConfigKey The new context attribute key
+     * @param catalogKey The new context attribute key
      */
-    public void setForwardConfigKey(String forwardConfigKey) {
+    public void setCatalogKey(String catalogKey) {
 
-        this.forwardConfigKey = forwardConfigKey;
+        this.catalogKey = catalogKey;
+
+    }
+
+
+    /**
+     * <p>Return the name of the command to be executed
+     * if a validation failure occurs.</p>
+     */
+    public String getFailureCommand() {
+
+        return (this.failureCommand);
+
+    }
+
+
+    /**
+     * <p>Set the name of the command to be executed
+     * if a validation failure occurs.</p>
+     *
+     * @param failureCommand The name of the chain to be executed
+     */
+    public void setFailureCommand(String failureCommand) {
+
+        this.failureCommand = failureCommand;
 
     }
 
@@ -249,38 +273,27 @@ public abstract class AbstractValidateActionForm extends ChainBase {
             return (false);
         }
 
-        // Cache an ForwardConfig back to our input page
-        ForwardConfig forwardConfig = null;
-        String input = actionConfig.getInput();
-        ModuleConfig moduleConfig = actionConfig.getModuleConfig();
-        if (moduleConfig.getControllerConfig().getInputForward()) {
-            forwardConfig = actionConfig.findForwardConfig(input);
-        } else {
-            forwardConfig = forward(context, moduleConfig, input);
+        // Execute the specified validation failure command
+        try {
+            Catalog catalog = (Catalog)
+                context.getAttributes().get(getCatalogKey());
+            Command command = catalog.getCommand(getFailureCommand());
+            if (log.isTraceEnabled()) {
+                log.trace("Calling failure command '" + getFailureCommand()
+                          + "'");
+            }
+            command.execute(context);
+        } catch (Exception e) {
+            log.warn("Exception from failure command '" +
+                     getFailureCommand() + "'", e);
+            throw new IllegalStateException("Failure chain threw exception");
         }
-        context.getAttributes().put(getForwardConfigKey(), forwardConfig);
-
-        // Execute our nested chain and indicate that we are through
-        super.execute(context);
         return (true);
 
     }
 
 
     // ------------------------------------------------------- Protected Methods
-
-
-    /**
-     * <p>Create and return a <code>ForwardConfig</code> representing the
-     * specified module-relative destination.</p>
-     *
-     * @param context The context for this request
-     * @param moduleConfig The <code>ModuleConfig</code> for this request
-     * @param uri The module-relative URI to be the destination
-     */
-    protected abstract ForwardConfig forward(Context context,
-                                             ModuleConfig moduleConfig,
-                                             String uri);
 
 
     /**
