@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.11 2001/12/10 10:05:50 oalexeev Exp $
- * $Revision: 1.11 $
- * $Date: 2001/12/10 10:05:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.12 2001/12/11 17:54:28 oalexeev Exp $
+ * $Revision: 1.12 $
+ * $Date: 2001/12/11 17:54:28 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2001/12/10 10:05:50 $
+ * @version $Revision: 1.12 $ $Date: 2001/12/11 17:54:28 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {
@@ -112,11 +112,11 @@ public class MultiboxTag extends BaseHandlerTag {
     protected String name = Constants.BEAN_KEY;
 
     public String getName() {
-        return (this.name);
+	return (this.name);
     }
 
     public void setName(String name) {
-        this.name = name;
+	this.name = name;
     }
 
 
@@ -141,7 +141,7 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     public String getProperty() {
 
-        return (this.property);
+	return (this.property);
 
     }
 
@@ -153,7 +153,7 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     public void setProperty(String property) {
 
-        this.property = property;
+	this.property = property;
 
     }
 
@@ -163,7 +163,7 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     public String getValue() {
 
-        return (this.value);
+	return (this.value);
 
     }
 
@@ -175,7 +175,7 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     public void setValue(String value) {
 
-        this.value = value;
+	this.value = value;
 
     }
 
@@ -190,9 +190,9 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-        // Defer processing until the end of this tag is encountered
+	// Defer processing until the end of this tag is encountered
         this.constant = null;
-        return (EVAL_BODY_TAG);
+	return (EVAL_BODY_TAG);
 
     }
 
@@ -222,22 +222,22 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-        // Create an appropriate "input" element based on our parameters
-        StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
-        results.append(" name=\"");
-        results.append(this.property);
-        results.append("\"");
-        if (accesskey != null) {
-            results.append(" accesskey=\"");
-            results.append(accesskey);
-            results.append("\"");
-        }
-        if (tabindex != null) {
-            results.append(" tabindex=\"");
-            results.append(tabindex);
-            results.append("\"");
-        }
-        results.append(" value=\"");
+	// Create an appropriate "input" element based on our parameters
+	StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
+	results.append(" name=\"");
+	results.append(this.property);
+	results.append("\"");
+	if (accesskey != null) {
+	    results.append(" accesskey=\"");
+	    results.append(accesskey);
+	    results.append("\"");
+	}
+	if (tabindex != null) {
+	    results.append(" tabindex=\"");
+	    results.append(tabindex);
+	    results.append("\"");
+	}
+	results.append(" value=\"");
         String value = this.value;
         if (value == null)
             value = this.constant;
@@ -249,44 +249,43 @@ public class MultiboxTag extends BaseHandlerTag {
             throw e;
         }
         results.append(ResponseUtils.filter(value));
-        results.append("\"");
-        Object bean = pageContext.findAttribute(name);
-        String values[] = null;
-        if (bean == null)
-            throw new JspException
-                (messages.getMessage("getter.bean", name));
-        try {
-            values = BeanUtils.getArrayProperty(bean, property);
-            if (values == null)
-                values = new String[0];
-            } catch (IllegalAccessException e) {
-                throw new JspException
-                    (messages.getMessage("getter.access", property, name));
-            } catch (InvocationTargetException e) {
-                Throwable t = e.getTargetException();
-                throw new JspException
-                    (messages.getMessage("getter.result",
-                                         property, t.toString()));
-        } catch (NoSuchMethodException e) {
-            throw new JspException
-                (messages.getMessage("getter.method", property, name));
-        }
-        for (int i = 0; i < values.length; i++) {
-            if (value.equals(values[i])) {
-                results.append(" checked=\"checked\"");
-                break;
-            }
-        }
-        results.append(prepareEventHandlers());
-        results.append(prepareStyles());
-        prepareFreetext( results );
-        results.append(">");
+	results.append("\"");
+	Object bean = pageContext.findAttribute(name);
+	String values[] = null;
+	if (bean == null)
+	    throw new JspException
+		(messages.getMessage("getter.bean", name));
+	try {
+	    values = BeanUtils.getArrayProperty(bean, property);
+	    if (values == null)
+		values = new String[0];
+	    } catch (IllegalAccessException e) {
+		throw new JspException
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
+		throw new JspException
+		    (messages.getMessage("getter.result",
+					 property, t.toString()));
+	} catch (NoSuchMethodException e) {
+	    throw new JspException
+		(messages.getMessage("getter.method", property, name));
+	}
+	for (int i = 0; i < values.length; i++) {
+	    if (value.equals(values[i])) {
+		results.append(" checked=\"checked\"");
+		break;
+	    }
+	}
+	results.append(prepareEventHandlers());
+	results.append(prepareStyles());
+	results.append(">");
 
         // Render this element to our response
         ResponseUtils.write(pageContext, results.toString());
 
-        // Continue evaluating this page
-        return (EVAL_PAGE);
+	// Continue evaluating this page
+	return (EVAL_PAGE);
 
     }
 
@@ -296,11 +295,11 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     public void release() {
 
-        super.release();
+	super.release();
         constant = null;
-        name = Constants.BEAN_KEY;
-        property = null;
-        value = null;
+	name = Constants.BEAN_KEY;
+	property = null;
+	value = null;
 
     }
 

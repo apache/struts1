@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.10 2001/12/10 10:05:50 oalexeev Exp $
- * $Revision: 1.10 $
- * $Date: 2001/12/10 10:05:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.11 2001/12/11 17:54:28 oalexeev Exp $
+ * $Revision: 1.11 $
+ * $Date: 2001/12/11 17:54:28 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.ResponseUtils;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2001/12/10 10:05:50 $
+ * @version $Revision: 1.11 $ $Date: 2001/12/11 17:54:28 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -198,7 +198,6 @@ public abstract class BaseFieldTag extends BaseInputTag {
         results.append("\"");
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
-        prepareFreetext( results );
         results.append(">");
 
         // Print this field to our output writer

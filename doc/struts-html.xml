@@ -297,19 +297,6 @@
                 [Body of this tag (if any), or "Click"]
             </info>
         </attribute>
-
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
-
     </tag>
 
     <tag>
@@ -541,19 +528,6 @@
                 [Body of this tag (if any), or "Cancel"]
             </info>
         </attribute>
-
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
-
     </tag>
 
 
@@ -817,19 +791,6 @@
                         the value "on" will be returned.
             </info>
         </attribute>
-
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
-
     </tag>
 
         <tag>
@@ -1196,19 +1157,6 @@
                 [Body of this tag (if any), or "Cancel"]
             </info>
         </attribute>
-
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
-
     </tag>
 
     <tag>
@@ -1456,19 +1404,6 @@
                 corresponding bean property value]
             </info>
         </attribute>
-
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
-
     </tag>
 
 
@@ -1775,18 +1710,6 @@
             <name>value</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
-          </attribute>
-
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
           </attribute>
 
         </tag>
@@ -2253,18 +2176,6 @@
                   </info>
                 </attribute>
 
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
-
         </tag>
 
         <tag>
@@ -2394,18 +2305,6 @@
                   attribute, or the <code>page</code> attribute.</p>
                   </info>
                 </attribute>
-
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
 
                 <attribute>
                   <name>href</name>
@@ -2924,18 +2823,6 @@
           </info>
         </attribute>
 
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
-
         <attribute>
             <name>name</name>
             <required>false</required>
@@ -3426,18 +3313,6 @@
           </info>
         </attribute>
 
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
-
         <attribute>
             <name>indexed</name>
             <required>false</required>
@@ -3731,18 +3606,6 @@
           </info>
         </attribute>
 
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
-
         <attribute>
             <name>indexed</name>
             <required>false</required>
@@ -3946,18 +3809,6 @@
           disabled.
           </info>
         </attribute>
-
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
 
         <attribute>
             <name>onblur</name>
@@ -4376,18 +4227,6 @@
           </info>
         </attribute>
 
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
-
         <attribute>
             <name>indexed</name>
             <required>false</required>
@@ -4652,18 +4491,6 @@
           </info>
         </attribute>
 
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
-
         <attribute>
             <name>indexed</name>
             <required>false</required>
@@ -4894,18 +4721,6 @@
           disabled.
           </info>
         </attribute>
-
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
 
         <attribute>
             <name>indexed</name>
@@ -5188,18 +5003,6 @@
           disabled.
           </info>
         </attribute>
-
-          <attribute>
-            <name>freetext</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-              <p>Attribute to hold all other, non supported by struts attribute names
-              and values. Developers could add a string to be included in the tag as they 
-              provide it. So all missing attributes for tags can be added via 'freetext'
-              attribute in free form.</p>
-            </info>
-          </attribute>
 
         <attribute>
             <name>indexed</name>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.9 2001/12/10 10:05:50 oalexeev Exp $
- * $Revision: 1.9 $
- * $Date: 2001/12/10 10:05:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.10 2001/12/11 17:54:28 oalexeev Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/12/11 17:54:28 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.ResponseUtils;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/12/10 10:05:50 $
+ * @version $Revision: 1.10 $ $Date: 2001/12/11 17:54:28 $
  */
 
 public class SelectTag extends BaseHandlerTag {
@@ -269,7 +269,6 @@ public class SelectTag extends BaseHandlerTag {
         }
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
-        prepareFreetext( results );
         results.append(">");
 
         // Print this field to our output writer
