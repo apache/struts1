@@ -64,9 +64,10 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.apache.commons.beanutils.DynaProperty;
-import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.config.impl.ModuleConfigImpl;
 
 
 /**
@@ -114,9 +115,9 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
 
 
     /**
-     * Dummy ApplicationConfig for calls to reset() and validate().
+     * Dummy ModuleConfig for calls to reset() and validate().
      */
-    protected ApplicationConfig appConfig = null;
+    protected ModuleConfig moduleConfig = null;
 
 
     /**
@@ -170,8 +171,8 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
             throw new RuntimeException(e.getMessage());
         }
         setupComplexProperties();
-        appConfig = new DynaActionFormConfig(beanConfig);
-        mapping = new DynaActionFormMapping(appConfig);
+        moduleConfig = new DynaActionFormConfig(beanConfig);
+        mapping = new DynaActionFormMapping(moduleConfig);
 
 
     }
@@ -180,7 +181,7 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
     public void tearDown() {
 
         super.tearDown();
-        appConfig = null;
+        moduleConfig = null;
         dynaForm = null;
         mapping = null;
 
@@ -837,7 +838,6 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
      */
     public void testSetMappedValues() {
 
-        Object value = null;
 
         try {
             dynaForm.set("mappedProperty", "First Key", "New First Value");
@@ -1076,7 +1076,7 @@ class DynaActionFormMapping extends ActionMapping {
 
 
 
-class DynaActionFormConfig extends ApplicationConfig {
+class DynaActionFormConfig extends ModuleConfigImpl {
 
     public DynaActionFormConfig(FormBeanConfig beanConfig) {
         super("");
