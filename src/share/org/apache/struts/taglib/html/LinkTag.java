@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.7 2001/04/03 18:06:19 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/04/03 18:06:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.8 2001/04/18 01:31:15 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/04/18 01:31:15 $
  *
  * ====================================================================
  *
@@ -80,16 +80,26 @@ import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/04/03 18:06:19 $
+ * @version $Revision: 1.8 $ $Date: 2001/04/18 01:31:15 $
  */
 
 public class LinkTag extends BaseHandlerTag {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The body content of this tag (if any).
+     */
+    protected String text = null;
 
 
     // ------------------------------------------------------------- Properties
@@ -334,17 +344,10 @@ public class LinkTag extends BaseHandlerTag {
 	results.append(">");
 
 	// Print this element to our output writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.print(results.toString());
-	} catch (IOException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-	    throw new JspException
-		(messages.getMessage("common.io", e.toString()));
-	}
+        ResponseUtils.write(pageContext, results.toString());
 
 	// Evaluate the body of this tag
+        this.text = null;
 	return (EVAL_BODY_TAG);
 
     }
@@ -352,20 +355,16 @@ public class LinkTag extends BaseHandlerTag {
 
 
     /**
-     * Render the body content of this hyperlink.
+     * Save the associated label from the body content.
      *
      * @exception JspException if a JSP exception has occurred
      */
     public int doAfterBody() throws JspException {
 
         if (bodyContent != null) {
-            JspWriter writer = bodyContent.getEnclosingWriter();
-            try {
-                writer.print(bodyContent.getString().trim());
-            } catch (IOException e) {
-                throw new JspException
-                    (messages.getMessage("common.io", e.toString()));
-            }
+            String value = bodyContent.getString().trim();
+            if (value.length() > 0)
+                text = value;
         }
         return (SKIP_BODY);
 
@@ -379,16 +378,16 @@ public class LinkTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
+        // Prepare the textual content and ending element of this hyperlink
+        StringBuffer results = new StringBuffer();
+        if (text != null)
+            results.append(text);
+        results.append("</a>");
 
-	// Print the ending element to our output writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.print("</a>");
-	} catch (IOException e) {
-	    throw new JspException
-	        (messages.getMessage("common.io", e.toString()));
-	}
+	// Render the remainder to the output stream
+        ResponseUtils.write(pageContext, results.toString());
 
+        // Evaluate the remainder of this page
 	return (EVAL_PAGE);
 
     }
@@ -413,6 +412,7 @@ public class LinkTag extends BaseHandlerTag {
 	property = null;
         scope = null;
 	target = null;
+        text = null;
         transaction = false;
 
     }

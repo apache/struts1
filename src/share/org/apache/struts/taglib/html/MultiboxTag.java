@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.4 2001/04/03 19:23:15 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/04/03 19:23:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.5 2001/04/18 01:31:15 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/04/18 01:31:15 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/04/03 19:23:15 $
+ * @version $Revision: 1.5 $ $Date: 2001/04/18 01:31:15 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {
@@ -191,6 +191,7 @@ public class MultiboxTag extends BaseHandlerTag {
     public int doStartTag() throws JspException {
 
 	// Defer processing until the end of this tag is encountered
+        this.constant = null;
 	return (EVAL_BODY_TAG);
 
     }
@@ -281,13 +282,7 @@ public class MultiboxTag extends BaseHandlerTag {
 	results.append(">");
 
         // Render this element to our response
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.println(results.toString());
-	} catch (IOException e) {
-	    throw new JspException
-		(messages.getMessage("common.io", e.toString()));
-	}
+        ResponseUtils.write(pageContext, results.toString());
 
 	// Continue evaluating this page
 	return (EVAL_PAGE);

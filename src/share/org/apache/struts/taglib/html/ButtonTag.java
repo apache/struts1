@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.2 2001/01/08 21:36:03 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/08 21:36:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.3 2001/04/18 01:31:14 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/04/18 01:31:14 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -67,13 +67,14 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Renders an HTML BUTTON tag within the Struts framework.
  *
  * @author Don Clasen
- * @version $Revision: 1.2 $ $Date: 2001/01/08 21:36:03 $
+ * @version $Revision: 1.3 $ $Date: 2001/04/18 01:31:14 $
  */
 
 public class ButtonTag extends BaseHandlerTag {
@@ -85,6 +86,12 @@ public class ButtonTag extends BaseHandlerTag {
      * The property name of the generated button.
      */
     protected String property = null;
+
+
+    /**
+     * The body content of this tag (if any).
+     */
+    protected String text = null;
 
 
     /**
@@ -129,26 +136,33 @@ public class ButtonTag extends BaseHandlerTag {
         this.value = value;
     }
 
+
     // --------------------------------------------------------- Public Methods
+
 
     /**
      * Process the start of this tag.
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
+
         // Do nothing until doEndTag() is called
+        this.text = null;
         return (EVAL_BODY_TAG);
+
     }
     
+
     /**
      * Process the end of this tag.
      * @exception JspException if a JSP exception has occurred
      */
     public int doEndTag() throws JspException {
+
         // Acquire the label value we will be generating
         String label = value;
-        if ((label == null) && (bodyContent != null))
-            label = bodyContent.getString().trim();
+        if ((label == null) && (text != null))
+            label = text;
         if ((label == null) || (label.trim().length() < 1))
             label = "Click";
 
@@ -178,15 +192,9 @@ public class ButtonTag extends BaseHandlerTag {
         results.append(">");
 
         // Render this element to our writer
-        JspWriter writer = pageContext.getOut();
-        try {
-            writer.print(results.toString());
-        }
-        catch (IOException e) {
-            throw new JspException
-            (messages.getMessage("common.io", e.toString()));
-        }
-        
+        ResponseUtils.write(pageContext, results.toString());
+
+        // Evaluate the remainder of this page
         return (EVAL_PAGE);
 
     }
@@ -199,6 +207,7 @@ public class ButtonTag extends BaseHandlerTag {
 
 	super.release();
 	property = null;
+        text = null;
 	value = null;
 
     }

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CancelTag.java,v 1.2 2001/01/08 21:36:04 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/08 21:36:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CancelTag.java,v 1.3 2001/04/18 01:31:14 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/04/18 01:31:14 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -68,19 +68,21 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Tag for input fields of type "cancel".
  *
  * @author Jeff Hutchinson
- * @version $Revision: 1.2 $ $Date: 2001/01/08 21:36:04 $
+ * @version $Revision: 1.3 $ $Date: 2001/04/18 01:31:14 $
  */
 
 public class CancelTag extends BaseHandlerTag {
 
 
     // ----------------------------------------------------- Instance Variables
+
 
     /**
      * The message resources for this package.
@@ -93,6 +95,12 @@ public class CancelTag extends BaseHandlerTag {
      * The property name of the generated button.
      */
     protected String property = Constants.CANCEL_PROPERTY;
+
+
+    /**
+     * The body content of this tag (if any).
+     */
+    protected String text = null;
 
 
     /**
@@ -137,16 +145,39 @@ public class CancelTag extends BaseHandlerTag {
         this.value = value;
     }
 
+
     // --------------------------------------------------------- Public Methods
+
 
     /**
      * Process the start of this tag.
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
+
         // Do nothing until doEndTag() is called
+        this.text = null;
         return (EVAL_BODY_TAG);
+
     }
+
+
+    /**
+     * Save the associated label from the body content.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
+    public int doAfterBody() throws JspException {
+
+        if (bodyContent != null) {
+            String value = bodyContent.getString().trim();
+            if (value.length() > 0)
+                text = value;
+        }
+        return (SKIP_BODY);
+
+    }
+
 
     /**
      * Process the end of this tag.
@@ -154,47 +185,41 @@ public class CancelTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-    // Acquire the label value we will be generating
-    String label = value;
-    if ((label == null) && (bodyContent != null))
-        label = bodyContent.getString().trim();
-    if ((label == null) || (label.trim().length() < 1))
-        label = "Cancel";
+        // Acquire the label value we will be generating
+        String label = value;
+        if ((label == null) && (text != null))
+            label = text;
+        if ((label == null) || (label.trim().length() < 1))
+            label = "Cancel";
 
-    // Generate an HTML element
-    StringBuffer results = new StringBuffer();
-    results.append("<input type=\"submit\"");
-    results.append(" name=\"");
-    results.append(property);
-    results.append("\"");
-    if (accesskey != null) {
-	results.append(" accesskey=\"");
-	results.append(accesskey);
-	results.append("\"");
-    }
-    if (tabindex != null) {
-	results.append(" tabindex=\"");
-	results.append(tabindex);
-	results.append("\"");
-    }
-    results.append(" value=\"");
-    results.append(label);
-    results.append("\"");
-    results.append(prepareEventHandlers());
-    results.append(prepareStyles());
-    results.append(">");
+        // Generate an HTML element
+        StringBuffer results = new StringBuffer();
+        results.append("<input type=\"submit\"");
+        results.append(" name=\"");
+        results.append(property);
+        results.append("\"");
+        if (accesskey != null) {
+            results.append(" accesskey=\"");
+            results.append(accesskey);
+            results.append("\"");
+        }
+        if (tabindex != null) {
+            results.append(" tabindex=\"");
+            results.append(tabindex);
+            results.append("\"");
+        }
+        results.append(" value=\"");
+        results.append(label);
+        results.append("\"");
+        results.append(prepareEventHandlers());
+        results.append(prepareStyles());
+        results.append(">");
 
-    // Render this element to our writer
-    JspWriter writer = pageContext.getOut();
-    try {
-        writer.print(results.toString());
-    }
-    catch (IOException e) {
-        throw new JspException
-        (messages.getMessage("common.io", e.toString()));
-    }
+        // Render this element to our writer
+        ResponseUtils.write(pageContext, results.toString());
 
-    return (EVAL_PAGE);
+        // Evaluate the remainder of this page
+        return (EVAL_PAGE);
 
     }
 
@@ -206,6 +231,7 @@ public class CancelTag extends BaseHandlerTag {
 
 	super.release();
 	property = Constants.CANCEL_PROPERTY;
+        text = null;
 	value = null;
 
     }

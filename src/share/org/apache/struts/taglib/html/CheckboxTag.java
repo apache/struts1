@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.3 2001/03/10 23:27:31 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/03/10 23:27:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.4 2001/04/18 01:31:14 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/04/18 01:31:14 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "checkbox".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/03/10 23:27:31 $
+ * @version $Revision: 1.4 $ $Date: 2001/04/18 01:31:14 $
  */
 
 public class CheckboxTag extends BaseHandlerTag {
@@ -110,6 +110,12 @@ public class CheckboxTag extends BaseHandlerTag {
      * The property name for this field.
      */
     protected String property = null;
+
+
+    /**
+     * The body content of this tag (if any).
+     */
+    protected String text = null;
 
 
     /**
@@ -215,6 +221,7 @@ public class CheckboxTag extends BaseHandlerTag {
         ResponseUtils.write(pageContext, results.toString());
 
 	// Continue processing this page
+        this.text = null;
 	return (EVAL_BODY_TAG);
 
     }
@@ -222,7 +229,7 @@ public class CheckboxTag extends BaseHandlerTag {
 
 
     /**
-     * Optionally render the associated label from the body content.
+     * Save the associated label from the body content.
      *
      * @exception JspException if a JSP exception has occurred
      */
@@ -231,7 +238,7 @@ public class CheckboxTag extends BaseHandlerTag {
         if (bodyContent != null) {
             String value = bodyContent.getString().trim();
             if (value.length() > 0)
-                ResponseUtils.write(pageContext, value);
+                text = value;
         }
         return (SKIP_BODY);
 
@@ -245,6 +252,11 @@ public class CheckboxTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
+        // Render any description for this checkbox
+        if (text != null)
+            ResponseUtils.write(pageContext, text);
+
+        // Evaluate the remainder of this page
         return (EVAL_PAGE);
 
     }
@@ -258,6 +270,7 @@ public class CheckboxTag extends BaseHandlerTag {
 	super.release();
 	name = Constants.BEAN_KEY;
 	property = null;
+        text = null;
 	value = null;
 
     }

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.2 2001/01/08 21:36:09 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/08 21:36:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.3 2001/04/18 01:31:15 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/04/18 01:31:15 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -70,13 +70,14 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Tag for input fields of type "radio".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/01/08 21:36:09 $
+ * @version $Revision: 1.3 $ $Date: 2001/04/18 01:31:15 $
  */
 
 public class RadioTag extends BaseHandlerTag {
@@ -110,6 +111,12 @@ public class RadioTag extends BaseHandlerTag {
      * The property name for this field.
      */
     protected String property = null;
+
+
+    /**
+     * The body content of this tag (if any).
+     */
+    protected String text = null;
 
 
     /**
@@ -223,16 +230,28 @@ public class RadioTag extends BaseHandlerTag {
 	results.append(">");
 
 	// Print this field to our output writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.print(results.toString());
-	} catch (IOException e) {
-	    throw new JspException
-		(messages.getMessage("common.io", e.toString()));
-	}
+        ResponseUtils.write(pageContext, results.toString());
 
 	// Continue processing this page
+        this.text = null;
 	return (EVAL_BODY_TAG);
+
+    }
+
+
+    /**
+     * Save the associated label from the body content.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
+    public int doAfterBody() throws JspException {
+
+        if (bodyContent != null) {
+            String value = bodyContent.getString().trim();
+            if (value.length() > 0)
+                text = value;
+        }
+        return (SKIP_BODY);
 
     }
 
@@ -244,18 +263,11 @@ public class RadioTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-	if (bodyContent == null)
-	    return (EVAL_PAGE);
+        // Render any description for this radio button
+        if (text != null)
+            ResponseUtils.write(pageContext, text);
 
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.println(bodyContent.getString().trim());
-	} catch (IOException e) {
-	    throw new JspException
-		(messages.getMessage("common.io", e.toString()));
-	}
-
-	// Continue evaluating this page
+	// Evaluate the remainder of this page
 	return (EVAL_PAGE);
 
     }
@@ -269,6 +281,7 @@ public class RadioTag extends BaseHandlerTag {
 	super.release();
 	name = Constants.BEAN_KEY;
 	property = null;
+        text = null;
 	value = null;
 
     }
