@@ -39,11 +39,14 @@ become one of our customers, then you need to
 </p>
 
 <p>
-Our challenge to any team using Struts is to donate the time of one team member one
-afternoon a week (or more if you can spare the resources). Have your team member browse Bugzilla for any
-issues without a <a href="#code">patch</a> or <a href="#tests">unit test</a>, and add the patch or test.
-If the patch is written on company time, and you want to give your company an author's credit, that's
-fine with us.
+Our challenge to any team using Struts is to donate the time of one team member 
+one afternoon a week (or more if you can spare the resources). 
+Have your team member browse 
+<a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a> for any issues 
+without a <a href="#code">patch</a> or <a href="#tests">unit test</a>, 
+and add the patch or test.
+If the patch is written on company time, 
+and you want to give your company an author's credit, that's fine with us.
 </p>
 
 <p>
@@ -57,6 +60,17 @@ If Struts does do what you want, help others become involved by turning your war
 how-tos that we can make part of the <a href="documentation">documentation</a>. The mailing list is very
 active and trundling through the archives is no picnic. We can always use people who can reduce the best
 threads to coherent articles that we can put in the User Guide.
+</p>
+
+<p>
+Some Apache products like you to submit your patch to the mailing list. 
+We would prefer that you create a 
+<a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a>
+Bugzilla report and then attach the patch to the report. 
+To do this, you must first create the report, 
+and then modify the report to add your patch. 
+We realize this is a bit clumsy, but it keeps us from losing things, 
+and helps to ensure that your patch will be attended.
 </p>
 
 <p>
