@@ -16,6 +16,7 @@
     <author>Robert Hayden</author>
     <author>Stanley Santiago</author>
     <author>Wong Kok Kai</author>
+    <author>Rob Leland</author>
     <title>The Struts Framework Project - Installation (1.1)</title>
   </properties>
 
@@ -200,10 +201,12 @@
         is a quick example of uploading files using the Struts framework.
     </li>
     <li><strong>webapps/struts-validator.war</strong> - This web application
-        is an example of using the validator framework, composed of
-        server-side and optional client-side framework.
+        is an example of using the validator framework, using both the
+        server-side and optional client-side validation.
     </li>
-        </ul>
+        <li><strong>webapps/tiles-documentation.war</strong> - This web
+        application documents how to use tiles, and was developed using tiles.</li>
+    </ul>
 
     <p>To use Struts in your own application, you will need to follow
     these steps:</p>
@@ -349,8 +352,24 @@ about how to configure additional security manager permissions.</p>
             package JAR file from the Jakarta Commons project.</li>
         <li><strong>commons-collections.jar</strong> - Pathname of the
             Collections package JAR file from the Jakarta Commons project.</li>
+        <li><strong>commons-dbcp.jar</strong> - Pathname of the DBCP
+            package JAR file from the Jakarta Commons project.</li>
         <li><strong>commons-digester.jar</strong> - Pathname of the
             Digester package JAR file from the Jakarta Commons project.</li>
+        <li><strong>commons-fileupload.jar</strong> - Pathname of the
+            Fileupload package JAR file from the Jakarta Commons project.</li>
+        <li><strong>commons-lang.jar</strong> - Pathname of the
+            Lang package JAR file from the Jakarta Commons project.</li>
+        <li><strong>commons-logging.jar</strong> - Pathname of the
+            Logging package JAR file from the Jakarta Commons project.</li>
+        <li><strong>commons-pool.jar</strong> - Pathname of the
+            Pool package JAR file from the Jakarta Commons project.</li>
+        <li><strong>commons-resources.jar</strong> - Pathname of the
+            Resources package JAR file from the Jakarta Commons project.</li>
+        <li><strong>commons-services.jar</strong> - Pathname of the
+            Services package JAR file from the Jakarta Commons project.</li>
+        <li><strong>commons-validator.jar</strong> - Pathname of the
+            Validator package JAR file from the Jakarta Commons project.</li>
         <li><strong>servletapi.home</strong> - Pathname to the directory of
             your binary distribution of the Servlet API classes.</li>
         <li><strong>tomcat.home</strong> - Pathname to the directory of your
@@ -361,7 +380,9 @@ about how to configure additional security manager permissions.</p>
             (required only if you wish to use the <code>deploy.catalina</code>
             target).</li>
         </ul></li>
-    <li>If you are a Struts developer with write access to the CVS repository,
+
+
+   <li>If you are a Struts developer with write access to the CVS repository,
         be sure that you do <strong>NOT</strong> check in a copy of the
         <code>build.properties</code> file, since it will be different for
         each individual developer.</li>
