@@ -377,7 +377,7 @@
     <echo message="  all                    Cleans and builds library and webapps"/>
     <echo message="  clean                  Cleans the build and distribution directories"/>
     <echo message="  compile.documentation  Builds the documentation webapp"/>
-    <echo message="  compile.examples       Builds the examples webapp"/>
+    <echo message="  compile.example        Builds the examples webapp"/>
     <echo message="  compile.javadoc        Builds Javadoc API docs for Struts"/>
     <echo message="  compile.library        Builds the main packages"/>
     <echo message="  compile.template       Builds the template example webapp"/>
