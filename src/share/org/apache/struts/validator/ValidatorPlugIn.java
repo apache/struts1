@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.20 2003/09/28 17:02:51 rleland Exp $
- * $Revision: 1.20 $
- * $Date: 2003/09/28 17:02:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.21 2003/09/28 17:03:33 rleland Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/09/28 17:03:33 $
  *
  * ====================================================================
  *
@@ -77,11 +77,11 @@ import org.apache.struts.action.PlugIn;
 import org.apache.struts.config.ModuleConfig;
 
 /**
- * Loads <code>ValidatorResources</code> based on configuration in the 
+ * Loads <code>ValidatorResources</code> based on configuration in the
  * struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.20 $ $Date: 2003/09/28 17:02:51 $
+ * @version $Revision: 1.21 $ $Date: 2003/09/28 17:03:33 $
  * @since Struts 1.1
  */
 public class ValidatorPlugIn implements PlugIn {
@@ -150,16 +150,16 @@ public class ValidatorPlugIn implements PlugIn {
     }
 
     /**
-     * Informs the Validators if it has to stop validation when finding the 
-     * first error or if it should continue.  Default to <code>true</code> to 
+     * Informs the Validators if it has to stop validation when finding the
+     * first error or if it should continue.  Default to <code>true</code> to
      * keep Struts 1.1 backwards compatibility.
      */
     private boolean stopOnFirstError = true;
 
     /**
      * Gets the value for stopOnFirstError.
-     * @return A boolean indicating whether JavaScript validation should stop 
-     * when it finds the first error (Struts 1.1 behaviour) or continue 
+     * @return A boolean indicating whether JavaScript validation should stop
+     * when it finds the first error (Struts 1.1 behaviour) or continue
      * validation.
      * @since Struts 1.2
      */
@@ -169,8 +169,8 @@ public class ValidatorPlugIn implements PlugIn {
 
     /**
      * Sets the value for stopOnFirstError.
-     * @param stopOnFirstError A boolean indicating whether JavaScript 
-     * validation should stop when it finds the first error 
+     * @param stopOnFirstError A boolean indicating whether JavaScript
+     * validation should stop when it finds the first error
      * (Struts 1.1 behaviour) or continue validation.
      * @since Struts 1.2
      */
@@ -196,7 +196,7 @@ public class ValidatorPlugIn implements PlugIn {
         // Load our database from persistent storage
         try {
             this.initResources();
-            
+
             servlet.getServletContext().setAttribute(
                 VALIDATOR_KEY + config.getPrefix(),
                 resources);
@@ -204,7 +204,7 @@ public class ValidatorPlugIn implements PlugIn {
             servlet.getServletContext().setAttribute(
                 STOP_ON_ERROR_KEY + '.' + config.getPrefix(),
                 new Boolean(this.stopOnFirstError));
-                
+
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw new UnavailableException(
@@ -236,7 +236,7 @@ public class ValidatorPlugIn implements PlugIn {
      * @exception ServletException if we cannot initialize these resources, not thrown by this implementation
      */
     protected void initResources() throws IOException, ServletException {
-        this.resources = new ValidatorResources(pathnames);
+        this.resources = new ValidatorResources();
 
         if (pathnames == null || pathnames.length() <= 0) {
             return;
