@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.40 2003/12/18 04:30:08 husted Exp $
- * $Revision: 1.40 $
- * $Date: 2003/12/18 04:30:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.41 2003/12/20 19:32:46 husted Exp $
+ * $Revision: 1.41 $
+ * $Date: 2003/12/20 19:32:46 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.40 $ $Date: 2003/12/18 04:30:08 $
+ * @version $Revision: 1.41 $ $Date: 2003/12/20 19:32:46 $
  * @since Struts 1.1
  */
 public class RequestProcessor {
@@ -143,7 +143,7 @@ public class RequestProcessor {
 
 
     /**
-     * <p>The controller servlet we are associated with.</p>
+     * <p>The servlet with which we are associated.</p>
      */
     protected ActionServlet servlet = null;
 
@@ -191,7 +191,8 @@ public class RequestProcessor {
 
     /**
      * <p>Process an <code>HttpServletRequest</code> and create the
-     * corresponding <code>HttpServletResponse</code>.</p>
+     * corresponding <code>HttpServletResponse</code> or dispatch
+     * to another resource.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -298,7 +299,11 @@ public class RequestProcessor {
         if (log.isDebugEnabled()) {
             log.debug(" Looking for Action instance for class " + className);
         }
-        
+
+        // :TODO: If there were a mapping property indicating whether
+        // an Action were a singleton or not ([true]),
+        // could we just instantiate and return a new instance here?
+
         Action instance = null;
         synchronized (actions) {
 
@@ -434,7 +439,7 @@ public class RequestProcessor {
 
     /**
      * <P>Ask the specified <code>Action</code> instance to handle this
-     * request.  Return the <code>ActionForward</code> instance (if any)
+     * request. Return the <code>ActionForward</code> instance (if any)
      * returned by the called <code>Action</code> for further processing.
      * </P>
      *
@@ -468,12 +473,15 @@ public class RequestProcessor {
      * <p>Removes any <code>ActionMessages</code> object stored in the session under
      * <code>Globals.MESSAGE_KEY</code> if the messages' 
      * <code>isAccessed</code> method returns true.  This allows messages to
-     * be stored in the session, display one time, and be released up here.</p>
+     * be stored in the session, display one time, and be released here.</p>
+     *
      * @param request The servlet request we are processing.
      * @param response The servlet response we are creating.
+     *
      * @since Struts 1.2
      */
     protected void processCachedMessages(
+
         HttpServletRequest request,
         HttpServletResponse response) {
 
@@ -518,7 +526,7 @@ public class RequestProcessor {
 
 
     /**
-     * <p>Ask our exception handler to handle the exception.  Return the
+     * <p>Ask our exception handler to handle the exception. Return the
      * <code>ActionForward</code> instance (if any) returned by the
      * called <code>ExceptionHandler</code>.</p>
      *
@@ -592,7 +600,7 @@ public class RequestProcessor {
 
 
     /**
-     * <p>Process an include requested by this mapping (if any).  Return
+     * <p>Process an include requested by this mapping (if any). Return
      * <code>true</code> if standard processing should continue, or
      * <code>false</code> if we have already handled this request.</p>
      *
@@ -798,7 +806,7 @@ public class RequestProcessor {
      * the request parameters included with this request.  In addition,
      * request attribute <code>Globals.CANCEL_KEY</code> will be set if
      * the request was submitted with a button created by
-     * <code>CancelTag</code>.
+     * <code>CancelTag</code>.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -845,9 +853,9 @@ public class RequestProcessor {
 
     /**
      * <p>General-purpose preprocessing hook that can be overridden as required
-     * by subclasses.  Return <code>true</code> if you want standard processing
+     * by subclasses. Return <code>true</code> if you want standard processing
      * to continue, or <code>false</code> if the response has already been
-     * completed.  The default implementation does nothing.</p>
+     * completed. The default implementation does nothing.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -914,7 +922,7 @@ public class RequestProcessor {
      * <p>If this request was not cancelled, and the request's
      * {@link ActionMapping} has not disabled validation, call the
      * <code>validate</code> method of the specified {@link ActionForm},
-     * and forward back to the input form if there were any errors.
+     * and forward to the input path if there were any errors.
      * Return <code>true</code> if we should continue processing,
      * or <code>false</code> if we have already forwarded control back
      * to the input form.</p>
@@ -936,8 +944,7 @@ public class RequestProcessor {
         if (form == null) {
             return (true);
         }
-
-        // Was this request cancelled?
+                                              // Was this request cancelled?
         if (request.getAttribute(Globals.CANCEL_KEY) != null) {
             if (log.isDebugEnabled()) {
                 log.debug(" Cancelled transaction, skipping validation");
@@ -970,7 +977,7 @@ public class RequestProcessor {
             form.getMultipartRequestHandler().rollback();
         }
 
-        // Has an input form been specified for this mapping?
+        // Was an input path (or forward) specified for this mapping?
         String input = mapping.getInput();
         if (input == null) {
             if (log.isTraceEnabled()) {
@@ -1006,9 +1013,11 @@ public class RequestProcessor {
      * the module name.</p>
      * <p>This method is used internally and is not part of the public API. It is
      * advised to not use it in subclasses. </p>
+     *
      * @param uri Module-relative URI to forward to
      * @param request Current page request
      * @param response Current page response
+     *
      * @since Struts 1.1
      */
     protected void internalModuleRelativeForward(
@@ -1021,7 +1030,7 @@ public class RequestProcessor {
         uri = moduleConfig.getPrefix() + uri;
 
         // Delegate the processing of this request
-        // FIXME - exception handling?
+        // :FIXME: - exception handling?
         if (log.isDebugEnabled()) {
             log.debug(" Delegating via forward to '" + uri + "'");
         }
@@ -1039,6 +1048,7 @@ public class RequestProcessor {
      * @param uri Module-relative URI to include
      * @param request Current page request
      * @param response Current page response
+     *
      * @since Struts 1.1
      */
     protected void internalModuleRelativeInclude(
@@ -1136,7 +1146,8 @@ public class RequestProcessor {
 
 
     /**
-     * <p>Return the <code>ServletContext</code> for the web application in which we are running.
+     * <p>Return the <code>ServletContext</code> for the web application in which
+     * we are running.
      */
     protected ServletContext getServletContext() {
 
@@ -1150,11 +1161,14 @@ public class RequestProcessor {
      * web application.</p>
      *
      * @param message The message to be logged
-     * @deprecated Use commons-logging instead.  This will be removed in a release
+     * @deprecated Use commons-logging instead. This will be removed in a release
      * after Struts 1.2.
      */
     protected void log(String message) {
+        // :TODO: Remove after Struts 1.2
+
         servlet.log(message);
+
     }
 
 
@@ -1164,11 +1178,15 @@ public class RequestProcessor {
      *
      * @param message The message to be logged
      * @param exception The exception to be logged
+
      * @deprecated Use commons-logging instead.  This will be removed in a release
      * after Struts 1.2.
      */
     protected void log(String message, Throwable exception) {
+        // :TODO: Remove after Sruts 1.2
+
         servlet.log(message, exception);
+
     }
 
 
