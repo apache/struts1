@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.96 2002/03/10 01:23:29 craigmcc Exp $
- * $Revision: 1.96 $
- * $Date: 2002/03/10 01:23:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.97 2002/03/14 06:15:55 craigmcc Exp $
+ * $Revision: 1.97 $
+ * $Date: 2002/03/14 06:15:55 $
  *
  * ====================================================================
  *
@@ -269,7 +269,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.96 $ $Date: 2002/03/10 01:23:29 $
+ * @version $Revision: 1.97 $ $Date: 2002/03/14 06:15:55 $
  */
 
 public class ActionServlet
@@ -840,10 +840,10 @@ public class ActionServlet
                 ds = (DataSource)
                     RequestUtils.applicationInstance(dscs[i].getType());
                 BeanUtils.populate(ds, dscs[i].getProperties());
-                ds.setLogWriter(scw);
                 if (ds instanceof GenericDataSource) {
                     ((GenericDataSource) ds).open();
                 }
+                ds.setLogWriter(scw);
             } catch (Throwable t) {
                 log.error(internal.getMessage
                     ("dataSource.init", dscs[i].getKey()), t);

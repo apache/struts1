@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.11 2002/03/10 01:23:30 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2002/03/10 01:23:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.12 2002/03/14 06:15:55 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/03/14 06:15:55 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -65,155 +65,36 @@ package org.apache.struts.util;
 
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.LinkedList;
-import java.util.Properties;
 import javax.sql.DataSource;
+import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 
 /**
- * <p>Generic data source implementation of the <code>DataSource</code>
- * interface.  <b>WARNING</b> - This implementation does not know how to
- * provide connections with different username/password combinations.
- * Calling this version of the implementation using the
- * getConnection(username,password) signature will throw an exception.</p>
- *
- * <p>The following properties are supported by the standard
- * <code>GenericDataSource</code> implementation:</p>
- * <table>
- * <tr>
- *   <th width="15%">Property</th>
- *   <th width="85%">Description</th>
- * </tr>
- * <tr>
- *   <td align="center">autoCommit</td>
- *   <td>Set to <code>true</code> if you want the connections returned to you
- *       by calling <code>getConnection()</code> to be configured in
- *       "auto-commit after every statement" mode.  The default value is
- *       <code>true</code>, to conform to JDBC standard conventions.</td>
- * </tr>
- * <tr>
- *   <td align="center">description</td>
- *   <td>A short textual description of this data source.  This property is
- *       required by the <code>javax.sql.DataSource</code> interface, but is
- *       not used within this implementation.</td>
- * </tr>
- * <tr>
- *   <td align="center">driverClass</td>
- *   <td>The fully qualified class name of the JDBC driver to be utilized for
- *       the connections created by this data source.  Consult the
- *       documentation for your JDBC driver to identify the value to be
- *       configured for this property.</td>
- * </tr>
- * <tr>
- *   <td align="center">maxCount</td>
- *   <td>The maximum number of JDBC connections that will be created by this
- *       data source.  This value must be greater than or equal to the value
- *       specified for the <code>minCount</count> property.</td>
- * </tr>
- * <tr>
- *   <td align="center">minCount</td>
- *   <td>The minimum number of JDBC connections to establish when this data
- *       source is first opened.  This value must be less than or equal to the
- *       value specified for the <code>maxCount</code> property.</td>
- * </tr>
- * <tr>
- *   <td align="center">password</td>
- *   <td>The database password used to establish the connections created by
- *       this connection pool, in conjunction with the username specified in
- *       the <code>user</code> property.</td>
- * </tr>
- * <tr>
- *   <td align="center">pingCommand</td>
- *   <td>A non-query SQL command that, if specified, will be executed before
- *       a connection is returned by a call to <code>getConnection()</code>.
- *       If any SQLException is thrown by the execution of this statement,
- *       it is assumed that this connection is stale and it will be discarded.
- *       Because this happens on every connection allocation, you should ensure
- *       that the statement executes very quickly.</td>
- * </tr>
- * <tr>
- *   <td align="center">pingQuery</td>
- *   <td>A query SQL command (i.e. a SELECT) that, if specified, will be
- *       executed before a connection is returned by a call to
- *       <code>getConnection()</code>.  If any SQLException is thrown by the
- *       execution of this query (or by the subsequent processing of the
- *       entire returned <code>ResultSet</code>), it is assumed that this
- *       connection is stale and it will be discarded.  Because this happens
- *       on every connection allocation, you should ensure that the
- *       statement executes very quickly.</td>
- * </tr>
- * <tr>
- *   <td align="center">readOnly</td>
- *   <td>Set to <code>true</code> if you want the connections returned to you
- *       by calling <code>getConnection()</code> to be configured for read only
- *       operations.  This can result in more efficient database access,
- *       because the database will know it does not need to retain undo logs
- *       for rolling back the transaction.  The default value is
- *       <code>false</code>.</td>
- * </tr>
- * <tr>
- *   <td align="center">url</td>
- *   <td>The connection URL to be passed to our JDBC driver when establishing
- *       a new connection.  The value specified typically starts with
- *       <code>jdbc:</code>, and includes a reference to the host (and,
- *       optionally, the port number) at which the database server is listening
- *       for connections, plus the name of the database to be opened.  Consult
- *       the documentation for your JDBC driver to identify the value to be
- *       configured for this property.</td>
- * </tr>
- * <tr>
- *   <td align="center">user</td>
- *   <td>The database username used to establish the connections created by
- *       this connection pool, in conjunction with the password specified in
- *       the <code>password</code> property.</td>
- * </tr>
- * </table>
- *
- * <p>In addition, you can add to the set of <code>Properties</code> passed to
- * the JDBC driver by calling <code>addProperty()</code>.</p>
+ * <p>Wrapper around a <code>org.apache.commons.dbcp.BasicDataSource</code>
+ * object that isolates Struts from compile-time dependencies on the
+ * <code>java.sql.Connection</code> class, which changed between JDK 1.3 and
+ * JDK 1.4.</p>
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.11 $ $Date: 2002/03/10 01:23:30 $
+ * @version $Revision: 1.12 $ $Date: 2002/03/14 06:15:55 $
+ * @deprecated Use a <code>BasicDataSource</code> directly, or indirectly
+ *  acquire a data source provided by your container
  */
 
 public class GenericDataSource implements DataSource {
-
-
-    // ----------------------------------------------------- Instance Constants
-
-
-    private static final String SQLEXCEPTION_GETCONNECTION =
-     "getConnection(String username, String password)  Method not supported. Use getConnection() instead.";
-
 
 
     // ----------------------------------------------------- Instance Variables
 
 
     /**
-     * Has this data source been closed?
+     * Commons DBCP DataSource instance.
      */
-    protected boolean closed = false;
-
-
-    /**
-     * The list of Connections (wrapped in our associated wrapper class) that
-     * have been created but are not currently in use.
-     */
-    protected LinkedList connections = new LinkedList();
-
-
-    /**
-     * The JDBC driver that we use as a connection factory.
-     */
-    protected Driver driver = null;
+    protected BasicDataSource dataSource = null;
 
 
     /**
@@ -222,40 +103,7 @@ public class GenericDataSource implements DataSource {
     protected Log log = LogFactory.getLog(this.getClass());
 
 
-    /**
-     * The login timeout for this data source.
-     */
-    protected int loginTimeout = 0;
-
-
-    /**
-     * The log writer for this data source.
-     */
-    protected PrintWriter logWriter = null;
-
-
     // ------------------------------------------------------------- Properties
-
-
-    /**
-     * Add a generic property to the list of connection properties to be used.
-     *
-     * @param name Name of the generic property
-     * @param value Corresponding generic property value
-     */
-    public void addProperty(String name, String value) {
-        properties.put(name, value);
-    }
-
-
-    /**
-     * The number of connections that have been created by this data source.
-     */
-    protected int activeCount = 0;
-
-    public int getActiveCount() {
-        return (this.activeCount);
-    }
 
 
     /**
@@ -269,34 +117,6 @@ public class GenericDataSource implements DataSource {
 
     public void setAutoCommit(boolean autoCommit) {
         this.autoCommit = autoCommit;
-    }
-
-
-    /**
-     * The debugging detail level for this data source.
-     */
-    protected int debug = 0;
-
-    public int getDebug() {
-        return (this.debug);
-    }
-
-    public void setDebug(int debug) {
-        this.debug = debug;
-    }
-
-
-    /**
-     * The description of this data source.
-     */
-    protected String description = null;
-
-    public String getDescription() {
-        return (this.description);
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
 
@@ -329,6 +149,37 @@ public class GenericDataSource implements DataSource {
 
 
     /**
+     * The maximum number of idle connections allowed before starting
+     * to release them, or zero for no limit.
+     */
+    protected int maxIdle = 0;
+
+    public int getMaxIdle() {
+        return (this.maxIdle);
+    }
+
+    public void setMaxIdle(int maxIdle) {
+        this.maxIdle = maxIdle;
+    }
+
+
+    /**
+     * The maximum number of milliseconds that the pool will wait (when there
+     * are no available connections) for a connection to be returned before
+     * throwing an exception, or -1 to wait indefinitely.
+     */
+    protected long maxWait = -1;
+
+    public long getMaxWait() {
+        return (this.maxWait);
+    }
+
+    public void setMaxWait(long maxWait) {
+        this.maxWait = maxWait;
+    }
+
+
+    /**
      * The minimum number of connections to be created.
      */
     protected int minCount = 1;
@@ -353,22 +204,6 @@ public class GenericDataSource implements DataSource {
 
     public void setPassword(String password) {
         this.password = password;
-        addProperty("password", this.password);
-    }
-
-
-
-    /**
-     * The non-query SQL command used to ping an allocated connection.
-     */
-    protected String pingCommand = null;
-
-    public String getPingCommand() {
-        return (this.pingCommand);
-    }
-
-    public void setPingCommand(String pingCommand) {
-        this.pingCommand = pingCommand;
     }
 
 
@@ -384,12 +219,6 @@ public class GenericDataSource implements DataSource {
     public void setPingQuery(String pingQuery) {
         this.pingQuery = pingQuery;
     }
-
-
-    /**
-     * The connection properties for use in establishing connections.
-     */
-    protected Properties properties = new Properties();
 
 
     /**
@@ -421,17 +250,6 @@ public class GenericDataSource implements DataSource {
 
 
     /**
-     * The number of connections created by this data source that are
-     * currently in use.
-     */
-    protected int useCount = 0;
-
-    public int getUseCount() {
-        return (this.useCount);
-    }
-
-
-    /**
      * The database username for use in establishing a connection.
      */
     protected String user = null;
@@ -442,7 +260,6 @@ public class GenericDataSource implements DataSource {
 
     public void setUser(String user) {
         this.user = user;
-        addProperty("user", this.user);
     }
 
 
@@ -456,114 +273,13 @@ public class GenericDataSource implements DataSource {
      */
     public Connection getConnection() throws SQLException {
 
-        int seconds = 0;
-        if (log.isInfoEnabled()) {
-            log.info("  getConnection()");
-        }
-
-        // Validate the opened status of this data source
-        if (closed) {
-            throw new SQLException("getConnection:  Data source is closed");
-        }
-        if (driver == null) {
-            open();
-        }
-
-        while (true) {
-
-            // Have we timed out yet?
-            if (log.isInfoEnabled()) {
-                log.info("   Check for timeout, activeCount=" + activeCount +
-                    ", useCount=" + useCount);
-            }
-            if ((loginTimeout > 0) && (seconds >= loginTimeout)) {
-                break;
-            }
-
-            // Return an existing connection from the pool if there is one
-            synchronized (connections) {
-                if (!connections.isEmpty()) {
-
-                    // Allocate the first available connection
-                    GenericConnection connection =
-                        (GenericConnection) connections.removeFirst();
-                    if (log.isInfoEnabled()) {
-                        log.info("   Found available connection");
-                    }
-
-                    // Make sure this connection is not stale
-                    connection.setClosed(false);
-                    try {
-                        ping(connection);
-                    } catch (SQLException e) {
-                        log.warn("   Connection stale, releasing");
-                        try {
-                            connection.getConnection().close();
-                        } catch (SQLException f) {
-                            ;
-                        }
-                        activeCount--;
-                        continue;
-                    }
-
-                    // unclose the connection's wrapper and return it
-                    useCount++;
-                    if (log.isInfoEnabled()) {
-                        log.info("   Return allocated connection, activeCount=" +
-                                 activeCount + ", useCount=" + useCount);
-                    }
-                    
-                    return(connection);
-
-                }
-            }
-
-            // Create a new connection if we are not yet at the maximum
-            if (activeCount < maxCount) {
-                Connection connection = createConnection();
-                if (connection != null) {
-                    try {
-                        ping(connection);
-                    } catch (SQLException e) {
-                        throw e;
-                    }
-                    useCount++;
-                    if (log.isInfoEnabled()) {
-                        log.info("   Return new connection, activeCount=" +
-                                 activeCount + ", useCount=" + useCount);
-                    }
-                    
-                    return (connection);
-                }
-            }
-
-            // Wait for an existing connection to be returned
-            if (log.isInfoEnabled()) {
-                log.info("   Sleep until next test");
-            }
-            try {
-                Thread.sleep(1000);
-                seconds++;
-            } catch (InterruptedException e) {
-                ;
-            }
-
-        }
-
-        // We have timed out awaiting an available connection
-        if (log.isInfoEnabled()) {
-            log.info("   Timeout awaiting connection");
-        }
-        throw new SQLException
-            ("getConnection: Timeout awaiting connection");
+        return (createDataSource().getConnection());
 
     }
 
 
     /**
-     * Attempt to establish a database connection.  <b>WARNING</b> - The
-     * specified username and password are not supported by this
-     * implementation.
+     * Attempt to establish a database connection.
      *
      * @param username Database username for this connection
      * @param password Database password for this connection
@@ -573,7 +289,7 @@ public class GenericDataSource implements DataSource {
     public Connection getConnection(String username, String password)
         throws SQLException {
 
-        throw new SQLException(SQLEXCEPTION_GETCONNECTION); // Not implemented
+        return (createDataSource().getConnection(username, password));
 
     }
 
@@ -585,7 +301,7 @@ public class GenericDataSource implements DataSource {
      */
     public int getLoginTimeout() throws SQLException {
 
-        return (this.loginTimeout);
+        return (createDataSource().getLoginTimeout());
 
     }
 
@@ -598,7 +314,7 @@ public class GenericDataSource implements DataSource {
      */
     public PrintWriter getLogWriter() throws SQLException {
 
-        return (this.logWriter);
+        return (createDataSource().getLogWriter());
 
     }
 
@@ -612,7 +328,7 @@ public class GenericDataSource implements DataSource {
      */
     public void setLoginTimeout(int loginTimeout) throws SQLException {
 
-        this.loginTimeout = loginTimeout;
+        createDataSource().setLoginTimeout(loginTimeout);
 
     }
 
@@ -626,7 +342,7 @@ public class GenericDataSource implements DataSource {
      */
     public void setLogWriter(PrintWriter logWriter) throws SQLException {
 
-        this.logWriter = logWriter;
+        createDataSource().setLogWriter(logWriter);
 
     }
 
@@ -635,101 +351,25 @@ public class GenericDataSource implements DataSource {
 
 
     /**
-     * Close all connections that have been created by this data source.
+     * Close all opened connections managed by this data source.
      *
      * @exception SQLException if a database access error occurs
      */
     public void close() throws SQLException {
 
-        if (closed)
-            throw new SQLException("close:  Data Source already closed");
-        if (log.isDebugEnabled()) {
-            log.debug(" close()");
-        }
-
-        // Shut down all active connections
-        while (activeCount > 0) {
-            GenericConnection conn = (GenericConnection) getConnection();
-            conn.getConnection().close();
-            activeCount--;
-        }
-
-        // Mark this data source as having been closed and release our driver
-        closed = true;
-        driver = null;
+        createDataSource().close();
 
     }
 
 
     /**
-     * Open the initial connections that are appropriate for this data source.
+     * Open this data source implementation.
      *
      * @exception SQLException if a database access error occurs
      */
     public void open() throws SQLException {
 
-        // Have we already been opened?
-        if (driver != null)
-            return;
-        if (log.isDebugEnabled()) {
-            log.debug(" open()");
-        }
-
-        // Instantiate our database driver
-        try {
-            driver = (Driver) RequestUtils.applicationInstance(driverClass);
-        } catch (Throwable t) {
-            throw new SQLException("open: " + t);
-        }
-
-        // Create the initial minimum number of required connections
-        synchronized (connections) {
-            for (int i = 0; i < minCount; i++) {
-                connections.addLast(createConnection());
-            }
-        }
-
-        closed = false;
-
-    }
-
-
-    /**
-     * Return a string representation of this component.
-     */
-    public String toString() {
-
-        StringBuffer sb = new StringBuffer("GenericDataSource[");
-        sb.append("activeCount=");
-        sb.append(activeCount);
-        sb.append(", autoCommit=");
-        sb.append(autoCommit);
-        sb.append(", closed=");
-        sb.append(closed);
-        if (description != null) {
-            sb.append(", description=");
-            sb.append(description);
-        }
-        sb.append(", driverClass=");
-        sb.append(driverClass);
-        sb.append(", loginTimeout=");
-        sb.append(loginTimeout);
-        sb.append(", maxCount=");
-        sb.append(maxCount);
-        sb.append(", minCount=");
-        sb.append(minCount);
-        sb.append(", password=");
-        sb.append(password);
-        sb.append(", readOnly=");
-        sb.append(readOnly);
-        sb.append(", url=");
-        sb.append(url);
-        sb.append(", useCount=");
-        sb.append(useCount);
-        sb.append(", user=");
-        sb.append(user);
-        sb.append("]");
-        return (sb.toString());
+        createDataSource();
 
     }
 
@@ -738,157 +378,48 @@ public class GenericDataSource implements DataSource {
 
 
     /**
-     * Create, configure, and return a new JDBC Connection that has been
-     * wrapped in our corresponding wrapper.
+     * Create (if necessary) and return the actual <code>DataSource</code>
+     * implementation that we are wrapping.
      *
      * @exception SQLException if a database access error occurs
      */
-    protected synchronized Connection createConnection() throws SQLException {
+    protected synchronized BasicDataSource createDataSource()
+        throws SQLException {
 
-        if (activeCount < maxCount) {
-            if (log.isInfoEnabled()) {
-                log.info("   createConnection()");
-            }
-            Connection conn = driver.connect(url, properties);
-            activeCount++;
-            return (new GenericConnection(this, conn, autoCommit, readOnly));
-        }
-        
-        log.error("   createConnection() returning null");
-        
-        return (null);
-
-    }
-
-
-    /**
-     * Log the specified message to our log writer, if we have one.
-     *
-     * @param message The message to be logged
-     */
-    protected void log(String message) {
-
-        if (logWriter != null) {
-            logWriter.print("GenericDataSource[");
-            logWriter.print(description);
-            logWriter.print("]: ");
-            logWriter.println(message);
+        if (dataSource != null) {
+            return (dataSource);
         }
 
-    }
-
-
-    /**
-     * Log the specified message and exception to our log writer, if we
-     * have one.
-     *
-     * @param message The message to be logged
-     * @param throwable The exception to be logged
-     */
-    protected void log(String message, Throwable throwable) {
-
-        if (logWriter != null) {
-            logWriter.print("GenericDataSource[");
-            logWriter.print(description);
-            logWriter.print("]: ");
-            logWriter.println(message);
-            throwable.printStackTrace(logWriter);
+        if (log.isDebugEnabled()) {
+            log.debug("Creating new BasicDataSource");
         }
-
-    }
-
-
-    /**
-     * Perform any configured <code>pingCommand</code> and/or
-     * <code>pingQuery</code> on the specified connection, returning any
-     * SQLException that is encountered along the way.
-     *
-     * @param conn The connection to be pinged
-     */
-    protected void ping(Connection conn) throws SQLException {
-
-        if (pingCommand != null) {
-
-            if (log.isDebugEnabled()) {
-                log.debug("    ping(" + pingCommand + ")");
-            }
-
-            Statement stmt = conn.createStatement();
-            try {
-                stmt.execute(pingCommand);
-                stmt.close();
-            } catch (SQLException e) {
-                log.warn("ping failed:  " + e.getMessage(), e);
-
-                try {
-                    if (stmt != null) {
-                        stmt.close();
-                    }
-                } catch (SQLException f) {
-                    ;
-                }
-                throw e;
-            }
-
+        if (log.isTraceEnabled()) {
+            log.trace("   autoCommit=" + getAutoCommit());
+            log.trace("  driverClass=" + getDriverClass());
+            log.trace("     maxCount=" + getMaxCount());
+            log.trace("      maxIdle=" + getMaxIdle());
+            log.trace("      maxWait=" + getMaxWait());
+            log.trace("     password=" + getPassword());
+            log.trace("    pingQuery=" + getPingQuery());
+            log.trace("     readOnly=" + getReadOnly());
+            log.trace("          url=" + getUrl());
+            log.trace("         user=" + getUser());
         }
+        BasicDataSource bds = new BasicDataSource();
 
-        if (pingQuery != null) {
+        bds.setDefaultAutoCommit(getAutoCommit());
+        bds.setDefaultReadOnly(getReadOnly());
+        bds.setDriverClassName(getDriverClass());
+        bds.setMaxActive(getMaxCount());
+        bds.setMaxIdle(getMaxIdle());
+        bds.setMaxWait(getMaxWait());
+        bds.setPassword(getPassword());
+        bds.setUrl(getUrl());
+        bds.setUsername(getUser());
+        bds.setValidationQuery(getPingQuery());
 
-            if (log.isDebugEnabled()) {
-                log.debug("    ping(" + pingQuery + ")");
-            }
-
-            ResultSet rs = null;
-            Statement stmt = conn.createStatement();
-            try {
-                rs = stmt.executeQuery(pingQuery);
-                while (rs.next()) {
-                    ;
-                }
-                rs.close();
-                stmt.close();
-            } catch (SQLException e) {
-                log.warn("ping failed: " + e.getMessage(), e);
-                
-                try {
-                    if (rs != null)
-                        rs.close();
-                } catch (SQLException f) {
-                    ;
-                }
-                try {
-                    if (stmt != null)
-                        stmt.close();
-                } catch (SQLException f) {
-                    ;
-                }
-                throw e;
-            }
-
-        }
-
-    }
-
-
-    // -------------------------------------------------------- Package Methods
-
-
-    /**
-     * Return this connection to the available connection pool.
-     *
-     * @param conn The connection being returned
-     */
-    void returnConnection(GenericConnection conn) {
-
-        if (log.isInfoEnabled()) {
-            log.info("  releaseConnection(), activeCount=" + activeCount +
-                ", useCount=" + (useCount - 1));
-        }
-
-        synchronized (connections) {
-            connections.addLast(conn);
-            useCount--;
-        }
+        dataSource = bds;
+        return (dataSource);
 
     }
 
