@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.12 2003/05/17 03:45:43 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/05/17 03:45:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.13 2003/05/18 19:06:14 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/05/18 19:06:14 $
  *
  * ====================================================================
  *
@@ -69,7 +69,8 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "reset".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2003/05/17 03:45:43 $
+ * @author David Graham
+ * @version $Revision: 1.13 $ $Date: 2003/05/18 19:06:14 $
  */
 public class ResetTag extends BaseHandlerTag {
 
@@ -163,7 +164,7 @@ public class ResetTag extends BaseHandlerTag {
         if (bodyContent != null) {
             String value = bodyContent.getString().trim();
             if (value.length() > 0) {
-                text = value;
+                this.text = value;
             }
         }
         return (SKIP_BODY);
@@ -177,19 +178,39 @@ public class ResetTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-        // Acquire the label value we will be generating
-        String label = value;
-        if ((label == null) && (text != null)) {
-            label = text;
+        ResponseUtils.write(pageContext, renderResetElement(label()));
+
+        return (EVAL_PAGE);
+    }
+
+    /**
+     * Return the label value to display in the reset button.
+     * @since Struts 1.1
+     */
+    protected String label() {
+        String label = this.value;
+        
+        if ((label == null) && (this.text != null)) {
+            label = this.text;
         }
-    
+        
         if ((label == null) || (label.length() < 1)) {
             label = "Reset";
         }
+        
+        return label;
+    }
 
-        // Generate an HTML element
-        StringBuffer results = new StringBuffer();
-        results.append("<input type=\"reset\"");
+    /**
+     * Generate an HTML reset button.
+     * @param label The text to be displayed on the button.
+     * @return A fully formed HTML reset button.
+     * @throws JspException
+     * @since Struts 1.1
+     */
+    protected String renderResetElement(String label) throws JspException {
+        StringBuffer results = new StringBuffer("<input type=\"reset\"");
+        
         if (property != null) {
             results.append(" name=\"");
             results.append(property);
@@ -208,16 +229,11 @@ public class ResetTag extends BaseHandlerTag {
         results.append(" value=\"");
         results.append(label);
         results.append("\"");
-        results.append(prepareEventHandlers());
-        results.append(prepareStyles());
-        results.append(getElementClose());
-
-        // Render this element to our writer
-        ResponseUtils.write(pageContext, results.toString());
-
-        // Evaluate the remainder of this page
-        return (EVAL_PAGE);
-
+        results.append(this.prepareEventHandlers());
+        results.append(this.prepareStyles());
+        results.append(this.getElementClose());
+        
+        return results.toString();
     }
 
     /**
