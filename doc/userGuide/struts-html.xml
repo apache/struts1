@@ -5609,16 +5609,6 @@
 
 
         <attribute>
-            <name>accesskey</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-                The keyboard character used to move focus immediately to this
-                element.
-            </info>
-        </attribute>
-
-        <attribute>
                 <name>alt</name>
                 <required>false</required>
                 <rtexprvalue>true</rtexprvalue>
