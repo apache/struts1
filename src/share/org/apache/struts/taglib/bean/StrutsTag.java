@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.11 2002/10/14 18:16:18 rleland Exp $
- * $Revision: 1.11 $
- * $Date: 2002/10/14 18:16:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.12 2002/10/30 02:30:51 rleland Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/10/30 02:30:51 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.RequestUtils;
  * internal configuraton object.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/10/14 18:16:18 $
+ * @version $Revision: 1.12 $ $Date: 2002/10/30 02:30:51 $
  */
 
 public class StrutsTag extends TagSupport {
@@ -177,7 +177,7 @@ public class StrutsTag extends TagSupport {
         }
 
         // Retrieve our application module configuration information
-        ApplicationConfig config = RequestUtils.getApplicationConfig(pageContext);
+        ApplicationConfig config = RequestUtils.getModuleConfig(pageContext);
 
         // Retrieve the requested object to be exposed
         Object object = null;

@@ -89,7 +89,7 @@ import org.apache.struts.config.ApplicationConfig;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.10 $ $Date: 2002/10/24 06:20:33 $
+ * @version $Revision: 1.11 $ $Date: 2002/10/30 02:31:10 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -292,7 +292,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     public int doStartTag() throws JspException {
         StringBuffer results = new StringBuffer();
 
-        ApplicationConfig config = RequestUtils.getApplicationConfig(pageContext);
+        ApplicationConfig config = RequestUtils.getModuleConfig(pageContext);
         ValidatorResources resources = (ValidatorResources)
                 pageContext.getAttribute(ValidatorPlugIn.VALIDATOR_KEY +
                 config.getPrefix(), PageContext.APPLICATION_SCOPE);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.29 2002/10/26 00:05:02 dgraham Exp $
- * $Revision: 1.29 $
- * $Date: 2002/10/26 00:05:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.30 2002/10/30 02:31:10 rleland Exp $
+ * $Revision: 1.30 $
+ * $Date: 2002/10/30 02:31:10 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author Martin Cooper
- * @version $Revision: 1.29 $ $Date: 2002/10/26 00:05:02 $
+ * @version $Revision: 1.30 $ $Date: 2002/10/30 02:31:10 $
  */
 
 public class FormTag extends TagSupport {
@@ -848,7 +848,7 @@ public class FormTag extends TagSupport {
     protected void lookup() throws JspException {
 
         // Look up the application module configuration information we need
-        appConfig = RequestUtils.getApplicationConfig(pageContext);
+        appConfig = RequestUtils.getModuleConfig(pageContext);
 
         if (appConfig == null) {
             JspException e = new JspException

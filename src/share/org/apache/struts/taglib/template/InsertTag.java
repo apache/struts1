@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.13 2002/10/25 23:54:53 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2002/10/25 23:54:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.14 2002/10/30 02:31:38 rleland Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/10/30 02:31:38 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.RequestUtils;
  * tags, which are accessed by &lt;template:get&gt; in the template.
  *
  * @author David Geary
- * @version $Revision: 1.13 $ $Date: 2002/10/25 23:54:53 $
+ * @version $Revision: 1.14 $ $Date: 2002/10/30 02:31:38 $
  * @deprecated Use Tiles instead.
  */
 public class InsertTag extends TagSupport {
@@ -153,7 +153,7 @@ public class InsertTag extends TagSupport {
    public int doEndTag() throws JspException {
 
       String prefix = "";
-      ApplicationConfig config = RequestUtils.getApplicationConfig(pageContext);
+      ApplicationConfig config = RequestUtils.getModuleConfig(pageContext);
       if (config != null) {
           prefix = config.getPrefix();
       }

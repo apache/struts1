@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.49 2002/10/27 05:56:59 rleland Exp $
- * $Revision: 1.49 $
- * $Date: 2002/10/27 05:56:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.50 2002/10/30 02:30:31 rleland Exp $
+ * $Revision: 1.50 $
+ * $Date: 2002/10/30 02:30:31 $
  *
  * ====================================================================
  *
@@ -112,7 +112,7 @@ import org.apache.struts.util.RequestUtils;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.49 $ $Date: 2002/10/27 05:56:59 $
+ * @version $Revision: 1.50 $ $Date: 2002/10/30 02:30:31 $
  */
 
 public class Action {
@@ -527,7 +527,7 @@ public class Action {
 
         // Identify the current application module
         ServletContext context = getServlet().getServletContext();
-        ApplicationConfig appConfig = RequestUtils.getApplicationConfig(request,context);
+        ApplicationConfig appConfig = RequestUtils.getModuleConfig(request,context);
 
         // Return the requested data source instance
         return ((DataSource) context.getAttribute
@@ -597,7 +597,7 @@ public class Action {
 
         // Identify the current application module
         ServletContext context = getServlet().getServletContext();
-        ApplicationConfig appConfig = RequestUtils.getApplicationConfig(request,context);
+        ApplicationConfig appConfig = RequestUtils.getModuleConfig(request,context);
 
         // Return the requested message resources instance
         return ((MessageResources) context.getAttribute
