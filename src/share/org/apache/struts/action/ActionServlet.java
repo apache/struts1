@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.77 2001/12/16 16:41:21 husted Exp $
- * $Revision: 1.77 $
- * $Date: 2001/12/16 16:41:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.78 2001/12/16 16:45:13 husted Exp $
+ * $Revision: 1.78 $
+ * $Date: 2001/12/16 16:45:13 $
  *
  * ====================================================================
  *
@@ -166,7 +166,7 @@ import org.xml.sax.SAXException;
  *     to be set on each response; may be overridden by a forwarded-to
  *     servlet or JSP page.  [text/html]</li>
  * <li><strong>context</strong> - The request attribute name under which our
- *     ContextHelper is stored.[org.apache.struts.action.CONTEXT_HELPER]</li>
+ *     ContextHelper is stored. Since 1.1. [org.apache.struts.action.CONTEXT_HELPER]</li>
  * <li><strong>debug</strong> - The debugging detail level for this
  *     servlet, which controls how much information is logged.  [0]</li>
  * <li><strong>detail</strong> - The debugging detail level for the Digester
@@ -233,7 +233,7 @@ import org.xml.sax.SAXException;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.77 $ $Date: 2001/12/16 16:41:21 $
+ * @version $Revision: 1.78 $ $Date: 2001/12/16 16:45:13 $
  */
 
 public class ActionServlet
@@ -271,6 +271,7 @@ public class ActionServlet
 
     /**
      * The request attribute name for our ContextHelper object.
+     * @since 1.1
      */
     protected String contextHelper = Action.CONTEXT_HELPER_KEY;
 
@@ -1309,6 +1310,7 @@ public class ActionServlet
         if (value != null)
             content = value;
 
+        // @since 1.1
         value = getServletConfig().getInitParameter("context");
         if (value != null)
             contextHelper = value;
@@ -1460,6 +1462,7 @@ public class ActionServlet
     throws IOException, ServletException {
 
         // Insert ContextHelper object before processing request
+        // @since 1.1
         ContextHelper context = processContext(request,response);
 
         String contentType = request.getContentType();
@@ -1707,6 +1710,7 @@ public class ActionServlet
                 }
 
         // Update ContextHelper object before forwarding request
+        // @since 1.1
         ContextHelper context = (ContextHelper)
             request.getAttribute(contextHelper);
         if (context!=null)
@@ -1750,6 +1754,7 @@ public class ActionServlet
     /**
      * Instantiate an ContextHelper object for this request.
      *
+     * @since 1.1
      * @param request The request we are processing
      * @param response The response we are processing
      */

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ContextHelper.java,v 1.1 2001/12/16 16:41:21 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2001/12/16 16:41:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ContextHelper.java,v 1.2 2001/12/16 16:45:13 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/12/16 16:45:13 $
  *
  * ====================================================================
  *
@@ -98,8 +98,9 @@ import org.apache.struts.util.MessageResources;
  * from under the context and key used by the Struts
  * ActionServlet when the resources are created.
  *
+ * @since 1.1
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/12/16 16:41:21 $
+ * @version $Revision: 1.2 $ $Date: 2001/12/16 16:45:13 $
  */
 public class ContextHelper {
 
