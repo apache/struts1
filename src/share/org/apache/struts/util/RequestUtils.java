@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.149 2004/04/08 22:07:56 mrdon Exp $
- * $Revision: 1.149 $
- * $Date: 2004/04/08 22:07:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.150 2004/06/09 00:25:52 niallp Exp $
+ * $Revision: 1.150 $
+ * $Date: 2004/06/09 00:25:52 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -61,7 +61,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * <p>General purpose utility methods related to processing a servlet request
  * in the Struts controller framework.</p>
  *
- * @version $Revision: 1.149 $ $Date: 2004/04/08 22:07:56 $
+ * @version $Revision: 1.150 $ $Date: 2004/06/09 00:25:52 $
  */
 public class RequestUtils {
 
@@ -190,7 +190,7 @@ public class RequestUtils {
             return (null);
         }
 
-        return createActionForm(config, moduleConfig, servlet);
+        return createActionForm(config, servlet);
     }
 
 
@@ -275,13 +275,11 @@ public class RequestUtils {
      * which could be reused.</p>
      *
      * @param config The configuration for the Form bean which is to be created.
-     * @param moduleConfig The configuration for the current module.
      * @param servlet The action servlet
      *
      * @return ActionForm instance associated with this request
      */
-    public static ActionForm createActionForm(FormBeanConfig config, ModuleConfig moduleConfig,
-                                              ActionServlet servlet)
+    public static ActionForm createActionForm(FormBeanConfig config, ActionServlet servlet)
     {
         if (config == null)
         {
@@ -289,46 +287,28 @@ public class RequestUtils {
         }
 
         ActionForm instance = null;
+
         // Create and return a new form bean instance
-        if (config.getDynamic()) {
-            try {
-                DynaActionFormClass dynaClass =
-                        DynaActionFormClass.createDynaActionFormClass(config, moduleConfig);
-                instance = (ActionForm) dynaClass.newInstance();
-                ((DynaActionForm) instance).initialize(config);
-                if (log.isDebugEnabled()) {
-                    log.debug(
-                            " Creating new DynaActionForm instance "
-                            + "of type '"
-                            + config.getType()
-                            + "'");
-                    log.trace(" --> " + instance);
-                }
-            } catch(Throwable t) {
-                log.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
-                return (null);
+        try {
+
+            instance = config.createActionForm(servlet);
+            if (log.isDebugEnabled()) {
+                log.debug(
+                        " Creating new "
+                        + (config.getDynamic() ? "DynaActionForm" : "ActionForm")
+                        + " instance of type '"
+                        + config.getType()
+                        + "'");
+                log.trace(" --> " + instance);
             }
-        } else {
-            try {
-                instance = (ActionForm) applicationInstance(config.getType());
-                if (log.isDebugEnabled()) {
-                    log.debug(
-                            " Creating new ActionForm instance "
-                            + "of type '"
-                            + config.getType()
-                            + "'");
-                    log.trace(" --> " + instance);
-                }
-            } catch(Throwable t) {
-                log.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
-                return (null);
-            }
+
+        } catch(Throwable t) {
+            log.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
         }
-        instance.setServlet(servlet);
+
         return (instance);
 
     }
-
 
 
     /**

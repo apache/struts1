@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.18 2004/04/08 22:07:56 mrdon Exp $
- * $Revision: 1.18 $
- * $Date: 2004/04/08 22:07:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.19 2004/06/09 00:25:15 niallp Exp $
+ * $Revision: 1.19 $
+ * $Date: 2004/06/09 00:25:15 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -42,7 +42,7 @@ import org.apache.struts.util.RequestUtils;
  * implementation of dynamic action form beans. Application developers
  * never need to consult this documentation.</p>
  *
- * @version $Revision: 1.18 $ $Date: 2004/04/08 22:07:56 $
+ * @version $Revision: 1.19 $ $Date: 2004/06/09 00:25:15 $
  * @since Struts 1.1
  */
 
@@ -65,7 +65,7 @@ public class DynaActionFormClass implements DynaClass, Serializable {
      *  specified in the configuration is not DynaActionForm (or a subclass
      *  of DynaActionForm)
      */
-    private DynaActionFormClass(FormBeanConfig config) {
+    public DynaActionFormClass(FormBeanConfig config) {
 
         introspect(config);
 
@@ -107,23 +107,6 @@ public class DynaActionFormClass implements DynaClass, Serializable {
      * <code>properties</code> list.
      */
     protected HashMap propertiesMap = new HashMap();
-
-
-    // ------------------------------------------------------- Static Variables
-
-
-    /**
-     * <p>The set of <code>DynaActionFormClass</code> instances that have
-     * ever been created, keyed by the form bean name.</p>
-     */
-    protected transient static HashMap dynaClasses = new HashMap();
-
-
-    /**
-     * <p>The lockable object we can synchronize on, even if dynaClasses
-     * is null.</p>
-     */
-    protected static String lock = "";
 
 
     // ------------------------------------------------------ DynaClass Methods
@@ -235,53 +218,20 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * <p>Clear our cache of <code>DynaActionFormClass</code> instances.</p>
+     * @deprecated No longer need to Clear our cache of <code>DynaActionFormClass</code> instances.
      */
     public static void clear() {
-
-        synchronized (lock) {
-            if (dynaClasses == null) {
-                dynaClasses = new HashMap();
-            }
-            dynaClasses.clear();
-        }
-
     }
 
 
     /**
-     * <p>Create (if necessary) and return a new
-     * <code>DynaActionFormClass</code> instance for the specified form bean
-     * configuration instance.</p>
-     *
-     * @param config The FormBeanConfig instance describing the properties
-     *  of the bean to be created
-     * @param moduleConfig The ModuleConfig instance containing all the
-     *  configuration information for the current module
-     *
-     * @exception IllegalArgumentException if the bean implementation class
-     *  specified in the configuration is not DynaActionForm (or a subclass
-     *  of DynaActionForm)
+     * Return the <code>DynaActionFormClass</code> instance for the specified form bean
+     * configuration instance.
      */
     public static DynaActionFormClass
-        createDynaActionFormClass(FormBeanConfig config, ModuleConfig moduleConfig) {
+        createDynaActionFormClass(FormBeanConfig config) {
 
-        synchronized (lock) {
-            if (dynaClasses == null) {
-                dynaClasses = new HashMap();
-            }
-            String key = config.getName();
-            if (moduleConfig != null) {
-                key += moduleConfig.getPrefix();
-            }
-            DynaActionFormClass dynaClass =
-                (DynaActionFormClass) dynaClasses.get(key);
-            if (dynaClass == null) {
-                dynaClass = new DynaActionFormClass(config);
-                dynaClasses.put(key, dynaClass);
-            }
-            return (dynaClass);
-        }
+        return config.getDynaActionFormClass();
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.13 2004/04/08 22:07:56 mrdon Exp $
- * $Revision: 1.13 $
- * $Date: 2004/04/08 22:07:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.14 2004/06/09 00:25:34 niallp Exp $
+ * $Revision: 1.14 $
+ * $Date: 2004/06/09 00:25:34 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -25,6 +25,9 @@ package org.apache.struts.config;
 import java.io.Serializable;
 import java.util.HashMap;
 import org.apache.struts.action.DynaActionForm;
+import org.apache.struts.action.DynaActionFormClass;
+import org.apache.struts.action.ActionServlet;
+import org.apache.struts.action.ActionForm;
 
 
 /**
@@ -32,7 +35,7 @@ import org.apache.struts.action.DynaActionForm;
  * <code>&lt;form-bean&gt;</code> element in a Struts
  * configuration file.<p>
  *
- * @version $Revision: 1.13 $ $Date: 2004/04/08 22:07:56 $
+ * @version $Revision: 1.14 $ $Date: 2004/06/09 00:25:34 $
  * @since Struts 1.1
  */
 
@@ -55,7 +58,37 @@ public class FormBeanConfig implements Serializable {
     protected HashMap formProperties = new HashMap();
 
 
+    /**
+     * <p>The lockable object we can synchronize on when creating DynaActionFormClass.</p>
+     */
+    protected String lock = "";
+
+
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * The DynaActionFormClass associated with a DynaActionForm
+     */
+    protected transient DynaActionFormClass dynaActionFormClass;
+
+    /**
+     * <p>Return the DynaActionFormClass associated with a DynaActionForm</p>
+     *
+     * @exception IllegalArgumentException if the ActionForm is not dynamic
+     */
+    public DynaActionFormClass getDynaActionFormClass() {
+
+        if (dynamic == false) {
+            throw new IllegalArgumentException("ActionForm is not dynamic");
+        }
+        synchronized (lock) {
+            if (dynaActionFormClass == null) {
+                dynaActionFormClass = new DynaActionFormClass(this);
+            }
+        }
+        return dynaActionFormClass;
+    }
 
 
     /**
@@ -129,6 +162,41 @@ public class FormBeanConfig implements Serializable {
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * <p>Create and return an <code>ActionForm</code> instance appropriate
+     * to the information in this <code>FormBeanConfig</code>.</p>
+     *
+     * @param servlet The action servlet
+     * @return ActionForm instance
+     * @exception IllegalAccessException if the Class or the appropriate
+     *  constructor is not accessible
+     * @exception InstantiationException if this Class represents an abstract
+     *  class, an array class, a primitive type, or void; or if instantiation
+     *  fails for some other reason
+     */
+    public ActionForm createActionForm(ActionServlet servlet)
+        throws IllegalAccessException, InstantiationException {
+
+        ActionForm instance = null;
+
+        // Create and return a new form bean instance
+        if (getDynamic()) {
+
+            instance = (ActionForm)getDynaActionFormClass().newInstance();
+
+        } else {
+
+            instance = (ActionForm)formBeanClass().newInstance();
+
+        }
+
+        instance.setServlet(servlet);
+
+        return (instance);
+
+    }
 
 
     /**
