@@ -342,8 +342,9 @@ Just be sure to send your post to the
 <p>
 Not a usenet group, but the Struts User list can be accessed with your
 favorite newsgroup reader from the
-<a href="http://news.basebeans.com/forums.jsp">
-BaseBeans Engineering</a> site.
+<a href="http://news.gmane.org/">GMane News Site</a>.  Subscribe to groups
+<code>gmane.comp.jakarta.struts.devel</code> for the developer list, or
+<code>gmane.comp.jakarta.struts.user</code> for the user list.
 </p>
 </section>
 
@@ -351,7 +352,7 @@ BaseBeans Engineering</a> site.
 <p>
 You must be subscribed to the <a href="mailto:struts-user-subscribe@jakarta.apache.org">user list</a>
 or <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">user digest</a> before posting
-(or use the <a href="http://news.basebeans.com/forums.jsp">BaseBeans newsgroup</a> instead).
+(or use the <a href="http://news.gmane.org">GMane Newsgroups</a> instead).
 </p>
 </section>
 

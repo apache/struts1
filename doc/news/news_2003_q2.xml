@@ -83,53 +83,6 @@
      <hr/>
  
  
-     <h4 id="S20030611">11 Jun 2003 - Last chance to register for online web
-     training for advancedStruts.</h4>
-     <p>Advanced Struts best practices web cast training by winner of best
-     training
-        with money back guarantee (this is no *Intro* To    Struts): </p>
-     <p>Last chance to Register now by going to www.baseBeans.com and click
-     training,
-        then click register. The cost is very reasonable and cost effective
-        take web
-        training, compared to a conference cost. The rate goes up a lot as we
-        get closer
-        to the start date to $300+; register today for $180. Training starts in
-        a few
-        weeks, right after JavaOne; on 6/21. We will meet every Saturday for 3
-        Saturdays
-        via a web cast (DSL/Cable recommended) at 10AM Eastern (NYC) Time to
-        complete
-        the labs. Outstanding reviews/references. If you can't get private
-        training
-        paid by your company, this is it, (and over the web!-ask voice
-        questions via
-        webcast!) </p>
-     <p>Best training hands on labs, voted by Java Developers Journal (search
-        for Training) </p>
-     <p>We offer money back guarantee, take the classes; you must do the labs,
-        and after you watch all the sessions, ask for money back if you do not
-        think
-        it was valuable! If you know Struts. This WILL    make you a better
-        programmer. </p>
-     <p>Shortly after you register, you will receive the training materials, a
-        book and the labs. </p>
-     <p>We will write an application from scratch in Struts with DB access,
-     updates,
-        master detail processing, validation, navigation, tiles, JSTL, testing,
-        reporting,
-        mail, etc. We will cover good practices and bad. Full agenda to follow
-        on the
-        mail list (sign up    for mail list on the main page of baseBeans.com).
-        </p>
-     <p>Students are always able to retake future training for FREE (even live
-           in person training offered in the big north east    cities) </p>
-     <p>Struts Instructors: If you want to teach Advanced Struts in the future
-           with baseBeans materials, you must sit trough a class by    Vic! </p
-           >
-     <hr/>
- 
- 
      <h4 id="S20030608">08 Jun 2003 - Wildcard-Matched    Actions</h4>
      <p>This project allows wildcards to be used in Struts 1.1+ action
      mappings.

@@ -108,45 +108,6 @@ http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b3.html</a>
     </ul>
 <hr/>
 
-    <h4 id="S20031229">29 Dec 2002 - BasicPortal 0.7k available on SourceForge</h4>
-    <p>
-    The BasicPortal Project has released version 0.7k.  BasicPortal is a Struts
-    based application that can help your developers get a head start on their
-    Portal development.  Setup the database and deploy the .war and you are
-    ready to go!
-    </p>
-    <p>
-    Version 0.7k contains:
-    </p>
-    <ul>
-        <li>
-    - ability to add content to comments
-        </li>
-        <li>
-    - contact manager module
-        </li>
-        <li>
-    - task manager module
-        </li>
-        <li>
-    - email module
-        </li>
-        <li>
-    - custom DAO
-        </li>
-        <li>
-    - secure modules
-        </li>
-    </ul>
-
-    <p>
-    The BasicPortal application can be customized for use in your company.
-    </p>
-    <p>
-    Any questions on BasicPortal should be directed to the MVC Progammers
-    list -- mvc-programmers@basebeans.com.
-    </p>
-<hr/>
 
 <h4 id="S20021213">12 Dec 2002 - Struts book #1 and #2</h4>
 <p>
@@ -224,51 +185,6 @@ Struts books top the #1 <strong>and</strong> #2 slots on Amazon's <a href="http:
         tracker, forums). Don't hesitate to 'get dirty' with the code, but make
         sure to contribute the changes back to the project. If you're willing to
         use CVS, open the SourceForge account and mail me the username.
-    </p>
-    <hr/>
-
-    <h4 id="S20021203.1">03 Dec 2002 - Best and Worst Development Practices -- Training in NYC and DC</h4>
-    <p>
-        Increase Your Struts Productivity - Attend the BaseBeans Public Struts
-        Training!!!!
-    </p>
-    <p>
-        We have a 11 hour public class in DC and in NYC in January. If you sign up
-        soon the price is $145. The regular price is $275 and it goes up as we
-        approach the date due to capacity planning.
-    </p>
-    <p>
-        This class is taught by baseBeans Engineering, the company voted to have the
-        best hands on training class by JDJ for their "Fast Track to Struts" class.
-    </p>
-    <p>
-        Get your training from the #1 trainer with a money back guarantee!!!!
-    </p>
-    <p>
-        You will pay $50 to register and be billed the balance. Upon registration,
-        you will be shipped a CD that contains the tools needed for the class, such
-        as an IDE, App. Server, some sample working source code, Struts, etc.
-    </p>
-    <p>
-        Follow this link to register:
-        <a href="http://64.253.60.21/do/classReservation">http://64.253.60.21/do/classReservation</a>
-
-    </p>
-    <p>
-        At the training, we will cover Struts, Java Server Faces, JDO, DAO,
-        JDBC,etc.
-    </p>
-    <p>
-        A pre-requisite for attendance is some Struts knowledge or at least Servlet
-        and SQL knowledge. This class is targeted at tech leads. Bring your
-        questions and receive practical advice from the baseBeans team.
-    </p>
-    <p>
-        You can FedEx a check or a PO for the balance to BaseBeans.
-    </p>
-    <p>
-        Prior paid students and clients are free for this class, as always, but we
-        need to know you are coming.
     </p>
     <hr/>
 

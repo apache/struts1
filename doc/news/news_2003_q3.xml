@@ -457,19 +457,6 @@
         </p>
         <hr/>
 
-        <h4 id="S20030711">11 Jul 2003 - new release of bP</h4>
-        <p>
-            A new build of bP Jasic v9.7_3 was released. bP is a Struts CMS app, that requires a DB to run.
-        </p>
-        <p>
-            It uses JSTL 1.1 (not 1.03), which requires JSP 2.0 (Tomcat 5 AND Resin 3 included).
-        </p>
-        <p>
-            Also three are few new newsgroups added to new.baseBeans.com (new: Oracle, MS SQL, C#, old are JDO,
-            Eclipse, JavaScript, etc.) so refresh your news reader if you are using news.basebeans.com
-        </p>
-        <hr/>
-
         <h4 id="S20030709">09 Jul 2003 - Struts Studio Professional</h4>
         <p>
             Building on the tremendous success of the first release of Struts Studio and incorporating substantial
