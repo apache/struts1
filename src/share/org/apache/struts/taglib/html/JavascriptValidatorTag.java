@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.31 2003/07/08 00:05:10 dgraham Exp $
- * $Revision: 1.31 $
- * $Date: 2003/07/08 00:05:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.32 2003/07/25 23:46:27 dgraham Exp $
+ * $Revision: 1.32 $
+ * $Date: 2003/07/25 23:46:27 $
  *
  * ====================================================================
  *
@@ -93,10 +93,40 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.31 $ $Date: 2003/07/08 00:05:10 $
+ * @author David Graham
+ * @version $Revision: 1.32 $ $Date: 2003/07/25 23:46:27 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
+    
+    /**
+     * A Comparator to use when sorting ValidatorAction objects.
+     */
+    private static final Comparator actionComparator = new Comparator() {
+        public int compare(Object o1, Object o2) {
+
+            ValidatorAction va1 = (ValidatorAction) o1;
+            ValidatorAction va2 = (ValidatorAction) o2;
+
+            if ((va1.getDepends() == null || va1.getDepends().length() == 0)
+                && (va2.getDepends() == null || va2.getDepends().length() == 0)) {
+                return 0;
+
+            } else if (
+                (va1.getDepends() != null && va1.getDepends().length() > 0)
+                    && (va2.getDepends() == null || va2.getDepends().length() == 0)) {
+                return 1;
+
+            } else if (
+                (va1.getDepends() == null || va1.getDepends().length() == 0)
+                    && (va2.getDepends() != null && va2.getDepends().length() > 0)) {
+                return -1;
+
+            } else {
+                return va1.getDependencies().size() - va2.getDependencies().size();
+            }
+        }
+    };
 
     private static final String HTML_BEGIN_COMMENT = "\n<!-- Begin \n";
 
@@ -310,211 +340,40 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
-        StringBuffer results = new StringBuffer();
 
+        JspWriter writer = pageContext.getOut();
+        try {
+            writer.print(this.renderJavascript());
+            
+        } catch (IOException e) {
+            throw new JspException(e.getMessage());
+        }
+
+        return EVAL_BODY_TAG;
+
+    }
+
+    /**
+     * Returns fully rendered JavaScript. 
+     * @since Struts 1.2
+     */
+    protected String renderJavascript() {
+        StringBuffer results = new StringBuffer();
+        
         ModuleConfig config = RequestUtils.getModuleConfig(pageContext);
         ValidatorResources resources =
             (ValidatorResources) pageContext.getAttribute(
                 ValidatorPlugIn.VALIDATOR_KEY + config.getPrefix(),
                 PageContext.APPLICATION_SCOPE);
-
+        
         Locale locale = RequestUtils.retrieveUserLocale(this.pageContext, null);
-
+        
         Form form = resources.get(locale, formName);
         if (form != null) {
             if ("true".equalsIgnoreCase(dynamicJavascript)) {
-                MessageResources messages =
-                    (MessageResources) pageContext.getAttribute(
-                        bundle + config.getPrefix(),
-                        PageContext.APPLICATION_SCOPE);
-
-                List actions = new ArrayList();
-                List actionMethods = new ArrayList();
-
-                // Get List of actions for this Form
-                for (Iterator i = form.getFields().iterator(); i.hasNext();) {
-                    Field field = (Field) i.next();
-
-                    for (Iterator x = field.getDependencies().iterator(); x.hasNext();) {
-                        Object o = x.next();
-
-                        if (o != null && !actionMethods.contains(o)) {
-                            actionMethods.add(o);
-                        }
-                    }
-
-                }
-
-                // Create list of ValidatorActions based on lActionMethods
-                for (Iterator i = actionMethods.iterator(); i.hasNext();) {
-                    String depends = (String) i.next();
-                    ValidatorAction va = resources.getValidatorAction(depends);
-
-                    // throw nicer NPE for easier debugging
-                    if (va == null) {
-                        throw new NullPointerException(
-                            "Depends string \""
-                                + depends
-                                + "\" was not found in validator-rules.xml.");
-                    }               
-                    
-                    String javascript = va.getJavascript();
-                    if (javascript != null && javascript.length() > 0) {
-                        actions.add(va);
-                    } else {
-                        i.remove();
-                    }
-                }
-
-                Collections.sort(actions, new Comparator() {
-                    public int compare(Object o1, Object o2) {
-                        ValidatorAction va1 = (ValidatorAction) o1;
-                        ValidatorAction va2 = (ValidatorAction) o2;
-
-                        if ((va1.getDepends() == null || va1.getDepends().length() == 0)
-                            && (va2.getDepends() == null || va2.getDepends().length() == 0)) {
-                            return 0;
-                        } else if (
-                            (va1.getDepends() != null && va1.getDepends().length() > 0)
-                                && (va2.getDepends() == null || va2.getDepends().length() == 0)) {
-                            return 1;
-                        } else if (
-                            (va1.getDepends() == null || va1.getDepends().length() == 0)
-                                && (va2.getDepends() != null && va2.getDepends().length() > 0)) {
-                            return -1;
-                        } else {
-                            return va1.getDependencies().size() - va2.getDependencies().size();
-                        }
-                    }
-                });
-
-                String methods = null;
-                for (Iterator i = actions.iterator(); i.hasNext();) {
-                    ValidatorAction va = (ValidatorAction) i.next();
-
-                    if (methods == null) {
-                        methods = va.getMethod() + "(form)";
-                    } else {
-                        methods += " && " + va.getMethod() + "(form)";
-                    }
-                }
-
-                results.append(getJavascriptBegin(methods));
-
-                for (Iterator i = actions.iterator(); i.hasNext();) {
-                    ValidatorAction va = (ValidatorAction) i.next();
-                    String jscriptVar = null;
-                    String functionName = null;
-
-                    if (va.getJsFunctionName() != null && va.getJsFunctionName().length() > 0) {
-                        functionName = va.getJsFunctionName();
-                    } else {
-                        functionName = va.getName();
-                    }
-
-                    results.append("    function " + functionName + " () { \n");
-                    for (Iterator x = form.getFields().iterator(); x.hasNext();) {
-                        Field field = (Field) x.next();
-
-                        // Skip indexed fields for now until there is a good way to handle 
-                        // error messages (and the length of the list (could retrieve from scope?))
-                        if (field.isIndexed()
-                            || field.getPage() != page
-                            || !field.isDependency(va.getName())) {
-                                
-                            continue;
-                        }
-                        
-                        String message =
-                            Resources.getMessage(messages, locale, va, field);
-                        
-                        message = (message != null) ? message : "";
-
-                        jscriptVar = this.getNextVar(jscriptVar);
-
-                        results.append(
-                            "     this."
-                                + jscriptVar
-                                + " = new Array(\""
-                                + field.getKey()
-                                + "\", \""
-                                + message
-                                + "\", ");
-
-                        results.append("new Function (\"varName\", \"");
-
-                        Map vars = field.getVars();
-                        // Loop through the field's variables.
-                        Iterator varsIterator = vars.keySet().iterator();
-                        while (varsIterator.hasNext()) {
-                            String varName = (String) varsIterator.next();
-                            Var var = (Var) vars.get(varName);
-                            String varValue = var.getValue();
-                            String jsType = var.getJsType();
-
-                            // skip requiredif variables field, fieldIndexed, fieldTest, fieldValue
-                            if (varName.startsWith("field")) {
-                                continue;
-                            }
-
-                            if (Var.JSTYPE_INT.equalsIgnoreCase(jsType)) {
-                                results.append(
-                                    "this."
-                                        + varName
-                                        + "="
-                                        + ValidatorUtil.replace(
-                                            varValue,
-                                            "\\",
-                                            "\\\\")
-                                        + "; ");
-                            } else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(jsType)) {
-                                results.append(
-                                    "this."
-                                        + varName
-                                        + "=/"
-                                        + ValidatorUtil.replace(
-                                            varValue,
-                                            "\\",
-                                            "\\\\")
-                                        + "/; ");
-                            } else if (Var.JSTYPE_STRING.equalsIgnoreCase(jsType)) {
-                                results.append(
-                                    "this."
-                                        + varName
-                                        + "='"
-                                        + ValidatorUtil.replace(
-                                            varValue,
-                                            "\\",
-                                            "\\\\")
-                                        + "'; ");
-                                // So everyone using the latest format doesn't need to change their xml files immediately.
-                            } else if ("mask".equalsIgnoreCase(varName)) {
-                                results.append(
-                                    "this."
-                                        + varName
-                                        + "=/"
-                                        + ValidatorUtil.replace(
-                                            varValue,
-                                            "\\",
-                                            "\\\\")
-                                        + "/; ");
-                            } else {
-                                results.append(
-                                    "this."
-                                        + varName
-                                        + "='"
-                                        + ValidatorUtil.replace(
-                                            varValue,
-                                            "\\",
-                                            "\\\\")
-                                        + "'; ");
-                            }
-                        }
-
-                        results.append(" return this[varName];\"));\n");
-                    }
-                    results.append("    } \n\n");
-                }
+                results.append(
+                    this.createDynamicJavascript(config, resources, locale, form));
+                
             } else if ("true".equalsIgnoreCase(staticJavascript)) {
                 results.append(this.getStartElement());
                 if ("true".equalsIgnoreCase(htmlComment)) {
@@ -526,24 +385,215 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         if ("true".equalsIgnoreCase(staticJavascript)) {
             results.append(getJavascriptStaticMethods(resources));
         }
-
+        
         if (form != null
             && ("true".equalsIgnoreCase(dynamicJavascript)
                 || "true".equalsIgnoreCase(staticJavascript))) {
                     
             results.append(getJavascriptEnd());
         }
+        
+        return results.toString();
+    }
 
+    /**
+     * Generates the dynamic JavaScript for the form.
+     * @param config
+     * @param resources
+     * @param locale
+     * @param form
+     */
+    private String createDynamicJavascript(
+        ModuleConfig config,
+        ValidatorResources resources,
+        Locale locale,
+        Form form) {
 
-        JspWriter writer = pageContext.getOut();
-        try {
-            writer.print(results.toString());
-        } catch (IOException e) {
-            throw new JspException(e.getMessage());
+        StringBuffer results = new StringBuffer();
+        
+        MessageResources messages =
+            (MessageResources) pageContext.getAttribute(
+                bundle + config.getPrefix(),
+                PageContext.APPLICATION_SCOPE);
+
+        List actions = this.createActionList(resources, form);
+
+        results.append(this.getJavascriptBegin(this.createMethods(actions)));
+
+        for (Iterator i = actions.iterator(); i.hasNext();) {
+            ValidatorAction va = (ValidatorAction) i.next();
+            String jscriptVar = null;
+            String functionName = null;
+
+            if (va.getJsFunctionName() != null
+                && va.getJsFunctionName().length() > 0) {
+                functionName = va.getJsFunctionName();
+            } else {
+                functionName = va.getName();
+            }
+
+            results.append("    function " + functionName + " () { \n");
+            for (Iterator x = form.getFields().iterator(); x.hasNext();) {
+                Field field = (Field) x.next();
+
+                // Skip indexed fields for now until there is a good way to handle 
+                // error messages (and the length of the list (could retrieve from scope?))
+                if (field.isIndexed()
+                    || field.getPage() != page
+                    || !field.isDependency(va.getName())) {
+
+                    continue;
+                }
+
+                String message = Resources.getMessage(messages, locale, va, field);
+
+                message = (message != null) ? message : "";
+
+                jscriptVar = this.getNextVar(jscriptVar);
+
+                results.append(
+                    "     this."
+                        + jscriptVar
+                        + " = new Array(\""
+                        + field.getKey()
+                        + "\", \""
+                        + message
+                        + "\", ");
+
+                results.append("new Function (\"varName\", \"");
+
+                Map vars = field.getVars();
+                // Loop through the field's variables.
+                Iterator varsIterator = vars.keySet().iterator();
+                while (varsIterator.hasNext()) {
+                    String varName = (String) varsIterator.next();
+                    Var var = (Var) vars.get(varName);
+                    String varValue = var.getValue();
+                    String jsType = var.getJsType();
+
+                    // skip requiredif variables field, fieldIndexed, fieldTest, fieldValue
+                    if (varName.startsWith("field")) {
+                        continue;
+                    }
+
+                    if (Var.JSTYPE_INT.equalsIgnoreCase(jsType)) {
+                        results.append(
+                            "this."
+                                + varName
+                                + "="
+                                + ValidatorUtil.replace(varValue, "\\", "\\\\")
+                                + "; ");
+                    } else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(jsType)) {
+                        results.append(
+                            "this."
+                                + varName
+                                + "=/"
+                                + ValidatorUtil.replace(varValue, "\\", "\\\\")
+                                + "/; ");
+                    } else if (Var.JSTYPE_STRING.equalsIgnoreCase(jsType)) {
+                        results.append(
+                            "this."
+                                + varName
+                                + "='"
+                                + ValidatorUtil.replace(varValue, "\\", "\\\\")
+                                + "'; ");
+                        // So everyone using the latest format doesn't need to change their xml files immediately.
+                    } else if ("mask".equalsIgnoreCase(varName)) {
+                        results.append(
+                            "this."
+                                + varName
+                                + "=/"
+                                + ValidatorUtil.replace(varValue, "\\", "\\\\")
+                                + "/; ");
+                    } else {
+                        results.append(
+                            "this."
+                                + varName
+                                + "='"
+                                + ValidatorUtil.replace(varValue, "\\", "\\\\")
+                                + "'; ");
+                    }
+                }
+
+                results.append(" return this[varName];\"));\n");
+            }
+            results.append("    } \n\n");
         }
 
-        return (EVAL_BODY_TAG);
+        return results.toString();
+    }
 
+    /**
+     * Creates the JavaScript methods list from the given actions.
+     * @param actions A List of ValidatorAction objects.
+     * @return JavaScript methods.
+     */
+    private String createMethods(List actions) {
+        String methods = null;
+        
+        Iterator iter = actions.iterator();
+        while (iter.hasNext()) {
+            ValidatorAction va = (ValidatorAction) iter.next();
+
+            if (methods == null) {
+                methods = va.getMethod() + "(form)";
+            } else {
+                methods += " && " + va.getMethod() + "(form)";
+            }
+        }
+        
+        return methods;
+    }
+
+    /**
+     * Get List of actions for the given Form.
+     * @param resources
+     * @param form
+     * @return A sorted List of ValidatorAction objects.
+     */
+    private List createActionList(ValidatorResources resources, Form form) {
+
+        List actionMethods = new ArrayList();
+        
+        Iterator iterator = form.getFields().iterator();
+        while (iterator.hasNext()) {
+            Field field = (Field) iterator.next();
+
+            for (Iterator x = field.getDependencies().iterator(); x.hasNext();) {
+                Object o = x.next();
+
+                if (o != null && !actionMethods.contains(o)) {
+                    actionMethods.add(o);
+                }
+            }
+        }
+
+        List actions = new ArrayList();
+
+        // Create list of ValidatorActions based on actionMethods
+        iterator = actionMethods.iterator();
+        while (iterator.hasNext()) {
+            String depends = (String) iterator.next();
+            ValidatorAction va = resources.getValidatorAction(depends);
+
+            // throw nicer NPE for easier debugging
+            if (va == null) {
+                throw new NullPointerException(
+                    "Depends string \""
+                        + depends
+                        + "\" was not found in validator-rules.xml.");
+            }
+
+            if (va.getJavascript() != null && va.getJavascript().length() > 0) {
+                actions.add(va);
+            } else {
+                iterator.remove();
+            }
+        }
+        
+        Collections.sort(actions, actionComparator);
+        
+        return actions;
     }
 
     /**
