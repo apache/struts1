@@ -6,7 +6,7 @@
     <author>Robert Leland</author>
     <author>Ted Husted</author>
     <author>Martin Cooper</author>
-    <title>Struts Release Notes (Nightly Build)</title>
+    <title>Struts Release Notes (Version 1.1 Beta 2)</title>
   </properties>
 
   <body>
@@ -14,7 +14,7 @@
   <section name="Introduction" href="Introduction">
 
     <p>This document contains the release notes for
-    <strong>nightly build</strong> of the Struts Framework,
+    <strong>Version 1.1 Beta 2</strong> of the Struts Framework,
     and covers changes that have taken place since
     <a href="release-notes-1.0.2.html">Version 1.0.2</a>
     was released.  The following sections cover
