@@ -1479,25 +1479,6 @@
             </info>
         </attribute>
 
-                <attribute>
-                  <name>title</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The advisory title for this element.</p>
-                  </info>
-                </attribute>
-
-                <attribute>
-                  <name>titleKey</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The message resources key for the advisory title
-                  for this element.</p>
-                  </info>
-                </attribute>
-
         <attribute>
             <name>type</name>
             <required>false</required>
