@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/action/Attic/ServicesServlet.java,v 1.2 2001/07/18 04:22:19 oalexeev Exp $
- * $Revision: 1.2 $
- * $Date: 2001/07/18 04:22:19 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/action/Attic/ServicesServlet.java,v 1.3 2001/07/23 12:35:07 oalexeev Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/07/23 12:35:07 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.xml.sax.SAXException;
 
 /** 
  * @author Oleg V Alexeev
- * @version $Revision: 1.2 $ $Date: 2001/07/18 04:22:19 $
+ * @version $Revision: 1.3 $ $Date: 2001/07/23 12:35:07 $
  */
 public class ServicesServlet
     extends ActionServlet {
@@ -106,9 +106,9 @@ public class ServicesServlet
     protected void initServiceManager() 
         throws ServletException {
         try {
-                services.init();
-        } catch ( Exception e ) {
-                throw new ServletException( "Exception at init of ServletServiceManager", e );
+                services.initStructures();
+        } catch( Exception e ) {
+                log( "Exception at initStructures of ServiceManager.", e );
         }
     }    
 
@@ -155,7 +155,7 @@ public class ServicesServlet
 
         Digester digester = super.initDigester( detail );
 
-        services.initDigester( digester, "struts-config", detail );
+        services.initDigester( digester, "struts-config" );
 
         return digester;
 

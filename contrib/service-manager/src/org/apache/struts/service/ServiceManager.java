@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/Attic/ServiceManager.java,v 1.2 2001/07/18 04:22:19 oalexeev Exp $
- * $Revision: 1.2 $
- * $Date: 2001/07/18 04:22:19 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/Attic/ServiceManager.java,v 1.3 2001/07/23 12:35:07 oalexeev Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/07/23 12:35:07 $
  *
  * ====================================================================
  *
@@ -62,16 +62,24 @@
 package org.apache.struts.service;
 
 import java.io.Serializable;
+import java.io.InputStream;
+import java.io.IOException;
+import java.io.FileInputStream;
 import java.util.Iterator;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.lang.NoSuchMethodException;
+import java.util.MissingResourceException;
+import javax.servlet.UnavailableException;
+import java.util.MissingResourceException;
 import java.lang.reflect.Method;
+import org.xml.sax.SAXException;
 import org.apache.commons.digester.Digester;
+import org.apache.struts.util.MessageResources;
 
 /** 
  * @author Oleg V Alexeev
- * @version $Revision: 1.2 $ $Date: 2001/07/18 04:22:19 $
+ * @version $Revision: 1.3 $ $Date: 2001/07/23 12:35:07 $
  */
 public class ServiceManager implements Serializable {
 
@@ -80,6 +88,12 @@ public class ServiceManager implements Serializable {
         protected static final String processRegistrationClass = "org.apache.struts.service.ProcessRegistration";
 
         protected static final String processSubscriptionClass = "org.apache.struts.service.ProcessSubscription";
+
+        protected String configLocation = "service-manager.xml";
+
+        protected String configLocationPropertyName = "org.apache.struts.service.ConfigLocation";
+
+        protected String configDetailPropertyName = "org.apache.struts.service.ConfigDetail";
 
         protected Object parent = null;
 
@@ -94,6 +108,16 @@ public class ServiceManager implements Serializable {
         protected LogBridge logHelper = null;
 
         protected int debug = 0;
+
+        /**
+        * The resources object for our internal resources.
+        */
+        protected MessageResources internal = null;
+
+        /**
+        * The Java base name of our internal resources.
+        */
+        protected String internalName = "org.apache.struts.service.ServiceManagerResources";
 
         protected Iterator getEmptyIterator() {
                 return emptyList.iterator();
@@ -149,18 +173,18 @@ public class ServiceManager implements Serializable {
         }
 
         public void registerProcess( ProcessRegistration registration ) {
-//                if( debug>0 )
+
+                if( debug>0 )
                         logHelper.log( "Register process '" + registration.getName() + "'" );
 
                 registration.setServiceManager( this );
                 processRegistrations.put( registration.getName(), registration );
-                        logHelper.log( "Test: process '" + registration.getName() + "' - '" +
-                        processRegistrations.get( registration.getName() ) + "'" );
         }
 
         public void registerService( ServiceRegistration registration ) 
                 throws Exception {
-//                if( debug>0 )
+
+                if( debug>0 )
                         logHelper.log( "Register service '" + registration.getName() + 
                                 "' class - '" + registration.getType() + "'" );
 
@@ -171,16 +195,128 @@ public class ServiceManager implements Serializable {
                 service.setLogHelper( getLogHelper() );
         }
 
-        public Digester initDigester( Digester digester, String path, int detail ) {
+        //------------------------------------------------------- Init methods
+
+        /** Single init method. Use this method to init ServiceManager
+         *  with its own service-manager.xml config file.
+         */
+        public void init() 
+                throws Exception {
+
+                if( debug>0 )
+                        logHelper.log( "Init ServiceManager class - '" + this.getClass().getName() + "'" );
+
+                initStructures();
+                initConfig();
+        }
+
+        /** Init internal structures to fill it later in init process
+         */
+        public void initStructures() 
+                throws Exception {
+                initInternal();
+                processRegistrations.clear();
+                serviceRegistrations.clear();
+                services.clear();
+        }
+
+        /**
+        * Initialize our internal MessageResources bundle.
+        *
+        * @exception UnavailableException if we cannot initialize these resources
+        */
+        protected void initInternal() throws Exception {
+
+                try {
+                        internal = MessageResources.getMessageResources(internalName);
+                } catch (MissingResourceException e) {
+                        logHelper.log( "Cannot load internal resources from '" + 
+                                internalName + "'", e);
+                        throw e;
+                }
+        }
+
+        /** Read self-contained config with help of digester.
+         */
+        public void initConfig() 
+                throws Exception {
+
+                initVariables();
+
+                int detail;
+                try {
+                        String value = System.getProperty( configDetailPropertyName );
+                        detail = Integer.parseInt(value);
+                } catch (Throwable t) {
+                        detail = 0;
+                }
+
+                // Acquire an input stream to our configuration resource
+                InputStream input = getConfigResource();
+
+                // Build a digester to process our configuration resource
+                Digester digester = initDigester(detail);
+        
+                // Parse the input stream to configure our mappings
+                try {
+                    digester.parse(input);
+                } catch (SAXException e) {
+                    throw e;
+                } finally {
+                    input.close();
+                }
+        
+        }
+
+        /** Init internal variables to be used at init process;
+         */
+        public void initVariables() 
+                throws Exception {
+                String value = null;
+
+                try {
+                        value = System.getProperty( configLocationPropertyName );        
+                } catch ( SecurityException e ) {
+                        throw e;
+                } catch ( Exception e ) {
+                        logHelper.log( internal.getMessage( 
+                                "configLocationProperty.emptyProperty",
+                                configLocationPropertyName,
+                                configLocation ) );
+                }
+                if( value != null ) 
+                        configLocation = value;
+        }
+
+        /** Connect to the config. 
+         */
+        protected InputStream getConfigResource() 
+                throws Exception {
+                return new FileInputStream( configLocation );
+        }
+
+        /** Init digester to be used with independent
+         *  service manager config. 
+         */
+        public Digester initDigester( int detail ) {
+                Digester digester = new Digester();
+                digester.setDebug(detail);
+                digester.setNamespaceAware(true);
+                digester.setValidating(false);
+                return initDigester( digester, null );
+        }
+
+        /** Init digester to parse config
+         */
+        public Digester initDigester( Digester digester, String path ) {
 
                 if( debug>0 )
                         logHelper.log( "Init digester in ServiceManager class - '" + this.getClass().getName() + "'" );
 
-                if( path!=null ) {
+                if( path!=null ) 
                         path += "/";
-                } else {
+                else
                         path = "";
-                }
 
                 String serviceManagerPath = 
                         path + "service-manager";
@@ -206,7 +342,7 @@ public class ServiceManager implements Serializable {
                 digester.addSetNext( serviceRegistrationPath, "registerService",
                         serviceRegistrationClass );
                 digester.addRule( serviceRegistrationPath, 
-                        new InitServiceRule( digester, new String( serviceRegistrationPath ), detail, this ) );
+                        new InitServiceRule( digester, new String( serviceRegistrationPath ), this ) );
 
                 // parse process subscriptions
                 digester.addObjectCreate( processSubscriptionPath, processSubscriptionClass );
@@ -217,14 +353,7 @@ public class ServiceManager implements Serializable {
                 return digester;
         }
 
-        public void init() 
-                throws Exception {
-                if( debug>0 )
-                        logHelper.log( "Init ServiceManager class - '" + this.getClass().getName() + "'" );
-                processRegistrations.clear();
-                serviceRegistrations.clear();
-                services.clear();
-        }
+        //------------------------------------------------------- Destroy methods
 
         public void destroy() {
                 if( debug>0 )

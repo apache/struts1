@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/factory/Attic/FactoryService.java,v 1.2 2001/07/18 04:22:20 oalexeev Exp $
- * $Revision: 1.2 $
- * $Date: 2001/07/18 04:22:20 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/factory/Attic/FactoryService.java,v 1.3 2001/07/23 12:35:07 oalexeev Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/07/23 12:35:07 $
  *
  * ====================================================================
  *
@@ -586,7 +586,7 @@ public class FactoryService extends Service {
 
     }
 
-        public void initDigester( Digester digester, String path, int detail ) {
+        public void initDigester( Digester digester, String path ) {
 
                 String factoryPath = path + "/factories/factory";
                 String templatePath = path + "/templates/template";

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/Attic/InitServiceRule.java,v 1.3 2001/07/18 12:33:57 oalexeev Exp $
- * $Revision: 1.3 $
- * $Date: 2001/07/18 12:33:57 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/Attic/InitServiceRule.java,v 1.4 2001/07/23 12:35:07 oalexeev Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/07/23 12:35:07 $
  *
  * ====================================================================
  *
@@ -67,7 +67,7 @@ import org.xml.sax.Attributes;
 
 /** 
  * @author Oleg V Alexeev
- * @version $Revision: 1.3 $ $Date: 2001/07/18 12:33:57 $
+ * @version $Revision: 1.4 $ $Date: 2001/07/23 12:35:07 $
  */
 public class InitServiceRule extends Rule {
 
@@ -75,15 +75,11 @@ public class InitServiceRule extends Rule {
         
         protected Service service = null;
 
-        protected int detail = 0;
-
         protected String path = null;
 
-        public InitServiceRule( Digester digester, String path, 
-                int detail, ServiceManager manager ) {
+        public InitServiceRule( Digester digester, String path, ServiceManager manager ) {
                 super( digester );
                 this.path = path;
-                this.detail = detail;
                 this.manager = manager;
         }
 
@@ -99,7 +95,7 @@ public class InitServiceRule extends Rule {
                 String servicePath = path + "/" + registration.getName() + "-service";
                 if( registration.getUseDigester() ) {
                         digester.addRule( servicePath, new InitServiceConfigRule( digester, service ) );
-                        service.initDigester( digester, servicePath, detail );
+                        service.initDigester( digester, servicePath );
                 }
         }
 
