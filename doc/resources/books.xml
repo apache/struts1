@@ -92,6 +92,16 @@ by Victor Cekvenich - Practical Application with Database Access and Struts Exte
 </section>
 
 <section name="Books with Struts coverage">
+
+<p>
+<a href="http://www.amazon.com/exec/obidos/ISBN=1861008317/hitchhikeguidetoA/"><b>Beginning JSP 2.0</b></a> by Galbraith et al. Wrox Press February 2003 - Chapters 15 and 16 cover web development using Struts.
+</p>
+<p>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0672324490/hitchhikeguidetoA/"><b>Sams Teach Yourself Java Server Pages in 21 Days</b></a> by Steve Holzner, September 2002 - Day 19 is Struts day.
+</p>
+<p>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0471237647/hitchhikeguidetoA/"> <b>Mastering Tomcat Development</b></a> by Ian McFarland and Peter Harrison, November 2002 - Chapter 13 covers doing MVC with Struts.
+</p>
 <p>
 <a href="http://www.amazon.com/exec/obidos/ISBN=0672323095/hitchhikeguidetoA/"><b>MySQL and JSP Web Applications: Data-Driven Programming Using Tomcat and MySQL</b></a> by James Turner. March 2002. Includes a chapter on Tomcat and Struts.
 </p>
@@ -122,6 +132,10 @@ by Victor Cekvenich - Practical Application with Database Access and Struts Exte
 <p>
 <a href="http://www.amazon.com/exec/obidos/ISBN=0764547879/hitchhikeguidetoA/"><b>JSP, Servlets, and MySQL</b></a> by David Harms, 2001 - Features a chapter on Struts 1.0.
 </p>
+<p>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0764547968/hitchhikeguidetoA/"><b>JSP Weekend Crash Course</b></a> by Andrew Utter et al, January 2001 - Struts 1.0 is last part of the Sunday afternoon lesson.
+</p>
+
 </section>
 
 </chapter></body></document>
