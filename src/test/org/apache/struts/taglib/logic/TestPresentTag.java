@@ -55,6 +55,7 @@
 package org.apache.struts.taglib.logic;
 
 import javax.servlet.ServletException;
+import javax.servlet.jsp.JspException
 import javax.servlet.jsp.PageContext;
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -105,7 +106,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there is an application scope object in scope using the <code>PresentTag</code>.
     */
-    public void testApplicationScopeObjectPresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testApplicationScopeObjectPresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
         String testKey = "testApplicationScopePresent";
         String testStringValue = "abc";
@@ -121,7 +122,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there is an application scope object is not in scope using the <code>PresentTag</code>.
     */
-    public void testApplicationScopeObjectNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testApplicationScopeObjectNotPresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
         String testKey = "testApplicationScopeNotPresent";
 
@@ -135,7 +136,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there is an session scope object in scope using the <code>PresentTag</code>.
     */
-    public void testSessionScopeObjectPresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testSessionScopeObjectPresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
         String testKey = "testSessionScopePresent";
         String testStringValue = "abc";
@@ -151,7 +152,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there is an session scope object is not in scope using the <code>PresentTag</code>.
     */
-    public void testSessionScopeObjectNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testSessionScopeObjectNotPresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
         String testKey = "testSessionScopeNotPresent";
 
@@ -165,7 +166,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there is an request scope object in scope using the <code>PresentTag</code>.
     */
-    public void testRequestScopeObjectPresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testRequestScopeObjectPresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
         String testKey = "testRequestScopePresent";
         String testStringValue = "abc";
@@ -181,7 +182,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there is an request scope object is not in scope using the <code>PresentTag</code>.
     */
-    public void testRequestScopeObjectNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testRequestScopeObjectNotPresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
         String testKey = "testRequestScopeNotPresent";
 
@@ -195,7 +196,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there is an page scope object in scope using the <code>PresentTag</code>.
     */
-    public void testPageScopeObjectPresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testPageScopeObjectPresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
         String testKey = "testPageScopePresent";
         String testStringValue = "abc";
@@ -211,7 +212,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there is an page scope object is not in scope using the <code>PresentTag</code>.
     */
-    public void testPageScopeObjectNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testPageScopeObjectNotPresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
         String testKey = "testPageScopeNotPresent";
 
@@ -221,13 +222,13 @@ public class TestPresentTag extends JspTestCase {
 	
         assertEquals("Value not present (null)", false, pt.condition(true));
     }
- 
+  
 	/**
 	 * Verify that there is a LabelValueBean in application scope 
 	 * and test to see if it has a getValue() using the <code>PresentTag</code>.
 	*/
 	public void testApplicationScopeParameterPresent()
-		throws ServletException, javax.servlet.jsp.JspException {
+		throws ServletException, JspException {
 		PresentTag pt = new PresentTag();
 		String testKey = "testApplicationScopeParameterPresent";
 		
@@ -250,7 +251,7 @@ public class TestPresentTag extends JspTestCase {
 	 * Verify that there is an application scope object is not in scope using the <code>PresentTag</code>.
 	*/
 	public void testApplicationScopeParameterNotPresent()
-		throws ServletException, javax.servlet.jsp.JspException {
+		throws ServletException, JspException {
 		PresentTag pt = new PresentTag();
 		String testKey = "testApplicationScopeParameterNotPresent";
 		
@@ -281,7 +282,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there is an cookie using the <code>PresentTag</code>.
     */
-    public void testCookiePresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testCookiePresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
 
         pt.setPageContext(pageContext);
@@ -293,7 +294,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there isn't an cookie using the <code>PresentTag</code>.
     */
-    public void testCookieNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testCookieNotPresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
 
         pt.setPageContext(pageContext);
@@ -312,7 +313,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there is an header using the <code>PresentTag</code>.
     */
-    public void testHeaderPresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testHeaderPresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
 
         pt.setPageContext(pageContext);
@@ -324,7 +325,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there isn't an header using the <code>PresentTag</code>.
     */
-    public void testHeaderNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testHeaderNotPresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
 
         pt.setPageContext(pageContext);
@@ -343,7 +344,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there is an parameter using the <code>PresentTag</code>.
     */
-    public void testParameterPresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testParameterPresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
 
         pt.setPageContext(pageContext);
@@ -355,7 +356,7 @@ public class TestPresentTag extends JspTestCase {
     /**
      * Verify that there isn't an parameter using the <code>PresentTag</code>.
     */
-    public void testParameterNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
+    public void testParameterNotPresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
 
         pt.setPageContext(pageContext);
