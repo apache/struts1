@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.21 2002/01/13 00:25:37 craigmcc Exp $
- * $Revision: 1.21 $
- * $Date: 2002/01/13 00:25:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.22 2002/03/17 02:49:06 craigmcc Exp $
+ * $Revision: 1.22 $
+ * $Date: 2002/03/17 02:49:06 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.21 $ $Date: 2002/01/13 00:25:37 $
+ * @version $Revision: 1.22 $ $Date: 2002/03/17 02:49:06 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -343,47 +343,9 @@ public class LinkTag extends BaseHandlerTag {
             return (EVAL_BODY_TAG);
         }
 
-        // Generate the hyperlink URL
-        Map params = RequestUtils.computeParameters
-            (pageContext, paramId, paramName, paramProperty, paramScope,
-             name, property, scope, transaction);
-
-        // if "indexed=true", add "index=x" parameter to query string
-        // since 1.1
-        if( indexed ) {
-           // look for outer iterate tag
-           IterateTag iterateTag = (IterateTag) findAncestorWithClass(this, IterateTag.class);
-           if (iterateTag == null) {
-              // this tag should only be nested in iteratetag, if it's not, throw exception
-              JspException e = new JspException(messages.getMessage("indexed.noEnclosingIterate"));
-              RequestUtils.saveException(pageContext, e);
-              throw e;
-           }
-
-           //calculate index, and add as a parameter
-           if (params == null) {
-               params = new HashMap();             //create new HashMap if no other params
-           }
-           if (indexId != null) {
-            params.put(indexId, Integer.toString(iterateTag.getIndex()));
-           } else {
-              params.put("index", Integer.toString(iterateTag.getIndex()));
-           }
-        }
-
-        String url = null;
-        try {
-            url = RequestUtils.computeURL(pageContext, forward, href,
-                                          page, params, anchor, false);
-        } catch (MalformedURLException e) {
-            RequestUtils.saveException(pageContext, e);
-            throw new JspException
-                (messages.getMessage("rewrite.url", e.toString()));
-        }
-
         // Generate the opening anchor element
         StringBuffer results = new StringBuffer("<a href=\"");
-        results.append(url);
+        results.append(calculateURL());
         results.append("\"");
         if (target != null) {
             results.append(" target=\"");
@@ -465,6 +427,62 @@ public class LinkTag extends BaseHandlerTag {
         target = null;
         text = null;
         transaction = false;
+
+    }
+
+
+    // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Return the complete URL to which this hyperlink will direct the user.
+     *
+     * @exception JspException if an exception is thrown calculating the value
+     */
+    protected String calculateURL() throws JspException {
+
+        // Identify the parameters we will add to the completed URL
+        Map params = RequestUtils.computeParameters
+            (pageContext, paramId, paramName, paramProperty, paramScope,
+             name, property, scope, transaction);
+
+        // if "indexed=true", add "index=x" parameter to query string
+        // since 1.1
+        if( indexed ) {
+
+           // look for outer iterate tag
+           IterateTag iterateTag =
+               (IterateTag) findAncestorWithClass(this, IterateTag.class);
+           if (iterateTag == null) {
+               // This tag should only be nested in an iterate tag
+               // If it's not, throw exception
+               JspException e = new JspException
+                   (messages.getMessage("indexed.noEnclosingIterate"));
+               RequestUtils.saveException(pageContext, e);
+               throw e;
+           }
+
+           //calculate index, and add as a parameter
+           if (params == null) {
+               params = new HashMap();             //create new HashMap if no other params
+           }
+           if (indexId != null) {
+            params.put(indexId, Integer.toString(iterateTag.getIndex()));
+           } else {
+              params.put("index", Integer.toString(iterateTag.getIndex()));
+           }
+        }
+
+        String url = null;
+        try {
+            url = RequestUtils.computeURL(pageContext, forward, href,
+                                          page, params, anchor, false);
+        } catch (MalformedURLException e) {
+            RequestUtils.saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("rewrite.url", e.toString()));
+        }
+        return (url);
 
     }
 
