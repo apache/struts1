@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.16 2000/12/27 04:50:17 craigmcc Exp $
- * $Revision: 1.16 $
- * $Date: 2000/12/27 04:50:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.17 2000/12/30 01:20:10 craigmcc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2000/12/30 01:20:10 $
  *
  * ====================================================================
  *
@@ -70,9 +70,10 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.PageContext;
@@ -90,7 +91,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.16 $ $Date: 2000/12/27 04:50:17 $
+ * @version $Revision: 1.17 $ $Date: 2000/12/30 01:20:10 $
  */
 
 public final class BeanUtils {
@@ -338,12 +339,15 @@ public final class BeanUtils {
         Object value = PropertyUtils.getProperty(bean, name);
         if (value == null) {
             return (null);
+        } else if (value instanceof Collection) {
+            ArrayList values = new ArrayList((Collection) value);
+            return ((String[]) values.toArray(new String[values.size()]));
         } else if (value.getClass().isArray()) {
-            Vector values = new Vector();
+            ArrayList values = new ArrayList();
             try {
                 int n = Array.getLength(value);
                 for (int i = 0; i < n; i++) {
-                    values.addElement(Array.get(value, i).toString());
+                    values.add(Array.get(value, i).toString());
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
                 ;

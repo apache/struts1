@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.5 2000/10/15 03:25:14 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/10/15 03:25:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.6 2000/12/30 01:20:10 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/12/30 01:20:10 $
  *
  * ====================================================================
  *
@@ -71,7 +71,6 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Hashtable;
 
 
 /**
@@ -117,7 +116,7 @@ import java.util.Hashtable;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.5 $ $Date: 2000/10/15 03:25:14 $
+ * @version $Revision: 1.6 $ $Date: 2000/12/30 01:20:10 $
  */
 
 public final class PropertyUtils {
@@ -153,7 +152,11 @@ public final class PropertyUtils {
      * The cache of PropertyDescriptor arrays for beans we have already
      * introspected, keyed by the fully qualified class name of this object.
      */
-    private static Hashtable descriptorsCache = new Hashtable();
+    private static FastHashMap descriptorsCache = null;
+    static {
+        descriptorsCache = new FastHashMap();
+        descriptorsCache.setFast(true);
+    }
 
 
     // --------------------------------------------------------- Public Methods
