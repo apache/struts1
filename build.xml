@@ -441,10 +441,24 @@
 
 
 <!--
+        Build the example standalone modules (even though not yet included)
+-->
+    <target name="dist.examples" depends="dist.library">
+
+      <!-- The Mail Reader Database APIs -->
+      <ant    dir="${basedir}/struts-examples/mailreader"
+           target="clean" inheritAll="false"/>
+      <ant    dir="${basedir}/struts-examples/mailreader"
+           target="dist" inheritAll="false"/>
+
+    </target>
+
+
+<!--
         Construct complete binary distribution
 -->
     <target name="dist"
-         depends="dist.library,dist.webapps,dist.source,dist.contrib"
+         depends="dist.library,dist.webapps,dist.source,dist.contrib,dist.examples"
      description="Construct binary distribution"/>
 
 <!--
