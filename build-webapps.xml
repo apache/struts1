@@ -94,12 +94,12 @@
   <ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="examples"/>
   </ant>
-  <!--ant  antfile="build-webapp.xml"    target="static">
-    <property name="webapp.name"      value="test"/>
-  </ant-->
   <ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="tiles-documentation"/>
   </ant>
+    <!--ant  antfile="build-webapp.xml"    target="static">
+      <property name="webapp.name"      value="test"/>
+    </ant-->
 </target>
 
 
@@ -125,10 +125,7 @@
     <!-- Copy validator-rules.xml for the Struts examples application -->
     <copy tofile="${build.home}/examples/WEB-INF/validator-rules.xml"
             file="${basedir}/conf/share/validator-rules.xml"/>
-    <!-- Copy required image for the Struts examples exercise module -->
-    <copy tofile="${build.home}/examples/exercise/struts-power.gif"
-            file="${doc.dir}/images/struts-power.gif"/>
-    <!-- Copy required image for the Struts examples validator module -->
+     <!-- Copy required image for the Struts examples validator module -->
     <copy tofile="${build.home}/examples/validator/struts-power.gif"
             file="${doc.dir}/images/struts-power.gif"/>
 </target>
@@ -151,12 +148,12 @@
   <ant  antfile="build-webapp.xml"    target="compile">
     <property name="webapp.name"      value="examples"/>
   </ant>
-  <!--ant  antfile="build-webapp.xml"    target="compile">
-    <property name="webapp.name"      value="test"/>
-  </ant-->
   <ant  antfile="build-webapp.xml"    target="compile">
     <property name="webapp.name"      value="tiles-documentation"/>
   </ant>
+    <!--ant  antfile="build-webapp.xml"    target="compile">
+      <property name="webapp.name"      value="test"/>
+    </ant-->
 </target>
 
 
@@ -318,14 +315,14 @@
     <property name="webapp.name"      value="examples"/>
     <property name="webapp.war"       value="struts-examples.war"/>
   </ant>
-  <!--ant  antfile="build-webapp.xml"    target="dist">
-    <property name="webapp.name"      value="test"/>
-    <property name="webapp.war"       value="struts-test.war"/>
-  </ant-->
   <ant  antfile="build-webapp.xml"    target="dist">
     <property name="webapp.name"      value="tiles-documentation"/>
     <property name="webapp.war"       value="tiles-documentation.war"/>
   </ant>
+    <!--ant  antfile="build-webapp.xml"    target="dist">
+      <property name="webapp.name"      value="test"/>
+      <property name="webapp.war"       value="struts-test.war"/>
+    </ant-->
 </target>
 
 
@@ -368,12 +365,12 @@
   <ant  antfile="build-webapp.xml"    target="clean">
     <property name="webapp.name"      value="examples"/>
   </ant>
-  <!--ant  antfile="build-webapp.xml"    target="clean">
-    <property name="webapp.name"      value="test"/>
-  </ant-->
   <ant  antfile="build-webapp.xml"    target="clean">
     <property name="webapp.name"      value="tiles-documentation"/>
   </ant>
+    <!--ant  antfile="build-webapp.xml"    target="clean">
+      <property name="webapp.name"      value="test"/>
+    </ant-->
 </target>
 
 

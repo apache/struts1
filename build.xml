@@ -510,14 +510,9 @@
             <fileset dir="${build.home}/example"/>
         </copy>
 
-        <mkdir dir="${catalina.home}/webapps/struts-exercise-taglib"/>
-        <copy todir="${catalina.home}/webapps/struts-exercise-taglib">
-            <fileset dir="${build.home}/exercise-taglib"/>
-        </copy>
-
-        <mkdir dir="${catalina.home}/webapps/struts-upload"/>
-        <copy todir="${catalina.home}/webapps/struts-upload">
-            <fileset dir="${build.home}/upload"/>
+        <mkdir dir="${catalina.home}/webapps/struts-examples"/>
+        <copy todir="${catalina.home}/webapps/struts-examples">
+            <fileset dir="${build.home}/examples"/>
         </copy>
 
     </target>
