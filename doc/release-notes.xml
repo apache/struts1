@@ -159,6 +159,8 @@
     <em>struts-bean</em> custom tag library (package
     <code>org.apache.struts.taglib.bean</code>):</p>
     <ul>
+    <li>Add format, locale and bundle attributes to support values formatting according to current
+user locale, format string from attribute or format string from string resources.</li>
     <li>Correct the generated scripting variable type when the &lt;bean:cookie>, &lt;bean:header>, or &lt;bean:parameter> tag is used with the "multiple" attribute.</li>
     <li>Added <code>name</code>, <code>property</code>, and
         <code>scope</code> attributes to the <code>&lt;bean:message&gt;</code>
