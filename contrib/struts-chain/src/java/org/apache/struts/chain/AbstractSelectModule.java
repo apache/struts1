@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractSelectModule.java,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/11 04:55:34 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractSelectModule.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/09/29 06:55:07 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/11 04:55:34 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
  */
 
 public abstract class AbstractSelectModule implements Command {
@@ -173,12 +173,12 @@ public abstract class AbstractSelectModule implements Command {
             throw new IllegalArgumentException("No module config for prefix '" +
                                                prefix + "'");
         }
-        wcontext.getAttributes().put(getModuleConfigKey(), moduleConfig);
+        wcontext.put(getModuleConfigKey(), moduleConfig);
         wcontext.getRequestScope().put(Globals.MODULE_KEY, moduleConfig);
         MessageResources messageResources = (MessageResources)
             wcontext.getApplicationScope().get(Globals.MESSAGES_KEY + prefix);
         if (messageResources != null) {
-            wcontext.getAttributes().put(getMessageResourcesKey(),
+            wcontext.put(getMessageResourcesKey(),
                                          messageResources);
             wcontext.getRequestScope().put(Globals.MESSAGES_KEY,
                                            messageResources);

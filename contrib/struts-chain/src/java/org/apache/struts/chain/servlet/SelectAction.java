@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/SelectAction.java,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/11 04:55:34 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/SelectAction.java,v 1.2 2003/09/29 06:55:08 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/09/29 06:55:08 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.config.ModuleConfig;
  * action to be used for processing this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/11 04:55:34 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:08 $
  */
 
 public class SelectAction extends AbstractSelectAction {
@@ -114,7 +114,7 @@ public class SelectAction extends AbstractSelectAction {
 
         // Strip the module prefix and extension (if any)
         ModuleConfig moduleConfig = (ModuleConfig)
-            swcontext.getAttributes().get(getModuleConfigKey());
+            swcontext.get(getModuleConfigKey());
         String prefix = moduleConfig.getPrefix();
         if (!path.startsWith(prefix)) {
             throw new IllegalArgumentException("Path does not start with '" +

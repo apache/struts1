@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractPopulateActionForm.java,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/11 04:55:34 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractPopulateActionForm.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/09/29 06:55:07 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.config.ActionConfig;
  * <p>Populate the form bean (if any) for this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/11 04:55:34 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
  */
 
 public abstract class AbstractPopulateActionForm implements Command {
@@ -187,14 +187,14 @@ public abstract class AbstractPopulateActionForm implements Command {
 
         // Is there a form bean for this request?
         ActionForm actionForm = (ActionForm)
-            context.getAttributes().get(getActionFormKey());
+            context.get(getActionFormKey());
         if (actionForm == null) {
             return (false);
         }
 
         // Reset the form bean property values
         ActionConfig actionConfig = (ActionConfig)
-            context.getAttributes().get(getActionConfigKey());
+            context.get(getActionConfigKey());
         String prefix = actionConfig.getPrefix();
         String suffix = actionConfig.getSuffix();
         reset(context, actionConfig, actionForm);
@@ -227,10 +227,10 @@ public abstract class AbstractPopulateActionForm implements Command {
         // Set the cancellation attribute if appropriate
         if ((paramValues.get(org.apache.struts.taglib.html.Constants.CANCEL_PROPERTY) != null) ||
             (paramValues.get(org.apache.struts.taglib.html.Constants.CANCEL_PROPERTY_X) != null)) {
-            wcontext.getAttributes().put(getCancelKey(), Boolean.TRUE);
+            wcontext.put(getCancelKey(), Boolean.TRUE);
             wcontext.getRequestScope().put(Globals.CANCEL_KEY, Boolean.TRUE);
         } else {
-            wcontext.getAttributes().put(getCancelKey(), Boolean.FALSE);
+            wcontext.put(getCancelKey(), Boolean.FALSE);
         }
 
         return (false);

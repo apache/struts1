@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/ExceptionHandler.java,v 1.1 2003/08/31 21:53:00 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/31 21:53:00 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/ExceptionHandler.java,v 1.2 2003/09/29 06:55:08 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/09/29 06:55:08 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Handle the specified exception.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/31 21:53:00 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:08 $
  */
 
 public class ExceptionHandler extends AbstractExceptionHandler {
@@ -139,7 +139,7 @@ public class ExceptionHandler extends AbstractExceptionHandler {
         // Look up the remaining properties needed for this handler
         ServletWebContext swcontext = (ServletWebContext) context;
         ActionForm actionForm = (ActionForm)
-            swcontext.getAttributes().get(getActionFormKey());
+            swcontext.get(getActionFormKey());
         HttpServletRequest request = swcontext.getRequest();
         HttpServletResponse response = swcontext.getResponse();
 

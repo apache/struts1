@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/ExceptionCatcher.java,v 1.1 2003/08/31 21:53:00 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/31 21:53:00 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/ExceptionCatcher.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/09/29 06:55:07 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.chain.Constants;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/31 21:53:00 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
  */
 
 public class ExceptionCatcher implements Filter {
@@ -182,7 +182,7 @@ public class ExceptionCatcher implements Filter {
      */
     public boolean execute(Context context) throws Exception {
 
-        context.getAttributes().remove(getExceptionKey());
+        context.remove(getExceptionKey());
         return (false);
 
     }
@@ -210,12 +210,12 @@ public class ExceptionCatcher implements Filter {
         if (log.isDebugEnabled()) {
             log.debug("Attempting to handle a thrown exception");
         }
-        context.getAttributes().put(getExceptionKey(), exception);
+        context.put(getExceptionKey(), exception);
 
         // Execute the specified command
         try {
             Catalog catalog = (Catalog)
-                context.getAttributes().get(getCatalogKey());
+                context.get(getCatalogKey());
             Command command = catalog.getCommand(getExceptionCommand());
             if (log.isTraceEnabled()) {
                 log.trace("Calling handler command '" + getExceptionCommand()

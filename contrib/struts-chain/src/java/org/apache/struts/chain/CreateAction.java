@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/CreateAction.java,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/11 04:55:34 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/CreateAction.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/09/29 06:55:07 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.config.ModuleConfig;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/11 04:55:34 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
  */
 
 public class CreateAction implements Command {
@@ -190,7 +190,7 @@ public class CreateAction implements Command {
 
         // Look up the class name for the desired Action
         ActionConfig actionConfig = (ActionConfig)
-            context.getAttributes().get(getActionConfigKey());
+            context.get(getActionConfigKey());
         String type = actionConfig.getType();
 
         // Create (if necessary) and cache an Action instance
@@ -201,12 +201,12 @@ public class CreateAction implements Command {
             if (action == null) {
                 action = (Action) ClassUtils.getApplicationInstance(type);
                 ActionServlet actionServlet = (ActionServlet)
-                    context.getAttributes().get(getActionServletKey());
+                    context.get(getActionServletKey());
                 action.setServlet(actionServlet);
                 actions.put(type, action);
             }
         }
-        context.getAttributes().put(getActionKey(), action);
+        context.put(getActionKey(), action);
 
         return (false);
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractExecuteAction.java,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/11 04:55:34 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractExecuteAction.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/09/29 06:55:07 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.config.ForwardConfig;
  * the returned <code>ActionForward</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/11 04:55:34 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
  */
 
 public abstract class AbstractExecuteAction implements Command {
@@ -216,19 +216,19 @@ public abstract class AbstractExecuteAction implements Command {
 
         // Acquire the resources we will need to send to the Action
         Action action = (Action)
-            context.getAttributes().get(getActionKey());
+            context.get(getActionKey());
         if (action == null) {
             return (false);
         }
         ActionConfig actionConfig = (ActionConfig)
-            context.getAttributes().get(getActionConfigKey());
+            context.get(getActionConfigKey());
         ActionForm actionForm = (ActionForm)
-            context.getAttributes().get(getActionFormKey());
+            context.get(getActionFormKey());
 
         // Execute the Action for this request, caching returned ActionForward
         ForwardConfig forwardConfig =
             execute(context, action, actionConfig, actionForm);
-        context.getAttributes().put(getForwardConfigKey(), forwardConfig);
+        context.put(getForwardConfigKey(), forwardConfig);
 
         return (false);
 

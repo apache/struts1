@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/CreateActionForm.java,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/11 04:55:34 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/CreateActionForm.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/09/29 06:55:07 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.config.FormBeanConfig;
  * <p>Create (if necessary) and cache a form bean for this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/11 04:55:34 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
  */
 
 public class CreateActionForm implements Command {
@@ -190,10 +190,10 @@ public class CreateActionForm implements Command {
 
         // Is there a form bean associated with this ActionConfig?
         ActionConfig actionConfig = (ActionConfig)
-            context.getAttributes().get(getActionConfigKey());
+            context.get(getActionConfigKey());
         String name = actionConfig.getName();
         if (name == null) {
-            context.getAttributes().remove(getActionFormKey());
+            context.remove(getActionFormKey());
             return (false);
         }
 
@@ -202,7 +202,7 @@ public class CreateActionForm implements Command {
             actionConfig.getModuleConfig().findFormBeanConfig(name);
         if (formBeanConfig == null) {
             // FIXME - report an error?
-            context.getAttributes().remove(getActionFormKey());
+            context.remove(getActionFormKey());
             return (false);
         }
 
@@ -220,7 +220,7 @@ public class CreateActionForm implements Command {
                 String className =
                     ((DynaBean) instance).getDynaClass().getName();
                 if (className.equals(formBeanConfig.getName())) {
-                    wcontext.getAttributes().put
+                    wcontext.put
                         (getActionFormKey(), instance);
                     /* It should already be in session scope
                     if ("session".equals(actionConfig.getScope())) {
@@ -236,7 +236,7 @@ public class CreateActionForm implements Command {
                         ClassUtils.getApplicationClass
                         (formBeanConfig.getType());
                     if (configClass.isAssignableFrom(instance.getClass())) {
-                        wcontext.getAttributes().put
+                        wcontext.put
                             (getActionFormKey(), instance);
                         /* It should already be in session scope
                            if ("session".equals(actionConfig.getScope())) {
@@ -266,9 +266,9 @@ public class CreateActionForm implements Command {
 
         // Configure and cache the new instance
         ActionServlet servlet = (ActionServlet)
-            wcontext.getAttributes().get(getActionServletKey());
+            wcontext.get(getActionServletKey());
         instance.setServlet(servlet);
-        wcontext.getAttributes().put(getActionFormKey(), instance);
+        wcontext.put(getActionFormKey(), instance);
         if ("session".equals(actionConfig.getScope())) {
             wcontext.getSessionScope().put
                 (actionConfig.getAttribute(), instance);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/ComposableRequestProcessor.java,v 1.3 2003/08/31 21:53:00 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2003/08/31 21:53:00 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/ComposableRequestProcessor.java,v 1.4 2003/09/29 06:55:07 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/09/29 06:55:07 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.commons.logging.LogFactory;
  * @author Cedric Dumoulin
  * @author Greg Reddin
  *
- * @version $Revision: 1.3 $ $Date: 2003/08/31 21:53:00 $
+ * @version $Revision: 1.4 $ $Date: 2003/09/29 06:55:07 $
  * @since Struts 1.1
  */
 
@@ -176,12 +176,12 @@ public class ComposableRequestProcessor extends RequestProcessor {
         // Create and populate a Context for this request
         ServletWebContext context = new ServletWebContext();
         context.initialize(getServletContext(), request, response);
-        context.getAttributes().put(Constants.CATALOG_KEY,
-                                    this.catalog);
-        context.getAttributes().put(Constants.ACTION_SERVLET_KEY,
-                                    this.servlet);
-        context.getAttributes().put(Constants.MODULE_CONFIG_KEY,
-                                    this.moduleConfig);
+        context.put(Constants.CATALOG_KEY,
+                    this.catalog);
+        context.put(Constants.ACTION_SERVLET_KEY,
+                    this.servlet);
+        context.put(Constants.MODULE_CONFIG_KEY,
+                    this.moduleConfig);
 
         // Create and execute the command.
         Command command = this.catalog.getCommand("servlet-standard");

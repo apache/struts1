@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractExceptionHandler.java,v 1.1 2003/08/31 21:53:00 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/31 21:53:00 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractExceptionHandler.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/09/29 06:55:07 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.config.ModuleConfig;
  * exception class that occurred.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/31 21:53:00 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
  */
 
 public abstract class AbstractExceptionHandler implements Command {
@@ -220,7 +220,7 @@ public abstract class AbstractExceptionHandler implements Command {
 
         // Look up the exception that was thrown
         Exception exception = (Exception)
-            context.getAttributes().get(getExceptionKey());
+            context.get(getExceptionKey());
         if (exception == null) {
             log.warn("No Exception found under key '" +
                      getExceptionKey() + "'");
@@ -230,9 +230,9 @@ public abstract class AbstractExceptionHandler implements Command {
         // Look up the local or global exception handler configuration
         ExceptionConfig exceptionConfig = null;
         ActionConfig actionConfig = (ActionConfig)
-            context.getAttributes().get(getActionConfigKey());
+            context.get(getActionConfigKey());
         ModuleConfig moduleConfig = (ModuleConfig)
-            context.getAttributes().get(getModuleConfigKey());
+            context.get(getModuleConfigKey());
         if (actionConfig != null) {
             exceptionConfig =
                 actionConfig.findExceptionConfig(exception.getClass().getName());
@@ -250,7 +250,7 @@ public abstract class AbstractExceptionHandler implements Command {
             handle(context, exception, exceptionConfig,
                    actionConfig, moduleConfig);
         if (forwardConfig != null) {
-            context.getAttributes().put(getForwardConfigKey(), forwardConfig);
+            context.put(getForwardConfigKey(), forwardConfig);
             return (false);
         } else {
             return (true);

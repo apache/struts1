@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractSelectInput.java,v 1.1 2003/08/31 22:42:45 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/31 22:42:45 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractSelectInput.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/09/29 06:55:07 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.config.ModuleConfig;
  * input page for the current action, if any.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/31 22:42:45 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
  */
 
 public abstract class AbstractSelectInput implements Command {
@@ -161,7 +161,7 @@ public abstract class AbstractSelectInput implements Command {
     public boolean execute(Context context) throws Exception {
 
         ActionConfig actionConfig = (ActionConfig)
-            context.getAttributes().get(getActionConfigKey());
+            context.get(getActionConfigKey());
         ModuleConfig moduleConfig = actionConfig.getModuleConfig();
 
         // Cache an ForwardConfig back to our input page
@@ -184,7 +184,7 @@ public abstract class AbstractSelectInput implements Command {
         if (log.isDebugEnabled()) {
             log.debug("Forwarding back to " + forwardConfig);
         }
-        context.getAttributes().put(getForwardConfigKey(), forwardConfig);
+        context.put(getForwardConfigKey(), forwardConfig);
         return (false);
 
     }

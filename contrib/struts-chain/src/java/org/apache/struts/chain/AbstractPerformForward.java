@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractPerformForward.java,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/11 04:55:34 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractPerformForward.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/09/29 06:55:07 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.config.ForwardConfig;
  * <code>ForwardConfig</code> (if any).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/11 04:55:34 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
  */
 
 public abstract class AbstractPerformForward implements Command {
@@ -130,7 +130,7 @@ public abstract class AbstractPerformForward implements Command {
 
         // Is there a ForwardConfig to be performed?
         ForwardConfig forwardConfig = (ForwardConfig)
-            context.getAttributes().get(getForwardConfigKey());
+            context.get(getForwardConfigKey());
         if (forwardConfig == null) {
             return (true);
         }

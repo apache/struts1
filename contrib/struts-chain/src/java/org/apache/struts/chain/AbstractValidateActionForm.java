@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractValidateActionForm.java,v 1.2 2003/08/31 22:42:45 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/08/31 22:42:45 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractValidateActionForm.java,v 1.3 2003/09/29 06:55:07 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/09/29 06:55:07 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.config.ActionConfig;
  * proceed normally.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/08/31 22:42:45 $
+ * @version $Revision: 1.3 $ $Date: 2003/09/29 06:55:07 $
  */
 
 public abstract class AbstractValidateActionForm implements Command {
@@ -246,21 +246,21 @@ public abstract class AbstractValidateActionForm implements Command {
 
         // Is there a form bean for this request?
         ActionForm actionForm = (ActionForm)
-            context.getAttributes().get(getActionFormKey());
+            context.get(getActionFormKey());
         if (actionForm == null) {
             return (false);
         }
 
         // Was this request cancelled?
         Boolean cancel = (Boolean)
-            context.getAttributes().get(getCancelKey());
+            context.get(getCancelKey());
         if ((cancel != null) && cancel.booleanValue()) {
             return (false);
         }
 
         // Is validation disabled on this request?
         ActionConfig actionConfig = (ActionConfig)
-            context.getAttributes().get(getActionConfigKey());
+            context.get(getActionConfigKey());
         if (!actionConfig.getValidate()) {
             return (false);
         }
@@ -276,7 +276,7 @@ public abstract class AbstractValidateActionForm implements Command {
         // Execute the specified validation failure command
         try {
             Catalog catalog = (Catalog)
-                context.getAttributes().get(getCatalogKey());
+                context.get(getCatalogKey());
             Command command = catalog.getCommand(getFailureCommand());
             if (log.isTraceEnabled()) {
                 log.trace("Calling failure command '" + getFailureCommand()

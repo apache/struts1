@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractSelectLocale.java,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/11 04:55:34 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractSelectLocale.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/09/29 06:55:07 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Select the <code>Locale</code> to be used for this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/11 04:55:34 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
  */
 
 public abstract class AbstractSelectLocale implements Command {
@@ -153,14 +153,14 @@ public abstract class AbstractSelectLocale implements Command {
 
         // Are we configured to select Locale automatically?
         ModuleConfig moduleConfig = (ModuleConfig)
-            context.getAttributes().get(getModuleConfigKey());
+            context.get(getModuleConfigKey());
         if (!moduleConfig.getControllerConfig().getLocale()) {
             return (false);
         }
 
         // Retrieve and cache appropriate Locale for this request
         Locale locale = getLocale(context);
-        context.getAttributes().put(getLocaleKey(), locale);
+        context.put(getLocaleKey(), locale);
 
         return (false);
 
