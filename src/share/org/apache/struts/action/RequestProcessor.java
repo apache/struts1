@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.26 2003/02/16 02:51:32 craigmcc Exp $
- * $Revision: 1.26 $
- * $Date: 2003/02/16 02:51:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.27 2003/02/25 05:14:17 dgraham Exp $
+ * $Revision: 1.27 $
+ * $Date: 2003/02/25 05:14:17 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.26 $ $Date: 2003/02/16 02:51:32 $
+ * @version $Revision: 1.27 $ $Date: 2003/02/25 05:14:17 $
  * @since Struts 1.1
  */
 
@@ -276,7 +276,7 @@ public class RequestProcessor {
                                  action, form, mapping);
 
         // Process the returned ActionForward instance
-        processActionForward(request, response, forward);
+        processForwardConfig(request, response, forward);
 
     }
 
@@ -392,6 +392,7 @@ public class RequestProcessor {
      *
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
+     * @deprecated Use processForwardConfig() instead.
      */
     protected void processActionForward(HttpServletRequest request,
                                         HttpServletResponse response,
@@ -405,9 +406,7 @@ public class RequestProcessor {
 
     /**
      * Forward or redirect to the specified destination, by the specified
-     * mechanism.
-     * This method uses the ForwardConfig object. It should be used in
-     * place of processActionForward(...).
+     * mechanism.  This method uses a ForwardConfig object instead an ActionForward.
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
