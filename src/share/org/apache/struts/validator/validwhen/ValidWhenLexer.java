@@ -56,9 +56,6 @@
 
 package org.apache.struts.validator.validwhen;
 
-import java.util.Stack; 
-import org.apache.commons.validator.ValidatorUtil;
-
 
 import java.io.InputStream;
 import antlr.TokenStreamException;
@@ -66,23 +63,18 @@ import antlr.TokenStreamIOException;
 import antlr.TokenStreamRecognitionException;
 import antlr.CharStreamException;
 import antlr.CharStreamIOException;
-import antlr.ANTLRException;
 import java.io.Reader;
 import java.util.Hashtable;
-import antlr.CharScanner;
 import antlr.InputBuffer;
 import antlr.ByteBuffer;
 import antlr.CharBuffer;
 import antlr.Token;
-import antlr.CommonToken;
 import antlr.RecognitionException;
 import antlr.NoViableAltForCharException;
-import antlr.MismatchedCharException;
 import antlr.TokenStream;
 import antlr.ANTLRHashString;
 import antlr.LexerSharedInputState;
 import antlr.collections.impl.BitSet;
-import antlr.SemanticException;
 
 public class ValidWhenLexer extends antlr.CharScanner implements ValidWhenParserTokenTypes, TokenStream
  {
@@ -109,7 +101,6 @@ public Token nextToken() throws TokenStreamException {
 	Token theRetToken=null;
 tryAgain:
 	for (;;) {
-		Token _token = null;
 		int _ttype = Token.INVALID_TYPE;
 		resetText();
 		try {   // for char stream error handling
@@ -243,8 +234,7 @@ tryAgain:
 	public final void mWS(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = WS;
-		int _saveIndex;
-		
+
 		{
 		int _cnt15=0;
 		_loop15:
@@ -316,7 +306,6 @@ tryAgain:
 	public final void mHEX_LITERAL(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = HEX_LITERAL;
-		int _saveIndex;
 		
 		match('0');
 		match('x');
@@ -497,7 +486,6 @@ tryAgain:
 	public final void mTHIS(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = THIS;
-		int _saveIndex;
 		
 		match("*this*");
 		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
@@ -510,8 +498,7 @@ tryAgain:
 	public final void mIDENTIFIER(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = IDENTIFIER;
-		int _saveIndex;
-		
+
 		{
 		switch ( LA(1)) {
 		case 'a':  case 'b':  case 'c':  case 'd':
@@ -582,7 +569,6 @@ tryAgain:
 	public final void mEQUALSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = EQUALSIGN;
-		int _saveIndex;
 		
 		match('=');
 		match('=');
@@ -596,7 +582,6 @@ tryAgain:
 	public final void mNOTEQUALSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = NOTEQUALSIGN;
-		int _saveIndex;
 		
 		match('!');
 		match('=');
@@ -610,7 +595,6 @@ tryAgain:
 	public final void mLESSTHANSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = LESSTHANSIGN;
-		int _saveIndex;
 		
 		match('<');
 		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
@@ -623,7 +607,6 @@ tryAgain:
 	public final void mGREATERTHANSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = GREATERTHANSIGN;
-		int _saveIndex;
 		
 		match('>');
 		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
@@ -636,7 +619,6 @@ tryAgain:
 	public final void mLESSEQUALSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = LESSEQUALSIGN;
-		int _saveIndex;
 		
 		match('<');
 		match('=');
@@ -650,7 +632,6 @@ tryAgain:
 	public final void mGREATEREQUALSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = GREATEREQUALSIGN;
-		int _saveIndex;
 		
 		match('>');
 		match('=');
