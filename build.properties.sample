@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.37 2003/05/02 02:50:05 jmitchell Exp $
+# $Id: build.properties.sample,v 1.38 2003/06/06 20:55:36 husted Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -50,11 +50,11 @@ commons-digester.jar=${commons-lib.home}/digester/dist/commons-digester.jar
 
 # The JAR file containing the FileUpload package (recent Nightly Build)
 # from the Jakarta Commons project.
-commons-fileupload.jar=${commons-lib.home}/fileupload/target/commons-fileupload-1.0-dev.jar
+commons-fileupload.jar=${commons-lib.home}/fileupload/dist/commons-fileupload.jar
 
-# The JAR file containing the Lang package (Version 1.1 or later)
+# The JAR file containing the Lang package (Version 1.0.1 or later)
 # from the Jakarta Commons project.
-commons-lang.jar=${commons-lib.home}/lang/dist/commons-lang-1.1.jar
+commons-lang.jar=${commons-lib.home}/lang/dist/commons-lang.jar
 
 # The JAR file containing the Logging package (Nightly Build or Version 1.0.3 or later)
 # from the Jakarta Commons project.
