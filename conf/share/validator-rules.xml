@@ -2,9 +2,9 @@
           "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN"
           "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
 <!--
-  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.46 2003/11/17 04:12:02 rleland Exp $
-  $Revision: 1.46 $
-  $Date: 2003/11/17 04:12:02 $
+  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.47 2003/11/17 05:03:34 rleland Exp $
+  $Revision: 1.47 $
+  $Date: 2003/11/17 05:03:34 $
 
    This file contains the default Struts Validator pluggable validator
    definitions.  It should be placed somewhere under /WEB-INF and
@@ -186,7 +186,7 @@
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.minlength"
-          jsFunction ="org.apache.commons.validator.javascript.validateMinLength"/>
+           jsFunction="org.apache.commons.validator.javascript.validateMinLength"/>
 
 
       <validator name="maxlength"
@@ -199,7 +199,7 @@
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.maxlength"
-          jsFunction ="org.apache.commons.validator.javascript.validateMaxLength"/>/>
+           jsFunction="org.apache.commons.validator.javascript.validateMaxLength"/>
 
 
 
