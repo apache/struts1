@@ -10,7 +10,7 @@
 <chapter href="status" name="Development Roadmap">
 
 <section href="status" name="Development Roadmap">
-<p><font size="-2">$Id: status.xml,v 1.12 2002/11/14 12:09:23 husted Exp $</font></p>
+<p><font size="-2">$Id: status.xml,v 1.13 2002/11/14 20:23:15 husted Exp $</font></p>
 <p>
 This document outlines some of changes we expect to
 see in future releases of Struts.
@@ -75,6 +75,8 @@ Features under discussion include:
 <li>Better support for unit testing within the framework (e.g.
 <a href="http://sourceforge.net/projects/strutstestcase/">Struts TestCase</a>)
 or perhaps even a distinct unit testing framework.</li>
+<li>Encouraging the use of <a href="http://sourceforge.net/projects/xdoclet/">XDoclet</a> 
+and other code generation technologies to streamline development.</li>
 <li>Moving to <a href="http://jakarta.apache.org/turbine/maven/index.html">Maven</a> for project management</li>
 </ul>
 <p>
@@ -122,6 +124,106 @@ Of course, it is anticipated that the Struts team will continue to support
 <li><a href="../proposals/struts-faces.html">struts-faces taglib</a></li>
 <li><a href="proposals/release-plan-1.1b2.html">Release Plan 1.1-b2</a></li>
 <li><a href="proposals/workflow.html">Workflow Proposal</a></li>
+</ul>
+</section>
+
+<section href="guidelines" name="Coding Conventions and Guidelines">
+<p>
+Source code and documentation contributed to the Struts repositories 
+should observe the:
+</p>
+<ul>
+<li>
+  <a href="http://jakarta.apache.org/site/source.html">Jakarta project guidelines</a>,
+</li>
+<li>
+  <a href="http://www.ambysoft.com/elementsJavaStyle.html">Elements of Java Style</a>, and 
+</li>
+<li>
+  <a href="http://java.sun.com/j2se/javadoc/writingdoccomments/">How to write Doc Comments</a>
+</li>
+</ul>
+<p>
+as core references regarding the formatting of code and documentation.
+</p>
+<p>
+<strong>Clarifications</strong>
+</p>
+<ul>
+<li>
+  First, "Observe the style of the original". 
+  Resist the temptation to make stylistic changes for their own sake. 
+  But, if you must reformat code, commit style changes separately from code changes. 
+  Either change the style, commit, and then change the code, or vice-versa. 
+</li>
+<li>
+  Set editors to replace tabs with spaces, and do not trim trailing spaces. 
+</li>
+<li>
+  Specify imported classes (do not use <code>.*</code>). 
+</li>
+<li>
+  Write all if/else statements as full blocks with each clause within braces, 
+  unless the entire statement fits on the same line. 
+</li>
+<li>
+  Use <code>:FIXME:</code> and <code>:TODO:</code> tokens to mark followup notes in code. 
+  You may also include your Apache username and the date. 
+  <code>:FIXME: we need to do this sometime (husted 2002-11-14)</code>
+</li>
+<li>
+ Use <code>@since</code> to document changes between Struts versions, 
+ as in <code>@since Struts 1.1</code>.
+</li>
+<li>
+ Wrap lines of code and JavaDoc at column 78. 
+ You can include a "comment rule" in the source to help with this.<br />
+ <small> 
+ // ------------------------------------------------------------------------ 78
+ </small>
+</li>
+<li>
+ Please do your best to provide high-quality JavaDocs for all source code elements.
+ Package overviews (aka "Developer Guides") are also encouraged.
+</li>
+<li>
+ When working on a bugfix, please first write a <a href="http://www.junit.org">JUnit</a> test 
+ that proves the bug exists, and then use the test to prove the bug is fixed. =:0)
+</li>
+<li>
+ When working on an enhancement, please feel free to use test-driven design and 
+ write the test first &lt;head-slap/>.
+ For more about TDD, see the <a href="http://sourceforge.net/projects/mockobjects">MockObjects project</a>.
+</li>
+<li>
+ As files are updated from year to year, the copyright on each file should be 
+ extended to include the current year. 
+ You do not need to change the copyright year unless you change the file. 
+ Every source file should include the current Apache License and copright.
+</li>
+<li>
+ Provide high-level API compatibility for any changes made within the same major 
+ release series (#.x). 
+ Changes which adversely affect compatibilty should be slotted for the next major 
+ release series (++#.x).
+</li>
+<li>
+ Our favorite books about programming are 
+ <a href="http://www.amazon.com/exec/obidos/ISBN=0201633612/hitchhikeguidetoA/">Design Patterns</a> and 
+ <a href="http://www.amazon.com/exec/obidos/ISBN=0201485672/hitchhikeguidetoA/">Refactoring</a>. 
+</li>
+<li>
+ Our favorite book about open source development is the 
+ <a href="http://www.amazon.com/exec/obidos/ISBN=1565927249/hitchhikeguidetoA/">Cathedral and Bazaar</a>.
+</li>
+<li>
+ Our favorite science fiction author is 
+ <a href="http://www.nitrosyncretic.com/rah/">Robert Heinlein</a>. 
+ <a href="http://www.tuxedo.org/~esr/jargon/html/entry/TANSTAAFL.html"><font size="-1">TANSTAAFL</font></a>.<br />
+ (Except on Friday, when we favor 
+ <a href="http://carbon.cudenver.edu/~mstilman/zaphod/">Douglas Adams</a>. 
+ <a href="http://news.bbc.co.uk/1/hi/uk/1326657.stm"><font size="-1">SLATFATF</font></a>.)
+</li>
 </ul>
 </section>
 
