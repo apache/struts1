@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/validator/src/share/org/apache/struts/validator/action/Attic/ValidatorPlugIn.java,v 1.1 2002/03/17 00:32:41 dwinterfeldt Exp $
- * $Revision: 1.1 $
- * $Date: 2002/03/17 00:32:41 $
+ * $Header: /home/cvs/jakarta-struts/contrib/validator/src/share/org/apache/struts/validator/action/Attic/ValidatorPlugIn.java,v 1.2 2002/03/17 01:32:09 dwinterfeldt Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/03/17 01:32:09 $
  *
  * ====================================================================
  *
@@ -200,7 +200,11 @@ public final class ValidatorPlugIn implements PlugIn {
 	
        for (Iterator i = lValidatorRules.iterator(); i.hasNext(); ) {
           String validatorRules = (String)i.next();
-          
+
+	  if (log.isInfoEnabled()) {
+	     log.info("Loading validation rules file from '" + validatorRules + "'");
+	  }          
+	  
           InputStream input = null;
           BufferedInputStream bis = null;
           input = servlet.getServletContext().getResourceAsStream(validatorRules);
