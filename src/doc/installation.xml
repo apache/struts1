@@ -212,9 +212,35 @@ build dist         &lt;-- Windows platform
 
   </section>
 
-  <section name="Installing Struts with various servlet containers" href="Containers">
+  <section name="Installing Struts with your servlet container" href="Containers">
   
-  <p>BLUESTONE UNIVERSAL BUSINESS SERVER</p>
+  <p>For most containers, you need only to: </p>
+  
+  <ul>
+  <li>Copy the WAR files in your Struts <code>/webapp</code> directory to your containers 
+  <code>webapps</code> directory. </li>
+  <li>In some cases, you may need to restart your container if it is running.</li>
+  </ul>
+
+  <h3>Status of various containers -- as reported by volunteers on the Struts-User list:</h3>
+
+  <ul>
+  <li>Tomcat 3.1+ "standalone" - No additonal steps required.</li>
+  <li>Resin 2.1+ "standalone" - No additional steps required.</li>
+  <li>WebLogic 6.0+ - No additional steps required.</li>
+  </ul>
+  <ul>
+  <li>Bluestone Universal Business Server - <a href="#bluestone">Additional steps provided below.</a></li>
+  <li>Orion Application Server - <a href="#orion">Additional steps provided below.</a></li>
+  <li>Tomcat 3.1+ with Apache - <a href="#tomcat_apache">Additional steps provided below.</a></li>
+  <li>Weblogic 5.1 (sp8) - <a href="#wls6">Additional steps provided below.</a></li>
+  </ul>
+  <ul>
+  <li>JRUN - Determination pending.</li>
+  <li>Websphere - Determination pending.</li>
+  </ul>
+      
+  <h4><a name="bluestone">Bluestone Universal Business Server</a></h4>
   	
   	<ul>
   		<li>You need UBS version 7.2 to run war file applications.  The UBS 7.2.2 evaluation is
@@ -258,7 +284,7 @@ build dist         &lt;-- Windows platform
 	</ul>
 
   
-  <p>ORION APPLICATION SERVER</p>
+  <h4><a name="orion">Orion Application Server</a></h4>
 
      <p>In the steps below, <code>$ORION_HOME</code> refers to the directory in which you
         have installed Orion, and <code>$STRUTS_HOME</code> is the directory in which you
@@ -329,43 +355,7 @@ http://localhost/struts-example
    </ul>
    </ul>
   
-   <p>RESIN STAND-ALONE</p>
-  
-  <ul>
-  <li>In the steps below, $RESIN_HOME refers to the directory in which you
-      have installed Resin, and $STRUTS_HOME is the directory in which you
-      unpacked the Struts binary distribution.</li>
-  
-  <li>These instructions have been tested with the default resin.conf settings
-      in the 1.2.2 release (16-Jan-2001).</li>
-  
-  <li>Copy the Struts applications (*.war) from $STRUTS_HOME/webapps to your
-      $RESIN_HOME/webapps directory.</li>
-  
-  <li>Restart Resin if it is already running.</li>
-  
-  <li>You should now be able to access the Struts applications (assuming you are
-      using Resin's default port number of 8080) at, for example:<br/>
-      <code>http://localhost:8080/struts-documentation</code></li>
-  
-  <li>When developing your own applications, you can create a new folder under
-      $RESIN_HOME/doc and modify the file "$RESIN_HOME/conf/resin.conf" to
-      recognize your application, for example:<br/>  
-      &lt;web-app id='/struts-myapp' /><br/>   
-      Resin will then read your application's configuration from WEB-INF/web.xml</li>
-  </ul>
-  
-
-  <p>TOMCAT 3.1 (OR LATER) STAND-ALONE</p>
-  
-  <ul>
-  <li>Copy <code>struts-documentation.war</code> and <code>struts-example.war</code>
-      to your <code>$TOMCAT_HOME/webapps directory</code></li>
-  
-  <li>Restart Tomcat if it is already running</li>
-  </ul>
-  
-  <p>TOMCAT 3.1 (OR LATER) WITH APACHE</p>
+  <h4><a name="tomcat_apache">Tomcat 3.1 (Or Later) With Apache</a></h4>
     
   <ul>
   <li>These instructions assume you have successfully integrated
@@ -434,7 +424,7 @@ Alias /struts-example "$TOMCAT_HOME/webapps/struts-example"
   	  http://localhost/struts-example</code></li>
   </ul>
   
-    <p>WEBLOGIC 5.1 (service pack 8)</p>
+    <h4><a name="wls6">Weblogic 5.1 (service pack 8)</a></h4>
     
   <ul>
   <li>Obtain and install the Xerces XML parser (problems have been reported
