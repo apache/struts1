@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.9 2001/07/16 00:44:57 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2001/07/16 00:44:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.10 2001/07/20 23:34:04 mschachter Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/07/20 23:34:04 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib.logic;
 
 
 import java.security.Principal;
+import java.util.StringTokenizer;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
@@ -77,12 +78,14 @@ import org.apache.struts.util.RequestUtils;
  * is present for this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/07/16 00:44:57 $
+ * @version $Revision: 1.10 $ $Date: 2001/07/20 23:34:04 $
  */
 
 public class PresentTag extends ConditionalTagBase {
 
 
+    public static final String ROLE_DELIMITER = ",";
+    
     // ------------------------------------------------------ Protected Methods
 
 
@@ -146,9 +149,12 @@ public class PresentTag extends ConditionalTagBase {
                 pageContext.getRequest().getParameter(parameter);
             present = (value != null);
         } else if (role != null) {
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
-            present = request.isUserInRole(role);
+            HttpServletRequest request = (HttpServletRequest)
+                                                       pageContext.getRequest();
+            StringTokenizer st = new StringTokenizer(role, ROLE_DELIMITER, false);
+            while(!present && st.hasMoreTokens()){
+		present = request.isUserInRole(st.nextToken());
+            }
         } else if (user != null) {
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();

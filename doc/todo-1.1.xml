@@ -427,19 +427,6 @@
       </info>
     </task>
 
-    <task name="Enhance Role Checking">
-      <info>
-        <p>Enhance <code>&lt;logic:present&gt;</code> to accept a comma
-        delimited list of roles in the <code>role</code> attribute, and
-        process the nested body content if <em>any</em> of the listed roles
-        where owned by the current user.  A corresponding change to
-        <code>&lt;logic:notPresent&gt;</code> would process the nested body
-        content only if <em>none</em> of the listed roles were owned by
-        the present user.</p>
-        [STRUTS-USER, David Winterfeldt, 01/03/2001]
-      </info>
-    </task>
-
   </task-list>
 
 

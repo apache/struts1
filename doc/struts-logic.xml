@@ -1321,7 +1321,11 @@
       <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks whether the currently authenticated user (if any) has been
-      associated with the specified security role.</p>
+      associated with any of the specified security roles. Use a comma-delimited
+	  list to check for multiple roles. Example:
+	  <code>&lt;logic:present role="role1,role2,role3"&gt;
+	            code.....
+			&lt;/logic:present&gt;</code></p>
       </info>
     </attribute>
 
