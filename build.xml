@@ -32,12 +32,20 @@
                                       of the Jakarta Commons Collections
                                       package (version 1.0 or later).
 
+        commons-dbcp.jar              (required).  The path to the JAR file
+                                      of the Jakarta Commons DBCP
+                                      package (version 1.0 or later).
+
         commons-digester.jar          (required).  The path to the JAR file
                                       of the Jakarta Commons Digester
                                       package (version 1.0 or later).
 
         commons-logging.jar           (required).  The path to the JAR file
                                       of the Jakarta Commons Logging
+                                      package (version 1.0 or later).
+
+        commons-pool.jar              (required).  The path to the JAR file
+                                      of the Jakarta Commons POOL
                                       package (version 1.0 or later).
 
         jdbc20ext.jar                 (required).  The path to the JAR file
@@ -69,10 +77,14 @@
              value="/usr/local/commons-beanutils-1.0/commons-beanutils.jar"/>
     <property name="commons-collections.jar"
              value="/usr/local/commons-collections-1.0/commons-collections.jar"/>
+    <property name="commons-dbcp.jar"
+             value="/usr/local/commons-dbcp-1.0/commons-dbcp.jar"/>
     <property name="commons-digester.jar"
              value="/usr/local/commons-digester-1.0/commons-digester.jar"/>
     <property name="commons-logging.jar"
              value="/usr/local/commons-logging-1.0/commons-logging.jar"/>
+    <property name="commons-pool.jar"
+             value="/usr/local/commons-pool-1.0/commons-pool.jar"/>
     <property name="jdbc20ext.jar"   value="../jdbc2_0-stdext.jar"/>
     <property name="servlet.jar"     value="../jakarta-servletapi/lib/servlet.jar"/>
     <property name="tomcat.home"     value="../build/tomcat"/>
@@ -147,8 +159,10 @@
     <path id="compile.classpath">
       <pathelement location="${commons-beanutils.jar}"/>
       <pathelement location="${commons-collections.jar}"/>
+      <pathelement location="${commons-dbcp.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
       <pathelement location="${commons-logging.jar}"/>
+      <pathelement location="${commons-pool.jar}"/>
       <pathelement location="${jdbc20ext.jar}"/>
       <pathelement location="${servlet.jar}"/>
     </path>
@@ -164,8 +178,10 @@
     <pathelement location="${cactus.jar}"/>
     <pathelement location="${commons-beanutils.jar}"/>
     <pathelement location="${commons-collections.jar}"/>
+    <pathelement location="${commons-dbcp.jar}"/>
     <pathelement location="${commons-digester.jar}"/>
     <pathelement location="${commons-logging.jar}"/>
+    <pathelement location="${commons-pool.jar}"/>
     <pathelement location="${servlet.jar}"/>
     <pathelement location="${junit.jar}"/>
     <pathelement location="${jdbc20ext.jar}"/>
@@ -212,10 +228,14 @@
             tofile="${build.home}/library/commons-beanutils.jar"/>
         <copy file="${commons-collections.jar}"
             tofile="${build.home}/library/commons-collections.jar"/>
+        <copy file="${commons-dbcp.jar}"
+            tofile="${build.home}/library/commons-dbcp.jar"/>
         <copy file="${commons-digester.jar}"
             tofile="${build.home}/library/commons-digester.jar"/>
         <copy file="${commons-logging.jar}"
             tofile="${build.home}/library/commons-logging.jar"/>
+        <copy file="${commons-pool.jar}"
+            tofile="${build.home}/library/commons-pool.jar"/>
         <copy file="${jdbc20ext.jar}"
             tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
     </target>
@@ -339,10 +359,6 @@
         <copy todir="${catalina.home}/webapps/struts-blank">
             <fileset dir="${build.home}/blank"/>
         </copy>
-<!--
-        <copy todir="${catalina.home}/webapps/struts-blank/WEB-INF/lib"
-               file="${xerces.jar}"/>
--->
 
         <mkdir dir="${catalina.home}/webapps/struts-documentation"/>
         <copy todir="${catalina.home}/webapps/struts-documentation">
@@ -353,37 +369,21 @@
         <copy todir="${catalina.home}/webapps/struts-example">
             <fileset dir="${build.home}/example"/>
         </copy>
-<!--
-        <copy todir="${catalina.home}/webapps/struts-example/WEB-INF/lib"
-               file="${xerces.jar}"/>
--->
 
         <mkdir dir="${catalina.home}/webapps/struts-template"/>
         <copy todir="${catalina.home}/webapps/struts-template">
             <fileset dir="${build.home}/template-example"/>
         </copy>
-<!--
-        <copy todir="${catalina.home}/webapps/struts-template/WEB-INF/lib"
-               file="${xerces.jar}"/>
--->
 
         <mkdir dir="${catalina.home}/webapps/struts-exercise-taglib"/>
         <copy todir="${catalina.home}/webapps/struts-exercise-taglib">
             <fileset dir="${build.home}/exercise-taglib"/>
         </copy>
-<!--
-        <copy todir="${catalina.home}/webapps/struts-exercise-taglib/WEB-INF/lib"
-               file="${xerces.jar}"/>
--->
 
         <mkdir dir="${catalina.home}/webapps/struts-upload"/>
         <copy todir="${catalina.home}/webapps/struts-upload">
             <fileset dir="${build.home}/upload"/>
         </copy>
-<!--
-        <copy todir="${catalina.home}/webapps/struts-upload/WEB-INF/lib"
-               file="${xerces.jar}"/>
--->
 
     </target>
 
