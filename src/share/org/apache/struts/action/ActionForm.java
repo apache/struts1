@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.14 2003/04/15 00:18:45 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2003/04/15 00:18:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.15 2003/04/29 02:55:24 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/04/29 02:55:24 $
  *
  * ====================================================================
  *
@@ -93,14 +93,14 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * protected methods for which they wish to provide modified functionality.
  * </p>
  *
- * <p>Since ActionForms are JavaBean, subclasses should also implement
+ * <p>Because ActionForms are JavaBeans, subclasses should also implement
  * <code>Serializable</code>, as required by the JavaBean specification.
  * Some containers require that an object meet all JavaBean requirements
  * in order to use the introspection API upon which ActionForms rely.</p>
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.14 $ $Date: 2003/04/15 00:18:45 $
+ * @version $Revision: 1.15 $ $Date: 2003/04/29 02:55:24 $
  */
 
 public abstract class ActionForm implements Serializable {
@@ -211,6 +211,13 @@ public abstract class ActionForm implements Serializable {
      * <p>
      * The default implementation does nothing.  Subclasses should override
      * this method to reset all bean properties to default values.
+     * </p>
+     * <p>
+     * This method is <strong>not</strong> the appropriate place to initialize form values
+     * for an "update" type page (this should be done in a setup Action).  You mainly 
+     * need to worry about setting checkbox values to false; most of the time you 
+     * can leave this method unimplemented.
+     * </p>
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
