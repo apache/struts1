@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/IncludeAction.java,v 1.2 2002/06/23 00:52:50 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/06/23 00:52:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/IncludeAction.java,v 1.3 2002/08/09 05:20:15 martinc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/08/09 05:20:15 $
  *
  * ====================================================================
  *
@@ -70,6 +70,7 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.MessageResources;
 
 
@@ -97,7 +98,7 @@ import org.apache.struts.util.MessageResources;
  * <code>parameter</code> attribute.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/06/23 00:52:50 $
+ * @version $Revision: 1.3 $ $Date: 2002/08/09 05:20:15 $
  */
 
 public class IncludeAction extends Action {
@@ -152,6 +153,11 @@ public class IncludeAction extends Action {
                 (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                  messages.getMessage("include.rd", path));
             return (null);
+        }
+
+        // Unwrap the multipart request, if there is one.
+        if (request instanceof MultipartRequestWrapper) {
+            request = ((MultipartRequestWrapper) request).getRequest();
         }
 
         // Forward control to the specified resource
