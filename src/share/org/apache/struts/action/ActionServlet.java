@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.86 2002/01/16 17:42:40 craigmcc Exp $
- * $Revision: 1.86 $
- * $Date: 2002/01/16 17:42:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.87 2002/01/17 00:15:05 craigmcc Exp $
+ * $Revision: 1.87 $
+ * $Date: 2002/01/17 00:15:05 $
  *
  * ====================================================================
  *
@@ -266,7 +266,7 @@ import org.xml.sax.SAXException;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.86 $ $Date: 2002/01/16 17:42:40 $
+ * @version $Revision: 1.87 $ $Date: 2002/01/17 00:15:05 $
  */
 
 public class ActionServlet
@@ -376,12 +376,14 @@ public class ActionServlet
      */
     public void destroy() {
 
-    if (debug >= 1)
-        log(internal.getMessage("finalizing"));
+        if (debug >= 1) {
+            log(internal.getMessage("finalizing"));
+        }
 
         destroyDataSources();
         destroyApplications();
         destroyInternal();
+        getServletContext().removeAttribute(Action.ACTION_SERVLET_KEY);
 
         // FIXME - destroy ApplicationConfig and message resource instances
 
@@ -418,6 +420,7 @@ public class ActionServlet
             initApplicationDataSources(ac);
         }
         destroyConfigDigester();
+        getServletContext().setAttribute(Action.ACTION_SERVLET_KEY, this);
 
     }
 

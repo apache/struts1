@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.1 2002/01/15 20:22:20 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/01/15 20:22:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.2 2002/01/17 00:15:05 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/01/17 00:15:05 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.config;
 
 
 import java.io.Serializable;
+import org.apache.commons.beanutils.ConvertUtils;
 
 
 /**
@@ -72,14 +73,43 @@ import java.io.Serializable;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/01/15 20:22:20 $
+ * @version $Revision: 1.2 $ $Date: 2002/01/17 00:15:05 $
  * @since Struts 1.1
  */
 
 public class FormPropertyConfig implements Serializable {
 
 
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * Have we calculated the initial value object yet?
+     */
+    protected transient boolean initialized = false;
+
+
+    /**
+     * The calculated initial value for this property.
+     */
+    protected transient Object initialValue = null;
+
+
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * String representation of the initial value for this property.
+     */
+    protected String initial = null;
+
+    public String getInitial() {
+        return (this.initial);
+    }
+
+    public void setInitial(String initial) {
+        this.initial = initial;
+    }
 
 
     /**
@@ -116,6 +146,48 @@ public class FormPropertyConfig implements Serializable {
 
 
     /**
+     * Return an object representing the initial value of this property.
+     */
+    public Object initial() {
+
+        // Don't bother synchronizing, a race is basically harmless
+        if (!initialized) {
+            try {
+                if (initial == null) {
+                    if ("boolean".equals(type)) {
+                        initialValue = Boolean.FALSE;
+                    } else if ("byte".equals(type)) {
+                        initialValue = new Byte((byte) 0);
+                    } else if ("char".equals(type)) {
+                        initialValue = new Character((char) 0);
+                    } else if ("double".equals(type)) {
+                        initialValue = new Double((double) 0.0);
+                    } else if ("float".equals(type)) {
+                        initialValue = new Float((float) 0.0);
+                    } else if ("int".equals(type)) {
+                        initialValue = new Integer(0);
+                    } else if ("long".equals(type)) {
+                        initialValue = new Long((long) 0);
+                    } else if ("short".equals(type)) {
+                        initialValue = new Short((short) 0);
+                    } else {
+                        initialValue = null;
+                    }
+                } else {
+                    Class clazz = Class.forName(type);
+                    initialValue = ConvertUtils.convert(initial, clazz);
+                }
+            } catch (Throwable t) {
+                initialValue = null;
+            }
+            initialized = true;
+        }
+        return (initialValue);
+
+    }
+
+
+    /**
      * Return a String representation of this object.
      */
     public String toString() {
@@ -125,6 +197,8 @@ public class FormPropertyConfig implements Serializable {
         sb.append(this.name);
         sb.append(",type=");
         sb.append(this.type);
+        sb.append(",initial=");
+        sb.append(this.initial);
         sb.append("]");
         return (sb.toString());
 

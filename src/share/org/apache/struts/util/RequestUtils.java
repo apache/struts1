@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.27 2002/01/13 00:25:37 craigmcc Exp $
- * $Revision: 1.27 $
- * $Date: 2002/01/13 00:25:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.28 2002/01/17 00:15:05 craigmcc Exp $
+ * $Revision: 1.28 $
+ * $Date: 2002/01/17 00:15:05 $
  *
  * ====================================================================
  *
@@ -82,6 +82,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
@@ -91,8 +92,11 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
+import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionServletWrapper;
+import org.apache.struts.action.DynaActionFormClass;
 import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
@@ -104,7 +108,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.27 $ $Date: 2002/01/13 00:25:37 $
+ * @version $Revision: 1.28 $ $Date: 2002/01/17 00:15:05 $
  */
 
 public class RequestUtils {
@@ -464,6 +468,104 @@ public class RequestUtils {
 
 
     /**
+     * Create (if necessary) and return an ActionForm instance appropriate
+     * for this request.  If no ActionForm instance is required, return
+     * <code>null</code>.
+     *
+     * @param request The servlet request we are processing
+     * @param mapping The action mapping for this request
+     * @param appConfig The application configuration for this sub-application
+     */
+    public static ActionForm createActionForm(HttpServletRequest request,
+                                              ActionMapping mapping,
+                                              ApplicationConfig appConfig,
+                                              ActionServlet servlet) {
+
+        // Is there a form bean associated with this mapping?
+        String attribute = mapping.getAttribute();
+        if (attribute == null) {
+            return (null);
+        }
+
+        // Look up the form bean configuration information to use
+        String name = mapping.getName();
+        FormBeanConfig config = appConfig.findFormBeanConfig(name);
+        if (config == null) {
+            return (null);
+        }
+
+        // Look up any existing form bean instance
+        if (appConfig.getControllerConfig().getDebug() >= 2) {
+            servlet.log(" Looking for ActionForm bean instance in scope '" +
+                        mapping.getScope() + "' under attribute key '" +
+                        attribute + "'");
+        }
+        ActionForm instance = null;
+        HttpSession session = null;
+        if ("request".equals(mapping.getScope())) {
+            instance = (ActionForm) request.getAttribute(attribute);
+        } else {
+            session = request.getSession();
+            instance = (ActionForm) session.getAttribute(attribute);
+        }
+
+        // Can we recycle the existing form bean instance (if there is one)?
+        if (instance != null) {
+            if (config.getDynamic()) {
+                String className =
+                    ((DynaBean) instance).getDynaClass().getName();
+                if (className.equals(config.getName())) {
+                    if (appConfig.getControllerConfig().getDebug() >= 2) {
+                        servlet.log
+                            (" Recycling existing DynaActionForm instance " +
+                            "of type '" + className + "'");
+                    }
+                    return (instance);
+                }
+            } else {
+                String className =
+                    instance.getClass().getName();
+                if (className.equals(config.getType())) {
+                    if (appConfig.getControllerConfig().getDebug() >= 2) {
+                        servlet.log
+                            (" Recycling existing ActionForm instance " +
+                            "of class '" + className + "'");
+                    }
+                    return (instance);
+                }
+            }
+        }
+
+        // Create and return a new form bean instance
+        if (config.getDynamic()) {
+            try {
+                DynaActionFormClass dynaClass =
+                    DynaActionFormClass.createDynaActionFormClass(config);
+                instance = (ActionForm) dynaClass.newInstance();
+            } catch (Throwable t) {
+                servlet.log(servlet.getInternal().getMessage
+                            ("formBean", config.getName()), t);
+                return (null);
+            }
+        } else {
+            try {
+                // FIXME - thread context class loader?
+                Class clazz = Class.forName(config.getType());
+                instance = (ActionForm) clazz.newInstance();
+            } catch (Throwable t) {
+                servlet.log(servlet.getInternal().getMessage
+                            ("formBean", config.getType()), t);
+                return (null);
+            }
+        }
+        instance.setServlet(servlet);
+        instance.reset(mapping, request);
+        return (instance);
+
+    }
+
+
+    /**
      * Locate and return the specified bean, from an optionally specified
      * scope, in the specified page context.  If no such bean is found,
      * return <code>null</code> instead.  If an exception is thrown, it will
@@ -478,7 +580,7 @@ public class RequestUtils {
      *  is requested
      */
     public static Object lookup(PageContext pageContext, String name,
-    String scope) throws JspException {
+                                String scope) throws JspException {
 
         Object bean = null;
         if (scope == null)

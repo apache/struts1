@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.1 2002/01/15 03:00:17 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/01/15 03:00:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.2 2002/01/17 00:15:05 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/01/17 00:15:05 $
  *
  * ====================================================================
  *
@@ -92,7 +92,7 @@ import org.apache.struts.util.RequestUtils;
  * interested in changing.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/01/15 03:00:17 $
+ * @version $Revision: 1.2 $ $Date: 2002/01/17 00:15:05 $
  * @since Struts 1.1
  */
 
@@ -333,58 +333,10 @@ public class RequestProcessor {
                                            HttpServletResponse response,
                                            ActionMapping mapping) {
 
-        // Is there a form bean associated with this mapping?
-        String attribute = mapping.getAttribute();
-        if (attribute == null) {
-            return (null);
-        }
-
-        // Look up any existing form bean
-        if (getDebug() >= 2) {
-            log(" Looking for ActionForm bean instance in scope '" +
-                mapping.getScope() + "' under attribute key '" +
-                attribute + "'");
-        }
-        ActionForm instance = null;
-        HttpSession session = null;
-        if ("request".equals(mapping.getScope())) {
-            instance = (ActionForm) request.getAttribute(attribute);
-        } else {
-            session = request.getSession();
-            instance = (ActionForm) session.getAttribute(attribute);
-        }
-
-        // Determine the form bean class we expect to use
-        String name = mapping.getName();
-        String className = null;
-        FormBeanConfig config = appConfig.findFormBeanConfig(name);
-        if (config != null) {
-            className = config.getType();
-        } else {
-            return (null);
-        }
-
-        // Can we recycle the existing form bean instance?
-        if ((instance != null) &&
-            className.equals(instance.getClass().getName())) {
-            if (getDebug() >= 2) {
-                log(" Recycling existing ActionForm bean instance of class '"
-                    + className + "'");
-            }
-            return (instance);
-        }
-
-        // Create a new form bean instance
-        if (getDebug() >= 2) {
-            log(" Creating new ActionForm bean instance of class '" +
-                className + "'");
-        }
-        try {
-            instance = null;
-            Class clazz = Class.forName(className);
-            instance = (ActionForm) clazz.newInstance();
-        } catch (Throwable t) {
-            log(getInternal().getMessage("formBean", className), t);
+        // Create (if necessary a form bean to use
+        ActionForm instance = RequestUtils.createActionForm
+            (request, mapping, appConfig, servlet);
+        if (instance == null) {
             return (null);
         }
 
@@ -392,12 +344,13 @@ public class RequestProcessor {
         if (getDebug() >= 2) {
             log(" Storing ActionForm bean instance in scope '" +
                 mapping.getScope() + "' under attribute key '" +
-                attribute + "'");
+                mapping.getAttribute() + "'");
         }
         if ("request".equals(mapping.getScope())) {
-            request.setAttribute(attribute, instance);
+            request.setAttribute(mapping.getAttribute(), instance);
         } else {
-            session.setAttribute(attribute, instance);
+            HttpSession session = request.getSession();
+            session.setAttribute(mapping.getAttribute(), instance);
         }
         return (instance);
 
@@ -1026,7 +979,7 @@ public class RequestProcessor {
      * Return the debugging detail level that has been configured for our
      * controller servlet.
      */
-    protected int getDebug() {
+    public int getDebug() {
 
         return (servlet.getDebug());
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.2 2002/01/15 20:22:20 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/15 20:22:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.3 2002/01/17 00:15:05 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/01/17 00:15:05 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.commons.collections.FastHashMap;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/01/15 20:22:20 $
+ * @version $Revision: 1.3 $ $Date: 2002/01/17 00:15:05 $
  * @since Struts 1.1
  */
 
@@ -91,6 +91,21 @@ public class FormBeanConfig implements Serializable {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Is the form bean class an instance of DynaActionForm with dynamic
+     * properties?
+     */
+    protected boolean dynamic = false;
+
+    public boolean getDynamic() {
+        return (this.dynamic);
+    }
+
+    public void setDynamic(boolean dynamic) {
+        this.dynamic = dynamic;
+    }
 
 
     /**
@@ -122,6 +137,9 @@ public class FormBeanConfig implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+        if ("org.apache.struts.action.DynaActionForm".equals(type)) {
+            this.dynamic = true;
+        }
     }
 
 

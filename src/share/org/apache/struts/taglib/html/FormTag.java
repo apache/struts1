@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.16 2002/01/13 00:25:37 craigmcc Exp $
- * $Revision: 1.16 $
- * $Date: 2002/01/13 00:25:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.17 2002/01/17 00:15:05 craigmcc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2002/01/17 00:15:05 $
  *
  * ====================================================================
  *
@@ -74,11 +74,12 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 
@@ -87,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2002/01/13 00:25:37 $
+ * @version $Revision: 1.17 $ $Date: 2002/01/17 00:15:05 $
  */
 
 public class FormTag extends TagSupport {
@@ -100,6 +101,12 @@ public class FormTag extends TagSupport {
      * The action URL to which this form should be submitted, if any.
      */
     protected String action = null;
+
+
+    /**
+     * The application configuration for our sub-application.
+     */
+    protected ApplicationConfig appConfig = null;
 
 
     /**
@@ -120,6 +127,12 @@ public class FormTag extends TagSupport {
      * The name of the field to receive focus, if any.
      */
     protected String focus = null;
+
+
+    /**
+     * The ActionMapping defining where we will be submitting this form
+     */
+    protected ActionMapping mapping = null;
 
 
     /**
@@ -555,34 +568,15 @@ public class FormTag extends TagSupport {
 	    scope = PageContext.REQUEST_SCOPE;
 	Object bean = pageContext.getAttribute(name, scope);
 	if (bean == null) {
-	    if (type == null)
-	        throw new JspException
-		    (messages.getMessage("getter.bean", name));
-	    try {
-		Class clazz = Class.forName(type);
-		bean = clazz.newInstance();
-                if (bean instanceof ActionForm) {
-                    ActionForm form = (ActionForm)bean;
-                    ApplicationConfig config = (ApplicationConfig)
-                        pageContext.getRequest().getAttribute
-                          (Action.APPLICATION_KEY);
-                    if (config == null) { // Backwards compatibility hack
-                        config = (ApplicationConfig)
-                            pageContext.getServletContext().getAttribute
-                              (Action.APPLICATION_KEY);
-                    }
-                    form.setServlet(servlet);
-                    form.reset((ActionMapping)
-                               config.findActionConfig(getActionMappingName()),
-                               pageContext.getRequest());
-                }
-	    } catch (Exception e) {
-		throw new JspException
-		    (messages.getMessage("formTag.create", type,
-					 e.toString()));
-	    }
-	    pageContext.setAttribute(name, bean, scope);
-	}
+            bean = RequestUtils.createActionForm
+                ((HttpServletRequest) pageContext.getRequest(),
+                 mapping, appConfig, servlet);
+            if (bean == null) {
+                throw new JspException
+                    (messages.getMessage("formTag.create", type));
+            }
+            pageContext.setAttribute(name, bean, scope);
+        }
 	pageContext.setAttribute(Constants.BEAN_KEY, bean,
                                  PageContext.REQUEST_SCOPE);
 
@@ -658,8 +652,10 @@ public class FormTag extends TagSupport {
 
 	super.release();
 	action = null;
+        appConfig = null;
 	enctype = null;
 	focus = null;
+        mapping = null;
 	method = "POST";
 	name = null;
 	onreset = null;
@@ -768,6 +764,33 @@ public class FormTag extends TagSupport {
      */
     protected void lookup() throws JspException {
 
+        // Look up the application configuration information we need
+        appConfig = (ApplicationConfig)
+            pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+        if (appConfig == null) { // Backwards compatibility hack
+            appConfig = (ApplicationConfig)
+                pageContext.getServletContext().getAttribute(Action.APPLICATION_KEY);
+        }
+        if (appConfig == null) {
+            JspException e = new JspException
+                (messages.getMessage("formTag.collections"));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
+        servlet = appConfig.getServlet();
+
+        // Look up the action mapping we will be submitting to
+        String mappingName = getActionMappingName();
+        mapping = (ActionMapping) appConfig.findActionConfig(mappingName);
+        if (mapping == null) {
+            JspException e = new JspException
+                (messages.getMessage("formTag.mapping", mappingName));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
+
         // Were the required values already specified?
         if (name != null) {
             if (scope == null)
@@ -782,37 +805,10 @@ public class FormTag extends TagSupport {
             return;
         }
 
-        // Look up the application configuration information we need
-        ApplicationConfig config = (ApplicationConfig)
-            pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
-        if (config == null) { // Backwards compatibility hack
-            config = (ApplicationConfig)
-                pageContext.getServletContext().getAttribute(Action.APPLICATION_KEY);
-        }
-        if (config == null) {
-            JspException e = new JspException
-                (messages.getMessage("formTag.collections"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw e;
-        }
-
-        // Look up the action mapping we will be submitting to
-        String mappingName = getActionMappingName();
-        ActionMapping mapping = (ActionMapping)
-            config.findActionConfig(mappingName);
-        if (mapping == null) {
-            JspException e = new JspException
-                (messages.getMessage("formTag.mapping", mappingName));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw e;
-        }
-
         // Look up the form bean definition
-        ActionFormBean formBean = (ActionFormBean)
-            config.findFormBeanConfig(mapping.getName());
-        if (formBean == null) {
+        FormBeanConfig formBeanConfig =
+            appConfig.findFormBeanConfig(mapping.getName());
+        if (formBeanConfig == null) {
             JspException e = new JspException
                 (messages.getMessage("formTag.formBean", mapping.getName()));
             pageContext.setAttribute(Action.EXCEPTION_KEY, e,
@@ -823,8 +819,7 @@ public class FormTag extends TagSupport {
         // Calculate the required values
         name = mapping.getName();
         scope = mapping.getScope();
-        servlet = config.getServlet();
-        type = formBean.getType();
+        type = formBeanConfig.getType();
 
     }
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.34 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.34 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.35 2002/01/17 00:15:05 craigmcc Exp $
+ * $Revision: 1.35 $
+ * $Date: 2002/01/17 00:15:05 $
  *
  * ====================================================================
  *
@@ -109,13 +109,21 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.34 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.35 $ $Date: 2002/01/17 00:15:05 $
  */
 
 public class Action {
 
 
     // ----------------------------------------------------- Manifest Constants
+
+
+    /**
+     * The context attributes key under which our <code>ActionServlet</code>
+     * instance will be stored.
+     */
+    public static final String ACTION_SERVLET_KEY =
+        "org.apache.struts.action.ACTION_SERVLET";
 
 
     /**

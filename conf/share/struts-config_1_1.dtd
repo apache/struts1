@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.9 2002/01/16 17:42:40 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.10 2002/01/17 00:15:05 craigmcc Exp $
 -->
 
 
@@ -194,6 +194,13 @@
                      bean, if you do not want to use the standard value.
                      [org.apache.struts.config.FormBeanConfig]
 
+     dynamic         Is the class identified by the "type" attribute
+                     a DynaActionForm with dynamic properties?  If the
+                     type attribute is set to
+                     "org.apache.struts.action.DynaActionForm", this
+                     property defaults to true, otherwise it defaults
+                     to false.
+
      name            Unique identifier of this bean, used to reference it
                      in corresponding action mappings.
 
@@ -203,6 +210,7 @@
 <!ELEMENT form-bean (icon?, display-name?, description?, set-property*, form-property*)>
 <!ATTLIST form-bean      id             ID              #IMPLIED>
 <!ATTLIST form-bean      className      %ClassName;     #IMPLIED>
+<!ATTLIST form-bean      dynamic        %Boolean;       #IMPLIED>
 <!ATTLIST form-bean      name           %BeanName;      #REQUIRED>
 <!ATTLIST form-bean      type           %ClassName;     #REQUIRED>
 
@@ -217,6 +225,10 @@
                      bean, if you do not want to use the standard value.
                      [org.apache.struts.config.FormPropertyConfig]
 
+     initial         String representation of the initial value for
+                     this property.  If not specified, primitives will
+                     by initialized to zero and objects to null.
+
      name            JavaBeans property name of the property being described
                      by this element.
 
@@ -226,6 +238,7 @@
 -->
 <!ELEMENT form-property  (set-property*)>
 <!ATTLIST form-property  className      %ClassName;     #IMPLIED>
+<!ATTLIST form-property  initial        CDATA           #IMPLIED>
 <!ATTLIST form-property  name           %PropName;      #REQUIRED>
 <!ATTLIST form-property  type           %ClassName;     #REQUIRED>
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.3 2001/12/31 01:14:36 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/12/31 01:14:36 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.4 2002/01/17 00:15:05 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/01/17 00:15:05 $
  *
  * ====================================================================
  *
@@ -80,13 +80,14 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.AppException;
 import org.apache.struts.util.MessageResources;
+import org.apache.commons.beanutils.PropertyUtils;
 
 
 /**
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/12/31 01:14:36 $
+ * @version $Revision: 1.4 $ $Date: 2002/01/17 00:15:05 $
  */
 
 public final class LogonAction extends Action {
@@ -122,8 +123,10 @@ public final class LogonAction extends Action {
 
 	// Validate the request parameters specified by the user
 	ActionErrors errors = new ActionErrors();
-	String username = ((LogonForm) form).getUsername();
-	String password = ((LogonForm) form).getPassword();
+	String username = (String)
+            PropertyUtils.getSimpleProperty(form, "username");
+        String password = (String)
+            PropertyUtils.getSimpleProperty(form, "password");
 	Hashtable database = (Hashtable)
 	  servlet.getServletContext().getAttribute(Constants.DATABASE_KEY);
 	if (database == null)

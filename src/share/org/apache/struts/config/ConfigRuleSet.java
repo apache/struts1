@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.5 2002/01/16 17:42:40 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/01/16 17:42:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.6 2002/01/17 00:15:05 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/01/17 00:15:05 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.xml.sax.Attributes;
  * configuration file (<code>struts-config.xml</code>).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/01/16 17:42:40 $
+ * @version $Revision: 1.6 $ $Date: 2002/01/17 00:15:05 $
  * @since Struts 1.1
  */
 
@@ -192,6 +192,10 @@ public class ConfigRuleSet extends RuleSetBase {
              "className");
         digester.addSetProperties
             ("struts-config/form-beans/form-bean/form-property");
+        digester.addSetNext
+            ("struts-config/form-beans/form-bean/form-property",
+             "addFormPropertyConfig",
+             "org.apache.struts.config.FormPropertyConfig");
 
         digester.addSetProperty
             ("struts-config/form-beans/form-bean/form-property/set-property",
