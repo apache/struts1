@@ -49,6 +49,12 @@ public interface ActionContext extends Context {
     // General Application Support
     // -------------------------------
     /**
+     * Signal to the instance that it will not be used any more, so that any resources which should 
+     * be cleaned up can be cleaned up.
+     */
+    void release();
+    
+    /**
      * <p>Return a <code>Map</code> of Application scoped values.</p>  
      * 
      * <p>This is implemented in analogy with the Application scope in 

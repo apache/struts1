@@ -39,8 +39,17 @@ public class ServletActionContext extends WebActionContext {
         super(context);
     }
 
+    public ServletActionContext(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
+        this(new ServletWebContext(context, request, response));
+    }
+
     protected ServletWebContext swcontext() {
         return (ServletWebContext) this.getBaseContext();
+    }
+
+    public void release() {
+        this.swcontext().release();
+        super.release();
     }
 
     // -------------------------------

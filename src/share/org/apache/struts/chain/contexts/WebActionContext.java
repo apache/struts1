@@ -38,6 +38,10 @@ public class WebActionContext extends ActionContextBase {
         return (WebContext) this.getBaseContext();
     }
 
+    public void release() {
+        super.release();
+    }
+    
     public Map getApplicationScope()
     {
         return wcontext().getApplicationScope();

@@ -93,6 +93,10 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     // General Application Support
     // -------------------------------
 
+    public void release() {
+        this.token = null;
+     };  
+
     public abstract Map getApplicationScope(); 
 
     public abstract Map getRequestScope();
