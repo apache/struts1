@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTei.java,v 1.6 2001/04/22 00:46:19 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/04/22 00:46:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTei.java,v 1.7 2002/02/21 17:48:14 oalexeev Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/02/21 17:48:14 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/04/22 00:46:19 $
+ * @version $Revision: 1.7 $ $Date: 2002/02/21 17:48:14 $
  */
 
 public class DefineTei extends TagExtraInfo {
@@ -85,20 +85,21 @@ public class DefineTei extends TagExtraInfo {
     public VariableInfo[] getVariableInfo(TagData data) {
 
         String type = data.getAttributeString("type");
+        String name = data.getAttributeString("name");
         Object value = data.getAttribute("value");
         if (type == null) {
-            if (value != null)
+            if ( (value!=null) || ( (value==null) && (name==null) ) )
                 type = "java.lang.String";
-            else
+            else 
                 type = "java.lang.Object";
         }
 
-	return new VariableInfo[] {
-	  new VariableInfo(data.getAttributeString("id"),
-	                   type,
-	                   true,
-	                   VariableInfo.AT_BEGIN)
-	};
+        return new VariableInfo[] {
+          new VariableInfo(data.getAttributeString("id"),
+                           type,
+                           true,
+                           VariableInfo.AT_END )
+        };
 
     }
 

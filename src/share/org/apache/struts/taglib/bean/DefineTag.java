@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.12 2001/04/23 22:52:20 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2001/04/23 22:52:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.13 2002/02/21 17:48:14 oalexeev Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/02/21 17:48:14 $
  *
  * ====================================================================
  *
@@ -67,7 +67,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.TagSupport;
+import javax.servlet.jsp.tagext.BodyTagSupport;
+import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
 
@@ -76,11 +77,19 @@ import org.apache.struts.util.RequestUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2001/04/23 22:52:20 $
+ * @version $Revision: 1.13 $ $Date: 2002/02/21 17:48:14 $
  */
 
-public class DefineTag extends TagSupport {
+public class DefineTag extends BodyTagSupport {
 
+    // ---------------------------------------------------- Protected variables
+
+    /**
+     * The message resources for this package.
+     */
+    protected static MessageResources messages =
+        MessageResources.getMessageResources
+        ("org.apache.struts.taglib.bean.LocalStrings");
 
     // ------------------------------------------------------------- Properties
 
@@ -186,17 +195,21 @@ public class DefineTag extends TagSupport {
 
     // --------------------------------------------------------- Public Methods
 
-
     /**
      * Retrieve the required property and expose it as a scripting variable.
      *
      * @exception JspException if a JSP exception has occurred
      */
-    public int doStartTag() throws JspException {
+    public int doEndTag() throws JspException {
+
+        if( this.value!=null && bodyContent!=null )
+                throw new JspException( messages.getMessage("define.value", name) );
 
         // Retrieve the required property value
         Object value = this.value;
-        if (value == null)
+        if (value == null) 
+            value = bodyContent.getString();
+        if (value == null) 
             value = RequestUtils.lookup(pageContext, name, property, scope);
 
         // Expose this value as a scripting variable
@@ -208,10 +221,11 @@ public class DefineTag extends TagSupport {
         else if ("application".equals(toScope))
             inScope = PageContext.APPLICATION_SCOPE;
         pageContext.setAttribute(id, value, inScope);
-        return (SKIP_BODY);
+
+        // Continue processing this page
+        return (EVAL_PAGE);
 
     }
-
 
     /**
      * Release all allocated resources.
