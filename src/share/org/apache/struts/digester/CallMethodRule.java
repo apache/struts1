@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.1 2000/05/31 22:28:13 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.2 2000/07/16 23:03:19 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/07/16 23:03:19 $
  *
  * ====================================================================
  * 
@@ -75,7 +75,7 @@ import org.apache.struts.util.BeanUtils;
  * element.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:13 $
+ * @version $Revision: 1.2 $ $Date: 2000/07/16 23:03:19 $
  */
 
 public final class CallMethodRule extends Rule {
@@ -118,15 +118,24 @@ public final class CallMethodRule extends Rule {
 	this.paramCount = paramCount;
 	if (paramTypes == null) {
 	    if (this.paramCount == 0)
-	        this.paramTypes = new String[1];
+	        this.paramTypes = new Class[1];
 	    else
-	    	this.paramTypes = new String[this.paramCount];
-	    for (int i = 0; i < this.paramTypes.length; i++)
-	        this.paramTypes[i] = "java.lang.String";
+	    	this.paramTypes = new Class[this.paramCount];
+	    for (int i = 0; i < this.paramTypes.length; i++) {
+		if (i == 0)
+		    this.paramTypes[i] = "abc".getClass();
+		else
+		    this.paramTypes[i] = this.paramTypes[0];
+	    }
 	} else {
-	    this.paramTypes = new String[paramTypes.length];
-	    for (int i = 0; i < this.paramTypes.length; i++)
-	        this.paramTypes[i] = paramTypes[i];
+	    this.paramTypes = new Class[paramTypes.length];
+	    for (int i = 0; i < this.paramTypes.length; i++) {
+		try {
+		    this.paramTypes[i] = Class.forName(paramTypes[i]);
+		} catch (ClassNotFoundException e) {
+		    this.paramTypes[i] = null;	// Will trigger NPE later
+		}
+	    }
         }
 
     }
@@ -159,7 +168,7 @@ public final class CallMethodRule extends Rule {
     /**
      * The parameter types of the parameters to be collected.
      */
-    private String paramTypes[] = null;
+    private Class paramTypes[] = null;
 
 
     // --------------------------------------------------------- Public Methods
@@ -211,11 +220,6 @@ public final class CallMethodRule extends Rule {
 	    parameters = new String[1];
 	    parameters[0] = bodyText;
         }
-
-	// Construct the parameter types array we will need
-	Class paramTypes[] = new Class[this.paramTypes.length];
-	for (int i = 0; i < this.paramTypes.length; i++)
-	    paramTypes[i] = Class.forName(this.paramTypes[i]);
 
 	// Construct the parameter values array we will need
 	Object paramValues[] = new Object[paramTypes.length];
