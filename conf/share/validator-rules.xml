@@ -2,9 +2,9 @@
           "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN"
           "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
 <!--
-  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.50 2004/04/01 15:17:05 rleland Exp $
-  $Revision: 1.50 $
-  $Date: 2004/04/01 15:17:05 $
+  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.51 2004/04/28 22:40:14 husted Exp $
+  $Revision: 1.51 $
+  $Date: 2004/04/28 22:40:14 $
 
    This file contains the default Struts Validator pluggable validator
    definitions.  It should be placed somewhere under /WEB-INF and
@@ -236,7 +236,6 @@
                   msg="errors.range"/>
 
 
-
       <validator name="creditCard"
             classname="org.apache.struts.validator.FieldChecks"
                method="validateCreditCard"
@@ -259,6 +258,18 @@
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.email"/>
+
+      <validator name="url"
+            classname="org.apache.struts.validator.FieldChecks"
+               method="validateUrl"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       javax.servlet.http.HttpServletRequest"
+              depends=""
+                  msg="errors.url"/>
+
      <!--
        This simply allows struts to include the validateUtilities into a page, it should
        not be used as a validation rule.
