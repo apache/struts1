@@ -148,7 +148,6 @@
     </copy>
 
     <!-- Copy static documentation content -->
-    <copy    file="TODO" tofile="${build.home}/documentation/todo.txt"/>
     <copy   todir="${build.home}/documentation">
       <fileset dir="web/documentation"/>
     </copy>
