@@ -126,6 +126,12 @@
       renders an HTML <code>&lt;html&gt;</code> element with appropriate
       <code>lang</code> and <code>xml:lang</code> attributes, based on the
       session stored in the user's session (if there is one).</li>
+  <li>A new <code>&lt;rewrite&gt;</code> tag has been created that
+      renders a request URI, possibly encoded with a session identifier,
+      based on exactly the same rules used by the <code>&lt;link&gt;</code>
+      tag that generates hyperlinks.  These constants can be useful when
+      you are creating JavaScript code that needs to be aware of Struts
+      addressing concepts.</li>
   </ul>
 
   <p>The following major new features have been added to the

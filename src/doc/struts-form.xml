@@ -2245,6 +2245,109 @@
 	</tag>
 	
 	
+        <tag>
+
+                <name>rewrite</name>
+                <summary>Render an URI</summary>
+                <tagclass>org.apache.struts.taglib.form.RewriteTag</tagclass>
+                <bodycontent>empty</bodycontent>
+                <info>
+                <p>Renders a request URI based on exactly the same rules
+                as the <code><a href="#link">link</a></code> tag does,
+                but without creating
+                the <code>&lt;a&gt;</code> hyperlink.  This value is useful
+                when you want to generate a string constant for use by
+                a JavaScript procedure.</p>
+                </info>
+
+                <attribute>
+                  <name>forward</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>Logical name of a global <code>ActionForward</code> that
+                  contains the actual content-relative URI of the destination
+                  of this transfer.  This hyperlink may be dynamically
+                  modified by the inclusion of query parameters, as described
+                  in the tag description.  You <strong>must</strong> specify
+                  exactly one of the <code>forward</code> attribute, the
+                  <code>href</code> attribute, or the <code>page</code>
+                  attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>href</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The URL to which this hyperlink will transfer control
+                  if activated.  This hyperlink may be dynamically modified
+                  by the inclusion of query parameters, as described in the
+                  tag description.  You <strong>must</strong> specify
+                  exactly one of the <code>forward</code> attribute, the
+                  <code>href</code> attribute, or the <code>page</code>
+                  attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>page</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The context-relative path (beginning with a "/"
+                  character) to which this hyperlink will transfer control
+                  if activated.  This hyperlink may be dynamically modified
+                  by the inclusion of query parameters, as described in the
+                  tag description.  You <strong>must</strong> specify exactly
+                  one of the <code>forward</code> attribute, the
+                  <code>href</code> attribute, or the <code>page</code>
+                  attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>name</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a JSP bean that contains a <code>Map</code>
+                  representing the query parameters (if <code>property</code>
+                  is not specified), or a JSP bean whose property getter is
+                  called to return a <code>Map</code> (if <code>property</code>
+                  is specified).</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>property</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a property of the bean specified by the
+                  <code>name</code> attribute, whose return value must be
+                  a <code>java.util.Map</code> containing the query parameters
+                  to be added to the hyperlink.  You <strong>must</strong>
+                  specify the <code>name</code> attribute if you specify
+                  this attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>scope</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The scope within which to search for the bean specified
+                  by the <code>name</code> attribute.  If not specified, all
+                  scopes are searched.</p>
+                  </info>
+                </attribute>
+
+        </tag>
+
+
 	<tag>
 		
 		<name>select</name>
