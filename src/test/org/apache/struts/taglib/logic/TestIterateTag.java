@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestIterateTag.java,v 1.4 2003/03/08 19:45:04 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2003/03/08 19:45:04 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestIterateTag.java,v 1.5 2003/05/13 18:21:14 turner Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/05/13 18:21:14 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -73,6 +73,7 @@ import junit.framework.TestSuite;
 import org.apache.cactus.JspTestCase;
 import org.apache.cactus.WebResponse;
 import org.apache.struts.taglib.SimpleBeanForTesting;
+import org.apache.commons.lang.StringUtils;
 
 
 /**
@@ -164,8 +165,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(output,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -211,8 +212,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -258,8 +259,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\r","");
 
 	    assertEquals(compare, output);
 	}
@@ -326,8 +327,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 		
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 		
 	    assertEquals(compare, output);
 	}
@@ -384,8 +385,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 		
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 		
 	    assertEquals(compare, output);
 	}
@@ -442,8 +443,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 		
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 		
 	    assertEquals(compare, output);
 	}
@@ -498,8 +499,8 @@ public class TestIterateTag extends JspTestCase {
      	}
 	    
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -542,8 +543,8 @@ public class TestIterateTag extends JspTestCase {
      	}
 	    
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -586,8 +587,8 @@ public class TestIterateTag extends JspTestCase {
      	}
 	    
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -645,8 +646,8 @@ public class TestIterateTag extends JspTestCase {
      	}
 	    
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -693,8 +694,8 @@ public class TestIterateTag extends JspTestCase {
      	}
 	    
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -741,8 +742,8 @@ public class TestIterateTag extends JspTestCase {
      	}
 	    
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -802,8 +803,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -849,8 +850,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -896,8 +897,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -960,8 +961,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -1011,8 +1012,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -1062,8 +1063,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -1128,9 +1129,9 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
-
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
+                
 	    assertEquals(compare, output);
 	}
 	
@@ -1180,8 +1181,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -1232,8 +1233,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -1298,8 +1299,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}
@@ -1354,9 +1355,9 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
-
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
+                
 	    assertEquals(compare, output);
 	}
 	
@@ -1410,8 +1411,8 @@ public class TestIterateTag extends JspTestCase {
 		}
 
 		//fix for introduced carriage return / line feeds
-		output = compare.replaceAll("\r","");
-		output = compare.replaceAll("\n","");
+		output = StringUtils.replace(compare,"\r","");
+		output = StringUtils.replace(output,"\n","");
 
 	    assertEquals(compare, output);
 	}

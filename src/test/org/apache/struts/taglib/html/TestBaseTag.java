@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestBaseTag.java,v 1.5 2003/03/23 04:08:28 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2003/03/23 04:08:28 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestBaseTag.java,v 1.6 2003/05/13 18:21:14 turner Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/05/13 18:21:14 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -63,6 +63,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.apache.cactus.JspTestCase;
+import org.apache.commons.lang.StringUtils;
 
 
 /**
@@ -113,8 +114,8 @@ public class TestBaseTag extends JspTestCase {
     
 	private void formatAndTest(String compare, String output) {
 		//fix for introduced carriage return / line feeds
-		output = output.replaceAll("\r","");
-		output = output.replaceAll("\n","");
+		output = StringUtils.replace(output,"\r","");
+		output = StringUtils.replace(output,"\n","");
 		output = output.trim();
 	    assertEquals(compare, output);
 	}

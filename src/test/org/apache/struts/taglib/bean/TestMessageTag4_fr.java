@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestMessageTag4_fr.java,v 1.4 2003/03/08 19:31:56 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2003/03/08 19:31:56 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestMessageTag4_fr.java,v 1.5 2003/05/13 18:21:13 turner Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/05/13 18:21:13 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -69,6 +69,7 @@ import org.apache.cactus.JspTestCase;
 import org.apache.cactus.WebResponse;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.SimpleBeanForTesting;
+import org.apache.commons.lang.StringUtils;
 
 /**
   * These tests attempt to cover every single possible configuration of the
@@ -123,8 +124,8 @@ public class TestMessageTag4_fr extends JspTestCase {
     
 	private void formatAndTest(String compare, String output) {
 		//fix for introduced carriage return / line feeds
-		output = output.replaceAll("\r","");
-		output = output.replaceAll("\n","");
+		output = StringUtils.replace(output,"\r","");
+		output = StringUtils.replace(output,"\n","");
 		output = output.trim();
 		//System.out.println("Testing [" + compare + "] == [" + output + "]");
 	    assertEquals(compare, output);
