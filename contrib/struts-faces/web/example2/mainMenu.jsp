@@ -4,32 +4,22 @@
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
 <%@ taglib prefix="s" uri="http://jakarta.apache.org/struts/tags-faces" %>
 
-<f:view>
-<s:html locale="true">
-<head>
-  <title>
-    <s:message key="mainMenu.title"/>
-  </title>
-  <s:base/>
-  <s:stylesheet path="/stylesheet.css"/>
-</head>
-<body bgcolor="white">
+<h:panelGrid      columns="1">
 
-<h3>
-  <s:message key="mainMenu.heading"/>
-  <em><c:out value="${user.username}"/></em>
-</h3>
-<ul>
-  <li><h:output_link value="editRegistration.do">
-        <f:parameter  name="action"
-                     value="Edit"/>
-        <s:message key="mainMenu.registration"/>
-      </h:output_link></li>
-  <li><h:output_link value="logoff.do">
-        <s:message key="mainMenu.logoff"/>
-      </h:output_link></li>
-</ul>
+  <f:facet           name="header">
+    <h:outputText   value="#{messages['mainMenu.heading']} #{user.username}"/>
+  </f:facet>
 
-</body>
-</s:html>
-</f:view>
+  <h:outputLink     value="editRegistration.do">
+    <f:param         name="action"
+                    value="Edit"/>
+    <h:outputText   value="#{messages['mainMenu.registration']}"/>
+  </h:outputLink>
+
+  <h:outputLink     value="logoff.do">
+    <h:outputText   value="#{messages['mainMenu.logoff']}"/>
+  </h:outputLink>
+
+</h:panelGrid>
+
+

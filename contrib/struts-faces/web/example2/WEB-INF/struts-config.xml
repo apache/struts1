@@ -66,10 +66,10 @@
   <!-- ========== Global Forward Definitions ============================== -->
   <global-forwards>
     <forward   name="logoff"               path="/logoff.do"/>
-    <forward   name="logon"                path="/faces/logon.jsp"/>
-    <forward   name="registration"         path="/faces/registration.jsp"/>
-    <forward   name="subscription"         path="/faces/subscription.jsp"/>
-    <forward   name="success"              path="/faces/mainMenu.jsp"/>
+    <forward   name="logon"                path="/logon.faces"/>
+    <forward   name="registration"         path=".registration"/>
+    <forward   name="subscription"         path=".subscription"/>
+    <forward   name="success"              path=".mainMenu"/>
   </global-forwards>
 
 
@@ -87,7 +87,7 @@
               scope="request"
            validate="false">
       <forward name="register"             path=".register"/>
-      <forward name="success"              path="/faces/registration.jsp"/>
+      <forward name="success"              path=".registration"/>
     </action>
 
     <!-- Edit mail subscription -->
@@ -96,8 +96,8 @@
           attribute="subscriptionForm"
               scope="request"
            validate="false">
-      <forward name="failure"              path="/faces/mainMenu.jsp"/>
-      <forward name="success"              path="/faces/subscription.jsp"/>
+      <forward name="failure"              path=".mainMenu"/>
+      <forward name="success"              path=".registration"/>
     </action>
 
     <!-- Process a user logoff -->
@@ -115,7 +115,7 @@
       <exception
                 key="expired.password"
                type="org.apache.struts.webapp.example2.ExpiredPasswordException"
-               path="/changePassword.jsp"/>
+               path="/changePassword.faces"/>
     </action>
 
     <!-- Save user registration -->
@@ -131,7 +131,7 @@
                name="subscriptionForm"
               scope="request"
               input="subscription">
-      <forward name="success"         path="/faces/mainMenu.jsp"/>
+      <forward name="success"         path="/editRegistration.do?action=Edit"/>
     </action>
 
     <!-- Display the "walking tour" documentation -->

@@ -6,7 +6,8 @@
 <%@ taglib prefix="t" uri="/WEB-INF/struts-tiles.tld" %>
 
 <f:view>
-  <s:html locale="true">
+  <s:loadMessages     var="messages"/>
+  <s:html          locale="true">
     <head>
       <title><s:message key="layout.title"/></title>
       <s:stylesheet path="/stylesheet.css"/>

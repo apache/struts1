@@ -8,35 +8,49 @@
   <!-- ========== LAYOUTS ========== -->
 
   <!-- Base Layout -->
-  <definition name=".base"      page="/faces/layout.jsp">
-    <put      name="header"    value="/header.jsp"/>
-    <put      name="footer"    value="/footer.jsp"/>
-    <put      name="menu"      value="/blank.jsp"/>
-    <put      name="body"      value="/blank.jsp"/>
+  <definition name=".base"         page="/layout.faces">
+    <put      name="header"       value="/header.jsp"/>
+    <put      name="footer"       value="/footer.jsp"/>
+    <put      name="menu"         value="/blank.jsp"/>
+    <put      name="body"         value="/blank.jsp"/>
   </definition>
 
   <!-- Logged Off Layout -->
-  <definition name=".loggedoff"   extends=".base">
-    <put      name="menu"      value="/loggedoff.jsp"/>
+  <definition name=".loggedoff" extends=".base">
+    <put      name="menu"         value="/loggedoff.jsp"/>
   </definition>
 
   <!-- Logged On Layout -->
-  <definition name=".loggedon"   extends=".base">
-    <put      name="menu"      value="/loggedon.jsp"/>
+  <definition name=".loggedon"  extends=".base">
+    <put      name="menu"         value="/loggedon.jsp"/>
   </definition>
 
 
   <!-- ========== PAGES ========== -->
 
-  <definition name=".logon" extends=".loggedoff">
-    <put      name="body"     value="/logon.jsp"/>
+  <definition name=".logon"     extends=".loggedoff">
+    <put      name="body"         value="/logon.jsp"/>
   </definition>
 
-  <definition name=".register" extends=".loggedoff">
-    <put      name="body"     value="/registration.jsp"/>
+  <definition name=".mainMenu"  extends=".loggedon">
+    <put      name="body"         value="/mainMenu.jsp"/>
   </definition>
 
-  <definition name=".welcome" extends=".loggedoff">
+  <definition name=".register"  extends=".loggedoff">
+    <put      name="body"         value="/registration.jsp"/>
+  </definition>
+
+  <definition name=".registration"
+                                extends=".loggedon">
+    <put      name="body"         value="/registration.jsp"/>
+  </definition>
+
+  <definition name=".subscription"
+                                extends=".loggedon">
+    <put      name="body"         value="/subscription.jsp"/>
+  </definition>
+
+  <definition name=".welcome"   extends=".loggedoff">
   </definition>
 
 

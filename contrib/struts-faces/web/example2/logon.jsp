@@ -5,53 +5,56 @@
 
 <s:errors/>
 
-<s:form action="/logon" focus="username"
-      onsubmit="return validateLogonForm(this);">
+<s:form            action="/logon"
+                    focus="username"
+                 onsubmit="return validateLogonForm(this);">
 
-  <h:panel_grid
-           columns="2"
-        styleClass="form-background"
-       headerClass="form-header"
-     columnClasses="form-prompt,form-field"
-       footerClass="form-footer">
+  <h:panelGrid    columns="2"
+               styleClass="form-background"
+              headerClass="form-header"
+            columnClasses="form-prompt,form-field"
+              footerClass="form-footer">
 
     <%-- Grid header element --%>
 
-    <f:facet name="header">
-        <s:message key="logon.header"/>
+    <f:facet         name="header">
+      <s:message      key="logon.header"/>
     </f:facet>
 
     <%-- Grid data elements --%>
 
-    <h:output_label for="username">
-      <s:message key="prompt.username"/>
-    </h:output_label>
+    <h:outputLabel    for="username">
+      <s:message      key="prompt.username"/>
+    </h:outputLabel>
 
-    <h:input_text id="username" size="16"
-               value="#{logonForm.map.username}"/>
+    <h:inputText       id="username"
+                     size="16"
+                    value="#{logonForm.username}"/>
 
-    <h:output_label for="password">
-      <s:message key="prompt.password"/>
-    </h:output_label>
+    <h:outputLabel    for="password">
+      <s:message      key="prompt.password"/>
+    </h:outputLabel>
 
-    <h:input_secret id="password" size="16"
-                 value="#{logonForm.map.password}"/>
+    <h:inputSecret     id="password" size="16"
+                    value="#{logonForm.password}"/>
 
-    <h:command_button id="submit" type="SUBMIT"
-              styleClass="command-single"
-                   value="Log On"/>
+    <h:commandButton   id="submit"
+                     type="SUBMIT"
+               styleClass="command-single"
+                    value="Log On"/>
 
-    <h:command_button id="reset" type="RESET"
-              styleClass="command-single"
-                   value="Reset"/>
+    <h:commandButton   id="reset"
+                     type="RESET"
+               styleClass="command-single"
+                    value="Reset"/>
 
     <%-- Grid footer element --%>
 
-    <f:facet name="footer">
-        <s:message key="logon.footer"/>
+    <f:facet         name="footer">
+      <s:message      key="logon.footer"/>
     </f:facet>
 
-  </h:panel_grid>
+  </h:panelGrid>
 
   <s:javascript formName="logonForm"
        dynamicJavascript="true"
