@@ -82,7 +82,7 @@
         struts-user-unsubscribe@jakarta.apache.org
       </unsubscribe>
       <archive>
-        http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42
+        http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=42
       </archive>
     </mailingList>
     <mailingList>
@@ -94,7 +94,7 @@
         struts-dev-unsubscribe@jakarta.apache.org
       </unsubscribe>
       <archive>
-        http://nagoya.apache.org/eyebrowse/SummarizeList?listId=41
+        http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=41
       </archive>
     </mailingList>
   </mailingLists>

@@ -197,7 +197,7 @@
     The Struts <a href="using.html#Lists">Mailing Lists</a> are a treasure trove of 
     useful, interactive information. The user list tends to carry a high 
     volume, so always check the published documentation and the
-    <a href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42">
+    <a href="http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=42">
     <strong>MAILING LIST ARCHIVE</strong></a> before 
     <a href="http://www.catb.org/~esr/faqs/smart-questions.html">posting a
     new question</a>.
@@ -207,7 +207,7 @@
     <p>
     If you really can't find the answer to your question in the 
     <a href="#faqs">FAQs</a> or
-    <a href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42">
+    <a href="http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=42">
     list archive</a>, you can post your query to the Struts User list -- 
     <strong>BUT YOU MUST SUBSCRIBE TO THE 
     <a href="mailto:struts-user-subscribe@jakarta.apache.org">USER LIST</a>

@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p>$Id: release-plan-1.1b1.xml,v 1.1 2003/11/29 07:27:33 sraeburn Exp $</p>
+  <p>$Id: release-plan-1.1b1.xml,v 1.2 2004/01/06 05:49:41 rleland Exp $</p>
 
   <p>The objective of the <strong>Struts 1.1 Beta 1</strong> release is to
   create a milestone release against which a final series of bug fixes and
@@ -70,7 +70,7 @@
   <p>Prior to the release of a subsequent Struts 1.1 release candidate, the
   following action items must be completed:</p>
   <ul>
-  <li>All <a href="http://nagoya.apache.org/bugzilla/">Bugzilla</a> bug reports
+  <li>All <a href="http://issues.apache.org/bugzilla/">Bugzilla</a> bug reports
       against Struts 1.1 nightly builds MUST be marked as "Resolved", with any
       of the legal Bugzilla resolutions (FIXED, INVALID, WONTFIX, LATER,
       REMIND, WORKSFORME).</li>

@@ -18,7 +18,7 @@
   <gumpRepositoryId>jakarta</gumpRepositoryId>
 
   <url>http://jakarta.apache.org/struts/contrib/${pom.artifactId.substring(8)}/index.html</url>
-  <issueTrackingUrl>http://nagoya.apache.org/</issueTrackingUrl>
+  <issueTrackingUrl>http://issues.apache.org/</issueTrackingUrl>
   
   <siteAddress>jakarta.apache.org/struts</siteAddress>
   <siteDirectory>/www/jakarta.apache.org/struts/contrib/${pom.artifactId.substring(8)}/</siteDirectory>
@@ -39,7 +39,7 @@
           struts-user-unsubscribe@jakarta.apache.org
         </unsubscribe>
         <archive>
-          http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42
+          http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=42
         </archive>
       </mailingList>
       <mailingList>
@@ -51,7 +51,7 @@
           struts-dev-unsubscribe@jakarta.apache.org
         </unsubscribe>
         <archive>
-          http://nagoya.apache.org/eyebrowse/SummarizeList?listId=41
+          http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=41
         </archive>
       </mailingList>
     </mailingLists>
