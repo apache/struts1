@@ -99,6 +99,8 @@
 
     <!-- Default values for unspecified properties -->
     <property name="catalina.home"   value="../jakarta-tomcat-4.0/build"/>
+    <property name="pmd.rulesets"    value="rulesets/imports.xml,rulesets/unusedcode.xml"/>
+    <property name="pmd.report"      value="pmdreport.html"/>
 
 
 <!-- ========== Initialization Properties ================================= -->
@@ -738,8 +740,8 @@
                  classname="net.sourceforge.pmd.ant.PMDTask">
             <classpath location="${pmd.jar}"/>
         </taskdef>
-        <pmd reportFile="pmdreport.html" format="html"
-             rulesetfiles="rulesets/unusedcode.xml,rulesets/imports.xml">
+        <pmd printToConsole="true" rulesetfiles="${pmd.rulesets}">
+             <formatter type="html" toFile="${pmd.report}"/>
             <fileset dir="${src.share.dir}" includes="**/*.java"/>
         </pmd>
     </target>
