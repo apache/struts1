@@ -106,6 +106,10 @@
     for every HTML form?</a>
     </li>
 
+    <li>
+    <a href="#prepopulate">How can I prepopulate a form?</a>
+    </li>
+
     </ul>
  
     <p>
@@ -619,6 +623,84 @@ XHTML specification</a></p>
 </section>
 
 
+<section href="prepopulate"
+         name="How can I prepopulate a form?">
+
+    <p>The simplest way to preopulate a form is to have an <code>Action</code>
+    whose sole purpose is to populate an <code>ActionForm</code> and forward
+    to the servoet or JSP to render that form back to the client.  A separate
+    <code>Action</code> would then be use to process the submitted form fields,
+    by declaring an instance of the same form bean name.</p>
+
+    <p>The <em>struts-example</em> example application that is shipped
+    with Struts illustrates this design pattern nicely.  Note the following
+    definitions from the <code>struts-config.xml</code> file:</p>
+    <pre>
+        ...
+        &lt;form-beans&gt;
+            ...
+            &lt;-- Registration form bean --&gt;
+            &lt;form-bean name="registrationForm"
+                       type="org.apache.struts.webapp.example.RegistrationForm"/&gt;
+            ...
+        &lt;/form-beans&gt;
+        ...
+        &lt;action-mappings&gt;
+            ...
+            &lt;-- Edit user registration --&gt;
+            &lt;action path="/editRegistration"
+                    type="org.apache.struts.webapp.example.EditRegistrationAction"
+                    name="registrationForm"
+                   scope="request"
+                validate="false"/&gt;
+            ...
+            &lt;-- Save user registration --&gt;
+            &lt;action path="/saveRegistration"
+                    type="org.apache.struts.webapp.example.SaveRegistrationAction"
+                    name="registrationForm"
+                   input="registration"
+                   scope="request"/&gt;
+            ...
+        &lt;/action-mappings&gt;
+    </pre>
+
+    <p>Note the following features of this approach:</p>
+    <ul>
+    <li>Both the <code>/editRegistration</code> and
+        <code>/saveRegistration</code> actions use the same form bean.</li>
+    <li>When the <code>/editRegistration</code> action is entered, Struts
+        will have pre-created an empty form bean instance, and passed it to
+        the <code>execute()</code> method.  The setup action is free to
+        preconfigure the values that will be displayed when the form is
+        rendered, simply by setting the corresponding form bean properties.
+        </li>
+    <li>When the setup action completes configuring the properties of the
+        form bean, it should return an <code>ActionForm</code> that points
+        at the page which will display this form.  If you are using the
+        Struts JSP tag library, the <code>action</code> attribute on your
+        &lt;html:form&gt; tag will be set to <code>/saveRegistration</code>
+        in order for the form to be submitted to the processing action.</li>
+    <li>Note that the setup action (<code>/editRegistration</code>) turns off
+        validation on the form that is being set up.  You will normally want
+        to include this attribute in the configuration of your setup actions,
+        because you are not planning to actually process the results -- you
+        simply want to take advantage of the fact that Struts will precreate
+        a form bean instance of the correct class for you.</li>
+    <li>The processing action (<code>/saveRegistration</code>), on the other
+        hand, leaves out the <code>validate</code> attribute, which defaults
+        to <code>true</code>.  This tells Struts to perform the validations
+        associated with this form bean before invoking the processing action
+        at all.  If any validation errors have occurred, Struts will forward
+        back to your input page (technically, it forwards back to an
+        <code>ActionForward</code> named "registration" in this case, because
+        the example webapp uses the <code>inputForward</code> attribute in the
+        <code>&lt;controller&gt;</code> element -- see the documentation
+        describing <code>struts-config.xml</code> for more information)
+        instead of calling your processing action.</li>
+    </ul>
+
+</section>
+
 
 <section 
     href="undocumented" 
@@ -630,8 +712,6 @@ XHTML specification</a></p>
     <li>Why is ActionForm a base class rather than an interface?</li>
 
     <li>Can I use other beans or hashmaps with ActionForms?</li>
-
-    <li>How can I prepopulate a form?</li>
 
     <li>How can I capture binary or formatted values, like dates or telephone numbers?</li>
 
