@@ -5,7 +5,7 @@
  * @parameters ListArray CHANNELS
  * @author Ted Husted
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2001/10/08 13:51:39 $
+ * @version $Revision: 1.2 $ $Date: 2001/12/27 17:31:16 $
  */
 --%>
 <%@ page language="java" %>

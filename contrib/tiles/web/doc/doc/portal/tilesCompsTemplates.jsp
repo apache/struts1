@@ -8,10 +8,8 @@
       known as "Components". But as components means all and everything, we have 
       choose to rename them to Tiles.&nbsp;</FONT></P>
       <P><FONT size=2>Tiles provide a 
-      superset of Template tags as defined by David Geary : you can find all 
+      superset of Template tags as defined in Struts by David Geary : you can find all 
       tags and behavior defined by Templates. But, Tiles&nbsp;</FONT><FONT size=2> go one step beyond and extend the concept of 
       "templates" to the concept of "parameterized components" or 
       "Tiles".</FONT></P>
-      <P><FONT size=2>&nbsp; For those 
-      already using Components and wanting to migrate to Tiles, there is a 
-      migration path.</FONT></P></TD></TR></TABLE>
+</TD></TR></TABLE>

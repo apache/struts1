@@ -12,7 +12,7 @@
     <servlet-class>org.apache.struts.tiles.ActionComponentServlet</servlet-class> 
 	<init-param>
       <param-name>definitions-config</param-name>
-      <param-value>/WEB-INF/tilesDefinitions.xml,/WEB-INF/tutorialDefinitions.xml</param-value>
+      <param-value>/WEB-INF/tiles-defs.xml,/WEB-INF/tiles-tests-defs.xml,/WEB-INF/tiles-tutorial-defs.xml,/WEB-INF/tiles-examples-defs.xml</param-value>
     </init-param>
     <init-param>
       <param-name>definitions-debug</param-name>

@@ -15,8 +15,7 @@
                    You can also 
       download it, and additional resources, from</font> <font size="2">following web sites :</font> </div>
                <div align="center">
-                  <font size="2"> Latest build : 2001&nbsp;11&nbsp;02 (with struts 2001 10 
-      15 - 1.1dev)</font> </div>
+                  <font size="2"> Latest build : 2001 12 26 (with struts 2001 12 26 - 1.1dev)</font> </div>
                <div align="center">
                   <table border="2">
                      <tr>
@@ -87,6 +86,6 @@
           </div></td></tr></table></div>
                <div align="center">
                   <font color="#ff0000"><strong>WARNING</strong></font> : <font
-                  size="2">For those previously using Components, 
-      you can migrate to Tiles by following this <A href="doc/comps2Tiles.html">migration 
+                  size="2">If you have previously use Components, 
+      you can migrate to Tiles by following this <A href="<%=request.getContextPath()%>/doc/comps2Tiles.html">migration 
   path</A>.</font></div></td></tr></table>

@@ -24,8 +24,10 @@
     <!-- Logon form bean -->
     <form-bean      name="invoiceForm"
                     type="org.apache.struts.example.tiles.invoice.InvoiceForm"/>
-    <form-bean      name="portalPrefsForm"
-                    type="org.apache.struts.example.tiles.dynPortal.PortalPrefsForm"/>
+    <form-bean      name="myPortalSettingsForm"
+                    type="org.apache.struts.example.tiles.portal.PortalSettingsForm"/>
+    <form-bean      name="myMenuSettingsForm"
+                    type="org.apache.struts.example.tiles.portal.MenuSettingsForm"/>
 
   </form-beans>
 
@@ -81,7 +83,7 @@
   </action>
 
   <!-- =======================================================  -->
-  <!-- Dynamic portal actions  -->
+  <!-- Tutorial Dynamic portal actions  -->
   <!-- =======================================================  -->
     <!-- Dynamic Portal user lists retrieving action -->
   <action     path="/actions/myPortal"
@@ -91,7 +93,7 @@
 
     <!-- Dynamic Portal user lists set action : no op action forwarding to tile -->
   <action     path="/actions/myPortalPrefs"
-       		  type="org.apache.struts.tiles.NoOpAction"
+       		  type="org.apache.struts.tiles.actions.NoOpAction"
 			  name="portalPrefsForm">
       <forward  name="success"        path="myDynamicPortalPreferences"/>
   </action>
@@ -102,6 +104,41 @@
 			  name="portalPrefsForm">
       <forward  name="preferences"    path="/tutorial/dynPortal/myPortalPrefTile.jsp"/>
       <forward  name="portal"         path="dynamic.portal.body"/>
+  </action>
+
+
+  <!-- =======================================================  -->
+  <!-- Examples Portal 1.1 actions  -->
+  <!-- =======================================================  -->
+    <!-- Dynamic Portal user lists retrieving action -->
+  <action     path="/portal/myPortal"
+       		  type="org.apache.struts.example.tiles.portal.UserPortalAction">
+  </action>
+
+    <!-- Tiles Action associated to portal settings -->
+  <action     path="/examples/controller/myPortalSettings"
+       		  type="org.apache.struts.example.tiles.portal.UserPortalSettingsAction"
+			  name="myPortalSettingsForm" >
+  </action>
+
+    <!-- Portal settings page entrance : forward to appropriate page definition -->
+  <action     path="/examples/myPortalSettings"
+       		  type="org.apache.struts.tiles.actions.NoOpAction"
+			  name="myPortalSettingsForm" >
+      <forward  name="success"    	       path="examples.portal.settings.page"/>
+  </action>
+
+    <!-- Tiles Action associated to Tile myMenuSettings -->
+  <action     path="/examples/controller/myMenuSettings"
+       		  type="org.apache.struts.example.tiles.portal.UserMenuSettingsAction"
+			  name="myMenuSettingsForm" >
+  </action>
+
+    <!-- Menu Settings page entrance : forward to appropriate page definition -->
+  <action     path="/examples/myMenuSettings"
+       		  type="org.apache.struts.tiles.actions.NoOpAction"
+			  name="myMenuSettingsForm" >
+      <forward  name="success"    	       path="examples.userMenu.settings.page"/>
   </action>
 
 
@@ -129,6 +166,17 @@
       <forward  name="success"        path="forward.example.success.page"/>
   </action>
   
+  <!-- =======================================================  -->
+  <!-- Admin -->
+  <!-- =======================================================  -->
+    <!-- The standard administrative actions available with Struts -->
+    <!-- These would be either omitted or protected by security -->
+    <!-- in a real application deployment -->
+    <action    path="/admin/tiles/reload"
+               type="org.apache.struts.tiles.actions.ReloadDefinitionsAction"/>
+    <action    path="/admin/tiles/view"
+               type="org.apache.struts.tiles.actions.ViewDefinitionsAction"/>
+
 
   </action-mappings>
 

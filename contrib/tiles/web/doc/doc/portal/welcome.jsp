@@ -8,8 +8,17 @@
    Welcome to the 
       <EM>Tiles </EM>website. This "portal" page is an example of what can be 
       done with <EM>Tiles</EM>       
-             .&nbsp;It is made by 
-      assembling <EM>Tiles</EM>.&nbsp;It is an example of what you can do 
-      with <EM>Tiles</EM>. <BR></FONT><FONT size=2>If you want to 
-      know more, take a glance to the quick overview examples, or start by the 
-      tutorial.</FONT> </P></td></tr></table>
+             . It is made by 
+      assembling <EM>Tiles</EM>.
+	   </FONT>
+  <BR><FONT size=2>
+  You can :
+  <ul>
+    <li>Take a glance at some Tiles features and capabilities by browsing the commented live examples (avalaible if you install Tiles)</li>
+    <li>Check the "Quick Overview" for code examples and results</li>
+    <li>Start learning Tiles with the tutorial</li>
+  </ul>
+  </FONT> 
+</P>
+</td></tr>
+</table>

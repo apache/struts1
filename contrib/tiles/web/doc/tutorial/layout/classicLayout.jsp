@@ -1,26 +1,32 @@
-<%@ taglib uri="/WEB-INF/tiles.tld" prefix="comp" %>
+<%@ taglib uri="/WEB-INF/tiles.tld" prefix="tiles" %>
 
-<%-- Layout component 
-  parameters : title, header, menu, body, footer 
+<%-- Layout Tiles 
+  This layout render a header, left menu, body and footer.
+  @param title String use in page title
+  @param header Header tile (jsp url or definition name)
+  @param menu Menu 
+  @param body Body
+  @param footer Footer
 --%>
+
 <HTML>
   <HEAD>
     <link rel=stylesheet href="<%=request.getContextPath()%>/tutorial/layout/stylesheet.css" type="text/css">
     
-    <title><comp:getAsString name="title"/></title>
+    <title><tiles:getAsString name="title"/></title>
   </HEAD>
 
 <body bgcolor="#ffffff" text="#000000" link="#023264" alink="#023264" vlink="#023264">
 <table border="0" width="100%" cellspacing="5">
 <tr>
-  <td colspan="2"><comp:insert attribute="header" /></td>
+  <td colspan="2"><tiles:insert attribute="header" /></td>
 </tr>
 <tr>
   <td width="140" valign="top">
-    <comp:insert attribute='menu'/>
+    <tiles:insert attribute='menu'/>
   </td>
   <td valign="top"  align="left">
-    <comp:insert attribute='body' />
+    <tiles:insert attribute='body' />
   </td>
 </tr>
 <tr>
@@ -30,7 +36,7 @@
 </tr>
 <tr>
   <td colspan="2">
-    <comp:insert attribute="footer" />
+    <tiles:insert attribute="footer" />
   </td>
 </tr>
 </table>
