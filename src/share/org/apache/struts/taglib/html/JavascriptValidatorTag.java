@@ -88,7 +88,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.14 $ $Date: 2002/11/12 03:47:42 $
+ * @version $Revision: 1.15 $ $Date: 2002/11/12 05:59:24 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -517,12 +517,6 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         sb.append(this.getStartElement());
 
-        if (src != null) {
-            sb.append(" src=\"" + src + "\"> \n");
-        } else {
-            sb.append("> \n");
-        }
-
         if ("true".equals(htmlComment))
             sb.append(htmlBeginComment);
         sb.append("\n     var bCancel = false; \n\n");
@@ -641,7 +635,12 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         if (!BaseHandlerTag.isXhtml(this)) {
             start.append(" language=\"Javascript1.1\"");
         }
-        start.append(">");
+
+        if (this.src != null) {
+            start.append(" src=\"" + src + "\"");
+        }
+
+        start.append("> \n");
         return start.toString();
     }
 
