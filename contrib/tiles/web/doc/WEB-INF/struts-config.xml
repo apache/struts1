@@ -90,6 +90,12 @@
       <forward  name="failure"        path="test.struts.action.fail"/>
   </action>
 
+  <action     path="/test/dispatch"
+                type="org.apache.struts.tiles.actions.DefinitionDispatcherAction"
+				parameter="def">
+	 <forward  name="success" path="anything" />
+  </action>
+  
   <!-- =======================================================  -->
   <!-- Tutorial Dynamic portal actions  -->
   <!-- =======================================================  -->

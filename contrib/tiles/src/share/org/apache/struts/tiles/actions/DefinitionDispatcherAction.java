@@ -34,19 +34,21 @@ import org.apache.struts.action.ActionMapping;
  * <code>
  *   &lt;action path="/saveSubscription"
  *           type="org.apache.struts.tiles.actions.DefinitionDispatcherAction"
- *           name="subscriptionForm"
- *          scope="request"
- *          input="/subscription.jsp"
- *      parameter="def"/&gt;
+ *           parameter="def"/&gt;
+ *     &lt;forward name="success"   path="anything" //&gt;
+ *     &lt;forward name="error"     path="path.to.error.page" //&gt;
  * </code>
  *
  * <p>which will use the value of the request parameter named "def"
  * to pick the appropriate definition name.
+ * <p>  The value for success doesn't matter. The forward will forward to
+ * appropriate definition.
+ * <p> The value for error should denote a valid jsp path or definition name.
  *
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2001/12/27 17:41:35 $
+ * @version $Revision: 1.2 $ $Date: 2002/06/20 16:14:13 $
  */
 
 public final class DefinitionDispatcherAction extends Action {
@@ -96,25 +98,31 @@ public final class DefinitionDispatcherAction extends Action {
         {
           // Read definition from factory, but we can create it here.
         ComponentDefinition definition = DefinitionsUtil.getDefinition( name, request, getServlet().getServletContext() );
+        System.out.println("get Definition " + definition );
         DefinitionsUtil.setActionDefinition( request, definition);
         }
        catch( FactoryNotFoundException ex )
         {
         printError( response, "Error - DefinitionDispatcherAction : Can't get definition factory.");
-        return (mapping.findForward(null));
+        return (mapping.findForward("error"));
         }
        catch( NoSuchDefinitionException ex )
         {
         printError( response, "Error - DefinitionDispatcherAction : Can't get definition '" + name +"'.");
-        return (mapping.findForward(null));
+        return (mapping.findForward("error"));
         }
        catch( DefinitionsFactoryException ex )
         {
+        printError( response, "Error - DefinitionDispatcherAction : General Factory error '" + ex.getMessage() +"'.");
+        return (mapping.findForward("error"));
+        }
+       catch( Exception ex )
+        {
         printError( response, "Error - DefinitionDispatcherAction : General error '" + ex.getMessage() +"'.");
-        return (mapping.findForward(null));
+        return (mapping.findForward("error"));
         }
 
-   return (mapping.findForward(null));
+   return (mapping.findForward("success"));
 
    }
 
