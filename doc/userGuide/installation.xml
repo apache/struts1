@@ -80,12 +80,12 @@
       requires the API classes to be compiled.  They can be downloaded from
       <a href="http://java.sun.com/products/jdbc/download.html">http://java.sun.com/products/jdbc/download.html</a>.</li>
 
-  <li><strong>Jakarta Commons Packages</strong> - Struts utilizes several
+  <li>
+      <strong>Jakarta Commons Packages</strong> - Struts utilizes several
       packages from the <a href="http://jakarta.apache.org/commons/">Jakarta
-      Commons Project</a>. If you are utilizing a binary distribution of
-      Struts, the corresponding JAR files are included in the <code>lib</code>
-      directory. However, if you wish to build Struts from source, you will
-      need to download and install the following packages:
+      Commons Project</a>. 
+      These are the packages which must be available if you you wish to 
+      build Struts from source:
       <ul>
       <li><em>Beanutils</em> (Version 1.5 or later)</li>
       <li><em>Collections</em> (Version 2.1 or later)</li>
@@ -95,10 +95,18 @@
         <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-fileupload">
         Nightly Build</a>)</li>
       <li><em>Lang</em> (Version 1.1 or later)</li>
-      <li><em>Logging</em> (Version 1.0.2 or later)</li>
+      <li><em>Logging</em> (Recent 
+        <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-logging">
+        Nightly Build</a>, or Version 1.0.3 or later when it is available)</li>
       <li><em>Pool</em> (Version 1.0.1 or later)</li>
       <li><em>Validator</em> (Version 1.0.1 or later) </li>
       </ul>
+      For your convenience, the requisite JARs are provided as a single 
+      download under the <code>lib</code> sub-directory with each release 
+      and beta distribution. 
+      Please note that the minimum requirements may change between releases 
+      and betas, and some JARs may need to be updated to use the latest 
+      Nightly Build. 
   </li>
 
   <li><strong>Jakarta Commons SandBox Packages</strong> - The current version of Struts utilizes several

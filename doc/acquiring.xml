@@ -103,6 +103,15 @@
     building Struts from the source distribution</a>.
     </p>
     
+    <p>   
+    For your convenience, the requisite JARs are provided as a single download under 
+    the <code>lib</code> sub-directory with each release and beta distribution. 
+    (The "Library Distribution" above.)
+    Please note that the minimum requirements may change between releases 
+    and betas, and some JARs may need to be updated to use the latest 
+    Nightly Build. 
+    </p>
+    
 </section>
 
 <section>
