@@ -17,7 +17,9 @@
     <section href="Releases" name="Release Guidelines">
       <p>A
       <a href="http://jakarta.apache.org/commons/releases/versioning.html">point release</a> should be made before and after any product change that is not a "fully-compatible change" (see link). This includes moving a dependency from an internal package to an external product, including products distributed through the Jakarta Commons. We should place any fully-compatible changes in the hands of the community before starting on a change that is only "interface" or "external-interface" compatible.</p>
-      <p>Any release should follow the same general process used by the Jakarta Tomcat team and the <a href="http://httpd.apache.org/dev/release.html">Apache HTTP Server project</a>,
+      <p>
+      Any release should follow the same general process used by the
+      <a href="http://jakarta.apache.org/site/decisions.html">Jakarta Tomcat</a> team
       and must observe the <a href="http://apache.org/dev/mirrors.html">Apache Mirroring guidelines</a>.
       See also <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?SigningReleases">Signing Releases</a>.
       </p>
