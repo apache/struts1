@@ -1,1 +1,5 @@
 Struts contrib folder. 
+
+** NOTE **
+Validator has been moved over to jakarta-commons and is referenced
+directly in the core Struts code now.
