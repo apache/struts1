@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/FastArrayList.java,v 1.3 2001/02/12 00:32:13 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/02/12 00:32:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/FastArrayList.java,v 1.4 2001/05/20 01:15:17 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/05/20 01:15:17 $
  *
  * ====================================================================
  *
@@ -93,14 +93,14 @@ import java.util.ListIterator;
  * <code>java.util.ArrayList</code> directly (with no synchronization), for
  * maximum performance.</p>
  *
- * <p><strong>NOTE</strong>: The following methods are <strong>NOT</strong>
- * overridden:  clone(), equals(Object), hashCode().</p>
+ * @deprecated At some point after Struts 1.0 final, will be replaced by
+ *  an equivalent class in the Jakarta Commons Collections package.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/02/12 00:32:13 $
+ * @version $Revision: 1.4 $ $Date: 2001/05/20 01:15:17 $
  */
 
-public class FastArrayList implements List, Cloneable, Serializable {
+public class FastArrayList extends ArrayList {
 
 
     // ----------------------------------------------------------- Constructors
@@ -301,6 +301,26 @@ public class FastArrayList implements List, Cloneable, Serializable {
 
 
     /**
+     * Return a shallow copy of this <code>FastArrayList</code> instance.
+     * The elements themselves are not copied.
+     */
+    public Object clone() {
+
+        FastArrayList results = null;
+        if (fast) {
+            results = new FastArrayList(list);
+        } else {
+            synchronized (list) {
+                results = new FastArrayList(list);
+            }
+        }
+        results.setFast(getFast());
+        return (results);
+
+    }
+
+
+    /**
      * Return <code>true</code> if this list contains the specified element.
      *
      * @param element The element to test for
@@ -362,6 +382,51 @@ public class FastArrayList implements List, Cloneable, Serializable {
 
 
     /**
+     * Compare the specified object with this list for equality.  This
+     * implementation uses exactly the code that is used to define the
+     * list equals function in the documentation for the
+     * <code>List.equals</code> method.
+     *
+     * @param o Object to be compared to this list
+     */
+    public boolean equals(Object o) {
+
+        // Simple tests that require no synchronization
+        if (o == this)
+            return (true);
+        else if (!(o instanceof List))
+            return (false);
+        List lo = (List) o;
+
+        // Compare the sets of elements for equality
+        if (fast) {
+            ListIterator li1 = list.listIterator();
+            ListIterator li2 = lo.listIterator();
+            while (li1.hasNext() && li2.hasNext()) {
+                Object o1 = li1.next();
+                Object o2 = li2.next();
+                if (!(o1 == null ? o2 == null : o1.equals(o2)))
+                    return (false);
+            }
+            return (!(li1.hasNext() || li2.hasNext()));
+        } else {
+            synchronized (list) {
+                ListIterator li1 = list.listIterator();
+                ListIterator li2 = lo.listIterator();
+                while (li1.hasNext() && li2.hasNext()) {
+                    Object o1 = li1.next();
+                    Object o2 = li2.next();
+                    if (!(o1 == null ? o2 == null : o1.equals(o2)))
+                        return (false);
+                }
+                return (!(li1.hasNext() || li2.hasNext()));
+            }
+        }
+
+    }
+
+
+    /**
      * Return the element at the specified position in the list.
      *
      * @param index The index of the element to return
@@ -375,6 +440,36 @@ public class FastArrayList implements List, Cloneable, Serializable {
         } else {
             synchronized (list) {
                 return (list.get(index));
+            }
+        }
+
+    }
+
+
+    /**
+     * Return the hash code value for this list.  This implementation uses
+     * exactly the code that is used to define the list hash function in the
+     * documentation for the <code>List.hashCode</code> method.
+     */
+    public int hashCode() {
+
+        if (fast) {
+            int hashCode = 1;
+            Iterator i = list.iterator();
+            while (i.hasNext()) {
+                Object o = i.next();
+                hashCode = 31 * hashCode + (o == null ? 0 : o.hashCode());
+            }
+            return (hashCode);
+        } else {
+            synchronized (list) {
+                int hashCode = 1;
+                Iterator i = list.iterator();
+                while (i.hasNext()) {
+                    Object o = i.next();
+                    hashCode = 31 * hashCode + (o == null ? 0 : o.hashCode());
+                }
+                return (hashCode);
             }
         }
 
