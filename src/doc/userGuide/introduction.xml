@@ -4,6 +4,7 @@
   <properties>
     <author>Craig R. McClanahan</author>
     <author>Mike Schachter</author>
+    <author>Larry McCay</author>
     <title>The Struts Framework Project</title>
   </properties>
 
@@ -12,8 +13,20 @@
   <chapter name="Introduction" href="introduction">
   	
   		<section name="The Model-View-Controller ('MVC') Design Pattern" href="mvc">
-  			
-  			<p>FIXME: need a general introduction to the pattern</p>
+  		
+  			<p>
+	  			In the MVC design pattern, the application flow is controlled by a central <i>Controller</i>,
+	  			which utilizes an implementation of the Mediator design pattern to delegate requests to the
+	  			appropriate handler, called the <i>Model</i>. The Model is responsible for forwarding the request
+	  			to the appropriate <i>View</i> back through the Controller. The appropriate View which to forward
+	  			the request to is acquired by resolving, from a configuration file or database, the logical name
+	  			passed to the Controller.  This provides a loose coupling of the View and Model within the application.	  		
+	  		</p>	  		
+	  		<p>
+	  			See the "<a href="#resources">resources</a>" section at the end of this guide for links to the
+	  			Model-View-Controller desgin pattern.
+	  		</p>
+	  		
   			
   		</section>
   		
@@ -119,12 +132,12 @@
 				what business logic function is to be performed, and then delegating
 				responsibility for producing the next phase of the user interface to
 				an appropriate View component.  In Struts, the primary component of the
-				controller is a servlet of class <code>ActionServlet</code>.  This servlet
-				is configured by defining a set of mappings (described by a Java interface
+				Controller is a servlet of class <code>ActionServlet</code>.  This servlet
+				is configured by defining a set of mappings (described by a Java class
 				<code>ActionMapping</code>).  Each mapping defines a <code>path</code>
 				that is matched against the request URI of the incoming request, and the
 				fully qualified class name of an <code>Action</code> class (that is, a
-				Java class implementing the <code>Action</code> interface) which is
+				Java class extending the <code>Action</code> class) which is
 				responsible for performing the desired business logic, and then dispatching
 				control to the appropriate View component to create the response.
 			</p>
