@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.16 2001/03/13 22:31:48 craigmcc Exp $
- * $Revision: 1.16 $
- * $Date: 2001/03/13 22:31:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.17 2001/03/23 22:21:34 craigmcc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2001/03/23 22:21:34 $
  *
  * ====================================================================
  *
@@ -130,6 +130,9 @@ import java.io.Serializable;
  *     collection of which we are a part.
  * <li><strong>name</strong> - Name of the form bean, if any, associated
  *     with this action.
+ * <li><strong>parameter</strong> - General purpose configuration parameter
+ *     that can be used to pass extra information to the <code>Action</code>
+ *     selected by this <code>ActionMapping</code>.
  * <li><strong>path</strong> - Request URI path used to select this mapping.
  *     If extension mapping is used for the controller servlet, the extension
  *     will be stripped before comparisions against this value are made.
@@ -158,7 +161,7 @@ import java.io.Serializable;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2001/03/13 22:31:48 $
+ * @version $Revision: 1.17 $ $Date: 2001/03/23 22:21:34 $
  */
 
 public class ActionMapping implements Serializable {
@@ -226,6 +229,12 @@ public class ActionMapping implements Serializable {
      * The name of the form bean, if any, associated with this action.
      */
     protected String name = null;
+
+
+    /**
+     * General purpose configuration parameter for this mapping.
+     */
+    protected String parameter = null;
 
 
     /**
@@ -616,6 +625,28 @@ public class ActionMapping implements Serializable {
     public void setName(String name) {
 
         this.name = name;
+
+    }
+
+
+    /**
+     * Return the general purpose configuation parameter for this mapping.
+     */
+    public String getParameter() {
+
+        return (this.parameter);
+
+    }
+
+
+    /**
+     * Set the general purpose configuration parameter for this mapping.
+     *
+     * @param parameter The new configuration parameter
+     */
+    public void setParameter(String parameter) {
+
+        this.parameter = parameter;
 
     }
 

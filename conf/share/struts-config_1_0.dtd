@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
 
-     $Id: struts-config_1_0.dtd,v 1.1 2001/03/18 17:58:51 vmassol Exp $
+     $Id: struts-config_1_0.dtd,v 1.2 2001/03/23 22:21:34 craigmcc Exp $
 -->
 
 
@@ -289,6 +289,10 @@
                      starting with a "/" character, and without the
                      filename extension if extension mapping is used.
 
+     parameter       General purpose configuration parameter that can be used
+                     to pass extra information to the Action selected by this
+                     mapping.
+
      prefix          Prefix used to match request parameter names to form bean
                      property names, if any.  Optional if "name" is specified,
                      else not allowed.
@@ -324,6 +328,7 @@
 <!ATTLIST action         include        %RequestPath;   #IMPLIED>
 <!ATTLIST action         input          %RequestPath;   #IMPLIED>
 <!ATTLIST action         name           %BeanName;      #IMPLIED>
+<!ATTLIST action         parameter      CDATA           #IMPLIED>
 <!ATTLIST action         path           %RequestPath;   #REQUIRED>
 <!ATTLIST action         prefix         CDATA           #IMPLIED>
 <!ATTLIST action         scope          %RequestScope;  #IMPLIED>
