@@ -21,22 +21,22 @@
   <gumpRepositoryId>jakarta</gumpRepositoryId>
 
   <description>
-	The core of the Struts framework is a flexible control layer based on standard
-	technologies like Java Servlets, JavaBeans, ResourceBundles, 
-	and Extensible Markup Language (XML), as well as various Jakarta Commons packages.
-	Struts encourages application architectures based on the Model 2 approach, a variation
-	of the classic  Model-View-Controller (MVC) design paradigm.
-	
-	Struts provides its own Controller component and integrates with other technologies
-	to provide the Model and the View. For the Model, Struts can interact with any standard
-	data access technology, including Enterprise Java Beans, JDBC, and Object Relational Bridge.
-	For the View, Struts works well with JavaServer Pages, including JSTL and JSF, 
-	as well as Velocity Templates, XSLT, and other presentation systems.
-	
-	The Struts framework provides the invisible underpinnings every professional 
-	web application needs to survive. Struts helps you create an extensible 
-	development environment for your application, based on published standards
-	and proven design patterns.
+    The core of the Struts framework is a flexible control layer based on standard
+    technologies like Java Servlets, JavaBeans, ResourceBundles, 
+    and Extensible Markup Language (XML), as well as various Jakarta Commons packages.
+    Struts encourages application architectures based on the Model 2 approach, a variation
+    of the classic  Model-View-Controller (MVC) design paradigm.
+    
+    Struts provides its own Controller component and integrates with other technologies
+    to provide the Model and the View. For the Model, Struts can interact with any standard
+    data access technology, including Enterprise Java Beans, JDBC, and Object Relational Bridge.
+    For the View, Struts works well with JavaServer Pages, including JSTL and JSF, 
+    as well as Velocity Templates, XSLT, and other presentation systems.
+    
+    The Struts framework provides the invisible underpinnings every professional 
+    web application needs to survive. Struts helps you create an extensible 
+    development environment for your application, based on published standards
+    and proven design patterns.
   </description>
 
   <url>http://jakarta.apache.org/</url>
@@ -197,33 +197,38 @@
       <id>commons-beanutils</id>
       <version>1.6.1</version>
       <url>http://jakarta.apache.org/commons/beanutils.html</url>
+      <properties><war.bundle>true</war.bundle></properties>
     </dependency>
 
     <dependency>
       <id>commons-collections</id>
       <version>2.1</version>
       <url>http://jakarta.apache.org/commons/collections.html</url>
+      <properties><war.bundle>true</war.bundle></properties>
     </dependency>
 
     <dependency>
       <id>commons-digester</id>
       <version>1.5</version>
       <url>http://jakarta.apache.org/commons/digester.html</url>
+      <properties><war.bundle>true</war.bundle></properties>
     </dependency>
 
     <dependency>
       <id>commons-fileupload</id>
       <version>1.0</version>
       <url>http://jakarta.apache.org/commons/fileupload.html</url>
+      <properties><war.bundle>true</war.bundle></properties>
     </dependency>
     
     <dependency>
       <id>commons-logging</id>
       <version>1.0.3</version>
       <url>http://jakarta.apache.org/commons/logging.html</url>
+      <properties><war.bundle>true</war.bundle></properties>
     </dependency>
     
-	<!--
+    <!--
     <dependency>
       <id>commons-validator</id>
       <version>SNAPSHOT</version>
@@ -235,18 +240,28 @@
       <id>commons-validator</id>
       <version>1.1.1-dev</version>
       <url>http://jakarta.apache.org/commons/validator.html</url>
+      <properties><war.bundle>true</war.bundle></properties>
     </dependency>    
     
     <dependency>
       <id>oro</id>
       <version>2.0.7</version>
       <url>http://jakarta.apache.org/oro/</url>
+      <properties><war.bundle>true</war.bundle></properties>
     </dependency>
 
     <dependency>
       <id>xml-apis</id>
       <version>2.0.2</version>
       <url>http://xml.apache.org/commons/</url>
+      <properties><war.bundle>true</war.bundle></properties>
+    </dependency>
+
+    <dependency>
+      <groupId>antlr</groupId>
+      <artifactId>antlr</artifactId>
+      <version>2.7.2</version>
+      <properties><war.bundle>true</war.bundle></properties>
     </dependency>
 
     <dependency>
@@ -254,13 +269,7 @@
       <version>2.2</version>
     </dependency>
     
-    <dependency>
-      <groupId>antlr</groupId>
-      <artifactId>antlr</artifactId>
-      <version>2.7.2</version>
-    </dependency>
-
-	<!-- for unit tests -->
+    <!-- for unit tests -->
     <dependency>
       <id>junit</id>
       <version>3.8.1</version>
@@ -269,7 +278,7 @@
     
     <dependency>
       <id>commons-lang</id>
-      <version>1.0.1</version>
+      <version>2.0</version>
       <url>http://jakarta.apache.org/commons/lang.html</url>
     </dependency>
     
@@ -286,13 +295,13 @@
       <url>http://jakarta.apache.org/cactus</url>
     </dependency>
 
-  	<!-- for tld generation -->
-	<dependency>
-		<groupId>xalan</groupId>
-		<artifactId>xalan</artifactId>
-		<version>2.5.1</version>
-		<url>http://xml.apache.org/xalan</url>
-	</dependency> 
+    <!-- for tld generation -->
+    <dependency>
+        <groupId>xalan</groupId>
+        <artifactId>xalan</artifactId>
+        <version>2.5.1</version>
+        <url>http://xml.apache.org/xalan</url>
+    </dependency> 
 
   </dependencies>
 
@@ -320,19 +329,19 @@
       </includes>
       <resources>
         <resource>
-		  <directory>${basedir}/conf/share</directory>
-		  <targetPath>org/apache/struts/resources</targetPath>
-		  <includes>
-		    <include>**/*.xml</include>
-		    <include>**/*.dtd</include>
-		  </includes>
-		</resource>
-		<resource>
-		  <directory>${basedir}/src/test</directory>
-		  <includes>
-			<include>**/*.xml</include>
-		  </includes>
-		</resource>
+          <directory>${basedir}/conf/share</directory>
+          <targetPath>org/apache/struts/resources</targetPath>
+          <includes>
+            <include>**/*.xml</include>
+            <include>**/*.dtd</include>
+          </includes>
+        </resource>
+        <resource>
+          <directory>${basedir}/src/test</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </resource>
       </resources>
     </unitTest>
 
