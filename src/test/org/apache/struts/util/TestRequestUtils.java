@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.20 2003/07/25 07:19:48 sraeburn Exp $
- * $Revision: 1.20 $
- * $Date: 2003/07/25 07:19:48 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.21 2003/07/26 04:25:16 rleland Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/07/26 04:25:16 $
  *
  * ====================================================================
  *
@@ -72,12 +72,11 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.apache.struts.Globals;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.RequestProcessor;
-import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.mock.MockFormBean;
 import org.apache.struts.mock.MockPrincipal;
@@ -89,7 +88,7 @@ import org.apache.struts.taglib.html.Constants;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.20 $ $Date: 2003/07/25 07:19:48 $
+ * @version $Revision: 1.21 $ $Date: 2003/07/26 04:25:16 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -163,10 +162,10 @@ public class TestRequestUtils extends TestMockBase {
     // Default application -- extension mapping
     public void testActionURL1() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig);
         request.setPathElements("/myapp", "/foo.do", null, null);
         String url = RequestUtils.actionURL
-            (request, appConfig.findActionConfig("/dynamic"), "*.do");
+            (request, moduleConfig.findActionConfig("/dynamic"), "*.do");
         assertNotNull("URL was returned", url);
         assertEquals("URL value",
                      "/dynamic.do",
@@ -178,10 +177,10 @@ public class TestRequestUtils extends TestMockBase {
     // Second application -- extension mapping
     public void testActionURL2() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig2);
         request.setPathElements("/myapp", "/2/foo.do", null, null);
         String url = RequestUtils.actionURL
-            (request, appConfig2.findActionConfig("/dynamic2"), "*.do");
+            (request, moduleConfig2.findActionConfig("/dynamic2"), "*.do");
         assertNotNull("URL was returned", url);
         assertEquals("URL value",
                      "/2/dynamic2.do",
@@ -193,10 +192,10 @@ public class TestRequestUtils extends TestMockBase {
     // Default application -- path mapping
     public void testActionURL3() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig);
         request.setPathElements("/myapp", "/do/foo", null, null);
         String url = RequestUtils.actionURL
-            (request, appConfig.findActionConfig("/dynamic"), "/do/*");
+            (request, moduleConfig.findActionConfig("/dynamic"), "/do/*");
         assertNotNull("URL was returned", url);
         assertEquals("URL value",
                      "/do/dynamic",
@@ -552,7 +551,7 @@ public class TestRequestUtils extends TestMockBase {
     // Default module -- Forward with pattern
     public void testComputeURL1d() {
 
-        appConfig.getControllerConfig().setForwardPattern
+        moduleConfig.getControllerConfig().setForwardPattern
             ("$C/WEB-INF/pages$M$P");
         request.setPathElements("/myapp", "/action.do", null, null);
         String url = null;
@@ -575,7 +574,7 @@ public class TestRequestUtils extends TestMockBase {
     // Default module -- Page with pattern
     public void testComputeURL1e() {
 
-        appConfig.getControllerConfig().setPagePattern
+        moduleConfig.getControllerConfig().setPagePattern
             ("$C/WEB-INF/pages$M$P");
         request.setPathElements("/myapp", "/action.do", null, null);
         String url = null;
@@ -660,7 +659,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module -- Forward only
     public void testComputeURL2a() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -682,7 +681,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module -- Href only
     public void testComputeURL2b() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -704,7 +703,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module -- Page only
     public void testComputeURL2c() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -726,8 +725,8 @@ public class TestRequestUtils extends TestMockBase {
     // Default module -- Forward with pattern
     public void testComputeURL2d() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig2);
-        appConfig2.getControllerConfig().setForwardPattern
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig2);
+        moduleConfig2.getControllerConfig().setForwardPattern
             ("$C/WEB-INF/pages$M$P");
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
@@ -750,9 +749,9 @@ public class TestRequestUtils extends TestMockBase {
     // Second module -- Page with pattern
     public void testComputeURL2e() {
 
-        appConfig2.getControllerConfig().setPagePattern
+        moduleConfig2.getControllerConfig().setPagePattern
             ("$C/WEB-INF/pages$M$P");
-        request.setAttribute(Globals.MODULE_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -774,7 +773,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module -- Forward with relative path (non-context-relative)
     public void testComputeURL2f() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -796,7 +795,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module -- Forward with relative path (context-relative)
     public void testComputeURL2g() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -818,7 +817,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module -- Forward with external path
     public void testComputeURL2h() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -983,10 +982,10 @@ public class TestRequestUtils extends TestMockBase {
 
         request.setPathElements("/myapp", "/noform.do", null, null);
         ActionMapping mapping = (ActionMapping)
-            appConfig.findActionConfig("/noform");
+            moduleConfig.findActionConfig("/noform");
         assertNotNull("Found /noform mapping", mapping);
         ActionForm form = RequestUtils.createActionForm
-            (request, mapping, appConfig, null);
+            (request, mapping, moduleConfig, null);
         assertNull("No ActionForm returned", form);
 
     }
@@ -997,10 +996,10 @@ public class TestRequestUtils extends TestMockBase {
 
         request.setPathElements("/myapp", "/2/noform.do", null, null);
         ActionMapping mapping = (ActionMapping)
-            appConfig2.findActionConfig("/noform");
+            moduleConfig2.findActionConfig("/noform");
         assertNotNull("Found /noform mapping", mapping);
         ActionForm form = RequestUtils.createActionForm
-            (request, mapping, appConfig2, null);
+            (request, mapping, moduleConfig2, null);
         assertNull("No ActionForm returned", form);
 
     }
@@ -1011,7 +1010,7 @@ public class TestRequestUtils extends TestMockBase {
 
         request.setPathElements("/myapp", "/static.do", null, null);
         ActionMapping mapping = (ActionMapping)
-            appConfig.findActionConfig("/static");
+            moduleConfig.findActionConfig("/static");
         assertNotNull("Found /static mapping", mapping);
         assertNotNull("Mapping has non-null name",
                       mapping.getName());
@@ -1019,9 +1018,9 @@ public class TestRequestUtils extends TestMockBase {
                      "static",
                      mapping.getName());
         assertNotNull("AppConfig has form bean " + mapping.getName(),
-                      appConfig.findFormBeanConfig(mapping.getName()));
+                      moduleConfig.findFormBeanConfig(mapping.getName()));
         ActionForm form = RequestUtils.createActionForm
-            (request, mapping, appConfig, null);
+            (request, mapping, moduleConfig, null);
         assertNotNull("ActionForm returned", form);
         assertTrue("ActionForm of correct type",
                    form instanceof MockFormBean);
@@ -1034,7 +1033,7 @@ public class TestRequestUtils extends TestMockBase {
 
         request.setPathElements("/myapp", "/2/static.do", null, null);
         ActionMapping mapping = (ActionMapping)
-            appConfig2.findActionConfig("/static");
+            moduleConfig2.findActionConfig("/static");
         assertNotNull("Found /static mapping", mapping);
         assertNotNull("Mapping has non-null name",
                       mapping.getName());
@@ -1042,9 +1041,9 @@ public class TestRequestUtils extends TestMockBase {
                      "static",
                      mapping.getName());
         assertNotNull("AppConfig has form bean " + mapping.getName(),
-                      appConfig.findFormBeanConfig(mapping.getName()));
+                      moduleConfig.findFormBeanConfig(mapping.getName()));
         ActionForm form = RequestUtils.createActionForm
-            (request, mapping, appConfig2, null);
+            (request, mapping, moduleConfig2, null);
         assertNotNull("ActionForm returned", form);
         assertTrue("ActionForm of correct type",
                    form instanceof MockFormBean);
@@ -1057,7 +1056,7 @@ public class TestRequestUtils extends TestMockBase {
 
         request.setPathElements("/myapp", "/dynamic.do", null, null);
         ActionMapping mapping = (ActionMapping)
-            appConfig.findActionConfig("/dynamic");
+            moduleConfig.findActionConfig("/dynamic");
         assertNotNull("Found /dynamic mapping", mapping);
         assertNotNull("Mapping has non-null name",
                       mapping.getName());
@@ -1065,9 +1064,9 @@ public class TestRequestUtils extends TestMockBase {
                      "dynamic",
                      mapping.getName());
         assertNotNull("AppConfig has form bean " + mapping.getName(),
-                      appConfig.findFormBeanConfig(mapping.getName()));
+                      moduleConfig.findFormBeanConfig(mapping.getName()));
         ActionForm form = RequestUtils.createActionForm
-            (request, mapping, appConfig, null);
+            (request, mapping, moduleConfig, null);
         assertNotNull("ActionForm returned", form);
         assertTrue("ActionForm of correct type",
                    form instanceof DynaActionForm);
@@ -1080,7 +1079,7 @@ public class TestRequestUtils extends TestMockBase {
 
         request.setPathElements("/myapp", "/2/dynamic2.do", null, null);
         ActionMapping mapping = (ActionMapping)
-            appConfig2.findActionConfig("/dynamic2");
+            moduleConfig2.findActionConfig("/dynamic2");
         assertNotNull("Found /dynamic2 mapping", mapping);
         assertNotNull("Mapping has non-null name",
                       mapping.getName());
@@ -1088,9 +1087,9 @@ public class TestRequestUtils extends TestMockBase {
                      "dynamic2",
                      mapping.getName());
         assertNotNull("AppConfig has form bean " + mapping.getName(),
-                      appConfig2.findFormBeanConfig(mapping.getName()));
+                      moduleConfig2.findFormBeanConfig(mapping.getName()));
         ActionForm form = RequestUtils.createActionForm
-            (request, mapping, appConfig2, null);
+            (request, mapping, moduleConfig2, null);
         assertNotNull("ActionForm returned", form);
         assertTrue("ActionForm of correct type",
                    form instanceof DynaActionForm);
@@ -1104,7 +1103,7 @@ public class TestRequestUtils extends TestMockBase {
         // Retrieve an appropriately configured DynaActionForm instance
         request.setPathElements("/myapp", "/dynamic0.do", null, null);
         ActionMapping mapping = (ActionMapping)
-            appConfig.findActionConfig("/dynamic0");
+            moduleConfig.findActionConfig("/dynamic0");
         assertNotNull("Found /dynamic0 mapping", mapping);
         assertNotNull("Mapping has non-null name",
                       mapping.getName());
@@ -1112,9 +1111,9 @@ public class TestRequestUtils extends TestMockBase {
                      "dynamic0",
                      mapping.getName());
         assertNotNull("AppConfig has form bean " + mapping.getName(),
-                      appConfig.findFormBeanConfig(mapping.getName()));
+                      moduleConfig.findFormBeanConfig(mapping.getName()));
         ActionForm form = RequestUtils.createActionForm
-            (request, mapping, appConfig, null);
+            (request, mapping, moduleConfig, null);
         assertNotNull("ActionForm returned", form);
         assertTrue("ActionForm of correct type",
                    form instanceof DynaActionForm);
@@ -1181,7 +1180,7 @@ public class TestRequestUtils extends TestMockBase {
         // Different form beans should get different property value instances
         Object value1 = null;
         DynaActionForm dform1 = (DynaActionForm)
-            RequestUtils.createActionForm(request, mapping, appConfig, null);
+            RequestUtils.createActionForm(request, mapping, moduleConfig, null);
 
         value = dform.get("principal");
         value1 = dform1.get("principal");
@@ -1211,13 +1210,13 @@ public class TestRequestUtils extends TestMockBase {
     // Default module (default forwardPattern)
     public void testForwardURL1() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig);
         request.setPathElements("/myapp", "/action.do", null, null);
         ForwardConfig forward = null;
         String result = null;
 
         // redirect=false, contextRelative=false
-        forward = appConfig.findForwardConfig("moduleForward");
+        forward = moduleConfig.findForwardConfig("moduleForward");
         assertNotNull("moduleForward found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("moduleForward computed", result);
@@ -1226,7 +1225,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // redirect=true, contextRelative=false
-        forward = appConfig.findForwardConfig("moduleRedirect");
+        forward = moduleConfig.findForwardConfig("moduleRedirect");
         assertNotNull("moduleRedirect found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("moduleRedirect computed", result);
@@ -1235,7 +1234,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // redirect=false, contextRelative=true
-        forward = appConfig.findForwardConfig("contextForward");
+        forward = moduleConfig.findForwardConfig("contextForward");
         assertNotNull("contextForward found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("contextForward computed", result);
@@ -1244,7 +1243,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // redirect=true, contextRelative=true
-        forward = appConfig.findForwardConfig("contextRedirect");
+        forward = moduleConfig.findForwardConfig("contextRedirect");
         assertNotNull("contextRedirect found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("contextRedirect computed", result);
@@ -1253,7 +1252,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // noslash, contextRelative=false
-        forward = appConfig.findForwardConfig("moduleNoslash");
+        forward = moduleConfig.findForwardConfig("moduleNoslash");
         assertNotNull("moduleNoslash found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("moduleNoslash computed", result);
@@ -1262,7 +1261,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // noslash, contextRelative=true
-        forward = appConfig.findForwardConfig("contextNoslash");
+        forward = moduleConfig.findForwardConfig("contextNoslash");
         assertNotNull("contextNoslash found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("contextNoslash computed", result);
@@ -1276,13 +1275,13 @@ public class TestRequestUtils extends TestMockBase {
     // Second module (default forwardPattern)
     public void testForwardURL2() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         ForwardConfig forward = null;
         String result = null;
 
         // redirect=false, contextRelative=false
-        forward = appConfig2.findForwardConfig("moduleForward");
+        forward = moduleConfig2.findForwardConfig("moduleForward");
         assertNotNull("moduleForward found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("moduleForward computed", result);
@@ -1291,7 +1290,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // redirect=true, contextRelative=false
-        forward = appConfig2.findForwardConfig("moduleRedirect");
+        forward = moduleConfig2.findForwardConfig("moduleRedirect");
         assertNotNull("moduleRedirect found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("moduleRedirect computed", result);
@@ -1300,7 +1299,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // redirect=false, contextRelative=true
-        forward = appConfig2.findForwardConfig("contextForward");
+        forward = moduleConfig2.findForwardConfig("contextForward");
         assertNotNull("contextForward found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("contextForward computed", result);
@@ -1309,7 +1308,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // redirect=true, contextRelative=true
-        forward = appConfig2.findForwardConfig("contextRedirect");
+        forward = moduleConfig2.findForwardConfig("contextRedirect");
         assertNotNull("contextRedirect found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("contextRedirect computed", result);
@@ -1318,7 +1317,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // noslash, contextRelative=false
-        forward = appConfig2.findForwardConfig("moduleNoslash");
+        forward = moduleConfig2.findForwardConfig("moduleNoslash");
         assertNotNull("moduleNoslash found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("moduleNoslash computed", result);
@@ -1327,7 +1326,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // noslash, contextRelative=true
-        forward = appConfig2.findForwardConfig("contextNoslash");
+        forward = moduleConfig2.findForwardConfig("contextNoslash");
         assertNotNull("contextNoslash found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("contextNoslash computed", result);
@@ -1341,13 +1340,13 @@ public class TestRequestUtils extends TestMockBase {
     // Third module (custom forwardPattern)
     public void testForwardURL3() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig3);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig3);
         request.setPathElements("/myapp", "/3/action.do", null, null);
         ForwardConfig forward = null;
         String result = null;
 
         // redirect=false, contextRelative=false
-        forward = appConfig3.findForwardConfig("moduleForward");
+        forward = moduleConfig3.findForwardConfig("moduleForward");
         assertNotNull("moduleForward found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("moduleForward computed", result);
@@ -1356,7 +1355,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // redirect=true, contextRelative=false
-        forward = appConfig3.findForwardConfig("moduleRedirect");
+        forward = moduleConfig3.findForwardConfig("moduleRedirect");
         assertNotNull("moduleRedirect found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("moduleRedirect computed", result);
@@ -1365,7 +1364,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // redirect=false, contextRelative=true
-        forward = appConfig3.findForwardConfig("contextForward");
+        forward = moduleConfig3.findForwardConfig("contextForward");
         assertNotNull("contextForward found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("contextForward computed", result);
@@ -1374,7 +1373,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // redirect=true, contextRelative=true
-        forward = appConfig3.findForwardConfig("contextRedirect");
+        forward = moduleConfig3.findForwardConfig("contextRedirect");
         assertNotNull("contextRedirect found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("contextRedirect computed", result);
@@ -1383,7 +1382,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // noslash, contextRelative=false
-        forward = appConfig3.findForwardConfig("moduleNoslash");
+        forward = moduleConfig3.findForwardConfig("moduleNoslash");
         assertNotNull("moduleNoslash found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("moduleNoslash computed", result);
@@ -1392,7 +1391,7 @@ public class TestRequestUtils extends TestMockBase {
                      result);
 
         // noslash, contextRelative=true
-        forward = appConfig3.findForwardConfig("contextNoslash");
+        forward = moduleConfig3.findForwardConfig("contextNoslash");
         assertNotNull("contextNoslash found", forward);
         result = RequestUtils.forwardURL(request, forward);
         assertNotNull("contextNoslash computed", result);
@@ -1409,7 +1408,7 @@ public class TestRequestUtils extends TestMockBase {
     // Default module (default pagePattern)
     public void testPageURL1() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig);
         request.setPathElements("/myapp", "/action.do", null, null);
         String page = null;
         String result = null;
@@ -1428,7 +1427,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module (default pagePattern)
     public void testPageURL2() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String page = null;
         String result = null;
@@ -1447,7 +1446,7 @@ public class TestRequestUtils extends TestMockBase {
     // Third module (custom pagePattern)
     public void testPageURL3() {
 
-        request.setAttribute(Globals.MODULE_KEY, appConfig3);
+        request.setAttribute(Globals.MODULE_KEY, moduleConfig3);
         request.setPathElements("/myapp", "/3/action.do", null, null);
         String page = null;
         String result = null;
@@ -1491,12 +1490,12 @@ public class TestRequestUtils extends TestMockBase {
 
         request.setPathElements("/myapp", "/noform.do", null, null);
         RequestUtils.selectModule(request, context);
-        ApplicationConfig appConfig = (ApplicationConfig)
+        ModuleConfig moduleConfig = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
-        assertNotNull("Selected an application", appConfig);
-        assertEquals("Selected correct application",
-                     "", appConfig.getPrefix());
-        // FIXME - check application resources?
+        assertNotNull("Selected a module", moduleConfig);
+        assertEquals("Selected correct module",
+                     "", moduleConfig.getPrefix());
+        // FIXME - check module resources?
 
     }
 
@@ -1508,12 +1507,12 @@ public class TestRequestUtils extends TestMockBase {
         request.setPathElements("/myapp", "/2/noform.do", null, null);
         
         RequestUtils.selectModule(request, context);
-        ApplicationConfig appConfig = (ApplicationConfig)
+        ModuleConfig moduleConfig = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
-        assertNotNull("Selected an application", appConfig);
-        assertEquals("Selected correct application",
-                     "/2", appConfig.getPrefix());
-        // FIXME - check application resources?
+        assertNotNull("Selected a module", moduleConfig);
+        assertEquals("Selected correct module",
+                     "/2", moduleConfig.getPrefix());
+        // FIXME - check module resources?
 
     }
 
@@ -1525,11 +1524,11 @@ public class TestRequestUtils extends TestMockBase {
         request.setAttribute(RequestProcessor.INCLUDE_SERVLET_PATH,
                              "/noform.do");
         RequestUtils.selectModule(request, context);
-        ApplicationConfig appConfig = (ApplicationConfig)
+        ModuleConfig moduleConfig = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
-        assertNotNull("Selected an application", appConfig);
+        assertNotNull("Selected an application", moduleConfig);
         assertEquals("Selected correct application",
-                     "", appConfig.getPrefix());
+                     "", moduleConfig.getPrefix());
         // FIXME - check application resources?
 
     }
@@ -1543,11 +1542,11 @@ public class TestRequestUtils extends TestMockBase {
         request.setAttribute(RequestProcessor.INCLUDE_SERVLET_PATH,
                              "/2/noform.do");
         RequestUtils.selectModule(request, context);
-        ApplicationConfig appConfig = (ApplicationConfig)
+        ModuleConfig moduleConfig = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
-        assertNotNull("Selected an application", appConfig);
-        assertEquals("Selected correct application",
-                     "/2", appConfig.getPrefix());
+        assertNotNull("Selected a module", moduleConfig);
+        assertEquals("Selected correct module",
+                     "/2", moduleConfig.getPrefix());
         // FIXME - check application resources?
 
     }
