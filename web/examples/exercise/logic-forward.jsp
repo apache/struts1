@@ -11,9 +11,9 @@
     <ul>
     <li><a href="logic-forward.do?value=test">Standard hyperlink back to this page</a></li>
     <li><html:link action="/logic-forward-test-forward?value=test">Forward to this page</html:link></li>
+    <li><html:link action="/logic-redirect-test-action?value=test">Redirect to this page, via action attribute</html:link></li>
     <li><html:link action="/logic-redirect-test-forward?value=test">Redirect to this page, via forward attribute</html:link></li>
     <li><html:link action="/logic-redirect-test-page?value=test">Redirect to this page, via page attribute</html:link></li>
-    <li>Redirect to this page, via action attribute [:TODO:]</li>
     </ul>
     <hr />
     <ul>

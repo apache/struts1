@@ -38,6 +38,7 @@
     </action>
     <action path="/logic-forward" forward="/logic-forward.jsp" />
     <action path="/logic-forward-test-forward" forward="/logic-forward-test-forward.jsp" />
+    <action path="/logic-redirect-test-action" forward="/logic-redirect-test-action.jsp" />
     <action path="/logic-redirect-test-forward" forward="/logic-redirect-test-forward.jsp" />
     <action path="/logic-redirect-test-page" forward="/logic-redirect-test-page.jsp" />
 
