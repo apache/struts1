@@ -18,13 +18,10 @@ package org.apache.struts.faces.application;
 
 
 import java.io.IOException;
-import javax.faces.FacesException;
 import javax.faces.FactoryFinder;
 import javax.faces.application.ViewHandler;
 import javax.faces.component.UICommand;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.FacesContextFactory;
 import javax.faces.event.ActionEvent;
@@ -40,7 +37,6 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.faces.Constants;
@@ -56,7 +52,7 @@ import org.apache.struts.tiles.TilesRequestProcessor;
  * instance normally configured by Struts+Tiles, so it must support non-Faces
  * requests as well.</p>
  *
- * @version $Revision: 1.4 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.5 $ $Date: 2004/06/09 02:28:28 $
  */
 
 public class FacesTilesRequestProcessor extends TilesRequestProcessor {

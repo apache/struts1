@@ -17,17 +17,13 @@
 package org.apache.struts.faces.application;
 
 
-import javax.faces.application.Application;
-import javax.faces.application.NavigationHandler;
 import javax.faces.component.ActionSource;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
-import javax.faces.el.MethodBinding;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
-import javax.faces.event.PhaseId;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,7 +45,7 @@ import org.apache.struts.util.RequestUtils;
  * into execution of the corresponding Struts request processing lifecycle.
  * </p>
  *
- * @version $Revision: 1.7 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.8 $ $Date: 2004/06/09 02:28:28 $
  */
 
 public final class ActionListenerImpl implements ActionListener {

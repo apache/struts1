@@ -18,7 +18,6 @@ package org.apache.struts.faces.taglib;
 
 
 import javax.faces.component.UIComponent;
-import javax.faces.el.ValueBinding;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
@@ -29,7 +28,7 @@ import org.apache.struts.Globals;
  * <p>Render an HTML <code>&lt;html&gt;</code> element for
  * the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.7 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.8 $ $Date: 2004/06/09 02:28:28 $
  */
 
 public class HtmlTag extends AbstractFacesTag {

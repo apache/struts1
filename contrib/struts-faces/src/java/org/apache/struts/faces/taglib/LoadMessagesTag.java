@@ -19,7 +19,6 @@ package org.apache.struts.faces.taglib;
 
 import java.util.Locale;
 
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
 import javax.servlet.jsp.PageContext;

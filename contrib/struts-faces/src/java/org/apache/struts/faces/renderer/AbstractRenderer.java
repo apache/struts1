@@ -21,14 +21,9 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 
-import javax.faces.FactoryFinder;
-import javax.faces.application.Application;
-import javax.faces.application.ApplicationFactory;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.EditableValueHolder;
-import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
 import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -46,7 +41,7 @@ import org.apache.commons.logging.LogFactory;
  * <code>javax.faces.render.Renderer</code> for the
  * <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.7 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.8 $ $Date: 2004/06/09 02:28:28 $
  */
 
 public abstract class AbstractRenderer extends Renderer {

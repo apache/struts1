@@ -17,7 +17,6 @@
 package org.apache.struts.faces.component;
 
 
-import java.io.IOException;
 import java.util.Map;
 import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
@@ -42,7 +41,7 @@ import org.apache.struts.util.RequestUtils;
  * <code>javax.faces.component.UIForm</code> that supports automatic
  * creation of form beans in request or session scope.</p>
  *
- * @version $Revision: 1.8 $ $Date: 2004/06/09 00:27:14 $
+ * @version $Revision: 1.9 $ $Date: 2004/06/09 02:28:28 $
  */
 public class FormComponent extends UIForm {
 

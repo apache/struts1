@@ -18,7 +18,6 @@ package org.apache.struts.faces.taglib;
 
 
 import javax.faces.component.UIComponent;
-import javax.faces.el.ValueBinding;
 
 
 /**
@@ -26,7 +25,7 @@ import javax.faces.el.ValueBinding;
  * the <em>Struts-Faces Integration Library</em>.</p>
  *
  *
- * @version $Revision: 1.6 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.7 $ $Date: 2004/06/09 02:28:28 $
  */
 
 public class StylesheetTag extends AbstractFacesTag {

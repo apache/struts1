@@ -18,13 +18,10 @@ package org.apache.struts.faces.application;
 
 
 import java.io.IOException;
-import javax.faces.FacesException;
 import javax.faces.FactoryFinder;
 import javax.faces.application.ViewHandler;
 import javax.faces.component.UICommand;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.FacesContextFactory;
 import javax.faces.event.ActionEvent;
@@ -56,7 +53,7 @@ import org.apache.struts.faces.component.FormComponent;
  * instance normally configured by Struts, so it must support non-Faces
  * requests as well.</p>
  *
- * @version $Revision: 1.8 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.9 $ $Date: 2004/06/09 02:28:28 $
  */
 
 public class FacesRequestProcessor extends RequestProcessor {
