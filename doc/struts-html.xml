@@ -2720,10 +2720,12 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  If this is set to 'true', it overrides the name attribute and 
-                  the request scope bean under which our messages have been stored 
+                  By default the tag will retrieve the request scope bean it will 
+                  iterate over from the <code>Action.ERROR_KEY</code> constant string, 
+                  but if this attribute is set to 'true' the request scope bean 
                   will be retrieved from the <code>Action.MESSAGE_KEY</code> 
-                  constant string. 
+                  constant string.  Also if this is set to 'true', any value 
+                  assigned to the name attribute will be ignored.
                   </info>
                 </attribute>
 
