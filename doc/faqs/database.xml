@@ -84,6 +84,9 @@
     The Jakarta Commons dbcp's BasicDataSource
     [<code>org.apache.commons.dbcp.BasicDataSource</code>] also works well
     with the DataSource manager, if a native component is not available.
+    DBCP is not supplied as part of the Struts distribution. You can obtain 
+    it from <a href="http://jakarta.apache.org/commons/dbcp/downloads.html">
+    Commons DBCP</a>.
     </p>
     
     <p>
