@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.19 2002/03/22 23:47:18 craigmcc Exp $
- * $Revision: 1.19 $
- * $Date: 2002/03/22 23:47:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.20 2002/06/22 22:06:33 craigmcc Exp $
+ * $Revision: 1.20 $
+ * $Date: 2002/06/22 22:06:33 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2002/03/22 23:47:18 $
+ * @version $Revision: 1.20 $ $Date: 2002/06/22 22:06:33 $
  */
 
 public class FormTag extends TagSupport {
@@ -652,6 +652,15 @@ public class FormTag extends TagSupport {
 	    results.append("<script language=\"JavaScript\"");
             results.append(" type=\"text/javascript\">\r\n");
 	    results.append("  <!--\r\n");
+            results.append(" if (document.forms[\"");
+            results.append(name);
+            results.append("\"].elements[\"");
+            results.append(tempFocus);
+            results.append("\"]");
+            if (refocus.length() > 1) {
+                results.append(refocus.toString());
+            }
+            results.append(".type != \"hidden\") \r\n");
 	    results.append("    document.forms[\"");
 	    results.append(name);
 	    results.append("\"].elements[\"");
