@@ -3837,7 +3837,7 @@
                 <p>Displays a set of messages prepared by a business
                 logic component and stored as an <code>ActionMessages</code>
                 object, <code>ActionErrors</code> object, a String,
-                or a String array in request scope.  If
+                or a String array in any scope.  If
                 such a bean is not found, nothing will be rendered.</p>
 
                 <p>In order to use this tag successfully, you must have
@@ -3883,7 +3883,7 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  Name of the request scope bean under which our messages
+                  Name of the bean in any scope under which our messages
                   have been stored.  If not present, the name specified by the
                   <code>Action.ERROR_KEY</code> constant string will be used.
                   </info>
@@ -3925,9 +3925,9 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  By default the tag will retrieve the request scope bean it will
+                  By default the tag will retrieve the bean it will
                   iterate over from the <code>Action.ERROR_KEY</code> constant string,
-                  but if this attribute is set to 'true' the request scope bean
+                  but if this attribute is set to 'true' the bean
                   will be retrieved from the <code>Action.MESSAGE_KEY</code>
                   constant string.  Also if this is set to 'true', any value
                   assigned to the name attribute will be ignored.
