@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.8 2002/11/28 07:12:42 rleland Exp $
- * $Revision: 1.8 $
- * $Date: 2002/11/28 07:12:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.9 2002/12/19 16:21:46 ekbush Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/12/19 16:21:46 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.config.ModuleConfig;
  * been called before the <code>init()</code> method is invoked.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/11/28 07:12:42 $
+ * @version $Revision: 1.9 $ $Date: 2002/12/19 16:21:46 $
  * @since Struts 1.1
  */
 
@@ -95,21 +95,6 @@ public interface PlugIn {
      * shut down.</p>
      */
     public void destroy();
-
-
-    /**
-     * <p>Receive notification that the specified module is being
-     * started up.</p>
-     *
-     * @param servlet ActionServlet that is managing all the
-     *  modules in this web application
-     * @param config ApplicationConfig for the module with which
-     *  this plug-in is associated
-     *
-     * @exception ServletException if this <code>PlugIn</code> cannot
-     *  be successfully initialized
-     * @deprecated and removed use {@link #init(ActionServlet, ModuleConfig))}
-     */
 
 
     /**
