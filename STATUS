@@ -1,17 +1,16 @@
 STATUS
 ======
-$Id: STATUS,v 1.45 2002/07/27 23:49:58 craigmcc Exp $
+$Id: STATUS,v 1.46 2002/07/28 00:17:27 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           11 open bugs to swat!!
+                           10 open bugs to swat!!
 
 
 Controller:
 ----------
-11089 Data source keys are global, even when using application modules
 
 
 Custom Tags:

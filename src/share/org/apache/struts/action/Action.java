@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.45 2002/07/24 05:06:05 craigmcc Exp $
- * $Revision: 1.45 $
- * $Date: 2002/07/24 05:06:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.46 2002/07/28 00:17:27 craigmcc Exp $
+ * $Revision: 1.46 $
+ * $Date: 2002/07/28 00:17:27 $
  *
  * ====================================================================
  *
@@ -68,13 +68,16 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 import java.util.Hashtable;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 import org.apache.struts.Globals;
+import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.upload.MultipartRequestHandler;
@@ -110,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.45 $ $Date: 2002/07/24 05:06:05 $
+ * @version $Revision: 1.46 $ $Date: 2002/07/28 00:17:27 $
  */
 
 public class Action {
@@ -495,6 +498,51 @@ public class Action {
 
 
     /**
+     * Return the default data source for the current application module.
+     *
+     * @param request The servlet request we are processing
+     *
+     * @since Struts 1.1b2
+     */
+    protected DataSource getDataSource(HttpServletRequest request) {
+
+        return (getDataSource(request, DATA_SOURCE_KEY));
+
+    }
+
+
+
+    /**
+     * Return the specified data source for the current application
+     * module.
+     *
+     * @param request The servlet request we are processing
+     * @param key The key specified in the
+     *  <code>&lt;message-resources&gt;</code> element for the
+     *  requested bundle
+     *
+     * @since Struts 1.1b2
+     */
+    protected DataSource getDataSource(HttpServletRequest request,
+                                       String key) {
+
+        // Identify the current application module
+        ServletContext context = getServlet().getServletContext();
+        ApplicationConfig appConfig = (ApplicationConfig)
+            request.getAttribute(Action.APPLICATION_KEY);
+        if (appConfig == null) {
+            appConfig = (ApplicationConfig)
+                context.getAttribute(Action.APPLICATION_KEY);
+        }
+
+        // Return the requested data source instance
+        return ((DataSource) context.getAttribute
+                (key + appConfig.getPrefix()));
+
+    }
+
+
+    /**
      * Return the user's currently selected Locale.
      *
      * @param request The request we are processing
@@ -526,7 +574,7 @@ public class Action {
 
 
     /**
-     * Return the message resources for the current application module.
+     * Return the default message resources for the current application module.
      *
      * @param request The servlet request we are processing
      * @since Struts 1.1
@@ -537,6 +585,36 @@ public class Action {
 
     }
 
+
+
+    /**
+     * Return the specified message resources for the current application
+     * module.
+     *
+     * @param request The servlet request we are processing
+     * @param key The key specified in the
+     *  <code>&lt;message-resources&gt;</code> element for the
+     *  requested bundle
+     *
+     * @since Struts 1.1b2
+     */
+    protected MessageResources getResources(HttpServletRequest request,
+                                            String key) {
+
+        // Identify the current application module
+        ServletContext context = getServlet().getServletContext();
+        ApplicationConfig appConfig = (ApplicationConfig)
+            request.getAttribute(Action.APPLICATION_KEY);
+        if (appConfig == null) {
+            appConfig = (ApplicationConfig)
+                context.getAttribute(Action.APPLICATION_KEY);
+        }
+
+        // Return the requested message resources instance
+        return ((MessageResources) context.getAttribute
+                (key + appConfig.getPrefix()));
+
+    }
 
 
     /**
