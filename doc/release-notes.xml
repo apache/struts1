@@ -5,7 +5,7 @@
     <author>Craig R. McClanahan</author>
     <author>Robert Leland</author>
     <author>Ted Husted</author>
-    <title>Struts Release Notes (Version 1.x)</title>
+    <title>Struts Release Notes (current nightly build)</title>
   </properties>
 
   <body>
@@ -149,6 +149,7 @@
     <p>The following new features have been added to the utility classes
     (package <code>org.apache.struts.util</code>):</p>
     <ul>
+    <li>LocalStrings: Correct message regarding replaceable parameter so that it does not append an extraneous character.</li>
     <li>MessageResources: Escape any single quote characters that are included in the specified message string.</li>
     <li>Allow a transaction token to be the only parameter in computeParameters().</li>
     <li>Change RequestUtils to encode ampersands when building a query string.</li>
@@ -240,7 +241,7 @@
     package (package <code>org.apache.struts.upload</code>):</p>
     <ul>
     <li>Correct MultiboxTagdoAfterBody() to return SKIP_BODY instead of SKIP_PAGE.</li>
-    <li>Improved error-handling of out of bounds conditions</li>
+    <li>Improved error-handling on out of bounds conditions.</li>
     <li>Additional fix for file corruption problem with uploads and new line characters.</li>
     </ul>
 
@@ -267,6 +268,7 @@
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>
+    <li>Fixed FormTag to exclude query string when identifying action mapping name.</li>
     <li>Added the 'align' attribute to the &lt;html:image> tag.</li>
     <li>Added indexed attribute to ImageTag, RadioTag, and TextAreaTag.</li>
     <li>Added MessagesTag.</li>
@@ -284,6 +286,8 @@
     application (and corresponding contents on the Struts web site) have
     occurred:</p>
     <ul>
+    <li>In the HTML tag documentation, expand to cover using indexed properties with iterate.</li>
+    <li>Add installation notes for Jetty.</li>
     <li>In the Tag Developers Guide, add more detail regarding file upload requirements.</li>
     <li>In the Introduction, added references to basic background material.</li>
     <li>In Building View Components, clarify that additional i18n support may be provided by the browser, and is outside the scope of the framework.</li>

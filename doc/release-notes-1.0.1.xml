@@ -92,6 +92,8 @@
     <p>The following new features have been added to the utility classes
     (package <code>org.apache.struts.util</code>):</p>
     <ul>
+    <li>LocalStrings: Correct message regarding replaceable parameter so that it does not append an extraneous character.</li>
+    <li>Add LabelValueBean class. This defines a collection of name/value pairs that can be used with the &gt;html:options> tag, and elsewhere.</li>
     <li>MessageResources: Escape any single quote characters that are included in the specified message string.</li>
     <li>Allow a transaction token to be the only parameter in computeParameters().</li>
     <li>Change RequestUtils to encode ampersands when building a query string.</li>
@@ -141,7 +143,7 @@
     <p>The following changes and bug fixes have occurred in the file upload
     package (package <code>org.apache.struts.upload</code>):</p>
     <ul>
-    <li>Improved error-handling of out of bounds conditions</li>
+    <li>Improved error-handling on out of bounds conditions.</li>
     <li>Additional fix for file corruption problem with uploads and new line characters.</li>
     </ul>
 
@@ -165,6 +167,7 @@
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>
+    <li>Fixed FormTag to exclude query string when identifying action mapping name.</li>
     <li>Correct MultiboxTagdoAfterBody() to return SKIP_BODY instead of SKIP_PAGE.</li>
     <li>Added the 'align' attribute to the &lt;html:image> tag.</li>
     <li>On the Options tag, if the property specified by the "property" attribute returns null, it now throws an error message that indicates what the real problem is, rather than causing an NPE.</li>
