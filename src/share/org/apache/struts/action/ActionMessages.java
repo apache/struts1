@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.10 2003/08/12 00:31:46 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2003/08/12 00:31:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.11 2003/08/19 23:26:28 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/08/19 23:26:28 $
  *
  * ====================================================================
  *
@@ -87,10 +87,20 @@ import java.util.List;
  * @author Craig R. McClanahan
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.10 $ $Date: 2003/08/12 00:31:46 $
+ * @version $Revision: 1.11 $ $Date: 2003/08/19 23:26:28 $
  * @since Struts 1.1
  */
 public class ActionMessages implements Serializable {
+    
+    /**
+     * Compares ActionMessageItem objects.
+     */
+    private static final Comparator actionItemComparator = new Comparator() {
+        public int compare(Object o1, Object o2) {
+            return ((ActionMessageItem) o1).getOrder()
+                - ((ActionMessageItem) o2).getOrder();
+        }
+    };
 
     // ----------------------------------------------------- Manifest Constants
 
@@ -219,7 +229,7 @@ public class ActionMessages implements Serializable {
     public Iterator get() {
 
         if (messages.isEmpty()) {
-            return (Collections.EMPTY_LIST.iterator());
+            return Collections.EMPTY_LIST.iterator();
         }
 
         ArrayList results = new ArrayList();
@@ -231,11 +241,7 @@ public class ActionMessages implements Serializable {
 
         // Sort ActionMessageItems based on the initial order the
         // property/key was added to ActionMessages.
-        Collections.sort(actionItems, new Comparator() {
-            public int compare(Object o1, Object o2) {
-                return ((ActionMessageItem) o1).getOrder() - ((ActionMessageItem) o2).getOrder();
-            }
-        });
+        Collections.sort(actionItems, actionItemComparator);
 
         for (Iterator i = actionItems.iterator(); i.hasNext();) {
             ActionMessageItem ami = (ActionMessageItem) i.next();
@@ -245,8 +251,7 @@ public class ActionMessages implements Serializable {
             }
         }
 
-        return (results.iterator());
-
+        return results.iterator();
     }
 
     /**
@@ -283,7 +288,7 @@ public class ActionMessages implements Serializable {
     /**
      * Return the number of messages recorded for all properties (including
      * global messages).  <strong>NOTE</strong> - it is more efficient to call
-     * <code>empty()</code> if all you care about is whether or not there are
+     * <code>isEmpty()</code> if all you care about is whether or not there are
      * any messages at all.
      */
     public int size() {
