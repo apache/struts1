@@ -2,6 +2,25 @@
 <tr>
 <th bgcolor="aqua"><FONT size=4>History</FONT></th></tr>
   <TR>
+    <TD><FONT size=2><STRONG> 22 Feb. 2002</STRONG> </FONT></TD></TR>
+  <TR>
+    <TD>
+      <UL>
+        <LI><FONT size=2>Correct build process preventing examples compilation in war files </FONT></LI>
+	  </UL>
+	</TD>
+  </TR> 
+  <TR>
+    <TD><FONT size=2><STRONG> 20 Feb. 2002</STRONG> </FONT></TD></TR>
+  <TR>
+    <TD>
+      <UL>
+        <LI><FONT size=2>New tiles-blank-struts1.x applications</FONT></LI>
+        <LI><FONT size=2>Change distribution (again) : back to the old fashion</FONT></LI>
+	  </UL>
+	</TD>
+  </TR> 
+  <TR>
     <TD><FONT size=2><STRONG> 18 Feb. 2002</STRONG> </FONT></TD></TR>
   <TR>
     <TD>
@@ -68,6 +87,8 @@
         <LI><FONT size=2>Add Tile Rss Channel (Thanks Ted 
     Husted)</FONT></LI></UL></TD></TR> 
  <TR>
-    <TD><FONT size=2><STRONG>&nbsp;&nbsp; <A href="<%=request.getContextPath()%>/doc/portal/revisionsCont.html"><FONT 
-      size=2><STRONG>more 
-...</STRONG></FONT></A></STRONG></FONT></TD></TR></table>
+    <TD><FONT size=2><STRONG>&nbsp;&nbsp; <A href="<%=request.getContextPath()%>/doc/portal/revisionsCont.html">
+	<FONT size=2><STRONG>more ...</STRONG></FONT></A></STRONG></FONT>
+	</TD>
+ </TR>
+</table>
