@@ -429,7 +429,7 @@ public ActionForward execute(ActionMapping mapping,
       You can override global exception handlers by defining a handler inside an action definition.
       </p>
       <p>
-      A common use of ExceptionHandler's is to configure one for java.lang.Exception so it's called
+      A common use of ExceptionHandlers is to configure one for java.lang.Exception so it's called
       for any exception and log the exception to some data store.
       </p>
       </section>
