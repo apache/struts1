@@ -1,4 +1,9 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestNotPresentTag.java,v 1.6 2003/03/08 19:45:04 jmitchell Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/03/08 19:45:04 $
+ * 
+ * ====================================================================
  * The Apache Software License, Version 1.1
  *
  * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
