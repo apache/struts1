@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.10 2001/12/11 17:54:28 oalexeev Exp $
- * $Revision: 1.10 $
- * $Date: 2001/12/11 17:54:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.11 2002/06/25 00:45:41 husted Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/06/25 00:45:41 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "checkbox".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2001/12/11 17:54:28 $
+ * @version $Revision: 1.11 $ $Date: 2002/06/25 00:45:41 $
  */
 
 public class CheckboxTag extends BaseHandlerTag {
@@ -176,7 +176,8 @@ public class CheckboxTag extends BaseHandlerTag {
 
     /**
      * Generate the required input tag.
-     * Indexed property since 1.1
+     * <p>
+     * Support for indexed property since Struts 1.1
      *
      * @exception JspException if a JSP exception has occurred
      */
@@ -185,7 +186,7 @@ public class CheckboxTag extends BaseHandlerTag {
         // Create an appropriate "input" element based on our parameters
         StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
         results.append(" name=\"");
-        // since 1.1
+        // * @since Struts 1.1
         if( indexed )
                 prepareIndex( results, name );
         results.append(this.property);

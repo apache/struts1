@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HiddenTag.java,v 1.2 2002/03/17 01:44:41 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/03/17 01:44:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HiddenTag.java,v 1.3 2002/06/25 00:45:41 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/06/25 00:45:41 $
  *
  * ====================================================================
- * 
+ *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -15,7 +15,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -23,15 +23,15 @@
  *    distribution.
  *
  * 3. The end-user documentation included with the redistribution, if
- *    any, must include the following acknowlegement:  
- *       "This product includes software developed by the 
+ *    any, must include the following acknowlegement:
+ *       "This product includes software developed by the
  *        Apache Software Foundation (http://www.apache.org/)."
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
  * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
- *    from this software without prior written permission. For written 
+ *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
  *
  * 5. Products derived from this software may not be called "Apache"
@@ -57,7 +57,7 @@
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */ 
+ */
 
 
 package org.apache.struts.taglib.html;
@@ -72,7 +72,7 @@ import org.apache.struts.util.ResponseUtils;
  * Custom tag for input fields of type "text".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/03/17 01:44:41 $
+ * @version $Revision: 1.3 $ $Date: 2002/06/25 00:45:41 $
  */
 
 public class HiddenTag extends BaseFieldTag {
@@ -85,8 +85,8 @@ public class HiddenTag extends BaseFieldTag {
      */
     public HiddenTag() {
 
-	super();
-	this.type = "hidden";
+    super();
+    this.type = "hidden";
 
     }
 
@@ -113,7 +113,7 @@ public class HiddenTag extends BaseFieldTag {
 
     /**
      * Generate the required input tag, followed by the optional rendered text.
-     * Support for <code>write</code> property since 1.1.
+     * Support for <code>write</code> property since Struts 1.1.
      *
      * @exception JspException if a JSP exception has occurred
      */
@@ -127,7 +127,9 @@ public class HiddenTag extends BaseFieldTag {
             return (EVAL_BODY_TAG);
         }
 
+
         // Calculate the value to be rendered separately
+        // * @since Struts 1.1
         String results = null;
         if (value != null) {
             results = ResponseUtils.filter(value);

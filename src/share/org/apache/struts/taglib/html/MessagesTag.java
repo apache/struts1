@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.3 2001/10/16 15:43:58 dwinterfeldt Exp $
- * $Revision: 1.3 $
- * $Date: 2001/10/16 15:43:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.4 2002/06/25 00:45:41 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/25 00:45:41 $
  *
  * ====================================================================
  *
@@ -84,9 +84,9 @@ import org.apache.struts.util.ResponseUtils;
  * retrieved from <code>Action.MESSAGE_KEY</code>. This is an alternative
  * to the default <code>ErrorsTag</code>.
  *
- * @since 1.1
  * @author David Winterfeldt
- * @version $Revision: 1.3 $ $Date: 2001/10/16 15:43:58 $
+ * @version $Revision: 1.4 $ $Date: 2002/06/25 00:45:41 $
+ * @since Struts 1.1
 */
 public class MessagesTag extends BodyTagSupport {
 
@@ -226,7 +226,7 @@ public class MessagesTag extends BodyTagSupport {
     public int doStartTag() throws JspException {
         // Were any messages specified?
         ActionMessages messages = null;
-        
+
         if (message != null && "true".equalsIgnoreCase(message))
            name = Action.MESSAGE_KEY;
 

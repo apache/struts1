@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.9 2001/12/11 17:54:28 oalexeev Exp $
- * $Revision: 1.9 $
- * $Date: 2001/12/11 17:54:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.10 2002/06/25 00:45:41 husted Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/06/25 00:45:41 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.ResponseUtils;
  * Custom tag for input fields of type "textarea".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/12/11 17:54:28 $
+ * @version $Revision: 1.10 $ $Date: 2002/06/25 00:45:41 $
  */
 
 public class TextareaTag extends BaseInputTag {
@@ -106,7 +106,7 @@ public class TextareaTag extends BaseInputTag {
 
     /**
      * Generate the required input tag.
-     * [Indexed since 1.1]
+     * Support for indexed since Struts 1.1
      *
      * @exception JspException if a JSP exception has occurred
      */
@@ -115,7 +115,7 @@ public class TextareaTag extends BaseInputTag {
         // Create an appropriate "input" element based on our parameters
         StringBuffer results = new StringBuffer("<textarea");
         results.append(" name=\"");
-        // @since 1.1
+        // @since Struts 1.1
         if( indexed )
                 prepareIndex( results, name );
         results.append(property);

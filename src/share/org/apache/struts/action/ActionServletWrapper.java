@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.3 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.4 2002/06/25 00:42:44 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/25 00:42:44 $
  *
  * ====================================================================
  *
@@ -74,7 +74,8 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * could be exploited by automatic population of properties.
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.4 $ $Date: 2002/06/25 00:42:44 $
+ * @since Struts 1.0.1
  */
 public class ActionServletWrapper {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.15 2002/05/13 02:38:33 arron Exp $
- * $Revision: 1.15 $
- * $Date: 2002/05/13 02:38:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.16 2002/06/25 00:45:41 husted Exp $
+ * $Revision: 1.16 $
+ * $Date: 2002/06/25 00:45:41 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.15 $ $Date: 2002/05/13 02:38:33 $
+ * @version $Revision: 1.16 $ $Date: 2002/06/25 00:45:41 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -109,7 +109,9 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
 //  Indexing ability for Iterate
 
-    /** Whether to created indexed names for fields [since 1.1] */
+    /** Whether to created indexed names for fields
+      * @since Struts 1.1
+      */
     protected boolean indexed = false;
 
 //  Mouse Events
@@ -225,14 +227,18 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return (this.tabindex);
     }
 
-//  Indexing ability for Iterate [since 1.1]
+//  Indexing ability for Iterate [since Struts 1.1]
 
-    /** Sets the indexed value. */
+    /** Sets the indexed value.
+      * @since Struts 1.1
+      */
     public void setIndexed(boolean indexed) {
         this.indexed = indexed;
     }
 
-    /** Returns the indexed value. */
+    /** Returns the indexed value.
+      * @since Struts 1.1
+      */
     public boolean getIndexed() {
         return (this.indexed);
     }

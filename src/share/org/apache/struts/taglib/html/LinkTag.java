@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.22 2002/03/17 02:49:06 craigmcc Exp $
- * $Revision: 1.22 $
- * $Date: 2002/03/17 02:49:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.23 2002/06/25 00:45:41 husted Exp $
+ * $Revision: 1.23 $
+ * $Date: 2002/06/25 00:45:41 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.22 $ $Date: 2002/03/17 02:49:06 $
+ * @version $Revision: 1.23 $ $Date: 2002/06/25 00:45:41 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -328,7 +328,8 @@ public class LinkTag extends BaseHandlerTag {
 
     /**
      * Render the beginning of the hyperlink.
-     * Indexed property since 1.1
+     * <p>
+     * Support for indexed property since Struts 1.1
      *
      * @exception JspException if a JSP exception has occurred
      */
@@ -345,6 +346,7 @@ public class LinkTag extends BaseHandlerTag {
 
         // Generate the opening anchor element
         StringBuffer results = new StringBuffer("<a href=\"");
+        // * @since Struts 1.1
         results.append(calculateURL());
         results.append("\"");
         if (target != null) {
@@ -436,6 +438,7 @@ public class LinkTag extends BaseHandlerTag {
 
     /**
      * Return the complete URL to which this hyperlink will direct the user.
+     * Support for indexed property since Struts 1.1
      *
      * @exception JspException if an exception is thrown calculating the value
      */
@@ -447,7 +450,7 @@ public class LinkTag extends BaseHandlerTag {
              name, property, scope, transaction);
 
         // if "indexed=true", add "index=x" parameter to query string
-        // since 1.1
+        // * @since Struts 1.1
         if( indexed ) {
 
            // look for outer iterate tag

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.8 2001/12/11 17:54:28 oalexeev Exp $
- * $Revision: 1.8 $
- * $Date: 2001/12/11 17:54:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.9 2002/06/25 00:45:41 husted Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/06/25 00:45:41 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.util.ResponseUtils;
  * Renders an HTML BUTTON tag within the Struts framework.
  *
  * @author Don Clasen
- * @version $Revision: 1.8 $ $Date: 2001/12/11 17:54:28 $
+ * @version $Revision: 1.9 $ $Date: 2002/06/25 00:45:41 $
  */
 
 public class ButtonTag extends BaseHandlerTag {
@@ -171,7 +171,8 @@ public class ButtonTag extends BaseHandlerTag {
 
     /**
      * Process the end of this tag.
-     * Indexed property since 1.1
+     * <p>
+     * Support for indexed property since Struts 1.1
      * @exception JspException if a JSP exception has occurred
      */
     public int doEndTag() throws JspException {
@@ -189,7 +190,7 @@ public class ButtonTag extends BaseHandlerTag {
         if (property != null) {
             results.append(" name=\"");
             results.append(property);
-            // since 1.1
+            // * @since Struts 1.1
             if( indexed )
                 prepareIndex( results, null );
             results.append("\"");

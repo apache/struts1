@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.40 2002/06/24 18:53:01 husted Exp $
- * $Revision: 1.40 $
- * $Date: 2002/06/24 18:53:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.41 2002/06/25 00:42:44 husted Exp $
+ * $Revision: 1.41 $
+ * $Date: 2002/06/25 00:42:44 $
  *
  * ====================================================================
  *
@@ -109,7 +109,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.40 $ $Date: 2002/06/24 18:53:01 $
+ * @version $Revision: 1.41 $ $Date: 2002/06/25 00:42:44 $
  */
 
 public class Action {
@@ -268,6 +268,7 @@ public class Action {
      * <code>PlugIn</code> instances will be stored.  This
      * will be suffixed with the actual application prefix (including the
      * leading "/" character) to form the actual attributes key.</p>
+     * @since Struts 1.1
      */
     public static final String PLUG_INS_KEY =
         "org.apache.struts.action.PLUG_INS";
@@ -278,6 +279,7 @@ public class Action {
      * <code>RequestProcessor</code> instance will be stored.  This
      * will be suffixed with the actual application prefix (including the
      * leading "/" character) to form the actual attributes key.</p>
+     * @since Struts 1.1
      */
     public static final String REQUEST_PROCESSOR_KEY =
         "org.apache.struts.action.REQUEST_PROCESSOR";
