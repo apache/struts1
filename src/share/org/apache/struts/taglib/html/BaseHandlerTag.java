@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.6 2001/06/13 03:49:46 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/06/13 03:49:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.7 2001/06/21 16:18:17 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/06/21 16:18:17 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import org.apache.struts.util.MessageResources;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.6 $ $Date: 2001/06/13 03:49:46 $
+ * @version $Revision: 1.7 $ $Date: 2001/06/21 16:18:17 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -487,15 +487,12 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     }
 
 
-    // -------------------------------------------------------- Private Methods
-
-
     /**
      * Prepares the mouse event handlers, appending them to the the given
      * StringBuffer.
      * @param handlers The StringBuffer that output will be appended to.
      */
-    private void prepareMouseEvents(StringBuffer handlers) {
+    protected void prepareMouseEvents(StringBuffer handlers) {
         if (onclick != null) {
             handlers.append(" onclick=\"");
             handlers.append(onclick);
@@ -544,7 +541,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      * StringBuffer.
      * @param handlers The StringBuffer that output will be appended to.
      */
-    private void prepareKeyEvents(StringBuffer handlers) {
+    protected void prepareKeyEvents(StringBuffer handlers) {
 
         if (onkeydown != null) {
             handlers.append(" onkeydown=\"");
@@ -570,7 +567,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      * StringBuffer.
      * @param handlers The StringBuffer that output will be appended to.
      */
-    private void prepareTextEvents(StringBuffer handlers) {
+    protected void prepareTextEvents(StringBuffer handlers) {
 
         if (onselect != null) {
             handlers.append(" onselect=\"");
@@ -590,7 +587,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      * StringBuffer.
      * @param handlers The StringBuffer that output will be appended to.
      */
-    private void prepareFocusEvents(StringBuffer handlers) {
+    protected void prepareFocusEvents(StringBuffer handlers) {
 
         if (onblur != null) {
             handlers.append(" onblur=\"");
