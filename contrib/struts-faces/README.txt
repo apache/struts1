@@ -1,5 +1,5 @@
 The Struts-Faces Integration Library (Version 1.0) README File
-$Id: README.txt,v 1.15 2004/08/03 07:01:07 craigmcc Exp $
+$Id: README.txt,v 1.16 2004/08/21 18:25:10 craigmcc Exp $
 
 
 ============
@@ -80,6 +80,10 @@ following new features relative to the previous (0.4) release:
   establishing a user specific locale), this setting will be copied to
   the UIViewRoot of the corresponding JSF view, which will therefore
   cause it to change the Locale used by JSF components and renderers also.
+
+* New command link component (and associated <s:commandLink> tag that mirrors
+  the functionality of the standard <h:commandLink> component, but works when
+  inside a Struts <s:form> component.
 
 This release of the Struts-Faces Integration Library (Version 1.0) has the
 following revised features relative to the previous (0.4) release:
