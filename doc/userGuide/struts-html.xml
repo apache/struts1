@@ -2275,6 +2275,9 @@
                 <rtexprvalue>true</rtexprvalue>
                 <info>
                 <p>The alignment option for this image.</p>
+                <p>The alignment option for this image. The align attribute is
+                deprecated in HTML 4.x. The suggested alternative is to use CSS.
+                Please see http://www.w3.org/TR/REC-html40/struct/objects.html#h-13.7.4 for more details.</p>
                 </info>
         </attribute>
 

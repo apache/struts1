@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.18 2002/09/23 05:13:43 martinc Exp $
- * $Revision: 1.18 $
- * $Date: 2002/09/23 05:13:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.19 2002/10/16 19:51:56 jholmes Exp $
+ * $Revision: 1.19 $
+ * $Date: 2002/10/16 19:51:56 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "image".
  *
  * @author Oleg V Alexeev
- * @version $Revision: 1.18 $ $Date: 2002/09/23 05:13:43 $
+ * @version $Revision: 1.19 $ $Date: 2002/10/16 19:51:56 $
  */
 
 public class ImageTag extends SubmitTag {
@@ -90,10 +90,16 @@ public class ImageTag extends SubmitTag {
      */
     protected String align = null;
 
+    /**
+     * @deprecated Align attribute is deprecated in HTML 4.x.
+     */
     public String getAlign() {
         return (this.align);
     }
 
+    /**
+     * @deprecated Align attribute is deprecated in HTML 4.x.
+     */
     public void setAlign(String align) {
         this.align = align;
     }
