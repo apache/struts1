@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.15 2003/05/16 12:34:50 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/05/16 12:34:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.16 2003/05/17 01:56:51 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/05/17 01:56:51 $
  *
  * ====================================================================
  *
@@ -71,6 +71,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.Globals;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * Renders an HTML <base> element with an href 
@@ -82,7 +83,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Luis Arias <luis@elysia.com>
  * @author David Graham
- * @version $Revision: 1.15 $ $Date: 2003/05/16 12:34:50 $
+ * @version $Revision: 1.16 $ $Date: 2003/05/17 01:56:51 $
  */
 
 public class BaseTag extends TagSupport {
@@ -146,6 +147,7 @@ public class BaseTag extends TagSupport {
      * @param uri  The portion of the url from the protocol name up to the query 
      * string.
      * @return String An HTML &lt;base&gt; element.
+     * @since Struts 1.1
      */
     protected String renderBaseElement(
         String scheme,
@@ -176,25 +178,13 @@ public class BaseTag extends TagSupport {
             tag.append("\"");
         }
         
-        if (this.isXhtml()) {
+        if (RequestUtils.isXhtml(this.pageContext)) {
             tag.append(" />");
         } else {
             tag.append(">");
         }
         
         return tag.toString();
-    }
-
-    /**
-     * Returns true if the tag is in XHTML mode.
-     */
-    protected boolean isXhtml() {
-        String xhtml =
-            (String) this.pageContext.getAttribute(
-                Globals.XHTML_KEY,
-                PageContext.PAGE_SCOPE);
-
-        return "true".equalsIgnoreCase(xhtml);
     }
     
     /**
