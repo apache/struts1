@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.19 2003/08/27 23:44:02 dgraham Exp $
- * $Revision: 1.19 $
- * $Date: 2003/08/27 23:44:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.20 2003/09/28 17:02:51 rleland Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/09/28 17:02:51 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.config.ModuleConfig;
  * struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.19 $ $Date: 2003/08/27 23:44:02 $
+ * @version $Revision: 1.20 $ $Date: 2003/09/28 17:02:51 $
  * @since Struts 1.1
  */
 public class ValidatorPlugIn implements PlugIn {
@@ -236,7 +236,7 @@ public class ValidatorPlugIn implements PlugIn {
      * @exception ServletException if we cannot initialize these resources, not thrown by this implementation
      */
     protected void initResources() throws IOException, ServletException {
-        this.resources = new ValidatorResources();
+        this.resources = new ValidatorResources(pathnames);
 
         if (pathnames == null || pathnames.length() <= 0) {
             return;

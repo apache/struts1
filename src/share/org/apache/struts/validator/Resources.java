@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.22 2003/09/26 19:14:06 turner Exp $
- * $Revision: 1.22 $
- * $Date: 2003/09/26 19:14:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.23 2003/09/28 17:02:51 rleland Exp $
+ * $Revision: 1.23 $
+ * $Date: 2003/09/28 17:02:51 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.RequestUtils;
  * @author David Winterfeldt
  * @author Eddie Bush
  * @author David Graham
- * @version $Revision: 1.22 $ $Date: 2003/09/26 19:14:06 $
+ * @version $Revision: 1.23 $ $Date: 2003/09/28 17:02:51 $
  * @since Struts 1.1
  */
 public class Resources {
@@ -291,17 +291,17 @@ public class Resources {
 
         Arg[] args =
             new Arg[] {
-                field.getArg0(actionName),
-                field.getArg1(actionName),
-                field.getArg2(actionName),
-                field.getArg3(actionName)};
+                field.getArg(actionName,0),
+                field.getArg(actionName,1),
+                field.getArg(actionName,2),
+                field.getArg(actionName,3)};
 
         for (int i = 0; i < args.length; i++) {
             if (args[i] == null) {
                 continue;
             }
 
-            if (args[i].getResource()) {
+            if (args[i].isResource()) {
                 argMessages[i] = getMessage(messages, locale, args[i].getKey());
             } else {
                 argMessages[i] = args[i].getKey();
@@ -343,11 +343,11 @@ public class Resources {
 
         validator.setPage(page);
 
-        validator.addResource(SERVLET_CONTEXT_PARAM, application);
-        validator.addResource(HTTP_SERVLET_REQUEST_PARAM, request);
-        validator.addResource(Validator.LOCALE_KEY, locale);
-        validator.addResource(ACTION_ERRORS_PARAM, errors);
-        validator.addResource(Validator.BEAN_KEY, bean);
+        validator.setParameter(SERVLET_CONTEXT_PARAM, application);
+        validator.setParameter(HTTP_SERVLET_REQUEST_PARAM, request);
+        validator.setParameter(Validator.LOCALE_PARAM, locale);
+        validator.setParameter(ACTION_ERRORS_PARAM, errors);
+        validator.setParameter(Validator.BEAN_PARAM, bean);
 
         return validator;
     }
