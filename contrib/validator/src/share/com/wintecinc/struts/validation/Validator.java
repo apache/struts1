@@ -253,20 +253,6 @@ public class Validator implements Serializable {
                     Field field = (Field)i.next();         
  
                     if (field.getPage() <= page && (field.getDepends() != null && field.isDependency(va.getName()))) {
-	               String value = null;
-
-	               try {
-	               	  if (hResources.containsKey(BEAN_KEY)) {
-	                     Object o  = PropertyUtils.getProperty(hResources.get(BEAN_KEY), field.getProperty());	
-	                     value = (o != null ? o.toString() : null);
-	                  }
-	               } catch (Exception e) {
-	                  logger.log("Validator::validate() - " + e.getMessage());
-	               }
-
-	               //if (!field.isDependency("required") && GenericValidator.isBlankOrNull(value))
-	               //   continue;
-                 
 	               try {
 	               	  // Add these two Objects to the resources since they reference 
 	               	  // the current validator action and field
