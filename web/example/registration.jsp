@@ -30,7 +30,7 @@
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.username"/>
+      <bean:message key="prompt.username"/>:
     </th>
     <td align="left">
       <logic:equal name="registrationForm" property="action"
@@ -50,7 +50,7 @@
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.password"/>
+      <bean:message key="prompt.password"/>:
     </th>
     <td align="left">
       <html:password property="password" size="16" maxlength="16"/>
@@ -59,7 +59,7 @@
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.password2"/>
+      <bean:message key="prompt.password2"/>:
     </th>
     <td align="left">
       <html:password property="password2" size="16" maxlength="16"/>
@@ -68,7 +68,7 @@
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.fullName"/>
+      <bean:message key="prompt.fullName"/>:
     </th>
     <td align="left">
       <html:text property="fullName" size="50"/>
@@ -77,7 +77,7 @@
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.fromAddress"/>
+      <bean:message key="prompt.fromAddress"/>:
     </th>
     <td align="left">
       <html:text property="fromAddress" size="50"/>
@@ -86,7 +86,7 @@
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.replyToAddress"/>
+      <bean:message key="prompt.replyToAddress"/>:
     </th>
     <td align="left">
       <html:text property="replyToAddress" size="50"/>

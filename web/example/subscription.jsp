@@ -39,7 +39,7 @@
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.username"/>
+      <bean:message key="prompt.username"/>:
     </th>
     <td align="left">
         <bean:write name="user" property="username" filter="true"/>
@@ -48,7 +48,7 @@
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.mailHostname"/>
+      <bean:message key="prompt.mailHostname"/>:
     </th>
     <td align="left">
       <logic:equal name="subscriptionForm" property="action"
@@ -64,7 +64,7 @@
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.mailUsername"/>
+      <bean:message key="prompt.mailUsername"/>:
     </th>
     <td align="left">
       <html:text property="username" size="50"/>
@@ -73,7 +73,7 @@
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.mailPassword"/>
+      <bean:message key="prompt.mailPassword"/>:
     </th>
     <td align="left">
       <html:password property="password" size="50"/>
@@ -82,7 +82,7 @@
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.mailServerType"/>
+      <bean:message key="prompt.mailServerType"/>:
     </th>
     <td align="left">
       <html:select property="type">
@@ -94,7 +94,7 @@
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.autoConnect"/>
+      <bean:message key="prompt.autoConnect"/>:
     </th>
     <td align="left">
       <html:checkbox property="autoConnect"/>

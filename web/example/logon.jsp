@@ -11,24 +11,25 @@
 
 <html:errors/>
 
-<html:form action="/logon" focus="username">
+<html:form action="/logon" focus="username"
+         onsubmit="return validateLogonForm(this);">
 <table border="0" width="100%">
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.username"/>
+      <bean:message key="prompt.username"/>:
     </th>
     <td align="left">
-      <html:text property="username" size="16" maxlength="16"/>
+      <html:text property="username" size="16" maxlength="18"/>
     </td>
   </tr>
 
   <tr>
     <th align="right">
-      <bean:message key="prompt.password"/>
+      <bean:message key="prompt.password"/>:
     </th>
     <td align="left">
-      <html:password property="password" size="16" maxlength="16"
+      <html:password property="password" size="16" maxlength="18"
                     redisplay="false"/>
     </td>
   </tr>
@@ -45,6 +46,11 @@
 </table>
 
 </html:form>
+
+<html:javascript formName="logonForm"
+        dynamicJavascript="true"
+         staticJavascript="false"/>
+<script language="Javascript1.1" src="staticJavascript.jsp"/>
 
 </body>
 </html:html>

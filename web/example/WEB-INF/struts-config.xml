@@ -50,8 +50,12 @@
     <form-bean      name="logonForm"
                     type="org.apache.struts.webapp.example.LogonForm"/>
 -->
+<!--
     <form-bean      name="logonForm"
                     type="org.apache.struts.action.DynaActionForm">
+-->
+    <form-bean      name="logonForm"
+                    type="org.apache.struts.validator.DynaValidatorForm">
       <form-property name="username" type="java.lang.String"/>
       <form-property name="password" type="java.lang.String"/>
     </form-bean>
@@ -162,6 +166,12 @@
 
   <plug-in className="org.apache.struts.webapp.example.memory.MemoryDatabasePlugIn">
     <set-property property="pathname" value="/WEB-INF/database.xml"/>
+  </plug-in>
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property property="pathnames"
+                     value="/WEB-INF/validator-rules.xml,
+                            /WEB-INF/validation.xml"/>
   </plug-in>
 
 

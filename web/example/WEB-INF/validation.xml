@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!--
+    Validation Rules for the Struts Example Web Application
+
+    $Id: validation.xml,v 1.1 2002/07/14 01:35:18 craigmcc Exp $
+-->
+
+<form-validation>
+
+
+    <!-- ========== Default Language Form Definitions ===================== -->
+    <formset>
+
+        <form name="logonForm">
+
+            <field property="username"
+                    depends="minlength,maxlength">
+                <arg0   key="prompt.username"/>
+                <arg1   key="${var:minlength}" name="minlength"
+                   resource="false"/>
+                <arg2   key="${var:maxlength}" name="maxlength"
+                   resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>16</var-value>
+                </var>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>3</var-value>
+                </var>
+            </field>
+
+            <field property="password">
+                <arg0   key="prompt.username"/>
+                <arg1   key="${var:minlength}" name="minlength"
+                   resource="false"/>
+                <arg2   key="${var:maxlength}" name="maxlength"
+                   resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>16</var-value>
+                </var>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>3</var-value>
+                </var>
+            </field>
+
+        </form>
+
+
+    </formset>
+
+
+</form-validation>
