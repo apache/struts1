@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.13 2003/03/04 04:43:44 martinc Exp $
- * $Revision: 1.13 $
- * $Date: 2003/03/04 04:43:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.14 2003/05/15 02:35:58 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/05/15 02:35:58 $
  *
  * ====================================================================
  *
@@ -58,7 +58,6 @@
  * <http://www.apache.org/>.
  */
 
-
 package org.apache.struts.taglib.html;
 
 import java.util.Iterator;
@@ -75,7 +74,6 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
-
 /**
  * Custom tag that iterates the elements of a message collection.
  * It defaults to retrieving the messages from <code>Globals.ERROR_KEY</code>,
@@ -84,9 +82,9 @@ import org.apache.struts.util.ResponseUtils;
  * to the default <code>ErrorsTag</code>.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.13 $ $Date: 2003/03/04 04:43:44 $
+ * @version $Revision: 1.14 $ $Date: 2003/05/15 02:35:58 $
  * @since Struts 1.1
-*/
+ */
 public class MessagesTag extends BodyTagSupport {
 
     /**
@@ -103,27 +101,27 @@ public class MessagesTag extends BodyTagSupport {
     /**
      * Iterator of the elements of this error collection, while we are actually
      * running.
-    */
+     */
     protected Iterator iterator = null;
 
     /**
      * Whether or not any error messages have been processed.
-    */
+     */
     protected boolean processed = false;
 
     /**
      * The name of the scripting variable to be exposed.
-    */
+     */
     protected String id = null;
 
     /**
      * The servlet context attribute key for our resources.
-    */
+     */
     protected String bundle = null;
 
     /**
      * The session attribute key for our locale.
-    */
+     */
     protected String locale = Globals.LOCALE_KEY;
 
     /**
@@ -139,27 +137,26 @@ public class MessagesTag extends BodyTagSupport {
 
     /**
      * The message resource key for errors header.
-    */
+     */
     protected String header = null;
 
     /**
      * The message resource key for errors footer.
-    */
+     */
     protected String footer = null;
 
     /**
      * If this is set to 'true', then the <code>Globals.MESSAGE_KEY</code> will
      * be used to retrieve the messages from scope.
-    */
+     */
     protected String message = null;
 
-
     public String getId() {
-    return (this.id);
+        return (this.id);
     }
 
     public void setId(String id) {
-    this.id = id;
+        this.id = id;
     }
 
     public String getBundle() {
@@ -170,7 +167,6 @@ public class MessagesTag extends BodyTagSupport {
         this.bundle = bundle;
     }
 
-
     public String getLocale() {
         return (this.locale);
     }
@@ -180,13 +176,12 @@ public class MessagesTag extends BodyTagSupport {
     }
 
     public String getName() {
-    return (this.name);
+        return (this.name);
     }
 
     public void setName(String name) {
-    this.name = name;
+        this.name = name;
     }
-
 
     public String getProperty() {
         return (this.property);
@@ -219,7 +214,6 @@ public class MessagesTag extends BodyTagSupport {
     public void setMessage(String message) {
         this.message = message;
     }
-
 
     /**
      * Construct an iterator for the specified collection, and begin
