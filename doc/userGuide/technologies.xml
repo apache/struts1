@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<document url="./technologies.xml">
+
+  <properties>
+    <author>Ted Husted</author>
+    <author>Ed Burns</author>
+    <title>The Struts User's Guide - Enabling Technologies</title>
+  </properties>
+
+  <body>
+
+  <chapter name="0. Core Technologies">
+
+  <section name="0.1 The Usual Suspects" href="prereqs">
+
+    <p>
+      This User Guide is written for active Web developers and assumes a working 
+      knowledge about how Java Web applications work. Before getting started, you should 
+      understand the basics of several core technologies:
+    </p>
+
+    <ul>
+      <li><a href="#http">HTTP and HTML and User Agents</a></li>
+      <li><a href="#cycle">HTTP Request/Response Cycle</a></li>
+      <li><a href="#servlets">Java Servlets</a></li>
+
+      <li><a href="http://java.sun.com/products/javabeans/">JavaBeans</a></li>
+      <li><a href="http://java.sun.com/docs/books/tutorial/essential/attributes/properties.html">Properties</a> files and 
+      <a href="http://java.sun.com/docs/books/tutorial/i18n/resbundle/concept.html">ResourceBundles</a></li>
+      <li><a href="http://java.sun.com/products/jsp/product.html">JavaServer Pages (JSP)</a></li>.
+      <li><a href="http://java.sun.com/products/jsp/taglibraries.html">Custom Tags</a></li>
+      <li><a href="http://www.w3.org/XML/">Extensible Markup Language</a></li>
+    </ul>
+
+    <p>This chapter briefly defines each of these technologies, but does not describe them in 
+    detail. For your convenience, links to further information about each component are also 
+    provided.</p>
+
+    <p>If you are not already familiar with these technologies, the best overall starting point is 
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html"><b>The Java Web Services Tutorial</b></a>
+    for the Java Web Services Developer Pack. This is also available for download as a 
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JavaWSTutorial.pdf">PDF</a>.
+    </p>
+
+    <p>If you've created Web applications on other platforms, you may be able to follow along  
+    and visit the other references as needed. The core technologies used by Struts are  
+    also used by most other Java Web development products, so the background information is 
+    useful in any event.
+    </p>
+
+    </section>
+
+    <section name="0.2 HTTP, HTML and User Agents" href="http">
+
+    <p>The World Wide Web was built over the Hypertext Transfer Protocol 
+    (<a href="http://www.ietf.org/rfc/rfc2616.txt?number=2616">HTTP</a>) and Hypertext Markup Language 
+    (<a href="http://www.w3.org/MarkUp/">HTML</a>). A User Agent, like a web browser, uses HTTP to request 
+     a HTML document. The browser then formats and displays the document to its user. HTTP is used to 
+    transport more than HTML, but HTML is the linga franca of the Web and web applications. </p>
+
+    <p>Some Java engineers working on Web applications also write their own HTML. Others leave that to the 
+    page designers.</p>
+
+    <p>For more about HTTP, HTML, and User Agents, see:</p>
+
+    <ul>
+    <li><a href="http://www.w3.org/MarkUp/Guide/">Getting started with HTML</a> by Dave Raggett</li>  
+    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/HTTP.html#63796">
+    HTTP Overview</a> in the Java Web Services Tutorial 
+    (<a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html">JWST</a>).</li>
+    </ul>
+    </section>
+
+    <section name="0.3 The HTTP Request/Response cycle" href="cycle">
+
+    <p>A very important part of HTTP for the web developer is the request/response cycle. To use HTTP 
+    you have to make a request. A HTTP server, like a web server, is then obliged to respond. When you 
+    build your web application, you design it to react to a HTTP request by returning a HTTP response.
+    Frameworks like Struts abstract much of these nuts and bolts, but it is important to understand 
+    what is happening behind the scenes. </p>
+
+    <p>If you are not familiar with the HTTP Request/Response cycle, we <b>strongly</b> recommend the 
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/HTTP.html#63796">
+    HTTP Overview</a> in the JWST.
+    </p>
+
+    </section>
+
+    <section name="0.4 Java Servlets" href="servlets">
+
+    <p>Many of the aforementioned nuts-and-bolts are handled by Sun's 
+    <a href="http://java.sun.com/products/servlet/">Java Servlet</a> platform. This casts HTTP 
+    into a much more object-orientated form so that developers can better concentrate what 
+    they need their application to do -- rather than the mechanics of HTTP.</p>
+
+    <p>Struts provides a ready-to-use servlet for your application. As a Struts developer, you 
+    can then just write objects that the Struts servlet calls when needed. But it is still 
+    helpful to understand the basics of what servlets are and the role they play in a Java 
+    Web application.</p>
+
+    <p>For more about Java Servlets, see </p>
+
+    <ul>
+    <li><a href="http://java.sun.com/products/servlet/">The Java Servlet product page</a></li>
+    <li><a href="Java Servlet Technology ">Java Servlet Technology</a> in the JWST.</li>
+    </ul>
+
+    </section>     
+
+    <section name="0.5 JavaBeans" href="bean">
+
+    <p>:TODO:</p>
+
+
+      <p align="center">
+        Next: <a href="introduction.html">Introduction</a>
+      </p>
+     
+    </section>
+      
+    </chapter>
+    </body>
+</document>
