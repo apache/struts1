@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.47 2002/07/10 14:57:10 cedric Exp $
- * $Revision: 1.47 $
- * $Date: 2002/07/10 14:57:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.48 2002/07/12 15:47:01 craigmcc Exp $
+ * $Revision: 1.48 $
+ * $Date: 2002/07/12 15:47:01 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.47 $ $Date: 2002/07/10 14:57:10 $
+ * @version $Revision: 1.48 $ $Date: 2002/07/12 15:47:01 $
  */
 
 public class RequestUtils {
@@ -1220,7 +1220,7 @@ public class RequestUtils {
                 char ch = forwardPattern.charAt(i);
                 if (dollar) {
                     switch (ch) {
-                    case 'A':
+                    case 'M':
                         sb.append(appConfig.getPrefix());
                         break;
                     case 'P':
@@ -1280,7 +1280,7 @@ public class RequestUtils {
                 char ch = pagePattern.charAt(i);
                 if (dollar) {
                     switch (ch) {
-                    case 'A':
+                    case 'M':
                         sb.append(appConfig.getPrefix());
                         break;
                     case 'P':
