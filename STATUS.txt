@@ -1,4 +1,4 @@
--[STATUS LOG] 25-May-2004 Apache Struts-
+-[STATUS LOG] 20-Jul-2004 Apache Struts-
 
 * PMC Members
 * Other Committers
@@ -14,6 +14,85 @@
 * Recent Changes
 
 ----
+
+-PMC Actions-
+
+* Started reorganization of repository. The goals of the refactoring are to better support
+
+  * Subprojects   
+  * Maven builds
+  
+  The reorganization is being done under Subversion on an offsite server. We will be moving this to an Apache server soon, now that we have a consensus in favor of Subversion and Maven. 
+
+* Completed draft of Apache Struts bylaws: http://struts.apache.org/bylaws.html
+
+
+-Significant threads-
+
+* We discussed the "bar" for Committership. The consensus is to keep the bar fairly high and wait until a Committer has submitted a number of useful patches to Struts directly, rather than to related projects elsewhere. 
+
+
+-Releases-
+
+* Stable release: 1.1 (29 June 2003).
+
+* Beta release: 1.2.1 (11 July 2004)
+
+* We anticipate 1.2.1 or 1.2.2 being promoted to GA in the next 30 days. 
+
+
+-Roadmap-
+
+* We are discussing renumbering coding initatives, so that the current reorganization under SVN becomes 2.0, but that is undecided. Heretofore, the plans has been:
+
+  * Struts 1.x will remain based on Servlet 1.2/JSP 1.1 (evolution).
+
+  * Struts 1.3.x will introduce the "Struts Chain" request processor. Some packages, like the taglibs, will be released as separate subprojects.
+
+  * Struts 2.x will be based on Servlet 2.4/JSP 2.0 (revolution).
+
+* For more see <http://jakarta.apache.org/struts/roadmap.html>.
+
+
+-Showstoppers-
+
+* A stable 1.1.3 release of the Commons Validator (anticipated).
+
+
+-Recent Changes-
+
+* Many changes to Struts Faces in anticipate of a 1.0 release.
+
+* Added a simplified build.properties file for use by developers who are not actively involved in Jakata Commons development.
+
+* Extended "EmptyTag" to support arrays. 
+
+* See also: http://jakarta.apache.org/struts/userGuide/release-notes.html
+
+
+-Mailing list Subscriptions-
+
+* User 1838
+* Dev: 719
+* PMC: 14
+
+
+-Wiki Posts-
+
+* 148 new posts; 323 total (since Apr 8)
+
+
+-CVS Activity-
+
+* Timeframe: 56 days, Total Commits: 84 Total Number of Files Changed: 196
+
+
+-Issue Reports-
+
+* Open "problem" reports:      10 [#27332 .. #30204]
+* Open "enhancement" reports: 261 [#  866 .. #30210] (28 with patch)
+* Open "LATER" reports:        19 [#17977 .. #26403]
+
 
 -PMC Members-
 
@@ -34,87 +113,8 @@
 
 -Other Committers-
 
-    * Niall Pemberton (niallp at apache.org) [NEW]
+    * Niall Pemberton (niallp at apache.org)
 
 
--PMC Actions-
-
-* Niall Pemberton is elected as a Struts Committer.
-
-* Two new subprojects (our first) are approved. One that utilizes BSF so that "Actions" can be scripted rather than expressed as Java code. Another is a port of Cocoon's Control Flow to Struts. Infrastructure details are being addressed. The initial code for both projects were developed by a Struts PMC member, Don Brown, who is filing a code grant to the ASF. Both codebases are ready for release testing.
-
-
--Significant threads-
-
-* Compiling Struts from source and running the Cactus tests continues to be a challenge for some developers. Completing the move to Maven should help.
-
-
--Releases-
-
-* Stable release: 1.1 (29 June 2003).
-
-* Next anticipated release: 1.2.1
-
-* Anticipated time-frame (if any): Awaiting stable release of a dependency (Commons Validator).
-
-
--Roadmap-
-
-* Struts 1.x will remain based on Servlet 1.2/JSP 1.1 (evolution).
-
-* Struts 1.3.x will introduce the "Struts Chain" request processor. Some packages, like the taglibs, will be released as separate subprojects.
-
-* Struts 2.x will be based on Servlet 2.4/JSP 2.0 (revolution).
-
-* The Apache Struts repository will be rationalized to accomodate subprojects and Maven once a stable Struts 1.2.x release is available. Subprojects will be the unit of release. Each subproject will be a distinct Maven "artifact". Pending this step, the website and repository remain under jakarta.apache.org.
-
-* For more see <http://jakarta.apache.org/struts/status.html>.
-
-
--Mailing list Subscriptions-
-
-* User 1851
-* User digest: 874
-* Dev: 713
-* PMC: 14
-
-
--Wiki Posts-
-
-* 103 new posts; 175 total (since Apr 8)
-
-
--CVS Activity-
-
-* Timeframe: 38 days, Total Commits: 25 Total Number of Files Changed: 57.
-
-
--Issue Reports-
-
-* Open "problem" reports:       7 [#26322 .. #29197]
-* Open "enhancement" reports: 245 [#  866 .. #29181] (30 with patch)
-* Open "LATER" reports:        23 [#17977 .. #26895]
-
-
--Showstoppers-
-
-* A stable 1.1.3 release of the Commons Validator.
-
-
--Recent Changes-
-
-* Amend commons-validator dependency to 1.1.3-dev version (unreleased).
-
-* Correct behavior of recursive ActionErrors.
-
-* Improve option tags to filter values as well as labels.
-
-* Improve management of tag body content so that pooled instances are handled correctly by some containers ("stale tile issue").
-
-* Document "memFileSize" attribute.
-
-* See also: http://jakarta.apache.org/struts/userGuide/release-notes.html
-
-
-$Id: STATUS.txt,v 1.12 2004/05/25 16:03:50 husted Exp $
+$Id: STATUS.txt,v 1.13 2004/07/21 16:32:03 husted Exp $
 ###
