@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/TilesServlet.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/TilesServlet.java,v 1.2 2002/07/19 09:40:22 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/19 09:40:22 $
  *
  * ====================================================================
  *
@@ -87,25 +87,36 @@ public class TilesServlet extends HttpServlet
      * @exception ServletException if we cannot configure ourselves correctly
      */
   public void init() throws ServletException
+  {
+  log(  "Start Tiles initialization");
+  System.out.println( "Start Tiles initialization" );
+  super.init();
+
+    // Create tiles definitions config object
+  DefinitionsFactoryConfig factoryConfig = new DefinitionsFactoryConfig();
+    // Get init parameters from web.xml files
+  try
     {
-      log(  "Start Tiles initialization");
-      System.out.println( "Start Tiles initialization" );
-    super.init();
-
-       // init component instances
-    try
-      {
-      System.out.println( "Start try" );
-      DefinitionsUtil.createDefinitionsFactory(  getServletContext(), getServletConfig() );
-      log(  "Tiles Factory loaded");
-      }
-     catch( DefinitionsFactoryException ex )
-      {
-      log(  "Tiles Factory load fail !", ex);
-      throw new ServletException(ex );
-      }
-
+    DefinitionsUtil.populateDefinitionsFactoryConfig(factoryConfig, getServletConfig());
     }
+   catch(Exception ex)
+    {
+    throw new ServletException( "Can't populate DefinitionsFactoryConfig class from 'web.xml': " + ex.getMessage() );
+    }
+
+  try
+    {
+    System.out.println( "Try to load Tiles factory" );
+    DefinitionsUtil.createDefinitionsFactory(getServletContext(), factoryConfig );
+    log(  "Tiles Factory loaded");
+    }
+   catch( DefinitionsFactoryException ex )
+    {
+      log(  "Tiles Factory load fail !", ex);
+    throw new ServletException( ex );
+    }
+
+  }
 
 
 }
