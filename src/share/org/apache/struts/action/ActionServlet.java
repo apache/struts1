@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.100 2002/03/23 01:20:20 craigmcc Exp $
- * $Revision: 1.100 $
- * $Date: 2002/03/23 01:20:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.101 2002/03/29 18:40:43 rleland Exp $
+ * $Revision: 1.101 $
+ * $Date: 2002/03/29 18:40:43 $
  *
  * ====================================================================
  *
@@ -270,7 +270,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.100 $ $Date: 2002/03/23 01:20:20 $
+ * @version $Revision: 1.101 $ $Date: 2002/03/29 18:40:43 $
  */
 
 public class ActionServlet
@@ -331,7 +331,7 @@ public class ActionServlet
      */
     protected Log log = LogFactory.getLog(this.getClass());
 
-    
+
     /**
      * The <code>RequestProcessor</code> instance we will use to process
      * all incoming requests.
@@ -923,7 +923,7 @@ public class ActionServlet
             try {
                 plugIns[i] = (PlugIn)
                     RequestUtils.applicationInstance
-                    (plugInConfigs[i].getClassName());;
+                    (plugInConfigs[i].getClassName());
                 BeanUtils.populate(plugIns[i],
                                    plugInConfigs[i].getProperties());
                 plugIns[i].init(this, config);
