@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ControllerSupport.java,v 1.3 2003/09/13 00:30:50 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/09/13 00:30:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ControllerSupport.java,v 1.4 2003/09/13 18:40:34 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/09/13 18:40:34 $
  *
  * ====================================================================
  *
@@ -89,6 +89,23 @@ public class ControllerSupport implements Controller {
 		HttpServletResponse response,
 		ServletContext servletContext)
 		throws ServletException, IOException {
+
+		try {
+			this.execute(tileContext, request, response, servletContext);
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
+	}
+
+	/**
+	 * @see org.apache.struts.tiles.Controller#execute(org.apache.struts.tiles.ComponentContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, javax.servlet.ServletContext)
+	 */
+	public void execute(
+		ComponentContext tileContext,
+		HttpServletRequest request,
+		HttpServletResponse response,
+		ServletContext servletContext)
+		throws Exception {
 
 	}
 }

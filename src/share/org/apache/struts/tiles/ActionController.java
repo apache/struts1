@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ActionController.java,v 1.6 2003/09/13 00:30:50 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/09/13 00:30:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ActionController.java,v 1.7 2003/09/13 18:40:34 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/09/13 18:40:34 $
  *
  * ====================================================================
  *
@@ -92,8 +92,8 @@ public class ActionController implements Controller {
 
 	/**
 	 * Method associated to a tile and called immediately before tile is 
-     * included.  This implementation calls a Struts Action. No servlet is 
-     * set by this method.
+	 * included.  This implementation calls a Struts Action. No servlet is 
+	 * set by this method.
 	 *
 	 * @param tileContext Current tile context.
 	 * @param request Current request.
@@ -113,5 +113,19 @@ public class ActionController implements Controller {
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
+	}
+
+	/**
+	 * @see org.apache.struts.tiles.Controller#execute(org.apache.struts.tiles.ComponentContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, javax.servlet.ServletContext)
+	 */
+	public void execute(
+		ComponentContext tileContext,
+		HttpServletRequest request,
+		HttpServletResponse response,
+		ServletContext servletContext)
+		throws Exception {
+            
+		this.action.execute(null, null, request, response);
+
 	}
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserMenuAction.java,v 1.5 2003/09/13 00:30:50 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/09/13 00:30:50 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserMenuAction.java,v 1.6 2003/09/13 18:40:34 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/09/13 18:40:34 $
  *
  * ====================================================================
  *
@@ -109,7 +109,7 @@ import org.apache.struts.tiles.beans.MenuItem;
  * </ul>
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.5 $ $Date: 2003/09/13 00:30:50 $
+ * @version $Revision: 1.6 $ $Date: 2003/09/13 18:40:34 $
  */
 public final class UserMenuAction extends TilesAction implements Controller {
 
@@ -179,12 +179,12 @@ public final class UserMenuAction extends TilesAction implements Controller {
 		HttpServletResponse response)
 		throws Exception {
 
-		this.perform(
+		this.execute(
 			context,
 			request,
 			response,
 			getServlet().getServletContext());
-            
+
 		return null;
 	}
 
@@ -368,6 +368,29 @@ public final class UserMenuAction extends TilesAction implements Controller {
 		} else if (object instanceof MenuItem) {
 			result.add(object);
 		}
+	}
+
+	/**
+	 * @see org.apache.struts.tiles.Controller#execute(org.apache.struts.tiles.ComponentContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, javax.servlet.ServletContext)
+	 */
+	public void execute(
+		ComponentContext tileContext,
+		HttpServletRequest request,
+		HttpServletResponse response,
+		ServletContext servletContext)
+		throws Exception {
+            
+		log.debug("Enter action UserMenuAction");
+
+		// Load user settings from user context
+		MenuSettings settings = getUserSettings(request, tileContext);
+
+		// Set parameters for rendering page
+		tileContext.putAttribute(USER_ITEMS_ATTRIBUTE, settings.getItems());
+
+		log.debug("settings=" + settings);
+		log.debug("Exit action UserMenuAction");
+
 	}
 
 }

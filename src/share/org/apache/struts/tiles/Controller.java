@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Controller.java,v 1.3 2003/09/13 00:30:50 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/09/13 00:30:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Controller.java,v 1.4 2003/09/13 18:40:34 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/09/13 18:40:34 $
  *
  * ====================================================================
  *
@@ -83,6 +83,8 @@ public interface Controller {
 	 * @param request Current request
 	 * @param response Current response
 	 * @param servletContext Current servlet context
+     * @deprecated Use execute() instead.  This will be removed after 
+     * Struts 1.2.
 	 */
 	public void perform(
 		ComponentContext tileContext,
@@ -90,4 +92,19 @@ public interface Controller {
 		HttpServletResponse response,
 		ServletContext servletContext)
 		throws ServletException, IOException;
+        
+    /**
+     * Method associated to a tile and called immediately before the tile 
+     * is included.
+     * @param tileContext Current tile context.
+     * @param request Current request
+     * @param response Current response
+     * @param servletContext Current servlet context
+     */
+    public void execute(
+        ComponentContext tileContext,
+        HttpServletRequest request,
+        HttpServletResponse response,
+        ServletContext servletContext)
+        throws Exception;
 }
