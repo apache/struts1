@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.58 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.58 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.59 2004/04/21 05:21:08 rleland Exp $
+ * $Revision: 1.59 $
+ * $Date: 2004/04/21 05:21:08 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -44,7 +44,7 @@ import org.apache.struts.util.RequestUtils;
  * Custom tag that represents an input form, associated with a bean whose
  * properties correspond to the various fields of the form.
  *
- * @version $Revision: 1.58 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.59 $ $Date: 2004/04/21 05:21:08 $
  */
 public class FormTag extends TagSupport {
 
@@ -689,7 +689,7 @@ public class FormTag extends TagSupport {
         FormBeanConfig formBeanConfig = moduleConfig.findFormBeanConfig(mapping.getName());
         if (formBeanConfig == null) {
             JspException e =
-                new JspException(messages.getMessage("formTag.formBean", mapping.getName()));
+                new JspException(messages.getMessage("formTag.formBean", mapping.getName(), action));
             pageContext.setAttribute(Globals.EXCEPTION_KEY, e, PageContext.REQUEST_SCOPE);
             throw e;
         }
