@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedMessagesPresentTag.java,v 1.4 2003/02/28 05:14:39 arron Exp $
- * $Revision: 1.4 $
- * $Date: 2003/02/28 05:14:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedMessagesPresentTag.java,v 1.5 2004/01/01 20:00:33 husted Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/01 20:00:33 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,7 +63,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
 import org.apache.struts.taglib.logic.MessagesPresentTag;
-import org.apache.struts.taglib.nested.NestedNameSupport;
+import org.apache.struts.taglib.nested.NestedPropertySupport;
 import org.apache.struts.taglib.nested.NestedPropertyHelper;
 
 /**
@@ -72,10 +72,10 @@ import org.apache.struts.taglib.nested.NestedPropertyHelper;
  * @author Arron Bates
  * @author David Winterfeldt
  * @since Struts 1.1
- * @version $Revision: 1.4 $ $Date: 2003/02/28 05:14:39 $
+ * @version $Revision: 1.5 $ $Date: 2004/01/01 20:00:33 $
  */
 public class NestedMessagesPresentTag extends MessagesPresentTag
-                                                  implements NestedNameSupport {
+                                                  implements NestedPropertySupport  {
 
   /**
    * Overriding method of the heart of the matter. Gets the relative property
