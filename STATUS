@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.58 2002/08/30 22:45:42 jholmes Exp $
+$Id: STATUS,v 1.59 2002/09/02 10:31:32 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b2 AND NIGHTLY BUILDS
             ====================================================
 
-                            17 open bugs to swat!!
+                            20 open bugs to swat!!
 
 
 Controller:
@@ -19,6 +19,7 @@ Custom Tags:
 11574 Nested logic tags are brittle
 12023 The "align" attribute on "html:image" and "html:img" should be removed
 12185 HTML tags badly parsed in text/xml mode
+12209 <html:link> tabindex isn't working
 
 
 Documentation:
@@ -64,6 +65,8 @@ Validator Framework:
 11520 [validator-rules.xml] javascript validateRequired() function does not work with radio objects
 11950 Missing <script> in generated javascipt
 12178 Validator restricted to one Message Resource bundle.
+12212 Validator seems to be adding a form that I don't have
+12213 Validator does not seem to be using commons-logging
 
 
 Web Site:
