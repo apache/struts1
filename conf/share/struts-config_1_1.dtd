@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.15 2002/03/16 01:08:01 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.16 2002/03/23 00:08:01 craigmcc Exp $
 -->
 
 
@@ -125,7 +125,7 @@
 <!ELEMENT data-source (set-property*)>
 <!ATTLIST data-source    id             ID              #IMPLIED>
 <!ATTLIST data-source    className      %ClassName;     #IMPLIED>
-<!ATTLIST data-source    key            %AttributeName; #IMPLIED>
+<!ATTLIST data-source    key            %AttributeName; "org.apache.struts.action.DATA_SOURCE">
 <!ATTLIST data-source    type           %ClassName;     #IMPLIED>
 
 
@@ -494,7 +494,7 @@
 <!ATTLIST message-resources id          ID              #IMPLIED>
 <!ATTLIST message-resources className   %ClassName;     #IMPLIED>
 <!ATTLIST message-resources factory     %ClassName;     #IMPLIED>
-<!ATTLIST message-resources key         %AttributeName; #IMPLIED>
+<!ATTLIST message-resources key         %AttributeName; "org.apache.struts.action.MESSAGE">
 <!ATTLIST message-resources null        %Boolean;       #IMPLIED>
 <!ATTLIST message-resources parameter   CDATA           #REQUIRED>
 
