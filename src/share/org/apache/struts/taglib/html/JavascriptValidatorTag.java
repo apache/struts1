@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.28 2003/05/22 01:29:47 dgraham Exp $
- * $Revision: 1.28 $
- * $Date: 2003/05/22 01:29:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.29 2003/07/02 03:47:23 dgraham Exp $
+ * $Revision: 1.29 $
+ * $Date: 2003/07/02 03:47:23 $
  *
  * ====================================================================
  *
@@ -93,7 +93,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.28 $ $Date: 2003/05/22 01:29:47 $
+ * @version $Revision: 1.29 $ $Date: 2003/07/02 03:47:23 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -321,8 +321,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                         bundle + config.getPrefix(),
                         PageContext.APPLICATION_SCOPE);
 
-                List lActions = new ArrayList();
-                List lActionMethods = new ArrayList();
+                List actions = new ArrayList();
+                List actionMethods = new ArrayList();
 
                 // Get List of actions for this Form
                 for (Iterator i = form.getFields().iterator(); i.hasNext();) {
@@ -331,15 +331,15 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                     for (Iterator x = field.getDependencies().iterator(); x.hasNext();) {
                         Object o = x.next();
 
-                        if (o != null && !lActionMethods.contains(o)) {
-                            lActionMethods.add(o);
+                        if (o != null && !actionMethods.contains(o)) {
+                            actionMethods.add(o);
                         }
                     }
 
                 }
 
                 // Create list of ValidatorActions based on lActionMethods
-                for (Iterator i = lActionMethods.iterator(); i.hasNext();) {
+                for (Iterator i = actionMethods.iterator(); i.hasNext();) {
                     String depends = (String) i.next();
                     ValidatorAction va = resources.getValidatorAction(depends);
 
@@ -353,13 +353,13 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                     
                     String javascript = va.getJavascript();
                     if (javascript != null && javascript.length() > 0) {
-                        lActions.add(va);
+                        actions.add(va);
                     } else {
                         i.remove();
                     }
                 }
 
-                Collections.sort(lActions, new Comparator() {
+                Collections.sort(actions, new Comparator() {
                     public int compare(Object o1, Object o2) {
                         ValidatorAction va1 = (ValidatorAction) o1;
                         ValidatorAction va2 = (ValidatorAction) o2;
@@ -382,7 +382,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 });
 
                 String methods = null;
-                for (Iterator i = lActions.iterator(); i.hasNext();) {
+                for (Iterator i = actions.iterator(); i.hasNext();) {
                     ValidatorAction va = (ValidatorAction) i.next();
 
                     if (methods == null) {
@@ -394,7 +394,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
                 results.append(getJavascriptBegin(methods));
 
-                for (Iterator i = lActions.iterator(); i.hasNext();) {
+                for (Iterator i = actions.iterator(); i.hasNext();) {
                     ValidatorAction va = (ValidatorAction) i.next();
                     String jscriptVar = null;
                     String functionName = null;
