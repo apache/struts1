@@ -57,6 +57,7 @@
 
 
 <section href="guis" name="Code Generators and GUIs">
+<p><a href="http://rivernorth.sourceforge.net">Struts Builder</a> by RiverNorth - an Opensource tool (GPL license) originally developed for internal use to aid in development of Struts-based web applications (1.1 style).</p>
 <p><a href="http://www.synthis.com/products/adalon/overview.jsp"><b>Adalon</b></a> - Adalon is a next generation functional design tool that fills the gaps left by today's market leading software design products. </p>
 <p><a href="http://www.mycgiserver.com/~eboudrant/#wizard"><b>Struts Wizard for JBuilder and Eclipse</b></a> by Emmanuel Boudrant.</p>
 <p><a href="http://www.solanasoft.com"><b>JForms:</b></a> a visual tool for Struts-based Web forms.</p>
@@ -64,7 +65,7 @@
 <p><a href="http://xsltgenerator.sourceforge.net/"><b>Struts XSLT Code Generator</b></a> by Shengmeng Liu - An XSLT based code generator for Struts, completely based on the XSLT transformation and a set of stylesheet files. Ideally, users can customize the stylesheet for each type of Struts files  to have templates of their own without having to access the source code and recompile it.</p>
 <p><a href="http://www.objectventure.com/products/objectassembler.html"><b>ObjectAssembler</b></a> by ObjectVentur - supports the development of Struts applications, a popular open source web application framework that is part of Apache's Jakarta Project. The same visual development and code synchronization available with J2EE components are available for Struts components.</p>
 <p><a href="http://www.objectwave.com/html/tools/tool1_3.htm"><b>X2J</b></a>  by Objectwave - A code generation tool for building Struts applications. It includes wizard for easily creating JSPs, and the required Action and ActionForm classes as well as graphical tools for updating the config file. </p>
-<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Sun Forte for Java, NetBeans, and Borland JBuilder. </p>
+<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Sun Forte for Java, NetBeans, Borland JBuilder, and Oracle JDeveloper 9i. </p>
 <p><a href="http://www.scioworks.com/scioworks_camino.html"><b>Scioworks Camino</b></a> by Scioworks Pte Ltd. - A visual tool for Struts. </p>
 <p><a href="http://husted.com/struts/resources/codemaker.htm"><b>Struts CodeMaker</b></a> by Ravindran Ramaiah - Generate Struts application by reading configuration file or JSP files. Updated 2001-08-21.</p>
 <p><a href="http://home.earthlink.net/~dwinterfeldt/generator/"><b>Struts Generator</b></a> by David Winterfeldt - Based on the generator.xml and a table/query an xml file is generated.  Based on the generated xml file a primary key class, data bean class, jdbc class, and an ActionForm (Struts) can be generated.</p>
@@ -123,7 +124,7 @@
 <p><a href="http://geocities.yahoo.com/dominique_plante/sdstuff/strutsGuessingGame1.0.zip">
 <b>Struts Guessing Game v1.0</b></a> by Dominique Plante - A guessing game written with Struts like the one that comes with Tomcat's examples, includes sources, ANT build script and a Struts jar distribution</p>
 <p><a href="http://chiki.emaho.org/"><b>Chiki</b></a> by GhootEmaho - A Wiki-like webapp built using Struts and J2EE,  and runs on Tomcat.</p>
-<p><a href="http://husted.com/struts/resources/artimus.zip"><b>Artimus</b></a> by Ted  Husted - Simple news poster application. Demonstrates using helper beans and a JDBC database with Struts. WAR zipped for download. Uses Scaffold package. See WEB-INF/README.txt for setup.</p>
+<p><a href="http://husted.com/struts/resources/artimus.zip"><b>Artimus</b></a> by Ted  Husted - News poster application. Demonstrates using beans beans and a JDBC database with Struts, along with other niceties. WAR zipped for download. Uses Scaffold package. See WEB-INF/README.txt for setup.</p>
 <p><a href="http://husted.com/struts/resources/scaffold.zip"><b>Scaffold</b></a> by Ted Husted - Utility package of classes that can be used with various Web applications.</p>
 <p><a href="http://husted.com/struts/resources/polls-20011024.zip"><b>Struts Polls</b></a> by Ted Husted - Simple poll application. Demonstrates using a database with Struts.</p>
 <p><a href="http://www.raibledesigns.com/struts/"><b>Struts-example modified for iPlanet Application Server SP2</b></a> by Matt Raible.</p>
@@ -141,7 +142,8 @@
 <section href="1st" name="Read Me First">
 <ul><b>Why we need Struts:</b>
 <ul>
-  <li><b><a href="http://www.servlets.com/soapbox/problems-jsp.html">The Problem with JSP</a></b> by Jason Hunter - Critiques model 1 development</li>
+  <li><a href="http://www.servlets.com/soapbox/problems-jsp.html"><b>The Problem with JSP</b></a> by Jason Hunter - Critiques model 1 development</li>
+  <li><a href="http://www.javaworld.com/javaworld/jw-12-1999/jw-12-ssj-jspmvc.html"><b>Understanding JavaServer Pages Model 2 architecture</b></a> by Govind Seshadri - Seminal article on model 2</li>
 </ul>
 </ul>
 <ul><b>From Ground Zero:</b>
@@ -262,6 +264,8 @@
 
 <section href="books" name="Books">
 <p><a href="http://www.theserverside.com/resources/strutsreview.jsp"><b>Jakarta Struts Book Review Project</b></a> by Chuck Cavaness</p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1558608621/hitchhikeguidetoA/"><b>The Struts Framework: Practical Guide for Programmers</b></a> by Sue Spielman - Not yet published.</p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/"><b>Java Web Development with Struts</b></a> by Ted Husted - Not yet published</p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0471213020/hitchhikeguidetoA/"><b>Mastering Jakarta Struts</b></a> by James Goodwill - Not yet published.</p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0971661901/hitchhikeguidetoA/"><b>Struts Fast Track: J2EE / JSP Framework</b></a> by Victor Cekvenich - Practical Application with Database Access and Struts Extensions.</p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=1861005512/hitchhikeguidetoA/"><b>Professional JSP Site Design</b></a> - Wrox book by Husted, Kunnumpurath, Lavandowska, Panduranga, et al - Features Struts in chapters 2 (The Struts Framework), 6 (Navigation), 8 (Data Access Patterns), 12 (Content Management), 13 (Searching), and 14 (Portals).</p>
@@ -517,6 +521,8 @@ look desired.</p>
 <p><b>Solve your servlet-based presentation problems </b>by Kevin Unger <br/>
   - <a href="http://www.javaworld.com/javaworld/jw-11-2000/jw-1103-presentation_p.html">http://www.javaworld.com/javaworld/jw-11-2000/jw-1103-presentation_p.html</a></p>
 <p><b>Template Resolution in XML/HTML</b> by Anders Kristensen<b> - </b><a href="http://www-uk.hpl.hp.com/people/ak/doc/trix-tr.html">http://www-uk.hpl.hp.com/people/ak/doc/trix-tr.html</a></p>
+<p><a href="http://www.javaworld.com/javaworld/jw-12-1999/jw-12-ssj-jspmvc.html"><b>Understanding JavaServer Pages Model 2 architecture</b></a> by Govind Seshadri</p>
+<p><a href="http://www.servlets.com/soapbox/problems-jsp.html"><b>The Problem with JSP</b></a> by Jason Hunter</p>
 </section>
 
 

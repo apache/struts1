@@ -3,6 +3,7 @@
 <properties>
 <author>Ted Husted</author> 
 <author>James DeVries</author> 
+<author>James Holmes</author> 
 <title>The Struts User's Guide - Kickstart FAQ</title>
 </properties>
 <body> 
@@ -79,9 +80,18 @@
 </section>
 
 <section href="install" name="How do I install Struts?">
-<p>To develop applications with Struts, you can usually just add the Struts JAR file to your Java development environment. You can then start using the Struts classes as part of your own application. A <a href="struts-blank.war">blank Struts application</a> is provided, which you can just copy to get a quick-start on your own brainchild.</p>
-<p>Since the full source code for Struts is available, we also provide <a href="http://jakarta.apache.org/struts/installation.html">complete instructions</a> for compiling your own Struts JAR from scratch. (This is actually easier that it looks!)</p>
-<p>Your Struts application can be usually be deployed using a standard WAR file. In most cases, you simply deposit the WAR file on your application server, and it is installed automatically. If not, step-by-step installation instructions for <a href="http://jakarta.apache.org/struts/installation.html#Containers">various servlet containers</a> are available.</p>
+<p>To develop applications with Struts, you can usually just add the Struts JAR file
+to your Java development environment. You can then start using the Struts classes as
+part of your own application. A <a href="struts-blank.war">blank Struts application</a>
+is provided, which you can just copy to get a quick-start on your own brainchild.</p>
+<p>Since the full source code for Struts is available, we also provide
+<a href="http://jakarta.apache.org/struts/installation.html">complete instructions</a>
+for compiling your own Struts JAR from scratch. (This is actually easier than it looks!)</p>
+<p>Your Struts application can usually be deployed using a standard WAR file. In most
+cases, you simply deposit the WAR file on your application server, and it is installed
+automatically. If not, step-by-step installation instructions for
+<a href="http://jakarta.apache.org/struts/installation.html#Containers">various servlet
+containers</a> are available.</p>
 </section>
 
 <section href="jar" name="When do I need &quot;struts.jar&quot; on my classpath?">
@@ -198,17 +208,21 @@ page.</p>
 </section>
 
 <section href="contribute" name="How can I contribute to the development of Struts?">
-<p>Struts is distributed by the <a href="http://apache.org/">Apache Software Foundation</a>. These are the same people who distribute the Apache Web server. Like all ASF projects, Struts is managed as a &quot;meritocracy&quot;, where everyone's contribution is welcome. Users can help other users on the <a href="http://jakarta.apache.org/site/mail.html">mailing lists</a>, <a href="http://jakarta.apache.org/site/bugs.html">report bugs</a>, and <a href="http://jakarta.apache.org/site/bugs.html">request new features</a>. Developers can contribute patches, new code, and documentation. The most active Developers may become <a href="http://jakarta.apache.org/site/roles.html">Committers</a>, who make the actual decisions about the Strut's codebase.</p>
-<p>You can start by joining the Struts User list. If you enjoy participating there, 
-then sign up for the Struts Developer list too. If you find any problems with Struts, 
-or find a missing feature, you can enter a record to our 
-<a href="#bugs">Bugzilla</a> database.</p>
+<p>Struts is distributed by the <a href="http://apache.org/">Apache Software Foundation</a>.
+These are the same people who distribute the Apache Web server. Like all ASF projects, Struts
+is managed as a &quot;meritocracy&quot;, where everyone's contribution is welcome. Users can
+help other users on the <a href="http://jakarta.apache.org/site/mail.html">mailing lists</a>,
+<a href="http://jakarta.apache.org/site/bugs.html">report bugs</a>, and
+<a href="http://jakarta.apache.org/site/bugs.html">request new features</a>. Developers can
+contribute patches, new code, and documentation. The most active Developers may become
+<a href="http://jakarta.apache.org/site/roles.html">Committers</a>, who make the actual
+decisions about Strut's codebase.</p>
 </section>
 
 <section href="documentation" name="How can I contribute to the documentation?">
 <p>The only difference is that the documentation is kept in XML rather than Java 
 source code. Otherwise, all the same precepts and procedures pertain. </p>
-<p>The trick is to getting started is to download the nightly build and try 
+<p>The trick to getting started is to download the nightly build and try 
 building the documentation WAR. Then try adding your own XML page under doc/ to see 
 if the build succeeds. If it doesn't, it will report where the bad element is, much 
 like it reports where a bad programming expression is. If it does, then your page 
@@ -249,7 +263,7 @@ do ;-)</p>
 is developed. This way you can judge for yourself how quickly the
 development is proceeding, and whether what is being developed will meet
 your needs. If you need a feature right now, you can use the nightly
-build, or roll your own patch. There are no private CVS's or a private
+build, or roll your own patch. There are no private CVS's or private 
 development lists. What you see is what we got. If you are following the
 DEV list, then you know everything the developers know. Really, you do.</p>
 

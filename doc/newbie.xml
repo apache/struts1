@@ -2,6 +2,7 @@
 <document url="./kickstart.xml">
 <properties>
 <author>Ted Husted</author> 
+<author>James Holmes</author> 
 <title>The Struts User's Guide - Newbie FAQ</title>
 </properties>
 <body> 
@@ -79,9 +80,9 @@ then become difficult to change.
 
 <section href="actionforms" name="Wither ActionForms?">
 <p>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19281.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg20833.html<br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19281.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19281.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg20833.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg20833.html</a><br/>
 </p>
 </section>
 
@@ -159,40 +160,40 @@ mailing list</a>, where there are more people still using these approaches.
 
 <section name="How do I access my database?">
 <p>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24621.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24709.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24626.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24331.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24102.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23501.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23455.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23375.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23321.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23098.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22713.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21974.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21026.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg18323.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14975.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14914.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14435.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01562.html
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24621.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24621.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24709.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24709.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24626.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24626.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24331.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24331.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24102.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24102.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23501.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23501.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23455.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23455.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23375.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23375.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23321.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23321.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23098.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23098.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22713.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22713.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21974.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21974.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21026.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21026.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg18323.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg18323.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14975.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14975.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14914.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14914.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14435.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14435.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01562.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01562.html</a>
 </p>
 <p>
 Transformation/Data Transfer<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24480.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23623.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10195.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10205.html
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24480.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24480.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23623.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23623.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10195.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10195.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10205.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10205.html</a>
 </p>
 </section>
 
 
 <section name="How can I authenticate my users?">
 <p>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24504.html<br/>
-http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22949.html
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24504.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24504.html</a><br/>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22949.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22949.html</a>
 </p>
 </section>
 

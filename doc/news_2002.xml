@@ -39,6 +39,148 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
  
 <section name="News">
 
+<h3><a name="20020612.1"></a>12 June 2002 - Struts Console version 1.12.1</h3>
+<p>
+Struts Console version 1.12.1 is now available.
+</p>
+<ul>
+<li><a href="http://www.jamesholmes.com/struts/">http://www.jamesholmes.com/struts/</a></li>
+</ul>
+<p>Download Now:</p>
+<p><a href="http://www.jamesholmes.com/struts/struts-console-1.12.1.zip">www.jamesholmes.com/struts/struts-console-1.12.1.zip</a></p>
+<p>-- OR --</p>
+<p><a href="http://www.jamesholmes.com/struts/struts-console-1.12.1.tar.gz">www.jamesholmes.com/struts/struts-console-1.12.1.tar.gz</a></p>
+<p>
+Struts Console is FREE software.
+</p>
+<p>
+This release is a bug fix release and does not introduce any new functionality.
+</p>
+<p>
+Changes with Struts Console v1.12.1
+</p>
+<ul>
+<li>Fixed bug where the Action screen was not
+     properly updating the Type/Forward/Include data
+     properly.</li>
+
+<li>Fixed bug where the "Newlines" output option was
+     not correctly setting the newline.</li>
+
+<li>Fixed bug where "Indent Elements" output option
+     allowed for an empty value which caused the app
+     to throw exceptions.</li>
+
+<li>Fixed "console.sh" Unix startup script to
+     correctly set the classpath for invoking the
+     standalone Struts Console.</li>
+</ul>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020612.2"></a>12 June 2002 - Easy Struts 0.2</h3>
+<p>Easy Struts 0.2 for Eclipse is out</p>
+<p>
+Features:
+</p>
+<ul>
+<li>Wizard for action, form, jsp creation</li>
+<li>Create &amp; Run with Tomcat Sysdeo Plugin</li>
+</ul>
+<p>
+Changes
+</p>
+<ul>
+<li>Wizard for forward creation added</li>
+<li>Distribution</li>
+<li>Some fix</li>
+</ul>
+<p>
+More : 
+</p>
+<ul>
+<li>http://sourceforge.net/projects/easystruts</li>
+<li>http://easystruts.sourceforge.net/</li>
+</ul>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020612"></a>12 June 2002 - Artimus 0.4</h3>
+<p>
+An updated version of the Artimus example application is now available at:
+</p>
+<ul>
+<li><a href="http://www.husted.com/struts/resources/artimus.zip">www.husted.com/struts/resources/artimus.zip</a></li>
+</ul>
+<p>
+See the README.TXT to get started.
+</p>
+<p>
+This application demonstrates some of the design strategies discussed on the list recently:
+</p>
+<ul>
+<li>The business tier is represented by a set of "ProcessBeans", dispatched using the Command pattern.</li>
+<li>A framework Action is used to dispatch the ProcessBeans. The bean type is specified using the parameter property. </li>
+<li>The framework Action (ProcessAction) returns a data transfer object (ResultList), designed for use by the presentation layer.</li>
+</ul>
+<p>
+Other goodies include:
+</p>
+<ul>
+<li>SQL commands are stored in external properties files and can be changed without recompiling.</li>
+<li>All SQL commands are processed through a pair of easy-to-use static methods.</li>
+<li>ResultSets are automatically transferred to a collection of beans. </li>
+<li>A connection pool adapter allows use of the Struts connection pool from the business tier (and I said it couldn't be done :o). Other pools (Poolman, Resin, et cetera) may be configured through the web.xml. </li>
+<li>Lucene is used side-by-side with JDBC to provide better searching when appropriate. </li>
+<li>A helper servlet is used to load custom resources so ActionServlet does not need to be subclassed. </li>
+<li>Application settings can be configured through the web.xml or a properties file.</li>
+</ul>
+<p>
+Most of these come out of the updated Scaffold package that is bundled in this distribution. The versions of Artimus and Scaffold in the Apache-Struts CVS will be updated shortly.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020611.1"></a>11 June 2002 - Struts Builder v0.4 beta</h3>
+<p>
+The SourceForge project "RiverNorth" has released Struts Builder v0.4 beta.
+</p>
+<p>
+"Struts Builder" is an Opensource tool (GPL license) originally developed 
+for internal use to aid in development of Struts-based web applications 
+(1.1 style). The standalone Swing application allows users to create from 
+scratch and/or import existing Struts 1.x struts-config.xml files, modify 
+them via a forms-based GUI and generate the shell code including JSP/HTML 
+pages, web.xml, struts-config.xml and java source files for Actions and 
+ActionForms classes required for an implementation. I'm currently working 
+on transferring info from our internal bug tracking system to the source 
+forge site.
+</p>
+<p>
+Planned future enhancements include creating plugin versions for popular 
+IDEs, XMI import/export for WebUML, and the addition of a purely visual 
+component for visualizing/editing the application model.
+</p>
+<p>
+The tool is available at: <a href="http://rivernorth.sourceforge.net">rivernorth.sourceforge.net</a>
+</p>
+<p>
+This project is actively seeking feedback and contributors.
+</p>
+
+
+<h3><a name="20020611"></a>11 June 2002 - JavaPro Articles on Struts</h3>
+<p>
+JavaPro printed some articles regarding Struts in April and May. 
+In case you missed them, here's the links: 
+</p>
+<ul>
+<li><a href="http://www.fawcette.com/javapro/mags/2002_05/magazine/columns/weblication/default.asp"><b>Applying the MVC Design Pattern Using Struts</b></a> by Peter Varhol</li>
+<li><a href="http://www.fawcette.com/javapro/2002_04/magazine/features/tholloway/"><b>Struts: a Solid Web-App Framework</b></a> by Tim Holloway</li>
+</ul>
+<hr size="1" noshade=""/>
+
+
 <h3><a name="20020611"></a>11 June 2002 - JavaPro Articles on Struts</h3>
 <p>
 JavaPro printed some articles regarding Struts in April and May. 
