@@ -1,0 +1,217 @@
+package org.apache.struts.scaffold;
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import java.lang.reflect.Method;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
+
+// import org.apache.commons.beanutils.BeanUtils; // Struts 1.1
+import org.apache.struts.util.BeanUtils; // Struts 1.0.x
+
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import org.apache.struts.util.MessageResources;
+
+import org.apache.commons.scaffold.lang.Log;
+import org.apache.commons.scaffold.lang.Tokens;
+import org.apache.commons.scaffold.util.ProcessBean;
+import org.apache.commons.scaffold.util.ProcessResult;
+import org.apache.commons.scaffold.util.ResultList;
+import org.apache.commons.scaffold.util.ResultListBase;
+
+
+/**
+ * ProcessAction that accepts the name of a class and a method
+ * with the signature "Object method(Object)" as the parameter.
+ * [org.apache.cerebus.Account;store].
+ *
+ * @author Craig R. McClanahan
+ * @author Ted Husted
+ * @author OK State DEQ
+ * @version $Revision: 1.1 $ $Date: 2002/08/14 18:02:04 $
+ */
+public class ProcessDispatchAction extends ProcessAction {
+
+    /**
+     * The set of argument type classes for the reflected method call.
+     * These are the same for all calls, so calculate them only once.
+     */
+    private static final Class types[] = { Object.class };
+
+
+// --------------------------------------------------------- Public Methods
+
+    /**
+     * Instantiate helper object from the type given as the
+     * first ActionMapping parameter and execute the method given
+     * as the second parameter (delimited with semicolons).
+     * <p>
+     * Otherwise operates as a ProcessAction.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The ActionForm
+     * @param request The HTTP request we are processing
+     * @param response The HTTP response we are creating
+     * <p>
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     * @todo refactor this so both Process*Action can call core logic
+     */
+    public void executeLogic(
+            ActionMapping mapping,
+            ActionForm form,
+            HttpServletRequest request,
+            HttpServletResponse response)
+        throws Exception {
+
+            // Retrieve user profile, if any
+        BaseForm userBean =
+            getUserProfile(mapping,form,request,response);
+
+        servlet.log(Log.HELPER_PROCESSING,Log.DEBUG);
+        Map properties = null;
+
+        servlet.log(Log.TOKENS_PARSING,Log.DEBUG);
+        String[] tokens = tokenize(mapping.getParameter());
+            // :FIXME: This could loop and instantiate every other token [class;method;class;method]
+        Object helper = createHelperObject(request,tokens[0]);
+        servlet.log(Log.HELPER_EXECUTING,Log.DEBUG);
+        ProcessBean dataBean = (ProcessBean) helper;
+
+        properties = null;
+        if (null!=form) {
+            if (form instanceof BaseForm) {
+
+                BaseForm formBean = (BaseForm) form;
+
+                    // Merge user profile (if found)
+                    // and our form into a single map
+                servlet.log(Log.HELPER_POPULATE,Log.DEBUG);
+                properties = formBean.merge(userBean);
+
+                    // Pass up the Locale and RemoteServer (if any)
+                dataBean.setLocale(formBean.getSessionLocale());
+                dataBean.setRemoteServer(getRemoteServer());
+            }
+            else {
+                properties = BeanUtils.describe(form);
+            }
+        } // end null form
+        else if (null!=userBean) {
+                // if no form, but is profile, still use profile
+            properties = BeanUtils.describe(userBean);
+        }
+
+            // Execute business logic, using values from  map
+        servlet.log(Log.HELPER_EXECUTING,Log.DEBUG);
+
+        Method method = dataBean.getClass().getMethod(tokens[1],types);
+        Object args[] = { properties };
+        ProcessResult result = (ProcessResult) method.invoke(dataBean,args);
+
+        // Execute business logic, using  map
+        checkOutcome(mapping,request,result);
+     }
+
+} // end ProcessDispatchAction
+
+
+/*
+ *
+ *    Copyright (c) 2002 Synthis Corporation.
+ *    430 10th Street NW, Suite S-108, Atlanta GA 30318, U.S.A.
+ *    All rights reserved.
+ *
+ *    This software is licensed to you free of charge under
+ *    the Apache Software License, so long as this copyright
+ *    statement, list of conditions, and comments,  remains
+ *    in the source code.  See bottom of file for more
+ *    license information.
+ *
+ *    This software was written to support code generation
+ *    for the Apache Struts J2EE architecture by Synthis'
+ *    visual application modeling tool Adalon.
+ *
+ *    For more information on Adalon and Struts code
+ *    generation please visit http://www.synthis.com
+ *
+ */
+
+
+ /*
+  * ====================================================================
+  *
+  * The Apache Software License, Version 1.1
+  *
+  * Copyright (c) 2001 The Apache Software Foundation.  All rights
+  * reserved.
+  *
+  * Redistribution and use in source and binary forms, with or without
+  * modification, are permitted provided that the following conditions
+  * are met:
+  *
+  * 1. Redistributions of source code must retain the above copyright
+  *    notice, this list of conditions and the following disclaimer.
+  *
+  * 2. Redistributions in binary form must reproduce the above copyright
+  *    notice, this list of conditions and the following disclaimer in
+  *    the documentation and/or other materials provided with the
+  *    distribution.
+  *
+  * 3. The end-user documentation included with the redistribution, if
+  *    any, must include the following acknowlegement:
+  *       "This product includes software developed by the
+  *        Apache Software Foundation (http://www.apache.org/)."
+  *    Alternately, this acknowlegement may appear in the software itself,
+  *    if and wherever such third-party acknowlegements normally appear.
+  *
+  * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
+  *    Foundation" must not be used to endorse or promote products derived
+  *    from this software without prior written permission. For written
+  *    permission, please contact apache@apache.org.
+  *
+  * 5. Products derived from this software may not be called "Apache"
+  *    nor may "Apache" appear in their names without prior written
+  *    permission of the Apache Group.
+  *
+  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+  * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+  * SUCH DAMAGE.
+  * ====================================================================
+  *
+  * This software consists of voluntary contributions made by many
+  * individuals on behalf of the Apache Software Foundation.  For more
+  * information on the Apache Software Foundation, please see
+  * <http://www.apache.org/>.
+  *
+  */
+
+
