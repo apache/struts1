@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.17 2003/07/26 17:40:52 rleland Exp $
- * $Revision: 1.17 $
- * $Date: 2003/07/26 17:40:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.18 2003/07/31 03:30:00 rleland Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/07/31 03:30:00 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.taglib.TagUtils;
  * Generate a URL-encoded redirect to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2003/07/26 17:40:52 $
+ * @version $Revision: 1.18 $ $Date: 2003/07/31 03:30:00 $
  */
 public class RedirectTag extends TagSupport {
 
@@ -294,17 +294,18 @@ public class RedirectTag extends TagSupport {
         String url = null;
         try {
             url =
-                RequestUtils.computeURL(
+                TagUtils.getInstance().computeURL(
                     pageContext,
                     forward,
                     href,
                     page,
+                    null,
                     params,
                     anchor,
                     true);
                     
         } catch (MalformedURLException e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException(
                 messages.getMessage("redirect.url", e.toString()));
         }
@@ -326,7 +327,7 @@ public class RedirectTag extends TagSupport {
             response.sendRedirect(url);
             
         } catch (IOException e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException(e.getMessage());
         }
     }

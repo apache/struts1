@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.16 2003/07/26 17:22:28 rleland Exp $
- * $Revision: 1.16 $
- * $Date: 2003/07/26 17:22:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.17 2003/07/31 03:30:20 rleland Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/07/31 03:30:20 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.taglib.TagUtils;
  * is present for this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2003/07/26 17:22:28 $
+ * @version $Revision: 1.17 $ $Date: 2003/07/31 03:30:20 $
  */
 public class PresentTag extends ConditionalTagBase {
 
@@ -143,7 +143,7 @@ public class PresentTag extends ConditionalTagBase {
         } else {
             JspException e = new JspException
                 (messages.getMessage("logic.selector"));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 
