@@ -5,114 +5,150 @@
           "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
 <!--
-     This is a blank Struts configuration file based on the example application,
-     with commented examples of some items.
+     This is a blank Struts configuration file with an example
+     welcome action/page and other commented sample elements.
 
-     NOTE: If you have a generator tool to create the corresponding Java classes 
-     for you, you could include the details in the "form-bean" declarations.  
-     Otherwise, you would only define the "form-bean" element itself, with the 
+     Tiles and the Struts Validator are configured using the factory defaults
+     and are ready-to-use.
+
+     NOTE: If you have a generator tool to create the corresponding Java classes
+     for you, you could include the details in the "form-bean" declarations.
+     Otherwise, you would only define the "form-bean" element itself, with the
      corresponding "name" and "type" attributes, as shown here.
 -->
 
 
 <struts-config>
 
-
-  <!-- ========== Data Source Configuration =============================== -->
+<!-- ==================================== Data Source Configuration -->
 <!--
-  <data-sources>
-    <data-source
-       autoCommit="false"
-      description="Example Data Source Configuration"
-      driverClass="org.postgresql.Driver"
-         maxCount="4"
-         minCount="2"
-         password="mypassword"
-              url="jdbc:postgresql://localhost/mydatabase"
-             user="myusername"
-    />
-  </data-sources>
+ <data-sources>
+   <data-source>
+     <set-property
+        property="autoCommit"
+        value="false"/>
+     <set-property
+        property="description"
+        value="Example Data Source Configuration"/>
+     <set-property
+        property="driverClass"
+        value="org.postgresql.Driver"/>
+     <set-property
+        property="maxCount"
+        value="4"/>
+     <set-property
+        property="minCount"
+        value="2"/>
+     <set-property
+        property="password"
+        value="mypassword"/>
+     <set-property
+        property="url"
+        value="jdbc:postgresql://localhost/mydatabase"/>
+     <set-property
+        property="user"
+        value="myusername"/>
+   </data-source>
+ </data-sources>
 -->
 
-  <!-- ========== Form Bean Definitions =================================== -->
-  <form-beans>
+<!-- ======================================== Form Bean Definitions -->
 
-    <!-- Example logon form bean 
-    <form-bean      name="logonForm"
-                    type="org.apache.struts.example.LogonForm"/>
-     -->
+    <form-beans>
 
-  </form-beans>
+    <!-- sample form bean descriptor for an ActionForm
+        <form-bean
+            name="inputForm"
+            type="app.InputForm"/>
+    end sample -->
 
+    <!-- sample form bean descriptor for a DynaActionForm
+        <form-bean
+            name="logonForm"
+            type="org.apache.struts.action.DynaActionForm">
+            <form-property
+                name="username"
+                type="java.lang.String"/>
+            <form-property
+                name="password"
+                type="java.lang.String"/>
+    end sample -->
 
-  <!-- ========== Global Forward Definitions ============================== -->
-  <global-forwards>
-
-    <!-- Example logon forward 
-     <forward   name="logon"                path="/logon.jsp"/>
-     -->
-
-  </global-forwards>
-
-
-  <!-- ========== Action Mapping Definitions ============================== -->
-  <action-mappings>
-
-    <!-- Example logon action 
-    <action    path="/logon"
-               type="org.apache.struts.example.LogonAction"
-               name="logonForm"
-              scope="request"
-              input="/logon.jsp">
-    </action>
-    -->
-
-    <!-- Example logoff action 
-    <action    path="/logoff"
-               type="org.apache.struts.example.LogoffAction">
-      <forward name="success"              path="/index.jsp"/>
-    </action>
-    -->
+    </form-beans>
 
 
-    <!-- The standard administrative actions available with Struts -->
-    <!-- These would be either omitted or protected by security -->
-    <!-- in a real application deployment -->
-    <action    path="/admin/addFormBean"
-               type="org.apache.struts.actions.AddFormBeanAction"/>
-    <action    path="/admin/addForward"
-               type="org.apache.struts.actions.AddForwardAction"/>
-    <action    path="/admin/addMapping"
-               type="org.apache.struts.actions.AddMappingAction"/>
-    <action    path="/admin/reload"
-               type="org.apache.struts.actions.ReloadAction"/>
-    <action    path="/admin/removeFormBean"
-               type="org.apache.struts.actions.RemoveFormBeanAction"/>
-    <action    path="/admin/removeForward"
-               type="org.apache.struts.actions.RemoveForwardAction"/>
-    <action    path="/admin/removeMapping"
-               type="org.apache.struts.actions.RemoveMappingAction"/>
+<!-- ================================= Global Exception Definitions -->
+
+    <global-exceptions>
+        <!-- sample exception handler
+        <exception
+            key="expired.password"
+            type="app.ExpiredPasswordException"
+            path="/changePassword.jsp"/>
+        end sample -->
+    </global-exceptions>
 
 
-  </action-mappings>
+<!-- =================================== Global Forward Definitions -->
 
-  <!-- ========== Message Resources Definitions =========================== -->
+    <global-forwards>
+        <!-- Default forward to "Welcome" action -->
+        <!-- Demonstrates using index.jsp to forward -->
+        <forward
+            name="welcome"
+            path="/Welcome.do"/>
+    </global-forwards>
 
-  <message-resources parameter="ApplicationResources"/>
 
-  <!-- ========== Plug Ins Configuration ================================== -->
-  
-  <!-- 
-     Add multiple validator resource files by setting the pathnames property 
-     with a comma delimitted list of resource files to load. 
-     Default pluggable validator definitions are contained in validator-rules.xml. 
-     Add any validation rules for forms in validator.xml.
-  -->
-  <!--
+<!-- =================================== Action Mapping Definitions -->
+
+    <action-mappings>
+
+            <!-- Default "Welcome" action -->
+            <!-- Forwards to Welcome.jsp -->
+        <action
+            path="/Welcome"
+            type="org.apache.struts.actions.ForwardAction"
+            parameter="/pages/Welcome.jsp"/>
+
+    <!-- sample input and input submit actions
+
+        <action
+            path="/Input"
+            type="org.apache.struts.actions.ForwardAction"
+            parameter="/pages/Input.jsp"/>
+
+        <action
+            path="/InputSubmit"
+            type="app.InputAction"
+            name="inputForm"
+            scope="request"
+            validate="true"
+            input="/pages/Input.jsp"/>
+
+    end samples -->
+
+
+    </action-mappings>
+
+
+<!-- ===================================== Controller Configuration -->
+
+    <controller
+       processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+
+<!-- ================================ Message Resources Definitions -->
+
+    <message-resources parameter="resources.application"/>
+
+
+<!-- ======================================= Plug Ins Configuration -->
+
   <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
-    <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
-                                              /WEB-INF/validation.xml"/>
+    <set-property
+        property="pathnames"
+        value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
   </plug-in>
-  -->
 
 </struts-config>
