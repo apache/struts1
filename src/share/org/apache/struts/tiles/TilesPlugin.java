@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.1 2002/07/11 16:22:27 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 16:22:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.2 2002/07/11 17:37:01 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/11 17:37:01 $
  *
  * ====================================================================
  *
@@ -61,7 +61,6 @@
 
 package org.apache.struts.tiles;
 
-import org.apache.struts.tiles.definition.ConfigurableDefinitionsFactory;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.PlugIn;

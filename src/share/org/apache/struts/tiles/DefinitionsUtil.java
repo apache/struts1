@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.2 2002/07/11 16:40:34 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/11 16:40:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.3 2002/07/11 17:37:01 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/07/11 17:37:01 $
  *
  * ====================================================================
  *
@@ -76,7 +76,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.struts.tiles.definition.ReloadableDefinitionsFactory;
-import org.apache.struts.tiles.definition.ConfigurableDefinitionsFactory;
 import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
 import org.apache.struts.tiles.xmlDefinition.I18nFactorySet;
 import org.apache.struts.taglib.tiles.ComponentConstants;
@@ -273,11 +272,55 @@ public class DefinitionsUtil implements ComponentConstants
       // Set user debug level
     setUserDebugLevel( factoryConfig.getDebugLevel() );
       // Create configurable factory
-    DefinitionsFactory factory = new ConfigurableDefinitionsFactory( );
+    DefinitionsFactory factory = createDefinitionFactoryInstance(factoryConfig.getFactoryClassname());
     factory.init( factoryConfig, servletContext );
       // Make factory accessible from jsp tags
     DefinitionsUtil.makeDefinitionsFactoryAccessible(factory, servletContext );
     return factory;
+  }
+
+
+  /**
+   * Create Definition factory from provided classname.
+   * Factory class must extends TilesDefinitionsFactory.
+   * @param classname Class name of the factory to create.
+   * @return newly created factory.
+   * @throws DefinitionsFactoryException If an error occur while initializing factory
+   */
+  static public DefinitionsFactory createDefinitionFactoryInstance(String classname)
+    throws DefinitionsFactoryException
+  {
+  try
+    {
+    Class factoryClass = Class.forName(classname);
+    Object factory = factoryClass.newInstance();
+      // Backward compatibility : if factory classes implements old interface,
+      // provide appropriate wrapper
+    if( factory instanceof ComponentDefinitionsFactory )
+      {
+      factory = new ComponentDefinitionsFactoryWrapper( (ComponentDefinitionsFactory)factory );
+      } // end if
+    return (DefinitionsFactory)factory;
+    }
+   catch( ClassCastException ex )
+    { // Bad classname
+    throw new DefinitionsFactoryException( "Error - createDefinitionsFactory : Factory class '"
+                                           + classname +" must implements 'TilesDefinitionsFactory'.", ex );
+    }
+   catch( ClassNotFoundException ex )
+    { // Bad classname
+    throw new DefinitionsFactoryException( "Error - createDefinitionsFactory : Bad class name '"
+                                           + classname +"'.", ex );
+    }
+   catch( InstantiationException ex )
+    { // Bad constructor or error
+    throw new DefinitionsFactoryException( ex );
+    }
+   catch( IllegalAccessException ex )
+    { //
+    throw new DefinitionsFactoryException( ex );
+    }
+
   }
 
   /**
