@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.15 2001/06/01 18:58:39 craigmcc Exp $
- * $Revision: 1.15 $
- * $Date: 2001/06/01 18:58:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.16 2001/06/01 20:22:21 craigmcc Exp $
+ * $Revision: 1.16 $
+ * $Date: 2001/06/01 20:22:21 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2001/06/01 18:58:39 $
+ * @version $Revision: 1.16 $ $Date: 2001/06/01 20:22:21 $
  */
 
 public class RequestUtils {
@@ -364,7 +364,7 @@ public class RequestUtils {
                         url.append('?');
                         question = true;
                     } else
-                        url.append('&');
+                        url.append("&amp;");
                     url.append(URLEncoder.encode(key));
                     url.append('='); // Interpret null as "no value"
                 } else if (value instanceof String) {
@@ -372,7 +372,7 @@ public class RequestUtils {
                         url.append('?');
                         question = true;
                     } else
-                        url.append('&');
+                        url.append("&amp;");
                     url.append(URLEncoder.encode(key));
                     url.append('=');
                     url.append(URLEncoder.encode((String) value));
@@ -383,7 +383,7 @@ public class RequestUtils {
                             url.append('?');
                             question = true;
                         } else
-                            url.append('&');
+                            url.append("&amp;");
                         url.append(URLEncoder.encode(key));
                         url.append('=');
                         url.append(URLEncoder.encode(values[i]));
