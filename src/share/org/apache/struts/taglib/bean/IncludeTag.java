@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.18 2002/09/22 06:32:45 martinc Exp $
+ * $Id: IncludeTag.java,v 1.19 2002/11/29 19:54:22 dgraham Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -60,7 +60,6 @@
 
 package org.apache.struts.taglib.bean;
 
-
 import java.io.BufferedInputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -74,7 +73,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
-
 /**
  * Define the contents of a specified intra-application request as a
  * page scope attribute of type <code>java.lang.String</code>.  If the
@@ -86,20 +84,17 @@ import org.apache.struts.util.RequestUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2002/09/22 06:32:45 $
+ * @version $Revision: 1.19 $ $Date: 2002/11/29 19:54:22 $
  */
 
 public class IncludeTag extends TagSupport {
 
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * Buffer size to use when reading the input stream.
      */
     protected static final int BUFFER_SIZE = 256;
-
 
     /**
      * The anchor to be added to the end of the generated hyperlink.
@@ -113,7 +108,6 @@ public class IncludeTag extends TagSupport {
     public void setAnchor(String anchor) {
         this.anchor = anchor;
     }
-
 
     /**
      * The name of the global <code>ActionForward</code> that contains a
@@ -129,7 +123,6 @@ public class IncludeTag extends TagSupport {
         this.forward = forward;
     }
 
-
     /**
      * The absolute URL to the resource to be included.
      */
@@ -142,7 +135,6 @@ public class IncludeTag extends TagSupport {
     public void setHref(String href) {
         this.href = href;
     }
-
 
     /**
      * The name of the scripting variable that will be exposed as a page
@@ -158,14 +150,11 @@ public class IncludeTag extends TagSupport {
         this.id = id;
     }
 
-
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-        MessageResources.getMessageResources
-        ("org.apache.struts.taglib.bean.LocalStrings");
-
+        MessageResources.getMessageResources("org.apache.struts.taglib.bean.LocalStrings");
 
     /**
      * Deprecated method to set the "name" attribute, which has been
@@ -177,20 +166,18 @@ public class IncludeTag extends TagSupport {
         this.page = name;
     }
 
-
     /**
      * The context-relative URI of the page or servlet to be included.
      */
     protected String page = null;
 
     public String getPage() {
-	return (this.page);
+        return (this.page);
     }
 
     public void setPage(String page) {
-	this.page = page;
+        this.page = page;
     }
-
 
     /**
      * Include transaction token (if any) in the hyperlink?
@@ -205,9 +192,7 @@ public class IncludeTag extends TagSupport {
         this.transaction = transaction;
     }
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Define the contents returned for the specified resource as a
@@ -217,91 +202,91 @@ public class IncludeTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-	// Set up a URLConnection to read the requested resource
-        Map params = RequestUtils.computeParameters
-            (pageContext, null, null, null, null,
-             null, null, null, transaction); // FIXME - <html:link> attributes
+        // Set up a URLConnection to read the requested resource
+        Map params =
+            RequestUtils.computeParameters(
+                pageContext,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                transaction);
+        // FIXME - <html:link> attributes
         String urlString = null;
         URL url = null;
         try {
-            urlString = RequestUtils.computeURL(pageContext, forward, href,
-                                                page, params, anchor, false);
+            urlString =
+                RequestUtils.computeURL(pageContext, forward, href, page, params, anchor, false);
             if (urlString.indexOf(':') < 0) {
-                HttpServletRequest request = (HttpServletRequest)
-                    pageContext.getRequest();
+                HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
                 url = new URL(RequestUtils.requestURL(request), urlString);
             } else {
                 url = new URL(urlString);
             }
         } catch (MalformedURLException e) {
             RequestUtils.saveException(pageContext, e);
-            throw new JspException
-                (messages.getMessage("include.url", e.toString()));
+            throw new JspException(messages.getMessage("include.url", e.toString()));
         }
 
-	URLConnection conn = null;
-	try {
+        URLConnection conn = null;
+        try {
             // Set up the basic connection
-	    conn = url.openConnection();
-	    conn.setAllowUserInteraction(false);
-	    conn.setDoInput(true);
-	    conn.setDoOutput(false);
+            conn = url.openConnection();
+            conn.setAllowUserInteraction(false);
+            conn.setDoInput(true);
+            conn.setDoOutput(false);
             // Add a session id cookie if appropriate
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
-            if ((conn instanceof HttpURLConnection) &&
-                urlString.startsWith(request.getContextPath()) &&
-                (request.getRequestedSessionId() != null) &&
-                request.isRequestedSessionIdFromCookie()) {
+            HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+            if ((conn instanceof HttpURLConnection)
+                && urlString.startsWith(request.getContextPath())
+                && (request.getRequestedSessionId() != null)
+                && request.isRequestedSessionIdFromCookie()) {
                 StringBuffer sb = new StringBuffer("JSESSIONID=");
                 sb.append(request.getRequestedSessionId());
                 conn.setRequestProperty("Cookie", sb.toString());
             }
             // Connect to the requested resource
             conn.connect();
-	} catch (Exception e) {
+        } catch (Exception e) {
             RequestUtils.saveException(pageContext, e);
-	    throw new JspException
-                (messages.getMessage("include.open",
-                                     url.toString(), e.toString()));
-	}
+            throw new JspException(
+                messages.getMessage("include.open", url.toString(), e.toString()));
+        }
 
-	// Copy the contents of this URL
+        // Copy the contents of this URL
         StringBuffer sb = new StringBuffer();
-	try {
-	    BufferedInputStream is =
-		new BufferedInputStream(conn.getInputStream());
-	    InputStreamReader in = new InputStreamReader(is); // FIXME - encoding
+        try {
+            BufferedInputStream is = new BufferedInputStream(conn.getInputStream());
+            InputStreamReader in = new InputStreamReader(is); // FIXME - encoding
             char buffer[] = new char[BUFFER_SIZE];
             int n = 0;
-	    while (true) {
+            while (true) {
                 n = in.read(buffer);
                 if (n < 1)
                     break;
                 sb.append(buffer, 0, n);
-	    }
+            }
             in.close();
-	} catch (Exception e) {
+        } catch (Exception e) {
             RequestUtils.saveException(pageContext, e);
-            throw new JspException
-                (messages.getMessage("include.read",
-                                     url.toString(), e.toString()));
-	}
+            throw new JspException(
+                messages.getMessage("include.read", url.toString(), e.toString()));
+        }
 
         // Define the retrieved content as a page scope attribute
         pageContext.setAttribute(id, sb.toString());
 
-	// Skip any body of this tag
-	return (SKIP_BODY);
-
+        // Skip any body of this tag
+        return (SKIP_BODY);
     }
-
 
     /**
      * Release all allocated resources.
      */
     public void release() {
-
         super.release();
         anchor = null;
         forward = null;
@@ -309,8 +294,6 @@ public class IncludeTag extends TagSupport {
         id = null;
         page = null;
         transaction = false;
-
     }
-
 
 }
