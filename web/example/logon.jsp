@@ -1,5 +1,4 @@
 <%@ page language="java" %>
-<%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 
@@ -10,7 +9,7 @@
 </head>
 <body bgcolor="white">
 
-<struts:errors/>
+<html:errors/>
 
 <html:form action="logon.do" focus="username">
 <table border="0" width="100%">
