@@ -164,7 +164,7 @@ public abstract class ActionForm implements Serializable {
         try {
             reset(mapping, (HttpServletRequest) request);
         } catch (ClassCastException e) {
-            ;//FFIXME: Why would this every happen except a null
+            ;//FIXME: Why would this ever happen except a null
         }
 
     }
