@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.2 2003/10/10 23:19:57 mrdon Exp $
- * $Revision: 1.2 $
- * $Date: 2003/10/10 23:19:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.3 2003/10/18 02:48:16 mrdon Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/10/18 02:48:16 $
  *
  * ====================================================================
  *
@@ -110,7 +110,7 @@ public class ActionConfigMatcher {
         String path;
         for (int x = 0; x < configs.length; x++) {
             path = configs[x].getPath();
-            if (path.indexOf('*') > -1) {
+            if (path != null && path.indexOf('*') > -1) {
                 if (path.length() > 0 && path.charAt(0) == '/') {
                     path = path.substring(1);
                 }
