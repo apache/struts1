@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.104 2003/06/20 04:09:57 dgraham Exp $
- * $Revision: 1.104 $
- * $Date: 2003/06/20 04:09:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.105 2003/06/28 00:20:07 dgraham Exp $
+ * $Revision: 1.105 $
+ * $Date: 2003/06/28 00:20:07 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.104 $ $Date: 2003/06/20 04:09:57 $
+ * @version $Revision: 1.105 $ $Date: 2003/06/28 00:20:07 $
  */
 
 public class RequestUtils {
@@ -1892,8 +1892,10 @@ public class RequestUtils {
      * @return an array of module prefixes
      * @since Struts 1.1
      */
-    public static String[] getModulePrefixes(ServletContext context) {
-
+    public synchronized static String[] getModulePrefixes(ServletContext context) {
+        // TODO Move prefix list initialization to ActionServlet.init() and unsynchronize
+        // this method in Struts 1.2 
+        
         String prefixes[] = (String[]) context.getAttribute(PREFIXES_KEY);
         if (prefixes != null) {
             return (prefixes);
