@@ -18,7 +18,7 @@
 <section href="status" name="Development Roadmap">
 
     <p>
-    <font size="-2">$Id: status.xml,v 1.35 2003/08/29 16:49:40 husted Exp $</font>
+    <font size="-2">$Id: status.xml,v 1.36 2003/08/29 20:14:05 husted Exp $</font>
     </p>
 
     <p>
@@ -35,7 +35,7 @@
 
     </section>
 
-    <section href="bugzilla" name="Bugzilla Queries">
+    <section href="Bugzilla" name="Bugzilla Queries">
 
         <p>
             The Struts development teams uses the <a href="http://jakarta.apache.org/site/bugs.html">Apache Bug Database</a> (Bugzilla)
@@ -58,7 +58,7 @@
 
     </section>
 
-<section href="struts_1_x" name="Struts 1.x">
+<section href="Struts_1_x" name="Struts 1.x">
 
     <p>
         The platform requirements throughout the Struts 1.x series will remain the same (Servlet 2.2 / JSP 1.1).
@@ -114,7 +114,7 @@
 
     </section>
 
-    <section href="struts_1_x_whiteboard" name="Struts 1.x Whiteboard">
+    <section href="Struts_1_x_whiteboard" name="Struts 1.x Whiteboard">
 
         <p>
             These are some general ideas we have about what may happen in the Struts 1.x series.
@@ -150,8 +150,10 @@
             <li>Struts 1.4.x -
             More substantial enhancements to product base
                 <ul>
-                    <li>Consider new Request Processor, if available</li>
-                    <li>Consider migration to an Action context</li>
+                    <li>Consider new Request Processor, if available (which might be based on the Commons Chain
+                        of Responsiblity package)</li>
+                    <li>Consider migration to an Action context (which also might be based no the Commons Chain
+                        of Responsiblity package)</li>
                 </ul>
             </li>
 
@@ -225,7 +227,7 @@
 
 </section>
 
-<section href="struts_2_0" name="Struts 2.0.x">
+<section href="Struts_2_0" name="Struts 2.0.x">
 
     <p>
     Struts 2.x (aka Struts "Next Generation") will include broader enhancements.
@@ -287,12 +289,17 @@
 
 </section>
 
-<section href="proposals" name="Relevant Proposals">
+<section href="Proposals" name="Relevant Proposals">
 
     <ul>
 
         <li>
-        <a href="proposals/release-plan-1.1.html">Release Plan 1.1</a>
+        <a href="http://cvs.apache.org/viewcvs/jakarta-commons-sandbox/chain/">Commons Chain of Responsiblity
+        package</a>
+        </li>
+
+        <li>
+        <a href="proposals/release-plan_1_2_0.html">Release Plan 1.2.0</a> -- unratified DRAFT document
         </li>
 
         <li>
@@ -310,7 +317,7 @@
 </section>
 
 <section>
-    <p><font size="-2">Website updated from CVS: 2003 AUG 11 by husted.</font></p>
+    <p><font size="-2">Website updated from CVS: 2003 AUG 29 by husted.</font></p>
     <p><font size="-2">Javadocs updated from CVS: 2003 JUN 29 by mcooper.</font></p>
 </section>
 
