@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.20 2003/08/02 21:07:33 dgraham Exp $
- * $Revision: 1.20 $
- * $Date: 2003/08/02 21:07:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.21 2003/08/02 21:38:16 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/08/02 21:38:16 $
  *
  * ====================================================================
  *
@@ -102,7 +102,7 @@ import org.apache.struts.util.RequestUtils;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -122,7 +122,7 @@ public class TagUtils {
      * TODO We need to move the relevant messages out of this properties file.
      */
     private static final MessageResources messages =
-        MessageResources.getMessageResources("org.apache.struts.util.LocalStrings");
+        MessageResources.getMessageResources("org.apache.struts.taglib.LocalStrings");
 
     /**
      * Java 1.4 encode method to use instead of deprecated 1.3 version.
@@ -231,6 +231,7 @@ public class TagUtils {
             saveException(pageContext, e);
             throw new JspException(
                 messages.getMessage("parameters.multi", name, property, scope));
+                
         } catch (JspException e) {
             saveException(pageContext, e);
             throw e;
@@ -255,6 +256,7 @@ public class TagUtils {
                         paramName,
                         paramProperty,
                         paramScope);
+                        
             } catch (JspException e) {
                 saveException(pageContext, e);
                 throw e;
@@ -272,12 +274,14 @@ public class TagUtils {
                 Object mapValue = results.get(paramId);
                 if (mapValue == null) {
                     results.put(paramId, paramString);
+                    
                 } else if (mapValue instanceof String) {
                     String newValues[] = new String[2];
                     newValues[0] = (String) mapValue;
                     newValues[1] = paramString;
                     results.put(paramId, newValues);
-                } else /* if (mapValue instanceof String[]) */ {
+                    
+                } else {
                     String oldValues[] = (String[]) mapValue;
                     String newValues[] = new String[oldValues.length + 1];
                     System.arraycopy(oldValues, 0, newValues, 0, oldValues.length);
@@ -296,6 +300,7 @@ public class TagUtils {
             if (session != null) {
                 token = (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
             }
+            
             if (token != null) {
                 results.put(Constants.TOKEN_KEY, token);
             }
@@ -660,6 +665,7 @@ public class TagUtils {
 
         } catch (JspException e) {
             throw e;
+            
         } catch (Exception e) {
             log.debug(e, e);
         }
@@ -790,6 +796,7 @@ public class TagUtils {
             
         } catch (JspException e) {
             throw e;
+            
         } catch (Exception e) {
             ;
         }
