@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.1 2000/09/07 01:35:35 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/09/07 01:35:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.2 2000/10/12 23:00:31 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/10/12 23:00:31 $
  *
  * ====================================================================
  *
@@ -63,9 +63,12 @@
 package org.apache.struts.taglib.logic;
 
 
+import java.lang.reflect.InvocationTargetException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
+import org.apache.struts.action.Action;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.PropertyUtils;
 
@@ -75,7 +78,7 @@ import org.apache.struts.util.PropertyUtils;
  * define values for desired1 and desired2.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/09/07 01:35:35 $
+ * @version $Revision: 1.2 $ $Date: 2000/10/12 23:00:31 $
  */
 
 public abstract class CompareTagBase extends ConditionalTagBase {
@@ -212,7 +215,18 @@ public abstract class CompareTagBase extends ConditionalTagBase {
                         (messages.getMessage("logic.bean", name));
                 try {
                     variable = PropertyUtils.getProperty(bean, property);
+                } catch (InvocationTargetException e) {
+                    Throwable t = e.getTargetException();
+                    if (t == null)
+                        t = e;
+                    pageContext.setAttribute(Action.EXCEPTION_KEY, t,
+                                             PageContext.REQUEST_SCOPE);
+                    throw new JspException
+                        (messages.getMessage("logic.property", name, property,
+                                             t.toString()));
                 } catch (Throwable t) {
+                    pageContext.setAttribute(Action.EXCEPTION_KEY, t,
+                                             PageContext.REQUEST_SCOPE);
                     throw new JspException
                         (messages.getMessage("logic.property", name, property,
                                              t.toString()));

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.1 2000/09/07 01:35:35 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/09/07 01:35:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.2 2000/10/12 23:00:32 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/10/12 23:00:32 $
  *
  * ====================================================================
  *
@@ -73,6 +73,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 
@@ -87,7 +88,7 @@ import org.apache.struts.util.PropertyUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/09/07 01:35:35 $
+ * @version $Revision: 1.2 $ $Date: 2000/10/12 23:00:32 $
  */
 
 public final class IterateTag extends BodyTagSupport {
@@ -260,14 +261,22 @@ public final class IterateTag extends BodyTagSupport {
 			(messages.getMessage("iterate.property",
                                              name, property));
 	    } catch (IllegalAccessException e) {
+                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                         PageContext.REQUEST_SCOPE);
 		throw new JspException
 		    (messages.getMessage("iterate.access", name, property));
 	    } catch (InvocationTargetException e) {
 		Throwable t = e.getTargetException();
+                if (t == null)
+                    t = e;
+                pageContext.setAttribute(Action.EXCEPTION_KEY, t,
+                                         PageContext.REQUEST_SCOPE);
 		throw new JspException
 		    (messages.getMessage("iterate.target",
 					 name, property, t.toString()));
 	    } catch (NoSuchMethodException e) {
+                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                         PageContext.REQUEST_SCOPE);
 		throw new JspException
 		    (messages.getMessage("iterate.method", name, property));
 	    }
@@ -357,6 +366,8 @@ public final class IterateTag extends BodyTagSupport {
 		out.print(bodyContent.getString());
                 bodyContent.clearBody();
 	    } catch (IOException e) {
+                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                         PageContext.REQUEST_SCOPE);
 		throw new JspException
 		    (messages.getMessage("iterate.io", e.toString()));
 	    }

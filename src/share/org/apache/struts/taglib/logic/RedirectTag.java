@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.1 2000/09/07 01:35:36 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/09/07 01:35:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.2 2000/10/12 23:00:32 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/10/12 23:00:32 $
  *
  * ====================================================================
  *
@@ -69,6 +69,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.struts.action.Action;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -78,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * the remainder of the current page.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/09/07 01:35:36 $
+ * @version $Revision: 1.2 $ $Date: 2000/10/12 23:00:32 $
  */
 
 public final class RedirectTag extends TagSupport {
@@ -138,6 +139,8 @@ public final class RedirectTag extends TagSupport {
 	try {
 	    response.sendRedirect(response.encodeRedirectURL(href));
 	} catch (IOException e) {
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
 	    throw new JspException
 		(messages.getMessage("redirect.redirect", href, e.toString()));
 	}
