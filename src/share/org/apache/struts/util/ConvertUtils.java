@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.1 2001/01/07 22:39:08 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/07 22:39:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.2 2001/01/08 20:34:56 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/01/08 20:34:56 $
  *
  * ====================================================================
  *
@@ -63,6 +63,9 @@
 package org.apache.struts.util;
 
 
+import java.lang.reflect.Array;
+
+
 /**
  * Utility methods for converting String values to objects of the specified
  * class, and vice versa.
@@ -70,13 +73,37 @@ package org.apache.struts.util;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.1 $ $Date: 2001/01/07 22:39:08 $
+ * @version $Revision: 1.2 $ $Date: 2001/01/08 20:34:56 $
  */
 
 public final class ConvertUtils {
 
 
     // --------------------------------------------------------- Public Classes
+
+
+    /**
+     * Convert the specified value into a String.  If the specified value
+     * is an array, the first element (converted to a String) will be
+     * returned.
+     *
+     * @param value Value to be converted (may be null)
+     */
+    public static String convert(Object value) {
+
+        if (value == null) {
+            return ((String) null);
+        } else if (value.getClass().isArray()) {
+            value = Array.get(value, 0);
+            if (value == null)
+                return ((String) null);
+            else
+                return (value.toString());
+        } else {
+            return (value.toString());
+        }
+
+    }
 
 
     /**

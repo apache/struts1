@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.21 2001/01/07 22:39:08 craigmcc Exp $
- * $Revision: 1.21 $
- * $Date: 2001/01/07 22:39:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.22 2001/01/08 20:34:55 craigmcc Exp $
+ * $Revision: 1.22 $
+ * $Date: 2001/01/08 20:34:55 $
  *
  * ====================================================================
  *
@@ -74,6 +74,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
+import org.apache.struts.upload.FormFile;
 
 
 /**
@@ -82,7 +83,7 @@ import java.util.Map;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.21 $ $Date: 2001/01/07 22:39:08 $
+ * @version $Revision: 1.22 $ $Date: 2001/01/08 20:34:55 $
  */
 
 public final class BeanUtils {
@@ -178,6 +179,8 @@ public final class BeanUtils {
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
      *  propety cannot be found
+     *
+     * @deprecated Does not deal correctly with non-String array properties
      */
     public static String[] getArrayProperty(Object bean, String name)
         throws IllegalAccessException, InvocationTargetException,
@@ -210,14 +213,15 @@ public final class BeanUtils {
 
 
     /**
-     * Return the value of the specified index of the specified array
-     * property, as a String.  The index is specified by being appended
-     * to the property name in square brackets.  If the specified index
-     * is out of range, <code>null</code> is returned.
+     * Return the value of the specified indexed property of the specified
+     * bean, as a String.  The zero-relative index of the
+     * required value must be included (in square brackets) as a suffix to
+     * the property name, or <code>IllegalArgumentException</code> will be
+     * thrown.
      *
      * @param bean Bean whose property is to be extracted
-     * @param name name of the property to be extracted, plus a literal
-     *  integer subscript in square brackets
+     * @param name <code>propertyname[index]</code> of the property value
+     *  to be extracted
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
@@ -226,45 +230,22 @@ public final class BeanUtils {
      * @exception NoSuchMethodException if an accessor method for this
      *  propety cannot be found
      */
-    public static String getIndexedProperty(Object bean, String name)
-        throws IllegalAccessException, InvocationTargetException,
-               NoSuchMethodException {
+    public static Object getIndexedProperty(Object bean, String name)
+	throws IllegalAccessException, InvocationTargetException,
+	       NoSuchMethodException {
 
-        // @deprecated Convert the deprecated syntax to the new format
-        /*
-        int left = name.lastIndexOf("[");
-        int right = name.lastIndexOf("]");
-        if ((left >= 0) && (right > left))
-        name = name.substring(0, left) + PropertyUtils.INDEXED_DELIM +
-        name.substring(left + 1, right);
-         */
-
-        // Parse the property name and subscript expression
-        int delim = PropertyUtils.INDEXED_DELIM;
-        if (delim < 0)
-            return (getScalarProperty(bean, name));
-        int index = -1;
-        try {
-            index = Integer.parseInt(name.substring(delim + 1));
-            name = name.substring(0, delim);
-        } catch (NumberFormatException e) {
-            return (getScalarProperty(bean, name));
-        }
-
-        // Return the value at the specified index
-        return (getIndexedProperty(bean, name, index));
+        Object value = PropertyUtils.getIndexedProperty(bean, name);
+        return (ConvertUtils.convert(value));
 
     }
 
 
-
     /**
-     * Return the value at the specified index of the specified array
-     * property, as a String.  If the specified index is out of range,
-     * <code>null</code> will be returned.
+     * Return the value of the specified indexed property of the specified
+     * bean, as a String.
      *
      * @param bean Bean whose property is to be extracted
-     * @param name name of the property to be extracted
+     * @param name Simple property name of the property value to be extracted
      * @param index Index of the property value to be extracted
      *
      * @exception IllegalAccessException if the caller does not have
@@ -274,18 +255,63 @@ public final class BeanUtils {
      * @exception NoSuchMethodException if an accessor method for this
      *  propety cannot be found
      */
-    public static String getIndexedProperty(Object bean, String name,
-                                            int index)
-        throws IllegalAccessException, InvocationTargetException,
-               NoSuchMethodException {
+    public static Object getIndexedProperty(Object bean,
+					    String name, int index)
+	throws IllegalAccessException, InvocationTargetException,
+	       NoSuchMethodException {
 
-        if (index < 0)
-            return (null);
-        String values[] = getArrayProperty(bean, name);
-        if ((values == null) || (index >= values.length))
-            return (null);
-        else
-            return (values[index]);
+        Object value = PropertyUtils.getIndexedProperty(bean, name);
+        return (ConvertUtils.convert(value));
+
+    }
+
+
+    /**
+     * Return the value of the (possibly nested) property of the specified
+     * name, for the specified bean, as a String.
+     *
+     * @param bean Bean whose property is to be extracted
+     * @param name Possibly nested name of the property to be extracted
+     *
+     * @exception IllegalAccessException if the caller does not have
+     *  access to the property accessor method
+     * @exception IllegalArgumentException if a nested reference to a
+     *  property returns null
+     * @exception InvocationTargetException if the property accessor method
+     *  throws an exception
+     * @exception NoSuchMethodException if an accessor method for this
+     *  propety cannot be found
+     */
+    public static String getNestedProperty(Object bean, String name)
+	throws IllegalAccessException, InvocationTargetException,
+	       NoSuchMethodException {
+
+        Object value = PropertyUtils.getNestedProperty(bean, name);
+        return (ConvertUtils.convert(value));
+
+    }
+
+
+    /**
+     * Return the value of the specified property of the specified bean,
+     * no matter which property reference format is used, as a String.
+     *
+     * @param bean Bean whose property is to be extracted
+     * @param name Possibly indexed and/or nested name of the property
+     *  to be extracted
+     *
+     * @exception IllegalAccessException if the caller does not have
+     *  access to the property accessor method
+     * @exception InvocationTargetException if the property accessor method
+     *  throws an exception
+     * @exception NoSuchMethodException if an accessor method for this
+     *  propety cannot be found
+     */
+    public static String getProperty(Object bean, String name)
+	throws IllegalAccessException, InvocationTargetException,
+	       NoSuchMethodException {
+
+        return (getNestedProperty(bean, name));
 
     }
 
@@ -328,23 +354,38 @@ public final class BeanUtils {
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
      *  propety cannot be found
+     *
+     * @deprecated Use getSimpleProperty(Object,String) instead
      */
     public static String getScalarProperty(Object bean, String name)
         throws IllegalAccessException, InvocationTargetException,
                NoSuchMethodException {
 
-        Object value = PropertyUtils.getProperty(bean, name);
-        if (value == null) {
-            return (null);
-        } else if (value.getClass().isArray()) {
-            String values[] = getArrayProperty(bean, name);
-            if (values.length > 0)
-                return (values[0]);
-            else
-                return (null);
-        } else {
-            return (value.toString());
-        }
+        return (getSimpleProperty(bean, name));
+
+    }
+
+
+    /**
+     * Return the value of the specified simple property of the specified
+     * bean, converted to a String.
+     *
+     * @param bean Bean whose property is to be extracted
+     * @param name Name of the property to be extracted
+     *
+     * @exception IllegalAccessException if the caller does not have
+     *  access to the property accessor method
+     * @exception InvocationTargetException if the property accessor method
+     *  throws an exception
+     * @exception NoSuchMethodException if an accessor method for this
+     *  propety cannot be found
+     */
+    public static String getSimpleProperty(Object bean, String name)
+	throws IllegalAccessException, InvocationTargetException,
+	       NoSuchMethodException {
+
+        Object value = PropertyUtils.getSimpleProperty(bean, name);
+        return (ConvertUtils.convert(value));
 
     }
 
@@ -435,13 +476,9 @@ public final class BeanUtils {
                 if (value instanceof String) {
                     parameters[0] = ConvertUtils.convert((String) value,
                     parameterTypes[0]);
-                }
-                /* FIXME - Do we still need this?
-                else if (value instanceof FormFile) {
+                } else if (value instanceof FormFile) {
                     parameters[0] = value;
-                }
-                */
-                else {
+                } else {
                     parameters[0] = ConvertUtils.convert(((String[]) value)[0],
                     parameterTypes[0]);
                 }
