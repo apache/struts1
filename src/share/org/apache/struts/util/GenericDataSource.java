@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.9 2002/02/26 05:21:07 dwinterfeldt Exp $
- * $Revision: 1.9 $
- * $Date: 2002/02/26 05:21:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.10 2002/03/09 22:26:35 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/03/09 22:26:35 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import java.util.LinkedList;
 import java.util.Properties;
 import javax.sql.DataSource;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogSource;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -180,18 +180,13 @@ import org.apache.commons.logging.LogSource;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.9 $ $Date: 2002/02/26 05:21:07 $
+ * @version $Revision: 1.10 $ $Date: 2002/03/09 22:26:35 $
  */
 
 public class GenericDataSource implements DataSource {
 
 
     // ----------------------------------------------------- Instance Constants
-
-    /**
-     * Commons Logging instance.
-    */
-    private Log log = LogSource.getInstance(this.getClass().getName());
 
 
     private static final String SQLEXCEPTION_GETCONNECTION =
@@ -219,6 +214,12 @@ public class GenericDataSource implements DataSource {
      * The JDBC driver that we use as a connection factory.
      */
     protected Driver driver = null;
+
+
+    /**
+     * Commons Logging instance.
+     */
+    protected Log log = LogFactory.getLog(this.getClass());
 
 
     /**

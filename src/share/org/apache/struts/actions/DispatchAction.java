@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.4 2002/02/26 03:38:57 dwinterfeldt Exp $
- * $Revision: 1.4 $
- * $Date: 2002/02/26 03:38:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.5 2002/03/09 22:26:35 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/03/09 22:26:35 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogSource;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -130,7 +130,7 @@ import org.apache.struts.util.MessageResources;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.4 $ $Date: 2002/02/26 03:38:57 $
+ * @version $Revision: 1.5 $ $Date: 2002/03/09 22:26:35 $
  */
 
 public abstract class DispatchAction extends Action {
@@ -138,15 +138,17 @@ public abstract class DispatchAction extends Action {
 
     // ----------------------------------------------------- Instance Variables
 
-    /**
-     * Commons Logging instance.
-    */
-    private Log log = LogSource.getInstance(this.getClass().getName());
 
     /**
      * The Class instance of this <code>DispatchAction</code> class.
      */
     protected Class clazz = this.getClass();
+
+
+    /**
+     * Commons Logging instance.
+     */
+    protected Log log = LogFactory.getLog(this.getClass());
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.4 2002/02/26 03:38:56 dwinterfeldt Exp $
- * $Revision: 1.4 $
- * $Date: 2002/02/26 03:38:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.5 2002/03/09 22:26:35 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/03/09 22:26:35 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.collections.FastHashMap;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogSource;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ControllerConfig;
@@ -94,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  * interested in changing.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/02/26 03:38:56 $
+ * @version $Revision: 1.5 $ $Date: 2002/03/09 22:26:35 $
  * @since Struts 1.1
  */
 
@@ -122,10 +122,6 @@ public class RequestProcessor {
 
     // ----------------------------------------------------- Instance Variables
 
-    /**
-     * Commons Logging instance.
-    */
-    private Log log = LogSource.getInstance(this.getClass().getName());
 
     /**
      * The set of Action instances that have been created and initialized,
@@ -140,6 +136,12 @@ public class RequestProcessor {
     protected ApplicationConfig appConfig = null;
 
 
+    /**
+     * Commons Logging instance.
+     */
+    protected Log log = LogFactory.getLog(this.getClass());
+
+    
     /**
      * The controller servlet we are associated with.
      */

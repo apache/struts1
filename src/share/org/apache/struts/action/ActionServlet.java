@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.94 2002/03/04 05:38:23 martinc Exp $
- * $Revision: 1.94 $
- * $Date: 2002/03/04 05:38:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.95 2002/03/09 22:26:35 craigmcc Exp $
+ * $Revision: 1.95 $
+ * $Date: 2002/03/09 22:26:35 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.commons.collections.FastHashMap;
 import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.Rule;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogSource;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ConfigRuleSet;
@@ -269,7 +269,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.94 $ $Date: 2002/03/04 05:38:23 $
+ * @version $Revision: 1.95 $ $Date: 2002/03/09 22:26:35 $
  */
 
 public class ActionServlet
@@ -278,11 +278,7 @@ public class ActionServlet
 
     // ----------------------------------------------------- Instance Variables
 
-    /**
-     * Commons Logging instance.
-    */
-    private Log log = LogSource.getInstance(this.getClass().getName());
-    
+
     /**
      * The context-relative path to our configuration resource for the
      * default sub-application.
@@ -329,6 +325,12 @@ public class ActionServlet
     protected String internalName = "org.apache.struts.action.ActionResources";
 
 
+    /**
+     * Commons Logging instance.
+     */
+    protected Log log = LogFactory.getLog(this.getClass());
+
+    
     /**
      * The <code>RequestProcessor</code> instance we will use to process
      * all incoming requests.

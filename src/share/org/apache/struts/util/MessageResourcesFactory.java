@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResourcesFactory.java,v 1.5 2002/02/26 03:38:57 dwinterfeldt Exp $
- * $Revision: 1.5 $
- * $Date: 2002/02/26 03:38:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResourcesFactory.java,v 1.6 2002/03/09 22:26:35 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/03/09 22:26:35 $
  *
  * ====================================================================
  * 
@@ -65,7 +65,7 @@ package org.apache.struts.util;
 
 import java.io.Serializable;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogSource;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -83,7 +83,7 @@ import org.apache.commons.logging.LogSource;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/02/26 03:38:57 $
+ * @version $Revision: 1.6 $ $Date: 2002/03/09 22:26:35 $
  */
 
 public abstract class MessageResourcesFactory implements Serializable {
@@ -121,16 +121,18 @@ public abstract class MessageResourcesFactory implements Serializable {
 
     // ------------------------------------------------------ Static Properties
 
-    /**
-     * Commons Logging instance.
-    */
-    private static Log LOG = LogSource.getInstance(MessageResourcesFactory.class.getName());
 
     /**
      * The Java class to be used for
      * <code>MessageResourcesFactory</code> instances.
      */
     protected static transient Class clazz = null;
+
+
+    /**
+     * Commons Logging instance.
+     */
+    private static Log LOG = LogFactory.getLog(MessageResourcesFactory.class);
 
 
     /**

@@ -11,7 +11,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogSource;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionMapping;
@@ -27,8 +27,8 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
 
     /**
      * Commons Logging instance.
-    */
-    private Log log = LogSource.getInstance(this.getClass().getName());
+     */
+    protected Log log = LogFactory.getLog(this.getClass());
     
     /**
      * The ActionServlet instance used for this class

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.31 2002/03/06 19:39:08 mschachter Exp $
- * $Revision: 1.31 $
- * $Date: 2002/03/06 19:39:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.32 2002/03/09 22:26:35 craigmcc Exp $
+ * $Revision: 1.32 $
+ * $Date: 2002/03/09 22:26:35 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogSource;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
@@ -110,7 +110,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.31 $ $Date: 2002/03/06 19:39:08 $
+ * @version $Revision: 1.32 $ $Date: 2002/03/09 22:26:35 $
  */
 
 public class RequestUtils {
@@ -118,10 +118,12 @@ public class RequestUtils {
 
     // ------------------------------------------------------- Static Variables
 
+
     /**
      * Commons Logging instance.
-    */
-    private static Log LOG = LogSource.getInstance(RequestUtils.class.getName());
+     */
+    protected static Log LOG = LogFactory.getLog(RequestUtils.class);
+
 
     /**
      * The default Locale for our server.
