@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.42 2003/01/05 00:40:04 martinc Exp $
- * $Revision: 1.42 $
- * $Date: 2003/01/05 00:40:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.43 2003/01/28 05:18:03 dgraham Exp $
+ * $Revision: 1.43 $
+ * $Date: 2003/01/28 05:18:03 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,6 +62,7 @@
 package org.apache.struts.taglib.html;
 
 import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -69,6 +70,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
+
+import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
@@ -77,7 +80,6 @@ import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
-import org.apache.struts.Globals;
 
 /**
  * Custom tag that represents an input form, associated with a bean whose
@@ -86,7 +88,7 @@ import org.apache.struts.Globals;
  * @author Craig R. McClanahan
  * @author Martin Cooper
  * @author James Turner
- * @version $Revision: 1.42 $ $Date: 2003/01/05 00:40:04 $
+ * @version $Revision: 1.43 $ $Date: 2003/01/28 05:18:03 $
  */
 
 public class FormTag extends TagSupport {
@@ -555,7 +557,11 @@ public class FormTag extends TagSupport {
                 results.append(Constants.TOKEN_KEY);
                 results.append("\" value=\"");
                 results.append(token);
-                results.append("\">");
+                if (this.isXhtml()) {
+                    results.append("\" />");
+                } else {
+                    results.append("\">");
+                }
             }
         }
 
