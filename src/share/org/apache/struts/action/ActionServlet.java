@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.10 2000/06/20 20:05:58 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2000/06/20 20:05:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.11 2000/06/21 19:58:22 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2000/06/21 19:58:22 $
  *
  * ====================================================================
  *
@@ -147,14 +147,20 @@ import org.xml.sax.SAXException;
  *     containing our configuration information.  [/WEB-INF/action.xml]
  * <li><strong>debug</strong> - The debugging detail level for this
  *     servlet, which controls how much information is logged.  [0]
+ * <li><strong>digester</strong> - The debugging detail level for the Digester
+ *     we utilize in <code>initMapping()</code>, which logs to System.out
+ *     instead of the servlet log.  [0]
  * <li><strong>forward</strong> - The Java class name of the ActionForward
  *     implementation to use [org.apache.struts.action.ActionForward]
  * <li><strong>mapping</strong> - The Java class name of the ActionMapping
  *     implementation to use [org.apache.struts.action.ActionMappingBase]
+ * <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
+ *     to every response intended to defeat browser caching of any response we
+ *     generate or forward to.  [false]
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2000/06/20 20:05:58 $
+ * @version $Revision: 1.11 $ $Date: 2000/06/21 19:58:22 $
  */
 
 public class ActionServlet
@@ -168,6 +174,18 @@ public class ActionServlet
      * The resources object for our application resources (if any).
      */
     protected MessageResources application = null;
+
+
+    /**
+     * The context-relative path to our configuration resource.
+     */
+    protected String config = "/WEB-INF/action.xml";
+
+
+    /**
+     * The debugging detail level for this servlet.
+     */
+    protected int debug = 0;
 
 
     /**
@@ -197,18 +215,6 @@ public class ActionServlet
 
 
     /**
-     * The context-relative path to our configuration resource.
-     */
-    protected String config = "/WEB-INF/action.xml";
-
-
-    /**
-     * The debugging detail level for this servlet.
-     */
-    protected int debug = 0;
-
-
-    /**
      * The Java class name of our ActionMapping implementation class.
      */
     protected String mappingClass =
@@ -219,6 +225,12 @@ public class ActionServlet
      * The configured mappings for this web application, keyed by path.
      */
     protected Hashtable mappings = new Hashtable();
+
+
+    /**
+     * Include the no-caching headers in our response?
+     */
+    protected boolean nocache = false;
 
 
     // ---------------------------------------------------- HttpServlet Methods
@@ -258,6 +270,7 @@ public class ActionServlet
 	    throw new UnavailableException
 		(internal.getMessage("configIO", config));
 	}
+	initOther();
 
     }
 
@@ -443,10 +456,13 @@ public class ActionServlet
 	    return;
 	if (debug >= 1)
 	    log(internal.getMessage("applicationLoading", value));
-	application = MessageResources.getMessageResources(value);
-	if (application == null)
+	try {
+	    application = MessageResources.getMessageResources(value);
+	} catch (MissingResourceException e) {
+	    log(internal.getMessage("applicationResources", value), e);
 	    throw new UnavailableException
 		(internal.getMessage("applicationResources", value));
+	}
 	getServletContext().setAttribute(Action.MESSAGES_KEY, application);
 
     }
@@ -475,10 +491,15 @@ public class ActionServlet
      */
     protected void initInternal() throws ServletException {
 
-	internal = MessageResources.getMessageResources(internalName);
-	if (internal == null)
+	try {
+	    internal = MessageResources.getMessageResources(internalName);
+	} catch (MissingResourceException e) {
+	    log("Cannot load internal resources from '" + internalName + "'",
+		e);
 	    throw new UnavailableException
 		("Cannot load internal resources from '" + internalName + "'");
+	}
+
     }
 
 
@@ -491,6 +512,15 @@ public class ActionServlet
     protected void initMapping() throws IOException, ServletException {
 
 	String value = null;
+
+	// Initialize the debugging detail level we will use
+	int detail;
+	try {
+	    value = getServletConfig().getInitParameter("digester");
+	    detail = Integer.parseInt(value);
+	} catch (Throwable t) {
+	    detail = 0;
+	}
 
 	// Initialize the name of our ActionForward implementation class
 	value = getServletConfig().getInitParameter("forward");
@@ -518,19 +548,20 @@ public class ActionServlet
 	// Build a digester to process our configuration resource
 	Digester digester = new Digester();
 	digester.push(this);
-	digester.setDebug(debug);
+	digester.setDebug(detail);
 	digester.setValidating(false);
-	digester.addObjectCreate("action-mappings/action", mappingClass);
+	digester.addObjectCreate("action-mappings/action", mappingClass,
+				 "className");
 	digester.addSetProperties("action-mappings/action");
 	digester.addSetNext("action-mappings/action", "addMapping",
 			    "org.apache.struts.action.ActionMapping");
 	digester.addObjectCreate("action-mappings/action/forward",
-				 forwardClass);
+				 forwardClass, "className");
 	digester.addSetProperties("action-mappings/action/forward");
 	digester.addSetNext("action-mappings/action/forward", "addForward",
 			    "org.apache.struts.action.ActionForward");
 	digester.addObjectCreate("action-mappings/forward",
-				 forwardClass);
+				 forwardClass, "className");
 	digester.addSetProperties("action-mappings/forward");
 	digester.addSetNext("action-mappings/forward", "addForward",
 			    "org.apache.struts.action.ActionForward");
@@ -543,6 +574,22 @@ public class ActionServlet
 	    throw new ServletException
 		(internal.getMessage("configParse", config), e);
 	}
+
+    }
+
+
+    /**
+     * Initialize other configuration parameters that have not yet
+     * been processed.
+     *
+     * @exception ServletException if we cannot initialize these resources
+     */
+    protected void initOther() throws ServletException {
+
+	String value = getServletConfig().getInitParameter("nocache");
+	if ("true".equalsIgnoreCase(value) ||
+	    "yes".equalsIgnoreCase(value))
+	    nocache = true;
 
     }
 
@@ -572,6 +619,9 @@ public class ActionServlet
 	}
 	if (debug >= 1)
 	    log("Processing a " + request.getMethod() + " for " + path);
+
+	// Set the no-caching headers if requested
+	processNoCache(response);
 
 	// Look up the corresponding mapping
 	ActionMapping mapping = processMapping(path);
@@ -697,6 +747,27 @@ public class ActionServlet
     protected ActionMapping processMapping(String path) {
 
 	return (findMapping(path));
+
+    }
+
+
+    /**
+     * Render the HTTP headers to defeat browser caching if requested.
+     *
+     * @param response The servlet response we are creating
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     */
+    protected void processNoCache(HttpServletResponse response)
+	throws IOException, ServletException {
+
+	if (!nocache)
+	    return;
+
+	response.setHeader("Pragma", "No-cache");
+	response.setHeader("Cache-Control", "no-cache");
+	response.setDateHeader("Expires", 1);
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/DatabaseServlet.java,v 1.1 2000/05/31 22:28:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:14 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/DatabaseServlet.java,v 1.2 2000/06/21 19:58:20 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/21 19:58:20 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.util.MessageResources;
  * Demonstration Application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:14 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/21 19:58:20 $
  */
 
 public final class DatabaseServlet
@@ -98,19 +98,6 @@ public final class DatabaseServlet
 
 
     // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * The resources object for our application resources (if any).
-     */
-    private MessageResources application = null;
-
-
-    /**
-     * The Java base name of our application resources (if any).
-     */
-    private String applicationName =
-      "org.apache.struts.example.ApplicationResources";
 
 
     /**
@@ -162,9 +149,6 @@ public final class DatabaseServlet
      * persistent storage.  The following servlet initialization parameters
      * are processed, with default values in square brackets:
      * <ul>
-     * <li><strong>application</strong> - Java class name of the application
-     *     resources bundle base class.
-     *     [org.apache.struts.example.ApplicationResources].
      * <li><strong>debug</strong> - The debugging detail level for this
      *     servlet, which controls how much information is logged.  [0]
      * <li><strong>pathname</strong> - Pathname to our persistent storage
@@ -177,9 +161,6 @@ public final class DatabaseServlet
 
 	// Process our servlet initialization parameters
 	String value;
-	value = getServletConfig().getInitParameter("application");
-	if (value != null)
-	    applicationName = value;
 	value = getServletConfig().getInitParameter("debug");
 	try {
 	    debug = Integer.parseInt(value);
@@ -189,18 +170,6 @@ public final class DatabaseServlet
 	if (debug >= 1)
 	    log("Initializing database servlet");
 
-	// Load the application resource bundle (if any)
-	if (applicationName != null) {
-	    try {
-		if (debug >= 1)
-		    log("Loading application resources from bundle " + applicationName);
-		application = new MessageResources(applicationName);
-	    } catch (MissingResourceException e) {
-		throw new UnavailableException
-		    ("Cannot load application resources from " + applicationName);
-	    }
-	}
-
 	// Load our database from persistent storage
 	try {
 	    load();
@@ -209,7 +178,7 @@ public final class DatabaseServlet
 	} catch (Exception e) {
 	    log("Database load exception", e);
 	    throw new UnavailableException
-	        (application.getMessage("database.load", pathname));
+		("Cannot load database from '" + pathname + "'");
 	}
 
     }
@@ -265,16 +234,6 @@ public final class DatabaseServlet
     public int getDebug() {
 
 	return (this.debug);
-
-    }
-
-
-    /**
-     * Return the application resources for this web application, if any.
-     */
-    public MessageResources getResources() {
-
-	return (application);
 
     }
 

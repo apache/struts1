@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.1 2000/05/31 22:28:11 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.2 2000/06/21 19:58:25 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/21 19:58:25 $
  *
  * ====================================================================
  * 
@@ -78,7 +78,7 @@ import java.util.ResourceBundle;
  * retrieval of messages for either the default Locale or a specified Locale.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:11 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/21 19:58:25 $
  */
 
 public final class MessageResources {
@@ -526,25 +526,23 @@ public final class MessageResources {
 
 
     /**
-     * Return an instance of MessageResources for the specified base name
-     * if possible; otherwise, return <code>null</code>.
+     * Return an instance of MessageResources for the specified base name.
      *
      * @param base Base name of the ResourceBundles to be wrapped
+     *
+     * @exception MissingResourcesException if no default resources
+     *  can be loaded
      */
     public synchronized static MessageResources
-	getMessageResources(String base) {
+	getMessageResources(String base) throws MissingResourceException {
 
 	MessageResources messageResources =
 	    (MessageResources) cache.get(base);
 	if (messageResources != null)
 	    return (messageResources);
-	try {
-	    messageResources = new MessageResources(base);
-	    cache.put(base, messageResources);
-	    return (messageResources);
-	} catch (MissingResourceException e) {
-	    return (null);
-	}
+	messageResources = new MessageResources(base);
+	cache.put(base, messageResources);
+	return (messageResources);
 
     }
 
