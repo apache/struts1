@@ -191,6 +191,7 @@
       <pathelement location="${commons-pool.jar}"/>
       <pathelement location="${commons-services.jar}"/>
       <pathelement location="${commons-validator.jar}"/>
+      <pathelement location="${regexp.jar}"/>
       <pathelement location="${jdbc20ext.jar}"/>
       <pathelement location="${servlet.jar}"/>
       <pathelement location="${xerces.jar}"/>
@@ -303,6 +304,7 @@
         <copy todir="${build.home}/library">
             <fileset dir="${conf.share.dir}" includes="*.dtd"/>
             <fileset dir="${conf.share.dir}" includes="*.tld"/>
+            <fileset dir="${conf.share.dir}" includes="*.xml"/>
         </copy>
         <style basedir="${doc.dir}/userGuide"
             destdir="${build.home}/library"
@@ -364,6 +366,7 @@
             <fileset dir="${build.home}/library" includes="*.dtd"/>
             <fileset dir="${build.home}/library" includes="*.jar"/>
             <fileset dir="${build.home}/library" includes="*.tld"/>
+            <fileset dir="${build.home}/library" includes="*.xml"/>
         </copy>
     </target>
 
