@@ -57,8 +57,6 @@ lessEqual			c:if, c:when, EL
 lessThan				c:if, c:when, EL
 notEmpty				c:if, c:when, EL
 notEqual				c:if, c:when, EL
-notPresent			c:if, c:when, EL
-present				c:if, c:when, EL
 
 Html Tag Library Tags NOT Implemented in Struts-EL
 --------------------------------------------------
