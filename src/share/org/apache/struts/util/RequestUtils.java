@@ -801,6 +801,9 @@ public class RequestUtils {
 		//override prefix if supplied by forward
 		if(forward.getModule() != null) {
 			prefix = forward.getModule();
+            if ("/".equals(prefix)) {
+                prefix = "";
+            }    
 		}
 
 		// Handle a ForwardConfig marked as context relative
