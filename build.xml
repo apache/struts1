@@ -338,7 +338,7 @@
             destdir="${build.home}/documentation/api"
             classpath="${servlet.jar}:${jsp.jar}:${jdbc20ext.jar}"
             packagenames="org.apache.struts.*"
-            author="true"
+            author="false"
             private="true"
             use="true"
             version="true"
