@@ -305,6 +305,8 @@ public class ActionServlet extends HttpServlet {
             */
         }
 
+        PropertyUtils.clearDescriptors();
+
     }
 
 
