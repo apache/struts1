@@ -29,7 +29,7 @@ import org.apache.struts.config.ForwardConfig;
  * <code>ForwardConfig</code> (if any).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2004/03/08 02:50:53 $
+ * @version $Revision: 1.5 $ $Date: 2004/04/28 23:37:43 $
  */
 
 public abstract class AbstractPerformForward implements Command {
@@ -114,7 +114,7 @@ public abstract class AbstractPerformForward implements Command {
         ForwardConfig forwardConfig = (ForwardConfig)
             context.get(getForwardConfigKey());
         if (forwardConfig == null) {
-            return (true);
+            return (false);
         }
 
         // Perform the appropriate processing on this ActionForward
