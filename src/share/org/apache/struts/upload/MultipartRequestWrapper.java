@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartRequestWrapper.java,v 1.2 2002/07/06 04:44:07 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/06 04:44:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartRequestWrapper.java,v 1.3 2002/12/08 07:12:16 rleland Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/12/08 07:12:16 $
  *
  * ====================================================================
  *
@@ -62,7 +62,6 @@
 package org.apache.struts.upload;
 
 import java.util.Map;
-import java.util.List;
 import java.util.Locale;
 import java.util.Vector;
 import java.util.HashMap;
@@ -71,7 +70,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.BufferedReader;
 import java.security.Principal;
 import javax.servlet.ServletInputStream;

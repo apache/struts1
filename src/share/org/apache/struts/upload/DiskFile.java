@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskFile.java,v 1.3 2002/07/06 04:44:07 martinc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/07/06 04:44:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskFile.java,v 1.4 2002/12/08 07:12:16 rleland Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/12/08 07:12:16 $
  *
  * ====================================================================
  *
@@ -103,8 +103,8 @@ public class DiskFile implements FormFile {
      * can cause an OutOfMemoryError quite easily.  You should use 
      * {@link #getInputStream() getInputStream} and do your own thing.
      *
-     * @exception ServletException If the temp file no longer exists, or if there is
-     *                    some sort of IOException
+     * @exception FileNotFoundException If the temp file no longer exists
+     * @exception IOException if there is some sort of IO problem.
      * @see #getFileData(int)
      */    
     public byte[] getFileData() throws FileNotFoundException, IOException {

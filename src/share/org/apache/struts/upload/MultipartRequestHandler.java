@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartRequestHandler.java,v 1.4 2002/07/06 04:44:07 martinc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/07/06 04:44:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartRequestHandler.java,v 1.5 2002/12/08 07:12:16 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/12/08 07:12:16 $
  *
  * ====================================================================
  *
@@ -64,7 +64,6 @@ package org.apache.struts.upload;
 import java.util.Hashtable;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.upload.FormFile;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionMapping;
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.5 2002/10/13 00:52:11 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/10/13 00:52:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.6 2002/12/08 07:12:17 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/12/08 07:12:17 $
  *
  * ====================================================================
  *
@@ -68,7 +68,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyContent;
-import org.apache.struts.action.Action;
 
 
 /**
@@ -76,7 +75,7 @@ import org.apache.struts.action.Action;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/10/13 00:52:11 $
+ * @version $Revision: 1.6 $ $Date: 2002/12/08 07:12:17 $
  */
 
 public class ResponseUtils {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartIterator.java,v 1.21 2002/11/16 06:04:28 jmitchell Exp $
- * $Revision: 1.21 $
- * $Date: 2002/11/16 06:04:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartIterator.java,v 1.22 2002/12/08 07:12:16 rleland Exp $
+ * $Revision: 1.22 $
+ * $Date: 2002/12/08 07:12:16 $
  *
  * ====================================================================
  *
@@ -271,9 +271,8 @@ public class MultipartIterator
     /**
      * Retrieves the next element in the iterator if one exists.
      *
-     * @throws a ServletException if the post size exceeds the maximum file size
-     *         passed in the 3 argument constructor
-     * @throws an UnsupportedEncodingException if the "ISO-8859-1" encoding isn't found
+     * @throws IOException if the post size exceeds the maximum file size
+     *         passed in the 3 argument constructor or if the "ISO-8859-1" encoding isn't found
      * @return a {@link org.apache.struts.upload.MultipartElement MultipartElement}
      *         representing the next element in the request data
      *
@@ -438,7 +437,6 @@ public class MultipartIterator
 
     /**
      * Creates a file on disk from the current mulitpart element.
-     * @param fileName the name of the multipart file
      */
     protected File createLocalFile() throws IOException
     {

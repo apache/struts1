@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/ForwardAction.java,v 1.5 2002/10/18 22:29:06 ekbush Exp $
- * $Revision: 1.5 $
- * $Date: 2002/10/18 22:29:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/ForwardAction.java,v 1.6 2002/12/08 07:12:16 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/12/08 07:12:16 $
  *
  * ====================================================================
  *
@@ -63,7 +63,6 @@
 package org.apache.struts.actions;
 
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
@@ -97,7 +96,7 @@ import org.apache.struts.util.MessageResources;
  * <code>parameter</code> attribute.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/10/18 22:29:06 $
+ * @version $Revision: 1.6 $ $Date: 2002/12/08 07:12:16 $
  */
 
 public class ForwardAction extends Action {

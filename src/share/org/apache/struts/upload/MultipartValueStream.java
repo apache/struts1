@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartValueStream.java,v 1.3 2002/11/16 04:48:16 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/16 04:48:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartValueStream.java,v 1.4 2002/12/08 07:12:17 rleland Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/12/08 07:12:17 $
  *
  * ====================================================================
  *
@@ -236,7 +236,7 @@ class MultipartValueStream extends InputStream {
      * @return true if we are the last stream, ie. we encountered a final boundary
      * @return false otherwise
      *
-     * @exception ParameterException if the boundary has not yet been reached
+     * @exception ServletException if the boundary has not yet been reached
      */
 
     public boolean encounteredFinalBoundary() 
