@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.5 2002/10/20 18:58:55 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2002/10/20 18:58:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.6 2002/10/20 19:03:44 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/10/20 19:03:44 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import java.util.List;
  * @author Craig R. McClanahan
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.5 $ $Date: 2002/10/20 18:58:55 $
+ * @version $Revision: 1.6 $ $Date: 2002/10/20 19:03:44 $
  * @since Struts 1.1
  */
 
@@ -199,11 +199,18 @@ public class ActionMessages implements Serializable {
 	/**
 	 * Return <code>true</code> if there are no messages recorded
 	 * in this collection, or <code>false</code> otherwise.
+	 * @deprecated Use isEmpty instead.
 	 */
 	public boolean empty() {
-
-		return (messages.size() == 0);
-
+		return (this.isEmpty());
+	}
+	
+	/**
+	 * Return <code>true</code> if there are no messages recorded
+	 * in this collection, or <code>false</code> otherwise.
+	 */
+	public boolean isEmpty(){
+		return (messages.isEmpty());	
 	}
 
 	/**
