@@ -920,7 +920,7 @@
 
     <target name="test.tomcat.33" if="tomcat.home.33"
          depends="skip.tomcat.33,compile.library"
-     description="Run Cactus-based unit tests on Tomcat 3.2">
+     description="Run Cactus-based unit tests on Tomcat 3.3">
         <echo message="tomcat.home.33 = ${tomcat.home.33}"/>
         <ant antfile="build-tests.xml" target="test.tomcat.33"/>
     </target>
