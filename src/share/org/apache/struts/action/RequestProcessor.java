@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.30 2003/04/19 01:16:29 dgraham Exp $
- * $Revision: 1.30 $
- * $Date: 2003/04/19 01:16:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.31 2003/07/02 02:30:28 dgraham Exp $
+ * $Revision: 1.31 $
+ * $Date: 2003/07/02 02:30:28 $
  *
  * ====================================================================
  *
@@ -59,9 +59,7 @@
  *
  */
 
-
 package org.apache.struts.action;
-
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -87,7 +85,6 @@ import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
-
 /**
  * <p><strong>RequestProcessor</strong> contains the processing logic that
  * the Struts controller servlet performs as it receives each servlet request
@@ -97,10 +94,9 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.30 $ $Date: 2003/04/19 01:16:29 $
+ * @version $Revision: 1.31 $ $Date: 2003/07/02 02:30:28 $
  * @since Struts 1.1
  */
-
 public class RequestProcessor {
 
 
@@ -131,13 +127,6 @@ public class RequestProcessor {
      * keyed by the fully qualified Java class name of the Action class.
      */
     protected HashMap actions = new HashMap();
-
-
-    /**
-     * The ModuleConfiguration we are associated with.
-     * @deprecated use moduleConfig instead.
-     */
-    protected ModuleConfig appConfig = null;
 
     /**
      * The ModuleConfiguration we are associated with.
@@ -192,8 +181,8 @@ public class RequestProcessor {
         synchronized (actions) {
             actions.clear();
         }
+        
         this.servlet = servlet;
-        this.appConfig = moduleConfig;
         this.moduleConfig = moduleConfig;
 
     }
@@ -380,31 +369,6 @@ public class RequestProcessor {
             session.setAttribute(mapping.getAttribute(), instance);
         }
         return (instance);
-
-    }
-
-
-
-    /**
-     * Forward or redirect to the specified destination, by the specified
-     * mechanism.
-     *
-     * This method takes the old ActionForward object as parameter. User should
-     * use {@link #processForwardConfig(HttpServletRequest, HttpServletResponse,ForwardConfig)} when possible.
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are creating
-     * @param forward The ActionForward controlling where we go next
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
-     * @deprecated Use processForwardConfig() instead.
-     */
-    protected void processActionForward(HttpServletRequest request,
-                                        HttpServletResponse response,
-                                        ActionForward forward)
-        throws IOException, ServletException {
-
-        processForwardConfig( request, response, forward );
 
     }
 
@@ -887,9 +851,11 @@ public class RequestProcessor {
             log.debug(" User '" + request.getRemoteUser() +
                       "' does not have any required role, denying access");
         }
-        response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-                           getInternal().getMessage("notAuthorized",
-                                                    mapping.getPath()));
+        
+        response.sendError(
+            HttpServletResponse.SC_FORBIDDEN,
+            getInternal().getMessage("notAuthorized", mapping.getPath()));
+                                                    
         return (false);
 
     }
@@ -1101,20 +1067,6 @@ public class RequestProcessor {
 
 
     // -------------------------------------------------------- Support Methods
-
-
-    /**
-     * Return the debugging detail level that has been configured for our
-     * controller servlet.
-     *
-     * @deprecated Configure the logging detail level in your
-     *  underlying logging implementation
-     */
-    public int getDebug() {
-
-        return (servlet.getDebug());
-
-    }
 
 
     /**
