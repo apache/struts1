@@ -6,54 +6,17 @@
 -->
 
 <properties>
-    <title>Status - The Apache Struts Web Application Framework</title>
+    <title>Roadmap - The Apache Struts Web Application Framework</title>
     <author>Craig R. McClanahan</author>
     <author>Ted Husted</author>
     <author>Steve Byrne</author>
 </properties>
 
 <body>
-    <section name="Status" href="status">
 
-    <p class="version">
-      $Id: status.xml,v 1.60 2004/02/20 17:03:19 husted Exp $
-     </p>
+<chapter href="roadmap" name="Development Roadmap">
 
-    <p>
-        The <strong>stable production release</strong> is
-        <a href="http://www.apache.org/dist/jakarta/struts/binaries/">Struts 1.1.0</a> (29 June 2003).
-    </p>
-
-    <hr/>
-
-    <ul>
-    <li>
-      See the <a href="#roadmap">Development Roadmap</a> for an overview of future plans.
-    </li>
-    <li>
-        See the <a href="http://jakarta.apache.org/site/bugs.html">Apache Bug Database</a> for outstanding issues and
-        enhancement requests.
-      </li>
-    <li>
-        See the <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/">Struts Nightly Build</a> for the
-        latest development distribution.
-    </li>
-    <li>
-        See the <a href="http://jakarta.apache.org/site/mail.html">Struts-Dev list</a> for current development
-        communications.
-    </li>
-    <li>
-        See the <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">Struts CVS</a> for the current development
-        codebase.
-      </li>
-    <li>
-       See the <a href="releases.html">Release Guides</a> for our release process and coding conventions.
-    </li>
-    </ul>
-
-</section>
-
-<section href="roadmap" name="Development Roadmap">
+<section href="scope" name="Scope">
 
     <p>
     This document outlines some of changes we expect to
@@ -63,8 +26,8 @@
     <p>
     This document is provided for discussion purposes only.
     All releases and changes to the codebase are subject to
-    <a href="http://jakarta.apache.org/site/decisions.html">a vote</a> of the
-    <a href="volunteers.html#committers">Struts Committers</a>.
+    <a href="./bylaws.html">a vote</a> of the
+    <a href="volunteers.html#pmc">Struts PMC</a>.
     </p>
 
     </section>
@@ -483,15 +446,14 @@
 
 </section>
 
-<section>
-    <p class="right">
-    Next: <a href="releases.html">Release Guidelines</a>
-    </p>
-</section>
+    <section>
+      <p class="right">Next:
+      <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">CVS Repository</a></p>
+    </section>
 
 <section>
-    <p class="version">Website updated from CVS: 2004 FEB 20 by husted.</p>
-    <p class="version">Javadocs updated from CVS: 2004 FEB 20 by husted.</p>
+    <p class="version">Website updated from CVS: 2004 JUL 07 by husted.</p>
+    <p class="version">Javadocs updated from CVS: 2004 JUL 07 by husted.</p>
 </section>
-
+</chapter>
 </body></document>
