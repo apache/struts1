@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestBaseTag.java,v 1.11 2004/03/14 06:23:41 sraeburn Exp $
  * $Revision: 1.11 $
- * $Date: 2004/03/14 06:23:41 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -22,8 +22,8 @@ package org.apache.struts.taglib.html;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.apache.cactus.JspTestCase;
-import org.apache.commons.lang.StringUtils;
+import org.apache.struts.taglib.TaglibTestBase;
+
 
 
 /**
@@ -31,7 +31,7 @@ import org.apache.commons.lang.StringUtils;
  * <code>org.apache.struts.taglib.html.BaseTag</code> class.
  *
  */
-public class TestBaseTag extends JspTestCase {
+public class TestBaseTag extends TaglibTestBase {
 
     /**
      * Defines the testcase name for JUnit.
@@ -65,13 +65,6 @@ public class TestBaseTag extends JspTestCase {
         pageContext.forward("/test/org/apache/struts/taglib/html/TestBaseTag.jsp");    
     }
     
-	private void formatAndTest(String compare, String output) {
-		//fix for introduced carriage return / line feeds
-		output = StringUtils.replace(output,"\r","");
-		output = StringUtils.replace(output,"\n","");
-		output = output.trim();
-	    assertEquals(compare, output);
-	}
     /*
      * Testing BaseTag.
      */
