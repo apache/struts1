@@ -5,6 +5,8 @@
     <author>Craig R. McClanahan</author>
     <author>Mike Schachter</author>
     <author>Ted Husted</author>
+    <author>Martin Cooper</author>
+    <author>Ed Burns</author>
     <title>The Struts User's Guide - Building View Components</title>
   </properties>
   
@@ -77,6 +79,13 @@
             the server itself is running in.</li>
       </ul>
         
+      <p>
+        Please note that the i18n support in Struts is currently limited to the
+        <b>presentation</b> of internationalized information to the user.
+        Support for various Locale specific <b>input methods</b> is left up
+        to the client device, which is usually a web browser.
+      </p>
+
       <p>
         For an internationalized application, follow the steps described in
         the Internationalization document in the JDK documentation bundle for your
@@ -204,7 +213,7 @@
 &lt;/title&gt;
 &lt;body bgcolor="white"&gt;
 &lt;html:errors/&gt;
-&lt;html:form action="/logon focus="username"&gt;
+&lt;html:form action="/logon" focus="username"&gt;
 &lt;table border="0" width="100%"&gt;
   &lt;tr&gt;
     &lt;th align="right"&gt;
@@ -279,6 +288,8 @@
               <code>&lt;form&gt;</code> element, based on the specified attributes.
               It also associates all of the fields within this form with a session
               scoped FormBean that is stored under the key <code>logonForm</code>.
+              The Struts developer provides the Java implementation of this form
+              bean, subclassing the Struts class <code>ActionForm</code>.
               This bean is used to provide initial values for all of the input
               fields that have names matching the property names of the bean.
               If an appropriate bean is not found, a new one will be created

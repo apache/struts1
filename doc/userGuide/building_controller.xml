@@ -5,6 +5,8 @@
     <author>Craig R. McClanahan</author>
     <author>Mike Schachter</author>
     <author>Ted Husted</author>
+    <author>Martin Cooper</author>
+    <author>Ed Burns</author>
     <title>The Struts User's Guide - Building Controller Components</title>
   </properties>
   
@@ -29,7 +31,8 @@
            extension of the <code>ActionMapping</code> class) that defines the class
            names and other information associated with each possible mapping.</li>
         <li>Write the action mapping configuration file (in XML) that is used
-            to configure the controller servlet.</li>
+            to configure the controller servlet. This file is usually named
+            <code>struts-config.xml</code>.</li>
         <li>Update the web application deployment descriptor file (in XML)
             for your application to include the necessary Struts components.</li>
         <li>Add the appropriate Struts components to your application.</li>
@@ -206,11 +209,13 @@ public ActionForward perform(ActionMapping mapping,
             for each form bean, which has the following important attributes:
             <ul>
               <li>
-                <b>name</b>: The name of the request or session level attribute that this form
-                bean will be stored as
+                <b>name</b>: A unique identifier for this bean, which will be used
+                to reference it in corresponding action mappings. Usually, this
+                is also the name of the request or session attribute under which
+                this form bean will be stored.
               </li>
               <li>
-                <b>type</b>: The fully-qualified Java classname of your form bean
+                <b>type</b>: The fully-qualified Java classname of your form bean.
               </li>
             </ul>
         </blockquote>
@@ -235,6 +240,13 @@ public ActionForward perform(ActionMapping mapping,
         
       </p>
         
+
+      <p>
+        For every &lt;form-bean&gt; tag in your <code>struts-config.xml</code>
+        file, you must have a corresponding Java class. The same holds true for
+        each &lt;action-mapping&gt; tag.
+      </p>
+
       <p>
         The <code>struts-config.xml</code> file from the example application includes
         the following mapping entry for the "log on" function, which we will use
