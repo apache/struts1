@@ -12,7 +12,6 @@ Class-Path:
   commons-collections.jar
   commons-digester.jar
   commons-logging.jar
-  commons-pool.jar
   commons-validator.jar
   jakarta-oro.jar
   struts-legacy.jar
