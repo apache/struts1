@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.154 2003/07/03 01:47:05 dgraham Exp $
- * $Revision: 1.154 $
- * $Date: 2003/07/03 01:47:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.155 2003/07/03 03:23:08 dgraham Exp $
+ * $Revision: 1.155 $
+ * $Date: 2003/07/03 03:23:08 $
  *
  * ====================================================================
  *
@@ -209,15 +209,6 @@ import org.xml.sax.SAXException;
  *     resources bundle base class.  [NONE]
  *     <em>DEPRECATED - Configure this using the "parameter" attribute
  *     of the &lt;message-resources&gt; element.</em></li>
- * <li><strong>bufferSize</strong> - The size of the input buffer used when
- *     processing file uploads.  [4096]
- *     <em>DEPRECATED - Configure this using the "bufferSize" attribute
- *     of the &lt;controller&gt; element.</em></li>
- * <li><strong>content</strong> - Default content type and character encoding
- *     to be set on each response; may be overridden by a forwarded-to
- *     servlet or JSP page.  [text/html]
- *     <em>DEPRECATED - Configure this using the "contentType" attribute
- *     of the &lt;controller&gt; element.</em></li>
  * <li><strong>factory</strong> - The Java class name of the
  *     <code>MessageResourcesFactory</code> used to create the application
  *     <code>MessageResources</code> object.
@@ -243,13 +234,6 @@ import org.xml.sax.SAXException;
  *     </ul>
  *     <em>DEPRECATED - Configure this using the "className" attribute of
  *     each &lt;forward&gt; element.</em></li>
- * <li><strong>locale</strong> - If set to <code>true</code>, and there is a
- *     user session, identify and store an appropriate
- *     <code>java.util.Locale</code> object (under the standard key
- *     identified by <code>Globals.LOCALE_KEY</code>) in the user's session
- *     if there is not a Locale object there already. [true]
- *     <em>DEPRECATED - Configure this using the "locale" attribute of
- *     the &lt;controller&gt; element.</em></li>
  * <li><strong>mapping</strong> - The Java class name of the ActionMapping
  *     implementation to use [org.apache.struts.action.ActionMapping].
  *     Two convenient classes you may wish to use are:
@@ -265,41 +249,19 @@ import org.xml.sax.SAXException;
  *     <em>DEPRECATED - Configure this using the "className" attribute of
  *     each &lt;action&gt; element, or globally for a module by using the
  *     "type" attribute of the &lt;action-mappings&gt; element.</em></li>
- * <li><strong>maxFileSize</strong> - The maximum size (in bytes) of a file
- *     to be accepted as a file upload.  Can be expressed as a number followed
- *     by a "K" "M", or "G", which are interpreted to mean kilobytes,
- *     megabytes, or gigabytes, respectively.  [250M]
- *     <em>DEPRECATED - Configure this using the "maxFileSize" attribute of
- *     the &lt;controller&gt; element.</em></li>
- * <li><strong>multipartClass</strong> - The fully qualified name of the
- *     MultipartRequestHandler implementation class to be used for processing
- *     file uploads. If set to <code>none</code>, disables Struts multipart
- *     request handling.  [org.apache.struts.upload.CommonsMultipartRequestHandler]
- *     <em>DEPRECATED - Configure this using the "multipartClass" attribute of
- *     the &lt;controller&gt; element.</em></li>
- * <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
- *     to every response intended to defeat browser caching of any response we
- *     generate or forward to.  [false]
- *     <em>DEPRECATED - Configure this using the "nocache" attribute of
- *     the &lt;controller&gt; element.</em></li>
  * <li><strong>null</strong> - If set to <code>true</code>, set our application
  *     resources to return <code>null</code> if an unknown message key is used.
  *     Otherwise, an error message including the offending message key will
  *     be returned.  [true]
  *     <em>DEPRECATED - Configure this using the "null" attribute of
  *     the &lt;message-resources&gt; element.</em></li>
- * <li><strong>tempDir</strong> - The temporary working directory to use when
- *     processing file uploads.  [The working directory provided to this web
- *     application as a servlet context attribute]
- *     <em>DEPRECATED - Configure this using the "tempDir" attribute of
- *     the &lt;controller&gt; element.</em></li>
  * </ul>
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.154 $ $Date: 2003/07/03 01:47:05 $
+ * @version $Revision: 1.155 $ $Date: 2003/07/03 03:23:08 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -771,7 +733,6 @@ public class ActionServlet extends HttpServlet {
         // Special handling for the default module (for
         // backwards compatibility only, will be removed later)
         if (prefix.length() < 1) {
-            defaultControllerConfig(config);
             defaultMessageResourcesConfig(config);
             defaultFormBeansConfig(config);
             defaultForwardsConfig(config);
@@ -1217,69 +1178,6 @@ public class ActionServlet extends HttpServlet {
 
 
     // -------------------------------------------------------- Private Methods
-
-
-    /**
-     * Perform backwards-compatible configuration of the default module's
-     * controller configuration from servlet initialization parameters (as
-     * were used in Struts 1.0).
-     *
-     * @param config The ModuleConfig object for the default module
-     *
-     * @since Struts 1.1
-     * @deprecated Will be removed in a release after Struts 1.1.
-     */
-    private void defaultControllerConfig(ModuleConfig config) {
-
-        String value = null;
-        ControllerConfig cc = config.getControllerConfig();
-        
-        value = getServletConfig().getInitParameter("bufferSize");
-        if (value != null) {
-            cc.setBufferSize(Integer.parseInt(value));
-        }
-        
-        value = getServletConfig().getInitParameter("content");
-        if (value != null) {
-            cc.setContentType(value);
-        }
-        
-        value = getServletConfig().getInitParameter("locale");        
-        // must check for null here 
-        if (value != null) {
-            if ("true".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value)) {
-                cc.setLocale(true);
-            } else {
-                cc.setLocale(false);
-            }
-        } 
-        
-        value = getServletConfig().getInitParameter("maxFileSize");
-        if (value != null) {
-            cc.setMaxFileSize(value);
-        }
-        
-        value = getServletConfig().getInitParameter("nocache");
-        if (value != null) {
-            if ("true".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value)) {
-                cc.setNocache(true);
-            } else {
-                cc.setNocache(false);
-            }
-        }
-        
-        value = getServletConfig().getInitParameter("multipartClass");
-        if (value != null) {
-            cc.setMultipartClass(value);
-        }
-        
-        value = getServletConfig().getInitParameter("tempDir");
-        if (value != null) {
-            cc.setTempDir(value);
-        }
-
-    }
-
 
     /**
      * Perform backwards-compatible configuration of an ActionFormBeans
