@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Struts">
+
+  <title>Struts</title>
+  <organizationLogo href="http://jakarta.apache.org/images/jakarta-logo-blue.gif">Jakarta</organizationLogo>
+
+  <body>
+  
+    <menu name="Struts">
+      <item name="Welcome"                    href="index.html"/>
+      <item name="Learning"                   href="learning.html"/>
+      <item name="Acquiring"                  href="acquiring.html"/>
+      <item name="Using"                      href="using.html"/>
+      <item name="Who We Are"                 href="volunteers.html"/>
+      <item name="Announcements"              href="announce.html"/>  
+    </menu>
+  
+    <menu name="Documentation">
+      <item name="User and Developer Guides"  href="userGuide/index.html"/>
+      <item name="Javadoc"                    href="apidocs/index.html"/>
+      <item name="FAQs and Howtos"            href="faqs/index.html"/>
+    </menu>
+    
+    <menu name="User Guide">
+      <item name="Table of Contents"          href="userGuide/index.html"/>
+      <item name="Preface"                    href="userGuide/preface.html"/>
+      <item name="Introduction"               href="userGuide/introduction.html"/>
+      <item name="Model Components"           href="userGuide/building_model.html"/>
+      <item name="View Components"            href="userGuide/building_view.html"/>
+      <item name="Controller Components"      href="userGuide/building_controller.html"/>
+      <item name="Configuration"              href="userGuide/configuration.html"/>
+      <item name="Release Notes"              href="userGuide/release-notes.html"/>
+      <item name="Installation"               href="userGuide/installation.html"/>
+    </menu>
+
+    <menu name="Developer Guides">
+      <item name="Bean Tags"                  href="userGuide/dev_bean.html"/>
+      <item name="HTML Tags"                  href="userGuide/dev_html.html"/>
+      <item name="Logic Tags"                 href="userGuide/dev_logic.html"/>
+      <item name="Nested Tags"                href="userGuide/dev_nested.html"/>
+      <item name="Tiles Tags"                 href="userGuide/dev_tiles.html"/>
+      <item name="Utilities"                  href="userGuide/dev_util.html"/>
+      <item name="Validator"                  href="userGuide/dev_validator.html"/>
+    </menu>    
+  
+    <menu name="Community">
+      <item name="Known Issues (Bugzilla)"    href="http://jakarta.apache.org/site/bugs.html"/>
+      <item name="Wiki Pages"                 href="http://wiki.apache.org/struts"/>
+      <item name="List Archive"               href="http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=42"/>
+      <item name="Resource Directory"         href="http://struts.sf.net/community/index.html"/>
+    </menu>
+
+    <menu name="Download">
+      <item name="Binaries"                   href="http://jakarta.apache.org/site/binindex.cgi"/>
+      <item name="Source Code"                href="http://jakarta.apache.org/site/sourceindex.cgi"/>
+    </menu>
+
+    <menu name="Development">
+    <!-- cvs-usage.html doesn't exist so I'm commenting this out
+      <item name="CVS Access"          href="cvs-usage.html"/>
+    -->  
+      <item name="Subversion Repository"             href="http://svn.apache.org/repos/asf/struts/core/trunk/"/>
+    <!-- Is there a Subversion equivalent? 
+      <item name="Subversion Changelog"              href="changelog-report.html"/>
+    -->  
+      <item name="File Activity"              href="file-activity-report.html"/>
+      <item name="Build Dependencies"         href="dependencies.html"/>
+      <item name="Release Guidelines"         href="releases.html"/>
+      <item name="Roadmap"                    href="status.html"/>
+    </menu>  
+  
+<!--  
+    <menu name="Struts">
+      <item name="Overview"                href="/index.html"/>
+      <item name="Community"               href="/community.html"/>
+      <item name="To Do List"              href="/tasks.html"/>
+      <item name="Resources"               href="/resources.html"/>
+      <item name="Legacy" href="/index.html" collapse="true">   
+	      <item name="Api 1.0" href="/api-1.0/org/apache/struts/package-summary.html" collapse="true"/>
+	      <item name="Api 1.1" href="/api-1.1/org/apache/struts/package-summary.html" collapse="true"/>
+	  </item>
+    </menu>
+-->
+    
+  </body>
+</project>

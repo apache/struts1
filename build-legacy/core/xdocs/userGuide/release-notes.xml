@@ -1,0 +1,364 @@
+<?xml version="1.0"?>
+<document url="release-notes.html">
+
+  <properties>
+    <title>Struts Release Notes (Nightly Build)</title>
+  </properties>
+
+  <body>
+
+  <section name="6.1 Release Notes" href="release_notes"/>
+  <section name="Beta Notes" href="beta">
+
+    <p>This section contains the release notes for
+    <strong>nightly build</strong> of the Struts Framework,
+    for changes that have taken place since
+    <a href="release-notes-1.1.html">Version 1.1 </a>
+    was released. For a complete list of changes since the last
+    production release, see the <a href="#Introduction">Introduction</a> </p>
+
+  </section>
+
+<section name="Beta Fixes" href="beta.Changes">
+
+  <p>
+  <strong>ApplicationConfig:</strong> In Struts 1.2 was removed.
+  </p>
+
+
+</section>
+
+  <section name="Introduction" href="Introduction">
+
+    <p>The remainder of this document contains the release notes for
+    <strong>nightly build</strong> of the Struts Framework,
+    and covers changes that have taken place since
+    <a href="release-notes-1.1.html">Version 1.1</a>
+    was released.  The following sections cover
+    <a href="#New">New Features</a> and <a href="#Changes">Changes</a>
+    to Struts.</p>
+
+  </section>
+
+
+  <section name="What's Included?" href="Included">
+
+    <p>The binary distribution of this release includes the following
+    files relevant to Struts:</p>
+    <ul>
+    <li><code>INSTALL</code> - Brief installation instructions.  See
+        the <code>Struts Documentation Application</code>, or online at
+        <a href="http://jakarta.apache.org/struts/">http://jakarta.apache.org/struts/</a>
+        for more information.</li>
+    <li><code>LICENSE</code> - The Apache Software Foundation license that
+        defines the terms under which you can use Struts (and other software
+        licensed by Apache).</li>
+    <li><code>README</code> - A brief introduction to Struts.</li>
+    <li><code>lib/</code> - Directory containing files you will need in
+        your own applications.  The individual files of interest are:
+        <ul>
+        <li><code>commons-*.jar</code> - Release packages from the
+            <a href="http://jakarta.apache.org/commons/">Jakarta Commons
+            Project</a> that Struts relies on.  You are welcome to use these
+            classes in your own applications.  These JAR files should be
+            copied into the <code>/WEB-INF/lib</code> directory of
+            your web application.</li>
+        <li><code>struts.jar</code> - JAR file that contains the compiled
+            Java classes of Struts.  You must
+            place this file in the <code>/WEB-INF/lib</code> directory of
+            your web application.</li>
+        <li><code>struts-xxxxx.tld</code> - The tag library descriptor files
+            for the Struts 1.1 tag libraries (bean, html, and logic).
+            You must place these files in the <code>/WEB-INF</code>
+            directory of your web application, and reference them with
+            appropriate <code>&lt;taglib&gt;</code> directives in your
+            web.xml file.</li>
+        <li><code>jdbc2_0-stdext.jar</code> - The JDBC 2.0 Optional Package
+            API classes (package <code>javax.sql</code>).  You will need to
+            include this file in the <code>/WEB-INF/lib</code> directory
+            of your application, if it is not already made visible to web
+            applications by your servlet container.</li>
+        <li><code>struts-config_1_2.dtd</code> - The Document Type Definition
+            (DTD) for the Struts 1.2 configuration file (which is typically named
+            <code>/WEB-INF/struts-config.xml</code>.  Your configuration file
+            will be validated against an internal copy of this DTD -- this
+            copy is available for reference purposes only.</li>
+        <li><code>struts-config_1_1.dtd</code> - The Document Type Definition
+            (DTD) for the Struts 1.1 configuration file (which is typically named
+            <code>/WEB-INF/struts-config.xml</code>.  Your configuration file
+            will be validated against an internal copy of this DTD -- this
+            copy is available for reference purposes only.</li>
+        <li><code>struts-config_1_0.dtd</code> - The Document Type Definition
+            (DTD) for the Struts 1.0 configuration file (which is typically named
+            <code>/WEB-INF/struts-config.xml</code>.  Your configuration file
+            will be validated against an internal copy of this DTD -- this
+            copy is available for reference purposes only.</li>
+        <li><code>web-app_2_2.dtd</code> - The Document Type Definition (DTD)
+            for web.xml files conforming to the Servlet 2.2 specification.
+            This copy is for reference purposes only.</li>
+        <li><code>web-app_2_3.dtd</code> - The Document Type Definition (DTD)
+            for web.xml files conforming to the Servlet 2.3 specification.
+            This copy is for reference purposes only.</li>
+        </ul></li>
+    <li><code>webapps/</code> - Web Application Archive (WAR) files for the
+        web applications that are included with Struts.</li>
+    </ul>
+
+    <p>The following Jakarta Commons libraries are included with this release
+    of Struts:</p>
+    <ul>
+    <li>Commons BeanUtils 1.6.1</li>
+    <li>Commons Collections 2.1</li>
+    <li>Commons Digester 1.5</li>
+    <li>Commons FileUpload 1.0</li>
+    <li>Commons Lang 2.0</li>
+    <li>Commons Logging 1.0.3</li>
+    <li>Commons Validator 1.1.0</li>
+    </ul>
+
+  </section>
+
+  <section name="What's New?" href="New">
+
+    <p>Following are highlights of the new features. In the next section, we
+    provide links to the JavaDocs for the affected classes.</p>
+
+    <p><strong>New Configuration DTD</strong></p>
+    <p> The Struts Configuration 1.1 DTD has been deprecated in favor of the
+    <code><a href="http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">struts-config_1_2.dtd</a></code>.
+    In the Struts 1.2 release, existing Struts configuration files can be
+    loaded using either DTD version. The new DTD adds two new elements &lt;display-name&gt;
+    and &lt;description&gt; to the struts-config element.
+    There are for use by struts config file tools and document generation. 
+    </p>
+
+    <p><strong>New Dependencies on Commons packages</strong></p>
+    <p>The resource component of Struts 1.1 has been found to be useful in
+    general Java development (and not just useful for building Struts-based
+    web applications), and have been migrated into the
+    <a href="http://jakarta.apache.org/commons/">Jakarta Commons Project</a>.
+    As a result, the current development version of Struts has been modified
+    to rely on this Commons package, rather than the
+    Struts internal version.  In nearly every case, this involved changing
+    only the <code>import</code> statements at the top of your classes.  Any
+    applications that utilize these classes will need to be modified in the
+    same way.  </p>
+    <p>The following Commons packages contain the replacements for the
+    corresponding Struts 1.1 classes:</p>
+    <ul>
+    <li><strong>Resources Package</strong>
+        [<a href="http://jakarta.apache.org/commons/resources.html"><code>org.apache.commons.resources</code></a>] -
+        <code>org.apache.struts.utils.MessageResources</code></li>
+    </ul>
+
+    <p><strong>NOTE! XML Parser Prerequisite Updated</strong></p>
+
+    <p>Struts now depends on an XML parser that conforms to the JAXP/1.1
+    (rather than JAXP/1.0) APIs. Parsers known to work include the JAXP/1.1
+    reference implementation, and Xerces 1.3.1.</p>
+
+    <p><strong>SOURCE DEVELOPERS NOTE! Ant Prerequisite Updated</strong></p>
+    <p>To build Struts from source Ant 1.5.2 or later is now required. This
+    does not affect developers that use Struts from the binary distribution.</p>
+
+
+    <p>The source for these components is available in the Struts source
+    distribution. Binary distributions may also be made available with the Struts
+    download area. As optional components, these products have their own
+    release cycles.</p>
+
+    <p><strong>Action Package Additions</strong></p>
+    <p>The following new features have been added to the basic controller
+    framework [<code>org.apache.struts.action</code>]:</p>
+
+    <p><strong>Actions Package Additions</strong></p>
+    <p>The following new features have been added to the adapters between the
+        incoming HTTP request and the corresponding business logic
+    framework [<code>org.apache.struts.actions</code>]:</p>
+    <ul>
+      <li>The DispatchAction now provides default cancel handler that can be overridden.
+          It also also possible to specify the default handler name.</li>
+      <li>The LookupDispatchAction now provides default cancel handler that can be overridden.
+          It also also possible to specify the default handler name.</li>
+    </ul>
+
+    <p><strong>Util Package Additions</strong></p>
+    <p>The following new features have been added to the utility classes
+    [<code>org.apache.struts.util</code>]:</p>
+
+    <p><strong>Validator Package Additions</strong></p>
+    <p>The following new features have been added to the validator classes
+    [<code>org.apache.struts.validator</code>]:</p>
+    <ul>
+       <li>The ValidatorPlugin:  It is now possible to force the client side
+       Javascript validation to check all constraints, instead of stopping
+       at the first error. By setting a new property, stopOnFirstError,
+       on the validator plug in tag to false. This is in the struts-config.xml as follow:
+       <pre>
+       &lt;plug-in className="org.apache.struts.validator.ValidatorPlugIn"&gt;
+         &lt;set-property property="pathnames"
+                 value="/WEB-INF/validation.xml,/WEB-INF/validator-rules.xml"/&gt;
+         &lt;set-property property="stopOnFirstError" value="true"/&gt;
+      &lt;/plug-in&gt;
+       </pre>
+        </li>
+        <li>validator-rules.xml[intRange]: IntRange now checks select-one and radio fields.
+            Example:
+            This allows populating combo boxes with valid choices plus one additional choice
+            with a caption something like  "Choose one" and a value 0f "-1".
+            Then when the user attempts to submit the form, you can look for the value of
+            "-1" and yell at them if they failed to pick something.
+
+
+           </li>
+
+    </ul>
+
+    <p><strong>HTML Taglib Package Additions</strong></p>
+    <p>The following new features have been added to the
+    <em>struts-html</em> custom tag library [<code>org.apache.struts.taglib.html</code>]:</p>
+
+    <p><strong>Logic Taglib Package Additions</strong></p>
+    <p>The following new features have been added to the
+    <em>struts-logic</em> custom tag library [<code>org.apache.struts.taglib.logic</code>]:</p>
+
+
+    <p><strong>Documentation Additions</strong></p>
+    <p>The following new features have been added to the Struts Documentation
+    application (and corresponding contents on the Struts web site):</p>
+
+  </section>
+
+  <section name="Operational Changes and Bug Fixes" href="Changes">
+
+    <p><strong>Struts Configuration Changes</strong></p>
+    <p>The following changes and bug fixes have occurred in the configuration
+    files related to Struts:</p>
+    <ul>
+        <li>Japanese resources updates for Struts, its example, upload, tiles-documentation.</li>
+    </ul>
+    <p><strong>Config Package</strong></p>
+
+    <p><strong>Action Package Changes</strong></p>
+    <p>The following changes and bug fixes have occurred in the basic
+    controller framework (package <code>org.apache.struts.action</code>):</p>
+
+    <p><strong>Upload Package Changes</strong></p>
+    <p>The following changes and bug fixes have occurred in the file upload
+    package (package <code>org.apache.struts.upload</code>):</p>
+    <ul>
+    <li>None.</li>
+    </ul>
+
+    <p><strong>Utility Package Changes</strong></p>
+    <p>The following changes and bug fixes have occurred in the utilities
+    (package <code>org.apache.struts.util</code>):</p>
+    <ul>
+    <li>RequestUtils: </li>
+    </ul>
+
+    <p><strong>Bean Taglib Package Changes</strong></p>
+    <p>The following changes and bug fixes have occurred in the
+    <em>struts-bean</em> custom tag library
+    [<code>org.apache.struts.taglib.bean</code>]:</p>
+
+    <p><strong>HTML Taglib Package Changes</strong></p>
+    <p>The following changes and bug fixes have occurred in the
+    <em>struts-html</em> custom tag library (package
+    <code>org.apache.struts.taglib.html</code>):</p>
+
+    <p><strong>Logic Taglib Package Changes</strong></p>
+    <p>The following changes and bug fixes have occurred in the
+    <em>struts-logic</em> custom tag library (package
+    <code>org.apache.struts.taglib.logic</code>):</p>
+    <ul>
+    <li>None.</li>
+    </ul>
+
+    <p><strong>Documentation Application Changes</strong></p>
+    <p>The following changes and bug fixes to the Struts Documentation
+    application (and corresponding contents on the Struts web site) have
+    occurred:</p>
+
+    <p><strong>MailReader Example Application Changes</strong></p>
+    <p>The following changes and bug fixes to the Struts MailReader Example Application
+    have occurred:</p>
+
+    <p><strong>Template Example Application Changes</strong></p>
+    <p>The following changes and bug fixes to the Struts Template Example
+    Application have occurred:</p>
+    <ul>
+    <li>Removed.</li>
+    </ul>
+
+    <p><strong>Exercise Taglib Example Application Changes</strong></p>
+    <p>The following changes and bug fixes to the Struts Exercise Taglib Example
+    Application have occurred:</p>
+
+  </section>
+
+  <section name="What's different?" href="diff">
+
+    <p>This section provides links to the Struts JavaDoc for any classes that have
+    been added or deprecated since the Struts 1.0 release.
+    </p>
+
+    <p><strong>Previously deprecated classes and packages removed in Struts 1.2</strong></p>
+    <ul>
+    <li>Removed:
+      <code>org.apache.struts.xxxx</code>
+    </li>
+    </ul>
+
+    <p><strong>Packages added in Struts 1.2</strong></p>
+
+
+    <p><strong>Classes added in Struts 1.2</strong></p>
+    <p>action</p>
+
+    <p>actions</p>
+
+    <p>taglib.html</p>
+
+    <p>taglib.logic</p>
+
+    <p>upload</p>
+
+    <p>util</p>
+    
+    <p><strong>Classes with members added in Struts 1.2</strong></p>
+    <p><a href="../api/org/apache/struts/action/ActionServlet.html">action.A</a><a href="../api/org/apache/struts/action/ActionServlet.html">ActionServlet</a></p>
+    <ul>
+      <li>initModuleConfigFactory()</li>
+      <li>methods created for backward-compatiblity only</li>
+    </ul>
+    <p><a href="../api/org/apache/struts/validator/ValidatorPlugin.html">validator.html</a></p>
+    <ul>
+      <li>isStopOnFirstError</li>
+      <li>setStopOnFirstError</li>
+    </ul>
+    <p><strong>Classes deprecated between Struts 1.1 and Struts 1.2</strong></p>
+    <p>action</p>
+    <ul>
+      <li><a href="../api/org/apache/struts/xxx/xxxx.html"> xxx</a></li>
+    </ul>
+    
+    <p><strong>Classes with members deprecated between Struts 1.1 and Struts 1.2</strong></p>
+    <p><a href="../api/org/apache/struts/xxxx/xxxx.html">class.method</a></p>
+
+  
+    <p><strong>Classes with members removed between Struts 1.1 and Struts 1.2</strong></p>
+    <p>validator-rules.xml, range() - use intRange() instead.</p>
+
+</section>
+
+<section>
+    <p class="right">
+    Next: <a href="installation.html">Installation</a>
+    </p>
+</section>
+
+
+    </body>
+
+</document>

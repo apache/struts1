@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <title></title>
+  </properties>
+
+  <meta name="keyword" content="jakarta, java"/>
+
+<body>
+
+<section name="Section 1">
+<p>
+This is section 1.
+</p>
+
+<table>
+<tr>
+    <td>This is a table</td><td>This is a table</td>
+</tr>
+<tr>
+    <td>This is a table</td><td>This is a table</td>
+</tr>
+</table>
+
+<ul>
+    <li>This is an unordered list.</li>
+</ul>
+
+</section>
+
+<section name="Section 2">
+<p>
+This is section 2.
+</p>
+
+<ol>
+    <li>This is an ordered list.</li>
+</ol>
+</section>
+
+<section name="Section 3">
+<p>
+This is section 3.
+</p>
+
+<source>
+    Anything within this tag is rendered as a "box"
+    with blue lines and <pre></pre> tags around it.
+</source>
+
+    <subsection name="Subsection of Section 3">
+    <p>
+        This is the subsection 3.
+    </p>
+
+    <source><![CDATA[      
+    <?xml version="1.0" encoding="ISO-8859-1" ?>
+    <!DOCTYPE struts-config PUBLIC
+              "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+              "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+    <struts-config>
+        <form-beans>
+            <form-bean
+                name="logonForm"
+                type="app.LogonForm"/>
+        </form-beans>
+        <action-mappings>
+            <action
+                path="/Welcome"
+                forward="/pages/Welcome.jsp"/>
+            <action
+                path="/Logon"
+                forward="/pages/Logon.jsp"/>
+            <action
+                path="/LogonSubmit"
+                type="app.LogonAction"
+                name="logonForm"
+                scope="request"
+                validate="true"
+                input="/Logon.do">
+                <forward
+                    name="success"
+                    path="/Welcome.do"/>
+                <forward
+                    name="failure"
+                    path="/Logon.do"/>
+            </action>
+            <action
+                path="/Logoff"
+                type="app.LogoffAction">
+                <forward
+                    name="success"
+                    path="/Welcome.do"/>
+            </action>
+        </action-mappings>
+        <message-resources parameter="resources.application"/>
+    </struts-config>
+    ]]></source>
+
+
+    </subsection>
+</section>
+
+<footer>
+    <a href="http://sourceforge.net/projects/ctecl">
+      <img src="http://sourceforge.net/sflogo.php?group_id=72748" border="0" alt="sf logo"/>
+    </a>
+</footer>
+
+</body>
+</document>

@@ -1,0 +1,90 @@
+<project default="jar:jar"
+  xmlns:j="jelly:core"
+  xmlns:ant="jelly:ant">
+
+  <preGoal name="dist">
+    <attainGoal name="jar:install"/>
+  </preGoal>
+  
+  <preGoal name="xdoc:jelly-transform">
+    <attainGoal name="html2xdoc"/>
+
+    <!-- 
+      Maven FAQ PlugIn 1.2 will allow multiple faqs
+      For now, we'll just generate them from xdocs    
+    <attainGoal name="faq"/>
+    -->
+  </preGoal>
+
+  <postGoal name="dist:prepare-bin-filesystem">
+
+    <!-- Copy Instructions and Readmes -->
+    <ant:copy todir="${maven.dist.bin.assembly.dir}">
+      <ant:fileset dir=".">
+        <ant:include name="README*"/>
+        <ant:include name="LICENSE*"/>
+        <ant:include name="STATUS*"/>
+        <ant:include name="INSTALL*"/>
+      </ant:fileset>
+    </ant:copy>
+
+    <!-- Copy configuration files -->
+    <j:set var="docsDest" value="${maven.docs.dest}"/>
+    <ant:copy todir="${maven.dist.bin.assembly.dir}/conf">
+      <ant:fileset dir="./conf/share">
+        <ant:include name="*.xml"/>
+        <ant:include name="*.dtd"/>
+      </ant:fileset>
+    </ant:copy>
+  </postGoal>
+
+
+  <postGoal name="dist:prepare-src-filesystem">
+    <!-- Copy Instructions and Readmes -->
+    <ant:copy todir="${maven.dist.src.assembly.dir}">
+      <ant:fileset dir=".">
+        <ant:include name="README*"/>
+        <ant:include name="LICENSE*"/>
+        <ant:include name="STATUS*"/>
+        <ant:include name="INSTALL*"/>
+      </ant:fileset>
+    </ant:copy>
+
+    <!-- Copy configuration files -->
+    <j:set var="docsDest" value="${maven.docs.dest}"/>
+    <ant:copy todir="${maven.dist.src.assembly.dir}/conf">
+      <ant:fileset dir="./conf/share">
+        <ant:include name="*.xml"/>
+        <ant:include name="*.dtd"/>
+      </ant:fileset>
+    </ant:copy>
+  </postGoal>
+
+
+    <!--
+        Prepare Cactus webapp with necessary config files.
+    -->
+    <postGoal name="war:webapp">
+      <j:set
+       var="webapp.root"
+       
+     value="${pom.getPluginContext('maven-war-plugin').getVariable('maven.war.webapp.dir')}" />
+        <ant:echo>Copying files to ${webapp.root}</ant:echo>
+        <ant:filter token="cactus.contextURL" value="${cactus.contextURL}"/>
+        <ant:copy todir="${webapp.root}/WEB-INF/classes" filtering="on">
+            <ant:fileset dir="conf/test" includes="*.properties"/>
+        </ant:copy>
+        <ant:copy todir="${webapp.root}" filtering="off">
+            <ant:fileset dir="web/test" includes="**/*.jsp"/>
+            <ant:fileset dir="web/test" includes="**/*.txt"/>
+        </ant:copy>
+        <ant:copy todir="${webapp.root}/WEB-INF" filtering="off">
+            <ant:fileset dir="${maven.build.dir}/classes/META-INF/tlds" includes="*.tld"/>
+        </ant:copy>
+        <ant:copy file="conf/test/struts-config.xml" todir="${webapp.root}/WEB-INF" />
+        <ant:copy file="conf/test/maven-web.xml" tofile="${webapp.root}/WEB-INF/web.xml" />
+    </postGoal>
+
+  
+
+</project>

@@ -1,0 +1,21 @@
+$Id$
+
+STRUTS
+======
+
+Introduction
+------------
+
+This subproject contains the source code for the "Struts" application support
+package, consisting of the following major components:
+
+- Controller servlet with action mapping technology, implementing the Model-
+  View-Controller (MVC) design pattern for web applications commonly called
+  "Model 2", with a servlet as the "front component".
+
+- Comprehensive custom tag library for building internationalized JSP pages
+  that have HTML forms which interact with JavaBeans that are managed
+  automatically by the controller servlet.
+
+For help with installing and using Struts, see the Struts User Guide.
+
