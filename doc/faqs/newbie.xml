@@ -48,6 +48,8 @@ Here are answers to the most common questions people ask when using Struts on th
 
     <li><a href="#link">Why does the &lt;html:link> tag URL-encode javascript and mailto links?"</a></li>
 
+    <li>Why can't I disable URL-encoding in the Struts taglibs?</li>
+
     <li>When is the best time to validate input?</li>
 
     <li>How can I avoid validating a form before data is entered?</li>

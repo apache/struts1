@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+
+<document url="./ssl.xml">
+
+<properties>
+
+<author>James Mitchell</author>
+
+<title>How to setup struts in Netbeans IDE - Apache Struts</title>
+
+</properties>
+
+<body>
+
+<chapter href="netbeans" name="How to setup struts in Netbeans IDE">
+	
+<section name="For working on the distribution itself">
+<ol>
+<li>
+ Create a new project (from the Project Manager window)
+</li>
+<li>
+ Download the struts source distribution (or use built-in cvs to get
+ the module)
+</li>
+<li>
+ Extract to a local drive (if on windoze, try not to have spaces in
+ the directory (such as C:\My Documents)
+</li>
+<li>
+ Mount the directory you unzipped to
+</li>
+<li>
+ Copy build.properties.sample to build.properties and customize to point
+ to where you keep those jars
+</li>
+<li>
+ Mount each of the source directories that you wish to work in
+ For me, I use:<br />
+ <code>
+    jakarta-struts/src/share<br />
+    jakarta-struts/src/example
+  </code>
+</li>
+<li>
+ Mount each jar referenced in the build.properties file<br />
+ <b>Note</b> - NetBeans has built in support for auto-mounting these if your
+ build.xml specifies the jars in the project.classpath, but
+ that's not the case for the default struts distribution.
+</li>
+</ol>
+</section>
+	
+<section name="For doing your own thing">
+<ol>
+<li>
+ Create a new project (from the Project Manager window)
+</li>
+<li>
+ Download (or build for yourself) the required jars<br />
+ (See the jakarta-struts-1.1-b2/webapps/struts-example.war)
+</li>
+<li>
+  Create a directory (I use a structure similar to how the webapp will exist)
+<pre>
+   +-/my-project
+     |
+     +-/WEB-INF
+       |
+       +-/classes
+       |
+       +-/lib
+       |
+       +-/src</pre>
+</li>
+<li>
+ Create a build.xml for your project (so ant can build and war it for you).
+ I recommend you use an existing file to get a jump start on development.
+ Actually, I recommend you re-use someone's entire existing project.  That
+ will surely get you ahead of the game.
+</li>
+<li>
+ Mount that directory<br />
+ <i>If you specified the build classpath and the jars are there, NetBeans 
+ will mount the jars for you automatically.</i>
+</li>
+<li>
+ Mount each of the source directories that you wish to work in
+ /myproject/WEB-INF/src
+</li>
+<li>
+ Always work in the node in #6 when modifying your java files.
+</li>
+</ol>
+<p>
+I'll also take this opportunity to tell you that I recommend using Eclipse.  I
+was a NetBeans advocate for the longest time, but a few weeks ago several
+discussion had prompted me to try out Eclipse, and I can say without a doubt,
+that it is much more mature an IDE than NetBeans.  And since they are both Open
+Source.....hey....why not?
+</p>
+<p>
+One definite advantage Eclipse has over NetBeans is that Eclipse is built using
+SWT (Standard Widget Toolkit).  That means that the IDE is written in Java, but
+the underlying framework uses native JNDI calls the OS API.....or, in other
+words......"its fast as Hell on windows".
+</p>
+<p>
+Anyone who has left NetBeans running in the background overnight on a laptop
+knows the pain of doing an Alt+Tab back to the IDE and seeing how Swing pulls
+its rather large A## up from the swap file....heh heh :)
+</p>
+<p>
+Hope that will help you get started.  I was planning to post a how-to for doing
+this and a few other tasks with NetBeans, Eclipse, and JBuilder.  I even have
+quite a few screenshots taken, but I just haven't finished it.
+</p>
+<p>
+Good Luck with it!!!
+</p>
+
+</section>
+
+</chapter></body></document>
