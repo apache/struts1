@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.3 2002/10/10 16:32:27 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/10 16:32:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.4 2002/11/16 04:46:05 jmitchell Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/11/16 04:46:05 $
  *
  * ====================================================================
  *
@@ -62,14 +62,12 @@
 
 package org.apache.struts.taglib.tiles;
 
-import org.apache.struts.taglib.tiles.util.TagUtils;
-import org.apache.struts.tiles.ComponentDefinition;
-import org.apache.struts.tiles.AttributeDefinition;
-import org.apache.struts.tiles.UntyppedAttribute;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import javax.servlet.jsp.JspException;
+
+import org.apache.struts.taglib.tiles.util.TagUtils;
+import org.apache.struts.tiles.AttributeDefinition;
+import org.apache.struts.tiles.ComponentDefinition;
+import org.apache.struts.tiles.UntyppedAttribute;
 
 /**
  * This is the tag handler for &lt;tiles:definition&gt;, which defines
@@ -77,7 +75,7 @@ import javax.servlet.jsp.JspException;
  * used in &lt;tiles:insert&gt.
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.3 $ $Date: 2002/10/10 16:32:27 $
+ * @version $Revision: 1.4 $ $Date: 2002/11/16 04:46:05 $
  */
 public class DefinitionTag extends DefinitionTagSupport implements PutTagParent, PutListTagParent
 {

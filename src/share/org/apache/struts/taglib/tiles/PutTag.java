@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.3 2002/07/26 16:18:28 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/07/26 16:18:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.4 2002/11/16 04:42:51 jmitchell Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/11/16 04:42:51 $
  *
  * ====================================================================
  *
@@ -62,20 +62,16 @@
 
 package org.apache.struts.taglib.tiles;
 
-import org.apache.struts.tiles.ComponentContext;
-import org.apache.struts.taglib.tiles.util.TagUtils;
-import org.apache.struts.tiles.*;
-
 import java.lang.reflect.InvocationTargetException;
-import java.lang.IllegalAccessException;
-import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts.taglib.tiles.util.TagUtils;
+import org.apache.struts.tiles.AttributeDefinition;
+import org.apache.struts.tiles.DefinitionNameAttribute;
+import org.apache.struts.tiles.DirectStringAttribute;
+import org.apache.struts.tiles.PathAttribute;
 
 
   /**

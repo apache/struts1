@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTag.java,v 1.5 2002/09/10 16:07:59 arron Exp $
- * $Revision: 1.5 $
- * $Date: 2002/09/10 16:07:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTag.java,v 1.6 2002/11/16 04:41:28 jmitchell Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/11/16 04:41:28 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -59,14 +59,16 @@
  */
 package org.apache.struts.taglib.nested.logic;
 
-import java.util.*;
-import javax.servlet.jsp.*;
-import javax.servlet.jsp.tagext.*;
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
-import org.apache.struts.taglib.nested.*;
-import org.apache.struts.taglib.html.FormTag;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.jsp.JspException;
+
 import org.apache.struts.taglib.logic.IterateTag;
+import org.apache.struts.taglib.nested.NestedNameSupport;
+import org.apache.struts.taglib.nested.NestedParentSupport;
+import org.apache.struts.taglib.nested.NestedPropertyHelper;
+import org.apache.struts.taglib.nested.NestedReference;
 
 /**
  * NestedIterateTag.
@@ -75,7 +77,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.5 $ $Date: 2002/09/10 16:07:59 $
+ * @version $Revision: 1.6 $ $Date: 2002/11/16 04:41:28 $
  */
 public class NestedIterateTag extends IterateTag implements NestedParentSupport, NestedNameSupport {
   

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartValueStream.java,v 1.2 2002/07/06 04:44:07 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/06 04:44:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartValueStream.java,v 1.3 2002/11/16 04:48:16 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/16 04:48:16 $
  *
  * ====================================================================
  *
@@ -61,8 +61,8 @@
 
 package org.apache.struts.upload;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.ServletException;
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutListTag.java,v 1.1 2002/06/25 03:16:30 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:16:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutListTag.java,v 1.2 2002/11/16 04:46:05 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/11/16 04:46:05 $
  *
  * ====================================================================
  *
@@ -62,17 +62,14 @@
 
 package org.apache.struts.taglib.tiles;
 
-import org.apache.struts.tiles.ComponentContext;
-import org.apache.struts.tiles.AttributeDefinition;
-import org.apache.struts.tiles.UntyppedAttribute;
-
-import java.util.List;
 import java.util.ArrayList;
-import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts.tiles.AttributeDefinition;
+import org.apache.struts.tiles.UntyppedAttribute;
 
 
   /**

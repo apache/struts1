@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTei.java,v 1.3 2002/06/25 01:30:41 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/06/25 01:30:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTei.java,v 1.4 2002/11/16 04:41:28 jmitchell Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/11/16 04:41:28 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -59,8 +59,10 @@
  */
 package org.apache.struts.taglib.nested.logic;
 
+import javax.servlet.jsp.tagext.TagData;
+import javax.servlet.jsp.tagext.VariableInfo;
+
 import org.apache.struts.taglib.logic.IterateTei;
-import javax.servlet.jsp.tagext.*;
 
 /**
  * NestedIterateTei
@@ -77,7 +79,7 @@ import javax.servlet.jsp.tagext.*;
  * @author Arron Bates
  *
  * @since Struts 1.1
- * @version $Revision: 1.3 $ $Date: 2002/06/25 01:30:41 $
+ * @version $Revision: 1.4 $ $Date: 2002/11/16 04:41:28 $
  */
 
 public class NestedIterateTei extends IterateTei {

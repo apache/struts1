@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFileTag.java,v 1.1 2002/04/12 09:07:29 arron Exp $
- * $Revision: 1.1 $
- * $Date: 2002/04/12 09:07:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFileTag.java,v 1.2 2002/11/16 04:38:36 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/11/16 04:38:36 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -59,18 +59,17 @@
  */
 package org.apache.struts.taglib.nested.html;
 
-import org.apache.struts.taglib.nested.NestedPropertySupport;
-import org.apache.struts.taglib.nested.NestedPropertyHelper;
-import org.apache.struts.taglib.nested.NestedReference;
-import javax.servlet.jsp.*;
-import javax.servlet.jsp.tagext.*;
+import javax.servlet.jsp.JspException;
+
 import org.apache.struts.taglib.html.FileTag;
+import org.apache.struts.taglib.nested.NestedPropertyHelper;
+import org.apache.struts.taglib.nested.NestedPropertySupport;
 
 /**
  * NestedFileTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class NestedFileTag extends FileTag implements NestedPropertySupport {
 

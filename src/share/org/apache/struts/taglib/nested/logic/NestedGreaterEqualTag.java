@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedGreaterEqualTag.java,v 1.2 2002/01/22 03:30:51 arron Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/22 03:30:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedGreaterEqualTag.java,v 1.3 2002/11/16 04:41:28 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/16 04:41:28 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -59,18 +59,18 @@
  */
 package org.apache.struts.taglib.nested.logic;
 
-import javax.servlet.jsp.*;
-import javax.servlet.jsp.tagext.*;
-import org.apache.struts.taglib.nested.*;
-import org.apache.struts.taglib.html.FormTag;
+import javax.servlet.jsp.JspException;
+
 import org.apache.struts.taglib.logic.GreaterEqualTag;
+import org.apache.struts.taglib.nested.NestedNameSupport;
+import org.apache.struts.taglib.nested.NestedPropertyHelper;
 
 /**
  * NestedGreaterEqualTag.
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.2 $ $Date: 2002/01/22 03:30:51 $
+ * @version $Revision: 1.3 $ $Date: 2002/11/16 04:41:28 $
  */
 public class NestedGreaterEqualTag extends GreaterEqualTag implements NestedNameSupport {
   

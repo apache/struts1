@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ImportAttributeTag.java,v 1.3 2002/07/26 16:18:28 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/07/26 16:18:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ImportAttributeTag.java,v 1.4 2002/11/16 04:46:05 jmitchell Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/11/16 04:46:05 $
  *
  * ====================================================================
  *
@@ -62,17 +62,14 @@
 
 package org.apache.struts.taglib.tiles;
 
-import org.apache.struts.tiles.ComponentContext;
-import org.apache.struts.taglib.tiles.util.TagUtils;
-
 import java.util.Iterator;
 
-import java.io.IOException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
-
 import javax.servlet.jsp.tagext.TagSupport;
+
+import org.apache.struts.taglib.tiles.util.TagUtils;
+import org.apache.struts.tiles.ComponentContext;
 
 
 /**

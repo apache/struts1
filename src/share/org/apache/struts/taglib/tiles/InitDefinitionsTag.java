@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InitDefinitionsTag.java,v 1.3 2002/11/05 14:13:43 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/05 14:13:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InitDefinitionsTag.java,v 1.4 2002/11/16 04:46:05 jmitchell Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/11/16 04:46:05 $
  *
  * ====================================================================
  *
@@ -62,20 +62,13 @@
 
 package org.apache.struts.taglib.tiles;
 
-import org.apache.struts.tiles.TilesUtil;
-import org.apache.struts.tiles.DefinitionsFactory;
-import org.apache.struts.tiles.DefinitionsFactoryConfig;
-import org.apache.struts.tiles.DefinitionsFactoryException;
-import org.apache.struts.tiles.ComponentDefinition;
-import org.apache.struts.tiles.xmlDefinition.I18nFactorySet;
-
-import java.util.Map;
-import java.util.HashMap;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import javax.servlet.jsp.PageContext;
+import org.apache.struts.tiles.DefinitionsFactory;
+import org.apache.struts.tiles.DefinitionsFactoryConfig;
+import org.apache.struts.tiles.DefinitionsFactoryException;
+import org.apache.struts.tiles.TilesUtil;
 
   /**
    * Init definitions factory.

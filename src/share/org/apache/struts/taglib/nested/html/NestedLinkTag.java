@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedLinkTag.java,v 1.5 2002/03/29 21:49:09 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2002/03/29 21:49:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedLinkTag.java,v 1.6 2002/11/16 04:38:36 jmitchell Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/11/16 04:38:36 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -59,18 +59,18 @@
  */
 package org.apache.struts.taglib.nested.html;
 
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.Tag;
+
+import org.apache.struts.taglib.html.LinkTag;
 import org.apache.struts.taglib.nested.NestedNameSupport;
 import org.apache.struts.taglib.nested.NestedPropertyHelper;
-import org.apache.struts.taglib.nested.NestedReference;
-import javax.servlet.jsp.*;
-import javax.servlet.jsp.tagext.*;
-import org.apache.struts.taglib.html.LinkTag;
 
 /**
  * NestedLinkTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.5 $ $Date: 2002/03/29 21:49:09 $
+ * @version $Revision: 1.6 $ $Date: 2002/11/16 04:38:36 $
  */
 public class NestedLinkTag extends LinkTag implements NestedNameSupport {
 
