@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 
-
-
 <!DOCTYPE struts-config PUBLIC
-
           "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
-
           "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
 
@@ -332,16 +328,10 @@
   <!-- end comment if struts1.0.x -->
 
   <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
-
     <set-property
-
         property="pathnames"
-
         value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
-
   </plug-in>
-
-
 
 </struts-config>
 
