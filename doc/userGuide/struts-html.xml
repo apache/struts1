@@ -124,10 +124,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.
-                If <code>true</code> then name of the html tag will be rendered as
-                "propertyName[34]". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of logic:iterate tag.  If <code>true</code>
+                then name of the html tag will be rendered as
+                "propertyName[34]". Number in brackets will be generated for
+                every iteration and taken from ancestor logic:iterate tag.
             </info>
         </attribute>
 
@@ -2342,10 +2342,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.
-                If <code>true</code> then name of the html tag will be rendered as
-                "id[34].propertyName". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of logic:iterate tag.  If <code>true</code>
+                then name of the html tag will be rendered as
+                "propertyName[34]". Number in brackets will be generated for
+                every iteration and taken from ancestor logic:iterate tag.
             </info>
         </attribute>
 
@@ -6028,10 +6028,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.
-                If <code>true</code> then name of the html tag will be rendered as
-                "propertyName[34]". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of logic:iterate tag.  If <code>true</code>
+                then name of the html tag will be rendered as
+                "propertyName[34]". Number in brackets will be generated for
+                every iteration and taken from ancestor logic:iterate tag.
             </info>
         </attribute>
 

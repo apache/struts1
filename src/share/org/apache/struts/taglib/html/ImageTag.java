@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.21 2002/10/26 15:08:16 jholmes Exp $
- * $Revision: 1.21 $
- * $Date: 2002/10/26 15:08:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.22 2002/11/04 00:34:38 dmkarr Exp $
+ * $Revision: 1.22 $
+ * $Date: 2002/11/04 00:34:38 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "image".
  *
  * @author Oleg V Alexeev
- * @version $Revision: 1.21 $ $Date: 2002/10/26 15:08:16 $
+ * @version $Revision: 1.22 $ $Date: 2002/11/04 00:34:38 $
  */
 
 public class ImageTag extends SubmitTag {
@@ -218,12 +218,16 @@ public class ImageTag extends SubmitTag {
             (HttpServletResponse) pageContext.getResponse();
         String tmp = null;
         StringBuffer results = new StringBuffer();
-        results.append("<input type=\"image\" name=\"");
-        // @since Struts 1.1
-        if( indexed )
+        results.append("<input type=\"image\"");
+        if (property != null) {
+            results.append(" name=\"");
+            results.append(property);
+            // @since Struts 1.1
+            if( indexed )
                 prepareIndex( results, null );
-        results.append(property);
-        results.append("\"");
+            results.append("\"");
+        }
+        
         tmp = src();
         if (tmp != null) {
             results.append(" src=\"");
