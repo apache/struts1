@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/CatalogConfiguratorPlugIn.java,v 1.3 2003/08/31 21:53:00 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2003/08/31 21:53:00 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/CatalogConfiguratorPlugIn.java,v 1.4 2003/09/22 04:00:21 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/09/22 04:00:21 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * <p><strong>CatalogConfiguratorPlugIn</strong> looks up the current
- * <code>Catalog</code> stored under the <code>Constants.CATALOG_KEY</code>
+ * <code>Catalog</code> stored under the <code>Constants.CATALOG_ATTR</code>
  * context attribute (creating an empty one if necessary), and adds new
  * chain definitions from one of the following two sources (only one of these
  * properties should be configured for a particular instance of this
