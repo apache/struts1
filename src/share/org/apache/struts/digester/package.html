@@ -400,12 +400,14 @@ the following actions take place:</p>
 <ul>
 <li>A new object instance is created -- the <code>ActionForward</code>
     instance that will represent this definition.  The Java class name
-    defaults to that specified as an initialization parameter, but can
-    be overridden by using the "className" attribute.  The new forward
+    defaults to that specified as an initialization parameter (which
+    we have stored in the String variable <code>forwardClass</code>), but can
+    be overridden by using the "className" attribute (if it is present in the
+    XML element we are currently parsing).  The new <code>ActionForward</code>
     instance is pushed onto the stack.</li>
-<li>The properties of the forward instance (at the top of the stack)
-    are configured based on the attributes of the <code>&lt;forward&gt;</code>
-    element.</li>
+<li>The properties of the <code>ActionForward</code> instance (at the top of
+    the stack) are configured based on the attributes of the
+    <code>&lt;forward&gt;</code> element.</li>
 <li>Nested occurrences of the <code>&lt;set-property&gt;</code> element
     cause calls to additional property setter methods to occur.  This is
     required only if you have provided a custom implementation of the
@@ -413,11 +415,13 @@ the following actions take place:</p>
     not included in the DTD.</li>
 <li>The <code>addForward()</code> method of the next-to-top object on
     the stack (i.e. the controller servlet itself) will be called, passing
-    the object at the top of the stack (i.e. the forward instance) as an
-    argument.  This causes the global forward to be registered, and as a
-    result of this it will be remembered even after the stack is popped.</li>
-<li>At the end of the <code>&lt;forward&gt;</code> tag, the top element
-    (i.e. the forward instance) will be popped off the stack.</li>
+    the object at the top of the stack (i.e. the <code>ActionForward</code>
+    instance) as an argument.  This causes the global forward to be
+    registered, and as a result of this it will be remembered even after
+    the stack is popped.</li>
+<li>At the end of the <code>&lt;forward&gt;</code> element, the top element
+    (i.e. the <code>ActionForward</code> instance) will be popped off the
+    stack.</li>
 </ul>
 
 <p>Later on, the digester is actually executed as follows:</p>
