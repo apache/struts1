@@ -145,8 +145,6 @@
 -->
     <target name="prepare.library" depends="init">
         <mkdir dir="${build.home}/library/classes/META-INF/tlds"/>
-        <copy file="${conf.share.dir}/struts.tld"
-            tofile="${build.home}/library/classes/META-INF/taglib.tld"/>
         <mkdir dir="${build.home}/library/classes/org/apache/struts/resources"/>
         <copy todir="${build.home}/library/classes/org/apache/struts/resources">
             <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
