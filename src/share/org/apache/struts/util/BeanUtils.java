@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.8 2000/08/14 22:12:14 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/08/14 22:12:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.9 2000/08/14 22:15:45 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/08/14 22:15:45 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.8 $ $Date: 2000/08/14 22:12:14 $
+ * @version $Revision: 1.9 $ $Date: 2000/08/14 22:15:45 $
  */
 
 public final class BeanUtils {
@@ -478,8 +478,11 @@ public final class BeanUtils {
 	if (value == null) {
 	    return (null);
 	} else if (value.getClass().isArray()) {
-	    Object values[] = (Object[]) value;
-	    return (values[0].toString());
+	    String values[] = getArrayProperty(bean, name);
+	    if (values.length > 0)
+	        return (values[0]);
+	    else
+	        return (null);
 	} else {
 	    return (value.toString());
 	}
