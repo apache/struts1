@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.4 2002/06/23 14:43:15 jholmes Exp $
- * $Revision: 1.4 $
- * $Date: 2002/06/23 14:43:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.5 2002/10/13 00:52:11 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/10/13 00:52:11 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.action.Action;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/06/23 14:43:15 $
+ * @version $Revision: 1.5 $ $Date: 2002/10/13 00:52:11 $
  */
 
 public class ResponseUtils {
@@ -101,12 +101,6 @@ public class ResponseUtils {
      * Filter the specified string for characters that are senstive to
      * HTML interpreters, returning the string with these characters replaced
      * by the corresponding character entities.
-     * <strong>Please Note:</strong> Apostrpohes (') will not be encoded since
-     * there is not a way to determine whether a left or right apostrophen was
-     * intended. See the following link for more details on HTML encodings:
-     * <a href="http://www.htmlhelp.com/reference/html40/entities/special.html">
-     *http://www.htmlhelp.com/reference/html40/entities/special.html</a>.
-     *
      *
      * @param value The string to be filtered and returned
      */
@@ -131,6 +125,9 @@ public class ResponseUtils {
                 break;
             case '"':
                 result.append("&quot;");
+                break;
+            case '\'':
+                result.append("&#39;");
                 break;
             default:
                 result.append(content[i]);
