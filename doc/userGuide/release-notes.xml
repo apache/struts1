@@ -94,7 +94,7 @@
           <strong>Validator enhancements</strong>
         </p>
         <ul>
-          <li>ValidWhen? - The Struts Validator now supports a ValidWhen rule, so that one validation can be dependant on another.
+          <li>ValidWhen - The Struts Validator now supports a ValidWhen rule, so that one validation can be dependant on another.
           <a href="dev_validator.html#validWhen">Details ...</a></li>
           <li>IntRange now checks select-one and radio fields. Example: This allows populating combo boxes with valid choices plus one additional choice with a caption something like "Choose one" and a value 0f "-1". Then when the user attempts to submit the form, you can look for the value of "-1" and advise if nothing was selected.</li>
           <li>You can now force the clientside Javascript validation to check all constraints, instead of stopping at the first error. By setting a new property,
@@ -117,6 +117,8 @@
         <code>
           <a href="http://struts.apache.org/dtds/struts-config_1_2.dtd">struts-config_1_2.dtd</a>
         </code> is preferred to the deprecated Struts Configuration 1.1 DTD. The new DTD adds two new elements &lt;display-name&gt; and &lt;description&gt; to the struts-config element. These elements are for use by struts config file tools and document generation. In the Struts 1.2.x series, existing Struts configuration files can be loaded using either DTD version.</p>
+        <p>
+        <strong>New Taglib URIs</strong> - The URIs for the tag libraries have been changed to reflect the move of Struts from Jakarta to an Apache top level project. For compatibility purposes, TLDs with the old URIs are still available, but users are encouraged to update their usage accordingly.</p>
         <p>
         <strong>New Committers</strong> - We are pleased to welcome Steve Raeburn, Don Brown, Joe Germuska and Niall Pemberton to the team of Struts Committers.</p>
         <p>
@@ -148,6 +150,12 @@
         <p>
           <strong>General Changes</strong>
         </p>
+        <ul>
+          <li>2004-09-02 - URI for Struts DTD changed to reflect move to an Apache top level project.</li>
+        </ul>
+        <ul>
+          <li>2004-08-31 - Code changes to re-enable building with JDK 1.3.</li>
+        </ul>
         <ul>
           <li>2003-03-14 - Move license on all source code files to ASL 2.0.</li>
         </ul>
@@ -198,9 +206,16 @@
         <p>
         <strong>Action Package Changes</strong> [
         <code>org.apache.struts.action</code>]</p>
-          <ul>
-              <li>2004-08-10 - DynaActionForm: Change Map's key from String to Object in toString().</li>
-          </ul>
+        <ul>
+          <li>2004-09-10 - Corrected Japanese translation of message resources.</li>
+          <li>2004-09-07 - Action: Use ActionMessages instead of ActionErrors.</li>
+          <li>2004-09-03 - ActionServlet: Eliminate performance bottleneck in obtaining request processor.</li>
+          <li>2004-09-03 - ActionForward: New copy constructor that takes module parameter; deprecate copy constructor missing this parameter.</li>
+          <li>2004-09-02 - Correct javadoc for ActionErrors.</li>
+        </ul>
+        <ul>
+          <li>2004-08-10 - DynaActionForm: Change Map's key from String to Object in toString().</li>
+        </ul>
         <ul>
             <li>2004-07-01 - TestDynaActionFormClass: Correct operation of static method calls.</li>
         </ul>
@@ -367,6 +382,9 @@
         <strong>HTML Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.html</code>]:</p>
         <ul>
+          <li>2004-08-24 - ImgTag: Correct usage in a module environment.</li>
+        </ul>
+        <ul>
             <li>2004-07-21 - Add accept-charset attribute to the FormTag.</li>
             <li>2004-07-01 - JavascriptValidatorTag - Correct naming of JS methods when multiple forms are used.</li>
         </ul>
@@ -519,6 +537,10 @@
         <strong>Validator Package Changes</strong> [
         <code>org.apache.struts.validator</code>]</p>
         <ul>
+          <li>2004-09-03 - ValidWhen: Added new test cases.</li>
+          <li>2004-09-03 - ValidWhen: Correct parsing of integer values.</li>
+        </ul>
+        <ul>
           <li>2004-06-24 - ValidWhen: "allow '_' (underscore) in identifiers.</li>
         </ul>
         <ul>
@@ -558,6 +580,10 @@
         <strong>Documentation Application Changes</strong> [
         <code>struts-documentation.war</code>]:</p>
         <ul>
+          <li>2004-08-31 - Added a Struts download page, reflecting the move to an Apache top level project.</li>
+          <li>2004-08-24 - Fix build script errors on Eclipse HOW-TO page.</li>
+        </ul>
+        <ul>
             <li>2004-07-11 - Add links to development releases.</li>
             <li>2004-07-07 - Rename "status.xml" to "roadmap.xml" to avoid confusion with STATUS.txt file.</li>
             <li>2004-07-07 - Extend prior draft of bylaws page with additional material from Jakarta site and link to main menu.</li>
@@ -590,6 +616,10 @@
         <p>
         <strong>Combined Examples Application</strong> [
         <code>struts-examples.war</code>]</p>
+        <ul>
+          <li>2004-09-07 - Fix problems with running the application while not connected to the internet.</li>
+          <li>2004-09-03 - Change Commons Validator DTD to version 1.1.3.</li>
+        </ul>
         <ul>
           <li>2004-01-17 - Add tests to to hmlt:link page for forwards, actions, and pages.</li>
           <li>2004-01-16 - exercises: Add test pages for html:img and logic:forward,redirect. Add test pages for html:img and logic:forward,redirect tags</li>
@@ -630,16 +660,6 @@
         <ul>
           <li>2003-12-21 - Add rest of form to fr.CA formset to correct operation.</li>
           <li>2003-09-24 - Modify Validator example to show use of 'required' for checkboxes, radio,select-one, and select-multiple field types.</li>
-        </ul>
-        <p>
-        <strong>Upload module Changes</strong>:</p>
-        <ul>
-          <li>2004-01-08 - Convert to Upload example application to module under the "examples" application.</li>
-        </ul>
-        <p>
-        <strong>Validator module Changes</strong>:</p>
-        <ul>
-          <li>2004-01-08 - Convert to Validator example application to module under the "examples" application.</li>
         </ul>
       </section>
       <section>
