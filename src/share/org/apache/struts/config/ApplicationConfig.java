@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.14 2002/03/23 01:14:04 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2002/03/23 01:14:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.15 2002/06/25 01:30:40 craigmcc Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/06/25 01:30:40 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import javax.servlet.UnavailableException;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2002/03/23 01:14:04 $
+ * @version $Revision: 1.15 $ $Date: 2002/06/25 01:30:40 $
  * @since Struts 1.1
  */
 
@@ -161,7 +161,7 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
-     * Has this application been completely configured yet?  Once this flag
+     * Has this application been completely configured yet.  Once this flag
      * has been set, any attempt to modify the configuration will return an
      * IllegalStateException.
      */

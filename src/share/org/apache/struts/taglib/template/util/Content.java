@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/util/Attic/Content.java,v 1.3 2001/04/29 05:34:50 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/04/29 05:34:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/util/Attic/Content.java,v 1.4 2002/06/25 01:30:41 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/25 01:30:41 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ package org.apache.struts.taglib.template.util;
  *  </p>
  *
  * @author David Geary
- * @revision $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class Content implements java.io.Serializable {
 
@@ -85,7 +85,7 @@ public class Content implements java.io.Serializable {
 
     /**
      *  Templates regard this as content to be either included or 
-     *  printed directly.<br> This is a blank final that is
+     *  printed directly.  This is a blank final that is
      *  set at construction.
      * 
      */
@@ -93,9 +93,9 @@ public class Content implements java.io.Serializable {
 
 
     /**
-     *   Represents a boolean; if true, content is included, otherwise
-     *   content is printed.<br>This is a blank final that is set at 
-     *  construction.<br>This is a string instead of a boolean as
+     *  Represents a boolean - if true, content is included, otherwise
+     *  content is printed.  This is a blank final that is set at 
+     *  construction.  This is a string instead of a boolean as
      *  a convenience for the tags, whose corresponding attribute
      *  is a string.
      *  
@@ -122,7 +122,7 @@ public class Content implements java.io.Serializable {
     // --------------------------------------------------------- Public Methods
 
     /**
-     * Return content 
+     * Return content.
      */
     public String getContent() {
 
@@ -131,8 +131,8 @@ public class Content implements java.io.Serializable {
     }
 
     /**
-     * Is content to be printed directly (isDirect() == true) <br>
-     * instead of included (isDirect() == false)?
+     * Is content to be printed directly (isDirect() == true)
+     * instead of included (isDirect() == false).
      */
     public boolean isDirect() {
 
@@ -142,7 +142,7 @@ public class Content implements java.io.Serializable {
 
 
    /**
-     * Returns a string representation of the content
+     * Returns a string representation of the content.
      */
    public String toString() { 
 

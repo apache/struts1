@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/util/Attic/ContentMap.java,v 1.3 2001/04/29 05:34:50 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/04/29 05:34:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/util/Attic/ContentMap.java,v 1.4 2002/06/25 01:30:41 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/25 01:30:41 $
  *
  * ====================================================================
  *
@@ -67,7 +67,7 @@ import java.util.HashMap;
  * that can be performed on a hash map of contents. 
  *
  * @author David Geary
- * @version $Revision: 1.3 $ $Date: 2001/04/29 05:34:50 $
+ * @version $Revision: 1.4 $ $Date: 2002/06/25 01:30:41 $
  */
 public class ContentMap implements java.io.Serializable {
 
@@ -104,9 +104,9 @@ public class ContentMap implements java.io.Serializable {
 
 
    /**
-     * Returns the content associated with name
+     * Returns the content associated with name.
      *
-     * @name Name of content to retrieve
+     * @param name Name of content to retrieve
      */
    public Content get(String name) {
 

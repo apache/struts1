@@ -38,24 +38,43 @@ public interface MultipartRequestHandler
     /**
      * Get the ActionMapping instance for this request
      */
-    public ActionMapping getMapping();
-    /**      * After constructed, this is the first method called on      * by ActionServlet.  Use this method for all your      * data-parsing of the ServletInputStream in the request      *      * @exception ServletException thrown if something goes wrong      */    public void handleRequest(HttpServletRequest request) throws ServletException;
-    /**      * This method is called on to retrieve all the text      * input elements of the request.      * @return A Hashtable where the keys and values are the names and values of the request input parameters
+    public ActionMapping getMapping();
+
+    /**
+      * After constructed, this is the first method called on
+      * by ActionServlet.  Use this method for all your
+      * data-parsing of the ServletInputStream in the request
+      *
+      * @exception ServletException thrown if something goes wrong
       */
+    public void handleRequest(HttpServletRequest request)
+        throws ServletException;
+
+    /**
+     * This method is called on to retrieve all the text
+     * input elements of the request.
+     *
+     * @return A Hashtable where the keys and values are the names and
+     *  values of the request input parameters
+     */
     public Hashtable getTextElements();
     
     /**
      * This method is called on to retrieve all the FormFile
      * input elements of the request.
      * @see org.apache.struts.upload.FormFile
-     * @return A Hashtable where the keys are the input names of the files and the values are FormFile objects
+     * @return A Hashtable where the keys are the input names of the
+     *  files and the values are FormFile objects
      */
     public Hashtable getFileElements();
+
     /**
      * This method returns all elements of a multipart request.
-     * @return A Hashtable where the keys are input names and values are either Strings or FormFiles
+     * @return A Hashtable where the keys are input names and values
+     *   are either Strings or FormFiles
      */
     public Hashtable getAllElements();
+
     /**
      * This method is called on when there's some sort of problem
      * and the form post needs to be rolled back.  Providers
@@ -68,12 +87,14 @@ public interface MultipartRequestHandler
      * manually for rolling back file uploads.
      */
     public void rollback();
+
     /**
      * This method is called on when a successful form post
      * has been made.  Some implementations will use this
      * to destroy temporary files or write to a database
-     * or something of that nature
+     * or something of that nature.
      */
     public void finish();
+
 }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.3 2002/06/24 18:53:01 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2002/06/24 18:53:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.4 2002/06/25 01:30:40 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/25 01:30:40 $
  *
  * ====================================================================
  *
@@ -70,7 +70,7 @@ import org.apache.struts.config.ApplicationConfig;
 /**
  * <p>A <strong>PlugIn</strong> is a configuration wrapper for an application
  * specific module or service that needs to be notified about application
- * startup and application shutdown events (i.e. corresponding to when the
+ * startup and application shutdown events (corresponding to when the
  * container calls <code>init()</code> and <code>destroy()</code> on the
  * corresponding {@link ActionServlet} instance).  PlugIn modules can be
  * configured in the <code>struts-config.xml</code> file, without the need
@@ -83,7 +83,7 @@ import org.apache.struts.config.ApplicationConfig;
  * been called before the <code>init()</code> method is invoked.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/06/24 18:53:01 $
+ * @version $Revision: 1.4 $ $Date: 2002/06/25 01:30:40 $
  * @since Struts 1.1
  */
 

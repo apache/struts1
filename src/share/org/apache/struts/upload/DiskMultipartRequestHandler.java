@@ -31,32 +31,32 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
     protected Log log = LogFactory.getLog(this.getClass());
     
     /**
-     * The ActionServlet instance used for this class
+     * The ActionServlet instance used for this class.
      */
     protected ActionServlet servlet;
 
     /**
-     * The ActionMapping instance used for this class
+     * The ActionMapping instance used for this class.
      */
     protected ActionMapping mapping;
 
     /**
-     * A Hashtable representing the form files uploaded
+     * A Hashtable representing the form files uploaded.
      */
     protected Hashtable fileElements;
 
     /**
-     * A Hashtable representing the form text input names and values
+     * A Hashtable representing the form text input names and values.
      */
     protected Hashtable textElements;
 
     /**
-     * A Hashtable representing all elemnents
+     * A Hashtable representing all elemnents.
      */
     protected Hashtable allElements;
     
     /**
-     * The temporary directory
+     * The temporary directory.
      */
     protected String tempDir;
     
@@ -155,7 +155,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
     }
 
     /**
-     * Delete all the files uploaded
+     * Delete all the files uploaded.
      */
     public void rollback() {
         Enumeration names = fileElements.keys();
@@ -169,7 +169,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
 
     /**
      * Calls on {@link #rollback() rollback()} to delete
-     * temporary files
+     * temporary files.
      */
     public void finish() {
         rollback();
@@ -224,7 +224,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
     
     /**
      * Retrieves the temporary directory from either ActionServlet, a context
-     * property, or a system property, in that order
+     * property, or a system property, in that order.
      */
     protected void retrieveTempDir(ApplicationConfig appConfig) { 
         

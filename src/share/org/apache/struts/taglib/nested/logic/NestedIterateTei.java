@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTei.java,v 1.2 2002/05/27 07:14:47 arron Exp $
- * $Revision: 1.2 $
- * $Date: 2002/05/27 07:14:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTei.java,v 1.3 2002/06/25 01:30:41 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/06/25 01:30:41 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -68,7 +68,7 @@ import javax.servlet.jsp.tagext.*;
  * attribute optional, so that those who want to script can add it if they need
  * it otherwise we can maintain the nice lean tag markup.
  *
- * @TODO - Look at deleting this class. Potentially a pointless existance now
+ *  TODO - Look at deleting this class. Potentially a pointless existance now
  *         that the super class is towing the line. Left alone because it's not
  *         hurting anything as-is.
  *         Note: When done, it requires pointing the tei reference in the
@@ -77,7 +77,7 @@ import javax.servlet.jsp.tagext.*;
  * @author Arron Bates
  *
  * @since Struts 1.1
- * @version $Revision: 1.2 $ $Date: 2002/05/27 07:14:47 $
+ * @version $Revision: 1.3 $ $Date: 2002/06/25 01:30:41 $
  */
 
 public class NestedIterateTei extends IterateTei {

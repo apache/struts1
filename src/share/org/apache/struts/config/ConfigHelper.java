@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.1 2002/02/22 10:17:33 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2002/02/22 10:17:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.2 2002/06/25 01:30:40 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/06/25 01:30:40 $
  *
  * ====================================================================
  *
@@ -118,7 +118,8 @@ import org.apache.struts.action.ActionMessages;
  *
  * @since 1.1
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/02/22 10:17:33 $
+ * @author Luis Arias <luis@elysia.com>
+ * @version $Revision: 1.2 $ $Date: 2002/06/25 01:30:40 $
  */
 public class ConfigHelper implements ConfigHelperInterface {
 
@@ -616,9 +617,6 @@ public class ConfigHelper implements ConfigHelperInterface {
 
     /**
      * Renders the reference for a HTML <base> element
-     *
-     * @author Luis Arias <luis@elysia.com>
-     * @author Ted Husted
      */
     public String getOrigRef() {
 
@@ -647,10 +645,7 @@ public class ConfigHelper implements ConfigHelperInterface {
 
 
     /**
-     * Renders the reference for a HTML <base> element
-     *
-     * @author Luis Arias <luis@elysia.com>
-     * @author Ted Husted
+     * Renders the reference for a HTML <base> element.
      */
     public String getBaseRef() {
 

@@ -143,7 +143,6 @@ import org.apache.struts.util.MessageResources;
  *  is found then an exception will be thrown.
  *
  *@author     Erik Hatcher
- *@created    November 14, 2001
  */
 
 public abstract class LookupDispatchAction extends DispatchAction {

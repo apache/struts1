@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.6 2001/07/12 05:18:33 dwinterfeldt Exp $
- * $Revision: 1.6 $
- * $Date: 2001/07/12 05:18:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.7 2002/06/25 01:30:40 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/06/25 01:30:40 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import java.util.HashMap;
  *
  * @author David Geary
  * @author Craig R. McClanahan
- * @revision $Revision: 1.6 $ $Date: 2001/07/12 05:18:33 $
+ * @version $Revision: 1.7 $ $Date: 2002/06/25 01:30:40 $
  */
 
 public class ActionErrors extends ActionMessages implements Serializable {
