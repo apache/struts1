@@ -19,7 +19,8 @@
     <tr>
      <td>
       <html-el:radio property="stringProperty" value="flagOne"
-                     title="Flag One" tabindex="3" accesskey="1"/>
+                     title="Flag One" tabindex="3" accesskey="1"
+                     disabled="${!empty pageScope}"/>
      </td>
      <td>flag one</td>
     </tr>

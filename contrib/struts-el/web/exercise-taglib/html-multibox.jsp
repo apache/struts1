@@ -161,6 +161,20 @@ main menu.
   </tr>
 
   <tr>
+    <th align="right">50</th>
+    <td align="left">
+      <html-el:multibox property="intMultibox" value="50"/>
+    </td>
+    <th align="right">(nested) 50</th>
+    <td align="left">
+      <html-el:multibox property="nested.intMultibox"
+                        disabled="${!empty pageScope}">
+        50
+      </html-el:multibox>
+    </td>
+  </tr>
+
+  <tr>
     <td>&nbsp;</td>
     <td align="right">
       <html-el:submit>Save</html-el:submit>
