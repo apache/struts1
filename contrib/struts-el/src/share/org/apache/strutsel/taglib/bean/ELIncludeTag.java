@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELIncludeTag.java,v 1.1 2002/10/26 04:33:17 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/26 04:33:17 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELIncludeTag.java,v 1.2 2003/02/19 03:49:50 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:49:50 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -75,26 +75,117 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ELIncludeTag extends IncludeTag {
 
     /**
-     * String value of the "transaction" attribute.
+     * Instance variable mapped to "anchor" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   transactionExpr;
+    private String anchorExpr;
+    /**
+     * Instance variable mapped to "forward" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String forwardExpr;
+    /**
+     * Instance variable mapped to "href" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String hrefExpr;
+    /**
+     * Instance variable mapped to "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String idExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "page" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String pageExpr;
+    /**
+     * Instance variable mapped to "transaction" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String transactionExpr;
 
     /**
-     * Returns the string value of the "transaction" attribute.
+     * Getter method for "anchor" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getTransactionExpr() { return (transactionExpr); }
+    public String getAnchorExpr() { return (anchorExpr); }
+    /**
+     * Getter method for "forward" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getForwardExpr() { return (forwardExpr); }
+    /**
+     * Getter method for "href" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getHrefExpr() { return (hrefExpr); }
+    /**
+     * Getter method for "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getIdExpr() { return (idExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "page" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPageExpr() { return (pageExpr); }
+    /**
+     * Getter method for "transaction" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTransactionExpr() { return (transactionExpr); }
 
     /**
-     * Sets the string value of the "transaction" attribute.  This attribute is
-     * mapped to this method by the <code>ELIncludeTagBeanInfo</code> class.
+     * Setter method for "anchor" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setTransactionExpr(String transactionExpr)
-    { this.transactionExpr  = transactionExpr; }
+    public void setAnchorExpr(String anchorExpr) { this.anchorExpr = anchorExpr; }
+    /**
+     * Setter method for "forward" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setForwardExpr(String forwardExpr) { this.forwardExpr = forwardExpr; }
+    /**
+     * Setter method for "href" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setHrefExpr(String hrefExpr) { this.hrefExpr = hrefExpr; }
+    /**
+     * Setter method for "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setIdExpr(String idExpr) { this.idExpr = idExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "page" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPageExpr(String pageExpr) { this.pageExpr = pageExpr; }
+    /**
+     * Setter method for "transaction" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTransactionExpr(String transactionExpr) { this.transactionExpr = transactionExpr; }
 
     /**
      * Resets attribute values for tag reuse.
@@ -102,6 +193,12 @@ public class ELIncludeTag extends IncludeTag {
     public void release()
     {
         super.release();
+        setAnchorExpr(null);
+        setForwardExpr(null);
+        setHrefExpr(null);
+        setIdExpr(null);
+        setNameExpr(null);
+        setPageExpr(null);
         setTransactionExpr(null);
     }
 
@@ -149,43 +246,34 @@ public class ELIncludeTag extends IncludeTag {
      */
     private void evaluateExpressions() throws JspException {
         try {
-            setAnchor((String) evalAttr("anchor", getAnchor(), String.class));
+            setAnchor((String) evalAttr("anchor", getAnchorExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setAnchor(null);
         }
 
         try {
-            setForward((String) evalAttr("forward", getForward(),
+            setForward((String) evalAttr("forward", getForwardExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setForward(null);
         }
 
         try {
-            setHref((String) evalAttr("href", getHref(), String.class));
+            setHref((String) evalAttr("href", getHrefExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setHref(null);
         }
 
         try {
-            setId((String) evalAttr("id", getId(), String.class));
+            setId((String) evalAttr("id", getIdExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setId(null);
-        }
-
-        //  The "name" attribute is deprecated.  The base class has a
-        //  "setName()" method, which sets the "page" attribute, but it does
-        //  not have a "getName()" attribute, so just use "getPage()".
-        try {
-            setName((String) evalAttr("name", getPage(), String.class));
-        } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
-            setPage((String) evalAttr("page", getPage(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setPage(null);
+        }
+
+        try {
+            setPage((String) evalAttr("page", getPageExpr(), String.class));
+        } catch (NullAttributeException ex) {
         }
 
         try {
@@ -194,7 +282,6 @@ public class ELIncludeTag extends IncludeTag {
                                                Boolean.class)).
                            booleanValue());
         } catch (NullAttributeException ex) {
-            setTransaction(false);
         }
     }
 }

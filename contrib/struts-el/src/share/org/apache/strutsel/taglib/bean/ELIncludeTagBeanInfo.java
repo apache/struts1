@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELIncludeTagBeanInfo.java,v 1.1 2002/10/26 04:33:17 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/26 04:33:17 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELIncludeTagBeanInfo.java,v 1.2 2003/02/19 03:49:50 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:49:50 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -89,17 +89,17 @@ public class ELIncludeTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("anchor", ELIncludeTag.class,
-                                               null, "setAnchor");
+                                               null, "setAnchorExpr");
             result[1] = new PropertyDescriptor("forward", ELIncludeTag.class,
-                                               null, "setForward");
+                                               null, "setForwardExpr");
             result[2] = new PropertyDescriptor("href", ELIncludeTag.class,
-                                               null, "setHref");
+                                               null, "setHrefExpr");
             result[3] = new PropertyDescriptor("id", ELIncludeTag.class,
-                                               null, "setId");
+                                               null, "setIdExpr");
             result[4] = new PropertyDescriptor("name", ELIncludeTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[5] = new PropertyDescriptor("page", ELIncludeTag.class,
-                                                null, "setPage");
+                                                null, "setPageExpr");
             result[6] = new PropertyDescriptor("transaction",
                                                ELIncludeTag.class,
                                                null, "setTransactionExpr");

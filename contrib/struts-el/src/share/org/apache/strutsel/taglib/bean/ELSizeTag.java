@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELSizeTag.java,v 1.3 2002/10/01 04:25:49 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELSizeTag.java,v 1.4 2003/02/19 03:49:50 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:49:50 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,31 +76,87 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELSizeTag extends SizeTag {
 
     /**
-     * String value of expression to be evaluated to result in a Collection.
+     * Instance variable mapped to "collection" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   collectionExpr;
+    private String collectionExpr;
+    /**
+     * Instance variable mapped to "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String idExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String propertyExpr;
+    /**
+     * Instance variable mapped to "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String scopeExpr;
 
     /**
-     * Returns the string value of the Collection expression.  This value will
-     * be evaluated by the JSTL EL engine.
-     *<p>
-     * Note that this value is associated with the <code>collection</code>
-     * attribute of the custom tag.  The class <code>ELSizeTagBeanInfo</code>
-     * maps the <code>collection</code> attribute of the custom tag to the
-     * <code>collectionExpr</code> attribute of this class.
+     * Getter method for "collection" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getCollectionExpr() { return (collectionExpr); }
+    public String getCollectionExpr() { return (collectionExpr); }
     /**
-     * Sets the string value of the Collection expression.  This expression
-     * will be evaluated by the JSTL EL engine.
+     * Getter method for "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setCollectionExpr(String collectionExpr)
-    { this.collectionExpr   = collectionExpr; }
+    public String getIdExpr() { return (idExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPropertyExpr() { return (propertyExpr); }
+    /**
+     * Getter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getScopeExpr() { return (scopeExpr); }
+
+    /**
+     * Setter method for "collection" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setCollectionExpr(String collectionExpr) { this.collectionExpr = collectionExpr; }
+    /**
+     * Setter method for "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setIdExpr(String idExpr) { this.idExpr = idExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+    /**
+     * Setter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setScopeExpr(String scopeExpr) { this.scopeExpr = scopeExpr; }
 
     /**
      * Releases state of custom tag so this instance can be reused.
@@ -109,6 +165,10 @@ public class ELSizeTag extends SizeTag {
     {
         super.release();
         setCollectionExpr(null);
+        setIdExpr(null);
+        setNameExpr(null);
+        setPropertyExpr(null);
+        setScopeExpr(null);
     }
     
     /**
@@ -156,32 +216,27 @@ public class ELSizeTag extends SizeTag {
             setCollection(evalAttr("collection", getCollectionExpr(),
                                    Object.class));
         } catch (NullAttributeException ex) {
-            setCollection(null);
         }
 
         try {
-            setId((String) evalAttr("id", getId(), String.class));
+            setId((String) evalAttr("id", getIdExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setId(null);
         }
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(),
+            setProperty((String) evalAttr("property", getPropertyExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setProperty(null);
         }
 
         try {
-            setScope((String) evalAttr("scope", getScope(), String.class));
+            setScope((String) evalAttr("scope", getScopeExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setScope(null);
         }
     }
 }

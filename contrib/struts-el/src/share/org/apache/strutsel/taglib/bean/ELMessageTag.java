@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELMessageTag.java,v 1.3 2002/10/01 04:25:49 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELMessageTag.java,v 1.4 2003/02/19 03:49:50 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:49:50 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -79,10 +79,197 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELMessageTag extends MessageTag {
 
+    /**
+     * Instance variable mapped to "arg0" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String arg0Expr;
+    /**
+     * Instance variable mapped to "arg1" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String arg1Expr;
+    /**
+     * Instance variable mapped to "arg2" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String arg2Expr;
+    /**
+     * Instance variable mapped to "arg3" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String arg3Expr;
+    /**
+     * Instance variable mapped to "arg4" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String arg4Expr;
+    /**
+     * Instance variable mapped to "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String bundleExpr;
+    /**
+     * Instance variable mapped to "key" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String keyExpr;
+    /**
+     * Instance variable mapped to "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String localeExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String propertyExpr;
+    /**
+     * Instance variable mapped to "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String scopeExpr;
+
+    /**
+     * Getter method for "arg0" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getArg0Expr() { return (arg0Expr); }
+    /**
+     * Getter method for "arg1" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getArg1Expr() { return (arg1Expr); }
+    /**
+     * Getter method for "arg2" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getArg2Expr() { return (arg2Expr); }
+    /**
+     * Getter method for "arg3" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getArg3Expr() { return (arg3Expr); }
+    /**
+     * Getter method for "arg4" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getArg4Expr() { return (arg4Expr); }
+    /**
+     * Getter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getBundleExpr() { return (bundleExpr); }
+    /**
+     * Getter method for "key" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getKeyExpr() { return (keyExpr); }
+    /**
+     * Getter method for "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getLocaleExpr() { return (localeExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPropertyExpr() { return (propertyExpr); }
+    /**
+     * Getter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getScopeExpr() { return (scopeExpr); }
+
+    /**
+     * Setter method for "arg0" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setArg0Expr(String arg0Expr) { this.arg0Expr = arg0Expr; }
+    /**
+     * Setter method for "arg1" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setArg1Expr(String arg1Expr) { this.arg1Expr = arg1Expr; }
+    /**
+     * Setter method for "arg2" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setArg2Expr(String arg2Expr) { this.arg2Expr = arg2Expr; }
+    /**
+     * Setter method for "arg3" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setArg3Expr(String arg3Expr) { this.arg3Expr = arg3Expr; }
+    /**
+     * Setter method for "arg4" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setArg4Expr(String arg4Expr) { this.arg4Expr = arg4Expr; }
+    /**
+     * Setter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setBundleExpr(String bundleExpr) { this.bundleExpr = bundleExpr; }
+    /**
+     * Setter method for "key" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setKeyExpr(String keyExpr) { this.keyExpr = keyExpr; }
+    /**
+     * Setter method for "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setLocaleExpr(String localeExpr) { this.localeExpr = localeExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+    /**
+     * Setter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setScopeExpr(String scopeExpr) { this.scopeExpr = scopeExpr; }
+
+    /**
+     * Resets attribute values for tag reuse.
+     */
+    public void release()
+    {
+        super.release();
+        setArg0Expr(null);
+        setArg1Expr(null);
+        setArg2Expr(null);
+        setArg3Expr(null);
+        setArg4Expr(null);
+        setBundleExpr(null);
+        setKeyExpr(null);
+        setLocaleExpr(null);
+        setNameExpr(null);
+        setPropertyExpr(null);
+        setScopeExpr(null);
+    }
+    
     /**
      * Process the start tag.
      *
@@ -125,70 +312,59 @@ public class ELMessageTag extends MessageTag {
     private void evaluateExpressions() throws JspException {
 
         try {
-            setArg0((String) evalAttr("arg0", getArg0(), String.class));
+            setArg0((String) evalAttr("arg0", getArg0Expr(), String.class));
         } catch (NullAttributeException ex) {
-            setArg0(null);
         }
 
         try {
-            setArg1((String) evalAttr("arg1", getArg1(), String.class));
+            setArg1((String) evalAttr("arg1", getArg1Expr(), String.class));
         } catch (NullAttributeException ex) {
-            setArg1(null);
         }
 
         try {
-            setArg2((String) evalAttr("arg2", getArg2(), String.class));
+            setArg2((String) evalAttr("arg2", getArg2Expr(), String.class));
         } catch (NullAttributeException ex) {
-            setArg2(null);
         }
 
         try {
-            setArg3((String) evalAttr("arg3", getArg3(), String.class));
+            setArg3((String) evalAttr("arg3", getArg3Expr(), String.class));
         } catch (NullAttributeException ex) {
-            setArg3(null);
         }
 
         try {
-            setArg4((String) evalAttr("arg4", getArg4(), String.class));
+            setArg4((String) evalAttr("arg4", getArg4Expr(), String.class));
         } catch (NullAttributeException ex) {
-            setArg4(null);
         }
 
         try {
-            setBundle((String) evalAttr("bundle", getBundle(), String.class));
+            setBundle((String) evalAttr("bundle", getBundleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setBundle(null);
         }
 
         try {
-            setKey((String) evalAttr("key", getKey(), String.class));
+            setKey((String) evalAttr("key", getKeyExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setKey(null);
         }
 
         try {
-            setLocale((String) evalAttr("locale", getLocale(), String.class));
+            setLocale((String) evalAttr("locale", getLocaleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setLocale(null);
         }
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(),
+            setProperty((String) evalAttr("property", getPropertyExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setProperty(null);
         }
 
         try {
-            setScope((String) evalAttr("scope", getScope(), String.class));
+            setScope((String) evalAttr("scope", getScopeExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setScope(null);
         }
     }
 }

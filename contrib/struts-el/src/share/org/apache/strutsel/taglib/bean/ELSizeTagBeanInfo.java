@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELSizeTagBeanInfo.java,v 1.3 2002/10/01 04:25:49 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELSizeTagBeanInfo.java,v 1.4 2003/02/19 03:49:50 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:49:50 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -89,23 +89,16 @@ public class ELSizeTagBeanInfo extends SimpleBeanInfo
         PropertyDescriptor[]  result   = new PropertyDescriptor[5];
 
         try {
-            Method collectionGetter  =
-                ELSizeTag.class.getMethod("getCollectionExpr", new Class[0]);
-            Method collectionSetter  =
-                ELSizeTag.class.getMethod("setCollectionExpr",
-                                          new Class[]{String.class});
-
-            result[0] =
-                new PropertyDescriptor("collection",
-                                       collectionGetter, collectionSetter);
-
-            result[1] = new PropertyDescriptor("id", ELSizeTag.class);
-            result[2] = new PropertyDescriptor("name", ELSizeTag.class);
-            result[3] = new PropertyDescriptor("property", ELSizeTag.class);
-            result[4] = new PropertyDescriptor("scope", ELSizeTag.class);
-        }
-        catch (NoSuchMethodException ex) {
-            ex.printStackTrace();
+            result[0] = new PropertyDescriptor("collection", ELSizeTag.class,
+                                               null, "setCollectionExpr");
+            result[1] = new PropertyDescriptor("id", ELSizeTag.class,
+                                               null, "setIdExpr");
+            result[2] = new PropertyDescriptor("name", ELSizeTag.class,
+                                               null, "setNameExpr");
+            result[3] = new PropertyDescriptor("property", ELSizeTag.class,
+                                               null, "setPropertyExpr");
+            result[4] = new PropertyDescriptor("scope", ELSizeTag.class,
+                                               null, "setScopeExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELResourceTag.java,v 1.3 2002/10/01 04:25:49 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELResourceTag.java,v 1.4 2003/02/19 03:49:50 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:49:50 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,10 +76,69 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELResourceTag extends ResourceTag {
 
+    /**
+     * Instance variable mapped to "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String idExpr;
+    /**
+     * Instance variable mapped to "input" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String inputExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+
+    /**
+     * Getter method for "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getIdExpr() { return (idExpr); }
+    /**
+     * Getter method for "input" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getInputExpr() { return (inputExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+
+    /**
+     * Setter method for "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setIdExpr(String idExpr) { this.idExpr = idExpr; }
+    /**
+     * Setter method for "input" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setInputExpr(String inputExpr) { this.inputExpr = inputExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+
+    /**
+     * Resets attribute values for tag reuse.
+     */
+    public void release()
+    {
+        super.release();
+        setIdExpr(null);
+        setInputExpr(null);
+        setNameExpr(null);
+    }
+    
     /**
      * Process the start tag.
      *
@@ -122,21 +181,18 @@ public class ELResourceTag extends ResourceTag {
     private void evaluateExpressions() throws JspException {
 
         try {
-            setId((String) evalAttr("id", getId(), String.class));
+            setId((String) evalAttr("id", getIdExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setId(null);
         }
 
         try {
-            setInput((String) evalAttr("input", getInput(), String.class));
+            setInput((String) evalAttr("input", getInputExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setInput(null);
         }
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
     }
 }
