@@ -15,7 +15,7 @@
 
 <p>
 Jetty is a small, pure-Java, open source HTTP server that supports the
-2.2 Servlet spec and JSP 1.1. Jetty can be downloaded from
+2.3 Servlet spec and JSP 1.2. Jetty can be downloaded from
 <a href="http://www.mortbay.com/jetty">http://www.mortbay.com/jetty</a>.
 </p>
 
