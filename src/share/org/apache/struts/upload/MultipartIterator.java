@@ -493,19 +493,25 @@ public class MultipartIterator {
 
                         if (cutCarriage) {
                             fos.write('\r');
+                            cutCarriage = false;
                         }
                         if (cutNewline) {
                             fos.write('\n');
+                            cutNewline = false;
                         }
-                        cutCarriage = false;
                         if (bytesRead > 0) {
                             if (lineBuffer[bytesRead-1] == '\r') {
-                                bytesRead--;
+                                //bytesRead--;
                                 cutCarriage = true;
+                                fos.write(lineBuffer, 0, bytesRead-1);                                
                             }
+                            else {
+                                fos.write(lineBuffer, 0, bytesRead);
+                            }                               
                         }
-                        cutNewline = true;
-                        fos.write(lineBuffer, 0, bytesRead);
+                        if (bytesRead < MAX_LINE_SIZE) {
+                            cutNewline = true;
+                        }
                         bytesRead = inputStream.readLine(lineBuffer, 0, MAX_LINE_SIZE);
             }
         }
@@ -513,8 +519,7 @@ public class MultipartIterator {
             fos.close();
             tempFile.delete();
             throw ioe;
-        }
-        
+        }        
         fos.flush();	
         fos.close();
         return tempFile;
