@@ -12,7 +12,8 @@
   
   		<section name="2.1 Overview" href="building_model_overview">
   			
-  			<p>The application requirements document that you are using will likely
+  			<p>
+  				The application requirements document that you are using will likely
 				have focused on the user interface to be created.  However, you should ensure
 				that the processing required for each submitted request is also clearly
 				defined.  In general, the developer of the <i>Model</i> components will be
@@ -78,8 +79,8 @@
 			
 			<p>
 				The Struts framework generally assumes that you have created an
-				<code>ActionForm</code> bean (that is, a Java class implementing the
-				<code>ActionForm</code> interface) for each input form required in your
+				<code>ActionForm</code> bean (that is, a Java class extending the
+				<code>ActionForm</code> class) for each input form required in your
 				application.  If you define such beans in your <code>ActionMapping</code>
 				configuration file (see "Building the Controller Components"), the Struts
 				controller servlet will automatically perform the following services for
@@ -107,7 +108,7 @@
 			</p>
 			
 			<ul>
-				<li>The <code>ActionForm</code> interface itself requires no specific
+				<li>The <code>ActionForm</code> class itself requires no specific
 				    methods to be implemented.  It is used to identify the role these
 				    particular beans play in the overall architecture.  Typically, an
 				    <code>ActionForm</code> bean will have only property getter and
