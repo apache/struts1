@@ -2,72 +2,69 @@ package org.apache.scaffold.http;
 
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.scaffold.lang.Tokens;
+
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 
-// import org.apache.struts.config.ApplicationConfig;
-// import org.apache.struts.config.ForwardConfig;
-
-
-import org.apache.scaffold.lang.Tokens;
-
 
 /**
- * Scan request parameters for the name of a local or global
- * forward. If one is found, use it. If not, return null.
- * @author Dmitri Valdin
+ * Standard Action to append a passed parameter to query string.
  * @author Ted Husted
- * @version $Revision: 1.4 $ $Date: 2002/01/24 15:22:56 $
-**/
-public final class FindForwardAction extends Action {
+ * @version $Revision: 1.1 $ $Date: 2002/01/24 15:22:56 $
+ */
+public class Parameter extends Action {
 
     /**
-     * Scan request parameters for the name of a local or global
-     * forward. If one is found, use it. If not, return null.
      * @param mapping The ActionMapping used to select this instance
      * @param actionForm The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
+     * @param helper The helper object
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
-    **/
-    public ActionForward perform(ActionMapping mapping,
-                 ActionForm form,
-                 HttpServletRequest request,
-                 HttpServletResponse response)
-    throws IOException, ServletException {
+     * :FIXME: is there any valid use of the response here?
+     */
+     public ActionForward perform(
+         ActionMapping mapping,
+         ActionForm form,
+         HttpServletRequest request,
+         HttpServletResponse response) {
 
-        String forwards[] = mapping.findForwards();
-        /* -- non-deprecated version
-        ApplicationConfig config = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
-        ForwardConfig forwards[] = config.findForwardConfigs();
-        */
-        for (int i=0; i<forwards.length; i++) {
-            if (request.getParameter(forwards[i])!=null) {
-                 // Return the required ActionForward instance
-                 return mapping.findForward(forwards[i]);
-             }
-         }
+            // Get "forward" parameter
+        String parameter = request.getParameter(Tokens.FORWARD);
+            // Get parameter name for this mapping
+        String paramName = mapping.getParameter();
 
-        return null;
+        StringBuffer path = new StringBuffer(64);
+
+            // Get stub URI from mapping (/do/whatever?paramName=)
+        path.append(mapping.findForward(parameter).getPath());
+            // Append the value passed (/do/whatever?paramName=paramProperty)
+        path.append(request.getParameter(paramName));
+
+            // Return a new forward based on stub+value
+        return new ActionForward(path.toString());
 
     }
 
-} // end FindForwardAction
+
+} // end Parameter
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/FindForwardAction.java,v 1.4 2002/01/24 15:22:56 husted Exp $
- * $Revision: 1.4 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/Parameter.java,v 1.1 2002/01/24 15:22:56 husted Exp $
+ * $Revision: 1.1 $
  * $Date: 2002/01/24 15:22:56 $
  *
  * ====================================================================
@@ -124,7 +121,7 @@ public final class FindForwardAction extends Action {
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
-**/
+ */
 
 
 

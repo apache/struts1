@@ -13,61 +13,44 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 
-// import org.apache.struts.config.ApplicationConfig;
-// import org.apache.struts.config.ForwardConfig;
-
-
 import org.apache.scaffold.lang.Tokens;
 
 
 /**
- * Scan request parameters for the name of a local or global
- * forward. If one is found, use it. If not, return null.
- * @author Dmitri Valdin
+ * Standard Action to forward control to continue.
+ * Useful for prototyping flow during development,
+ * and for creating blank forms for new input.
  * @author Ted Husted
- * @version $Revision: 1.4 $ $Date: 2002/01/24 15:22:56 $
-**/
-public final class FindForwardAction extends Action {
+ * @version $Revision: 1.1 $ $Date: 2002/01/24 15:22:56 $
+ */
+public final class RemoveHelper extends Action {
 
     /**
-     * Scan request parameters for the name of a local or global
-     * forward. If one is found, use it. If not, return null.
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param actionForm The ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
-    **/
+     */
     public ActionForward perform(ActionMapping mapping,
                  ActionForm form,
                  HttpServletRequest request,
                  HttpServletResponse response)
     throws IOException, ServletException {
 
-        String forwards[] = mapping.findForwards();
-        /* -- non-deprecated version
-        ApplicationConfig config = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
-        ForwardConfig forwards[] = config.findForwardConfigs();
-        */
-        for (int i=0; i<forwards.length; i++) {
-            if (request.getParameter(forwards[i])!=null) {
-                 // Return the required ActionForward instance
-                 return mapping.findForward(forwards[i]);
-             }
-         }
-
-        return null;
+       request.getSession().removeAttribute(
+           mapping.getParameter());
+       return mapping.findForward(Tokens.CONTINUE);
 
     }
 
-} // end FindForwardAction
+} // end RemoveHelperAction
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/FindForwardAction.java,v 1.4 2002/01/24 15:22:56 husted Exp $
- * $Revision: 1.4 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/RemoveHelper.java,v 1.1 2002/01/24 15:22:56 husted Exp $
+ * $Revision: 1.1 $
  * $Date: 2002/01/24 15:22:56 $
  *
  * ====================================================================
@@ -124,7 +107,7 @@ public final class FindForwardAction extends Action {
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
-**/
+ */
 
 
 

@@ -2,79 +2,68 @@ package org.apache.scaffold.http;
 
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts.action.Action;
+// import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 
-// import org.apache.struts.config.ApplicationConfig;
-// import org.apache.struts.config.ForwardConfig;
-
-
 import org.apache.scaffold.lang.Tokens;
+import org.apache.scaffold.model.ModelBean;
+import org.apache.scaffold.model.ModelException;
+import org.apache.scaffold.model.ModelResult;
 
 
 /**
- * Scan request parameters for the name of a local or global
- * forward. If one is found, use it. If not, return null.
- * @author Dmitri Valdin
+ * Standard Action to manage helper objects, and relay outcome.
  * @author Ted Husted
- * @version $Revision: 1.4 $ $Date: 2002/01/24 15:22:56 $
-**/
-public final class FindForwardAction extends Action {
+ * @version $Revision: 1.1 $ $Date: 2002/01/24 15:22:56 $
+ */
+public class ModelRelay extends ModelHelper {
 
     /**
-     * Scan request parameters for the name of a local or global
-     * forward. If one is found, use it. If not, return null.
      * @param mapping The ActionMapping used to select this instance
      * @param actionForm The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
+     * @param helper The helper object
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
-    **/
-    public ActionForward perform(ActionMapping mapping,
-                 ActionForm form,
-                 HttpServletRequest request,
-                 HttpServletResponse response)
-    throws IOException, ServletException {
+     * :FIXME: is there any valid use of the response here?
+     */
+     public ActionForward getContinue(
+         ActionMapping mapping,
+         ActionForm form,
+         HttpServletRequest request,
+         HttpServletResponse response,
+         Object[] helpers
+         ) {
 
-        String forwards[] = mapping.findForwards();
-        /* -- non-deprecated version
-        ApplicationConfig config = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
-        ForwardConfig forwards[] = config.findForwardConfigs();
-        */
-        for (int i=0; i<forwards.length; i++) {
-            if (request.getParameter(forwards[i])!=null) {
-                 // Return the required ActionForward instance
-                 return mapping.findForward(forwards[i]);
-             }
-         }
-
-        return null;
+        return mapping.findForward(request.getParameter(Tokens.FORWARD));
 
     }
 
-} // end FindForwardAction
+
+} // end ModelRelay
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/FindForwardAction.java,v 1.4 2002/01/24 15:22:56 husted Exp $
- * $Revision: 1.4 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/ModelRelay.java,v 1.1 2002/01/24 15:22:56 husted Exp $
+ * $Revision: 1.1 $
  * $Date: 2002/01/24 15:22:56 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -124,7 +113,7 @@ public final class FindForwardAction extends Action {
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
-**/
+ */
 
 
 

@@ -13,25 +13,20 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 
-// import org.apache.struts.config.ApplicationConfig;
-// import org.apache.struts.config.ForwardConfig;
-
-
 import org.apache.scaffold.lang.Tokens;
 
 
 /**
- * Scan request parameters for the name of a local or global
- * forward. If one is found, use it. If not, return null.
- * @author Dmitri Valdin
+ * Standard Action to reset form bean and then
+ * forward control to continue.
+ * Useful for workflow loops where bean should be
+ * reset, but request context not cleared.
  * @author Ted Husted
- * @version $Revision: 1.4 $ $Date: 2002/01/24 15:22:56 $
+ * @version $Revision: 1.1 $ $Date: 2002/01/24 15:22:56 $
 **/
-public final class FindForwardAction extends Action {
+public final class ResetAction extends Action {
 
     /**
-     * Scan request parameters for the name of a local or global
-     * forward. If one is found, use it. If not, return null.
      * @param mapping The ActionMapping used to select this instance
      * @param actionForm The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
@@ -45,29 +40,17 @@ public final class FindForwardAction extends Action {
                  HttpServletResponse response)
     throws IOException, ServletException {
 
-        String forwards[] = mapping.findForwards();
-        /* -- non-deprecated version
-        ApplicationConfig config = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
-        ForwardConfig forwards[] = config.findForwardConfigs();
-        */
-        for (int i=0; i<forwards.length; i++) {
-            if (request.getParameter(forwards[i])!=null) {
-                 // Return the required ActionForward instance
-                 return mapping.findForward(forwards[i]);
-             }
-         }
-
-        return null;
+        form.reset(mapping, request);
+        return mapping.findForward(Tokens.CONTINUE);
 
     }
 
-} // end FindForwardAction
+} // end ResetAction
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/FindForwardAction.java,v 1.4 2002/01/24 15:22:56 husted Exp $
- * $Revision: 1.4 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/ResetAction.java,v 1.1 2002/01/24 15:22:56 husted Exp $
+ * $Revision: 1.1 $
  * $Date: 2002/01/24 15:22:56 $
  *
  * ====================================================================
@@ -96,7 +79,7 @@ public final class FindForwardAction extends Action {
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
