@@ -48,7 +48,7 @@
         <li><a href="http://developer.java.sun.com/developer/technicalArticles/ALT/Reflection/"><font size="2">Using Java Reflection</font></a></li>
       </ul>
     </li>
-    <li><i>Optional:</i> <a href="Trail:%20http://java.sun.com/docs/books/tutorial/jdbc/index.html">The Java Tutorial - Trail: JDBC</a></li>
+    <li><i>Optional:</i> <a href="http://java.sun.com/docs/books/tutorial/jdbc/index.html">The Java Tutorial - Trail: JDBC</a></li>
     <li><i>Very Optional:</i> <a href="http://java.sun.com/xml/jaxp/dist/1.1/docs/tutorial/index.html">The Java API for Xml Processing (JAXP) Tutorial</a></li>
     <li><i>Extra Credit:</i> <a href="http://java.sun.com/docs/books/jls/first_edition/html/index.html">The Java Language Specification</a>
     <ul>
@@ -67,7 +67,7 @@
   </ul></li>
   <li><a href="http://jakarta.apache.org/struts/userGuide/index.html">Struts UserGuide</a></li>
   <li><a href="http://jakarta.apache.org/struts/api/index.html"><b>Struts JavaDocs</b> </a> -- <i>a good read, really!</i></li>
-  <li><a href="http://husted.com/struts/catalog"><b>The Struts Catalog</b> </a> -- Recommended design patterns and strategies</li>
+  <li><a href="http://husted.com/struts/catalog.html"><b>The Struts Catalog</b> </a> -- Recommended design patterns and strategies</li>
 </ul>
 </ul>
 
