@@ -16,7 +16,7 @@
                 oRequired = new required();                                                                         
                                                                                                                     
                 for (x in oRequired) {                                                                              
-                    if ((form[oRequired[x][0]].type == 'text' || form[oRequired[x][0]].type == 'textarea' || form[oRequired[x][0]].type == 'select' || form[oRequired[x][0]].type == 'radio' || form[oRequired[x][0]].type == 'password') && form[oRequired[x][0]].value == '') {
+                    if ((form[oRequired[x][0]].type == 'text' || form[oRequired[x][0]].type == 'textarea' || form[oRequired[x][0]].type == 'select-one' || form[oRequired[x][0]].type == 'radio' || form[oRequired[x][0]].type == 'password') && form[oRequired[x][0]].value == '') {
                        if (i == 0)
                           focusField = form[oRequired[x][0]]; 
                           
@@ -96,7 +96,7 @@
                 oByte = new ByteValidations();                                                                         
             
                 for (x in oByte) {                                                                              
-                    if ((form[oByte[x][0]].type == 'text' || form[oByte[x][0]].type == 'textarea' || form[oByte[x][0]].type == 'select' || form[oByte[x][0]].type == 'radio') && form[oByte[x][0]].value.length > 0) {   
+                    if ((form[oByte[x][0]].type == 'text' || form[oByte[x][0]].type == 'textarea' || form[oByte[x][0]].type == 'select-one' || form[oByte[x][0]].type == 'radio') && form[oByte[x][0]].value.length > 0) {   
                        var iValue = parseInt(form[oByte[x][0]].value);
             
                        if (!iValue || !(iValue >= -128 && iValue <= 127)) {
@@ -135,7 +135,7 @@
                 oShort = new ShortValidations();                                                                         
             
                 for (x in oShort) {                                                                              
-                    if ((form[oShort[x][0]].type == 'text' || form[oShort[x][0]].type == 'textarea' || form[oShort[x][0]].type == 'select' || form[oShort[x][0]].type == 'radio') && form[oShort[x][0]].value.length > 0) {   
+                    if ((form[oShort[x][0]].type == 'text' || form[oShort[x][0]].type == 'textarea' || form[oShort[x][0]].type == 'select-one' || form[oShort[x][0]].type == 'radio') && form[oShort[x][0]].value.length > 0) {   
                        var iValue = parseInt(form[oShort[x][0]].value);
             
                        if (!iValue || !(iValue >= -32768 && iValue <= 32767)) {
@@ -174,7 +174,7 @@
                 oInteger = new IntegerValidations();                                                                         
             
                 for (x in oInteger) {                                                                              
-                    if ((form[oInteger[x][0]].type == 'text' || form[oInteger[x][0]].type == 'textarea' || form[oInteger[x][0]].type == 'select' || form[oInteger[x][0]].type == 'radio') && form[oInteger[x][0]].value.length > 0) {   
+                    if ((form[oInteger[x][0]].type == 'text' || form[oInteger[x][0]].type == 'textarea' || form[oInteger[x][0]].type == 'select-one' || form[oInteger[x][0]].type == 'radio') && form[oInteger[x][0]].value.length > 0) {   
                        var iValue = parseInt(form[oInteger[x][0]].value);
             
                        if (!iValue || !(iValue >= -2147483648 && iValue <= 2147483647)) {
@@ -219,7 +219,7 @@
                 oFloat = new FloatValidations();                                                                         
             
                 for (x in oFloat) {                                                                              
-                    if ((form[oFloat[x][0]].type == 'text' || form[oFloat[x][0]].type == 'textarea' || form[oFloat[x][0]].type == 'select' || form[oFloat[x][0]].type == 'radio') && form[oFloat[x][0]].value.length > 0) {   
+                    if ((form[oFloat[x][0]].type == 'text' || form[oFloat[x][0]].type == 'textarea' || form[oFloat[x][0]].type == 'select-one' || form[oFloat[x][0]].type == 'radio') && form[oFloat[x][0]].value.length > 0) {   
                        var iValue = parseFloat(form[oFloat[x][0]].value);
             
                        if (!iValue) {
