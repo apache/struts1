@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.5 2001/01/19 01:26:01 dgeary Exp $
- * $Revision: 1.5 $
- * $Date: 2001/01/19 01:26:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.6 2001/01/22 19:45:57 dgeary Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/01/22 19:45:57 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.taglib.template.util.*;
  * it, depending upon the value of the content's direct attribute.
  *
  * @author David Geary
- * @version $Revision: 1.5 $ $Date: 2001/01/19 01:26:01 $
+ * @version $Revision: 1.6 $ $Date: 2001/01/22 19:45:57 $
  */
 public class GetTag extends TagSupport {
 
@@ -156,10 +156,12 @@ public class GetTag extends TagSupport {
 
 
    /**
-     * Reset member values for reuse.
+     * Reset member values for reuse. This method calls super.release(),
+     * which invokes TagSupport.release(), which typically does nothing.
      */
    public void release() {
 
+      super.release();
       name = role = null;
 
    }

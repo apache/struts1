@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.6 2001/01/16 23:48:41 dgeary Exp $
- * $Revision: 1.6 $
- * $Date: 2001/01/16 23:48:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.7 2001/01/22 19:45:59 dgeary Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/01/22 19:45:59 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.taglib.template.util.Content;
  * Tag handler for &lt;template:put&gt;, which puts content into request scope.
  *
  * @author David Geary
- * @version $Revision: 1.6 $ $Date: 2001/01/16 23:48:41 $
+ * @version $Revision: 1.7 $ $Date: 2001/01/22 19:45:59 $
  */
 public class PutTag extends BodyTagSupport {
 
@@ -176,10 +176,12 @@ public class PutTag extends BodyTagSupport {
 
 
    /**
-     * Reset member variables. 
+     * Reset member values for reuse. This method calls super.release(),
+     * which invokes TagSupport.release(), which typically does nothing.
      */
    public void release() {
 
+      super.release();
       name = content = direct = role = null;
 
    }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.3 2001/01/19 01:26:01 dgeary Exp $
- * $Revision: 1.3 $
- * $Date: 2001/01/19 01:26:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.4 2001/01/22 19:45:58 dgeary Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/01/22 19:45:58 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.taglib.template.util.*;
  * tags, which are accessed by &lt;template:get&gt; in the template.
  *
  * @author David Geary
- * @version $Revision: 1.3 $ $Date: 2001/01/19 01:26:01 $
+ * @version $Revision: 1.4 $ $Date: 2001/01/22 19:45:58 $
  */
 public class InsertTag extends TagSupport {
 
@@ -148,10 +148,12 @@ public class InsertTag extends TagSupport {
 
 
    /**
-     * Reset member variables.
+     * Reset member values for reuse. This method calls super.release(),
+     * which invokes TagSupport.release(), which typically does nothing.
      */
    public void release() {
 
+      super.release();
       template = null;
       map = null;
 
