@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.11 2003/06/18 03:58:03 martinc Exp $
- * $Revision: 1.11 $
- * $Date: 2003/06/18 03:58:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.12 2003/07/27 04:45:08 rleland Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/07/27 04:45:08 $
  *
  * ====================================================================
  *
@@ -130,14 +130,6 @@ public class XmlParser
     digester.setValidating( validating);
     }
 
-    /**
-     * Set digester detail level.
-     * @deprecated Use the commons-logging to set digester debug level.
-
-     */
-  public void setDetailLevel( int detailLevel )
-    {
-    }
 
    /**
     * Init digester for components syntax.
@@ -380,7 +372,6 @@ public class XmlParser
       {
 	    XmlParser parser = new XmlParser();
       parser.setValidating(true);
-      parser.setDetailLevel(2);
       XmlDefinitionsSet definitions = new XmlDefinitionsSet();
         System.out.println( "  Parse file" );
       parser.parse( input, definitions);
