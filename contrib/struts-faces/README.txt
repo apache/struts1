@@ -1,5 +1,5 @@
 The Struts-Faces Integration Library (Version 0.4) README File
-$Id: README.txt,v 1.11 2004/06/17 12:00:46 jmitchell Exp $
+$Id: README.txt,v 1.12 2004/06/17 12:04:26 jmitchell Exp $
 
 
 ============
@@ -39,11 +39,7 @@ following new features relative to the previous (0.4) release:
 
 * It is now possible to mix pure JavaServer Faces pages, and those
   using the struts-faces integration library, in the same webapp.  Previously,
-<<<<<<< README.txt
-  it was required to use only Struts-based handlers for form submts.
-=======
   it was required to use only Struts-based handlers for form submits.
->>>>>>> 1.10
 
 * All attributes of the component tags in the Struts-Faces integration library
   have been "value binding enabled", meaning you can use value binding
