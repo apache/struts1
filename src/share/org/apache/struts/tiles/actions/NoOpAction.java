@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/Attic/NoOpAction.java,v 1.4 2002/10/20 19:21:01 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/20 19:21:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/Attic/NoOpAction.java,v 1.5 2002/12/27 10:36:54 cedric Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/12/27 10:36:54 $
  *
  * ====================================================================
  *
@@ -85,8 +85,13 @@ import org.apache.struts.util.RequestUtils;
  * "success".
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.4 $ $Date: 2002/10/20 19:21:01 $
- * @deprecated Use o.a.s.a.ForwardAction instead
+ * @version $Revision: 1.5 $ $Date: 2002/12/27 10:36:54 $
+ * @deprecated Use o.a.s.a.ForwardAction instead with the parameter attribute:
+ * <code>
+ *    &lt;action path="aPath"
+ *                type="org.apache.struts.action.ForwardAction"
+ *                parameter="tiles.def.name" /&gt;
+ * </code>
  */
 
 public final class NoOpAction extends Action {
