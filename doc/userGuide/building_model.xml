@@ -148,7 +148,7 @@
         properties for all of the fields, no matter which page the field is actually
         displayed on.  Likewise, the various pages of the same form should all be
         submitted to the same Action Class.  If you follow these suggestions, the
-        page designers can rearrange the fields among the various pages, pftem without 
+        page designers can rearrange the fields among the various pages, often without 
         requiring changes to the processing logic.
       </p>
     </section>

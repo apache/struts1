@@ -107,7 +107,7 @@
       </ul>
         
       <p>
-        When you configue the controller servlet in the web application
+        When you configure the controller servlet in the web application
         deployment descriptor, one of the things you will need to define in
         an initialization parameter is the base name of the resource bundle
         for the application.  In the case described above, it would be
@@ -378,8 +378,9 @@ public class UploadForm extends ActionForm {
             <li><a href="../struts-html.html#password">password</a> input fields</li>
             <li><a href="../struts-html.html#radio">radio</a> buttons</li>
             <li><a href="../struts-html.html#reset">reset</a> buttons</li>
-            <li><a href="../struts-html.html#select">select</a> lists with embedded</li>
-            <li><a href="../struts-html.html#option">options</a></li>
+            <li><a href="../struts-html.html#select">select</a> lists with embedded option or options items</li>
+            <li><a href="../struts-html.html#option">option</a></li>
+            <li><a href="../struts-html.html#options">options</a></li>
             <li><a href="../struts-html.html#submit">submit</a> buttons</li>
             <li><a href="../struts-html.html#text">text</a> input fields</li>
             <li><a href="../struts-html.html#textarea">textareas</a></li>
