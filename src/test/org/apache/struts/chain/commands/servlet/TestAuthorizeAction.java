@@ -38,8 +38,7 @@ public class TestAuthorizeAction extends TestCase {
         MockActionServlet servlet = new MockActionServlet(servletContext, servletConfig);
         servlet.initInternal();
 
-        this.swContext = new ServletWebContext(servletContext, request, new MockHttpServletResponse());
-        this.saContext = new ServletActionContext(swContext);
+        this.saContext = new ServletActionContext(servletContext, request, new MockHttpServletResponse());
 
         this.saContext.setActionServlet(servlet);
         this.command = new AuthorizeAction();

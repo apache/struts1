@@ -34,7 +34,7 @@
 <catalog       name="struts">
 
     <define name= "lookup"
-            className= "org.apache.struts.chain.commands.generic.WrappingLookupCommand" />
+            className= "org.apache.commons.chain.generic.LookupCommand" />
     <!-- ========== Servlet Complete Request Chain ========================= -->
 
     <chain     name="servlet-standard">
@@ -46,7 +46,6 @@
    exceptionCommand="servlet-exception"/>
 
       <lookup
-        wrapperClassName="org.apache.struts.chain.contexts.ServletActionContext"
         catalogName="struts"
                name="process-action"
            optional="false"/>

@@ -21,8 +21,8 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.chain.commands.AbstractPerformForward;
+import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.upload.MultipartRequestWrapper;
@@ -52,14 +52,14 @@ public class PerformForward extends AbstractPerformForward {
     protected void perform(Context context,ForwardConfig forwardConfig)
         throws Exception {
 
-        ServletWebContext swcontext = (ServletWebContext) context;
+        ServletActionContext sacontext = (ServletActionContext) context;
         String forwardPath = forwardConfig.getPath();
         String uri = null;
 
         ModuleConfig moduleConfig  = (ModuleConfig) context.get(getModuleConfigKey());
         // Resolve module-relative paths
         if (forwardPath.startsWith("/")) {
-            uri = RequestUtils.forwardURL(swcontext.getRequest(),
+            uri = RequestUtils.forwardURL(sacontext.getRequest(),
                                           forwardConfig,
                                           moduleConfig);
         } else {
@@ -67,7 +67,7 @@ public class PerformForward extends AbstractPerformForward {
         }
 
         // Get the underlying request in the case of a multipart wrapper
-        HttpServletRequest request = swcontext.getRequest();
+        HttpServletRequest request = sacontext.getRequest();
         if (request instanceof MultipartRequestWrapper) {
             request = ((MultipartRequestWrapper) request).getRequest();
         }
@@ -77,12 +77,12 @@ public class PerformForward extends AbstractPerformForward {
             if (uri.startsWith("/")) {
                 uri = request.getContextPath() + uri;
             }
-            swcontext.getResponse().sendRedirect
-                (swcontext.getResponse().encodeRedirectURL(uri));
+            sacontext.getResponse().sendRedirect
+                (sacontext.getResponse().encodeRedirectURL(uri));
         } else {
             RequestDispatcher rd =
-                swcontext.getContext().getRequestDispatcher(uri);
-            rd.forward(request, swcontext.getResponse());
+                sacontext.getContext().getRequestDispatcher(uri);
+            rd.forward(request, sacontext.getResponse());
         }
 
     }

@@ -18,18 +18,20 @@ package org.apache.struts.chain;
 
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.chain.Catalog;
 import org.apache.commons.chain.CatalogFactory;
 import org.apache.commons.chain.Command;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.RequestProcessor;
-import org.apache.struts.chain.Constants;
+import org.apache.struts.chain.contexts.ActionContext;
+import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.upload.MultipartRequestWrapper;
@@ -149,12 +151,7 @@ public class ComposableRequestProcessor extends RequestProcessor {
         request = processMultipart(request);
         
         // Create and populate a Context for this request
-        ServletWebContext context = new ServletWebContext();
-        context.initialize(getServletContext(), request, response);
-        context.put(Constants.ACTION_SERVLET_KEY,
-                    this.servlet);
-        context.put(Constants.MODULE_CONFIG_KEY,
-                    this.moduleConfig);
+        ActionContext context = contextInstance(request, response);
 
         // Create and execute the command.
         try {
@@ -171,7 +168,15 @@ public class ComposableRequestProcessor extends RequestProcessor {
         context.release();
     }
     
-
+    protected ActionContext contextInstance(HttpServletRequest request,
+                                            HttpServletResponse response) {
+        // Create and populate a Context for this request
+        ServletActionContext context = new ServletActionContext(getServletContext(), request, response);
+        context.setActionServlet(this.servlet);
+        context.setModuleConfig(this.moduleConfig);
+        return context;
+    }
+    
     /**
      * If this is a multipart request, wrap it with a special wrapper.
      * Otherwise, return the request unchanged.

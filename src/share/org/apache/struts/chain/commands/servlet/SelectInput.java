@@ -50,8 +50,8 @@ public class SelectInput extends AbstractSelectInput {
                                     ModuleConfig moduleConfig,
                                     String uri) {
 
-        return (new ActionForward(null, moduleConfig.getPrefix() + uri,
-                                  false, true));
+        return (new ActionForward(null, uri,
+                                  false, moduleConfig.getPrefix()));
 
     }
 

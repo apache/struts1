@@ -18,11 +18,12 @@ package org.apache.struts.chain.commands.servlet;
 
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.Globals;
-import org.apache.struts.chain.commands.AbstractSelectModule;
 import org.apache.struts.chain.Constants;
+import org.apache.struts.chain.commands.AbstractSelectModule;
+import org.apache.struts.chain.contexts.ServletActionContext;
 
 
 /**
@@ -43,8 +44,8 @@ public class SelectModule extends AbstractSelectModule {
     protected String getPrefix(Context context) {
 
         // Identify the URI from which we will match a module prefix
-        ServletWebContext swcontext = (ServletWebContext) context;
-        HttpServletRequest request = swcontext.getRequest();
+        ServletActionContext sacontext = (ServletActionContext) context;
+        HttpServletRequest request = sacontext.getRequest();
         String uri =
             (String) request.getAttribute(Constants.INCLUDE_SERVLET_PATH);
         if (uri == null) {
@@ -58,7 +59,7 @@ public class SelectModule extends AbstractSelectModule {
         // Identify the module prefix for the current module
         String prefix = "";  // Initialize to default prefix
         String prefixes[] = (String[])
-            swcontext.getApplicationScope().get(Globals.MODULE_PREFIXES_KEY);
+            sacontext.getApplicationScope().get(Globals.MODULE_PREFIXES_KEY);
         int lastSlash = 0;
         while (prefix.equals("") &&
                ((lastSlash = uri.lastIndexOf("/")) > 0)) {

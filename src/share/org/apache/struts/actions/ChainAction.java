@@ -22,13 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.chain.Catalog;
 import org.apache.commons.chain.CatalogFactory;
 import org.apache.commons.chain.Command;
-import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
-
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.chain.contexts.ServletActionContext;
 
 /**
  * <p>An <code>Action</code> implementation that delegates to a
@@ -101,10 +99,10 @@ public class ChainAction extends Action {
         throws Exception {
 
         // Set up a context for this request
-        Context context = new ServletWebContext
+        ServletActionContext context = new ServletActionContext
             (getServlet().getServletContext(), request, response);
-        context.put("mapping", mapping);
-        context.put("form", form);
+        context.setActionConfig(mapping);
+        context.setActionForm(form);
 
         // Delegate to the specified command
         Command command = getCatalog().getCommand(mapping.getParameter());

@@ -19,9 +19,9 @@ package org.apache.struts.chain.commands;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.WebContext;
 import org.apache.struts.Globals;
 import org.apache.struts.chain.Constants;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 
@@ -121,21 +121,21 @@ public abstract class AbstractSelectModule implements Command {
         String prefix = getPrefix(context);
 
         // Cache the corresponding ModuleConfig and MessageResources instances
-        WebContext wcontext = (WebContext) context;
+        ActionContext actionCtx = (ActionContext) context;
         ModuleConfig moduleConfig = (ModuleConfig)
-            wcontext.getApplicationScope().get(Globals.MODULE_KEY + prefix);
+            actionCtx.getApplicationScope().get(Globals.MODULE_KEY + prefix);
         if (moduleConfig == null) {
             throw new IllegalArgumentException("No module config for prefix '" +
                                                prefix + "'");
         }
-        wcontext.put(getModuleConfigKey(), moduleConfig);
-        wcontext.getRequestScope().put(Globals.MODULE_KEY, moduleConfig);
+        actionCtx.put(getModuleConfigKey(), moduleConfig);
+        actionCtx.getRequestScope().put(Globals.MODULE_KEY, moduleConfig);
         MessageResources messageResources = (MessageResources)
-            wcontext.getApplicationScope().get(Globals.MESSAGES_KEY + prefix);
+            actionCtx.getApplicationScope().get(Globals.MESSAGES_KEY + prefix);
         if (messageResources != null) {
-            wcontext.put(getMessageResourcesKey(),
+            actionCtx.put(getMessageResourcesKey(),
                                          messageResources);
-            wcontext.getRequestScope().put(Globals.MESSAGES_KEY,
+            actionCtx.getRequestScope().put(Globals.MESSAGES_KEY,
                                            messageResources);
         }
 

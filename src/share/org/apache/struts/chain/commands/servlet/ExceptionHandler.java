@@ -19,15 +19,16 @@ package org.apache.struts.chain.commands.servlet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.chain.commands.AbstractExceptionHandler;
-import org.apache.struts.chain.Constants;
-import org.apache.struts.chain.commands.util.ClassUtils;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.chain.Constants;
+import org.apache.struts.chain.commands.AbstractExceptionHandler;
+import org.apache.struts.chain.commands.util.ClassUtils;
+import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.config.ForwardConfig;
@@ -91,11 +92,11 @@ public class ExceptionHandler extends AbstractExceptionHandler {
         throws Exception {
 
         // Look up the remaining properties needed for this handler
-        ServletWebContext swcontext = (ServletWebContext) context;
+        ServletActionContext sacontext = (ServletActionContext) context;
         ActionForm actionForm = (ActionForm)
-            swcontext.get(getActionFormKey());
-        HttpServletRequest request = swcontext.getRequest();
-        HttpServletResponse response = swcontext.getResponse();
+            sacontext.get(getActionFormKey());
+        HttpServletRequest request = sacontext.getRequest();
+        HttpServletResponse response = sacontext.getResponse();
 
         // Handle this exception
         org.apache.struts.action.ExceptionHandler handler =
