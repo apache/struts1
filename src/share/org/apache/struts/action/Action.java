@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.48 2002/10/14 18:16:18 rleland Exp $
- * $Revision: 1.48 $
- * $Date: 2002/10/14 18:16:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.49 2002/10/27 05:56:59 rleland Exp $
+ * $Revision: 1.49 $
+ * $Date: 2002/10/27 05:56:59 $
  *
  * ====================================================================
  *
@@ -112,7 +112,7 @@ import org.apache.struts.util.RequestUtils;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.48 $ $Date: 2002/10/14 18:16:18 $
+ * @version $Revision: 1.49 $ $Date: 2002/10/27 05:56:59 $
  */
 
 public class Action {
@@ -722,7 +722,7 @@ public class Action {
                   ActionErrors errors) {
 
         // Remove any error messages attribute if none are required
-        if ((errors == null) || errors.empty()) {
+        if ((errors == null) || errors.isEmpty()) {
             request.removeAttribute(ERROR_KEY);
             return;
         }
@@ -747,7 +747,7 @@ public class Action {
                     ActionMessages messages) {
 
         // Remove any messages attribute if none are required
-        if ((messages == null) || messages.empty()) {
+        if ((messages == null) || messages.isEmpty()) {
             request.removeAttribute(MESSAGE_KEY);
             return;
         }
