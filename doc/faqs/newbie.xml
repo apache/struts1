@@ -97,6 +97,10 @@
     
     <li><a href="#jsp">Do I have to use JSPs with my application?</a></li>
         
+    <li>
+    <a href="#formbeans">Do ActionForms have to be true JavaBeans?</a>
+    </li>
+
     </ul>
  
     <p>
@@ -472,6 +476,96 @@ XHTML specification</a></p>
 
 </section>     
 
+<section href="formbeans" name="Do ActionForms have to be true JavaBeans?">
+
+    <p>ActionForms are added to a servlet scope (session or request)
+    as beans.  What this means is that, for certain functionality to
+    be available, your ActionForms will have to follow a few simple
+    rules.</p>
+
+    <p>First, your ActionForm bean must have a zero-arguments
+    constructor.  This is required because Struts must be able to
+    dynamically create new instances of your form bean class, while
+    knowing only the class name.  This is not an onerous restriction,
+    however, because Struts will also populate your form bean's
+    properties (from the request parameters) for you.</p>
+
+    <p>Second, the fields of your form bean are made available to the
+    framework by supplying public getter and setter methods that
+    follow the naming design patterns described in the JavaBeans
+    Specification.  For most users, that means using the following
+    idiom for each of your form bean's properties:</p>
+
+    <pre>
+        private {type} fieldName;
+
+        public {type} getFieldName() {
+            return (this.fieldName);
+        }
+
+        public void setFieldName({type} fieldName) {
+            this.fieldName = fieldName;
+        }
+    </pre>
+
+    <p><strong>NOTE</strong> - you <em>MUST</em> obey the capitalization
+    conventions shown above for your ActionForm properties to be recognized.
+    The property name in this example is "fieldName", and that must also be
+    the name of the input field that corresponds to this property.  A bean
+    property may have a "getter" method and a "setter" method (in a form bean,
+    it is typical to have both) whose name starts with "get" or "set",
+    followed by the property name with the first character capitalized.
+    (For boolean properties, it is also legal to use "is" instead of "get"
+    as the prefix for the getter method.)</p>
+
+    <p> Advanced JavaBeans users will know that you can tell the system
+    you want to use different names for the getter and setter methods, by
+    using a <code>java.beans.BeanInfo</code> class associated with your form
+    bean.  Normally, however, it is much more convenient to follow the
+    standard conventions.</p>
+
+    <p><strong>WARNING</strong> - developers might be tempted to use one of
+    the following techniques, but any of them will cause your property not
+    to be recognized by the JavaBeans introspection facilities, and therefore
+    cause your applications to misbehave:</p>
+    <ul>
+    <li><em>Using getter and setter method names that do not
+        match</em> - if you have a <code>getFoo()</code> method for your
+        getter, but a <code>setBar()</code> method for your setter, Java
+        will not recognize these methods as referring to the same property.
+        Instead, the language will think you have a read-only property named
+        "foo" and a write-only property named "bar".</li>
+    <li><em>Using more than one setter method with the same
+        name</em> - The Java language lets you "overload" methods, as long
+        as the argument types are different.  For example, you could have a
+        <code>setStartDate(java.util.Date date)</code> method and a
+        <code>setStartDate(String date)</code> method in the same class, and
+        the compiled code would know which method to call based on the
+        parameter type being passed.  However, doing this for form bean
+        properties will prevent Java from recognizing that you have a
+        "startDate" property at all.</li>
+    </ul>
+
+    <p>There are other rules to follow if you want other features of your
+    form beans to be exposed.  These include indexed attributes and mapped
+    attributes.  They are covered in detail in other areas of the Struts
+    documentation, in particular:</p>
+    <blockquote>
+    <a href="http://jakarta.apache.org/struts/faqs/indexedprops.html">
+    http://jakarta.apache.org/struts/faqs/indexedprops.html</a>
+    </blockquote>
+
+    <p>For a complete explanation of what a JavaBean is, and everything it can
+    do, see the JavaBeans Specification (version 1.01) at:</p>
+    <blockquote>
+    <a href="http://java.sun.com/products/javabeans/docs/beans.101.pdf">
+    http://java.sun.com/products/javabeans/docs/beans.101.pdf</a>
+    </blockquote>
+
+</section>
+
+
+
 <section 
     href="undocumented" 
     name="If you would like to contribute, here is a list of 
@@ -482,8 +576,6 @@ XHTML specification</a></p>
     <li>Why is ActionForm a base class rather than an interface?</li>
 
     <li>Do I have to have a separate ActionForm bean for every HTML form?</li>
-
-    <li>do ActionForms have to be true JavaBeans?</li>
 
     <li>Can I use other beans or hashmaps with ActionForms?</li>
 
