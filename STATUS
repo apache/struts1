@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.19 2002/07/13 23:49:15 jholmes Exp $
+$Id: STATUS,v 1.20 2002/07/15 22:32:33 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -61,7 +61,6 @@ Validator Framework:
 -------------------
  7347 Validator contrib directory should be dead
  7351 Validator JavaScript Primitive Validation Error
- 7352 Struts 1.1 Beta 1 Release incorrectly reference contrib/validator
  7353 Validator JavaScript Select Error
  8446 Zero values are not validated as byte, integer, etc.
  9051 [PATCH] 0 should be a valid float
