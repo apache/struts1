@@ -11,7 +11,7 @@
      "-//Apache Software Foundation//DTD Struts Validator Rules Configuration 1.1//EN"
      "http://jakarta.apache.org/struts/dtds/validator-rules_1_1.dtd">
 
-    $Id: validator-rules_1_1.dtd,v 1.2 2002/07/11 12:02:37 husted Exp $
+    $Id: validator-rules_1_1.dtd,v 1.3 2002/08/02 21:22:52 jholmes Exp $
 -->
 
 
@@ -119,7 +119,7 @@
 
      fieldOrder      [:FIXME: is this still supported?]
 -->
-<!ELEMENT field   (msg?, arg0?, arg1?, arg2?, arg3?, var* )>
+<!ELEMENT field   (msg|arg0|arg1|arg2|arg3|var)*>
 <!ATTLIST field   property CDATA #REQUIRED
                   depends  CDATA #IMPLIED
                   page     CDATA #IMPLIED
