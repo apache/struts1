@@ -163,7 +163,7 @@
 
 </section>
 
-<section href="reload" name="Why was reload removed from Struts 1.1?">
+<section href="reload" name="Why was reload removed from Struts (since 1.1)?">
 
 <p>
 The problem with ReloadAction was that Struts was trying to act like a
@@ -173,7 +173,7 @@ classes to a running web application (even if the container supported it).
 </p>
 
 <p>
-Meanwhile, as 1.1 was being developed, work progressed on things
+Meanwhile, as Struts 1.1 was being developed, work progressed on things
 like Tomcat's reload command via the Manager webapp. This feature allows
 you to quickly reload-on-demand, complete with saving and restoring your
 session). It started to make even less sense for Struts to half-implement
@@ -187,7 +187,7 @@ bothering with synchronization. The "startup-only" strategy creates a modest
 but real improvement in performance for all users.
 </p>
 
-<p>So, ReloadAction is not supported in 1.1 for two reasons:</p>
+<p>So, ReloadAction is not supported since Struts 1.1 for two reasons:</p>
 
 <ul>
 <li>
@@ -242,11 +242,16 @@ the context level, or the absolute-URL level.
 <li>module-relative: /myAction.do</li>
 </ul>
 
+<p>
+    The Struts Examples application is a modular application that was assembled from several
+    applications that were created independently.
+</p>
+
 </section>
 
 <section href="naming" name="Why are some of the class and element names counter-intuitive?">
 <p>
-The framework grew in the telling and as it evolved some of the names
+The framework grew in the telling and, as it evolved, some of the names
 drifted.
 </p>
 <p>The good thing about a nightly build, is that everything becomes
@@ -291,6 +296,11 @@ the MVC design pattern goal of separation of the view and business logic.
 Since the goal of struts is to enforce this separation, it just makes more sense
 for Struts to own the ActionForm.
 </p>
+<p>
+DynaActionForms relieve developers of maintaining simple ActionForms. For near
+zero maintenance, try Niall Pemberton's
+<a href="http://www.niallp.pwp.blueyonder.co.uk/">LazyActionForm</a>
+</p>
 </section>
 
 <section href="JavaBeans" name="Do ActionForms have to be true JavaBeans?">
@@ -299,7 +309,13 @@ The utilities that Struts uses (Commons-BeanUtils since 1.1) require that Action
 the JavaBean patterns for mutators and accessors (get*,set*,is*). Since Struts uses the Introspection API
 with the ActionForms, some containers may require that all the JavaBean patterns be followed, including
 declaring "<code>implements Serializable</code>" for each subclass. The safest thing is to review the
-<a href="../userGuide/preface.html#javabeans">JavaBean specification</a> and follow all the prescribed patterns.</p>
+<a href="../userGuide/preface.html#javabeans">JavaBean specification</a> and follow all the prescribed patterns.
+</p>
+<p>
+Since Struts 1.1, you can also use DynaActionForms and mapped-backed forms, which are not true JavaBeans.
+For more see <a href="../userGuide/building_controller.html#action_form_classes">ActionForm classes</a> in the User Guide
+and <a href="#otherBeans">Using Hashmaps with ActionForms</a> in this FAQ.
+</p>
 </section>
 
 

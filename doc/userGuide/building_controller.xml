@@ -611,6 +611,12 @@
     String properties.
     </p>
 
+    <p>
+    DynaActionForms relieve developers of maintaining simple ActionForms. For even
+    less maintenance, try Niall Pemberton's
+    <a href="http://www.niallp.pwp.blueyonder.co.uk/">LazyActionForm</a>.
+    </p>
+
 </section>
 
 <section name="4.3.2 Map-backed ActionForms" href="map_action_form_classes">
