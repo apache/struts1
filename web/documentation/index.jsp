@@ -4,11 +4,11 @@
 </head>
 <body bgcolor="white">
 
-FIXME - Write the documentation and include it here!<br><br>
-
 The following documentation is available:
 <ul>
 <li><a href="tags.html">Custom Tag Library Reference</a>
+<li><a href="users_guide.html">Struts User's Guide</a>
+<li><a href="api/index.html">Struts API Documentation</a>
 </ul>
 
 </body>

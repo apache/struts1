@@ -82,6 +82,21 @@
              dest="${build.home}/example/WEB-INF/${app.name}.tld"/>
   </target>
 
+  <!-- BUILD:  Create Javadoc documentation -->
+  <target name="compile.javadoc">
+    <deltree  dir="${build.home}/documentation/api"/>
+    <mkdir    dir="${build.home}/documentation/api"/>
+    <javadoc sourcepath="src/share"
+                destdir="${build.home}/documentation/api"
+           packagenames="org.apache.struts.*"
+	         author="true"
+                private="true"
+                version="true"
+            windowtitle="Jakarta Struts API Documentation"
+               doctitle="&lt;h1&gt;Jakarta Struts Package&lt;/h1&gt;"
+                 bottom="Copyright &#169; 2000 - Apache Software Foundation"/>
+  </target>
+
   <!-- DIST:  Construct library distributables -->
   <target name="dist.library" depends="prepare.dist,compile.library">
     <copyfile src="${build.home}/library/${app.name}.tld"
@@ -92,7 +107,7 @@
 
   <!-- DIST:  Construct documentation distributables -->
   <target name="dist.documentation"
-       depends="dist.library,compile.documentation">
+       depends="dist.library,compile.documentation,compile.javadoc">
     <jar  jarfile="${dist.home}/lib/${app.name}-documentation.war"
           basedir="${build.home}/documentation"/>
   </target>

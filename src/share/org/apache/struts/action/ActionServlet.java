@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.1 2000/05/31 22:28:11 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.2 2000/06/02 22:26:25 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/02 22:26:25 $
  *
  * ====================================================================
  *
@@ -140,7 +140,7 @@ import org.xml.sax.SAXException;
  * <p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:11 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/02 22:26:25 $
  */
 
 public class ActionServlet
@@ -228,7 +228,7 @@ public class ActionServlet
      *     containing our configuration information.  [/WEB-INF/action.xml]
      * <li><strong>debug</strong> - The debugging detail level for this
      *     servlet, which controls how much information is logged.  [0]
-     * <li><strong>mapping</string> - The Java class name of the ActionMapping
+     * <li><strong>mapping</strong> - The Java class name of the ActionMapping
      *     implementation to use [org.apache.struts.action.ActionMappingBase]
      * </ul>
      *
