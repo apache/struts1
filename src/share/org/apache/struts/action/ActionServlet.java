@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.85 2002/01/15 18:51:26 craigmcc Exp $
- * $Revision: 1.85 $
- * $Date: 2002/01/15 18:51:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.86 2002/01/16 17:42:40 craigmcc Exp $
+ * $Revision: 1.86 $
+ * $Date: 2002/01/16 17:42:40 $
  *
  * ====================================================================
  *
@@ -81,6 +81,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.collections.FastHashMap;
 import org.apache.commons.digester.Digester;
@@ -265,7 +266,7 @@ import org.xml.sax.SAXException;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.85 $ $Date: 2002/01/15 18:51:26 $
+ * @version $Revision: 1.86 $ $Date: 2002/01/16 17:42:40 $
  */
 
 public class ActionServlet
@@ -799,8 +800,9 @@ public class ActionServlet
             new ServletContextWriter(getServletContext());
         DataSourceConfig dscs[] = config.findDataSourceConfigs();
         if (dscs == null) {
-            return;
+            dscs = new DataSourceConfig[0];
         }
+
         dataSources.setFast(false);
         for (int i = 0; i < dscs.length; i++) {
             if (debug >= 1) {
@@ -809,9 +811,9 @@ public class ActionServlet
             }
             DataSource ds = null;
             try {
-                // FIXME - Support user-specified data source classes again
-                ds = new GenericDataSource();
-                PropertyUtils.copyProperties(ds, dscs[i]);
+                Class clazz = Class.forName(dscs[i].getType());
+                ds = (DataSource) clazz.newInstance();
+                BeanUtils.populate(ds, dscs[i].getProperties());
                 ds.setLogWriter(scw);
                 if (ds instanceof GenericDataSource) {
                     ((GenericDataSource) ds).open();
@@ -826,6 +828,11 @@ public class ActionServlet
             dataSources.put(dscs[i].getKey(), ds);
         }
         dataSources.setFast(true);
+
+        // Call deprecated method for backwards compatibility
+        if ("".equals(config.getPrefix())) {
+            initDataSources();
+        }
 
     }
 
@@ -896,6 +903,21 @@ public class ActionServlet
                 configDigester.register(registrations[i], url.toString());
         }
         return (configDigester);
+    }
+
+
+    /**
+     * Initialize data sources for the default application.  This method
+     * signature is maintained only for backwards compatibility, and will
+     * be removed in a subsequent release.
+     *
+     * @deprecated Replaced by initApplicationDataSources() that takes
+     *  an ApplicationConfig argument
+     */
+    protected void initDataSources() throws javax.servlet.ServletException {
+
+        ; // Implementation has been replaced in initApplicationDataSources()
+
     }
 
 

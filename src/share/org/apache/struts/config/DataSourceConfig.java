@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/DataSourceConfig.java,v 1.2 2002/01/13 00:25:36 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/13 00:25:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/DataSourceConfig.java,v 1.3 2002/01/16 17:42:40 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/01/16 17:42:40 $
  *
  * ====================================================================
  *
@@ -64,6 +64,9 @@ package org.apache.struts.config;
 
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import org.apache.struts.action.Action;
 
 
@@ -77,7 +80,7 @@ import org.apache.struts.action.Action;
  * of them may be ignored by custom data source implementations.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/01/13 00:25:36 $
+ * @version $Revision: 1.3 $ $Date: 2002/01/16 17:42:40 $
  * @since Struts 1.1
  */
 
@@ -86,48 +89,6 @@ public class DataSourceConfig implements Serializable {
 
 
     // ------------------------------------------------------------- Properties
-
-
-    /**
-     * The default auto-commit state for newly created connections.
-     */
-    protected boolean autoCommit = true;
-
-    public boolean getAutoCommit() {
-        return (this.autoCommit);
-    }
-
-    public void setAutoCommit(boolean autoCommit) {
-        this.autoCommit = autoCommit;
-    }
-
-
-    /**
-     * The description of this data source.
-     */
-    protected String description = null;
-
-    public String getDescription() {
-        return (this.description);
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-
-    /**
-     * The fully qualified Java class name of the JDBC driver to be used.
-     */
-    protected String driverClass = null;
-
-    public String getDriverClass() {
-        return (this.driverClass);
-    }
-
-    public void setDriverClass(String driverClass) {
-        this.driverClass = driverClass;
-    }
 
 
     /**
@@ -146,105 +107,45 @@ public class DataSourceConfig implements Serializable {
 
 
     /**
-     * The maximum number of seconds to wait for a connection to be created
-     * or returned, or zero for no timeout.
+     * The custom configuration properties for this data source implementation.
      */
-    protected int loginTimeout = 0;
+    protected HashMap properties = new HashMap();
 
-    public int getLoginTimeout() {
-        return (this.loginTimeout);
-    }
-
-    public void setLoginTimeout(int loginTimeout) {
-        this.loginTimeout = loginTimeout;
+    public Map getProperties() {
+        return (this.properties);
     }
 
 
     /**
-     * The maximum number of connections to be created, or zero for no limit.
+     * The fully qualified class name of the <code>javax.sql.DataSource</code>
+     * implementation class.
      */
-    protected int maxCount = 0;
+    protected String type = "org.apache.struts.util.GenericDataSource";
 
-    public int getMaxCount() {
-        return (this.maxCount);
+    public String getType() {
+        return (this.type);
     }
 
-    public void setMaxCount(int maxCount) {
-        this.maxCount = maxCount;
-    }
-
-
-    /**
-     * The minimum number of connections to be created, or zero for no limit.
-     */
-    protected int minCount = 0;
-
-    public int getMinCount() {
-        return (this.minCount);
-    }
-
-    public void setMinCount(int minCount) {
-        this.minCount = minCount;
-    }
-
-
-    /**
-     * The database password to use when connecting.
-     */
-    protected String password = null;
-
-    public String getPassword() {
-        return (this.password);
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-    /**
-     * The default read-only state for newly created connections.
-     */
-    protected boolean readOnly = false;
-
-    public boolean getReadOnly() {
-        return (this.readOnly);
-    }
-
-    public void setReadOnly(boolean readOnly) {
-        this.readOnly = readOnly;
-    }
-
-
-    /**
-     * The JDBC URL of the database to connect to.
-     */
-    protected String url = null;
-
-    public String getUrl() {
-        return (this.url);
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-
-    /**
-     * The database username to use when connecting.
-     */
-    protected String user = null;
-
-    public String getUser() {
-        return (this.user);
-    }
-
-    public void setUser(String user) {
-        this.user = user;
+    public void setType(String type) {
+        this.type = type;
     }
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Add a new custom configuration property.
+     *
+     * @param name Custom property name
+     * @param value Custom property value
+     */
+    public void addProperty(String name, String value) {
+
+        properties.put(name, value);
+
+    }
+
 
     /**
      * Return a String representation of this object.
@@ -252,34 +153,19 @@ public class DataSourceConfig implements Serializable {
     public String toString() {
 
         StringBuffer sb = new StringBuffer("DataSourceConfig[");
-        sb.append("autoCommit=");
-        sb.append(this.autoCommit);
-        if (this.description != null) {
-            sb.append(",description=");
-            sb.append(this.description);
+        sb.append("key=");
+        sb.append(key);
+        sb.append(",type=");
+        sb.append(type);
+        Iterator names = properties.keySet().iterator();
+        while (names.hasNext()) {
+            String name = (String) names.next();
+            String value = (String) properties.get(name);
+            sb.append(',');
+            sb.append(name);
+            sb.append('=');
+            sb.append(value);
         }
-        sb.append(",driverClass=");
-        sb.append(this.driverClass);
-        if (this.loginTimeout != 0) {
-            sb.append(",loginTimeout=");
-            sb.append(this.loginTimeout);
-        }
-        if (this.maxCount != 0) {
-            sb.append(",maxCount=");
-            sb.append(this.maxCount);
-        }
-        if (this.minCount != 0) {
-            sb.append(",minCount=");
-            sb.append(this.minCount);
-        }
-        sb.append("password=");
-        sb.append(this.password);
-        sb.append(",readOnly=");
-        sb.append(this.readOnly);
-        sb.append(",url=");
-        sb.append(this.url);
-        sb.append(",user=");
-        sb.append(this.user);
         sb.append("]");
         return (sb.toString());
 

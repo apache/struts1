@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.8 2002/01/15 20:22:20 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.9 2002/01/16 17:42:40 craigmcc Exp $
 -->
 
 
@@ -112,60 +112,17 @@
                      source will be stored.  Default is the value specified
                      by string constant Action.DATA_SOURCE_KEY.
 
-     type            Fully qualified Java class name of the implementation
-                     class (must implement javax.sql.DataSource).  Default
-                     value is 'org.apache.struts.util.GenericDataSource'.
-
-     NOTE:  The following attributes are defined by the default data source
-     implementation, and only take effect for that class or subclasses of
-     that class.
-
-     WARNING:  The use of these attributes is deprecated.  You should use
-     nested &lt;set-property&gt; elements to configure *all* properties of
-     your data source implementation.
-
-     autoCommit      The default auto-commit state for newly created
-                     connections.
-
-     description     The description of this data source.
-
-     driverClass     The Java class name of the JDBC driver to be used.
-                     [REQUIRED]
-
-     loginTimeout    The maximum number of seconds to wait for a connection
-                     to be created or returned.  Default is driver dependent.
-
-     maxCount        The maximum number of connections to be created.
-
-     minCount        The minimum number of connections to be created.
-
-     password        The database password to use when connecting. [REQUIRED]
-
-     readOnly        The default read-only state for newly created
-                     connections.
-
-     url             The JDBC URL to use when connecting. [REQUIRED]
-
-     user            The database username to use when connecting. [REQUIRED]
-
+     type            Fully qualified Java class name of the data source
+                     implementation class.  This class must implement
+                     "javax.sql.DataSource" and be configurable totally
+                     from JavaBeans properties.
+                     [org.apache.struts.util.GenericDataSource]
 -->
 <!ELEMENT data-source (set-property*)>
 <!ATTLIST data-source    id             ID              #IMPLIED>
 <!ATTLIST data-source    className      %ClassName;     #IMPLIED>
 <!ATTLIST data-source    key            %AttributeName; #IMPLIED>
 <!ATTLIST data-source    type           %ClassName;     #IMPLIED>
-<!-- All of the following attributes are deprecated.  Use a nested          -->
-<!-- set-property element to configure data source properties.              -->
-<!ATTLIST data-source    autoCommit     %Boolean;       #IMPLIED>
-<!ATTLIST data-source    description    CDATA           #IMPLIED>
-<!ATTLIST data-source    driverClass    %ClassName;     #IMPLIED>
-<!ATTLIST data-source    loginTimeout   %Integer;       #IMPLIED>
-<!ATTLIST data-source    maxCount       %Integer;       #IMPLIED>
-<!ATTLIST data-source    minCount       %Integer;       #IMPLIED>
-<!ATTLIST data-source    password       CDATA           #IMPLIED>
-<!ATTLIST data-source    readOnly       %Boolean;       #IMPLIED>
-<!ATTLIST data-source    url            CDATA           #IMPLIED>
-<!ATTLIST data-source    user           CDATA           #IMPLIED>
 
 
 <!-- The "global-exceptions" element configures the global handling of

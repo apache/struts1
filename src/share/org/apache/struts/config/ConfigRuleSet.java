@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.4 2002/01/15 20:22:20 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/01/15 20:22:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.5 2002/01/16 17:42:40 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/01/16 17:42:40 $
  *
  * ====================================================================
  *
@@ -64,7 +64,9 @@ package org.apache.struts.config;
 
 
 import org.apache.commons.digester.Digester;
+import org.apache.commons.digester.Rule;
 import org.apache.commons.digester.RuleSetBase;
+import org.xml.sax.Attributes;
 
 
 /**
@@ -72,7 +74,7 @@ import org.apache.commons.digester.RuleSetBase;
  * configuration file (<code>struts-config.xml</code>).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/01/15 20:22:20 $
+ * @version $Revision: 1.5 $ $Date: 2002/01/16 17:42:40 $
  * @since Struts 1.1
  */
 
@@ -106,9 +108,9 @@ public class ConfigRuleSet extends RuleSetBase {
              "addDataSourceConfig",
              "org.apache.struts.config.DataSourceConfig");
 
-        digester.addSetProperty
+        digester.addRule
             ("struts-config/data-sources/data-source/set-property",
-             "property", "value");
+             new AddDataSourcePropertyRule(digester));
 
         digester.addObjectCreate
             ("struts-config/action-mappings/action",
@@ -248,3 +250,25 @@ public class ConfigRuleSet extends RuleSetBase {
     }
 
 }
+
+
+/**
+ * Class that calls <code>addProperty()</code> for the top object
+ * on the stack, which must be a
+ * <code>org.apache.struts.config.DataSourceConfig</code>.
+ */
+
+final class AddDataSourcePropertyRule extends Rule {
+
+    public AddDataSourcePropertyRule(Digester digester) {
+        super(digester);
+    }
+
+    public void begin(Attributes attributes) throws Exception {
+        DataSourceConfig dsc = (DataSourceConfig) digester.peek();
+        dsc.addProperty(attributes.getValue("property"),
+                        attributes.getValue("value"));
+    }
+
+}
+
