@@ -1,0 +1,95 @@
+[SCAFFOLD]
+
+
+TODO 
+- i18n exception messages.
+- Alternative configurations for connection pool.
+
+StatementUtils
+ * :TODO: Refactor executeUpdate methods like getCollection methods.
+
+
+09-Nov-2001
+-----------
++ RequestSetUtil: Add coversion of DECIMAL to Double.
+
+
+08-Nov-2001
+-----------
++ http: Add ContinueAction.
++ http: Fix RelayAction. Change HelperAction to use ; for seperator. Will skip empty entries.
+
+
+07-Nov-2001
+-----------
++ Model: Add ModelAbstractException to use with unimplemented methods.
+
+
+06-Nov-2001
+-----------
++ ResultSetUtils: getCollection will now throw SQLException if either parameter null.
++ StatementUtils: Refactor getCollection to accept an array of replacement parameters.
++ http/MasterDetailHelper: Uses two helpers to provide master/detail layout.
++ http/HelperAction, ModelHelper: Refactor to accept multiple helpers and pass in array.
++ ConvertUtils: Add several methods for number and date handling.
+
+
+05-Nov-2001
+-----------
++ Rename ModelResultHelper as ModelHelper. Better design.
+
+
+27-Oct-2001
+-----------
++ sql/StatementUtils: move from Artimus. update for new connection parameter.
++ sql/ConnectionPool: update to accept resource name as parameter. 
++ text/ConvertUtils: initial version.
++ http/RelayAction: initial version -- doesn't seem to work.
+
+
+25-Oct-2001
+-----------
++ text/Merge: initial version. adapt from Polls.
++ http/HttpClient,SocketUtil: move from Polls.
+
+
+24-Oct-2001
+-----------
++ QueryUtils,QueryBeanBase,QueryResultBase,LuceneUtils: refactor to use QME.
++ QueryMapException: initial version.
++ QueryResult: Add TOKEN constant.
++ query/*: Move messages from Bean to Result.
++ lang/Tokens: initial version.
++ build.xml: Add WAR to deployment target.
+
+
+23-Oct-2001
+-----------
++ Refactor ChainedException into .lang, and .util/Query* into .query package.
++ ChainedException: Add isCause and getCauseString methods.
+
+
+21-Oct-2001
+-----------
++ Remove ; replaced by Query* suite.
++ QueryUtils: initial version.
+
+
+20-Oct-2001
+-----------
++ Query*: Enhance to replace functionality of AccessBean suite.
+
+
+19-Oct-2001
+-----------
++ QueryException,QueryBean,QueryBeanBase,QueryResult,QueryResultBean: Initial version. 
+
+
+18-Oct-2001
+-----------
++ AccessAction: intial version; Access class refactored to use HelperAction.
++ HelperAction: initial version.
+
+13-Oct-2001
+-----------
++ initial version of app, based on working package
