@@ -122,6 +122,7 @@ public class ExceptionHandler {
         }
 
         // Store the exception
+        request.setAttribute(Action.EXCEPTION_KEY, ex);
         storeException(request, property, error, forward, ae.getScope());
 
         return forward;
