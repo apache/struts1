@@ -169,9 +169,9 @@
      description="Compile Struts library files">
         <javac srcdir="${src.share.dir}"
             destdir="${build.home}/library/classes"
-            debug="${debug}"
-            optimize="${optimize}"
-            deprecation="${deprecation}">
+            debug="${compile.debug}"
+            optimize="${compile.optimize}"
+            deprecation="${compile.deprecation}">
           <classpath refid="compile.classpath"/>
         </javac>
         <copy todir="${build.home}/library/classes">
@@ -364,5 +364,64 @@
 -->
     <target name="all" depends="clean,compile.library,compile.webapps"
      description="Clean and build library and web applications"/>
+
+<!--
+        Run tests on all servers not commented out in the build.properties file.
+-->
+    <target name="test.all" depends="test.tomcat.32,test.tomcat.40"
+     description="Run unit tests on all servlet engines">
+    </target>
+
+<!-- 
+        Display a warning message if the needed servlet engine home property
+        is not set (for Tomcat 3.2)
+-->
+    <target name="check.tests.tomcat.32" depends="compile.library" unless="tomcat.home.32">
+
+        <echo message=""/>
+        <echo message="*********************************************************"/>
+        <echo message="WARNING : The 'tomcat.home.32' property has not been set."/>
+        <echo message="          No test will be run on that servlet engine."/>
+        <echo message="*********************************************************"/>
+        <echo message=""/>
+
+    </target>
+
+<!--
+        Run the Struts unit tests in the Tomcat 3.2 servlet engine
+-->
+    <target name="test.tomcat.32" depends="check.tests.tomcat.32,compile.library"
+     if="tomcat.home.32" description="Run unit tests on Tomcat 3.2">
+
+        <echo message="tomcat.home.32 = ${tomcat.home.32}"/>
+        <ant antfile="build-tests.xml" target="test.tomcat.32"/>
+    
+    </target>
+
+<!-- 
+        Display a warning message if the needed servlet engine home property
+        is not set (for Tomcat 4)
+-->
+    <target name="check.tests.tomcat.40" depends="compile.library" unless="tomcat.home.40">
+
+        <echo message=""/>
+        <echo message="*********************************************************"/>
+        <echo message="WARNING : The 'tomcat.home.40' property has not been set."/>
+        <echo message="          No test will be run on that servlet engine."/>
+        <echo message="*********************************************************"/>
+        <echo message=""/>
+
+    </target>
+
+<!--
+        Run the Struts unit tests in the Tomcat 4.0 servlet engine
+-->    
+    <target name="test.tomcat.40" depends="check.tests.tomcat.40,compile.library"
+     if="tomcat.home.40" description="Run unit tests on Tomcat 4.0">
+
+        <echo message="tomcat.home.40 = ${tomcat.home.40}"/>        
+        <ant antfile="build-tests.xml" target="test.tomcat.40"/>
+    
+    </target>
 
 </project>
