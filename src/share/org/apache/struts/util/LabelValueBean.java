@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.2 2002/03/12 06:30:56 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/03/12 06:30:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.3 2003/07/02 02:20:28 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/02 02:20:28 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,12 +59,9 @@
  *
  */
 
-
 package org.apache.struts.util;
 
-
 import java.io.Serializable;
-
 
 /**
  * A simple JavaBean to represent label-value pairs. This is most commonly used
@@ -74,14 +71,20 @@ import java.io.Serializable;
  *
  * @author  Craig R. McClanahan
  * @author  Martin F N Cooper
- * @version $Revision: 1.2 $ $Date: 2002/03/12 06:30:56 $
+ * @version $Revision: 1.3 $ $Date: 2003/07/02 02:20:28 $
  */
-
 public class LabelValueBean implements Serializable {
 
 
     // ----------------------------------------------------------- Constructors
 
+
+    /**
+     * Default constructor.
+     */
+    public LabelValueBean() {
+        this(null, null);
+    }
 
     /**
      * Construct an instance with the supplied property values.
@@ -101,7 +104,7 @@ public class LabelValueBean implements Serializable {
     /**
      * The property which supplies the option label visible to the end user.
      */
-    private String label;
+    private String label = null;
 
     public String getLabel() {
         return this.label;
@@ -115,7 +118,7 @@ public class LabelValueBean implements Serializable {
     /**
      * The property which supplies the value returned to the server.
      */
-    private String value;
+    private String value = null;
 
     public String getValue() {
         return this.value;
