@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.14 2002/12/16 03:41:43 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2002/12/16 03:41:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.15 2003/05/18 19:18:00 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/05/18 19:18:00 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,9 +59,7 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
-
 
 import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
@@ -70,16 +68,15 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
-
 /**
  * Custom tag that represents an HTML select element, associated with a
  * bean property specified by our attributes.  This tag must be nested
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2002/12/16 03:41:43 $
+ * @author David Graham
+ * @version $Revision: 1.15 $ $Date: 2003/05/18 19:18:00 $
  */
-
 public class SelectTag extends BaseHandlerTag {
 
 
@@ -167,18 +164,19 @@ public class SelectTag extends BaseHandlerTag {
     /**
      * Does the specified value match one of those we are looking for?
      *
-     * @param value Value to be compared
+     * @param value Value to be compared.
      */
     public boolean isMatched(String value) {
-
-        if ((match == null) || (value == null))
-            return (false);
-        for (int i = 0; i < match.length; i++) {
-            if (value.equals(match[i]))
-                return (true);
+        if ((this.match == null) || (value == null)) {
+            return false;
         }
-        return (false);
-
+        
+        for (int i = 0; i < this.match.length; i++) {
+            if (value.equals(this.match[i]))
+                return true;
+        }
+        
+        return false;
     }
 
 
@@ -230,7 +228,7 @@ public class SelectTag extends BaseHandlerTag {
 
 
     /**
-     * Render the beginning of this form.
+     * Render the beginning of this select tag.
      * <p>
      * Support for indexed property since Struts 1.1
      *
@@ -238,12 +236,29 @@ public class SelectTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-        // Create an appropriate "form" element based on our parameters
+        ResponseUtils.write(pageContext, renderSelectStartElement());
+
+        // Store this tag itself as a page attribute
+        pageContext.setAttribute(Constants.SELECT_KEY, this);
+
+        this.calculateMatchValues();
+
+        return (EVAL_BODY_TAG);
+    }
+
+    /**
+     * Create an appropriate select start element based on our parameters.
+     * @throws JspException
+     * @since Struts 1.1
+     */
+    protected String renderSelectStartElement() throws JspException {
         StringBuffer results = new StringBuffer("<select");
+        
         results.append(" name=\"");
         // * @since Struts 1.1
-        if( indexed )
-                prepareIndex( results, name );
+        if (this.indexed) {
+            prepareIndex(results, name);
+        }
         results.append(property);
         results.append("\"");
         if (accesskey != null) {
@@ -267,51 +282,53 @@ public class SelectTag extends BaseHandlerTag {
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
         results.append(">");
+        
+        return results.toString();
+    }
 
-        // Print this field to our output writer
-        ResponseUtils.write(pageContext, results.toString());
-
-        // Store this tag itself as a page attribute
-        pageContext.setAttribute(Constants.SELECT_KEY, this);
-
-        // Calculate the match values we will actually be using
-        if (value != null) {
-            match = new String[1];
-            match[0] = value;
+    /**
+     * Calculate the match values we will actually be using.
+     * @throws JspException
+     */
+    private void calculateMatchValues() throws JspException {
+        if (this.value != null) {
+            this.match = new String[1];
+            this.match[0] = this.value;
+            
         } else {
             Object bean = RequestUtils.lookup(pageContext, name, null);
             if (bean == null) {
-                JspException e = new JspException
-                    (messages.getMessage("getter.bean", name));
+                JspException e =
+                    new JspException(messages.getMessage("getter.bean", name));
+                    
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
+
             try {
-                match = BeanUtils.getArrayProperty(bean, property);
-                if (match == null)
-                    match = new String[0];
+                this.match = BeanUtils.getArrayProperty(bean, property);
+                if (this.match == null) {
+                    this.match = new String[0];
+                }
+
             } catch (IllegalAccessException e) {
                 RequestUtils.saveException(pageContext, e);
-                throw new JspException
-                    (messages.getMessage("getter.access", property, name));
+                throw new JspException(
+                    messages.getMessage("getter.access", property, name));
+
             } catch (InvocationTargetException e) {
                 Throwable t = e.getTargetException();
                 RequestUtils.saveException(pageContext, t);
-                throw new JspException
-                    (messages.getMessage("getter.result",
-                                         property, t.toString()));
+                throw new JspException(
+                    messages.getMessage("getter.result", property, t.toString()));
+
             } catch (NoSuchMethodException e) {
                 RequestUtils.saveException(pageContext, e);
-                throw new JspException
-                    (messages.getMessage("getter.method", property, name));
+                throw new JspException(
+                    messages.getMessage("getter.method", property, name));
             }
         }
-
-        // Continue processing this page
-        return (EVAL_BODY_TAG);
-
     }
-
 
 
     /**
@@ -324,12 +341,14 @@ public class SelectTag extends BaseHandlerTag {
 
         if (bodyContent != null) {
             String value = bodyContent.getString();
-            if (value == null)
+            if (value == null) {
                 value = "";
-            saveBody = value.trim();
+            }
+            
+            this.saveBody = value.trim();
         }
+        
         return (SKIP_BODY);
-
     }
 
 
@@ -345,18 +364,15 @@ public class SelectTag extends BaseHandlerTag {
 
         // Render a tag representing the end of our current form
         StringBuffer results = new StringBuffer();
-        if (saveBody != null)
+        if (saveBody != null) {
             results.append(saveBody);
+        }
         results.append("</select>");
 
-        // Print this value to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
-        // Continue processing this page
         return (EVAL_PAGE);
-
     }
-
 
     /**
      * Release any acquired resources.
@@ -373,6 +389,5 @@ public class SelectTag extends BaseHandlerTag {
         value = null;
 
     }
-
 
 }
