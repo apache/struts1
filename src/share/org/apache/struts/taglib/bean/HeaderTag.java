@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTag.java,v 1.10 2003/07/14 00:04:44 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2003/07/14 00:04:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTag.java,v 1.11 2003/07/14 00:10:49 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/07/14 00:10:49 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.RequestUtils;
  * header received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2003/07/14 00:04:44 $
+ * @version $Revision: 1.11 $ $Date: 2003/07/14 00:10:49 $
  */
 public class HeaderTag extends TagSupport {
 
@@ -151,26 +151,21 @@ public class HeaderTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-        // Deal with a single header value
-        if (multiple == null) {
-            String value =
-                ((HttpServletRequest) pageContext.getRequest()).getHeader(name);
-                
-            if ((value == null) && (this.value != null)) {
-                value = this.value;
-            }
-                
-            if (value == null) {
-                JspException e =
-                    new JspException(messages.getMessage("header.get", name));
-                RequestUtils.saveException(pageContext, e);
-                throw e;
-            }
-            pageContext.setAttribute(id, value);
-            return (SKIP_BODY);
+        if (this.multiple == null) {
+            this.handleSingleHeader();
+        } else {
+            this.handleMultipleHeaders();
         }
 
-        // Deal with multiple header values
+        return SKIP_BODY;
+    }
+
+    /**
+     * Expose an array of header values.
+     * @throws JspException
+     * @since Struts 1.2
+     */
+    protected void handleMultipleHeaders() throws JspException {
         ArrayList values = new ArrayList();
         Enumeration items =
             ((HttpServletRequest) pageContext.getRequest()).getHeaders(name);
@@ -179,7 +174,7 @@ public class HeaderTag extends TagSupport {
             values.add(items.nextElement());
         }
             
-        if ((values.size() == 0) && (this.value != null)){
+        if (values.isEmpty() && (this.value != null)){
             values.add(this.value);
         }
             
@@ -192,8 +187,29 @@ public class HeaderTag extends TagSupport {
         }
         
         pageContext.setAttribute(id, (String[]) values.toArray(headers));
-        return (SKIP_BODY);
+    }
 
+    /**
+     * Expose a single header value.
+     * @throws JspException
+     * @since Struts 1.2
+     */
+    protected void handleSingleHeader() throws JspException {
+        String value =
+            ((HttpServletRequest) pageContext.getRequest()).getHeader(name);
+
+        if ((value == null) && (this.value != null)) {
+            value = this.value;
+        }
+
+        if (value == null) {
+            JspException e =
+                new JspException(messages.getMessage("header.get", name));
+            RequestUtils.saveException(pageContext, e);
+            throw e;
+        }
+        
+        pageContext.setAttribute(id, value);
     }
 
     /**
