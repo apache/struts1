@@ -14,10 +14,12 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 
+ $Id$
+
 -->
 
 
-<project name="jakarta-struts-faces" default="compile" basedir=".">
+<project name="Struts-Faces Integration Library" default="compile" basedir=".">
 
 
   <!-- ===================== Initialize Property Values =================== -->
@@ -28,806 +30,220 @@
   <property file="../../build.properties"/>
   <property file="../../../build.properties"/>
   <property file="${user.home}/build.properties"/>
+  <property name="dist.home" value="${basedir}/dist"/>
+
+  <!-- ======================== Delegation Targets ========================= -->
 
 
-  <!-- Dependency home directory defaults -->
-  <property name="htmlunit.home"    value="/usr/local/htmlunit-1.2.3"/>
-  <property name="jsf.home"         value="/usr/local/jsf-1_1"/>
-  <property name="jstl.home"        value="/usr/local/standard-1.0.3"/>
-  <property name="server.home"      value="/usr/local/jakarta-tomcat-5.0.25"/>
-  <property name="struts.home"      value="/usr/local/jakarta-struts-1.1"/>
+  <target   name="clean"
+     description="Clean all build directories">
 
+    <delete  dir="${dist.home}"/>
+    <ant     dir="${basedir}/core-library"
+      inheritAll="false"
+          target="clean"/>
+    <ant     dir="${basedir}/example1-webapp"
+      inheritAll="false"
+          target="clean"/>
+    <ant     dir="${basedir}/example2-webapp"
+      inheritAll="false"
+          target="clean"/>
+    <ant     dir="${basedir}/sysclient-app"
+      inheritAll="false"
+          target="clean"/>
+    <ant     dir="${basedir}/systest1-webapp"
+      inheritAll="false"
+          target="clean"/>
 
-  <!-- Dependency library defaults -->
-  <property name="commons-beanutils.jar"
-                                    value="${struts.home}/lib/commons-beanutils.jar"/>
-  <property name="commons-collections.jar"
-                                    value="${struts.home}/lib/commons-collections.jar"/>
-  <property name="commons-digester.jar"
-                                    value="${struts.home}/lib/commons-digester.jar"/>
-  <property name="commons-fileupload.jar"
-                                    value="${struts.home}/lib/commons-fileupload.jar"/>
-  <property name="commons-logging.jar"
-                                    value="${struts.home}/lib/commons-logging.jar"/>
-  <property name="commons-validator.jar"
-                                    value="${struts.home}/lib/commons-validator.jar"/>
-  <property name="jakarta-oro.jar"  value="${struts.home}/lib/jakarta-oro.jar"/>
-  <property name="jsf-api.jar"      value="${jsf.home}/lib/jsf-api.jar"/>
-  <property name="jsf-impl.jar"     value="${jsf.home}/lib/jsf-impl.jar"/>
-  <property name="jsp-api.jar"      value="${server.home}/common/lib/jsp-api.jar"/>
-  <property name="jstl.jar"         value="${jstl.home}/lib/jstl.jar"/>
-  <property name="servlet.jar"      value="${server.home}/common/lib/servlet.jar"/>
-  <property name="standard.jar"     value="${jstl.home}/lib/standard.jar"/>
-  <property name="struts.jar"       value="${struts.home}/lib/struts.jar"/>
-
-
-  <!-- Conditional Processing Flags -->
-  <available                     property="jsfri.present"
-                                classname="com.sun.faces.RIConstants"
-                                classpath="${jsf-impl.jar}"/>
-  <available                     property="myfaces.present"
-                                classname="net.sourceforge.myfaces.MyFacesConfig"
-                                classpath="${jsf-impl.jar}"/>
-
-  <!-- Build Defaults -->
-  <property name="build.home"      value="${basedir}/build"/>
-  <property name="dist.home"       value="${basedir}/dist"/>
-  <property name="project.name"    value="Struts-Faces Integration Library"/>
-  <property name="project.package" value="org.apache.struts.faces"/>
-  <property name="project.version" value="1.0-dev"/>
-
-
-  <!-- Compile Defaults -->
-  <property name="compile.debug"           value="true"/>
-  <property name="compile.deprecation"     value="false"/>
-  <property name="compile.optimize"        value="true"/>
-
-
-  <!-- Construct Classpath -->
-  <path id="classpath">
-    <pathelement location="${commons-beanutils.jar}"/>
-    <pathelement location="${commons-collections.jar}"/>
-    <pathelement location="${commons-digester.jar}"/>
-    <pathelement location="${commons-logging.jar}"/>
-    <pathelement location="${commons-validator.jar}"/>
-    <pathelement location="${jsf-api.jar}"/>
-    <pathelement location="${jsp-api.jar}"/>
-    <pathelement location="${jstl.jar}"/>
-    <pathelement location="${servlet.jar}"/>
-    <pathelement location="${struts.jar}"/>
-    <pathelement location="${build.home}/classes"/>
-  </path>
-
-  <!-- System Integration Test Client Classpath -->
-  <path id="sysclient.classpath">
-    <pathelement location="${junit.jar}"/>
-    <fileset          dir="${htmlunit.home}/lib"
-                 includes="*.jar"/>
-    <pathelement location="${build.home}/sysclient"/>
-  </path>
-
-  <!-- Custom Tomcat Integration -->
-  <taskdef  name="deploy"   classname="org.apache.catalina.ant.DeployTask"/>
-  <taskdef  name="install"  classname="org.apache.catalina.ant.InstallTask"/>
-  <taskdef  name="list"     classname="org.apache.catalina.ant.ListTask"/>
-  <taskdef  name="reload"   classname="org.apache.catalina.ant.ReloadTask"/>
-  <taskdef  name="remove"   classname="org.apache.catalina.ant.RemoveTask"/>
-  <taskdef  name="undeploy" classname="org.apache.catalina.ant.UndeployTask"/>
-  <property name="password" value="tomcat"/>
-  <property name="url"      value="http://localhost:8080/manager"/>
-  <property name="username" value="tomcat"/>
-
-  <property name="example.path"     value="/struts-faces"/>
-  <property name="example2.path"    value="/struts-faces2"/>
-  <property name="systest.path"         value="/struts-faces-systest"/>
-
-
-  <!-- System Integration Test Settings -->
-  <property name="systest.state.saving" value="server"/>
-  <property name="systest.url"          value="http://localhost:8080${systest.path}"/>
-
-
-
-  <!-- ===================== LIBRARY: Maintenance ========================= -->
-
-
-  <target name="clean"
-   description="Clean all build directories">
-    <delete dir="${build.home}"/>
-    <delete dir="${dist.home}"/>
   </target>
 
 
-  <target name="init">
-    <echo message="---------- ${project.name} ${project.version} ----------"/>
-    <filter token="name"     value="${project.name}"/>
-    <filter token="package"  value="${project.package}"/>
-    <filter token="state"    value="${systest.state.saving}"/>
-    <filter token="version"  value="${project.version}"/>
-    <echo message="jsf-api.jar =    ${jsf-api.jar}"/>
-    <echo message="jsf-impl.jar =   ${jsf-impl.jar}"/>
-    <echo message="struts-jar =     ${struts.jar}"/>
-    <echo message="jsfri.present =  ${jsfri.present}"/>
-    <echo message="myfaces.present= ${myfaces.present}"/>
+  <target   name="compile"
+     description="Install webapps on Tomcat">
+
+    <ant     dir="${basedir}/core-library"
+      inheritAll="false"
+          target="library"/>
+    <ant     dir="${basedir}/example1-webapp"
+      inheritAll="false"
+          target="compile"/>
+    <ant     dir="${basedir}/example2-webapp"
+      inheritAll="false"
+          target="compile"/>
+    <ant     dir="${basedir}/systest1-webapp"
+      inheritAll="false"
+          target="compile"/>
+
   </target>
 
 
-  <target name="list" description="List installed webapps on Tomcat">
-    <list url="${url}" username="${username}" password="${password}"/>
+  <target   name="dist:delegate">
+
+    <ant     dir="${basedir}/core-library"
+      inheritAll="false"
+          target="dist"/>
+    <ant     dir="${basedir}/example1-webapp"
+      inheritAll="false"
+          target="dist"/>
+    <ant     dir="${basedir}/example2-webapp"
+      inheritAll="false"
+          target="dist"/>
+    <ant     dir="${basedir}/systest1-webapp"
+      inheritAll="false"
+          target="dist"/>
+
   </target>
 
 
-  <target name="prepare" depends="init">
-    <mkdir dir="${build.home}"/>
-    <mkdir dir="${build.home}/classes"/>
-    <mkdir dir="${build.home}/classes/META-INF"/>
-    <mkdir dir="${build.home}/conf"/>
-    <mkdir dir="${build.home}/lib"/>
-    <mkdir dir="${dist.home}"/>
-    <mkdir dir="${dist.home}/docs"/>
-    <mkdir dir="${dist.home}/docs/api"/>
+  <target   name="install"
+     description="Install webapps on Tomcat">
+
+    <ant     dir="${basedir}/core-library"
+      inheritAll="false"
+          target="library"/>
+    <ant     dir="${basedir}/example1-webapp"
+      inheritAll="false"
+          target="install"/>
+    <ant     dir="${basedir}/example2-webapp"
+      inheritAll="false"
+          target="install"/>
+    <ant     dir="${basedir}/systest1-webapp"
+      inheritAll="false"
+          target="install"/>
+
   </target>
 
 
-  <target name="static" depends="prepare">
-    <tstamp/>
-    <copy todir="${build.home}/conf" filtering="on">
-      <fileset dir="src/conf" includes="*.MF"/>
-    </copy>
-    <copy todir="${build.home}/classes/META-INF">
-      <fileset dir="src/conf" includes="*faces-config.xml"/>
-    </copy>
+  <target   name="reload"
+     description="Reload webapps on Tomcat">
+
+    <ant     dir="${basedir}/example1-webapp"
+      inheritAll="false"
+          target="reload"/>
+    <ant     dir="${basedir}/example2-webapp"
+      inheritAll="false"
+          target="reload"/>
+    <ant     dir="${basedir}/systest1-webapp"
+      inheritAll="false"
+          target="reload"/>
+
   </target>
 
 
-  <!-- ============== LIBRARY: Compile Library Components ================= -->
+  <target   name="remove"
+     description="Remove webapps from Tomcat">
+
+    <ant     dir="${basedir}/example1-webapp"
+      inheritAll="false"
+          target="remove"/>
+    <ant     dir="${basedir}/example2-webapp"
+      inheritAll="false"
+          target="remove"/>
+    <ant     dir="${basedir}/systest1-webapp"
+      inheritAll="false"
+          target="remove"/>
+
+  </target>
 
 
-  <target name="compile" depends="static"
-   description="Compile integration library">
+  <target   name="test"
+     description="Execute unit and system integration tests">
 
-    <!-- Compile Java Sources -->
-    <javac      srcdir="src/java"
-               destdir="${build.home}/classes"
-                 debug="${compile.debug}"
-           deprecation="${compile.deprecation}"
-              optimize="${compile.optimize}">
-      <classpath refid="classpath" />
-    </javac>
+    <ant     dir="${basedir}/core-library"
+      inheritAll="false"
+          target="test"/>
+    <ant     dir="${basedir}/sysclient-app"
+      inheritAll="false"
+          target="test"/>
 
-    <!-- Copy non-Java Sources -->
-    <copy        todir="${build.home}/classes">
-      <fileset     dir="src/java">
-        <exclude  name="**/*.java"/>
+  </target>
+
+
+  <!-- ====================== Construct Release Artifact =================== -->
+
+
+  <target        name="dist" depends="dist:delegate"
+          description="Create release artifact">
+
+    <mkdir        dir="${dist.home}"/>
+    <mkdir        dir="${dist.home}/docs"/>
+    <mkdir        dir="${dist.home}/lib"/>
+    <mkdir        dir="${dist.home}/src"/>
+    <mkdir        dir="${dist.home}/webapps"/>
+
+    <!-- Copy top-level files -->
+    <copy       todir="${dist.home}/src"
+                 file="build.xml"/>
+    <copy       todir="${dist.home}"
+                 file="LICENSE-JSF.txt"/>
+    <copy       todir="${dist.home}"
+                 file="README.txt"/>
+
+    <!-- Copy files from core-library -->
+    <copy       todir="${dist.home}">
+      <fileset    dir="core-library/dist">
+        <include name="LICENSE.txt"/>
+        <include name="NOTICE.txt"/>
       </fileset>
     </copy>
-
-    <!-- Create Tag Library Descriptor -->
-    <style     basedir="src/conf"
-               destdir="${build.home}/conf"
-             extension=".tld"
-                 style="src/conf/struts-tld.xsl"
-              includes="struts-faces.xml"/>
-    <copy       tofile="${build.home}/classes/META-INF/struts-faces.tld"
-                  file="${build.home}/conf/struts-faces.tld"/>
-
-    <!-- Copy license and notice files -->
-    <copy       tofile="${build.home}/classes/META-INF/LICENSE.txt"
-                  file="LICENSE.txt"/>
-    <copy       tofile="${build.home}/classes/META-INF/NOTICE.txt"
-                  file="NOTICE.txt"/>
-
-  </target>
-
-
-  <target name="library" depends="compile"
-   description="Package integration library">
-
-    <jar       jarfile="${build.home}/lib/struts-faces.jar"
-               basedir="${build.home}/classes"
-              manifest="${build.home}/conf/MANIFEST.MF"/>
-
-  </target>
-
-
-  <!-- ==================== LIBRARY:  Documentation ======================= -->
-
-
-  <target name="docs" depends="prepare"
-   description="Create generated documentation and JavaDocs">
-
-    <style     basedir="src/conf"
-               destdir="${dist.home}/docs"
-             extension=".html"
-                 style="src/conf/struts-doc.xsl"
-              includes="struts-faces.xml"/>
-
-    <javadoc
-            sourcepath="src/java"
-               destdir="${dist.home}/docs/api"
-                author="true"
-               private="true"
-               version="true"
-          packagenames="org.apache.struts.*"
-           windowtitle="${project.name} (Version ${project.version})"
-              doctitle="${project.name} (Version ${project.version})"
-                bottom="Copyright &#169; 2003-2004 - The Apache Software Foundation">
-      <classpath refid="classpath"/>
-    </javadoc>
-
-  </target>
-
-
-  <!-- ===================== EXAMPLE: Create Webapp ======================= -->
-
-
-  <target name="example.prepare" depends="library">
-
-    <echo message="------------ ${project.name} Example Webapp -------------"/>
-    <mkdir         dir="${build.home}/webapps"/>
-    <mkdir         dir="${build.home}/webapps/example"/>
-
-  </target>
-
-
-  <target name="example.static" depends="example.prepare">
-
-    <!-- Copy static web resources -->
-    <copy        todir="${build.home}/webapps/example">
-      <fileset     dir="web/example"/>
+    <copy       todir="${dist.home}/docs">
+      <fileset    dir="core-library/dist/docs"/>
+    </copy>
+    <copy       todir="${dist.home}/lib">
+      <fileset    dir="core-library/dist/conf"/>
+      <fileset    dir="core-library/dist/lib"/>
+    </copy>
+    <mkdir        dir="${dist.home}/src/core-library"/>
+    <copy       todir="${dist.home}/src/core-library"
+                 file="core-library/dist/build.xml"/>
+    <mkdir        dir="${dist.home}/src/core-library/src"/>
+    <copy       todir="${dist.home}/src/core-library/src">
+      <fileset    dir="core-library/dist/src"/>
     </copy>
 
-    <!-- Copy required configuration files -->
-    <copy        todir="${build.home}/webapps/example/WEB-INF">
-      <fileset     dir="${build.home}/conf">
-        <include  name="*.tld"/>
-      </fileset>
+    <!-- Copy files from example1-webapp -->
+    <copy       todir="${dist.home}/webapps">
+      <fileset    dir="example1-webapp/dist"
+             includes="*.war"/>
     </copy>
-    <copy        todir="${build.home}/webapps/example/WEB-INF">
-      <fileset     dir="${struts.home}/lib">
-        <include  name="*.tld"/>
-        <include  name="valid*.xml"/>
-      </fileset>
-    </copy>
-
-    <!-- Copy required library JAR files -->
-    <mkdir         dir="${build.home}/webapps/example/WEB-INF/lib"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${build.home}/lib/struts-faces.jar"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${commons-beanutils.jar}"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${commons-collections.jar}"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${commons-digester.jar}"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${commons-fileupload.jar}"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${commons-logging.jar}"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${commons-validator.jar}"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${jakarta-oro.jar}"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${struts.jar}"/>
-
-  </target>
-
-
-  <target name="example.static.jsfri" depends="example.static"
-            if="jsfri.present">
-
-    <replace        dir="${build.home}/webapps/example/WEB-INF"
-                  token="MYFACES_BEGIN"
-                  value="&lt;!-- MyFaces Listener"/>
-    <replace        dir="${build.home}/webapps/example/WEB-INF"
-                  token="MYFACES_END"
-                  value="--&gt;"/>
-
-  </target>
-
-
-  <target name="example.static.myfaces" depends="example.static.jsfri"
-            if="myfaces.present">
-
-    <replace        dir="${build.home}/webapps/example/WEB-INF"
-                  token="MYFACES_BEGIN"
-                  value="&lt;!-- MyFaces Listener --&gt;"/>
-    <replace        dir="${build.home}/webapps/example/WEB-INF"
-                  token="MYFACES_END"
-                  value=""/>
-
-  </target>
-
-
-  <target name="example.libraries" depends="example.static.myfaces"
-            if="build.standalone">
-
-    <!-- Copy libraries required for standalone use only -->
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${jsf-api.jar}"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${jsf-impl.jar}"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${jstl.jar}"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${standard.jar}"/>
-
-  </target>
-
-
-  <target name="example.libraries.myfaces" depends="example.libraries"
-            if="myfaces.present">
-
-    <!-- Copy additional libraries required by MyFaces implementation -->
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${jsf.home}/lib/commons-codec-1.2.jar"/>
-    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
-                  file="${jsf.home}/lib/commons-el.jar"/>
-
-  </target>
-
-
-  <target name="example.compile" depends="example.libraries.myfaces">
-
-    <!-- Compile Java Sources -->
-    <mkdir         dir="${build.home}/webapps/example/WEB-INF/classes"/>
-    <javac      srcdir="src/example"
-               destdir="${build.home}/webapps/example/WEB-INF/classes"
-                 debug="${compile.debug}"
-           deprecation="${compile.deprecation}"
-              optimize="${compile.optimize}">
-      <classpath refid="classpath" />
-    </javac>
-
-    <!-- Copy non-Java Sources -->
-    <copy    todir="${build.home}/webapps/example/WEB-INF/classes">
-      <fileset dir="src/example">
-        <exclude name="**/*.java"/>
-      </fileset>
+    <mkdir        dir="${dist.home}/src/example1-webapp"/>
+    <copy       todir="${dist.home}/src/example1-webapp"
+                 file="example1-webapp/dist/build.xml"/>
+    <mkdir        dir="${dist.home}/src/example1-webapp/src"/>
+    <copy       todir="${dist.home}/src/example1-webapp/src">
+      <fileset    dir="example1-webapp/dist/src"/>
     </copy>
 
-  </target>
-
-
-  <!-- ===================== EXAMPLE:  Tomcat Integration ================= -->
-
-
-  <target name="example.install" depends="example.compile"
-   description="Install example webapp on Tomcat">
-    <install url="${url}" username="${username}" password="${password}"
-            path="${example.path}"
-             war="file://${build.home}/webapps/example"/>
-  </target>
-
-
-  <target name="example.reload" depends="example.compile"
-   description="Reload example webapp on Tomcat">
-    <reload url="${url}" username="${username}" password="${password}"
-            path="${example.path}"/>
-  </target>
-
-
-  <target name="example.remove"
-   description="Remove example webapp from Tomcat">
-    <remove url="${url}" username="${username}" password="${password}"
-            path="${example.path}"/>
-  </target>
-
-
-  <!-- ==================== EXAMPLE2: Create Webapp ======================= -->
-
-
-  <target name="example2.prepare" depends="library">
-
-    <echo message="------------ ${project.name} Example2 Webapp ------------"/>
-    <mkdir         dir="${build.home}/webapps"/>
-    <mkdir         dir="${build.home}/webapps/example2"/>
-
-  </target>
-
-
-  <target name="example2.static" depends="example2.prepare">
-
-    <!-- Copy static web resources -->
-    <copy        todir="${build.home}/webapps/example2">
-      <fileset     dir="web/example2"/>
+    <!-- Copy files from example2-webapp -->
+    <copy       todir="${dist.home}/webapps">
+      <fileset    dir="example2-webapp/dist"
+             includes="*.war"/>
+    </copy>
+    <mkdir        dir="${dist.home}/src/example2-webapp"/>
+    <copy       todir="${dist.home}/src/example2-webapp"
+                 file="example2-webapp/dist/build.xml"/>
+    <mkdir        dir="${dist.home}/src/example2-webapp/src"/>
+    <copy       todir="${dist.home}/src/example2-webapp/src">
+      <fileset    dir="example2-webapp/dist/src"/>
     </copy>
 
-    <!-- Copy required configuration files -->
-    <copy        todir="${build.home}/webapps/example2/WEB-INF">
-      <fileset     dir="${build.home}/conf">
-        <include  name="*.tld"/>
-      </fileset>
-    </copy>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF">
-      <fileset     dir="${struts.home}/lib">
-        <include  name="*.tld"/>
-        <include  name="valid*.xml"/>
-      </fileset>
+    <!-- Copy files from sysclient-app -->
+    <mkdir        dir="${dist.home}/src/sysclient-app"/>
+    <copy       todir="${dist.home}/src/sysclient-app"
+                 file="sysclient-app/build.xml"/>
+    <mkdir        dir="${dist.home}/src/sysclient-app/src"/>
+    <copy       todir="${dist.home}/src/sysclient-app/src">
+      <fileset    dir="sysclient-app/src"/>
     </copy>
 
-    <!-- Copy required library JAR files -->
-    <mkdir         dir="${build.home}/webapps/example2/WEB-INF/lib"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${build.home}/lib/struts-faces.jar"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${commons-beanutils.jar}"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${commons-collections.jar}"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${commons-digester.jar}"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${commons-fileupload.jar}"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${commons-logging.jar}"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${commons-validator.jar}"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${jakarta-oro.jar}"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${struts.jar}"/>
-
-  </target>
-
-
-  <target name="example2.static.jsfri" depends="example2.static"
-            if="jsfri.present">
-
-    <replace        dir="${build.home}/webapps/example2/WEB-INF"
-                  token="MYFACES_BEGIN"
-                  value="&lt;!-- MyFaces Listener"/>
-    <replace        dir="${build.home}/webapps/example2/WEB-INF"
-                  token="MYFACES_END"
-                  value="--&gt;"/>
-
-  </target>
-
-
-  <target name="example2.static.myfaces" depends="example2.static.jsfri"
-            if="myfaces.present">
-
-    <replace        dir="${build.home}/webapps/example2/WEB-INF"
-                  token="MYFACES_BEGIN"
-                  value="&lt;!-- MyFaces Listener --&gt;"/>
-    <replace        dir="${build.home}/webapps/example2/WEB-INF"
-                  token="MYFACES_END"
-                  value=""/>
-
-  </target>
-
-
-  <target name="example2.libraries" depends="example2.static.myfaces"
-            if="build.standalone">
-
-    <!-- Copy libraries required for standalone use only -->
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${jsf-api.jar}"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${jsf-impl.jar}"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${jstl.jar}"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${standard.jar}"/>
-
-  </target>
-
-
-  <target name="example2.libraries.myfaces" depends="example2.libraries"
-            if="myfaces.present">
-
-    <!-- Copy additional libraries required by MyFaces implementation -->
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${jsf.home}/lib/commons-codec-1.2.jar"/>
-    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
-                  file="${jsf.home}/lib/commons-el.jar"/>
-
-  </target>
-
-
-  <target name="example2.compile" depends="example2.libraries.myfaces">
-
-    <!-- Compile Java Sources -->
-    <mkdir         dir="${build.home}/webapps/example2/WEB-INF/classes"/>
-    <javac      srcdir="src/example2"
-               destdir="${build.home}/webapps/example2/WEB-INF/classes"
-                 debug="${compile.debug}"
-           deprecation="${compile.deprecation}"
-              optimize="${compile.optimize}">
-      <classpath refid="classpath" />
-    </javac>
-
-    <!-- Copy non-Java Sources -->
-    <copy    todir="${build.home}/webapps/example2/WEB-INF/classes">
-      <fileset dir="src/example2">
-        <exclude name="**/*.java"/>
-      </fileset>
+    <!-- Copy files from systest1-webapp -->
+    <mkdir        dir="${dist.home}/src/systest1-webapp"/>
+    <copy       todir="${dist.home}/src/systest1-webapp"
+                 file="systest1-webapp/dist/build.xml"/>
+    <mkdir        dir="${dist.home}/src/systest1-webapp/src"/>
+    <copy       todir="${dist.home}/src/systest1-webapp/src">
+      <fileset    dir="systest1-webapp/dist/src"/>
     </copy>
-
-  </target>
-
-
-  <!-- ===================== EXAMPLE2:  Tomcat Integration ================= -->
-
-
-  <target name="example2.install" depends="example2.compile"
-   description="Install example2 webapp on Tomcat">
-    <install url="${url}" username="${username}" password="${password}"
-            path="${example2.path}"
-             war="file://${build.home}/webapps/example2"/>
-  </target>
-
-
-  <target name="example2.reload" depends="example2.compile"
-   description="Reload example2 webapp on Tomcat">
-    <reload url="${url}" username="${username}" password="${password}"
-            path="${example2.path}"/>
-  </target>
-
-
-  <target name="example2.remove"
-   description="Remove example2 webapp from Tomcat">
-    <remove url="${url}" username="${username}" password="${password}"
-            path="${example2.path}"/>
-  </target>
-
-
-  <!-- ===================== SYSTEST: Create Webapp ======================== -->
-
-
-  <target name="systest.prepare" depends="library">
-
-    <echo message="------------ ${project.name} Systest Webapp -------------"/>
-    <mkdir         dir="${build.home}/webapps"/>
-    <mkdir         dir="${build.home}/webapps/systest"/>
-
-  </target>
-
-
-  <target name="systest.static" depends="systest.prepare">
-
-    <!-- Copy static web resources -->
-    <copy        todir="${build.home}/webapps/systest"
-             filtering="on">
-      <fileset     dir="web/systest"/>
-    </copy>
-
-    <!-- Copy required configuration files -->
-    <copy        todir="${build.home}/webapps/systest/WEB-INF">
-      <fileset     dir="${struts.home}/lib">
-        <include  name="valid*.xml"/>
-      </fileset>
-    </copy>
-
-    <!-- Copy required library JAR files -->
-    <mkdir         dir="${build.home}/webapps/systest/WEB-INF/lib"/>
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${build.home}/lib/struts-faces.jar"/>
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${commons-beanutils.jar}"/>
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${commons-collections.jar}"/>
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${commons-digester.jar}"/>
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${commons-fileupload.jar}"/>
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${commons-logging.jar}"/>
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${commons-validator.jar}"/>
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${jakarta-oro.jar}"/>
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${struts.jar}"/>
-
-  </target>
-
-
-  <target name="systest.static.jsfri" depends="systest.static"
-            if="jsfri.present">
-
-    <replace        dir="${build.home}/webapps/systest/WEB-INF"
-                  token="MYFACES_BEGIN"
-                  value="&lt;!-- MyFaces Listener"/>
-    <replace        dir="${build.home}/webapps/systest/WEB-INF"
-                  token="MYFACES_END"
-                  value="--&gt;"/>
-
-  </target>
-
-
-  <target name="systest.static.myfaces" depends="systest.static.jsfri"
-            if="myfaces.present">
-
-    <replace        dir="${build.home}/webapps/systest/WEB-INF"
-                  token="MYFACES_BEGIN"
-                  value="&lt;!-- MyFaces Listener --&gt;"/>
-    <replace        dir="${build.home}/webapps/systest/WEB-INF"
-                  token="MYFACES_END"
-                  value=""/>
-
-  </target>
-
-
-  <target name="systest.libraries" depends="systest.static.jsfri"
-            if="build.standalone">
-
-    <!-- Copy libraries required for standalone use only -->
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${jsf-api.jar}"/>
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${jsf-impl.jar}"/>
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${jstl.jar}"/>
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${standard.jar}"/>
-
-  </target>
-
-
-  <target name="systest.libraries.myfaces" depends="systest.libraries"
-            if="myfaces.present">
-
-    <!-- Copy additional libraries required by MyFaces implementation -->
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${jsf.home}/lib/commons-codec-1.2.jar"/>
-    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
-                  file="${jsf.home}/lib/commons-el.jar"/>
-
-  </target>
-
-
-  <target name="systest.compile" depends="systest.libraries.myfaces">
-
-    <!-- Compile Java Sources -->
-    <mkdir         dir="${build.home}/webapps/systest/WEB-INF/classes"/>
-    <javac      srcdir="src/systest"
-               destdir="${build.home}/webapps/systest/WEB-INF/classes"
-                 debug="${compile.debug}"
-           deprecation="${compile.deprecation}"
-              optimize="${compile.optimize}">
-      <classpath refid="classpath" />
-    </javac>
-
-    <!-- Copy non-Java Sources -->
-    <copy    todir="${build.home}/webapps/systest/WEB-INF/classes">
-      <fileset dir="src/systest">
-        <exclude name="**/*.java"/>
-      </fileset>
-    </copy>
-
-  </target>
-
-
-  <!-- ====================== SYSTEST:  Tomcat Integration ================= -->
-
-
-  <target name="systest.install" depends="systest.compile"
-   description="Install systest webapp on Tomcat">
-    <install url="${url}" username="${username}" password="${password}"
-            path="${systest.path}"
-             war="file://${build.home}/webapps/systest"/>
-  </target>
-
-
-  <target name="systest.reload" depends="systest.compile"
-   description="Reload systest webapp on Tomcat">
-    <reload url="${url}" username="${username}" password="${password}"
-            path="${systest.path}"/>
-  </target>
-
-
-  <target name="systest.remove"
-   description="Remove systest webapp from Tomcat">
-    <remove url="${url}" username="${username}" password="${password}"
-            path="${systest.path}"/>
-  </target>
-
-
-  <!-- ====================== SYSTEST: Client Execution =================== -->
-
-
-  <target name="sysclient.compile"
-   description="Prepare system integration test client">
-
-    <!-- Compile Java Sources -->
-    <mkdir         dir="${build.home}/sysclient"/>
-    <javac      srcdir="src/sysclient"
-               destdir="${build.home}/sysclient"
-                 debug="${compile.debug}"
-           deprecation="${compile.deprecation}"
-              optimize="${compile.optimize}">
-      <classpath refid="sysclient.classpath"/>
-    </javac>
-
-    <!-- Copy non-Java Sources -->
-    <copy        todir="${build.home}/sysclient">
-      <fileset     dir="src/sysclient">
-        <exclude  name="**/*.java"/>
-      </fileset>
-    </copy>
-
-  </target>
-
-
-  <target name="sysclient.execute" depends="sysclient.compile"
-   description="Execute system integration test client">
-
-    <junit         fork="yes"
-           printSummary="yes"
-            haltonerror="yes"
-          haltonfailure="yes">
-
-      <classpath  refid="sysclient.classpath"/>
-      <formatter   type="plain"
-                usefile="false"/>
-      <sysproperty  key="systest"
-                  value="${systest.url}"/>
-
-      <batchtest>
-        <fileset    dir="${build.home}/sysclient"
-               excludes="**/AbstractTestCase.class"
-               includes="**/*TestCase.class"/>
-      </batchtest>
-
-    </junit>
-
-  </target>
-
-
-  <!-- ==================== Create Binary Distribution ==================== -->
-
-
-  <target name="dist" depends="example.compile,example2.compile, docs"
-   description="Create binary distribution">
-
-    <mkdir     dir="${dist.home}"/>
-    <copy    todir="${dist.home}">
-      <fileset dir="${basedir}" includes="*.txt build.*"
-                                excludes="build.properties"/>
-    </copy>
-
-    <mkdir     dir="${dist.home}/conf"/>
-    <copy    todir="${dist.home}/conf">
-      <fileset dir="${build.home}/conf" includes="*.tld"/>
-    </copy>
-
-    <mkdir     dir="${dist.home}/lib"/>
-    <copy    todir="${dist.home}/lib">
-      <fileset dir="${build.home}/lib" includes="*.jar"/>
-    </copy>
-
-    <mkdir     dir="${dist.home}/src"/>
-    <copy    todir="${dist.home}/src">
-      <fileset dir="src" excludes="**/CVS/**"/>
-    </copy>
-
-    <mkdir     dir="${dist.home}/web"/>
-    <copy    todir="${dist.home}/web">
-      <fileset dir="web" excludes="**/CVS/**"/>
-    </copy>
-
-    <mkdir     dir="${dist.home}/webapps"/>
-    <jar  destfile="${dist.home}/webapps/struts-faces.war">
-      <fileset dir="${build.home}/classes">
-        <include name="META-INF/LICENSE.txt"/>
-      </fileset>
-      <fileset dir="${build.home}/webapps/example">
-<!-- Final RI license allows redistribution
-        <exclude name="**/jsf-*.jar"/>
--->
-      </fileset>
-    </jar>
-    <jar  destfile="${dist.home}/webapps/struts-faces2.war">
-      <fileset dir="${build.home}/classes">
-        <include name="META-INF/LICENSE.txt"/>
-      </fileset>
-      <fileset dir="${build.home}/webapps/example2">
-<!-- Final RI license allows redistribution
-        <exclude name="**/jsf-*.jar"/>
--->
-      </fileset>
-    </jar>
 
   </target>
 

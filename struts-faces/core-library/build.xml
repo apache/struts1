@@ -256,7 +256,7 @@
   <!-- ==================== Create Binary Distribution ==================== -->
 
 
-  <target name="dist" depends="doc"
+  <target name="dist" depends="docs"
    description="Create binary distribution">
 
     <mkdir     dir="${dist.home}"/>
