@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.2 2000/10/12 21:51:01 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/10/12 21:51:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.3 2000/10/15 03:29:15 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/15 03:29:15 $
  *
  * ====================================================================
  * 
@@ -63,6 +63,7 @@
 package org.apache.struts.action;
 
 
+import java.io.Serializable;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
@@ -91,10 +92,10 @@ import javax.servlet.http.HttpServletRequest;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/10/12 21:51:01 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/15 03:29:15 $
  */
 
-public abstract class ActionForm {
+public abstract class ActionForm implements Serializable {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -140,10 +141,34 @@ public abstract class ActionForm {
      * Reset all bean properties to their default state.  This method is
      * called before the properties are repopulated by the controller servlet.
      * <p>
+     * The default implementation attempts to forward to the HTTP
+     * version of this method.
+     *
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
+     */
+    public void reset(ActionMapping mapping, ServletRequest request) {
+
+        try {
+            reset(mapping, (HttpServletRequest) request);
+        } catch (ClassCastException e) {
+            ;
+        }
+
+    }
+
+
+    /**
+     * Reset all bean properties to their default state.  This method is
+     * called before the properties are repopulated by the controller servlet.
+     * <p>
      * The default implementation does nothing.  Subclasses should override
      * this method to reset all bean properties to default values.
+     *
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
      */
-    public void reset() {
+    public void reset(ActionMapping mapping, HttpServletRequest request) {
 
         ;       // Default implementation does nothing
 
@@ -160,8 +185,8 @@ public abstract class ActionForm {
      * The default implementation attempts to forward to the HTTP version of
      * this method.
      *
-     * @param mapping The ActionMapping used to select this instance
-     * @param request The non-HTTP request we are processing
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
      */
     public ActionErrors validate(ActionMapping mapping,
                                  ServletRequest request) {
@@ -186,8 +211,8 @@ public abstract class ActionForm {
      * <code>null</code>.  Subclasses must override this method to provide
      * any validation they wish to perform.
      *
-     * @param mapping The ActionMapping used to select this instance
-     * @param request The HTTP servlet request we are processing
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
      */
     public ActionErrors validate(ActionMapping mapping,
                                  HttpServletRequest request) {

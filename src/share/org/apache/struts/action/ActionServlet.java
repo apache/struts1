@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.29 2000/10/12 21:51:03 craigmcc Exp $
- * $Revision: 1.29 $
- * $Date: 2000/10/12 21:51:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.30 2000/10/15 03:29:15 craigmcc Exp $
+ * $Revision: 1.30 $
+ * $Date: 2000/10/15 03:29:15 $
  *
  * ====================================================================
  *
@@ -150,6 +150,9 @@ import org.xml.sax.SAXException;
  *     resources bundle base class.  [NONE].</li>
  * <li><strong>config</strong> - Context-relative path to the XML resource
  *     containing our configuration information.  [/WEB-INF/action.xml]</li>
+ * <li><strong>content</strong> - Default content type and character encoding
+ *     to be set on each response; may be overridden by a forwarded-to
+ *     servlet or JSP page.  [text/html]</li>
  * <li><strong>debug</strong> - The debugging detail level for this
  *     servlet, which controls how much information is logged.  [0]</li>
  * <li><strong>detail</strong> - The debugging detail level for the Digester
@@ -197,7 +200,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.29 $ $Date: 2000/10/12 21:51:03 $
+ * @version $Revision: 1.30 $ $Date: 2000/10/15 03:29:15 $
  */
 
 public class ActionServlet
@@ -224,6 +227,13 @@ public class ActionServlet
      * The context-relative path to our configuration resource.
      */
     protected String config = "/WEB-INF/action.xml";
+
+
+    /**
+     * The default content type and character encoding to be set on each
+     * response (may be overridden by forwarded-to resources).
+     */
+    protected String content = "text/html";
 
 
     /**
@@ -968,8 +978,12 @@ public class ActionServlet
      */
     protected void initOther() throws ServletException {
 
-	// Process the "locale" and "nocache" initialization parameters
+	// Process the "content", "locale", and "nocache" parameters
 	String value = null;
+
+        value = getServletConfig().getInitParameter("content");
+        if (value != null)
+            content = value;
 
         value = getServletConfig().getInitParameter("locale");
         if (value != null) {
@@ -1024,7 +1038,8 @@ public class ActionServlet
         // Automatically select a locale for this user if requested
         processLocale(request);
 
-	// Set the no-caching headers if requested
+	// Set the content type and no-caching headers if requested
+        processContent(response);
 	processNoCache(response);
 
 	// Look up the corresponding mapping
@@ -1196,6 +1211,21 @@ public class ActionServlet
 
 
     /**
+     * Set the default content type (with optional character encoding) for
+     * all responses.  This value may be overridden by forwarded-to servlets
+     * or JSP pages.
+     *
+     * @param response The response we are processing
+     */
+    protected void processContent(HttpServletResponse response) {
+
+        if (content != null)
+            response.setContentType(content);
+
+    }
+
+
+    /**
      * Automatically calculate an appropriate <code>java.util.Locale</code>
      * for this user, and store it in their session, if there is no such
      * Locale object present already.
@@ -1353,7 +1383,7 @@ public class ActionServlet
         // Populate the bean properties of this ActionForm instance
         if (debug >= 1)
             log(" Populating bean properties from this request");
-        formInstance.reset();
+        formInstance.reset(mapping, request);
         BeanUtils.populate(formInstance, mapping.getPrefix(),
                            mapping.getSuffix(), request);
 
@@ -1383,18 +1413,35 @@ public class ActionServlet
 
         if (formInstance == null)
             return (true);
+        if (debug >= 1)
+            log(" Validating input form properties");
+
+        // Has an input form been specified for this mapping?
+	String uri = mapping.getInput();
+        if (uri == null) {
+            if (debug >= 1)
+                log("  No input form, no validation");
+            return (true);
+        }
+
+        // Was this submit cancelled?
+	if (request.getParameter(Constants.CANCEL_PROPERTY) != null) {
+            if (debug >= 1)
+                log("  Cancelled transaction, no validation");
+            return (true);
+        }
 
         // Call the validate() method of our ActionForm bean
-        if (debug >= 1)
-            log(" Calling form validation method");
         ActionErrors errors = formInstance.validate(mapping, request);
-        if ((errors == null) || errors.empty())
+        if ((errors == null) || errors.empty()) {
+            if (debug >= 1)
+                log("  No errors detected, accepting input");
             return (true);
+        }
 
-	// Save our error messages and return to the input form
-	String uri = mapping.getInput();
+	// Save our error messages and return to the input form if possible
 	if (debug >= 1)
-	    log(" Form validation error: redirecting to: " + uri);
+	    log("  Validation error(s), redirecting to: " + uri);
 	request.setAttribute(Action.ERROR_KEY, errors);
 	RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
 	rd.forward(request, response);
