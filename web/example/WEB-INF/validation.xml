@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 
 <!DOCTYPE form-validation PUBLIC
-          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
-          "http://jakarta.apache.org/commons/dtds/validator_1_0.dtd">
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
 
 <!--
     Validation Rules for the Struts Example Web Application
 
-    $Id: validation.xml,v 1.10 2003/10/25 01:37:12 mrdon Exp $
+    $Id: validation.xml,v 1.11 2004/02/07 00:09:33 rleland Exp $
 -->
 
 <form-validation>

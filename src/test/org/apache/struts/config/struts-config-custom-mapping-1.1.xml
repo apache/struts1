@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 
 <!DOCTYPE struts-config PUBLIC
-          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
-          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
 <!--
      This is the Struts configuration file for the example application,
@@ -21,7 +21,7 @@
 
   <!-- ========== Data Source Configuration =============================== -->
   <data-sources>
-    <data-source type="org.apache.commons.dbcp.BasicDataSource">
+    <data-source>
       <set-property property="autoCommit"
                        value="false"/>
       <set-property property="description"
@@ -75,7 +75,9 @@
                type="org.apache.struts.webapp.example.EditRegistrationAction"
           attribute="registrationForm"
               scope="request"
-           validate="false">
+           validate="false"
+           className="org.apache.struts.config.CustomMappingTest">
+      <set-property property="public" value="true"/>
       <forward name="success"              path="/registration.jsp"/>
     </action>
 
