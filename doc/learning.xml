@@ -219,9 +219,9 @@
 </section>
 
 <section>
-<p align="center">
-Next: <a href="acquiring.html">Acquiring Struts</a>
-</p>
+    <p align="right">
+    Next: <a href="acquiring.html">Acquiring Struts</a>
+    </p>
 </section>
 
 </body>

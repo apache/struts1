@@ -679,9 +679,9 @@
 </section>
 
 <section>
-<p align="center">
-Next: <a href="status.html">Development Roadmap</a>
-</p>
+    <p align="right">
+    Next: <a href="status.html">Development Roadmap</a>
+    </p>
 </section>
 
 </chapter></body></document>

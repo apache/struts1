@@ -36,7 +36,7 @@
     For your convenience, links to further information are provided if you would like to learn more about a technology.
     </p>
 
-    <p><a target="#jwst"></a>If you are familiar with Java, but not these technologies,
+    <p><a target="#Java Web Services Tutorial"></a>If you are familiar with Java, but not these technologies,
     the best overall starting point is
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html"><b>The Java Web Services Tutorial</b></a>.
     This is also available for download in
@@ -93,7 +93,7 @@
 
     <p>If you are not familiar with the HTTP request/response cycle, we <b>strongly</b> recommend the
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/HTTP.html#63796">
-    HTTP Overview</a> in the JWST.
+    HTTP Overview</a> in the Java Web Services Tutorial.
     </p>
 
     </section>
@@ -354,7 +354,7 @@
     
     <ul>
     <li>
-    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets5.html#64386">Controlling Concurrent Access to Shared Resources</a> in JWST.
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets5.html#64386">Controlling Concurrent Access to Shared Resources</a> in Java Web Services Tutorial.
     </li>
     </ul>
 
@@ -389,7 +389,7 @@
     
     <ul>
     <li>
-    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets10.html#64724">Accessing the Web Context</a> in JWST.
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets10.html#64724">Accessing the Web Context</a> in Java Web Services Tutorial.
     </li>
     </ul>
 
@@ -446,7 +446,7 @@
     
     <ul>
     <li>
-    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets7.html#64433">Getting Information from Requests</a> in JWST.
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets7.html#64433">Getting Information from Requests</a> in Java Web Services Tutorial.
     </li>
     </ul>
 
@@ -508,7 +508,7 @@
     
     <ul>
     <li>
-    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets7.html#64531">Constructing Responses</a> in JWST.
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets7.html#64531">Constructing Responses</a> in Java Web Services Tutorial.
     </li>
     </ul>
               
@@ -593,7 +593,7 @@
       </p>      
       <ul>
         <li>
-        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets11.html#64744">Maintaining Client State</a> in JWST
+        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets11.html#64744">Maintaining Client State</a> in Java Web Services Tutorial
         </li>
         <li>
         <a href="http://java.sun.com/products/servlet/2.1/api/javax.servlet.http.HttpSession.html"><code>javax.servlet.http.HttpSession</code></a>
@@ -631,7 +631,7 @@
     </p>      
     <ul>
     <li>
-        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp.html#76431">Web Applications</a> in JWST
+        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp.html#76431">Web Applications</a> in Java Web Services Tutorial
     </li>
     </ul>
 
@@ -649,7 +649,7 @@
       </p>  
       <ul>
       <li>
-      <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp2.html#64550">Web Application Life Cycle</a> in JWST
+      <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp2.html#64550">Web Application Life Cycle</a> in Java Web Services Tutorial
       </li>
       </ul>
       
@@ -796,7 +796,7 @@
       Other <a href="../resources/models.html">data access</a> and <a href="../resources/views.html">presentation</a>
       systems are listed in the Struts <a href="../resources/">Resource Guide</a>.
     </p>
-
+    
     </section>
 
     <section name="0.11 JAAS" href="jaas">
@@ -808,7 +808,7 @@
     <p>For more about JAAS, see the <a href="http://java.sun.com/products/jaas/index-14.html">Javasoft product page</a>
     and the <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebAppSecurity.html">
     Web Application Security</a> chapter of the
-    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html">Web Services Tutorial</a>.</p>
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html">Java Web Services Tutorial</a>.</p>
 
 </section>
 

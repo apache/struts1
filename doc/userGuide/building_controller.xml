@@ -574,15 +574,15 @@
     
 <pre><code><![CDATA[public FooForm extends ActionForm {
 
-private final Map values = new HashMap();
+    private final Map values = new HashMap();
 
-public void setValue(String key, Object value) {
-values.put(key, value);
-}
+    public void setValue(String key, Object value) {
+        values.put(key, value);
+    }
 
-public Object getValue(String key) {
-return values.get(key);
-}
+    public Object getValue(String key) {
+        return values.get(key);
+    }
 
 }
 ]]></code></pre>
