@@ -2,6 +2,10 @@
   xmlns:j="jelly:core"
   xmlns:ant="jelly:ant">
 
+  <preGoal name="dist">
+    <attainGoal name="jar:install"/>
+  </preGoal>
+  
   <preGoal name="xdoc:jelly-transform">
     <attainGoal name="html2xdoc"/>
 
