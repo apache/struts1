@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InitDefinitionsTag.java,v 1.2 2002/07/11 16:44:24 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/11 16:44:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InitDefinitionsTag.java,v 1.3 2002/11/05 14:13:43 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/05 14:13:43 $
  *
  * ====================================================================
  *
@@ -62,7 +62,7 @@
 
 package org.apache.struts.taglib.tiles;
 
-import org.apache.struts.tiles.DefinitionsUtil;
+import org.apache.struts.tiles.TilesUtil;
 import org.apache.struts.tiles.DefinitionsFactory;
 import org.apache.struts.tiles.DefinitionsFactoryConfig;
 import org.apache.struts.tiles.DefinitionsFactoryException;
@@ -121,7 +121,7 @@ public class InitDefinitionsTag extends TagSupport implements ComponentConstants
      */
   public int doStartTag() throws JspException
   {
-  DefinitionsFactory factory = DefinitionsUtil.getDefinitionsFactory(pageContext.getServletContext());
+  DefinitionsFactory factory = TilesUtil.getDefinitionsFactory(pageContext.getRequest(),pageContext.getServletContext());
   if(factory != null )
     return SKIP_BODY;
 
@@ -131,7 +131,7 @@ public class InitDefinitionsTag extends TagSupport implements ComponentConstants
 
   try
     {
-    factory = DefinitionsUtil.createDefinitionsFactory(pageContext.getServletContext(), factoryConfig);
+    factory = TilesUtil.createDefinitionsFactory(pageContext.getServletContext(), factoryConfig);
     }
    catch( DefinitionsFactoryException ex )
       {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/util/TagUtils.java,v 1.1 2002/06/25 03:17:19 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:17:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/util/TagUtils.java,v 1.2 2002/11/05 14:14:06 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/11/05 14:14:06 $
  *
  * ====================================================================
  *
@@ -67,7 +67,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.taglib.tiles.ComponentConstants;
 import org.apache.struts.tiles.ComponentContext;
 import org.apache.struts.tiles.ComponentDefinition;
-import org.apache.struts.tiles.DefinitionsUtil;
+import org.apache.struts.tiles.TilesUtil;
 import org.apache.struts.tiles.NoSuchDefinitionException;
 import org.apache.struts.tiles.FactoryNotFoundException;
 import org.apache.struts.tiles.DefinitionsFactoryException;
@@ -156,10 +156,10 @@ public class TagUtils {
      *  propety cannot be found
      */
     public static Object getProperty(Object bean, String name)
-	      throws IllegalAccessException, InvocationTargetException,
-	             NoSuchMethodException
+        throws IllegalAccessException, InvocationTargetException,
+               NoSuchMethodException
      {
-	   return (PropertyUtils.getProperty(bean, name));
+     return (PropertyUtils.getProperty(bean, name));
      }
 
 
@@ -358,7 +358,7 @@ public class TagUtils {
     {
     try
       {
-      return  DefinitionsUtil.getDefinition(name, pageContext);
+      return  TilesUtil.getDefinition(name, pageContext.getRequest(), pageContext.getServletContext() );
       }
      catch( NoSuchDefinitionException ex )
         {
