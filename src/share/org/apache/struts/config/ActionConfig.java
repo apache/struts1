@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.13 2003/08/03 14:18:03 jmitchell Exp $
- * $Revision: 1.13 $
- * $Date: 2003/08/03 14:18:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.14 2003/08/04 12:06:46 jmitchell Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/08/04 12:06:46 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.util.HashMap;
  * module configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2003/08/03 14:18:03 $
+ * @version $Revision: 1.14 $ $Date: 2003/08/04 12:06:46 $
  * @since Struts 1.1
  */
 public class ActionConfig implements Serializable {
@@ -530,13 +530,13 @@ public class ActionConfig implements Serializable {
 
     /**
      * Indicates Action be configured as the default one for this
-     * application, when true.
+     * module, when true.
      */
     protected boolean unknown = false;
 
     /**
       * Determine whether Action is configured as the default one for this
-      * application.
+      * module.
       */
     public boolean getUnknown() {
         return (this.unknown);
@@ -544,7 +544,7 @@ public class ActionConfig implements Serializable {
 
     /**
       * @param unknown Indicates Action is configured as the default one for this
-      * application, when true.
+      * module, when true.
       */
     public void setUnknown(boolean unknown) {
         if (configured) {
@@ -651,7 +651,7 @@ public class ActionConfig implements Serializable {
 
 
     /**
-     * Return all forward configurations for this application.  If there
+     * Return all forward configurations for this module.  If there
      * are none, a zero-length array is returned.
      */
     public ForwardConfig[] findForwardConfigs() {
