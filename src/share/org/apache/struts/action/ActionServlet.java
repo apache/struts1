@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.159 2003/07/04 18:38:37 dgraham Exp $
- * $Revision: 1.159 $
- * $Date: 2003/07/04 18:38:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.160 2003/07/08 00:39:21 dgraham Exp $
+ * $Revision: 1.160 $
+ * $Date: 2003/07/08 00:39:21 $
  *
  * ====================================================================
  *
@@ -230,7 +230,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.159 $ $Date: 2003/07/04 18:38:37 $
+ * @version $Revision: 1.160 $ $Date: 2003/07/08 00:39:21 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -528,28 +528,35 @@ public class ActionServlet extends HttpServlet {
         while (keys.hasNext()) {
             String name = (String) keys.next();
             Object value = getServletContext().getAttribute(name);
-            if (value instanceof ModuleConfig) {
-                ModuleConfig config = (ModuleConfig) value;
-                    try {
-                        getRequestProcessor(config).destroy();
-                    } catch (ServletException e) {
-                        log.error(e);
-                    }
-                    
-                getServletContext().removeAttribute(name);
-
-                PlugIn plugIns[] =
-                    (PlugIn[]) getServletContext().getAttribute(
-                        Globals.PLUG_INS_KEY + config.getPrefix());
-                if (plugIns != null) {
-                    for (int i = 0; i < plugIns.length; i++) {
-                        int j = plugIns.length - (i + 1);
-                        plugIns[j].destroy();
-                    }
-                    getServletContext().removeAttribute
-                        (Globals.PLUG_INS_KEY + config.getPrefix());
-                }
+            
+            if (!(value instanceof ModuleConfig)) {
+                continue;
             }
+            
+            ModuleConfig config = (ModuleConfig) value;
+            try {
+                getRequestProcessor(config).destroy();
+                
+            } catch (ServletException e) {
+                log.error(e);
+            }
+
+            getServletContext().removeAttribute(name);
+
+            PlugIn plugIns[] =
+                (PlugIn[]) getServletContext().getAttribute(
+                    Globals.PLUG_INS_KEY + config.getPrefix());
+                    
+            if (plugIns != null) {
+                for (int i = 0; i < plugIns.length; i++) {
+                    int j = plugIns.length - (i + 1);
+                    plugIns[j].destroy();
+                }
+                
+                getServletContext().removeAttribute(
+                    Globals.PLUG_INS_KEY + config.getPrefix());
+            }
+            
         }
 
     }
