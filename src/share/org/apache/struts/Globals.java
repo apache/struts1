@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.6 2003/07/03 01:47:05 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/07/03 01:47:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.7 2003/07/04 21:35:50 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/07/04 21:35:50 $
  *
  * ====================================================================
  *
@@ -68,7 +68,7 @@ import java.io.Serializable;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.6 $ $Date: 2003/07/03 01:47:05 $
+ * @version $Revision: 1.7 $ $Date: 2003/07/04 21:35:50 $
  */
 public class Globals implements Serializable {
 
@@ -85,34 +85,14 @@ public class Globals implements Serializable {
     public static final String ACTION_SERVLET_KEY =
         "org.apache.struts.action.ACTION_SERVLET";
 
-
     /**
-     * <p>The base of the context attributes key under which our
-     * <code>ModuleConfig</code> data structure will be stored.  This
-     * will be suffixed with the actual module prefix (including the
-     * leading "/" character) to form the actual attributes key.</p>
-     *
-     * <p>For each request processed by the controller servlet, the
-     * <code>ModuleConfig</code> object for the module selected by
-     * the request URI currently being processed will also be exposed under
-     * this key as a request attribute.</p>
-     *
-     * @since Struts 1.1
-     * @deprecated Use MODULE_KEY
-     */
-    public static final String APPLICATION_KEY =
-        "org.apache.struts.action.MODULE";
-
-
-    /**
-     * <p>The request attributes key under which a boolean <code>true</code>
-     * value should be stored if this request was cancelled.</p>
+     * The request attributes key under which a boolean <code>true</code>
+     * value should be stored if this request was cancelled.
      *
      * @since Struts 1.1
      */
     public static final String CANCEL_KEY =
         "org.apache.struts.action.CANCEL";
-
 
     /**
      * <p>The base of the context attributes key under which our
