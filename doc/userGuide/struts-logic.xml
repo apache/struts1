@@ -619,7 +619,7 @@
     <name>lessEqual</name>
     <summary>
     Evaluate the nested body content of this tag if the requested
-    variable is greater than or equal to the specified value.
+    variable is less than or equal to the specified value.
     </summary>
     <tagclass>org.apache.struts.taglib.logic.LessEqualTag</tagclass>
     <bodycontent>JSP</bodycontent>
