@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.39 2003/09/28 17:02:51 rleland Exp $
- * $Revision: 1.39 $
- * $Date: 2003/09/28 17:02:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.40 2003/11/28 22:55:36 dgraham Exp $
+ * $Revision: 1.40 $
+ * $Date: 2003/11/28 22:55:36 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -94,7 +94,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  *
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.39 $ $Date: 2003/09/28 17:02:51 $
+ * @version $Revision: 1.40 $ $Date: 2003/11/28 22:55:36 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -423,7 +423,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         for (Iterator i = actions.iterator(); i.hasNext();) {
             ValidatorAction va = (ValidatorAction) i.next();
-            String jscriptVar = null;
+            int jscriptVar = 0;
             String functionName = null;
 
             if (va.getJsFunctionName() != null
@@ -450,11 +450,10 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
                 message = (message != null) ? message : "";
 
-                jscriptVar = this.getNextVar(jscriptVar);
-
+                // prefix variable with 'a' to make it a legal identifier
                 results.append(
-                    "     this."
-                        + jscriptVar
+                    "     this.a"
+                        + jscriptVar++
                         + " = new Array(\""
                         + field.getKey()
                         + "\", \""
@@ -724,54 +723,6 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         sb.append("</script>\n\n");
 
         return sb.toString();
-    }
-
-    /**
-     * The value <code>null</code> will be returned at the end of the sequence.
-     * &nbsp;&nbsp;&nbsp; ex: "zz" will return <code>null</code>
-     */
-    private String getNextVar(String input) {
-        if (input == null) {
-            return "aa";
-        }
-
-        input = input.toLowerCase();
-
-        for (int i = input.length(); i > 0; i--) {
-            int pos = i - 1;
-
-            char c = input.charAt(pos);
-            c++;
-
-            if (c <= 'z') {
-                if (i == 0) {
-                    return c + input.substring(pos, input.length());
-                } else if (i == input.length()) {
-                    return input.substring(0, pos) + c;
-                } else {
-                    return input.substring(0, pos) + c + input.substring(pos, input.length() - 1);
-                }
-            } else {
-                input = replaceChar(input, pos, 'a');
-            }
-
-        }
-
-        return null;
-
-    }
-
-    /**
-     * Replaces a single character in a <code>String</code>
-     */
-    private String replaceChar(String input, int pos, char c) {
-        if (pos == 0) {
-            return c + input.substring(pos, input.length());
-        } else if (pos == input.length()) {
-            return input.substring(0, pos) + c;
-        } else {
-            return input.substring(0, pos) + c + input.substring(pos, input.length() - 1);
-        }
     }
 
     /**
