@@ -17,6 +17,7 @@
     <author>Stanley Santiago</author>
     <author>Wong Kok Kai</author>
     <author>Rob Leland</author>
+    <author>John Berry</author>
     <title>The Struts Framework Project - Installation (1.1)</title>
   </properties>
 
@@ -312,6 +313,8 @@ about how to configure additional security manager permissions.</p>
   <li>iPortal Application Server - <a href="installation-ipas.html">Additional steps required.</a></li>
   <li>Jetty - <a href="installation-jetty.html">Additional steps required.</a></li>
   <li>JRun - <a href="installation-jr30.html">Additional steps required.</a></li>
+  <li>Novell ExteNd Application Server 4.0+ -
+      <a href="installation-novell.html">Additional steps requird.</a></li>
   <li>Orion Application Server - <a href="installation-oas.html">Additional steps
     required.</a></li>
   <li>Resin 1.2+ "standalone" - No additional steps required.</li>
