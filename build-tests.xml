@@ -110,6 +110,7 @@
       <pathelement location="${commons-lang.jar}"/>
       <pathelement location="${httpunit.jar}"/>
       <pathelement location="${aspectjrt.jar}"/>
+      <pathelement location="${jakarta-oro.jar}"/>
       <pathelement location="${cactus.jar}"/>
       <pathelement location="${junit.jar}"/>
       <pathelement location="${servlet.jar}"/>
@@ -196,6 +197,7 @@
         <copy file="${aspectjrt.jar}" todir="${out.test.dir}/lib"/>
         <copy file="${httpunit.jar}"  todir="${out.test.dir}/lib"/>
         <copy file="${junit.jar}"     todir="${out.test.dir}/lib"/>
+        <copy file="${jakarta-oro.jar}"     todir="${out.test.dir}/lib"/>
         <copy file="${log4j.jar}"     todir="${out.test.dir}/lib"/>
         <copy file="${cactus.jar}"    todir="${out.test.dir}/lib"/>
         <copy file="${commons-beanutils.jar}"

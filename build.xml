@@ -42,10 +42,6 @@
                                       Commons FileUpload package.
                                       [Version 1.0 or later]
 
-        commons-lang.jar              The path to the JAR file of the Jakarta
-                                      Commons Lang package.
-                                      [Version 2.0 or later]
-
         commons-logging.jar           The path to the JAR file of the Jakarta
                                       Commons Logging package.
                                       [Version 1.0.3 or later]
@@ -207,7 +203,6 @@
       <pathelement location="${commons-collections.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
       <pathelement location="${commons-fileupload.jar}"/>
-      <pathelement location="${commons-lang.jar}"/>
       <pathelement location="${commons-logging.jar}"/>
       <pathelement location="${commons-validator.jar}"/>
       <pathelement location="${jakarta-oro.jar}"/>
@@ -284,8 +279,6 @@
         <copy file="${jdbc20ext.jar}"
             tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
             
-        <copy file="${commons-lang.jar}"
-            tofile="${build.home}/library/commons-lang.jar"/>
 -->
     </target>
 
