@@ -45,6 +45,13 @@ import org.apache.struts.util.ModuleUtils;
 
 public class ImgTag extends BaseHandlerTag {
 
+    // ----------------------------------------------------- Constructor
+
+    public ImgTag() {
+        super();
+        doDisabled = false;
+    }
+
     // ------------------------------------------------------------- Properties
 
      /**

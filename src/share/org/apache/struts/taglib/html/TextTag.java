@@ -34,8 +34,9 @@ public class TextTag extends BaseFieldTag {
      */
     public TextTag() {
 
-	   super();
-	   this.type = "text";
+         super();
+         this.type = "text";
+         doReadonly = true;
 
     }
 

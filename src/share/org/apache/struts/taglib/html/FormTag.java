@@ -169,6 +169,12 @@ public class FormTag extends TagSupport {
      */
     protected String acceptCharset = null;
 
+    /** Controls whether child controls should be 'disabled'. */
+    private boolean disabled = false;
+
+    /** Controls whether child controls should be 'readonly'. */
+    protected boolean readonly = false;
+
     // ------------------------------------------------------------- Properties
 
     /**
@@ -401,6 +407,26 @@ public class FormTag extends TagSupport {
 
         this.acceptCharset= acceptCharset;
 
+    }
+
+    /** Sets the disabled event handler. */
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
+
+    /** Returns the disabled event handler. */
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    /** Sets the readonly event handler. */
+    public void setReadonly(boolean readonly) {
+        this.readonly = readonly;
+    }
+
+    /** Returns the readonly event handler. */
+    public boolean isReadonly() {
+        return readonly;
     }
 
 
@@ -680,12 +706,14 @@ public class FormTag extends TagSupport {
         action = null;
         moduleConfig = null;
         enctype = null;
+        disabled = false;
         focus = null;
         focusIndex = null;
         mapping = null;
         method = null;
         onreset = null;
         onsubmit = null;
+        readonly = false;
         servlet = null;
         style = null;
         styleClass = null;

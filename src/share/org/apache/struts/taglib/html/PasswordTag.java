@@ -31,6 +31,7 @@ public class PasswordTag extends BaseFieldTag {
     public PasswordTag() {
         super();
         this.type = "password";
+        doReadonly = true;
     }
 
 }

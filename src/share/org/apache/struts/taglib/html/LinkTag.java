@@ -44,6 +44,13 @@ public class LinkTag extends BaseHandlerTag {
      */
     protected String text = null;
 
+    // ----------------------------------------------------- Constructor
+
+    public LinkTag() {
+        super();
+        doDisabled = false;
+    }
+
 
     // ------------------------------------------------------------- Properties
 

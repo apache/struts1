@@ -30,6 +30,13 @@ import org.apache.struts.taglib.TagUtils;
 public class TextareaTag extends BaseInputTag {
 
 
+    // ----------------------------------------------------- Constructor
+
+    public TextareaTag () {
+        super();
+        doReadonly = true;
+    }
+
     // --------------------------------------------------------- Public Methods
 
 

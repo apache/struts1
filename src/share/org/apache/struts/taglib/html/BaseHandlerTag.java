@@ -132,8 +132,21 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /** Component is disabled. */
     private boolean disabled = false;
 
+    /** Indicates whether 'disabled' is a valid attribute */
+    protected boolean doDisabled = true;
+
     /** Component is readonly. */
     private boolean readonly = false;
+
+    /** 
+     * <p>Indicates whether 'readonly' is a valid attribute.</p>
+     *
+     * <p>According to the HTML 4.0 Specification &lt;readonly&gt;
+     *    is valid for &lt;input type="text"&gt;, &lt;input type="password"&gt;
+     *    and &lt;textarea"&gt; elements. Therefore, except for those tags this
+     *    value is set to <code>false</code>.</p>
+     */
+    protected boolean doReadonly = false;
 
     // CSS Style Support
 
@@ -844,12 +857,27 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         prepareAttribute(handlers, "onblur", getOnblur());
         prepareAttribute(handlers, "onfocus", getOnfocus());
 
-        if (getDisabled()) {
-            handlers.append(" disabled=\"disabled\"");
+        // Get the parent FormTag (if necessary)
+        FormTag formTag = null;
+        if ((doDisabled && !getDisabled()) ||
+            (doReadonly && !getReadonly())) {
+            formTag = (FormTag)findAncestorWithClass(this, FormTag.class);
         }
 
-        if (getReadonly()) {
-            handlers.append(" readonly=\"readonly\"");
+        // Format Disabled
+        if (doDisabled) {
+            boolean formDisabled = formTag == null ? false : formTag.isDisabled();
+            if (formDisabled || getDisabled()) {
+                handlers.append(" disabled=\"disabled\"");
+            }
+        }
+
+        // Format Read Only
+        if (doReadonly) {
+            boolean formReadOnly = formTag == null ? false : formTag.isReadonly();
+            if (formReadOnly || getReadonly()) {
+                handlers.append(" readonly=\"readonly\"");
+            }
         }
 
     }

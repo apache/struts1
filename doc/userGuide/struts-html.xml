@@ -1645,6 +1645,17 @@
         </attribute>
 
         <attribute>
+            <name>disabled</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Set to <code>true</code> if the Form's input fields should be
+                disabled.
+            </info>
+            <since>Struts 1.2.7</since>
+        </attribute>
+
+        <attribute>
             <name>enctype</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -1704,6 +1715,17 @@
             <info>
                 JavaScript event handler executed if the form is submitted.
             </info>
+        </attribute>
+
+        <attribute>
+            <name>readonly</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Set to <code>true</code> if the Form's input fields should be
+                read only.
+            </info>
+            <since>Struts 1.2.7</since>
         </attribute>
 
 		<attribute>
