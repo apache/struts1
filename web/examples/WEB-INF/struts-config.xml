@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE struts-config SYSTEM "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<!--
+  Default configuration file for examples application.
+  Each module also has its own struts-config under: /WEB-INF/$MODULE/
+  @version $Revision: 1.1 $ $Date: 2004/01/08 16:22:11 $
+-->
+<struts-config>
+  <data-sources />
+  <form-beans />
+  <global-exceptions />
+  <global-forwards>
+    <forward name="welcome" path="/welcome.do" />
+  </global-forwards>
+  <action-mappings>
+    <action path="/welcome" forward="/welcome.html" />
+  </action-mappings>
+  <controller />
+  <message-resources parameter="MessageResources" />
+</struts-config>
