@@ -81,6 +81,7 @@
     <tr>
      <td>&nbsp;</td>
      <td align="right">
+      <html-el:submit disabled="${!empty pageScope}">Save</html-el:submit>
       <html-el:submit>Save</html-el:submit>
      </td>
      <td align="left">

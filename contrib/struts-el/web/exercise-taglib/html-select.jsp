@@ -119,6 +119,19 @@ main menu.
   </tr>
 
   <tr>
+    <th align="right">
+      Disabled select
+    </th>
+    <td align="left">
+      <html-el:select disabled="${!empty pageScope}"
+                      property="withNulls" size="3">
+        <html-el:options name="withNulls" labelName="withNulls"
+                         filter="${empty pageScope}" />
+      </html-el:select>
+    </td>
+  </tr>
+
+  <tr>
     <td align="right">
       <html-el:submit>Save</html-el:submit>
     </td>

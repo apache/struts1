@@ -140,6 +140,30 @@ main menu.
   </tr>
 
   <tr>
+    <th align="right">stringIndexed[1]</th>
+    <td align="left">
+      <html-el:textarea property="stringIndexed[1]" rows="${1+3}"/>
+    </td>
+    <th align="right">nested.stringIndexed[1]</th>
+    <td align="left">
+      <html-el:textarea disabled="${!empty pageScope}"
+                        property="nested.stringIndexed[1]"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">stringIndexed[1]</th>
+    <td align="left">
+      <html-el:text property="stringIndexed[1]" size="32"/>
+    </td>
+    <th align="right">nested.stringIndexed[1]</th>
+    <td align="left">
+      <html-el:text property="nested.stringIndexed[1]"
+                    disabled="${!empty pageScope}" size="32"/>
+    </td>
+  </tr>
+
+  <tr>
     <td>&nbsp;</td>
     <td align="right">
       <html-el:submit>Save</html-el:submit>
