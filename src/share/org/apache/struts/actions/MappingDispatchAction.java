@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/MappingDispatchAction.java,v 1.2 2003/08/12 03:52:15 sraeburn Exp $
- * $Revision: 1.2 $
- * $Date: 2003/08/12 03:52:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/MappingDispatchAction.java,v 1.3 2003/08/12 14:13:13 sraeburn Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/08/12 14:13:13 $
  *
  * ====================================================================
  *
@@ -165,7 +165,7 @@ import org.apache.struts.action.ActionMapping;
  * @author Ted Husted
  * @author Anthony Kay
  * @author Steve Raeburn
- * @version $Revision: 1.2 $ $Date: 2003/08/12 03:52:15 $
+ * @version $Revision: 1.3 $ $Date: 2003/08/12 14:13:13 $
  * @since Struts 1.2
  */
 public class MappingDispatchAction extends DispatchAction {
@@ -177,7 +177,7 @@ public class MappingDispatchAction extends DispatchAction {
 	/**
 	 * Commons Logging instance.
 	 */
-	protected static Log log =
+	private static Log log =
 		LogFactory.getLog(MappingDispatchAction.class);
 
 
