@@ -35,14 +35,6 @@
         cactus.contextApp             The application(context) being tested, ie test
 
 
-        aspectjrt.jar                 The AspectJ runtime jar that is
-                                      included with Cactus 1.3
-
-        cactus.jar                    The Cactus jar (either for Servlet API
-                                      2.2 or 2.3).
-
-        cactus.ant.jar                The Cactus custom Ant tasks jar
-
         junit.jar                     The JUnit jar
 
         tomcat.home.32                The home directory of where Tomcat 3.2
@@ -96,6 +88,16 @@
     <!-- Context test is taking place on -->
     <property name="cactus.contextURL" value="${cactus.contextScheme}://${cactus.contextHost}:${cactus.contextPort}/${cactus.contextApp}"/>
 
+    <!-- Cactus jar files (that we need) -->
+    <patternset id="cactus.jars">
+        <include name="aspectj*.jar"/>
+        <include name="cactus*.jar"/>
+        <include name="commons-httpclient*.jar"/>
+        <include name="httpunit*.jar"/>
+        <include name="junit*.jar"/>
+        <include name="log4j*.jar"/>
+    </patternset>
+
     <!-- Compilation Classpath -->
     <path id="compile.classpath">
       <pathelement location="${build.home}/library/${app.name}.jar"/>
@@ -103,17 +105,15 @@
       <pathelement location="${commons-beanutils.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
       <pathelement location="${commons-fileupload.jar}"/>
-      <pathelement location="${commons-httpclient.jar}"/>
       <pathelement location="${commons-logging.jar}"/>
       <pathelement location="${commons-validator.jar}"/>
-      <pathelement location="${httpunit.jar}"/>
-      <pathelement location="${aspectjrt.jar}"/>
       <pathelement location="${jakarta-oro.jar}"/>
-      <pathelement location="${cactus.jar}"/>
-      <pathelement location="${junit.jar}"/>
       <pathelement location="${servlet.jar}"/>
       <pathelement location="${struts.jar}"/>
       <pathelement location="${antlr.jar}"/>
+      <fileset dir="${cactus.lib}">
+        <patternset refid="cactus.jars"/>
+      </fileset>
     </path>
 
 <!-- ========== Executable Targets ======================================== -->
@@ -128,7 +128,9 @@
             classname="org.apache.cactus.integration.ant.RunServerTestsTask">
 
             <classpath>
-                <pathelement location="${cactus.ant.jar}"/>
+                <fileset dir="${cactus.lib}">
+                  <include name="cactus-ant*.jar"/>
+                </fileset>
                 <pathelement path="${java.class.path}"/>
             </classpath>
         </taskdef>
@@ -192,12 +194,8 @@
         <!-- Copy needed libs in /lib -->
         <copy file="${build.home}/library/${app.name}.jar"
             todir="${out.test.dir}/lib"/>
-        <copy file="${aspectjrt.jar}" todir="${out.test.dir}/lib"/>
-        <copy file="${httpunit.jar}"  todir="${out.test.dir}/lib"/>
-        <copy file="${junit.jar}"     todir="${out.test.dir}/lib"/>
         <copy file="${jakarta-oro.jar}"     todir="${out.test.dir}/lib"/>
         <copy file="${log4j.jar}"     todir="${out.test.dir}/lib"/>
-        <copy file="${cactus.jar}"    todir="${out.test.dir}/lib"/>
         <copy file="${commons-beanutils.jar}"
                                       todir="${out.test.dir}/lib"/>
         <copy file="${commons-digester.jar}"
@@ -209,7 +207,7 @@
         <war warfile="${out.test.dir}/test.war"
              webxml="${conf.test.dir}/web.xml">
 
-	    <fileset dir="${web.dir}/test"/>
+            <fileset dir="${web.dir}/test"/>
 
             <classes dir="${out.test.dir}/classes"/>
 
@@ -220,6 +218,9 @@
                  by the war classloader. This will depend on servlet engines -->
 
             <lib dir="${out.test.dir}/lib"/>
+            <lib dir="${cactus.lib}">
+              <patternset refid="cactus.jars"/>
+            </lib>
 
             <webinf dir="${out.test.dir}/WEB-INF" includes="**/*.*"/>
 
@@ -236,7 +237,6 @@
 
             <classpath>
                 <pathelement path="${java.class.path}"/>
-                <pathelement location="${commons-httpclient.jar}"/>
                 <pathelement location="${out.test.dir}/classes"/>
                 <!-- For cactus.properties -->
                 <pathelement location="${conf.test.dir}"/>
