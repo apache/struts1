@@ -248,6 +248,15 @@
         </attribute>
 
         <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
             <name>tabindex</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -451,6 +460,15 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 CSS stylesheet class to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
             </info>
         </attribute>
 
@@ -683,6 +701,15 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 CSS stylesheet class to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
             </info>
         </attribute>
 
@@ -1001,6 +1028,15 @@
         </attribute>
 
         <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
             <name>tabindex</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -1166,6 +1202,15 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 CSS stylesheet class to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
             </info>
         </attribute>
 
@@ -1945,6 +1990,15 @@
                   </info>
                 </attribute>
 
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
+            </info>
+        </attribute>
+
                 <attribute>
                   <name>usemap</name>
                   <required>false</required>
@@ -2376,6 +2430,15 @@
                   </info>
                 </attribute>
 
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
+            </info>
+        </attribute>
+
                 <attribute>
                   <name>tabindex</name>
                   <required>false</required>
@@ -2628,6 +2691,15 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 CSS stylesheet class to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
             </info>
         </attribute>
 
@@ -3083,6 +3155,14 @@
             </info>
         </attribute>
 
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
+            </info>
+        </attribute>
 
         <attribute>
             <name>size</name>
@@ -3248,6 +3328,33 @@
             <info>
                 JavaScript event handler executed when this element is under the mouse
                 pointer and a mouse button is depressed.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>style</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS styles to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS stylesheet class to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
             </info>
         </attribute>
 
@@ -3432,6 +3539,15 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 CSS stylesheet class to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
             </info>
         </attribute>
 
@@ -3792,6 +3908,15 @@
         </attribute>
 
         <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
             <name>tabindex</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -3998,6 +4123,15 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 CSS stylesheet class to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
             </info>
         </attribute>
 
@@ -4243,6 +4377,15 @@
         </attribute>
 
         <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
             <name>tabindex</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -4472,6 +4615,15 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 CSS stylesheet class to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
             </info>
         </attribute>
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.9 2000/08/01 20:03:31 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/08/01 20:03:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.10 2001/04/18 23:10:23 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/04/18 23:10:23 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2000/08/01 20:03:31 $
+ * @version $Revision: 1.10 $ $Date: 2001/04/18 23:10:23 $
  */
 
 public final class FormTag extends TagSupport {
@@ -162,6 +162,12 @@ public final class FormTag extends TagSupport {
      * The style class associated with this tag.
      */
     private String styleClass = null;
+
+
+    /**
+     * The identifier associated with this tag.
+     */
+    private String styleId = null;
 
 
     /**
@@ -378,6 +384,28 @@ public final class FormTag extends TagSupport {
 
 
     /**
+     * Return the style id for this tag.
+     */
+    public String getStyleId() {
+
+	return (this.styleId);
+
+    }
+
+
+    /**
+     * Set the style id for this tag.
+     *
+     * @param styleId The new style id
+     */
+    public void setStyleId(String styleId) {
+
+	this.styleId = styleId;
+
+    }
+
+
+    /**
      * Return the window target.
      */
     public String getTarget() {
@@ -449,6 +477,11 @@ public final class FormTag extends TagSupport {
         if (styleClass != null) {
             results.append(" class=\"");
             results.append(styleClass);
+            results.append("\"");
+        }
+        if (styleId != null) {
+            results.append(" id=\"");
+            results.append(styleId);
             results.append("\"");
         }
 	if (enctype != null) {
@@ -574,6 +607,7 @@ public final class FormTag extends TagSupport {
 	scope = "session";
 	style = null;
 	styleClass = null;
+        styleId = null;
 	target = null;
 	type = null;
 
