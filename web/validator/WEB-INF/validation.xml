@@ -15,6 +15,7 @@
         <constant-value>^\d{5}\d*$</constant-value>
       </constant>
    </global>
+
    <formset>
       <constant>
         <constant-name>zip</constant-name>
@@ -299,6 +300,7 @@
          </field>
       </form>
    </formset>
+   
    <formset language="fr">
       <form    name="registrationForm">
          <field    property="lastName"
@@ -406,32 +408,6 @@
          	     <arg2 name="intRange" key="${var:max}" resource="false"/>
                      <var>
                        <var-name>min</var-name>
-                       <var-value>50</var-value>
-                     </var>
-                     <var>
-                       <var-name>max</var-name>
-                       <var-value>60</var-value>
-                     </var>
-         </field>
-         <field    property="date"
-         	   depends="required,date">
-         	     <arg0 key="typeForm.date.displayname"/>
-                     <var>
-                       <var-name>datePatternStrict</var-name>
-                       <var-value>dd.MM.yyyy</var-value>
-                     </var>
-         </field>
-      </form>
-   </formset>
-   <formset language="fr" country="CA">
-      <form    name="jsTypeForm">
-         <field    property="integer"
-         	   depends="required,integer,intRange">
-         	     <arg0 key="typeForm.integer.displayname"/>
-         	     <arg1 name="intRange" key="${var:min}" resource="false"/>
-         	     <arg2 name="intRange" key="${var:max}" resource="false"/>
-                     <var>
-                       <var-name>min</var-name>
                        <var-value>100</var-value>
                      </var>
                      <var>
@@ -444,11 +420,12 @@
          	     <arg0 key="typeForm.date.displayname"/>
                      <var>
                        <var-name>datePatternStrict</var-name>
-                       <var-value>dd-MM-yyyy</var-value>
+                       <var-value>dd.MM.yyyy</var-value>
                      </var>
          </field>
       </form>
    </formset>
+
    <formset language="ja">
       <constant>
         <constant-name>zip</constant-name>
@@ -717,4 +694,128 @@
          </field>
       </form>
    </formset>
+   <formset language="fr" country="CA">
+      <form    name="registrationForm">
+         <field    property="lastName"
+         	   depends="required,mask">
+         	     <msg name="mask" key="registrationForm.lastname.maskmsg"/>
+         	     <arg0 key="registrationForm.lastname.displayname"/>
+                     <var>
+                       <var-name>mask</var-name>
+                       <var-value>^\w+$</var-value>
+                     </var>
+         </field>
+         <field    property="cityStateZip.stateProv">
+         	     <arg0 key="registrationForm.stateprov.displayname"/>
+         </field>
+         <field    property="phone">
+         	     <arg0 key="registrationForm.phone.displayname"/>
+         </field>
+      </form>
+      <form    name="multiRegistrationForm">
+         <field    property="firstName"
+         	   depends="required,mask"
+                   page="1">
+         	     <arg0 key="registrationForm.firstname.displayname"/>
+                     <var>
+                       <var-name>mask</var-name>
+                       <var-value>^\w+$</var-value>
+                     </var>
+         </field>
+         <field    property="lastName"
+         	   depends="required,mask"
+                   page="1">
+                     <msg name="mask" key="registrationForm.lastname.maskmsg"/>
+         	     <arg0 key="registrationForm.lastname.displayname"/>
+                     <var>
+                       <var-name>mask</var-name>
+                       <var-value>^\w+$</var-value>
+                     </var>
+         </field>
+         <field    property="addr"
+         	   depends="required"
+                   page="1">
+         	     <arg0 key="registrationForm.addr.displayname"/>
+         </field>
+         <field    property="cityStateZip.city"
+         	   depends="required,mask"
+                   page="1">
+         	     <arg0 key="registrationForm.city.displayname"/>
+                     <var>
+                       <var-name>mask</var-name>
+                       <var-value>^[a-zA-Z]*$</var-value>
+                     </var>
+         </field>
+         <field    property="cityStateZip.stateProv"
+                   page="2">
+         	     <arg0 key="registrationForm.stateprov.displayname"/>
+         </field>
+         <field    property="cityStateZip.zipPostal[1]"
+         	   depends="required,mask"
+                   page="2">
+         	     <arg0 key="registrationForm.zippostal.displayname"/>
+                     <var>
+                       <var-name>mask</var-name>
+                       <var-value>${zip}</var-value>
+                     </var>
+         </field>
+         <field    property="phone"
+                   page="2">
+         	     <arg0 key="registrationForm.phone.displayname"/>
+         </field>
+         <field    property="email"
+         	   depends="required,email"
+                   page="2">
+         	     <arg0 key="registrationForm.email.displayname"/>
+         </field>
+      </form>
+      <form    name="typeForm">
+         <field    property="integer"
+         	   depends="required,integer,intRange">
+         	     <arg0 key="typeForm.integer.displayname"/>
+         	     <arg1 name="intRange" key="${var:min}" resource="false"/>
+         	     <arg2 name="intRange" key="${var:max}" resource="false"/>
+                     <var>
+                       <var-name>min</var-name>
+                       <var-value>50</var-value>
+                     </var>
+                     <var>
+                       <var-name>max</var-name>
+                       <var-value>60</var-value>
+                     </var>
+         </field>
+         <field    property="date"
+         	   depends="required,date">
+         	     <arg0 key="typeForm.date.displayname"/>
+                     <var>
+                       <var-name>datePatternStrict</var-name>
+                       <var-value>dd.MM.yyyy</var-value>
+                     </var>
+         </field>
+      </form>
+      <form    name="jsTypeForm">
+         <field    property="integer"
+         	   depends="required,integer,intRange">
+         	     <arg0 key="typeForm.integer.displayname"/>
+         	     <arg1 name="intRange" key="${var:min}" resource="false"/>
+         	     <arg2 name="intRange" key="${var:max}" resource="false"/>
+                     <var>
+                       <var-name>min</var-name>
+                       <var-value>100</var-value>
+                     </var>
+                     <var>
+                       <var-name>max</var-name>
+                       <var-value>200</var-value>
+                     </var>
+         </field>
+         <field   property="date"
+         	   depends="required,date">
+         	     <arg0 key="typeForm.date.displayname"/>
+                     <var>
+                       <var-name>datePatternStrict</var-name>
+                       <var-value>MM-dd-yyyy</var-value>
+                     </var>
+         </field>
+      </form>
 </form-validation>
+
