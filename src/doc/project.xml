@@ -27,6 +27,8 @@
               href="api/org/apache/struts/taglib/bean/package-summary.html#package_description"/>
         <item name="Logic Tags"
               href="api/org/apache/struts/taglib/logic/package-summary.html#package_description"/>
+        <item name="Template Tags"
+              href="api/org/apache/struts/taglib/template/package-summary.html#package_description"/>
     </menu>
 
     <menu name="Tag Library Reference">
