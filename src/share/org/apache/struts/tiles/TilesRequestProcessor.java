@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.17 2003/02/27 19:20:50 cedric Exp $
- * $Revision: 1.17 $
- * $Date: 2003/02/27 19:20:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.18 2003/03/27 03:04:14 dgraham Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/03/27 03:04:14 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -77,10 +77,10 @@ import org.apache.struts.config.ModuleConfig;
  * <p><strong>RequestProcessor</strong> contains the processing logic that
  * the Struts controller servlet performs as it receives each servlet request
  * from the container.</p>
- * <p>This processor subclasses the Struts one in order to intercept calls to forward
- * or include. When such calls are done, the Tiles processor checks if the specified uri
+ * <p>This processor subclasses the Struts RequestProcessor in order to intercept calls to forward
+ * or include. When such calls are done, the Tiles processor checks if the specified URI
  * is a definition name. If true, the definition is retrieved and included. If
- * false, the original uri is included or a forward is performed.
+ * false, the original URI is included or a forward is performed.
  * <p>
  * Actually, catching is done by overloading the following methods:
  * <ul>
@@ -90,7 +90,7 @@ import org.apache.struts.config.ModuleConfig;
  * </ul>
  * </p>
  * @author Cedric Dumoulin
- * @since Tiles 1.1.1
+ * @since Struts 1.1
  */
 public class TilesRequestProcessor extends RequestProcessor
 {
@@ -189,8 +189,9 @@ public class TilesRequestProcessor extends RequestProcessor
               tileContext = new ComponentContext( definition.getAttributes() );
               ComponentContext.setContext( tileContext, request);
               }
-             else
+             else {
               tileContext.addMissing( definition.getAttributes() );
+             }
             } // end if
           } // end if
 
@@ -200,17 +201,20 @@ public class TilesRequestProcessor extends RequestProcessor
           { // We have a definition.
             // We use it to complete missing attribute in context.
             // We also overload uri and controller if set in definition.
-          if(definition.getPath()!=null)
+          if (definition.getPath() != null) {
             uri = definition.getPath();
-          if(definition.getOrCreateController()!=null)
+          }
+          if (definition.getOrCreateController() != null) {
             controller = definition.getOrCreateController();
+          }
           if( tileContext == null )
             {
             tileContext = new ComponentContext( definition.getAttributes() );
             ComponentContext.setContext( tileContext, request);
             }
-          else
+          else {
             tileContext.addMissing( definition.getAttributes() );
+          }
           } // end if
 
         }
@@ -228,8 +232,9 @@ public class TilesRequestProcessor extends RequestProcessor
         }
 
       // Have we found a definition ?
-    if(uri == null)
+    if (uri == null) {
       return false;
+    }
 
       // Process the definition
       // Execute controller associated to definition, if any.
@@ -240,12 +245,14 @@ public class TilesRequestProcessor extends RequestProcessor
 
       // If request comes from a previous Tile, do an include.
       // This allows to insert an action in a Tile.
-    if(log.isDebugEnabled())
+    if (log.isDebugEnabled()) {
       log.debug( "uri=" + uri + " doInclude=" + doInclude);
-    if( doInclude )
+    }
+    if (doInclude) {
       doInclude(uri, request, response);
-     else
+    } else {
       doForward(uri, request, response);   // original behavior
+    }
 
     return true;
     }
@@ -261,10 +268,11 @@ public class TilesRequestProcessor extends RequestProcessor
   protected void doForward(String uri, HttpServletRequest request, HttpServletResponse response)
     throws IOException, ServletException
     {
-    if(response.isCommitted())
+    if (response.isCommitted()) {
       doInclude(uri, request, response);
-     else
+    } else {
       super.doForward(uri, request, response);
+    }
    }
 
     /**
@@ -292,20 +300,22 @@ public class TilesRequestProcessor extends RequestProcessor
       return;
       }
 
-    if(log.isDebugEnabled())
+    if (log.isDebugEnabled()) {
       log.debug( "processForwardConfig("
                         + forward.getPath() + ", "
                         + forward.getContextRelative() + ")" );
-
+    }
       // Try to process the definition.
     if (processTilesDefinition( forward.getPath(), forward.getContextRelative(), request, response))
       {
-      if(log.isDebugEnabled())
+      if (log.isDebugEnabled()) {
         log.debug( "  '" +forward.getPath() + "' - processed as definition" );
+      }
       return;
       }
-    if(log.isDebugEnabled())
+    if (log.isDebugEnabled()) {
       log.debug( "  '" +forward.getPath() + "' - processed as uri" );
+    }
       // forward doesn't contains a definition, let parent do processing
     super.processForwardConfig(request, response, forward );
     }
@@ -328,8 +338,9 @@ public class TilesRequestProcessor extends RequestProcessor
                              HttpServletResponse response)
         throws IOException, ServletException
     {
-    if( processTilesDefinition(uri, false, request, response) )
+    if (processTilesDefinition(uri, false, request, response)) {
       return;
+    }
 
     super.internalModuleRelativeForward(uri, request, response);
     }
@@ -349,8 +360,9 @@ public class TilesRequestProcessor extends RequestProcessor
                              HttpServletResponse response)
         throws IOException, ServletException
     {
-    if( processTilesDefinition(uri, false, request, response) )
+    if (processTilesDefinition(uri, false, request, response)) {
       return;
+    }
 
     super.internalModuleRelativeInclude(uri, request, response);
     }
