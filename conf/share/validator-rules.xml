@@ -61,17 +61,31 @@
                 var fields = new Array();
                 oRequired = new required();
                 for (x in oRequired) {
-                    if ((form[oRequired[x][0]].type == 'text' ||
-                         form[oRequired[x][0]].type == 'textarea' ||
-                         form[oRequired[x][0]].type == 'select-one' ||
-                         form[oRequired[x][0]].type == 'radio' ||
-                         form[oRequired[x][0]].type == 'password') &&
-                        (form[oRequired[x][0]].value == '')) {
-                        if (i == 0) {
-                            focusField = form[oRequired[x][0]];
+                	var field = form[oRequired[x][0]];
+                	
+                    if (field.type == 'text' ||
+                        field.type == 'textarea' ||
+                        field.type == 'select-one' ||
+                        field.type == 'radio' ||
+                        field.type == 'password') {
+                        
+                        var value;
+						// get field's value
+						if (field.type == "select-one") {
+							var si = field.selectedIndex;
+							value = field.options[si].value;
+						} else {
+							value = field.value;
+						}
+                        
+                        if (value == '') {
+                        
+	                        if (i == 0) {
+	                            focusField = field;
+	                        }
+	                        fields[i++] = oRequired[x][1];
+	                        bValid = false;
                         }
-                        fields[i++] = oRequired[x][1];
-                        bValid = false;
                     }
                 }
                 if (fields.length > 0) {
@@ -312,18 +326,32 @@
                 var fields = new Array();
                 oShort = new ShortValidations();
                 for (x in oShort) {
-                    if ((form[oShort[x][0]].type == 'text' ||
-                         form[oShort[x][0]].type == 'textarea' ||
-                         form[oShort[x][0]].type == 'select-one' ||
-                         form[oShort[x][0]].type == 'radio') &&
-                        (form[oShort[x][0]].value.length > 0)) {
-                        var iValue = parseInt(form[oShort[x][0]].value);
-                        if (isNaN(iValue) || !(iValue >= -32768 && iValue <= 32767)) {
-                            if (i == 0) {
-                                focusField = form[oShort[x][0]];
-                            }
-                            fields[i++] = oShort[x][1];
-                            bValid = false;
+                	var field = form[oShort[x][0]];
+                	
+                    if (field.type == 'text' ||
+                        field.type == 'textarea' ||
+                        field.type == 'select-one' ||
+                        field.type == 'radio') {
+                        
+                        var value;
+						// get field's value
+						if (field.type == "select-one") {
+							var si = field.selectedIndex;
+							value = field.options[si].value;
+						} else {
+							value = field.value;
+						}
+                        
+                        if (value.length > 0) {
+                        
+	                        var iValue = parseInt(value);
+	                        if (isNaN(iValue) || !(iValue >= -32768 && iValue <= 32767)) {
+	                            if (i == 0) {
+	                                focusField = field;
+	                            }
+	                            fields[i++] = oShort[x][1];
+	                            bValid = false;
+	                       }
                        }
                     }
                 }
@@ -358,18 +386,32 @@
                 var fields = new Array();
                 oInteger = new IntegerValidations();
                 for (x in oInteger) {
-                    if ((form[oInteger[x][0]].type == 'text' ||
-                         form[oInteger[x][0]].type == 'textarea' ||
-                         form[oInteger[x][0]].type == 'select-one' ||
-                         form[oInteger[x][0]].type == 'radio') &&
-                        (form[oInteger[x][0]].value.length > 0)) {
-                        var iValue = parseInt(form[oInteger[x][0]].value);
-                        if (isNaN(iValue) || !(iValue >= -2147483648 && iValue <= 2147483647)) {
-                            if (i == 0) {
-                                focusField = form[oInteger[x][0]];
-                            }
-                            fields[i++] = oInteger[x][1];
-                            bValid = false;
+                	var field = form[oInteger[x][0]];
+
+                    if (field.type == 'text' ||
+                        field.type == 'textarea' ||
+                        field.type == 'select-one' ||
+                        field.type == 'radio') {
+                        
+                        var value;
+						// get field's value
+						if (field.type == "select-one") {
+							var si = field.selectedIndex;
+							value = field.options[si].value;
+						} else {
+							value = field.value;
+						}
+                        
+                        if (value.length > 0) {
+                        
+	                        var iValue = parseInt(value);
+	                        if (isNaN(iValue) || !(iValue >= -2147483648 && iValue <= 2147483647)) {
+	                            if (i == 0) {
+	                                focusField = field;
+	                            }
+	                            fields[i++] = oInteger[x][1];
+	                            bValid = false;
+	                       }
                        }
                     }
                 }
