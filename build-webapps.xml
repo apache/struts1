@@ -101,6 +101,9 @@
     <property name="webapp.name"      value="test"/>
   </ant-->
   <ant  antfile="build-webapp.xml"    target="static">
+    <property name="webapp.name"      value="tiles-documentation"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="upload"/>
   </ant>
   <ant  antfile="build-webapp.xml"    target="static">
@@ -157,6 +160,9 @@
   <!--ant  antfile="build-webapp.xml"    target="compile">
     <property name="webapp.name"      value="test"/>
   </ant-->
+  <ant  antfile="build-webapp.xml"    target="compile">
+    <property name="webapp.name"      value="tiles-documentation"/>
+  </ant>
   <ant  antfile="build-webapp.xml"    target="compile">
     <property name="webapp.name"      value="upload"/>
   </ant>
@@ -228,6 +234,7 @@
     </copy>
     
     <!-- Compile Tiles contrib -->
+<!--
     <ant  antFile="build.xml"  dir="contrib/tiles"  target="compile.for.struts">
       <property name="struts.home"      value="${struts.home}"/>
       <property name="struts.libs"      value="${struts.libs}"/>
@@ -236,6 +243,7 @@
       <property name="app.name"         value="tiles"/>
       <property name="project.name"     value="Tiles"/>
     </ant>  
+-->
 
 </target>
 
@@ -270,6 +278,10 @@
     <property name="webapp.war"       value="struts-test.war"/>
   </ant-->
   <ant  antfile="build-webapp.xml"    target="dist">
+    <property name="webapp.name"      value="tiles-documentation"/>
+    <property name="webapp.war"       value="tiles-documentation.war"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="dist">
     <property name="webapp.name"      value="upload"/>
     <property name="webapp.war"       value="struts-upload.war"/>
   </ant>
@@ -288,6 +300,7 @@
         description="Create distribution output of web applications">
         
     <!-- Compile Tiles dist -->
+<!--
     <ant  antFile="build.xml"  dir="contrib/tiles"  target="dist.for.struts">
       <property name="struts.home"      value="${struts.home}"/>
       <property name="struts.libs"      value="${struts.libs}"/>
@@ -296,6 +309,7 @@
       <property name="app.name"         value="tiles"/>
       <property name="project.name"     value="Tiles"/>
     </ant>
+-->
 
 </target>
 
@@ -323,6 +337,9 @@
   <!--ant  antfile="build-webapp.xml"    target="clean">
     <property name="webapp.name"      value="test"/>
   </ant-->
+  <ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="tiles-documentation"/>
+  </ant>
   <ant  antfile="build-webapp.xml"    target="clean">
     <property name="webapp.name"      value="upload"/>
   </ant>

@@ -1,0 +1,127 @@
+<html>
+<head>
+	<title>Components : Backward Compatibility Changes</title>
+</head>
+
+<body>
+<H1 align=center>Components to Tiles <BR>Migration Path</H1>
+<H2 align=left>In Webapps&nbsp;</H2>
+<UL>
+  <LI>
+<DIV align=left>Put "tiles.tld" and "tiles.jar" in 
+  WEB-INF/</DIV>
+  <LI>
+<DIV align=left>Replace all reference to 
+  'components.tld'&nbsp;by 'tiles.tld' in *.jsp and *.xml files.</DIV>
+  <LI>
+<DIV align=left>Replace old package name by new one 
+  wherever you use package name (don't forget web.xml and 
+  struts-config.xml)</DIV>
+  <ul>
+  <LI>
+<DIV align=left>s1.struts.components --&gt; 
+    org.apache.struts.tiles</DIV>
+  <LI>
+<DIV align=left>s1.struts.example.component--&gt; 
+    org.apache.struts.example.tiles</DIV>
+  <LI>
+<DIV align=left>s1.struts.taglib.components --&gt; 
+    org.apache.struts.taglib.tiles</DIV></LI></UL></LI></UL>
+<H2 align=left>In Java code</H2>
+<ul>
+  <li>If some of your java code use or extends old 
+  Components classes, you need to rename imported classes&nbsp; : 
+  <ul>
+  
+  <LI>
+<DIV align=left>s1.struts.components --&gt; 
+    org.apache.struts.tiles</DIV>
+  <LI>
+<DIV align=left>s1.struts.example.component--&gt; 
+    org.apache.struts.example.tiles</DIV>
+  <LI>
+<DIV align=left>s1.struts.taglib.components --&gt; 
+    org.apache.struts.taglib.tiles</DIV></LI></UL></LI></UL>
+<DL>
+<DT >
+  <H2>Tips</H2></DT></DL>
+<UL>
+<LI >Jbuilder 5 have a tool&nbsp; called "package 
+  migration". You can define your own set of migration name using previously 
+  defined rules.</LI>
+<LI >Lot of tools (like HomeSite) have extended replace 
+  command.</LI></UL>
+<H2 >Very old component versions</H2>
+<P >If you use a very old component version, you also have 
+to change some tags and names :</P>    
+
+<TABLE  border=2>
+  <TR>
+    <TD>
+      <P align=center style="TEXT-ALIGN: center"><B>Deprecated</B></P></TD>
+    <TD>
+      <P align=center style="TEXT-ALIGN: center"><B>New usage</B></P></TD></TR>
+  <TR>
+    <TD>&lt;include …&gt;</TD>
+    <TD>&lt;insert …&gt;</TD></TR>
+  <TR>
+    <TD>&lt;putAttribute …&gt;</TD>
+    <TD>&lt;getAsString …&gt;</TD></TR>
+  <TR>
+    <TD>&lt;getAttribute …&gt;</TD>
+    <TD>&lt;getAsString …&gt;</TD></TR>
+  <TR>
+    <TD>&lt;… instance= …&gt; <BR> 
+      (in tag &lt;insert …&gt; or &lt;include …&gt;)</TD>
+    <TD>
+      &lt;… definition= …&gt; <BR>(in tag &lt;insert …&gt;)&lt; </TD></TR>
+  <TR>
+    <TD>
+      <P align=left>Default definitions file name : </P>
+          
+      <UL>
+        <LI>
+        <DIV align=left>componentInstances.xml </DIV> 
+        <LI>
+        <DIV align=left>templateDefinitions.xml 
+      </DIV></LI></UL></TD>
+    <TD>
+      Several possibilities :
+      <UL>
+        <LI>Keep same name and set it in xml-config.xml: 
+        </LI></UL>
+      <DIV align=center>
+<table  border=2>
+<tr>
+    <td>
+      <P>
+       &lt;init-param&gt;<br>
+      &nbsp;&nbsp;&nbsp; &lt;param-name&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; definitions-config<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/param-name&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;param-value&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /WEB-INF/templateDefinitions.xml<br>&nbsp;&nbsp;
+	  &nbsp;&nbsp; &lt;/param-value&gt;<BR>&nbsp;&lt;/init-param&gt;</P></TD></TR></TABLE></DIV>
+      <UL>
+        <LI>Change name to new default 
+        (componentDefinitions.xml) </LI></UL></TD></TR>
+  <TR>
+    <TD>
+      Components parameter names in web.xml:
+      <UL>
+        <LI>instances-config 
+        <LI>instances-debug </LI></UL></TD>
+    <TD>
+      &nbsp;
+      Use new names :
+      <UL>
+        <LI>definitions-config 
+        <LI>definitions-debug 
+</LI></UL></TD></TR></TABLE>
+To update your web site, replace all deprecated tags with new 
+tags.
+<br>You can use replacement 
+tools to search for <STRONG>:include </STRONG>to be replaced by <STRONG>:insert </STRONG>           
+  
+</body>
+</html>
