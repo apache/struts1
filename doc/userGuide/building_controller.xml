@@ -16,6 +16,7 @@
     <author>Eddie Bush</author>
     <author>Yann Cebron</author>
     <author>David Graham</author>
+    <author>Tim O'Brien</author>
 </properties>
 
 <body>
@@ -677,7 +678,7 @@ String name = "value(foo-" + i + ")";
                      ActionForm form,
                      ServletRequest request,
                      ServletResponse response)
-throw Exception;
+throws Exception;
 
 public ActionForward execute(ActionMapping mapping,
                      ActionForm form,
@@ -687,14 +688,19 @@ throws Exception;
 </code></pre>
 
     <p>
-    Most projects would only use the "HttpServletRequest" version.
+    Since the majority of Struts projects are focused on building web 
+    applications, most projects will only use the "HttpServletRequest" 
+    version.
+    A non-HTTP execute() method has been provided for applications that are 
+    not specifically geared towards the HTTP protocol.  
     </p>
 
     <p>
     The goal of an <code>Action</code> class is to process a request, via
     its <code>execute</code> method, and return an <code>ActionForward</code> 
-    object that identifies where control should be forwarded (e.g. a JSP) to 
-    provide the appropriate response. 
+    object that identifies where control should be forwarded (e.g. a JSP, 
+    Tile definition, Velocity template, or another Action) to provide the 
+    appropriate response.  
     In the <i>MVC/Model 2</i> design pattern, a typical <code>Action</code> 
     class will often implement logic like the following in its 
     <code>execute</code> method:
@@ -749,78 +755,6 @@ throws Exception;
     </ul>
 
     <p>
-    The design issues to remember when coding <code>Action</code> classes
-    include the following:
-    </p>
-
-    <ul>
-    
-        <li>
-        The controller servlet creates only one instance of your
-        <code>Action</code> class, and uses it for all requests.  
-        Thus, you need to code your <code>Action</code> class so that it 
-        operates correctly in a multi-threaded environment, just as you must 
-        code a servlet's <code>service</code> method safely.
-        </li>
-
-        <li>
-        The most important principle that aids in thread-safe coding is to
-        use only local variables, not instance variables, in your
-        <code>Action</code> class.  
-        Local variables are created on a stack that is assigned (by your JVM) 
-        to each request thread, so there is no need to worry about sharing 
-        them.
-        </li>
-
-        <li>
-        The beans that represent the Model of your system may throw exceptions
-        due to problems accessing databases or other resources.
-        You should trap all such exceptions in the logic of your 
-        <code>execute</code> method, and record them in the application's log 
-        (along with the corresponding stack trace) by calling:<br />
-        <code>servlet.log("Error message text", exception);</code>
-        </li>
-
-        <li>
-        As a general rule, allocating scarce resources and keeping them across
-        requests from the same user (in the user's session) can cause
-        scalability problems.  
-        You should strive to release such resources (such as database 
-        connections) prior to forwarding control to the appropriate View 
-        component -- even if a bean method you have called throws an 
-        exception.
-        </li>
-
-    </ul>
-
-    <p>
-    In addition, you will want to guard against <code>Action</code> classes
-    that are too large.  
-    The easiest way for this to happen is to embed your functional logic in 
-    the <code>Action</code> class itself, rather than coding it in separate 
-    business logic beans.  
-    Besides making the <code>Action</code> class itself hard to understand and 
-    maintain, this approach also makes it harder to re-use the business logic 
-    code, because it is embedded inside a component (the <code>Action</code> 
-    class) that is tied to being executed in a web application environment.
-    </p>
-
-    <p>
-    An <code>Action</code> can be factored into several local methods, so 
-    long as all properties needed are passed in the method signatures. 
-    The JVM handles such properties using the stack, and so they are 
-    thread-safe.
-    </p>
-
-    <p>
-    The example application included with Struts stretches this design
-    principle somewhat, because the business logic itself is embedded in the
-    <code>Action</code> classes. This should be considered something of a
-    bug in the design of the sample application, rather than an intrinsic
-    feature of the Struts architecture, or an approach to be emulated.
-    </p>
-
-    <p>
     In Struts 1.0, Actions called a <code>perform</code> method instead of 
     the now-preferred <code>execute</code> method. 
     These methods use the same parameters and differ only in which exceptions 
@@ -839,9 +773,108 @@ throws Exception;
     and wraps any <code>Exception</code> thrown as a 
     <code>ServletException</code>.
     </p>
-    
-</section>
 
+   </section>
+   
+   <section name="4.4.1 Action Class Design Guidelines" href="action_design_guide">
+
+    <p>
+    Remember the following design guidelines when coding <code>Action</code> 
+    classes:
+    </p>
+
+    <ul>
+    
+        <li>
+        <b>Write code for a multi-threaded environment</b> -
+        The controller servlet creates <b>only one instance of your
+        <code>Action</code> class</b>, and uses this one instance to service
+        all requests.  
+        Thus, you need to write thread-safe <code>Action</code> classes.
+        Follow the same guidelines you would use to write thread-safe 
+        Servlets.  
+        Here are two general guidelines that will help you write scalable, 
+        thread-safe Action classes:
+        
+        <ul>
+        
+            <li>
+            <b>Only Use Local Variables</b> - The most important principle 
+            that aids in thread-safe coding is to use only local variables, 
+            <b>not instance variables</b>, in your <code>Action</code> class.  
+            Local variables are created on a stack that is assigned (by your 
+            JVM) to each request thread, so there is no need to worry about 
+            sharing them.  
+            An <code>Action</code> can be factored into several local methods, 
+            so  long as all variables needed are passed as method parameters. 
+            This assures thread safety, as the JVM handles such variables 
+            internally using the call stack which is associated with a single 
+            Thread.
+            </li>
+            
+            <li>
+            <b>Conserve Resources</b> - As a general rule, allocating scarce 
+            resources and keeping them across requests from the same user 
+            (in the user's session) can cause scalability problems.  
+            For example, if your application uses JDBC and you  allocate a 
+            separate JDBC connection for every user, you are probably going
+            to run in some scalability issues when your site suddenly shows 
+            up on Slashdot.  
+            You should strive to use pools and release resources (such as 
+            database connections) prior to forwarding control to the 
+            appropriate View component -- even if a bean method you have 
+            called throws an exception.
+            </li>
+            
+        </ul>
+    
+        </li>
+
+        <li>
+        <b>Don't throw it, catch it!</b> - Ever used a commercial website only to 
+        have a stack trace or exception thrown in your face after you've already 
+        typed in your credit card number and clicked the purchase button?  
+        Let's just say it doesn't inspire confidence.  
+        Now is your chance to deal with these application errors - in the 
+        <code>Action</code> class.  
+        If your application specific code throws expections you should catch these 
+        exceptions  in your Action class, log them in your application's log 
+        (<code>servlet.log("Error message", exception)</code>) and return the 
+        appropriate ActionForward.
+        </li>
+    
+    </ul>
+
+    <p>
+    It is wise to avoid creating lengthy and complex Action classes.
+    If you start to embed too much logic in the <code>Action</code> class 
+    itself, you will begin to find the <code>Action</code> class hard to 
+    understand, maintain, and impossible to reuse.  
+    Rather than creating overly complex Action classes, it is generally a 
+    good practice to move most of the persistence, and "business logic" to a 
+    separate application layer.  
+    When an Action class becomes lengthy and procedural, it may be a good time 
+    to refactor your application architecture and move some of this logic
+    to another conceptual layer; 
+    otherwise, you may be left with an inflexible application which can only 
+    be accessed in a web-application environment.
+    Struts should be viewed as simply the <b>foundation</b> for implementing 
+    MVC in your applications. 
+    Struts provides you with a useful control layer, but it is not a fully 
+    featured platform for building MVC applications, soup to nuts.
+    </p>
+
+    <p>
+    The example application included with Struts stretches this design
+    principle somewhat, because the business logic itself is embedded in the
+    <code>Action</code> classes. 
+    This should be considered something of a bug in the design of the example,
+    rather than an intrinsic feature of the Struts architecture, or an 
+    approach to be emulated. 
+    </p>
+      
+</section>
+   
 <section name="4.5 Exception Handler" href="exception_handler">
 
     <p>
