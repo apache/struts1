@@ -1,12 +1,12 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTag.java,v 1.6 2002/11/16 04:41:28 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2002/11/16 04:41:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTag.java,v 1.7 2003/02/28 05:14:39 arron Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/02/28 05:14:39 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,16 +59,13 @@
  */
 package org.apache.struts.taglib.nested.logic;
 
-import java.util.Map;
-
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
 import org.apache.struts.taglib.logic.IterateTag;
 import org.apache.struts.taglib.nested.NestedNameSupport;
-import org.apache.struts.taglib.nested.NestedParentSupport;
 import org.apache.struts.taglib.nested.NestedPropertyHelper;
-import org.apache.struts.taglib.nested.NestedReference;
 
 /**
  * NestedIterateTag.
@@ -77,23 +74,9 @@ import org.apache.struts.taglib.nested.NestedReference;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.6 $ $Date: 2002/11/16 04:41:28 $
+ * @version $Revision: 1.7 $ $Date: 2003/02/28 05:14:39 $
  */
-public class NestedIterateTag extends IterateTag implements NestedParentSupport, NestedNameSupport {
-  
-  
-  /**
-   * The only added property to the class. For use in proper nesting.
-   * @return String value of the property and the current index.
-   */
-  public String getNestedProperty() {
-    Object idObj = pageContext.getAttribute(id);
-    if (idObj instanceof Map.Entry) {
-      return property + "("+ ((Map.Entry)idObj).getKey() +")";
-    } else {
-      return property + "["+ this.getIndex() +"]";
-    }
-  }
+public class NestedIterateTag extends IterateTag implements NestedNameSupport {
 
   /**
    * Overriding method of the heart of the matter. Gets the relative property
@@ -102,53 +85,57 @@ public class NestedIterateTag extends IterateTag implements NestedParentSupport,
    *             This is in the hands of the super class.
    */
   public int doStartTag() throws JspException {
-    /* singleton tag implementations will need the original property to be
-       set before running */
-    super.setProperty(originalProperty);
-    
-    
-    /* Set the id. Had to be set to the property originally anyways. */
-    if (id == null || id.trim().length() <= 0) {
-      id = property;
-    }
-    
-    
-    /* let the NestedHelper set the properties it can */
-    isNesting = true;
-    NestedPropertyHelper.setNestedProperties(this);
-    isNesting = false;
-    
-    
-    /* get the original result */
-    int temp = super.doStartTag();
-    
-    /* set the include reference */
+    // original values
+    originalName = getName();
+    originalProperty = getProperty();
+
+    // set the ID to make the super tag happy
+    if (id == null || id.trim().length() == 0) { id = property; }
+
+    // the request object
     HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-    currentReference = new NestedReference(getName(), getNestedProperty());
-    originalReference = NestedPropertyHelper.setIncludeReference(request,
-            currentReference);
-    
-    /* return the result */
+
+    // original nesting details
+    originalNesting = NestedPropertyHelper.getCurrentProperty(request);
+    originalNestingName = NestedPropertyHelper.getCurrentName(request, this);
+
+    // set the bean if it's been provided
+    // (the bean that's been provided! get it!?... nevermind)
+    if (getName() == null) {
+      // the qualified nesting value
+      nesting = NestedPropertyHelper.getAdjustedProperty(request, getProperty());
+    } else {
+      // it's just the property
+      nesting = getProperty();
+    }
+
+    // set the properties
+    NestedPropertyHelper.setNestedProperties(request, this);
+
+    // get the original result
+    int temp = super.doStartTag();
+
+    // set the new reference (including the index etc)
+    NestedPropertyHelper.setName(request, getName());
+    NestedPropertyHelper.setProperty(request, deriveNestedProperty());
+
+    // return the result
     return temp;
   }
-  
-  /** this is overridden so that properties being set by the JSP page aren't
-   * written over by those needed by the extension. If the tag instance is
-   * re-used by the JSP, the tag can set the property back to that set by the
-   * JSP page.
-   *
-   * @param newProperty new property value
+
+  /**
+   * The only added property to the class. For use in proper nesting.
+   * @return String value of the property and the current index or mapping.
    */
-  public void setProperty(String newProperty) {
-    /* let the real tag do its thang */
-    super.setProperty(newProperty);
-    /* if it's the JSP setting it, remember the value */
-    if (!isNesting) {
-      originalProperty = newProperty;
+  private String deriveNestedProperty() {
+    Object idObj = pageContext.getAttribute(id);
+    if (idObj instanceof Map.Entry) {
+      return nesting + "("+ ((Map.Entry)idObj).getKey() +")";
+    } else {
+      return nesting + "["+ this.getIndex() +"]";
     }
   }
-  
-  
+
   /**
    * This is only overriden as the include reference will need it's index
    * updated.
@@ -156,30 +143,66 @@ public class NestedIterateTag extends IterateTag implements NestedParentSupport,
    * @return int JSP continuation directive.
    */
   public int doAfterBody() throws JspException {
-    /* store original result */
+    // store original result
     int temp = super.doAfterBody();
-    
+    HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
     if (temp != SKIP_BODY) {
-      /* set the new reference */
-      currentReference.setNestedProperty(getNestedProperty());
-    } else {
-      /* all done. clean up */
-      currentReference = null;
-      
-      HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-      NestedPropertyHelper.setIncludeReference(request, originalReference);
-      originalReference = null;    
+      // set the new reference
+      NestedPropertyHelper.setProperty(request, deriveNestedProperty());
     }
-    
-    /* return super result */
+    // return super result
     return temp;
   }
-  
-  /* hold original property */
+
+  /**
+   * Complete the processing of the tag. The nested tags here will restore
+   * all the original value for the tag itself and the nesting context.
+   * @return int to describe the next step for the JSP processor
+   * @throws JspException for the bad things JSP's do
+   */
+  public int doEndTag() throws JspException {
+    // the super's thing
+    int i = super.doEndTag();
+
+    // request
+    HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+    // reset the original tag values
+    super.setName(originalName);
+    super.setProperty(originalProperty);
+
+    // reset the original nesting values
+    if (originalNesting == null) {
+      NestedPropertyHelper.deleteReference(request);
+    } else {
+      NestedPropertyHelper.setProperty(request, originalNesting);
+      NestedPropertyHelper.setName(request, originalNestingName);
+    }
+    // job done
+    return i;
+  }
+
+  /**
+   * Release the tag's resources and reset the values.
+   */
+  public void release() {
+    // let the super release
+    super.release();
+    // reset the original value place holders
+    originalName = null;
+    originalProperty = null;
+    originalNesting = null;
+    originalNestingName = null;
+  }
+
+
+  // The current nesting
+  private String nesting = null;
+
+  // original tag properties
+  private String originalName = null;
   private String originalProperty = null;
-  private boolean isNesting = false;
-  
-  /* includes nested references */
-  private NestedReference originalReference;
-  private NestedReference currentReference;
+
+  // original nesting environment
+  private String originalNesting = null;
+  private String originalNestingName = null;
 }

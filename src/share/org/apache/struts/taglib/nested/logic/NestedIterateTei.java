@@ -1,12 +1,12 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTei.java,v 1.4 2002/11/16 04:41:28 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/16 04:41:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTei.java,v 1.5 2003/02/28 05:14:39 arron Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/28 05:14:39 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -79,7 +79,7 @@ import org.apache.struts.taglib.logic.IterateTei;
  * @author Arron Bates
  *
  * @since Struts 1.1
- * @version $Revision: 1.4 $ $Date: 2002/11/16 04:41:28 $
+ * @version $Revision: 1.5 $ $Date: 2003/02/28 05:14:39 $
  */
 
 public class NestedIterateTei extends IterateTei {
