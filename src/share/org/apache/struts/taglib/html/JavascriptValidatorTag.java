@@ -80,7 +80,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.validator.Resources;
 import org.apache.struts.util.RequestUtils;
-import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 
 
 /**
@@ -89,7 +89,7 @@ import org.apache.struts.config.ApplicationConfig;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.12 $ $Date: 2002/11/01 20:57:16 $
+ * @version $Revision: 1.13 $ $Date: 2002/11/08 05:45:58 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -292,7 +292,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     public int doStartTag() throws JspException {
         StringBuffer results = new StringBuffer();
 
-        ApplicationConfig config = RequestUtils.getModuleConfig(pageContext);
+        ModuleConfig config = RequestUtils.getModuleConfig(pageContext);
         ValidatorResources resources = (ValidatorResources)
                 pageContext.getAttribute(ValidatorPlugIn.VALIDATOR_KEY +
                 config.getPrefix(), PageContext.APPLICATION_SCOPE);
