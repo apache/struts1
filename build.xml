@@ -227,10 +227,7 @@
 -->
     <target name="prepare.dist" depends="init">
         <mkdir dir="${dist.home}"/>
-        <mkdir dir="${dist.home}/etc"/>
         <mkdir dir="${dist.home}/lib"/>
-        <mkdir dir="${dist.home}/src"/>
-        <mkdir dir="${dist.home}/web"/>
         <mkdir dir="${dist.home}/webapps"/>
     </target>
 
@@ -256,18 +253,9 @@
         Copy sources for distribution
 -->
     <target name="dist.source" depends="prepare.dist">
-        <copy todir="${dist.home}/etc">
-            <fileset dir="." includes="build.*"/>
-        </copy>
         <copy file="INSTALL" tofile="${dist.home}/INSTALL"/>
         <copy file="LICENSE" tofile="${dist.home}/LICENSE"/>
         <copy file="README" tofile="${dist.home}/README"/>
-        <copy todir="${dist.home}/src">
-            <fileset dir="${src.dir}"/>
-        </copy>
-        <copy todir="${dist.home}/web">
-            <fileset dir="${web.dir}"/>
-        </copy>
     </target>
 
 <!--
