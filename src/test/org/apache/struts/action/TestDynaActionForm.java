@@ -149,7 +149,7 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
         "longProperty",
         "mappedProperty",
         "mappedIntProperty",
-        "nullProperty",
+        //        "nullProperty",
         "shortProperty",
         "stringArray",
         "stringIndexed",
@@ -209,8 +209,8 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
                      (Long) dynaForm.get("longProperty"));
         // FIXME - mappedProperty
         // FIXME - mappedIntProperty
-        assertEquals("nullProperty", (String) null,
-                     (String) dynaForm.get("nullProperty"));
+        //        assertEquals("nullProperty", (String) null,
+        //                     (String) dynaForm.get("nullProperty"));
         assertEquals("shortProperty", new Short((short) 987),
                      (Short) dynaForm.get("shortProperty"));
         assertEquals("stringProperty", "This is a string",

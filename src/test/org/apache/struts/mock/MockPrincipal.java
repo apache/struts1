@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockPrincipal.java,v 1.1 2002/07/01 22:10:35 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/01 22:10:35 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockPrincipal.java,v 1.2 2002/12/24 18:49:52 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/24 18:49:52 $
  *
  * ====================================================================
  *
@@ -81,10 +81,17 @@ import java.security.Principal;
  * threaded environment, no synchronization is performed.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/07/01 22:10:35 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/24 18:49:52 $
  */
 
 public class MockPrincipal implements Principal {
+
+
+    public MockPrincipal() {
+        super();
+        this.name = "";
+        this.roles = new String[0];
+    }
 
 
     public MockPrincipal(String name) {
@@ -119,6 +126,31 @@ public class MockPrincipal implements Principal {
             }
         }
         return (false);
+    }
+
+
+    public boolean equals(Object o) {
+        if (o == null) {
+            return (false);
+        }
+        if (!(o instanceof Principal)) {
+            return (false);
+        }
+        Principal p = (Principal) o;
+        if (name == null) {
+            return (p.getName() == null);
+        } else {
+            return (name.equals(p.getName()));
+        }
+    }
+
+
+    public int hashCode() {
+        if (name == null) {
+            return ("".hashCode());
+        } else {
+            return (name.hashCode());
+        }
     }
 
 

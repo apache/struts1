@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.8 2002/12/23 22:00:24 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/12/23 22:00:24 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.9 2002/12/24 18:49:52 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/12/24 18:49:52 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * environment was set up correctly.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/12/23 22:00:24 $
+ * @version $Revision: 1.9 $ $Date: 2002/12/24 18:49:52 $
  */
 
 public class TestMockBase extends TestCase {
@@ -230,6 +230,10 @@ public class TestMockBase extends TestCase {
         formBean.addFormPropertyConfig
             (new FormPropertyConfig("intArray2", "int[]",
                                     null, 5)); // 5 should be respected
+        formBean.addFormPropertyConfig
+            (new FormPropertyConfig("principal",
+                                    "org.apache.struts.mock.MockPrincipal",
+                                    null));
         formBean.addFormPropertyConfig
             (new FormPropertyConfig("stringArray1", "java.lang.String[]",
                                     "{aaa,bbb,ccc}", 2)); // 2 should be ignored

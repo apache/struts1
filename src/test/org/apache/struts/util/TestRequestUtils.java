@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.14 2002/12/23 22:00:24 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2002/12/23 22:00:24 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.15 2002/12/24 18:49:52 craigmcc Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/12/24 18:49:52 $
  *
  * ====================================================================
  *
@@ -79,6 +79,7 @@ import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.mock.MockFormBean;
+import org.apache.struts.mock.MockPrincipal;
 import org.apache.struts.mock.TestMockBase;
 import org.apache.struts.taglib.html.Constants;
 
@@ -87,7 +88,7 @@ import org.apache.struts.taglib.html.Constants;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2002/12/23 22:00:24 $
+ * @version $Revision: 1.15 $ $Date: 2002/12/24 18:49:52 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -1147,6 +1148,11 @@ public class TestRequestUtils extends TestMockBase {
         assertEquals("intArray2[3] value is correct", 0, intArray2[3]);
         assertEquals("intArray2[4] value is correct", 0, intArray2[4]);
 
+        value = dform.get("principal");
+        assertNotNull("principal exists", value);
+        assertTrue("principal is MockPrincipal",
+                   value instanceof MockPrincipal);
+
         value = dform.get("stringArray1");
         assertNotNull("stringArray1 exists", value);
         assertTrue("stringArray1 is int[]", value instanceof String[]);
@@ -1165,11 +1171,34 @@ public class TestRequestUtils extends TestMockBase {
         String stringArray2[] = (String[]) value;
         assertEquals("stringArray2 length is correct", 3, stringArray2.length);
         assertEquals("stringArray2[0] value is correct",
-                     (String) null, stringArray2[0]);
+                     new String(), stringArray2[0]);
         assertEquals("stringArray2[1] value is correct",
-                     (String) null, stringArray2[1]);
+                     new String(), stringArray2[1]);
         assertEquals("stringArray2[2] value is correct",
-                     (String) null, stringArray2[2]);
+                     new String(), stringArray2[2]);
+
+        // Different form beans should get different property value instances
+        Object value1 = null;
+        DynaActionForm dform1 = (DynaActionForm)
+            RequestUtils.createActionForm(request, mapping, appConfig, null);
+
+        value = dform.get("principal");
+        value1 = dform1.get("principal");
+        assertEquals("Different form beans get equal instance values",
+                     value, value1);
+        assertTrue("Different form beans get different instances 1",
+                   value != value1);
+
+        value = dform.get("stringArray1");
+        value1 = dform1.get("stringArray1");
+        assertTrue("Different form beans get different instances 2",
+                   value != value1);
+
+        dform1.set("stringProperty", "Different stringProperty value");
+        value = dform.get("stringProperty");
+        value1 = dform1.get("stringProperty");
+        assertTrue("Different form beans get different instances 3",
+                   value != value1);
 
     }
 

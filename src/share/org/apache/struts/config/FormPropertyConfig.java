@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.8 2002/12/23 22:00:24 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/12/23 22:00:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.9 2002/12/24 18:49:52 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/12/24 18:49:52 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.commons.beanutils.ConvertUtils;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/12/23 22:00:24 $
+ * @version $Revision: 1.9 $ $Date: 2002/12/24 18:49:52 $
  * @since Struts 1.1
  */
 
@@ -138,18 +138,6 @@ public class FormPropertyConfig implements Serializable {
     protected boolean configured = false;
 
 
-    /**
-     * Have we calculated the initial value object yet?
-     */
-    protected transient boolean initialized = false;
-
-
-    /**
-     * The calculated initial value for this property.
-     */
-    protected transient Object initialValue = null;
-
-
     // ------------------------------------------------------------- Properties
 
 
@@ -189,7 +177,8 @@ public class FormPropertyConfig implements Serializable {
 
     /**
      * <p>The size of the array to be created if this property is an array
-     * type and there is no specified <code>initial</code> value.</p>
+     * type and there is no specified <code>initial</code> value.  This
+     * value must be non-negative.</p>
      *
      * @since Struts 1.1-b3
      */
@@ -202,6 +191,9 @@ public class FormPropertyConfig implements Serializable {
     public void setSize(int size) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
+        if (size < 0) {
+            throw new IllegalArgumentException("size < 0");
         }
         this.size = size;
     }
@@ -288,46 +280,67 @@ public class FormPropertyConfig implements Serializable {
 
 
     /**
-     * Return an object representing the initial value of this property.
+     * <p>Return an object representing the initial value of this property.
+     * This is calculated according to the following algorithm:</p>
+     * <ul>
+     * <li>If the value you have specified for the <code>type</code>
+     *     property represents an array (i.e. it ends with "[]"):
+     *     <ul>
+     *     <li>If you have specified a value for the <code>initial</code>
+     *         property, <code>ConvertUtils.convert()</code> will be
+     *         called to convert it into an instance of the specified
+     *         array type.</li>
+     *     <li>If you have not specified a value for the <code>initial</code>
+     *         property, an array of the length specified by the
+     *         <code>size</code> property will be created.  Each element
+     *         of the array will be instantiated via the zero-args constructor
+     *         on the specified class (if any).  Otherwise, <code>null</code>
+     *         will be returned.</li>
+     *     </ul></li>
+     * <li>If the value you have specified for the <code>type</code>
+     *     property does not represent an array:
+     *     <ul>
+     *     <li>If you have specified a value for the <code>initial</code>
+     *         property, <code>ConvertUtils.convert()</code>
+     *         will be called to convert it into an object instance.</li>
+     *     <li>If you have not specified a value for the <code>initial</code>
+     *         attribute, Struts will instantiate an instance via the
+     *         zero-args constructor on the specified class (if any).
+     *         Otherwise, <code>null</code> will be returned.</li>
+     *     </ul></li>
+     * </ul>
      */
     public Object initial() {
 
-        // Compute our initial value the first time it is requested
-        // Don't bother synchronizing, a race is basically harmless
-        if (!initialized) {
-            try {
-                Class clazz = getTypeClass();
-                if (clazz.isArray()) {
-                    if (initial != null) {
-                        initialValue =
-                            ConvertUtils.convert(initial, clazz);
-                    } else {
-                        initialValue =
-                            Array.newInstance(clazz.getComponentType(), size);
-                    }
+        Object initialValue = null;
+        try {
+            Class clazz = getTypeClass();
+            if (clazz.isArray()) {
+                if (initial != null) {
+                    initialValue =
+                        ConvertUtils.convert(initial, clazz);
                 } else {
-                    initialValue = ConvertUtils.convert(initial, clazz);
+                    initialValue =
+                        Array.newInstance(clazz.getComponentType(), size);
+                    for (int i = 0; i < size; i++) {
+                        try {
+                            Array.set(initialValue, i,
+                                      clazz.getComponentType().newInstance());
+                        } catch (Throwable t) {
+                            ; // Probably does not have a zero-args constructor
+                        }
+                    }
                 }
-            } catch (Throwable t) {
-                initialValue = null;
+            } else {
+                if (initial != null) {
+                    initialValue = ConvertUtils.convert(initial, clazz);
+                } else {
+                    initialValue = clazz.newInstance();
+                }
             }
-            initialized = true;
+        } catch (Throwable t) {
+            initialValue = null;
         }
-
-        // Clone if the initial value is an array
-        if ((initialValue != null) &&
-            (initialValue.getClass().isArray())) {
-            int n = Array.getLength(initialValue);
-            Class componentType =
-                initialValue.getClass().getComponentType();
-            Object newValue = Array.newInstance(componentType, n);
-            for (int j = 0; j < n; j++) {
-                Array.set(newValue, j, Array.get(initialValue, j));
-            }
-            return (newValue);
-        }
-
-        // Return the calculated value
         return (initialValue);
 
     }

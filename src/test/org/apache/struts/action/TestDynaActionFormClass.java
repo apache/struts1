@@ -135,7 +135,7 @@ public class TestDynaActionFormClass extends TestCase
         new FormPropertyConfig("longProperty", "long", "321"),
         new FormPropertyConfig("mappedProperty", "java.util.Map", null),
         new FormPropertyConfig("mappedIntProperty", "java.util.Map", null),
-        new FormPropertyConfig("nullProperty", "java.lang.String", null),
+        //        new FormPropertyConfig("nullProperty", "java.lang.String", null),
         new FormPropertyConfig("shortProperty", "short", "987"),
         new FormPropertyConfig("stringArray", "java.lang.String[]",
                                "{ 'String 0', 'String 1', 'String 2', 'String 3', 'String 4'}"),
@@ -262,8 +262,8 @@ public class TestDynaActionFormClass extends TestCase
                      beanConfig.findFormPropertyConfig("longProperty").initial());
         // FIXME - mappedProperty
         // FIXME - mappedIntProperty
-        assertNull("nullProperty value",
-                   beanConfig.findFormPropertyConfig("nullProperty").initial());
+        //        assertNull("nullProperty value",
+        //                   beanConfig.findFormPropertyConfig("nullProperty").initial());
         assertEquals("shortProperty value",
                      new Short((short) 987),
                      beanConfig.findFormPropertyConfig("shortProperty").initial());
