@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.23 2001/07/12 05:12:01 dwinterfeldt Exp $
- * $Revision: 1.23 $
- * $Date: 2001/07/12 05:12:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.24 2001/07/19 02:11:52 dwinterfeldt Exp $
+ * $Revision: 1.24 $
+ * $Date: 2001/07/19 02:11:52 $
  *
  * ====================================================================
  *
@@ -108,7 +108,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.23 $ $Date: 2001/07/12 05:12:01 $
+ * @version $Revision: 1.24 $ $Date: 2001/07/19 02:11:52 $
  */
 
 public class Action {
@@ -141,7 +141,7 @@ public class Action {
      * are using the corresponding custom tag library elements.
      */
     public static final String MESSAGE_KEY =
-      "org.apache.struts.action.MESSAGE";
+      "org.apache.struts.action.ACTION_MESSAGE";
 
     /**
      * The request attributes key under which Struts custom tags might store a
