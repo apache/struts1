@@ -27,6 +27,7 @@
             scope="request" value="Edit">
   <title><bean:message key="subscription.title.edit"/></title>
 </logic:equal>
+<form:base/>
 </head>
 <body bgcolor="white">
 

@@ -6,6 +6,7 @@
 <html>
 <head>
 <title><bean:message key="index.title"/></title>
+<form:base/>
 </head>
 <body bgcolor="white">
 

@@ -23,6 +23,25 @@
   </p>
   </info>
 
+        <tag>
+          <name>base</name>
+          <summary>Render an HTML &lt;base&gt; Element</summary>
+          <tagclass>org.apache.struts.taglib.form.BaseTag</tagclass>
+          <info>
+          <p>Renders an HTML <code>&lt;base&gt;</code> element with an
+          <code>href</code> attribute pointing to the absolute location of
+          the enclosing JSP page.  This tag is valid only when nested inside
+          an HTML <code>&lt;head&gt;</code> element.  There are no attributes
+          associated with this tag.</p>
+
+          <p>This tag is useful because it allows you to use relative URL
+          references in the page that are calculated based on the URL of the
+          page itself, rather than the URL to which the most recent submit
+          took place (which is where the browser would normally resolve
+          relative references against).</p>
+          </info>
+        </tag>
+
 	<tag>
 		
 		<name>button</name>

@@ -8,6 +8,7 @@
 <html>
 <head>
 <title><bean:message key="mainMenu.title"/></title>
+<form:base/>
 </head>
 <body bgcolor="white">
 
