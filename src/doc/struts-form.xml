@@ -1958,6 +1958,15 @@
 				key is released.
 			</info>
 		</attribute>
+
+                <attribute>
+                        <name>property</name>
+                        <required>true</required>
+                        <rtexprvalue>false</rtexprvalue>
+                        <info>
+                                The corresponding bean property for this radio tag.
+                        </info>
+                </attribute>
 		
 		<attribute>
 			<name>onmousedown</name>
@@ -1968,6 +1977,24 @@
 				pointer and a mouse button is depressed.
 			</info>
 		</attribute>
+
+                <attribute>
+                        <name>value</name>
+                        <required>true</required>
+                        <rtexprvalue>false</rtexprvalue>
+                        <info>
+                            The value of the radio tag.
+                        </info>
+                </attribute>
+
+                <attribute>
+                        <name>name</name>
+                        <required>false</required>
+                        <rtexprvalue>false</rtexprvalue>
+                        <info>
+                            The name of the radio tag.
+                        </info>
+                </attribute>
 	</tag>
 	
 	<tag>
