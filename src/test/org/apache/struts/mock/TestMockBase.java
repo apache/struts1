@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.11 2003/05/04 22:41:13 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2003/05/04 22:41:13 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.12 2003/07/26 04:24:23 rleland Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/07/26 04:24:23 $
  *
  * ====================================================================
  *
@@ -68,14 +68,14 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.apache.struts.Globals;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.FormPropertyConfig;
 import org.apache.struts.config.ForwardConfig;
+import org.apache.struts.config.ModuleConfigFactory;
 
 
 
@@ -89,7 +89,7 @@ import org.apache.struts.config.ForwardConfig;
  * environment was set up correctly.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2003/05/04 22:41:13 $
+ * @version $Revision: 1.12 $ $Date: 2003/07/26 04:24:23 $
  */
 
 public class TestMockBase extends TestCase {
@@ -117,9 +117,9 @@ public class TestMockBase extends TestCase {
     // ----------------------------------------------------- Instance Variables
 
 
-    protected ApplicationConfig appConfig = null;
-    protected ApplicationConfig appConfig2 = null;
-    protected ApplicationConfig appConfig3 = null;
+    protected ModuleConfig moduleConfig = null;
+    protected ModuleConfig moduleConfig2 = null;
+    protected ModuleConfig moduleConfig3 = null;
     protected MockServletConfig config = null;
     protected MockServletContext context = null;
     protected MockPageContext page = null;
@@ -154,7 +154,7 @@ public class TestMockBase extends TestCase {
         // for the selected module so that fallbacks to the
         // default module can be tested.  To select a module,
         // tests should set the request attribute Action.APPLICATION_KEY
-        // to the ApplicationConfig instance for the selected module
+        // to the ModuleConfig instance for the selected module
 
     }
 
@@ -162,34 +162,35 @@ public class TestMockBase extends TestCase {
     protected void setUpDefaultApp() {
 
         ActionFormBean formBean = null;
-        ActionForward forward = null;
         ActionMapping mapping = null;
 
-        appConfig = new ApplicationConfig("");
-        context.setAttribute(Globals.MODULE_KEY, appConfig);
+        ModuleConfigFactory factoryObject = ModuleConfigFactory.createFactory();
+        moduleConfig = factoryObject.createModuleConfig("");
+
+        context.setAttribute(Globals.MODULE_KEY, moduleConfig);
 
         // Forward "external" to "http://jakarta.apache.org/"
-        appConfig.addForwardConfig
+        moduleConfig.addForwardConfig
             (new ActionForward("external", "http://jakarta.apache.org/",
                                false, false));
 
         // Forward "foo" to "/bar.jsp"
-        appConfig.addForwardConfig
+        moduleConfig.addForwardConfig
             (new ActionForward("foo", "/bar.jsp", false, false));
 
         // Forward "relative1" to "relative.jsp" non-context-relative
-        appConfig.addForwardConfig
+        moduleConfig.addForwardConfig
             (new ActionForward("relative1", "relative.jsp", false, false));
 
         // Forward "relative2" to "relative.jsp" context-relative
-        appConfig.addForwardConfig
+        moduleConfig.addForwardConfig
             (new ActionForward("relative2", "relative.jsp", false, true));
 
         // Form Bean "static" is a standard ActionForm subclass
         formBean = new ActionFormBean
             ("static",
              "org.apache.struts.mock.MockFormBean");
-        appConfig.addFormBeanConfig(formBean);
+        moduleConfig.addFormBeanConfig(formBean);
 
         // Action "/static" uses the "static" form bean in request scope
         mapping = new ActionMapping();
@@ -198,7 +199,7 @@ public class TestMockBase extends TestCase {
         mapping.setPath("/static");
         mapping.setScope("request");
         mapping.setType("org.apache.struts.mock.MockAction");
-        appConfig.addActionConfig(mapping);
+        moduleConfig.addActionConfig(mapping);
 
         // Form Bean "dynamic" is a DynaActionForm with the same properties
         formBean = new ActionFormBean
@@ -209,7 +210,7 @@ public class TestMockBase extends TestCase {
         formBean.addFormPropertyConfig
             (new FormPropertyConfig("stringProperty", "java.lang.String",
                                     null));
-        appConfig.addFormBeanConfig(formBean);
+        moduleConfig.addFormBeanConfig(formBean);
 
         // Action "/dynamic" uses the "dynamic" form bean in session scope
         mapping = new ActionMapping();
@@ -218,7 +219,7 @@ public class TestMockBase extends TestCase {
         mapping.setPath("/dynamic");
         mapping.setScope("session");
         mapping.setType("org.apache.struts.mock.MockAction");
-        appConfig.addActionConfig(mapping);
+        moduleConfig.addActionConfig(mapping);
 
         // Form Bean "/dynamic0" is a DynaActionForm with initializers
         formBean = new ActionFormBean
@@ -245,7 +246,7 @@ public class TestMockBase extends TestCase {
         formBean.addFormPropertyConfig
             (new FormPropertyConfig("stringArray2", "java.lang.String[]",
                                     null, 3)); // 3 should be respected
-        appConfig.addFormBeanConfig(formBean);
+        moduleConfig.addFormBeanConfig(formBean);
 
         // Action "/dynamic0" uses the "dynamic0" form bean in request scope
         mapping = new ActionMapping();
@@ -253,46 +254,46 @@ public class TestMockBase extends TestCase {
         mapping.setPath("/dynamic0");
         mapping.setScope("request");
         mapping.setType("org.apache.struts.mock.MockAction");
-        appConfig.addActionConfig(mapping);
+        moduleConfig.addActionConfig(mapping);
 
         // Action "/noform" has no form bean associated with it
         mapping = new ActionMapping();
         mapping.setPath("/noform");
         mapping.setType("org.apache.struts.mock.MockAction");
-        appConfig.addActionConfig(mapping);
+        moduleConfig.addActionConfig(mapping);
 
         // Configure global forward declarations
-        appConfig.addForwardConfig
+        moduleConfig.addForwardConfig
             (new ForwardConfig("moduleForward",
                                "/module/forward",
                                false,   // No redirect
                                false)); // Not context relative
 
-        appConfig.addForwardConfig
+        moduleConfig.addForwardConfig
             (new ForwardConfig("moduleRedirect",
                                "/module/redirect",
                                true,    // Redirect
                                false)); // Not context relative
 
-        appConfig.addForwardConfig
+        moduleConfig.addForwardConfig
             (new ForwardConfig("contextForward",
                                "/context/forward",
                                false,   // No redirect
                                true));  // Context relative
 
-        appConfig.addForwardConfig
+        moduleConfig.addForwardConfig
             (new ForwardConfig("contextRedirect",
                                "/context/redirect",
                                true,    // Redirect
                                true));  // Context relative
 
-        appConfig.addForwardConfig
+        moduleConfig.addForwardConfig
             (new ForwardConfig("moduleNoslash",
                                "module/noslash",
                                false,   // No redirect
                                false)); // Not context relative
 
-        appConfig.addForwardConfig
+        moduleConfig.addForwardConfig
             (new ForwardConfig("contextNoslash",
                                "context/noslash",
                                false,   // No redirect
@@ -306,31 +307,34 @@ public class TestMockBase extends TestCase {
         ActionFormBean formBean = null;
         ActionMapping mapping = null;
 
-        appConfig2 = new ApplicationConfig("/2");
-        context.setAttribute(Globals.MODULE_KEY + "/2", appConfig2);
+
+        ModuleConfigFactory factoryObject = ModuleConfigFactory.createFactory();
+        moduleConfig2 = factoryObject.createModuleConfig("/2");
+
+        context.setAttribute(Globals.MODULE_KEY + "/2", moduleConfig2);
 
         // Forward "external" to "http://jakarta.apache.org/"
-        appConfig2.addForwardConfig
+        moduleConfig2.addForwardConfig
             (new ActionForward("external", "http://jakarta.apache.org/",
                                false, false));
 
         // Forward "foo" to "/baz.jsp" (different from default)
-        appConfig2.addForwardConfig
+        moduleConfig2.addForwardConfig
             (new ActionForward("foo", "/baz.jsp", false, false));
 
         // Forward "relative1" to "relative.jsp" non-context-relative
-        appConfig2.addForwardConfig
+        moduleConfig2.addForwardConfig
             (new ActionForward("relative1", "relative.jsp", false, false));
 
         // Forward "relative2" to "relative.jsp" context-relative
-        appConfig2.addForwardConfig
+        moduleConfig2.addForwardConfig
             (new ActionForward("relative2", "relative.jsp", false, true));
 
         // Form Bean "static" is a standard ActionForm subclass (same as default)
         formBean = new ActionFormBean
             ("static",
              "org.apache.struts.mock.MockFormBean");
-        appConfig2.addFormBeanConfig(formBean);
+        moduleConfig2.addFormBeanConfig(formBean);
 
         // Action "/static" uses the "static" form bean in request scope (same as default)
         mapping = new ActionMapping();
@@ -339,7 +343,7 @@ public class TestMockBase extends TestCase {
         mapping.setPath("/static");
         mapping.setScope("request");
         mapping.setType("org.apache.struts.mock.MockAction");
-        appConfig2.addActionConfig(mapping);
+        moduleConfig2.addActionConfig(mapping);
 
         // Form Bean "dynamic2" is a DynaActionForm with the same properties
         formBean = new ActionFormBean
@@ -350,7 +354,7 @@ public class TestMockBase extends TestCase {
         formBean.addFormPropertyConfig
             (new FormPropertyConfig("stringProperty", "java.lang.String",
                                     null));
-        appConfig2.addFormBeanConfig(formBean);
+        moduleConfig2.addFormBeanConfig(formBean);
 
         // Action "/dynamic2" uses the "dynamic2" form bean in session scope
         mapping = new ActionMapping();
@@ -359,46 +363,46 @@ public class TestMockBase extends TestCase {
         mapping.setPath("/dynamic2");
         mapping.setScope("session");
         mapping.setType("org.apache.struts.mock.MockAction");
-        appConfig2.addActionConfig(mapping);
+        moduleConfig2.addActionConfig(mapping);
 
         // Action "/noform" has no form bean associated with it (same as default)
         mapping = new ActionMapping();
         mapping.setPath("/noform");
         mapping.setType("org.apache.struts.mock.MockAction");
-        appConfig2.addActionConfig(mapping);
+        moduleConfig2.addActionConfig(mapping);
 
         // Configure global forward declarations
-        appConfig2.addForwardConfig
+        moduleConfig2.addForwardConfig
             (new ForwardConfig("moduleForward",
                                "/module/forward",
                                false,   // No redirect
                                false)); // Not context relative
 
-        appConfig2.addForwardConfig
+        moduleConfig2.addForwardConfig
             (new ForwardConfig("moduleRedirect",
                                "/module/redirect",
                                true,    // Redirect
                                false)); // Not context relative
 
-        appConfig2.addForwardConfig
+        moduleConfig2.addForwardConfig
             (new ForwardConfig("contextForward",
                                "/context/forward",
                                false,   // No redirect
                                true));  // Context relative
 
-        appConfig2.addForwardConfig
+        moduleConfig2.addForwardConfig
             (new ForwardConfig("contextRedirect",
                                "/context/redirect",
                                true,    // Redirect
                                true));  // Context relative
 
-        appConfig2.addForwardConfig
+        moduleConfig2.addForwardConfig
             (new ForwardConfig("moduleNoslash",
                                "module/noslash",
                                false,   // No redirect
                                false)); // Not context relative
 
-        appConfig2.addForwardConfig
+        moduleConfig2.addForwardConfig
             (new ForwardConfig("contextNoslash",
                                "context/noslash",
                                false,   // No redirect
@@ -411,12 +415,14 @@ public class TestMockBase extends TestCase {
     protected void setUpThirdApp() {
 
 
-        appConfig3 = new ApplicationConfig("/3");
-        context.setAttribute(Globals.MODULE_KEY + "/3", appConfig3);
+        ModuleConfigFactory factoryObject = ModuleConfigFactory.createFactory();
+        moduleConfig3 = factoryObject.createModuleConfig("/3");
+
+        context.setAttribute(Globals.MODULE_KEY + "/3", moduleConfig3);
 
         // Instantiate the controller configuration for this app
         ControllerConfig controller = new ControllerConfig();
-        appConfig3.setControllerConfig(controller);
+        moduleConfig3.setControllerConfig(controller);
 
         // Configure the properties we will be testing
         controller.setForwardPattern("/forwarding$M$P");
@@ -424,37 +430,37 @@ public class TestMockBase extends TestCase {
         controller.setPagePattern("/paging$M$P");
 
         // Configure global forward declarations
-        appConfig3.addForwardConfig
+        moduleConfig3.addForwardConfig
             (new ForwardConfig("moduleForward",
                                "/module/forward",
                                false,   // No redirect
                                false)); // Not context relative
 
-        appConfig3.addForwardConfig
+        moduleConfig3.addForwardConfig
             (new ForwardConfig("moduleRedirect",
                                "/module/redirect",
                                true,    // Redirect
                                false)); // Not context relative
 
-        appConfig3.addForwardConfig
+        moduleConfig3.addForwardConfig
             (new ForwardConfig("contextForward",
                                "/context/forward",
                                false,   // No redirect
                                true));  // Context relative
 
-        appConfig3.addForwardConfig
+        moduleConfig3.addForwardConfig
             (new ForwardConfig("contextRedirect",
                                "/context/redirect",
                                true,    // Redirect
                                true));  // Context relative
 
-        appConfig3.addForwardConfig
+        moduleConfig3.addForwardConfig
             (new ForwardConfig("moduleNoslash",
                                "module/noslash",
                                false,   // No redirect
                                false)); // Not context relative
 
-        appConfig3.addForwardConfig
+        moduleConfig3.addForwardConfig
             (new ForwardConfig("contextNoslash",
                                "context/noslash",
                                false,   // No redirect
@@ -465,9 +471,9 @@ public class TestMockBase extends TestCase {
 
     public void tearDown() {
 
-        appConfig3 = null;
-        appConfig2 = null;
-        appConfig = null;
+        moduleConfig3 = null;
+        moduleConfig2 = null;
+        moduleConfig = null;
         config = null;
         context = null;
         page = null;
@@ -513,15 +519,15 @@ public class TestMockBase extends TestCase {
                      context, session.getServletContext());
 
         // Validate the configuration for the default module
-        assertNotNull("appConfig is present", appConfig);
-        assertEquals("context-->appConfig",
-                     appConfig,
+        assertNotNull("moduleConfig is present", moduleConfig);
+        assertEquals("context-->moduleConfig",
+                     moduleConfig,
                      context.getAttribute(Globals.MODULE_KEY));
 
         // Validate the configuration for the second module
-        assertNotNull("appConfig2 is present", appConfig2);
-        assertEquals("context-->appConfig2",
-                     appConfig2,
+        assertNotNull("moduleConfig2 is present", moduleConfig2);
+        assertEquals("context-->moduleConfig2",
+                     moduleConfig2,
                      context.getAttribute(Globals.MODULE_KEY + "/2"));
 
     }
