@@ -41,6 +41,16 @@
           took place (which is where the browser would normally resolve
           relative references against).</p>
           </info>
+
+          <attribute>
+            <name>target</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+              <p>The window target for this base reference.</p>
+            </info>
+          </attribute>
+
         </tag>
 
     <tag>

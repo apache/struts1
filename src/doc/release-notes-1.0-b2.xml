@@ -36,6 +36,8 @@
     <li>The <code>&lt;html:link&gt;</code> tag now accepts an optional
         <code>anchor</code> attribute, to allow the inclusion of a
         (possibly calculated) anchor ("#xxx") in the generated hyperlink.</li>
+    <li>The <code>&lt;html:base&gt;</code> tag now accepts an optional
+        <code>target</code> attribute.</li>
     </ul>
 
     <p>The following new features have been added to the
@@ -70,6 +72,10 @@
         hyperlink value.</li>
     <li>The <code>&lt;html:link&gt;</code> tag now correctly places any
         specified anchor ("#xxx") in the generated hyperlink.</li>
+    <li>The JavaScript code generated to implement the <code>focus</code>
+        attribute of the <code>&lt;html:form&gt;</code> tag now works even
+        when you use nested or indexed property expressions.  Previously,
+        this would generate an invalid JavaScript reference to the field.</li>
     </ul>
 
     <p>The following changes and bug fixes to the Struts Documentation

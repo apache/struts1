@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.6 2001/03/06 16:58:24 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/03/06 16:58:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.7 2001/03/06 22:09:52 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/03/06 22:09:52 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/03/06 16:58:24 $
+ * @version $Revision: 1.7 $ $Date: 2001/03/06 22:09:52 $
  */
 
 public class FormTag extends TagSupport {
@@ -556,10 +556,11 @@ public class FormTag extends TagSupport {
 	    results.append("<script language=\"JavaScript\"");
             results.append(" type=\"text/javascript\">\r\n");
 	    results.append("  <!--\r\n");
-	    results.append("    document.");
+	    results.append("    document.forms[\"");
 	    results.append(name);
-	    results.append(".");
-	    results.append(focus);
+	    results.append("\"].elements[\"");
+            results.append(focus);
+            results.append("\"]");
 	    results.append(".focus()\r\n");
 	    results.append("  // -->\r\n");
 	    results.append("</script>\r\n");
