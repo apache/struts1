@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.47 2000/12/30 00:39:05 craigmcc Exp $
- * $Revision: 1.47 $
- * $Date: 2000/12/30 00:39:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.48 2000/12/30 21:28:04 craigmcc Exp $
+ * $Revision: 1.48 $
+ * $Date: 2000/12/30 21:28:04 $
  *
  * ====================================================================
  *
@@ -193,10 +193,10 @@ import org.xml.sax.SAXException;
  *     <ul>
  *     <li><em>org.apache.struts.action.RequestActionMapping</em> - Subclass
  *         of <code>org.apache.struts.action.ActionMapping</code> that
- *         defaults the <code>formScope</code> property to "request".
+ *         defaults the <code>scope</code> property to "request".
  *     <li><em>org.apache.struts.action.SessionActionMapping</em> - Subclass
  *         of <code>org.apache.struts.action.ActionMapping</code> that
- *         defaults the <code>formScope</code> property to "session".  (Same
+ *         defaults the <code>scope</code> property to "session".  (Same
  *         as the ActionMapping default value).
  *     </ul></li>
  * <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
@@ -211,7 +211,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.47 $ $Date: 2000/12/30 00:39:05 $
+ * @version $Revision: 1.48 $ $Date: 2000/12/30 21:28:04 $
  */
 
 public class ActionServlet
@@ -1049,6 +1049,10 @@ public class ActionServlet
                             "addMapping",
                             "org.apache.struts.action.ActionMapping");
 
+        digester.addSetProperty
+            ("struts-config/action-mappings/action/set-property",
+             "property", "value");
+
         digester.addObjectCreate
             ("struts-config/action-mappings/action/forward",
              forwardClass, "className");
@@ -1060,10 +1064,6 @@ public class ActionServlet
 
         digester.addSetProperty
             ("struts-config/action-mappings/action/forward/set-property",
-             "property", "value");
-
-        digester.addSetProperty
-            ("struts-config/action-mappings/action/set-property",
              "property", "value");
 
         // FIXME "struts-config/form-beans" type attribute
