@@ -685,10 +685,63 @@ public class UploadForm extends ActionForm {
       </section>
 
       <section name="3.4.3 Page Composition With Tiles" href="Tiles">
-
         <p>
-            [:TODO:]
+            Tiles is a powerful templating library that allows you to construct views by combining
+            various "tiles".  Here's a quick setup guide:
         </p>
+			<ol>
+            	<li>Create a /layout/layout.jsp file that contains your app's common look and feel:
+            		<pre>
+            			&lt;html>
+            			&lt;body>
+            				&lt;tiles:insert attribute="body"/>
+            			&lt;/body>
+            			&lt;/html>
+            		</pre>
+            	</li>
+            	<li>
+            		Create your /index.jsp homepage file:
+            		<pre>
+            			&lt;h1>This is my homepage!&lt;/h1>
+            		</pre>
+            	</li>
+            	<li>Create a /WEB-INF/tiles-defs.xml file that looks like this:<br/>
+					<pre>
+            		&lt;tiles-definitions>
+    					&lt;definition name="layout" path="/layout/layout.jsp">
+	        				&lt;put name="body" value=""/>
+    					&lt;/definition>
+    					&lt;definition name="homepage" extends="layout">
+	        				&lt;put name="body" value="/index.jsp"/>
+    					&lt;/definition>
+    				&lt;tiles-definitions>
+    				</pre>
+            	</li>
+            	<li>
+            		Setup the TilesPlugin in the struts-config.xml file:
+            		<pre>
+            			&lt;plug-in className="org.apache.struts.tiles.TilesPlugin">
+   							&lt;set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml"/>
+						&lt;/plug-in>
+            		</pre>
+            	</li>
+            	<li>
+            		Setup an action mapping in struts-config.xml to point to your homepage tile:
+            		<pre>
+            			&lt;action 
+            				path="/index"
+            				type="org.apache.struts.actions.ForwardAction"
+            				parameter="homepage"/>
+            		</pre>
+            	</li>
+            </ol>
+            <p>
+            	The TilesPlugin configures a special RequestProcessor that determines if the requested view is a
+            	tile and processes it accordingly.  Note that we made the homepage tile extend our root layout
+            	tile and changed the body attribute.  Tiles inserts the file named in the body attribute into the main 
+            	layout.
+            </p>
+            <p>See the the tiles-documentation webapp for in-depth examples.</p>
       </section>
 
       <section name="3.4.4 Image Rendering Components" href="image_rendering">
