@@ -1,4 +1,4 @@
-$Id: README,v 1.3 2000/06/13 02:32:01 craigmcc Exp $
+$Id: README,v 1.4 2000/06/18 22:21:39 craigmcc Exp $
 
 				Struts
 				======
@@ -107,8 +107,12 @@ The Struts Documentation Application
 ------------------------------------
 
 Struts comes with a web application that contains all of the documentation
-relevant to a developer (that is, it will when the docs are written :-).  To
-view this documentation, deploy the file "webapps/struts-documentation.war"
+relevant to an application developer who wants to use it, including:
+* Reference manual for the custom tag library
+* User's Guide for applications based on the framework
+* API documentation for the Struts classes
+
+To view this documentation, deploy the file "webapps/struts-documentation.war"
 into your servlet container, and use a web browser to access a URL like this:
 
 	http://localhost:8080/struts-documentation
