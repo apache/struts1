@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.11 2000/06/21 19:58:22 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2000/06/21 19:58:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.12 2000/06/25 01:48:46 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2000/06/25 01:48:46 $
  *
  * ====================================================================
  *
@@ -160,7 +160,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2000/06/21 19:58:22 $
+ * @version $Revision: 1.12 $ $Date: 2000/06/25 01:48:46 $
  */
 
 public class ActionServlet
@@ -320,6 +320,28 @@ public class ActionServlet
     public int getDebug() {
 
 	return (this.debug);
+
+    }
+
+
+    /**
+     * Return the Java class name of the class used to instantiate
+     * <code>ActionForward</code> objects.
+     */
+    public String getForwardClass() {
+
+	return (this.forwardClass);
+
+    }
+
+
+    /**
+     * Return the Java class name of the class used to instantiate
+     * <code>ActionMapping</code> objects.
+     */
+    public String getMappingClass() {
+
+	return (this.mappingClass);
 
     }
 
