@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.26 2004/01/17 22:11:07 dgraham Exp $
- * $Revision: 1.26 $
- * $Date: 2004/01/17 22:11:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.27 2004/01/17 22:18:30 dgraham Exp $
+ * $Revision: 1.27 $
+ * $Date: 2004/01/17 22:18:30 $
  *
  * ====================================================================
  *
@@ -73,8 +73,8 @@ import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ModuleUtils;
 import org.apache.struts.util.RequestUtils;
@@ -83,7 +83,7 @@ import org.apache.struts.util.RequestUtils;
  * This class helps provides some useful methods for retrieving objects
  * from different scopes of the application.
  *
- * @version $Revision: 1.26 $ $Date: 2004/01/17 22:11:07 $
+ * @version $Revision: 1.27 $ $Date: 2004/01/17 22:18:30 $
  * @since Struts 1.1
  */
 public class Resources {
@@ -112,16 +112,16 @@ public class Resources {
     public static String HTTP_SERVLET_REQUEST_KEY = HTTP_SERVLET_REQUEST_PARAM;
 
     /**
-     * Resources key the <code>ActionErrors</code> is stored under.
+     * Resources key the <code>ActionMessages</code> is stored under.
      */
-    private static String ACTION_ERRORS_PARAM =
+    private static String ACTION_MESSAGES_PARAM =
         "org.apache.struts.action.ActionMessages";
 
     /**
      * Resources key the <code>ActionErrors</code> is stored under.
      * @deprecated This will be removed after Struts 1.2
      */
-    public static String ACTION_ERRORS_KEY = ACTION_ERRORS_PARAM;
+    public static String ACTION_ERRORS_KEY = ACTION_MESSAGES_PARAM;
 
     /**
      * Retrieve <code>ValidatorResources</code> for the current module.
@@ -329,7 +329,7 @@ public class Resources {
         Object bean,
         ServletContext application,
         HttpServletRequest request,
-        ActionErrors errors,
+        ActionMessages errors,
         int page) {
 
         ValidatorResources resources =
@@ -345,7 +345,7 @@ public class Resources {
         validator.setParameter(SERVLET_CONTEXT_PARAM, application);
         validator.setParameter(HTTP_SERVLET_REQUEST_PARAM, request);
         validator.setParameter(Validator.LOCALE_PARAM, locale);
-        validator.setParameter(ACTION_ERRORS_PARAM, errors);
+        validator.setParameter(ACTION_MESSAGES_PARAM, errors);
         validator.setParameter(Validator.BEAN_PARAM, bean);
 
         return validator;
