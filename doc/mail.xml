@@ -204,5 +204,10 @@ whichever Struts lists are of interest.
       </li>
     </ul>
 </section>
+<section>
+    <p class="right">
+        <strong>Back to:</strong> <a href="using.html">Using Struts</a>
+    </p>
+</section>
 </body>
 </document>
