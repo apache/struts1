@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.10 2002/11/28 07:13:03 rleland Exp $
- * $Revision: 1.10 $
- * $Date: 2002/11/28 07:13:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.11 2003/05/01 16:45:33 rleland Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/05/01 16:45:33 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import java.util.HashMap;
  * module configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2002/11/28 07:13:03 $
+ * @version $Revision: 1.11 $ $Date: 2003/05/01 16:45:33 $
  * @since Struts 1.1
  */
 
@@ -85,7 +85,7 @@ public class ActionConfig implements Serializable {
 
 
     /**
-     * Has configuration of this component been completed?
+     * Indicates if configuration of this component been completed.
      */
     protected boolean configured = false;
 
@@ -153,6 +153,12 @@ public class ActionConfig implements Serializable {
      */
     protected String attribute = null;
 
+    /**
+     * Returns the request-scope or session-scope attribute name under which our
+     * form bean is accessed, if it is different from the form bean's
+     * specified <code>name</code>.
+     * @return  attribute name under which our form bean is accessed.
+     */
     public String getAttribute() {
         if (this.attribute == null) {
             return (this.name);
@@ -161,6 +167,13 @@ public class ActionConfig implements Serializable {
         }
     }
 
+    /**
+     * Set the request-scope or session-scope attribute name under which our
+     * form bean is accessed, if it is different from the form bean's
+     * specified <code>name</code>.
+     * @param  attribute  the request-scope or session-scope attribute name under which our
+     * form bean is access.
+     */
     public void setAttribute(String attribute) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -178,10 +191,24 @@ public class ActionConfig implements Serializable {
      */
     protected String forward = null;
 
+    /**
+     * Returns context-relative path of the web application resource that will process
+     * this request.
+     * @return  context-relative path of the web application resource that will process
+     * this request.
+     */
     public String getForward() {
         return (this.forward);
     }
 
+    /**
+     * Set the context-relative path of the web application resource that will process
+     * this request.
+     * Exactly one of <code>forward</code>, <code>include</code>, or
+     * <code>type</code> must be specified.
+     * @param forward context-relative path of the web application resource that will process
+     * this request.
+     */
     public void setForward(String forward) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -199,10 +226,24 @@ public class ActionConfig implements Serializable {
      */
     protected String include = null;
 
+    /**
+     * Context-relative path of the web application resource that will process
+     * this request.
+     * @return  Context-relative path of the web application resource that will process
+     * this request.
+     */
     public String getInclude() {
         return (this.include);
     }
 
+    /**
+     * Set context-relative path of the web application resource that will process
+     * this request.
+     * Exactly one of <code>forward</code>, <code>include</code>, or
+     * <code>type</code> must be specified.
+     * @param include context-relative path of the web application resource that will process
+     * this request.
+     */
     public void setInclude(String include) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -218,10 +259,23 @@ public class ActionConfig implements Serializable {
      */
     protected String input = null;
 
+    /**
+     * Get the context-relative path of the input form to which control should be
+     * returned if a validation error is encountered.
+     * @return  context-relative path of the input form to which control should be
+     * returned if a validation error is encountered.
+     */
     public String getInput() {
         return (this.input);
     }
 
+    /**
+     * Set the context-relative path of the input form to which control should be
+     * returned if a validation error is encountered.  Required if "name"
+     * is specified and the input bean returns validation errors.
+     * @param input context-relative path of the input form to which control should be
+     * returned if a validation error is encountered.
+     */
     public void setInput(String input) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -237,10 +291,22 @@ public class ActionConfig implements Serializable {
      */
     protected String multipartClass = null;
 
+    /**
+     * Return the fully qualified Java class name of the
+     * <code>MultipartRequestHandler</code> implementation class used to
+     * process multi-part request data for this Action.
+     */
     public String getMultipartClass() {
         return (this.multipartClass);
     }
 
+    /**
+     * Set the fully qualified Java class name of the
+     * <code>MultipartRequestHandler</code> implementation class used to
+     * process multi-part request data for this Action.
+     * @param multipartClass fully qualified class name of the
+     * <code>MultipartRequestHandler</code> implementation class.
+     */
     public void setMultipartClass(String multipartClass) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -254,10 +320,16 @@ public class ActionConfig implements Serializable {
      */
     protected String name = null;
 
+    /**
+     * Return name of the form bean, if any, associated with this Action.
+     */
     public String getName() {
         return (this.name);
     }
 
+    /**
+     * @param name name of the form bean associated with this Action.
+     */
     public void setName(String name) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -268,15 +340,26 @@ public class ActionConfig implements Serializable {
 
     /**
      * General purpose configuration parameter that can be used to pass
-     * extra iunformation to the Action instance selected by this Action.
+     * extra information to the Action instance selected by this Action.
      * Struts does not itself use this value in any way.
      */
     protected String parameter = null;
 
+    /**
+      * Return general purpose configuration parameter that can be used to pass
+      * extra information to the Action instance selected by this Action.
+      * Struts does not itself use this value in any way.
+      */
     public String getParameter() {
         return (this.parameter);
     }
 
+    /**
+      * General purpose configuration parameter that can be used to pass
+      * extra information to the Action instance selected by this Action.
+      * Struts does not itself use this value in any way.
+     * @param   parameter General purpose configuration parameter.
+      */
     public void setParameter(String parameter) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -292,10 +375,21 @@ public class ActionConfig implements Serializable {
      */
     protected String path = null;
 
+    /**
+     * Return context-relative path of the submitted request, starting with a
+     * slash ("/") character, and omitting any filename extension if
+     * extension mapping is being used.
+     */
     public String getPath() {
         return (this.path);
     }
 
+    /**
+     * Set context-relative path of the submitted request, starting with a
+     * slash ("/") character, and omitting any filename extension if
+     * extension mapping is being used.
+     * @param  path context-relative path of the submitted request.
+     */
     public void setPath(String path) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -305,15 +399,23 @@ public class ActionConfig implements Serializable {
 
 
     /**
-     * Prefix used to match request parameter names to form ben property
+     * Prefix used to match request parameter names to form bean property
      * names, if any.
      */
     protected String prefix = null;
 
+    /**
+     * Retruns prefix used to match request parameter names to form bean property
+     * names, if any.
+     */
     public String getPrefix() {
         return (this.prefix);
     }
 
+    /**
+     * @param prefix Prefix used to match request parameter names to
+     * form bean property names, if any.
+     */
     public void setPrefix(String prefix) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -362,6 +464,10 @@ public class ActionConfig implements Serializable {
      */
     protected String[] roleNames = new String[0];
 
+    /**
+     * Get array of security role names used to authorize access to this
+     * Action.
+     */
     public String[] getRoleNames() {
         return (this.roleNames);
     }
@@ -373,10 +479,18 @@ public class ActionConfig implements Serializable {
      */
     protected String scope = "session";
 
+    /**
+     * Get the scope ("request" or "session") within which
+     * our form bean is accessed, if any.
+     */
     public String getScope() {
         return (this.scope);
     }
 
+    /**
+     * @param scope scope ("request" or "session") within which
+     * our form bean is accessed, if any.
+     */
     public void setScope(String scope) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -391,10 +505,18 @@ public class ActionConfig implements Serializable {
      */
     protected String suffix = null;
 
+    /**
+     * Return suffix used to match request parameter names to form bean property
+     * names, if any.
+     */
     public String getSuffix() {
         return (this.suffix);
     }
 
+    /**
+     * @param suffix Suffix used to match request parameter names to form bean property
+     * names, if any.
+     */
     public void setSuffix(String suffix) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -425,15 +547,23 @@ public class ActionConfig implements Serializable {
 
 
     /**
-     * Should this Action be configured as the default one for this
-     * application?
+     * Indicates Action be configured as the default one for this
+     * application, when true.
      */
     protected boolean unknown = false;
 
+    /**
+      * Determine whether Action is configured as the default one for this
+      * application.
+      */
     public boolean getUnknown() {
         return (this.unknown);
     }
 
+    /**
+      * @param unknown Indicates Action is configured as the default one for this
+      * application, when true.
+      */
     public void setUnknown(boolean unknown) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
