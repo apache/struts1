@@ -1105,7 +1105,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Maximum number of input characters to accept. [No limit]
+                Maximum number of input characters to accept.  This is ignored
+                by most browsers. [No limit]
             </info>
         </attribute>
 
@@ -1333,9 +1334,18 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Value of the label to be placed on this button. This value will
-                also be submitted as the value of the specified request parameter.
-                [Body of this tag (if any), or "Cancel"]
+            <p>
+                <strong>NOTE</strong>: When setting this to some value, whether
+                intentional or as the result (for example) of validation errors 
+                forcing the user back to the original jsp, this value is ignored 
+                by most browsers (for security reasons).
+                This means that your users will have to re-select any previously
+                selected files when submitting the form.  Opera web browser will
+                prompt the user so they have a chance to abort the submit.
+            </p>
+                Value to which this field should be initialized. [Use the
+                corresponding bean property value or body content (if any) if 
+                property is not specified]
             </info>
         </attribute>
     </tag>
@@ -4987,7 +4997,7 @@
             <info>
                 Value of the label to be placed on this button. This value will
                 also be submitted as the value of the specified request parameter.
-                [Body of this tag (if any), or "Cancel"]
+                [Body of this tag (if any)]
             </info>
         </attribute>
     </tag>
