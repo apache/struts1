@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.6 2003/02/19 03:53:49 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2003/02/19 03:53:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.7 2003/02/26 06:12:25 dmkarr Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/02/26 06:12:25 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,7 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import org.apache.struts.taglib.html.ImgTag;
 import javax.servlet.jsp.JspException;
-import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
+import org.apache.strutsel.taglib.utils.EvalHelper;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
@@ -85,7 +85,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ELImgTag extends ImgTag {
 
@@ -783,8 +783,8 @@ public class ELImgTag extends ImgTag {
                               Class    attrType)
         throws JspException, NullAttributeException
     {
-        return (ExpressionUtil.evalNotNull("img", attrName, attrValue,
-                                           attrType, this, pageContext));
+        return (EvalHelper.eval("img", attrName, attrValue,
+                                attrType, this, pageContext));
     }
     
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTag.java,v 1.4 2003/02/19 03:54:38 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2003/02/19 03:54:38 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTag.java,v 1.5 2003/02/26 06:12:25 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/26 06:12:25 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,7 +62,7 @@ package org.apache.strutsel.taglib.logic;
 
 import org.apache.struts.taglib.logic.IterateTag;
 import javax.servlet.jsp.JspException;
-import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
+import org.apache.strutsel.taglib.utils.EvalHelper;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
@@ -79,7 +79,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ELIterateTag extends IterateTag {
 
@@ -265,8 +265,8 @@ public class ELIterateTag extends IterateTag {
                               Class    attrType)
         throws JspException, NullAttributeException
     {
-        return (ExpressionUtil.evalNotNull("iterate", attrName, attrValue,
-                                           attrType, this, pageContext));
+        return (EvalHelper.eval("iterate", attrName, attrValue,
+                                attrType, this, pageContext));
     }
     
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.5 2003/02/19 03:52:49 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2003/02/19 03:52:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.6 2003/02/26 06:12:25 dmkarr Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/02/26 06:12:25 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,7 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import org.apache.struts.taglib.html.FormTag;
 import javax.servlet.jsp.JspException;
-import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
+import org.apache.strutsel.taglib.utils.EvalHelper;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
@@ -76,7 +76,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ELFormTag extends FormTag {
 
@@ -342,8 +342,8 @@ public class ELFormTag extends FormTag {
                               Class    attrType)
         throws JspException, NullAttributeException
     {
-        return (ExpressionUtil.evalNotNull("form", attrName, attrValue,
-                                           attrType, this, pageContext));
+        return (EvalHelper.eval("form", attrName, attrValue,
+                                attrType, this, pageContext));
     }
     
     /**

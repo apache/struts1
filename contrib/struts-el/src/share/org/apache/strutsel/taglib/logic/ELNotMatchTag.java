@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELNotMatchTag.java,v 1.4 2003/02/19 03:54:38 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2003/02/19 03:54:38 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELNotMatchTag.java,v 1.5 2003/02/26 06:12:26 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/26 06:12:26 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,7 +62,7 @@ package org.apache.strutsel.taglib.logic;
 
 import org.apache.struts.taglib.logic.NotMatchTag;
 import javax.servlet.jsp.JspException;
-import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
+import org.apache.strutsel.taglib.utils.EvalHelper;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
@@ -76,7 +76,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ELNotMatchTag extends NotMatchTag {
 
@@ -289,8 +289,8 @@ public class ELNotMatchTag extends NotMatchTag {
                               Class    attrType)
         throws JspException, NullAttributeException
     {
-        return (ExpressionUtil.evalNotNull("notMatch", attrName, attrValue,
-                                           attrType, this, pageContext));
+        return (EvalHelper.eval("notMatch", attrName, attrValue,
+                                attrType, this, pageContext));
     }
     
     /**
