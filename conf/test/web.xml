@@ -11,9 +11,23 @@
         <servlet-class>org.apache.commons.cactus.server.ServletTestRedirector</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>JspRedirector</servlet-name>
+        <jsp-file>/test/redirector.jsp</jsp-file>
+        <init-param>
+          <param-name>param1</param-name>
+          <param-value>value1 used for testing</param-value>
+        </init-param>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>ServletRedirector</servlet-name>
         <url-pattern>/ServletRedirector</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>JspRedirector</servlet-name>
+        <url-pattern>/JspRedirector</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
