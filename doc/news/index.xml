@@ -104,6 +104,54 @@ which only just trails Tomcat:
 
 <section name="Recent News" href="news">
 
+<!--
+<h3><a name=""></a> - </h3>
+<p>
+<a href=""></a>
+</p>
+<hr size="1" noshade=""/>
+-->
+
+<h3><a name="20021127"></a>27 Nov 2002 - Expresso 5.0.2 Released</h3>
+<p>
+Expresso 5.0.2 can be downloaded freely from:
+</p>
+<p>
+<a href="http://www.jcorporate.com/product/expresso.html">http://www.jcorporate.com/product/expresso.html</a>
+</p>
+<p>
+Both Expresso source and binaries are available. 
+</p>
+<p>
+This minor release is primarily a bug fix release. Bug Fixes include a
+NPE fix in JDBC Executor, a Blob Field fix, Validation improvements, and
+ComponentManager link fixes. 
+</p>
+<p>
+New Features (not affecting existing code) include a proper Struts-based
+ExLink tag by Malcolm Wise.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20021124"></a>24 Nov 2002 - O'Reilly Struts Book Now Available</h3>
+<p>
+Programming Jakarta Struts by Chuck Cavaness (ISBN: 0596003285) is now available and shipping. 
+</p>
+<ul>
+<li>
+	<a href="http://www.amazon.com/exec/obidos/ISBN=0596003285/hitchhikeguidetoA/">Amazon</a>
+</li>
+<li>
+	<a href="http://www.bookpool.com/.x/6kq93k1kim/sm/0596003285">Bookpool</a>
+</li>
+<li>
+	<a href="http://www.oreilly.com/catalog/jakarta">O’Reilly</a>
+</li>
+</ul>
+<hr size="1" noshade=""/>
+
+
 <h3><a name="2002117"></a>17 Nov 2002 - Struts At ApacheCon 2002</h3>
 <p>
 If you're coming to Las Vegas this week for ApacheCon, there will be two
@@ -240,7 +288,7 @@ Easy Struts 0.6.1 was just released, all the wizard was refactored, a Struts vie
 added and Struts 1.1 modules are supported.
 </p>
 <p>
-Easy Struts Features :
+Easy Struts Features:
 </p>
 <ul>
 <li>
