@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.15 2003/02/01 05:30:28 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/02/01 05:30:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.16 2003/02/25 04:30:45 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/02/25 04:30:45 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.ResponseUtils;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2003/02/01 05:30:28 $
+ * @version $Revision: 1.16 $ $Date: 2003/02/25 04:30:45 $
  */
 
 public class OptionTag extends BodyTagSupport {
@@ -344,8 +344,10 @@ public class OptionTag extends BodyTagSupport {
 
         if (this.text != null) {
             return (this.text);
-        } else {
+        } else if (this.key != null) {
             return (RequestUtils.message(pageContext, bundle, locale, key));
+        } else {
+            return "";  // no body text and no key to lookup so display nothing
         }
 
     }
