@@ -9,8 +9,7 @@
 <chapter name="Struts Resources" href="resources"> 
 
 <section name="Contributor Taglibs" href="taglibs"> 
-<p><a href="http://strutstestcase.sourceforge.net/"><b>StrutsTestCase v1.5 for JUnit</b></a> (by Deryl Seal) is an extension of the standard JUnit TestCase class that provides facilities for testing code based on the Struts framework.</p>
-<p><a href="http://husted.com/struts/resources/MonkeyStruts.htm"><b>MonkeyStruts</b></a> by Arron Bates. An approach to nesting beans.</p>
+<p><a href="http://www.keyboardmonkey.com/struts/index.html"><b>MonkeyStruts</b></a> by Arron Bates. An approach to nesting beans.</p>
 <p><a href="http://www.multimania.com/bist77/struts.php"><font size="2"><b>REGEXP.VALIDATOR.STRUTS</b></font></a> by Emmanuel Boudrant - A validation component that works with Struts 1.0, to manage form validation on server-side and client-side.</p>
 <p><a href="http://husted.com/struts/resources/struts-was.zip"><b>Struts-WAS.jar</b></a> by Christopher Assenza - Modified Struts 1.0 JAR for Websphere 3.5 or 4. Zipped for download. (For additional tips regarding Websphere 3.5 see <a href="http://jakarta.apache.org/struts/installation-was352-x.html">http://jakarta.apache.org/struts/installation-was352-x.html</a>.)</p>
 <p><a href="http://struts.application-servers.com/"><b>Struts Layout</b></a> by Improve - An extension library to      improve interfaces creation with Struts.</p>
