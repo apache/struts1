@@ -42,7 +42,7 @@
 <section name="Source Code Contributors" href="contributors.source">
 
     <p>
-        More than forty developers have contributed code or documentation to Struts.
+        More than fifty developers have contributed code or documentation to Struts.
         We've tried to list all of our volunteers on this page (and apologize to anyone we missed!).
     </p>
 
@@ -147,7 +147,9 @@
         <li>
             Steve Raeburn
         </li>
-
+        <li>
+            Leonardo Quijano
+        <li>
     </ul>
 
 </section>
@@ -703,7 +705,7 @@
     </p>
 
     <p>
-    To date I have mainly served to pitch in with odds and ends.  
+    To date I have mainly served to pitch in where needed.  
     I continue to amazed at the Struts committers' generous contributions of time, 
     insight, and good will. I feel fortunate to part of the struts team. 
     </p>
