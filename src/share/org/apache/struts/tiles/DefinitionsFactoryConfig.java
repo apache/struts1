@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.1 2002/07/11 16:20:32 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 16:20:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.2 2002/07/24 09:37:32 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/24 09:37:32 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Iterator;
+import java.io.Serializable;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -76,9 +77,9 @@ import org.apache.commons.beanutils.BeanUtils;
  *
  * @author Cedric Dumoulin
  * @since 1.1
- * @version $Revision: 1.1 $ $Date: 2002/07/11 16:20:32 $
+ * @version $Revision: 1.2 $ $Date: 2002/07/24 09:37:32 $
  */
-public class DefinitionsFactoryConfig
+public class DefinitionsFactoryConfig implements Serializable
 {
 
    /**
