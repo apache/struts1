@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Constants.java,v 1.6 2004/03/09 04:36:49 husted Exp $
- * $Revision: 1.6 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/BaseAction.java,v 1.1 2004/03/09 04:36:49 husted Exp $
+ * $Revision: 1.1 $
  * $Date: 2004/03/09 04:36:49 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,76 +59,62 @@
  *
  */
 
-
 package org.apache.struts.webapp.example;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.webapp.example.UserDatabase;
+import javax.servlet.http.HttpServletRequest;
 
 /**
- * Manifest constants for the example application.
+ * Base Action for MailReader application.
  *
- * @version $Revision: 1.6 $ $Date: 2004/03/09 04:36:49 $
+ * @version $Revision: 1.1 $ $Date: 2004/03/09 04:36:49 $
  */
+public class BaseAction extends Action {
 
-public final class Constants {
+    // ----------------------------------------------------- Instance Variables
+
+    /**
+     * The <code>Log</code> instance for this application.
+     */
+    protected Log log = LogFactory.getLog(Constants.PACKAGE);
+
+    // ------------------------------------------------------ Protected Methods
+
+    /**
+     * Return a reference to the UserDatabase
+     * or null if the database is not available.
+     * @param request The request we are processing
+     * @return a reference to the UserDatabase or null if the database is not available
+     */
+    protected UserDatabase getUserDatabase(HttpServletRequest request) {
+        return (UserDatabase) servlet.getServletContext().getAttribute(
+                Constants.DATABASE_KEY);
+    }
+
+    /**
+     * Return the local or global forward named "failure"
+     * or null if there is no such forward.
+     * @param mapping Our ActionMapping
+     * @return Return the mapping named "failure" or null if there is no such mapping.
+     */
+    protected ActionForward findFailure(ActionMapping mapping) {
+        return (mapping.findForward(Constants.FAILURE));
+    }
 
 
     /**
-     * The package name for this application.
+     * Return the mapping labeled "success"
+     * or null if there is no such mapping.
+     * @param mapping Our ActionMapping
+     * @return Return the mapping named "success" or null if there is no such mapping.
      */
-    public static final String PACKAGE = "org.apache.struts.webapp.example";
-
-
-    /**
-     * The token representing "failure" for this application.
-     */
-    public static final String FAILURE = "failure";
-
-
-    /**
-     * The token representing "success" for this application.
-     */
-    public static final String SUCCESS = "success";
-
-
-    /**
-     * The application scope attribute under which our user database
-     * is stored.
-     */
-    public static final String DATABASE_KEY = "database";
-
-
-    /**
-     * The session scope attribute under which the Subscription object
-     * currently selected by our logged-in User is stored.
-     */
-    public static final String SUBSCRIPTION_KEY = "subscription";
-
-
-    /**
-     * The session scope attribute under which the User object
-     * for the currently logged in user is stored.
-     */
-    public static final String USER_KEY = "user";
-
-
-    /**
-     * A static message in case database resource is not loaded.
-     */
-    public static final String ERROR_DATABASE_NOT_LOADED =
-        "ERROR:  User database not loaded -- check servlet container logs for error messages.";
-
-
-    /**
-     * A static message in case message resource is not loaded.
-     */
-    public static final String ERROR_MESSAGES_NOT_LOADED =
-        "ERROR:  Message resources not loaded -- check servlet container logs for error messages.";
-
-
-    /**
-     * The request attributes key under the WelcomeAction stores an ArrayList
-     * of error messages, if required resources are missing.
-     */
-    public static final String ERROR_KEY = "ERROR";
+    protected ActionForward findSuccess(ActionMapping mapping) {
+        return (mapping.findForward(Constants.SUCCESS));
+    }
 
 }
