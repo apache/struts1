@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Controller.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Controller.java,v 1.2 2002/11/05 14:14:24 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/11/05 14:14:24 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ public interface Controller
 {
 
    /**
-    * Method associated to a tile and called when immediately before tile is included.
+    * Method associated to a tile and called immediately before the tile is included.
     * @param tileContext Current tile context.
     * @param request Current request
     * @param response Current response

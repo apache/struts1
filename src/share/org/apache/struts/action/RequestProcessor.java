@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.19 2002/09/22 05:46:52 martinc Exp $
- * $Revision: 1.19 $
- * $Date: 2002/09/22 05:46:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.20 2002/11/05 14:10:07 cedric Exp $
+ * $Revision: 1.20 $
+ * $Date: 2002/11/05 14:10:07 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.19 $ $Date: 2002/09/22 05:46:52 $
+ * @version $Revision: 1.20 $ $Date: 2002/11/05 14:10:07 $
  * @since Struts 1.1
  */
 
@@ -374,6 +374,8 @@ public class RequestProcessor {
      * Forward or redirect to the specified destination, by the specified
      * mechanism.
      *
+     * This method takes the old ActionForward object as parameter. User should
+     * use {@link processForwardConfig} when possible.
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
      * @param forward The ActionForward controlling where we go next
@@ -394,6 +396,8 @@ public class RequestProcessor {
     /**
      * Forward or redirect to the specified destination, by the specified
      * mechanism.
+     * This method uses the 1.1b2 ForwardConfig object. It should be used in
+     * place of processActionForward(...).
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
