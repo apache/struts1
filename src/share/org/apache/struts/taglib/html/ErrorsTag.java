@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.24 2003/07/26 18:58:36 dgraham Exp $
- * $Revision: 1.24 $
- * $Date: 2003/07/26 18:58:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.25 2003/07/26 19:05:31 dgraham Exp $
+ * $Revision: 1.25 $
+ * $Date: 2003/07/26 19:05:31 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.24 $ $Date: 2003/07/26 18:58:36 $
+ * @version $Revision: 1.25 $ $Date: 2003/07/26 19:05:31 $
  */
 public class ErrorsTag extends TagSupport {
 
@@ -218,7 +218,7 @@ public class ErrorsTag extends TagSupport {
             if (!headerDone) {
                 if (headerPresent) {
                     message =
-                        RequestUtils.message(
+                        TagUtils.getInstance().message(
                             pageContext,
                             bundle,
                             locale,
@@ -231,7 +231,7 @@ public class ErrorsTag extends TagSupport {
             
             if (prefixPresent) {
                 message =
-                    RequestUtils.message(
+                    TagUtils.getInstance().message(
                         pageContext,
                         bundle,
                         locale,
@@ -240,7 +240,7 @@ public class ErrorsTag extends TagSupport {
             }
             
             message =
-                RequestUtils.message(
+                TagUtils.getInstance().message(
                     pageContext,
                     bundle,
                     locale,
@@ -253,7 +253,7 @@ public class ErrorsTag extends TagSupport {
             
             if (suffixPresent) {
                 message =
-                    RequestUtils.message(
+                    TagUtils.getInstance().message(
                         pageContext,
                         bundle,
                         locale,
@@ -264,7 +264,7 @@ public class ErrorsTag extends TagSupport {
         
         if (headerDone && footerPresent) {
             message =
-                RequestUtils.message(pageContext, bundle, locale, "errors.footer");
+                TagUtils.getInstance().message(pageContext, bundle, locale, "errors.footer");
             results.append(message);
         }
 
