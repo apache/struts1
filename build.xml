@@ -82,7 +82,7 @@
     <property name="project.name" value="jakarta-struts"/>
 
     <!-- Version of the project -->
-    <property name="project.version" value="1.0"/>
+    <property name="project.version" value="1.0.1"/>
 
 
 <!-- ========== Derived Properties ======================================== -->
@@ -144,6 +144,9 @@
         Create directories and copy files for the core struts library
 -->
     <target name="prepare.library" depends="init">
+        <mkdir dir="${build.home}/library/classes/META-INF"/>
+        <copy file="LICENSE"
+            tofile="${build.home}/library/classes/META-INF/LICENSE.txt"/>
         <mkdir dir="${build.home}/library/classes/META-INF/tlds"/>
         <copy file="${conf.share.dir}/struts.tld"
             tofile="${build.home}/library/classes/META-INF/taglib.tld"/>
