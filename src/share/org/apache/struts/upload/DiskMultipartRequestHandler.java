@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Hashtable;
 import java.util.Enumeration;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -84,29 +85,37 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
     }
     
     
-    protected DiskFile writeFile(MultipartElement element) throws IOException {
+    protected DiskFile writeFile(MultipartElement element) throws IOException,
+                                                                     ServletException {
         DiskFile theFile = null;
 
         //get a handle to some temporary file and open
         //a stream to it
         String tempDir = servlet.getTempDir();
         if (tempDir == null) {
-            tempDir = System.getProperty("java.io.tmpdir");
+            //attempt to retrieve the servlet container's temporary directory
+            ServletContext context = servlet.getServletConfig().getServletContext();
+            tempDir = (String) context.getAttribute("javax.servlet.context.tempdir");
+            
+            if (tempDir == null) {
+                //default to system-wide tempdir                
+                tempDir = System.getProperty("java.io.tmpdir");
+                
+                if (servlet.getDebug() > 1) {
+                    servlet.log("DiskMultipartRequestHandler.handleRequest(): " +
+                    "defaulting to java.io.tmpdir directory \"" +
+                    tempDir);
+                }
+            }
         }
         
         File tempDirectory = new File(tempDir);
-        if ((!tempDirectory.exists()) && (!tempDirectory.isDirectory())) {
-            tempDir = System.getProperty("java.io.tmpdir");
-            tempDirectory = new File(tempDir);
-
-            if (servlet.getDebug() > 1) {
-                servlet.log("DiskMultipartRequestHandler.handleRequest(): tempDir " +
-                "\"" + tempDirectory + "\" doesn't exist or isn't a " +
-                "directory, defaulting to java.io.tmpdir directory \"" +
-                tempDir);
-            }
+        
+        if ((!tempDirectory.exists()) || (!tempDirectory.isDirectory())) {
+            throw new ServletException("DiskMultipartRequestHandler: no " +
+                "temporary directory specified for disk write");
         }
-
+        
         File tempFile = File.createTempFile("strts", null, tempDirectory);
         FileOutputStream fos = new FileOutputStream(tempFile);
 
