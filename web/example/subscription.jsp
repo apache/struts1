@@ -1,6 +1,9 @@
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/app.tld"    prefix="app" %>
 <%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
+<%@ taglib uri="/WEB-INF/struts-form.tld" prefix="form" %>
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <app:checkLogon/>
 
 <%-- In real life, these would be loaded from a database --%>
@@ -13,28 +16,28 @@
 
 <html>
 <head>
-<struts:ifPropertyEquals name="subscriptionForm" scope="request"
-                         property="action" value="Create">
+<logic:equal name="subscriptionForm" property="action"
+            scope="request" value="Create">
   <title><struts:message key="subscription.title.create"/></title>
-</struts:ifPropertyEquals>
-<struts:ifPropertyEquals name="subscriptionForm" scope="request"
-                         property="action" value="Delete">
+</logic:equal>
+<logic:equal name="subscriptionForm" property="action"
+            scope="request" value="Delete">
   <title><struts:message key="subscription.title.delete"/></title>
-</struts:ifPropertyEquals>
-<struts:ifPropertyEquals name="subscriptionForm" scope="request"
-                         property="action" value="Edit">
+</logic:equal>
+<logic:equal name="subscriptionForm" property="action"
+            scope="request" value="Edit">
   <title><struts:message key="subscription.title.edit"/></title>
-</struts:ifPropertyEquals>
+</logic:equal>
 </head>
 <body bgcolor="white">
 
 <struts:errors/>
 
-<struts:form action="saveSubscription.do" name="subscriptionForm"
-              focus="host"
-              scope="request"
-               type="org.apache.struts.example.SubscriptionForm">
-<struts:hidden property="action"/>
+<form:form action="saveSubscription.do" name="subscriptionForm"
+            focus="host"
+            scope="request"
+             type="org.apache.struts.example.SubscriptionForm">
+<form:hidden property="action"/>
 <table border="0" width="100%">
 
   <tr>
@@ -42,7 +45,7 @@
       <struts:message key="prompt.username"/>
     </th>
     <td align="left">
-        <struts:htmlProperty name="user" property="username"/>
+        <bean:write name="user" property="username" filter="true"/>
     </td>
   </tr>
 
@@ -51,7 +54,7 @@
       <struts:message key="prompt.mailHostname"/>
     </th>
     <td align="left">
-      <struts:textarea property="host" cols="50" rows="1"/>
+      <form:textarea property="host" cols="50" rows="1"/>
     </td>
   </tr>
 
@@ -60,7 +63,7 @@
       <struts:message key="prompt.mailUsername"/>
     </th>
     <td align="left">
-      <struts:text property="username" size="50"/>
+      <form:text property="username" size="50"/>
     </td>
   </tr>
 
@@ -69,7 +72,7 @@
       <struts:message key="prompt.mailPassword"/>
     </th>
     <td align="left">
-      <struts:password property="password" size="50"/>
+      <form:password property="password" size="50"/>
     </td>
   </tr>
 
@@ -78,10 +81,10 @@
       <struts:message key="prompt.mailServerType"/>
     </th>
     <td align="left">
-      <struts:select property="type">
-        <struts:options name="serverTypeValues"
-                   labelName="serverTypeLabels"/>
-      </struts:select>
+      <form:select property="type">
+        <form:options name="serverTypeValues"
+                 labelName="serverTypeLabels"/>
+      </form:select>
     </td>
   </tr>
 
@@ -90,39 +93,48 @@
       <struts:message key="prompt.autoConnect"/>
     </th>
     <td align="left">
-      <struts:checkbox property="autoConnect"/>
+      <form:checkbox property="autoConnect"/>
     </td>
   </tr>
 
   <tr>
     <td align="right">
-      <struts:ifParameterNotEquals name="action" value="Delete">
-        <struts:submit>
+      <logic:equal name="subscriptionForm" property="action"
+                  scope="request" value="Create">
+        <form:submit>
           <struts:message key="button.save"/>
-        </struts:submit>
-      </struts:ifParameterNotEquals>
-      <struts:ifParameterEquals name="action" value="Delete">
-        <struts:submit>
+        </form:submit>
+      </logic:equal>
+      <logic:equal name="subscriptionForm" property="action"
+                  scope="request" value="Delete">
+        <form:submit>
           <struts:message key="button.confirm"/>
-        </struts:submit>
-      </struts:ifParameterEquals>
+        </form:submit>
+      </logic:equal>
+      <logic:equal name="subscriptionForm" property="action"
+                  scope="request" value="Edit">
+        <form:submit>
+          <struts:message key="button.save"/>
+        </form:submit>
+      </logic:equal>
     </td>
     <td align="left">
-      <struts:ifParameterNotEquals name="action" value="Delete">
-        <struts:reset>
+      <logic:notEqual name="subscriptionForm" property="action"
+                     scope="request" value="Delete">
+        <form:reset>
           <struts:message key="button.reset"/>
-        </struts:reset>
-      </struts:ifParameterNotEquals>
+        </form:reset>
+      </logic:notEqual>
       &nbsp;
-      <struts:cancel>
+      <form:cancel>
         <struts:message key="button.cancel"/>
-      </struts:cancel>
+      </form:cancel>
     </td>
   </tr>
 
 </table>
 
-</struts:form>
+</form:form>
 
 </body>
 </html>

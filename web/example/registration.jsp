@@ -1,6 +1,9 @@
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/app.tld"    prefix="app" %>
 <%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
+<%@ taglib uri="/WEB-INF/struts-form.tld" prefix="form" %>
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <struts:ifPropertyEquals name="registrationForm" scope="request"
                          property="action" value="Edit">
   <app:checkLogon/>
@@ -8,22 +11,22 @@
 
 <html>
 <head>
-<struts:ifPropertyEquals name="registrationForm" scope="request"
-                         property="action" value="Create">
+<logic:equal name="registrationForm" property="action"
+            scope="request" value="Create">
   <title><struts:message key="registration.title.create"/></title>
-</struts:ifPropertyEquals>
-<struts:ifPropertyEquals name="registrationForm" scope="request"
-                         property="action" value="Edit">
+</logic:equal>
+<logic:equal name="registrationForm" property="action"
+            scope="request" value="Edit">
   <title><struts:message key="registration.title.edit"/></title>
-</struts:ifPropertyEquals>
+</logic:equal>
 </head>
 <body bgcolor="white">
 
 <struts:errors/>
 
-<struts:form action="saveRegistration.do" name="registrationForm"
-             scope="request" type="org.apache.struts.example.RegistrationForm">
-<struts:hidden property="action"/>
+<form:form action="saveRegistration.do" name="registrationForm"
+            scope="request" type="org.apache.struts.example.RegistrationForm">
+<form:hidden property="action"/>
 <table border="0" width="100%">
 
   <tr>
@@ -31,15 +34,16 @@
       <struts:message key="prompt.username"/>
     </th>
     <td align="left">
-      <struts:ifPropertyEquals name="registrationForm" scope="request"
-                               property="action" value="Create">
-        <struts:text property="username" size="16" maxlength="16"/>
-      </struts:ifPropertyEquals>
-      <struts:ifPropertyEquals name="registrationForm" scope="request"
-                               property="action" value="Edit">
-        <struts:property property="username"/>
-	<struts:hidden property="username"/>
-      </struts:ifPropertyEquals>
+      <logic:equal name="registrationForm" property="action"
+                  scope="request" value="Create">
+        <form:text property="username" size="16" maxlength="16"/>
+      </logic:equal>
+      <logic:equal name="registrationForm" property="action"
+                  scope="request" value="Edit">
+        <bean:write name="registrationForm" property="username"
+                   scope="request" filter="true"/>
+	<form:hidden property="username"/>
+      </logic:equal>
     </td>
   </tr>
 
@@ -48,7 +52,7 @@
       <struts:message key="prompt.password"/>
     </th>
     <td align="left">
-      <struts:password property="password" size="16" maxlength="16"/>
+      <form:password property="password" size="16" maxlength="16"/>
     </td>
   </tr>
 
@@ -57,7 +61,7 @@
       <struts:message key="prompt.password2"/>
     </th>
     <td align="left">
-      <struts:password property="password2" size="16" maxlength="16"/>
+      <form:password property="password2" size="16" maxlength="16"/>
     </td>
   </tr>
 
@@ -66,7 +70,7 @@
       <struts:message key="prompt.fullName"/>
     </th>
     <td align="left">
-      <struts:text property="fullName" size="50"/>
+      <form:text property="fullName" size="50"/>
     </td>
   </tr>
 
@@ -75,7 +79,7 @@
       <struts:message key="prompt.fromAddress"/>
     </th>
     <td align="left">
-      <struts:text property="fromAddress" size="50"/>
+      <form:text property="fromAddress" size="50"/>
     </td>
   </tr>
 
@@ -84,32 +88,32 @@
       <struts:message key="prompt.replyToAddress"/>
     </th>
     <td align="left">
-      <struts:text property="replyToAddress" size="50"/>
+      <form:text property="replyToAddress" size="50"/>
     </td>
   </tr>
 
   <tr>
     <td align="right">
-      <struts:submit>
+      <form:submit>
         <struts:message key="button.save"/>
-      </struts:submit>
+      </form:submit>
     </td>
     <td align="left">
-      <struts:reset>
+      <form:reset>
         <struts:message key="button.reset"/>
-      </struts:reset>
+      </form:reset>
       &nbsp;
-      <struts:cancel>
+      <form:cancel>
         <struts:message key="button.cancel"/>
-      </struts:cancel>
+      </form:cancel>
     </td>
   </tr>
 
 </table>
-</struts:form>
+</form:form>
 
-<struts:ifPropertyEquals name="registrationForm" scope="request"
-                         property="action" value="Edit">
+<logic:equal name="registrationForm" property="action"
+            scope="request" value="Edit">
 
 <div align="center">
 <h3><struts:message key="heading.subscriptions"/></h3>
@@ -135,19 +139,19 @@
     </th>
   </tr>
 
-<struts:enumerate id="subscription" name="user" property="subscriptions">
+<logic:iterate id="subscription" name="user" property="subscriptions">
   <tr>
     <td align="left">
-      <struts:htmlProperty name="subscription" property="host"/>
+      <bean:write name="subscription" property="host" filter="true"/>
     </td>
     <td align="left">
-      <struts:htmlProperty name="subscription" property="username"/>
+      <bean:write name="subscription" property="username" filter="true"/>
     </td>
     <td align="center">
-      <struts:htmlProperty name="subscription" property="type"/>
+      <bean:write name="subscription" property="type" filter="true"/>
     </td>
     <td align="center">
-      <struts:htmlProperty name="subscription" property="autoConnect"/>
+      <bean:write name="subscription" property="autoConnect"/>
     </td>
     <td align="center">
       <app:linkSubscription href="editSubscription.do?action=Delete">
@@ -158,7 +162,7 @@
       </app:linkSubscription>
     </td>
   </tr>
-</struts:enumerate>
+</logic:iterate>
 
 </table>
 
@@ -166,7 +170,7 @@
   <struts:message key="registration.addSubscription"/>
 </app:linkUser>
 
-</struts:ifPropertyEquals>
+</logic:equal>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
+<%@ taglib uri="/WEB-INF/struts-form.tld" prefix="form" %>
 
 <html>
 <head>
@@ -9,8 +10,8 @@
 
 <struts:errors/>
 
-<struts:form action="logon.do" name="logonForm" focus="username"
-               scope="request" type="org.apache.struts.example.LogonForm">
+<form:form action="logon.do" name="logonForm" focus="username"
+           scope="request" type="org.apache.struts.example.LogonForm">
 <table border="0" width="100%">
 
   <tr>
@@ -18,7 +19,7 @@
       <struts:message key="prompt.username"/>
     </th>
     <td align="left">
-      <struts:text property="username" size="16" maxlength="16"/>
+      <form:text property="username" size="16" maxlength="16"/>
     </td>
   </tr>
 
@@ -27,22 +28,22 @@
       <struts:message key="prompt.password"/>
     </th>
     <td align="left">
-      <struts:password property="password" size="16" maxlength="16"/>
+      <form:password property="password" size="16" maxlength="16"/>
     </td>
   </tr>
 
   <tr>
     <td align="right">
-      <struts:submit property="submit" value="Submit"/>
+      <form:submit property="submit" value="Submit"/>
     </td>
     <td align="left">
-      <struts:reset/>
+      <form:reset/>
     </td>
   </tr>
 
 </table>
 
-</struts:form>
+</form:form>
 
 </body>
 </html>

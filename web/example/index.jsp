@@ -1,5 +1,6 @@
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 
 <html>
 <head>
@@ -7,21 +8,20 @@
 </head>
 <body bgcolor="white">
 
-<struts:ifAttributeMissing name="database" scope="application">
+<logic:notPresent name="database" scope="application">
   <font color="red">
     ERROR:  User database not loaded -- check servlet container logs
     for error messages.
   </font>
   <hr>
-</struts:ifAttributeMissing>
+</logic:notPresent>
 
-<struts:ifAttributeMissing name="org.apache.struts.action.MESSAGE"
- scope="application">
+<logic:notPresent name="org.apache.struts.action.MESSAGE" scope="application">
   <font color="red">
     ERROR:  Application resources not loaded -- check servlet container
     logs for error messages.
   </font>
-</struts:ifAttributeMissing>
+</logic:notPresent>
 
 <h3><struts:message key="index.heading"/></h3>
 <ul>

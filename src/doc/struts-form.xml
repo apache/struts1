@@ -1960,16 +1960,6 @@
 		</attribute>	
 		
 		<attribute>
-			<name>property</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-			<info>
-				Name of the request parameter that will be included with this
-				submission, set to the specified value. 
-			</info>
-		</attribute>
-		
-		<attribute>
 			<name>style</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
@@ -2004,7 +1994,7 @@
 		<summary>
 			Render A Select Element
 		</summary>
-		<tagclass>org.apache.struts.taglib.form.ResetTag</tagclass>
+		<tagclass>org.apache.struts.taglib.form.SelectTag</tagclass>
 		<bodycontent>JSP</bodycontent>
 		<info>
 			Custom tag that represents an HTML select element, associated with a
@@ -2023,16 +2013,17 @@
 			</info>
 		</attribute>
 		
-		<attribute>
-			<name>accesskey</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-			<info>
-				Whether or not multiple selections be allowed.  Any non-null
-				value will trigger rendering this.
-			</info>
-		</attribute>
-		
+                <attribute>
+                        <name>multiple</name>
+                        <required>false</required>
+                        <rtexprvalue>false</rtexprvalue>
+                        <info>
+                                If set to any arbitrary value, the rendered
+                                select element will support
+                                multiple selections.
+                        </info>
+                </attribute>
+
 		<attribute>
 			<name>name</name>
 			<required>false</required>
@@ -2040,16 +2031,6 @@
 			<info>
 				The fully-qualified java class name of the bean containing the
 				underlying property.
-			</info>
-		</attribute>
-		
-				<attribute>
-			<name>accesskey</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-			<info>
-				The keyboard character used to move focus immediately to this
-				element.
 			</info>
 		</attribute>
 		
@@ -2264,36 +2245,6 @@
 		</attribute>
 		
 		<attribute>
-			<name>accesskey</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-			<info>
-				Whether or not multiple selections be allowed.  Any non-null
-				value will trigger rendering this.
-			</info>
-		</attribute>
-		
-		<attribute>
-			<name>name</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-			<info>
-				The fully-qualified java class name of the bean containing the
-				underlying property.
-			</info>
-		</attribute>
-		
-				<attribute>
-			<name>accesskey</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-			<info>
-				The keyboard character used to move focus immediately to this
-				element.
-			</info>
-		</attribute>
-		
-		<attribute>
 			<name>onblur</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
@@ -2427,7 +2378,7 @@
 		
 		<attribute>
 			<name>property</name>
-			<required>true</required>
+			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 			<info>
 				Name of the request parameter that will be included with this

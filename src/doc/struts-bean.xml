@@ -3,7 +3,7 @@
 
 <properties>
   <author>Craig R. McClanahan</author>
-  <title>The Struts Framework Project - Bean/Property Tags</title>
+  <title>The Struts Framework Project - Bean Tags</title>
 </properties>
 
 <body>
@@ -13,8 +13,8 @@
 
   <tlibversion>1.0</tlibversion>
   <jspversion>1.1</jspversion>
-  <shortname>Struts Bean/Property Tags</shortname>
-  <display-name>Bean and Property Definition Tags</display-name>
+  <shortname>Struts Bean Tags</shortname>
+  <display-name>Struts Bean Tags</display-name>
   <uri>http://jakarta.apache.org/struts/tags-bean-1.0</uri>
   <info>
   <p>This tag library contains tags useful in accessing beans and their
