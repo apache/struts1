@@ -11,7 +11,7 @@
 
 <taglib>
 
-  <tlibversion>1.0</tlibversion>
+  <tlibversion>1.2</tlibversion>
   <jspversion>1.1</jspversion>
   <shortname>logic</shortname>
   <display-name>Struts Logic Tags</display-name>

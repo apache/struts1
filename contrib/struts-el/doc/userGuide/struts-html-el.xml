@@ -12,7 +12,7 @@
 
 <taglib>
 
-  <tlibversion>1.0</tlibversion>
+  <tlibversion>1.2</tlibversion>
   <jspversion>1.1</jspversion>
   <shortname>html</shortname>
   <display-name>Page Construction Tags</display-name>

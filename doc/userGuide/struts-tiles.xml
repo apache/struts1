@@ -13,7 +13,7 @@
 
   <!-- ============== Tag Library Description Elements ============= -->
 
-  <tlibversion>1.0</tlibversion>
+  <tlibversion>1.2</tlibversion>
   <jspversion>1.1</jspversion>
   <shortname>tiles</shortname>
   <display-name>Tiles Tag Library</display-name>
