@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.6 2003/02/27 19:19:42 cedric Exp $
- * $Revision: 1.6 $
- * $Date: 2003/02/27 19:19:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.7 2003/03/16 16:02:11 husted Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/03/16 16:02:11 $
  *
  * ====================================================================
  *
@@ -406,11 +406,10 @@ public class I18nFactorySet extends FactorySet
 
     /**
      * Calculate the postixes along the search path from the base bundle to the
-     * bundle specified by <code>baseName</code> and <code>locale</code>.
-     * Method copied from java.util.ResourceBundle.
-     * @param baseName The base bundle name.
-     * @param locale The locale.
-     * @return List containing postixes.
+     * bundle specified by baseName and locale.
+     * Method copied from java.util.ResourceBundle
+     * @param baseName the base bundle name
+     * @param locale the locale
      */
     private static List calculatePostixes(String baseName, Locale locale) {
         final List result = new ArrayList(MAX_BUNDLES_SEARCHED);
@@ -418,24 +417,37 @@ public class I18nFactorySet extends FactorySet
         final int languageLength = language.length();
         final String country = locale.getCountry();
         final int countryLength = country.length();
+        final String variant = locale.getVariant();
+        final int variantLength = variant.length();
 
-        if (languageLength + countryLength == 0) {
+        if (languageLength + countryLength + variantLength == 0) {
             //The locale is "", "", "".
             return result;
         }
         final StringBuffer temp = new StringBuffer(baseName);
         temp.append('_');
         temp.append(language);
-        result.add(temp.toString());
 
-        if (countryLength == 0) {
+        if(languageLength > 0)
+            result.add(temp.toString());
+
+        if (countryLength + variantLength == 0)
             return result;
-        }
+
         temp.append('_');
         temp.append(country);
-        result.add(temp.toString());
 
-        return result;
+        if(countryLength > 0)
+            result.add(temp.toString());
+
+        if(variantLength == 0) {
+            return result;
+        } else {
+            temp.append('_');
+            temp.append(variant);
+            result.add(temp.toString());
+            return result;
+        }
     }
 
     /**
