@@ -275,7 +275,7 @@
         <p><b>1.5 considerations</b></p>
 
         <p>
-            Based on our own work with the "experimental" members inroduced in 1.3.x, we
+            Based on our own work with the "experimental" members introduced in 1.3.x, we
             might consider some other changes.
         </p>
 
@@ -285,7 +285,7 @@
             and ActionCommand implementations are supported. People could then
             mix-and-match Actions with ActionCommands (or even chains of ActionCommands).
             We might even support placing an ActionCommand interface on ActionForm, so
-            people could skip having a sepate Action or ActionCommand class. The ActionForm
+            people could skip having a seperate Action or ActionCommand class. The ActionForm
             could do it all.
         </p>
 
@@ -424,7 +424,7 @@
 
         <li>
             Struts APIs assume servlet API objects (ServletContext, ServletRequest, ServletResponse), whereas JSR-168
-            talks aboutPortletContext, PortletRequest, and PortletResponse.
+            talks about PortletContext, PortletRequest, and PortletResponse.
             We'd either need to change the calling sequence for Action.execute() -- problematic for backwards
             compatibility -- or fake it somehow in a portlet environment.
         </li>
