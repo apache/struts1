@@ -47,12 +47,13 @@
   </action>
 
   <!-- Save mail subscription -->
-  <action    path="/saveSubscription"
-      actionClass="org.apache.struts.example.SaveSubscriptionAction"
-    formAttribute="subscriptionForm"
-        formClass="org.apache.struts.example.SubscriptionForm"
-        inputForm="/subscription.jsp">
-    <forward name="success"    path="/editRegistration.do?action=Edit"/>
+  <action     path="/saveSubscription"
+       actionClass="org.apache.struts.example.SaveSubscriptionAction">
+    <property name="formAttribute" value="subscriptionForm"/>
+    <property name="formClass"
+             value="org.apache.struts.example.SubscriptionForm"/>
+    <property name="inputForm"     value="/subscription.jsp"/>
+    <forward  name="success"        path="/editRegistration.do?action=Edit"/>
   </action>
 
 </action-mappings>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.15 2000/06/30 01:19:32 craigmcc Exp $
- * $Revision: 1.15 $
- * $Date: 2000/06/30 01:19:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.16 2000/07/16 00:49:21 craigmcc Exp $
+ * $Revision: 1.16 $
+ * $Date: 2000/07/16 00:49:21 $
  *
  * ====================================================================
  *
@@ -164,7 +164,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2000/06/30 01:19:32 $
+ * @version $Revision: 1.16 $ $Date: 2000/07/16 00:49:21 $
  */
 
 public class ActionServlet
@@ -581,11 +581,17 @@ public class ActionServlet
 	digester.addSetProperties("action-mappings/action/forward");
 	digester.addSetNext("action-mappings/action/forward", "addForward",
 			    "org.apache.struts.action.ActionForward");
+	digester.addSetProperty("action-mappings/action/forward/property",
+				"name", "value");
+	digester.addSetProperty("action-mappings/action/property",
+				"name", "value");
 	digester.addObjectCreate("action-mappings/forward",
 				 forwardClass, "className");
 	digester.addSetProperties("action-mappings/forward");
 	digester.addSetNext("action-mappings/forward", "addForward",
 			    "org.apache.struts.action.ActionForward");
+	digester.addSetProperty("action-mappings/forward/property",
+				"name", "value");
 
 	// Parse the input stream to configure our mappings
 	try {

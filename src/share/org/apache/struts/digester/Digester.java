@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.5 2000/06/23 19:33:34 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/06/23 19:33:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.6 2000/07/16 00:49:21 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/07/16 00:49:21 $
  *
  * ====================================================================
  * 
@@ -142,7 +142,7 @@ import org.xml.sax.SAXParseException;
  * hard code the configuration logic.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/06/23 19:33:34 $
+ * @version $Revision: 1.6 $ $Date: 2000/07/16 00:49:21 $
  */
 
 public final class Digester extends HandlerBase {
@@ -537,7 +537,7 @@ public final class Digester extends HandlerBase {
 		try {
 		    ((Rule) rules.elementAt(i)).begin(list);
 		} catch (Exception e) {
-		    log("Begin event through exception");
+		    log("Begin event threw exception", e);
 		    throw new SAXException(e);
 		}
 	    }
@@ -944,6 +944,21 @@ public final class Digester extends HandlerBase {
 
 	addRule(pattern,
 	        new SetPropertiesRule(this));
+
+    }
+
+
+    /**
+     * Add a "set property" rule for the specified parameters.
+     *
+     * @param pattern Element matching pattern
+     * @param name Attribute name containing the property name to be set
+     * @param value Attribute name containing the property value to set
+     */
+    public void addSetProperty(String pattern, String name, String value) {
+
+	addRule(pattern,
+		new SetPropertyRule(this, name, value));
 
     }
 
