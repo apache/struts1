@@ -51,8 +51,8 @@
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
- 
- 
+
+
 package org.apache.struts.validator.util;
 
 import java.io.Serializable;
@@ -70,7 +70,7 @@ import org.apache.struts.action.ActionErrors;
 
 
 /**
- * <p>This class performs validations.  The methods are can be configured to be 
+ * <p>This class performs validations.  The methods are can be configured to be
  * used in the framework in the validation.xml file.  (See example webapp)</p>
  *
  * @author David Winterfeldt
@@ -81,22 +81,22 @@ public class StrutsValidator implements Serializable {
      * Commons Logging instance.
     */
     private static Log LOG = LogSource.getInstance(StrutsValidator.class.getName());
-    
+
     /**
-     * <p>Checks if the field isn't null and length of the field is greater than zero not 
+     * <p>Checks if the field isn't null and length of the field is greater than zero not
      * including whitespace.</p>
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
     */
-    public static boolean validateRequired(Object bean, 
-			                   ValidatorAction va, Field field, 
-			                   ActionErrors errors, 
+    public static boolean validateRequired(Object bean,
+			                   ValidatorAction va, Field field,
+			                   ActionErrors errors,
                                            HttpServletRequest request) {
 
        String value = null;
@@ -108,7 +108,7 @@ public class StrutsValidator implements Serializable {
 
           return false;
        } else {
-          return true;	
+          return true;
        }
     }
 
@@ -117,29 +117,29 @@ public class StrutsValidator implements Serializable {
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
     */
-    public static boolean validateMask(Object bean, 
-			               ValidatorAction va, Field field, 
-			               ActionErrors errors, 
+    public static boolean validateMask(Object bean,
+			               ValidatorAction va, Field field,
+			               ActionErrors errors,
                                        HttpServletRequest request) {
-         
+
          String mask = field.getVarValue("mask");
-	 
+
 	 if (field.getProperty() != null && field.getProperty().length() > 0) {
 	    String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
-            
+
             try {
 	       if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.matchRegexp(value, mask)) {
 	          errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
-            
+
                   return false;
                } else {
-                  return true;	
+                  return true;
                }
 	    } catch (RESyntaxException e) {
 	       LOG.error(e.getMessage(), e);
@@ -147,34 +147,34 @@ public class StrutsValidator implements Serializable {
 	       LOG.error(e.getMessage(), e);
 	    }
          }
-         
+
          return true;
-    }        
-    
+    }
+
 
     /**
      * <p>Checks if the field can safely be converted to a byte primitive.</p>
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
     */
-    public static boolean validateByte(Object bean, 
-			     ValidatorAction va, Field field, 
-			     ActionErrors errors, 
+    public static boolean validateByte(Object bean,
+			     ValidatorAction va, Field field,
+			     ActionErrors errors,
                              HttpServletRequest request) {
-       
+
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
 
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isByte(value)) {
           errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
           return false;
        } else {
-          return true;	
+          return true;
        }
     }
 
@@ -183,23 +183,23 @@ public class StrutsValidator implements Serializable {
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
     */
-    public static boolean validateShort(Object bean, 
-			      ValidatorAction va, Field field, 
-			      ActionErrors errors, 
+    public static boolean validateShort(Object bean,
+			      ValidatorAction va, Field field,
+			      ActionErrors errors,
                               HttpServletRequest request) {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
-       
+
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isShort(value)) {
           errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
           return false;
        } else {
-          return true;	
+          return true;
        }
     }
 
@@ -208,23 +208,23 @@ public class StrutsValidator implements Serializable {
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
     */
-    public static boolean validateInteger(Object bean, 
-			        ValidatorAction va, Field field, 
-			        ActionErrors errors, 
+    public static boolean validateInteger(Object bean,
+			        ValidatorAction va, Field field,
+			        ActionErrors errors,
                                 HttpServletRequest request) {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
-       
+
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isInt(value)) {
           errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
           return false;
        } else {
-          return true;	
+          return true;
        }
     }
 
@@ -233,23 +233,23 @@ public class StrutsValidator implements Serializable {
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
-    */   
-    public static boolean validateLong(Object bean, 
-			     ValidatorAction va, Field field, 
-			     ActionErrors errors, 
+    */
+    public static boolean validateLong(Object bean,
+			     ValidatorAction va, Field field,
+			     ActionErrors errors,
                              HttpServletRequest request) {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
-       
+
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isLong(value)) {
           errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
           return false;
        } else {
-          return true;	
+          return true;
        }
     }
 
@@ -258,23 +258,23 @@ public class StrutsValidator implements Serializable {
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
     */
-    public static boolean validateFloat(Object bean, 
-			      ValidatorAction va, Field field, 
-			      ActionErrors errors, 
+    public static boolean validateFloat(Object bean,
+			      ValidatorAction va, Field field,
+			      ActionErrors errors,
                               HttpServletRequest request) {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
-       
+
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isFloat(value)) {
           errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
           return false;
        } else {
-          return true;	
+          return true;
        }
     }
 
@@ -283,47 +283,47 @@ public class StrutsValidator implements Serializable {
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
     */
-    public static boolean validateDouble(Object bean, 
-			       ValidatorAction va, Field field, 
-			       ActionErrors errors, 
+    public static boolean validateDouble(Object bean,
+			       ValidatorAction va, Field field,
+			       ActionErrors errors,
                                HttpServletRequest request) {
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
-       
+
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isDouble(value)) {
           errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
           return false;
        } else {
-          return true;	
+          return true;
        }
     }
 
     /**
-     * <p>Checks if the field is a valid date.  If the field has a datePattern variable, 
-     * that will be used to format <code>java.text.SimpleDateFormat</code>.  If the field 
-     * has a datePatternStrict variable, that will be used to format 
-     * <code>java.text.SimpleDateFormat</code> and the length will be checked so '2/12/1999' 
+     * <p>Checks if the field is a valid date.  If the field has a datePattern variable,
+     * that will be used to format <code>java.text.SimpleDateFormat</code>.  If the field
+     * has a datePatternStrict variable, that will be used to format
+     * <code>java.text.SimpleDateFormat</code> and the length will be checked so '2/12/1999'
      * will not pass validation with the format 'MM/dd/yyyy' because the month isn't two digits.
-     * If no datePattern variable is specified, then the field gets the DateFormat.SHORT 
-     * format for the locale.  The setLenient method is set to <code>false</code> for all 
+     * If no datePattern variable is specified, then the field gets the DateFormat.SHORT
+     * format for the locale.  The setLenient method is set to <code>false</code> for all
      * variations.</p>
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
     */
-    public static boolean validateDate(Object bean, 
-			     ValidatorAction va, Field field, 
-			     ActionErrors errors, 
+    public static boolean validateDate(Object bean,
+			     ValidatorAction va, Field field,
+			     ActionErrors errors,
                              HttpServletRequest request) {
 
 	boolean bValid = true;
@@ -349,30 +349,30 @@ public class StrutsValidator implements Serializable {
 
         if (!bValid)
           errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
-        
+
         return bValid;
-    }	
+    }
 
 
 
 
     /**
-     * <p>Checks if a fields value is within a range (min &amp; max specified 
+     * <p>Checks if a fields value is within a range (min &amp; max specified
      * in the vars attribute).</p>
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
     */
-    public static boolean validateRange(Object bean, 
-			      ValidatorAction va, Field field, 
-			      ActionErrors errors, 
+    public static boolean validateRange(Object bean,
+			      ValidatorAction va, Field field,
+			      ActionErrors errors,
                               HttpServletRequest request) {
-       
+
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
        String sMin = field.getVarValue("min");
        String sMax = field.getVarValue("max");
@@ -382,10 +382,10 @@ public class StrutsValidator implements Serializable {
              int iValue = Integer.parseInt(value);
              int min = Integer.parseInt(sMin);
              int max = Integer.parseInt(sMax);
-             
+
              if (!GenericValidator.isInRange(iValue, min, max)) {
                 errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
-                
+
                 return false;
              }
           } catch (Exception e) {
@@ -393,7 +393,7 @@ public class StrutsValidator implements Serializable {
              return false;
           }
        }
-       
+
        return true;
     }
 
@@ -404,26 +404,26 @@ public class StrutsValidator implements Serializable {
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
     */
-    public static boolean validateCreditCard(Object bean, 
-			           ValidatorAction va, Field field, 
-			           ActionErrors errors, 
+    public static boolean validateCreditCard(Object bean,
+			           ValidatorAction va, Field field,
+			           ActionErrors errors,
                                    HttpServletRequest request) {
- 
+
        if (field.getProperty() != null && field.getProperty().length() > 0) {
           String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
-       
+
           if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isCreditCard(value)) {
              errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
-            
+
              return false;
           } else {
-             return true;	
+             return true;
           }
        } else {
           return true;
@@ -432,24 +432,24 @@ public class StrutsValidator implements Serializable {
 
     /**
      * <p>Checks if a field has a valid e-mail address.</p>
-     * <p>Based on a script by Sandeep V. Tamhankar (stamhankar@hotmail.com), 
+     * <p>Based on a script by Sandeep V. Tamhankar (stamhankar@hotmail.com),
      * http://javascript.internet.com</p>
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
     */
-    public static boolean validateEmail(Object bean, 
-			      ValidatorAction va, Field field, 
-			      ActionErrors errors, 
+    public static boolean validateEmail(Object bean,
+			      ValidatorAction va, Field field,
+			      ActionErrors errors,
                               HttpServletRequest request) {
-       
+
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
-       
+
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isEmail(value)) {
           errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
           return false;
@@ -459,20 +459,20 @@ public class StrutsValidator implements Serializable {
     }
 
     /**
-     * <p>Checks if the field's length is less than or equal to the maximum value.  A <code>Null</code> 
+     * <p>Checks if the field's length is less than or equal to the maximum value.  A <code>Null</code>
      * will be considered an error.</p>
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
     */
-    public static boolean validateMaxLength(Object bean, 
-			                    ValidatorAction va, Field field, 
-			                    ActionErrors errors, 
+    public static boolean validateMaxLength(Object bean,
+			                    ValidatorAction va, Field field,
+			                    ActionErrors errors,
                                             HttpServletRequest request) {
 
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
@@ -481,10 +481,10 @@ public class StrutsValidator implements Serializable {
        if (value != null) {
           try {
              int max = Integer.parseInt(sMaxLength);
-             
+
              if (!GenericValidator.maxLength(value, max)) {
                 errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
-                
+
                 return false;
              }
           } catch (Exception e) {
@@ -492,26 +492,26 @@ public class StrutsValidator implements Serializable {
              return false;
           }
        }
-       
+
        return true;
     }
 
 
     /**
-     * <p>Checks if the field's length is greater than or equal to the minimum value.  
+     * <p>Checks if the field's length is greater than or equal to the minimum value.
      * A <code>Null</code> will be considered an error.</p>
      *
      * @param 	bean 		The bean validation is being performed on.
      * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
-     * @param 	field 		The <code>Field</code> object associated with the current field 
+     * @param 	field 		The <code>Field</code> object associated with the current field
      *				being validated.
-     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any
      *                          validation errors occur.
      * @param 	request         Current request object.
     */
-    public static boolean validateMinLength(Object bean, 
-			                    ValidatorAction va, Field field, 
-			                    ActionErrors errors, 
+    public static boolean validateMinLength(Object bean,
+			                    ValidatorAction va, Field field,
+			                    ActionErrors errors,
                                             HttpServletRequest request) {
 
        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
@@ -520,10 +520,10 @@ public class StrutsValidator implements Serializable {
        if (value != null) {
           try {
              int min = Integer.parseInt(sMinLength);
-             
+
              if (!GenericValidator.minLength(value, min)) {
                 errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
-                
+
                 return false;
              }
           } catch (Exception e) {
@@ -531,7 +531,7 @@ public class StrutsValidator implements Serializable {
              return false;
           }
        }
-       
+
        return true;
     }
 

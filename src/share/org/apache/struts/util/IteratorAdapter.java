@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/IteratorAdapter.java,v 1.1 2001/03/31 19:51:17 rleland Exp $
- * $Revision: 1.1 $
- * $Date: 2001/03/31 19:51:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/IteratorAdapter.java,v 1.2 2002/05/22 20:08:03 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/05/22 20:08:03 $
  *
  * ====================================================================
  *
@@ -70,9 +70,9 @@ import java.util.NoSuchElementException;
  * throw an UnsupportedOperationException. Added for use by TagLib so
  * Enumeration can be supported
  *
- * @author Sean Kelly
+ * @author Sean M. Kelley
  * @author Rob Leland
- * @version $Revision: 1.1 $ $Date: 2001/03/31 19:51:17 $
+ * @version $Revision: 1.2 $ $Date: 2002/05/22 20:08:03 $
  */
 
 public class IteratorAdapter implements Iterator {
