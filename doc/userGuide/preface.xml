@@ -214,12 +214,12 @@
     </p>
 
     <p>
-    For more about DynaBeans, see
+    For more about DynaBeans, see 
     </p>
 
     <ul>
     <li>
-    [:TODO:]
+    <a href="http://jakarta.apache.org/commons/beanutils/api/index.html">The Commons BeanUtils Javadocs</a>
     </li>
     </ul>
 
@@ -292,7 +292,7 @@
       deployment descriptor.</p>
 
       <p>A servlet is generally a subclass of
-      <code>javax.servlet.http.HttpServlet</code>, and must implement the
+      <code>javax.servlet.http.HttpServlet</code> and must implement the
       following methods:</p>
       <ul>
       <li><strong>public void init(ServletConfig config)</strong> - Called by the
