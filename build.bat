@@ -18,7 +18,7 @@ rem
 rem   TOMCAT_HOME           Distribution directory for "jakarta-tomcat".
 rem                         [../jakarta-tomcat]
 rem
-rem $Id: build.bat,v 1.2 2000/06/01 00:05:53 craigmcc Exp $
+rem $Id: build.bat,v 1.3 2000/06/02 00:39:30 craigmcc Exp $
 rem ---------------------------------------------------------------------------
 
 
@@ -49,6 +49,7 @@ set SERVLETAPI_HOME=..\jakarta-servletapi
 if not "%TOMCAT_HOME%" == "" goto gotTomcatHome
 set TOMCAT_HOME=..\jakarta-tomcat
 :gotTomcatHome
+
 
 
 rem ----- Set Up The Runtime Classpath ----------------------------------------
