@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryUserDatabase.java,v 1.8 2004/03/12 02:32:41 husted Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/12 02:32:41 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryUserDatabase.java,v 1.9 2004/03/12 02:35:58 husted Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/03/12 02:35:58 $
  *
  * Copyright 2000-2004 Apache Software Foundation
  *
@@ -43,7 +43,7 @@ import org.xml.sax.Attributes;
  * <p>Concrete implementation of {@link UserDatabase} for an in-memory
  * database backed by an XML data file.</p>
  *
- * @version $Revision: 1.8 $ $Date: 2004/03/12 02:32:41 $
+ * @version $Revision: 1.9 $ $Date: 2004/03/12 02:35:58 $
  * @since Struts 1.1
  */
 
