@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.19 2002/12/08 06:54:51 rleland Exp $
- * $Revision: 1.19 $
- * $Date: 2002/12/08 06:54:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.20 2003/03/10 01:03:02 craigmcc Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/03/10 01:03:02 $
  *
  * ====================================================================
  *
@@ -98,7 +98,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2002/12/08 06:54:51 $
+ * @version $Revision: 1.20 $ $Date: 2003/03/10 01:03:02 $
  */
 
 public class ErrorsTag extends TagSupport {
@@ -125,6 +125,12 @@ public class ErrorsTag extends TagSupport {
      * The default locale on our server.
      */
     protected static Locale defaultLocale = Locale.getDefault();
+
+
+    /**
+     * The line ending string.
+     */
+    protected static String lineEnd = System.getProperty("line.separator");
 
 
     /**
@@ -227,7 +233,7 @@ public class ErrorsTag extends TagSupport {
                     message = RequestUtils.message(pageContext, bundle,
                                                    locale, "errors.header");
                     results.append(message);
-                    results.append("\r\n");
+                    results.append(lineEnd);
                 }
                 headerDone = true;
             }
@@ -241,7 +247,7 @@ public class ErrorsTag extends TagSupport {
                                            report.getValues());
             if (message != null) {
                 results.append(message);
-                results.append("\r\n");
+                results.append(lineEnd);
             }
             if (suffixPresent) {
                 message = RequestUtils.message(pageContext, bundle,
@@ -253,7 +259,7 @@ public class ErrorsTag extends TagSupport {
             message = RequestUtils.message(pageContext, bundle,
                                            locale, "errors.footer");
             results.append(message);
-            results.append("\r\n");
+            results.append(lineEnd);
         }
 
     // Print the results to our output writer
