@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.7 2000/12/30 19:52:09 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.8 2001/01/10 22:05:24 craigmcc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,6 +63,7 @@ package org.apache.struts.taglib.bean;
 
 import java.io.BufferedInputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import javax.servlet.http.HttpServletRequest;
@@ -71,7 +72,10 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -85,7 +89,7 @@ import org.apache.struts.util.MessageResources;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/12/30 19:52:09 $
+ * @version $Revision: 1.8 $ $Date: 2001/01/10 22:05:24 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -98,6 +102,35 @@ public class IncludeTag extends TagSupport {
      * Buffer size to use when reading the input stream.
      */
     protected static final int BUFFER_SIZE = 256;
+
+
+    /**
+     * The name of the global <code>ActionForward</code> that contains a
+     * path to our requested resource.
+     */
+    protected String forward = null;
+
+    public String getForward() {
+        return (this.forward);
+    }
+
+    public void setForward(String forward) {
+        this.forward = forward;
+    }
+
+
+    /**
+     * The absolute URL to the resource to be included.
+     */
+    protected String href = null;
+
+    public String getHref() {
+        return (this.href);
+    }
+
+    public void setHref(String href) {
+        this.href = href;
+    }
 
 
     /**
@@ -124,16 +157,27 @@ public class IncludeTag extends TagSupport {
 
 
     /**
-     * The context-relative URI of the page or servlet to be included.
+     * Deprecated method to set the "name" attribute, which has been
+     * replaced by the "page" attribute.
+     *
+     * @deprecated use setPage(String) instead
      */
-    protected String name = null;
-
-    public String getName() {
-	return (this.name);
+    public void setName(String name) {
+        this.page = name;
     }
 
-    public void setName(String name) {
-	this.name = name;
+
+    /**
+     * The context-relative URI of the page or servlet to be included.
+     */
+    protected String page = null;
+
+    public String getPage() {
+	return (this.page);
+    }
+
+    public void setPage(String page) {
+	this.page = page;
     }
 
 
@@ -148,58 +192,11 @@ public class IncludeTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-	// Validate the format of the "name" attribute
-	// FIXME - deal with relative URIs like <jsp:include> does
-	if (!name.startsWith("/")) {
-            JspException e = new JspException
-              (messages.getMessage("include.format", name));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw e;
-        }
-
-        // Identify our current session identifier (if any)
-        String sessionId = null;
-        HttpSession session = pageContext.getSession();
-        if (session != null) {
-            try {
-                sessionId = session.getId();
-            } catch (IllegalStateException e) {
-                sessionId = null;
-            }
-        }
-
-        // Calculate the URL of the requested page
-	HttpServletRequest request =
-	    (HttpServletRequest) pageContext.getRequest();
-	StringBuffer url = new StringBuffer();
-	url.append(request.getScheme());
-	url.append("://");
-	url.append(request.getServerName());
-	if (request.getServerPort() != 80) {
-	    url.append(':');
-	    url.append(request.getServerPort());
-	}
-	if (request.getContextPath() != null)
-	    url.append(request.getContextPath());
-        int question = name.indexOf('?');
-        if (sessionId == null) {
-            url.append(name);
-        } else if (question < 0) {
-            url.append(name);
-            url.append(";jsessionid=");
-            url.append(sessionId);
-        } else {
-            url.append(name.substring(0, question));
-            url.append(";jsessionid=");
-            url.append(sessionId);
-            url.append(name.substring(question));
-        }
-
-	// Set up a URLConnection to read the requested page
+	// Set up a URLConnection to read the requested resource
+        URL url = hyperlink();
 	URLConnection conn = null;
 	try {
-	    conn = (new URL(url.toString())).openConnection();
+	    conn = url.openConnection();
 	    conn.setAllowUserInteraction(false);
 	    conn.setDoInput(true);
 	    conn.setDoOutput(false);
@@ -208,7 +205,8 @@ public class IncludeTag extends TagSupport {
             pageContext.setAttribute(Action.EXCEPTION_KEY, e,
                                      PageContext.REQUEST_SCOPE);
 	    throw new JspException
-                (messages.getMessage("include.open", name, e.toString()));
+                (messages.getMessage("include.open",
+                                     url.toString(), e.toString()));
 	}
 
 	// Copy the contents of this URL
@@ -230,7 +228,8 @@ public class IncludeTag extends TagSupport {
             pageContext.setAttribute(Action.EXCEPTION_KEY, e,
                                      PageContext.REQUEST_SCOPE);
             throw new JspException
-                (messages.getMessage("include.read", name, e.toString()));
+                (messages.getMessage("include.read",
+                                     url.toString(), e.toString()));
 	}
 
         // Define the retrieved content as a page scope attribute
@@ -248,8 +247,99 @@ public class IncludeTag extends TagSupport {
     public void release() {
 
         super.release();
+        forward = null;
+        href = null;
         id = null;
-        name = null;
+        page = null;
+
+    }
+
+
+    // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Return a URL to the requested resource, modified to include the session
+     * identifier if necessary.
+     *
+     * @exception JspException if an error occurs preparing the hyperlink
+     */
+    protected URL hyperlink() throws JspException {
+
+        // Validate the number of href specifiers that were specified
+        int n = 0;
+        if (forward != null)
+            n++;
+        if (href != null)
+            n++;
+        if (page != null)
+            n++;
+        if (n != 1) {
+            JspException e = new JspException
+                (messages.getMessage("include.destination"));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
+
+        // Calculate the appropriate hyperlink
+        String href = null;
+        boolean includeSession = true;
+        if (this.forward != null) {
+            ActionForwards forwards = (ActionForwards)
+                pageContext.getAttribute(Action.FORWARDS_KEY,
+                                         PageContext.APPLICATION_SCOPE);
+            if (forwards == null)
+                throw new JspException
+                    (messages.getMessage("include.forwards"));
+            ActionForward forward = forwards.findForward(this.forward);
+            if (forward == null)
+                throw new JspException
+                    (messages.getMessage("include.forward", this.forward));
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            href = RequestUtils.absoluteURL(request, forward.getPath());
+        } else if (this.href != null) {
+            href = this.href;
+            includeSession = false;
+        } /* else if (this.page != null) */ {
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            href = RequestUtils.absoluteURL(request, this.page);
+        }
+
+        // Append the session identifier if appropriate
+        if (includeSession) {
+            String sessionId = null;
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            HttpSession session = request.getSession();
+            try {
+                sessionId = session.getId();
+            } catch (Throwable t) {
+                sessionId = null;
+            }
+            if (sessionId != null) {
+                int question = href.indexOf('?');
+                if (question < 0)
+                    href += ";jsessionid=" + sessionId;
+                else
+                    href = href.substring(0, question) +
+                        ";jsessionid=" + sessionId +
+                        href.substring(question);
+            }
+        }
+
+        // Convert the hyperlink to a URL
+        try {
+            return (new URL(href));
+        } catch (MalformedURLException e) {
+            JspException f = new JspException
+                (messages.getMessage("include.malformed", href));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.APPLICATION_SCOPE);
+            throw f;
+        }
 
     }
 

@@ -10,7 +10,7 @@
 <h1>Test struts-bean:include Tag</h1>
 </div>
 
-<bean:include id="index" name="/index.jsp"/>
+<bean:include id="index" page="/index.jsp"/>
 
 <p>Display the contents returned by invoking <code>/index.jsp</code>
 directly, with no filtering.</p>

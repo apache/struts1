@@ -264,6 +264,7 @@
     <bodycontent>empty</bodycontent>
     <info>
     <p>Perform an internal dispatch to the specified application component
+    (or external URL)
     and make the response data from that request available as a bean of
     type <code>String</code>.  This tag has a function similar to that of
     the standard <code>&lt;jsp:include&gt;</code> tag, except that the
@@ -271,7 +272,43 @@
     written to the output stream.  If the current request is part of a
     session, the generated request for the include will also include the
     session identifier (and thus be part of the same session).</p>
+
+    <p>The URL used to access the specified application component is
+    calculated based on which of the following attributes you specify
+    (you must specify exactly one of them):</p>
+    <ul>
+    <li><em>forward</em> - Use the value of this attribute as the name
+        of a global <code>ActionForward</code> to be looked up, and
+        use the context-relative URI found there.</li>
+    <li><em>href</em> - Use the value of this attribute unchanged (since
+        this might link to a resource external to the application, the
+        session identifier is <strong>not</strong> included.</li>
+    <li><em>page</em> - Use the value of this attribute as a context-relative
+        URI to the desired resource.</li>
+    </ul>
     </info>
+
+    <attribute>
+      <name>forward</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Logical name of a global <code>ActionForward</code> that contains
+      the actual content-relative URI of the resource to be included.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>href</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Absolute URL (including the appropriate protocol prefix such as
+      "http:") of the resource to be included.  Because this URL could be
+      external to the current web application, the session identifier will
+      <strong>not</strong> be included in the request.</p>
+      </info>
+    </attribute>
 
     <attribute>
       <name>id</name>
@@ -286,12 +323,23 @@
 
     <attribute>
       <name>name</name>
-      <required>true</required>
+      <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Context-relative name (starting with a '/') of the web application
       request to be dispatched, and whose response data is to be made
-      available as a bean.</p>
+      available as a bean.  <strong>DEPRECATED - Use the "page" attribute
+      instead</strong>.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>page</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Context-relative URI (starting with a '/') of the web application
+      resource to be included.</p>
       </info>
     </attribute>
 
