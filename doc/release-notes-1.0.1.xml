@@ -3,6 +3,7 @@
 
   <properties>
     <author>Craig R. McClanahan</author>
+    <author>Robert Leland</author>
     <author>Ted Husted</author>
     <title>Struts Release Notes (Version 1.1 Milestone 1)</title>
   </properties>
@@ -184,6 +185,11 @@
     <code>org.apache.struts.taglib.logic</code>):</p>
     <ul>
     <li>Added tags for checking if a message is present in general or for a specific property. They retrieve an object from request scope just like the html:errors and html:messages tags.</li>
+    <li>The <code>&lt;html:errors&gt;</code> when the property tag is
+    specified, errors are no longer printed if the specified property
+    has no errors. Previously errors were always printed! Future
+    enhancements would include additional attributes to always turn
+    off the header or footer. </li>
     </ul>
 
     <p>The following changes and bug fixes to the Struts Documentation
