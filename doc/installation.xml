@@ -258,6 +258,8 @@
 <ul>
   <li>Bluestone Universal Business Server - <a href="installation-ubs.html">Additional 
     steps required.</a></li>
+  <li>Borland Application Server 4.5 -No additional 
+    steps required.</li>
   <li>iPlanet Application Server - Service Pack 2 is recommended. Note that the database 
   object in the Struts-Example application is not compatible with this container.</li>
   <li>iPlanet Web Server - <a href="installation-ip.html">Additional steps required.</a></li>
