@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/Attic/NoOpAction.java,v 1.3 2002/10/16 15:52:49 ekbush Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/16 15:52:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/Attic/NoOpAction.java,v 1.4 2002/10/20 19:21:01 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/20 19:21:01 $
  *
  * ====================================================================
  *
@@ -81,11 +81,11 @@ import org.apache.struts.util.RequestUtils;
 
 
 /**
- * Implementation of <strong>Action</strong> that do nothing but a forward to
+ * Implementation of <strong>Action</strong> that does nothing but forward to
  * "success".
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.3 $ $Date: 2002/10/16 15:52:49 $
+ * @version $Revision: 1.4 $ $Date: 2002/10/20 19:21:01 $
  * @deprecated Use o.a.s.a.ForwardAction instead
  */
 

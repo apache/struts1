@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.5 2002/10/18 15:27:42 jholmes Exp $
- * $Revision: 1.5 $
- * $Date: 2002/10/18 15:27:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.6 2002/10/20 19:24:32 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/10/20 19:24:32 $
  *
  * ====================================================================
  *
@@ -85,14 +85,14 @@ import org.apache.struts.config.ApplicationConfig;
  * This plugin is to be used with Struts 1.1 in association with
  * TilesRequestProcessor.
  * <br>
- * Plugin should be declared in each "struts-config.xml" files. This plugin
- * ensure one common definition factory for all modules. The definition factory
+ * Plugin should be declared in each "struts-config.xml" file. This plugin
+ * ensures one common definition factory for all modules. The definition factory
  * configuration is read first from 'web.xml' (backward compatibility), then it is
  * overloaded by values found in plugin property values.
  * <br>
- * The plugin change Struts configuration by specifying a TilesRequestProcessor as
- * request processor. If user has also specified another request processor, this
- * later should subclass the TilesRequestProcessor class.
+ * The plugin changes Struts configuration by specifying a TilesRequestProcessor as
+ * request processor. If the user has also specified another request processor, this 
+ * should subclass TilesRequestProcessor.
  * <br>
  * In case of several modules, the definition factory
  * configuration is read by the first tiles plugin to be initialized. The order is
@@ -105,10 +105,11 @@ import org.apache.struts.config.ApplicationConfig;
  */
 public class TilesPlugin implements PlugIn {
 
-    /** Commons Logging instance. */
-  protected static Log log = LogFactory.getLog(TilesPlugin.class);
+	/** Commons Logging instance. */
+  	protected static Log log = LogFactory.getLog(TilesPlugin.class);
+  	
     /** Associated definition factory */
-  protected DefinitionsFactory definitionFactory;
+	protected DefinitionsFactory definitionFactory;
 
   /**
    * <p>Receive notification that the specified module is being
