@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRadioTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:50 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRadioTag.java,v 1.4 2002/10/03 05:00:47 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/03 05:00:47 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -75,7 +75,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELRadioTag extends RadioTag {
 
@@ -227,25 +227,26 @@ public class ELRadioTag extends RadioTag {
             setOnmousedown(null);
         }
 
-//         try {
-//             setOnmousemove((String) evalAttr("onmousemove", getOnmousemove(), 
-//                                              String.class));
-//         } catch (NullAttributeException ex) {
-//             setOnmousemove(null);
-//         }
+        try {
+            setOnmousemove((String) evalAttr("onmousemove", getOnmousemove(), 
+                                             String.class));
+        } catch (NullAttributeException ex) {
+            setOnmousemove(null);
+        }
 
-//         try {
-//             setOnmouseout((String) evalAttr("onmouseout", getOnmouseout(), String.class));
-//         } catch (NullAttributeException ex) {
-//             setOnmouseout(null);
-//         }
+        try {
+            setOnmouseout((String) evalAttr("onmouseout", getOnmouseout(),
+                                            String.class));
+        } catch (NullAttributeException ex) {
+            setOnmouseout(null);
+        }
 
-//         try {
-//             setOnmouseover((String) evalAttr("onmouseover", getOnmouseover(), 
-//                                              String.class));
-//         } catch (NullAttributeException ex) {
-//             setOnmouseover(null);
-//         }
+        try {
+            setOnmouseover((String) evalAttr("onmouseover", getOnmouseover(), 
+                                             String.class));
+        } catch (NullAttributeException ex) {
+            setOnmouseover(null);
+        }
 
 //         try {
 //             setOnmouseup((String) evalAttr("onmouseup", getOnmouseup(), String.class));
