@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.28.2.1 2001/05/21 04:23:48 craigmcc Exp $
- * $Revision: 1.28.2.1 $
- * $Date: 2001/05/21 04:23:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.28.2.2 2002/03/11 05:13:35 craigmcc Exp $
+ * $Revision: 1.28.2.2 $
+ * $Date: 2002/03/11 05:13:35 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import java.util.Map;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.28.2.1 $ $Date: 2001/05/21 04:23:48 $
+ * @version $Revision: 1.28.2.2 $ $Date: 2002/03/11 05:13:35 $
  */
 
 public class BeanUtils {
@@ -474,7 +474,8 @@ public class BeanUtils {
 
             // Convert the parameter value as required for this setter method
             Object parameters[] = new Object[1];
-            if (parameterTypes[0].isArray()) {
+            //            if (parameterTypes[0].isArray()) {
+            if (parameterType.isArray()) {
                 if (value instanceof String) {
                     String values[] = new String[1];
                     values[0] = (String) value;
