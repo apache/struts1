@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.9 2001/04/19 21:13:58 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2001/04/19 21:13:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.10 2001/04/29 00:38:04 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/04/29 00:38:04 $
  *
  * ====================================================================
  *
@@ -75,9 +75,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import org.apache.struts.action.Action;
-import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
@@ -97,7 +95,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class ImgTag extends BaseHandlerTag {

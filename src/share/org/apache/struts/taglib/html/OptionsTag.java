@@ -63,7 +63,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.IteratorAdapter;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.6 2001/04/18 23:51:30 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/04/18 23:51:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.7 2001/04/29 00:38:04 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/04/29 00:38:04 $
  *
  * ====================================================================
  *
@@ -71,7 +71,6 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
@@ -80,7 +79,7 @@ import org.apache.struts.util.ResponseUtils;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/04/18 23:51:30 $
+ * @version $Revision: 1.7 $ $Date: 2001/04/29 00:38:04 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -186,36 +185,6 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	if (value != null) {
 	    results.append(ResponseUtils.filter(value));
 	} else if (redisplay || !"password".equals(type)) {
-            /*
-	    Object bean = pageContext.findAttribute(name);
-	    if (bean == null)
-		throw new JspException
-		    (messages.getMessage("getter.bean", name));
-	    try {
-                String value = "";
-                Object objvalue = PropertyUtils.getProperty(bean, property);
-                if ((objvalue != null) &&
-                    !(objvalue instanceof FormFile)) {
-                    value = objvalue.toString();
-                }
-                if (value == null) {
-                    value = "";
-                }
-		results.append(ResponseUtils.filter(value));
-	    } catch (IllegalAccessException e) {
-		throw new JspException
-		    (messages.getMessage("getter.access", property, name));
-	    } catch (InvocationTargetException e) {
-		Throwable t = e.getTargetException();
-                t.printStackTrace();
-		throw new JspException
-		    (messages.getMessage("getter.result",
-					 property, t.toString()));
-	    } catch (NoSuchMethodException e) {
-		throw new JspException
-		    (messages.getMessage("getter.method", property, name));
-	    }
-            */
             Object value = RequestUtils.lookup(pageContext, name, property,
                                                null);
             if (value == null)
