@@ -193,6 +193,13 @@
 
     <!-- ========== View Processing chain ======================== -->
     <chain name="process-view">
+
+
+      <!-- Lookup and execute a chain command if the current ForwardConfig is 
+           so-configured. -->
+      <command
+          className="org.apache.struts.chain.commands.ExecuteForwardCommand"/>
+
       <!--
       If you want to use Tiles, uncomment this command and make sure you have 
       the struts-tiles JAR included in your web application.

@@ -280,7 +280,9 @@ The "form-bean" element describes a particular form bean, which is a
 -->
 <!ELEMENT forward (icon?, display-name?, description?, set-property*)>
 <!ATTLIST forward        id             ID              #IMPLIED>
+<!ATTLIST forward        catalog        CDATA           #IMPLIED>
 <!ATTLIST forward        className      %ClassName;     #IMPLIED>
+<!ATTLIST forward        command        CDATA           #IMPLIED>
 <!ATTLIST forward        contextRelative %Boolean;      #IMPLIED>
 <!ATTLIST forward        module         %RequestPath;   #IMPLIED>
 <!ATTLIST forward        name           CDATA           #REQUIRED>

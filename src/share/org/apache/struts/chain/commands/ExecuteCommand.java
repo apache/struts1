@@ -104,6 +104,16 @@ public class ExecuteCommand implements Command {
 
         String catalogName = actionConfig.getCatalog();
 
+        return getCommand(commandName, catalogName);
+
+    }
+
+    /**
+     * @param commandName
+     * @param catalogName
+     * @return
+     */
+    protected Command getCommand(String commandName, String catalogName) {
         Command command = null;
         Catalog catalog = null;
 
@@ -125,7 +135,6 @@ public class ExecuteCommand implements Command {
 
         log.debug("looking up command " + commandName + " in " + catalogName);
         return catalog.getCommand(commandName);
-
     }
 
 

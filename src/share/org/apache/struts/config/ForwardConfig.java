@@ -234,6 +234,43 @@ public class ForwardConfig implements Serializable {
         this.redirect = redirect;
     }
 
+    /**
+     * <p>The name of a <code>commons-chain</code> command which should be
+     * looked up and executed before Struts dispatches control to the view
+     * represented by this config.</p>
+     */
+    protected String command = null;
+
+    public String getCommand() {
+        return (this.command);
+    }
+
+    public void setCommand(String command) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.command = command;
+    }
+
+    /**
+     * <p>The name of a <code>commons-chain</code> catalog in which <code>command</code>
+     * should be looked up.  If this value is undefined, then the command will be
+     * looked up in the "default" catalog.  This value has no meaning except in
+     * the context of the <code>command</code> property.</p>
+     */
+    protected String catalog = null;
+
+    public String getCatalog() {
+        return (this.catalog);
+    }
+
+    public void setCatalog(String catalog) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.catalog = catalog;
+    }
+
 
     // --------------------------------------------------------- Public Methods
 
