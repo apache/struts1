@@ -49,6 +49,11 @@
     name?</a>
     </li>
 
+    <li>
+    <a href="#multipleSubmits">Can I have multiple submit buttons on the same 
+    form?</a>
+    </li>
+
     <li><a href="#checkboxes">Why are my checkboxes not being set from ON to 
     OFF?</a>
     </li>
@@ -117,6 +122,14 @@
 
     <li>
     <a href="#requiredif">Can you give me a simple example of using the requiredif Validator rule?</a>
+    </li>
+
+    <li>
+    <a href="#validate">When is the best time to validate input?</a>
+    </li>
+
+    <li>
+    <a href="#avoidValidate">How can I avoid validating a form before data is entered?</a>
     </li>
 
     </ul>
@@ -283,6 +296,32 @@ public void setItem(String id[]) {this.id = id;}
 <p>
 And so forth
 </p>
+</section>
+
+
+<section href="multipleSubmits" name="Can I have multiple submit buttons on the same form?">
+<p>
+<strong>Yes</strong>.  The issue is that only one action class can be 
+associated with a single form. So the real issue is how do I decode 
+multiple submit types to a single <code>Action</code> class.
+There is more than one way to achieve this functionality.</p>
+<p>
+The way that is suggested by struts is right out of the javadoc for 
+<a href="http://jakarta.apache.org/struts/api/org/apache/struts/actions/LookupDispatchAction.html">
+<code>LookupDispatchAction</code></a>.
+Basically, <code>LookupDispatchAction</code> is using the keys from 
+<code>ApplicationProperties.resources</code> as keys to a map of actions 
+available to your <code>Action</code> class.  It uses 
+<a href="http://java.sun.com/j2se/1.3/docs/guide/reflection/">reflection</a> to 
+decode the request and invoke the proper action.  It also takes advantage of 
+the struts <a href="http://jakarta.apache.org/struts/userGuide/struts-html.html#submit">
+<code>&lt;html:submit&gt;</code></a> tags and is straight forward to implement.</p>
+<p>
+You can roll your own with javascript events and <code>javascript:void
+(document.forms["myform"].submit)</code> on any html element.  This gives you 
+control of how you want your page to look.  Again you
+will have to decode the expected action in the <code>execute</code> method of 
+your action form if you choose this route.</p>
 </section>
 
 
@@ -811,6 +850,83 @@ XHTML specification</a></p>
 </pre>
 </section>
 
+<section href="validate" name="When is the best time to validate input?">
+<p>
+This is an excellent question.  Let's step back a second and think about a 
+typical mid to large size application.  If we start from the back end and work 
+toward the view we have:
+</p>
+<p>
+1) Database:  Most modern databases are going to validate for required 
+fields, duplicate records, security constraints, etc.</p>
+<p>
+2) Business Logic:  Here you are going to check for valid data relationships 
+and things that make sense for the particular problem you are triing to 
+solve.</p>
+<p>
+... This is where struts comes into the picture, by now the system should be 
+pretty well bulletproof.  What we are going to do is make validation friendlier 
+and informative.  Rember it is OK to have duplicate validations...</p>
+<p>
+3) <code>ActionErrors validate(ActionMapping map, HttpServletRequest req)</code> 
+is where you can do your validation and feed back to the view, 
+information required to correct any errors.  <code>validate</code> is run after 
+the form has been <code>reset</code> and after the <code>ActionForm</code> 
+properties have been set from corresponding view based input. Also remember you 
+can turn validation off with <code>validate="false"</code> in the 
+<code>action</code> mapping in the <code>struts-config.xml</code>. This is done 
+by returning an <code>ActionErrors</code> collection with messages from your 
+<code>ApplicationResources.properties</code> file.</p>
+<p>
+Here you have access to the request so you can see what kinds of action is 
+being requested to fine tune your validations.  The &lt;html:error&gt; tag 
+allows you to dump all errors on your page or a particular error associated 
+with a particular property.  The <code>input</code> attribute of the 
+<code>struts-config.xml</code> <code>action</code> allows you to send 
+validation errors to a particular jsp / html / tile page.</p>
+<p>
+4) You can have the system perform low level validations and client side 
+feedback using a <code>ValidatorForm</code> or its derivatives.  This will 
+generate javascript and give instant feedback to the user for simple data entry 
+errors.  You code your validations in the <code>validator-rules.xml</code> 
+file.  A working knowledge of 
+<a href="http://etext.lib.virginia.edu/helpsheets/regex.html">regular 
+expressions</a> is necessary to use this feature effectively.  For more 
+information, see 
+<a href="http://jakarta.apache.org/struts/userGuide/dev_validator.html">
+http://jakarta.apache.org/struts/userGuide/dev_validator.html</a></p>
+</section>
+
+<section href="avoidValidate" 
+         name="How can I avoid validating a form before data is entered?">
+<p>The simplest way is to have two actions.  The first one has the job of setting 
+the form data, i.e. a blank registration screen.  The second action in our 
+hypothetical would be to write the registration data to the database.  Struts 
+would take care of invoking the validation and returning the user to the 
+correct screen if validation was not complete.</p>
+<p>
+Note that the form is the same form across both actions.</p>
+<pre>
+&lt;action path="/formloadaction" 
+    type="actions.MyFormLoadAction"
+    validate="false" 
+    name="MyForm"&gt;
+        &lt;forward name="realaction" path="realaction.tile" /&gt;
+&lt;/action&gt;
+
+&lt;action path="/realformaction" 
+    type="actions.MyFormAction"
+    validate="true" 
+    input="realaction.tile"
+    name="MyForm"&gt;
+        &lt;forward name="morevalidations" path="realaction.tile" /&gt;
+        &lt;forward name="success" path="success.tile" /&gt;
+&lt;/action&gt;
+</pre>
+<p>
+As you get more advanced, you can reuse the action with either a lookup action 
+form or look at the request yourself to determine the action.</p>
+</section>
 
 <section 
     href="undocumented" 
@@ -827,17 +943,11 @@ XHTML specification</a></p>
 
     <li>Why can't I disable URL-encoding in the Struts taglibs?</li>
 
-    <li>When is the best time to validate input?</li>
-
-    <li>How can I avoid validating a form before data is entered?</li>
-
     <li>How can I create a "wizard" workflow?</li>
 
     <li>How can I "chain" Actions?</li>
 
     <li>Can I have an Action without a form?</li>
-
-    <li>Can I have multiple submit buttons on the same form?</li>
 
     <li>Why can't my Javascript submit a form?</li>    
     
