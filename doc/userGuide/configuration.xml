@@ -698,13 +698,6 @@
         </li>
 
         <li>
-        <strong>detail</strong> - The debugging detail level for the Digester
-        we utilize to process the application module configuration files.
-        Accepts values 0 (off) and 1 (least serious) through 6 (most serious).
-        [0]
-        </li>
-
-        <li>
         <strong>rulesets</strong> - Comma-delimited list of fully qualified
         classnames of additional
         <code>org.apache.commons.digester.RuleSet</code> instances that

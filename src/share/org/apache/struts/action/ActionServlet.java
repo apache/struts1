@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.140 2002/12/31 11:38:25 cedric Exp $
- * $Revision: 1.140 $
- * $Date: 2002/12/31 11:38:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.141 2003/01/18 19:43:00 craigmcc Exp $
+ * $Revision: 1.141 $
+ * $Date: 2003/01/18 19:43:00 $
  *
  * ====================================================================
  *
@@ -195,9 +195,6 @@ import org.xml.sax.InputSource;
  * <li><strong>debug</strong> - TThe debugging detail level that controls how much
  *     information is logged for this servlet. Accepts values 0 (off) and from
  *     1 (least serious) through 6 (most serious). [0]</li>
- * <li><strong>detail</strong> - The debugging detail level for the Digester
- *     we utilize to process the module configuration files. Accepts
- *     values 0 (off) and 1 (least serious) through 6 (most serious). [0]</li>
  * <li><strong>rulesets</strong> - Comma-delimited list of fully qualified
  *     classnames of additional <code>org.apache.commons.digester.RuleSet</code>
  *     instances that should be added to the <code>Digester</code> that will
@@ -303,7 +300,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.140 $ $Date: 2002/12/31 11:38:25 $
+ * @version $Revision: 1.141 $ $Date: 2003/01/18 19:43:00 $
  */
 
 public class ActionServlet
@@ -348,12 +345,6 @@ public class ActionServlet
      * The debugging detail level for this servlet.
      */
     protected int debug = 0;
-
-
-    /**
-     * The debugging detail level for configuration file parsing.
-     */
-    protected int detail = 0;
 
 
     /**
@@ -1301,12 +1292,6 @@ public class ActionServlet
             debug = Integer.parseInt(value);
         } catch (Throwable t) {
             debug = 0;
-        }
-        try {
-            value = getServletConfig().getInitParameter("detail");
-            detail = Integer.parseInt(value);
-        } catch (Throwable t) {
-            detail = 0;
         }
 
         // Backwards compatibility hack for form beans of Java wrapper classes
