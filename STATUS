@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.9 2002/07/08 00:55:49 craigmcc Exp $
+$Id: STATUS,v 1.10 2002/07/08 01:03:25 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -18,7 +18,7 @@ Custom Tags:
  1586 The <html:form> tag generates incorrect focus javascript for radio buttons.
 
 
-Documentation
+Documentation:
 -------------
 10537 [:TODO:] sections (18)
 
@@ -42,15 +42,17 @@ Standard Actions:
 10322 Problems with LookupDispatchAction and other locales
 
 
+Tiles Framework:
+---------------
+
+
 Unknown:
 -------
 10380 DynaActionFormClass not serializable
-10501 Error running struts under JRun 3.1
 
 
 Utilities:
 ---------
- 7541 Digester/Commons Logging error with -security
 
 
 Validator Framework:
@@ -66,3 +68,7 @@ Validator Framework:
 10348 Validator is not available under sub-application
 10349 Validator: date validation does not allow blank input?
 10432 DynaValidatorActionForm does not validate data
+
+
+Web Site:
+--------
