@@ -65,7 +65,9 @@ main menu.
         <html-el:option value="Single 0">Single 0</html-el:option>
         <html-el:option value="Single 1">Single 1</html-el:option>
         <html-el:option value="Single 2">Single 2</html-el:option>
-        <html-el:option value="Single 3">Single 3</html-el:option>
+        <html-el:option value="Single 3" disabled="${!empty pageScope}">
+         Single 3
+        </html-el:option>
         <html-el:option value="Single 4">Single 4</html-el:option>
         <html-el:option value="Single 5">Single 5</html-el:option>
         <html-el:option value="Single 6">Single 6</html-el:option>
@@ -98,7 +100,8 @@ main menu.
     <th align="right">Multiple Select From A Collection (Using &lt;html-el:optionsCollection&gt;):</th>
     <td align="left">
       <html-el:select property="beanCollectionSelect" size="10" multiple="true">
-        <html-el:optionsCollection name="testbean" property="beanCollection"/>
+        <html-el:optionsCollection name="testbean" property="beanCollection"
+                                   filter="${empty pageScope}"/>
       </html-el:select>
     </td>
   </tr>
@@ -109,7 +112,8 @@ main menu.
     </th>
     <td align="left">
       <html-el:select property="withNulls" size="3">
-        <html-el:options name="withNulls" labelName="withNulls"/>
+        <html-el:options name="withNulls" labelName="withNulls"
+                         filter="${empty pageScope}" />
       </html-el:select>
     </td>
   </tr>
