@@ -62,6 +62,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.apache.struts.action.ActionMapping;
 import org.apache.commons.digester.Digester;
 import org.apache.struts.Globals;
 
@@ -70,7 +71,7 @@ import org.apache.struts.Globals;
  * Unit tests for the <code>org.apache.struts.config</code> package.
  *
  * @author Rob Leland
- * @version $Revision: 1.2 $ $Date: 2003/07/26 04:23:41 $
+ * @version $Revision: 1.3 $ $Date: 2003/12/09 21:40:43 $
  */
 
 public class TestModuleConfig extends TestCase {
@@ -199,6 +200,39 @@ public class TestModuleConfig extends TestCase {
 
     }
 
+   /**
+     * Tests a struts-config.xml that contains a custom mapping and property.
+     */
+    public void testCustomMappingParse() {
 
 
+        // Prepare a Digester for parsing a struts-config.xml file
+        Digester digester = new Digester();
+        digester.push(config);
+        digester.setNamespaceAware(true);
+        digester.setValidating(true);
+        digester.addRuleSet(new ConfigRuleSet());
+        digester.register
+            ("-//Apache Software Foundation//DTD Struts Configuration 1.1//EN",
+             this.getClass().getResource
+             ("/org/apache/struts/resources/struts-config_1_1.dtd").toString());
+
+        // Parse the test struts-config.xml file
+        try {
+            InputStream input = this.getClass().getResourceAsStream
+                ("/org/apache/struts/config/struts-config-custom-mapping.xml");
+            assertNotNull("Got an input stream for struts-config.xml", input);
+            digester.parse(input);
+            input.close();
+        } catch (Throwable t) {
+            t.printStackTrace(System.out);
+            fail("Parsing threw exception:  " + t);
+        }
+
+        // Perform assertion tests on the parsed information
+        CustomMappingTest map = (CustomMappingTest)config.findActionConfig("/editRegistration");
+        assertNotNull("Cannot find editRegistration mapping", map);
+        assertTrue("The custom mapping attribute has not been set", map.getPublic());
+
+    }
 }
