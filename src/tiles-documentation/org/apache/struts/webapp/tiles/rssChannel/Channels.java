@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.7 2003/08/23 00:12:39 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/08/23 00:12:39 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.8 2003/08/23 17:04:46 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/08/23 17:04:46 $
  *
  * ====================================================================
  *
@@ -73,7 +73,6 @@ import org.apache.commons.digester.rss.RSSDigester;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -89,7 +88,7 @@ import org.apache.struts.tiles.ComponentContext;
  * @expects an input page or error forwarding if exception digesting RSS
  * @author Ted Husted
  * @author Cedric Dumoulin
- * @version $Revision: 1.7 $ $Date: 2003/08/23 00:12:39 $
+ * @version $Revision: 1.8 $ $Date: 2003/08/23 17:04:46 $
  */
 public final class Channels extends Action {
 
@@ -131,7 +130,7 @@ public final class Channels extends Action {
             throw new ServletException("This action must be called by a Tile, not directly");
         }
 
-        ActionErrors errors = new ActionErrors();
+        ActionMessages errors = new ActionMessages();
 
         // -- Retrieve parameters --
         // Urls can come from a list, or from a single attribute.
@@ -174,7 +173,7 @@ public final class Channels extends Action {
 
         // -- Handle Errors ---
         if (!errors.isEmpty()) {
-            saveErrors(request, errors);
+            this.saveErrors(request, errors);
 
             if (mapping.getInput() != null) {
                 return new ActionForward(mapping.getInput());
@@ -184,7 +183,7 @@ public final class Channels extends Action {
 
             log.debug("Exit Rss Channel Action : error");
 
-            return (mapping.findForward("error"));
+            return mapping.findForward("error");
         }
 
         // -- Save Bean, and Continue  ---

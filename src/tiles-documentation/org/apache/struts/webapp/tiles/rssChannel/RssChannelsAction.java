@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.7 2003/08/23 00:12:39 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/08/23 00:12:39 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.8 2003/08/23 17:04:46 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/08/23 17:04:46 $
  *
  * ====================================================================
  *
@@ -71,7 +71,6 @@ import org.apache.commons.digester.rss.Channel;
 import org.apache.commons.digester.rss.RSSDigester;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -96,7 +95,7 @@ import org.apache.struts.tiles.actions.TilesAction;
  *
  * @author Ted Husted
  * @author Cedric Dumoulin
- * @version $Revision: 1.7 $ $Date: 2003/08/23 00:12:39 $
+ * @version $Revision: 1.8 $ $Date: 2003/08/23 17:04:46 $
  */
 public final class RssChannelsAction extends TilesAction {
 
@@ -142,7 +141,7 @@ public final class RssChannelsAction extends TilesAction {
 
         log.debug("Enter Rss Channel Action");
 
-        ActionErrors errors = new ActionErrors();
+        ActionMessages errors = new ActionMessages();
 
         // -- Retrieve parameters --
         // Urls can come from a list, or from a single attribute.
@@ -175,6 +174,7 @@ public final class RssChannelsAction extends TilesAction {
 
                 channelBeans.add(obj);
             }
+            
         } catch (Throwable t) {
             errors.add(
                 ActionMessages.GLOBAL_MESSAGE,
@@ -185,7 +185,7 @@ public final class RssChannelsAction extends TilesAction {
 
         // -- Handle Errors ---
         if (!errors.isEmpty()) {
-            saveErrors(request, errors);
+            this.saveErrors(request, errors);
             // If no input page, use error forwarding
 
             log.debug("Exit Rss Channel Action : error");

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.16 2003/08/23 00:12:39 dgraham Exp $
- * $Revision: 1.16 $
- * $Date: 2003/08/23 00:12:39 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.17 2003/08/23 17:04:46 dgraham Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/08/23 17:04:46 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -81,7 +80,7 @@ import org.apache.struts.util.ModuleException;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2003/08/23 00:12:39 $
+ * @version $Revision: 1.17 $ $Date: 2003/08/23 17:04:46 $
  */
 public final class LogonAction extends Action {
 
@@ -119,7 +118,7 @@ public final class LogonAction extends Action {
         User user = null;
 
         // Validate the request parameters specified by the user
-        ActionErrors errors = new ActionErrors();
+        ActionMessages errors = new ActionMessages();
         String username = (String) PropertyUtils.getSimpleProperty(form, "username");
         String password = (String) PropertyUtils.getSimpleProperty(form, "password");
         UserDatabase database =
@@ -146,7 +145,7 @@ public final class LogonAction extends Action {
 
         // Report any errors we have discovered back to the original form
         if (!errors.isEmpty()) {
-            saveErrors(request, errors);
+            this.saveErrors(request, errors);
             return (mapping.getInputForward());
         }
 

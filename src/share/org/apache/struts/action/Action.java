@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.67 2003/08/19 23:20:45 dgraham Exp $
- * $Revision: 1.67 $
- * $Date: 2003/08/19 23:20:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.68 2003/08/23 17:04:46 dgraham Exp $
+ * $Revision: 1.68 $
+ * $Date: 2003/08/23 17:04:46 $
  *
  * ====================================================================
  *
@@ -109,7 +109,7 @@ import org.apache.struts.util.TokenProcessor;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.67 $ $Date: 2003/08/19 23:20:45 $
+ * @version $Revision: 1.68 $ $Date: 2003/08/23 17:04:46 $
  */
 public class Action {
 
@@ -417,8 +417,24 @@ public class Action {
      *
      * @param request The servlet request we are processing
      * @param errors Error messages object
+     * @deprecated Use saveErrors(HttpServletRequest, ActionMessages) instead.
+     * This will be removed after Struts 1.2.
      */
     protected void saveErrors(HttpServletRequest request, ActionErrors errors) {
+        this.saveErrors(request, errors);
+    }
+    
+    /**
+     * Save the specified error messages keys into the appropriate request
+     * attribute for use by the &lt;html:errors&gt; tag, if any messages
+     * are required.  Otherwise, ensure that the request attribute is not
+     * created.
+     *
+     * @param request The servlet request we are processing
+     * @param errors Error messages object
+     * @since Struts 1.2
+     */
+    protected void saveErrors(HttpServletRequest request, ActionMessages errors) {
 
         // Remove any error messages attribute if none are required
         if ((errors == null) || errors.isEmpty()) {
