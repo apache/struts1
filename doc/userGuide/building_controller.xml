@@ -9,7 +9,7 @@
     <author>Ed Burns</author>
     <author>Donald Ball</author>
     <author>Eddie Bush</author>
-    <author>Yann Cebron </author>
+    <author>Yann Cebron</author>
     <author>David Graham</author>
     <title>The Struts User's Guide - Building Controller Components</title>
   </properties>
@@ -990,10 +990,9 @@ http://www.mycompany.com/myapplication/logon.do
       </section>
 
       <section name="4.7.3 Configure the Struts Tag Library" href="dd_config_taglib">
-
         <p>
-          Next, you must add an entry defining the Struts tag library.  There are currently four
-          taglibs that Struts is packaged with.
+          Next, you must add an entry defining the Struts tag library. There are six taglibs
+          included with the Struts distribution.
         </p>
         <p>
           The struts-bean taglib contains tags useful in accessing
@@ -1013,6 +1012,15 @@ http://www.mycompany.com/myapplication/logon.do
         </p>
         <p>
           The struts-template taglib contains tags that define a template mechanism.
+        </p>
+        <p>
+          The struts-tiles taglib contains tags used for combining various view components,
+          called "tiles", into a final composite view.  This is similar to struts-template in that
+          it's used for view composition, but tiles is a more full featured set of tags.
+        </p>
+        <p>
+        The struts-nested taglib is an extension of other struts taglibs that allows the use
+        of nested beans.
         </p>
 
         <p>
@@ -1061,6 +1069,26 @@ http://www.mycompany.com/myapplication/logon.do
           out on the Internet somewhere).
         </p>
       </section>
+
+      <section name="4.7.3.1 Configure the Struts Tag Library (Servlet 2.3)" href="dd_config_taglib_23">
+      <p>
+        <b>Servlet 2.3 Users only:</b> The Servlet 2.3 specification simplifies the
+        deployment and configuration of tag libraries.  The instructions above will work
+        on older containers as well as 2.3 containers (Struts only requires a servlet 2.2 container);
+        however, if you're using a 2.3 container such as Tomcat 4.x, you can take advantage of
+        a simplified deployment.
+       </p>
+      <p>
+        All that's required to install the struts tag libraries is to copy struts.jar into
+        your /WEB-INF/lib directory and reference the tags in your code like this:
+        <br/>
+        <code>&lt;%@ taglib uri="http://jakarta.apache.org/struts/tags-html-1.0" prefix="html" %&gt;</code>
+        <br/>
+        Note that you <b>must use the full uri</b> defined in the various struts tlds so that the container
+        knows where to find the tag's class files. You don't have to alter your web.xml file or
+        copy tlds into any application directories.
+       </p>
+     </section>
 
       <section name="4.7.4 Configuring your application for modules" href="dd_config_modules">
         <p>
@@ -1221,6 +1249,11 @@ http://www.mycompany.com/myapplication/logon.do
          your <code>WEB-INF</code> directory, and copy <code>struts.jar</code>
          (and all of the <code>commons-*.jar</code> files) into your
          <code>WEB-INF/lib</code> directory.
+        </p>
+
+        <p>
+         <b>Servlet 2.3 Users:</b> See <a href="#dd_config_taglib_23">section 4.7.3.1</a>
+         for how to avoid copying the tlds into your application.
         </p>
 
       </section>

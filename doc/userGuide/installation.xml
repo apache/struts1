@@ -172,8 +172,10 @@
         your application classes are stored in the shared repository.</li>
     <li><strong>lib/struts-*.tld</strong> - These are the "tag library
         descriptor" files that describe the custom tags in the various Struts
-        tag libraries.  They should be copied into the <code>WEB-INF</code>
-        directory of your web application.</li>
+        tag libraries. They should be copied into the <code>WEB-INF</code>
+        directory of your web application. (Servlet 2.3 can omit this step 
+        if the <a href="building_controller.html#dd_config_taglib_23">standard uri</a> 
+        is referenced.)</li>
     <li><strong>webapps/struts-blank.war</strong> - This is a simple "web
         application archive" file containing a basic starting point for
         building your own Struts-based applications.</li>
@@ -223,11 +225,13 @@
     <li>Modify the <code>WEB-INF/web.xml</code> file for your web application
         to include a <code>&lt;servlet&gt;</code> element to define the
         controller servlet, and a <code>&lt;servlet-mapping&gt;</code> element
-        to establish which request URIs are mapped to this servlet.  Use the
+        to establish which request URIs are mapped to this servlet. Use the
         <code>WEB-INF/web.xml</code> file from the Struts example application
         for a detailed example of the required syntax.</li>
     <li>Modify the <code>WEB-INF/web.xml</code> file of your web application
-        to include the following tag library declarations:</li>
+        to include the following tag library declarations (Servlet 2.3 can omit 
+        this step if the <a href="building_controller.html#dd_config_taglib_23">standard uri</a> 
+        is referenced):</li>
     </ul>
 
 <pre>&lt;taglib&gt;
