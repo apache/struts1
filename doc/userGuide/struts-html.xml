@@ -3323,7 +3323,10 @@
             <info>
                <p>
                   The key (form name) to retrieve a specific
-                  set of validation rules.
+                  set of validation rules.  If "dynamicJavascript" is set 
+                  to <code>true</code> and formName is missing or is not 
+                  recognized by the <code>ValidatorPlugIn</code>, a 
+                  JspException will be thrown.
                </p>
             </info>
         </attribute>
