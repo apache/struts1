@@ -20,7 +20,7 @@ import org.apache.shale.ViewController;
 import org.apache.shale.ViewControllerMapper;
 
 /**
- * <p>Manifest constants defining global identifiers shared across
+ * <p>{@link ShaleConstants} are manifest constants defining global identifiers shared across
  * the internal implementation of the controller.  These constants
  * need not be referenced by applications built on the framework.</p>
  *

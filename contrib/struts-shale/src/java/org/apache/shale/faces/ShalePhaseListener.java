@@ -27,7 +27,7 @@ import javax.faces.event.PhaseListener;
 import org.apache.shale.ViewController;
 
 /**
- * <p>JavaServer Faces <code>PhaseListener</code> that implements phase
+ * <p>{@link ShalePhaseListener} is a JavaServer Faces <code>PhaseListener</code> that implements phase
  * related functionality.</p>
  *
  * $Id$

@@ -35,7 +35,7 @@ import org.apache.shale.ViewController;
 import org.apache.shale.ViewControllerMapper;
 
 /**
- * <p>Custom implementation of <code>ViewHandler</code> that adds support
+ * <p>{@link ShaleViewHandler} is a custom implementation of <code>ViewHandler</code> that adds support
  * for on-demand creation and configuration of {@link ViewController}
  * instances.</p>
  * 

@@ -20,7 +20,7 @@ import org.apache.shale.DialogController;
 import org.apache.shale.ViewController;
 
 /**
- * <p>Convenience base implementation of {@link ViewController}.</p>
+ * <p>{@link AbstractViewController} is a convenience base implementation of {@link ViewController}.</p>
  *
  * $Id$
  */

@@ -19,7 +19,7 @@ package org.apache.shale.view;
 import org.apache.shale.ViewControllerMapper;
 
 /**
- * <p>Default implementation of {@link ViewControllerMapper}.  The following
+ * <p>{@link DefaultViewControllerMapper} is a default implementation of {@link ViewControllerMapper}.  The following
  * algorithm is implemented:</p>
  * <ul>
  * <li>Strip any leading slash ("/") character.</li>

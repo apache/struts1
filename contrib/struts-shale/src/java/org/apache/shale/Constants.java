@@ -17,7 +17,7 @@
 package org.apache.shale;
 
 /**
- * <p>Manifest constants defining global identifiers for the entire
+ * <p>{@link Constants} are manifest constants defining global identifiers for the entire
  * controller architecture, which are of interest to applications
  * built on top of the framework.</p>
  *

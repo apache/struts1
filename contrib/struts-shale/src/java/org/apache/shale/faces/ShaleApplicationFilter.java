@@ -34,9 +34,10 @@ import javax.servlet.ServletResponse;
 import org.apache.shale.view.DefaultViewControllerMapper;
 
 /**
- * <p>A <code>Filter</code> implementation that invokes the required
- * <em>Application Controller</em> functionality on every request.  In
- * addition, it performs overall application startup and shutdown
+ * <p>{@link ShaleApplicationFilter} is a <code>Filter</code> implementation
+ * that invokes the required <em>Application Controller</em> functionality on
+ * every request.
+ * In addition, it performs overall application startup and shutdown
  * operations on behalf of the framework.</p>
  *
  * $Id$
