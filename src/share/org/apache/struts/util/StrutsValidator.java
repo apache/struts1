@@ -461,14 +461,12 @@ public class StrutsValidator implements Serializable {
         return result;
     }
 
-
-
     /**
      *  <p>
      *
      *  Checks if a fields value is within a range (min &amp; max specified in the
      *  vars attribute).</p>
-     *@deprecated  As of Struts 1.1, replaced by {@link #validateIntRange(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1b3, replaced by {@link #validateIntRange(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
      *@param  field    The <code>Field</code> object associated with the current
@@ -482,34 +480,7 @@ public class StrutsValidator implements Serializable {
             ValidatorAction va, Field field,
             ActionErrors errors,
             HttpServletRequest request) {
-
-        String value = null;
-        if (isString(bean)) {
-            value = (String) bean;
-        } else {
-            value = ValidatorUtil.getValueAsString(bean, field.getProperty());
-        }
-        String sMin = field.getVarValue("min");
-        String sMax = field.getVarValue("max");
-
-        if (!GenericValidator.isBlankOrNull(value)) {
-            try {
-                int iValue = Integer.parseInt(value);
-                int min = Integer.parseInt(sMin);
-                int max = Integer.parseInt(sMax);
-
-                if (!GenericValidator.isInRange(iValue, min, max)) {
-                    errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
-
-                    return false;
-                }
-            } catch (Exception e) {
-                errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
-                return false;
-            }
-        }
-
-        return true;
+        return validateIntRange(bean,va,field,errors,request);
     }
 
    /**
