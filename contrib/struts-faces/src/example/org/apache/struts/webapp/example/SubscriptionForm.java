@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/SubscriptionForm.java,v 1.1 2003/03/07 03:22:42 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:42 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/SubscriptionForm.java,v 1.2 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.action.ActionMapping;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:42 $
+ * @version $Revision: 1.2 $ $Date: 2004/03/08 00:40:48 $
  */
 
 public final class SubscriptionForm extends ActionForm  {
@@ -316,6 +316,29 @@ public final class SubscriptionForm extends ActionForm  {
                        new ActionError("error.type.invalid", type));
 
 	return (errors);
+
+    }
+
+
+    /**
+     * <p>Return a string representation of this form bean.</p>
+     */
+    public String toString() {
+
+        StringBuffer sb = new StringBuffer(super.toString());
+        sb.append(",action=");
+        sb.append(action);
+        sb.append(",autoConnect=");
+        sb.append(autoConnect);
+        sb.append(",host=");
+        sb.append(host);
+        sb.append(",password=");
+        sb.append(password);
+        sb.append(",type=");
+        sb.append(type);
+        sb.append(",username=");
+        sb.append(username);
+        return (sb.toString());
 
     }
 

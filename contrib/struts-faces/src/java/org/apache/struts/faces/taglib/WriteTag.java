@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/WriteTag.java,v 1.4 2004/01/18 13:43:13 husted Exp $
- * $Revision: 1.4 $
- * $Date: 2004/01/18 13:43:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/WriteTag.java,v 1.5 2004/03/08 00:40:49 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/03/08 00:40:49 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import javax.faces.el.ValueBinding;
  * <em>Struts-Faces Integration Library</em>.</p>
  *
  *
- * @version $Revision: 1.4 $ $Date: 2004/01/18 13:43:13 $
+ * @version $Revision: 1.5 $ $Date: 2004/03/08 00:40:49 $
  */
 
 public class WriteTag extends AbstractFacesTag {
@@ -100,7 +100,7 @@ public class WriteTag extends AbstractFacesTag {
      */
     public String getComponentType() {
 
-        return ("Output");
+        return ("javax.faces.Output");
 
     }
 
@@ -111,7 +111,7 @@ public class WriteTag extends AbstractFacesTag {
      */
     public String getRendererType() {
 
-        return ("StrutsWrite");
+        return ("org.apache.struts.faces.Write");
 
     }
 
@@ -138,16 +138,7 @@ public class WriteTag extends AbstractFacesTag {
     protected void setProperties(UIComponent component) {
 
         super.setProperties(component);
-        if (filter != null) {
-            if (isValueReference(filter)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(filter);
-                component.setValueBinding("filter", vb);
-            } else {
-                component.getAttributes().put
-                    ("filter", Boolean.valueOf(filter));
-            }
-        }
+        setBooleanAttribute(component, "filter", filter);
 
     }
 

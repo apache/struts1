@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/RegistrationBacking.java,v 1.1 2003/12/24 03:21:01 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/12/24 03:21:01 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/RegistrationBacking.java,v 1.2 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -64,9 +64,14 @@ package org.apache.struts.webapp.example;
 
 
 import java.io.IOException;
+
 import javax.faces.FacesException;
+import javax.faces.component.UIData;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -76,14 +81,39 @@ import javax.faces.context.FacesContext;
 public class RegistrationBacking {
 
 
+    // -------------------------------------------------------- Static Variables
+
+
+    private static final Log log = LogFactory.getLog(RegistrationBacking.class);
+
+
     // -------------------------------------------------------------- Properties
 
 
-    // These methods exist to work around a bug in the PFD version of the
-    // rendering for <h:data_table> that disallows constant values on
-    // per-row command and output components
-    public String getDeleteLabel() { return ("Delete"); }
-    public String getEditLabel() { return ("Edit"); }
+    private UIData table = null;
+
+
+    /**
+     * <p>Return the <code>UIData</code> instance we are bound to.</p>
+     */
+    public UIData getTable() {
+
+        return (this.table);
+
+    }
+
+
+    /**
+     * <p>Set the <code>UIData</code> instance we are bound to.</p>
+     *
+     * @param table The <code>UIData</code> instance
+     */
+    public void setTable(UIData table) {
+
+        this.table = table;
+
+    }
+
 
 
     // ----------------------------------------------------------------- Actions
@@ -94,6 +124,9 @@ public class RegistrationBacking {
      */
     public String create() {
 
+        if (log.isDebugEnabled()) {
+            log.debug("create()");
+        }
         FacesContext context = FacesContext.getCurrentInstance();
         StringBuffer url = base(context);
         url.append("?action=Create");
@@ -112,6 +145,9 @@ public class RegistrationBacking {
      */
     public String delete() {
 
+        if (log.isDebugEnabled()) {
+            log.debug("delete()");
+        }
         FacesContext context = FacesContext.getCurrentInstance();
         StringBuffer url = base(context);
         url.append("?action=Delete");
@@ -134,6 +170,9 @@ public class RegistrationBacking {
      */
     public String edit() {
 
+        if (log.isDebugEnabled()) {
+            log.debug("edit()");
+        }
         FacesContext context = FacesContext.getCurrentInstance();
         StringBuffer url = base(context);
         url.append("?action=Edit");
@@ -146,6 +185,36 @@ public class RegistrationBacking {
             context.getExternalContext().getRequestMap().get("subscription");
         url.append(subscription.getHost());
         forward(context, url.toString());
+        return (null);
+
+    }
+
+
+    /**
+     * <p>Update the subscriptions to reflect any revisions to the
+     * <code>type</code> and <code>autoConnect</code> properties.</p>
+     */
+    public String update() {
+
+        if (log.isDebugEnabled()) {
+            log.debug("update()");
+        }
+
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        // Updates went directly to the underlying rows, so all we need to do
+        // is save the database
+        try {
+            UserDatabase database = (UserDatabase)
+                context.getExternalContext().getApplicationMap().
+                get(Constants.DATABASE_KEY);
+            database.save();
+        } catch (Exception e) {
+            log.error("Database save", e);
+        }
+
+        // Forward back to the edit registration page
+        forward(context, "/editRegistration.do?action=Edit");
         return (null);
 
     }
@@ -179,9 +248,13 @@ public class RegistrationBacking {
      */
     private void forward(FacesContext context, String url) {
 
+        if (log.isDebugEnabled()) {
+            log.debug("forward(" + url + ")");
+        }
         try {
-            context.getExternalContext().dispatchMessage(url);
+            context.getExternalContext().dispatch(url);
         } catch (IOException e) {
+            log.error("IOException from dispatch()", e);
             throw new FacesException(e);
         } finally {
             context.responseComplete();

@@ -4,71 +4,83 @@
 <%@ taglib prefix="s" uri="http://jakarta.apache.org/struts/tags-faces" %>
 
 <f:view>
-<s:html locale="true">
+<s:loadMessages       var="messages"/>
+<s:html            locale="true">
 <head>
   <title>
-    <s:message key="logon.title"/>
+    <h:outputText   value="#{messages['logon.title']}"/>
   </title>
-  <s:base id="base"/>
-  <s:stylesheet path="/stylesheet.css"/>
+  <s:base              id="base"/>
+  <s:stylesheet      path="/stylesheet.css"/>
 </head>
 <body bgcolor="white">
 
 <s:errors/>
 
-<s:form action="/logon" focus="username"
-      onsubmit="return validateLogonForm(this);">
+<s:form                id="logon"
+                   action="/logon"
+                    focus="username"
+                 onsubmit="return validateLogonForm(this);"
+               styleClass="form">
 
-  <h:panel_grid
-           columns="2"
-        styleClass="form-background"
-       headerClass="form-header"
-     columnClasses="form-prompt,form-field"
-       footerClass="form-footer">
+  <h:panelGrid    columns="2"
+               styleClass="grid"
+              headerClass="grid header"
+            columnClasses="grid column0,grid column1"
+              footerClass="grid footer"
+               rowClasses="grid row even,grid row odd">
 
     <%-- Grid header element --%>
 
     <f:facet name="header">
-        <s:message key="logon.header"/>
+      <h:outputText value="#{messages['logon.header']}"/>
     </f:facet>
 
     <%-- Grid data elements --%>
 
-    <h:output_label for="username">
-      <s:message key="prompt.username"/>
-    </h:output_label>
+    <h:outputLabel    for="username"
+               styleClass="label">
+      <h:outputText value="#{messages['prompt.username']}"/>
+    </h:outputLabel>
 
-    <h:input_text id="username" size="16"
-               value="#{logonForm.map.username}"/>
+    <h:inputText       id="username"
+                     size="16"
+               styleClass="field"
+                    value="#{logonForm.username}"/>
 
-    <h:output_label for="password">
-      <s:message key="prompt.password"/>
-    </h:output_label>
+    <h:outputLabel    for="password"
+               styleClass="label">
+      <h:outputText value="#{messages['prompt.password']}"/>
+    </h:outputLabel>
 
-    <h:input_secret id="password" size="16"
-                 value="#{logonForm.map.password}"/>
+    <h:inputSecret     id="password"
+                     size="16"
+               styleClass="password"
+                    value="#{logonForm.password}"/>
 
-    <h:command_button id="submit" type="SUBMIT"
-              styleClass="command-single"
-                   value="Log On"/>
+    <h:commandButton   id="submit"
+                     type="SUBMIT"
+               styleClass="submit"
+                    value="#{messages['button.logon']}"/>
 
-    <h:command_button id="reset" type="RESET"
-              styleClass="command-single"
-                   value="Reset"/>
+    <h:commandButton   id="reset"
+                     type="RESET"
+               styleClass="reset"
+                    value="#{messages['button.reset']}"/>
 
     <%-- Grid footer element --%>
 
     <f:facet name="footer">
-        <s:message key="logon.footer"/>
+      <h:outputText value="#{messages['logon.footer']}"/>
     </f:facet>
 
-  </h:panel_grid>
+  </h:panelGrid>
 
 </s:form>
 
-<s:javascript formName="logonForm"
-     dynamicJavascript="true"
-      staticJavascript="false"/>
+<s:javascript    formName="logonForm"
+        dynamicJavascript="true"
+         staticJavascript="false"/>
 <script language="Javascript1.1" src="staticJavascript.jsp"></script>
 
 </body>

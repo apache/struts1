@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/AbstractFacesTag.java,v 1.5 2004/01/18 13:43:13 husted Exp $
- * $Revision: 1.5 $
- * $Date: 2004/01/18 13:43:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/AbstractFacesTag.java,v 1.6 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import javax.faces.webapp.UIComponentTag;
  * <em>Struts-Faces Integration Library</em>.</p>
  *
  *
- * @version $Revision: 1.5 $ $Date: 2004/01/18 13:43:13 $
+ * @version $Revision: 1.6 $ $Date: 2004/03/08 00:40:48 $
  */
 
 public abstract class AbstractFacesTag extends UIComponentTag {
@@ -143,7 +143,7 @@ public abstract class AbstractFacesTag extends UIComponentTag {
     }
 
 
-    // ------------------------------------------------------- Protected Methods
+    // -------------------------------------------------- UIComponentTag Methods
 
 
     /**
@@ -154,32 +154,108 @@ public abstract class AbstractFacesTag extends UIComponentTag {
     protected void setProperties(UIComponent component) {
 
         super.setProperties(component);
-        if (bundle != null) {
-            if (isValueReference(bundle)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(bundle);
-                component.setValueBinding("bundle", vb);
-            } else {
-                component.getAttributes().put("bundle", bundle);
-            }
+        setStringAttribute(component, "bundle", bundle);
+        setStringAttribute(component, "styleClass", styleClass);
+        setStringAttribute(component, "value", value);
+
+    }
+
+
+    // ------------------------------------------------------- Protected Methods
+
+
+    /**
+     * <p>If the specified attribute value is not <code>null</code>
+     * use it to either store a value binding expression for the
+     * specified attribute name, or store it as the literal value
+     * of the attribute.</p>
+     *
+     * @param component <code>UIComponent</code> whose attribute
+     *  is to be set
+     * @param name Attribute name
+     * @param value Attribute value (or <code>null</code>)
+     *
+     * @exception NumberFormatException if the value does not
+     *  contain a parsable integer
+     * @exception ReferenceSyntaxException if the expression has
+     *  invalid syntax
+     */
+    protected void setBooleanAttribute(UIComponent component,
+                                       String name, String value) {
+
+        if (value == null) {
+            return;
         }
-        if (styleClass != null) {
-            if (isValueReference(styleClass)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(styleClass);
-                component.setValueBinding("styleClass", vb);
-            } else {
-                component.getAttributes().put("styleClass", styleClass);
-            }
+        if (isValueReference(value)) {
+            ValueBinding vb =
+                getFacesContext().getApplication().createValueBinding(value);
+            component.setValueBinding(name, vb);
+        } else {
+            component.getAttributes().put(name, Boolean.valueOf(value));
         }
-        if (value != null) {
-            if (isValueReference(value)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(value);
-                component.setValueBinding("value", vb);
-            } else {
-                ((ValueHolder) component).setValue(value);
-            }
+
+    }
+
+
+    /**
+     * <p>If the specified attribute value is not <code>null</code>
+     * use it to either store a value binding expression for the
+     * specified attribute name, or store it as the literal value
+     * of the attribute.</p>
+     *
+     * @param component <code>UIComponent</code> whose attribute
+     *  is to be set
+     * @param name Attribute name
+     * @param value Attribute value (or <code>null</code>)
+     *
+     * @exception NumberFormatException if the value does not
+     *  contain a parsable integer
+     * @exception ReferenceSyntaxException if the expression has
+     *  invalid syntax
+     */
+    protected void setIntegerAttribute(UIComponent component,
+                                       String name, String value) {
+
+        if (value == null) {
+            return;
+        }
+        if (isValueReference(value)) {
+            ValueBinding vb =
+                getFacesContext().getApplication().createValueBinding(value);
+            component.setValueBinding(name, vb);
+        } else {
+            component.getAttributes().put(name, Integer.valueOf(value));
+        }
+
+    }
+
+
+    /**
+     * <p>If the specified attribute value is not <code>null</code>
+     * use it to either store a value binding expression for the
+     * specified attribute name, or store it as the literal value
+     * of the attribute.</p>
+     *
+     * @param component <code>UIComponent</code> whose attribute
+     *  is to be set
+     * @param name Attribute name
+     * @param value Attribute value (or <code>null</code>)
+     *
+     * @exception ReferenceSyntaxException if the expression has
+     *  invalid syntax
+     */
+    protected void setStringAttribute(UIComponent component,
+                                      String name, String value) {
+
+        if (value == null) {
+            return;
+        }
+        if (isValueReference(value)) {
+            ValueBinding vb =
+                getFacesContext().getApplication().createValueBinding(value);
+            component.setValueBinding(name, vb);
+        } else {
+            component.getAttributes().put(name, value);
         }
 
     }

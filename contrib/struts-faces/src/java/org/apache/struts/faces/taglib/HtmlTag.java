@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/HtmlTag.java,v 1.5 2004/01/18 13:43:13 husted Exp $
- * $Revision: 1.5 $
- * $Date: 2004/01/18 13:43:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/HtmlTag.java,v 1.6 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.Globals;
  * <p>Render an HTML <code>&lt;html&gt;</code> element for
  * the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.5 $ $Date: 2004/01/18 13:43:13 $
+ * @version $Revision: 1.6 $ $Date: 2004/03/08 00:40:48 $
  */
 
 public class HtmlTag extends AbstractFacesTag {
@@ -111,7 +111,7 @@ public class HtmlTag extends AbstractFacesTag {
      */
     public String getComponentType() {
 
-        return ("Output");
+        return ("javax.faces.Output");
 
     }
 
@@ -138,7 +138,7 @@ public class HtmlTag extends AbstractFacesTag {
      */
     public String getRendererType() {
 
-        return ("StrutsHtml");
+        return ("org.apache.struts.faces.Html");
 
     }
 
@@ -166,26 +166,8 @@ public class HtmlTag extends AbstractFacesTag {
     protected void setProperties(UIComponent component) {
 
         super.setProperties(component);
-        if (locale != null) {
-            if (isValueReference(locale)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(locale);
-                component.setValueBinding("locale", vb);
-            } else {
-                component.getAttributes().put
-                    ("locale", Boolean.valueOf(locale));
-            }
-        }
-        if (xhtml != null) {
-            if (isValueReference(xhtml)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(xhtml);
-                component.setValueBinding("xhtml", vb);
-            } else {
-                component.getAttributes().put
-                    ("xhtml", Boolean.valueOf(xhtml));
-            }
-        }
+        setBooleanAttribute(component, "locale", locale);
+        setBooleanAttribute(component, "xhtml", xhtml);
 
     }
 

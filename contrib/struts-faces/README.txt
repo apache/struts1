@@ -1,5 +1,5 @@
 The Struts-Faces Integration Library (Version 0.4) README File
-$Id: README.txt,v 1.6 2003/12/31 07:17:48 craigmcc Exp $
+$Id: README.txt,v 1.7 2004/03/08 00:40:48 craigmcc Exp $
 
 
 ============
@@ -30,6 +30,10 @@ JAR files into the example app, which is required before it will run.
 NEW AND REVISED FEATURES:
 ========================
 
+
+Struts-Faces Integration Library (Version 0.5):
+----------------------------------------------
+
 This release of the Struts-Faces Integration Library (Version 0.5) has the
 following new features relative to the previous (0.4) release:
 
@@ -44,6 +48,37 @@ following new features relative to the previous (0.4) release:
 * It is now possible to use the Struts-Faces Integration Library in conjunction
   with application modules using Tiles.
 
+* You many now use a managed bean named "struts" at the beginning of any
+  value binding expression in order to gain access to request, session, and
+  application scope objects provided by Struts.  See the Javadocs for the
+  implementation class (org.apache.struts.faces.util.StrutsContext)
+  for more information about what objects are available.
+
+* You may now use either prefix mapping (/faces/*) or extension mapping
+  (*.faces) for the JavaServer Faces controller servlet.
+
+* In addition to the <s:message> tag that operates as a direct replacement
+  for <html:message>, you may also consider using the new <s:loadMessages>
+  tag that exposes a MessageResources instance as a request attribute
+  containing a Map.  This makes the messages included in the instance
+  available via value binding expressions (or JSP 2.0 EL expressions).
+  For example, the logon.jsp page of the example application includes:
+
+    ...
+    <s:loadMessages var="messages"/>
+    ...
+    <h:outputText value="#{messages['logon.header']}"/>
+    ...
+
+  to create the header text for the logon form.  You may either specify the
+  application scope key for the MessageResources bunde you want, or omit
+  the "messages" attribute to load the default MessageResources for the
+  current application module.
+
+* You can leverage advanced JavaServer Faces features in a Struts based
+  web application.  For example, the converted "Mail Reader" example includes
+  using the <h:dataTable> for multi-row input as well as output.
+
 This release of the Struts-Faces Integration Library (Version 0.5) has the
 following revised features relative to the previous (0.4) release:
 
@@ -52,6 +87,10 @@ following revised features relative to the previous (0.4) release:
 
 * Integration with the Validator Framework should work properly
   in all cases now.
+
+
+Struts-Faces Integration Library (Version 0.4):
+----------------------------------------------
 
 The previous release of the Struts-Faces Integration Library (Version 0.4)
 had the following new features relative to the previous (0.3) release:
@@ -90,6 +129,7 @@ had the following revised features relative to the previous (0.3) release:
 * The renderer implementation classes have been substantially simplified
   due to the removal of the requirement to provide information about
   supported render-dependent attributes.
+
 
 
 ========================
@@ -156,6 +196,10 @@ Directory "src":
                        You can compare this to the corresponding sources in a
                        standard Struts release to see what had to be changed.
 
+  example2/         -- Source files for a Tiles-based example application
+                       that has been converted to use JavaServer Faces
+                       components.
+
   java/             -- Source files for the Struts-Faces integration library
                        classes (only required for building from source).  The
                        following packages (under org.apache.struts.faces)
@@ -163,7 +207,7 @@ Directory "src":
 
                        application -- Integrate with ActionListener,
                                       custom PropertyResolver,
-                                      custom RequestProcessor(s)
+                                      custom RequestProcessors
 
                        component   -- Custom JavaServer Faces component
                                       implementations (only Form for now)
@@ -173,6 +217,8 @@ Directory "src":
 
                        taglib      -- Custom JavaServer Faces component tag
                                       implementations
+
+                       uti         -- Miscellaneous utility classes
 
 
 Directory "web":
@@ -184,24 +230,31 @@ Directory "web":
                        this to the corresponding sources in a standard Struts
                        release to see what had to be changed.
 
+  example2/         -- JSP and web application configuration files for a
+                       Tiles-based example application.
+
 
 Directory "webapps":
 -------------------
 
   struts-faces.war  -- The converted example application, minus the required
-                       JAR files from the JavaServer Faces reference
-                       implementation Early Access 4 release.  See RUNNING
-                       THE EXAMPLE APPLIATION for information on how to
+                       JAR files from the JavaServer Faces reference.  See
+                       RUNNING THE EXAMPLE APPLIATION for information on how to
                        configure and deploy this web application on your
                        container.
 
+  struts-faces2.war -- The Tiles-based example application, minus the required
+                       JAR fies from the JavaSErver Faces reference
+                       implementation.
 
-===============================
-RUNNING THE EXAMPLE APPLICATION:
-===============================
+
+================================
+RUNNING THE EXAMPLE APPLICATIONS:
+================================
 
 The following steps are required to deploy and run the example application
-(struts-faces.war) included in this distribution:
+(struts-faces.war) included in this distribution.  A similar process is
+necessary to run the second (struts-faces2.war) example as well.
 
 
 Install A Java Development Kit:
@@ -217,7 +270,7 @@ Sun's JDK 1.4.2 release, available at:
 Install a Servlet Container:
 ---------------------------
 
-The JavaServer Faces reference implementation beta release has been tested
+The JavaServer Faces reference implementation final release has been tested
 against Tomcat 5.0.16, but should run in any container that supports the
 Servlet 2.3 and JSP 1.2 specifications.
 
@@ -264,7 +317,7 @@ If you are planning to execute the example application on a servlet container
 that does not include JavaServer Faces (such as Tomcat 5.0.16 or later),
 you will need to manually integrate the required JAR fles into the WAR file.
 Yo can do this by executing the following steps from the command line, where
-$JSF_HOME is the directory into which you have downloaded the beta release
+$JSF_HOME is the directory into which you have downloaded the final release
 of JavaServer Faces 1.0, and $STRUTS_FACES_HOME is the directory into which
 you have downloaded the Struts-Faces Integration Library binary release:
 
@@ -393,12 +446,8 @@ applications is straightforward, and requires the following steps:
 
     <servlet-mapping>
       <servlet-name>faces</servlet-name>
-      <url-pattern>/faces/*</url-pattern>
+      <url-pattern>*.faces</url-pattern>
     </servlet-mapping>
-
-  NOTE:  Although JavaServer Faces no longer requires ths mapping,
-  the Struts-Faces Integration Library currently still requires it.
-  This isse will be addessed before a final 1.0 release.
 
 * The tag library in the Struts-Faces integration library (as well
   as those in the JavaServer Faces reference implementation) are
@@ -443,7 +492,7 @@ applications is straightforward, and requires the following steps:
 
     to the following JavaServer Faces Component tag:
 
-      <h:input_text id="username" size="16" maxlength="18"
+      <h:inputText id="username" size="16" maxlength="18"
               value="#{logonForm.username}"/>
 
   - JavaServer Faces provides its own mechanisms for internationalizing
@@ -482,13 +531,15 @@ applications is straightforward, and requires the following steps:
 * For each JSP page that you have modified to use JavaServer Faces
   components instead of traditional Struts tags, modify any <forward>
   elements in your webapp's struts-config.xml file to include "/faces"
-  in front of the path to that page.  For example, change:
+  in front of the path to that page (if you are using prefix mapping),
+  or a ".faces" extension (if you are using extenaion mapping.  For
+  example, change:
 
     <forward name="registration" path="/registration.jsp"/>
 
   to this:
 
-    <forward name="registration" path="/faces/registration.jsp"/>
+    <forward name="registration" path="/registration.faces"/>
 
 * In most circumstances, you should not need to make any changes in
   your Actions, or the business logic classes invoked by your actions.
@@ -505,7 +556,7 @@ applications is straightforward, and requires the following steps:
     normal Struts request processing lifecycle.
 
 * If your application contains cancel buttons rendered by the <html:cancel>
-  tag, you should replace them with an <h:command_button> that has an
+  tag, you should replace them with an <h:commandButton> that has an
   "id" attribute set to "cancel" in order for this button to be recognized
   by Struts as a cancel button.
 
@@ -540,7 +591,7 @@ fully implemented or tested:
   since you are free to use JSTL tags directly).
 
 * Use of a custom RequestProcessor subclass.  The Struts-Faces integration
-  library provides its own custom subclass
+  library provides its own custom subclasses
   (org.apache.struts.faces.application.FacesRequestProcessor or
   org.apache.struts.faces.application.FacesTilesRequestProcessor), which must
   be used (or subclassed) for the integration to operate successfuly.

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/ErrorsTag.java,v 1.5 2004/01/18 13:43:13 husted Exp $
- * $Revision: 1.5 $
- * $Date: 2004/01/18 13:43:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/ErrorsTag.java,v 1.6 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -69,7 +69,7 @@ package org.apache.struts.faces.taglib;
  * the <em>Struts-Faces Integration Library</em>.</p>
  *
  *
- * @version $Revision: 1.5 $ $Date: 2004/01/18 13:43:13 $
+ * @version $Revision: 1.6 $ $Date: 2004/03/08 00:40:48 $
  */
 
 public class ErrorsTag extends AbstractFacesTag {
@@ -86,7 +86,7 @@ public class ErrorsTag extends AbstractFacesTag {
      */
     public String getComponentType() {
 
-        return ("Output");
+        return ("javax.faces.Output");
 
     }
 
@@ -97,7 +97,7 @@ public class ErrorsTag extends AbstractFacesTag {
      */
     public String getRendererType() {
 
-        return ("StrutsErrors");
+        return ("org.apache.struts.faces.Errors");
 
     }
 

@@ -29,11 +29,13 @@
 
 
   <!-- Lifecycle Listener -->
+<!--
   <listener>
     <listener-class>
       org.apache.struts.faces.taglib.LifecycleListener
     </listener-class>
   </listener>
+-->
 
 
   <!-- ==================== Supported Tags ================================ -->
@@ -469,6 +471,42 @@
 
   </tag>
 
+
+  <tag>
+
+    <name>loadMessages</name>
+    <summary>
+      Expose a MessageResources instance as a Map
+    </summary>
+    <tag-class>org.apache.struts.faces.taglib.LoadMessagesTag</tag-class>
+    <body-content>empty</body-content>
+    <description>
+      <p>Create a Map wrapping the specified MessageResources instance, which
+      will return localized messages based on the Locale stored in the
+      view root component of the current view.</p>
+    </description>
+
+    <attribute>
+      <name>messages</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Application scope key containing the MessageResources instance
+        to be exposed.  If not specified, the default MessageResources
+        instance for the current application module is exposed.</p>
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>var</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Request scope key under which the Map will be stored.</p>
+      </description>
+    </attribute>
+
+  </tag>
 
   <tag>
 

@@ -5,135 +5,164 @@
 <%@ taglib prefix="s" uri="http://jakarta.apache.org/struts/tags-faces" %>
 
 <f:view>
-<s:html locale="true">
+<s:loadMessages       var="messages"/>
+<s:html            locale="true">
 <head>
   <title><c:choose>
-    <c:when test="${registrationForm.action == 'Create'}">
-      <s:message key="registration.title.create"/>
+    <c:when          test="${registrationForm.action == 'Create'}">
+      <s:message      key="registration.title.create"/>
     </c:when>
-    <c:when test="${registrationForm.action == 'Edit'}">
-      <s:message key="registration.title.edit"/>
+    <c:when          test="${registrationForm.action == 'Edit'}">
+      <s:message      key="registration.title.edit"/>
     </c:when>
     <c:otherwise>
       UNKNOWN ACTION
     </c:otherwise>
   </c:choose></title>
   <s:base/>
-  <s:stylesheet path="/stylesheet.css"/>
+  <s:stylesheet      path="/stylesheet.css"/>
 </head>
-<body bgcolor="white">
+<body>
 
 <s:errors/>
 
-<s:form action="/saveRegistration" focus="username"
-         onsubmit="return validateRegistrationForm(this);">
+<s:form                id="registration"
+                   action="/saveRegistration"
+                    focus="username"
+                 onsubmit="return validateRegistrationForm(this);"
+               styleClass="center form">
 
-  <h:input_hidden id="action" value="#{registrationForm.action}"/>
+  <h:inputHidden       id="action"
+                    value="#{registrationForm.action}"/>
 
-  <h:panel_grid
-           columns="2"
-        styleClass="form-background"
-       headerClass="form-header"
-     columnClasses="form-prompt,form-field">
+  <h:panelGrid    columns="2"
+               styleClass="grid"
+              headerClass="grid header"
+            columnClasses="grid column0,grid column1">
 
     <%-- Grid header element --%>
 
     <f:facet name="header">
-      <h:panel_group>
+      <h:panelGroup>
         <c:choose>
-          <c:when test="${registrationForm.action == 'Create'}">
-            <s:message key="registration.header.create"/>
+          <c:when    test="${registrationForm.action == 'Create'}">
+           <s:message key="registration.header.create"/>
           </c:when>
-          <c:when test="${registrationForm.action == 'Edit'}">
-            <s:message key="registration.header.edit"/>
+          <c:when    test="${registrationForm.action == 'Edit'}">
+           <s:message key="registration.header.edit"/>
           </c:when>
           <c:otherwise>
-            <h:output_text id="unknownActionTitle" value="UNKNOWN ACTION"/>
+           <h:outputText
+                       id="unknownActionTitle"
+                    value="UNKNOWN ACTION"/>
           </c:otherwise>
         </c:choose>
-      </h:panel_group>
+      </h:panelGroup>
     </f:facet>
 
     <%-- Grid data elements --%>
 
-    <h:output_label for="username">
-      <s:message key="prompt.username"/>
-    </h:output_label>
+    <h:outputLabel    for="username"
+               styleClass="label">
+      <s:message      key="prompt.username"/>
+    </h:outputLabel>
 
-    <h:panel_group>
+    <h:panelGroup>
       <c:choose>
-        <c:when test="${registrationForm.action == 'Create'}">
-          <h:input_text id="username" size="16"
-                     value="#{registrationForm.username}"/>
+        <c:when      test="${registrationForm.action == 'Create'}">
+          <h:inputText id="username"
+                     size="16"
+               styleClass="field"
+                    value="#{registrationForm.username}"/>
         </c:when>
-        <c:when test="${registrationForm.action == 'Edit'}">
-          <h:panel_group id="usernameGroup">
-            <s:write filter="true"
-                      value="#{registrationForm.username}"/>
-            <h:input_hidden id="username"
-                         value="#{registrationForm.username}"/>
-          </h:panel_group>
+        <c:when      test="${registrationForm.action == 'Edit'}">
+          <h:panelGroup
+                       id="usernameGroup">
+            <s:write
+                   filter="true"
+               styleClass="value"
+                    value="#{registrationForm.username}"/>
+            <h:inputHidden
+                       id="username"
+                    value="#{registrationForm.username}"/>
+          </h:panelGroup>
         </c:when>
         <c:otherwise>
-          <h:output_text id="unknownActionMessage" value="UNKNOWN ACTION"/>
+          <h:outputText
+                       id="unknownActionMessage"
+               styleClass="value"
+                    value="UNKNOWN ACTION"/>
         </c:otherwise>
       </c:choose>
-    </h:panel_group>
+    </h:panelGroup>
 
-    <h:output_label for="password">
-      <s:message key="prompt.password"/>
-    </h:output_label>
+    <h:outputLabel    for="password"
+               styleClass="label">
+      <s:message      key="prompt.password"/>
+    </h:outputLabel>
 
-    <h:input_text id="password"
-                size="16"
-               value="#{registrationForm.password}"/>
+    <h:inputText       id="password"
+                     size="16"
+               styleClass="field"
+                    value="#{registrationForm.password}"/>
 
-    <h:output_label for="password2">
-      <s:message key="prompt.password2"/>
-    </h:output_label>
+    <h:outputLabel    for="password2"
+               styleClass="label">
+      <s:message      key="prompt.password2"/>
+    </h:outputLabel>
 
-    <h:input_text id="password2"
-                size="16"
-               value="#{registrationForm.password2}"/>
+    <h:inputText       id="password2"
+                     size="16"
+               styleClass="field"
+                    value="#{registrationForm.password2}"/>
 
-    <h:output_label for="fullName">
-      <s:message key="prompt.fullName"/>
-    </h:output_label>
+    <h:outputLabel    for="fullName"
+               styleClass="label">
+      <s:message      key="prompt.fullName"/>
+    </h:outputLabel>
 
-    <h:input_text id="fullName"
-                size="50"
-               value="#{registrationForm.fullName}"/>
+    <h:inputText       id="fullName"
+                     size="50"
+               styleClass="field"
+                    value="#{registrationForm.fullName}"/>
 
-    <h:output_label for="fromAddress">
-      <s:message key="prompt.fromAddress"/>
-    </h:output_label>
+    <h:outputLabel    for="fromAddress"
+               styleClass="label">
+      <s:message      key="prompt.fromAddress"/>
+    </h:outputLabel>
 
-    <h:input_text id="fromAddress"
-                size="50"
-               value="#{registrationForm.fromAddress}"/>
+    <h:inputText       id="fromAddress"
+                     size="50"
+               styleClass="field"
+                    value="#{registrationForm.fromAddress}"/>
 
-    <h:output_label for="replyToAddress">
-      <s:message key="prompt.replyToAddress"/>
-    </h:output_label>
+    <h:outputLabel    for="replyToAddress"
+               styleClass="label">
+      <s:message      key="prompt.replyToAddress"/>
+    </h:outputLabel>
 
-    <h:input_text id="replyToAddress"
-                size="50"
-               value="#{registrationForm.replyToAddress}"/>
+    <h:inputText       id="replyToAddress"
+                     size="50"
+               styleClass="field"
+                    value="#{registrationForm.replyToAddress}"/>
 
-    <h:command_button id="submit" type="SUBMIT"
-              styleClass="command-single"
-                   value="Save"/>                        <%-- FIXME - i18n --%>
+    <h:commandButton   id="submit"
+                     type="SUBMIT"
+               styleClass="submit"
+                    value="#{messages['button.save']}"/>
 
-    <h:panel_group>
-      <h:command_button id="reset" type="RESET"
-                styleClass="command-multiple"
-                     value="Reset"/>                     <%-- FIXME - i18n --%>
-      <h:command_button id="cancel" type="SUBMIT"
-                styleClass="command-multiple"
-                     value="Cancel"/>                    <%-- FIXME - i18n --%>
-    </h:panel_group>
+    <h:panelGroup>
+      <h:commandButton id="reset"
+                     type="RESET"
+               styleClass="reset"
+                    value="#{messages['button.reset']}"/>
+      <h:commandButton id="cancel"
+                     type="SUBMIT"
+               styleClass="cancel"
+                    value="#{messages['button.cancel']}"/>
+    </h:panelGroup>
 
-  </h:panel_grid>
+  </h:panelGrid>
 
 </s:form>
 
@@ -141,82 +170,107 @@
 
 <h:form id="subscriptions">
 
-  <h:data_table         id="table"
-             columnClasses="list-column-host,list-column-user,list-column-type,
-                            list-column-auto,list-column-action"
-               headerClass="list-header"
-                styleClass="list-background"
-                rowClasses="list-row-even,list-row-odd"
-                     value="#{user.subscriptions}"
-                       var="subscription">
+  <h:dataTable         id="table"
+                  binding="#{registrationBacking.table}"
+            columnClasses="list column left,list column left,list column center,
+                           list column center,list column center"
+              headerClass="list header"
+               styleClass="wide list"
+               rowClasses="list row even,list row odd"
+                    value="#{user.subscriptions}"
+                      var="subscription">
 
-    <h:column           id="hostColumn">
-      <f:facet        name="header">
-        <s:message      id="hostHeader"
-                       key="heading.host"/>
+    <h:column          id="hostColumn">
+      <f:facet       name="header">
+        <s:message     id="hostHeader"
+                      key="heading.host"/>
       </f:facet>
-      <h:output_text    id="subhost"
-                     value="#{subscription.host}"/>
+      <h:outputText    id="subhost"
+               styleClass="value"
+                    value="#{subscription.host}"/>
     </h:column>
 
-    <h:column           id="usernameColumn">
-      <f:facet        name="header">
-        <s:message      id="usernameHeader"
-                       key="heading.user"/>
+    <h:column          id="usernameColumn">
+      <f:facet       name="header">
+        <s:message     id="usernameHeader"
+                      key="heading.user"/>
       </f:facet>
-      <h:output_text    id="subusername"
-                     value="#{subscription.username}"/>
+      <h:outputText    id="subusername"
+               styleClass="value"
+                    value="#{subscription.username}"/>
     </h:column>
 
-    <h:column           id="typeColumn">
-      <f:facet        name="header">
-        <s:message      id="typeHeader"
-                       key="heading.type"/>
+    <h:column          id="typeColumn">
+      <f:facet       name="header">
+        <s:message     id="typeHeader"
+                      key="heading.type"/>
       </f:facet>
-      <h:output_text    id="subtype"
-                     value="#{subscription.type}"/>
+      <h:selectOneMenu id="type"
+               styleClass="field"
+                    value="#{subscription.type}">
+        <f:selectItem
+                itemValue="imap"
+                itemLabel="IMAP Protocol"/>
+        <f:selectItem
+                itemValue="pop3"
+                itemLabel="POP3 Protocol"/>
+      </h:selectOneMenu>
+<%--
+      <h:outputText    id="subtype"
+               styleClass="value"
+                    value="#{subscription.type}"/>
+--%>
     </h:column>
 
-    <h:column           id="autoConnectColumn">
-      <f:facet        name="header">
-        <s:message      id="autoConnectHeader"
-                       key="heading.autoConnect"/>
+    <h:column          id="autoConnectColumn">
+      <f:facet       name="header">
+        <s:message     id="autoConnectHeader"
+                      key="heading.autoConnect"/>
       </f:facet>
-      <h:output_text    id="subauto"
-                     value="#{subscription.autoConnect}"/>
+      <h:selectBooleanCheckbox
+                       id="autoConnect"
+               styleClass="field"
+                    value="#{subscription.autoConnect}"/>
     </h:column>
 
-    <h:column           id="actionColumn">
-      <f:facet        name="header">
-        <s:message      id="actionHeader"
-                       key="heading.action"/>
+    <h:column          id="actionColumn">
+      <f:facet       name="header">
+        <s:message     id="actionHeader"
+                      key="heading.action"/>
       </f:facet>
-      <h:command_button id="delete"
-                styleClass="command-multiple"
-                 immediate="true"
-                    action="#{registrationBacking.delete}"
-                     value="#{registrationBacking.deleteLabel}"/>
-      <h:command_button id="edit"
-                styleClass="command-multiple"
-                 immediate="true"
-                    action="#{registrationBacking.edit}"
-                     value="#{registrationBacking.editLabel}"/>
+      <h:commandButton id="delete"
+               styleClass="submit"
+                immediate="true"
+                   action="#{registrationBacking.delete}"
+                    value="#{messages['button.delete']}"/>
+      <h:commandButton id="edit"
+               styleClass="submit"
+                immediate="true"
+                   action="#{registrationBacking.edit}"
+                    value="#{messages['button.edit']}"/>
     </h:column>
 
-  </h:data_table>
+  </h:dataTable>
 
-  <h:command_button     id="create"
-                 immediate="true"
-                    action="#{registrationBacking.create}"
-                     value="Add New"/>
+  <h:commandButton     id="create"
+                immediate="true"
+                   action="#{registrationBacking.create}"
+               styleClass="submit"
+                    value="#{messages['button.add']}"/>
+
+  <h:commandButton      id="update"
+                 immediate="false"
+                    action="#{registrationBacking.update}"
+                styleClass="submit"
+                     value="#{messages['button.update']}"/>
 
 </h:form>
 
 </c:if>
 
-<s:javascript formName="registrationForm"
-     dynamicJavascript="true"
-      staticJavascript="false"/>
+<s:javascript    formName="registrationForm"
+        dynamicJavascript="true"
+         staticJavascript="false"/>
 <script language="Javascript1.1" src="staticJavascript.jsp"></script>
 
 </body>

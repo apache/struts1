@@ -1,111 +1,202 @@
-.command-multiple { 
-  margin: 3px 9px 3px 3px;
+/* ========== Global Styles ================================================= */
+
+
+* { 
+  color:                 #000000;
+  font-family:           Arial, Helvetica, sans-serif;
+  font-size:             16px;
+  margin:                0px;
+  padding:               0px;
+  text-align:            left;
 }
 
-.command-single { 
-  margin: 3px 3px 3px 3px;
+
+/* ========== Simple Styles ================================================= */
+
+
+.cancel { 
+  background-color:      #0000ff;
+  border:                1px solid #ffffff;
+  color:                 #ffffff;
+  font-weight:           bold;
+  margin:                2px;
+  padding:               2px;
+  text-align:            center;
 }
 
-.form-background { 
-  background-color: #7171A5;
-  border: 5px outset #71A5A5;
-  border-collapse: collapse;
-  font-family: sans-serif;
-  font-size: 14pt;
-  margin-left: auto;
-  margin-right: auto;
+
+.center { 
+  text-align:            center;
 }
 
-.form-footer { 
-  color: #FFFFFF;
-  font-size: 75%;
-  padding: 3px;
-  text-align: center;
+
+.field {
+  background-color:      #9999ff;
+  border:                1px solid #000000;
+  color:                 #000000;
+  font-weight:           normal;
+  margin:                2px;
+  padding:               2px;
 }
 
-.form-header { 
-  background-color: #A5A5A5;
-  color: #FFFFFF;
-  font-weight: bold;
-  padding: 3px;
-  text-align: center;
+
+.form {
 }
 
-.form-prompt {
-  color: #FFFFFF;
-  padding: 3px 3px 3px 9px;
-  text-align: right;
+
+.label {
 }
 
-.form-field {
-  padding: 3px 9px 3px 3px;
-  text-align: left;
+
+.left { 
+  text-align:            left;
 }
 
-.form-row-even { 
+
+.link { 
 }
 
-.form-row-odd { 
-  background-color: #717171;
+
+.message { 
+  color:                 red;
+  font-style:            italic;
 }
 
-.list-background { 
-  background-color: #7171A5;
-  border: 5px outset #71A5A5;
-  border-collapse: collapse;
-  font-family: sans-serif;
-  font-size: 14pt;
-  padding: 10px;
-  width: 100%;
+
+.password {
+  background-color:      #9999ff;
+  border:                1px solid #000000;
+  color:                 #000000;
+  font-weight:           normal;
+  margin:                2px;
+  padding:               2px;
 }
 
-.list-column-host { 
-  border-right: 2px solid black;
-  padding: 3px;
-  text-align: left;
-  width: 30%;
+
+.reset {
+  background-color:      #0000ff;
+  border:                1px solid #ffffff;
+  color:                 #ffffff;
+  font-weight:           bold;
+  margin:                2px;
+  padding:               2px;
+  text-align:            center;
 }
 
-.list-column-user { 
-  border-right: 2px solid black;
-  padding: 3px;
-  text-align: left;
-  width: 30%
+
+.right { 
+  text-align:            right;
 }
 
-.list-column-type {
-  border-right: 2px solid black;
-  padding: 3px;
-  text-align: center;
-  width: 10%
+
+.submit { 
+  background-color:      #0000ff;
+  border:                1px solid #ffffff;
+  color:                 #ffffff;
+  font-weight:           bold;
+  margin:                2px;
+  padding:               2px;
+  text-align:            center;
 }
 
-.list-column-auto {
-  border-right: 2px solid black;
-  padding: 3px;
-  text-align: center;
-  width: 10%
+
+.value { 
 }
 
-.list-column-action {
-  padding: 3px;
-  text-align: center;
-  width: 20%
+
+.wide {
+  width:                 100%;
 }
 
-.list-header { 
-  background-color: #A5A5A5;
-  color: #FFFFFF;
-  font-weight: bold;
-  padding: 3px;
-  text-align: center;
+
+/* ========== Grid Styles =================================================== */
+
+
+.grid { 
+  background-color:      #ccccff;
+  color:                 #0000ff;
+  text-align:            center;
 }
 
-.list-row-even { 
+
+.grid.column0 {
+  text-align:            right;
 }
 
-.list-row-odd { 
-  background-color: #717171;
+
+.grid.column1 {
+  text-align:            left;
+}
+
+
+.grid.column2 {
+  text-align:            left;
+}
+
+
+.grid.footer {
+  background-color:      #6666ff;
+  color:                 #000000;
+  font-size:             12px;
+  text-align:            center;
+}
+
+
+.grid.header {
+  background-color:      #6666ff;
+  color:                 #000000;
+  font-weight:           bold;
+  text-align:            center;
+}
+
+
+.grid.row.even { 
+}
+
+
+.grid.row.odd { 
+}
+
+
+/* ========== List Styles =================================================== */
+
+
+.list { 
+  background-color:      #ccccff;
+  color:                 #0000ff;
+  text-align:            center;
+}
+
+
+.list.column {
+  border-collapse:       collapse;
+  border-left:           1px solid black;
+  border-right:          1px solid black;
+}
+
+
+.list.footer {
+  background-color:      #6666ff;
+  color:                 #000000;
+  font-size:             12px;
+  text-align:            center;
+}
+
+
+.list.header {
+  background-color:      #6666ff;
+  color:                 #000000;
+  font-weight:           bold;
+  text-align:            center;
+}
+
+
+.list.row.even { 
+  background-color:      #eeeeff;
+}
+
+
+.list.row.odd { 
 }
 
 

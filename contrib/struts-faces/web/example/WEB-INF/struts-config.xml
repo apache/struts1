@@ -66,10 +66,10 @@
   <!-- ========== Global Forward Definitions ============================== -->
   <global-forwards>
     <forward   name="logoff"               path="/logoff.do"/>
-    <forward   name="logon"                path="/faces/logon.jsp"/>
-    <forward   name="registration"         path="/faces/registration.jsp"/>
-    <forward   name="subscription"         path="/faces/subscription.jsp"/>
-    <forward   name="success"              path="/faces/mainMenu.jsp"/>
+    <forward   name="logon"                path="/logon.faces"/>
+    <forward   name="registration"         path="/registration.faces"/>
+    <forward   name="subscription"         path="/subscription.faces"/>
+    <forward   name="success"              path="/mainMenu.faces"/>
   </global-forwards>
 
 
@@ -82,7 +82,7 @@
           attribute="registrationForm"
               scope="request"
            validate="false">
-      <forward name="success"              path="/faces/registration.jsp"/>
+      <forward name="success"              path="/registration.faces"/>
     </action>
 
     <!-- Edit mail subscription -->
@@ -91,14 +91,14 @@
           attribute="subscriptionForm"
               scope="request"
            validate="false">
-      <forward name="failure"              path="/faces/mainMenu.jsp"/>
-      <forward name="success"              path="/faces/subscription.jsp"/>
+      <forward name="failure"              path="/mainMenu.faces"/>
+      <forward name="success"              path="/subscription.faces"/>
     </action>
 
     <!-- Process a user logoff -->
     <action    path="/logoff"
                type="org.apache.struts.webapp.example.LogoffAction">
-      <forward name="success"              path="/index.jsp"/>
+      <forward name="success"              path="/index.faces"/>
     </action>
 
     <!-- Process a user logon -->
@@ -110,7 +110,7 @@
       <exception
                 key="expired.password"
                type="org.apache.struts.webapp.example.ExpiredPasswordException"
-               path="/changePassword.jsp"/>
+               path="/changePassword.faces"/>
     </action>
 
     <!-- Save user registration -->
@@ -126,7 +126,7 @@
                name="subscriptionForm"
               scope="request"
               input="subscription">
-      <forward name="success"         path="/faces/mainMenu.jsp"/>
+      <forward name="success"         path="/editRegistration.do?action=Edit"/>
     </action>
 
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/FormTag.java,v 1.4 2004/01/18 13:43:13 husted Exp $
- * $Revision: 1.4 $
- * $Date: 2004/01/18 13:43:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/FormTag.java,v 1.5 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import org.apache.struts.faces.component.FormComponent;
  * <p>Render an input form that is submitted to a Struts <code>Action</code>,
  * for the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.4 $ $Date: 2004/01/18 13:43:13 $
+ * @version $Revision: 1.5 $ $Date: 2004/03/08 00:40:48 $
  */
 
 public class FormTag extends AbstractFacesTag {
@@ -226,7 +226,7 @@ public class FormTag extends AbstractFacesTag {
      */
     public String getComponentType() {
 
-        return ("StrutsForm");
+        return ("org.apache.struts.faces.Form");
 
     }
 
@@ -237,7 +237,7 @@ public class FormTag extends AbstractFacesTag {
      */
     public String getRendererType() {
 
-        return ("StrutsForm");
+        return ("org.apache.struts.faces.Form");
 
     }
 
@@ -253,106 +253,17 @@ public class FormTag extends AbstractFacesTag {
     protected void setProperties(UIComponent component) {
 
         super.setProperties(component);
-        if (action != null) {
-            if (isValueReference(action)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(action);
-                component.setValueBinding("action", vb);
-            } else {
-                ((FormComponent) component).setAction(action);
-            }
-        }
-        if (enctype != null) {
-            if (isValueReference(enctype)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(enctype);
-                component.setValueBinding("enctype", vb);
-            } else {
-                component.getAttributes().put("enctype", enctype);
-            }
-        }
-        if (focus != null) {
-            if (isValueReference(focus)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(focus);
-                component.setValueBinding("focus", vb);
-            } else {
-                component.getAttributes().put("focus", focus);
-            }
-        }
-        if (focusIndex != null) {
-            if (isValueReference(focusIndex)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(focusIndex);
-                component.setValueBinding("focusIndex", vb);
-            } else {
-                component.getAttributes().put("focusIndex", focusIndex);
-            }
-        }
-        if (method != null) {
-            if (isValueReference(method)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(method);
-                component.setValueBinding("method", vb);
-            } else {
-                component.getAttributes().put("method", method);
-            }
-        }
-        if (onreset != null) {
-            if (isValueReference(onreset)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(onreset);
-                component.setValueBinding("onreset", vb);
-            } else {
-                component.getAttributes().put("onreset", onreset);
-            }
-        }
-        if (onsubmit != null) {
-            if (isValueReference(onsubmit)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(onsubmit);
-                component.setValueBinding("onsubmit", vb);
-            } else {
-                component.getAttributes().put("onsubmit", onsubmit);
-            }
-        }
-        if (style != null) {
-            if (isValueReference(style)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(style);
-                component.setValueBinding("style", vb);
-            } else {
-                component.getAttributes().put("style", style);
-            }
-        }
-        if (styleClass != null) {
-            if (isValueReference(styleClass)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(styleClass);
-                component.setValueBinding("styleClass", vb);
-            } else {
-                component.getAttributes().put("styleClass", styleClass);
-            }
-        }
-        if (styleId != null) {
-            if (isValueReference(styleId)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(styleId);
-                component.setValueBinding("styleId", vb);
-            } else {
-                component.getAttributes().put("styleId", styleId);
-            }
-        }
-        if (target != null) {
-            if (isValueReference(target)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(target);
-                component.setValueBinding("target", vb);
-            } else {
-                component.getAttributes().put("target", target);
-            }
-        }
-
+        setStringAttribute(component, "action", action);
+        setStringAttribute(component, "enctype", enctype);
+        setStringAttribute(component, "focus", focus);
+        setStringAttribute(component, "focusIndex", focusIndex);
+        setStringAttribute(component, "method", method);
+        setStringAttribute(component, "onreset", onreset);
+        setStringAttribute(component, "onsubmit", onsubmit);
+        setStringAttribute(component, "style", style);
+        setStringAttribute(component, "styleClass", styleClass);
+        setStringAttribute(component, "styleId", styleId);
+        setStringAttribute(component, "target", target);
 
     }
 

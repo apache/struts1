@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/PropertyResolverImpl.java,v 1.3 2004/01/18 13:43:12 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2004/01/18 13:43:12 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/PropertyResolverImpl.java,v 1.4 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -117,7 +117,7 @@ import org.apache.struts.action.DynaActionForm;
  *     are wrapping.</li>
  * </ul>
  *
- * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:12 $
+ * @version $Revision: 1.4 $ $Date: 2004/03/08 00:40:48 $
  */
 
 public class PropertyResolverImpl extends PropertyResolver {
@@ -184,7 +184,7 @@ public class PropertyResolverImpl extends PropertyResolver {
      * @exception PropertyNotFoundException if the specified property name
      *  does not exist, or is not readable
      */
-    public Object getValue(Object base, String name)
+    public Object getValue(Object base, Object name)
         throws PropertyNotFoundException {
 
         if ((base == null) || (name == null)) {
@@ -197,10 +197,10 @@ public class PropertyResolverImpl extends PropertyResolver {
             }
             return (((DynaActionForm) base).getMap());
         } else if (base instanceof DynaBean) {
-            if (getDynaProperty((DynaBean) base, name) == null) {
-                throw new PropertyNotFoundException(name);
+            if (getDynaProperty((DynaBean) base, name.toString()) == null) {
+                throw new PropertyNotFoundException(name.toString());
             }
-            Object value = ((DynaBean) base).get(name);
+            Object value = ((DynaBean) base).get(name.toString());
             if (log.isTraceEnabled()) {
                 log.trace("Returning dynamic property '" + name +
                           "' for DynaBean '" + base + "' value '" +
@@ -254,24 +254,24 @@ public class PropertyResolverImpl extends PropertyResolver {
      * @exception PropertyNotFoundException if the specified property name
      *  does not exist, or is not writeable
      */
-    public void setValue(Object base, String name, Object value)
+    public void setValue(Object base, Object name, Object value)
         throws PropertyNotFoundException {
 
         if ((base == null) || (name == null)) {
             throw new NullPointerException();
         } else if ((base instanceof DynaActionForm) &&
                    ("map".equals(name))) {
-            throw new PropertyNotFoundException(name);
+            throw new PropertyNotFoundException(name.toString());
         } else if (base instanceof DynaBean) {
             if (log.isTraceEnabled()) {
                 log.trace("setting dynamic property '" + name +
                           "' for DynaBean '" + base +
                           "' to '" + value + "'");
             }
-            if (getDynaProperty((DynaBean) base, name) == null) {
-                throw new PropertyNotFoundException(name);
+            if (getDynaProperty((DynaBean) base, name.toString()) == null) {
+                throw new PropertyNotFoundException(name.toString());
             }
-            ((DynaBean) base).set(name, value);
+            ((DynaBean) base).set(name.toString(), value);
         } else {
             if (log.isTraceEnabled()) {
                 log.trace("Delegating set of property '" + name +
@@ -319,7 +319,7 @@ public class PropertyResolverImpl extends PropertyResolver {
      * @exception PropertyNotFoundException if the specified property name
      *  does not exist
      */
-    public boolean isReadOnly(Object base, String name)
+    public boolean isReadOnly(Object base, Object name)
         throws PropertyNotFoundException {
 
         if ((base == null) || (name == null)) {
@@ -328,12 +328,12 @@ public class PropertyResolverImpl extends PropertyResolver {
                    ("map".equals(name))) {
             return (true);
         } else if (base instanceof DynaBean) {
-            if (getDynaProperty((DynaBean) base, name) == null) {
-                throw new PropertyNotFoundException(name);
+            if (getDynaProperty((DynaBean) base, name.toString()) == null) {
+                throw new PropertyNotFoundException(name.toString());
             }
             return (false);
         } else {
-            return (resolver.isReadOnly(base, name));
+            return (resolver.isReadOnly(base, name.toString()));
         }
 
     }
@@ -374,7 +374,7 @@ public class PropertyResolverImpl extends PropertyResolver {
      * @exception PropertyNotFoundException if the specified property name
      *  does not exist
      */
-    public Class getType(Object base, String name)
+    public Class getType(Object base, Object name)
         throws PropertyNotFoundException {
 
         if ((base == null) || (name == null)) {
@@ -383,11 +383,12 @@ public class PropertyResolverImpl extends PropertyResolver {
                    ("map".equals(name))) {
             return (Map.class);
         } else if (base instanceof DynaBean) {
-            DynaProperty dynaProperty = getDynaProperty((DynaBean) base, name);
+            DynaProperty dynaProperty =
+                getDynaProperty((DynaBean) base, name.toString());
             if (dynaProperty != null) {
                 return (dynaProperty.getType());
             } else {
-                throw new PropertyNotFoundException(name);
+                throw new PropertyNotFoundException(name.toString());
             }
         } else {
             return (resolver.getType(base, name));

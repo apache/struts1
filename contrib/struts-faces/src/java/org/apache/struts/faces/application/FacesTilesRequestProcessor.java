@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesTilesRequestProcessor.java,v 1.2 2004/01/18 13:43:12 husted Exp $
- * $Revision: 1.2 $
- * $Date: 2004/01/18 13:43:12 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesTilesRequestProcessor.java,v 1.3 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -71,16 +71,23 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
+import javax.faces.context.FacesContextFactory;
 import javax.faces.event.ActionEvent;
+import javax.faces.lifecycle.Lifecycle;
+import javax.faces.lifecycle.LifecycleFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
+import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.RequestProcessor;
+import org.apache.struts.config.FormBeanConfig;
+import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.faces.Constants;
 import org.apache.struts.faces.component.FormComponent;
 import org.apache.struts.tiles.TilesRequestProcessor;
@@ -94,7 +101,7 @@ import org.apache.struts.tiles.TilesRequestProcessor;
  * instance normally configured by Struts+Tiles, so it must support non-Faces
  * requests as well.</p>
  *
- * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:12 $
+ * @version $Revision: 1.3 $ $Date: 2004/03/08 00:40:48 $
  */
 
 public class FacesTilesRequestProcessor extends TilesRequestProcessor {
@@ -112,6 +119,218 @@ public class FacesTilesRequestProcessor extends TilesRequestProcessor {
 
 
     // ------------------------------------------------------- Protected Methods
+
+
+    /**
+     * <p>Set up a Faces Request if we are not already processing one.  Next,
+     * create a new view if the specified <code>uri</code> is different from
+     * the current view identifier.  Finally, cause the new view to be
+     * rendered, and call <code>FacesContext.responseComplete()</code> to
+     * indicate that this has already been done.</p>
+     *
+     * @param uri Context-relative path to forward to
+     * @param request Current page request
+     * @param response Current page response
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet error occurs
+     */
+    protected void doForward(String uri,
+                             HttpServletRequest request,
+                             HttpServletResponse response)
+        throws IOException, ServletException {
+
+        if (log.isDebugEnabled()) {
+            log.debug("doForward(" + uri + ")");
+        }
+
+        // Remove the current ActionEvent (if any)
+        request.removeAttribute(Constants.ACTION_EVENT_KEY);
+
+        // Process a Struts controller request normally
+        if (isStrutsRequest(uri)) {
+            if (response.isCommitted()) {
+                if (log.isTraceEnabled()) {
+                    log.trace("  super.doInclude(" + uri + ")");
+                }
+                super.doInclude(uri, request, response);
+            } else {
+                if (log.isTraceEnabled()) {
+                    log.trace("  super.doForward(" + uri + ")");
+                }
+                super.doForward(uri, request, response);
+            }
+            return;
+        }
+
+        // Create a FacesContext for this request if necessary
+        LifecycleFactory lf = (LifecycleFactory)
+            FactoryFinder.getFactory(FactoryFinder.LIFECYCLE_FACTORY);
+        Lifecycle lifecycle = // FIXME - alternative lifecycle ids
+            lf.getLifecycle(LifecycleFactory.DEFAULT_LIFECYCLE);
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (context == null) {
+            if (log.isTraceEnabled()) {
+                log.trace("  Creating new FacesContext for '" + uri + "'");
+            }
+            FacesContextFactory fcf = (FacesContextFactory)
+                FactoryFinder.getFactory(FactoryFinder.FACES_CONTEXT_FACTORY);
+            context = fcf.getFacesContext(servlet.getServletContext(), request,
+                                          response, lifecycle); 
+        }
+
+        // Create a new view root
+        ViewHandler vh = context.getApplication().getViewHandler();
+        if (log.isTraceEnabled()) {
+            log.trace("  Creating new view for '" + uri + "'");
+        }
+        context.setViewRoot(vh.createView(context, uri));
+
+        // Cause the view to be rendered
+        if (log.isTraceEnabled()) {
+            log.trace("  Rendering view for '" + uri + "'");
+        }
+        lifecycle.render(context);
+        if (log.isTraceEnabled()) {
+            log.trace("  Marking request complete for '" + uri + "'");
+        }
+        context.responseComplete();
+
+    }
+
+
+    // Override default processing to provide logging
+    protected Action processActionCreate(HttpServletRequest request,
+                                         HttpServletResponse response,
+                                         ActionMapping mapping)
+        throws IOException {
+
+        if (log.isTraceEnabled()) {
+            log.trace("Performing standard action create");
+        }
+        Action result = super.processActionCreate(request, response, mapping);
+        if (log.isDebugEnabled()) {
+            log.debug("Standard action create returned " +
+                      result.getClass().getName() + " instance");
+        }
+        return (result);
+
+    }
+
+
+    // Override default processing to provide logging
+    protected ActionForm processActionForm(HttpServletRequest request,
+                                           HttpServletResponse response,
+                                           ActionMapping mapping) {
+        if (log.isTraceEnabled()) {
+            log.trace("Performing standard action form processing");
+            String attribute = mapping.getAttribute();
+            if (attribute != null) {
+                String name = mapping.getName();
+                FormBeanConfig fbc = moduleConfig.findFormBeanConfig(name);
+                if (fbc != null) {
+                    if ("request".equals(mapping.getScope())) {
+                        log.trace("  Bean in request scope = " +
+                                  request.getAttribute(attribute));
+                    } else {
+                        log.trace("  Bean in session scope = " +
+                                  request.getSession().getAttribute(attribute));
+                    }
+                } else {
+                    log.trace("  No FormBeanConfig for '" + name + "'");
+                }
+            } else {
+                log.trace("  No form bean for this action");
+            }
+        }
+        ActionForm result =
+            super.processActionForm(request, response, mapping);
+        if (log.isDebugEnabled()) {
+            log.debug("Standard action form returned " +
+                      result);
+        }
+        return (result);
+        
+
+    }
+
+
+    // Override default processing to provide logging
+    protected ActionForward processActionPerform(HttpServletRequest request,
+                                                 HttpServletResponse response,
+                                                 Action action,
+                                                 ActionForm form,
+                                                 ActionMapping mapping)
+        throws IOException, ServletException {
+
+        if (log.isTraceEnabled()) {
+            log.trace("Performing standard action perform");
+        }
+        ActionForward result =
+            super.processActionPerform(request, response, action,
+                                       form, mapping);
+        if (log.isDebugEnabled()) {
+            log.debug("Standard action perform returned " +
+                      result.getPath() + " forward path");
+        }
+        return (result);
+
+    }
+
+
+    // Override default processing to provide logging
+    protected boolean processForward(HttpServletRequest request,
+                                     HttpServletResponse response,
+                                     ActionMapping mapping)
+        throws IOException, ServletException {
+
+        if (log.isTraceEnabled()) {
+            log.trace("Performing standard forward handling");
+        }
+        boolean result = super.processForward
+            (request, response, mapping);
+        if (log.isDebugEnabled()) {
+            log.debug("Standard forward handling returned " + result);
+        }
+        return (result);
+
+    }
+
+
+    // Override default processing to provide logging
+    protected void processForwardConfig(HttpServletRequest request,
+                                        HttpServletResponse response,
+                                        ForwardConfig forward)
+        throws IOException, ServletException {
+
+        if (log.isTraceEnabled()) {
+            log.trace("Performing standard forward config handling");
+        }
+        super.processForwardConfig(request, response, forward);
+        if (log.isDebugEnabled()) {
+            log.debug("Standard forward config handling completed");
+        }
+
+    }
+
+
+    // Override default processing to provide logging
+    protected boolean processInclude(HttpServletRequest request,
+                                     HttpServletResponse response,
+                                     ActionMapping mapping)
+        throws IOException, ServletException {
+
+        if (log.isTraceEnabled()) {
+            log.trace("Performing standard include handling");
+        }
+        boolean result = super.processInclude
+            (request, response, mapping);
+        if (log.isDebugEnabled()) {
+            log.debug("Standard include handling returned " + result);
+        }
+        return (result);
+
+    }
 
 
     /**
@@ -212,6 +431,56 @@ public class FacesTilesRequestProcessor extends TilesRequestProcessor {
                 }
                 request.setAttribute(Globals.CANCEL_KEY, Boolean.TRUE);
             }
+        }
+
+    }
+
+
+    // Override default processing to provide logging
+    protected boolean processValidate(HttpServletRequest request,
+                                      HttpServletResponse response,
+                                      ActionForm form,
+                                      ActionMapping mapping)
+        throws IOException, ServletException {
+
+        if (log.isTraceEnabled()) {
+            log.trace("Performing standard validation");
+        }
+        boolean result = super.processValidate
+            (request, response, form, mapping);
+        if (log.isDebugEnabled()) {
+            log.debug("Standard validation processing returned " + result);
+        }
+        return (result);
+
+    }
+
+
+    // --------------------------------------------------------- Private Methods
+
+
+    /**
+     * <p>Return <code>true</code> if the specified context-relative URI
+     * specifies a request to be processed by the Struts controller servlet.</p>
+     *
+     * @param uri URI to be checked
+     */
+    private boolean isStrutsRequest(String uri) {
+
+        int question = uri.indexOf("?");
+        if (question >= 0) {
+            uri = uri.substring(0, question);
+        }
+        String mapping = (String)
+            servlet.getServletContext().getAttribute(Globals.SERVLET_KEY);
+        if (mapping == null) {
+            return (false);
+        } else if (mapping.startsWith("*.")) {
+            return (uri.endsWith(mapping.substring(1)));
+        } else if (mapping.endsWith("/*")) {
+            return (uri.startsWith(mapping.substring(0, mapping.length() - 2)));
+        } else {
+            return (false);
         }
 
     }

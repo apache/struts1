@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LinkSubscriptionTag.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2003/12/24 03:21:01 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LinkSubscriptionTag.java,v 1.5 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.webapp.example;
 
 
 import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.faces.el.ValueBinding;
 import javax.faces.webapp.UIComponentTag;
 
@@ -73,7 +74,7 @@ import javax.faces.webapp.UIComponentTag;
  * associated query parameters selecting a specified Subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
+ * @version $Revision: 1.5 $ $Date: 2004/03/08 00:40:48 $
  */
 
 public class LinkSubscriptionTag extends UIComponentTag {
@@ -110,7 +111,7 @@ public class LinkSubscriptionTag extends UIComponentTag {
      */
     public String getComponentType() {
 
-        return ("Output");
+        return ("javax.faces.Output");
 
     }
 
@@ -120,7 +121,7 @@ public class LinkSubscriptionTag extends UIComponentTag {
      */
     public String getRendererType() {
 
-        return ("LinkSubscription");
+        return ("org.apache.struts.webapp.example.LinkSubscription");
 
     }
 
@@ -148,6 +149,7 @@ public class LinkSubscriptionTag extends UIComponentTag {
     protected void setProperties(UIComponent component) {
 
         super.setProperties(component);
+        FacesContext context = getFacesContext();
         if (name != null) {
             if (isValueReference(name)) {
                 ValueBinding vb =

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/BaseTag.java,v 1.4 2004/01/18 13:43:13 husted Exp $
- * $Revision: 1.4 $
- * $Date: 2004/01/18 13:43:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/BaseTag.java,v 1.5 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import javax.faces.el.ValueBinding;
  * the <em>Struts-Faces Integration Library</em>.</p>
  *
  *
- * @version $Revision: 1.4 $ $Date: 2004/01/18 13:43:13 $
+ * @version $Revision: 1.5 $ $Date: 2004/03/08 00:40:48 $
  */
 
 public class BaseTag extends AbstractFacesTag {
@@ -98,7 +98,7 @@ public class BaseTag extends AbstractFacesTag {
      */
     public String getComponentType() {
 
-        return ("Output");
+        return ("javax.faces.Output");
 
     }
 
@@ -109,7 +109,7 @@ public class BaseTag extends AbstractFacesTag {
      */
     public String getRendererType() {
 
-        return ("StrutsBase");
+        return ("org.apache.struts.faces.Base");
 
     }
 
@@ -136,15 +136,7 @@ public class BaseTag extends AbstractFacesTag {
     protected void setProperties(UIComponent component) {
 
         super.setProperties(component);
-        if (target != null) {
-            if (isValueReference(target)) {
-                ValueBinding vb =
-                    context.getApplication().createValueBinding(target);
-                component.setValueBinding("target", vb);
-            } else {
-                component.getAttributes().put("target", target);
-            }
-        }
+        setStringAttribute(component, "target", target);
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/BaseRenderer.java,v 1.7 2004/01/18 13:43:12 husted Exp $
- * $Revision: 1.7 $
- * $Date: 2004/01/18 13:43:12 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/BaseRenderer.java,v 1.8 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -67,7 +67,7 @@ import java.io.IOException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import javax.servlet.http.HttpServletRequest;
+// import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -77,7 +77,7 @@ import org.apache.commons.logging.LogFactory;
  * <p><code>Renderer</code> implementation for the <code>base</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.7 $ $Date: 2004/01/18 13:43:12 $
+ * @version $Revision: 1.8 $ $Date: 2004/03/08 00:40:48 $
  */
 
 public class BaseRenderer extends AbstractRenderer {
@@ -113,10 +113,8 @@ public class BaseRenderer extends AbstractRenderer {
         }
 
         ResponseWriter writer = context.getResponseWriter();
-        HttpServletRequest request = (HttpServletRequest)
-            context.getExternalContext().getRequest();
         writer.startElement("base", component);
-        writer.writeURIAttribute("href", uri(request), null);
+        writer.writeURIAttribute("href", uri(context), null);
         String target = (String) component.getAttributes().get("target");
         if (target != null) {
             writer.writeAttribute("target", target, "target");
@@ -135,10 +133,16 @@ public class BaseRenderer extends AbstractRenderer {
      * <p>Return the absolute URI to be rendered as the value of the
      * <code>href</code> attribute.</p>
      *
-     * @param request The servlet request we are processing
+     * @param context <code>FacesContext</code> for the current request
      */
-    protected String uri(HttpServletRequest request) {
+    protected String uri(FacesContext context) {
 
+        return (context.getApplication().getViewHandler().
+                getActionURL(context, context.getViewRoot().getViewId()));
+
+        /*
+        HttpServletRequest request = (HttpServletRequest)
+            context.getExternalContext().getRequest();
         StringBuffer sb = new StringBuffer(request.getScheme());
         sb.append("://");
         sb.append(request.getServerName());
@@ -164,6 +168,7 @@ public class BaseRenderer extends AbstractRenderer {
             sb.append(request.getPathInfo());
         }
         return (sb.toString());
+        */
 
     }
 

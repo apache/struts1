@@ -8,147 +8,178 @@
 <%-- FIXME <a:checkLogon/> --%>
 
 <f:view>
-<s:html locale="true">
+<s:loadMessages       var="messages"/>
+<s:html            locale="true">
 <head>
   <title><c:choose>
-    <c:when test="${subscriptionForm.action == 'Create'}">
-      <s:message id="titleCreate" key="subscription.title.create"/>
+    <c:when          test="${subscriptionForm.action == 'Create'}">
+      <s:message       id="titleCreate"
+                      key="subscription.title.create"/>
     </c:when>
-    <c:when test="${subscriptionForm.action == 'Delete'}">
-      <s:message id="titleDelete" key="subscription.title.delete"/>
+    <c:when          test="${subscriptionForm.action == 'Delete'}">
+      <s:message       id="titleDelete"
+                      key="subscription.title.delete"/>
     </c:when>
-    <c:when test="${subscriptionForm.action == 'Edit'}">
-      <s:message id="titleEdit" key="subscription.title.edit"/>
+    <c:when          test="${subscriptionForm.action == 'Edit'}">
+      <s:message       id="titleEdit"
+                      key="subscription.title.edit"/>
     </c:when>
     <c:otherwise>
       UNKNOWN ACTION
     </c:otherwise>
   </c:choose></title>
   <s:base/>
-  <s:stylesheet path="/stylesheet.css"/>
+  <s:stylesheet      path="/stylesheet.css"/>
 </head>
 <body bgcolor="white">
 
 <s:errors/>
 
-<s:form action="/saveSubscription" focus="host">
+<s:form            action="/saveSubscription"
+                    focus="host"
+               styleClass="form">
 
-  <h:input_hidden id="action" value="#{subscriptionForm.action}"/>
+  <h:inputHidden       id="action"
+                    value="#{subscriptionForm.action}"/>
 
-  <h:panel_grid
-           columns="2"
-        styleClass="form-background"
-       headerClass="form-header"
-     columnClasses="form-prompt,form-field">
+  <h:panelGrid    columns="2"
+               styleClass="grid"
+              headerClass="grid header"
+            columnClasses="grid column0,grid column1">
 
     <%-- Grid header element --%>
 
     <f:facet name="header">
-      <h:panel_group>
+      <h:panelGroup>
         <c:choose>
-          <c:when test="${subscriptionForm.action == 'Create'}">
+          <c:when    test="${subscriptionForm.action == 'Create'}">
             <s:message id="headerCreate" key="subscription.title.create"/>
           </c:when>
-          <c:when test="${subscriptionForm.action == 'Delete'}">
+          <c:when    test="${subscriptionForm.action == 'Delete'}">
             <s:message id="headerDelete" key="subscription.title.delete"/>
           </c:when>
-          <c:when test="${subscriptionForm.action == 'Edit'}">
+          <c:when    test="${subscriptionForm.action == 'Edit'}">
             <s:message id="headerEdit" key="subscription.title.edit"/>
           </c:when>
           <c:otherwise>
-            <h:output_text id="headerUnknown" value="UNKNOWN ACTION"/>
+            <h:outputText
+                       id="headerUnknown"
+                    value="UNKNOWN ACTION"/>
           </c:otherwise>
         </c:choose>
-      </h:panel_group>
+      </h:panelGroup>
     </f:facet>
 
     <%-- Grid data elements --%>
 
-    <h:output_label for="user">
-      <s:message key="prompt.username"/>
-    </h:output_label>
+    <h:outputLabel    for="user"
+               styleClass="label">
+      <s:message      key="prompt.username"/>
+    </h:outputLabel>
 
-    <s:write id="user" filter="true"
-          value="#{user.username}"/>
+    <h:outputText      id="user"
+               styleClass="value"
+                    value="#{user.username}"/>
 
-    <h:output_label for="host">
-      <s:message key="prompt.mailHostname"/>
-    </h:output_label>
+    <h:outputLabel    for="host"
+               styleClass="label">
+      <s:message      key="prompt.mailHostname"/>
+    </h:outputLabel>
 
     <c:choose>
-      <c:when test="${subscriptionForm.action == 'Create'}">
-        <h:input_text id="host" size="50"
-                   value="#{subscriptionForm.host}"/>
+      <c:when        test="${subscriptionForm.action == 'Create'}">
+        <h:inputText   id="host" size="50"
+               styleClass="field"
+                    value="#{subscriptionForm.host}"/>
       </c:when>
       <c:otherwise>
-        <h:panel_group id="hostGroup">
-          <s:write id="hostDisplay" filter="true"
-                                     value="#{subscriptionForm.host}"/>
-          <h:input_hidden id="host"  value="#{subscriptionForm.host}"/>
-        </h:panel_group>
+        <h:panelGroup  id="hostGroup">
+          <h:outputText
+                       id="hostDisplay"
+               styleClass="value"
+                    value="#{subscriptionForm.host}"/>
+          <h:inputHidden
+                       id="host"
+                    value="#{subscriptionForm.host}"/>
+        </h:panelGroup>
       </c:otherwise>
     </c:choose>
 
-    <h:output_label for="username">
-      <s:message key="prompt.mailUsername"/>
-    </h:output_label>
+    <h:outputLabel    for="username"
+               styleClass="label">
+      <s:message      key="prompt.mailUsername"/>
+    </h:outputLabel>
 
-    <h:input_text id="username"
-                size="50"
-               value="#{subscriptionForm.username}"/>
+    <h:inputText       id="username"
+                     size="50"
+               styleClass="field"
+                    value="#{subscriptionForm.username}"/>
 
-    <h:output_label for="password">
-      <s:message key="prompt.mailPassword"/>
-    </h:output_label>
+    <h:outputLabel    for="password"
+               styleClass="label">
+      <s:message      key="prompt.mailPassword"/>
+    </h:outputLabel>
 
-    <h:input_text id="password"
-                size="50"
-               value="#{subscriptionForm.password}"/>
+    <h:inputText       id="password"
+                     size="50"
+               styleClass="field"
+                    value="#{subscriptionForm.password}"/>
 
-    <h:output_label for="type">
-      <s:message key="prompt.mailServerType"/>
-    </h:output_label>
+    <h:outputLabel    for="type"
+               styleClass="label">
+      <s:message      key="prompt.mailServerType"/>
+    </h:outputLabel>
 
-    <h:selectone_menu id="type"
-                   value="#{subscriptionForm.type}">
-      <f:selectitem itemValue="imap" itemLabel="IMAP Protocol"/>
-      <f:selectitem itemValue="pop3" itemLabel="POP3 Protocol"/>
-    </h:selectone_menu>
+    <h:selectOneMenu   id="type"
+               styleClass="field"
+                    value="#{subscriptionForm.type}">
+      <f:selectItem
+                itemValue="imap"
+                itemLabel="IMAP Protocol"/>
+      <f:selectItem
+                itemValue="pop3"
+                itemLabel="POP3 Protocol"/>
+    </h:selectOneMenu>
 
-    <h:output_label for="autoConnect">
-      <s:message key="prompt.autoConnect"/>
-    </h:output_label>
+    <h:outputLabel    for="autoConnect"
+               styleClass="label">
+      <s:message      key="prompt.autoConnect"/>
+    </h:outputLabel>
 
-    <h:selectboolean_checkbox id="autoConnect"
-                           value="#{subscriptionForm.autoConnect}"/>
+    <h:selectBooleanCheckbox
+                       id="autoConnect"
+               styleClass="field"
+                    value="#{subscriptionForm.autoConnect}"/>
 
     <c:choose>
-      <c:when test="${subscriptionForm.action == 'Delete'}">
-        <h:command_button id="confirm"
-                        type="SUBMIT"
-                  styleClass="command-single"
-                       value="Confirm"/>  <%-- FIXME - i18n --%>
+      <c:when        test="${subscriptionForm.action == 'Delete'}">
+        <h:commandButton
+                       id="confirm"
+                     type="SUBMIT"
+               styleClass="submit"
+                    value="#{messages['button.confirm']}"/>
       </c:when>
       <c:otherwise>
-        <h:command_button id="save"
-                        type="SUBMIT"
-                  styleClass="command-single"
-                       value="Save"/>     <%-- FIXME - i18n --%>
+        <h:commandButton
+                       id="save"
+                     type="SUBMIT"
+               styleClass="submit"
+                    value="#{messages['button.save']}"/>
       </c:otherwise>
     </c:choose>
 
-    <h:panel_group id="reset_and_cancel">
-      <h:command_button id="reset"
-                      type="RESET"
-                styleClass="command-multiple"
-                     value="Reset"/>       <%-- FIXME - i18n --%>
-      <h:command_button id="cancel"
-                      type="SUBMIT"
-                styleClass="command-multiple"
-                     value="Cancel"/>     <%-- FIXME - i18n --%>
-    </h:panel_group>
+    <h:panelGroup      id="reset_and_cancel">
+      <h:commandButton id="reset"
+                     type="RESET"
+               styleClass="reset"
+                    value="#{messages['button.reset']}"/>
+      <h:commandButton id="cancel"
+                     type="SUBMIT"
+               styleClass="cancel"
+                    value="#{messages['button.cancel']}"/>
+    </h:panelGroup>
 
-  </h:panel_grid>
+  </h:panelGrid>
 
 </s:form>
 

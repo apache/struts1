@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/FormRenderer.java,v 1.5 2004/01/18 13:43:12 husted Exp $
- * $Revision: 1.5 $
- * $Date: 2004/01/18 13:43:12 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/FormRenderer.java,v 1.6 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.faces.component.FormComponent;
  * <p><code>Renderer</code> implementation for the <code>form</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.5 $ $Date: 2004/01/18 13:43:12 $
+ * @version $Revision: 1.6 $ $Date: 2004/03/08 00:40:48 $
  */
 
 public class FormRenderer extends AbstractRenderer {
@@ -117,18 +117,20 @@ public class FormRenderer extends AbstractRenderer {
             throw new NullPointerException();
         }
         String clientId = component.getClientId(context);
+	Map map = context.getExternalContext().getRequestParameterMap();
         if (log.isDebugEnabled()) {
-            log.debug("decode(" + clientId + ")");
+            log.debug("decode(" + clientId + ") --> " +
+                      map.containsKey(clientId));
         }
-        Map params = context.getExternalContext().getRequestParameterMap();
-        if (params.containsKey(clientId)) {
-            if (log.isTraceEnabled()) {
-                log.trace("  This form was submitted");
-            }
-            ((FormComponent) component).setSubmitted(true);
-        }
+        component.getAttributes().put
+            ("submitted",
+             map.containsKey(clientId) ? Boolean.TRUE : Boolean.FALSE);
 
     }
+
+
+    private static String passThrough[] =
+    { "enctype", "method", "onreset", "onsubmit", "style", "target", };
 
 
     /**
@@ -157,54 +159,26 @@ public class FormRenderer extends AbstractRenderer {
         String beanName = actionConfig.getAttribute();
         form.getAttributes().put("beanName", beanName);
 
-        // Calculate and cache the form number
-        int formNumber = 0; // FIXME - The JSF RI should not require this!
-        form.getAttributes().put("com.sun.faces.FormNumber",
-                                 new Integer(formNumber));
-
         // Look up attribute values we need
         String clientId = component.getClientId(context);
         if (log.isDebugEnabled()) {
             log.debug("encodeBegin(" + clientId + ")");
         }
-        String enctype = (String) component.getAttributes().get("enctype");
-        String method = (String) component.getAttributes().get("method");
-        String onreset = (String) component.getAttributes().get("onreset");
-        String onsubmit = (String) component.getAttributes().get("onsubmit");
-        String style = (String) component.getAttributes().get("style");
         String styleClass =
             (String) component.getAttributes().get("styleClass");
-        String styleId = (String) component.getAttributes().get("styleId");
-        String target = (String) component.getAttributes().get("target");
 
         // Render the beginning of this form
         ResponseWriter writer = context.getResponseWriter();
         writer.startElement("form", form);
-        writer.writeAttribute("name", beanName, null);
-        writer.writeAttribute("method",
-                              (method == null) ? "POST" : method, "method");
+        writer.writeAttribute("id", clientId, "clientId");
         writer.writeAttribute("action", action(context, component), "action");
         if (styleClass != null) {
             writer.writeAttribute("class", styleClass, "styleClass");
         }
-        if (enctype != null) {
-            writer.writeAttribute("enctype", enctype, "enctype");
+        if (component.getAttributes().get("method") == null) {
+            writer.writeAttribute("method", "post", null);
         }
-        if (onreset != null) {
-            writer.writeAttribute("onreset", onreset, "onreset");
-        }
-        if (onsubmit != null) {
-            writer.writeAttribute("onsubmit", onsubmit, "onsubmit");
-        }
-        if (style != null) {
-            writer.writeAttribute("style", style, "style");
-        }
-        if (styleId != null) {
-            writer.writeAttribute("id", styleId, "styleId");
-        }
-        if (target != null) {
-            writer.writeAttribute("target", target, "target");
-        }
+        renderPassThrough(context, component, writer, passThrough);
         writer.writeText("\n", null);
 
         // Add a marker used by our decode() method to note this form is submitted
@@ -237,9 +211,6 @@ public class FormRenderer extends AbstractRenderer {
             ((FormComponent) component).createActionForm(context);
         }
 
-        // Update the number of forms in this page
-        updateFormNumber(context, component);
-
     }
 
 
@@ -264,9 +235,20 @@ public class FormRenderer extends AbstractRenderer {
         if (log.isDebugEnabled()) {
             log.debug("encodeEnd(" + clientId + ")");
         }
+        ResponseWriter writer = context.getResponseWriter();
+
+        // Render the hidden variable our decode() method uses to detect submits
+	writer.startElement("input", component);
+	writer.writeAttribute("type", "hidden", null);
+	writer.writeAttribute("name", component.getClientId(context), null);
+	writer.writeAttribute("value", component.getClientId(context), null);
+	writer.endElement("input");
+	writer.write("\n");
+
+        // Write our state information (if necessary)
+        context.getApplication().getViewHandler().writeState(context);
 
         // Render the ending of this form
-        ResponseWriter writer = context.getResponseWriter();
         writer.endElement("form");
         writer.writeText("\n", null);
 
@@ -292,8 +274,8 @@ public class FormRenderer extends AbstractRenderer {
             writer.write("<!--\n");
         }
 
-        StringBuffer sb = new StringBuffer("document[\"");
-        sb.append((String) component.getAttributes().get("beanName"));
+        StringBuffer sb = new StringBuffer("document.forms[\"");
+        sb.append(clientId);
         sb.append("\"].elements[\"");
         sb.append(component.getClientId(context));
         sb.append(NamingContainer.SEPARATOR_CHAR);
@@ -337,13 +319,14 @@ public class FormRenderer extends AbstractRenderer {
      */
     protected String action(FacesContext context, UIComponent component) {
 
-        String viewId = context.getViewRoot().getViewId();
-        StringBuffer sb = new StringBuffer
-            (context.getExternalContext().getRequestContextPath());
-        // FIXME - support for extension mapping to FacesServlet
-        sb.append("/faces");
-        sb.append(viewId);
-        return (context.getExternalContext().encodeActionURL(sb.toString()));
+        String actionURL =
+            context.getApplication().getViewHandler().
+            getActionURL(context, context.getViewRoot().getViewId());
+        if (log.isTraceEnabled()) {
+            log.trace("getActionURL(" + context.getViewRoot().getViewId() +
+                      ") --> " + actionURL);
+        }
+        return (context.getExternalContext().encodeActionURL(actionURL));
 
     }
 
@@ -356,31 +339,6 @@ public class FormRenderer extends AbstractRenderer {
     protected boolean isXhtml(UIComponent component) {
 
         return (false); // FIXME -- check up the hierarchy
-
-    }
-
-
-    /**
-     * <p>Store the current form number in a component attribute that is
-     * expected by the <code>CommandLinkRenderer</code> in the RI.  FIXME -
-     * this dependency is a bug in the JSF RI that needs to be addressed
-     * before FCS.</p>
-     *
-     * @param context <code>FacesContext</code> for the current request
-     * @param component <code>UIComponent</code> being rendered
-     */
-    protected void updateFormNumber(FacesContext context,
-                                    UIComponent component) {
-
-        Map requestMap = context.getExternalContext().getRequestMap();
-        int numForms = 0;
-        Integer formsInt = (Integer) requestMap.get("com.sun.faces.FormNumber");
-        if (formsInt != null) {
-            numForms = formsInt.intValue();
-        }
-        component.getAttributes().put("com.sun.faces.FormNumber",
-                                      new Integer(numForms));
-        requestMap.put("com.sun.faces.FormNumber", new Integer(++numForms));
 
     }
 

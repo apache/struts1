@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/SubviewTag.java,v 1.1 2003/12/31 07:17:48 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/12/31 07:17:48 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/SubviewTag.java,v 1.2 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -62,6 +62,7 @@
 package org.apache.struts.faces.taglib;
 
 
+import javax.faces.context.FacesContext;
 import javax.faces.webapp.UIComponentBodyTag;
 import javax.servlet.jsp.JspException;
 import org.apache.commons.logging.Log;
@@ -104,7 +105,7 @@ public class SubviewTag extends UIComponentBodyTag {
      */
     public int doStartTag() throws JspException {
         if (log.isDebugEnabled()) {
-            log.debug("doStartTag(" + id + ")");
+            log.debug("doStartTag(" + getId() + ")");
         }
         return (super.doStartTag());
     }
@@ -115,7 +116,8 @@ public class SubviewTag extends UIComponentBodyTag {
      */
     public int doEndTag() throws JspException {
         if (log.isDebugEnabled()) {
-            log.debug("doEndTag  (" + id + ")");
+            FacesContext context = getFacesContext();
+            log.debug("doEndTag  (" + getId() + ")");
             log.debug(" component=" + getComponentInstance());
             log.debug("   context=" + context);
             log.debug("  viewRoot=" + context.getViewRoot());

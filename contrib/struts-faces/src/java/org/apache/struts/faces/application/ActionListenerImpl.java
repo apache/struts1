@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/ActionListenerImpl.java,v 1.5 2004/01/18 13:43:12 husted Exp $
- * $Revision: 1.5 $
- * $Date: 2004/01/18 13:43:12 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/ActionListenerImpl.java,v 1.6 2004/03/08 00:40:48 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/03/08 00:40:48 $
  *
  * ====================================================================
  *
@@ -94,23 +94,55 @@ import org.apache.struts.util.RequestUtils;
  * into execution of the corresponding Struts request processing lifecycle.
  * </p>
  *
- * @version $Revision: 1.5 $ $Date: 2004/01/18 13:43:12 $
+ * @version $Revision: 1.6 $ $Date: 2004/03/08 00:40:48 $
  */
 
-public class ActionListenerImpl implements ActionListener {
+public final class ActionListenerImpl implements ActionListener {
 
 
-    // ----------------------------------------------------- Instance Variables
+    // ------------------------------------------------------------ Constructors
+
+
+    /**
+     * <p>Construct a new default <code>ActionListener</code> instance,
+     * passing it the previously configured one.</p>
+     *
+     * @param original Original default <code>ActionListener</code>
+     *
+     * @exception NullPointerException if <code>original</code>
+     *  is <code>null</code>
+     */
+    public ActionListenerImpl(ActionListener original) {
+
+        if (original == null) {
+            throw new NullPointerException();
+        }
+        this.original = original;
+        if (log.isInfoEnabled()) {
+            log.info("Create ActionListener wrapping instance of type '" +
+                     original.getClass().getName() + "'");
+        }
+
+    }
+
+
+
+    // ------------------------------------------------------ Instance Variables
 
 
     /**
      * <p>The logger for this instance.</p>
      */
-    protected static Log log = LogFactory.getLog(ActionListenerImpl.class);
+    private static final Log log = LogFactory.getLog(ActionListenerImpl.class);
 
 
+    /**
+     * <p>The previously configured <code>ActionListener</code> instance.</p>
+     */
+    private ActionListener original;
 
-    // --------------------------------------------------------- Public Methods
+
+    // ---------------------------------------------------------- Public Methods
 
 
     /**
@@ -126,7 +158,6 @@ public class ActionListenerImpl implements ActionListener {
 
         // If this is an immediate action, or we are NOT nested in a
         // Struts form, perform the standard processing
-        FacesContext context = FacesContext.getCurrentInstance();
         UIComponent component = event.getComponent();
         ActionSource source = (ActionSource) component;
         boolean standard = source.isImmediate();
@@ -145,23 +176,15 @@ public class ActionListenerImpl implements ActionListener {
         if (standard) {
             if (log.isDebugEnabled()) {
                 log.debug("Performing standard handling for event " +
-                          "from source component " +
-                          component.getClientId(context));
+                          "from source component '" + component.getId() + "'");
             }
-            String outcome = null;
-            MethodBinding binding = source.getAction();
-            if (binding != null) {
-                outcome = (String) binding.invoke(context, null);
-            }
-            context.getApplication().getNavigationHandler().handleNavigation
-                (context,
-                 (binding == null) ? null : binding.getExpressionString(),
-                 outcome);
+            original.processAction(event);
             return;
         }
 
 
         // Acquire Servlet API Object References
+        FacesContext context = FacesContext.getCurrentInstance();
         ServletContext servletContext = (ServletContext)
             context.getExternalContext().getContext();
         HttpServletRequest request = (HttpServletRequest)
@@ -172,8 +195,8 @@ public class ActionListenerImpl implements ActionListener {
         // Log this event if requested
         if (log.isDebugEnabled()) {
             log.debug("Performing Struts form submit for event " +
-                      " from source component " +
-                      component.getClientId(context));
+                      " from source component '" +
+                      component.getId() + "'");
         }
 
         // Invoke the appropriate request processor for this request
