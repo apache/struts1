@@ -42,7 +42,7 @@ import org.apache.struts.util.RequestUtils;
  * <code>javax.faces.component.UIForm</code> that supports automatic
  * creation of form beans in request or session scope.</p>
  *
- * @version $Revision: 1.6 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.7 $ $Date: 2004/04/09 15:21:47 $
  */
 public class FormComponent extends UIForm {
 
@@ -247,7 +247,7 @@ public class FormComponent extends UIForm {
         if (fbConfig.getDynamic()) {
             try {
                 DynaActionFormClass dynaClass =
-                    DynaActionFormClass.createDynaActionFormClass(fbConfig);
+                    DynaActionFormClass.createDynaActionFormClass(fbConfig, moduleConfig);
                 instance = (ActionForm) dynaClass.newInstance();
                 if (log.isDebugEnabled()) {
                     log.debug
