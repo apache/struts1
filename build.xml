@@ -159,6 +159,21 @@
 
     <!-- Directory where test configurations files are stored -->
     <property name="conf.test.dir" value="conf/test"/>
+
+    <!-- Directory where binary release files are staged -->
+    <property name="stage.bin.dir" value="${release.home}/stage/bin"/>
+
+    <!-- Directory where library release files are staged -->
+    <property name="stage.lib.dir" value="${release.home}/stage/lib"/>
+
+    <!-- Directory where source release files are staged -->
+    <property name="stage.src.dir" value="${release.home}/stage/src"/>
+
+    <!-- Directory where release builds are prepared for upload -->
+    <property name="upload.dir" value="${release.home}/upload"/>
+
+    <!-- Base file name for upload files -->
+    <property name="upload.file.base" value="${project.name}-${project.version}"/>
     
     <!-- Doc directory -->
     <property name="doc.dir" value="doc"/>
@@ -377,23 +392,48 @@
 <!--
         Construct complete release distributions
 -->
-    <target name="release" depends="clean,dist">
-        <mkdir dir="${release.home}"/>
-        <zip zipfile="${release.home}/${project.name}-${project.version}.zip">
-            <zipfileset dir="${dist.home}" prefix="${project.name}-${project.version}"/>
-        </zip>
-        <zip zipfile="${release.home}/${project.name}-${project.version}-lib.zip">
-            <zipfileset dir="${dist.home}" includes="LICENSE"/>
-            <zipfileset dir="${dist.home}" prefix="${project.name}-${project.version}"/>
-        </zip>
-        <zip zipfile="${release.home}/${project.name}-${project.version}-src.zip">
-            <zipfileset dir="." prefix="${project.name}-${project.version}-src">
+    <target name="release" depends="clean,dist"
+    description="Construct release distribution">
+        <mkdir dir="${stage.bin.dir}/${upload.file.base}"/>
+        <mkdir dir="${stage.lib.dir}/${upload.file.base}-lib"/>
+        <mkdir dir="${stage.src.dir}/${upload.file.base}-src"/>
+        <copy todir="${stage.bin.dir}/${upload.file.base}">
+            <fileset dir="${dist.home}"/>
+        </copy>
+        <copy todir="${stage.lib.dir}/${upload.file.base}-lib">
+            <fileset dir="${dist.home}" includes="LICENSE"/>
+            <fileset dir="${dist.home}/lib"/>
+        </copy>
+        <copy todir="${stage.src.dir}/${upload.file.base}-src">
+            <fileset dir=".">
                 <exclude name="build.properties"/>
                 <exclude name="target/**"/>
                 <exclude name="dist/**"/>
                 <exclude name="release/**"/>
-            </zipfileset>
-        </zip>
+            </fileset>
+        </copy>
+        <mkdir dir="${upload.dir}"/>
+        <zip  zipfile="${upload.dir}/${upload.file.base}.zip"
+              basedir="${stage.bin.dir}"/>
+        <zip  zipfile="${upload.dir}/${upload.file.base}-lib.zip"
+              basedir="${stage.lib.dir}"/>
+        <zip  zipfile="${upload.dir}/${upload.file.base}-src.zip"
+              basedir="${stage.src.dir}"/>
+        <tar  tarfile="${upload.dir}/${upload.file.base}.tar"
+              basedir="${stage.bin.dir}"
+             longfile="gnu"/>
+        <tar  tarfile="${upload.dir}/${upload.file.base}-lib.tar"
+              basedir="${stage.lib.dir}"
+             longfile="gnu"/>
+        <tar  tarfile="${upload.dir}/${upload.file.base}-src.tar"
+              basedir="${stage.src.dir}"
+             longfile="gnu"/>
+        <gzip     src="${upload.dir}/${upload.file.base}.tar"
+              zipfile="${upload.dir}/${upload.file.base}.tar.gz"/>
+        <gzip     src="${upload.dir}/${upload.file.base}-lib.tar"
+              zipfile="${upload.dir}/${upload.file.base}-lib.tar.gz"/>
+        <gzip     src="${upload.dir}/${upload.file.base}-src.tar"
+              zipfile="${upload.dir}/${upload.file.base}-src.tar.gz"/>
     </target>
 
 <!--
