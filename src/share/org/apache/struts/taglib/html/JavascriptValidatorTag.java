@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.41 2003/12/02 05:06:34 dgraham Exp $
- * $Revision: 1.41 $
- * $Date: 2003/12/02 05:06:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.42 2003/12/07 17:34:51 dgraham Exp $
+ * $Revision: 1.42 $
+ * $Date: 2003/12/07 17:34:51 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  *
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.41 $ $Date: 2003/12/02 05:06:34 $
+ * @version $Revision: 1.42 $ $Date: 2003/12/07 17:34:51 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -128,9 +128,17 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         }
     };
 
-    private static final String HTML_BEGIN_COMMENT = "\n<!-- Begin \n";
+    /**
+     * The start of the HTML comment hiding JavaScript from old browsers.
+     * @since Struts 1.2
+     */
+    protected static final String HTML_BEGIN_COMMENT = "\n<!-- Begin \n";
 
-    private static final String HTML_END_COMMENT = "//End --> \n";
+    /**
+     * The end of the HTML comment hiding JavaScript from old browsers.
+     * @since Struts 1.2
+     */
+    protected static final String HTML_END_COMMENT = "//End --> \n";
 
     // ----------------------------------------------------------- Properties
 
