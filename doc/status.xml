@@ -2,13 +2,15 @@
 <document url="./status.xml">
 <properties>
 <author>Craig R. McClanahan</author>
+<author>Ted Husted</author>
+<author>Steve Byrne</author>
 <title>The Struts User's Guide - Development Roadmap</title>
 </properties>
 <body>
 <chapter href="status" name="Development Roadmap">
 
 <section href="status" name="Development Roadmap">
-<p><font size="-2">$Id: status.xml,v 1.2 2002/10/17 13:23:50 husted Exp $</font></p>
+<p><font size="-2">$Id: status.xml,v 1.3 2002/10/17 22:35:55 husted Exp $</font></p>
 <p>
 This document outlines some of changes we expect to
 see in future releases of Struts.
@@ -25,17 +27,21 @@ All releases and changes to the codebase are subject to
 <p>
 Struts 1.1 provides a number of functional enhancements, including
 support for application modules. Other enhancments include
-action-based authentification, declarative exception
-handling, Plug-In Actions, and a pluggable request processor.
+action-based authentification, use of Commons-Datasource and
+Commons-Logging packages, declarative exception handling,
+Dynabean support, Plug-In Actions, and a pluggable request processor.
 Several extensions are now bundled with the Struts distribution,
 including the Nested taglib, Tiles, and the Commons Validator.
-Backward-compatiblity with Struts 1.0.x is a primary goal.
+An optional Struts-el taglib makes it easy to use Struts with JSTL.
+Backward-compatiblity with Struts 1.0.x is a primary goal of this release.
 </p>
 <p>
 Remaining tasks:
 </p>
 <ul>
-<li>Refactor Tiles to be 1.1 compliant</li>
+<li>Finishing touches on Struts-el</li>
+<li>Refactor Tiles to be module aware</li>
+<li>Commons-Resource integration</li>
 <li>Other routine changes per
 <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;amp;bug_status=NEW&amp;amp;bug_status=ASSIGNED&amp;amp;bug_status=REOPENED&amp;amp;email1=&amp;amp;emailtype1=substring&amp;amp;emailassigned_to1=1&amp;amp;email2=&amp;amp;emailtype2=substring&amp;amp;emailreporter2=1&amp;amp;bugidtype=include&amp;amp;bug_id=&amp;amp;changedin=&amp;amp;votes=&amp;amp;chfieldfrom=&amp;amp;chfieldto=Now&amp;amp;chfieldvalue=&amp;amp;product=Struts&amp;amp;version=Unknown&amp;amp;version=1.0.1+Final&amp;amp;version=1.0+Final&amp;amp;version=1.0+Beta+3&amp;amp;version=1.0+Beta+2&amp;amp;version=1.0+Beta+1&amp;amp;version=0.5+Final&amp;amp;version=1.0.2+Final&amp;amp;version=1.1+Beta+1&amp;amp;version=1.1+Beta+2&amp;amp;version=Nightly+Build&amp;amp;short_desc=&amp;amp;short_desc_type=allwordssubstr&amp;amp;long_desc=&amp;amp;long_desc_type=allwordssubstr&amp;amp;bug_file_loc=&amp;amp;bug_file_loc_type=allwordssubstr&amp;amp;keywords=&amp;amp;keywords_type=anywords&amp;amp;field0-0-0=noop&amp;amp;type0-0-0=noop&amp;amp;value0-0-0=&amp;amp;cmdtype=doit&amp;amp;order=Bug+Number">Bugzilla</a>
 and <a href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=41">Dev list</a></li>
@@ -56,6 +62,22 @@ compatibility.
 The Struts 1.2.x series is expected to incorporate several
 incremental releases (in contrast to Stuts 1.1).
 </p>
+<p>
+Features under discussion include:
+</p>
+<ul>
+<li>"Nested" or "hierarchical" and locale-sensitive modules</li>
+<li>Extending one configuration element from another, as is done with Tiles Definitions</li>
+<li>Enhanced interoperability with JSTL and JSF</li>
+<li>Making Tiles JSTL-aware</li>
+<li>Adoption of stxx XLST technology</li>
+</ul>
+<p>
+More detail on work-in-progress may be found in
+<a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;version=Unknown&amp;version=1.0+Beta+2&amp;version=1.0+Beta+1&amp;version=0.5+Final&amp;version=1.0.2+Final&amp;version=1.0.1+Final&amp;version=1.0+Final&amp;version=1.0+Beta+3&amp;version=1.1+Beta+2&amp;version=1.1+Beta+1&amp;version=Nightly+Build&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=Bug+Number">Bugzilla</a>.
+If any of these features are important to you, please don't hesitate to <a href="helping.html">help with the development effort</a>.
+</p>
+
 </section>
 
 <section href="struts_2_0" name="Struts 2.0.x">
@@ -67,6 +89,13 @@ the use of Filters. It is expected that Struts 2.0.x
 will rely on JSTL and JavaServer Faces as supporting
 technologies.
 </p>
+<p>
+Target features include:
+</p>
+<ul>
+<li>Refactoring for Filters</li>
+<li>Integration with JSF/JSTL</li>
+</ul>
 </section>
 
 <section href="proposals" name="Relevant Proposals">
