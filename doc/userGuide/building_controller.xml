@@ -7,6 +7,9 @@
     <author>Ted Husted</author>
     <author>Martin Cooper</author>
     <author>Ed Burns</author>
+    <author>Eddie Bush</author>
+    <author>Yann Cebron </author>
+    <author>David Graham</author>
     <title>The Struts User's Guide - Building Controller Components</title>
   </properties>
   
@@ -87,6 +90,7 @@
             properties required. This wrapper can also provide a filter to be 
             sure runtime properties are not set to inappropriate values.</li> 
       </ul>    
+      </section>
 
       <section name="4.2.1 DynaActionForm Classes" href="dyna_action_form_classes">
       <p>[:TODO:]</p>
@@ -95,8 +99,6 @@
       <section name="4.2.2 Map-backed ActionForms" href="map_action_form_classes">
       <p>[:TODO:]</p>
       </section>
-
-    </section>
 
     <section name="4.3 Action Classes" href="action_classes">
       
@@ -231,6 +233,7 @@ public ActionForward execute(ActionMapping mapping,
         
     <section name="4.4 The ActionServlet" href="action_servlet">
     <p>[:TODO:]</p>
+    </section>
 
       <section name="4.4.1 Request Processor" href="request_processor">
       <p>[:TODO:]</p>
@@ -255,7 +258,6 @@ public ActionForward execute(ActionMapping mapping,
           PlugIn Configuration</a> for details.
         </p>
       </section>
-    </section>
 
     <section name="4.5 The ActionMapping Implementation" href="actionmapping">
       
@@ -340,7 +342,23 @@ public ActionForward execute(ActionMapping mapping,
             </ul>
         </blockquote>
         <blockquote>
-            [:TODO: ActionForwards]
+        <b>&lt;global-forwards&gt;</b><br />
+        This section contains your global forward definitions.  Forwards are instances of the ActionForward
+        class returned from an ActionForm's execute method.  These map logical names to specific resources (typically 
+        JSPs), allowing you to change the resource without changing references to it throughout your application. 
+        You use a &lt;forward&gt; element for each forward definition, which has the following important attributes:
+        <ul>
+          <li>
+            <b>name</b>: The logical name for this forward.  This is used in your ActionForm's execute
+            method to forward to the next appropriate resource.  Example: homepage
+          </li>
+          <li>
+            <b>path</b>: The context relative path to the resource.  Example: /index.jsp or /index.do
+          </li>
+          <li>
+            <b>redirect</b>: True or false (default).  Should the ActionServlet redirect to the resource instead of forward?
+          </li>
+        </ul>
         </blockquote>
         <blockquote>
           <b>&lt;action-mappings&gt;</b><br />
@@ -378,7 +396,8 @@ public ActionForward execute(ActionMapping mapping,
           </blockquote>
         
       </p>
-
+      </section>
+	
       <section name="4.6.1 ActionMapping Example" href="action_mapping_example">       
 
       <p>
@@ -466,89 +485,64 @@ public ActionForward execute(ActionMapping mapping,
       </p>
       </section>
 
-      <section name="4.6.3 Message Resources Configuration" href="resources_config">
-        <p>
-        Very little is required in order to start taking advantage of the Struts
-        sub-application feature.  Just go through the following steps:
+        <section name="4.6.3 Message Resources Configuration" href="resources_config">             
+ 	<p>
+	Struts has builtin support for internationalization (I18N).
+	You can define one or more <code>&lt;message-resources&gt;</code> elements
+	for your webapp; sub-applications can define their own resource bundles.
+	Different bundles can be used simultaneously in your application, the
+	'key' attribute is used to specify the desired bundle.
+	</p>
+	<blockquote>
+	<ul>
+	<li>
+	<b>className</b> - Classname of configuration bean.
+	[org.apache.struts.config.MessageResourcesConfig] (optional)
+	</li>
+	<li>
+	<b>factory</b> - Classname of MessageResourcesFactory.
+	[org.apache.struts.util.PropertyMessageResourcesFactory] (optional)
+	</li>
+	<li>
+	<b>key</b> - ServletContext attribute key to store this bundle.
+	[org.apache.struts.action.MESSAGE] (optional)
+	</li>
+	<li>
+	<b>null</b> - Set to <code>false</code> to display missing resource keys
+	in your application like '<i>???keyname???</i>' instead of <code>null</code>.
+	[true] (optional)
+	</li>
+	<li>
+	<b>parameter</b> - Name of the resource bundle. (required)
+	</li>
+	</ul>
+	</blockquote>
+	<p>Example configuration:</p>
+	<pre>
+	&lt;message-resources 
+	  parameter="MyWebAppResources"
+	  null="false" />
+	</pre>
+	<p>
+	This would set up a message resource bundle provided in the file
+	<code>MyWebAppResources.properties</code> under the default key.
+	Missing resource keys would be displayed as '<i>???keyname???</i>'.
+	</p>
+	</section>
+
+	<section name="4.6.4 PlugIn Configuration" href="plugin_config">
+	<p>
+	Struts PlugIns are configured using the <code>&lt;plug-in&gt;</code> element within
+	the Struts configuration file. This element has only one valid attribute,
+	'className', which is the fully qualified name of the Java class which
+	implements the <code>org.apache.struts.action.PlugIn</code> interface.
         </p>
-        <ol>
-          <li>Prepare a config file for each sub-application.</li>
-          <li>Inform the controller of your sub-applications.</li>
-          <li>Use actions to refer to your pages.</li>
-        </ol>
-      </section>
-      <section name="4.6.3.1 Sub-Application Configuration Files" href="module_config-files">
-        <p>
-          Back in Struts 1.0, a few "boot-strap" options were placed in the web.xml file,
-          and the bulk of the configuration was done in a single struts-config.xml file.
-          Obviously, this wasn't ideal for a team environment, since multiple users had
-          to share the same configuration file.  Sub-applications to the rescue!
+	<p>
+	For PlugIns that require configuration themselves, the nested
+	<code>&lt;set-property&gt;</code> element is available.
         </p>
-        <p>
-          With the advent of sub-applications, a given module (sub-application) has it's
-          own configuration file.  This means each team (each module would presumably be
-          developed by a single team) has their own configuration file, and there should
-          be a lot less contention when trying to modify it.
-        </p>
-      </section>
-      <section name="4.6.3.2 Informing the Controller" href="module_config-inform_conroller">
-        <p>
-          In struts 1.0, you listed your configuration file as an initialization parameter
-          to the action servlet in web.xml.  This is still done in 1.1, but it's augmented
-          a little.  In order to tell the Struts machinery about your different
-          sub-applications, you specify multiple config initialization parameters, with a
-          slight twist.  You'll still use "config" to tell the action servlet about your
-          "default" sub-application, however, for each additional sub-application, you will
-          list an initialization parameter named "config/module", where module is the name
-          of your sub-application (this gets used when determining which URIs fall under a
-          given sub-application, so choose something meaningful!).  For example:
-        </p>
-        <pre>
-            ...
-            &lt;init-param&gt;
-              &lt;param-name&gt;config&lt;/param-name&gt;
-              &lt;param-value&gt;/WEB-INF/conf/struts-default.xml&lt;/param-value&gt;
-            &lt;/init-param&gt;
-            &lt;init-param&gt;
-              &lt;param-name&gt;config/module1&lt;/param-name&gt;
-              &lt;param-value&gt;/WEB-INF/conf/struts-module1.xml&lt;/param-value&gt;
-            &lt;/init-param&gt;
-            ...
-        </pre>
-        <p>
-          This says I have two sub-applications.  One happens to be the "default" sub-application,
-          which has no "/module" in it's name, and one named "module1" (config/module1).  I've told
-          the controller it can find their respective configurations under /WEB-INF/conf (which is
-          where I put all my configuration files).  Pretty simple!
-        </p>
-        <p>
-          (My struts-default.xml would be equivalent to what most folks call struts-config.xml.  I just
-          like the symmety of having all my Struts module files being named struts-&lt;module&gt;.xml)
-        </p>
-      </section>
-      <section name="4.6.3.3 Using Actions for Pages" href="module_config-use_actions">
-        <p>
-          Fronting your pages with actions is <i>essential</i> when using sub-applications,
-          since doing so is the only way you involve the controller in the request -- and
-          you want to!  The controller puts the application configuration in the request,
-          which makes available all of your sub-application-specific configuration data (including
-          which plug-ins you are using, message resources, datasources, etc).
-        </p>
-      </section>
-                
-      <section name="4.6.4 PlugIn Configuration" href="plugin_config">
-      <p>       
-        Struts PlugIns are configured using the &lt;plug-in&gt; element within
-        the Struts configuration file. This element has only one valid attribute,
-        'className', which is the fully qualified name of the Java class which
-        implements the <code>PlugIn</code> interface.
-      </p>      
-      <p>       
-        For PlugIns that require configuration themselves, the nested
-        &lt;set-property&gt; element is available.
-      </p>      
-      </section>
-                
+	</section>
+
       <section name="4.6.5 Other Configuration Objects" href="other_config">
                 
       <p>       
@@ -612,10 +606,7 @@ public ActionForward execute(ActionMapping mapping,
 
     </section>
 
-    </section>
-
     <section name="4.7 The Web Application Deployment Descriptor" href="dd_config">
-      
       <p>
         The final step in setting up the application is to configure the application
         deployment descriptor (stored in file <code>WEB-INF/web.xml</code>) to include
@@ -623,6 +614,7 @@ public ActionForward execute(ActionMapping mapping,
         for the example application as a guide, we see that the following entries need
         to be created or modified.
       </p>
+    </section>
 
       <section name="4.7.1 Configure the Action Servlet Instance" href="dd_config_servlet">
         
@@ -902,13 +894,83 @@ http://www.mycompany.com/myapplication/logon.do
       </section>
 
       <section name="4.7.4 Configuring your application for modules" href="dd_config_modules">
-
-      <p>
-        [:TODO:]
-      </p>
+        <p>
+        Very little is required in order to start taking advantage of the Struts
+        application module feature.  Just go through the following steps:
+        </p>
+        <ol>
+          <li>Prepare a config file for each module.</li>
+          <li>Inform the controller of your module.</li>
+          <li>Use actions to refer to your pages.</li>
+        </ol>
       </section>
 
-    </section>
+      <section name="4.7.4.1 Module Configuration Files" href="module_config-files">
+        <p>
+          Back in Struts 1.0, a few "boot-strap" options were placed in the web.xml file,
+          and the bulk of the configuration was done in a single struts-config.xml file.
+          Obviously, this wasn't ideal for a team environment, since multiple users had
+          to share the same configuration file.  Sub-applications to the rescue!
+        </p>
+        <p>
+          With the advent of modules, a given module has it's
+          own configuration file.  This means each team (each module would presumably be
+          developed by a single team) has their own configuration file, and there should
+          be a lot less contention when trying to modify it.
+        </p>
+      </section>
+
+      <section name="4.7.4.2 Informing the Controller" href="module_config-inform_conroller">
+        <p>
+          In struts 1.0, you listed your configuration file as an initialization parameter
+          to the action servlet in web.xml.  This is still done in 1.1, but it's augmented
+          a little.  In order to tell the Struts machinery about your different
+          sub-applications, you specify multiple config initialization parameters, with a
+          slight twist.  You'll still use "config" to tell the action servlet about your
+          "default" sub-application, however, for each additional sub-application, you will
+          list an initialization parameter named "config/module", where module is the name
+          of your sub-application (this gets used when determining which URIs fall under a
+          given sub-application, so choose something meaningful!).  For example:
+        </p>
+        <pre>
+            ...
+            &lt;init-param&gt;
+              &lt;param-name&gt;config&lt;/param-name&gt;
+              &lt;param-value&gt;/WEB-INF/conf/struts-default.xml&lt;/param-value&gt;
+            &lt;/init-param&gt;
+            &lt;init-param&gt;
+              &lt;param-name&gt;config/module1&lt;/param-name&gt;
+              &lt;param-value&gt;/WEB-INF/conf/struts-module1.xml&lt;/param-value&gt;
+            &lt;/init-param&gt;
+            ...
+        </pre>
+        <p>
+          This says I have two modules.  One happens to be the "default" module,
+          which has no "/module" in it's name, and one named "module1" (config/module1).  I've told
+          the controller it can find their respective configurations under /WEB-INF/conf (which is
+          where I put all my configuration files).  Pretty simple!
+        </p>
+        <p>
+          (My struts-default.xml would be equivalent to what most folks call struts-config.xml.  I just
+          like the symmety of having all my Struts module files being named struts-&lt;module&gt;.xml)
+        </p>
+      </section>
+ 
+      <section name="4.7.4.3 Using Actions for Pages" href="module_config-use_actions">
+        <p>
+          Fronting your pages with actions is <i>essential</i> when using modules,
+          since doing so is the only way you involve the controller in the request -- and
+          you want to!  The controller puts the application configuration in the request,
+          which makes available all of your sub-application-specific configuration data (including
+          which plug-ins you are using, message resources, datasources, etc).
+        </p>
+        <p>
+           The simplest way to do this is to use the <code>forward</code> property of the ActionMapping: 
+        </p>
+        <pre>
+           &lt;action path="/view" forward="/view.jsp"/>
+         </pre>
+      </section>
 
       <section name="4.8 Add Struts Components To Your Application" href="config_add">
         

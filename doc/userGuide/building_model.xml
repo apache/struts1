@@ -222,7 +222,8 @@
       </p>
       <p>
         The Struts datasource manager is configured as an element in the
-        Struts configuration file (struts-config.xml). The manager can
+        <a href="building_controller.html#other_config">Struts configuration file</a> 
+        (struts-config.xml). The manager can
         used to deploy any connection pool that implements the
         <code>javax.sql.DataSource</code> interface and is configurable totally
         from JavaBean properties. If your DBMS or container provides a
@@ -234,7 +235,7 @@
         [org.apache.commons.dbcp.BasicDataSource] also works well with the
         datasource manager, if a native component is not available. The Struts
         distribution includes a Generic DataSource class in its util
-        package, but this is now only a wraper around the BasicDataSource. The
+        package, but this is now only a wrapper around the BasicDataSource. The
         GenericDataSource class is deprecated as of Struts 1.1 and replaced by
         direct use of the BasicDataSource.
       </p>
@@ -253,7 +254,7 @@ public ActionForward
  java.sql.Connection myConnection;
 
  try {
-   dataSource = servlet.findDataSource(null);
+   dataSource = getDataSource(request);
    myConnection = dataSource.getConnection();
 
    //do what you wish with myConnection
