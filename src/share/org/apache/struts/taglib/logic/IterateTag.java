@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.7 2001/02/12 21:49:56 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/02/12 21:49:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.8 2001/03/31 21:29:37 rleland Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/03/31 21:29:37 $
  *
  * ====================================================================
  *
@@ -65,12 +65,15 @@ package org.apache.struts.taglib.logic;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+
+import org.apache.struts.util.IteratorAdapter;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
@@ -85,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * (which includes Hashtables) whose elements will be iterated over.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/02/12 21:49:56 $
+ * @version $Revision: 1.8 $ $Date: 2001/03/31 21:29:37 $
  */
 
 public class IterateTag extends BodyTagSupport {
@@ -265,7 +268,7 @@ public class IterateTag extends BodyTagSupport {
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-            
+
 
 	// Construct an iterator for this collection
 	if (collection.getClass().isArray())
@@ -276,7 +279,9 @@ public class IterateTag extends BodyTagSupport {
 	    iterator = (Iterator) collection;
 	else if (collection instanceof Map)
 	    iterator = ((Map) collection).entrySet().iterator();
-	else {
+    else if (collection instanceof Enumeration)
+	    iterator = new IteratorAdapter((Enumeration)collection);
+   	else {
 	    JspException e = new JspException
 	        (messages.getMessage("iterate.iterator"));
             RequestUtils.saveException(pageContext, e);
