@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.71 2001/06/24 23:49:55 craigmcc Exp $
- * $Revision: 1.71 $
- * $Date: 2001/06/24 23:49:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.72 2001/06/25 00:02:27 craigmcc Exp $
+ * $Revision: 1.72 $
+ * $Date: 2001/06/25 00:02:27 $
  *
  * ====================================================================
  *
@@ -228,7 +228,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.71 $ $Date: 2001/06/24 23:49:55 $
+ * @version $Revision: 1.72 $ $Date: 2001/06/25 00:02:27 $
  */
 
 public class ActionServlet
@@ -363,6 +363,8 @@ public class ActionServlet
     protected String registrations[] = {
         "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN",
         "/org/apache/struts/resources/struts-config_1_0.dtd",
+        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN",
+        "/org/apache/struts/resources/struts-config_1_1.dtd",
         "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN",
         "/org/apache/struts/resources/web-app_2_2.dtd",
         "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN",
