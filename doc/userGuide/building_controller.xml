@@ -292,14 +292,22 @@ public ActionForward execute(ActionMapping mapping,
         
       <p>
         The developer's responsibility is to create an XML file named
-        <code>struts-config.xml</code>, and place it in the WEB-INF directory of your
-        application. This format of this document is constrained by it's definition in 
-        "struts-config_1_1.dtd". The outermost XML element must be <code>&lt;struts-config&gt;</code>.       
+        <code>struts-config.xml</code> and place it in the WEB-INF directory of your
+        application. This format of this document is described by the Document Type Definition (DTD)
+        maintained at 
+        <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd</a>. 
+        The User Guide touches on the most important elements and attributes available to the 
+        Struts configuration file, but developers are referred to the DTD for more detail.
+      </p>
+      <p>
+        The controller uses an internal copy of this document to parse the configuration;
+        an Internet connection is not required for operation.
       </p>
       
       <p>
-        Inside of the &lt;struts-config&gt; element, there are three important
-        elements that are used to describe your actions:
+        The outermost XML element must be <code>&lt;struts-config&gt;</code>. Inside of 
+        the &lt;struts-config&gt; element, there are three important elements that are 
+        used to describe your actions:
         
         <blockquote>
           <b>&lt;form-beans&gt;</b><br />
