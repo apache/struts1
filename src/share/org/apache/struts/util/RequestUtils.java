@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.62 2002/10/15 18:10:52 rleland Exp $
- * $Revision: 1.62 $
- * $Date: 2002/10/15 18:10:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.63 2002/10/17 02:41:59 rleland Exp $
+ * $Revision: 1.63 $
+ * $Date: 2002/10/17 02:41:59 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.62 $ $Date: 2002/10/15 18:10:52 $
+ * @version $Revision: 1.63 $ $Date: 2002/10/17 02:41:59 $
  */
 
 public class RequestUtils {
@@ -158,7 +158,7 @@ public class RequestUtils {
      *
      * @param request The servlet request we are processing
      * @param path The context-relative path (must start with '/')
-     *
+     * @return  absolute URL based on context-relative path
      * @exception MalformedURLException if we cannot create an absolute URL
      */
     public static URL absoluteURL(HttpServletRequest request, String path)
@@ -174,7 +174,7 @@ public class RequestUtils {
      * class name, from this web application's class loader.
      *
      * @param className Fully qualified class name to be loaded
-     *
+     * @return Class object
      * @exception ClassNotFoundException if the class cannot be found
      */
     public static Class applicationClass(String className)
@@ -200,7 +200,7 @@ public class RequestUtils {
      * constructor.
      *
      * @param className Fully qualified class name to use
-     *
+     * @return new instance of class
      * @exception ClassNotFoundException if the class cannot be found
      * @exception IllegalAccessException if the class or its constructor
      *  is not accessible
@@ -229,7 +229,7 @@ public class RequestUtils {
      * identified, return <code>null</code>.
      *
      * @param pageContext PageContext we are operating in
-     *
+
      * @param paramId Single-value request parameter name (if any)
      * @param paramName Bean containing single-value parameter value
      * @param paramProperty Property (of bean named by <code>paramName</code>
@@ -244,7 +244,7 @@ public class RequestUtils {
      *  <code>name</code>
      *
      * @param transaction Should we add our transaction control token?
-     *
+     * @return Map of query parameters
      * @exception JspException if we cannot look up the required beans
      * @exception JspException if a class cast exception occurs on a
      *  looked-up bean or property
@@ -360,7 +360,7 @@ public class RequestUtils {
      * @param anchor Anchor to be dynamically included (if any)
      *
      * @param redirect Is this URL for a <code>response.sendRedirect()</code>?
-     *
+     * @return URL with session identifier
      * @exception MalformedURLException if a URL cannot be created
      *  for the specified parameters
      */
@@ -537,6 +537,8 @@ public class RequestUtils {
      * @param request The servlet request we are processing
      * @param mapping The action mapping for this request
      * @param appConfig The application configuration for this module
+     * @param servlet The action servlet
+     * @return ActionForm instance associated with this request
      */
     public static ActionForm createActionForm(HttpServletRequest request,
                                               ActionMapping mapping,
@@ -655,7 +657,7 @@ public class RequestUtils {
      * @param name Name of the bean to be retrieved
      * @param scope Scope to be searched (page, request, session, application)
      *  or <code>null</code> to use <code>findAttribute()</code> instead
-     *
+     * @return JavaBean in the specified page context
      * @exception JspException if an invalid scope name
      *  is requested
      */
@@ -698,6 +700,7 @@ public class RequestUtils {
      *  <code>null</code> to retrieve the bean itself
      * @param scope Scope to be searched (page, request, session, application)
      *  or <code>null</code> to use <code>findAttribute()</code> instead
+     * @return property of specified JavaBean
      *
      * @exception JspException if an invalid scope name
      *  is requested
@@ -755,6 +758,7 @@ public class RequestUtils {
      *
      * @param pageContext The PageContext associated with this request
      * @param locale Name of the session attribute for our user's Locale
+     * @return current user locale
      */
     public static Locale retrieveUserLocale( PageContext pageContext, String locale ) {
         if (locale == null)
@@ -774,6 +778,7 @@ public class RequestUtils {
      *  message resources bundle
      * @param locale Name of the session attribute for our user's Locale
      * @param key Message key to be looked up and returned
+     * @return message string
      *
      * @exception JspException if a lookup error occurs (will have been
      *  saved in the request already)
@@ -796,7 +801,7 @@ public class RequestUtils {
      * @param locale Name of the session attribute for our user's Locale
      * @param key Message key to be looked up and returned
      * @param args Replacement parameters for this message
-     *
+     * @return message string
      * @exception JspException if a lookup error occurs (will have been
      *  saved in the request already)
      */
@@ -1081,7 +1086,7 @@ public class RequestUtils {
      *  message resources bundle
      * @param locale Name of the session attribute for our user's Locale
      * @param key Message key to be looked up and returned
-     *
+     * @return true if a message string for message key exists
      * @exception JspException if a lookup error occurs (will have been
      *  saved in the request already)
      */
@@ -1130,6 +1135,7 @@ public class RequestUtils {
      * or context-relative URIs.
      *
      * @param url URL to render in a printable representation
+     * @return printable representation of a URL
      */
     public static String printableURL(URL url) {
 
@@ -1158,6 +1164,7 @@ public class RequestUtils {
      * @param request The servlet request we are processing
      * @param action ActionConfig to be evaluated
      * @param pattern URL pattern used to map the controller servlet
+     * @return  context-relative URL relative to the application module
      *
      * @since Struts 1.1b2
      */
@@ -1191,6 +1198,7 @@ public class RequestUtils {
      *
      * @param request The servlet request we are processing
      * @param forward ForwardConfig to be evaluated
+     * @return context-relative URL
      * @since Struts 1.1b2
      */
     public static String forwardURL(HttpServletRequest request,
@@ -1266,7 +1274,7 @@ public class RequestUtils {
      * @param request The servlet request we are processing
      * @param page The module-relative URL to be substituted in
      *  to the <code>pagePattern</code> pattern for the current module.
-     *
+     * @return context-relative URL
      * @since Struts 1.1b2
      */
     public static String pageURL(HttpServletRequest request,
@@ -1317,7 +1325,7 @@ public class RequestUtils {
      * to <code>HttpServletRequest.getRequestURL()</code> in Servlet 2.3.
      *
      * @param request The servlet request we are processing
-     *
+     * @return URL representing the current request
      * @exception MalformedURLException if a URL cannot be created
      */
     public static URL requestURL(HttpServletRequest request)
@@ -1348,7 +1356,8 @@ public class RequestUtils {
      * appending the server-relative path (starting with '/') to this.
      *
      * @param request The servlet request we are processing
-     *
+     * @return URL representing the scheme, server, and port number of
+     *     the current request
      * @exception MalformedURLException if a URL cannot be created
      */
     public static URL serverURL(HttpServletRequest request)
@@ -1511,6 +1520,7 @@ public class RequestUtils {
      * the "" prefix for the default module is not included in this list.
      *
      * @param context The ServletContext for this web application
+     * @return an array of module prefixes
      */
     public static String[] getApplicationPrefixes(ServletContext context) {
 
@@ -1544,6 +1554,8 @@ public class RequestUtils {
      *
      * @param pageContext   The PageContext for the current page
      * @param paramName     Key for parameter value
+     * @return ActionErros in page context.
+     * @throws JspException if
      */
     public static ActionMessages getActionMessages(PageContext pageContext, String paramName)
        throws JspException {
@@ -1591,6 +1603,8 @@ public class RequestUtils {
      *
      * @param pageContext   The PageContext for the current page
      * @param paramName     Key for parameter value
+     * @return ActionErrors from request scope
+     * @exception JspException
      */
     public static ActionErrors getActionErrors(PageContext pageContext, String paramName)
        throws JspException {
@@ -1626,7 +1640,7 @@ public class RequestUtils {
         } catch (JspException e) {
             throw e;
         } catch (Exception e) {
-            ;
+            LOG.debug(e);
         }
 
         return errors;
