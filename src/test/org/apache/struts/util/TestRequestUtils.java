@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.7 2002/07/10 20:36:23 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/07/10 20:36:23 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.8 2002/07/12 09:51:57 husted Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/07/12 09:51:57 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.mock.TestMockBase;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/07/10 20:36:23 $
+ * @version $Revision: 1.8 $ $Date: 2002/07/12 09:51:57 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -205,7 +205,7 @@ public class TestRequestUtils extends TestMockBase {
 
     // No parameters and no transaction token
     public void testComputeParameters0a() {
-        
+
         Map map = null;
         try {
             map = RequestUtils.computeParameters(page,
@@ -548,7 +548,7 @@ public class TestRequestUtils extends TestMockBase {
     public void testComputeURL1d() {
 
         appConfig.getControllerConfig().setForwardPattern
-            ("$C/WEB-INF/pages$A$P");
+            ("$C/WEB-INF/pages$M$P");
         request.setPathElements("/myapp", "/action.do", null, null);
         String url = null;
         try {
@@ -571,7 +571,7 @@ public class TestRequestUtils extends TestMockBase {
     public void testComputeURL1e() {
 
         appConfig.getControllerConfig().setPagePattern
-            ("$C/WEB-INF/pages$A$P");
+            ("$C/WEB-INF/pages$M$P");
         request.setPathElements("/myapp", "/action.do", null, null);
         String url = null;
         try {
@@ -705,7 +705,7 @@ public class TestRequestUtils extends TestMockBase {
 
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
         appConfig2.getControllerConfig().setForwardPattern
-            ("$C/WEB-INF/pages$A$P");
+            ("$C/WEB-INF/pages$M$P");
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -728,7 +728,7 @@ public class TestRequestUtils extends TestMockBase {
     public void testComputeURL2e() {
 
         appConfig2.getControllerConfig().setPagePattern
-            ("$C/WEB-INF/pages$A$P");
+            ("$C/WEB-INF/pages$M$P");
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
@@ -1023,7 +1023,7 @@ public class TestRequestUtils extends TestMockBase {
         // FIXME - check application resources?
 
     }
-    
+
 
     // Map to the second webapp -- direct
     public void testSelectApplication1b() {
@@ -1055,7 +1055,7 @@ public class TestRequestUtils extends TestMockBase {
         // FIXME - check application resources?
 
     }
-    
+
 
     // Map to the second subapp -- include
     public void testSelectApplication2b() {
@@ -1072,7 +1072,7 @@ public class TestRequestUtils extends TestMockBase {
         // FIXME - check application resources?
 
     }
-    
+
 
     // ------------------------------------------------------------ serverURL()
 

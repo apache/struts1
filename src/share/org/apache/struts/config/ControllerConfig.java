@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.7 2002/07/09 23:57:37 husted Exp $
- * $Revision: 1.7 $
- * $Date: 2002/07/09 23:57:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.8 2002/07/12 09:51:30 husted Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/07/12 09:51:30 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/07/09 23:57:37 $
+ * @version $Revision: 1.8 $ $Date: 2002/07/12 09:51:30 $
  * @since Struts 1.1
  */
 
@@ -147,7 +147,7 @@ public class ControllerConfig implements Serializable {
      * from a {@link ForwardConfig} element.  The pattern may consist of any
      * combination of the following markers and characters:</p>
      * <ul>
-     * <li><code><strong>$A</strong></code> - Replaced by the module
+     * <li><code><strong>$M</strong></code> - Replaced by the module
      *     prefix for the current application module.</li>
      * <li><code><strong>$P</strong></code> - Replaced by the <code>path</code>
      *     property of a {@link ForwardConfig} instance.</li>
@@ -160,7 +160,7 @@ public class ControllerConfig implements Serializable {
      * </ul>
      *
      * <p>If this property is set to <code>null</code>, a default pattern of
-     * <code>$A$P</code> is utilized, which is backwards compatible with
+     * <code>$M$P</code> is utilized, which is backwards compatible with
      * the hard coded functionality in prior versions.</p>
      */
     protected String forwardPattern = null;
@@ -270,7 +270,7 @@ public class ControllerConfig implements Serializable {
      * properties.  The pattern may consist of any combination of the
      * following markers and characters:</p>
      * <ul>
-     * <li><code><strong>$A</strong></code> - Replaced by the module
+     * <li><code><strong>$M</strong></code> - Replaced by the module
      *     prefix for the current application module.</li>
      * <li><code><strong>$P</strong></code> - Replaced by the <code>page</code>
      *     attribute value being evaluated.</li>
@@ -283,7 +283,7 @@ public class ControllerConfig implements Serializable {
      * </ul>
      *
      * <p>If this property is set to <code>null</code>, a default pattern of
-     * <code>$A$P</code> is utilized, which is backwards compatible with
+     * <code>$M$P</code> is utilized, which is backwards compatible with
      * the hard coded functionality in prior versions.</p>
      */
     protected String pagePattern = null;

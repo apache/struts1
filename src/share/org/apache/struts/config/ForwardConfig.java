@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.7 2002/07/09 23:57:37 husted Exp $
- * $Revision: 1.7 $
- * $Date: 2002/07/09 23:57:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.8 2002/07/12 09:51:30 husted Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/07/12 09:51:30 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/07/09 23:57:37 $
+ * @version $Revision: 1.8 $ $Date: 2002/07/12 09:51:30 $
  * @since Struts 1.1
  */
 
@@ -188,11 +188,11 @@ public class ForwardConfig implements Serializable {
      *     prefixed by the context path to create a server-relative URL.</li>
      * <li>If the <code>contextRelative</code> property is false, the path is
      *     considered to be the module-relative portion of the URL.
-     *     It will be used as the replacement for the <code>$F</code>
+     *     It will be used as the replacement for the <code>$P</code>
      *     marker in the <code>forwardPattern</code> property defined on the
      *     {@link ControllerConfig} element for our current module.
      *     For the default <code>forwardPattern</code> value of
-     *     <code>$C$A$P</code>, the resulting server-relative URL will be
+     *     <code>$C$M$P</code>, the resulting server-relative URL will be
      *     the concatenation of the context path, the module prefix,
      *     and the <code>path</code> from this <code>ForwardConfig</code>.</li>
      * </ul>
