@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.57 2001/02/13 19:25:41 craigmcc Exp $
- * $Revision: 1.57 $
- * $Date: 2001/02/13 19:25:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.58 2001/02/14 00:19:46 craigmcc Exp $
+ * $Revision: 1.58 $
+ * $Date: 2001/02/14 00:19:46 $
  *
  * ====================================================================
  *
@@ -225,10 +225,12 @@ import org.xml.sax.SAXException;
  *     application as a servlet context attribute]</li>
  * <li><strong>validate</strong> - Are we using the new configuration file
  *     format?  [true]</li>
+ * <li><strong>validating</strong> - Should we use a validating XML parse to
+ *     process the configuration file (strongly recommended)? [true]</li>
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.57 $ $Date: 2001/02/13 19:25:41 $
+ * @version $Revision: 1.58 $ $Date: 2001/02/14 00:19:46 $
  */
 
 public class ActionServlet
@@ -371,7 +373,14 @@ public class ActionServlet
      */
     protected boolean validate = true;
     
-        /**
+
+    /**
+     * Should we use a validating XML parser to read the configuration file?
+     */
+    protected boolean validating = true;
+
+
+    /**
      * The size in bytes of the buffer used to read files from a client upload
      */
     protected int bufferSize = 4096;
@@ -1037,7 +1046,7 @@ public class ActionServlet
 	Digester digester = new Digester();
 	digester.push(this);
 	digester.setDebug(detail);
-	digester.setValidating(true);
+	digester.setValidating(validating);
 
 	// Register our local copy of the DTDs that we can find
         for (int i = 0; i < registrations.length; i += 2) {
@@ -1198,6 +1207,16 @@ public class ActionServlet
 	        validate = true;
 	    else
 	        validate = false;
+	}
+
+	// Initialize the validating XML parser flag
+	value = getServletConfig().getInitParameter("validating");
+	if (value != null) {
+	    if (value.equalsIgnoreCase("true") ||
+	        value.equalsIgnoreCase("yes"))
+	        validating = true;
+	    else
+	        validating = false;
 	}
 
         // Initialize the name of our ActionFormBean implementation class
