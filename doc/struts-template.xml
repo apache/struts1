@@ -63,6 +63,9 @@
     <bodycontent>JSP</bodycontent>
     <info>
     Put content into request scope.
+    <br></br>
+    Content can come from attribute content="aContent", or from tag body. In this later case,
+    attribute direct is automatically set to "true".
     </info>
 
     <attribute>
