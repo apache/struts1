@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorActionForm.java,v 1.7 2002/10/18 01:35:02 rleland Exp $
- * $Revision: 1.7 $
- * $Date: 2002/10/18 01:35:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorActionForm.java,v 1.8 2003/03/05 02:53:15 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/03/05 02:53:15 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,6 +62,8 @@
 package org.apache.struts.validator;
 
 import java.io.Serializable;
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -85,10 +87,9 @@ import org.apache.struts.action.ActionMapping;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.7 $ $Date: 2002/10/18 01:35:02 $
+ * @version $Revision: 1.8 $ $Date: 2003/03/05 02:53:15 $
  * @since Struts 1.1
  */
-
 public class DynaValidatorActionForm extends DynaValidatorForm implements DynaBean, Serializable {
 
     /**
@@ -103,20 +104,22 @@ public class DynaValidatorActionForm extends DynaValidatorForm implements DynaBe
      * <code>null</code> or an <code>ActionErrors</code> object with no
      * recorded error messages.
      *
-     * @param mapping The mapping used to select this instance
-     * @param request The servlet request we are processing
-     * @return  ActionErrors containing validation errors.
+     * @param mapping The mapping used to select this instance.
+     * @param request The servlet request we are processing.
+     * @return ActionErrors containing validation errors.
      */
-    public ActionErrors validate(ActionMapping mapping,
-                                 HttpServletRequest request) {
-
+    public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
+        // set the page variable before validating
+        Map props = this.getMap();
+        if (props.containsKey("page")) {
+            this.page = ((Integer) props.get("page")).intValue();
+        }
+        
         ServletContext application = getServlet().getServletContext();
         ActionErrors errors = new ActionErrors();
 
-        Validator validator = Resources.initValidator(mapping.getPath(),
-                             this,
-                             application, request,
-                             errors, page);
+        Validator validator =
+            Resources.initValidator(mapping.getPath(), this, application, request, errors, page);
 
         try {
             validatorResults = validator.validate();
