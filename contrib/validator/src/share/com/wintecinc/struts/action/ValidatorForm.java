@@ -70,7 +70,10 @@ import com.wintecinc.struts.validation.ValidatorUtil;
 
 /**
  * <p>This class extends <strong>ActionForm</strong> and provides 
- * basic field validation based on an XML file. </p>
+ * basic field validation based on an XML file.  The key passed into the 
+ * validator is the action element's 'name' attribute from the 
+ * struts-config.xml which should match the form element's name attribute 
+ * in the validation.xml.</p>
  *
  * <ul><li>See /WEB-INF/validation.xml for validation rules.</li></ul>
  *
@@ -110,13 +113,33 @@ public class ValidatorForm extends ActionForm implements Serializable {
      */
     public ActionErrors validate(ActionMapping mapping,
                                  HttpServletRequest request) {
+
+        ActionErrors errors = new ActionErrors();	
+	Validator validator = initValidator(mapping.getAttribute(), request, errors);
 	
+	try {
+	   validator.validate();
+        } catch (ValidatorException e) {
+	   log("ValidatorForm::validate() - " + e.getMessage(), e);
+	}
+
+        return errors;
+    }
+
+    /**
+     * Initialize the <code>Validator</code> to perform validation.
+     *
+     * @param 	key		The key that the validation rules are under 
+     *				(the form elements name attribute).
+     * @param 	request		The current request object.
+     * @param 	errors		The object any errors will be stored in.
+    */
+    protected Validator initValidator(String key, HttpServletRequest request, ActionErrors errors) {
 	ServletContext application = getServlet().getServletContext();
 	ValidatorResources resources = ValidatorUtil.getValidatorResources(application);
 	Locale locale = ValidatorUtil.getLocale(request);
-        ActionErrors errors = new ActionErrors();
 	
-	Validator validator = new Validator(resources, mapping.getAttribute());
+	Validator validator = new Validator(resources, key);
 
 	//validator.setDebug(getServlet().getDebug());
 	validator.setPage(getPage());
@@ -126,14 +149,8 @@ public class ValidatorForm extends ActionForm implements Serializable {
 	validator.addResource(Validator.LOCALE_KEY, locale);
 	validator.addResource(Validator.ACTION_ERRORS_KEY, errors);
 	validator.addResource(Validator.BEAN_KEY, this);
-	
-	try {
-	   validator.validate();
-        } catch (ValidatorException e) {
-	   log("ValidatorForm::validate() - " + e.getMessage(), e);
-	}
-
-        return errors;
+        
+        return validator;    	
     }
 
     /**
