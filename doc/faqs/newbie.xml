@@ -6,6 +6,7 @@
 <author>Craig R. McClanahan</author>
 <author>Edgar Dollin</author>
 <author>James Turner</author>
+<author>Phil Steitz</author>
 <title>Newbie FAQ - Apache Struts</title>
 </properties>
 <body>
@@ -14,9 +15,9 @@
 <section href="contents" name="Index">
 
     <p>
-    Here are answers to the most common questions people ask when using 
-    Struts on their first project. 
-    <b>For an in-depth, searchable FAQ, visit our friends at 
+    Here are answers to the most common questions people ask when using
+    Struts on their first project.
+    <b>For an in-depth, searchable FAQ, visit our friends at
     <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b>
     </p>
 
@@ -27,12 +28,12 @@
     </li>
 
     <li>
-    <a href="#modules">What is a modular application? What does 
+    <a href="#modules">What is a modular application? What does
     module-relative mean?</a>
     </li>
 
     <li>
-    <a href="#naming">Why are some of the class and element names 
+    <a href="#naming">Why are some of the class and element names
     counter-intuitive?</a>
     </li>
 
@@ -45,39 +46,47 @@
     </li>
 
     <li>
-    <a href="#multiple">Can I use multiple HTML form elements with the same 
+    <a href="#multiple">Can I use multiple HTML form elements with the same
     name?</a>
     </li>
 
     <li>
-    <a href="#multipleSubmits">Can I have multiple submit buttons on the same 
+    <a href="#multipleSubmits">Can I have multiple submit buttons on the same
     form?</a>
     </li>
 
-    <li><a href="#checkboxes">Why are my checkboxes not being set from ON to 
+    <li><a href="#checkboxes">Why are my checkboxes not being set from ON to
     OFF?</a>
     </li>
 
-    <li><a href="#focus">Why doesn't the focus feature on the &lt;html:form> 
+    <li><a href="#focus">Why doesn't the focus feature on the &lt;html:form>
     tag work in every circumstance?</a>
     </li>
 
     <li>
-    <a href="#javascript">How do I use Javascript to ... </a>
+    <a href="#javascript.submit">How do I use JavaScript to submit a form? </a>
     </li>
-    
+
     <li>
-    <a href="#reset">Do I need to implement reset and set all my form 
+    <a href="#javascript">How do I use JavaScript to ... </a>
+    </li>
+
+    <li>
+    <a href="#reset">Do I need to implement reset and set all my form
     properties to their initial values?</a>
     </li>
 
     <li>
-    <a href="#scriptlets">Can't I just create some of my JavaBeans in the JSP 
+    <a href="#scriptlets">Can't I just create some of my JavaBeans in the JSP
     using a scriptlet?</a>
     </li>
 
     <li>
-    <a href="#tags">Why do the Struts tags provide for so little 
+    <a href="#otherBeans">Can I use other beans or hashmaps with ActionForms?</a>
+    </li>
+
+    <li>
+    <a href="#tags">Why do the Struts tags provide for so little
     formatting?</a>
     </li>
 
@@ -87,26 +96,26 @@
 
 
     <li>
-    <a href="#link">Why does the &lt;html:link> tag URL-encode javascript and 
+    <a href="#link">Why does the &lt;html:link> tag URL-encode javascript and
     mailto links?"</a>
     </li>
 
     <li>
     <a href="#authenticate">How can I authenticate my users?</a>
     </li>
-    
+
     <li>
-    <a href="#pager">How can I scroll through list of pages like the search 
+    <a href="#pager">How can I scroll through list of pages like the search
     results in google?</a>
     </li>
 
     <li>
-    <a href="#minimization">Why does the option tag render selected="selected" 
+    <a href="#minimization">Why does the option tag render selected="selected"
     instead of just "selected"?
     </a></li>
-    
+
     <li><a href="#jsp">Do I have to use JSPs with my application?</a></li>
-        
+
     <li>
     <a href="#formbeans">Do ActionForms have to be true JavaBeans?</a>
     </li>
@@ -121,6 +130,10 @@
     </li>
 
     <li>
+    <a href="#noForm">Can I have an Action without a form?</a>
+    </li>
+
+    <li>
     <a href="#requiredif">Can you give me a simple example of using the requiredif Validator rule?</a>
     </li>
 
@@ -132,12 +145,20 @@
     <a href="#avoidValidate">How can I avoid validating a form before data is entered?</a>
     </li>
 
+    <li>
+    <a href="#wizard">How can I create a "wizard" workflow?</a>
+    </li>
+
+    <li>
+    <a href="#chaining">How can I "chain" Actions?</a>
+    </li>
+
     </ul>
- 
+
     <p>
-    If you like to <a href="helping.html">contribute</a>, 
-    there is a list of <a href="#undocumented"> undocumented questions</a> 
-    at the end of this page. 
+    If you like to <a href="helping.html">contribute</a>,
+    there is a list of <a href="#undocumented"> undocumented questions</a>
+    at the end of this page.
     </p>
 
 </section>
@@ -145,29 +166,29 @@
 <section href="reload" name="Why was reload removed from Struts 1.1?">
 
 <p>
-The problem with ReloadAction was that Struts was trying to act like a 
-container, but it couldn't do a proper job of it. For example, you 
+The problem with ReloadAction was that Struts was trying to act like a
+container, but it couldn't do a proper job of it. For example, you
 can't reload classes that have been modified, or (portably) add new
 classes to a running web application (even if the container supported it).
 </p>
 
 <p>
 Meanwhile, as 1.1 was being developed, work progressed on things
-like Tomcat's reload command via the Manager webapp. This feature allows 
-you to quickly reload-on-demand, complete with saving and restoring your 
-session). It started to make even less sense for Struts to half-implement 
+like Tomcat's reload command via the Manager webapp. This feature allows
+you to quickly reload-on-demand, complete with saving and restoring your
+session). It started to make even less sense for Struts to half-implement
 a feature that containers are implementing fully.
 </p>
 
 <p>
-A more minor point is that freezing the configuration information at application 
-startup time allows Struts to safely access the mapping information without 
-bothering with synchronization. The "startup-only" strategy creates a modest 
+A more minor point is that freezing the configuration information at application
+startup time allows Struts to safely access the mapping information without
+bothering with synchronization. The "startup-only" strategy creates a modest
 but real improvement in performance for all users.
-</p>    
-        
+</p>
+
 <p>So, ReloadAction is not supported in 1.1 for two reasons:</p>
-            
+
 <ul>
 <li>
     It never did let you reload everything that you would really
@@ -175,20 +196,20 @@ but real improvement in performance for all users.
     ended up having to reload the webapp anyway.
 </li>
 <li>
-    Containers are starting to offer reload-on-demand features 
+    Containers are starting to offer reload-on-demand features
     which does the same thing as the Struts ReloadAction, only better.
 </li>
 <li>
     Not supporting ReloadAction lets Struts avoid doing synchronization
     locks around all the lookups (like figuring out which action to use,
-    or the destination of an ActionForward) so applications can run a 
+    or the destination of an ActionForward) so applications can run a
     little faster.
 </li>
 </ul>
 
 <p>
-Of course, if someone came up with an implementation that solved these 
-problems without creating any others, we would not be opposed to including 
+Of course, if someone came up with an implementation that solved these
+problems without creating any others, we would not be opposed to including
 a new ReloadAction.
 </p>
 
@@ -230,7 +251,7 @@ drifted.
 </p>
 <p>The good thing about a nightly build, is that everything becomes
 available to the community as soon as it is written. The bad thing about
-a nightly build is that things like classnames get locked down early and
+a nightly build is that things like class names get locked down early and
 then become difficult to change.
 </p>
 </section>
@@ -247,27 +268,27 @@ then become difficult to change.
 
 <section href="actionFormInterface" name="Why is ActionForm a base class rather than an interface?">
 <p>
-The MVC design pattern is very simple to understand but much more difficult 
-to live with.  You just need this little bit of Business Logic in the View 
-logic or you need just that little bit of View logic in the Business tier and 
+The MVC design pattern is very simple to understand but much more difficult
+to live with.  You just need this little bit of Business Logic in the View
+logic or you need just that little bit of View logic in the Business tier and
 pretty soon you have a real mess.
 </p>
-<p> 
-Making ActionForm a class takes advantage of the single 
-inheritance restriction of Java to it makes it more difficult for people to do 
-things that they should not do. 
+<p>
+Making ActionForm a class takes advantage of the single
+inheritance restriction of Java to it makes it more difficult for people to do
+things that they should not do.
 </p>
 <p>
-ActionForms implemented as interfaces encourage making the property types match 
-the underlying business tier instead of Strings, which violates one of the 
-primary purposes for ActionForms in the first place (the ability to reproduce 
-invalid input, which is a fundamental user expectation).  
-ActionForms as an interface would also encourage using existing DAO objects as 
-ActionForms by adding ‘implements ActionForm’ to the class.  This violates 
+ActionForms implemented as interfaces encourage making the property types match
+the underlying business tier instead of Strings, which violates one of the
+primary purposes for ActionForms in the first place (the ability to reproduce
+invalid input, which is a fundamental user expectation).
+ActionForms as an interface would also encourage using existing DAO objects as
+ActionForms by adding ‘implements ActionForm’ to the class.  This violates
 the MVC design pattern goal of separation of the view and business logic.
 </p>
 <p>
-Since the goal of struts is to enforce this separation, it just makes more sense 
+Since the goal of struts is to enforce this separation, it just makes more sense
 for Struts to own the ActionForm.
 </p>
 </section>
@@ -277,7 +298,7 @@ for Struts to own the ActionForm.
 The utilities that Struts uses (Commons-BeanUtils since 1.1) require that ActionForm properties follow
 the JavaBean patterns for mutators and accessors (get*,set*,is*). Since Struts uses the Introspection API
 with the ActionForms, some containers may require that all the JavaBean patterns be followed, including
-declaring "<code>implements serializable</code>" for each subclass. The safest thing is to review the
+declaring "<code>implements Serializable</code>" for each subclass. The safest thing is to review the
 <a href="userGuide/preface.html#javabeans">JavaBean specification</a> and follow all the prescribed patterns.</p>
 </section>
 
@@ -301,26 +322,26 @@ And so forth
 
 <section href="multipleSubmits" name="Can I have multiple submit buttons on the same form?">
 <p>
-<strong>Yes</strong>.  The issue is that only one action class can be 
-associated with a single form. So the real issue is how do I decode 
+<strong>Yes</strong>.  The issue is that only one action class can be
+associated with a single form. So the real issue is how do I decode
 multiple submit types to a single <code>Action</code> class.
 There is more than one way to achieve this functionality.</p>
 <p>
-The way that is suggested by struts is right out of the javadoc for 
+The way that is suggested by struts is right out of the javadoc for
 <a href="http://jakarta.apache.org/struts/api/org/apache/struts/actions/LookupDispatchAction.html">
 <code>LookupDispatchAction</code></a>.
-Basically, <code>LookupDispatchAction</code> is using the keys from 
-<code>ApplicationProperties.resources</code> as keys to a map of actions 
-available to your <code>Action</code> class.  It uses 
-<a href="http://java.sun.com/j2se/1.3/docs/guide/reflection/">reflection</a> to 
-decode the request and invoke the proper action.  It also takes advantage of 
+Basically, <code>LookupDispatchAction</code> is using the keys from
+<code>ApplicationProperties.resources</code> as keys to a map of actions
+available to your <code>Action</code> class.  It uses
+<a href="http://java.sun.com/j2se/1.3/docs/guide/reflection/">reflection</a> to
+decode the request and invoke the proper action.  It also takes advantage of
 the struts <a href="http://jakarta.apache.org/struts/userGuide/struts-html.html#submit">
 <code>&lt;html:submit&gt;</code></a> tags and is straight forward to implement.</p>
 <p>
-You can roll your own with javascript events and <code>javascript:void
-(document.forms["myform"].submit)</code> on any html element.  This gives you 
+You can roll your own with JavaScript events and <code>javascript:void
+(document.forms["myform"].submit)</code> on any html element.  This gives you
 control of how you want your page to look.  Again you
-will have to decode the expected action in the <code>execute</code> method of 
+will have to decode the expected action in the <code>execute</code> method of
 your action form if you choose this route.</p>
 </section>
 
@@ -328,11 +349,11 @@ your action form if you choose this route.</p>
 <section href="focus" name="Why doesn't the focus feature on the &lt;html:form> tag work in every circumstance?">
 <p>
 Unfortunately, there is some disagreement between the various browsers, and different versions of the same browser, as to how the focus can be set.
-The &lt;html:form> tag provides a quick and easy Javascript that will set the focus on a form
+The &lt;html:form> tag provides a quick and easy JavaScript that will set the focus on a form
 for most versions of most browsers.
-If this feature doesn't work for you, then you should set the focus using your own Javascript.
+If this feature doesn't work for you, then you should set the focus using your own JavaScript.
 The focus feature is a convenient "value-add" -- not a core requirement of the tag.
-If you do come up with a Javascript that provides the final solution to this project,
+If you do come up with a JavaScript that provides the final solution to this project,
 please post your patch to this <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=13454">Bugzilla ticket</a>.
 </p>
 </section>
@@ -364,38 +385,98 @@ when the ActionForm might kept in session scope.
 </p>
 </section>
 
-<section href="javascript" name="How do I use Javascript to ...">
+<section href="javascript.submit" name="Can I use JavaScript to submit a form?">
+<p>
+    You can submit a form with a link as below.
+    BTW, the examples below assume you are in an &lt;html:form&gt; block and 'myForm'
+    is picked up from the struts-config.xml name field of the action.
+</p>
+<pre><code>
+    &lt;a href='javascript:void(document.forms["myForm"].submit()&gt;My Link&lt;/a&gt;
+</code></pre>
+<p>
+    Now the trick in the action is to decode what action you intend to perform.
+    Since you are using JavaScript, you could set a field value and look for it in
+    the request or in the form.
+</p>
+<p>
+    ... html/javascript part ...
+</p>
+<pre><code>
+        &lt;input type='hidden' value='myAction' /&gt;
+        &lt;input type='button' value='Save Meeeee'
+            onclick='document.forms["myForm"].myAction.value="save";
+                     document.forms["myForm"].submit();' /&gt;
+        &lt;input type='button' value='Delete Meeeee'
+            onclick='document.forms["myForm"].myAction.value="delete";
+                     document.forms["myForm"].submit();' /&gt;
+</code></pre>
+<p>
+    ... the java part ...
+</p>
+<pre><code>
+        class MyAction extends ActionForm implements Serializable {
+
+            public ActionForward execute (ActionMapping map, ActionForm form,
+                HttpServletRequest req, HttpServletResponse) {
+
+                    String myAction = req.getParameter("myAction");
+
+                    if (myAction.equals("save") {
+                           // ...  save action  ...
+                    } else if (myAction.equals("delete") {
+                           // ...  delete action  ...
+                    }
+                }
+            }
+        }
+</code></pre>
+<p>
+    This is just one of many ways to achieve submitting a form and decoding the
+    intended action.  Once you get used to the framework you will find other ways
+    that make more sense for your coding style and requirements.  Just remember
+    this example is completely non-functional without JavaScript.
+</p>
+<p>
+    Here is a link
+    which utilizes the LookupDispatch action to submit forms with multiple actions
+    without javascript: <a href="http://husted.com/struts/tips/003.html">http://husted.com/struts/tips/003.html</a>
+</p>
+
+</section>
+
+<section href="javascript" name="How do I use JavaScript to ...">
 
     <p>
-    Struts is mainly a server-side technology. 
-    We bundled in some JSP tags to expose the framework components to your 
-    presentation page, but past that, the usual development process applies. 
-    </p>    
-    
+    Struts is mainly a server-side technology.
+    We bundled in some JSP tags to expose the framework components to your
+    presentation page, but past that, the usual development process applies.
+    </p>
+
     <p>
-    Interactive pages require the use of Javascript. 
+    Interactive pages require the use of JavaScript.
     (That's why it was invented.)
-    If you want things popping up or doing this when they click that, 
-    you are outside the scope of Struts and back into the web 
-    development mainstream. 
+    If you want things popping up or doing this when they click that,
+    you are outside the scope of Struts and back into the web
+    development mainstream.
     </p>
-    
+
     <p>
-    You use Javascript with Struts the same way you use with any presentation 
-    page. 
-    Since Javascript is a client-side technology, you can use simple relative 
-    references to your scripts. 
-    If you need to fire a Javascript from a HTML control, the Struts HTML tags 
-    have properties for the Javascript events.
+    You use JavaScript with Struts the same way you use with any presentation
+    page.
+    Since JavaScript is a client-side technology, you can use simple relative
+    references to your scripts.
+    If you need to fire a JavaScript from a HTML control, the Struts HTML tags
+    have properties for the JavaScript events.
     </p>
-    
+
     <p>
-    A very good Javascript resource is Matt Kruse's site at 
+    A very good JavaScript resource is Matt Kruse's site at
     <a href="http://www.mattkruse.com/javascript/">
     http://www.mattkruse.com/javascript/</a>
     </p>
-    
-</section>   
+
+</section>
 
 <section href="reset" name="Do I need to implement reset and set all my form properties to their initial values?">
 <p>
@@ -437,6 +518,81 @@ mailing list</a>, where there are more people still using these approaches.
 </section>
 
 
+<section href="otherBeans" name="Can I use other beans or hashmaps with ActionForms?">
+    <p>
+    Yes. There are several ways that you can use other beans or hashmaps with ActionForms.
+    </p>
+    <ul>
+    <li>
+        ActionForms can have other beansor hashmaps as properties
+    </li>
+    <li>
+        "Value Beans" or "Data Transfer Objects" (DTOs) can be used independently of
+        ActionForms to transfer data to the view
+    </li>
+    <li>
+        ActionForms can use Maps to support "dynamic" properties (since Struts 1.1)
+    </li>
+    </ul>
+    <p>
+    ActionForms (a.k.a. "form beans") are really just Java beans (with a few
+    special methods) that Struts creates and puts into session or request scope for you.
+    There is nothing preventing you from using other beans, or including
+    them in your form beans. Here are some examples:
+    </p>
+    <p>
+    <i>Collections as properties</i> Suppose that you need to display a pulldown list of
+    available colors on an input form in your application. You can include a string-valued
+    <code>colorSelected</code> property in your <code>ActionForm</code> to represent the user's
+    selection and a <code>colorOptions</code> property implemented as a <code>Collection</code>
+    (of strings) to store the available color choices. Assuming that you have defined the getters
+    and setters for the <code>colorSelected</code> and <code>colorOptions</code> properties
+    in your <code>orderEntryForm</code> form bean, you can render the
+    pulldown list using:
+    </p>
+    <pre><code>
+    &lt;html:select property="colorSelected"&gt;
+      &lt;html:options property="colorOptions" name="orderEntryForm"/&gt;
+    &lt;/html:select&gt;
+    </code></pre>
+    <p>
+    The list will be populated using the strings in the <code>colorOptions</code>
+    collection  of the <code>orderEntryForm</code> and the value that the user selects
+    will go into the <code>colorSelected</code> property that gets posted to the subsequent
+    <code>Action</code>. Note that we are assuming here that the <code>colorOptions</code>
+    property of the <code>orderEntryForm</code> has already been set.
+    </p>
+    <p>
+    See <a href="#prepopulate">How can I prepopulate a form?</a> for instructions on how to set
+    form bean properties before rendering edit forms that expect properties to be pre-set.
+    </p>
+    <p>
+    <i>Independent DTO</i> An <code>Action</code> that retrieves a list of open orders (as an
+    <code>ArrayList</code> of <code>Order</code> objects) can use a DTO independently of any
+    form bean to transfer search results to the view. First, the Action's
+    <code>execute</code> method performs the search and puts the DTO into the request:
+    </p>
+    <pre><code>
+    ArrayList results = businessObject.executeSearch(searchParameters);
+    request.setAttribute("searchResults",results);
+    </code></pre>
+    <p>
+    Then the view can iterate through the results using the "searchResults" request key to
+    reference the DTO:
+`   </p>
+    <pre><code>
+    &lt;logic:iterate id="order" name="searchResults" type="com.foo.bar.Order"&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;bean:write name="order" property="orderNumber"/&gt;&lt;td&gt;
+            &lt;td&gt;..other properties...&lt;/td&gt;&lt;/tr&gt;
+    &lt;/logic:iterate&gt;
+    </code></pre>
+    <p>
+    <i>Map-Backed ActionForms</i> (since Struts 1.1)<br>
+    <a href="http://jakarta.apache.org/struts/userGuide/building_controller.html#map_action_form_classes">
+    http://jakarta.apache.org/struts/userGuide/building_controller.html#map_action_form_classes</a></br></p>
+</section>
+
+
 <section href="tags" name="Why do the Struts tags provide for so little formatting?">
 <p>
 <i>The Struts tags seem to provide only the most rudimentary functionality.
@@ -462,7 +618,7 @@ You can "say it once" in a JavaBean and be done with it.
 <section href="layout" name="Why don't the Struts taglibs offer more layout options?">
 <p>
 Since the Struts tags are open source, you can extend them to provide whatever additional formatting you may need.
-If you are interested in a prewritten taglib that offers more layout options, see the
+If you are interested in a pre-written taglib that offers more layout options, see the
 <a href="http://struts.application-servers.com">struts-layout taglib</a>.
 </p>
 <p>
@@ -474,7 +630,7 @@ In the same arena, there is a well regarded contributor taglib that can help you
 <section href="link" name="Why does the &lt;html:link> tag URL-encode javascript and mailto links?">
 <p>
 The &lt;html:link> tag is not intended for use with client-side references like those used to launch Javascripts or email clients.
-The purpose of link tag is to interject the context (or module) path into the URI so that your server-side links are not dependant on your context (or module) name.
+The purpose of link tag is to interject the context (or module) path into the URI so that your server-side links are not dependent on your context (or module) name.
 It also encodes the link, as needed, to maintain the client's session on the server.
 Neither feature applies to client-side links, so there is no reason to use the &lt;html:link> tag.
 Simply markup the client-side links using the standard <a/> tag.
@@ -510,28 +666,28 @@ XHTML specification</a></p>
 <section href="jsp" name="Do I have to use JSPs with my application?">
 
     <p>
-    The short answer to this question is: No, you are not limited to 
+    The short answer to this question is: No, you are not limited to
     JavaServer Pages.
     </p>
 
     <p>
-    The longer answer is that you can use any type of presentation technology 
-    which can be returned by a web server or Java container.  
+    The longer answer is that you can use any type of presentation technology
+    which can be returned by a web server or Java container.
     The list includes but is not limited to:
     </p>
-    
+
     <ul>
-    
+
         <li>
-        JavaServer Pages, 
+        JavaServer Pages,
         </li>
 
         <li>
-        HTML pages, 
+        HTML pages,
         </li>
 
         <li>
-        WML files, 
+        WML files,
         </li>
 
         <li>
@@ -545,20 +701,20 @@ XHTML specification</a></p>
         <li>
         XML/XLST
         </li>
-    
+
     </ul>
-    
+
     <p>
-    Some people even mix and match apparently unrelated technologies, 
-    like PHP, into the same web application. 
-    </p>
-    
-    <p>
-    For some links, see <a href="../resources/views.html">Presentation 
-    Systems</a> in the Resource area. 
+    Some people even mix and match apparently unrelated technologies,
+    like PHP, into the same web application.
     </p>
 
-</section>     
+    <p>
+    For some links, see <a href="../resources/views.html">Presentation
+    Systems</a> in the Resource area.
+    </p>
+
+</section>
 
 <section href="formbeans" name="Do ActionForms have to be true JavaBeans?">
 
@@ -701,9 +857,9 @@ XHTML specification</a></p>
 <section href="prepopulate"
          name="How can I prepopulate a form?">
 
-    <p>The simplest way to preopulate a form is to have an <code>Action</code>
+    <p>The simplest way to prepopulate  a form is to have an <code>Action</code>
     whose sole purpose is to populate an <code>ActionForm</code> and forward
-    to the servoet or JSP to render that form back to the client.  A separate
+    to the servlet or JSP to render that form back to the client.  A separate
     <code>Action</code> would then be use to process the submitted form fields,
     by declaring an instance of the same form bean name.</p>
 
@@ -776,6 +932,33 @@ XHTML specification</a></p>
 
 </section>
 
+<section href="noForm" name="Can I have an Action without a form?">
+<p>
+Yes. If your <code>Action</code> does not need any data and it does not need to make any
+data available to the view or controller component that it forwards to, it doesn't need
+a form. A good example of an <code>Action</code> with no <code>ActionForm</code> is the
+<code>LogoffAction</code> in the struts example application:
+<pre>
+    &lt;action path="/logoff"
+        type="org.apache.struts.webapp.example.LogoffAction"&gt;
+      &lt;forward name="success" path="/index.jsp"/&gt;
+    &lt;/action&gt;
+</pre></p>
+
+<p>
+This action needs no data other than the user's session, which it can get from the
+<code>Request</code>, and it doesn't need to prepare any view elements for display,
+so it does not need a form.
+</p>
+
+    <p>
+    However, you cannot use the &lt;html:form&gt; <b>tag</b> without an ActionForm.
+    Even if you want to use the &lt;html:form&gt; tag with a simple Action that does not require input,
+    the tag will expect you to use some type of ActionForm, even if it is an empty subclass without any properties.
+    </p>
+
+</section>
+
 <section href="requiredif"
          name="Can you give me a simple example of using the requiredif Validator rule?">
      <p>First off, there's an even newer Validator rule called <code>validwhen</code>,
@@ -793,8 +976,8 @@ XHTML specification</a></p>
     &lt;var-value&gt;((((sex == 'm') OR (sex == 'M')) AND (*this* == null)) OR (*this* != null))&lt;/test&gt;
   &lt;/var&gt;
 &lt;/field&gt;
-</pre>     
-     <p>Let's assume you have a medical information form with three fields, sex, pregnancyTest, and testResult.  
+</pre>
+     <p>Let's assume you have a medical information form with three fields, sex, pregnancyTest, and testResult.
      If sex is 'f' or 'F', pregnancyTest is required.  If pregnancyTest is not blank, testResult is required.
      The entry in your validation.xml file would look like this:
      </p>
@@ -852,90 +1035,284 @@ XHTML specification</a></p>
 
 <section href="validate" name="When is the best time to validate input?">
 <p>
-This is an excellent question.  Let's step back a second and think about a 
-typical mid to large size application.  If we start from the back end and work 
+This is an excellent question.  Let's step back a second and think about a
+typical mid to large size application.  If we start from the back end and work
 toward the view we have:
 </p>
 <p>
-1) Database:  Most modern databases are going to validate for required 
+1) Database:  Most modern databases are going to validate for required
 fields, duplicate records, security constraints, etc.</p>
 <p>
-2) Business Logic:  Here you are going to check for valid data relationships 
-and things that make sense for the particular problem you are triing to 
+2) Business Logic:  Here you are going to check for valid data relationships
+and things that make sense for the particular problem you are triing to
 solve.</p>
 <p>
-... This is where struts comes into the picture, by now the system should be 
-pretty well bulletproof.  What we are going to do is make validation friendlier 
+... This is where struts comes into the picture, by now the system should be
+pretty well bulletproof.  What we are going to do is make validation friendlier
 and informative.  Rember it is OK to have duplicate validations...</p>
 <p>
-3) <code>ActionErrors validate(ActionMapping map, HttpServletRequest req)</code> 
-is where you can do your validation and feed back to the view, 
-information required to correct any errors.  <code>validate</code> is run after 
-the form has been <code>reset</code> and after the <code>ActionForm</code> 
-properties have been set from corresponding view based input. Also remember you 
-can turn validation off with <code>validate="false"</code> in the 
-<code>action</code> mapping in the <code>struts-config.xml</code>. This is done 
-by returning an <code>ActionErrors</code> collection with messages from your 
+3) <code>ActionErrors validate(ActionMapping map, HttpServletRequest req)</code>
+is where you can do your validation and feed back to the view,
+information required to correct any errors.  <code>validate</code> is run after
+the form has been <code>reset</code> and after the <code>ActionForm</code>
+properties have been set from corresponding view based input. Also remember you
+can turn validation off with <code>validate="false"</code> in the
+<code>action</code> mapping in the <code>struts-config.xml</code>. This is done
+by returning an <code>ActionErrors</code> collection with messages from your
 <code>ApplicationResources.properties</code> file.</p>
 <p>
-Here you have access to the request so you can see what kinds of action is 
-being requested to fine tune your validations.  The &lt;html:error&gt; tag 
-allows you to dump all errors on your page or a particular error associated 
-with a particular property.  The <code>input</code> attribute of the 
-<code>struts-config.xml</code> <code>action</code> allows you to send 
+Here you have access to the request so you can see what kinds of action is
+being requested to fine tune your validations.  The &lt;html:error&gt; tag
+allows you to dump all errors on your page or a particular error associated
+with a particular property.  The <code>input</code> attribute of the
+<code>struts-config.xml</code> <code>action</code> allows you to send
 validation errors to a particular jsp / html / tile page.</p>
 <p>
-4) You can have the system perform low level validations and client side 
-feedback using a <code>ValidatorForm</code> or its derivatives.  This will 
-generate javascript and give instant feedback to the user for simple data entry 
-errors.  You code your validations in the <code>validator-rules.xml</code> 
-file.  A working knowledge of 
-<a href="http://etext.lib.virginia.edu/helpsheets/regex.html">regular 
-expressions</a> is necessary to use this feature effectively.  For more 
-information, see 
+4) You can have the system perform low level validations and client side
+feedback using a <code>ValidatorForm</code> or its derivatives.  This will
+generate javascript and give instant feedback to the user for simple data entry
+errors.  You code your validations in the <code>validator-rules.xml</code>
+file.  A working knowledge of
+<a href="http://etext.lib.virginia.edu/helpsheets/regex.html">regular
+expressions</a> is necessary to use this feature effectively.  For more
+information, see
 <a href="http://jakarta.apache.org/struts/userGuide/dev_validator.html">
 http://jakarta.apache.org/struts/userGuide/dev_validator.html</a></p>
 </section>
 
-<section href="avoidValidate" 
+<section href="avoidValidate"
          name="How can I avoid validating a form before data is entered?">
-<p>The simplest way is to have two actions.  The first one has the job of setting 
-the form data, i.e. a blank registration screen.  The second action in our 
-hypothetical would be to write the registration data to the database.  Struts 
-would take care of invoking the validation and returning the user to the 
-correct screen if validation was not complete.</p>
-<p>
-Note that the form is the same form across both actions.</p>
-<pre>
-&lt;action path="/formloadaction" 
-    type="actions.MyFormLoadAction"
-    validate="false" 
-    name="MyForm"&gt;
-        &lt;forward name="realaction" path="realaction.tile" /&gt;
-&lt;/action&gt;
+    <p>
+    The simplest way is to have two actions.  The first one has the job of setting
+    the form data, i.e. a blank registration screen.  The second action in our
+    writes the registration data to the database. Struts
+    would take care of invoking the validation and returning the user to the
+    correct screen if validation was not complete.
+    </p>
 
-&lt;action path="/realformaction" 
-    type="actions.MyFormAction"
-    validate="true" 
-    input="realaction.tile"
-    name="MyForm"&gt;
-        &lt;forward name="morevalidations" path="realaction.tile" /&gt;
-        &lt;forward name="success" path="success.tile" /&gt;
-&lt;/action&gt;
-</pre>
+    <p>
+    The EditRegistration action in the struts example application illustrates this:
+    </p>
+
+        <pre><code>
+    &lt;action path="/editRegistration"
+         type="org.apache.struts.webapp.example.EditRegistrationAction"
+         attribute="registrationForm"
+         scope="request"
+         validate="false"&gt;
+      &lt;forward name="success  path="/registration.jsp"/&gt;
+    &lt;/action&gt;
+        </code></pre>
+
 <p>
-As you get more advanced, you can reuse the action with either a lookup action 
-form or look at the request yourself to determine the action.</p>
+When the /editRegistration action is invoked, a registrationForm is created and added to the request,
+but its validate method is not called. The default value of the <code>validate</code> attribute is
+<code>true</code>, so if you do not want an action to trigger form validation, you need to remember
+to add this attribute and set it to <code>false</code>.
+</p>
+
 </section>
 
-<section 
-    href="undocumented" 
-    name="If you would like to contribute, here is a list of 
-    popular but undocumented questions">
-    
-    <ul>
+<section href="wizard" name="How can I create a wizard workflow?">
+    <p>
+        The basic idea is a series of actions with next, back, cancel
+        and finish actions with a common bean.  Using a LookupDispatchAction is
+        reccomended as it fits the design pattern well and can be internationalized
+        easily.  Since the bean is shared, each choice made will add data to the
+        wizards base of information.  A sample of struts-config.xml follows:
+    </p>
 
-    <li>Can I use other beans or hashmaps with ActionForms?</li>
+    <pre><code>
+            &lt;form-beans&gt;
+                &lt;form-bean  name="MyWizard"
+                            type="forms.MyWizard" /&gt;
+            &lt;/form-beans&gt;
+
+        &lt;!-- the first screen of the wizard (next action only available) --&gt;
+        &lt;!-- no validation, since the finish action is not available --&gt;
+            &lt;actions&gt;
+                &lt;action path="/mywizard1"
+                        type="actions.MyWizard"
+                        name="MyWizard"
+                        validate="false"
+                        input="/WEB-INF/jsp/mywizard1.jsp"&gt;
+                    &lt;forward name="next"
+                        path="/WEB-INF/jsp/mywizard2.jsp" /&gt;
+                    &lt;forward name="cancel"
+                        path="/WEB-INF/jsp/mywizardcancel.jsp" /&gt;
+                &lt;/action&gt;
+
+                &lt;!-- the second screen of the wizard (back, next and finish) --&gt;
+                &lt;!-- since finish action is available, bean should validated, note
+        validation should not necessarily validate if back action requested, you
+        might delay validation or do conditional validation --&gt;
+                &lt;action path="/mywizard2"
+                        type="actions.MyWizard"
+                        name="MyWizard"
+                        validate="true"
+                        input="/WEB-INF/jsp/mywizard2.jsp"&gt;
+                    &lt;forward name="back"
+                        path="/WEB-INF/jsp/mywizard1.jsp" /&gt;
+                    &lt;forward name="next"
+                        path="/WEB-INF/jsp/mywizard3.jsp" /&gt;
+                    &lt;forward name="finish"
+                        path="/WEB-INF/jsp/mywizarddone.jsp" /&gt;
+                    &lt;forward name="cancel"
+                        path="/WEB-INF/jsp/mywizardcancel.jsp" /&gt;
+                &lt;/action&gt;
+
+                &lt;!-- the last screen of the wizard (back, finish and cancel only) --&gt;
+                &lt;action path="/mywizard3"
+                        type="actions.MyWizard"
+                        name="MyWizard"
+                        validate="true"
+                        input="/WEB-INF/jsp/mywizard3.jsp"&gt;
+                    &lt;forward name="back"
+                        path="/WEB-INF/jsp/mywizard2.jsp" /&gt;
+                    &lt;forward name="finish"
+                        path="/WEB-INF/jsp/mywizarddone.jsp" /&gt;
+                    &lt;forward name="cancel"
+                        path="/WEB-INF/jsp/mywizardcancel.jsp" /&gt;
+                &lt;/action&gt;
+    </code></pre>
+
+   <p>
+        The pieces of the wizard are as follows:
+    </p>
+
+    <p>
+        <b>forms.MyWizard.java</b> - the form bean holding the information required
+    </p>
+    <p>
+        <b>actions.MyWizard.java</b> - the actions of the wizard, note the use of
+        LookupDispatchAction allows for one action class with several methods.  All the
+        real work will be done in the 'finish' method.
+    </p>
+    <p>
+        <b>mywizard[x].jsp</b> - the data collection jsp's
+    </p>
+    <p>
+        <b>mywizarddone.jsp</b> - the 'success' page
+    </p>
+    <p>
+        <b>mywizardcancel.jsp</b> - the 'cancel' page
+    </p>
+
+</section>
+
+    <section href="chaining" name="How can I 'chain' Actions?">
+    <p>
+        Chaining actions can be done by simply using the proper mapping in your
+        forward entries in the struts-config.xml file. Assume you had the following
+        two classes:
+    </p>
+    <pre><code><![CDATA[
+    /* com/AAction.java */
+    ...
+
+    public class AAction extends Action
+    {
+        public ActionForward
+                execute(ActionMapping mapping,
+                        ActionForm form,
+                        HttpServletRequest request,
+                        HttpServletResponse response) throws
+                                                      Exception
+        {
+            // Do something
+
+            return mapping.findForward("success");
+        }
+    }
+    ]]></code></pre>
+    <pre><code><![CDATA[
+    /* com/BAction.java */
+    ...
+
+    public class BAction extends Action
+    {
+        public ActionForward
+                execute(ActionMapping mapping,
+                        ActionForm form,
+                        HttpServletRequest request,
+                        HttpServletResponse response) throws
+                                                      Exception
+        {
+            // Do something else
+
+            return mapping.findForward("success");
+        }
+    }
+    ]]></code></pre>
+
+       <p>
+       Then you can chain together these two actions with the Struts
+       configuration as shown in the following excerpt:
+       </p>
+
+    <pre><code><![CDATA[
+    ...
+    <action-mappings type="org.apache.struts.action.ActionMapping">
+       <action path="/A"
+               type="com.AAction"
+               validate="false">
+          <forward name="success" path="/B.do" />
+       </action>
+       <action path="/B"
+               type="com.BAction"
+               scope="session"
+               validate="false">
+          <forward name="success" path="/result.jsp" />
+       </action>
+    </action-mappings>
+    ...
+    ]]></code></pre>
+
+       <p>
+       Here we are assuming you are using a suffix-based (<code>.do</code>) servlet
+       mapping, which is recommended since module support requires it. When you
+       send your browser to the web application and name the action
+       <code>A.do</code> (i.e. <code>http://localhost:8080/app/A.do</code>) it will
+       execute <code>AAction.execute()</code>, which will then forward to the
+       "success" mapping.
+       </p>
+
+       <p>
+       This causes the execution of <code>BAction.execute()</code> since the
+       <code>&lt;forward&gt;</code> entry for "success" in the configuration file
+       uses the <code>.do</code> suffix.
+       </p>
+
+       <p>
+       Of course it is also possible to chain actions programmatically, but the
+       power and ease of being able to "reroute" your web application's structure
+       using the XML configuration file is much easier to maintain.
+       </p>
+
+        <p>
+    As a rule, chaining Actions is <b>not</b> recommended.
+    If your business classes are properly factored, you should be able to call
+    whatever methods you need from any Action, without splicing them together
+    into a cybernetic Rube Goldberg device.
+        </p>
+
+        <p>
+    If you must chain Actions, be aware of the following:
+    calling the second Action from the first Action has the same effect as calling the second
+    Action from scratch.
+    If both of your Actions change the properties of a formbean,
+    the changes made by the first Action will be lost because Struts calls the reset() method on
+    the formbean when the second Action is called.
+        </p>
+
+</section>
+
+<section
+    href="undocumented"
+    name="If you would like to contribute, here is a list of
+    popular but undocumented questions">
+
+    <ul>
 
     <li>How can I capture binary or formatted values, like dates or telephone numbers?</li>
 
@@ -943,21 +1320,12 @@ form or look at the request yourself to determine the action.</p>
 
     <li>Why can't I disable URL-encoding in the Struts taglibs?</li>
 
-    <li>How can I create a "wizard" workflow?</li>
-
-    <li>How can I "chain" Actions?</li>
-
-    <li>Can I have an Action without a form?</li>
-
-    <li>Why can't my Javascript submit a form?</li>    
-    
     <li>Can I create dynamic ActionForwards?</li>
 
     <li>How can I use my own (ActionForm, ActionForward, ActionMapping, ActionServlet) class?</li>
 
     </ul>
-    
-</section>    
-    
+
+</section>
 
 </chapter></body></document>
