@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Martin Cooper
- * @version $Revision: 1.2 $ $Date: 2002/03/17 02:25:43 $
+ * @version $Revision: 1.3 $ $Date: 2002/05/13 02:03:33 $
  */
 
 public class OptionsCollectionTag extends TagSupport {
@@ -306,15 +306,13 @@ public class OptionsCollectionTag extends TagSupport {
      * Release any acquired resources.
      */
     public void release() {
-
         super.release();
-        label = null;
-        name = null;
+        label = "label";
+        name = Constants.BEAN_KEY;
         property = null;
         style = null;
         styleClass = null;
-        value = null;
-
+        value = "value";
     }
 
 
