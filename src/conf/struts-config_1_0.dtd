@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
 
-     $Id: struts-config_1_0.dtd,v 1.4 2000/11/29 23:16:42 craigmcc Exp $
+     $Id: struts-config_1_0.dtd,v 1.5 2000/11/30 20:12:44 craigmcc Exp $
 -->
 
 
@@ -253,6 +253,10 @@
                      default for this application, to handle all requests
                      not handled by another action.  Only one action can be
                      defined as a default within a single application.
+
+     validate        Set to "true" if the validate() method of the form bean
+                     should be called prior to calling this action, or set to
+                     "false" if you do not want validation performed.
 -->
 <!ELEMENT action (icon?, display-name?, description?, set-property*, forward*)>
 <!ATTLIST action         id             ID              #IMPLIED>
@@ -265,6 +269,7 @@
 <!ATTLIST action         suffix         CDATA           #IMPLIED>
 <!ATTLIST action         type           %ClassName;     #REQUIRED>
 <!ATTLIST action         unknown        %Boolean;       "false">
+<!ATTLIST action         validate       %Boolean;       "true">
 
 
 <!-- The "set-property" element specifies the name and value of an additional

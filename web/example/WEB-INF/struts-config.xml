@@ -65,7 +65,8 @@
     <action    path="/editRegistration"
                type="org.apache.struts.example.EditRegistrationAction"
                name="registrationForm"
-              scope="request">
+              scope="request"
+           validate="false">
       <forward name="success"              path="/registration.jsp"/>
     </action>
 
@@ -73,7 +74,8 @@
     <action    path="/editSubscription"
                type="org.apache.struts.example.EditSubscriptionAction"
                name="subscriptionForm"
-              scope="request">
+              scope="request"
+           validate="false">
       <forward name="failure"              path="/mainMenu.jsp"/>
       <forward name="success"              path="/subscription.jsp"/>
     </action>

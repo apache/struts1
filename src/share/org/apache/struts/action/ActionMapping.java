@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.10 2000/11/09 20:34:12 mschachter Exp $
- * $Revision: 1.10 $
- * $Date: 2000/11/09 20:34:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.11 2000/11/30 20:12:50 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2000/11/30 20:12:50 $
  *
  * ====================================================================
  *
@@ -135,10 +135,13 @@ package org.apache.struts.action;
  *     should be configured as the default for this application, to handle
  *     all requests not handled by another action.  Only one action can be
  *     defined as a default within a single application.
+ * <li><strong>validate</strong> - Set to <code>true</code> if the
+ *     <code>validate()</code> method of the form bean (if any) associated
+ *     with this mapping should be called.
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2000/11/09 20:34:12 $
+ * @version $Revision: 1.11 $ $Date: 2000/11/30 20:12:50 $
  */
 
 public class ActionMapping {
@@ -228,6 +231,12 @@ public class ActionMapping {
      * Should this action be the default for this application?
      */
     protected boolean unknown = false;
+
+
+    /**
+     * Should the validate() method of our form bean be called?
+     */
+    protected boolean validate = true;
 
 
     // ------------------------------------------------------------- Properties
@@ -660,6 +669,28 @@ public class ActionMapping {
     public void setUnknown(boolean unknown) {
 
         this.unknown = unknown;
+
+    }
+
+
+    /**
+     * Return the validate flag for this mapping.
+     */
+    public boolean getValidate() {
+
+        return (this.validate);
+
+    }
+
+
+    /**
+     * Set the validate flag for this mapping.
+     *
+     * @param validate The new validate flag
+     */
+    public void setValidate(boolean validate) {
+
+        this.validate = validate;
 
     }
 

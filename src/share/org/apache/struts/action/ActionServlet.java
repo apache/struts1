@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.38 2000/11/28 21:47:02 craigmcc Exp $
- * $Revision: 1.38 $
- * $Date: 2000/11/28 21:47:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.39 2000/11/30 20:12:53 craigmcc Exp $
+ * $Revision: 1.39 $
+ * $Date: 2000/11/30 20:12:53 $
  *
  * ====================================================================
  *
@@ -203,7 +203,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.38 $ $Date: 2000/11/28 21:47:02 $
+ * @version $Revision: 1.39 $ $Date: 2000/11/30 20:12:53 $
  */
 
 public class ActionServlet
@@ -1727,6 +1727,10 @@ public class ActionServlet
                 log("  Cancelled transaction, no validation");
             return (true);
         }
+
+        // Has validation been turned off on this mapping?
+        if (!mapping.getValidate())
+            return (true);
 
         // Call the validate() method of our ActionForm bean
         ActionErrors errors = formInstance.validate(mapping, request);
