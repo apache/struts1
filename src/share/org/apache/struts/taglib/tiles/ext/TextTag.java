@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ext/Attic/TextTag.java,v 1.2 2002/12/08 06:54:52 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2002/12/08 06:54:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ext/Attic/TextTag.java,v 1.3 2003/03/18 02:28:17 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/03/18 02:28:17 $
  *
  * ====================================================================
  *
@@ -76,7 +76,8 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.2 $ $Date: 2002/12/08 06:54:52 $
+ * @version $Revision: 1.3 $ $Date: 2003/03/18 02:28:17 $
+ * @deprecated Use o.a.s.taglib.html.TextTag instead.
  */
 
 public class TextTag extends BaseFieldTag {
