@@ -287,7 +287,7 @@ public ActionForward perform(ActionMapping mapping,
         and saving a bean of the specified class if needed.
       </p>
       <p>
-        An optional but very useful section is the local "<local>forwards</code>". In the example 
+        An optional but very useful section is the local "local <code>forwards</code>". In the example 
         application, many actions include a local "success" and/or "failure" forward as 
         part of an Action mapping. 
       </p>
