@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.13 2001/05/04 22:21:05 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2001/05/04 22:21:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.14 2001/09/17 04:52:58 martinc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2001/09/17 04:52:58 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2001/05/04 22:21:05 $
+ * @version $Revision: 1.14 $ $Date: 2001/09/17 04:52:58 $
  */
 
 public class FormTag extends TagSupport {
@@ -562,8 +562,16 @@ public class FormTag extends TagSupport {
 	    try {
 		Class clazz = Class.forName(type);
 		bean = clazz.newInstance();
-                if (bean instanceof ActionForm)
-                    ((ActionForm) bean).setServlet(servlet);
+                if (bean instanceof ActionForm) {
+                    ActionForm form = (ActionForm)bean;
+                    ActionMappings mappings = (ActionMappings)
+                        pageContext.getAttribute(Action.MAPPINGS_KEY,
+                                                 PageContext.APPLICATION_SCOPE);
+
+                    form.setServlet(servlet);
+                    form.reset(mappings.findMapping(getActionMappingName()),
+                               pageContext.getRequest());
+                }
 	    } catch (Exception e) {
 		throw new JspException
 		    (messages.getMessage("formTag.create", type,
@@ -806,6 +814,4 @@ public class FormTag extends TagSupport {
         type = formBean.getType();
 
     }
-
-
 }
