@@ -190,6 +190,11 @@
              destdir="${build.home}/documentation/proposals"
            extension=".html" style="${doc.dir}/stylesheets/proposals.xsl"
             includes="*.xml"/>
+    <!-- Create the resources -->
+    <style   basedir="${doc.dir}/resources"
+             destdir="${build.home}/documentation/resources"
+           extension=".html" style="${doc.dir}/stylesheets/resources.xsl"
+            includes="*.xml"/>
     <!-- Create the user guide -->
     <style   basedir="${doc.dir}/userGuide"
              destdir="${build.home}/documentation/userGuide"
