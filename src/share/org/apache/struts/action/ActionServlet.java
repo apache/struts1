@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.89 2002/01/22 01:18:07 craigmcc Exp $
- * $Revision: 1.89 $
- * $Date: 2002/01/22 01:18:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.90 2002/01/23 17:32:00 craigmcc Exp $
+ * $Revision: 1.90 $
+ * $Date: 2002/01/23 17:32:00 $
  *
  * ====================================================================
  *
@@ -264,7 +264,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.89 $ $Date: 2002/01/22 01:18:07 $
+ * @version $Revision: 1.90 $ $Date: 2002/01/23 17:32:00 $
  */
 
 public class ActionServlet
@@ -664,6 +664,22 @@ public class ActionServlet
                 getServletContext().getAttribute(Action.APPLICATION_KEY);
         }
         return (config);
+
+    }
+
+
+    /**
+     * <p>Return the application resources for the default sub-application,
+     * if any.
+     *
+     * @deprecated Actions should call Action.getResources(HttpServletRequest)
+     *  instead of this method, in order to retrieve the resources for the
+     *  current sub-application
+     */
+    public MessageResources getResources() {
+
+        return ((MessageResources) getServletContext().getAttribute
+                (Action.MESSAGES_KEY));
 
     }
 
