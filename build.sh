@@ -21,7 +21,7 @@
 #   TOMCAT_HOME           Build directory for "jakarta-tomcat".
 #                         [../build/tomcat]
 #
-# $Id: build.sh,v 1.4 2000/11/19 01:39:52 craigmcc Exp $
+# $Id: build.sh,v 1.5 2001/02/02 02:26:05 craigmcc Exp $
 # -----------------------------------------------------------------------------
 
 
@@ -36,7 +36,7 @@ if [ "$ANT_OPTS" = "" ] ; then
 fi
 
 if [ "$CATALINA_HOME" = "" ] ; then
-  CATALINA_HOME=../build/tomcat-4.0
+  CATALINA_HOME=../jakarta-tomcat-4.0/build
 fi
 
 if [ "$JAVA_HOME" = "" ] ; then

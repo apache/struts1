@@ -21,7 +21,7 @@ rem
 rem   TOMCAT_HOME           Build directory for "jakarta-tomcat".
 rem                         [../build/tomcat]
 rem
-rem $Id: build.bat,v 1.9 2000/11/24 14:53:58 pierred Exp $
+rem $Id: build.bat,v 1.10 2001/02/02 02:26:05 craigmcc Exp $
 rem ---------------------------------------------------------------------------
 
 
@@ -46,7 +46,7 @@ set ANT_HOME=..\jakarta-ant
 :gotAntHome
 
 if not "%CATALINA_HOME%" == "" goto gotCatalinaHome
-set CATALINA_HOME=..\build\tomcat-4.0
+set CATALINA_HOME=..\jakarta-tomcat-4.0\build
 :gotCatalinaHome
 
 if not "%SERVLETAPI_HOME%" == "" goto gotServletapiHome

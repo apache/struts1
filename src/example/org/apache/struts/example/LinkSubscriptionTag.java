@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LinkSubscriptionTag.java,v 1.3 2000/11/18 22:11:56 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/11/18 22:11:56 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LinkSubscriptionTag.java,v 1.4 2001/02/02 02:26:06 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/02/02 02:26:06 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * associated query parameters selecting a specified Subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/11/18 22:11:56 $
+ * @version $Revision: 1.4 $ $Date: 2001/02/02 02:26:06 $
  */
 
 public class LinkSubscriptionTag extends TagSupport {
@@ -229,6 +229,18 @@ public class LinkSubscriptionTag extends TagSupport {
 	}
 
 	return (EVAL_PAGE);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+        super.release();
+        this.page = null;
+        this.name = "subscription";
 
     }
 
