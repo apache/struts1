@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.3 2000/06/22 01:07:01 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/22 01:07:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.4 2000/06/22 21:05:10 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/22 21:05:10 $
  *
  * ====================================================================
  * 
@@ -137,7 +137,7 @@ import org.xml.sax.SAXParseException;
  * hard code the configuration logic.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/22 01:07:01 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/22 21:05:10 $
  */
 
 public final class Digester extends HandlerBase {
@@ -895,7 +895,7 @@ public final class Digester extends HandlerBase {
     				String attributeName) {
 
 	addRule(pattern,
-	        new ObjectCreateRule(this, className));
+	        new ObjectCreateRule(this, className, attributeName));
 
     }
 
