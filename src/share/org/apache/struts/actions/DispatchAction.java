@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.8 2002/06/30 03:38:30 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/06/30 03:38:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.9 2002/08/03 20:54:54 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/08/03 20:54:54 $
  *
  * ====================================================================
  *
@@ -128,7 +128,7 @@ import org.apache.struts.util.MessageResources;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.8 $ $Date: 2002/06/30 03:38:30 $
+ * @version $Revision: 1.9 $ $Date: 2002/08/03 20:54:54 $
  */
 
 public abstract class DispatchAction extends Action {
@@ -222,13 +222,20 @@ public abstract class DispatchAction extends Action {
                                message);
             return (null);
         } catch (InvocationTargetException e) {
-            String message =
-                messages.getMessage("dispatch.error", mapping.getPath(),
-                                    name);
-            log.error(message, e);
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                               message);
-            return (null);
+            // Rethrow the target exception if possible so that the
+            // exception handling machinery can deal with it
+            Throwable t = e.getTargetException();
+            if (t instanceof Exception) {
+                throw ((Exception) t);
+            } else {
+                String message =
+                    messages.getMessage("dispatch.error", mapping.getPath(),
+                                        name);
+                log.error(message, e);
+                response.sendError
+                    (HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message);
+                return (null);
+            }
         }
 
         // Return the returned ActionForward instance
