@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.4 2001/01/28 01:18:54 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/01/28 01:18:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.5 2001/01/28 02:22:12 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/01/28 02:22:12 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -68,15 +68,134 @@ import java.lang.reflect.Array;
 
 /**
  * Utility methods for converting String values to objects of the specified
- * class, and vice versa.
+ * class.  If you specify a Java primitive type, or an array of a Java
+ * primitive type, as a destination type, a scalar or array of the coresponding
+ * Java wrapper class will be created instead.  If you attempt to convert an
+ * Object or Object array of a non-String and non-primitive type, it will be
+ * converted to a scalar String or array of Strings, as appropriate.
  *
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.4 $ $Date: 2001/01/28 01:18:54 $
+ * @version $Revision: 1.5 $ $Date: 2001/01/28 02:22:12 $
  */
 
 public final class ConvertUtils {
+
+
+    // ------------------------------------------------------ Static Properties
+
+
+    /**
+     * The default value for Boolean conversions.
+     */
+    private static Boolean defaultBoolean = new Boolean(false);
+
+    public boolean getDefaultBoolean() {
+        return (defaultBoolean.booleanValue());
+    }
+
+    public void setDefaultBoolean(boolean defaultBoolean) {
+        this.defaultBoolean = new Boolean(defaultBoolean);
+    }
+
+
+    /**
+     * The default value for Byte conversions.
+     */
+    private static Byte defaultByte = new Byte((byte) 0);
+
+    public byte getDefaultByte() {
+        return (defaultByte.byteValue());
+    }
+
+    public void setDefaultByte(byte defaultByte) {
+        this.defaultByte = new Byte(defaultByte);
+    }
+
+
+    /**
+     * The default value for Character conversions.
+     */
+    private static Character defaultCharacter = new Character(' ');
+
+    public char getDefaultCharacter() {
+        return (defaultCharacter.charValue());
+    }
+
+    public void setDefaultCharacter(char defaultCharacter) {
+        this.defaultCharacter = new Character(defaultCharacter);
+    }
+
+
+    /**
+     * The default value for Double conversions.
+     */
+    private static Double defaultDouble = new Double((double) 0.0);
+
+    public double getDefaultDouble() {
+        return (defaultDouble.doubleValue());
+    }
+
+    public void setDefaultDouble(double defaultDouble) {
+        this.defaultDouble = new Double(defaultDouble);
+    }
+
+
+    /**
+     * The default value for Float conversions.
+     */
+    private static Float defaultFloat = new Float((float) 0.0);
+
+    public float getDefaultFloat() {
+        return (defaultFloat.floatValue());
+    }
+
+    public void setDefaultFloat(float defaultFloat) {
+        this.defaultFloat = new Float(defaultFloat);
+    }
+
+
+    /**
+     * The default value for Integer conversions.
+     */
+    private static Integer defaultInteger = new Integer(0);
+
+    public int getDefaultInteger() {
+        return (defaultInteger.intValue());
+    }
+
+    public void setDefaultInteger(int defaultInteger) {
+        this.defaultInteger = new Integer(defaultInteger);
+    }
+
+
+    /**
+     * The default value for Long conversions.
+     */
+    private static Long defaultLong = new Long((long) 0);
+
+    public long getDefaultLong() {
+        return (defaultLong.longValue());
+    }
+
+    public void setDefaultLong(long defaultLong) {
+        this.defaultLong = new Long(defaultLong);
+    }
+
+
+    /**
+     * The default value for Short conversions.
+     */
+    private static Short defaultShort = new Short((short) 0);
+
+    public short getDefaultShort() {
+        return (defaultShort.shortValue());
+    }
+
+    public void setDefaultShort(short defaultShort) {
+        this.defaultShort = new Short(defaultShort);
+    }
 
 
     // ------------------------------------------------------- Static Variables
@@ -252,8 +371,12 @@ public final class ConvertUtils {
                  value.equalsIgnoreCase("true") ||
                  value.equalsIgnoreCase("on"))
             return (new Boolean(true));
-        else
+        else if (value.equalsIgnoreCase("no") ||
+                 value.equalsIgnoreCase("false") ||
+                 value.equalsIgnoreCase("off"))
             return (new Boolean(false));
+        else
+            return (defaultBoolean);
 
     }
 
@@ -268,7 +391,7 @@ public final class ConvertUtils {
         try {
             return (new Byte(value));
         } catch (NumberFormatException e) {
-            return (new Byte((byte) 0));
+            return (defaultByte);
         }
 
     }
@@ -286,7 +409,7 @@ public final class ConvertUtils {
         else if (value.length() == 0)
             return (new Character(' '));
         else
-            return (new Character(value.charAt(0)));
+            return (defaultCharacter);
 
     }
 
@@ -301,7 +424,7 @@ public final class ConvertUtils {
         try {
             return (new Double(value));
         } catch (NumberFormatException e) {
-            return (new Double(0.0));
+            return (defaultDouble);
         }
 
     }
@@ -317,7 +440,7 @@ public final class ConvertUtils {
         try {
             return (new Float(value));
         } catch (NumberFormatException e) {
-            return (new Float(0.0));
+            return (defaultFloat);
         }
 
     }
@@ -333,7 +456,7 @@ public final class ConvertUtils {
         try {
             return (new Integer(value));
         } catch (NumberFormatException e) {
-            return (new Integer(0));
+            return (defaultInteger);
         }
 
     }
@@ -349,7 +472,7 @@ public final class ConvertUtils {
         try {
             return (new Long(value));
         } catch (NumberFormatException e) {
-            return (new Long(0));
+            return (defaultLong);
         }
 
     }
@@ -365,7 +488,7 @@ public final class ConvertUtils {
         try {
             return (new Short(value));
         } catch (NumberFormatException e) {
-            return (new Short((short) 0));
+            return (defaultShort);
         }
 
     }
