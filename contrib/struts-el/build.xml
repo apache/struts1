@@ -220,7 +220,7 @@
 -->
   <copy todir="${build.home}/library">
    <fileset dir="${jstl.home}/tld" includes="*.tld"/>
-   <fileset dir="${struts.home}/lib" includes="*.tld"/>
+   <fileset dir="${struts.home}/dist/lib" includes="*.tld"/>
   </copy>
  </target>
 

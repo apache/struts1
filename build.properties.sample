@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.35 2003/04/19 22:12:32 jmitchell Exp $
+# $Id: build.properties.sample,v 1.36 2003/04/25 03:10:24 jmitchell Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -116,9 +116,10 @@ pmd.jar = /Java/pmd/lib/pmd-1.01.jar
 # contrib library (although it doesn't prevent you from building it directly in
 # "contrib/struts-el".
 
-jstl.home		=${apache.home}/jakarta-taglibs/standard-1.0
-jstl.jar		=${jstl.home}/lib/jstl.jar
+jstl.home			=${apache.home}/jakarta-taglibs/standard-1.0
+jstl.jar			=${jstl.home}/lib/jstl.jar
 jstl-standard.jar	=${jstl.home}/lib/standard.jar
+struts.home			=../../
 
 # Properties related to Struts unit testing
 # Choose your Cactus!
