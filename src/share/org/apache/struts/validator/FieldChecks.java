@@ -1,7 +1,7 @@
 /*
  *  The Apache Software License, Version 1.1
  *
- *  Copyright (c) 1999 The Apache Software Foundation.  All rights
+ *  Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  *  reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -910,7 +910,7 @@ public class FieldChecks implements Serializable {
      *@param  o  Object to be tested
      *@return    The string value
      */
-    private static boolean isString(Object o) {
+    public static boolean isString(Object o) {
 
         if (o == null) {
             return (true);
