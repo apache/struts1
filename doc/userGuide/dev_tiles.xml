@@ -181,7 +181,7 @@ To enable Tiles you need to:
       file to include the following tag library declarations:</li>
 				</ul>
 				<pre>&lt;taglib&gt;
-  &lt;taglib-uri&gt;/WEB-INF/tiles.tld&lt;/taglib-uri&gt;
+  &lt;taglib-uri&gt;/WEB-INF/struts-tiles.tld&lt;/taglib-uri&gt;
   &lt;taglib-location&gt;/WEB-INF/struts-tiles.tld&lt;/taglib-location&gt;
 &lt;/taglib&gt;
 </pre>
