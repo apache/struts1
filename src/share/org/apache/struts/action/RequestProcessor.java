@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.16 2002/07/19 10:00:41 cedric Exp $
- * $Revision: 1.16 $
- * $Date: 2002/07/19 10:00:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.17 2002/07/24 15:05:25 craigmcc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2002/07/24 15:05:25 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.16 $ $Date: 2002/07/19 10:00:41 $
+ * @version $Revision: 1.17 $ $Date: 2002/07/24 15:05:25 $
  * @since Struts 1.1
  */
 
@@ -770,6 +770,7 @@ public class RequestProcessor {
         if (log.isDebugEnabled()) {
             log.debug(" Populating bean properties from this request");
         }
+        form.setServlet(this.servlet);
         form.reset(mapping, request);
         if (mapping.getMultipartClass() != null) {
             request.setAttribute(Action.MULTIPART_KEY,
@@ -777,7 +778,6 @@ public class RequestProcessor {
         }
         RequestUtils.populate(form, mapping.getPrefix(), mapping.getSuffix(),
                               request);
-        form.setServlet(this.servlet);
 
     }
 
