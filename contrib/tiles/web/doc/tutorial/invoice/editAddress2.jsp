@@ -16,7 +16,7 @@
 
   <tr>
     <th align="right" width="30%">
-      Street
+      Street helo
     </th>
     <td align="left">
 	  <%-- Declare an html input field. 										--%>

@@ -5,7 +5,7 @@
  * @param CHANNELS List of channels
  * @author Ted Husted
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2001/12/27 17:27:15 $
+ * @version $Revision: 1.2 $ $Date: 2002/02/18 14:48:39 $
  */
 --%>
 
@@ -14,14 +14,18 @@
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <%@ taglib uri="/WEB-INF/tiles.tld" prefix="tiles" %>
 
+<div align="center"><font size="+1"><b>
+
 <tiles:importAttribute name="CHANNELS" scope="page"/>
 
 <logic:iterate name="CHANNELS" id="CHANNEL" >
-<TABLE border="0" cellspacing="2" cellpadding="4" width="300" align="center" >
+<TABLE border="0" cellspacing="0" cellpadding="4" width="100%" align="center" >
 <TR>
-<TD><logic:present name="CHANNEL" property="image"><img src="<bean:write name="CHANNEL" property="image.URL"/>"></logic:present></TD>
-<TD class="spanhd" width="100%"><a href="<bean:write name="CHANNEL" property="link"/>">
-<bean:write name="CHANNEL" property="title"/></a></TD>
+<TD class="spanhd" ><logic:present name="CHANNEL" property="image">
+  <a href="<bean:write name="CHANNEL" property="link"/>">
+    <img src="<bean:write name="CHANNEL" property="image.URL"/>"></logic:present></a>
+</TD>
+<TD class="spanhd" width="100%"><bean:write name="CHANNEL" property="title"/> <a href="<bean:write name="CHANNEL" property="link"/>">[home]</a></TD>
 </TR>
 <TD class="yellow" colspan="2"><bean:write name="CHANNEL" property="description"/></TD>
 </TR>
@@ -39,3 +43,5 @@
 </TABLE>
 <br>
 </logic:iterate>
+
+</b></font></div>

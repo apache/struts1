@@ -18,6 +18,7 @@
 <struts-config>
 
 
+  
   <!-- ========== Form Bean Definitions =================================== -->
   <form-beans>
 
@@ -28,6 +29,8 @@
                     type="org.apache.struts.example.tiles.portal.PortalSettingsForm"/>
     <form-bean      name="myMenuSettingsForm"
                     type="org.apache.struts.example.tiles.portal.MenuSettingsForm"/>
+    <form-bean      name="mySkinSettingsForm"
+                    type="org.apache.struts.example.tiles.skin.LayoutSettingsForm"/>
 
   </form-beans>
 
@@ -141,6 +144,33 @@
       <forward  name="success"    	       path="examples.userMenu.settings.page"/>
   </action>
 
+  <!-- =======================================================  -->
+  <!-- Tiles 1.1 Skin Settings -->
+  <!-- =======================================================  -->
+    <!-- Skin Settings page entrance : forward to appropriate page definition -->
+  <action     path="/examples/mySkinSettings"
+       		  type="org.apache.struts.tiles.actions.NoOpAction"
+			  name="mySkinSettingsForm" >
+      <forward  name="success"    	       path="examples.skin.settings.page"/>
+  </action>
+
+    <action     path="/examples/controller/mySkinSettings"
+                type="org.apache.struts.example.tiles.skin.LayoutSettingsAction"
+				name="mySkinSettingsForm" >
+   </action>
+
+    <action     path="/examples/controller/layoutSwitch"
+                type="org.apache.struts.example.tiles.skin.LayoutSwitchAction"  >
+   </action>
+
+
+  <!-- =======================================================  -->
+  <!-- Tiles 1.1 Rss Channel -->
+  <!-- =======================================================  -->
+    <action     path="/examples/controller/rssChannel"
+                type="org.apache.struts.example.tiles.rssChannel.RssChannelsAction">
+   </action>
+
 
   <!-- =======================================================  -->
   <!-- Rss Channel -->
@@ -179,5 +209,14 @@
 
 
   </action-mappings>
+  <!-- ========== Associated Request Processor settings =================== -->
+  <!-- Here we specified the tiles processor -->
+  <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor">
+  </controller>
+  
+  <!-- ========== Associated Messages Ressource settings =================== -->
+  <!-- Not used by tiles or this website, but needed due to a bug in actual Struts version -->
+  <message-resource parameter="org.apache.struts.example.tiles.dev1-1.ApplicationResources" null="false">
+  </message-resource>
 
 </struts-config>

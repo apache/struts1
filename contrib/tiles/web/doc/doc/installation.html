@@ -1,174 +1,277 @@
+<table cellspacing="5" width="100%" border="0"><tr><td valign="top"><body>
 
-	<TABLE>
-		<TR>
-			<TD><A name="Prerequisites"></A>
-				<TABLE border="0" cellspacing="5" cellpadding="5" width="100%">
-					<TR>
-						<TD bgcolor="#023264"><FONT color="#ffffff" face="arial,helvetica,sanserif" size="+1"><STRONG>Prerequisite Software</STRONG></FONT>
-						</TD>
-					</TR>
-					<TR>
-						<TD>
-						<BLOCKQUOTE>
-<P>Copyright : This page is largely inspired 
-              from the original <A href="http://www.apache.com/struts/installation.html">Struts 
-              installation page</A>. For those familiar with Struts, there is 
-              nothing realy new.</P>
-<P>In order to install and use   a binary distribution, you will need to acquire and install several   other software packages, as follows:<BR></P>
-							<UL>
-								<LI><STRONG>Java Development Kit</STRONG>- You must download and install       a version 1.1 (or later) Java Development Kit implementation for your       operating system platform.  You<EM>must</EM>have a Java2 version       (JDK 1.2 or later) to build the Struts source distribution, and several       of the custom tags in the Struts library require Java2 to execute.       A good starting point for locating Java Development Kit distributions is<A href="http://java.sun.com/j2se"> http://java.sun.com/j2se</A>.
-								<LI><STRONG>Struts</STRONG>- You must download and install <A href="http://jakarta.apache.org/struts">Struts</A> , with release greater than 1.0. 
-                A compatible release of Struts is attached with examples.
-								<LI><STRONG>Jakarta Commons Packages</STRONG> - Tiles utilizes several
-      packages from the <A href="http://jakarta.apache.org/commons/">Jakarta
-      Commons Project</A>.  If you are utilizing a binary distriubtion of
-      Tiles, the corresponding JAR files are included in the
-							<CODE>lib</CODE>directory.  However, if you wish to build Tiles from source, you will
-      need to download and install the following packages:
-								<UL>
-									<LI><EM>Beanutils</EM> (Version 1.1 or later)
-									<LI><EM>Collections</EM> (Version 1.0 or later)
-									<LI><EM>Digester</EM> (Version 1.1 or later)</LI>
-								</UL>
-								<LI><STRONG>Servlet Container</STRONG>- You must download and install a       servlet container that is compatible with the Servlet API Specification,       version 2.2 or later, and the JavaServer Pages (JSP) Specification,       version 1.1 or later.  One popular choice is to download Apache's<A href="http://jakarta.apache.org/tomcat"> Tomcat </A>&nbsp;(version 3.1 or later required, 
-                version 3.2 or later recommended).
-								<LI><STRONG>Servlet API Classes</STRONG>- In order to compile Struts itself,       or applications that use Struts, you will need a
-							<CODE>servlet.jar</CODE>file containing the Servlet and JSP API classes.  Most servlet containers       include this JAR file.  Otherwise, you can get the Servlet API classes distribution from<A href="http://jakarta.apache.org/builds/jakarta-servletapi"> here</A>.
-								<LI><STRONG>XML Parser</STRONG> - Tiles requires the presence of an XML
+  <a name="Prerequisites"></a><table width="100%" cellpadding="5" cellspacing="5" border="0"><tr><td bgcolor="#023264"><font size="+1" face="arial,helvetica,sanserif" color="#ffffff"><strong>Prerequisite Software</strong></font></td></tr><tr><td><blockquote>
+
+  <p>Copyright : This page is largely inspired from the original
+    <a href="http://jakarta.apache.org/struts">Struts installation page</a>.
+    For those familiar with Struts, there is nothing really new.<br></p>
+
+  <p>The Tiles binary distribution needs other software packages installed to
+  operate. You may already have these installed on your system. To build Tiles from
+  source you may need to acquire and install several others. The complete list is as
+  follows:<br></p>
+
+  <ul>
+  <li><strong>Java Development Kit</strong> - You <b>must</b> download and install
+      a Java2 (version 1.2 or later) Java Development Kit implementation for
+      your operating system platform.
+      A good starting point for locating Java Development Kit distributions is
+      <a href="http://java.sun.com/j2se">http://java.sun.com/j2se</a>.</li>
+
+  <li><strong>Servlet Container</strong> - You <b>must</b> download and install a
+      servlet container that is compatible with the Servlet API Specification,
+      version 2.2 or later, and the JavaServer Pages (JSP) Specification,
+      version 1.1 or later.  One popular choice is to download Apache's
+      <a href="http://jakarta.apache.org/tomcat">Tomcat</a> (version 3.1
+      or later required, version 3.2 or later recommended).</li>
+
+  <li><strong>XML Parser</strong> - Tiles <b>requires</b> the presence of an XML
       parser that is compatible with the Java API for XML Parsing (JAXP)
       specification, 1.1 or later.  You can download and install the JAXP
-      <A href="http://java.sun.com/xml">reference implementation</A>,
+      <a href="http://java.sun.com/xml">reference implementation</a>,
       which is required for building the Tiles source distribution.  In
-      Tiles web applications, you may replace the reference
+      Tiles-based web applications, you may replace the reference
       implementation classes with any other JAXP compliant parser, such as
-      <A href="http://xml.apache.org/xerces-j">Xerces</A>.  See detailed
+      <a href="http://xml.apache.org/xerces-j">Xerces</a>.  See detailed
       instructions related to the parser in the instructions for
-      <A href="#Building">building</A> and <A href="#Installing">installing</A> 
-                Tiles, below.
-								<LI><STRONG>Xalan XSLT Processor</STRONG> - If you are building Tiles from
+      <a href="#Building">building</a> and <a href="#Installing">installing</a>
+      Tiles, below.</li>
+
+  <li><strong>Ant Build System</strong> - If you are building Tiles from the
+      source distribution, you must download and install version 1.3 or later
+      of the <a href="http://jakarta.apache.org/ant">Ant</a> build system.
+      This package is also strongly recommended for use in developing your
+      own web applications based on Tiles.
+      <ul>
+      <li>If you are using the release version of Ant version 1.3, you will
+          also need to download the "optional.jar" file that contains the
+          implementation of Ant's <code>&lt;style&gt;</code> command.</li>
+      <li>Make sure that the "ant" and "ant.bat" scripts are executable, by
+          adding the $ANT_HOME/bin directory to your PATH environment
+          variable.</li>
+      </ul></li>
+
+  <li><strong>Servlet API Classes</strong> - In order to compile Tiles itself,
+      or applications that use Tiles, you will need a <code>servlet.jar</code>
+      file containing the Servlet and JSP API classes.  Most servlet containers
+      include this JAR file.  Otherwise, you can get the Servlet API classes
+      distribution from
+      <a href="http://jakarta.apache.org/builds/jakarta-servletapi">here</a>.
+      </li>
+
+  <li><strong>Jakarta Commons Packages</strong> - Tiles utilizes several
+      packages from the <a href="http://jakarta.apache.org/commons/">Jakarta
+      Commons Project</a>. If you are utilizing a binary distribution of
+      Tiles, the corresponding JAR files are included in the <code>lib</code>
+      directory. However, if you wish to build Tiles from source, you will
+      need to download and install the following packages:
+      <ul>
+      <li><em>Beanutils</em> (Version 1.0 or later)</li>
+      <li><em>Collections</em> (Version 1.0 or later)</li>
+      <li><em>Digester</em> (Version 1.0 or later)</li>
+      </ul></li>
+
+  <li><strong>Xalan XSLT Processor</strong> - If you are building Tiles from
       the source distribution, you will need a version of Xalan to perform
-      XSLT transformations.  If you are using the JAXP/1.1 XML parser, you
-      should use the version of
-							<CODE>xalan.jar</CODE>shipped with it.
+      XSLT transformations. If you are using the JAXP/1.1 XML parser, you
+      should use the version of <code>xalan.jar</code> shipped with it.
       Otherwise, download and install version 1.2 of Xalan from
-      <A href="http://xml.apache.org/xalan">here</A>.</LI>
-							</UL></BLOCKQUOTE>
-						</TD>
-					</TR>
-				</TABLE><A name="Building"></A>
-				<TABLE border="0" cellspacing="5" cellpadding="5" width="100%">
-					<TR>
-						<TD bgcolor="#023264"><FONT color="#ffffff" face="arial,helvetica,sanserif" size="+1"><STRONG>Building Tiles Library From Source</STRONG></FONT>
-						</TD>
-					</TR>
-					<TR>
-						<TD>
-						<BLOCKQUOTE>
-<P>You can build Tiles yourself by running ant on provided build.xml file. You need first to set some properties in 
-build.properties</P></BLOCKQUOTE>
-						</TD>
-					</TR>
-				</TABLE><A name="Installing"></A>
-				<TABLE border="0" cellspacing="5" cellpadding="5" width="100%">
-					<TR>
-						<TD bgcolor="#023264"><FONT color="#ffffff" face="arial,helvetica,sanserif" size="+1"><STRONG>Install A Binary Distribution</STRONG></FONT>
-						</TD>
-					</TR>
-					<TR>
-						<TD>
-						<BLOCKQUOTE>
-<P>First, download a binary 
-              distribution.&nbsp;  Then, make sure     you have downloaded and installed all of the<A href="#Prerequisites">prerequisite</A>&nbsp;software packages described     above.<BR></P>
-<P>Unpack the binary distribution into a convenient directory.  The     distribution consists of the following contents:<BR></P>
-							<UL>
-								<LI><STRONG>lib/tiles.jar </STRONG>- This JAR file contains all of the         Java classes included in tiles.  It should be copied into the
-							<CODE> WEB-INF/lib </CODE>directory of your web application.
-								<LI><STRONG> lib/tiles.tld </STRONG>- This is the "tag library descriptor"         file that describes the custom tags in the Tiles library.  It should         be copied into the
-							<CODE> WEB-INF </CODE>directory of your web 
-                application.
-								<LI><STRONG>lib/extension.tld</STRONG>- This is the "extension 
-                tag library descriptor" file that describes the extension tags 
-                which are basically Struts tags, with additional useful 
-                functionalities for tiles. It should be copied into the
-							<CODE>WEB-INF</CODE>directory of your 
-                web application.
-								<LI><STRONG>webapps/tiles-doc.war</STRONG> - This is a 
-                "web application archive" file containing all 
-                  of the documentation and examples. You can install this 
-                web application on any servlet container  compatible with Servlet API 2.2 or         later. This archive also contains&nbsp; examples from the tutorial (under tiles-doc/tutorial).
-								<LI><STRONG>webapps/tiles-channel.war</STRONG>   
-                                                                       - Examples using a custom definition         factory.
-								<LI><STRONG>webapps/tiles-template.war</STRONG> 
-                          -&nbsp;Original 
-                Struts Template example, revisited with Tiles and Instances. You 
-                can install this web application on any servlet container 
-                compatible with the Servlet 2.2 (or later) and JSP 1.1 (or 
-                later) specifications.</LI>
-							</UL></BLOCKQUOTE>
-<P>To use Tiles in your own application, you will need to follow     these steps:<BR></P>
-						<BLOCKQUOTE>
-							<UL>
-								<LI>Copy the file
-							<CODE>lib/tiles.jar </CODE>from the Tiles distribution         into the
-							<CODE>WEB-INF/lib </CODE>directory of your web application.
-								<LI>Copy
-							<CODE>lib/tiles.tld and 
-                lib/extensions.</CODE><FONT face="Courier New">tld</FONT>from the Tiles distribution into the
-							<CODE>WEB-INF </CODE>directory         of your web application.
-								<LI>Modify the
-							<CODE>WEB-INF/web.xml </CODE>file for your web application         to include a
-							<CODE>&lt;servlet&gt; </CODE>element to define the         controller servlet, and a
-							<CODE>&lt;servlet-mapping&gt; </CODE>element         to establish which request URIs are mapped to this servlet.  Use the
-							<CODE>WEB-INF/web.xml </CODE>file from the 
-                Struts example application for a detailed example         of the required syntax.
-								<LI>If you want to use <EM>definitions configuration file</EM>, 
-                use the modified version of <EM>ActionServlet</EM>        
-                   , by adding following lines in the
-							<CODE>WEB-INF/web.xml </CODE>file :
-							<CODE><BR>&lt;servlet&gt;<BR>&nbsp;&nbsp;&nbsp; 
-                &lt;servlet-name&gt;action&lt;/servlet-name&gt;<BR>&nbsp;&nbsp;&nbsp; 
-                &lt;servlet-class&gt;org.apache.struts.tiles.ActionComponentsServlet&lt;/servlet-class<BR>&nbsp;&nbsp;&nbsp; 
-                &lt;init-param&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                &lt;param-name&gt;definitions-config&lt;/param-name&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                &lt;param-value&gt;/WEB-INF/tilesInstances.xml&lt;/param-value&gt;<BR>&nbsp;&nbsp;&nbsp; 
-                &lt;/init-param&gt;<BR>...<BR>&nbsp;</CODE>
-								<LI>If you use <EM>definitions configuration file</EM>, but don't want to 
-                use modified servlet, you must initialize definitions factory, either 
-                in your own servlet (see ActionComponentsServlet.java) or at 
-                begining of page (see tags).
-								<LI>Modify the
-							<CODE>WEB-INF/web.xml </CODE>file of your web 
-                application to include the following tag library 
-                declarations:<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                &lt;taglib&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                &lt;taglib-uri&gt;/WEB-INF/tiles.tld&lt;/taglib-uri&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                &lt;taglib-location&gt;/WEB-INF/tiles.tld&lt;/taglib-location&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                &lt;/taglib&gt;
-								<LI>Create a file
-							<CODE>WEB-INF/struts-config.xml </CODE><FONT face="Courier New"> </FONT>that defines the action         mappings for your specific application.  You can use the
-							<CODE>struts-config.xml </CODE>file from the portal example application for a detailed example of the required syntax.
-								<LI>At the top of each JSP page that 
-                will use the Tiles custom tags, add line(s) declaring 
-                the Tiles custom tag libraries used on this particular page, 
-                like this 
-				
-							<PRE>&lt;@ taglib uri="/WEB-INF/tiles.tld" prefix="tiles" %&gt;</PRE>
-								<LI>When compiling the Java classes that comprise your application, be sure         to include the
-							<CODE>tiles.jar </CODE>file (copied earlier) 
-                on the CLASSPATH that is submitted to the compiler.</LI>
-							</UL></BLOCKQUOTE>
-							
-<P>Note to Struts1.0 users :<BR></P>
-  <ul>
-    <li>Use <CODE>tilesForStruts1.0.jar </CODE>instead of tiles.jar
+      <a href="http://xml.apache.org/xalan">here</a>.</li>
+
+  <li><strong>Struts Framework</strong> - If you are planning to use Tiles with
+      Struts, you should better download and install Struts from
+      <a href="http://jakarta.apache.org/struts/">Jakarta
+      Struts Project</a>. If you have acquired Tiles with the Struts distribution,
+      you don't need to install it again.
+      Tiles can run without Struts. In this case you loose some features.
     </li>
-	<li>Don't use both jar files in the same time</li>
-	<li><CODE>tilesForStruts1.0.jar </CODE> is located in <CODE>lib/struts1.0 </CODE></li>
   </ul>
 
-						</TD>
-					</TR>
-				</TABLE>
-			</TD>
-		</TR>
-	</TABLE></TD></TR></TABLE>
+  </blockquote></td></tr></table>
+
+  <a name="Installing"></a><table width="100%" cellpadding="5" cellspacing="5" border="0"><tr><td bgcolor="#023264"><font size="+1" face="arial,helvetica,sanserif" color="#ffffff"><strong>Install A Tiles Binary Distribution</strong></font></td></tr><tr><td><blockquote>
+
+    <p>First, download a binary distribution of Tiles by following the
+    instructions <a href="index.html#Acquiring">here</a>.  Then, make sure
+    you have downloaded and installed the
+    <a href="#Prerequisites">prerequisite</a> software packages described
+    above.<br></p>
+
+    <p>Unpack the Tiles binary distribution into a convenient directory.
+    (If you <a href="#Building">build Tiles from the source distribution</a>,
+    the result of the build will already be an unpacked binary distribution
+    for you). The distribution consists of the following contents:<br></p>
+
+    <ul>
+    <li><strong>lib/tiles.jar</strong> - This JAR file contains all of the
+        Java classes included in Tiles.  It should be copied into the
+        <code>WEB-INF/lib</code> directory of your web application.
+        <em>WARNING</em> - If you are going to be hosting multiple tiles
+        based applications on the same servlet container, you will be tempted
+        to place the <code>struts.jar</code> file into the shared repository
+        supported by your container.  Be advised that this will like cause you
+        to encounter ClassNotFoundException problems unless <em>all</em> of
+        your application classes are stored in the shared repository.</li>
+    <li><strong>lib/tiles.tld</strong> - These is the "tag library
+        descriptor" file that describe the custom tags in the Tiles
+        tag libraries.  It should be copied into the <code>WEB-INF</code>
+        directory of your web application.</li>
+    <li><strong>webapps/tiles-doc.war</strong> or <strong>webapps/struts-tiles
+        .war</strong> - This is a
+        "web application archive" file containing all of the Tiles
+        documentation found on the
+        <a href="http://www.lifl.fr/~dumoulin/tiles/">Tiles web site</a>
+        (including these pages).  You can install this web application
+        on any servlet container compatible with Servlet API 2.2 or later.</li>
+    <li><strong>webapps/tiles-channel.war</strong> - Examples using a custom
+        definition factory.</li>
+    <li><strong>webapps/tiles-template.war</strong>
+        - Original Struts Template example, revisited with Tiles
+        and Instances. You can install this web application on any servlet
+        container compatible with the Servlet 2.2 (or later) and JSP 1.1
+        (or later) specifications.</li>
+    </ul>
+    <p>To use Tiles in your own application, you will need to follow
+    these steps:<br></p>
+    <ul>
+    <li>Copy the files <code>lib/commons-*.jar</code>
+        into the <code>WEB-INF/lib</code> directory of your
+        web application.</li>
+    <li>Copy the file <code>lib/tiles.jar</code> from the Tiles distribution
+        into the <code>WEB-INF/lib</code> directory of your web application.
+        </li>
+    <li>Copy all of the files that match <code>lib/*.tld</code>
+        from the Tiles distribution into the <code>WEB-INF</code> directory
+        of your web application.</li>
+    <li>If you want to use <i>definitions configuration file</i>, you need to
+        initialize the definitions factory. This can be done as follow : </li>
+    <ul>
+    <li>Modify the <code>WEB-INF/web.xml</code> file for your web application
+        to use a <code>&lt;servlet&gt;</code> that initialize the factory and
+        catch Struts action forwards to check for definition name. Use the
+        <code>WEB-INF/web.xml</code> file from the Tiles example application
+        for a detailed example of the required syntax.
+    </li>
+<pre>
+  &lt;servlet&gt;
+     ...
+     &lt;servlet-name&gt;action&lt;/servlet-name&gt;
+     &lt;servlet-class&gt;org.apache.struts.tiles.ActionComponentsServlet&lt;/servlet-class
+     &lt;init-param&gt;
+       &lt;param-name&gt;definitions-config&lt;/param-name&gt;
+       &lt;param-value&gt;/WEB-INF/tiles-config.xml&lt;/param-value&gt;
+     &lt;/init-param&gt;
+     ...
+</pre>
+    <li>Create a configuration file for definitions. Its name must match the one
+        provided before in <code>WEB-INF/web.xml</code>. Several comma separated
+        names can be provided.</li>
+    </ul>
+    <li>Modify the <code>WEB-INF/web.xml</code> file of your web application
+        to include the following tag library declarations:</li>
+    </ul>
+
+<pre>&lt;taglib&gt;
+  &lt;taglib-uri&gt;/WEB-INF/tiles.tld&lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;/WEB-INF/tiles.tld&lt;/taglib-location&gt;
+&lt;/taglib&gt;
+</pre>
+
+    <ul>
+    <li>At the top of each JSP page that will use the Tiles custom tags,
+        add line(s) declaring the Tiles custom tag libraries used on
+        this particular page, like this:</li>
+    </ul>
+
+<pre>&lt;%@ taglib uri="/WEB-INF/tiles.tld" prefix="bean" %&gt;
+</pre>
+
+    <ul>
+    <li>When compiling the Java classes that comprise your application, be sure
+        to include the <code>tiles.jar</code> and
+        <code>commons-*.jar</code> files (copied earlier) on the
+        CLASSPATH that is submitted to the compiler.</li>
+
+    </ul>
+<p>Note to Struts1.0 users :<br></p>
+    <ul>
+    <li>Use tilesForStruts1.0.jar instead of tiles.jar</li>
+    <li>Don't use both jar files in the same time</li>
+    <li>tilesForStruts1.0.jar is located in lib/struts1.0</li>
+    </ul>
+
+
+</blockquote></td></tr></table> <a name="Containers"></a><table width="100%" cellpadding="5" cellspacing="5" border="0"><tr><td bgcolor="#023264"><font size="+1" face="arial,helvetica,sanserif" color="#ffffff"><strong>Installing Tiles with your servlet container</strong></font></td></tr><tr><td><blockquote>
+
+<p><strong>WARNING</strong> - Do <strong>NOT</strong> add
+<code>tiles.jar</code> to the classpath of your servlet container in an
+attempt to avoid placing it in the <code>/WEB-INF/lib</code> directory of
+each individual web app!  Doing so will cause problems with
+<code>ClassNotFoundException</code> exceptions.<br></p>
+
+<p>For most containers, you need only to: <br></p>
+<ul>
+  <li>Copy the WAR files in your Tiles <code>/webapp</code> directory to your
+    containers <code>webapps</code> directory. </li>
+  <li>In some cases, you may need to restart your container if it is running.</li>
+</ul>
+<h3>Status of various containers</h3>
+  <p>For status of additional containers, please refer to the
+   <a href="http://jakarta.apache.org/struts/installation.html#Installing">
+   Struts installation page</a>).
+  <br></p>
+</blockquote></td></tr></table>
+
+<a name="Building"></a><table width="100%" cellpadding="5" cellspacing="5" border="0"><tr><td bgcolor="#023264"><font size="+1" face="arial,helvetica,sanserif" color="#ffffff"><strong>Building Tiles From Source</strong></font></td></tr><tr><td><blockquote>
+
+    <p>First, download a source distribution of Tiles from
+     <a href="http://www.lifl.fr/~dumoulin/tiles/">here</a> or
+     from Struts contrib directory.  Then, make sure
+    you have downloaded and installed <b>all</b> of the
+    <a href="#Prerequisites">prerequisite</a> software packages described
+    above.<br></p>
+
+    <p>To build Tiles, you will need to customize the build process to the
+    details of your development environment as follows:<br></p>
+    <ul>
+    <li>The Tiles source distribution uses a file named
+        <code>build.properties</code> (in the top-level directory of the
+        distribution) to identify the location of external components
+        that Tiles depends on.</li>
+    <li>There is no <code>build.properties</code> file included with the
+        source distribution.  However, there is an example file named
+        <code>build.properties.example</code> that you can copy to
+        <code>build.properties</code> and then customize.</li>
+    <li>The properties you must configure in <code>build.properties</code> are
+        documented in <code>build.properties.example</code></li>
+    <li>Tiles build require a Struts library. You can use either a Struts1.0.x
+        or 1.1 <code>struts.jar</code>. The resulting <code>tiles.jar</code> will
+        run with the used <code>struts.jar</code>. You specify the Struts home
+        with <code>struts.home</code> property.</li>
+    </ul>
+
+    <p>To build a "distribution" version of Tiles, first change your current
+    directory to the directory in which you have unpacked the Tiles
+    source distribution, and (if necessary) create or customize the
+    <code>build.properties</code> file as described above.  Then, type:<br></p>
+<pre>
+        ant dist
+</pre>
+
+    <p>This command will create a binary distribution of Tiles, in a
+    directory named <code>dist</code> (relative to where you
+    are compiling from).  This directory contains an exact replica of the
+    files included in a binary distribution of Tiles, as described
+    in the <a href="Installing">preceding section</a>.<br></p>
+
+    <p>IMPORTANT NOTE: The <code>tiles.jar</code>, as well as the JAR files
+    from the Jakarta Commons project, must be in your classpath when
+    compiling Tiles. The <code>build.xml</code> provided does this
+    automatically.  If you use your development machine to test Tiles
+    application locally, be sure that the <code>tiles.jar</code> is
+    <strong>NOT</strong> on your classpath when your container is running.
+    <br></p>
+
+  </blockquote></td></tr></table>
+
+</body></td></tr></table>

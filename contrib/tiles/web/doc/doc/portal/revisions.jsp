@@ -2,6 +2,28 @@
 <tr>
 <th bgcolor="aqua"><FONT size=4>History</FONT></th></tr>
   <TR>
+    <TD><FONT size=2><STRONG> 18 Feb. 2002</STRONG> </FONT></TD></TR>
+  <TR>
+    <TD>
+      <UL>
+        <LI><FONT size=2>New tiles-blank application</FONT></LI>
+        <LI><FONT size=2>Added a TilesController to run with latest Struts 1.1 dev</FONT></LI>
+        <LI><FONT size=2>Change distribution : a stable release build shipped with Struts1.0.x 
+		and a development release build with Struts1.1 dev</FONT></LI>
+	  </UL>
+	</TD>
+  </TR> 
+  <TR>
+    <TD><FONT size=2><STRONG> 11 Jan. 2002</STRONG> </FONT></TD></TR>
+  <TR>
+    <TD>
+      <UL>
+        <LI><FONT size=2>Corrected bug preventing empty &lt;put&gt; body tags in Tomcat4</FONT></LI>
+        <LI><FONT size=2>Corrected customized factory loading. It now works again</FONT></LI>
+	  </UL>
+	</TD>
+  </TR> 
+  <TR>
     <TD><FONT size=2><STRONG> 27 Dec. 2001</STRONG> </FONT></TD></TR>
   <TR>
     <TD>
@@ -20,7 +42,7 @@
     <TD>
       <UL>
         <LI><FONT size=2>  Correct another bug with Orion : "importAttribute 
-        not working whenreused"</FONT></LI></UL></TD></TR> 
+        not working when reused"</FONT></LI></UL></TD></TR> 
   <TR>
     <TD><FONT size=2><STRONG> 29&nbsp;oct. 2001</STRONG> </FONT></TD></TR>
   <TR>

@@ -1,8 +1,8 @@
 <%@ page language="java" %>
-<%@ taglib uri="/WEB-INF/tiles.tld" prefix="comp" %>
+<%@ taglib uri="/WEB-INF/tiles.tld" prefix="tiles" %>
 
-<comp:insert definition="mainLayout" flush="true">
-  <%--  <comp:put name="body" value="/tutorial/invoice/editInvoice.jsp" /> --%>
-  <comp:put name="body" value="/tutorial/invoice/editInvoice2.jsp" />
-</comp:insert>
+<tiles:insert definition="mainLayout" flush="true">
+  <tiles:put name="body" value="/tutorial/invoice/editInvoice.jsp" />
+  <%--  <tiles:put name="body" value="/tutorial/invoice/editInvoice2.jsp" /> --%>
+</tiles:insert>
 

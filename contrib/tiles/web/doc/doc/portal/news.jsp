@@ -3,6 +3,22 @@
 <th bgcolor="aqua"><font size="+1"><strong>News</strong></font></th></tr>
 <tr>
 <td>
+      <P><STRONG><EM><FONT color=#ff0000>Tiles-blank application</FONT></EM></STRONG>
+	  <br><FONT color=#000000 size=2>
+	  A tiles-blanc.war is now provided to help starting a new project using Tiles.
+	  </FONT><FONT color=#ff0000><EM><STRONG></STRONG></EM></FONT></P>
+
+      <P><FONT color=#ff0000><EM><STRONG>Article on Tiles and 
+      Struts</STRONG></EM></FONT>
+	  <br><FONT color=#000000 size=2>
+	  An article on using Tiles and Struts is available at :
+	  <br>
+	  <a href="http://www.javaworld.com/javaworld/jw-01-2002/jw-0104-tilestrut.html" >http://www.javaworld.com/javaworld/jw-01-2002/jw-0104-tilestrut.html</a>
+	  </FONT></P>
+      <P><FONT color=#ff0000><EM><STRONG>Dynamic Layout</STRONG></EM></FONT>
+	  <br><FONT color=#000000 size=2>
+	  Dynamic layouts allow a user to customize a site L&amp;F. Check the example to see how to proceed with Tiles.
+	  </FONT></P>
       <P><FONT color=#ff0000><EM><STRONG>New Layout : Tabs</STRONG></EM></FONT>
 	  <br><FONT color=#000000 size=2>
 	  The new tabs layout allows to build easily tabs like page : specify which
@@ -34,6 +50,6 @@
       <P>
       <FONT size=2>Check "History" for latest modifications (further in this page)</FONT></P>
       <P>
-      <FONT size=2>Updated 26 Dec. 2001</FONT></P>
+      <FONT size=2>Updated 12 Jan. 2002</FONT></P>
 	  
 </td></tr></table>

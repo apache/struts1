@@ -20,7 +20,7 @@
   </TR>
     <td class="datalightblue">
 	<ul>
-	  <li>not yet finished, see tutorial in meantime</li>
+	  <li>new examples not yet available, see tutorial in meantime</li>
 	</ul>
     </TD>
 </TABLE>

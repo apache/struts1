@@ -9,10 +9,12 @@
   <!-- Action Servlet Configuration -->
   <servlet>
     <servlet-name>action</servlet-name>
+    <!-- <servlet-class>org.apache.struts.action.ActionServlet</servlet-class> --> 
     <servlet-class>org.apache.struts.tiles.ActionComponentServlet</servlet-class> 
 	<init-param>
       <param-name>definitions-config</param-name>
-      <param-value>/WEB-INF/tiles-defs.xml,/WEB-INF/tiles-tests-defs.xml,/WEB-INF/tiles-tutorial-defs.xml,/WEB-INF/tiles-examples-defs.xml</param-value>
+      <param-value>/WEB-INF/tiles-defs.xml,/WEB-INF/tiles-tests-defs.xml,/WEB-INF/tiles-tutorial-defs.xml,
+                 /WEB-INF/tiles-examples-defs.xml</param-value>
     </init-param>
     <init-param>
       <param-name>definitions-debug</param-name>
@@ -43,6 +45,12 @@
       <param-name>detail</param-name>
       <param-value>2</param-value>
     </init-param>
+      <!-- Added as a trick for a bug in Struts -->
+    <init-param>
+      <param-name>application</param-name>
+      <param-value>org.apache.struts.example.tiles.dev1-1.ApplicationResources</param-value>
+    </init-param>
+    
     <load-on-startup>2</load-on-startup>
   </servlet>
 

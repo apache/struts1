@@ -1,9 +1,9 @@
-<%@ taglib uri="/WEB-INF/tiles.tld" prefix="comp" %>
+<%@ taglib uri="/WEB-INF/tiles.tld" prefix="tiles" %>
 
-<comp:insert page="/tutorial/basic/myLayout.jsp" flush="true">
-  <comp:put name="title"  value="My first page" />
-  <comp:put name="header" value="/tutorial/common/header.jsp" />
-  <comp:put name="footer" value="/common/footer.jsp" />
-  <comp:put name="menu"   value="/tutorial/basic/menu.jsp" />
-  <comp:put name="body"   value="/tutorial/basic/helloBody.jsp" />
-</comp:insert>
+<tiles:insert page="/tutorial/basic/myLayout.jsp" flush="true">
+  <tiles:put name="title"  value="My first page" />
+  <tiles:put name="header" value="/tutorial/common/header.jsp" />
+  <tiles:put name="footer" value="/common/footer.jsp" />
+  <tiles:put name="menu"   value="/tutorial/basic/menu.jsp" />
+  <tiles:put name="body"   value="/tutorial/basic/helloBody.jsp" />
+</tiles:insert>

@@ -12,7 +12,7 @@
 <strong>Test controller set in insert</strong>
 <br>
 <tiles:insert template="layout.jsp" 
-           controllerType="org.apache.struts.example.tiles.test.TestTileController" >
+           controllerClass="org.apache.struts.example.tiles.test.TestTileController" >
   <tiles:put name="title"  value="Test controller set in insert" />
   <tiles:put name="header" value="header.jsp" />
   <tiles:put name="body"   value="body.jsp" />
@@ -22,7 +22,7 @@
 <strong>Test controller set in insert, and attribute from definition</strong>
 <br>
 <tiles:insert definition="test.layout.test1" 
-           controllerType="org.apache.struts.example.tiles.test.TestTileController" >
+           controllerClass="org.apache.struts.example.tiles.test.TestTileController" >
   <tiles:put name="title"  value="Test controller set in insert, and attribute from definition" />
 </tiles:insert>
 

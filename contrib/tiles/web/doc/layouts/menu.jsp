@@ -27,12 +27,6 @@
 </logic:present>
 
 <%-- iterate on items list --%>
-<%-- Normally, we should write something like this :
-   <logic:iterate id="item" name="items" type="java.lang.String" >
-   But, Struts doesn't declare the TEI class for iterate, and 
-   some web container deal badly with the declared variable. 
-   So, we use what follow instead.
-    --%>
 <logic:iterate id="item" name="items" type="org.apache.struts.tiles.beans.MenuItem" >
 
 <%  // Add site url if link start with "/"

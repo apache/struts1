@@ -9,7 +9,7 @@
     <TD class="datagrey">
 	<ul>
 	  <li>A tile can be used several time in a same page</li>
-	  <li>For example, you can have a Tile rendering an adress, and use it to
+	  <li>For example, you can have a Tile rendering an address, and use it to
 	  render as well shipping and billing addresses</li>
 	</ul>
 	</TD>
@@ -17,7 +17,7 @@
   <TR>
     <td class="datalightblue">
 	<ul>
-	  <li>not yet finished, see tutorial in meantime</li>
+	  <li>new examples not yet available, see tutorial in meantime</li>
 	</ul>
     </TD>
   </TR>

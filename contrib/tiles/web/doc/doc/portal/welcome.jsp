@@ -17,6 +17,7 @@
     <li>Take a glance at some Tiles features and capabilities by browsing the commented live examples (avalaible if you install Tiles)</li>
     <li>Check the "Quick Overview" for code examples and results</li>
     <li>Start learning Tiles with the tutorial</li>
+    <li>Read articles from <a href="http://www.javaworld.com/javaworld/jw-01-2002/jw-0104-tilestrut.html" >javaworld</a></li>
   </ul>
   </FONT> 
 </P>

@@ -43,7 +43,7 @@
 	  <%-- Include an "address editor" component.					--%>
 	  <%-- Pass the component name and component value as parameter	--%>
 	  <%-- Value comes from the form bean --%>
-	  <tiles:insert page="/tutorial/invoice/editAddress2.jsp" >
+	  <tiles:insert page="/tutorial/invoice/editAddress.jsp" >
 	    <tiles:put name="property" value="shippingAddress" />
 	    <tiles:put name="bean" beanName="invoiceForm"  />
 	  </tiles:insert>
@@ -60,7 +60,7 @@
   </tr>
   <tr>
     <td align="center" colspan="2">
-  <tiles:insert page="/tutorial/invoice/editAddress2.jsp" >
+  <tiles:insert page="/tutorial/invoice/editAddress.jsp" >
     <tiles:put name="property" value="billAddress" />
 	<tiles:put name="bean" beanName="invoiceForm" />
   </tiles:insert>

@@ -64,15 +64,11 @@ function down( col1 )
 
 </script>
 
-
-<tiles:importAttribute name="choiceItems" />
+<tiles:importAttribute name="catalog" />
 <tiles:importAttribute name="userItems" />
 
 <html:form action="/examples/myMenuSettings.do"  >
-
-
-  
-  
+ 
 	  <ul>
 	    <li>Choose an item from "Items Choice" colomn, and add it to "my Items" using the '>' button.</li>
 		<li>You can also rearange your Menu by using appropriate buttons : '^', 'V' and 'delete'</li>
@@ -84,7 +80,7 @@ function down( col1 )
 	  Items Choice
 	  <br>
 	  <html:select property="selectedChoices" multiple="true" >
-	    <html:options collection="choiceItems" property="link" labelProperty="value"/>
+	    <html:options collection="catalog" property="link" labelProperty="value"/>
 	  </html:select>
 	</td>
 	<td>
@@ -105,9 +101,5 @@ function down( col1 )
       <html:submit property="validate" value="validate" onclick="selectAll(selected);return true;"/></div>
 	</td>
   </tr>
-  </table>
-  
-  
-
-  
+  </table> 
 </html:form>
