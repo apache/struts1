@@ -92,10 +92,11 @@
         <div id="content">
         <div id="menu">
         
-            <!-- to be removed after ApacheCon 2004 ends 17th of November 2004 -->
+            <!-- to be removed after ApacheCon 2004 ends 17th of November 2004
             <a href="http://ApacheCon.Com/2004/US/">
 			<img src="http://ApacheCon.Com/2004/US/logos/logo_only.gif" width="170" height="100" alt="ApacheCon!" title="Come to ApacheCon!" />
 			</a>
+			-->
 
             <xsl:apply-templates select="$project"/>
 
