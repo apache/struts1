@@ -2,7 +2,7 @@
 <document url="./index.xml">
 <properties>
 <author>Ted Husted</author>
-<title>FAQs and Howtos - Jakarta Struts</title>
+<title>FAQs and Howtos - Apache Struts</title>
 </properties>
 <body>
 
@@ -24,6 +24,10 @@
 
  <ul>
     <li><a href="http://www.jguru.com/faq/home.jsp?topic=Struts">jGuru FAQ</a></li>
+ </ul>
+
+ <ul>
+    <li><a href="http://strutstestcase.sourceforge.net">Unit testing with Struts Use Case</a></li>
  </ul>
 
  <ul>

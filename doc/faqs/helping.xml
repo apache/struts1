@@ -3,7 +3,7 @@
 <properties>
 <author>Ted Husted</author>
 <author>Craig R. McClanahan</author>
-<title>The Struts User's Guide - How to Help FAQ</title>
+<title>How to Help FAQ - Apache Struts</title>
 </properties>
 
 <body>
@@ -330,7 +330,7 @@ works on the server.
 </p>
 
 <p>
-The Struts project has its own <a href="index.html#lists">Dev list</a>, where all of
+The Struts project has its own <a href="using.html#Lists">Dev list</a>, where all of
 the decisions regarding Struts are made. Most development takes place via
 "<a href="http://jakarta.apache.org/site/proposal.html#decisions/voting/items">Lazy Consensus</a>".
 Committers post most changes to the product unilaterally, using their own best judgment,

@@ -1,4 +1,4 @@
-<project name="Struts" default="compile.website" basedir=".">
+<project name="Struts" default="compile.library" basedir=".">
 
 <!--
         Struts main build.xml file for building everything related to Struts.
@@ -763,6 +763,11 @@
     <style   basedir="${doc.dir}/faqs"
              destdir="${build.home}/documentation/faqs"
            extension=".html" style="../stylesheets/faqs.xsl"
+            includes="*.xml"/>
+    <!-- Create the news -->
+    <style   basedir="${doc.dir}/news"
+             destdir="${build.home}/documentation/news"
+           extension=".html" style="../stylesheets/news.xsl"
             includes="*.xml"/>
     <!-- Create the proposals -->
     <style   basedir="${doc.dir}/proposals"

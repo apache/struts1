@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
-<document url="./kickstart.xml">
+<document url="./newbie.xml">
 <properties>
 <author>Ted Husted</author>
 <author>James Holmes</author>
-<title>The Struts User's Guide - Newbie FAQ</title>
+<title>Newbie FAQ - Apache Struts</title>
 </properties>
 <body>
 <chapter href="faq" name="Newbie FAQ">
 
 <section href="contents" name="Index">
 <p>
-Here are answers to 24 common questions people ask when using Struts on their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b>
+Here are answers to the most common questions people ask when using Struts on their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b>
 </p>
 
 <p><font color="red"><b>UNDER CONSTRUCTION</b></font> (contributions welcome)</p>
@@ -281,7 +281,7 @@ If you are interested in a prewritten taglib that offers more layout options, se
 </p>
 <p>
 In the same arena, there is a well regarded contributtor taglib that can help you create
-<a href="http://husted.com/struts/resources/struts-menu.zip">Menus for your Struts applications</a>.
+<a href="http://sourceforge.net/projects/struts-menu/">Menus for your Struts applications</a>.
 </p>
 </section>
 

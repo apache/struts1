@@ -5,7 +5,7 @@
 
     <title>Struts Framework</title>
 
-    <menu name="Struts Resources">        
+    <menu name="Struts Resources">
         <item href="archives.html" name="Archives"/>
         <item href="articles.html" name="Articles"/>
         <item href="books.html" name="Books"/>
@@ -31,11 +31,11 @@
         <item href="utilities.html" name="Other Utils"/>
     </menu>
 
-    <menu name="Welcome">
-        <item name="Home"                    href="../index.html"/>
-        <item name="News &amp; Status"       href="../news.html"/>
-        <item name="Kickstart FAQ"           href="../kickstart.html"/> 
-        <item name="Resources"               href="../resources/index.html"/>
+    <menu name="Struts">
+        <item name="Welcome"                 href="../index.html"/>
+        <item name="Learning"                href="../learning.html"/>
+        <item name="Acquiring"               href="../acquiring.html"/>
+        <item name="Using"                   href="../using.html"/>
         <item name="Who We Are"              href="../volunteers.html"/>
     </menu>
 

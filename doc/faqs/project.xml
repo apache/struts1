@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="Struts Framework"
+<project name="Apache Struts Web Application Framework"
          href="http://jakarta.apache.org/struts"
         image="images/struts.gif">
 
-    <title>Struts Framework</title>
+    <title>Apache Struts Web Application Framework</title>
 
     <menu name="FAQs">
         <item href="kickstart.html" name="Kickstart"/>
@@ -15,12 +15,11 @@
         <item href="ssl.html" name="SSL"/>
     </menu>
 
-    <menu name="Welcome">
-        <item name="Home"                    href="../index.html"/>
-        <item name="News &amp; Status"       href="../news.html"/>
-        <item name="FAQs and Howtos"         href="../faqs/index.html"/>
-        <item name="Resources"               href="../resources/index.html"/>
-        <item name="List Archive"            href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42"/>
+    <menu name="Struts">
+        <item name="Welcome"                 href="../index.html"/>
+        <item name="Learning"                href="../learning.html"/>
+        <item name="Acquiring"               href="../acquiring.html"/>
+        <item name="Using"                   href="../using.html"/>
         <item name="Who We Are"              href="../volunteers.html"/>
     </menu>
 
