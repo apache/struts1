@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.0.1.xml,v 1.1 2001/11/16 06:01:11 martinc Exp $</font></p>
+  <p><font size="-2">$Id: release-plan-1.0.1.xml,v 1.2 2001/11/16 19:04:37 martinc Exp $</font></p>
 
   <p>The objective of the <strong>Struts 1.0.1</strong> release is to provide
   an official release of all the bug fixes and documentation updates that have
@@ -38,7 +38,6 @@
       web sites:
       <ul>
       <li>announcements@jakarta.apache.org</li>
-      <li>general@jakarta.apache.org</li>
       <li>struts-dev@jakarta.apache.org</li>
       <li>struts-user@jakarta.apache.org</li>
       <li>jsp-interest@java.sun.com</li>
