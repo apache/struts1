@@ -519,11 +519,39 @@
 
     </target>
 
+
 <!--
-        Dynamic installation commands on Catalina (Tomcat 4.1.x required)
+        Dynamic struts-documentation management on Catalina (Tomcat 4.1.x required)
 -->
 
-    <target name="install.catalina" depends="compile.webapps"
+    <target name="install.documentation" depends="compile.webapps"
+     description="Dynamically install struts-documentation on Catalina (Tomcat 4.1)">
+      <taskdef name="install" classname="org.apache.catalina.ant.InstallTask"/>
+      <install url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-documentation"
+            war="file://${build.home}/documentation"/>
+    </target>
+
+    <target name="reload.documentation" depends="compile.webapps"
+     description="Dynamically reload struts-documentation on Catalina (Tomcat 4.1)">
+      <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
+      <reload url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-documentation"/>
+    </target>
+
+    <target name="remove.documentation"
+     description="Dynamically remove struts-documentation on Catalina (Tomcat 4.1)">
+      <taskdef name="remove" classname="org.apache.catalina.ant.RemoveTask"/>
+      <remove url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-documentation"/>
+    </target>
+
+
+<!--
+        Dynamic struts-example management on Catalina (Tomcat 4.1.x required)
+-->
+
+    <target name="install.example" depends="compile.webapps"
      description="Dynamically install struts-example on Catalina (Tomcat 4.1)">
       <taskdef name="install" classname="org.apache.catalina.ant.InstallTask"/>
       <install url="${catalina.url}" username="${catalina.username}"
@@ -538,18 +566,131 @@
        password="${catalina.password}"/>
     </target>
 
-    <target name="reload.catalina" depends="compile.webapps"
+    <target name="reload.example" depends="compile.webapps"
      description="Dynamically reload struts-example on Catalina (Tomcat 4.1)">
       <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
       <reload url="${catalina.url}" username="${catalina.username}"
        password="${catalina.password}" path="/struts-example"/>
     </target>
 
-    <target name="remove.catalina"
-     description="Dynamically install struts-example on Catalina (Tomcat 4.1)">
+    <target name="remove.example"
+     description="Dynamically remove struts-example on Catalina (Tomcat 4.1)">
       <taskdef name="remove" classname="org.apache.catalina.ant.RemoveTask"/>
       <remove url="${catalina.url}" username="${catalina.username}"
        password="${catalina.password}" path="/struts-example"/>
+    </target>
+
+    <!-- Backwards Compatibility -->
+    <target name="install.catalina" depends="install.example"/>
+    <target name="reload.catalina" depends="reload.example"/>
+    <target name="remove.catalina" depends="remove.example"/>
+
+
+<!--
+        Dynamic struts-exercise management on Catalina (Tomcat 4.1.x required)
+-->
+
+    <target name="install.exercise" depends="compile.webapps"
+     description="Dynamically install struts-exercise on Catalina (Tomcat 4.1)">
+      <taskdef name="install" classname="org.apache.catalina.ant.InstallTask"/>
+      <install url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-exercise"
+            war="file://${build.home}/exercise-taglib"/>
+    </target>
+
+    <target name="reload.exercise" depends="compile.webapps"
+     description="Dynamically reload struts-exercise on Catalina (Tomcat 4.1)">
+      <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
+      <reload url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-exercise"/>
+    </target>
+
+    <target name="remove.exercise"
+     description="Dynamically remove struts-exercise on Catalina (Tomcat 4.1)">
+      <taskdef name="remove" classname="org.apache.catalina.ant.RemoveTask"/>
+      <remove url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-exercise"/>
+    </target>
+
+
+<!--
+        Dynamic struts-tiles management on Catalina (Tomcat 4.1.x required)
+-->
+
+    <target name="install.tiles" depends="compile.webapps"
+     description="Dynamically install struts-tiles on Catalina (Tomcat 4.1)">
+      <taskdef name="install" classname="org.apache.catalina.ant.InstallTask"/>
+      <install url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-tiles"
+            war="file://${build.home}/tiles-documentation"/>
+    </target>
+
+    <target name="reload.tiles" depends="compile.webapps"
+     description="Dynamically reload struts-tiles on Catalina (Tomcat 4.1)">
+      <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
+      <reload url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-tiles"/>
+    </target>
+
+    <target name="remove.tiles"
+     description="Dynamically remove struts-tiles on Catalina (Tomcat 4.1)">
+      <taskdef name="remove" classname="org.apache.catalina.ant.RemoveTask"/>
+      <remove url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-tiles"/>
+    </target>
+
+
+<!--
+        Dynamic struts-upload management on Catalina (Tomcat 4.1.x required)
+-->
+
+    <target name="install.upload" depends="compile.webapps"
+     description="Dynamically install struts-upload on Catalina (Tomcat 4.1)">
+      <taskdef name="install" classname="org.apache.catalina.ant.InstallTask"/>
+      <install url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-upload"
+            war="file://${build.home}/upload"/>
+    </target>
+
+    <target name="reload.upload" depends="compile.webapps"
+     description="Dynamically reload struts-upload on Catalina (Tomcat 4.1)">
+      <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
+      <reload url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-upload"/>
+    </target>
+
+    <target name="remove.upload"
+     description="Dynamically remove struts-upload on Catalina (Tomcat 4.1)">
+      <taskdef name="remove" classname="org.apache.catalina.ant.RemoveTask"/>
+      <remove url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-upload"/>
+    </target>
+
+
+<!--
+        Dynamic struts-tiles management on Catalina (Tomcat 4.1.x required)
+-->
+
+    <target name="install.validator" depends="compile.webapps"
+     description="Dynamically install struts-validator on Catalina (Tomcat 4.1)">
+      <taskdef name="install" classname="org.apache.catalina.ant.InstallTask"/>
+      <install url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-validator"
+            war="file://${build.home}/validator"/>
+    </target>
+
+    <target name="reload.validator" depends="compile.webapps"
+     description="Dynamically reload struts-validator on Catalina (Tomcat 4.1)">
+      <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
+      <reload url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-validator"/>
+    </target>
+
+    <target name="remove.validator"
+     description="Dynamically remove struts-validator on Catalina (Tomcat 4.1)">
+      <taskdef name="remove" classname="org.apache.catalina.ant.RemoveTask"/>
+      <remove url="${catalina.url}" username="${catalina.username}"
+       password="${catalina.password}" path="/struts-validator"/>
     </target>
 
 
