@@ -50,6 +50,7 @@ import org.apache.commons.beanutils.converters.FloatConverter;
 import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
+import org.apache.commons.chain.config.ConfigParser;
 import org.apache.commons.collections.FastHashMap;
 import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.RuleSet;
@@ -162,6 +163,10 @@ import org.xml.sax.SAXException;
  *     loaded.  (Since Struts 1.1)</li>
  * <li><strong>validating</strong> - Should we use a validating XML parser to
  *     process the configuration file (strongly recommended)? [true]</li>
+ * <li><strong>chainConfig</strong> - Comma-separated list of either 
+ *     context-relative or classloader path(s) to load commons-chain catalog
+ *     definitions from.  If none specified, the default Struts catalog that is
+ *     provided with Struts will be used.</li>
  * </ul>
  *
  * @version $Rev$ $Date$
@@ -177,6 +182,13 @@ public class ActionServlet extends HttpServlet {
      * resource(s) for the default module.</p>
      */
     protected String config = "/WEB-INF/struts-config.xml";
+
+
+    /**
+     * <p>Comma-separated list of context or classloader-relative path(s) that 
+     * contain the configuration for the default commons-chain catalog(s).</p>
+     */
+    protected String chainConfig = "org/apache/struts/chain/chain-config.xml";
 
 
     /**
@@ -326,6 +338,7 @@ public class ActionServlet extends HttpServlet {
             initInternal();
             initOther();
             initServlet();
+            initChain();
     
             getServletContext().setAttribute(Globals.ACTION_SERVLET_KEY, this);
             initModuleConfigFactory();
@@ -1049,6 +1062,80 @@ public class ActionServlet extends HttpServlet {
         }
 
     }
+
+
+    /**
+     * <p>Parse the configuration documents specified by the 
+     * <code>chainConfig</code> init-param to configure the default
+     * {@link Catalog} that is registered in the {@link CatalogFactory}
+     * instance for this application.</p>
+     */
+    protected void initChain() throws ServletException {
+
+        // Parse the configuration file specified by path or resource
+        try {
+            String value = null;
+            value = getServletConfig().getInitParameter("chainConfig");
+            if (value != null) {
+                chainConfig = value;
+            }
+         
+            ClassLoader loader =
+                Thread.currentThread().getContextClassLoader();
+            if (loader == null) {    
+                loader = this.getClass().getClassLoader();
+            }
+ 
+            URL resource = null;
+            String path = null;
+            int comma = 0;
+            ConfigParser parser = new ConfigParser();
+            
+            // Process each specified resource path
+            while (chainConfig.length() > 0) {
+                path = null;
+                comma = chainConfig.indexOf(',');
+                if (comma >= 0) {
+                    path = chainConfig.substring(0, comma).trim();
+                    chainConfig = chainConfig.substring(comma + 1);
+                } else {
+                    path = chainConfig.trim();
+                    chainConfig = "";
+                }
+    
+                if (path.length() < 1) {
+                    break;
+                }
+   
+                if (path.charAt(0) == '/') {
+                    resource = getServletContext().getResource(path);
+                }
+
+                if (resource == null) {
+                    if (log.isDebugEnabled()) {
+                        log.debug("Unable to locate "+path+" in the servlet "
+                                + "context, trying classloader.");
+                    }
+                    resource = loader.getResource(path);
+                }
+
+                
+                
+                if (resource == null) {
+                    // TODO: this should be pulled from internal resources
+                    throw new ServletException("Unable to locate chain "+path+" but is "+getClass().getClassLoader().getResource(path));
+                } else {
+                    log.info("Loading chain catalog from "+resource);
+                    parser.parse(resource);
+                }    
+            }
+        } catch (Exception e) {
+            log.error("Exception loading resources", e);
+            throw new ServletException(e);
+        }
+    }
+
+
 
 
     /**

@@ -29,6 +29,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
 import org.apache.struts.action.RequestProcessor;
+import org.apache.struts.chain.ComposableRequestProcessor;
 import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.PlugInConfig;
@@ -350,6 +351,12 @@ public class TilesPlugin implements PlugIn {
                     + "'.");
             throw new ServletException(ex);
         }
+
+        // Check to see if request processor uses struts-chain.  If so,
+        // no need to replace the request processor.
+        if (configProcessorClass.isAssignableFrom(ComposableRequestProcessor.class)) {
+            return;
+        }    
 
         // Check if it is the default request processor or Tiles one.
         // If true, replace by Tiles' one.

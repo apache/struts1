@@ -29,6 +29,8 @@
 		includes="struts-*.xml"/>
 
 	<!-- Copy DTDs -->	
+    <ant:copy file="./conf/share/chain-config.xml"
+            tofile="${maven.build.dir}/classes/org/apache/struts/chain/chain-config.xml" />
     <ant:copy todir="${maven.build.dir}/classes/org/apache/struts/resources">
       <ant:fileset dir="./conf/share">
         <ant:include name="*.dtd"/>

@@ -80,6 +80,41 @@ public class ControllerConfig implements Serializable {
         this.contentType = contentType;
     }
 
+
+    /**
+     * The chain catalog name for this module.
+     */
+    protected String catalog = "struts";
+
+    public String getCatalog() {
+        return (this.catalog);
+    }
+
+    public void setCatalog(String catalog) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.catalog = catalog;
+    }
+
+
+    /**
+     * The chain command to execute for each request.
+     */
+    protected String command = "servlet-standard";
+
+    public String getCommand() {
+        return (this.command);
+    }
+
+    public void setCommand(String command) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.command = command;
+    }
+
+
     /**
      * <p>The replacement pattern used to determine a context-relative URL
      * from a {@link ForwardConfig} element.  The pattern may consist of any
@@ -257,7 +292,7 @@ public class ControllerConfig implements Serializable {
      * class to be used for this module.
      */
     protected String processorClass =
-        "org.apache.struts.action.RequestProcessor";
+        "org.apache.struts.chain.ComposableRequestProcessor";
 
     public String getProcessorClass() {
         return (this.processorClass);

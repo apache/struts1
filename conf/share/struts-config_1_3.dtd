@@ -550,6 +550,13 @@ The "form-bean" element describes a particular form bean, which is a
      tempDir         Temporary working directory to use when processing
                      file uploads.
                      [{Directory provided by servlet container}]
+
+     catalog         Name of the catalog to use when processing requests
+                     for this module.
+                     [struts]
+
+     command         Name of the command to execute to process a request.
+                     [servlet-standard]
 -->
 <!ELEMENT controller     (set-property*)>
 <!ATTLIST controller     id             ID              #IMPLIED>
@@ -566,6 +573,8 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST controller     pagePattern    CDATA           #IMPLIED>
 <!ATTLIST controller     processorClass %ClassName;     #IMPLIED>
 <!ATTLIST controller     tempDir        CDATA           #IMPLIED>
+<!ATTLIST controller     catalog        CDATA           #IMPLIED>
+<!ATTLIST controller     command        CDATA           #IMPLIED>
 
 
 <!-- The "message-resources" element describes a MessageResources object with

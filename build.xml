@@ -258,6 +258,8 @@
             tofile="${build.home}/library/classes/META-INF/LICENSE"/>
         <copy file="NOTICE.txt"
             tofile="${build.home}/library/classes/META-INF/NOTICE"/>
+        <copy file="${conf.share.dir}/chain-config.xml"
+            tofile="${build.home}/library/classes/org/apache/struts/chain/chain-config.xml" />
         <copy todir="${build.home}/library/classes/org/apache/struts/resources">
             <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
         </copy>
