@@ -131,6 +131,8 @@
      <!-- Copy required image for the Struts examples validator module -->
     <copy tofile="${build.home}/examples/validator/struts-power.gif"
             file="${doc.dir}/images/struts-power.gif"/>
+    <copy todir="${build.home}/blank/WEB-INF/classes"
+            file="${basedir}/web/blank/WEB-INF/src/java/MessageResources.properties"/>
 </target>
 
 
