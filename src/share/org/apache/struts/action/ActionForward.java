@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.8 2002/07/07 23:45:21 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/07/07 23:45:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.9 2002/07/09 23:57:05 husted Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/07/09 23:57:05 $
  *
  * ====================================================================
  *
@@ -81,11 +81,11 @@ import org.apache.struts.config.ForwardConfig;
  * <ul>
  * <li><strong>contextRelative</strong> - Should the <code>path</code>
  *     value be interpreted as context-relative (instead of
- *     application-relative, if it starts with a '/' character? [false]</li>
+ *     module-relative, if it starts with a '/' character? [false]</li>
  * <li><strong>name</strong> - Logical name by which this instance may be
  *     looked up in relationship to a particular <code>ActionMapping</code>.
  *     </li>
- * <li><strong>path</strong> - Application-relative or context-relative URI to
+ * <li><strong>path</strong> - Module-relative or context-relative URI to
  *     which control should be forwarded, or an absolute or relative URI to
  *     which control should be redirected.</li>
  * <li><strong>redirect</strong> - Set to <code>true</code> if the controller
@@ -102,7 +102,7 @@ import org.apache.struts.config.ForwardConfig;
  * are using.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/07/07 23:45:21 $
+ * @version $Revision: 1.9 $ $Date: 2002/07/09 23:57:05 $
  */
 
 public class ActionForward extends ForwardConfig {

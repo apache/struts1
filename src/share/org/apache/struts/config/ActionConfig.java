@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.6 2002/06/16 05:11:36 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/06/16 05:11:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.7 2002/07/09 23:57:37 husted Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/07/09 23:57:37 $
  *
  * ====================================================================
  *
@@ -72,10 +72,10 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * <p>A JavaBean representing the configuration information of an
  * <code>&lt;action&gt;</code> element from a Struts application
- * configuration file.</p>
+ * module configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/06/16 05:11:36 $
+ * @version $Revision: 1.7 $ $Date: 2002/07/09 23:57:37 $
  * @since Struts 1.1
  */
 
@@ -447,7 +447,7 @@ public class ActionConfig implements Serializable {
      *
      * @param config The new configuration instance to be added
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void addExceptionConfig(ExceptionConfig config) {
@@ -466,7 +466,7 @@ public class ActionConfig implements Serializable {
      *
      * @param config The new configuration instance to be added
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void addForwardConfig(ForwardConfig config) {

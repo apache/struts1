@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ExceptionConfig.java,v 1.4 2002/06/30 04:37:32 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/06/30 04:37:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ExceptionConfig.java,v 1.5 2002/07/09 23:57:37 husted Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/07/09 23:57:37 $
  *
  * ====================================================================
  *
@@ -68,11 +68,11 @@ import java.io.Serializable;
 
 /**
  * <p>A JavaBean representing the configuration information of an
- * <code>&lt;exception&gt;</code> element from a Struts application
+ * <code>&lt;exception&gt;</code> element from a Struts
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/06/30 04:37:32 $
+ * @version $Revision: 1.5 $ $Date: 2002/07/09 23:57:37 $
  * @since Struts 1.1
  */
 
@@ -94,7 +94,7 @@ public class ExceptionConfig implements Serializable {
     /**
      * The servlet context attribute under which the message resources bundle
      * to be used for this exception is located.  If not set, the default
-     * message resources for the current subapp is assumed.
+     * message resources for the current module is assumed.
      */
     protected String bundle = null;
 

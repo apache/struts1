@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.9 2002/01/13 00:25:36 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2002/01/13 00:25:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.10 2002/07/09 23:57:57 husted Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/07/09 23:57:57 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.RequestUtils;
  * web application resource.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/01/13 00:25:36 $
+ * @version $Revision: 1.10 $ $Date: 2002/07/09 23:57:57 $
  */
 
 public class ResourceTag extends TagSupport {
@@ -134,7 +134,7 @@ public class ResourceTag extends TagSupport {
 
 
     /**
-     * The application-relative URI of the resource whose contents are to
+     * The module-relative URI of the resource whose contents are to
      * be exposed.
      */
     protected String name = null;
@@ -160,40 +160,40 @@ public class ResourceTag extends TagSupport {
 
         // Acquire an input stream to the specified resource
         InputStream stream =
-	  pageContext.getServletContext().getResourceAsStream(name);
-	if (stream == null) {
-	    JspException e = new JspException
-	      (messages.getMessage("resource.get", name));
+      pageContext.getServletContext().getResourceAsStream(name);
+    if (stream == null) {
+        JspException e = new JspException
+          (messages.getMessage("resource.get", name));
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
-	// If we are returning an InputStream, do so and return
-	if (input != null) {
-	    pageContext.setAttribute(id, stream);
-	    return (SKIP_BODY);
-	}
+    // If we are returning an InputStream, do so and return
+    if (input != null) {
+        pageContext.setAttribute(id, stream);
+        return (SKIP_BODY);
+    }
 
-	// Accumulate the contents of this resource into a StringBuffer
-	try {
-	    StringBuffer sb = new StringBuffer();
-	    InputStreamReader reader =
-	      new InputStreamReader(stream);
-	    char buffer[] = new char[BUFFER_SIZE];
-	    int n = 0;
-	    while (true) {
-	        n = reader.read(buffer);
-		if (n < 1)
-		    break;
-		sb.append(buffer, 0, n);
-	    }
-	    reader.close();
-	    pageContext.setAttribute(id, sb.toString());
-	} catch (IOException e) {
+    // Accumulate the contents of this resource into a StringBuffer
+    try {
+        StringBuffer sb = new StringBuffer();
+        InputStreamReader reader =
+          new InputStreamReader(stream);
+        char buffer[] = new char[BUFFER_SIZE];
+        int n = 0;
+        while (true) {
+            n = reader.read(buffer);
+        if (n < 1)
+            break;
+        sb.append(buffer, 0, n);
+        }
+        reader.close();
+        pageContext.setAttribute(id, sb.toString());
+    } catch (IOException e) {
             RequestUtils.saveException(pageContext, e);
-	    throw new JspException
-	      (messages.getMessage("resource.get", name));
-	}
+        throw new JspException
+          (messages.getMessage("resource.get", name));
+    }
         return (SKIP_BODY);
 
     }

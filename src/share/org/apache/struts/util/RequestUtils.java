@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.45 2002/07/07 23:45:21 craigmcc Exp $
- * $Revision: 1.45 $
- * $Date: 2002/07/07 23:45:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.46 2002/07/10 00:00:19 husted Exp $
+ * $Revision: 1.46 $
+ * $Date: 2002/07/10 00:00:19 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.45 $ $Date: 2002/07/07 23:45:21 $
+ * @version $Revision: 1.46 $ $Date: 2002/07/10 00:00:19 $
  */
 
 public class RequestUtils {
@@ -355,7 +355,7 @@ public class RequestUtils {
      * @param forward Logical forward name for which to look up
      *  the context-relative URI (if specified)
      * @param href URL to be utilized unmodified (if specified)
-     * @param page Application-relative page for which a URL should
+     * @param page Module-relative page for which a URL should
      *  be created (if specified)
      *
      * @param params Map of parameters to be dynamically included (if any)
@@ -388,7 +388,7 @@ public class RequestUtils {
                 (messages.getMessage("computeURL.specifier"));
         }
 
-        // Look up the application configuration for this request
+        // Look up the application module configuration for this request
         ApplicationConfig config = (ApplicationConfig)
             pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
         if (config == null) { // Backwards compatibility hack
@@ -528,7 +528,7 @@ public class RequestUtils {
      *
      * @param request The servlet request we are processing
      * @param mapping The action mapping for this request
-     * @param appConfig The application configuration for this sub-application
+     * @param appConfig The application configuration for this module
      */
     public static ActionForm createActionForm(HttpServletRequest request,
                                               ActionMapping mapping,
@@ -738,7 +738,7 @@ public class RequestUtils {
 
     /**
      * Look up and return current user locale, based on the specified parameters.
-     * 
+     *
      * @param pageContext The PageContext associated with this request
      * @param locale Name of the session attribute for our user's Locale
      */
@@ -1142,8 +1142,8 @@ public class RequestUtils {
 
     /**
      * Return the context-relative URL that corresponds to the specified
-     * {@link ActionConfig}, relative to the sub-application associated
-     * with the current subapp's {@link ApplicationConfig}.
+     * {@link ActionConfig}, relative to the application module associated
+     * with the current modules's {@link ApplicationConfig}.
      *
      * @param request The servlet request we are processing
      * @param action ActionConfig to be evaluated
@@ -1175,8 +1175,8 @@ public class RequestUtils {
 
     /**
      * Return the context-relative URL that corresponds to the specified
-     * {@link ForwardConfig}, relative to the sub-application associated
-     * with the current subapp's {@link ApplicationConfig}.
+     * {@link ForwardConfig}, relative to the module associated
+     * with the current {@link ApplicationConfig}.
      *
      * @param request The servlet request we are processing
      * @param forward ForwardConfig to be evaluated
@@ -1248,12 +1248,12 @@ public class RequestUtils {
     /**
      * Return the context-relative URL that corresponds to the specified
      * <code>page</code> attribute value, calculated based on the
-     * <code>pagePattern</code> property of the current subapp's
+     * <code>pagePattern</code> property of the current module's
      * {@link ApplicationConfig}.
      *
      * @param request The servlet request we are processing
-     * @param page The application-relative URL to be substituted in
-     *  to the <code>pagePattern</code> pattern for the current subapp
+     * @param page The module-relative URL to be substituted in
+     *  to the <code>pagePattern</code> pattern for the current module.
      *
      * @since Struts 1.1b2
      */
@@ -1376,10 +1376,10 @@ public class RequestUtils {
 
 
     /**
-     * Select the sub-application to which the specified request belongs, and
+     * Select the application module to which the specified request belongs, and
      * add corresponding request attributes to this request.
      *
-     * @param prefix The sub-application prefix of the desired sub-application
+     * @param prefix The module prefix of the desired application module
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
      */
@@ -1387,7 +1387,7 @@ public class RequestUtils {
                                          HttpServletRequest request,
                                          ServletContext context) {
 
-        // Expose the resources for this sub-application
+        // Expose the resources for this application module
         ApplicationConfig config = (ApplicationConfig)
             context.getAttribute(Action.APPLICATION_KEY + prefix);
         if (config != null) {
@@ -1407,7 +1407,7 @@ public class RequestUtils {
 
 
     /**
-     * Select the sub-application to which the specified request belongs, and
+     * Select the module to which the specified request belongs, and
      * add corresponding request attributes to this request.
      *
      * @param request The servlet request we are processing
@@ -1416,14 +1416,14 @@ public class RequestUtils {
     public static void selectApplication(HttpServletRequest request,
                                          ServletContext context) {
 
-        // Acquire the path used to compute the sub-application
+        // Acquire the path used to compute the module
         String matchPath = (String)
             request.getAttribute(RequestProcessor.INCLUDE_SERVLET_PATH);
         if (matchPath == null) {
             matchPath = request.getServletPath();
         }
 
-        // Match against the list of sub-application prefixes
+        // Match against the list of module prefixes
         String prefix = "";
         String prefixes[] = getApplicationPrefixes(context);
         for (int i = 0; i < prefixes.length; i++) {
@@ -1433,16 +1433,16 @@ public class RequestUtils {
             }
         }
 
-        // Expose the resources for this sub-application
+        // Expose the resources for this module
         selectApplication(prefix, request, context);
 
     }
 
 
     /**
-     * Return the list of sub-application prefixes that are defined for
+     * Return the list of module prefixes that are defined for
      * this web application, creating it if necessary.  <strong>NOTE</strong> -
-     * the "" prefix for the default application is not included in this list.
+     * the "" prefix for the default module is not included in this list.
      *
      * @param context The ServletContext for this web application
      */

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.23 2002/06/25 00:13:05 craigmcc Exp $
- * $Revision: 1.23 $
- * $Date: 2002/06/25 00:13:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.24 2002/07/09 23:58:52 husted Exp $
+ * $Revision: 1.24 $
+ * $Date: 2002/07/09 23:58:52 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.23 $ $Date: 2002/06/25 00:13:05 $
+ * @version $Revision: 1.24 $ $Date: 2002/07/09 23:58:52 $
  */
 
 public class FormTag extends TagSupport {
@@ -104,7 +104,7 @@ public class FormTag extends TagSupport {
 
 
     /**
-     * The application configuration for our sub-application.
+     * The application configuration for our module.
      */
     protected ApplicationConfig appConfig = null;
 
@@ -229,7 +229,7 @@ public class FormTag extends TagSupport {
      */
     public String getAction() {
 
-	return (this.action);
+    return (this.action);
 
     }
 
@@ -241,7 +241,7 @@ public class FormTag extends TagSupport {
      */
     public void setAction(String action) {
 
-	this.action = action;
+    this.action = action;
 
     }
 
@@ -250,7 +250,7 @@ public class FormTag extends TagSupport {
      */
     public String getEnctype() {
 
-	return (this.enctype);
+    return (this.enctype);
 
     }
 
@@ -261,7 +261,7 @@ public class FormTag extends TagSupport {
      */
     public void setEnctype(String enctype) {
 
-	this.enctype = enctype;
+    this.enctype = enctype;
 
     }
 
@@ -270,7 +270,7 @@ public class FormTag extends TagSupport {
      */
     public String getFocus() {
 
-	return (this.focus);
+    return (this.focus);
 
     }
 
@@ -282,7 +282,7 @@ public class FormTag extends TagSupport {
      */
     public void setFocus(String focus) {
 
-	this.focus = focus;
+    this.focus = focus;
 
     }
 
@@ -292,7 +292,7 @@ public class FormTag extends TagSupport {
      */
     public String getMethod() {
 
-	return (this.method);
+    return (this.method);
 
     }
 
@@ -304,7 +304,7 @@ public class FormTag extends TagSupport {
      */
     public void setMethod(String method) {
 
-	this.method = method;
+    this.method = method;
 
     }
 
@@ -314,7 +314,7 @@ public class FormTag extends TagSupport {
      */
     public String getName() {
 
-	return (this.name);
+    return (this.name);
 
     }
 
@@ -326,7 +326,7 @@ public class FormTag extends TagSupport {
      */
     public void setName(String name) {
 
-	this.name = name;
+    this.name = name;
 
     }
 
@@ -336,7 +336,7 @@ public class FormTag extends TagSupport {
      */
     public String getOnreset() {
 
-	return (this.onreset);
+    return (this.onreset);
 
     }
 
@@ -348,7 +348,7 @@ public class FormTag extends TagSupport {
      */
     public void setOnreset(String onReset) {
 
-	this.onreset = onReset;
+    this.onreset = onReset;
 
     }
 
@@ -358,7 +358,7 @@ public class FormTag extends TagSupport {
      */
     public String getOnsubmit() {
 
-	return (this.onsubmit);
+    return (this.onsubmit);
 
     }
 
@@ -370,7 +370,7 @@ public class FormTag extends TagSupport {
      */
     public void setOnsubmit(String onSubmit) {
 
-	this.onsubmit = onSubmit;
+    this.onsubmit = onSubmit;
 
     }
 
@@ -380,7 +380,7 @@ public class FormTag extends TagSupport {
      */
     public String getScope() {
 
-	return (this.scope);
+    return (this.scope);
 
     }
 
@@ -392,7 +392,7 @@ public class FormTag extends TagSupport {
      */
     public void setScope(String scope) {
 
-	this.scope = scope;
+    this.scope = scope;
 
     }
 
@@ -402,7 +402,7 @@ public class FormTag extends TagSupport {
      */
     public String getStyle() {
 
-	return (this.style);
+    return (this.style);
 
     }
 
@@ -414,7 +414,7 @@ public class FormTag extends TagSupport {
      */
     public void setStyle(String style) {
 
-	this.style = style;
+    this.style = style;
 
     }
 
@@ -424,7 +424,7 @@ public class FormTag extends TagSupport {
      */
     public String getStyleClass() {
 
-	return (this.styleClass);
+    return (this.styleClass);
 
     }
 
@@ -436,7 +436,7 @@ public class FormTag extends TagSupport {
      */
     public void setStyleClass(String styleClass) {
 
-	this.styleClass = styleClass;
+    this.styleClass = styleClass;
 
     }
 
@@ -461,7 +461,7 @@ public class FormTag extends TagSupport {
         this.styleId = styleId;
 
     }
-    
+
 
 
     /**
@@ -469,7 +469,7 @@ public class FormTag extends TagSupport {
      */
     public String getTarget() {
 
-	return (this.target);
+    return (this.target);
 
     }
 
@@ -481,7 +481,7 @@ public class FormTag extends TagSupport {
      */
     public void setTarget(String target) {
 
-	this.target = target;
+    this.target = target;
 
     }
 
@@ -491,7 +491,7 @@ public class FormTag extends TagSupport {
      */
     public String getType() {
 
-	return (this.type);
+    return (this.type);
 
     }
 
@@ -503,7 +503,7 @@ public class FormTag extends TagSupport {
      */
     public void setType(String type) {
 
-	this.type = type;
+    this.type = type;
 
     }
 
@@ -527,15 +527,15 @@ public class FormTag extends TagSupport {
         // Look up the form bean name, scope, and type if necessary
         lookup();
 
-	// Create an appropriate "form" element based on our parameters
-	HttpServletResponse response =
-	  (HttpServletResponse) pageContext.getResponse();
-	StringBuffer results = new StringBuffer("<form");
-	results.append(" name=\"");
-	results.append(name);
-	results.append("\"");
-	results.append(" method=\"");
-	results.append(method);
+    // Create an appropriate "form" element based on our parameters
+    HttpServletResponse response =
+      (HttpServletResponse) pageContext.getResponse();
+    StringBuffer results = new StringBuffer("<form");
+    results.append(" name=\"");
+    results.append(name);
+    results.append("\"");
+    results.append(" method=\"");
+    results.append(method);
         results.append("\" action=\"");
         results.append(response.encodeURL(getActionMappingURL()));
         results.append("\"");
@@ -544,21 +544,21 @@ public class FormTag extends TagSupport {
             results.append(styleClass);
             results.append("\"");
         }
-	if (enctype != null) {
-	    results.append(" enctype=\"");
-	    results.append(enctype);
-	    results.append("\"");
-	}
-	if (onreset != null) {
-	    results.append(" onreset=\"");
-	    results.append(onreset);
-	    results.append("\"");
+    if (enctype != null) {
+        results.append(" enctype=\"");
+        results.append(enctype);
+        results.append("\"");
+    }
+    if (onreset != null) {
+        results.append(" onreset=\"");
+        results.append(onreset);
+        results.append("\"");
         }
         if (onsubmit != null) {
-	    results.append(" onsubmit=\"");
-	    results.append(onsubmit);
-	    results.append("\"");
-	}
+        results.append(" onsubmit=\"");
+        results.append(onsubmit);
+        results.append("\"");
+    }
         if (style != null) {
             results.append(" style=\"");
             results.append(style);
@@ -569,12 +569,12 @@ public class FormTag extends TagSupport {
             results.append(styleId);
             results.append("\"");
         }
-	if (target != null) {
-	    results.append(" target=\"");
-	    results.append(target);
-	    results.append("\"");
-	}
-	results.append(">");
+    if (target != null) {
+        results.append(" target=\"");
+        results.append(target);
+        results.append("\"");
+    }
+    results.append(">");
 
         // Add a transaction token (if present in our session)
         HttpSession session = pageContext.getSession();
@@ -590,19 +590,19 @@ public class FormTag extends TagSupport {
             }
         }
 
-	// Print this field to our output writer
+    // Print this field to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
-	// Store this tag itself as a page attribute
-	pageContext.setAttribute(Constants.FORM_KEY, this,
+    // Store this tag itself as a page attribute
+    pageContext.setAttribute(Constants.FORM_KEY, this,
                                  PageContext.REQUEST_SCOPE);
-        
-	// Locate or create the bean associated with our form
-	int scope = PageContext.SESSION_SCOPE;
-	if ("request".equals(this.scope))
-	    scope = PageContext.REQUEST_SCOPE;
-	Object bean = pageContext.getAttribute(name, scope);
-	if (bean == null) {
+
+    // Locate or create the bean associated with our form
+    int scope = PageContext.SESSION_SCOPE;
+    if ("request".equals(this.scope))
+        scope = PageContext.REQUEST_SCOPE;
+    Object bean = pageContext.getAttribute(name, scope);
+    if (bean == null) {
             bean = RequestUtils.createActionForm
                 ((HttpServletRequest) pageContext.getRequest(),
                  mapping, appConfig, servlet);
@@ -616,11 +616,11 @@ public class FormTag extends TagSupport {
             }
             pageContext.setAttribute(name, bean, scope);
         }
-	pageContext.setAttribute(Constants.BEAN_KEY, bean,
+    pageContext.setAttribute(Constants.BEAN_KEY, bean,
                                  PageContext.REQUEST_SCOPE);
 
-	// Continue processing this page
-	return (EVAL_BODY_INCLUDE);
+    // Continue processing this page
+    return (EVAL_BODY_INCLUDE);
 
     }
 
@@ -632,17 +632,17 @@ public class FormTag extends TagSupport {
      */
     public int doEndTag() throws JspException {
 
-	// Remove the page scope attributes we created
-	pageContext.removeAttribute(Constants.BEAN_KEY,
+    // Remove the page scope attributes we created
+    pageContext.removeAttribute(Constants.BEAN_KEY,
                                     PageContext.REQUEST_SCOPE);
-	pageContext.removeAttribute(Constants.FORM_KEY,
+    pageContext.removeAttribute(Constants.FORM_KEY,
                                     PageContext.REQUEST_SCOPE);
 
-	// Render a tag representing the end of our current form
-	StringBuffer results = new StringBuffer("</form>");
+    // Render a tag representing the end of our current form
+    StringBuffer results = new StringBuffer("</form>");
 
         // Render JavaScript to set the input focus if required
-	if (focus != null) {
+    if (focus != null) {
             String tempFocus = focus;
             StringBuffer refocus = new StringBuffer("[");
             if (tempFocus.indexOf("[") > 0) {
@@ -652,10 +652,10 @@ public class FormTag extends TagSupport {
                     refocus.append(st.nextToken());
                 }
             }
-	    results.append("\r\n");
-	    results.append("<script language=\"JavaScript\"");
+        results.append("\r\n");
+        results.append("<script language=\"JavaScript\"");
             results.append(" type=\"text/javascript\">\r\n");
-	    results.append("  <!--\r\n");
+        results.append("  <!--\r\n");
             results.append(" if (document.forms[\"");
             results.append(name);
             results.append("\"].elements[\"");
@@ -665,27 +665,27 @@ public class FormTag extends TagSupport {
                 results.append(refocus.toString());
             }
             results.append(".type != \"hidden\") \r\n");
-	    results.append("    document.forms[\"");
-	    results.append(name);
-	    results.append("\"].elements[\"");
+        results.append("    document.forms[\"");
+        results.append(name);
+        results.append("\"].elements[\"");
             results.append(tempFocus);
             results.append("\"]");
             if (refocus.length() > 1) {
                 results.append(refocus.toString());
             }
-	    results.append(".focus()\r\n");
-	    results.append("  // -->\r\n");
-	    results.append("</script>\r\n");
-	}
+        results.append(".focus()\r\n");
+        results.append("  // -->\r\n");
+        results.append("</script>\r\n");
+    }
 
-	// Print this value to our output writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.print(results.toString());
-	} catch (IOException e) {
-	    throw new JspException
-	        (messages.getMessage("common.io", e.toString()));
-	}
+    // Print this value to our output writer
+    JspWriter writer = pageContext.getOut();
+    try {
+        writer.print(results.toString());
+    } catch (IOException e) {
+        throw new JspException
+            (messages.getMessage("common.io", e.toString()));
+    }
 
         // Restore original property values used to invoke this tag. Needed
         // for tag reuse to work correctly.
@@ -693,8 +693,8 @@ public class FormTag extends TagSupport {
         scope = savedScope;
         type = savedType;
 
-	// Continue processing this page
-	return (EVAL_PAGE);
+    // Continue processing this page
+    return (EVAL_PAGE);
 
     }
 
@@ -704,23 +704,23 @@ public class FormTag extends TagSupport {
      */
     public void release() {
 
-	super.release();
-	action = null;
+    super.release();
+    action = null;
         appConfig = null;
-	enctype = null;
-	focus = null;
+    enctype = null;
+    focus = null;
         mapping = null;
-	method = "POST";
-	name = null;
-	onreset = null;
-	onsubmit = null;
-	scope = "session";
+    method = "POST";
+    name = null;
+    onreset = null;
+    onsubmit = null;
+    scope = "session";
         servlet = null;
-	style = null;
-	styleClass = null;
+    style = null;
+    styleClass = null;
         styleId = null;
-	target = null;
-	type = null;
+    target = null;
+    type = null;
 
     }
 
@@ -770,7 +770,7 @@ public class FormTag extends TagSupport {
         if (config != null) {
             value.append(config.getPrefix());
         }
-        
+
         // Use our servlet mapping, if one is specified
         String servletMapping = (String)
             pageContext.getAttribute(Action.SERVLET_KEY,
@@ -820,7 +820,7 @@ public class FormTag extends TagSupport {
      */
     protected void lookup() throws JspException {
 
-        // Look up the application configuration information we need
+        // Look up the application module configuration information we need
         appConfig = (ApplicationConfig)
             pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
         if (appConfig == null) { // Backwards compatibility hack

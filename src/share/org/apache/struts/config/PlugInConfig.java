@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/PlugInConfig.java,v 1.1 2002/03/23 01:14:04 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/03/23 01:14:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/PlugInConfig.java,v 1.2 2002/07/09 23:57:37 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/09 23:57:37 $
  *
  * ====================================================================
  *
@@ -70,11 +70,11 @@ import java.util.Map;
 
 /**
  * <p>A JavaBean representing the configuration information of a
- * <code>&lt;plug-in&gt;</code> element in a Struts application
+ * <code>&lt;plug-in&gt;</code> element in a Struts
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/03/23 01:14:04 $
+ * @version $Revision: 1.2 $ $Date: 2002/07/09 23:57:37 $
  * @since Struts 1.1
  */
 

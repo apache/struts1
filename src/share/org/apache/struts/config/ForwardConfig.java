@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.6 2002/07/07 23:45:21 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/07/07 23:45:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.7 2002/07/09 23:57:37 husted Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/07/09 23:57:37 $
  *
  * ====================================================================
  *
@@ -68,11 +68,11 @@ import java.io.Serializable;
 
 /**
  * <p>A JavaBean representing the configuration information of a
- * <code>&lt;forward&gt;</code> element from a Struts application
+ * <code>&lt;forward&gt;</code> element from a Struts
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/07/07 23:45:21 $
+ * @version $Revision: 1.7 $ $Date: 2002/07/09 23:57:37 $
  * @since Struts 1.1
  */
 
@@ -144,7 +144,7 @@ public class ForwardConfig implements Serializable {
     /**
      * Should the value of the <code>path</code> property be considered
      * context-relative if it starts with a slash (and therefore not
-     * prefixed with the application prefix?
+     * prefixed with the module prefix?
      */
     protected boolean contextRelative = false;
 
@@ -184,16 +184,16 @@ public class ForwardConfig implements Serializable {
      * interpreted according to the following rules:</p>
      * <li>If <code>contextRelative</code> property is <code>true</code>, the
      *     path is considered to be context-relative within the current web
-     *     application (even if we are in a sub-application).  It will be
+     *     application (even if we are in a named module).  It will be
      *     prefixed by the context path to create a server-relative URL.</li>
      * <li>If the <code>contextRelative</code> property is false, the path is
-     *     considered to be the application-relative portion of the URL.
+     *     considered to be the module-relative portion of the URL.
      *     It will be used as the replacement for the <code>$F</code>
      *     marker in the <code>forwardPattern</code> property defined on the
-     *     {@link ControllerConfig} element for our current sub-application.
+     *     {@link ControllerConfig} element for our current module.
      *     For the default <code>forwardPattern</code> value of
      *     <code>$C$A$P</code>, the resulting server-relative URL will be
-     *     the concatenation of the context path, the sub-application prefix,
+     *     the concatenation of the context path, the module prefix,
      *     and the <code>path</code> from this <code>ForwardConfig</code>.</li>
      * </ul>
      */

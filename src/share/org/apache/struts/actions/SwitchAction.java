@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.4 2002/06/30 03:38:30 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/06/30 03:38:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.5 2002/07/09 23:57:16 husted Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/07/09 23:57:16 $
  *
  * ====================================================================
  *
@@ -78,24 +78,24 @@ import org.apache.struts.util.RequestUtils;
 
 
 /**
- * <p>A standard <strong>Action</strong> that switches to a new sub-application
- * and then forards control to a URI (specified in a number of possible ways)
- * within the new sub-application.</p>
+ * <p>A standard <strong>Action</strong> that switches to a new module
+ * and then forwards control to a URI (specified in a number of possible ways)
+ * within the new module.</p>
  *
  * <p>Valid request parameters for this Action are:</p>
  * <ul>
- * <li><strong>page</strong> - Application-relative URI (beginning with "/")
+ * <li><strong>page</strong> - Module-relative URI (beginning with "/")
  *     to which control should be forwarded after switching.</li>
- * <li><strong>prefix</strong> - The application prefix (beginning with "/")
- *     of the sub-application to which control should be switched.  Use a
- *     zero-length string for the default sub-application.  The
+ * <li><strong>prefix</strong> - The module prefix (beginning with "/")
+ *     of the application module to which control should be switched.  Use a
+ *     zero-length string for the default module.  The
  *     appropriate <code>ApplicationConfig</code> object will be stored as a
  *     request attribute, so any subsequent logic will assume the new
- *     sub-application.</li>
+ *     application module.</li>
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/06/30 03:38:30 $
+ * @version $Revision: 1.5 $ $Date: 2002/07/09 23:57:16 $
  * @since Struts 1.1
  */
 
@@ -152,7 +152,7 @@ public class SwitchAction extends Action {
             return (null);
         }
 
-        // Switch to the requested sub-application
+        // Switch to the requested application module
         RequestUtils.selectApplication(prefix, request,
                                        getServlet().getServletContext());
         if (request.getAttribute(Action.APPLICATION_KEY) == null) {
@@ -163,7 +163,7 @@ public class SwitchAction extends Action {
             return (null);
         }
 
-        // Forward control to the specified application-relative URI
+        // Forward control to the specified module-relative URI
         return (new ActionForward(page));
 
     }

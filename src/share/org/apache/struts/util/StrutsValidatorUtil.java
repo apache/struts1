@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.3 2002/06/25 18:27:52 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2002/06/25 18:27:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.4 2002/07/10 00:00:19 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/07/10 00:00:19 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * from different scopes of the application.</p>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.3 $ $Date: 2002/06/25 18:27:52 $
+ * @version $Revision: 1.4 $ $Date: 2002/07/10 00:00:19 $
  * @since Struts 1.1
 */
 public class StrutsValidatorUtil  {
@@ -106,25 +106,25 @@ public class StrutsValidatorUtil  {
    private static Locale defaultLocale = Locale.getDefault();
 
    /**
-    * Retrieve <code>ValidatorResources</code> for the application.
+    * Retrieve <code>ValidatorResources</code> for the module.
    */
    public static ValidatorResources getValidatorResources(ServletContext application) {
       return (ValidatorResources)application.getAttribute(ValidatorPlugIn.VALIDATOR_KEY);
    }
 
    /**
-    * Retrieve <code>MessageResources</code> for the application.
+    * Retrieve <code>MessageResources</code> for the application module.
     *
     * @deprecated This method can only return the resources for the default
-    *  sub-application.  Use getMessageResources(HttpServletRequest) to get the
-    *  resources for the current sub-application.
+    *  module.  Use getMessageResources(HttpServletRequest) to get the
+    *  resources for the current application module.
    */
    public static MessageResources getMessageResources(ServletContext application) {
       return (MessageResources)application.getAttribute(Action.MESSAGES_KEY);
    }
 
    /**
-    * Retrieve <code>MessageResources</code> for the application.
+    * Retrieve <code>MessageResources</code> for the application module.
    */
    public static MessageResources getMessageResources(HttpServletRequest request) {
       return (MessageResources)request.getAttribute(Action.MESSAGES_KEY);
@@ -255,7 +255,7 @@ public class StrutsValidatorUtil  {
     * Writes a message based on the <code>Writer</code> defined in <code>MessageResources</code>.
     *
     * @deprecated This method can only return the resources for the default
-    *  sub-application.  Use Commons Logging package instead.
+    *  module.  Use Commons Logging package instead.
    */
    public static void log(ServletContext application, String message) {
       MessageResources messages = getMessageResources(application);
@@ -269,7 +269,7 @@ public class StrutsValidatorUtil  {
     * Writes a message based on the <code>Writer</code> defined in <code>MessageResources</code>.
     *
     * @deprecated This method can only return the resources for the default
-    *  sub-application.  Use Commons Logging package instead.
+    *  module.  Use Commons Logging package instead.
    */
    public static void log(ServletContext application, String message, Throwable t) {
       MessageResources messages = getMessageResources(application);

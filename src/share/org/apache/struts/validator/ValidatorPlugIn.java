@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.5 2002/06/30 03:28:47 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/06/30 03:28:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.6 2002/07/10 00:00:27 husted Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/07/10 00:00:27 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.config.ApplicationConfig;
  * configuration in the struts-config.xml.</p>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.5 $ $Date: 2002/06/30 03:28:47 $
+ * @version $Revision: 1.6 $ $Date: 2002/07/10 00:00:27 $
  * @since Struts 1.1
 */
 public class ValidatorPlugIn implements PlugIn {
@@ -99,7 +99,7 @@ public class ValidatorPlugIn implements PlugIn {
     private static Log log = LogFactory.getLog(ValidatorPlugIn.class);
 
     /**
-     * The application configuration for our owning sub-application.
+     * The application configuration for our owning module.
      */
     private ApplicationConfig config = null;
 
@@ -151,7 +151,7 @@ public class ValidatorPlugIn implements PlugIn {
      * Initialize and load our resources.
      *
      * @param servlet The ActionServlet for our application
-     * @param config The ApplicationConfig for our owning sub-application
+     * @param config The ApplicationConfig for our owning module
      *
      * @exception ServletException if we cannot configure ourselves correctly
     */
@@ -191,7 +191,7 @@ public class ValidatorPlugIn implements PlugIn {
     }
 
     /**
-     * Initialize the validator resources for this application.
+     * Initialize the validator resources for this module.
      *
      * @exception IOException if an input/output error is encountered
      * @exception ServletException if we cannot initialize these resources

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.14 2002/07/07 23:15:36 martinc Exp $
- * $Revision: 1.14 $
- * $Date: 2002/07/07 23:15:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.15 2002/07/09 23:57:05 husted Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/07/09 23:57:05 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.14 $ $Date: 2002/07/07 23:15:36 $
+ * @version $Revision: 1.15 $ $Date: 2002/07/09 23:57:05 $
  * @since Struts 1.1
  */
 
@@ -719,7 +719,7 @@ public class RequestProcessor {
             return (path);
         }
 
-        // For extension matching, strip the application prefix and extension
+        // For extension matching, strip the module prefix and extension
         path = (String) request.getAttribute(INCLUDE_SERVLET_PATH);
         if (path == null) {
             path = request.getServletPath();

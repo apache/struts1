@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.16 2002/01/22 01:18:07 craigmcc Exp $
- * $Revision: 1.16 $
- * $Date: 2002/01/22 01:18:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.17 2002/07/09 23:58:52 husted Exp $
+ * $Revision: 1.17 $
+ * $Date: 2002/07/09 23:58:52 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -194,11 +194,11 @@ public class ImgTag extends BaseHandlerTag {
     protected String lowsrc = null;
 
     public String getLowsrc() {
-	return (this.lowsrc);
+    return (this.lowsrc);
     }
 
     public void setLowsrc(String lowsrc) {
-	this.lowsrc = lowsrc;
+    this.lowsrc = lowsrc;
     }
 
 
@@ -215,16 +215,16 @@ public class ImgTag extends BaseHandlerTag {
     protected String name = null;
 
     public String getName() {
-	return (this.name);
+    return (this.name);
     }
 
     public void setName(String name) {
-	this.name = name;
+    this.name = name;
     }
 
 
     /**
-     * The application-relative path, starting with a slash character, of the
+     * The module-relative path, starting with a slash character, of the
      * image to be displayed by this rendered tag.
      */
     protected String page = null;
@@ -317,11 +317,11 @@ public class ImgTag extends BaseHandlerTag {
     protected String property = null;
 
     public String getProperty() {
-	return (this.property);
+    return (this.property);
     }
 
     public void setProperty(String property) {
-	this.property = property;
+    this.property = property;
     }
 
 
@@ -345,11 +345,11 @@ public class ImgTag extends BaseHandlerTag {
     protected String src = null;
 
     public String getSrc() {
-	return (this.src);
+    return (this.src);
     }
 
     public void setSrc(String src) {
-	this.src = src;
+    this.src = src;
     }
 
 
@@ -420,8 +420,8 @@ public class ImgTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-	// Evaluate the body of this tag
-	return (EVAL_BODY_TAG);
+    // Evaluate the body of this tag
+    return (EVAL_BODY_TAG);
 
     }
 
@@ -433,12 +433,12 @@ public class ImgTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-	// Generate the name definition or image element
+    // Generate the name definition or image element
         HttpServletRequest request =
-	  (HttpServletRequest) pageContext.getRequest();
-	HttpServletResponse response =
-	  (HttpServletResponse) pageContext.getResponse();
-	StringBuffer results = new StringBuffer("<img");
+      (HttpServletRequest) pageContext.getRequest();
+    HttpServletResponse response =
+      (HttpServletResponse) pageContext.getResponse();
+    StringBuffer results = new StringBuffer("<img");
         String tmp = src();
         String srcurl = url(tmp);
         if (srcurl != null) {
@@ -499,13 +499,13 @@ public class ImgTag extends BaseHandlerTag {
         }
         results.append(prepareStyles());
         results.append(prepareEventHandlers());
-	results.append(">");
+    results.append(">");
 
-	// Print this element to our output writer
+    // Print this element to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
         // Evaluate the reaminder of this page
-	return (EVAL_PAGE);
+    return (EVAL_PAGE);
 
     }
 
@@ -515,23 +515,23 @@ public class ImgTag extends BaseHandlerTag {
      */
     public void release() {
 
-	super.release();
+    super.release();
         border = null;
         height = null;
         hspace = null;
         imageName = null;
         ismap = null;
         lowsrc = null;
-	name = null;
+    name = null;
         page = null;
         pageKey = null;
         paramId = null;
         paramName = null;
         paramProperty = null;
         paramScope = null;
-	property = null;
+    property = null;
         scope = null;
-	src = null;
+    src = null;
         srcKey = null;
         usemap = null;
         vspace = null;
@@ -634,7 +634,7 @@ public class ImgTag extends BaseHandlerTag {
             return (url);
 
         // Start with an unadorned URL as specified
-	StringBuffer  src = new StringBuffer(url);
+    StringBuffer  src = new StringBuffer(url);
 
 
         // Append a single-parameter name and value, if requested
@@ -651,34 +651,34 @@ public class ImgTag extends BaseHandlerTag {
                 src.append(URLEncoder.encode(value.toString()));
         }
 
-	// Just return the URL if there is no bean to look up
-	if ((property != null) && (name == null)) {
-	    JspException e = new JspException
-		(messages.getMessage("getter.name"));
+    // Just return the URL if there is no bean to look up
+    if ((property != null) && (name == null)) {
+        JspException e = new JspException
+        (messages.getMessage("getter.name"));
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-	if (name == null)
-	    return (src.toString());
+    if (name == null)
+        return (src.toString());
 
-	// Look up the map we will be using
+    // Look up the map we will be using
         Object mapObject = RequestUtils.lookup(pageContext, name,
                                                property, scope);
-	Map map = null;
+    Map map = null;
         try {
             map = (Map) mapObject;
         } catch (ClassCastException e) {
             RequestUtils.saveException(pageContext, e);
             throw new JspException
                 (messages.getMessage("imgTag.type"));
-	}
+    }
 
-	// Append the required query parameters
-	boolean question = (src.toString().indexOf("?") >= 0);
-	Iterator keys = map.keySet().iterator();
+    // Append the required query parameters
+    boolean question = (src.toString().indexOf("?") >= 0);
+    Iterator keys = map.keySet().iterator();
         while (keys.hasNext()) {
-	    String key = (String) keys.next();
-	    Object value = map.get(key);
+        String key = (String) keys.next();
+        Object value = map.get(key);
             if (value == null) {
                 if (question)
                     src.append('&');
@@ -689,34 +689,34 @@ public class ImgTag extends BaseHandlerTag {
                 src.append(key);
                 src.append('=');
                 // Interpret null as "no value specified"
-	    } else if (value instanceof String[]) {
-		String values[] = (String[]) value;
-		for (int i = 0; i < values.length; i++) {
-		    if (question)
-			src.append('&');
-		    else {
-			src.append('?');
-			question = true;
-		    }
-		    src.append(key);
-		    src.append('=');
-		    src.append(URLEncoder.encode(values[i]));
-		}
-	    } else {
-		if (question)
-		    src.append('&');
-		else {
-		    src.append('?');
-		    question = true;
-		}
-		src.append(key);
-		src.append('=');
-		src.append(URLEncoder.encode(value.toString()));
-	    }
-	}
+        } else if (value instanceof String[]) {
+        String values[] = (String[]) value;
+        for (int i = 0; i < values.length; i++) {
+            if (question)
+            src.append('&');
+            else {
+            src.append('?');
+            question = true;
+            }
+            src.append(key);
+            src.append('=');
+            src.append(URLEncoder.encode(values[i]));
+        }
+        } else {
+        if (question)
+            src.append('&');
+        else {
+            src.append('?');
+            question = true;
+        }
+        src.append(key);
+        src.append('=');
+        src.append(URLEncoder.encode(value.toString()));
+        }
+    }
 
-	// Return the final result
-	return (src.toString());
+    // Return the final result
+    return (src.toString());
 
     }
 

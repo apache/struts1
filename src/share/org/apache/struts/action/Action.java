@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.42 2002/07/01 04:10:38 martinc Exp $
- * $Revision: 1.42 $
- * $Date: 2002/07/01 04:10:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.43 2002/07/09 23:57:05 husted Exp $
+ * $Revision: 1.43 $
+ * $Date: 2002/07/09 23:57:05 $
  *
  * ====================================================================
  *
@@ -109,7 +109,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.42 $ $Date: 2002/07/01 04:10:38 $
+ * @version $Revision: 1.43 $ $Date: 2002/07/09 23:57:05 $
  */
 
 public class Action {
@@ -131,11 +131,11 @@ public class Action {
     /**
      * <p>The base of the context attributes key under which our
      * <code>ApplicationConfig</code> data structure will be stored.  This
-     * will be suffixed with the actual application prefix (including the
+     * will be suffixed with the actual module prefix (including the
      * leading "/" character) to form the actual attributes key.</p>
      *
      * <p>For each request processed by the controller servlet, the
-     * <code>ApplicationConfig</code> object for the application selected by
+     * <code>ApplicationConfig</code> object for the module selected by
      * the request URI currently being processed will also be exposed under
      * this key as a request attribute.</p>
      *
@@ -149,7 +149,7 @@ public class Action {
      * The context attributes key under which our <strong>default</strong>
      * configured data source (which must implement
      * <code>javax.sql.DataSource</code>) is stored,
-     * if one is configured for this application.
+     * if one is configured for this module.
      */
     public static final String DATA_SOURCE_KEY =
       "org.apache.struts.action.DATA_SOURCE";
@@ -243,12 +243,12 @@ public class Action {
 
     /**
      * <p>The base of the context attributes key under which our
-     * application <code>MessageResources</code> will be stored.  This
-     * will be suffixed with the actual application prefix (including the
+     * module <code>MessageResources</code> will be stored.  This
+     * will be suffixed with the actual module prefix (including the
      * leading "/" character) to form the actual resources key.</p>
      *
      * <p>For each request processed by the controller servlet, the
-     * <code>MessageResources</code> object for the application selected by
+     * <code>MessageResources</code> object for the module selected by
      * the request URI currently being processed will also be exposed under
      * this key as a request attribute.</p>
      */
@@ -266,7 +266,7 @@ public class Action {
     /**
      * <p>The base of the context attributes key under which an array of
      * <code>PlugIn</code> instances will be stored.  This
-     * will be suffixed with the actual application prefix (including the
+     * will be suffixed with the actual module prefix (including the
      * leading "/" character) to form the actual attributes key.</p>
      * @since Struts 1.1
      */
@@ -277,7 +277,7 @@ public class Action {
     /**
      * <p>The base of the context attributes key under which our
      * <code>RequestProcessor</code> instance will be stored.  This
-     * will be suffixed with the actual application prefix (including the
+     * will be suffixed with the actual module prefix (including the
      * leading "/" character) to form the actual attributes key.</p>
      * @since Struts 1.1
      */
@@ -512,11 +512,11 @@ public class Action {
 
 
     /**
-     * Return the message resources for the default sub-application.
+     * Return the message resources for the default application module.
      *
      * @deprecated This method can only return the resources for the default
-     *  sub-application.  Use getResources(HttpServletRequest) to get the
-     *  resources for the current sub-application.
+     *  application module.  Use getResources(HttpServletRequest) to get the
+     *  resources for the current application module.
      */
     protected MessageResources getResources() {
 
@@ -527,7 +527,7 @@ public class Action {
 
 
     /**
-     * Return the message resources for the current sub-application.
+     * Return the message resources for the current application module.
      *
      * @param request The servlet request we are processing
      * @since Struts 1.1

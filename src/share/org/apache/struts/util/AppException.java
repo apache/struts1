@@ -67,7 +67,7 @@ public class AppException extends Exception {
 
 
     /**
-     * Construct an application exception with no replacement values.
+     * Construct an application module exception with no replacement values.
      *
      * @param key Message key for this error message
      */
@@ -77,7 +77,7 @@ public class AppException extends Exception {
     }
 
     /**
-     * Construct an application exception with the specified replacement values.
+     * Construct an application module exception with the specified replacement values.
      *
      * @param key Message key for this error message
      * @param value0 First replacement value
@@ -88,7 +88,7 @@ public class AppException extends Exception {
     }
 
     /**
-     * Construct an application exception with the specified replacement values.
+     * Construct an application module exception with the specified replacement values.
      *
      * @param key Message key for this error message
      * @param value0 First replacement value
@@ -100,7 +100,7 @@ public class AppException extends Exception {
     }
 
     /**
-     * Construct an application exception with the specified replacement values.
+     * Construct an application module exception with the specified replacement values.
      *
      * @param key Message key for this error message
      * @param value0 First replacement value
@@ -113,7 +113,7 @@ public class AppException extends Exception {
     }
 
     /**
-     * Construct an application exception with the specified replacement values.
+     * Construct an application module exception with the specified replacement values.
      *
      * @param key Message key for this error message
      * @param value0 First replacement value

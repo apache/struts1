@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.5 2002/06/29 03:14:19 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/06/29 03:14:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.6 2002/07/09 23:57:37 husted Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/07/09 23:57:37 $
  *
  * ====================================================================
  *
@@ -69,11 +69,11 @@ import java.util.HashMap;
 
 /**
  * <p>A JavaBean representing the configuration information of a
- * <code>&lt;form-bean&gt;</code> element in a Struts application
+ * <code>&lt;form-bean&gt;</code> element in a Struts
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/06/29 03:14:19 $
+ * @version $Revision: 1.6 $ $Date: 2002/07/09 23:57:37 $
  * @since Struts 1.1
  */
 
@@ -163,7 +163,7 @@ public class FormBeanConfig implements Serializable {
 
     /**
      * Add a new <code>FormPropertyConfig</code> instance to the set associated
-     * with this application.
+     * with this module.
      *
      * @param config The new configuration instance to be added
      *
@@ -199,7 +199,7 @@ public class FormBeanConfig implements Serializable {
 
 
     /**
-     * Return the form property configurations for this application.  If there
+     * Return the form property configurations for this module.  If there
      * are none, a zero-length array is returned.
      */
     public FormPropertyConfig[] findFormPropertyConfigs() {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.112 2002/07/09 06:40:03 martinc Exp $
- * $Revision: 1.112 $
- * $Date: 2002/07/09 06:40:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.113 2002/07/09 23:57:05 husted Exp $
+ * $Revision: 1.113 $
+ * $Date: 2002/07/09 23:57:05 $
  *
  * ====================================================================
  *
@@ -179,7 +179,7 @@ import org.apache.struts.util.ServletContextWriter;
  * are listed after the nominal parameters.</p>
  * <ul>
  * <li><strong>config</strong> - Context-relative path to the XML resource
- *     containing the configuration information for the default application.
+ *     containing the configuration information for the default module.
  *     [/WEB-INF/struts-config.xml].</li>
  * <li><strong>config/${module}</strong> - Context-relative path to the XML resource
  *     containing the configuration information for the application module that
@@ -193,7 +193,7 @@ import org.apache.struts.util.ServletContextWriter;
  *     information is logged for this servlet. Accepts values 0 (off) and from
  *     1 (least serious) through 6 (most serious). [0]</li>
  * <li><strong>detail</strong> - The debugging detail level for the Digester
- *     we utilize to process the application configuration files. Accepts
+ *     we utilize to process the application module configuration files. Accepts
  *     values 0 (off) and 1 (least serious) through 6 (most serious). [0]</li>
  * <li><strong>validating</strong> - Should we use a validating XML parser to
  *     process the configuration file (strongly recommended)? [true]</li>
@@ -259,7 +259,7 @@ import org.apache.struts.util.ServletContextWriter;
  *         as the ActionMapping default value).
  *     </ul>
  *     <em>DEPRECATED - Configure this using the "className" attribute of
- *     each &lt;action&gt; element, or globally for a subapp by using the
+ *     each &lt;action&gt; element, or globally for a module by using the
  *     "type" attribute of the &lt;action-mappings&gt; element.</em></li>
  * <li><strong>maxFileSize</strong> - The maximum size (in bytes) of a file
  *     to be accepted as a file upload.  Can be expressed as a number followed
@@ -294,7 +294,7 @@ import org.apache.struts.util.ServletContextWriter;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.112 $ $Date: 2002/07/09 06:40:03 $
+ * @version $Revision: 1.113 $ $Date: 2002/07/09 23:57:05 $
  */
 
 public class ActionServlet
@@ -306,7 +306,7 @@ public class ActionServlet
 
     /**
      * The context-relative path to our configuration resource for the
-     * default sub-application.
+     * default application module.
      */
     protected String config = "/WEB-INF/struts-config.xml";
 
@@ -328,7 +328,7 @@ public class ActionServlet
 
 
     /**
-     * The JDBC data sources that has been configured for this application,
+     * The JDBC data sources that has been configured for this module,
      * if any, keyed by the servlet context attribute under which they are
      * stored.
      */
@@ -442,7 +442,7 @@ public class ActionServlet
         initOther();
         initServlet();
 
-        // Initialize sub-applications as needed
+        // Initialize application modules as needed
         getServletContext().setAttribute(Action.ACTION_SERVLET_KEY, this);
         ApplicationConfig ac = initApplicationConfig("", config);
         initApplicationMessageResources(ac);
@@ -529,7 +529,7 @@ public class ActionServlet
 
 
     /**
-     * Return a JDBC data source associated with this application, if any.
+     * Return a JDBC data source associated with this module, if any.
      *
      * @param key The servlet context attribute key under which this data
      *  source is stored, or <code>null</code> for the default.
@@ -588,7 +588,7 @@ public class ActionServlet
 
     /**
      * Return the ActionMapping for the specified path, for the default
-     * sub-application.
+     * application module.
      *
      * @param path Request path for which a mapping is requested
      *
@@ -629,12 +629,12 @@ public class ActionServlet
 
 
     /**
-     * <p>Return the application resources for the default sub-application,
+     * <p>Return the application resources for the default application module,
      * if any.
      *
      * @deprecated Actions should call Action.getResources(HttpServletRequest)
      *  instead of this method, in order to retrieve the resources for the
-     *  current sub-application
+     *  current application module.
      */
     public MessageResources getResources() {
 
@@ -665,7 +665,7 @@ public class ActionServlet
 
 
     /**
-     * Gracefully terminate use of any sub-applications associated with this
+     * Gracefully terminate use of any application modules associated with this
      * application (if any).
      * @since Struts 1.1
      */
@@ -717,7 +717,7 @@ public class ActionServlet
      * Gracefully terminate use of the data source associated with this
      * application (if any).
      *
-     * @deprecated Will no longer be required with multi-application support
+     * @deprecated Will no longer be required with multi-module support
      */
     protected void destroyDataSources() {
 
@@ -756,7 +756,7 @@ public class ActionServlet
 
     /**
      * Return the application configuration object for the currently selected
-     * sub-application.
+     * application module.
      *
      * @param request The servlet request we are processing
      * @since Struts 1.1
@@ -777,9 +777,9 @@ public class ActionServlet
 
     /**
      * Look up and return the {@link RequestProcessor} responsible for the
-     * specified sub-application, creating a new one if necessary.
+     * specified application module, creating a new one if necessary.
      *
-     * @param appConfig The sub-application configuration for which to
+     * @param appConfig The application module configuration for which to
      *  acquire and return a RequestProcessor.
      *
      * @exception ServletException if we cannot instantiate a RequestProcessor
@@ -811,7 +811,7 @@ public class ActionServlet
     }
     /**
      * <p>Initialize the application configuration information for the
-     * specified sub-application.</p>
+     * specified application module.</p>
      *
      * @param prefix Application prefix for this application
      * @param path Context-relative resource path for this application's
@@ -828,14 +828,14 @@ public class ActionServlet
                 "' configuration from '" + path + "'");
         }
 
-        // Parse the application configuration for this application
+        // Parse the application configuration for this module
         ApplicationConfig config = null;
         InputStream input = null;
         String mapping = null;
         try {
             config = new ApplicationConfig(prefix);
 
-            // Support for application-wide ActionMapping override
+            // Support for module-wide ActionMapping type override
             mapping = getServletConfig().getInitParameter("mapping");
             if (mapping != null) {
                 config.setActionMappingClass(mapping);
@@ -862,7 +862,7 @@ public class ActionServlet
             }
         }
 
-        // Special handling for the default sub-application (for
+        // Special handling for the default application module (for
         // backwards compatibility only, will be removed later)
         if (prefix.length() < 1) {
             defaultControllerConfig(config);
@@ -880,10 +880,10 @@ public class ActionServlet
 
 
     /**
-     * <p>Initialize the application data sources for the specified
-     * sub-application.</p>
+     * <p>Initialize the data sources for the specified application
+     * module.</p>
      *
-     * @param config ApplicationConfig information for this application
+     * @param config ApplicationConfig information for this module
      *
      * @exception ServletException if initialization cannot be performed
      * @since Struts 1.1
@@ -892,7 +892,7 @@ public class ActionServlet
         (ApplicationConfig config) throws ServletException {
 
         if (log.isDebugEnabled()) {
-            log.debug("Initializing application path '" + config.getPrefix() +
+            log.debug("Initializing module path '" + config.getPrefix() +
                 "' data sources");
         }
 
@@ -906,7 +906,7 @@ public class ActionServlet
         dataSources.setFast(false);
         for (int i = 0; i < dscs.length; i++) {
             if (log.isDebugEnabled()) {
-                log.debug("Initializing application path '" + config.getPrefix() +
+                log.debug("Initializing module path '" + config.getPrefix() +
                     "' data source '" + dscs[i].getKey() + "'");
             }
             DataSource ds = null;
@@ -939,9 +939,9 @@ public class ActionServlet
 
 
     /**
-     * <p>Initialize the plug ins for the specified sub-application.</p>
+     * <p>Initialize the plug ins for the specified application module.</p>
      *
-     * @param config ApplicationConfig information for this application
+     * @param config ApplicationConfig information for this module
      *
      * @exception ServletException if initialization cannot be performed
      * @since Struts 1.1
@@ -950,7 +950,7 @@ public class ActionServlet
         (ApplicationConfig config) throws ServletException {
 
         if (log.isDebugEnabled()) {
-            log.debug("Initializing application path '" + config.getPrefix() +
+            log.debug("Initializing module path '" + config.getPrefix() +
                 "' plug ins");
         }
 
@@ -979,9 +979,9 @@ public class ActionServlet
 
     /**
      * <p>Initialize the application MessageResources for the specified
-     * sub-application.</p>
+     * application module.</p>
      *
-     * @param config ApplicationConfig information for this application
+     * @param config ApplicationConfig information for this module
      *
      * @exception ServletException if initialization cannot be performed
      * @since Struts 1.1
@@ -1026,7 +1026,7 @@ public class ActionServlet
 
     /**
      * <p>Create (if needed) and return a new Digester instance that has been
-     * initialized to process Struts application configuraiton files and
+     * initialized to process Struts module configuraiton files and
      * configure a corresponding ApplicationConfig object (which must be
      * pushed on to the evaluation stack before parsing begins).</p>
      *
@@ -1056,7 +1056,7 @@ public class ActionServlet
 
 
     /**
-     * Initialize data sources for the default application.  This method
+     * Initialize data sources for the default module.  This method
      * signature is maintained only for backwards compatibility, and will
      * be removed in a subsequent release.
      *
@@ -1227,11 +1227,11 @@ public class ActionServlet
 
 
     /**
-     * Perform backwards-compatible configuration of the default application's
+     * Perform backwards-compatible configuration of the default module's
      * controller configuration from servlet initialization parameters (as
      * were used in Struts 1.0).
      *
-     * @param config The ApplicationConfig object for the default app
+     * @param config The ApplicationConfig object for the default module
      *
      * @since Struts 1.1
      * @deprecated Will be removed in a release after Struts 1.1.
@@ -1360,11 +1360,11 @@ public class ActionServlet
 
 
     /**
-     * Perform backwards-compatible configuration of the default application's
+     * Perform backwards-compatible configuration of the default module's
      * message resources configuration from servlet initialization parameters
      * (as were used in Struts 1.0).
      *
-     * @param config The ApplicationConfig object for the default app
+     * @param config The ApplicationConfig object for the default module
      *
      * @since Struts 1.1
      * @deprecated Will be removed in a release after Struts 1.1.

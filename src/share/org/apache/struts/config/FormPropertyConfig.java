@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.6 2002/06/30 01:49:21 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/06/30 01:49:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.7 2002/07/09 23:57:37 husted Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/07/09 23:57:37 $
  *
  * ====================================================================
  *
@@ -70,11 +70,11 @@ import org.apache.commons.beanutils.ConvertUtils;
 
 /**
  * <p>A JavaBean representing the configuration information of a
- * <code>&lt;form-property&gt;</code> element in a Struts application
+ * <code>&lt;form-property&gt;</code> element in a Struts
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/06/30 01:49:21 $
+ * @version $Revision: 1.7 $ $Date: 2002/07/09 23:57:37 $
  * @since Struts 1.1
  */
 

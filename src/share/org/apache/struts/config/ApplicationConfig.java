@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.15 2002/06/25 01:30:40 craigmcc Exp $
- * $Revision: 1.15 $
- * $Date: 2002/06/25 01:30:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.16 2002/07/09 23:57:37 husted Exp $
+ * $Revision: 1.16 $
+ * $Date: 2002/07/09 23:57:37 $
  *
  * ====================================================================
  *
@@ -68,12 +68,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
- 
+
 
 
 /**
  * <p>The collection of static configuration information that describes a
- * Struts-based application or sub-application.  Multiple sub-applications
+ * Struts-based application module.  Multiple application modules
  * are identified by a <em>prefix</em> at the beginning of the context
  * relative portion of the request URI.  If no application prefix can be
  * matched, the default configuration (with a prefix equal to a zero-length
@@ -81,7 +81,7 @@ import javax.servlet.UnavailableException;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2002/06/25 01:30:40 $
+ * @version $Revision: 1.16 $ $Date: 2002/07/09 23:57:37 $
  * @since Struts 1.1
  */
 
@@ -95,7 +95,7 @@ public class ApplicationConfig implements Serializable {
      * Construct an ApplicationConfig object according to the specified
      * parameter values.
      *
-     * @param prefix Context-relative URI prefix for this application
+     * @param prefix Context-relative URI prefix for this module
      */
     public ApplicationConfig(String prefix) {
 
@@ -109,7 +109,7 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
-     * The set of action configurations for this application, if any,
+     * The set of action configurations for this module, if any,
      * keyed by the <code>path</code> property.
      */
     protected HashMap actionConfigs = new HashMap();
@@ -117,27 +117,27 @@ public class ApplicationConfig implements Serializable {
 
     /**
      * The set of JDBC data source configurations for this
-     * application, if any, keyed by the <code>key</code> property.
+     * module, if any, keyed by the <code>key</code> property.
      */
     protected HashMap dataSources = new HashMap();
 
 
     /**
      * The set of exception handling configurations for this
-     * application, if any, keyed by the <code>type</code> property.
+     * module, if any, keyed by the <code>type</code> property.
      */
     protected HashMap exceptions = new HashMap();
 
 
     /**
-     * The set of form bean configurations for this application, if any,
+     * The set of form bean configurations for this module, if any,
      * keyed by the <code>name</code> property.
      */
     protected HashMap formBeans = new HashMap();
 
 
     /**
-     * The set of global forward configurations for this application, if any,
+     * The set of global forward configurations for this module, if any,
      * keyed by the <code>name</code> property.
      */
     protected HashMap forwards = new HashMap();
@@ -145,13 +145,13 @@ public class ApplicationConfig implements Serializable {
 
     /**
      * The set of message resources configurations for this
-     * application, if any, keyed by the <code>key</code> property.
+     * module, if any, keyed by the <code>key</code> property.
      */
     protected HashMap messageResources = new HashMap();
 
 
     /**
-     * The set of configured plug in modules for this application,
+     * The set of configured plug-in Actions for this module,
      * if any, in the order they were declared and configured.
      */
     protected ArrayList plugIns = new ArrayList();
@@ -161,7 +161,7 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
-     * Has this application been completely configured yet.  Once this flag
+     * Has this module been completely configured yet.  Once this flag
      * has been set, any attempt to modify the configuration will return an
      * IllegalStateException.
      */
@@ -173,7 +173,7 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
-     * The controller configuration object for this application.
+     * The controller configuration object for this module.
      */
     protected ControllerConfig controllerConfig = null;
 
@@ -226,11 +226,11 @@ public class ApplicationConfig implements Serializable {
 
     /**
      * Add a new <code>ActionConfig</code> instance to the set associated
-     * with this application.
+     * with this module.
      *
      * @param config The new configuration instance to be added
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void addActionConfig(ActionConfig config) {
@@ -246,11 +246,11 @@ public class ApplicationConfig implements Serializable {
 
     /**
      * Add a new <code>DataSourceConfig</code> instance to the set associated
-     * with this application.
+     * with this module.
      *
      * @param config The new configuration instance to be added
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void addDataSourceConfig(DataSourceConfig config) {
@@ -269,7 +269,7 @@ public class ApplicationConfig implements Serializable {
      *
      * @param config The new configuration instance to be added
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void addExceptionConfig(ExceptionConfig config) {
@@ -284,11 +284,11 @@ public class ApplicationConfig implements Serializable {
 
     /**
      * Add a new <code>FormBeanConfig</code> instance to the set associated
-     * with this application.
+     * with this module.
      *
      * @param config The new configuration instance to be added
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void addFormBeanConfig(FormBeanConfig config) {
@@ -303,11 +303,11 @@ public class ApplicationConfig implements Serializable {
 
     /**
      * Add a new <code>ForwardConfig</code> instance to the set of global
-     * forwards associated with this application.
+     * forwards associated with this module.
      *
      * @param config The new configuration instance to be added
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void addForwardConfig(ForwardConfig config) {
@@ -322,11 +322,11 @@ public class ApplicationConfig implements Serializable {
 
     /**
      * Add a new <code>MessageResourcesConfig</code> instance to the set
-     * associated with this application.
+     * associated with this module.
      *
      * @param config The new configuration instance to be added
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void addMessageResourcesConfig(MessageResourcesConfig config) {
@@ -341,7 +341,7 @@ public class ApplicationConfig implements Serializable {
 
     /**
      * Add a newly configured {@link PlugInConfig} instance to the set of
-     * plug in modules for this application.
+     * plug-in Actions for this module.
      *
      * @param plugInConfig The new configuration instance to be added
      */
@@ -369,7 +369,7 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
-     * Return the action configurations for this application.  If there are
+     * Return the action configurations for this module.  If there are
      * none, a zero-length array is returned.
      */
     public ActionConfig[] findActionConfigs() {
@@ -394,7 +394,7 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
-     * Return the data source configurations for this application.  If there
+     * Return the data source configurations for this module.  If there
      * are none, a zero-length array is returned.
      */
     public DataSourceConfig[] findDataSourceConfigs() {
@@ -419,7 +419,7 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
-     * Return the exception configurations for this application.  If there
+     * Return the exception configurations for this module.  If there
      * are none, a zero-length array is returned.
      */
     public ExceptionConfig[] findExceptionConfigs() {
@@ -444,7 +444,7 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
-     * Return the form bean configurations for this application.  If there
+     * Return the form bean configurations for this module.  If there
      * are none, a zero-length array is returned.
      */
     public FormBeanConfig[] findFormBeanConfigs() {
@@ -469,7 +469,7 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
-     * Return the form bean configurations for this application.  If there
+     * Return the form bean configurations for this module.  If there
      * are none, a zero-length array is returned.
      */
     public ForwardConfig[] findForwardConfigs() {
@@ -494,7 +494,7 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
-     * Return the message resources configurations for this application.
+     * Return the message resources configurations for this module.
      * If there are none, a zero-length array is returned.
      */
     public MessageResourcesConfig[] findMessageResourcesConfigs() {
@@ -508,7 +508,7 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
-     * Return the configured plug in modules for this application.  If there
+     * Return the configured plug-in actions for this module.  If there
      * are none, a zero-length array is returned.
      */
     public PlugInConfig[] findPlugInConfigs() {
@@ -520,7 +520,7 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
-     * Freeze the configuration of this application.  After this method
+     * Freeze the configuration of this module.  After this method
      * returns, any attempt to modify the configuration will return
      * an IllegalStateException.
      */
@@ -573,7 +573,7 @@ public class ApplicationConfig implements Serializable {
      *
      * @param config ActionConfig instance to be removed
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeActionConfig(ActionConfig config) {
@@ -592,7 +592,7 @@ public class ApplicationConfig implements Serializable {
      *
      * @param config ActionConfig instance to be removed
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeExceptionConfig(ExceptionConfig config) {
@@ -610,7 +610,7 @@ public class ApplicationConfig implements Serializable {
      *
      * @param config DataSourceConfig instance to be removed
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeDataSourceConfig(DataSourceConfig config) {
@@ -628,7 +628,7 @@ public class ApplicationConfig implements Serializable {
      *
      * @param config FormBeanConfig instance to be removed
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeFormBeanConfig(FormBeanConfig config) {
@@ -646,7 +646,7 @@ public class ApplicationConfig implements Serializable {
      *
      * @param config ForwardConfig instance to be removed
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeForwardConfig(ForwardConfig config) {
@@ -664,7 +664,7 @@ public class ApplicationConfig implements Serializable {
      *
      * @param config MessageResourcesConfig instance to be removed
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeMessageResourcesConfig(MessageResourcesConfig config) {

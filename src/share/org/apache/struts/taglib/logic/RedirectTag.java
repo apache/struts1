@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.12 2002/01/13 00:25:37 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2002/01/13 00:25:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.13 2002/07/09 23:59:01 husted Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/07/09 23:59:01 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * Generate a URL-encoded redirect to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2002/01/13 00:25:37 $
+ * @version $Revision: 1.13 $ $Date: 2002/07/09 23:59:01 $
  */
 
 public class RedirectTag extends TagSupport {
@@ -117,11 +117,11 @@ public class RedirectTag extends TagSupport {
     protected String forward = null;
 
     public String getForward() {
-	return (this.forward);
+    return (this.forward);
     }
 
     public void setForward(String forward) {
-	this.forward = forward;
+    this.forward = forward;
     }
 
 
@@ -131,11 +131,11 @@ public class RedirectTag extends TagSupport {
     protected String href = null;
 
     public String getHref() {
-	return (this.href);
+    return (this.href);
     }
 
     public void setHref(String href) {
-	this.href = href;
+    this.href = href;
     }
 
 
@@ -153,16 +153,16 @@ public class RedirectTag extends TagSupport {
     protected String name = null;
 
     public String getName() {
-	return (this.name);
+    return (this.name);
     }
 
     public void setName(String name) {
-	this.name = name;
+    this.name = name;
     }
 
 
     /**
-     * The application-relative page URL (beginning with a slash) to which
+     * The module-relative page URL (beginning with a slash) to which
      * this redirect will be rendered.
      */
     protected String page = null;
@@ -238,11 +238,11 @@ public class RedirectTag extends TagSupport {
     protected String property = null;
 
     public String getProperty() {
-	return (this.property);
+    return (this.property);
     }
 
     public void setProperty(String property) {
-	this.property = property;
+    this.property = property;
     }
 
 
@@ -311,8 +311,8 @@ public class RedirectTag extends TagSupport {
         }
 
         // Perform the redirection
-	HttpServletResponse response =
-	  (HttpServletResponse) pageContext.getResponse();
+    HttpServletResponse response =
+      (HttpServletResponse) pageContext.getResponse();
         try {
             response.sendRedirect(url);
         } catch (IOException e) {
@@ -331,17 +331,17 @@ public class RedirectTag extends TagSupport {
      */
     public void release() {
 
-	super.release();
+    super.release();
         anchor = null;
-	forward = null;
-	href = null;
-	name = null;
+    forward = null;
+    href = null;
+    name = null;
         page = null;
-	paramId = null;
-	paramName = null;
-	paramProperty = null;
-	paramScope = null;
-	property = null;
+    paramId = null;
+    paramName = null;
+    paramProperty = null;
+    paramScope = null;
+    property = null;
         scope = null;
 
     }

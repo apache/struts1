@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.4 2002/06/25 01:30:40 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/06/25 01:30:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.5 2002/07/09 23:57:05 husted Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/07/09 23:57:05 $
  *
  * ====================================================================
  *
@@ -68,11 +68,11 @@ import org.apache.struts.config.ApplicationConfig;
 
 
 /**
- * <p>A <strong>PlugIn</strong> is a configuration wrapper for an application
- * specific module or service that needs to be notified about application
- * startup and application shutdown events (corresponding to when the
- * container calls <code>init()</code> and <code>destroy()</code> on the
- * corresponding {@link ActionServlet} instance).  PlugIn modules can be
+ * <p>A <strong>PlugIn</strong> is a configuration wrapper for a
+ * module-specific resource or service that needs to be notified about
+ * application startup and application shutdown events (corresponding to when
+ * the container calls <code>init()</code> and <code>destroy()</code> on the
+ * corresponding {@link ActionServlet} instance).  PlugIn Actions can be
  * configured in the <code>struts-config.xml</code> file, without the need
  * to subclass {@link ActionServlet} simply to perform application lifecycle
  * activities.</p>
@@ -83,7 +83,7 @@ import org.apache.struts.config.ApplicationConfig;
  * been called before the <code>init()</code> method is invoked.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/06/25 01:30:40 $
+ * @version $Revision: 1.5 $ $Date: 2002/07/09 23:57:05 $
  * @since Struts 1.1
  */
 
@@ -91,20 +91,20 @@ public interface PlugIn {
 
 
     /**
-     * <p>Receive notification that our owning sub-application is being
+     * <p>Receive notification that our owning application module is being
      * shut down.</p>
      */
     public void destroy();
 
 
     /**
-     * <p>Receive notification that the specified sub-applicaiton is being
+     * <p>Receive notification that the specified application module is being
      * started up.</p>
      *
-     * @param servlet ActionServlet that is managing all the sub-applications
-     *  in this web application
-     * @param config ApplicationConfig for the sub-application with which
-     *  this plug in is associated
+     * @param servlet ActionServlet that is managing all the application
+     *  modules in this web application
+     * @param config ApplicationConfig for the application module with which
+     *  this plug-in is associated
      *
      * @exception ServletException if this <code>PlugIn</code> cannot
      *  be successfully initialized

@@ -88,7 +88,8 @@ import org.apache.struts.util.ResponseUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Martin Cooper
- * @version $Revision: 1.4 $ $Date: 2002/06/22 21:54:56 $
+ * @version $Revision: 1.5 $ $Date: 2002/07/09 23:58:52 $
+ * @since Struts 1.1
  */
 
 public class OptionsCollectionTag extends TagSupport {

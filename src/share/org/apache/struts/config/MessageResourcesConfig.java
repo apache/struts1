@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/MessageResourcesConfig.java,v 1.5 2002/03/23 00:08:01 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/03/23 00:08:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/MessageResourcesConfig.java,v 1.6 2002/07/09 23:57:37 husted Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/07/09 23:57:37 $
  *
  * ====================================================================
  *
@@ -68,11 +68,11 @@ import java.io.Serializable;
 
 /**
  * <p>A JavaBean representing the configuration information of a
- * <code>&lt;message-resources&gt;</code> element in a Struts application
+ * <code>&lt;message-resources&gt;</code> element in a Struts
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/03/23 00:08:01 $
+ * @version $Revision: 1.6 $ $Date: 2002/07/09 23:57:37 $
  * @since Struts 1.1
  */
 

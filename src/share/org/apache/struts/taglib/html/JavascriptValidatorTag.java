@@ -86,6 +86,7 @@ import org.apache.struts.util.StrutsValidatorUtil;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
+ * @version $Revision: 1.4 $ $Date: 2002/07/09 23:58:52 $
  * @since Struts 1.1
 */
 public class JavascriptValidatorTag extends BodyTagSupport {

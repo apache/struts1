@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.11 2002/06/25 00:42:44 husted Exp $
- * $Revision: 1.11 $
- * $Date: 2002/06/25 00:42:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.12 2002/07/09 23:57:05 husted Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/07/09 23:57:05 $
  *
  * ====================================================================
  *
@@ -74,17 +74,17 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * <p>An <strong>ActionForm</strong> is a JavaBean optionally associated with
  * one or more <code>ActionMappings</code>.  Such a bean will have had its
  * properties initialized from the corresponding request parameters before
- * the corresonding action's <code>perform()</code> method is called.</p>
+ * the corresonding action's <code>execute</code> method is called.</p>
  *
  * <p>When the properties of this bean have been populated, but before the
- * <code>perform()</code> method of the action is called, this bean's
- * <code>validate()</code> method will be called, which gives the bean a chance
+ * <code>execute</code> method of the action is called, this bean's
+ * <code>validate</code> method will be called, which gives the bean a chance
  * to verify that the properties submitted by the user are correct and valid.
  * If this method finds problems, it returns an error messages object that
  * encapsulates those problems, and the controller servlet will return control
- * to the corresponding input form.  Otherwise, the <code>validate()</code>
- * method returns <code>null()</code>, indicating that everything is acceptable
- * and the corresponding Action's <code>perform()</code> method should be
+ * to the corresponding input form.  Otherwise, the <code>validate</code>
+ * method returns <code>null</code>, indicating that everything is acceptable
+ * and the corresponding Action's <code>execute</code> method should be
  * called.</p>
  *
  * <p>This class must be subclassed in order to be instantiated.  Subclasses
@@ -95,7 +95,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.11 $ $Date: 2002/06/25 00:42:44 $
+ * @version $Revision: 1.12 $ $Date: 2002/07/09 23:57:05 $
  */
 
 public abstract class ActionForm implements Serializable {

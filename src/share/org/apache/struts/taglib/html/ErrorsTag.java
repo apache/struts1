@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.15 2002/06/23 04:38:44 craigmcc Exp $
- * $Revision: 1.15 $
- * $Date: 2002/06/23 04:38:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.16 2002/07/09 23:58:52 husted Exp $
+ * $Revision: 1.16 $
+ * $Date: 2002/07/09 23:58:52 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.ResponseUtils;
  * Custom tag that renders error messages if an appropriate request attribute
  * has been created.  The tag looks for a request attribute with a reserved
  * key, and assumes that it is either a String, a String array, containing
- * message keys to be looked up in the application's MessageResources, or
+ * message keys to be looked up in the module's MessageResources, or
  * an object of type <code>org.apache.struts.action.ActionErrors</code>.
  * <p>
  * The following optional message keys will be utilized if corresponding
@@ -102,7 +102,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2002/06/23 04:38:44 $
+ * @version $Revision: 1.16 $ $Date: 2002/07/09 23:58:52 $
  */
 
 public class ErrorsTag extends TagSupport {
@@ -158,11 +158,11 @@ public class ErrorsTag extends TagSupport {
     protected String name = Action.ERROR_KEY;
 
     public String getName() {
-	return (this.name);
+    return (this.name);
     }
 
     public void setName(String name) {
-	this.name = name;
+    this.name = name;
     }
 
 
@@ -192,16 +192,16 @@ public class ErrorsTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-	// Were any error messages specified?
-	ActionErrors errors = null;
-	try {
+    // Were any error messages specified?
+    ActionErrors errors = null;
+    try {
             errors = RequestUtils.getActionErrors(pageContext, name);
         } catch (JspException e) {
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
         if ((errors == null) || errors.empty()) {
-	    return (EVAL_BODY_INCLUDE);
+        return (EVAL_BODY_INCLUDE);
         }
 
         // Check for presence of header and footer message keys
@@ -215,7 +215,7 @@ public class ErrorsTag extends TagSupport {
             RequestUtils.present(pageContext, bundle, locale, "errors.suffix");
 
         // Render the error messages appropriately
-	StringBuffer results = new StringBuffer();
+    StringBuffer results = new StringBuffer();
         boolean headerDone = false;
         String message = null;
         Iterator reports = null;
@@ -260,11 +260,11 @@ public class ErrorsTag extends TagSupport {
             results.append("\r\n");
         }
 
-	// Print the results to our output writer
+    // Print the results to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
-	// Continue processing this page
-	return (EVAL_BODY_INCLUDE);
+    // Continue processing this page
+    return (EVAL_BODY_INCLUDE);
 
     }
 
@@ -274,10 +274,10 @@ public class ErrorsTag extends TagSupport {
      */
     public void release() {
 
-	super.release();
+    super.release();
         bundle = Action.MESSAGES_KEY;
         locale = Action.LOCALE_KEY;
-	name = Action.ERROR_KEY;
+    name = Action.ERROR_KEY;
         property = null;
 
     }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.6 2002/07/05 22:05:58 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/07/05 22:05:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.7 2002/07/09 23:57:37 husted Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/07/09 23:57:37 $
  *
  * ====================================================================
  *
@@ -68,11 +68,11 @@ import java.io.Serializable;
 
 /**
  * <p>A JavaBean representing the configuration information of a
- * <code>&lt;controller&gt;</code> element in a Struts application
+ * <code>&lt;controller&gt;</code> element in a Struts
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/07/05 22:05:58 $
+ * @version $Revision: 1.7 $ $Date: 2002/07/09 23:57:37 $
  * @since Struts 1.1
  */
 
@@ -147,8 +147,8 @@ public class ControllerConfig implements Serializable {
      * from a {@link ForwardConfig} element.  The pattern may consist of any
      * combination of the following markers and characters:</p>
      * <ul>
-     * <li><code><strong>$A</strong></code> - Replaced by the application
-     *     prefix for the current subapplication.</li>
+     * <li><code><strong>$A</strong></code> - Replaced by the module
+     *     prefix for the current application module.</li>
      * <li><code><strong>$P</strong></code> - Replaced by the <code>path</code>
      *     property of a {@link ForwardConfig} instance.</li>
      * <li><code><strong>$$</strong></code> - Renders a literal dollar sign
@@ -176,12 +176,12 @@ public class ControllerConfig implements Serializable {
 
     /**
      * <p>Should the <code>input</code> property of {@link ActionConfig}
-     * instances associated with this sub-application be treated as the
+     * instances associated with this module be treated as the
      * name of a corresponding {@link ForwardConfig}.  A <code>false</code>
-     * value treats them as a sub-application relative path (consistent
+     * value treats them as a module-relative path (consistent
      * with the hard coded behavior of earlier versions of Struts.</p>
      *
-     * @since 1.1b2
+     * @since Struts 1.1b2
      */
     protected boolean inputForward = false;
 
@@ -270,8 +270,8 @@ public class ControllerConfig implements Serializable {
      * properties.  The pattern may consist of any combination of the
      * following markers and characters:</p>
      * <ul>
-     * <li><code><strong>$A</strong></code> - Replaced by the application
-     *     prefix for the current subapplication.</li>
+     * <li><code><strong>$A</strong></code> - Replaced by the module
+     *     prefix for the current application module.</li>
      * <li><code><strong>$P</strong></code> - Replaced by the <code>page</code>
      *     attribute value being evaluated.</li>
      * <li><code><strong>$$</strong></code> - Renders a literal dollar sign
@@ -299,7 +299,7 @@ public class ControllerConfig implements Serializable {
 
     /**
      * The fully qualified class name of the RequestProcessor implementation
-     * class to be used for this application.
+     * class to be used for this module.
      */
     protected String processorClass =
         "org.apache.struts.action.RequestProcessor";
