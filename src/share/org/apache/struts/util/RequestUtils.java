@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.80 2003/02/05 05:28:52 dgraham Exp $
- * $Revision: 1.80 $
- * $Date: 2003/02/05 05:28:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.81 2003/02/06 03:01:58 dgraham Exp $
+ * $Revision: 1.81 $
+ * $Date: 2003/02/06 03:01:58 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author James Turner
- * @version $Revision: 1.80 $ $Date: 2003/02/05 05:28:52 $
+ * @version $Revision: 1.81 $ $Date: 2003/02/06 03:01:58 $
  */
 
 public class RequestUtils {
@@ -1642,7 +1642,7 @@ public class RequestUtils {
         }
 
         String prefix = ""; // Initialize prefix before we try lookup
-        String prefixes[] = getApplicationPrefixes(context); // Get all other possible prefixes
+        String prefixes[] = getModulePrefixes(context); // Get all other possible prefixes
         int lastSlash = 0; // Initialize before loop
 
         while (prefix.equals("") && ((lastSlash = matchPath.lastIndexOf("/")) > 0)) {
@@ -1722,8 +1722,22 @@ public class RequestUtils {
      *
      * @param context The ServletContext for this web application
      * @return an array of module prefixes
+     * @deprecated Use getModulePrefixes(ServletContext) instead.
      */
     public static String[] getApplicationPrefixes(ServletContext context) {
+        return getModulePrefixes(context);  
+    }
+
+    /**
+     * Return the list of module prefixes that are defined for
+     * this web application, creating it if necessary.  <strong>NOTE</strong> -
+     * the "" prefix for the default module is not included in this list.
+     *
+     * @param context The ServletContext for this web application
+     * @return an array of module prefixes
+     * @since Struts 1.1
+     */
+    public static String[] getModulePrefixes(ServletContext context) {
 
         String prefixes[] = (String[]) context.getAttribute(PREFIXES_KEY);
         if (prefixes != null) {
