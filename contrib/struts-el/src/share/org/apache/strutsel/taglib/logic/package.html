@@ -69,33 +69,33 @@
   </p>
   <p><i>Example:</i></p>
   <pre>
-   &lt;logic:forward name="${forwardName}"/&gt;</pre>
+   &lt;logic-el:forward name="${forwardName}"/&gt;</pre>
   <p><i>Example:</i></p>
   <pre>
    &lt;%-- Iterates through all HTTP headers. --%&gt;
-   &lt;logic:iterate id="item" collection="${header}"&gt;
+   &lt;logic-el:iterate id="item" collection="${header}"&gt;
     &lt;tr&gt;
      &lt;td&gt;&lt;c:out value="${item}.key"/&gt;&lt;/td&gt;
      &lt;td&gt;&lt;c:out value="${item}.value"/&gt;&lt;/td&gt;
     &lt;/tr&gt;
-   &lt;/logic:iterate&gt;</pre>
+   &lt;/logic-el:iterate&gt;</pre>
   <p><i>Example:</i></p>
   <pre>
-   &lt;logic:match cookie="${cookieName}" value="${cookieValue}"&gt;
+   &lt;logic-el:match cookie="${cookieName}" value="${cookieValue}"&gt;
     Match succeeded.
-   &lt;/logic:match&gt;</pre>
+   &lt;/logic-el:match&gt;</pre>
   <p><i>Example:</i></p>
   <pre>
-   &lt;logic:match expr='${hash["foo"]}' value="${matchValue}"&gt;
+   &lt;logic-el:match expr='${hash["foo"]}' value="${matchValue}"&gt;
     Match succeeded.
-   &lt;/logic:match&gt;</pre>
+   &lt;/logic-el:match&gt;</pre>
   <p><i>Example:</i></p>
   <pre>
-   &lt;logic:messagesPresent property="${messageKey}"&gt;
+   &lt;logic-el:messagesPresent property="${messageKey}"&gt;
     Message found.
-   &lt;/logic:messagesPresent&gt;</pre>
+   &lt;/logic-el:messagesPresent&gt;</pre>
   <p><i>Example:</i></p>
   <pre>
-   &lt;logic:redirect href="http://localhost:${portnum}/factory" /&gt;
+   &lt;logic-el:redirect href="http://localhost:${portnum}/factory" /&gt;
  </body>
 </html>
