@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.21 2003/07/04 20:53:42 dgraham Exp $
- * $Revision: 1.21 $
- * $Date: 2003/07/04 20:53:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.22 2003/07/09 02:23:54 dgraham Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/07/09 02:23:54 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@ package org.apache.struts.tiles;
 
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
 
@@ -108,7 +109,7 @@ public class TilesPlugin implements PlugIn {
     protected static Log log = LogFactory.getLog(TilesPlugin.class);
 
     /** 
-     * Is the factory module aware ? 
+     * Is the factory module aware? 
      */
     protected boolean moduleAware = false;
 
@@ -121,13 +122,13 @@ public class TilesPlugin implements PlugIn {
     /** 
      * Associated definition factory. 
      */
-    protected DefinitionsFactory definitionFactory;
+    protected DefinitionsFactory definitionFactory = null;
 
     /** 
      * The plugin config object provided by the ActionServlet initializing
      * this plugin.
      */
-    protected PlugInConfig currentPlugInConfigObject;
+    protected PlugInConfig currentPlugInConfigObject=null;
 
     /**
      * Get the module aware flag.
@@ -173,70 +174,98 @@ public class TilesPlugin implements PlugIn {
         factoryConfig.setFactoryName(moduleConfig.getPrefix());
         
         // Set RequestProcessor class
-        initRequestProcessorClass(moduleConfig);
+        this.initRequestProcessorClass(moduleConfig);
 
-        // Set Tiles util implementation according to properties 'tilesUtilImplClassname'
-        // and 'moduleAware'.
-        // These properties are taken into account only once. A
-        // side effect is that only the values set in the first initialized plugin
-        // are effectively taken into account.
-        if (!TilesUtil.isTilesUtilImplSet()) { // TilesUtilImpl not set , do it
-            // Check if user has specified a TilesUtil implementation classname or not.
-            // If no implementation is specified, check if user has specified one
-            // shared single factory for all module, or one factory for each module.
-            if (getTilesUtilImplClassname() == null) {
-                // No implementation specified, check if moduleAware is set
-                if (isModuleAware()) { // Use appropriate TilesUtil implementation
-                    TilesUtil.setTilesUtil(new TilesUtilStrutsModulesImpl());
-                } else { // Use appropriate TilesUtil implementation
-                    TilesUtil.setTilesUtil(new TilesUtilStrutsImpl());
-                }
-            } else { // A classname is specified for the tilesUtilImp, use it.
-                try {
-                    TilesUtilStrutsImpl impl =
-                        (TilesUtilStrutsImpl) RequestUtils
-                            .applicationClass(getTilesUtilImplClassname())
-                            .newInstance();
-                    TilesUtil.setTilesUtil(impl);
-                    
-                } catch (ClassCastException ex) {
-                    throw new ServletException(
-                        "Can't set TilesUtil implementation to '"
-                            + getTilesUtilImplClassname()
-                            + "'. TilesUtil implementation should be a subclass of '"
-                            + TilesUtilStrutsImpl.class.getName()
-                            + "'");
-                            
-                } catch (Exception ex) {
-                    throw new ServletException(
-                        "Can't set TilesUtil implementation.",
-                        ex);
-                }
-            } // end if
-        } // end if
+        this.initTilesUtil();
 
-        // Check if a factory already exist for this module
-        definitionFactory =
-            ((TilesUtilStrutsImpl) TilesUtil.getTilesUtil()).getDefinitionsFactory(
-                servlet.getServletContext(),
-                moduleConfig);
-                
-        if (definitionFactory != null) {
-            if (log.isInfoEnabled())
-                log.info(
-                    "Factory already exists for module '"
-                        + moduleConfig.getPrefix()
-                        + "'. The factory found is from module '"
-                        + definitionFactory.getConfig().getFactoryName()
-                        + "'. No new creation.");
+        this.initDefinitionsFactory(servlet.getServletContext(), moduleConfig, factoryConfig);
+    }
+
+    /**
+     * Set TilesUtil implementation according to properties 'tilesUtilImplClassname' 
+     * and 'moduleAware'.  These properties are taken into account only once. A
+     * side effect is that only the values set in the first initialized plugin are 
+     * effectively taken into account.
+     * @throws ServletException
+     */
+    private void initTilesUtil() throws ServletException {
+
+        if (TilesUtil.isTilesUtilImplSet()) {
             return;
         }
 
+        // Check if user has specified a TilesUtil implementation classname or not.
+        // If no implementation is specified, check if user has specified one
+        // shared single factory for all module, or one factory for each module.
+
+        if (this.getTilesUtilImplClassname() == null) {
+
+            if (isModuleAware()) {
+                TilesUtil.setTilesUtil(new TilesUtilStrutsModulesImpl());
+            } else {
+                TilesUtil.setTilesUtil(new TilesUtilStrutsImpl());
+            }
+
+        } else { // A classname is specified for the tilesUtilImp, use it.
+            try {
+                TilesUtilStrutsImpl impl =
+                    (TilesUtilStrutsImpl) RequestUtils
+                        .applicationClass(getTilesUtilImplClassname())
+                        .newInstance();
+                TilesUtil.setTilesUtil(impl);
+
+            } catch (ClassCastException ex) {
+                throw new ServletException(
+                    "Can't set TilesUtil implementation to '"
+                        + getTilesUtilImplClassname()
+                        + "'. TilesUtil implementation should be a subclass of '"
+                        + TilesUtilStrutsImpl.class.getName()
+                        + "'");
+
+            } catch (Exception ex) {
+                throw new ServletException(
+                    "Can't set TilesUtil implementation.",
+                    ex);
+            }
+        }
+
+    }
+
+    /**
+     * Initialize the DefinitionsFactory this module will use.
+     * @param servletContext
+     * @param moduleConfig
+     * @param factoryConfig
+     * @throws ServletException
+     */
+    private void initDefinitionsFactory(
+        ServletContext servletContext,
+        ModuleConfig moduleConfig,
+        DefinitionsFactoryConfig factoryConfig)
+        throws ServletException {
+            
+        // Check if a factory already exist for this module
+        definitionFactory =
+            ((TilesUtilStrutsImpl) TilesUtil.getTilesUtil()).getDefinitionsFactory(
+                servletContext,
+                moduleConfig);
+                
+        if (definitionFactory != null) {
+            log.info(
+                "Factory already exists for module '"
+                    + moduleConfig.getPrefix()
+                    + "'. The factory found is from module '"
+                    + definitionFactory.getConfig().getFactoryName()
+                    + "'. No new creation.");
+                    
+            return;
+        }
+        
         // Create configurable factory
         try {
             definitionFactory =
                 TilesUtil.createDefinitionsFactory(
-                    servlet.getServletContext(),
+                    servletContext,
                     factoryConfig);
                     
         } catch (DefinitionsFactoryException ex) {
@@ -244,9 +273,10 @@ public class TilesPlugin implements PlugIn {
                 "Can't create Tiles definition factory for module '"
                     + moduleConfig.getPrefix()
                     + "'.");
+                    
             throw new ServletException(ex);
         }
-
+        
         log.info(
             "Tiles definition factory loaded for module '"
                 + moduleConfig.getPrefix()
