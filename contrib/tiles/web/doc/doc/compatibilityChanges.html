@@ -1,0 +1,90 @@
+<html>
+<head>
+	<title>Components : Backward Compatibility Changes</title>
+</head>
+
+<body>
+<H1 align=center>Backward Compatibility Changes </H1>
+    
+
+<TABLE  border=2>
+  <TR>
+    <TD>
+      <P align=center style="TEXT-ALIGN: center"><B>Deprecated</B></P></TD>
+    <TD>
+      <P align=center style="TEXT-ALIGN: center"><B>New usage</B></P></TD></TR>
+  <TR>
+    <TD>
+      &lt;include …&gt;</TD>
+    <TD>
+      &lt;insert …&gt;</TD></TR>
+  <TR>
+    <TD>
+      &lt;putAttribute …&gt;</TD>
+    <TD>
+      &lt;getAsString …&gt;</TD></TR>
+  <TR>
+    <TD>
+      &lt;getAttribute …&gt;</TD>
+    <TD>
+      &lt;getAsString …&gt;</TD></TR>
+  <TR>
+    <TD>&lt;… instance= …&gt; <BR> 
+      (in tag &lt;insert …&gt; or &lt;include …&gt;)</TD>
+    <TD>
+      &lt;… definition= …&gt; <BR>(in tag &lt;insert …&gt;)&lt; 
+         </TD></TR>
+  <TR>
+    <TD>
+      <P align=left>Default definitions file name : </P>
+          
+      <UL>
+        <LI>
+        <DIV align=left>componentInstances.xml </DIV> 
+        <LI>
+        <DIV align=left>templateDefinitions.xml </DIV> </LI></UL></TD>
+    <TD>
+      Several possibilities :
+      <UL>
+        <LI>Keep same name and set it in xml-config.xml: 
+</LI></UL>
+      <DIV align=center>
+<table  border=2>
+<tr>
+    <td>
+      <P>
+       &lt;init-param&gt;<br>
+      &nbsp;&nbsp;&nbsp; &lt;param-name&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; definitions-config<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/param-name&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;param-value&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /WEB-INF/templateDefinitions.xml<br>&nbsp;&nbsp;
+	  &nbsp;&nbsp; &lt;/param-value&gt;<BR>
+	   &nbsp;&lt;/init-param&gt;</P>
+	</td>
+</tr>
+</table></DIV>
+      <UL>
+        <LI>Change name to new default 
+        (componentDefinitions.xml) </LI></UL></TD></TR>
+  <TR>
+    <TD>
+      Components parameter names in web.xml:
+      <UL>
+        <LI>instances-config 
+        <LI>instances-debug </LI></UL></TD>
+    <TD>
+      &nbsp;
+      Use new names :
+      <UL>
+        <LI>definitions-config 
+        <LI>definitions-debug 
+</LI></UL></TD></TR></TABLE>
+To update your web site, replace all deprecated tags with new 
+tags.
+<br>You can use replacement 
+tools to search for <STRONG>:include </STRONG>to be replaced by <STRONG>:insert 
+</STRONG>           
+  
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<LINK REL="STYLESHEET" HREF="css/templates.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<H3 CLASS="ChapTitle">Optional Content</H3>
+<P CLASS="Paragraph">
+<A NAME="pgfId-1006201"></A>All template content is optional, which makes a single template useful to more web pages. For example, <A HREF="templates.html#65205" CLASS="XRef">Two Pages Created From One Template</A> shows two pages--login and inventory--that use the same template.</P>
+<P CLASS="Paragraph">
+<A NAME="pgfId-1006205"></A>Both pages have a header, footer, and main content. The inventory page has an edit panel, which the login page lacks, for making inventory changes.</P>
+<DIV>
+<H6 CLASS="Spacer-tiny">
+<A NAME="pgfId-1006113"></A>&nbsp;</H6>
+<DIV>
+<MAP NAME="templates-2">
+</MAP>
+<IMG SRC="graphics/templates-2.gif" USEMAP="#templates-2">
+</DIV>
+<P CLASS="Paragraph">
+<A NAME="pgfId-1005882"></A>The template shared by the login and inventory pages is listed below.</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005509"></A>&lt;%@ taglib uri='template.tld' prefix='template' %&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005517"></A>&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;template:get name='title'/&gt;&lt;/title&gt;&lt;/head&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005518"></A>&nbsp;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005519"></A>&lt;body background='thatched_background.jpg'&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005520"></A>&nbsp;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005521"></A>&lt;table width='670'&gt; </P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005522"></A>	&lt;tr&gt;&lt;td width='60'&gt;&lt;/td&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005523"></A>		&lt;td&gt;&lt;template:get name='header'/&gt;&lt;/td&gt;&lt;/tr&gt; </P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005524"></A>	&lt;tr&gt;&lt;td width='60'&gt;&lt;/td&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005525"></A>		&lt;td&gt;&lt;template:get name='main-content'/&gt;&lt;/td&gt;&lt;/tr&gt; </P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005526"></A>	&lt;tr&gt;&lt;td width='60'&gt;&lt;/td&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005527"></A>		&lt;td&gt;&lt;template:get name='editPanel'/&gt;&lt;/td&gt;&lt;/tr&gt; </P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005528"></A>	&lt;tr&gt;&lt;td width='60'&gt;&lt;/td&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005529"></A>		&lt;td&gt;&lt;template:get name='footer'/&gt;&lt;/td&gt;&lt;/tr&gt; </P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005530"></A>&lt;/table&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005532"></A>&lt;/body&gt;&lt;/html&gt;</P>
+<P CLASS="Paragraph">
+<A NAME="pgfId-1005533"></A>The inventory page specifies content for the edit panel:</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005603"></A>&lt;%@ taglib uri='template.tld' prefix='template' %&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005611"></A>&lt;%@ taglib uri='security.tld' prefix='security' %&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005612"></A>&nbsp;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005613"></A>&lt;template:insert template='/template.jsp'&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005614"></A>	...	</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005621"></A>	&lt;security:authenticate role='editor'&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005622"></A>		&lt;template:put name='editPanel' </P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005623"></A>					  	  content='/editPanelContent.jsp'/&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005624"></A>	&lt;/security:authenticate&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005626"></A>	...</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005627"></A>&lt;/template:insert&gt;</P>
+<P CLASS="Paragraph">
+<A NAME="pgfId-1005628"></A>The login page does not specify content for the edit panel:</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005773"></A>&lt;%@ taglib uri='template.tld' prefix='template' %&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005774"></A>&nbsp;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005775"></A>&lt;template:insert template='/template.jsp'&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005776"></A>	&lt;template:put name='title' content='Login' direct='true'/&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005777"></A>	&lt;template:put name='header' content='/header.jsp'/&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005778"></A>&nbsp;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005779"></A>	&lt;template:put name='main-content' </P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005780"></A>					  content='/login.jsp'/&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005781"></A>&nbsp;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005782"></A>	&lt;template:put name='footer' content='/footer.jsp'/&gt;</P>
+<P CLASS="Example-Code">
+<A NAME="pgfId-1005783"></A>&lt;/template:insert&gt;</P>
+<P CLASS="Paragraph">
+<A NAME="pgfId-1005997"></A>Because the login page does not specify content for it, the edit panel is not included. Unspecified content is omitted because the template:get tag only includes specified content.</P>
+</DIV>
+</DIV>

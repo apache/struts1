@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
+<!--
+     This is the Struts configuration file for the example application,
+     using the proposed new syntax.
+
+     NOTE:  You would only flesh out the details in the "form-bean"
+     declarations if you had a generator tool that used them to create
+     the corresponding Java classes for you.  Otherwise, you would
+     need only the "form-bean" element itself, with the corresponding
+     "name" and "type" attributes.
+-->
+
+
+<struts-config>
+
+
+  <!-- ========== Form Bean Definitions =================================== -->
+  <form-beans>
+
+    <!-- Logon form bean -->
+    <form-bean      name="invoiceForm"
+                    type="org.apache.struts.example.tiles.invoice.InvoiceForm"/>
+
+  </form-beans>
+
+
+  <!-- ========== Global Forward Definitions ============================== -->
+  <global-forwards>
+    <forward   name="failure"              path="forward.example.failure.page"/>
+  </global-forwards>
+
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+  <action-mappings>
+
+    <!-- Edit user registration -->
+    <action    path="/tutorial/forwardExampleAction"
+               type="org.apache.struts.example.tiles.tutorial.ForwardExampleAction">
+      <forward name="success"              path="forward.example.success.page"/>
+    </action>
+
+  <!-- Edit invoice example -->
+    <action     path="/tutorial/lang"
+                type="org.apache.struts.example.tiles.lang.SelectLocaleAction">
+      <forward  name="failure"        path="/tutorial/index.jsp"/>
+      <forward  name="success"        path="/tutorial/index.jsp"/>
+  </action>
+  
+  <!-- Dynamic template example -->
+    <action     path="/tutorial/dynTemplate"
+                type="org.apache.struts.example.tiles.template.DynTemplateAction">
+      <forward  name="success"        path="/tutorial/dynFramesetPage.jsp"/>
+  </action>
+  
+  
+    <!-- Edit invoice example -->
+  <action     path="/tutorial/invoice/editInvoice"
+       		  type="org.apache.struts.example.tiles.invoice.EditInvoiceAction"
+			  name="invoiceForm" >
+      <forward  name="success"        path="/tutorial/invoice/index.jsp"/>
+  </action>
+
+  <!-- test, to be removed -->
+    <action     path="/tutorial/testAction"
+                type="org.apache.struts.example.tiles.lang.SelectLocaleAction">
+      <forward  name="failure"        path="/tutorial/common/footer.jsp"/>
+      <forward  name="success"        path="/tutorial/common/footer.jsp"/>
+  </action>
+  
+    <action     path="/tutorial/testAction2"
+                type="org.apache.struts.example.tiles.tutorial.ForwardExampleAction">
+      <forward  name="failure"        path="forward.example.success.page"/>
+      <forward  name="success"        path="forward.example.success.page"/>
+  </action>
+  
+
+  </action-mappings>
+
+</struts-config>

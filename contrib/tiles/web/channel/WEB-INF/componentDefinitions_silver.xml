@@ -1,0 +1,28 @@
+
+
+<!-- html definition Mappings  -->
+<component-definitions>
+
+  <!-- Main Layout Definition description  -->
+  <definition name="mainLayout" >
+	  <put name="title"  value="World Financial Online - Silver" />
+	  <!-- <put name="header" value="/common/header.jsp" />  -->
+	  <put name="footer" value="/silver/common/footer.jsp" />
+	  <!-- <put name="menu"   value="menu.main" />  -->
+	  <!-- <put name="body"   value="main.portal.body" />  -->
+  </definition>
+  
+  <!-- select language menu -->
+<definition name="menu.lang" path="/common/submenu.jsp" >
+  <put name="title" value="Langue" />
+  <putList name="items" >
+    <add value="Gold" />
+    <add value="Bronze" />
+  </putList>
+  <putList name="links" >
+    <add value="/priviledge.do?priviledge=gold" />
+    <add value="/priviledge.do?priviledge=bronze" />
+  </putList>
+</definition>
+
+</component-definitions>
