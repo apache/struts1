@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.6 2003/11/27 05:38:54 husted Exp $
- * $Revision: 1.6 $
- * $Date: 2003/11/27 05:38:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.7 2003/11/27 05:48:07 husted Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/11/27 05:48:07 $
  *
  * ====================================================================
  *
@@ -83,10 +83,10 @@ import org.xml.sax.SAXException;
  * can be configured to instantiate a graph of objects
  * using the Commons Digester and place the root object
  * of that graph into the Application context.</p>
- * 
+ *
  * @author Joe Germuska
  * @author David Graham
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  * @see org.apache.struts.action.PlugIn
  * @since Struts 1.2
  */
@@ -137,8 +137,8 @@ public class DigestingPlugIn implements PlugIn {
     }
 
     /**
-     * <p>Initialize a <code>Digester</code> and use it to parse a 
-     * configuration file, resulting in a root object which will be placed into 
+     * <p>Initialize a <code>Digester</code> and use it to parse a
+     * configuration file, resulting in a root object which will be placed into
      * the ServletContext.</p>
      *
      * @param servlet ActionServlet that is managing all the
@@ -240,8 +240,8 @@ public class DigestingPlugIn implements PlugIn {
     }
 
     /**
-     * Instantiate any <code>RuleSet</code> classes defined in the 
-     * <code>rulesets</code> property and use them to add rules to our 
+     * Instantiate any <code>RuleSet</code> classes defined in the
+     * <code>rulesets</code> property and use them to add rules to our
      * <code>Digester</code>.
      * @param digester the Digester instance to add RuleSet objects to.
      * @throws ServletException
@@ -368,15 +368,15 @@ public class DigestingPlugIn implements PlugIn {
      * Set the source of the config file.  Should be one of the following:
      * <ul>
      * <li>
-     *      "classpath" - indicates that the configPath will be resolved by the 
+     *      "classpath" - indicates that the configPath will be resolved by the
      *      ClassLoader.
      * </li>
      * <li>
-     *      "file" - indicates that the configPath is a fully-qualified 
+     *      "file" - indicates that the configPath is a fully-qualified
      *      filesystem path.
      * </li>
      * <li>
-     *      "servlet" - indicates that the configPath will be found by the 
+     *      "servlet" - indicates that the configPath will be found by the
      *      ServletContext.
      * </li>
      * </ul>
@@ -388,7 +388,7 @@ public class DigestingPlugIn implements PlugIn {
     }
 
     /**
-     * @return the string describing which access method should be used to 
+     * @return the string describing which access method should be used to
      * resolve configPath.
      * @see #configPath
      */
@@ -397,8 +397,8 @@ public class DigestingPlugIn implements PlugIn {
     }
 
     /**
-     * This method is called after the Digester runs to store the generated 
-     * object somewhere.  This implementation places the given object into the 
+     * This method is called after the Digester runs to store the generated
+     * object somewhere.  This implementation places the given object into the
      * ServletContext under the attribute name as defined in <code>key</code>.
      * @param obj The object to save.
      */
@@ -458,7 +458,7 @@ public class DigestingPlugIn implements PlugIn {
 
     /**
      * <p>The lookup mechanism to be used to resolve <code>digesterPath</code>
-     * (Optional)
+     * (optional).
      * </p>
      * @param digesterSource
      * @see #getConfigURL(String, String)
@@ -468,7 +468,7 @@ public class DigestingPlugIn implements PlugIn {
     }
 
     /**
-     * @return the configured lookup mechanism for resolving 
+     * @return the configured lookup mechanism for resolving
      * <code>digesterPath</code>.
      * @see #getConfigURL(String, String)
      */
@@ -488,8 +488,8 @@ public class DigestingPlugIn implements PlugIn {
     }
 
     /**
-     * @return Whether or not this <code>PlugIn</code> instance will be pushed 
-     * onto the <code>Digester</code> stack before <code>digester.parse()</code> 
+     * @return Whether or not this <code>PlugIn</code> instance will be pushed
+     * onto the <code>Digester</code> stack before <code>digester.parse()</code>
      * is called.
      */
     public boolean getPush() {
