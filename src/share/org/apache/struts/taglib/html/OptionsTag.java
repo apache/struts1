@@ -193,20 +193,15 @@ public class OptionsTag extends TagSupport {
         if (collection != null) {
             Iterator collIterator = getIterator(collection, null);
             while (collIterator.hasNext()) {
+
                 Object bean = collIterator.next();
                 Object value = null;
                 Object label = null;;
+
                 try {
                     value = PropertyUtils.getProperty(bean, property);
                     if (value == null)
                         value = "";
-                    if (labelProperty != null)
-                        label =
-                            PropertyUtils.getProperty(bean, labelProperty);
-                    else
-                        label = value;
-                    if (label == null)
-                        label = "";
                 } catch (IllegalAccessException e) {
                     throw new JspException
                         (messages.getMessage("getter.access",
@@ -221,10 +216,37 @@ public class OptionsTag extends TagSupport {
                         (messages.getMessage("getter.method",
                                              property, collection));
                 }
+
+                try {
+                    if (labelProperty != null)
+                        label =
+                            PropertyUtils.getProperty(bean, labelProperty);
+                    else
+                        label = value;
+                    if (label == null)
+                        label = "";
+                } catch (IllegalAccessException e) {
+                    throw new JspException
+                        (messages.getMessage("getter.access",
+                                             labelProperty, collection));
+                } catch (InvocationTargetException e) {
+                    Throwable t = e.getTargetException();
+                    throw new JspException
+                        (messages.getMessage("getter.result",
+                                             labelProperty, t.toString()));
+                } catch (NoSuchMethodException e) {
+                    throw new JspException
+                        (messages.getMessage("getter.method",
+                                             labelProperty, collection));
+                }
+
+
                 String stringValue = value.toString();
                 addOption(sb, stringValue, label.toString(),
                           selectTag.isMatched(stringValue));
+
             }
+
         }
 
         // Otherwise, use the separate iterators mode to render options
@@ -240,10 +262,10 @@ public class OptionsTag extends TagSupport {
 
               // Render the options tags for each element of the values coll.
               while (valuesIterator.hasNext()) {
-                  String value = (String) valuesIterator.next();
+                  String value = valuesIterator.next().toString();
                   String label = value;
                   if (labelsIterator.hasNext())
-                      label = (String) labelsIterator.next();
+                      label = labelsIterator.next().toString();
                   addOption(sb, value, label,
                             selectTag.isMatched(value));
               }
@@ -292,7 +314,7 @@ public class OptionsTag extends TagSupport {
         sb.append(value);
         sb.append("\"");
         if (matched)
-            sb.append(" selected");
+            sb.append(" selected=\"selected\"");
         sb.append(">");
         sb.append(ResponseUtils.filter(label));
         sb.append("</option>\r\n");

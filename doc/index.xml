@@ -45,17 +45,17 @@
 
   <section name="Acquiring Struts" href="Acquiring">
 
-  <p>A new beta release, <strong>Struts 1.0-beta-2</strong> has been
-  created and made available at
-  <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b2">
-  http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b2</a>.  This
-  release is considered to be of production quality, and only bug fixes will
-  occur between this release and an upcoming <strong>Struts 1.0</strong>
-  final release.</p>
+  <p>The final release of <strong>Struts 1.0</strong> has been created and
+  made available at
+  <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0">
+  http://jakarta.apache.org/builds/jakarta-struts/release/v1.0</a>.  The
+  source code for this version of Struts can also be downloaded at
+  <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0/src">
+  http://jakarta.apache.org/builds/jakarta-struts/release/v1.0/src</a>.</p>
 
-  <p>Check the <a href="release-notes-1.0-b2.html">Release Notes</a>
+  <p>Check the <a href="release-notes-1.0.html">Release Notes</a>
   for a summary of what new features have been added, and other significant
-  changes, since the Struts 1.0-beta-1 release.</p>
+  changes, since the Struts 1.0-beta-3 release.</p>
 
   <hr width="75%"/>
   
@@ -109,17 +109,23 @@
   community, including contributing to the future development of Struts.
   Check out the following resources:</p>
   <ul>
-  <li><strong>STRUTS-USER Mailing List</strong> - Subscribe to the
-      <a href="mailto:struts-user-subscribe@jakarta.apache.org">STRUTS-USER</a>
+  <li><strong>STRUTS-USER Mailing List</strong> - Subscribe to this list
+      to communicate with other developers that are using
       mailing list to communicate with other developers that are using
       Struts for their own applications, including questions about the
-      installation of Struts, and the usage of particular Struts features.</li>
-  <li><strong>STRUTS-DEV Mailing List</strong> - Subscribe to the
-      <a href="mailto:struts-dev-subscribe@jakarta.apache.org">STRUTS-DEV</a>
+      installation of Struts, and the usage of particular Struts features.
+      [<a href="mailto:struts-user-subscribe@jakarta.apache.org">Subscribe</a>]
+      [<a href="mailto:struts-user-unsubscribe@jakarta.apache.org">Unsubscribe</a>]
+      </li>
+  <li><strong>STRUTS-DEV Mailing List</strong> - Subscribe to this
       mailing list to communicate with other developers interested in expanding
-      and improving the functionality supported by Struts itself.</li>
+      and improving the functionality supported by Struts itself.
+      [<a href="mailto:struts-dev-subscribe@jakarta.apache.org">Subscribe</a>]
+      [<a href="mailto:struts-dev-unsubscribe@jakarta.apache.org">Unsubscribe</a>]
+      </li>
   <li><strong>Bug Reports and Feature Requests</strong> Use the
-      <a href="#Bugs">Bug Reporting System</a> to submit these reports.</li>
+      <a href="http://nagoya.apache.org/bugzilla/">Bug Reporting System</a>
+      to submit these reports.</li>
   <li><strong>Patches and Modules</strong> - You can contribute patches and
       new modules to Struts by posting them to the STRUTS-DEV mailing list.
       After discussion and acceptance, one of the existing Committers will

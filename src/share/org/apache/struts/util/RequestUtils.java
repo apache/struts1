@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.14 2001/05/12 22:35:43 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2001/05/12 22:35:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.14.2.4 2001/06/13 02:59:40 craigmcc Exp $
+ * $Revision: 1.14.2.4 $
+ * $Date: 2001/06/13 02:59:40 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2001/05/12 22:35:43 $
+ * @version $Revision: 1.14.2.4 $ $Date: 2001/06/13 02:59:40 $
  */
 
 public class RequestUtils {
@@ -135,7 +135,7 @@ public class RequestUtils {
     public static URL absoluteURL(HttpServletRequest request, String path)
         throws MalformedURLException {
 
-        return (new URL(serverURL(request), path));
+        return (new URL(serverURL(request), request.getContextPath() + path));
 
     }
 
@@ -364,7 +364,7 @@ public class RequestUtils {
                         url.append('?');
                         question = true;
                     } else
-                        url.append('&');
+                        url.append("&amp;");
                     url.append(URLEncoder.encode(key));
                     url.append('='); // Interpret null as "no value"
                 } else if (value instanceof String) {
@@ -372,22 +372,31 @@ public class RequestUtils {
                         url.append('?');
                         question = true;
                     } else
-                        url.append('&');
+                        url.append("&amp;");
                     url.append(URLEncoder.encode(key));
                     url.append('=');
                     url.append(URLEncoder.encode((String) value));
-                } else /* if (value instanceof String[]) */ {
+                } else if (value instanceof String[]) {
                     String values[] = (String[]) value;
                     for (int i = 0; i < values.length; i++) {
                         if (!question) {
                             url.append('?');
                             question = true;
                         } else
-                            url.append('&');
+                            url.append("&amp;");
                         url.append(URLEncoder.encode(key));
                         url.append('=');
                         url.append(URLEncoder.encode(values[i]));
                     }
+                } else /* Convert other objects to a string */ {
+                    if (!question) {
+                        url.append('?');
+                        question = true;
+                    } else
+                        url.append('&');
+                    url.append(URLEncoder.encode(key));
+                    url.append('=');
+                    url.append(URLEncoder.encode(value.toString()));
                 }
             }
 
@@ -480,14 +489,14 @@ public class RequestUtils {
 
         // Look up the requested bean, and return if requested
         Object bean = lookup(pageContext, name, scope);
-        if (property == null)
-            return (bean);
         if (bean == null) {
             JspException e = new JspException
                 (messages.getMessage("lookup.bean", name, scope));
             saveException(pageContext, e);
             throw e;
         }
+        if (property == null)
+            return (bean);
 
         // Locate and return the specified property
         try {

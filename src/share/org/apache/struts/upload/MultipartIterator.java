@@ -497,13 +497,11 @@ public class MultipartIterator {
                         if (cutNewline) {
                             fos.write('\n');
                         }
+                        cutCarriage = false;
                         if (bytesRead > 0) {
                             if (lineBuffer[bytesRead-1] == '\r') {
                                 bytesRead--;
                                 cutCarriage = true;
-                            }
-                            else {
-                                cutCarriage = false;
                             }
                         }
                         cutNewline = true;

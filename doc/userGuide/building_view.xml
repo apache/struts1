@@ -227,9 +227,9 @@
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td align="right"&gt;
-      &lt;struts:submit&gt;
+      &lt;html:submit&gt;
         &lt;bean:message key="button.submit"/&gt;
-      &lt;/struts:submit&gt;
+      &lt;/html:submit&gt;
     &lt;/td&gt;
     &lt;td align="right"&gt;
       &lt;html:reset&gt;

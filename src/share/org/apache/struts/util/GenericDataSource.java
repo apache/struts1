@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.5 2001/04/18 22:15:56 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/04/18 22:15:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.5.2.2 2001/06/10 03:36:50 craigmcc Exp $
+ * $Revision: 1.5.2.2 $
+ * $Date: 2001/06/10 03:36:50 $
  *
  * ====================================================================
  *
@@ -66,7 +66,9 @@ package org.apache.struts.util;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Driver;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.Properties;
 import javax.sql.DataSource;
@@ -75,10 +77,8 @@ import javax.sql.DataSource;
 /**
  * <p>Generic data source implementation of the <code>DataSource</code>
  * interface.  <b>WARNING</b> - This implementation does not know how to
- * provide connections with different username/password combinations.  It
- * always returns connections based on the username and password configured
- * with <code>setUser()</code> and <code>setPassword()</code>,
- * respectively. Calling this version of the implementation using the
+ * provide connections with different username/password combinations.
+ * Calling this version of the implementation using the
  * getConnection(username,password) signature will throw an exception.</p>
  *
  * <p>The following properties are supported by the standard
@@ -127,6 +127,26 @@ import javax.sql.DataSource;
  *       the <code>user</code> property.</td>
  * </tr>
  * <tr>
+ *   <td align="center">pingCommand</td>
+ *   <td>A non-query SQL command that, if specified, will be executed before
+ *       a connection is returned by a call to <code>getConnection()</code>.
+ *       If any SQLException is thrown by the execution of this statement,
+ *       it is assumed that this connection is stale and it will be discarded.
+ *       Because this happens on every connection allocation, you should ensure
+ *       that the statement executes very quickly.</td>
+ * </tr>
+ * <tr>
+ *   <td align="center">pingQuery</td>
+ *   <td>A query SQL command (i.e. a SELECT) that, if specified, will be
+ *       executed before a connection is returned by a call to
+ *       <code>getConnection()</code>.  If any SQLException is thrown by the
+ *       execution of this query (or by the subsequent processing of the
+ *       entire returned <code>ResultSet</code>), it is assumed that this
+ *       connection is stale and it will be discarded.  Because this happens
+ *       on every connection allocation, you should ensure that the
+ *       statement executes very quickly.</td>
+ * </tr>
+ * <tr>
  *   <td align="center">readOnly</td>
  *   <td>Set to <code>true</code> if you want the connections returned to you
  *       by calling <code>getConnection()</code> to be configured for read only
@@ -158,7 +178,7 @@ import javax.sql.DataSource;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.5 $ $Date: 2001/04/18 22:15:56 $
+ * @version $Revision: 1.5.2.2 $ $Date: 2001/06/10 03:36:50 $
  */
 
 public class GenericDataSource implements DataSource {
@@ -206,13 +226,6 @@ public class GenericDataSource implements DataSource {
     protected PrintWriter logWriter = null;
 
 
-    /**
-     * The connection properties for use in establishing connections.
-     */
-    protected Properties properties = new Properties();
-
-
-
     // ------------------------------------------------------------- Properties
 
 
@@ -248,6 +261,20 @@ public class GenericDataSource implements DataSource {
 
     public void setAutoCommit(boolean autoCommit) {
         this.autoCommit = autoCommit;
+    }
+
+
+    /**
+     * The debugging detail level for this data source.
+     */
+    protected int debug = 0;
+
+    public int getDebug() {
+        return (this.debug);
+    }
+
+    public void setDebug(int debug) {
+        this.debug = debug;
     }
 
 
@@ -322,6 +349,41 @@ public class GenericDataSource implements DataSource {
     }
 
 
+
+    /**
+     * The non-query SQL command used to ping an allocated connection.
+     */
+    protected String pingCommand = null;
+
+    public String getPingCommand() {
+        return (this.pingCommand);
+    }
+
+    public void setPingCommand(String pingCommand) {
+        this.pingCommand = pingCommand;
+    }
+
+
+    /**
+     * The query SQL command used to ping an allocated connection.
+     */
+    protected String pingQuery = null;
+
+    public String getPingQuery() {
+        return (this.pingQuery);
+    }
+
+    public void setPingQuery(String pingQuery) {
+        this.pingQuery = pingQuery;
+    }
+
+
+    /**
+     * The connection properties for use in establishing connections.
+     */
+    protected Properties properties = new Properties();
+
+
     /**
      * The default read-only state for newly created connections.
      */
@@ -387,6 +449,8 @@ public class GenericDataSource implements DataSource {
     public Connection getConnection() throws SQLException {
 
         int seconds = 0;
+        if (debug >= 2)
+            log("  getConnection()");
 
         // Validate the opened status of this data source
         if (closed)
@@ -397,31 +461,68 @@ public class GenericDataSource implements DataSource {
         while (true) {
 
             // Have we timed out yet?
+            if (debug >= 3)
+                log("   Check for timeout, activeCount=" + activeCount +
+                    ", useCount=" + useCount);
             if ((loginTimeout > 0) && (seconds >= loginTimeout))
                 break;
 
             // Return an existing connection from the pool if there is one
             synchronized (connections) {
                 if (!connections.isEmpty()) {
-                    useCount++;
-                    GenericConnection connection = (GenericConnection) connections.removeFirst();
-                    // unclose the connection's wrapper
+
+                    // Allocate the first available connection
+                    GenericConnection connection =
+                        (GenericConnection) connections.removeFirst();
+                    if (debug >= 3)
+                        log("   Found available connection");
+
+                    // Make sure this connection is not stale
                     connection.setClosed(false);
+                    try {
+                        ping(connection);
+                    } catch (SQLException e) {
+                        if (debug >= 3)
+                            log("   Connection stale, releasing");
+                        try {
+                            connection.getConnection().close();
+                        } catch (SQLException f) {
+                            ;
+                        }
+                        activeCount--;
+                        continue;
+                    }
+
+                    // unclose the connection's wrapper and return it
+                    useCount++;
+                    if (debug >= 3)
+                        log("   Return allocated connection, activeCount=" +
+                            activeCount + ", useCount=" + useCount);
                     return(connection);
-                    // return ((Connection) connections.removeFirst()); DEBUG
+
                 }
             }
 
             // Create a new connection if we are not yet at the maximum
             if (activeCount < maxCount) {
-                Connection conn = createConnection();
-                if (conn != null) {
+                Connection connection = createConnection();
+                if (connection != null) {
+                    try {
+                        ping(connection);
+                    } catch (SQLException e) {
+                        throw e;
+                    }
                     useCount++;
-                    return (conn);
+                    if (debug >= 3)
+                        log("   Return new connection, activeCount=" +
+                            activeCount + ", useCount=" + useCount);
+                    return (connection);
                 }
             }
 
             // Wait for an existing connection to be returned
+            if (debug >= 3)
+                log("   Sleep until next test");
             try {
                 Thread.sleep(1000);
                 seconds++;
@@ -432,6 +533,8 @@ public class GenericDataSource implements DataSource {
         }
 
         // We have timed out awaiting an available connection
+        if (debug >= 3)
+            log("   Timeout awaiting connection");
         throw new SQLException
             ("getConnection: Timeout awaiting connection");
 
@@ -440,16 +543,14 @@ public class GenericDataSource implements DataSource {
 
     /**
      * Attempt to establish a database connection.  <b>WARNING</b> - The
-     * specified username and password are ignored by this implementation.
+     * specified username and password are not supported by this
+     * implementation.
      *
      * @param username Database username for this connection
      * @param password Database password for this connection
      *
      * @exception SQLException if a database access error occurs
      */
-
-
-
     public Connection getConnection(String username, String password)
         throws SQLException {
 
@@ -523,6 +624,8 @@ public class GenericDataSource implements DataSource {
 
         if (closed)
             throw new SQLException("close:  Data Source already closed");
+        if (debug >= 1)
+            log(" close()");
 
         // Shut down all active connections
         while (activeCount > 0) {
@@ -548,13 +651,15 @@ public class GenericDataSource implements DataSource {
         // Have we already been opened?
         if (driver != null)
             return;
+        if (debug >= 1)
+            log(" open()");
 
         // Instantiate our database driver
         try {
             Class clazz = Class.forName(driverClass);
             driver = (Driver) clazz.newInstance();
         } catch (Throwable t) {
-            throw new SQLException("createConnection: " + t);
+            throw new SQLException("open: " + t);
         }
 
         // Create the initial minimum number of required connections
@@ -621,11 +726,121 @@ public class GenericDataSource implements DataSource {
     protected synchronized Connection createConnection() throws SQLException {
 
         if (activeCount < maxCount) {
+            if (debug >= 3)
+                log("   createConnection()");
             Connection conn = driver.connect(url, properties);
             activeCount++;
             return (new GenericConnection(this, conn, autoCommit, readOnly));
         }
+        if (debug >= 3)
+            log("   createConnection() returning null");
         return (null);
+
+    }
+
+
+    /**
+     * Log the specified message to our log writer, if we have one.
+     *
+     * @param message The message to be logged
+     */
+    protected void log(String message) {
+
+        if (logWriter != null) {
+            logWriter.print("GenericDataSource[");
+            logWriter.print(description);
+            logWriter.print("]: ");
+            logWriter.println(message);
+        }
+
+    }
+
+
+    /**
+     * Log the specified message and exception to our log writer, if we
+     * have one.
+     *
+     * @param message The message to be logged
+     * @param throwable The exception to be logged
+     */
+    protected void log(String message, Throwable throwable) {
+
+        if (logWriter != null) {
+            logWriter.print("GenericDataSource[");
+            logWriter.print(description);
+            logWriter.print("]: ");
+            logWriter.println(message);
+            throwable.printStackTrace(logWriter);
+        }
+
+    }
+
+
+    /**
+     * Perform any configured <code>pingCommand</code> and/or
+     * <code>pingQuery</code> on the specified connection, returning any
+     * SQLException that is encountered along the way.
+     *
+     * @param conn The connection to be pinged
+     */
+    protected void ping(Connection conn) throws SQLException {
+
+        if (pingCommand != null) {
+
+            if (debug >= 4)
+                log("    ping(" + pingCommand + ")");
+
+            Statement stmt = conn.createStatement();
+            try {
+                stmt.execute(pingCommand);
+                stmt.close();
+            } catch (SQLException e) {
+                if (debug >= 5)
+                    log("     ping() failed:  " + e);
+                try {
+                    if (stmt != null)
+                        stmt.close();
+                } catch (SQLException f) {
+                    ;
+                }
+                throw e;
+            }
+
+        }
+
+        if (pingQuery != null) {
+
+            if (debug >= 4)
+                log("    ping(" + pingQuery + ")");
+
+            ResultSet rs = null;
+            Statement stmt = conn.createStatement();
+            try {
+                rs = stmt.executeQuery(pingQuery);
+                while (rs.next()) {
+                    ;
+                }
+                rs.close();
+                stmt.close();
+            } catch (SQLException e) {
+                if (debug >= 5)
+                    log("     ping() failed: " + e);
+                try {
+                    if (rs != null)
+                        rs.close();
+                } catch (SQLException f) {
+                    ;
+                }
+                try {
+                    if (stmt != null)
+                        stmt.close();
+                } catch (SQLException f) {
+                    ;
+                }
+                throw e;
+            }
+
+        }
 
     }
 
@@ -639,6 +854,10 @@ public class GenericDataSource implements DataSource {
      * @param conn The connection being returned
      */
     void returnConnection(GenericConnection conn) {
+
+        if (debug >= 2)
+            log("  releaseConnection(), activeCount=" + activeCount +
+                ", useCount=" + (useCount - 1));
 
         synchronized (connections) {
             connections.addLast(conn);

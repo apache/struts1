@@ -248,6 +248,13 @@
         CLASSPATH that is submitted to the compiler.</li>
     </ul>
 </section> <section name="Installing Struts with your servlet container" href="Containers"> 
+
+<p><strong>WARNING</strong> - Do <strong>NOT</strong> add
+<code>struts.jar</code> to the classpath of your servlet container in an
+attempt to avoid placing it in the <code>/WEB-INF/lib</code> directory of
+each individual web app!  Doing so will cause problems with
+<code>ClassNotFoundException</code> exceptions.</p>
+
 <p>For most containers, you need only to: </p>
 <ul>
   <li>Copy the WAR files in your Struts <code>/webapp</code> directory to your 

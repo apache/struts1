@@ -29,59 +29,61 @@
 <h3>Test 1 - Iterate Over A String Array [0..4]</h3>
 
 <ol>
-<logic:iterate id="element" name="bean" property="stringArray">
-  <li><em><bean:write name="element"/></em></li>
+<logic:iterate id="element" name="bean" property="stringArray" indexId="index">
+  <li><em><bean:write name="element"/></em>&nbsp;[<bean:write name="index"/>]</li>
 </logic:iterate>
 </ol>
 
 <h3>Test 2 - Iterate Over A String Array [0..2]</h3>
 
 <ol>
-<logic:iterate id="element" name="bean" property="stringArray" length="3">
-  <li><em><bean:write name="element"/></em></li>
+<logic:iterate id="element" name="bean" property="stringArray" indexId="index"
+        length="3">
+  <li><em><bean:write name="element"/></em>&nbsp;[<bean:write name="index"/>]</li>
 </logic:iterate>
 </ol>
 
 <h3>Test 3 - Iterate Over A String Array [3..4]</h3>
 
 <ol>
-<logic:iterate id="element" name="bean" property="stringArray" offset="3">
-  <li><em><bean:write name="element"/></em></li>
+<logic:iterate id="element" name="bean" property="stringArray" indexId="index"
+        offset="3">
+  <li><em><bean:write name="element"/></em>&nbsp;[<bean:write name="index"/>]</li>
 </logic:iterate>
 </ol>
 
 <h3>Test 4 - Iterate Over A String Array [1..3]</h3>
 
 <ol>
-<logic:iterate id="element" name="bean" property="stringArray"
+<logic:iterate id="element" name="bean" property="stringArray" indexId="index"
                offset="1" length="3">
-  <li><em><bean:write name="element"/></em></li>
+  <li><em><bean:write name="element"/></em>&nbsp;[<bean:write name="index"/>]</li>
 </logic:iterate>
 </ol>
 
 <h3>Test 5 - Iterate Over an Array List</h3>
 
 <ol>
-<logic:iterate id="item" name="list">
-  <li><em><bean:write name="item"/></em></li>
+<logic:iterate id="item" name="list" indexId="index">
+  <li><em><bean:write name="item"/></em>&nbsp;[<bean:write name="index"/>]</li>
 </logic:iterate>
 </ol>
 
 <h3>Test 6 - Iterate Over an Array List [0..2]</h3>
 
 <ol>
-<logic:iterate id="item" name="list"
+<logic:iterate id="item" name="list" indexId="index"
        offset="0" length="3">
-  <li><em><bean:write name="item"/></em></li>
+  <li><em><bean:write name="item"/></em>&nbsp;[<bean:write name="index"/>]</li>
 </logic:iterate>
 </ol>
 
 <h3>Test 7 - Iterate Over an Array List [2..4]</h3>
 
 <ol>
-<logic:iterate id="item" name="list"
+<logic:iterate id="item" name="list" indexId="index"
        offset="2" length="3">
-  <li><em><bean:write name="item"/></em></li>
+  <li><em><bean:write name="item"/></em>&nbsp;[<bean:write name="index"/>]</li>
 </logic:iterate>
 </ol>
 

@@ -1707,7 +1707,8 @@
                 to be the names of query parameters to be appended to the
                 <code>src</code> URL.  The value associated with each key
                 must be either a String or a String array representing the
-                parameter value(s).  If a String array is specified, more than
+                parameter value(s), or an object whose toString() method
+                will be called.  If a String array is specified, more than
                 one value for the same query parameter name will be
                 created.</p>
 
@@ -2172,7 +2173,8 @@
                 <p>As the <code>Map</code> is processed, the keys are assumed
                 to be the names of query parameters to be appended to the
                 hyperlink.  The value associated with each key must be either
-                a String or a String array representing the parameter value(s).
+                a String or a String array representing the parameter value(s),
+                or an object whose toString() method will be called.
                 If a String array is specified, more than one value for the
                 same query parameter name will be created.</p>
 
@@ -2521,6 +2523,15 @@
                   <p>The window target in which the resource requested by this
                   hyperlink will be displayed, for example in a framed
                   presentation.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this hyperlink.</p>
                   </info>
                 </attribute>
 
@@ -3469,6 +3480,15 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Identifier to be assigned to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>tabindex</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The tab order (ascending positive integers) for this element.
             </info>
         </attribute>
 

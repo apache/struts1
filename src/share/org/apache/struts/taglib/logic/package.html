@@ -200,7 +200,7 @@ In this case, <i>matchTag</i> would have to be &lt;logic:match&gt;.
           <pre>&lt;%
   java.util.Vector vector = new java.util.Vector();
   vector.add(new Integer(12));
-  vector.add(new Integer(5))
+  vector.add(new Integer(5));
  %&gt;
 </pre>
         </li>
@@ -209,9 +209,9 @@ In this case, <i>matchTag</i> would have to be &lt;logic:match&gt;.
   </ul>
   <blockquote>
     <blockquote>
-      <pre>&lt;bean:iterate id=&quot;myCollectionElement&quot; collection=&quot;&lt;%= vector %&gt;&quot;&gt;
+      <pre>&lt;logic:iterate id=&quot;myCollectionElement&quot; collection=&quot;&lt;%= vector %&gt;&quot;&gt;
 <i> Do something with myCollectionElement</i>
-&lt;/bean:iterate&gt;
+&lt;/logic:iterate&gt;
 </pre>
     </blockquote>
   </blockquote>
