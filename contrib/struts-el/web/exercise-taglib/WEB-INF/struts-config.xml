@@ -39,6 +39,14 @@
       <forward name="input"                path="/html-multibox.jsp"/>
     </action>
 
+    <action    path="/html-radio"
+               type="org.apache.struts.webapp.exercise.HtmlSettersAction"
+               name="testbean"
+              scope="session"
+           validate="false">
+      <forward name="input"                path="/html-radio.jsp"/>
+    </action>
+
     <action    path="/html-select"
                type="org.apache.struts.webapp.exercise.HtmlSettersAction"
                name="testbean"

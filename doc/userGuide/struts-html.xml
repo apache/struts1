@@ -5033,6 +5033,16 @@
         </attribute>
 
         <attribute>
+            <name>onmouseup</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under the
+                mouse pointer and a mouse button is released.
+            </info>
+        </attribute>
+
+        <attribute>
             <name>style</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>

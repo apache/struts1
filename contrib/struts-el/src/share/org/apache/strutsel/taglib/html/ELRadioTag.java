@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRadioTag.java,v 1.4 2002/10/03 05:00:47 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/03 05:00:47 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRadioTag.java,v 1.5 2002/10/05 05:38:40 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/10/05 05:38:40 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -75,7 +75,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ELRadioTag extends RadioTag {
 
@@ -248,11 +248,12 @@ public class ELRadioTag extends RadioTag {
             setOnmouseover(null);
         }
 
-//         try {
-//             setOnmouseup((String) evalAttr("onmouseup", getOnmouseup(), String.class));
-//         } catch (NullAttributeException ex) {
-//             setOnmouseup(null);
-//         }
+        try {
+            setOnmouseup((String) evalAttr("onmouseup", getOnmouseup(),
+                                           String.class));
+        } catch (NullAttributeException ex) {
+            setOnmouseup(null);
+        }
 
         try {
             setProperty((String) evalAttr("property", getProperty(),

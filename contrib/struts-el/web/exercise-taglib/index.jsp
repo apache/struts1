@@ -19,6 +19,7 @@
 <ul>
 <li><a href="html-link.jsp">&lt;html:link&gt;</a>[<a href="showSource.jsp?path=/html-link.jsp">Source</a>]</li>
 <li><a href="html-multibox.jsp">&lt;html:multibox&gt;</a>[<a href="showSource.jsp?path=/html-multibox.jsp">Source</a>]</li>
+<li><a href="html-radio.jsp">&lt;html:radio&gt;</a>[<a href="showSource.jsp?path=/html-radio.jsp">Source</a>]</li>
 <li><a href="html-select.jsp">&lt;html:select&gt;</a>[<a href="showSource.jsp?path=/html-select.jsp">Source</a>]</li>
 <li><a href="html-setters.jsp">Scalar Setters</a>[<a href="showSource.jsp?path=/html-setters.jsp">Source</a>]</li>
 </ul>
