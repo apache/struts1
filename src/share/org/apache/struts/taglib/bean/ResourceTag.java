@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.4 2000/10/30 02:30:23 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/10/30 02:30:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.5 2000/10/30 02:51:40 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/10/30 02:51:40 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.PropertyUtils;
  * web application resource.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/10/30 02:30:23 $
+ * @version $Revision: 1.5 $ $Date: 2000/10/30 02:51:40 $
  */
 
 public final class ResourceTag extends TagSupport {
@@ -201,10 +201,11 @@ public final class ResourceTag extends TagSupport {
 
 
     /**
-     * Reset custom attributes to their default values.
+     * Release all allocated resources.
      */
-    public void releaseCustomAttributes() {
+    public void release() {
 
+        super.release();
         id = null;
         input = null;
         name = null;

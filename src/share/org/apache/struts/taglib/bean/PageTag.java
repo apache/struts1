@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/PageTag.java,v 1.2 2000/10/30 02:30:22 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/10/30 02:30:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/PageTag.java,v 1.3 2000/10/30 02:51:39 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/30 02:51:39 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.PropertyUtils;
  * item as a scripting variable and a page scope bean.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/10/30 02:30:22 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/30 02:51:39 $
  */
 
 public final class PageTag extends TagSupport {
@@ -163,10 +163,11 @@ public final class PageTag extends TagSupport {
 
 
     /**
-     * Reset custom attributes to their default values.
+     * Release all allocated resources.
      */
-    public void releaseCustomAttributes() {
+    public void release() {
 
+        super.release();
         id = null;
         property = null;
 

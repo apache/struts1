@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.2 2000/10/30 02:30:23 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/10/30 02:30:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.3 2000/10/30 02:51:40 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/30 02:51:40 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.PropertyUtils;
  * internal configuraton object.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/10/30 02:30:23 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/30 02:51:40 $
  */
 
 public final class StrutsTag extends TagSupport {
@@ -220,10 +220,11 @@ public final class StrutsTag extends TagSupport {
 
 
     /**
-     * Reset custom attributes to their default values.
+     * Release all allocated resources.
      */
-    public void releaseCustomAttributes() {
+    public void release() {
 
+        super.release();
         id = null;
         formBean = null;
         forward = null;

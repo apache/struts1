@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.4 2000/10/30 02:30:22 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/10/30 02:30:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.5 2000/10/30 02:51:39 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/10/30 02:51:39 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.PropertyUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/10/30 02:30:22 $
+ * @version $Revision: 1.5 $ $Date: 2000/10/30 02:51:39 $
  */
 
 public final class DefineTag extends TagSupport {
@@ -232,10 +232,11 @@ public final class DefineTag extends TagSupport {
 
 
     /**
-     * Reset custom attributes to their default values.
+     * Release all allocated resources.
      */
-    public void releaseCustomAttributes() {
+    public void release() {
 
+        super.release();
         id = null;
         name = null;
         property = null;

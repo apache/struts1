@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.4 2000/10/30 02:30:22 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.5 2000/10/30 02:51:39 craigmcc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -81,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/10/30 02:30:22 $
+ * @version $Revision: 1.5 $ $Date: 2000/10/30 02:51:39 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -214,10 +214,11 @@ public class IncludeTag extends TagSupport {
 
 
     /**
-     * Reset custom attributes to their default values.
+     * Release all allocated resources.
      */
-    public void releaseCustomAttributes() {
+    public void release() {
 
+        super.release();
         id = null;
         name = null;
 
