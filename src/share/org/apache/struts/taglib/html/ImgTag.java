@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.38 2004/02/07 15:55:02 husted Exp $
- * $Revision: 1.38 $
- * $Date: 2004/02/07 15:55:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.39 2004/02/19 02:43:14 husted Exp $
+ * $Revision: 1.39 $
+ * $Date: 2004/02/19 02:43:14 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.MessageResources;
  *       <strong>lowsrc</strong> settable from properties (for i18n)</li>
  * </ul>
  *
- * @version $Revision: 1.38 $
+ * @version $Revision: 1.39 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -121,13 +121,18 @@ public class ImgTag extends BaseHandlerTag {
       * rooted to the application context path
       * If 'false' or absent the image is rooted to the current
       * module's context path.
+      * @deprecated Use module property instead; will be removed in a release after 1.2.0.
       */
      protected String contextRelative = null;
 
+     /** @deprecated Use module property instead; will be removed in a release after 1.2.0.
+      */
      public String getContextRelative() {
          return (this.contextRelative);
      }
 
+    /** @deprecated Use module property instead; will be removed in a release after 1.2.0.
+     */
      public void setContextRelative(String contextRelative) {
          this.contextRelative = contextRelative;
      }
@@ -136,6 +141,7 @@ public class ImgTag extends BaseHandlerTag {
     /**
      * Convenience method to return true if contextRelative set to "true".
      * @return True if contextRelative set to "true"
+     * @deprecated Use module property instead; will be removed in a release after 1.2.0.
      */
     public boolean isContextRelativeSet() {
         return Boolean.valueOf(this.contextRelative).booleanValue();
