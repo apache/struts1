@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.18 2003/11/27 19:20:31 dgraham Exp $
- * $Revision: 1.18 $
- * $Date: 2003/11/27 19:20:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.19 2003/12/07 19:11:10 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/12/07 19:11:10 $
  *
  * ====================================================================
  *
@@ -80,7 +80,6 @@ import org.apache.struts.util.MessageResources;
 
 /**
  *  <p>
- *
  *  An abstract <strong>Action</strong> that dispatches to the subclass mapped
  *  <code>execute</code> method. This is useful in
  *  cases where an HTML form has multiple submit buttons with the same name. The
@@ -92,10 +91,10 @@ import org.apache.struts.util.MessageResources;
  *           name="MyForm"
  *          scope="request"
  *          input="/test.jsp"
- *      parameter="action"/&gt;
+ *      parameter="method"/&gt;
  * </pre> <p>
  *
- *  which will use the value of the request parameter named "action" to locate
+ *  which will use the value of the request parameter named "method" to locate
  *  the corresponding key in ApplicationResources. For example, you might have
  *  the following ApplicationResources.properties:</p> <pre>
  *    button.add=Add Record
@@ -104,10 +103,10 @@ import org.apache.struts.util.MessageResources;
  *
  *  And your JSP would have the following format for submit buttons:</p> <pre>
  *   &lt;html:form action="/test"&gt;
- *    &lt;html:submit property="action"&gt;
+ *    &lt;html:submit property="method"&gt;
  *      &lt;bean:message key="button.add"/&gt;
  *    &lt;/html:submit&gt;
- *    &lt;html:submit property="action"&gt;
+ *    &lt;html:submit property="method"&gt;
  *      &lt;bean:message key="button.delete"/&gt;
  *    &lt;/html:submit&gt;
  *  &lt;/html:form&gt;
