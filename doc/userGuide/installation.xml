@@ -301,6 +301,7 @@ about how to configure additional security manager permissions.</p>
     required.</a></li>
   <li>Tomcat 3.2.1+ "standalone" - No additional steps required.</li>
   <li>Tomcat 4.0 - No additional steps required.</li>
+  <li>Trifork Enterprise Application Server 3.3.x - No additional steps required.</li>
   <li>Weblogic 5.1 sp8 - <a href="installation-wls5.html">Additional steps required.</a></li>
   <li>WebLogic 6.0+ - No additional steps required.</li>
   <li>WebSphere - <a href="installation-was352.html">Additional steps required.</a></li>
