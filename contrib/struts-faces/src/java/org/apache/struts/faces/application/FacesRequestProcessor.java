@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesRequestProcessor.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:38:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesRequestProcessor.java,v 1.3 2003/09/21 02:30:11 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/09/21 02:30:11 $
  *
  * ====================================================================
  *
@@ -93,7 +93,7 @@ import org.apache.struts.faces.Constants;
  * requests as well.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
+ * @version $Revision: 1.3 $ $Date: 2003/09/21 02:30:11 $
  */
 
 public class FacesRequestProcessor extends RequestProcessor {
@@ -137,7 +137,11 @@ public class FacesRequestProcessor extends RequestProcessor {
         if ((context != null) && !uri.startsWith("/faces/")) {
             selectTree(context, uri);
         } else {
-            super.doForward(uri, request, response);
+            if (response.isCommitted()) {
+                doInclude(uri, request, response);
+            } else {
+                super.doForward(uri, request, response);
+            }
             if (context != null) {
                 context.responseComplete();
             }
