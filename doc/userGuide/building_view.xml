@@ -17,9 +17,10 @@
       <section name="3.1 Overview" href="overview">
         
         <p>
-          This chapter focuses on the task of building the <i>View</i> components
-        of the application, which will primarily be created using JavaServer Pages
-        (JSP) technology.  In particular, Struts provides support for building
+        This chapter focuses on the task of building the <i>View</i> components
+        for use with the Struts framework. Many applications rely on JavaServer Pages
+        (JSP) technology to create the presentation layer. The Struts distribution 
+        includes a comprehensive JSP tag library that provides support for building
         internationalized applications, as well as for interacting with input forms.
         Several other topics related to the View components are briefly discussed.
       </p>
@@ -42,8 +43,8 @@
       </p>
         
       <p>
-        Struts builds upon the Java platform to provide assistance
-        for building internationalized and localized applications.  The key concepts
+        Struts builds upon the standard classes available on the Java platform to 
+        build internationalized and localized applications. The key concepts
         to become familiar with are:
       </p>
       
@@ -162,7 +163,7 @@
       <blockquote> 
         <b>Note:</b> While the examples given here use JSP and custom tags, 
         the ActionForm beans and the other Struts controller components are 
-        view neutral. Struts can be used with Velocity Templates, XLST, and 
+        View neutral. Struts can be used with Velocity Templates, XLST, and 
         any other presentation technology that can be rendered via a Java 
         servlet. See the 
         <a href="../resources/index.html">
@@ -323,7 +324,7 @@
               automatically, using the specified Java class name.
               <li>The form bean can also be specified in the Struts configuration file, 
               in which case the Name and Type can be omitted 
-              here. See "<a href="building_controller.html#config">The Action Mappings 
+              here. See "<a href="building_controller.html#config">The Struts  
               Configuration File</a>" for details.)</li>
               </li>
           <li>The text tag renders an HTML
@@ -331,7 +332,7 @@
               the number of character positions to occupy on the browser's screen
               has been specified as well.  When this page is executed, the current
               value of the <code>username</code> property of the corresponding bean
-              (that is, the value returned by <code>getUsername()</code>).</li>
+              (that is, the value returned by <code>getUsername</code>).</li>
           <li>The password tag is used similarly.
               The difference is that the browser will echo asterisk characters,
               instead of the input value, as the user types their password.</li>.
@@ -397,7 +398,7 @@ public class UploadForm extends ActionForm {
           methods it exposes to manipulate files in file uploading.  Also look at the
           Javadocs for ActionServlet and ActionMapping for the various parameters
           you can specify to change how files are uploaded.  Basically in your
-          perform() method in your action class you would call <code>((UploadForm) form).getMyFile()</code>
+          <code>execute</code> method in your action class you would call <code>((UploadForm) form).getMyFile()</code>
           to retrieve the FormFile and do what you want with it.
         </p>        
               
@@ -484,16 +485,16 @@ public class UploadForm extends ActionForm {
 </pre>
         
         <p>
-          The validate() method is called by the controller servlet after the bean
+          The <code>validate</code> method is called by the controller servlet after the bean
           properties have been populated, but before the corresponding action class's
-          <code>perform()</code> method is invoked. The <code>validate()</code> method
+          <code>perform</code> method is invoked. The <code>validate</code> method
           has the following options:
         </p>
         
         <ul>
           <li>Perform the appropriate validations and find no problems -- Return either
               <code>null</code> or a zero-length ActionErrors instance, and the controller 
-              servlet will proceed to call the <code>perform()</code> method of the 
+              servlet will proceed to call the <code>perform</code> method of the 
               appropriate <code>Action</code> class.</li>
           <li>Perform the appropriate validations and find problems -- Return an ActionErrors
               instance containing <code>ActionError</code>'s, which are classes that contain
@@ -507,12 +508,12 @@ public class UploadForm extends ActionForm {
           
         <p>
           As mentioned earlier, this feature is entirely optional.  The default implementation
-          of the validate() method returns <code>null</code>, and the controller servlet
+          of the <code>validate</code> method returns <code>null</code>, and the controller servlet
           will assume that any required validation is done by the action class.
         </p>
         <p>
           One common approach is to perform simple, prima facia validations using the 
-          ActionForm validate() method, and then handle the "business logic" validation 
+          ActionForm <code>validate</code> method, and then handle the "business logic" validation 
           from the Action. 
         </p>
         <p>
@@ -617,12 +618,12 @@ public class UploadForm extends ActionForm {
         </ul>
         <p>
           Another approach to this would be to use the Struts Template Tag library. See the         
-          Developer's Guide for details.
+          Developer's Guide for details. 
         </p>  
         <p>
           Tiles is an alternative to the original Template Tag library, offering several 
-          enhancements and new capabilities. Tiles is available in the 
-          Nightly Build, and from <a href="http://www.lifl.fr/~dumoulin/tiles/">
+          enhancements and new capabilities. Tiles is bundled with Struts 1.1 and also 
+          available from <a href="http://www.lifl.fr/~dumoulin/tiles/">
           Cedric Dumoulin's Web site</a>.
         </p>
       </section>
