@@ -47,23 +47,23 @@
     </p>
 
     <ul>
-    
+
         <li>
             controller
         </li>
-        
+
         <li>
             message-resources
         </li>
-        
+
         <li>
             plug-in
         </li>
-    
+
         <li>
             data-sources
         </li>
-    
+
     </ul>
 
  </section>
@@ -83,15 +83,15 @@
     </p>
 
     <blockquote>
-    
+
     <ul>
-    
+
         <li>
         <b>bufferSize</b> - The size (in bytes) of the input buffer
         used when processing file uploads.
         [4096] (optional)
         </li>
-        
+
         <li>
         <b>className</b> - Classname of configuration bean.
         [org.apache.struts.config.ControllerConfig] (optional)
@@ -113,7 +113,7 @@
         This value may consist of any combination of the following:
 
         <ul>
-        
+
             <li>
             <em>$M</em> - Replaced by the module prefix of this module.
             </li>
@@ -169,7 +169,7 @@
         <li>
         <b>multipartClass</b> - The fully qualified Java class name of the
         multipart request handler class to be used with this module.
-        [org.apache.struts.upload.CommonsMultipartRequesthandler] (optional)
+        [org.apache.struts.upload.CommonsMultipartRequestHandler] (optional)
         </li>
 
         <li>
@@ -254,7 +254,7 @@
     </p>
 
     <blockquote>
-    
+
     <ul>
 
         <li>
@@ -304,7 +304,7 @@
 </section>
 
 <section name="5.2.3 PlugIn Configuration" href="plugin_config">
-   
+
     <p>
     Struts PlugIns are configured using the <code>&lt;plug-in&gt;</code>
     element within the Struts configuration file.
@@ -340,24 +340,24 @@
     </p>
 
     <p>
-    The <code>&lt;data-sources></code> section can be used to specify 
+    The <code>&lt;data-sources></code> section can be used to specify
     a collection of DataSources [javax.sql.DataSource] for the use of your
-    application. 
-    Typically, a DataSource represents a connection pool to a database 
-    or other persistent store. 
-    As a convenience, the Struts DataSource manager can be used to 
-    instantiate whatever standard pool your application may need. 
-    Of course, if your persistence layer provides for its own connections, 
+    application.
+    Typically, a DataSource represents a connection pool to a database
+    or other persistent store.
+    As a convenience, the Struts DataSource manager can be used to
+    instantiate whatever standard pool your application may need.
+    Of course, if your persistence layer provides for its own connections,
     then you do not need to specify a <code>data-sources</code> element.
     </p>
 
     <p>
     Since DataSource implementations vary in what properties need to be
-    set, unlike other Struts configuration elements, the 
-    <code>data-source</code> element does not pre-define a slate of 
+    set, unlike other Struts configuration elements, the
+    <code>data-source</code> element does not pre-define a slate of
     properties.
-    Instead, the generic <code>set-property</code> feature is used to set 
-    whatever properties your implementation may require. 
+    Instead, the generic <code>set-property</code> feature is used to set
+    whatever properties your implementation may require.
     Typically, these settings would include:
     </p>
 
@@ -378,45 +378,45 @@
     </ul>
 
     <p>
-    And other sundry properties. 
+    And other sundry properties.
     </p>
 
     <p>
-    As a further convenience, Struts provides a default DataSource 
+    As a further convenience, Struts provides a default DataSource
     implementation, [<code>org.apache.struts.util.GenericDataSource</code>].
-    The <code>type</code> property can be used to specify another 
-    implementation: 
+    The <code>type</code> property can be used to specify another
+    implementation:
     </p>
 
 <pre><code><![CDATA[
 <data-source type="org.apache.commons.dbcp.BasicDataSource">
-<!-- ... set-property elements ... -->        
+<!-- ... set-property elements ... -->
 </data-source>
 ]]></code></pre>
 
-    <p>        
-    In Struts 1.1, the GenericDataSource is deprecated, and it is 
-    recommended that you use the Commons BasicDataSource directly. 
-    In practice, if you need to use the DataSource manager, you should use 
-    whatever DataSource implementation works best with your container or 
-    database. 
-    </p>
-    
     <p>
-    For examples of specifying a data-sources element and using the 
-    DataSource with an Action, see the 
+    In Struts 1.1, the GenericDataSource is deprecated, and it is
+    recommended that you use the Commons BasicDataSource directly.
+    In practice, if you need to use the DataSource manager, you should use
+    whatever DataSource implementation works best with your container or
+    database.
+    </p>
+
+    <p>
+    For examples of specifying a data-sources element and using the
+    DataSource with an Action, see the
     <a href="../faqs/database.html">Accessing a Database HowTo</a>.
     </p>
-      
+
 </section>
 
-<section 
-    name="5.3 Configuring your application for modules" 
+<section
+    name="5.3 Configuring your application for modules"
     href="dd_config_modules">
 
     <p>
     Very little is required in order to start taking advantage of the Struts
-    application module feature. 
+    application module feature.
     Just go through the following steps:
     </p>
 
@@ -441,17 +441,17 @@
 <section name="5.3.1 Module Configuration Files" href="module_config-files">
 
     <p>
-    Back in Struts 1.0, a few "boot-strap" options were placed in the web.xml 
-    file, and the bulk of the configuration was done in a single 
+    Back in Struts 1.0, a few "boot-strap" options were placed in the web.xml
+    file, and the bulk of the configuration was done in a single
     struts-config.xml file.
-    Obviously, this wasn't ideal for a team environment, since multiple users 
+    Obviously, this wasn't ideal for a team environment, since multiple users
     had to share the same configuration file.
     </p>
-    
+
     <p>
-    In Struts 1.1, you have two options: you can list 
-    <a href="#dd_config_servlet">multiple struts-config files</a> as a 
-    comma-delimited list, or you can subdivide a larger application into 
+    In Struts 1.1, you have two options: you can list
+    <a href="#dd_config_servlet">multiple struts-config files</a> as a
+    comma-delimited list, or you can subdivide a larger application into
     modules.
     </p>
 
@@ -464,8 +464,8 @@
 
 </section>
 
-<section 
-    name="5.3.2 Informing the Controller" 
+<section
+    name="5.3.2 Informing the Controller"
     href="module_config-inform_controller">
 
     <p>
@@ -608,12 +608,12 @@
 
 </section>
 
-<section 
-    name="5.4.1 Configure the Action Servlet Instance" 
+<section
+    name="5.4.1 Configure the Action Servlet Instance"
     href="dd_config_servlet">
 
     <p>
-    Add an entry defining the action servlet itself, along with the 
+    Add an entry defining the action servlet itself, along with the
     appropriate initialization parameters.
     Such an entry might look like this:
     </p>
@@ -648,13 +648,13 @@
         <li>
         <strong>config</strong> - Context-relative path to the XML resource
         containing the configuration information for the default module.
-        This may also be a comma-delimited list of configuration files. 
-        Each file is loaded in turn, and its objects are appended to the 
+        This may also be a comma-delimited list of configuration files.
+        Each file is loaded in turn, and its objects are appended to the
         internal data structure. [/WEB-INF/struts-config.xml].<br/>
-        <font color="red"><strong>WARNING</strong></font> - If you define 
-        an object of the same name in more than one configuration file, 
+        <font color="red"><strong>WARNING</strong></font> - If you define
+        an object of the same name in more than one configuration file,
         the last one loaded quietly wins.
-        
+
         </li>
 
         <li>
@@ -679,7 +679,7 @@
         <code>org.apache.commons.digester.RuleSet</code> instances that
         should be added to the <code>Digester</code> that will be processing
         <code>struts-config.xml</code> files.
-        By default, only the <code>RuleSet</code> for the standard 
+        By default, only the <code>RuleSet</code> for the standard
         configuration elements is loaded. (Since Struts 1.1)
         </li>
 
@@ -828,10 +828,10 @@
         <strong>multipartClass</strong> - The fully qualified name of the
         MultipartRequestHandler implementation class to be used for processing
         file uploads.
-        If set to <code>none</code>, disables Struts multipart request 
+        If set to <code>none</code>, disables Struts multipart request
         handling.
         [org.apache.struts.upload.CommonsMultipartRequestHandler]
-        <em>DEPRECATED - Configure this using the "multipartClass" attribute 
+        <em>DEPRECATED - Configure this using the "multipartClass" attribute
         of the &lt;controller&gt; element.</em>
         </li>
 
@@ -877,8 +877,8 @@
 
 </section>
 
-<section 
-    name="5.4.2 Configure the Action Servlet Mapping" 
+<section
+    name="5.4.2 Configure the Action Servlet Mapping"
     href="dd_config_mapping">
 
     <p>
@@ -962,8 +962,8 @@
 
 </section>
 
-<section 
-    name="5.4.3 Configure the Struts Tag Libraries" 
+<section
+    name="5.4.3 Configure the Struts Tag Libraries"
     href="dd_config_taglib">
 
         <p>
@@ -1001,7 +1001,7 @@
         <p>
         The struts-tiles taglib contains tags used for combining various view
         components, called "tiles", into a final composite view.
-        This is similar to struts-template in that it's used for view 
+        This is similar to struts-template in that it's used for view
         composition, but tiles is a more full featured set of tags.
         </p>
 
@@ -1060,12 +1060,12 @@
 
 </section>
 
-<section 
-    name="5.4.3.1 Configure the Struts Tag Libraries (Servlet 2.3)" 
+<section
+    name="5.4.3.1 Configure the Struts Tag Libraries (Servlet 2.3)"
     href="dd_config_taglib_23">
 
     <p>
-    <b>Servlet 2.3 Users only:</b> The Servlet 2.3 specification simplifies 
+    <b>Servlet 2.3 Users only:</b> The Servlet 2.3 specification simplifies
     the deployment and configuration of tag libraries.
     The instructions above will work on older containers as well as 2.3
     containers (Struts only requires a servlet 2.2 container);
@@ -1079,12 +1079,12 @@
     your code like this:
 
     <pre><code>
-    &lt;%@ taglib 
-        uri="http://jakarta.apache.org/struts/tags-html" 
+    &lt;%@ taglib
+        uri="http://jakarta.apache.org/struts/tags-html"
         prefix="html" %&gt;
     </code></pre>
 
-    Note that you <b>must use the full uri</b> defined in the various struts 
+    Note that you <b>must use the full uri</b> defined in the various struts
     tlds so that the container knows where to find the tag's class files.
     You don't have to alter your web.xml file or copy tlds into any
     application directories.
@@ -1093,8 +1093,8 @@
 
 </section>
 
-<section 
-    name="5.5 Add Struts Components To Your Application" 
+<section
+    name="5.5 Add Struts Components To Your Application"
     href="config_add">
 
     <p>
