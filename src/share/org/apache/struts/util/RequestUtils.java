@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.14.2.6 2001/08/05 18:59:35 martinc Exp $
- * $Revision: 1.14.2.6 $
- * $Date: 2001/08/05 18:59:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.14.2.7 2001/11/21 13:30:38 husted Exp $
+ * $Revision: 1.14.2.7 $
+ * $Date: 2001/11/21 13:30:38 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForwards;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
+import org.apache.struts.action.ActionServletWrapper;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
@@ -95,7 +95,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14.2.6 $ $Date: 2001/08/05 18:59:35 $
+ * @version $Revision: 1.14.2.7 $ $Date: 2001/11/21 13:30:38 $
  */
 
 public class RequestUtils {
@@ -114,8 +114,8 @@ public class RequestUtils {
      * The message resources for this package.
      */
     private static MessageResources messages =
-	MessageResources.getMessageResources
-	("org.apache.struts.util.LocalStrings");
+    MessageResources.getMessageResources
+    ("org.apache.struts.util.LocalStrings");
 
 
 
@@ -339,7 +339,7 @@ public class RequestUtils {
             url.append('#');
             url.append(URLEncoder.encode(anchor));
         }
-        
+
         // Add dynamic parameters if requested
         if ((params != null) && (params.size() > 0)) {
 
@@ -657,11 +657,11 @@ public class RequestUtils {
             //initialize a MultipartRequestHandler
             MultipartRequestHandler multipart = null;
 
-            //get an instance of ActionServlet
-            ActionServlet servlet;
+            //get an instance of ActionServletWrapper
+            ActionServletWrapper servlet;
 
             if (bean instanceof ActionForm) {
-                servlet = ((ActionForm) bean).getServlet();
+                servlet = ((ActionForm) bean).getServletWrapper();
             } else {
                 throw new ServletException("bean that's supposed to be " +
                                            "populated from a multipart request is not of type " +
@@ -726,7 +726,7 @@ public class RequestUtils {
             ((ActionForm) bean).setMultipartRequestHandler(multipart);
 
             //set servlet and mapping info
-            multipart.setServlet(servlet);
+            servlet.setServletFor(multipart);
             multipart.setMapping((ActionMapping)
                                  request.getAttribute(Action.MAPPING_KEY));
             request.removeAttribute(Action.MAPPING_KEY);
