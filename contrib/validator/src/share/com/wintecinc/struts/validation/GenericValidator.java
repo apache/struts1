@@ -209,9 +209,9 @@ public class GenericValidator implements Serializable {
 	   try {
 	      DateFormat formatter = null;
 	      if (locale != null)
-	         DateFormat.getDateInstance(DateFormat.SHORT, locale);
+	         formatter = DateFormat.getDateInstance(DateFormat.SHORT, locale);
 	      else
-	         DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault());
+	         formatter = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault());
 	         
               formatter.setLenient(false);
               
