@@ -156,6 +156,23 @@
 
   </section>
 
+  <section name="Struts Book Review Project" href="review">
+
+  <p>
+  The OReilly Struts book (title not set yet) will be available sometime in the 3rd 
+  quarter of 2002. Published by OReilly, this book is to cover both Struts 1.0 and 1.1. 
+  The beta or draft chapters are being made 
+  <a href="http://www.theserverside.com/resources/strutsreview.jsp"><b>available for 
+  download</b></a> to facilitate an  early public review process for the material. 
+  </p>
+
+  <p>
+  Struts has been featured in several published books, and others are slated for publication. 
+  See the <a href="resources/books.html">Struts Resources<b>:</b>Books</a> page for details. 
+  </p>
+
+  </section>
+
   <section name="Acquiring Struts" href="Acquiring">
 
   <p>
