@@ -20,8 +20,8 @@
     </constant>
     <form name="registrationForm">
       <field property="firstName" depends="required,mask,minlength">
-        <arg key="registrationForm.firstname.displayname" />
-        <arg name="minlength" key="${var:minlength}" resource="false" />
+        <arg key="registrationForm.firstname.displayname" position="0"/>
+        <arg name="minlength" key="${var:minlength}" resource="false" position="1"/>
         <var>
           <var-name>mask</var-name>
           <var-value>^\w+$</var-value>
@@ -33,8 +33,8 @@
       </field>
       <field property="lastName" depends="required,mask,maxlength">
         <msg name="mask" key="registrationForm.lastname.maskmsg" />
-        <arg key="registrationForm.lastname.displayname" />
-        <arg name="maxlength" key="${var:maxlength}" resource="false" />
+        <arg key="registrationForm.lastname.displayname" position="0" />
+        <arg name="maxlength" key="${var:maxlength}" resource="false" position="1"/>
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
@@ -142,8 +142,8 @@
       </field>
       <field property="integer" depends="required,integer,intRange">
         <arg key="typeForm.integer.displayname" />
-        <arg name="intRange" key="${var:min}" resource="false" />
-        <arg name="intRange" key="${var:max}" resource="false" />
+        <arg name="intRange" key="${var:min}" resource="false" position="1" />
+        <arg name="intRange" key="${var:max}" resource="false" position="2" />
         <var>
           <var-name>min</var-name>
           <var-value>10</var-value>
@@ -161,8 +161,8 @@
       </field>
       <field property="floatRange" depends="required,float,floatRange">
         <arg key="typeForm.floatRange.displayname" />
-        <arg name="floatRange" key="${var:min}" resource="false" />
-        <arg name="floatRange" key="${var:max}" resource="false" />
+        <arg name="floatRange" key="${var:min}" resource="false" position="1" />
+        <arg name="floatRange" key="${var:max}" resource="false" position="2" />
         <var>
           <var-name>min</var-name>
           <var-value>-2.17</var-value>
@@ -201,8 +201,8 @@
       </field>
       <field property="integer" depends="required,integer,intRange">
         <arg key="typeForm.integer.displayname" />
-        <arg name="intRange" key="${var:min}" resource="false" />
-        <arg name="intRange" key="${var:max}" resource="false" />
+        <arg name="intRange" key="${var:min}" resource="false" position="1" />
+        <arg name="intRange" key="${var:max}" resource="false" position="2" />
         <var>
           <var-name>min</var-name>
           <var-value>10</var-value>
@@ -217,8 +217,8 @@
       </field>
       <field property="floatRange" depends="required,float,floatRange">
         <arg key="typeForm.floatRange.displayname" />
-        <arg name="floatRange" key="${var:min}" resource="false" />
-        <arg name="floatRange" key="${var:max}" resource="false" />
+        <arg name="floatRange" key="${var:min}" resource="false" position="1" />
+        <arg name="floatRange" key="${var:max}" resource="false" position="2" />
         <var>
           <var-name>min</var-name>
           <var-value>-2.17</var-value>
@@ -318,8 +318,8 @@
     <form name="typeForm">
       <field property="integer" depends="required,integer,intRange">
         <arg key="typeForm.integer.displayname" />
-        <arg name="intRange" key="${var:min}" resource="false" />
-        <arg name="intRange" key="${var:max}" resource="false" />
+        <arg name="intRange" key="${var:min}" resource="false" position="1" />
+        <arg name="intRange" key="${var:max}" resource="false" position="2" />
         <var>
           <var-name>min</var-name>
           <var-value>50</var-value>
@@ -340,8 +340,8 @@
     <form name="jsTypeForm">
       <field property="integer" depends="required,integer,intRange">
         <arg key="typeForm.integer.displayname" />
-        <arg name="intRange" key="${var:min}" resource="false" />
-        <arg name="intRange" key="${var:max}" resource="false" />
+        <arg name="intRange" key="${var:min}" resource="false" position="1" />
+        <arg name="intRange" key="${var:max}" resource="false" position="2" />
         <var>
           <var-name>min</var-name>
           <var-value>100</var-value>
@@ -372,7 +372,7 @@
     <form name="registrationForm">
       <field property="firstName" depends="required,mask,minlength">
         <arg key="registrationForm.firstname.displayname" />
-        <arg name="minlength" key="${var:minlength}" resource="false" />
+        <arg name="minlength" key="${var:minlength}" resource="false" position="1" />
         <var>
           <var-name>mask</var-name>
           <var-value>^\w+$</var-value>
@@ -385,7 +385,7 @@
       <field property="lastName" depends="required,mask,maxlength">
         <msg name="mask" key="registrationForm.lastname.maskmsg" />
         <arg key="registrationForm.lastname.displayname" />
-        <arg name="maxlength" key="${var:maxlength}" resource="false" />
+        <arg name="maxlength" key="${var:maxlength}" resource="false" position="1" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
@@ -493,8 +493,8 @@
       </field>
       <field property="integer" depends="required,integer,intRange">
         <arg key="typeForm.integer.displayname" />
-        <arg name="intRange" key="${var:min}" resource="false" />
-        <arg name="intRange" key="${var:max}" resource="false" />
+        <arg name="intRange" key="${var:min}" resource="false" position="1" />
+        <arg name="intRange" key="${var:max}" resource="false" position="2" />
         <var>
           <var-name>min</var-name>
           <var-value>400</var-value>
@@ -512,8 +512,8 @@
       </field>
       <field property="floatRange" depends="required,float,floatRange">
         <arg key="typeForm.floatRange.displayname" />
-        <arg name="floatRange" key="${var:min}" resource="false" />
-        <arg name="floatRange" key="${var:max}" resource="false" />
+        <arg name="floatRange" key="${var:min}" resource="false" position="1" />
+        <arg name="floatRange" key="${var:max}" resource="false" position="2" />
         <var>
           <var-name>min</var-name>
           <var-value>-2.17</var-value>
@@ -552,8 +552,8 @@
       </field>
       <field property="integer" depends="required,integer,intRange">
         <arg key="typeForm.integer.displayname" />
-        <arg name="intRange" key="${var:min}" resource="false" />
-        <arg name="intRange" key="${var:max}" resource="false" />
+        <arg name="intRange" key="${var:min}" resource="false" position="1" />
+        <arg name="intRange" key="${var:max}" resource="false" position="2" />
         <var>
           <var-name>min</var-name>
           <var-value>400</var-value>
@@ -568,8 +568,8 @@
       </field>
       <field property="floatRange" depends="required,float,floatRange">
         <arg key="typeForm.floatRange.displayname" />
-        <arg name="floatRange" key="${var:min}" resource="false" />
-        <arg name="floatRange" key="${var:max}" resource="false" />
+        <arg name="floatRange" key="${var:min}" resource="false" position="1" />
+        <arg name="floatRange" key="${var:max}" resource="false" position="2" />
         <var>
           <var-name>min</var-name>
           <var-value>-2.17</var-value>
@@ -654,8 +654,8 @@
     <form name="typeForm">
       <field property="integer" depends="required,integer,intRange">
         <arg key="typeForm.integer.displayname" />
-        <arg name="intRange" key="${var:min}" resource="false" />
-        <arg name="intRange" key="${var:max}" resource="false" />
+        <arg name="intRange" key="${var:min}" resource="false" position="1" />
+        <arg name="intRange" key="${var:max}" resource="false" position="2" />
         <var>
           <var-name>min</var-name>
           <var-value>50</var-value>
@@ -676,8 +676,8 @@
     <form name="jsTypeForm">
       <field property="integer" depends="required,integer,intRange">
         <arg key="typeForm.integer.displayname" />
-        <arg name="intRange" key="${var:min}" resource="false" />
-        <arg name="intRange" key="${var:max}" resource="false" />
+        <arg name="intRange" key="${var:min}" resource="false" position="1" />
+        <arg name="intRange" key="${var:max}" resource="false" position="2" />
         <var>
           <var-name>min</var-name>
           <var-value>100</var-value>
