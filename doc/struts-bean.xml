@@ -915,6 +915,18 @@
     </info>
 
     <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The name of the application scope bean under which the
+      <code>MessageResources</code> object containing our messages
+      is stored.  If not specified, the default name (the value of
+      the <code>Action.MESSAGES_KEY</code> constant string) is used.</p>
+      </info>
+    </attribute>
+
+    <attribute>
       <name>filter</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -928,6 +940,69 @@
     </attribute>
 
     <attribute>
+      <name>format</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Specifies the format string to use to convert bean or property value 
+      to the <code>String</code>. If nothing specified, then default format 
+      string for value data type will be searched in message resources by
+      according key.</p>
+      <table>
+       <tr>
+           <td>Key to search format string</td>
+           <td>Data types</td>
+       </tr>
+       <tr>
+           <td>org.apache.struts.taglib.bean.format.int</td>
+           <td>java.lang.Byte, java.lang.Short, java.lang.Integer, java.lang.Long, 
+               java.math.BigInteger</td>
+       </tr>
+       <tr>
+           <td>org.apache.struts.taglib.bean.format.float</td>
+           <td>java.lang.Float, java.lang.Double, java.math.BigDecimal</td>
+       </tr>
+       <tr>
+           <td>org.apache.struts.taglib.bean.format.sql.timestamp</td>
+           <td>java.sql.Timestamp</td>
+       </tr>
+       <tr>
+           <td>org.apache.struts.taglib.bean.format.sql.date</td>
+           <td>java.sql.Date</td>
+       </tr>
+       <tr>
+           <td>org.apache.struts.taglib.bean.format.sql.time</td>
+           <td>java.sql.Time</td>
+       </tr>
+       <tr>
+           <td>org.apache.struts.taglib.bean.format.date</td>
+           <td>java.util.Date</td>
+       </tr>
+      </table>
+      <p>Default format strings in resources can be written as - <br />
+        <pre>
+                org.apache.struts.taglib.bean.format.int=######
+                org.apache.struts.taglib.bean.format.float=######,####
+                org.apache.struts.taglib.bean.format.sql.timestamp=hh 'o''clock' a, zzzz
+                org.apache.struts.taglib.bean.format.sql.date=EEE, MMM d, ''yy
+                org.apache.struts.taglib.bean.format.sql.time=h:mm a
+                org.apache.struts.taglib.bean.format.date=hh 'o''clock' a, zzzz
+        </pre>                
+        <br />values for resource file entries are standart Java format strings for
+        date, time and number values.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>formatKey</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Specifies the key to search format string in application resources.</p>
+      </info>
+    </attribute>
+
+    <attribute>
       <name>ignore</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -937,6 +1012,18 @@
       exist, simply return without writing anything.  The default value is
       <code>false</code>, which will cause a runtime exception to be thrown,
       consistent with the other tags in this tag library.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>locale</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The name of the session scope bean under which our currently
+      selected <code>Locale</code> object is stored.  If not specified,
+      the default name (the value of the <code>Action.LOCALE_KEY</code>
+      constant string) is used.</p>
       </info>
     </attribute>
 
@@ -973,79 +1060,6 @@
       <p>Specifies the variable scope searched to retrieve the bean specified
       by <code>name</code>.  If not specified, the default rules applied by
       <code>PageContext.findAttribute()</code> are applied.</p>
-      </info>
-    </attribute>
-
-    <attribute>
-      <name>format</name>
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Specifies the format string to use to convert bean or property value 
-      to the <code>String</code>. If nothing specified, then default format 
-      string for value data type will be searched in message resources by
-      according key.</p>
-      <table>
-       <tr>
-           <td>Key to search format string</td>
-           <td>Data types</td>
-       </tr>
-       <tr>
-           <td>org.apache.struts.taglib.bean.format.int</td>
-           <td>java.lang.Byte, java.lang.Short, java.lang.Integer, java.lang.Long, 
-               java.math.BigInteger</td>
-       </tr>
-       <tr>
-           <td>org.apache.struts.taglib.bean.format.float</td>
-           <td>java.lang.Float, java.lang.Double, java.math.BigDecimal</td>
-       </tr>
-       <tr>
-           <td>org.apache.struts.taglib.bean.format.timestamp</td>
-           <td>java.sql.Timestamp</td>
-       </tr>
-       <tr>
-           <td>org.apache.struts.taglib.bean.format.date</td>
-           <td>java.sql.Date</td>
-       </tr>
-       <tr>
-           <td>org.apache.struts.taglib.bean.format.time</td>
-           <td>java.sql.Time</td>
-       </tr>
-      </table>
-      <p>Default format strings in resources can be written as - <br />
-        <pre>
-                org.apache.struts.taglib.bean.format.int=######
-                org.apache.struts.taglib.bean.format.float=######,####
-                org.apache.struts.taglib.bean.format.timestamp=hh 'o''clock' a, zzzz
-                org.apache.struts.taglib.bean.format.date=EEE, MMM d, ''yy
-                org.apache.struts.taglib.bean.format.time=h:mm a
-        </pre>                
-        <br />values for resource file entries are standart Java format strings for
-        date, time and number values.</p>
-      </info>
-    </attribute>
-
-    <attribute>
-      <name>bundle</name>
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The name of the application scope bean under which the
-      <code>MessageResources</code> object containing our messages
-      is stored.  If not specified, the default name (the value of
-      the <code>Action.MESSAGES_KEY</code> constant string) is used.</p>
-      </info>
-    </attribute>
-
-    <attribute>
-      <name>locale</name>
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The name of the session scope bean under which our currently
-      selected <code>Locale</code> object is stored.  If not specified,
-      the default name (the value of the <code>Action.LOCALE_KEY</code>
-      constant string) is used.</p>
       </info>
     </attribute>
 
