@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.1 2000/11/04 00:46:29 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/04 00:46:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.2 2001/01/16 01:13:49 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/01/16 01:13:49 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/11/04 00:46:29 $
+ * @version $Revision: 1.2 $ $Date: 2001/01/16 01:13:49 $
  */
 
 public class MessageTag extends TagSupport {
@@ -212,7 +212,7 @@ public class MessageTag extends TagSupport {
      */
     protected static MessageResources messages =
 	MessageResources.getMessageResources
-	("org.apache.struts.taglib.LocalStrings");
+	("org.apache.struts.taglib.bean.LocalStrings");
 
 
     // --------------------------------------------------------- Public Methods
@@ -230,7 +230,7 @@ public class MessageTag extends TagSupport {
 	    pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
 	if (resources == null) {
             JspException e = new JspException
-		(messages.getMessage("messageTag.resources", bundle));
+		(messages.getMessage("message.resources", bundle));
             pageContext.setAttribute(Action.EXCEPTION_KEY, e,
                                      PageContext.REQUEST_SCOPE);
             throw e;
@@ -259,7 +259,7 @@ public class MessageTag extends TagSupport {
 	String message = resources.getMessage(locale, key, args);
 	if (message == null) {
 	    JspException e = new JspException
-		(messages.getMessage("messageTag.message", key));
+		(messages.getMessage("message.message", key));
             pageContext.setAttribute(Action.EXCEPTION_KEY, e,
                                      PageContext.REQUEST_SCOPE);
             throw e;

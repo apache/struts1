@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.5 2000/11/03 18:40:07 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/11/03 18:40:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.6 2001/01/16 01:13:50 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/01/16 01:13:50 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.PropertyUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/11/03 18:40:07 $
+ * @version $Revision: 1.6 $ $Date: 2001/01/16 01:13:50 $
  */
 
 public class IterateTag extends BodyTagSupport {
@@ -121,7 +121,7 @@ public class IterateTag extends BodyTagSupport {
      */
     protected static MessageResources messages =
 	MessageResources.getMessageResources
-	("org.apache.struts.taglib.LocalStrings");
+	("org.apache.struts.taglib.logic.LocalStrings");
 
 
 
