@@ -167,8 +167,20 @@ public class TokenProcessor {
     public synchronized String generateToken(HttpServletRequest request) {
 
         HttpSession session = request.getSession();
+        return generateToken(session.getId());
+
+    }
+
+    /**
+     * Generate a new transaction token, to be used for enforcing a single
+     * request for a particular transaction.
+     * 
+     * @param id a unique Identifier for the session or other context in
+     * which this token is to be used.
+     */
+    public synchronized String generateToken(String id) {
+
         try {
-            byte id[] = session.getId().getBytes();
             long current = System.currentTimeMillis();
             if (current == previous) {
                 current++;
@@ -176,7 +188,7 @@ public class TokenProcessor {
             previous = current;
             byte now[] = new Long(current).toString().getBytes();
             MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(id);
+            md.update(id.getBytes());
             md.update(now);
             return toHex(md.digest());
         } catch (NoSuchAlgorithmException e) {
