@@ -52,7 +52,7 @@
 <section href="roadmap" name="Development Roadmap">
 
     <p class="version">
-    $Id: status.xml,v 1.51 2003/11/27 05:09:26 husted Exp $
+    $Id: status.xml,v 1.52 2003/12/10 01:03:33 husted Exp $
     </p>
 
     <p>
@@ -168,9 +168,11 @@
             </li>
 
             <li>Struts 1.2.x -
-            Continued refactorings of the Struts 1.x product series.
+                Continued refactorings of the Struts 1.x product series.
                 <ul>
+                    <li>The current release trigger for 1.2.0 is the release of Commons Validator 1.1.1</li>
                     <li>Remove deprecations created in the 1.0 to 1.1 timeframe, and prior</li>
+                    <li>Move build platform to Maven when convenient</li>
                     <li>Other minor enhancements and refactorings</li>
                 </ul>
             </li>
