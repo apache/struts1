@@ -130,13 +130,21 @@
   <p>
   If you really can't find the answer to your question in the <a href="#faqs">FAQs</a> or
   <a href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42">list archive</a>,
-  you can post your query to the Struts User list -- BUT YOU MUST SUBSCRIBE TO THE
+  you can post your query to the Struts User list -- <b>BUT YOU MUST SUBSCRIBE TO THE
   <a href="mailto:struts-user-subscribe@jakarta.apache.org">USER LIST</a>
   OR THE
   <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">USER LIST DIGEST</a>
-  BEFORE POSTING. If you would rather not subscribe to a list, you can go through the
+  BEFORE POSTING</b>. If you would rather not subscribe to a list, you can go through the
   <a href="http://www.proj.com/subscribe.jsp">BaseBeans Struts Newsgroup</a> instead.
   </p>
+
+  <blockquote>
+  Please note that the Struts User list enjoys a "casual friday" policy. More off-topic
+  messages are tolerated on Fridays so long as the message is prefixed with the token
+  [FRIDAY]. If you'd rather not be troubled by these postings, please set your
+  mail filter accordingly. Posting [FRIDAY] articles on any other weekday is <b>strongly
+  discouraged</b>. We thank you for your cooperation.
+  </blockquote>
 
   <p>
   The Struts <a href="resources/index.html"><b>Resources</b></a> page provides links to
