@@ -38,10 +38,10 @@
     <bodycontent>empty</bodycontent>
     <info>
     <p>Retrieve the value of the specified request cookie (as a single
-    value or multiple values, depending on the <code>values</code> attribute),
+    value or multiple values, depending on the <code>multiple</code> attribute),
     and define the result as a page scope attribute of type <code>Cookie</code>
-    (if <code>values</code> is not specified) or <code>Cookie[]</code>
-    (if <code>values</code> is specified).</p>
+    (if <code>multiple</code> is not specified) or <code>Cookie[]</code>
+    (if <code>multiple</code> is specified).</p>
 
     <p>If no cookie with the specified name can be located, a request time
     exception will be thrown.</p>
@@ -59,17 +59,7 @@
     </attribute>
 
     <attribute>
-      <name>name</name>
-      <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
-      <info>
-      <p>Specifies the name of the request cookie whose value, or values,
-      is to be retrieved.</p>
-      </info>
-    </attribute>
-
-    <attribute>
-      <name>values</name>
+      <name>multiple</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
       <info>
@@ -78,6 +68,16 @@
       <code>Cookie[]</code>.  If not specified, the first value for the
       specified cookie will be retrieved as a value of type
       <code>Cookie</code>.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the name of the request cookie whose value, or values,
+      is to be retrieved.</p>
       </info>
     </attribute>
 
@@ -153,6 +153,17 @@
       </info>
     </attribute>
 
+    <attribute>
+      <name>type</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the fully qualified class name of the value to be exposed
+      as the <code>id</code> attribute.  If not specified, the default type
+      is <code>java.lang.Object</code>.</p>
+      </info>
+    </attribute>
+
   </tag>
 
 
@@ -168,10 +179,10 @@
     <bodycontent>empty</bodycontent>
     <info>
     <p>Retrieve the value of the specified request header (as a single
-    value or multiple values, depending on the <code>values</code> attribute),
+    value or multiple values, depending on the <code>multiple</code> attribute),
     and define the result as a page scope attribute of type <code>String</code>
-    (if <code>values</code> is not specified) or <code>String[]</code>
-    (if <code>values</code> is specified).</p>
+    (if <code>multiple</code> is not specified) or <code>String[]</code>
+    (if <code>multiple</code> is specified).</p>
 
     <p>If no header with the specified name can be located, a request time
     exception will be thrown.</p>
@@ -189,17 +200,7 @@
     </attribute>
 
     <attribute>
-      <name>name</name>
-      <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
-      <info>
-      <p>Specifies the name of the request header whose value, or values,
-      is to be retrieved.</p>
-      </info>
-    </attribute>
-
-    <attribute>
-      <name>values</name>
+      <name>multiple</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
       <info>
@@ -209,6 +210,16 @@
       <code>HttpServletRequest.getHeader()</code> will be called, and a
       definition of the result as a bean of type <code>String</code>
       will be performed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the name of the request header whose value, or values,
+      is to be retrieved.</p>
       </info>
     </attribute>
 
@@ -270,10 +281,10 @@
     <bodycontent>empty</bodycontent>
     <info>
     <p>Retrieve the value of the specified request parameter (as a single
-    value or multiple values, depending on the <code>values</code> attribute),
+    value or multiple values, depending on the <code>multiple</code> attribute),
     and define the result as a page scope attribute of type <code>String</code>
-    (if <code>values</code> is not specified) or <code>String[]</code>
-    (if <code>values</code> is specified).</p>
+    (if <code>multiple</code> is not specified) or <code>String[]</code>
+    (if <code>multiple</code> is specified).</p>
 
     <p>If no request parameter with the specified name can be located, a
     request time exception will be thrown.</p>
@@ -291,17 +302,7 @@
     </attribute>
 
     <attribute>
-      <name>name</name>
-      <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
-      <info>
-      <p>Specifies the name of the request parameter whose value, or values,
-      is to be retrieved.</p>
-      </info>
-    </attribute>
-
-    <attribute>
-      <name>values</name>
+      <name>multiple</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
       <info>
@@ -311,6 +312,16 @@
       <code>ServletRequest.getParameter()</code> will be called, and a
       definition of the result as a bean of type <code>String</code>
       will be performed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the name of the request parameter whose value, or values,
+      is to be retrieved.</p>
       </info>
     </attribute>
 
