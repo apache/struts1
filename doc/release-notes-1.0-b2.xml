@@ -86,6 +86,8 @@
     <ul>
     <li>The <code>&lt;html:image&gt;</code> tag now correctly generates a
         closing double quote on the <code>name</code> attribute.</li>
+    <li>The <code>&lt;html:iterate&gt;</code> tag now supports Enumeration
+        for the <code>collection</code> attribute.</li>
     <li>The <code>&lt;html:form&gt;</code> tag now generates a hyperlink
         that includes any query parameters that were included in the original
         hyperlink value.</li>

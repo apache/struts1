@@ -149,7 +149,7 @@
     </attribute>
 
   </tag>
-    
+
 
   <tag>
 
@@ -272,7 +272,7 @@
     </attribute>
 
   </tag>
-    
+
 
   <tag>
 
@@ -365,7 +365,7 @@
     </attribute>
 
   </tag>
-    
+
 
   <tag>
 
@@ -397,6 +397,7 @@
         "int")</li>
     <li>An implementation of <code>java.util.Collection</code>, including
         <code>ArrayList</code> and <code>Vector</code>.</li>
+    <li>An implementation of <code>java.util.Enumeration</code>.</li>
     <li>An implementation of <code>java.util.Iterator</code>.</li>
     <li>An implementation of <code>java.util.Map</code>, including
         <code>HashMap</code>, <code>Hashtable</code>, and
@@ -434,7 +435,7 @@
       <info>
       <p>A runtime expression that evaluates to a collection (conforming to
       the requirements listed above) to be iterated over.</p>
-      </info>      
+      </info>
     </attribute>
 
     <attribute>
@@ -614,7 +615,7 @@
     </attribute>
 
   </tag>
-    
+
 
   <tag>
 
@@ -707,7 +708,7 @@
     </attribute>
 
   </tag>
-    
+
 
   <tag>
 
@@ -905,7 +906,7 @@
     </attribute>
 
   </tag>
-    
+
 
   <tag>
 
