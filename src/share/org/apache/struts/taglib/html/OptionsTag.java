@@ -64,10 +64,12 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.BeanUtils;
+import org.apache.struts.util.IteratorAdapter;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -76,8 +78,9 @@ import java.util.Map;
  * Tag for creating multiple &lt;select&gt; options from a collection.  The
  * associated values displayed to the user may optionally be specified by a
  * second collection, or will be the same as the values themselves.  Each
- * collection may be an array of objects, a Collection, an Iterator, or a
- * Map.  <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
+ * collection may be an array of objects, a Collection, an Enumeration,
+ * an Iterator, or a Map.
+ * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Florent Carpentier
  * @author Craig McClanahan
@@ -351,6 +354,8 @@ public class OptionsTag extends TagSupport {
 	    return ((Iterator) collection);
 	else if (collection instanceof Map)
 	    return (((Map) collection).entrySet().iterator());
+    else if (collection instanceof Enumeration)
+	    return( new IteratorAdapter((Enumeration)collection));
 	else
 	    throw new JspException
 	        (messages.getMessage("optionsTag.iterator",
