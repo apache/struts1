@@ -129,7 +129,7 @@
     of the Struts framework:</p>
     <ul>
     <li><strong>Database Connection Pool Package</strong>
-    [<a href="http://jakarta.apache.org/commons/dbcp.html"><code>org.apache.commons.dbpc</code></a>]</li>
+    [<a href="http://jakarta.apache.org/commons/dbcp.html"><code>org.apache.commons.dbcp</code></a>]</li>
     <li><strong>FileUpload Package</strong>
     [<a href="http://cvs.apache.org/viewcvs/jakarta-commons-sandbox/fileupload/"><code>org.apache.commons.fileupload</code></a>]</li>
     <li><strong>Logging Package</strong>

@@ -29,7 +29,7 @@
       version 2.2 or later, and the JavaServer Pages (JSP) Specification,
       version 1.1 or later.  One popular choice is to download Apache's
       <a href="http://jakarta.apache.org/tomcat">Tomcat</a> (version 3.1
-      or later required, version 3.2 or later recommended).</li>
+      or later required, version 3.3 or later recommended).</li>
 
   <li><strong>XML Parser</strong> - Struts <b>requires</b> the presence of an XML
       parser that is compatible with the Java API for XML Parsing (JAXP)
