@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractSelectAction.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/09/29 06:55:07 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractSelectAction.java,v 1.3 2004/01/15 13:45:51 germuska Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/15 13:45:51 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.config.ModuleConfig;
  * action to be used for processing this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/15 13:45:51 $
  */
 
 public abstract class AbstractSelectAction implements Command {
@@ -168,6 +168,19 @@ public abstract class AbstractSelectAction implements Command {
         ModuleConfig moduleConfig = (ModuleConfig)
             wcontext.get(getModuleConfigKey());
         ActionConfig actionConfig = moduleConfig.findActionConfig(path);
+
+        if (actionConfig == null) {
+            // Locate the mapping for unknown paths (if any)
+            ActionConfig configs[] = moduleConfig.findActionConfigs();
+            for (int i = 0; i < configs.length; i++) {
+                if (configs[i].getUnknown()) {
+                    actionConfig = configs[i];
+                    break;
+                }
+            }
+
+        }
+
         if (actionConfig == null) {
             throw new IllegalArgumentException("No action config for '" +
                                                path + "'");
