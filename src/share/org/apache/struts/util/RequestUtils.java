@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.78 2003/01/09 04:12:42 jmitchell Exp $
- * $Revision: 1.78 $
- * $Date: 2003/01/09 04:12:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.79 2003/01/12 20:31:21 dmkarr Exp $
+ * $Revision: 1.79 $
+ * $Date: 2003/01/12 20:31:21 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author James Turner
- * @version $Revision: 1.78 $ $Date: 2003/01/09 04:12:42 $
+ * @version $Revision: 1.79 $ $Date: 2003/01/12 20:31:21 $
  */
 
 public class RequestUtils {
@@ -333,7 +333,7 @@ public class RequestUtils {
      * that is not null.
      *
      * @deprecated To be removed in Version 1.3.
-     * Use {@link RequestUtils#computeURL(pageContext, forward, href, page, action, param, anchor, redirect} instead.
+     * Use {@link RequestUtils#computeURL(PageContext, String, String, String, String, Map, String, boolean)} instead.
      *
      * @param pageContext PageContext for the tag making this call
      *
@@ -1689,7 +1689,7 @@ public class RequestUtils {
      * object. If no moduleConfig is found, this means that the request haven't
      * hit the server throught the struts servlet. The appropriate module config
      * can be set and found with
-     * <code>{@link RequestUtils.selectModule(request, servletContext)} </code>.
+     * <code>{@link RequestUtils#selectModule(HttpServletRequest, ServletContext)} </code>.
      * @param request The servlet request we are processing
      * @return the ModuleConfig object from request, or null if none is set in
      * the request.

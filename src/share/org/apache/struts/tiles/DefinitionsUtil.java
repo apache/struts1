@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.10 2003/01/05 01:24:48 martinc Exp $
- * $Revision: 1.10 $
- * $Date: 2003/01/05 01:24:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.11 2003/01/12 20:31:20 dmkarr Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/01/12 20:31:20 $
  *
  * ====================================================================
  *
@@ -253,7 +253,7 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants
    * Create Definition factory from provided classname.
    * Factory class must extends TilesDefinitionsFactory.
    * @deprecated No direct replacement. Use createDefinitionFactory
-   * {@link createDefinitionsFactory(ServletContext, DefinitionsFactoryConfig)}.
+   * {@link TilesUtil#createDefinitionsFactory(ServletContext, DefinitionsFactoryConfig)}.
    * @param classname Class name of the factory to create.
    * @return newly created factory.
    * @throws DefinitionsFactoryException If an error occur while initializing factory
