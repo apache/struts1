@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.12 2000/06/25 01:48:46 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2000/06/25 01:48:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.13 2000/06/29 22:24:33 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2000/06/29 22:24:33 $
  *
  * ====================================================================
  *
@@ -157,10 +157,14 @@ import org.xml.sax.SAXException;
  * <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
  *     to every response intended to defeat browser caching of any response we
  *     generate or forward to.  [false]
+ * <li><strong>null</strong) - If set to <code>true</code>, set our application
+ *     resources to return <code>null</code> if an unknown message key is used.
+ *     Otherwise, an error message including the offending message key will
+ *     be returned.  [true]
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2000/06/25 01:48:46 $
+ * @version $Revision: 1.13 $ $Date: 2000/06/29 22:24:33 $
  */
 
 public class ActionServlet
@@ -480,6 +484,14 @@ public class ActionServlet
 	    log(internal.getMessage("applicationLoading", value));
 	try {
 	    application = MessageResources.getMessageResources(value);
+	    value = getServletConfig().getInitParameter("null");
+	    if (value == null)
+		value = "true";
+	    if (value.equalsIgnoreCase("true") ||
+		value.equalsIgnoreCase("yes"))
+		application.setReturnNull(true);
+	    else
+		application.setReturnNull(false);
 	} catch (MissingResourceException e) {
 	    log(internal.getMessage("applicationResources", value), e);
 	    throw new UnavailableException

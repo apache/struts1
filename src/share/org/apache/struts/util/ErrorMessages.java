@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ErrorMessages.java,v 1.1 2000/06/20 16:34:10 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/20 16:34:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ErrorMessages.java,v 1.2 2000/06/29 22:24:45 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/29 22:24:45 $
  *
  * ====================================================================
  *
@@ -79,10 +79,10 @@ import java.util.Vector;
  * </ul>
  *
  * @author David Geary
- * @revision $Revision: 1.1 $ $Date: 2000/06/20 16:34:10 $
+ * @revision $Revision: 1.2 $ $Date: 2000/06/29 22:24:45 $
  */
 
-public final class ErrorMessages {
+public class ErrorMessages {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -110,14 +110,25 @@ public final class ErrorMessages {
 
 
     /**
+     * Return the error message key at the specified zero-relative index.
+     *
+     * @param index Zero-relative index of the error message key to return
+     */
+    public String getError(int index) {
+
+	return ((String) errors.elementAt(index));
+
+    }
+
+
+    /**
      * Return the set of error message keys we have accumulated.
      */
     public String[] getErrors() {
 
 	if (errors.size() > 0) {
 	    String array[] = new String[errors.size()];
-	    for (int i = 0; i < array.length; i++)
-		array[i] = (String) errors.elementAt(i);
+	    errors.copyInto(array);
 	    return (array);
 	}
 	return (null);
@@ -126,7 +137,7 @@ public final class ErrorMessages {
 
 
     /**
-     * Return the number of error messages we have accumulated so far.
+     * Return the number of error message keys we have accumulated so far.
      */
     public int getSize() {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.2 2000/06/21 19:58:25 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/21 19:58:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.3 2000/06/29 22:24:48 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/29 22:24:48 $
  *
  * ====================================================================
  * 
@@ -78,7 +78,7 @@ import java.util.ResourceBundle;
  * retrieval of messages for either the default Locale or a specified Locale.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/21 19:58:25 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/29 22:24:48 $
  */
 
 public final class MessageResources {
@@ -140,6 +140,38 @@ public final class MessageResources {
      * the key computed in <code>getResourceKey()</code>.
      */
     private Hashtable formats = new Hashtable();
+
+
+    /**
+     * Should we return <code>null</code> for message keys that are not
+     * found (instead of an error code that includes the offending key)?
+     */
+    private boolean returnNull = true;
+
+
+    // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Return the "return null" property.
+     */
+    public boolean getReturnNull() {
+
+	return (this.returnNull);
+
+    }
+
+
+    /**
+     * Set the "return null" property.
+     *
+     * @param returnNull The new "return null" property
+     */
+    public void setReturnNull(boolean returnNull) {
+
+	this.returnNull = returnNull;
+
+    }
 
 
     // --------------------------------------------------------- Public Methods
@@ -323,8 +355,12 @@ public final class MessageResources {
 	    format = (MessageFormat) formats.get(messageKey);
 	    if (format == null) {
 		String formatString = (String) getResource(locale, key);
-		if (formatString == null)
-		    return (null);
+		if (formatString == null) {
+		    if (returnNull)
+			return (null);
+		    else
+			return ("???" + key + "???");
+		}
 		format = new MessageFormat(formatString);
 		formats.put(messageKey, format);
 	    }
