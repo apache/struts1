@@ -1,5 +1,6 @@
 <!--
-    Deprecated ** deprecated ** deprecated ** deprecated ** deprecated ** deprecated 
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
     
      Refer to the below DTD Instead:
     
@@ -8,12 +9,14 @@
           "http://jakarta.apache.org/commons/dtds/validator_1_0.dtd">
 
 
-    $Id: validation_1_1.dtd,v 1.4 2002/11/14 20:06:37 rleland Exp $
+    $Id: validation_1_1.dtd,v 1.5 2002/11/14 20:33:13 rleland Exp $
 -->
 
 
 <!--
-     The "form-validation" element is the root of the configuration file
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
+    The "form-validation" element is the root of the configuration file
      hierarchy, and contains nested elements for all of the other
      configuration settings.
 -->
@@ -21,12 +24,16 @@
 
 
 <!--
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
     Global "constants" may be defined for use of other elements.
 -->
 <!ELEMENT global (constant*)>
 
 
 <!--
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
      The "constant" element defines a static value that can be used as
      replacement parameters within "field" elements. The "constant-name" and
      "constant-value" elements define the constant's reference id and
@@ -38,6 +45,8 @@
 
 
 <!--
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
       The "formset" element defines a set of forms for a locale. Formsets for
       specific locales can override only those fields that change. The
       localization is properly scoped, so that a formset can override just the
@@ -49,6 +58,8 @@
 
 
 <!--
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
      The "form" element defines a set of fields to be validated. The name
      corresponds to the identifer the application assigns to the form. In the
      case of the Struts framework, this is the attribute property from
@@ -60,6 +71,8 @@
 
 
 <!--
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
      The "field" element defines the properties to be validated. In a
      web application, a field would also correspond to a control on
      a HTML form. To validate the properties, the validator works through
@@ -97,6 +110,8 @@
 
 
 <!--
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
      The "msg" element defines a custom message key to use when one of the
      validators for this field fails. Each validator has a default message
      property that is used when a corresonding field msg is not specified.
@@ -119,6 +134,8 @@
 
 
 <!--
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
      The "arg0" element defines the first replacement value to use with the
      message template for this validator or this field.
      The arg0 element accepts up to three attributes.
@@ -139,6 +156,8 @@
 
 
 <!--
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
      The "arg1" element defines the second replacement value to use with the
      message template for this validator or this field.
      The arg1 element accepts up to three attributes.
@@ -159,6 +178,8 @@
 
 
 <!--
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
      The "arg2" element defines the third replacement value to use with the
      message template for this validator or this field.
      The arg2 element accepts up to three attributes.
@@ -178,6 +199,8 @@
                   resource CDATA #IMPLIED >
 
 <!--
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
      The "arg3" element defines the fourth replacement value to use with the
      message template for this validator or this field.
      The arg0 element accepts up to three attributes.
@@ -198,6 +221,8 @@
 
 
 <!--
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
      The "var" element can set parameters that a field may need to pass to
      one of its validators, such as the minimum and maximum values in a
      range validation. These parameters may also be referenced by one of the
@@ -208,6 +233,8 @@
 
 
 <!--
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
      The name of the var parameter to provide to a field's validators.
 -->
 <!ELEMENT var-name  (#PCDATA)>
@@ -215,6 +242,8 @@
 
 
 <!--
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED
+    DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED ** DEPRECATED 
      The value of the var parameter to provide to a field's validators.
 -->
 <!ELEMENT var-value (#PCDATA)>
