@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.23 2003/10/05 17:45:14 dgraham Exp $
- * $Revision: 1.23 $
- * $Date: 2003/10/05 17:45:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.24 2003/12/20 12:54:10 husted Exp $
+ * $Revision: 1.24 $
+ * $Date: 2003/12/20 12:54:10 $
  *
  * ====================================================================
  *
@@ -73,27 +73,31 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ModuleException;
 
 /**
- * An ExceptionHandler is configured in the Struts configuration file to handle a 
- * specific type of exception thrown by an Action's execute method.
+ * <p>An <strong>ExceptionHandler</strong> is configured in the Struts
+ * configuration file to handle a specific type of exception thrown
+ * by an <code>Action.execute</code> method.</p>
  * 
  * @since Struts 1.1
  */
 public class ExceptionHandler {
     
+
     /**
-     * Commons logging instance.
+     * <p>Commons logging instance.</p>
      */
     private static final Log log = LogFactory.getLog(ExceptionHandler.class);
     
+
     /**
-     * The message resources for this package.
+     * <p>The message resources for this package.</p>
      */
     private static MessageResources messages =
         MessageResources.getMessageResources(
             "org.apache.struts.action.LocalStrings");
     
+
     /**
-     * Handle the exception.
+     * <p>Handle the <code>Exception</code>.
      * Return the <code>ActionForward</code> instance (if any) returned by
      * the called <code>ExceptionHandler</code>.
      *
@@ -145,32 +149,37 @@ public class ExceptionHandler {
         this.storeException(request, property, error, forward, ae.getScope());
 
         return forward;
+
     }
-    
+
+
     /**
-     * Logs the exception using commons-logging.
+     * <p>Logs the <code>Exception</code> using commons-logging.</p>
      * @param e The Exception to log.
      * @since Struts 1.2
      */
     protected void logException(Exception e){
+
         log.debug(messages.getMessage("exception.log"), e);
+
     }
 
+
     /**
-     * Default implementation for handling an <b>ActionError</b> generated
-     * from an Exception during <b>Action</b> delegation.  The default
+     * <p>Default implementation for handling an <code>ActionError</code> generated
+     * from an <code>Exception</code> during <code>Action</code> delegation. The default
      * implementation is to set an attribute of the request or session, as
-     * defined by the scope provided (the scope from the exception mapping).  An
-     * <b>ActionErrors</b> instance is created, the error is added to the collection
-     * and the collection is set under the Globals.ERROR_KEY.
+     * defined by the scope provided (the scope from the exception mapping). An
+     * <code>ActionErrors</code> instance is created, the error is added to the collection
+     * and the collection is set under the <code>Globals.ERROR_KEY</code>.</p>
      *
-     * @param request - The request we are handling
-     * @param property  - The property name to use for this error
-     * @param error - The error generated from the exception mapping
-     * @param forward - The forward generated from the input path (from the form or exception mapping)
-     * @param scope - The scope of the exception mapping.
+     * @param request The request we are handling
+     * @param property The property name to use for this error
+     * @param error The error generated from the exception mapping
+     * @param forward The forward generated from the input path (from the form or exception mapping)
+     * @param scope The scope of the exception mapping.
      * @deprecated Use storeException(HttpServletRequest, String, ActionMessage, ActionForward, String)
-     * instead.  This will be removed after Struts 1.2.
+     * instead. This will be removed after Struts 1.2.
      */
     protected void storeException(
         HttpServletRequest request,
@@ -180,21 +189,24 @@ public class ExceptionHandler {
         String scope) {
 
         this.storeException(request, property, error, forward, scope);
+        // :TODO: Remove after Struts 1.2
+
     }
-    
+
+
     /**
-     * Default implementation for handling an <b>ActionMessage</b> generated
-     * from an Exception during <b>Action</b> delegation.  The default
+     * <p>Default implementation for handling an <code>ActionMessage</code> generated
+     * from an <code>Exception</code> during <code>Action</code> delegation. The default
      * implementation is to set an attribute of the request or session, as
-     * defined by the scope provided (the scope from the exception mapping).  An
-     * <b>ActionMessages</b> instance is created, the error is added to the 
-     * collection and the collection is set under the Globals.ERROR_KEY.
+     * defined by the scope provided (the scope from the exception mapping). An
+     * <code>ActionMessages</code> instance is created, the error is added to the
+     * collection and the collection is set under the <code>Globals.ERROR_KEY</code>.</p>
      *
-     * @param request - The request we are handling
-     * @param property  - The property name to use for this error
-     * @param error - The error generated from the exception mapping
-     * @param forward - The forward generated from the input path (from the form or exception mapping)
-     * @param scope - The scope of the exception mapping.
+     * @param request The request we are handling
+     * @param property The property name to use for this error
+     * @param error The error generated from the exception mapping
+     * @param forward The forward generated from the input path (from the form or exception mapping)
+     * @param scope The scope of the exception mapping.
      * @since Struts 1.2
      */
     protected void storeException(

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.13 2003/09/29 04:35:27 rleland Exp $
- * $Revision: 1.13 $
- * $Date: 2003/09/29 04:35:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.14 2003/12/20 12:54:10 husted Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/12/20 12:54:10 $
  *
  * ====================================================================
  *
@@ -80,11 +80,11 @@ import org.apache.struts.util.RequestUtils;
  * <code>DynaActionForm</code> classes that allow developers to define
  * ActionForms without having to individually code all of the classes.
  * <strong>NOTE</strong> - This class is only used in the internal
- * implementation of dynamic action form beans.  Applications never need
+ * implementation of dynamic action form beans. Applications never need
  * to consult this documentation.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.13 $ $Date: 2003/09/29 04:35:27 $
+ * @version $Revision: 1.14 $ $Date: 2003/12/20 12:54:10 $
  * @since Struts 1.1
  */
 
@@ -95,10 +95,10 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * Construct a new DynaActionFormClass for the specified form bean
-     * configuration.  This constructor is private; DynaActionFormClass
-     * instances will be created as needed via calls to the
-     * static <code>createDynaActionFormClass()</code> method.
+     * <p>Construct a new <code>DynaActionFormClass</code? for the specified
+     * form bean configuration.  This constructor is private;
+     * <code>DynaActionFormClass</code> instances will be created as needed via
+     * calls to the static <code>createDynaActionFormClass()</code> method.</p>
      *
      * @param config The FormBeanConfig instance describing the properties
      *  of the bean to be created
@@ -118,34 +118,35 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * The <code>DynaActionForm</code> implementation <code>Class</code> which
-     * we will use to create new bean instances.
+     * <p>The <code>DynaActionForm</code> implementation <code>Class</code>
+     * which we will use to create new bean instances.</p>
      */
     protected transient Class beanClass = null;
 
 
     /**
-     * The form bean configuration information for this class.
+     * <p>The form bean configuration information for this class.</p>
      */
     protected FormBeanConfig config = null;
 
 
     /**
-     * The "dynamic class name" for this <code>DynaClass</code>.
+     * <p>The "dynamic class name" for this <code>DynaClass</code>.</p>
      */
     protected String name = null;
 
 
     /**
-     * The set of dynamic properties that are part of this DynaClass.
+     * <p>The set of dynamic properties that are part of this DynaClass.</p>
      */
     protected DynaProperty properties[] = null;
 
 
     /**
-     * The set of dynamic properties that are part of this DynaClass,
-     * keyed by the property name.  Individual descriptor instances will
-     * be the same instances as those in the <code>properties</code> list.
+     * <p>The set of dynamic properties that are part of this
+     * <code>DynaClass</code>, keyed by the property name.  Individual
+     * descriptor instances will be the same instances as those in the
+     * <code>properties</code> list.
      */
     protected HashMap propertiesMap = new HashMap();
 
@@ -154,15 +155,15 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * The set of <code>DynaActionFormClass</code> instances that have
-     * ever been created, keyed by the form bean name.
+     * <p>The set of <code>DynaActionFormClass</code> instances that have
+     * ever been created, keyed by the form bean name.</p>
      */
     protected transient static HashMap dynaClasses = new HashMap();
 
 
     /**
-     * The lockable object we can synchronize on, even if dynaClasses
-     * is null,
+     * <p>The lockable object we can synchronize on, even if dynaClasses
+     * is null.</p>
      */
     protected static String lock = "";
 
@@ -171,7 +172,7 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * Return the name of this DynaClass (analogous to the
+     * <p>Return the name of this <code>DynaClass</code> (analogous to the
      * <code>getName()</code> method of <code>java.lang.Class</code), which
      * allows the same <code>DynaClass</code> implementation class to support
      * different dynamic classes, with different sets of properties.
@@ -184,8 +185,8 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * Return a property descriptor for the specified property, if it exists;
-     * otherwise, return <code>null</code>.
+     * <p>Return a property descriptor for the specified property, if it exists;
+     * otherwise, return <code>null</code>.</p>
      *
      * @param name Name of the dynamic property for which a descriptor
      *  is requested
@@ -205,16 +206,15 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
     /**
      * <p>Return an array of <code>DynaProperty</code>s for the properties
-     * currently defined in this DynaClass.  If no properties are defined, a
-     * zero-length array will be returned.</p>
-     *
-     * <p><strong>FIXME</strong> - Should we really be implementing
-     * <code>getBeanInfo()</code> instead, which returns property descriptors
-     * and a bunch of other stuff?</p>
+     * currently defined in this <code>DynaClass</code>.  If no properties are
+     * defined, a zero-length array will be returned.</p>
      */
     public DynaProperty[] getDynaProperties() {
 
         return (properties);
+        // :FIXME: Should we really be implementing
+        // getBeanInfo instead, which returns property descriptors
+        // and a bunch of other stuff?
 
     }
 
@@ -251,7 +251,7 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * Render a String representation of this object.
+     * <p>Render a <code>String</code> representation of this object.</p>
      */
     public String toString() {
 
@@ -277,7 +277,7 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * Clear our cache of DynaActionFormClass instances.
+     * <p>Clear our cache of <code>DynaActionFormClass</code> instances.</p>
      */
     public static void clear() {
 
@@ -292,8 +292,9 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * Create (if necessary) and return a new <code>DynaActionFormClass</code>
-     * instance for the specified form bean configuration instance.
+     * <p>Create (if necessary) and return a new
+     * <code>DynaActionFormClass</code> instance for the specified form bean
+     * configuration instance.</p>
      *
      * @param config The FormBeanConfig instance describing the properties
      *  of the bean to be created
@@ -330,10 +331,10 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * Return the implementation class we are using to construct new
+     * <p>Return the implementation class we are using to construct new
      * instances, re-introspecting our {@link FormBeanConfig} if necessary
      * (that is, after being deserialized, since <code>beanClass</code> is
-     * marked transient.
+     * marked transient).</p>
      */
     protected Class getBeanClass() {
 
@@ -346,8 +347,8 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * Introspect our form bean configuration to identify the supported
-     * properties.
+     * <p>Introspect our form bean configuration to identify the supported
+     * properties.</p>
      *
      * @param config The FormBeanConfig instance describing the properties
      *  of the bean to be created

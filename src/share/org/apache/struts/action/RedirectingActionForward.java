@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RedirectingActionForward.java,v 1.5 2003/09/29 04:35:27 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2003/09/29 04:35:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RedirectingActionForward.java,v 1.6 2003/12/20 12:54:10 husted Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/12/20 12:54:10 $
  *
  * ====================================================================
  *
@@ -64,11 +64,11 @@ package org.apache.struts.action;
 
 
 /**
- * A subclass of <strong>ActionForward</strong> that defaults the
- * <code>redirect</code> attribute to <code>true</code>.
+ * <p>A subclass of <strong>ActionForward</strong> that defaults the
+ * <code>redirect</code> attribute to <code>true</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2003/09/29 04:35:27 $
+ * @version $Revision: 1.6 $ $Date: 2003/12/20 12:54:10 $
  */
 
 public class RedirectingActionForward extends ActionForward {
@@ -78,26 +78,26 @@ public class RedirectingActionForward extends ActionForward {
 
 
     /**
-     * Construct a new instance with default values.
+     * <p>Construct a new instance with default values.</p>
      */
     public RedirectingActionForward() {
 
-    this(null);
+       this(null);
 
     }
 
 
     /**
-     * Construct a new instance with the specified path.
+     * <p>Construct a new instance with the specified path.</p>
      *
      * @param path Path for this instance
      */
     public RedirectingActionForward(String path) {
 
-    super();
-    setName(null);
-    setPath(path);
-    setRedirect(true);
+        super();
+        setName(null);
+        setPath(path);
+        setRedirect(true);
 
     }
 

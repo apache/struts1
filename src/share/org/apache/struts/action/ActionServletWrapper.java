@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.10 2003/09/29 04:35:27 rleland Exp $
- * $Revision: 1.10 $
- * $Date: 2003/09/29 04:35:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.11 2003/12/20 12:54:10 husted Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/12/20 12:54:10 $
  *
  * ====================================================================
  *
@@ -66,42 +66,49 @@ import org.apache.struts.upload.MultipartRequestHandler;
 
 
 /**
- * Provide a wrapper around an ActionServlet to expose only
+ * <p>Provide a wrapper around an @link(ActionServlet) to expose only
  * those methods needed by other objects. When used with an
- * ActionForm, subclasses must be careful that they do
+ * @link(ActionForm), subclasses must be careful that they do
  * not return an object with public getters and setters that
- * could be exploited by automatic population of properties.
+ * could be exploited by automatic population of properties.</p>
+ *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.10 $ $Date: 2003/09/29 04:35:27 $
+ * @version $Revision: 1.11 $ $Date: 2003/12/20 12:54:10 $
  * @since Struts 1.0.1
  */
 public class ActionServletWrapper {
 
     /**
-     * The controller servlet instance to which we are attached.
+     * <p>The servlet instance to which we are attached.</p>
      */
     protected transient ActionServlet servlet = null;
 
     /**
-     * Set servlet to a MultipartRequestHandler.
+     * <p>Set servlet to a <code>MultipartRequestHandler</code>.</p>
+     *
      * @param object The MultipartRequestHandler
-     * :FIXME: Should this be based on an "setServlet"
-     * interface or introspection for a setServlet method?
-     * Or, is it safer to just add the types we want as we want them?
      */
      public void setServletFor(MultipartRequestHandler object) {
+
         object.setServlet(this.servlet);
+        // :FIXME: Should this be based on an "setServlet"
+        // interface or introspection for a setServlet method?
+        // Or, is it safer to just add the types we want as we want them?
+
     }
 
 
     /**
-     * Create object and set servlet property.
+     * <p>Create object and set <code>servlet</code> property.</p>
+     *
      * @param servlet <code>ActionServlet</code> to wrap
      */
      public ActionServletWrapper(ActionServlet servlet) {
+
         super();
         this.servlet = servlet;
+
     }
 
 }

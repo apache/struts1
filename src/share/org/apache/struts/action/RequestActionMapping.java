@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestActionMapping.java,v 1.6 2003/09/29 04:35:27 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2003/09/29 04:35:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestActionMapping.java,v 1.7 2003/12/20 12:54:10 husted Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/12/20 12:54:10 $
  *
  * ====================================================================
  *
@@ -64,24 +64,24 @@ package org.apache.struts.action;
 
 
 /**
- * Subclass of <code>ActionMapping</code> that defaults the form bean
- * scope to <code>request</code>.
+ * <p>Subclass of <code>ActionMapping</code> that defaults the form bean
+ * scope to <code>request</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2003/09/29 04:35:27 $
+ * @version $Revision: 1.7 $ $Date: 2003/12/20 12:54:10 $
  */
 
 public class RequestActionMapping extends ActionMapping {
 
 
     /**
-     * Construct a new instance of this class with the desired default
-     * form bean scope.
+     * <p>Construct a new instance of this class with the desired default
+     * form bean scope.</p>
      */
     public RequestActionMapping() {
 
-    super();
-    setScope("request");
+        super();
+        setScope("request");
 
     }
 

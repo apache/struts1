@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.10 2003/09/29 04:35:27 rleland Exp $
- * $Revision: 1.10 $
- * $Date: 2003/09/29 04:35:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.11 2003/12/20 12:54:10 husted Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/12/20 12:54:10 $
  *
  * ====================================================================
  *
@@ -84,14 +84,14 @@ import org.apache.struts.config.FormPropertyConfig;
  * developer to create a Java class for each type of form bean.</p>
  *
  * <p><strong>USAGE NOTE</strong> - Since Struts 1.1, the
- * <code>reset()</code> method no longer initializes property values to those
+ * <code>reset</code> method no longer initializes property values to those
  * specified in <code>&lt;form-property&gt;</code> elements in the Struts
  * module configuration file.  If you wish to utilize that behavior, the
  * simplest solution is to subclass <code>DynaActionForm</code> and call
- * the <code>initialize()</code> method inside it.</p>
+ * the <code>initialize</code> method inside it.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2003/09/29 04:35:27 $
+ * @version $Revision: 1.11 $ $Date: 2003/12/20 12:54:10 $
  * @since Struts 1.1
  */
 public class DynaActionForm extends ActionForm implements DynaBean {
@@ -101,14 +101,15 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * The DynaActionFormClass with which we are associated.
+     * <p>The <code>DynaActionFormClass</code> with which we are associated.
+     * </p>
      */
     protected DynaActionFormClass dynaClass = null;
 
 
     /**
-     * The set of property values for this DynaActionForm, keyed by
-     * property name.
+     * <p>The set of property values for this <code>DynaActionForm</code>,
+     * keyed by property name.</p>
      */
     protected HashMap dynaValues = new HashMap();
 
@@ -122,8 +123,6 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * definition of this <code>DynaActionForm</code>.</p>
      *
      * @param mapping The mapping used to select this instance
-     *
-     * @since Struts 1.1
      */
     public void initialize(ActionMapping mapping) {
 
@@ -144,11 +143,13 @@ public class DynaActionForm extends ActionForm implements DynaBean {
     }
 
 
+    // :FIXME: Is there any point in retaining these reset methods
+    // since they now simply replicate the superclass behavior?
 
     /**
-     * <p>Reset all bean properties to their default state.  This method is
-     * called before the properties are repopulated by the controller
-     * servlet.</p>
+     * <p>Reset bean properties to their default state, as needed.
+     * This method is called before the properties are repopulated by
+     * the controller.</p>
      * 
      * <p>The default implementation attempts to forward to the HTTP
      * version of this method.</p>
@@ -168,16 +169,15 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * <p>Reset all bean properties to their default state.  This method is
-     * called before the properties are repopulated by the controller servlet.
-     * </p>
+     * <p>Reset bean properties to their default state, as needed.  This method is
+     * called before the properties are repopulated by the controller.</p>
      * 
      * <p>The default implementation (since Struts 1.1) does nothing.
      * Subclasses may override this method to reset bean properties to
-     * default values, or the <code>initialize()</code> method may be used to
+     * default values, or the <code>initialize</code> method may be used to
      * initialize property values to those provided in the form property
-     * configuration information (which was the previous behavior of
-     * this method).</p>
+     * configuration information (which was the behavior of
+     * this method in some release candidates).</p>
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
@@ -193,8 +193,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Indicates if the specified mapped property contain a value for the specified
-     * key value.
+     * <p>Indicates if the specified mapped property contain a value for the
+     * specified key value.</p>
      *
      * @param name Name of the property to check
      * @param key Name of the key to check
@@ -219,7 +219,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Return the value of a simple property with the specified name.
+     * <p>Return the value of a simple property with the specified name.</p>
      *
      * @param name Name of the property whose value is to be retrieved
      *
@@ -254,13 +254,13 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         } else if (type == Character.TYPE) {
             return (new Character((char) 0));
         } else if (type == Double.TYPE) {
-            return (new Double((double) 0.0));
+            return (new Double(0.0));
         } else if (type == Float.TYPE) {
             return (new Float((float) 0.0));
         } else if (type == Integer.TYPE) {
-            return (new Integer((int) 0));
+            return (new Integer(0));
         } else if (type == Long.TYPE) {
-            return (new Long((int) 0));
+            return (new Long(0));
         } else if (type == Short.TYPE) {
             return (new Short((short) 0));
         } else {
@@ -271,7 +271,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Return the value of an indexed property with the specified name.
+     * <p>Return the value of an indexed property with the specified name.
+     * </p>
      *
      * @param name Name of the property whose value is to be retrieved
      * @param index Index of the value to be retrieved
@@ -304,8 +305,9 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Return the value of a mapped property with the specified name,
+     * <p>Return the value of a mapped property with the specified name,
      * or <code>null</code> if there is no value for the specified key.
+     * </p>
      *
      * @param name Name of the property whose value is to be retrieved
      * @param key Key of the value to be retrieved
@@ -329,10 +331,12 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         }
 
     }
-    
+
+
     /**
-     * Return the value of a String property with the specified name.
-     * This is equivalent to calling <code>(String) dynaForm.get(name)</code>.
+     * <p>Return the value of a <code>String</code> property with the specified
+     * name. This is equivalent to calling
+     * <code>(String) dynaForm.get(name)</code>.</p>
      * 
      * @param name Name of the property whose value is to be retrieved
      *
@@ -344,12 +348,16 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @since Struts 1.2
      */
     public String getString(String name) {
+
         return (String) this.get(name);
+
     }
 
+
     /**
-     * Return the value of a String[] property with the specified name.
-     * This is equivalent to calling <code>(String[]) dynaForm.get(name)</code>.
+     * <p>Return the value of a <code>String[]</code> property with the
+     * specified name. This is equivalent to calling
+     * <code>(String[]) dynaForm.get(name)</code>.</p>
      *
      * @param name Name of the property whose value is to be retrieved
      *
@@ -361,12 +369,15 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @since Struts 1.2
      */
     public String[] getStrings(String name) {
+
         return (String[]) this.get(name);
+
     }
 
+
     /**
-     * Return the <code>DynaClass</code> instance that describes the set of
-     * properties available for this DynaBean.
+     * <p>Return the <code>DynaClass</code> instance that describes the set
+     * of properties available for this <code>DynaBean</code>.</p>
      */
     public DynaClass getDynaClass() {
 
@@ -374,13 +385,14 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
     }
 
+
     /**
-     * Returns the <code>Map</code> containing the property values.  This is
+     * <p>Returns the <code>Map</code> containing the property values.  This is
      * done mostly to facilitate accessing the <code>DynaActionForm</code>
      * through JavaBeans accessors, in order to use the JavaServer Pages
-     * Standard Tag Library.
-     *<p>
-     * For instance, the normal JSTL EL syntax for accessing an
+     * Standard Tag Library (JSTL).</p>
+     *
+     * <p>For instance, the normal JSTL EL syntax for accessing an
      * <code>ActionForm</code> would be something like this:
      * <pre>
      *  ${formbean.prop}</pre>
@@ -389,6 +401,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * <code>getMap()</code> method):
      * <pre>
      *  ${dynabean.map.prop}</pre>
+     * </p>
      */
     public Map getMap() {
 
@@ -398,8 +411,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
     
 
     /**
-     * Remove any existing value for the specified key on the
-     * specified mapped property.
+     * <p>Remove any existing value for the specified key on the
+     * specified mapped property.</p>
      *
      * @param name Name of the property for which a value is to
      *  be removed
@@ -425,7 +438,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Set the value of a simple property with the specified name.
+     * <p>Set the value of a simple property with the specified name.</p>
      *
      * @param name Name of the property whose value is to be set
      * @param value Value to which this property is to be set
@@ -464,7 +477,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Set the value of an indexed property with the specified name.
+     * <p>Set the value of an indexed property with the specified name.</p>
      *
      * @param name Name of the property whose value is to be set
      * @param index Index of the property to be set
@@ -502,7 +515,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Set the value of a mapped property with the specified name.
+     * <p>Set the value of a mapped property with the specified name.</p>
      *
      * @param name Name of the property whose value is to be set
      * @param key Key of the property to be set
@@ -535,7 +548,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Render a String representation of this object.
+     * <p>Render a String representation of this object.</p>
      */
     public String toString() {
 
@@ -601,7 +614,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Set the DynaActionFormClass instance that we are associated with.
+     * <p>Set the <code>DynaActionFormClass</code> instance with which we are
+     * associated.</p>
      *
      * @param dynaClass The DynaActionFormClass instance for this bean
      */
@@ -616,7 +630,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Return the property descriptor for the specified property name.
+     * <p>Return the property descriptor for the specified property name.</p>
      *
      * @param name Name of the property for which to retrieve the descriptor
      *
@@ -636,7 +650,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Indicates if an object of the source class is assignable to the destination class.
+     * <p>Indicates if an object of the source class is assignable to the
+     * destination class.</p>
      *
      * @param dest Destination class
      * @param source Source class
