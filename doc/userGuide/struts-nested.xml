@@ -1027,6 +1027,16 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
     </attribute>
+    
+    <attribute>
+        <name>styleId</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+        <info>
+            Identifier to be assigned to this HTML element (renders
+            an "id" attribute).
+        </info>
+    </attribute>
 
     <attribute>
       <name>value</name>
