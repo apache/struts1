@@ -16,7 +16,7 @@
     <section name="Status" href="status">
 
     <p class="version">
-      $Id: status.xml,v 1.57 2003/12/31 00:05:53 husted Exp $
+      $Id: status.xml,v 1.58 2004/02/14 11:14:15 husted Exp $
      </p>
 
     <p>
@@ -490,8 +490,8 @@
 </section>
 
 <section>
-    <p class="version">Website updated from CVS: 2003 DEC 30 by husted.</p>
-    <p class="version">Javadocs updated from CVS: 2003 DEC 30 by husted.</p>
+    <p class="version">Website updated from CVS: 2004 FEB 14 by husted.</p>
+    <p class="version">Javadocs updated from CVS: 2004 FEB 14 by husted.</p>
 </section>
 
 </body></document>
