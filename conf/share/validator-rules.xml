@@ -4,7 +4,7 @@
 <!--
   $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.52 2004/07/25 12:00:20 niallp Exp $
   $Revision: 1.52 $
-  $Date: 2004/07/25 12:00:20 $
+  $Date$
 
    This file contains the default Struts Validator pluggable validator
    definitions.  It should be placed somewhere under /WEB-INF and
