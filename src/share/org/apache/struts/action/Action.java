@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.12 2000/12/27 04:50:16 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2000/12/27 04:50:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.13 2000/12/30 20:47:30 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2000/12/30 20:47:30 $
  *
  * ====================================================================
  *
@@ -105,7 +105,7 @@ import org.apache.struts.util.MessageResources;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2000/12/27 04:50:16 $
+ * @version $Revision: 1.13 $ $Date: 2000/12/30 20:47:30 $
  */
 
 public class Action {
@@ -126,10 +126,9 @@ public class Action {
 
     /**
      * The request attribute key under which your action should store an error
-     * messages, if you are using the corresponding custom tag library elements.
-     * The stored data type should be a String array of individual errors.  If
-     * this request attribute is missing, or it is a zero-length array, the error
-     * tag will assume that no problems need to be reported.
+     * messages, if you are using the corresponding custom tag library
+     * elements.  The stored data should be an object of type
+     * <code>org.apache.struts.action.ActionErrors</code>.
      */
     public static final String ERROR_KEY =
       "org.apache.struts.action.ERROR";

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/ErrorsTag.java,v 1.1 2000/11/04 00:46:30 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/04 00:46:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/ErrorsTag.java,v 1.2 2000/12/30 20:47:31 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/12/30 20:47:31 $
  *
  * ====================================================================
  *
@@ -81,8 +81,9 @@ import org.apache.struts.util.MessageResources;
 /**
  * Custom tag that renders error messages if an appropriate request attribute
  * has been created.  The tag looks for a request attribute with a reserved
- * key, and assumes that it is either a String, or a String array, containing
- * message keys to be looked up in the application's MessageResources.
+ * key, and assumes that it is either a String, a String array, containing
+ * message keys to be looked up in the application's MessageResources, or
+ * an object of type <code>org.apache.struts.action.ActionErrors</code>.
  * <p>
  * The following optional message keys will be utilized if corresponding
  * messages exist for them in the application resources:
@@ -95,7 +96,7 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/11/04 00:46:30 $
+ * @version $Revision: 1.2 $ $Date: 2000/12/30 20:47:31 $
  */
 
 public class ErrorsTag extends TagSupport {
