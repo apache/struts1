@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/UseAttributeTag.java,v 1.2 2001/12/27 17:35:37 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2001/12/27 17:35:37 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/UseAttributeTag.java,v 1.3 2002/04/15 08:23:09 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/04/15 08:23:09 $
  * $Author: cedric $
  *
  */
@@ -74,6 +74,9 @@ public final class UseAttributeTag extends TagSupport {
         scope = PageContext.PAGE_SCOPE;
         scopeName = null;
         isErrorIgnored = false;
+          // Parent doesn't clear id, so we do it
+          // bug reported by Heath Chiavettone on 18 Mar 2002
+        id = null;
     }
 
     /**
@@ -136,7 +139,7 @@ public final class UseAttributeTag extends TagSupport {
     {
     if( id==null )
       id=attributeName;
-      
+
     ComponentContext compContext = (ComponentContext)pageContext.getAttribute( ComponentConstants.COMPONENT_CONTEXT, pageContext.REQUEST_SCOPE);
     if( compContext == null )
       throw new JspException ( "Error - tag.useAttribute : component context is not defined. Check tag syntax" );
