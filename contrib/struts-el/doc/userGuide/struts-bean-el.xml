@@ -43,6 +43,128 @@
 
   <tag>
 
+    <name>include</name>
+    <summary>
+    Load the response from a dynamic application request and make it available
+    as a bean.
+    </summary>
+    <tagclass>org.apache.strutsel.taglib.bean.ELIncludeTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+
+    <p>Perform an internal dispatch to the specified application component (or
+    external URL) and make the response data from that request available as a
+    scoped variable of type <code>String</code>.  This tag has a function
+    similar to that of the standard <code>&lt;jsp:include&gt;</code> tag,
+    except that the response data is stored in a page scope attribute instead
+    of being written to the output stream.  If the current request is part of a
+    session, the generated request for the include will also include the
+    session identifier (and thus be part of the same session).</p>
+
+    <p>The URL used to access the specified application component is
+    calculated based on which of the following attributes you specify
+    (you must specify exactly one of them):</p>
+    <ul>
+    <li><em>forward</em> - Use the value of this attribute as the name
+        of a global <code>ActionForward</code> to be looked up, and
+        use the application-relative or context-relative URI found there.</li>
+    <li><em>href</em> - Use the value of this attribute unchanged (since
+        this might link to a resource external to the application, the
+        session identifier is <strong>not</strong> included.</li>
+    <li><em>page</em> - Use the value of this attribute as an
+        application-relative URI to the desired resource.</li>
+    </ul>
+    </info>
+
+    <p><strong>WARNING</strong> - Accessing resources protected by security
+    constraints, or resources under the <code>/WEB-INF</code> subdirectory,
+     with this tag is not supported.  Consider using the
+    <code>&lt;jsp:include ... flush="false"&gt;</code> tag on a JSP 1.2
+    or later container, or the
+    <code>&lt;c:import&gt;</code> tag from the JSP Standard Tag Library
+    to accomplish this.</p>
+
+    <attribute>
+      <name>anchor</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Optional anchor tag ("#xxx") to be added to the generated
+      hyperlink.  Specify this value <strong>without</strong> any
+      "#" character.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>forward</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Logical name of a global <code>ActionForward</code> that contains
+      the actual content-relative URI of the resource to be included.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>href</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Absolute URL (including the appropriate protocol prefix such as
+      "http:") of the resource to be included.  Because this URL could be
+      external to the current web application, the session identifier will
+      <strong>not</strong> be included in the request.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the name of the associated page scope attribute that will be
+      made available with the value of the specified web application
+      resource.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Application-relative name (starting with a '/') of the web application
+      resource to be dispatched, and whose response data is to be made
+      available as a bean.  <strong>DEPRECATED - Use the "page" attribute
+      instead</strong>.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>page</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Application-relative URI (starting with a '/') of the web application
+      resource to be included.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>transaction</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+        <p>Set to <code>true</code> if you want the current
+        transaction control token included in the generated
+        URL for this include.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
+  <tag>
+
     <name>message</name>
     <summary>
     Render an internationalized message string to the response.
@@ -243,16 +365,16 @@
       <required>true</required>
       <rtexprvalue>false</rtexprvalue>
       <info>
-      <p>Specifies the name of the scripting variable (and associated page
-      scope attribute) that will be made available with the value of the
-      specified web application resource.</p>
+      <p>Specifies the name of the associated page scope attribute that will be
+      made available with the value of the specified web application
+      resource.</p>
       </info>
     </attribute>
 
     <attribute>
       <name>input</name>
       <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
+      <rtexprvalue>false</rtexprvalue>
       <info>
       <p>If any arbitrary value for this attribute is specified, the resource
       will be made available as an <code>InputStream</code>.  If this
@@ -264,7 +386,7 @@
     <attribute>
       <name>name</name>
       <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
+      <rtexprvalue>false</rtexprvalue>
       <info>
       <p>Application-relative name (starting with a '/') of the web application
       resource to be loaded and made available.</p>

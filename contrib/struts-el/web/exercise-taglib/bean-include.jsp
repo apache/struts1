@@ -5,18 +5,19 @@
 <%@ taglib uri="/WEB-INF/c.tld" prefix="c" %>
 <html-el:html>
 <head>
-<title>Test Replacements for struts-bean:include Tag</title>
+<title>Test bean-el:include Tag and Replacements</title>
 </head>
 <body bgcolor="white">
 
 <div align="center">
-<h1>Test Replacements for struts-bean:include Tag</h1>
+<h1>Test bean-el:include Tag and Replacements</h1>
 </div>
 
 <c:import url="/index.jsp" var="index"/>
+<bean-el:include id="index2" page="/index.jsp"/>
 
 <p>Display the contents returned by invoking <code>/index.jsp</code>
-directly, with no filtering.</p>
+using <code>&lt;c:import&gt;</code>, with no filtering.</p>
 <hr>
 <pre>
 <c:out value="${index}" escapeXml="false"/>
@@ -24,10 +25,26 @@ directly, with no filtering.</p>
 <hr>
 
 <p>Display the contents returned by invoking <code>/index.jsp</code>
-directly, with filtering.</p>
+using <code>&lt;c:import&gt;</code>, with filtering.</p>
 <hr>
 <pre>
 <c:out value="${index}" escapeXml="true"/>
+</pre>
+<hr>
+
+<p>Display the contents returned by invoking <code>/index.jsp</code>
+using <code>&lt;bean-el:include&gt;</code>, with no filtering.</p>
+<hr>
+<pre>
+<c:out value="${index2}" escapeXml="false"/>
+</pre>
+<hr>
+
+<p>Display the contents returned by invoking <code>/index.jsp</code>
+using <code>&lt;bean-el:include&gt;</code>, with filtering.</p>
+<hr>
+<pre>
+<c:out value="${index2}" escapeXml="true"/>
 </pre>
 <hr>
 

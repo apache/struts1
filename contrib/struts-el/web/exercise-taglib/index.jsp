@@ -11,6 +11,7 @@
 
 <h3>BEAN Tags</h3>
 <ul>
+<li><a href="bean-include.jsp">&lt;bean:include&gt;</a>[<a href="showSource.jsp?path=/bean-include.jsp">Source</a>]</li>
 <li><a href="bean-resource.jsp">&lt;bean:resource&gt;</a>[<a href="showSource.jsp?path=/bean-resource.jsp">Source</a>]</li>
 <li><a href="bean-size.jsp">&lt;bean:size&gt;</a>[<a href="showSource.jsp?path=/bean-size.jsp">Source</a>]</li>
 </ul>
@@ -42,7 +43,6 @@
 <li><a href="bean-cookie.jsp">&lt;bean:cookie&gt;</a>[<a href="showSource.jsp?path=/bean-cookie.jsp">Source</a>]</li>
 <li><a href="bean-define.jsp">&lt;bean:define&gt;</a>[<a href="showSource.jsp?path=/bean-define.jsp">Source</a>]</li>
 <li><a href="bean-header.jsp">&lt;bean:header&gt;</a>[<a href="showSource.jsp?path=/bean-header.jsp">Source</a>]</li>
-<li><a href="bean-include.jsp">&lt;bean:include&gt;</a>[<a href="showSource.jsp?path=/bean-include.jsp">Source</a>]</li>
 <li><a href="bean-parameter.jsp?param1=value1&param2=value2">&lt;bean:parameter&gt;</a>[<a href="showSource.jsp?path=/bean-parameter.jsp">Source</a>]</li>
 <li><a href="bean-write.jsp">&lt;bean:write&gt;</a>[<a href="showSource.jsp?path=/bean-write.jsp">Source</a>]</li>
 </ul>
