@@ -22,7 +22,7 @@
 
     <!-- Copy configuration files -->
     <j:set var="docsDest" value="${maven.docs.dest}"/>
-    <ant:copy todir="${maven.dist.src.assembly.dir}/conf">
+    <ant:copy todir="${maven.dist.src.assembly.dir}/conf/share">
       <ant:fileset dir="./conf/share">
         <ant:include name="*.xml"/>
         <ant:include name="*.dtd"/>
@@ -30,5 +30,7 @@
     </ant:copy>
 
   </postGoal>
+  
+
 
 </project>
