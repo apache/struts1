@@ -82,7 +82,7 @@ import org.apache.struts.validator.util.StrutsValidatorUtil;
  * @author David Winterfeldt
 */
 
-public class ValidatorActionForm extends ValidatorForm implements Serializable {
+public class DynaValidatorActionForm extends DynaValidatorForm implements Serializable {
 
     /**
      * Commons Logging instance.
@@ -104,8 +104,8 @@ public class ValidatorActionForm extends ValidatorForm implements Serializable {
 
         ServletContext application = getServlet().getServletContext();
         ActionErrors errors = new ActionErrors();	
-        
-	Validator validator = StrutsValidatorUtil.initValidator(mapping.getAttribute(), 
+	
+	Validator validator = StrutsValidatorUtil.initValidator(mapping.getPath(), 
 	                                                        this,
 	                                                        application, request, 
 	                                                        errors, page);

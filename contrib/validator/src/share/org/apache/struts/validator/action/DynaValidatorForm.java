@@ -65,7 +65,7 @@ import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorException;
 import org.apache.commons.validator.ValidatorResources;
 import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.validator.util.StrutsValidatorUtil;
 
@@ -83,7 +83,7 @@ import org.apache.struts.validator.util.StrutsValidatorUtil;
  * @see org.apache.struts.action.ActionForm
 */
 
-public class ValidatorForm extends ActionForm implements Serializable {
+public class DynaValidatorForm extends DynaActionForm implements Serializable {
 
     /**
      * Commons Logging instance.
@@ -148,7 +148,7 @@ public class ValidatorForm extends ActionForm implements Serializable {
     */
     protected void log(String message) {
        if (getServlet().getDebug() >= 1) {
-          getServlet().log(message);
+           getServlet().log(message);
        }
     }
 
@@ -162,7 +162,7 @@ public class ValidatorForm extends ActionForm implements Serializable {
     */
     protected void log(String message, Throwable throwable) {
        if (getServlet().getDebug() >= 1) {
-          getServlet().log(message, throwable);
+           getServlet().log(message, throwable);
        }
     }
 
