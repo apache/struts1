@@ -46,11 +46,6 @@
       <form-property name="password" type="java.lang.String"/>
     </form-bean>
 
-
-    <!-- Registration form bean -->
-    <form-bean      name="registrationForm"
-                    type="org.apache.struts.webapp.example.RegistrationForm"/>
-
     <!-- Subscription form bean -->
     <form-bean      name="subscriptionForm"
                     type="org.apache.struts.webapp.example.SubscriptionForm"/>
@@ -62,22 +57,12 @@
   <global-forwards>
     <forward   name="logoff"               path="/logoff.do"/>
     <forward   name="logon"                path="/logon.jsp"/>
-    <forward   name="registration"         path="/registration.jsp"/>
     <forward   name="success"              path="/mainMenu.jsp"/>
   </global-forwards>
 
 
   <!-- ========== Action Mapping Definitions ============================== -->
   <action-mappings>
-
-    <!-- Edit user registration -->
-    <action    path="/editRegistration"
-               type="org.apache.struts.webapp.example.EditRegistrationAction"
-          attribute="registrationForm"
-              scope="request"
-           validate="false">
-      <forward name="success"              path="/registration.jsp"/>
-    </action>
 
     <!-- Edit mail subscription -->
     <action    path="/editSubscription"
@@ -106,13 +91,6 @@
                type="org.apache.struts.webapp.example.ExpiredPasswordException"
                path="/changePassword.jsp"/>
     </action>
-
-    <!-- Save user registration -->
-    <action    path="/saveRegistration"
-               type="org.apache.struts.webapp.example.SaveRegistrationAction"
-               name="registrationForm"
-              scope="request"
-              input="registration"/>
 
     <!-- Save mail subscription -->
     <action    path="/saveSubscription"
