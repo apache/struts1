@@ -36,10 +36,6 @@ catalina.home=${apache.home}/jakarta-tomcat-4.0.6
 # from the Jakarta Commons project.
 commons-beanutils.jar=${commons-lib.home}/beanutils/dist/commons-beanutils.jar
 
-# The JAR file containing the Collections package (see Installation page)
-# from the Jakarta Commons project.
-commons-collections.jar=${commons-lib.home}/collections/dist/commons-collections.jar
-
 # The JAR file containing the Digester package (see Installation page)
 # from the Jakarta Commons project.
 commons-digester.jar=${commons-lib.home}/digester/dist/commons-digester.jar

@@ -93,7 +93,6 @@ apache.home=/opt/Apache
 # For more about these dependencies, see the installation page in the UserGuide
 antlr.jar=${struts-lib.home}/antlr.jar
 commons-beanutils.jar=${struts-lib.home}/commons-beanutils.jar
-commons-collections.jar=${struts-lib.home}/commons-collections.jar
 commons-digester.jar=${struts-lib.home}/commons-digester.jar
 commons-fileupload.jar=${struts-lib.home}/commons-fileupload.jar
 commons-logging.jar=${struts-lib.home}/commons-logging.jar

@@ -196,7 +196,7 @@
     <dependency>
       <groupId>commons-digester</groupId>
       <artifactId>commons-digester</artifactId>
-      <version>1.5</version>
+      <version>1.6</version>
       <url>http://jakarta.apache.org/commons/digester.html</url>
       <properties>
         <war.bundle>true</war.bundle>

@@ -101,7 +101,6 @@
       <pathelement location="${build.home}/library/${app.name}.jar"/>
       <pathelement location="${build.home}/test/classes"/>
       <pathelement location="${commons-beanutils.jar}"/>
-      <pathelement location="${commons-collections.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
       <pathelement location="${commons-fileupload.jar}"/>
       <pathelement location="${commons-httpclient.jar}"/>
@@ -200,8 +199,6 @@
         <copy file="${log4j.jar}"     todir="${out.test.dir}/lib"/>
         <copy file="${cactus.jar}"    todir="${out.test.dir}/lib"/>
         <copy file="${commons-beanutils.jar}"
-                                      todir="${out.test.dir}/lib"/>
-        <copy file="${commons-collections.jar}"
                                       todir="${out.test.dir}/lib"/>
         <copy file="${commons-digester.jar}"
                                       todir="${out.test.dir}/lib"/>

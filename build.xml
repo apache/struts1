@@ -30,10 +30,6 @@
                                       Commons Beanutils package.
                                       [Version 1.6.1 or later]
 
-        commons-collections.jar       The path to the JAR file of the Jakarta
-                                      Commons Collections package.
-                                      [Version 2.1 or later]
-
         commons-digester.jar          The path to the JAR file of the Jakarta
                                       Commons Digester package.
                                       [Version 1.5 or later]
@@ -200,7 +196,6 @@
     <!-- Compilation Classpath -->
     <path id="compile.classpath">
       <pathelement location="${commons-beanutils.jar}"/>
-      <pathelement location="${commons-collections.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
       <pathelement location="${commons-fileupload.jar}"/>
       <pathelement location="${commons-logging.jar}"/>
@@ -261,8 +256,6 @@
         </copy>
         <copy file="${commons-beanutils.jar}"
             tofile="${build.home}/library/commons-beanutils.jar"/>
-        <copy file="${commons-collections.jar}"
-            tofile="${build.home}/library/commons-collections.jar"/>
         <copy file="${commons-digester.jar}"
             tofile="${build.home}/library/commons-digester.jar"/>
         <copy file="${commons-fileupload.jar}"
