@@ -559,6 +559,16 @@ http://www.mycompany.com/myapplication/execute/logon
 <pre>
 http://www.mycompany.com/myapplication/logon.do
 </pre>
+
+        <p><font color="red"><strong>WARNING</strong></font> - Struts will not
+        operate correctly if you define more than one
+        <code>&lt;servlet-mapping&gt;</code> element for the controller
+        servlet.</p>
+
+        <p><font color="red"><strong>WARNING</strong></font> - If you are using
+        the new multi-application support in Struts 1.1, you should be aware
+        that <strong>only</strong> extension mapping is supported.</p>
+
       </section>
       
       <section name="4.5.3 Configure the Struts Tag Library" href="dd_config_taglib">
