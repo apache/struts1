@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.116 2003/07/26 01:11:43 dgraham Exp $
- * $Revision: 1.116 $
- * $Date: 2003/07/26 01:11:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.117 2003/07/26 01:17:55 dgraham Exp $
+ * $Revision: 1.117 $
+ * $Date: 2003/07/26 01:17:55 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.116 $ $Date: 2003/07/26 01:11:43 $
+ * @version $Revision: 1.117 $ $Date: 2003/07/26 01:17:55 $
  */
 
 public class RequestUtils {
@@ -949,9 +949,11 @@ public class RequestUtils {
      * @param locale Name of the session attribute for our user's Locale.  If this is 
      * <code>null</code>, the default locale key is used for the lookup.
      * @return current user locale
+     * @deprecated Use TagUtils.getUserLocale() instead.  This will be removed 
+     * after Struts 1.2.
      */
     public static Locale retrieveUserLocale(PageContext pageContext, String locale) {
-        return getUserLocale((HttpServletRequest) pageContext.getRequest(), locale);
+        return TagUtils.getInstance().getUserLocale(pageContext, locale);
     }
     
     /**

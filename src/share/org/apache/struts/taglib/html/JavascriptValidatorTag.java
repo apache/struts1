@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.32 2003/07/25 23:46:27 dgraham Exp $
- * $Revision: 1.32 $
- * $Date: 2003/07/25 23:46:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.33 2003/07/26 01:17:55 dgraham Exp $
+ * $Revision: 1.33 $
+ * $Date: 2003/07/26 01:17:55 $
  *
  * ====================================================================
  *
@@ -82,6 +82,7 @@ import org.apache.commons.validator.ValidatorUtil;
 import org.apache.commons.validator.Var;
 import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.validator.Resources;
@@ -94,7 +95,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  *
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.32 $ $Date: 2003/07/25 23:46:27 $
+ * @version $Revision: 1.33 $ $Date: 2003/07/26 01:17:55 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -366,7 +367,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 ValidatorPlugIn.VALIDATOR_KEY + config.getPrefix(),
                 PageContext.APPLICATION_SCOPE);
         
-        Locale locale = RequestUtils.retrieveUserLocale(this.pageContext, null);
+        Locale locale = TagUtils.getInstance().getUserLocale(this.pageContext, null);
         
         Form form = resources.get(locale, formName);
         if (form != null) {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.15 2003/07/12 00:35:08 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/07/12 00:35:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.16 2003/07/26 01:17:55 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/07/26 01:17:55 $
  *
  * ====================================================================
  *
@@ -70,8 +70,8 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.Globals;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 /**
@@ -80,7 +80,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.15 $ $Date: 2003/07/12 00:35:08 $
+ * @version $Revision: 1.16 $ $Date: 2003/07/26 01:17:55 $
  */
 public class HtmlTag extends TagSupport {
   
@@ -177,7 +177,7 @@ public class HtmlTag extends TagSupport {
             language = this.getCurrentLocale().getLanguage();
         } else {
             Locale currentLocale =
-                RequestUtils.retrieveUserLocale(pageContext, Globals.LOCALE_KEY);
+                TagUtils.getInstance().getUserLocale(pageContext, Globals.LOCALE_KEY);
 
             language = currentLocale.getLanguage();
             country = currentLocale.getCountry();
@@ -258,7 +258,7 @@ public class HtmlTag extends TagSupport {
      */
     protected Locale getCurrentLocale() {
 
-        Locale userLocale = RequestUtils.retrieveUserLocale(pageContext, Globals.LOCALE_KEY);
+        Locale userLocale = TagUtils.getInstance().getUserLocale(pageContext, Globals.LOCALE_KEY);
 
         // Store a new current Locale, if requested
         if (this.locale) {

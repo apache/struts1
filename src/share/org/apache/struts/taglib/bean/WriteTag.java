@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.23 2003/07/16 05:13:10 dgraham Exp $
- * $Revision: 1.23 $
- * $Date: 2003/07/16 05:13:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.24 2003/07/26 01:17:55 dgraham Exp $
+ * $Revision: 1.24 $
+ * $Date: 2003/07/26 01:17:55 $
  *
  * ====================================================================
  *
@@ -72,6 +72,7 @@ import java.util.Locale;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -82,7 +83,7 @@ import org.apache.struts.util.ResponseUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.23 $ $Date: 2003/07/16 05:13:10 $
+ * @version $Revision: 1.24 $ $Date: 2003/07/26 01:17:55 $
  */
 public class WriteTag extends TagSupport {
 
@@ -324,7 +325,7 @@ public class WriteTag extends TagSupport {
     protected String formatValue(Object valueToFormat) throws JspException {
         Format format = null;
         Object value = valueToFormat;
-        Locale locale = RequestUtils.retrieveUserLocale(pageContext, this.localeKey);
+        Locale locale = TagUtils.getInstance().getUserLocale(pageContext, this.localeKey);
         boolean formatStrFromResources = false;
         String formatString = formatStr;
 

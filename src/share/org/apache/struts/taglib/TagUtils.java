@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.3 2003/07/26 01:11:43 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/26 01:11:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.4 2003/07/26 01:17:55 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/07/26 01:17:55 $
  *
  * ====================================================================
  *
@@ -62,8 +62,10 @@
 package org.apache.struts.taglib;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
@@ -72,6 +74,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * Provides helper methods for JSP tags.
@@ -80,7 +83,7 @@ import org.apache.struts.util.MessageResources;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -197,6 +200,20 @@ public class TagUtils {
         }
 
         return scope.intValue();
+    }
+    
+    /**
+     * Look up and return current user locale, based on the specified parameters.
+     *
+     * @param pageContext The PageContext associated with this request
+     * @param locale Name of the session attribute for our user's Locale.  If this is 
+     * <code>null</code>, the default locale key is used for the lookup.
+     * @return current user locale
+     */
+    public Locale getUserLocale(PageContext pageContext, String locale) {
+        return RequestUtils.getUserLocale(
+            (HttpServletRequest) pageContext.getRequest(),
+            locale);
     }
 
 }
