@@ -1,16 +1,16 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/validator/TypeForm.java,v 1.3 2004/03/14 06:23:49 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 06:23:49 $
+ * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/validator/TypeForm.java,v 1.4 2004/03/25 05:12:59 rleland Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/03/25 05:12:59 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,7 +36,7 @@ import org.apache.struts.validator.ValidatorForm;
 */
 public final class TypeForm extends ValidatorForm implements Serializable {
     private String action = null;
-
+    private String name = null;  //Used to test Multiform per page validation when property name is 'name'
     private String sByte = null;
     private String sShort = null;
     private String sInteger = null;
@@ -54,15 +54,23 @@ public final class TypeForm extends ValidatorForm implements Serializable {
 
     private List lNames = initNames();
 
-    public String getAction() {
-	return action;
-    }
+  public String getAction() {
+ return action;
+   }
 
-    public void setAction(String action) {
-        this.action = action;
-    }
+   public void setAction(String action) {
+       this.action = action;
+   }
 
-    public String getByte() {
+  public String getName() {
+ return name;
+   }
+
+   public void setName(String name) {
+       this.name = name;
+   }
+
+     public String getByte() {
        return sByte;
     }
 
