@@ -11,6 +11,7 @@
 
 <section name="Persistance Layers">
 
+  <p><a href="http://basicportal.sourceforge.net/basicWebLib.htm">basicDAOWebLib</a></p>
   <p><a href="http://castor.exolab.org/">Castor</a></p>
   <p><a href="http://objectstyle.org/cayenne/">Cayenne Object-To-Relational Mapping Framework</a></p>
   <p><a href="http://databind.sourceforge.net/">DataBind</a></p>
