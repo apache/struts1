@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.3 2002/10/17 00:49:25 jholmes Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/17 00:49:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.4 2002/11/07 05:18:26 rleland Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/11/07 05:18:26 $
  *
  * ====================================================================
  *
@@ -67,7 +67,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -82,7 +81,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 
 
  /**
@@ -90,7 +89,7 @@ import org.apache.struts.config.ApplicationConfig;
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
   * @author Martin Cooper
-  * @version $Revision: 1.3 $ $Date: 2002/10/17 00:49:25 $
+  * @version $Revision: 1.4 $ $Date: 2002/11/07 05:18:26 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -211,7 +210,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
             throws ServletException {
 
         // Get the app config for the current request.
-        ApplicationConfig ac = (ApplicationConfig) request.getAttribute(
+        ModuleConfig ac = (ModuleConfig) request.getAttribute(
                 Action.APPLICATION_KEY);
 
         // Create and configure a FileUpload instance.
@@ -320,13 +319,13 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      * Returns the maximum allowable size, in bytes, of an uploaded file. The
      * value is obtained from the current module's controller configuration.
      *
-     * @param ac The current module's application configuration.
+     * @param mc The current module's configuration.
      *
      * @return The maximum allowable file size, in bytes.
      */
-    protected long getSizeMax(ApplicationConfig ac) {
+    protected long getSizeMax(ModuleConfig mc) {
 
-        String sizeString = ac.getControllerConfig().getMaxFileSize();
+        String sizeString = mc.getControllerConfig().getMaxFileSize();
         int multiplier = 1;
 
         if (sizeString.endsWith("K")) {
@@ -345,7 +344,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
             size = Long.parseLong(sizeString);
         } catch (NumberFormatException nfe) {
             log.warn("Invalid format for maximum file size ('"
-                    + ac.getControllerConfig().getMaxFileSize()
+                    + mc.getControllerConfig().getMaxFileSize()
                     + "'). Using default.");
             size = DEFAULT_SIZE_MAX;
             multiplier = 1;
@@ -359,11 +358,11 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      * Returns the size threshold which determines whether an uploaded file
      * will be written to disk or cached in memory.
      *
-     * @param ac The current module's application configuration.
+     * @param mc The current module's configuration.
      *
      * @return The size threshold, in bytes.
      */
-    protected int getSizeThreshold(ApplicationConfig ac) {
+    protected int getSizeThreshold(ModuleConfig mc) {
         return DEFAULT_SIZE_THRESHOLD;
     }
 
@@ -383,15 +382,15 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      *     property.</li>
      * (/ol>
      *
-     * @param ac The application config instance for which the path should be
+     * @param mc The module config instance for which the path should be
      *           determined.
      *
      * @return The path to the directory to be used to store uploaded files.
      */
-    protected String getRepositoryPath(ApplicationConfig ac) { 
+    protected String getRepositoryPath(ModuleConfig mc) {
 
         // First, look for an explicitly defined temp dir.
-        String tempDir = ac.getControllerConfig().getTempDir();
+        String tempDir = mc.getControllerConfig().getTempDir();
 
         // If none, look for a container specified temp dir.
         if (tempDir == null || tempDir.length() == 0) {

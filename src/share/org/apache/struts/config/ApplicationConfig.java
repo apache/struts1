@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.18 2002/11/06 04:48:29 rleland Exp $
- * $Revision: 1.18 $
- * $Date: 2002/11/06 04:48:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.19 2002/11/07 05:18:26 rleland Exp $
+ * $Revision: 1.19 $
+ * $Date: 2002/11/07 05:18:26 $
  *
  * ====================================================================
  *
@@ -75,8 +75,9 @@ import org.apache.struts.config.impl.ModuleConfigImpl;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2002/11/06 04:48:29 $
+ * @version $Revision: 1.19 $ $Date: 2002/11/07 05:18:26 $
  * @since Struts 1.1
+ * @deprecated Usage replaced by ModuleConfig Interface.
  */
 
 public class ApplicationConfig extends ModuleConfigImpl {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.50 2002/10/30 02:30:31 rleland Exp $
- * $Revision: 1.50 $
- * $Date: 2002/10/30 02:30:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.51 2002/11/07 05:18:26 rleland Exp $
+ * $Revision: 1.51 $
+ * $Date: 2002/11/07 05:18:26 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import org.apache.struts.Globals;
-import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
@@ -112,7 +112,7 @@ import org.apache.struts.util.RequestUtils;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.50 $ $Date: 2002/10/30 02:30:31 $
+ * @version $Revision: 1.51 $ $Date: 2002/11/07 05:18:26 $
  */
 
 public class Action {
@@ -139,16 +139,17 @@ public class Action {
 
     /**
      * <p>The base of the context attributes key under which our
-     * <code>ApplicationConfig</code> data structure will be stored.  This
+     * <code>ModuleConfig</code> data structure will be stored.  This
      * will be suffixed with the actual module prefix (including the
      * leading "/" character) to form the actual attributes key.</p>
      *
      * <p>For each request processed by the controller servlet, the
-     * <code>ApplicationConfig</code> object for the module selected by
+     * <code>ModuleConfig</code> object for the module selected by
      * the request URI currently being processed will also be exposed under
      * this key as a request attribute.</p>
      *
      * @since Struts 1.1
+     * @deprecated  Replaced by {@link org.apache.struts.Globals#MODULE_KEY}
      */
     public static final String APPLICATION_KEY = Globals.APPLICATION_KEY;
 
@@ -158,6 +159,7 @@ public class Action {
      * configured data source (which must implement
      * <code>javax.sql.DataSource</code>) is stored,
      * if one is configured for this module.
+     * @deprecated  Replaced by {@link org.apache.struts.Globals#DATA_SOURCE_KEY}
      */
     public static final String DATA_SOURCE_KEY = Globals.DATA_SOURCE_KEY;
 
@@ -166,6 +168,7 @@ public class Action {
      * The request attributes key under which your action should store an
      * <code>org.apache.struts.action.ActionErrors</code> object, if you
      * are using the corresponding custom tag library elements.
+     * @deprecated  Replaced by {@link org.apache.struts.Globals#ERROR_KEY}
      */
     public static final String ERROR_KEY = Globals.ERROR_KEY;
 
@@ -175,6 +178,7 @@ public class Action {
      * <code>Throwable</code> that caused them to report a JspException at
      * runtime.  This value can be used on an error page to provide more
      * detailed information about what really went wrong.
+     * @deprecated  Replaced by {@link org.apache.struts.Globals#EXCEPTION_KEY}
      */
     public static final String EXCEPTION_KEY = Globals.EXCEPTION_KEY;
 
@@ -185,7 +189,7 @@ public class Action {
      * is normally stored, unless overridden when initializing our
      * ActionServlet.
      *
-     * @deprecated Replaced by collection in ApplicationConfig
+     * @deprecated Replaced by collection in ModuleConfig
      */
     public static final String FORM_BEANS_KEY = Globals.FORM_BEANS_KEY;
 
@@ -196,7 +200,7 @@ public class Action {
      * is normally stored, unless overridden when initializing our
      * ActionServlet.
      *
-     * @deprecated Replaced by collection in ApplicationConfig.
+     * @deprecated Replaced by collection in ModuleConfig.
      */
     public static final String FORWARDS_KEY = Globals.FORWARDS_KEY;
 
@@ -207,6 +211,7 @@ public class Action {
      * attribute is found, the system default locale
      * will be used when retrieving internationalized messages.  If used, this
      * attribute is typically set during user login processing.
+     * @deprecated  Replaced by {@link org.apache.struts.Globals#LOCALE_KEY}
      */
     public static final String LOCALE_KEY = Globals.LOCALE_KEY;
 
@@ -215,6 +220,7 @@ public class Action {
      * The request attributes key under which our
      * <code>org.apache.struts.ActionMapping</code> instance
      * is passed.
+     * @deprecated  Replaced by {@link org.apache.struts.Globals#MAPPING_KEY}
      */
     public static final String MAPPING_KEY = Globals.MAPPING_KEY;
 
@@ -225,7 +231,7 @@ public class Action {
      * is normally stored, unless overridden when initializing our
      * ActionServlet.
      *
-     * @deprecated Replaced by collection in ApplicationConfig
+     * @deprecated Replaced by collection in ModuleConfig
      */
     public static final String MAPPINGS_KEY = Globals.MAPPINGS_KEY;
 
@@ -236,6 +242,7 @@ public class Action {
      * are using the corresponding custom tag library elements.
      *
      * @since Struts 1.1
+     * @deprecated  Replaced by {@link org.apache.struts.Globals#MESSAGE_KEY}
      */
     public static final String MESSAGE_KEY = Globals.MESSAGE_KEY;
 
@@ -497,7 +504,7 @@ public class Action {
 
 
     /**
-     * Return the default data source for the current application module.
+     * Return the default data source for the current module.
      *
      * @param request The servlet request we are processing
      *
@@ -512,8 +519,7 @@ public class Action {
 
 
     /**
-     * Return the specified data source for the current application
-     * module.
+     * Return the specified data source for the current module.
      *
      * @param request The servlet request we are processing
      * @param key The key specified in the
@@ -525,13 +531,13 @@ public class Action {
     protected DataSource getDataSource(HttpServletRequest request,
                                        String key) {
 
-        // Identify the current application module
+        // Identify the current module
         ServletContext context = getServlet().getServletContext();
-        ApplicationConfig appConfig = RequestUtils.getModuleConfig(request,context);
+        ModuleConfig moduleConfig = RequestUtils.getModuleConfig(request,context);
 
         // Return the requested data source instance
         return ((DataSource) context.getAttribute
-                (key + appConfig.getPrefix()));
+                (key + moduleConfig.getPrefix()));
 
     }
 
@@ -553,11 +559,11 @@ public class Action {
 
 
     /**
-     * Return the message resources for the default application module.
+     * Return the message resources for the default module.
      *
      * @deprecated This method can only return the resources for the default
-     *  application module.  Use getResources(HttpServletRequest) to get the
-     *  resources for the current application module.
+     *  module.  Use getResources(HttpServletRequest) to get the
+     *  resources for the current module.
      */
     protected MessageResources getResources() {
 
@@ -568,7 +574,7 @@ public class Action {
 
 
     /**
-     * Return the default message resources for the current application module.
+     * Return the default message resources for the current module.
      *
      * @param request The servlet request we are processing
      * @since Struts 1.1
@@ -582,8 +588,7 @@ public class Action {
 
 
     /**
-     * Return the specified message resources for the current application
-     * module.
+     * Return the specified message resources for the current module.
      *
      * @param request The servlet request we are processing
      * @param key The key specified in the
@@ -595,13 +600,13 @@ public class Action {
     protected MessageResources getResources(HttpServletRequest request,
                                             String key) {
 
-        // Identify the current application module
+        // Identify the current module
         ServletContext context = getServlet().getServletContext();
-        ApplicationConfig appConfig = RequestUtils.getModuleConfig(request,context);
+        ModuleConfig moduleConfig = RequestUtils.getModuleConfig(request,context);
 
         // Return the requested message resources instance
         return ((MessageResources) context.getAttribute
-                (key + appConfig.getPrefix()));
+                (key + moduleConfig.getPrefix()));
 
     }
 

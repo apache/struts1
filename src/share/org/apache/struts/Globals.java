@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.2 2002/07/24 05:31:29 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/24 05:31:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.3 2002/11/07 05:18:26 rleland Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/07 05:18:26 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import java.io.Serializable;
  * themselves have not changed.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/07/24 05:31:29 $
+ * @version $Revision: 1.3 $ $Date: 2002/11/07 05:18:26 $
  */
 
 public class Globals implements Serializable {
@@ -97,19 +97,37 @@ public class Globals implements Serializable {
 
     /**
      * <p>The base of the context attributes key under which our
-     * <code>ApplicationConfig</code> data structure will be stored.  This
+     * <code>ModuleConfig</code> data structure will be stored.  This
      * will be suffixed with the actual module prefix (including the
      * leading "/" character) to form the actual attributes key.</p>
      *
      * <p>For each request processed by the controller servlet, the
-     * <code>ApplicationConfig</code> object for the module selected by
+     * <code>ModuleConfig</code> object for the module selected by
+     * the request URI currently being processed will also be exposed under
+     * this key as a request attribute.</p>
+     *
+     * @since Struts 1.1
+     * @deprecated Use MODULE_KEY
+     */
+    public static final String APPLICATION_KEY =
+        "org.apache.struts.action.MODULE";
+
+
+    /**
+     * <p>The base of the context attributes key under which our
+     * <code>ModuleConfig</code> data structure will be stored.  This
+     * will be suffixed with the actual module prefix (including the
+     * leading "/" character) to form the actual attributes key.</p>
+     *
+     * <p>For each request processed by the controller servlet, the
+     * <code>ModuleConfig</code> object for the module selected by
      * the request URI currently being processed will also be exposed under
      * this key as a request attribute.</p>
      *
      * @since Struts 1.1
      */
-    public static final String APPLICATION_KEY =
-        "org.apache.struts.action.APPLICATION";
+    public static final String MODULE_KEY =
+        "org.apache.struts.action.MODULE";
 
 
     /**
@@ -147,7 +165,7 @@ public class Globals implements Serializable {
      * is normally stored, unless overridden when initializing our
      * ActionServlet.
      *
-     * @deprecated Replaced by collection in ApplicationConfig
+     * @deprecated Replaced by collection in ModuleConfig
      */
     public static final String FORM_BEANS_KEY =
         "org.apache.struts.action.FORM_BEANS";
@@ -159,7 +177,7 @@ public class Globals implements Serializable {
      * is normally stored, unless overridden when initializing our
      * ActionServlet.
      *
-     * @deprecated Replaced by collection in ApplicationConfig.
+     * @deprecated Replaced by collection in ModuleConfig.
      */
     public static final String FORWARDS_KEY =
       "org.apache.struts.action.FORWARDS";
@@ -191,7 +209,7 @@ public class Globals implements Serializable {
      * is normally stored, unless overridden when initializing our
      * ActionServlet.
      *
-     * @deprecated Replaced by collection in ApplicationConfig
+     * @deprecated Replaced by collection in ModuleConfig
      */
     public static final String MAPPINGS_KEY =
       "org.apache.struts.action.MAPPINGS";

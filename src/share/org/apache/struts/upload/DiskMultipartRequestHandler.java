@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskMultipartRequestHandler.java,v 1.19 2002/07/06 04:44:07 martinc Exp $
- * $Revision: 1.19 $
- * $Date: 2002/07/06 04:44:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskMultipartRequestHandler.java,v 1.20 2002/11/07 05:18:26 rleland Exp $
+ * $Revision: 1.20 $
+ * $Date: 2002/11/07 05:18:26 $
  *
  * ====================================================================
  *
@@ -63,9 +63,6 @@ package org.apache.struts.upload;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.FileOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.Hashtable;
 import java.util.Enumeration;
 import javax.servlet.ServletContext;
@@ -76,7 +73,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 
 /**
  * This is a MultipartRequestHandler that writes file data directly to
@@ -130,12 +127,12 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      */
     public void handleRequest(HttpServletRequest request) throws ServletException
     {
-        ApplicationConfig appConfig = (ApplicationConfig) request.getAttribute(Action.APPLICATION_KEY);
-        retrieveTempDir(appConfig);
+        ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Action.APPLICATION_KEY);
+        retrieveTempDir(moduleConfig);
         try
         {
-            MultipartIterator iterator = new MultipartIterator(request, appConfig.getControllerConfig().getBufferSize(),
-                                                               getMaxSize(appConfig.getControllerConfig().getMaxFileSize()),
+            MultipartIterator iterator = new MultipartIterator(request, moduleConfig.getControllerConfig().getBufferSize(),
+                                                               getMaxSize(moduleConfig.getControllerConfig().getMaxFileSize()),
                                                                tempDir);
             MultipartElement element;
 
@@ -288,7 +285,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      * Retrieves the temporary directory from either ActionServlet, a context
      * property, or a system property, in that order.
      */
-    protected void retrieveTempDir(ApplicationConfig appConfig) { 
+    protected void retrieveTempDir(ModuleConfig moduleConfig) {
         
         //attempt to retrieve the servlet container's temporary directory
         ActionServlet servlet = getServlet();
@@ -307,7 +304,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
 
         if (tempDir == null) {            
             //attempt to retrieve the temporary directory from the controller
-            tempDir = appConfig.getControllerConfig().getTempDir();
+            tempDir = moduleConfig.getControllerConfig().getTempDir();
 
             if (tempDir == null) {
                 //default to system-wide tempdir
