@@ -15,89 +15,100 @@
 <!-- ========== Prerequisite Properties =================================== -->
 
 <!--
-        These properties MUST be set on the "ant" command line, a
-        "build.properties" file in the base directory, or a
-        "build.properties" file in your user home directory.
+        REQUIRED PROPERTIES
 
-        catalina.home                 (optional). The path to the Tomcat 4.0
-                                      installation. This is required only when
-                                      executing the "deploy.catalina" target.
+        Each of these properties MUST be set in one of the following ways:
+         * on the "ant" command line
+         * in a "build.properties" file in the base directory
+         * in a "build.properties" file in your user home directory
 
-        catalina.url                  (optional) URL of the Tomcat 4.1.x
-                                      manager app for dynamic installation
+        antlr.jar                     The path to the JAR file of the ANTLR
+                                      package.
+                                      [Version 2.7.1 or later]
 
-        catalina.username             (optional) Username for the Tomcat 4.1.x
-                                      manager app for dynamic installation
+        commons-beanutils.jar         The path to the JAR file of the Jakarta
+                                      Commons Beanutils package.
+                                      [Version 1.6.1 or later]
 
-        catalina.password             (optional) Password for the Tomcat 4.1.x
-                                      manager app for dynamic installation
+        commons-collections.jar       The path to the JAR file of the Jakarta
+                                      Commons Collections package.
+                                      [Version 2.1 or later]
 
-        commons-beanutils.jar         (required).  The path to the JAR file
-                                      of the Jakarta Commons Beanutils
-                                      package (version 1.0 or later).
+        commons-digester.jar          The path to the JAR file of the Jakarta
+                                      Commons Digester package.
+                                      [Version 1.5 or later]
 
-        commons-collections.jar       (required).  The path to the JAR file
-                                      of the Jakarta Commons Collections
-                                      package (version 1.0 or later).
+        commons-fileupload.jar        The path to the JAR file of the Jakarta
+                                      Commons FileUpload package.
+                                      [Version 1.0 or later]
 
-        struts-legacy.jar             (required).  The path to the JAR file
-                                      of the Jakarta Struts Legacy
-                                      package (version 1.0 or later).
+        commons-lang.jar              The path to the JAR file of the Jakarta
+                                      Commons Lang package.
+                                      [Version 1.0.1 or later]
 
-        commons-digester.jar          (required).  The path to the JAR file
-                                      of the Jakarta Commons Digester
-                                      package (version 1.0 or later).
+        commons-logging.jar           The path to the JAR file of the Jakarta
+                                      Commons Logging package.
+                                      [Version 1.0.3 or later]
 
-        commons-fileupload.jar        (required).  The path to the JAR file
-                                      of the Jakarta Commons FileUpload
-                                      package (version 1.0 or later)
+        commons-validator.jar         The path to the JAR file of the Jakarta
+                                      Commons Validator package.
+                                      [Version 1.0.2 or later]
 
-        commons-lang.jar              (required).  The path to the JAR file
-                                      of the Jakarta Commons Lang
-                                      package (version 1.0 or later).
+        jakarta-oro.jar               The path to the JAR file of the Jakarta
+                                      ORO package.
+                                      [Version 2.0.6 or later]
 
-        commons-logging.jar           (required).  The path to the JAR file
-                                      of the Jakarta Commons Logging
-                                      package (version 1.0 or later).
+        jdbc20ext.jar                 The path to the JAR file for the JDBC 2.0
+                                      Optional Package APIs.
 
-        commons-validator.jar         (required).  The path to the JAR file
-                                      of the Jakarta Commons VALIDATOR
-                                      package (version 1.0 or later).
+        servlet.jar                   The path to the Servlet API classes to
+                                      compile against.
+                                      [Version 2.2 or 2.3]
 
-        jakarta-oro.jar               (required).  The path to the JAR file
-                                      of the Jakarta ORO
-                                      package (version 2.06 or later).
+        struts-legacy.jar             The path to the JAR file of the Jakarta
+                                      Struts Legacy package.
+                                      [Version 1.0 or later]
 
-        jdbc20ext.jar                 (required).  The path to the JAR file
-                                      for the JDBC 2.0 Optional Package APIs.
 
-        jsp.jar                       (optional).  the path to the JSP API
-                                      classes to compile against, if you are
-                                      using JSP 2.0 where these classes have
-                                      been separated from servlet.jar.  If you
-                                      are using JSP 1.1 or 1.2, leave this
-                                      property unset.
+        OPTIONAL PROPERTIES
 
-        servlet.jar                   (required).  The path to the Servlet API
-                                      classes to compile against (currently,
-                                      either version 2.2 or 2.3 supported).
+        Each of these properties MAY be set in one of the following ways:
+         * on the "ant" command line
+         * in a "build.properties" file in the base directory
+         * in a "build.properties" file in your user home directory
+        If not set, the default, as described below, will be used instead.
 
-        antlr.jar                     (required) The path to the ANTLR classes
-                                      to copy.  Required for the validwhen
-                                      validator rule to parser it's args.
-
-        tomcat.home                   (optional). The path to the Tomcat 3.x
-                                      installation. This is required only when
-                                      executing the "deploy.tomcat" target.
-
-        xerces.jar                    (optional) The path to the Xerces classes
-                                      to copy.  This is required only when
-                                      executing the "deploy.catalina" target.
-
-        ant.jar                       (optional) The path to the ant.jar that 
-                                      is being used to build from this script
-                                      This is required only when executing the 
+        ant.jar                       The path to the ant.jar that is being
+                                      used to build from this script. This is
+                                      required only when executing the 
                                       "generate.taglib.doc" target.
+
+        catalina.home                 The path to the Tomcat 4.0 installation.
+                                      This is required only when executing the
+                                      "deploy.catalina" target.
+
+        catalina.url                  URL of the Tomcat 4.1.x manager app for
+                                      dynamic installation.
+
+        catalina.username             Username for the Tomcat 4.1.x manager app
+                                      for dynamic installation.
+
+        catalina.password             Password for the Tomcat 4.1.x manager app
+                                      for dynamic installation.
+
+        jsp.jar                       The path to the JSP API classes to compile
+                                      against, if you are using JSP 2.0, where
+                                      these classes have been separated from
+                                      servlet.jar. If you are using JSP 1.1 or
+                                      1.2, leave this property unset.
+
+        tomcat.home                   The path to the Tomcat 3.x installation.
+                                      This is required only when executing the
+                                      "deploy.tomcat" target.
+
+        xerces.jar                    The path to the Xerces classes to copy.
+                                      This is required only when executing the
+                                      "deploy.catalina" target.
 
 -->
 
@@ -141,7 +152,7 @@
     <property name="project.name" value="jakarta-struts"/>
 
     <!-- Version of the project -->
-    <property name="project.version" value="1.1"/>
+    <property name="project.version" value="1.2-dev"/>
 
 
 <!-- ========== Derived Properties ======================================== -->
