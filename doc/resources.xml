@@ -254,7 +254,7 @@
 <p><a href="http://www.theserverside.com/resources/strutsreview.jsp"><b>Jakarta Struts Book Review Project</b></a> by Chuck Cavaness</p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0471213020/hitchhikeguidetoA/"><b>Mastering Jakarta Struts</b></a> by James Goodwill - Not yet published.</p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0971661901/hitchhikeguidetoA/"><b>Struts Fast Track: J2EE / JSP Framework</b></a> by Victor Cekvenich - Practical Application with Database Access and Struts Extensions.</p>
-<p><a href="http://www.amazon.com/exec/obidos/ISBN=1861005512/hitchhikeguidetoA/"><b>Professional JSP Site Design</b></a> - Wrox book - Features Struts throughout.</p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1861005512/hitchhikeguidetoA/"><b>Professional JSP Site Design</b></a> - Wrox book by Husted, Kunnumpurath, Lavandowska, Panduranga, et al - Features Struts in chapters 2 (The Struts Framework), 6 (Navigation), 8 (Data Access Patterns), 12 (Content Management), 13 (Searching), and 14 (Portals).</p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0735710953/hitchhikeguidetoA/"><b>JSP and Tag Libraries for Web Development </b></a>- by Wellington L. S. Da Silva. Several chapters regarding Struts.</p>
 <p><a href="http://www.redbooks.ibm.com/redpieces/pdfs/sg246134.pdf"><b>Websphere Version 4 Application Development Handbook</b></a> <font size="1">(PDF)</font> - Chapter 7 covers designing with both the Struts and Websphere frameworks.</p>
 <p><a href="http://shannon.informatik.fh-wiesbaden.de/jsp/index.html"><b>Java Server Pages and J2EE Web-based Applications for Enterprises</b></a> - In German, with a Chapter regarding MVC and Struts.</p>
@@ -407,6 +407,7 @@ removed.</font></b></p>
 <p><a href="http://www.accessdc.com/">AccessData</a> - <a href="mailto:cassenza@Accessdc.com">Chris Assenza</a>.</p>
 <p><a href="http://www.aragost.com">aragost (Switzerland)</a> - <a href="mailto:klaus@aragost.com">Klaus Bucka-Lassen</a>.</p>
 <p><a href="http://www.athensgroup.com/">Athens Group</a> - <a href="mailto:flawlor@athensgroup.com">Frank Lawlor</a>.</p>
+<p><a href="http://www.basebeans.com/">Basebeans Engineering</a> - <a href="mailto:vic@basebeans.com">Vic Cekvenich</a>.</p>
 <p><a href="http://www.bluefish.se/">Bluefish</a> - <a href="mailto:torben.norling@bluefish.se">Torben Norling</a>.</p>
 <p><a href="http://www.bravepoint.com">Bravepoint</a> - <a href="mailto:struts@bravepoint.com">Struts Info</a>.</p>
 <p><a href="http://www.browsersoft.com">Browsersoft</a> - <a href="mailto:robert@browsersoft.com">Robert McIntosh</a>.</p>
@@ -415,8 +416,8 @@ removed.</font></b></p>
 <p><a href="http://www.christopherbenson.com">Christopher Benson</a> - <a href="mailto:benson@mindspring.com"> Christopher Benson</a>.</p>  
 <p><a href="http://www.eblox.com/">eBlox</a> - <a href="mailto:andrewb@eblox.com">andrewb@eblox.com</a>.</p>
 <p><a href="http://www.etmint.com">ETM International</a> - <a href="mailto:mathias.bogaert@etmint.com">mathias.bogaert@etmint.com</a></p>
-<p><a href="http://www.sqli.com">Groupe SQLI</a> - <a href="mailto:sdiaz@sqli.com">Sébastien DIAZ</a></p>
-<p><a href="http://husted.com/about/services">Husted dot Com</a> - <a href="mailto:ted@husted.com">Ted Husted</a>.</p>
+<p><a href="http://www.sqli.com/">Groupe SQLI</a> - <a href="mailto:sdiaz@sqli.com">Sebastien DIAZ</a></p>
+<p><a href="http://www.husted.com/about/services">Husted dot Com</a> - <a href="mailto:ted@husted.com">Ted Husted</a>.</p>
 <p><a href="http://www.iontos.de">iontos</a></p>
 <p><a href="http://www.improve.fr">Improve</a> - <a href="mailto:didier.girard@improve.fr">Didier Girard</a></p>
 <p><a href="http://www.intelixinc.com">Intelix Inc.</a> - <a href="mailto:sales@intelixinc.com">Richard Bowers </a></p>
@@ -434,6 +435,7 @@ removed.</font></b></p>
 <p><a href="http://www.projectrefinery.com">Project Refinery</a> - <a href="mailto:jsmith@projectrefinery.com"> Jason Smith</a></p>  
 <p><a href="http://www.raibledesigns.com/">Raible Designs</a> - <a href="mailto:matt_raible@yahoo.com">Matt Raible</a>.</p>
 <p><a href="http://www.sbti.com/">Segue Solutions</a>  - <a href="mailto:jthomas@segue.biz">John J. Thomas</a>.</p>
+<p><a href="http://www.scioworks.com/">Scioworks Technologies [Singapore]</a>  - <a href="mailto:info@scioworks.com">info@scioworks.com</a>.</p>
 <p><a href="http://www.sharedskills.com/">Shared Skills Ltd (UK)</a> - <a href="mailto:mike.way@sharedskills.com">Mike Way</a>.</p>
 <p><a href="http://softwareMentor.com/">SoftwareMentor</a> - <a href="mailto:tim@softwareMentor.com">Tim Biernat</a>.</p>
 <p><a href="http://www.solutionarray.com/">Solution Array</a> - <a href="mailto:chkmiec@hotmail.com">Chris Kmiec</a>.</p>
