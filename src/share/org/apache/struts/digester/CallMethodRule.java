@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.3 2000/08/01 20:03:29 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/08/01 20:03:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.4 2000/08/13 04:40:03 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/08/13 04:40:03 $
  *
  * ====================================================================
  * 
@@ -75,7 +75,7 @@ import org.apache.struts.util.BeanUtils;
  * element.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/08/01 20:03:29 $
+ * @version $Revision: 1.4 $ $Date: 2000/08/13 04:40:03 $
  */
 
 public final class CallMethodRule extends Rule {
@@ -201,8 +201,6 @@ public final class CallMethodRule extends Rule {
 
 	if (paramCount == 0)
 	    this.bodyText = bodyText;
-	else
-	    this.bodyText = null;
 
     }
 

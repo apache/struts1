@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallParamRule.java,v 1.2 2000/08/01 20:03:29 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/08/01 20:03:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallParamRule.java,v 1.3 2000/08/13 04:40:03 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/08/13 04:40:03 $
  *
  * ====================================================================
  * 
@@ -73,7 +73,7 @@ import org.xml.sax.AttributeList;
  * by a surrounding CallMethodRule rule.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/08/01 20:03:29 $
+ * @version $Revision: 1.3 $ $Date: 2000/08/13 04:40:03 $
  */
 
 public final class CallParamRule extends Rule {
@@ -160,8 +160,6 @@ public final class CallParamRule extends Rule {
 
 	if (attributeName == null)
 	    this.bodyText = bodyText.trim();
-	else
-	    this.bodyText = null;
 
     }
 
