@@ -20,6 +20,7 @@
 </section>
 
 <section name="Contributor Extensions" href="extensions"> 
+<p><a href="http://www.webappwriter.com"><b>webAppWriter</b></a> is a web site which is actually a web application for building Struts-based applications.</p>
 <p><a href="http://strutstestcase.sourceforge.net/"><b>StrutsTestCase v1.5 for JUnit</b></a> (by Deryl Seal) is an extension of the standard JUnit TestCase class that provides facilities for testing code based on the Struts framework.</p>
 <p><a href="http://www.objectwave.com/html/tools/tool1_3.htm"><b>X2J</b></a> is a code generation tool for building Struts applications. It includes wizard for easily creating JSPs, and the required Action and ActionForm classes as well as graphical tools for updating the config file. </p>
 <p><a href="http://www.inigoserrano.com/ISValidator/en/ejemploStrutsCompleto0010ISValidator.htm"><b>ISValidator</b></a> validates data in diferents scenarios, command line arguements, Servlets Parameters, et cetera. Includes example using theLogonForm from the example application. </p>
@@ -205,6 +206,8 @@
     <li><a href="http://www.ipayment.co.za"><b>South African Revenue Services</b></a> - Directive and certificate service.</li>
     <li><a href="http://www.redgalleon.com/"><b>Red Galleon</b></a> - Offer aggregator.</li>
     <li><a href="http://www.webappcabaret.com/teatimej/"><b>TeaTimeJ</b></a> - Website and Java hosting.</li>
+    <li><a href="http://www.webappwriter.com/"><b>webAppWriter</b></a> - write and deploy a J2EE app in 15 minutes.</li>
+    <li><a href="http://www.windsurfpassion.com/"><b>WindSurfPassion</b></a> - Dedicated to windsurfing.</li>
     <li><a href="http://wxxi.org/"><b>WXXI Spring MarketPlace 2001</b></a> - Online auction for Public Television station.</li>
   </ul>
 
@@ -216,6 +219,7 @@
     <li><a href="http://www.aoindustries.com/servlet/com.aoindustries.website.HomePage"><b>AO Industries</b></a></li>
     <li><a href="http://www.hostjsp.com"><b>host<font size="-1">JSP</font>.com</b></a></li>
     <li><a href="http://www.imagineis.com"><b>Imagine Internet Services</b></a></li>
+    <li><a href="http://www.indaco.net"><b>Indaco Informatica</b></a></li>
     <li><a href="http://www.infinitehost.com/"><b>Infinite Host</b></a></li>
     <li><a href="http://www.irdesign.com/services/hosting/website_hosting.html"><b>irdesign.com</b></a></li>
     <li><a href="http://www.mmaweb.net/"><b>mma</b></a></li>
@@ -234,17 +238,20 @@
   <li><b>Creatrix</b> - <a href="http://www.creatrixs.com">www.creatrixs.com</a> - <a href="mailto:sami.elhini@creatrixs.com">sami.elhini@creatrixs.com</a>.</li>
   <li><b>eBlox</b> - <a href="http://www.eblox.com/">www.eblox.com</a> - <a href="mailto:andrewb@eblox.com">andrewb@eblox.com</a>.</li>
   <li><b>Husted dot Com</b>   - <a href="http://husted.com/">www.husted.com</a> - <a href="mailto:ted@husted.com">Ted Husted</a>.</li>
+  <li><b>Indaco Informatica</b> - <a href="http://www.indaco.net/">www.indaco.net</a> - <a href="mailto:massimo@ino.it">Massimo Vassalli</a>.</li>
   <li><font size="1"><b>JATEC AG</b></font> - <a href="http://www.jatec.ch"> www.jatec.ch</a> - <a href="mailto:sascha.urfer@jatec.net">Sascha Urfer</a>.</li>
   <li><b>jCorporate</b> - <a href="http://www.jcorporate.com">jcorporate.com</a> - <a href="mailto:scann@jcorporate.com">Sandra Cann</a>.</li>
   <li><b>Kambrium.net Technologies</b> - <a href="http://www.kambrium.net/"></a><a href="http://www.kambrium.net/">kambrium.net</a> - <a href="mailto:struts@kambrium.net">Dirk Gabler</a>.</li>
   <li><b>Living Logic</b> - <a href="http://www.livinglogic.de/">www.livinglogic.de</a> - <a href="mailto:matthias.bauer@livinglogic.de">Matthias Bauer</a>.</li>
   <li><b>Multitask Consulting</b> - <a href="http://www.multitask.com.au/">www.multitask.com.au</a> - <a href="dion@multitask.com.au">dIon Gillard</a><a href="dion@multitask.com.au">.</a></li>
   <li><b>New Particles</b> - <a href="http://www.newparticles.com/struts">www.newparticles.com/struts</a> - <a href="mailto:steve@newparticles.com">Steve Wilkinson</a>.</li>
+  <li><b>Orbeon</b> - <a href="http://www.orbeon.com/">www.orbeon.com</a> - <a href="mailto:gbouzeid@orbeon.com">Gilbert Bouzeid</a>.</li>
   <li><b>Raible Designs</b> - <a href="http://www.raibledesigns.com/">www.raibledesigns.com</a> - <a href="mailto:matt_raible@yahoo.com">Matt Raible</a>.</li>
   <li><b>Segue Solutions</b> - <a href="http://www.sbti.com/">www.segue.biz</a>  - <a href="mailto:jthomas@segue.biz">John J. Thomas</a>.</li>
   <li><b>Shared Skills Ltd (UK)</b> - <a href="http://www.sharedskills.com/">www.sharedskills.com</a> - <a href="mailto:mike.way@sharedskills.com">Mike Way</a>.</li>
   <li><b>SoftwareMentor</b> - <a href="http://softwareMentor.com/">softwareMentor.com</a> - <a href="mailto:tim@softwareMentor.com">Tim Biernat</a>.</li>
   <li><b>Solution Array</b> - <a href="http://www.solutionarray.com/">www.solutionarray.com</a> - <a href="mailto:chkmiec@hotmail.com">Chris Kmiec</a>.</li>
+  <li><b>Swedish Connection</b> - <a href="http://www.connection.se/">www.connection.se</a> - <a href="mailto:micke@connection.se">Mikael Eriksson</a>.</li>
   <li><b>Tallan</b> - <a href="http://www.tallan.com/">www.tallan.com</a> - <a href="mailto:michael.grassotti@tallan.com">Michael Grassotti</a>.</li>
   <li><b>Thalles Information Services</b> - <a href="http://www.thales-is.ch/">www.thales-is.ch</a> - <a href="mailto:markus.colombo@thales-is.ch">Markus Collumbo</a>.</li>
   <li><b>U</b><b>pco</b> -<a href="http://www.upco.co.uk">upco.co.uk</a> - <a href="mailto:Jon.Ridgway@upco.co.uk">Jon Ridgeway</a>.</li>
