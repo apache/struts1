@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.1 2000/08/31 00:11:15 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/08/31 00:11:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.2 2000/09/05 21:25:45 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/09/05 21:25:45 $
  *
  * ====================================================================
  * 
@@ -80,7 +80,7 @@ import org.apache.struts.util.PropertyUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/08/31 00:11:15 $
+ * @version $Revision: 1.2 $ $Date: 2000/09/05 21:25:45 $
  */
 
 public final class WriteTag extends TagSupport {
@@ -171,12 +171,17 @@ public final class WriteTag extends TagSupport {
         try {
 
             // Locate the specified bean
-	    bean = BeanUtils.lookup(pageContext, name, scope);
-
-            // Locate the specified property
+            try {
+                bean = BeanUtils.lookup(pageContext, name, scope);
+            } catch (IllegalArgumentException e) {
+                throw new JspException
+                    (messages.getMessage("getter.scope", scope));
+            }
             if (bean == null)
                 throw new JspException
                     (messages.getMessage("getter.bean", name));
+
+            // Locate the specified property
             if (property == null)
                 value = bean;
             else
@@ -195,7 +200,7 @@ public final class WriteTag extends TagSupport {
                 (messages.getMessage("getter.access", property, name));
 	} catch (IllegalArgumentException e) {
 	    throw new JspException
-	      (messages.getMessage("getter.scope", scope));
+	      (messages.getMessage("getter.argument", e.toString()));
         } catch (InvocationTargetException e) {
             Throwable t = e.getTargetException();
             throw new JspException

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.1 2000/08/29 05:22:29 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/08/29 05:22:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.2 2000/09/05 21:25:45 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/09/05 21:25:45 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.PropertyUtils;
  * cookie received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/08/29 05:22:29 $
+ * @version $Revision: 1.2 $ $Date: 2000/09/05 21:25:45 $
  */
 
 public final class CookieTag extends TagSupport {
@@ -157,6 +157,7 @@ public final class CookieTag extends TagSupport {
             ((HttpServletRequest) pageContext.getRequest()).getCookies();
         if (cookies == null)
             cookies = new Cookie[0];
+
         for (int i = 0; i < cookies.length; i++) {
             if (name.equals(cookies[i].getName()))
                 values.addElement(cookies[i]);
