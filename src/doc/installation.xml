@@ -15,10 +15,8 @@
   other software packages, as follows:</p>
   <ul>
   <li><strong>Java Development Kit</strong> - You must download and install
-      a version 1.1 (or later) Java Development Kit implementation for your
-      operating system platform.  You <em>must</em> have a Java2 version
-      (JDK 1.2 or later) to build the Struts source distribution, and several
-      of the custom tags in the Struts library require Java2 to execute.
+      a Java2 (version 1.2 or later) Java Development Kit implementation for
+      your operating system platform.
       A good starting point for locating Java Development Kit distributions is
       <a href="http://java.sun.com/j2se">http://java.sun.com/j2se</a>.</li>
   <li><strong>Servlet Container</strong> - You must download and install a
@@ -28,12 +26,12 @@
       <a href="http://jakarta.apache.org/tomcat">Tomcat</a> (version 3.1
       or later required, version 3.2 or later recommended).</li>
   <li><strong>Ant Build System</strong> - If you are building Struts from the
-      source distribution, you must download and install version 1.1 or later
+      source distribution, you must download and install version 1.2 or later
       of the <a href="http://jakarta.apache.org/ant">Ant</a> build system.
       This package is also strongly recommended for use in developing your
       own web applications based on Struts.
       <ul>
-      <li>If you are using the release version of Ant version 1.1, you will
+      <li>If you are using the release version of Ant version 1.2, you will
           also need to download the "optional.jar" file that contains the
           implementation of Ant's <code>&lt;style&gt;</code> command.</li>
       </ul></li>
@@ -46,7 +44,7 @@
       </li>
   <li><strong>XML Parser</strong> - Struts requires the presence of an XML
       parser that is compatible with the Java API for XML Parsing (JAXP)
-      specification.  You can download and install the JAXP
+      specification, 1.0 or later.  You can download and install the JAXP
       <a href="http://java.sun.com/xml">reference implementation</a>,
       which is required for building the Struts source distribution.  In
       Struts-based web applications, you may replace the reference
@@ -121,10 +119,10 @@
     <li><strong>lib/struts.jar</strong> - This JAR file contains all of the
         Java classes included in Struts.  It should be copied into the
         <code>WEB-INF/lib</code> directory of your web application.</li>
-    <li><strong>lib/struts.tld</strong> - This is the "tag library descriptor"
-        file that describes the custom tags in the Struts library.  It should
-        be copied into the <code>WEB-INF</code> directory of your web
-        application.</li>
+    <li><strong>lib/struts*.tld</strong> - These are the "tag library
+        descriptor" files that describe the custom tags in the various Struts
+        tag libraries.  They should be copied into the <code>WEB-INF</code>
+        directory of your web application.</li>
     <li><strong>webapps/struts-documentation.war</strong> - This is a
         "web application archive" file containing all of the Struts
         documentation found on the
@@ -162,32 +160,38 @@
         to include the following tag library declarations:
         <pre>
         &lt;taglib&gt;
-          &lt;taglib-uri&gt;/WEB-INF/struts.tld&lt;/taglib-uri&gt;
-          &lt;taglib-location&gt;/WEB-INF/struts.tld&lt;/taglib-location&gt;
+          &lt;taglib-uri&gt;/WEB-INF/struts-bean.tld&lt;/taglib-uri&gt;
+          &lt;taglib-location&gt;/WEB-INF/struts-bean.tld&lt;/taglib-location&gt;
         &lt;/taglib&gt;
 
         &lt;taglib&gt;
-          &lt;taglib-uri&gt;/WEB-INF/struts-bean.tld&lt;/taglib-uri&gt;
-          &lt;taglib-location&gt;/WEB-INF/struts-bean.tld&lt;/taglib-location&gt;
+          &lt;taglib-uri&gt;/WEB-INF/struts-form.tld&lt;/taglib-uri&gt;
+          &lt;taglib-location&gt;/WEB-INF/struts-form.tld&lt;/taglib-location&gt;
         &lt;/taglib&gt;
 
         &lt;taglib&gt;
           &lt;taglib-uri&gt;/WEB-INF/struts-logic.tld&lt;/taglib-uri&gt;
           &lt;taglib-location&gt;/WEB-INF/struts-logic.tld&lt;/taglib-location&gt;
         &lt;/taglib&gt;
+
+        &lt;taglib&gt;
+          &lt;taglib-uri&gt;/WEB-INF/struts-template.tld&lt;/taglib-uri&gt;
+          &lt;taglib-location&gt;/WEB-INF/struts-template.tld&lt;/taglib-location&gt;
+        &lt;/taglib&gt;
         </pre>
         </li>
-    <li>Create a file <code>WEB-INF/action.xml</code> that defines the action
-        mappings for your specific application.  You can use the
-        <code>action.xml</code> file from the Struts example application
-        for a detailed example of the required syntax.</li>
+    <li>Create a file <code>WEB-INF/struts-config.xml</code> that defines the
+        action mappings and other characteristics of your specific application.
+        You can use the <code>struts-config.xml</code> file from the Struts
+        example application for a detailed example of the required syntax.</li>
     <li>At the top of each JSP page that will use the Struts custom tags,
         add line(s) declaring the Struts custom tag libraries used on
         this particular page, like this:
         <pre>
-        &lt;@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %&gt;
-        &lt;@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %&gt;
-        &lt;@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %&gt;
+        &lt;@ taglib uri="/WEB-INF/struts-bean.tld" prefix="struts-bean" %&gt;
+        &lt;@ taglib uri="/WEB-INF/struts-form.tld" prefix="struts-form" %&gt;
+        &lt;@ taglib uri="/WEB-INF/struts-logic.tld" prefix="struts-logic" %&gt;
+        &lt;@ taglib uri="/WEB-INF/struts-template.tld" prefix="struts-template" %&gt;
         </pre>
         </li>
     <li>When compiling the Java classes that comprise your application, be sure

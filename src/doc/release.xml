@@ -15,6 +15,9 @@
   <a href="#New">New Features</a> and <a href="#Changes">Changes</a> since
   the <strong>Version 0.5</strong> of Struts was made available.</p>
 
+  <p>One global new feature to take note of is that Struts 1.0 requires
+  a Java2 (JDK 1.2 or later) platform on which to run.</p>
+
   </section>
 
 
@@ -89,6 +92,17 @@
       &lt;struts-bean:struts id="link" forward="success"/&gt;
       &lt;struts-bean:write name="link" property="path"/&gt;
       </pre></li>
+  </ul>
+
+  <p>The following major new features have been added to the
+  <em>Struts Example Application</em>:</p>
+  <ul>
+  <li>The form beans used in the example application now use request scope
+      rather than session scope.  This is the preferred approach for single
+      page forms that contain <em>all</em> of your relevant properties,
+      because there is no need to maintain such form beans across requests.
+      Note that the action classes have been coded so that they work with
+      either request scope or session scope beans.</li>
   </ul>
 
   </section>
