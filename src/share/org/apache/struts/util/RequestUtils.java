@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.19 2001/07/16 00:44:59 craigmcc Exp $
- * $Revision: 1.19 $
- * $Date: 2001/07/16 00:44:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.20 2001/08/05 18:25:30 martinc Exp $
+ * $Revision: 1.20 $
+ * $Date: 2001/08/05 18:25:30 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2001/07/16 00:44:59 $
+ * @version $Revision: 1.20 $ $Date: 2001/08/05 18:25:30 $
  */
 
 public class RequestUtils {
@@ -395,7 +395,7 @@ public class RequestUtils {
                         url.append('?');
                         question = true;
                     } else
-                        url.append('&');
+                        url.append("&amp;");
                     url.append(URLEncoder.encode(key));
                     url.append('=');
                     url.append(URLEncoder.encode(value.toString()));
