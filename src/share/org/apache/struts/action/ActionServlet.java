@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.138 2002/12/27 10:52:22 cedric Exp $
- * $Revision: 1.138 $
- * $Date: 2002/12/27 10:52:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.139 2002/12/29 21:24:38 cedric Exp $
+ * $Revision: 1.139 $
+ * $Date: 2002/12/29 21:24:38 $
  *
  * ====================================================================
  *
@@ -80,6 +80,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.BooleanConverter;
 import org.apache.commons.beanutils.converters.ByteConverter;
@@ -302,7 +303,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.138 $ $Date: 2002/12/27 10:52:22 $
+ * @version $Revision: 1.139 $ $Date: 2002/12/29 21:24:38 $
  */
 
 public class ActionServlet
@@ -1092,11 +1093,15 @@ public class ActionServlet
             try {
                 plugIns[i] =
                     (PlugIn)RequestUtils.applicationInstance(plugInConfigs[i].getClassName());
-                BeanUtils.populate(plugIns[i], plugInConfigs[i].getProperties());
+                 BeanUtils.populate(plugIns[i], plugInConfigs[i].getProperties());
                   // Pass the current plugIn config object to the PlugIn.
                   // The property is set only if the plugin declares it.
                   // This plugin config object is needed by Tiles
-                BeanUtils.copyProperty( plugIns[i], "currentPlugInConfigObject", plugInConfigs[i]);
+                try {
+                  PropertyUtils.setProperty(plugIns[i], "currentPlugInConfigObject", plugInConfigs[i]);
+                } catch (NoSuchMethodException e) {
+                  // silently fail
+                }
                 plugIns[i].init(this, (ModuleConfig) config);
             } catch (ServletException e) {
                 // Lets propagate
