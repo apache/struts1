@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.7 2002/11/05 14:15:53 cedric Exp $
- * $Revision: 1.7 $
- * $Date: 2002/11/05 14:15:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.8 2002/11/09 07:11:21 rleland Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/11/09 07:11:21 $
  *
  * ====================================================================
  *
@@ -69,6 +69,7 @@ import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.RequestProcessor;
+import org.apache.struts.action.PlugInPatch;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -78,6 +79,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
 import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 
 
 /**
@@ -104,7 +106,7 @@ import org.apache.struts.config.ApplicationConfig;
  * @author Cedric Dumoulin
  * @since 1.1
  */
-public class TilesPlugin implements PlugIn {
+public class TilesPlugin implements PlugIn,PlugInPatch {
 
   /** Commons Logging instance. */
     protected static Log log = LogFactory.getLog(TilesPlugin.class);
@@ -128,13 +130,30 @@ public class TilesPlugin implements PlugIn {
      * Set the module aware flag.
      * true: user want a single factory instance
      * false: user want multiple factory instance (one per module with Struts)
-     * @param singleFactoryInstance
+     * @param moduleAware
      */
   public void setModuleAware(boolean moduleAware)
   {
     this.moduleAware = moduleAware;
   }
 
+    /**
+     * <p>Receive notification that the specified module is being
+     * started up.</p>
+     *
+     * @param servlet ActionServlet that is managing all the modules
+     *  in this web application
+     * @param config ApplicationConfig for the module with which
+     *  this plug in is associated
+     *
+     * @exception ServletException if this <code>PlugIn</code> cannot
+     *  be successfully initialized
+     */
+    public void init(ActionServlet servlet, ApplicationConfig config)
+        throws ServletException
+    {
+        init(servlet,(ModuleConfig)config);
+    }
   /**
    * <p>Receive notification that the specified module is being
    * started up.</p>
@@ -147,13 +166,13 @@ public class TilesPlugin implements PlugIn {
    * @exception ServletException if this <code>PlugIn</code> cannot
    *  be successfully initialized
    */
-  public void init(ActionServlet servlet, ApplicationConfig config)
+  public void init(ActionServlet servlet, ModuleConfig config)
       throws ServletException
   {
     // Create factory config object
   DefinitionsFactoryConfig factoryConfig = readFactoryConfig(servlet, config);
     // Set RequestProcessor class
-  initRequestProcessorClass( config );
+  initRequestProcessorClass(config);
 
     // Check if user want one single factory instance for all module,
     // or one factory for each module. Set the appropriate TilesUtil
@@ -211,7 +230,7 @@ public class TilesPlugin implements PlugIn {
    * @exception ServletException if this <code>PlugIn</code> cannot
    *  be successfully initialized
    */
-  protected DefinitionsFactoryConfig readFactoryConfig(ActionServlet servlet, ApplicationConfig config)
+  protected DefinitionsFactoryConfig readFactoryConfig(ActionServlet servlet, ModuleConfig config)
       throws ServletException
   {
     // Create tiles definitions config object
@@ -256,7 +275,7 @@ public class TilesPlugin implements PlugIn {
    * @exception ServletException if this <code>PlugIn</code> cannot
    *  be successfully initialized
    */
-  protected Map findStrutsPlugInConfigProperties(ActionServlet servlet, ApplicationConfig config)
+  protected Map findStrutsPlugInConfigProperties(ActionServlet servlet, ModuleConfig config)
       throws ServletException
   {
   PlugIn plugIns[] = (PlugIn[])servlet.getServletContext().getAttribute( Action.PLUG_INS_KEY + config.getPrefix() );
@@ -287,7 +306,7 @@ public class TilesPlugin implements PlugIn {
    *  this plug in is associated
    * @throws ServletException If an error occur
    */
-  protected void initRequestProcessorClass( ApplicationConfig config )
+  protected void initRequestProcessorClass( ModuleConfig config )
     throws ServletException
   {
   String tilesProcessorClassname = TilesRequestProcessor.class.getName();

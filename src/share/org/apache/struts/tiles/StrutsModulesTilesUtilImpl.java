@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/StrutsModulesTilesUtilImpl.java,v 1.1 2002/11/05 14:16:41 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/11/05 14:16:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/StrutsModulesTilesUtilImpl.java,v 1.2 2002/11/09 07:11:21 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/11/09 07:11:21 $
  *
  * ====================================================================
  *
@@ -65,7 +65,7 @@ import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
 import org.apache.struts.tiles.TilesRequestProcessor;
 
 import org.apache.struts.util.RequestUtils;
-import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.action.Action;
 
 import javax.servlet.*;
@@ -131,8 +131,8 @@ public class StrutsModulesTilesUtilImpl extends DefaultTilesUtilImpl implements 
      */
   public DefinitionsFactory getDefinitionsFactory(ServletRequest request, ServletContext servletContext)
   {
-  ApplicationConfig appConfig = getModuleConfig( (HttpServletRequest)request, servletContext);
-  return (DefinitionsFactory)servletContext.getAttribute(DEFINITIONS_FACTORY+appConfig.getPrefix() );
+  ModuleConfig moduleConfig = getModuleConfig( (HttpServletRequest)request, servletContext);
+  return (DefinitionsFactory)servletContext.getAttribute(DEFINITIONS_FACTORY+moduleConfig.getPrefix() );
   }
 
     /**
@@ -176,27 +176,27 @@ public class StrutsModulesTilesUtilImpl extends DefaultTilesUtilImpl implements 
    */
  protected TilesRequestProcessor getRequestProcessor(HttpServletRequest request, ServletContext servletContext)
   {
-  ApplicationConfig appConfig = getModuleConfig( request, servletContext);
-  return (TilesRequestProcessor)servletContext.getAttribute(Action.REQUEST_PROCESSOR_KEY+appConfig.getPrefix() );
+  ModuleConfig moduleConfig = getModuleConfig( request, servletContext);
+  return (TilesRequestProcessor)servletContext.getAttribute(Action.REQUEST_PROCESSOR_KEY+moduleConfig.getPrefix() );
   }
 
   /**
-   * Get the current ApplicationConfig.
+   * Get the current ModuleConfig.
    * <br>
    * Lookup in the request, and do selectApplication if not found. The side effect
    * is that the Application object is set in the request if it was not present.
    */
- protected ApplicationConfig getModuleConfig(HttpServletRequest request, ServletContext servletContext)
+ protected ModuleConfig getModuleConfig(HttpServletRequest request, ServletContext servletContext)
   {
-  ApplicationConfig appConfig = RequestUtils.getModuleConfig( request, servletContext);
-  if(appConfig==null)
+  ModuleConfig moduleConfig = RequestUtils.getModuleConfig( request, servletContext);
+  if(moduleConfig==null)
     {
-      // ApplicationConfig not found in current request. Select it.
+      // ModuleConfig not found in current request. Select it.
     RequestUtils.selectApplication(request, servletContext);
-    appConfig = RequestUtils.getModuleConfig( request, servletContext);
+    moduleConfig = RequestUtils.getModuleConfig( request, servletContext);
     }
 
-  return appConfig;
+  return moduleConfig;
   }
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.126 2002/11/08 05:39:24 rleland Exp $
- * $Revision: 1.126 $
- * $Date: 2002/11/08 05:39:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.127 2002/11/09 07:11:21 rleland Exp $
+ * $Revision: 1.127 $
+ * $Date: 2002/11/09 07:11:21 $
  *
  * ====================================================================
  *
@@ -101,6 +101,7 @@ import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.MessageResourcesConfig;
 import org.apache.struts.config.PlugInConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
@@ -295,7 +296,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.126 $ $Date: 2002/11/08 05:39:24 $
+ * @version $Revision: 1.127 $ $Date: 2002/11/09 07:11:21 $
  */
 
 public class ActionServlet
@@ -981,15 +982,20 @@ public class ActionServlet
                     (plugInConfigs[i].getClassName());
                 BeanUtils.populate(plugIns[i],
                                    plugInConfigs[i].getProperties());
-                plugIns[i].init(this, config);
+                if (plugIns[i] instanceof PlugInPatch) {
+                    ((PlugInPatch)plugIns[i]).init(this, (ModuleConfig)config);
+                }
+                else  {
+                    plugIns[i].init(this, config);
+                }
             } catch (ServletException e) {
               // Lets propagate
                 throw e;
             } catch (Exception e) {
-                e.printStackTrace();
-                throw new UnavailableException
-                    (internal.getMessage("plugIn.init",
-                                         plugInConfigs[i].getClassName()));
+                String errMsg = internal.getMessage("plugIn.init",
+                                         plugInConfigs[i].getClassName());
+                log(errMsg,e);
+                throw new UnavailableException(errMsg);
             }
         }
 

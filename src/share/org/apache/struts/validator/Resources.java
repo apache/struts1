@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.3 2002/11/08 05:39:25 rleland Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/08 05:39:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.4 2002/11/09 07:11:21 rleland Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/11/09 07:11:21 $
  *
  * ====================================================================
  *
@@ -64,18 +64,20 @@ package org.apache.struts.validator;
 import java.util.Locale;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.validator.ValidatorPlugIn;
+import org.apache.struts.Globals;
+
 import org.apache.commons.validator.Arg;
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
-import org.apache.struts.validator.ValidatorPlugIn;
-import org.apache.struts.config.ApplicationConfig;
-import org.apache.struts.Globals;
 
 
 /**
@@ -84,7 +86,7 @@ import org.apache.struts.Globals;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.3 $ $Date: 2002/11/08 05:39:25 $
+ * @version $Revision: 1.4 $ $Date: 2002/11/09 07:11:21 $
  * @since Struts 1.1
 */
 public class Resources  {
@@ -125,7 +127,7 @@ public class Resources  {
    */
    public static ValidatorResources getValidatorResources(ServletContext application,HttpServletRequest request) {
       return (ValidatorResources) application.getAttribute(ValidatorPlugIn.VALIDATOR_KEY +
-                           ((ApplicationConfig)request.getAttribute(Globals.MODULE_KEY)).getPrefix());
+                           ((ModuleConfig)request.getAttribute(Globals.MODULE_KEY)).getPrefix());
    }
 
    /**

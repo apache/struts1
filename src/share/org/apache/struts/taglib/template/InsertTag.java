@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.14 2002/10/30 02:31:38 rleland Exp $
- * $Revision: 1.14 $
- * $Date: 2002/10/30 02:31:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.15 2002/11/09 07:11:21 rleland Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/11/09 07:11:21 $
  *
  * ====================================================================
  *
@@ -61,16 +61,16 @@
 package org.apache.struts.taglib.template;
 
 import java.io.IOException;
-import java.util.Hashtable;
-import java.util.Stack;
 import javax.servlet.ServletException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
-import org.apache.struts.config.ApplicationConfig;
-import org.apache.struts.taglib.template.util.*;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.template.util.ContentMap;
+import org.apache.struts.taglib.template.util.ContentMapStack;
+import org.apache.struts.taglib.template.util.Content;
 
 /**
  * This is the tag handler for &lt;template:insert&gt;, which includes 
@@ -78,7 +78,7 @@ import org.apache.struts.util.RequestUtils;
  * tags, which are accessed by &lt;template:get&gt; in the template.
  *
  * @author David Geary
- * @version $Revision: 1.14 $ $Date: 2002/10/30 02:31:38 $
+ * @version $Revision: 1.15 $ $Date: 2002/11/09 07:11:21 $
  * @deprecated Use Tiles instead.
  */
 public class InsertTag extends TagSupport {
@@ -153,7 +153,7 @@ public class InsertTag extends TagSupport {
    public int doEndTag() throws JspException {
 
       String prefix = "";
-      ApplicationConfig config = RequestUtils.getModuleConfig(pageContext);
+      ModuleConfig config = RequestUtils.getModuleConfig(pageContext);
       if (config != null) {
           prefix = config.getPrefix();
       }
