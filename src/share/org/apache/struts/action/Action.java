@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.71 2003/09/29 04:26:23 rleland Exp $
- * $Revision: 1.71 $
- * $Date: 2003/09/29 04:26:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.72 2003/09/30 20:28:35 rleland Exp $
+ * $Revision: 1.72 $
+ * $Date: 2003/09/30 20:28:35 $
  *
  * ====================================================================
  *
@@ -109,7 +109,7 @@ import org.apache.struts.util.TokenProcessor;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.71 $ $Date: 2003/09/29 04:26:23 $
+ * @version $Revision: 1.72 $ $Date: 2003/09/30 20:28:35 $
  */
 public class Action {
 
@@ -202,7 +202,7 @@ public class Action {
                 form,
                 (HttpServletRequest) request,
                 (HttpServletResponse) response);
-                
+
         } catch (ClassCastException e) {
             return null;
         }
@@ -421,9 +421,9 @@ public class Action {
      * This will be removed after Struts 1.2.
      */
     protected void saveErrors(HttpServletRequest request, ActionErrors errors) {
-        this.saveErrors(request, errors);
+        this.saveErrors(request,(ActionMessages)errors);
     }
-    
+
     /**
      * Save the specified error messages keys into the appropriate request
      * attribute for use by the &lt;html:errors&gt; tag, if any messages
@@ -454,9 +454,9 @@ public class Action {
      * ensure that the request attribute is not created.
      *
      * @param request The servlet request we are processing.
-     * @param messages The messages to save. <code>null</code> or empty 
+     * @param messages The messages to save. <code>null</code> or empty
      * messages removes any existing ActionMessages in the request.
-     * 
+     *
      * @since Struts 1.1
      */
     protected void saveMessages(
@@ -472,7 +472,7 @@ public class Action {
         // Save the messages we need
         request.setAttribute(Globals.MESSAGE_KEY, messages);
     }
-    
+
     /**
      * Save the specified messages keys into the appropriate session
      * attribute for use by the &lt;html:messages&gt; tag (if
@@ -480,9 +480,9 @@ public class Action {
      * ensure that the session attribute is not created.
      *
      * @param session The session to save the messages in.
-     * @param messages The messages to save. <code>null</code> or empty 
+     * @param messages The messages to save. <code>null</code> or empty
      * messages removes any existing ActionMessages in the session.
-     * 
+     *
      * @since Struts 1.2
      */
     protected void saveMessages(
