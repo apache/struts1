@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/CheckLogonTag.java,v 1.7 2003/01/18 19:48:56 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2003/01/18 19:48:56 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/CheckLogonTag.java,v 1.8 2003/04/09 02:28:24 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/04/09 02:28:24 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,6 +63,9 @@
 package org.apache.struts.webapp.example;
 
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -75,7 +78,7 @@ import org.apache.struts.config.ModuleConfig;
  *
  * @author Craig R. McClanahan
  * @author Marius Barduta
- * @version $Revision: 1.7 $ $Date: 2003/01/18 19:48:56 $
+ * @version $Revision: 1.8 $ $Date: 2003/04/09 02:28:24 $
  */
 
 public final class CheckLogonTag extends TagSupport {
@@ -104,7 +107,7 @@ public final class CheckLogonTag extends TagSupport {
      */
     public String getName() {
 
-	return (this.name);
+	   return (this.name);
 
     }
 
@@ -116,7 +119,7 @@ public final class CheckLogonTag extends TagSupport {
      */
     public void setName(String name) {
 
-	this.name = name;
+	   this.name = name;
 
     }
 
@@ -126,7 +129,7 @@ public final class CheckLogonTag extends TagSupport {
      */
     public String getPage() {
 
-	return (this.page);
+	   return (this.page);
 
     }
 
@@ -138,7 +141,7 @@ public final class CheckLogonTag extends TagSupport {
      */
     public void setPage(String page) {
 
-	this.page = page;
+	   this.page = page;
 
     }
 
@@ -153,7 +156,7 @@ public final class CheckLogonTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-	return (SKIP_BODY);
+	   return (SKIP_BODY);
 
     }
 
@@ -166,27 +169,33 @@ public final class CheckLogonTag extends TagSupport {
      * @exception JspException if a JSP exception has occurred
      */
     public int doEndTag() throws JspException {
-
-	// Is there a valid user logged on?
-	boolean valid = false;
-	HttpSession session = pageContext.getSession();
-	if ((session != null) && (session.getAttribute(name) != null))
-	    valid = true;
-
-	// Forward control based on the results
-	if (valid)
-	    return (EVAL_PAGE);
-	else {
-            ModuleConfig config = (ModuleConfig) pageContext.getRequest()
-                .getAttribute(org.apache.struts.Globals.MODULE_KEY);
-            try {
-		pageContext.forward(config.getPrefix() + page);
-	    } catch (Exception e) {
-		throw new JspException(e.toString());
-	    }
-	    return (SKIP_PAGE);
-	}
-
+    
+    	// Is there a valid user logged on?
+    	boolean valid = false;
+    	HttpSession session = pageContext.getSession();
+    	if ((session != null) && (session.getAttribute(name) != null)) {
+    	    valid = true;
+        }
+    
+        // Forward control based on the results
+        if (valid) {
+            return (EVAL_PAGE);
+        } else {
+            ModuleConfig config =
+                (ModuleConfig) pageContext.getServletContext().getAttribute(
+                    org.apache.struts.Globals.MODULE_KEY);
+            
+                try {
+                    pageContext.forward(config.getPrefix() + page);
+                } catch (ServletException e) {
+                    throw new JspException(e.toString());
+                } catch (IOException e) {
+                    throw new JspException(e.toString());
+                }
+             
+            return (SKIP_PAGE);
+        }
+    
     }
 
 
