@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.4 2002/10/10 16:32:26 cedric Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/10 16:32:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.5 2002/12/27 10:35:19 cedric Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/12/27 10:35:19 $
  *
  * ====================================================================
  *
@@ -301,8 +301,8 @@ public class I18nFactorySet extends FactorySet
       log.debug( rootXmlConfig );
 
     DefinitionsFactory factory = new DefinitionsFactory( rootXmlConfig );
-    if(log.isInfoEnabled())
-      log.info( "factory loaded : " + factory );
+    if(log.isDebugEnabled())
+      log.debug( "factory loaded : " + factory );
 
     return factory;
     }
