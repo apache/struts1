@@ -12,8 +12,8 @@ rem contains the Struts "build.xml" file.
 rem 
 rem assumes jakarta-commons, 
 rem         jakarta-commons-sandbox,
-rem         jakarta-struts-current
-rem are checked out of CVS in the same directory.
+rem         struts
+rem in the same directory.
 rem Also assumes uses of 
 rem           maven beta 10 or above,
 rem           ant 1.5.2
@@ -24,7 +24,7 @@ rem                    anymore. You'll need to copy the cactus.jar into the
 rem                    maven repository directory. I filed a bug report for this.
 rem              
 rem
-rem $Id: build-all-clean.bat.sample,v 1.11 2003/11/27 23:01:22 martinc Exp $
+rem $Id$
 
 cd ..
 
@@ -33,8 +33,8 @@ rem goto manualbuild
 rm -rf */*/dist
 rm -rf */*/target
 rm -rf */*/build
-rm -rf jakarta-struts/dist
-rm -rf jakarta-struts/target
+rm -rf struts/dist
+rm -rf struts/target
 
 :manualbuild
 
