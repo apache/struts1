@@ -1,6 +1,6 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.2 2000/10/08 01:15:14 dgeary Exp $
- * $Revision: 1.2 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.1 2000/10/08 01:15:14 dgeary Exp $
+ * $Revision: 1.1 $
  * $Date: 2000/10/08 01:15:14 $
  *
  * ====================================================================
@@ -69,75 +69,91 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.taglib.template.util.*;
 
 /**
- * This is the tag handler for &lt;template:get&gt;, which gets 
- * content from the request scope and either includes the content or prints 
- * it, depending upon the value of the content's direct attribute.
+ * This is the tag handler for &lt;template:insert&gt;, which includes 
+ * a template. The tag's body content consists of &lt;template:put&gt;
+ * tags, which are accessed by &lt;template:get&gt; in the template.
  *
  * @author David Geary
- * @version $Revision: 1.2 $ $Date: 2000/10/08 01:15:14 $
+ * @version $Revision: 1.1 $ $Date: 2000/10/08 01:15:14 $
  */
-public class GetTag extends TagSupport {
+public class InsertTag extends TagSupport {
+
 
 // ----------------------------------------------------- Instance Variables
 
 
    /**
-     * The name of the content that this tag includes (or prints).
+     * Each insert tag has a map of content. 
      */
-   private String name;
+   private ContentMap map = new ContentMap();
 
 
    /**
-     * 
-     * @param name The name of the content to get.
+     * The URI of the template. 
      */
-   public void setName(String name) {
-
-      this.name = name;
-
-   }
+   private String template;
 
 // --------------------------------------------------------- Public Methods
 
+
    /**
-     * Print content named by setName() or include it, depending
-     * on the content's direct attribute.
+     * Setter for the template attribute. 
+     */
+   public void setTemplate(String template) {
+
+      this.template = template;
+
+   }
+
+   /**
+     * Process the start tag by pushing this tag's map onto the
+     * content map stack. 
+     * See org.apache.struts.taglib.template.util.ContentMapStack.
      */
    public int doStartTag() throws JspException {
 
-      ContentMap map = ContentMapStack.peek(pageContext);
-      Content content = map.get(name);
-      
-      if(content != null) {
-         if(content.isDirect()) {
-            try {
-               pageContext.getOut().print(content.toString());
-            }
-            catch(java.io.IOException ex) {
-               throw new JspException(ex.getMessage());
-            }
-         }
-         else {
-            try {
-               pageContext.getOut().flush();
-               pageContext.include(content.toString());
-            }
-            catch(Exception ex) { 
-               throw new JspException(ex.getMessage());
-            }
-         }
+      ContentMapStack.push(pageContext, map);
+      return EVAL_BODY_INCLUDE;
+
+   }
+
+   /**
+     * Process the end tag by including the template. The flush is necessary
+     * for some errant servlet containers.
+     */
+   public int doEndTag() throws JspException {
+
+      try {
+         pageContext.getOut().flush();
+         pageContext.include(template);
       }
-      return SKIP_BODY;
+      catch(Exception ex) { // IOException or ServletException
+         throw new JspException(ex.getMessage());
+      }
+      ContentMapStack.pop(pageContext);
+      return EVAL_PAGE;
 
    }
 
 
    /**
-     * Reset member values for reuse.
+     * This method is a convenience for &lt;template:put&gt; tags for
+     * putting content into the map.
+     */
+   public void put(String name, Content content) {
+
+      map.put(name, content);   
+
+   }
+
+
+   /**
+     * Reset member variables.
      */
    public void release() {
 
-      name = null;
+      template = null;
+      map = null;
 
    }
 
