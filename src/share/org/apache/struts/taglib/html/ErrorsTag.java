@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.13 2002/01/13 00:25:37 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2002/01/13 00:25:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.14 2002/03/17 05:07:35 craigmcc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/03/17 05:07:35 $
  *
  * ====================================================================
  *
@@ -99,7 +99,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2002/01/13 00:25:37 $
+ * @version $Revision: 1.14 $ $Date: 2002/03/17 05:07:35 $
  */
 
 public class ErrorsTag extends TagSupport {
@@ -197,9 +197,9 @@ public class ErrorsTag extends TagSupport {
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-        
-        if (errors.empty())
+        if ((errors == null) || errors.empty()) {
 	    return (EVAL_BODY_INCLUDE);
+        }
 
         // Check for presence of header and footer message keys
         boolean headerPresent =
@@ -208,42 +208,40 @@ public class ErrorsTag extends TagSupport {
             RequestUtils.present(pageContext, bundle, locale, "errors.footer");
 
         // Render the error messages appropriately
-	    StringBuffer results = new StringBuffer();
+	StringBuffer results = new StringBuffer();
+        boolean headerDone = false;
         String message = null;
-        if (headerPresent)
-            message = RequestUtils.message(pageContext, bundle,
-                                           locale, "errors.header");
         Iterator reports = null;
-        if (property == null)
+        if (property == null) {
             reports = errors.get();
-        else
+        } else {
             reports = errors.get(property);
-       // Render header iff this is a global tag or there is an error for this property
-       boolean propertyMsgPresent = reports.hasNext();
-       if ((message != null)&&(property == null) || propertyMsgPresent) {
-           results.append(message);
-           results.append("\r\n");
-       }
-
+        }
         while (reports.hasNext()) {
             ActionError report = (ActionError) reports.next();
+            if (!headerDone) {
+                if (headerPresent) {
+                    message = RequestUtils.message(pageContext, bundle,
+                                                   locale, "errors.header");
+                    results.append(message);
+                    results.append("\r\n");
+                }
+                headerDone = true;
+            }
             message = RequestUtils.message(pageContext, bundle,
                                            locale, report.getKey(),
                                            report.getValues());
-	        if (message != null) {
-		        results.append(message);
-		        results.append("\r\n");
-	        }
-	    }
-        message = null;
-        if (footerPresent)
+            if (message != null) {
+                results.append(message);
+                results.append("\r\n");
+            }
+        }
+        if (headerDone && footerPresent) {
             message = RequestUtils.message(pageContext, bundle,
                                            locale, "errors.footer");
-
-    if ((message != null)&&(property == null) || propertyMsgPresent) {
-	    results.append(message);
-	    results.append("\r\n");
-	}
+            results.append(message);
+            results.append("\r\n");
+        }
 
 	// Print the results to our output writer
         ResponseUtils.write(pageContext, results.toString());
