@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/BufferedMultipartInputStream.java,v 1.8 2002/11/07 05:58:03 rleland Exp $
- * $Revision: 1.8 $
- * $Date: 2002/11/07 05:58:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/BufferedMultipartInputStream.java,v 1.9 2003/11/26 05:57:06 martinc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/11/26 05:57:06 $
  *
  * ====================================================================
  *
@@ -69,6 +69,9 @@ import java.io.ByteArrayOutputStream;
  * This class implements buffering for an InputStream as well as a
  * readLine method.  The purpose of this is to provide a reliable
  * readLine() method.
+ *
+ * @deprecated Use the Commons FileUpload based multipart handler instead. This
+ *             class will be removed after Struts 1.2.
  */
 public class BufferedMultipartInputStream extends InputStream {
    

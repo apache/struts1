@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskFile.java,v 1.4 2002/12/08 07:12:16 rleland Exp $
- * $Revision: 1.4 $
- * $Date: 2002/12/08 07:12:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskFile.java,v 1.5 2003/11/26 05:57:06 martinc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/11/26 05:57:06 $
  *
  * ====================================================================
  *
@@ -68,6 +68,10 @@ import java.io.FileInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 
+/**
+ * @deprecated Use the Commons FileUpload based multipart handler instead. This
+ *             class will be removed after Struts 1.2.
+ */
 public class DiskFile implements FormFile {
     
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskMultipartRequestHandler.java,v 1.24 2003/08/02 22:22:13 dgraham Exp $
- * $Revision: 1.24 $
- * $Date: 2003/08/02 22:22:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskMultipartRequestHandler.java,v 1.25 2003/11/26 05:57:06 martinc Exp $
+ * $Revision: 1.25 $
+ * $Date: 2003/11/26 05:57:06 $
  *
  * ====================================================================
  *
@@ -82,6 +82,9 @@ import org.apache.struts.util.ModuleUtils;
  * to temporary files on disk.
  *
  * @author Mike Schachter
+ *
+ * @deprecated Use the Commons FileUpload based multipart handler instead. This
+ *             class will be removed after Struts 1.2.
  */
 public class DiskMultipartRequestHandler implements MultipartRequestHandler {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/ContentLengthExceededException.java,v 1.2 2002/07/06 04:44:07 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/06 04:44:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/ContentLengthExceededException.java,v 1.3 2003/11/26 05:57:06 martinc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/11/26 05:57:06 $
  *
  * ====================================================================
  *
@@ -66,6 +66,9 @@ import java.io.IOException;
 /**
  * This exception is thrown when multipart post data exceeds the value
  * given by the Content-Length header
+ *
+ * @deprecated Use the Commons FileUpload based multipart handler instead. This
+ *             class will be removed after Struts 1.2.
  */
 public class ContentLengthExceededException extends IOException {
     
