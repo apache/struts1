@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.56 2002/10/12 19:42:22 rleland Exp $
- * $Revision: 1.56 $
- * $Date: 2002/10/12 19:42:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.57 2002/10/13 01:08:25 craigmcc Exp $
+ * $Revision: 1.57 $
+ * $Date: 2002/10/13 01:08:25 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.56 $ $Date: 2002/10/12 19:42:22 $
+ * @version $Revision: 1.57 $ $Date: 2002/10/13 01:08:25 $
  */
 
 public class RequestUtils {
@@ -1551,7 +1551,7 @@ public class RequestUtils {
 
         ActionErrors errors = new ActionErrors();
 
-        Object value = pageContext.getAttribute(paramName, PageContext.REQUEST_SCOPE);
+        Object value = pageContext.findAttribute(paramName);
 
         try {
         if (value == null) {
