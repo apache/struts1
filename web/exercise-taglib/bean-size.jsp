@@ -29,7 +29,7 @@
 <h1>Test struts-bean Size Tag</h1>
 </div>
 
-<jsp:useBean id="bean" scope="page" class="org.apache.struts.exercise-taglib.TestBean"/>
+<jsp:useBean id="bean" scope="page" class="org.apache.struts.exercise.TestBean"/>
 <bean:size id="stringSize" name="bean" property="stringArray"/>
 <bean:size id="intSize" name="bean" property="intArray"/>
 <jsp:useBean id="list" scope="page" class="java.util.ArrayList"/>

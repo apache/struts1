@@ -67,7 +67,7 @@
 
 <h3>Test 2 -- Scalar Property Lookups</h3>
 
-<jsp:useBean id="test2" scope="page" class="org.apache.struts.exercise-taglib.TestBean"/>
+<jsp:useBean id="test2" scope="page" class="org.apache.struts.exercise.TestBean"/>
 
 <table border="1">
 <tr>
@@ -114,7 +114,7 @@
 
 <h3>Test 3 - Integer Array And Indexed Lookups</h3>
 
-<jsp:useBean id="test3" scope="page" class="org.apache.struts.exercise-taglib.TestBean"/>
+<jsp:useBean id="test3" scope="page" class="org.apache.struts.exercise.TestBean"/>
 
 <table border="1">
 <tr>
@@ -134,7 +134,7 @@
 
 <h3>Test 4 - String Array And Indexed Lookups</h3>
 
-<jsp:useBean id="test4" scope="page" class="org.apache.struts.exercise-taglib.TestBean"/>
+<jsp:useBean id="test4" scope="page" class="org.apache.struts.exercise.TestBean"/>
 
 <table border="1">
 <tr>
@@ -154,7 +154,7 @@
 
 <h3>Test 5 -- Nested Scalar Property Lookups</h3>
 
-<jsp:useBean id="test5" scope="page" class="org.apache.struts.exercise-taglib.TestBean"/>
+<jsp:useBean id="test5" scope="page" class="org.apache.struts.exercise.TestBean"/>
 
 <table border="1">
 <tr>
@@ -201,7 +201,7 @@
 
 <h3>Test 6 - Nested Integer Array And Indexed Lookups</h3>
 
-<jsp:useBean id="test6" scope="page" class="org.apache.struts.exercise-taglib.TestBean"/>
+<jsp:useBean id="test6" scope="page" class="org.apache.struts.exercise.TestBean"/>
 
 <table border="1">
 <tr>

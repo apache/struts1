@@ -10,7 +10,7 @@
 <h1>Test struts-logic Presence Tags</h1>
 </div>
 
-<jsp:useBean id="bean" scope="page" class="org.apache.struts.exercise-taglib.TestBean"/>
+<jsp:useBean id="bean" scope="page" class="org.apache.struts.exercise.TestBean"/>
 
 <table border="1">
   <tr>
