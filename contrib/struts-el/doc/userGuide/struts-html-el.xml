@@ -2297,7 +2297,15 @@
             <rtexprvalue>false</rtexprvalue>
           </attribute>
 
-          <!-- Is there no "styleId" attribute? -->
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
+            </info>
+        </attribute>
 
           <attribute>
             <name>tabindex</name>
