@@ -2,7 +2,7 @@
 <project>
   <pomVersion>3</pomVersion>
   <name>struts</name>
-  <id>Struts</id>
+  <id>struts</id>
   <currentVersion>1.2.0</currentVersion>
   <organization>
     <name>Apache Software Foundation</name>
@@ -20,11 +20,11 @@
   <gumpRepositoryId>jakarta</gumpRepositoryId>
 
   <description>
- The core of the Struts framework is a flexible control layer based on standard
- technologies like Java Servlets, JavaBeans, ResourceBundles, 
- and Extensible Markup Language (XML), as well as various Jakarta Commons packages.
- Struts encourages application architectures based on the Model 2 approach, a variation
- of the classic  Model-View-Controller (MVC) design paradigm.
+The core of the Struts framework is a flexible control layer based on standard
+technologies like Java Servlets, JavaBeans, ResourceBundles, 
+and Extensible Markup Language (XML), as well as various Jakarta Commons packages.
+Struts encourages application architectures based on the Model 2 approach, a variation
+of the classic  Model-View-Controller (MVC) design paradigm.
 
 Struts provides its own Controller component and integrates with other technologies
 to provide the Model and the View. For the Model, Struts can interact with any standard
@@ -36,7 +36,6 @@ The Struts framework provides the invisible underpinnings every professional
 web application needs to survive. Struts helps you create an extensible 
 development environment for your application, based on published standards
 and proven design patterns.
-
   </description>
 
   <url>http://jakarta.apache.org/</url>
@@ -182,12 +181,12 @@ and proven design patterns.
   </developers>
   <contributors>
     <contributor>
-      <name></name>
+      <name>Tim Chen</name>
       <id></id>
-      <email></email>
+      <email>tchen at ampabay.rr.com</email>
       <organization></organization>
       <roles>
-        <role>Java Developer</role>
+        <role></role>
       </roles>
     </contributor>
   </contributors>

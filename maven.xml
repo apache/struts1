@@ -1,4 +1,4 @@
-<project default="java:jar">
+<project default="jar:jar">
 
   <preGoal name="xdoc:jelly-transform">
     <attainGoal name="html2xdoc"/>
