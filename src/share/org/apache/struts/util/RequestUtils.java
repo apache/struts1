@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.72 2002/11/18 02:52:11 dgraham Exp $
- * $Revision: 1.72 $
- * $Date: 2002/11/18 02:52:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.73 2002/11/24 21:59:43 dgraham Exp $
+ * $Revision: 1.73 $
+ * $Date: 2002/11/24 21:59:43 $
  *
  * ====================================================================
  *
@@ -62,6 +62,7 @@
 package org.apache.struts.util;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -87,7 +88,6 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.72 $ $Date: 2002/11/18 02:52:11 $
+ * @version $Revision: 1.73 $ $Date: 2002/11/24 21:59:43 $
  */
 
 public class RequestUtils {
@@ -411,7 +411,7 @@ public class RequestUtils {
                 url.setLength(hash);
             }
             url.append('#');
-            url.append(URLEncoder.encode(anchor));
+            url.append(encodeURL(anchor));
         }
 
         // Add dynamic parameters if requested
@@ -447,7 +447,7 @@ public class RequestUtils {
                     } else {
                         url.append(separator);
                     }
-                    url.append(URLEncoder.encode(key));
+                    url.append(encodeURL(key));
                     url.append('='); // Interpret null as "no value"
                 } else if (value instanceof String) {
                     if (!question) {
@@ -456,9 +456,9 @@ public class RequestUtils {
                     } else {
                         url.append(separator);
                     }
-                    url.append(URLEncoder.encode(key));
+                    url.append(encodeURL(key));
                     url.append('=');
-                    url.append(URLEncoder.encode((String) value));
+                    url.append(encodeURL((String) value));
                 } else if (value instanceof String[]) {
                     String values[] = (String[]) value;
                     for (int i = 0; i < values.length; i++) {
@@ -468,9 +468,9 @@ public class RequestUtils {
                         } else {
                             url.append(separator);
                         }
-                        url.append(URLEncoder.encode(key));
+                        url.append(encodeURL(key));
                         url.append('=');
-                        url.append(URLEncoder.encode(values[i]));
+                        url.append(encodeURL(values[i]));
                     }
                 } else /* Convert other objects to a string */ {
                     if (!question) {
@@ -479,16 +479,16 @@ public class RequestUtils {
                     } else {
                         url.append(separator);
                     }
-                    url.append(URLEncoder.encode(key));
+                    url.append(encodeURL(key));
                     url.append('=');
-                    url.append(URLEncoder.encode(value.toString()));
+                    url.append(encodeURL(value.toString()));
                 }
             }
 
             // Re-add the saved anchor (if any)
             if (anchor != null) {
                 url.append('#');
-                url.append(URLEncoder.encode(anchor));
+                url.append(encodeURL(anchor));
             }
 
         }
@@ -1080,8 +1080,7 @@ public class RequestUtils {
         // Look up the requested MessageResources in page scope
         if (bundle == null) {
             bundle = Globals.MESSAGES_KEY;
-            resources =
-                (MessageResources) pageContext.getAttribute(bundle, PageContext.PAGE_SCOPE);
+            resources = (MessageResources) pageContext.getAttribute(bundle, PageContext.PAGE_SCOPE);
         }
 
         // Look up the requested MessageResources in request scope
@@ -1102,18 +1101,18 @@ public class RequestUtils {
             saveException(pageContext, e);
             throw e;
         }
-        
+
         // Look up the requested Locale
         if (locale == null) {
             locale = Globals.LOCALE_KEY;
         }
-        
+
         Locale userLocale = (Locale) pageContext.getAttribute(locale, PageContext.SESSION_SCOPE);
-        
+
         if (userLocale == null) {
             userLocale = defaultLocale;
         }
-        
+
         // Return the requested message presence indicator
         return (resources.isPresent(userLocale, key));
     }
@@ -1640,6 +1639,37 @@ public class RequestUtils {
         }
 
         return errors;
+    }
+
+    /**
+     * Use the new URLEncoder.encode() method from java 1.4 if available, else
+     * use the old deprecated version.  This method uses reflection to find the appropriate
+     * method; if the reflection operations throw exceptions, this will return the url 
+     * encoded with the old URLEncoder.encode() method.
+     * @return String - the encoded url.
+     */
+    public static String encodeURL(String url) {
+        // default to old version
+        String encodedURL = URLEncoder.encode(url);
+        Class encoderClass = URLEncoder.class;
+
+        try {
+            // get version of encode method with two String args
+            Class[] args = new Class[] { String.class, String.class };
+            Method encode = encoderClass.getMethod("encode", args);
+
+            // encode url with new 1.4 method and UTF-8 encoding
+            encodedURL = (String) encode.invoke(null, new Object[] { url, "UTF-8" });
+
+        } catch (IllegalAccessException e) {
+            LOG.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
+        } catch (InvocationTargetException e) {
+            LOG.debug("Could not find Java 1.4 encode method. Using deprecated version.", e);
+        } catch (NoSuchMethodException e) {
+            LOG.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
+        }
+
+        return encodedURL;
     }
 
 }
