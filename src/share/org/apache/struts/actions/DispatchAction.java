@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.15 2003/07/10 02:59:06 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/07/10 02:59:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.16 2003/07/11 23:47:57 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/07/11 23:47:57 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -125,7 +126,7 @@ import org.apache.struts.util.MessageResources;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.15 $ $Date: 2003/07/10 02:59:06 $
+ * @version $Revision: 1.16 $ $Date: 2003/07/11 23:47:57 $
  */
 public abstract class DispatchAction extends Action {
 
@@ -203,10 +204,10 @@ public abstract class DispatchAction extends Action {
         if (parameter == null) {
             String message =
                 messages.getMessage("dispatch.handler", mapping.getPath());
+                
             log.error(message);
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                               message);
-            return (null);
+            
+            throw new ServletException(message);
         }
 
         // Identify the method name to be dispatched to.
@@ -222,23 +223,24 @@ public abstract class DispatchAction extends Action {
      * Method which is dispatched to when there is no value for specified
      * request parameter included in the request.  Subclasses of
      * <code>DispatchAction</code> should override this method if they wish
-     * to provide default behavior different than producing an HTTP
-     * "Bad Request" error.
-     *
+     * to provide default behavior different than throwing a ServletException.
      */
-    protected ActionForward unspecified(ActionMapping mapping,
-                                     ActionForm form,
-                                     HttpServletRequest request,
-                                     HttpServletResponse response)
+    protected ActionForward unspecified(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
         throws Exception {
 
         String message =
-            messages.getMessage("dispatch.parameter", mapping.getPath(),
-                                mapping.getParameter());
-        log.error(message);
-        response.sendError(HttpServletResponse.SC_BAD_REQUEST, message);
-        return (null);
+            messages.getMessage(
+                "dispatch.parameter",
+                mapping.getPath(),
+                mapping.getParameter());
 
+        log.error(message);
+
+        throw new ServletException(message);
     }
 
 
@@ -265,36 +267,31 @@ public abstract class DispatchAction extends Action {
         Method method = null;
         try {
             method = getMethod(name);
+            
         } catch (NoSuchMethodException e) {
             String message =
-                messages.getMessage("dispatch.method", mapping.getPath(),
-                                    name);
+                messages.getMessage("dispatch.method", mapping.getPath(), name);
             log.error(message, e);
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                               message);
-            return (null);
+            throw e;
         }
 
         ActionForward forward = null;
         try {
             Object args[] = { mapping, form, request, response };
             forward = (ActionForward) method.invoke(this, args);
+            
         } catch (ClassCastException e) {
             String message =
-                messages.getMessage("dispatch.return", mapping.getPath(),
-                                    name);
+                messages.getMessage("dispatch.return", mapping.getPath(), name);                
             log.error(message, e);
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                               message);
-            return (null);
+            throw e;
+            
         } catch (IllegalAccessException e) {
             String message =
-                messages.getMessage("dispatch.error", mapping.getPath(),
-                                    name);
+                messages.getMessage("dispatch.error", mapping.getPath(), name);
             log.error(message, e);
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                               message);
-            return (null);
+            throw e;
+            
         } catch (InvocationTargetException e) {
             // Rethrow the target exception if possible so that the
             // exception handling machinery can deal with it
@@ -303,12 +300,9 @@ public abstract class DispatchAction extends Action {
                 throw ((Exception) t);
             } else {
                 String message =
-                    messages.getMessage("dispatch.error", mapping.getPath(),
-                                        name);
+                    messages.getMessage("dispatch.error", mapping.getPath(), name);
                 log.error(message, e);
-                response.sendError
-                    (HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message);
-                return (null);
+                throw new ServletException(t);
             }
         }
 

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.9 2002/11/28 07:12:52 rleland Exp $
- * $Revision: 1.9 $
- * $Date: 2002/11/28 07:12:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.10 2003/07/11 23:47:57 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/07/11 23:47:57 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,19 +61,19 @@
 
 package org.apache.struts.actions;
 
-
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
-import org.apache.struts.Globals;
-
 
 /**
  * <p>A standard <strong>Action</strong> that switches to a new module
@@ -93,10 +93,9 @@ import org.apache.struts.Globals;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/11/28 07:12:52 $
+ * @version $Revision: 1.10 $ $Date: 2003/07/11 23:47:57 $
  * @since Struts 1.1
  */
-
 public class SwitchAction extends Action {
 
 
@@ -145,20 +144,16 @@ public class SwitchAction extends Action {
         if ((page == null) || (prefix == null)) {
             String message = messages.getMessage("switch.required");
             log.error(message);
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-                               message);
-            return (null);
+            throw new ServletException(message);
         }
 
         // Switch to the requested module
-        RequestUtils.selectModule(prefix, request,
-                                       getServlet().getServletContext());
+        RequestUtils.selectModule(prefix, request, getServlet().getServletContext());
+        
         if (request.getAttribute(Globals.MODULE_KEY) == null) {
             String message = messages.getMessage("switch.prefix", prefix);
             log.error(message);
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-                               message);
-            return (null);
+            throw new ServletException(message);
         }
 
         // Forward control to the specified module-relative URI

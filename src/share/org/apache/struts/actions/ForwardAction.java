@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/ForwardAction.java,v 1.7 2003/03/07 05:00:20 jmitchell Exp $
- * $Revision: 1.7 $
- * $Date: 2003/03/07 05:00:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/ForwardAction.java,v 1.8 2003/07/11 23:47:57 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/11 23:47:57 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,18 +59,17 @@
  *
  */
 
-
 package org.apache.struts.actions;
 
-
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.MessageResources;
-
 
 /**
  * <p>An <strong>Action</strong> that forwards to the context-relative
@@ -96,9 +95,8 @@ import org.apache.struts.util.MessageResources;
  * <code>parameter</code> attribute.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2003/03/07 05:00:20 $
+ * @version $Revision: 1.8 $ $Date: 2003/07/11 23:47:57 $
  */
-
 public class ForwardAction extends Action {
 
 
@@ -130,20 +128,18 @@ public class ForwardAction extends Action {
      *
      * @exception Exception if an error occurs
      */
-    public ActionForward execute(ActionMapping mapping,
-				 ActionForm form,
-				 HttpServletRequest request,
-				 HttpServletResponse response)
-	throws Exception {
+    public ActionForward execute(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws Exception {
 
         // Create a RequestDispatcher the corresponding resource
         String path = mapping.getParameter();
 
         if (path == null) {
-            response.sendError
-                (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                 messages.getMessage("forward.path"));
-            return (null);
+            throw new ServletException(messages.getMessage("forward.path"));
         }
 
         // Let the controller handle the request

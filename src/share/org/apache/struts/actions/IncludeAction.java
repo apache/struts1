@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/IncludeAction.java,v 1.4 2002/09/22 05:58:46 martinc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/09/22 05:58:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/IncludeAction.java,v 1.5 2003/07/11 23:47:57 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/11 23:47:57 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,21 +58,20 @@
  * <http://www.apache.org/>.
  *
  */
-
-
+ 
 package org.apache.struts.actions;
 
-
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.MessageResources;
-
 
 /**
  * <p>An <strong>Action</strong> that includes the context-relative
@@ -98,9 +97,8 @@ import org.apache.struts.util.MessageResources;
  * <code>parameter</code> attribute.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/09/22 05:58:46 $
+ * @version $Revision: 1.5 $ $Date: 2003/07/11 23:47:57 $
  */
-
 public class IncludeAction extends Action {
 
 
@@ -132,27 +130,24 @@ public class IncludeAction extends Action {
      *
      * @exception Exception if an error occurs
      */
-    public ActionForward execute(ActionMapping mapping,
-				 ActionForm form,
-				 HttpServletRequest request,
-				 HttpServletResponse response)
-	throws Exception {
+    public ActionForward execute(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws Exception {
 
         // Create a RequestDispatcher the corresponding resource
         String path = mapping.getParameter();
         if (path == null) {
-            response.sendError
-                (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                 messages.getMessage("include.path"));
-            return (null);
+            throw new ServletException(messages.getMessage("include.path"));
         }
+
         RequestDispatcher rd =
             servlet.getServletContext().getRequestDispatcher(path);
+
         if (rd == null) {
-            response.sendError
-                (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                 messages.getMessage("include.rd", path));
-            return (null);
+            throw new ServletException(messages.getMessage("include.rd", path));
         }
 
         // Unwrap the multipart request, if there is one.
