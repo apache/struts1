@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.22 2003/12/22 19:42:32 jmitchell Exp $
- * $Revision: 1.22 $
- * $Date: 2003/12/22 19:42:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.23 2003/12/23 14:28:35 jmitchell Exp $
+ * $Revision: 1.23 $
+ * $Date: 2003/12/23 14:28:35 $
  *
  * ====================================================================
  *
@@ -135,7 +135,8 @@ import org.apache.struts.util.MessageResources;
  * @author Ted Husted
  * @author Leonardo Quijano
  * @author Rob Leland
- * @version $Revision: 1.22 $ $Date: 2003/12/22 19:42:32 $
+ * @author Jea-noel Ribette
+ * @version $Revision: 1.23 $ $Date: 2003/12/23 14:28:35 $
  */
 public abstract class DispatchAction extends Action {
 
@@ -224,19 +225,19 @@ public abstract class DispatchAction extends Action {
             throw new ServletException(message);
         }
 
-		// Prevent recursive calls
-		if (parameter.equals("execute") || parameter.equals("perform")){
-			String message =
-				messages.getMessage("dispatch.recursive", mapping.getPath());
-
-			log.error(message);
-
-			throw new ServletException(message);
-
-		}
-
         // Get the method's name. This could be overridden in subclasses.
         String name = getMethodName(mapping, form, request, response, parameter);
+
+
+	// Prevent recursive calls
+	if ("execute".equals(name) || "perform".equals(name)){
+		String message =
+			messages.getMessage("dispatch.recursive", mapping.getPath());
+
+		log.error(message);
+		throw new ServletException(message);
+	}
+
 
         // Invoke the named method, and return the result
         return dispatchMethod(mapping, form, request, response, name);
