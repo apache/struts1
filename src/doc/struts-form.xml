@@ -1021,7 +1021,7 @@
 		
 		<attribute>
 			<name>name</name>
-			<required>true</required>
+			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 			<info>
 				Name of the request scope or session scope bean (as defined by
@@ -1090,7 +1090,7 @@
 		
 		<attribute>
 			<name>type</name>
-			<required>true</required>
+			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 			<info>
 				Fully qualified Java class name of the bean to be created
