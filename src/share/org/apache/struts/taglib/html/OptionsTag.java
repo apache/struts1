@@ -238,7 +238,7 @@ public class OptionsTag extends TagSupport {
 
                 Object bean = collIterator.next();
                 Object value = null;
-                Object label = null;;
+                Object label = null;
 
                 try {
                     value = PropertyUtils.getProperty(bean, property);

@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Martin Cooper
- * @version $Revision: 1.1 $ $Date: 2002/02/23 07:10:30 $
+ * @version $Revision: 1.2 $ $Date: 2002/03/17 02:25:43 $
  */
 
 public class OptionsCollectionTag extends TagSupport {
@@ -233,7 +233,7 @@ public class OptionsCollectionTag extends TagSupport {
         while (iter.hasNext()) {
 
             Object bean = iter.next();
-            Object beanLabel = null;;
+            Object beanLabel = null;
             Object beanValue = null;
 
             // Get the label for this option
