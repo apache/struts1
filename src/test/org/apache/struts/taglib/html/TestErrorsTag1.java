@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestErrorsTag1.java,v 1.10 2004/03/14 06:23:40 sraeburn Exp $
  * $Revision: 1.10 $
- * $Date: 2004/03/14 06:23:40 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -137,78 +137,4 @@ public class TestErrorsTag1 extends JspTestCase {
         pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
         runMyTest("testErrorsAlternateBundle2ErrorsLocale_fr", "");
         }
-
-
-
-
-
-
-
-    public void testErrorsDefaultBundle0ErrorsName() throws Exception {
-        runMyTest("testErrorsDefaultBundle0ErrorsName", "");
-        }
-    public void testErrorsDefaultBundle2ErrorsName() throws Exception {
-        runMyTest("testErrorsDefaultBundle2ErrorsName", "");
-        }
-
-    public void testErrorsAlternateBundle0ErrorsName() throws Exception {
-        runMyTest("testErrorsAlternateBundle0ErrorsName", "");
-        }
-    public void testErrorsAlternateBundle2ErrorsName() throws Exception {
-        runMyTest("testErrorsAlternateBundle2ErrorsName", "");
-        }
-
-    public void testErrorsDefaultBundle0ErrorsName_fr() throws Exception {
-        runMyTest("testErrorsDefaultBundle0ErrorsName_fr", "fr");
-        }
-    public void testErrorsDefaultBundle2ErrorsName_fr() throws Exception {
-        runMyTest("testErrorsDefaultBundle2ErrorsName_fr", "fr");
-        }
-
-    public void testErrorsAlternateBundle0ErrorsName_fr() throws Exception {
-        runMyTest("testErrorsAlternateBundle0ErrorsName_fr", "fr");
-        }
-    public void testErrorsAlternateBundle2ErrorsName_fr() throws Exception {
-        runMyTest("testErrorsAlternateBundle2ErrorsName_fr", "fr");
-        }
-
-
-
-    public void testErrorsDefaultBundle0ErrorsLocaleName() throws Exception {
-        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-        runMyTest("testErrorsDefaultBundle0ErrorsLocaleName", "");
-        }
-    public void testErrorsDefaultBundle2ErrorsLocaleName() throws Exception {
-        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-        runMyTest("testErrorsDefaultBundle2ErrorsLocaleName", "");
-        }
-
-    public void testErrorsAlternateBundle0ErrorsLocaleName() throws Exception {
-        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-        runMyTest("testErrorsAlternateBundle0ErrorsLocaleName", "");
-        }
-    public void testErrorsAlternateBundle2ErrorsLocaleName() throws Exception {
-        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-        runMyTest("testErrorsAlternateBundle2ErrorsLocaleName", "");
-        }
-
-    public void testErrorsDefaultBundle0ErrorsLocaleName_fr() throws Exception {
-        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-        runMyTest("testErrorsDefaultBundle0ErrorsLocaleName_fr", "");
-        }
-    public void testErrorsDefaultBundle2ErrorsLocaleName_fr() throws Exception {
-        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-        runMyTest("testErrorsDefaultBundle2ErrorsLocaleName_fr", "");
-        }
-
-    public void testErrorsAlternateBundle0ErrorsLocaleName_fr() throws Exception {
-        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-        runMyTest("testErrorsAlternateBundle0ErrorsLocaleName_fr", "");
-        }
-    public void testErrorsAlternateBundle2ErrorsLocaleName_fr() throws Exception {
-        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-        runMyTest("testErrorsAlternateBundle2ErrorsLocaleName_fr", "");
-        }
-
-
 }
