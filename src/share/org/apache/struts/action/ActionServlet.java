@@ -1068,7 +1068,8 @@ public class ActionServlet extends HttpServlet {
                 } else {
                     log.info("Loading chain catalog from "+resource);
                     parser.parse(resource);
-                }    
+                }
+                resource = null;
             }
         } catch (Exception e) {
             log.error("Exception loading resources", e);
