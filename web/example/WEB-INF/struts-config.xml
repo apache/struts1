@@ -15,30 +15,6 @@
   ]]>
   </description>
 
-
-  <!-- ========== Data Source Configuration =============================== -->
-<!--
- <data-sources>
-   <data-source>
-     <set-property property="autoCommit"
-                      value="false"/>
-     <set-property property="description"
-                      value="Example Data Source Configuration"/>
-     <set-property property="driverClass"
-                      value="org.postgresql.Driver"/>
-     <set-property property="maxCount"
-                      value="4"/>
-     <set-property property="minCount"
-                      value="2"/>
-     <set-property property="password"
-                      value="mypassword"/>
-     <set-property property="url"
-                      value="jdbc:postgresql://localhost/mydatabase"/>
-     <set-property property="user"
-                      value="myusername"/>
-   </data-source>
- </data-sources>
--->
   <!-- ========== Form Bean Definitions =================================== -->
   <form-beans>
 
@@ -59,60 +35,75 @@
   <!-- ========== Global Forward Definitions ============================== -->
   <global-forwards>
     <forward   name="logoff"               path="/logoff.do"/>
-    <forward   name="logon"                path="/logon.jsp"/>
-    <forward   name="success"              path="/mainMenu.jsp"/>
+    <forward   name="logon"                path="/logon.do"/>
+    <forward   name="success"              path="/mainMenu.do"/>
+    <forward   name="welcome"              path="/welcome.do"/>
   </global-forwards>
 
 
   <!-- ========== Action Mapping Definitions ============================== -->
   <action-mappings>
 
-    <!-- Edit mail subscription -->
-    <action    path="/editSubscription"
-               type="org.apache.struts.webapp.example.EditSubscriptionAction"
-          attribute="subscriptionForm"
-              scope="request"
-           validate="false">
-      <forward name="failure"              path="/mainMenu.jsp"/>
-      <forward name="success"              path="/subscription.jsp"/>
-    </action>
+      <!-- Display welcome page -->
+      <action    path="/welcome"
+                 forward="/welcome.jsp"/>
 
-    <!-- Process a user logoff -->
-    <action    path="/logoff"
-               type="org.apache.struts.webapp.example.LogoffAction">
-      <forward name="success"              path="/index.jsp"/>
-    </action>
+      <!-- Display registration page -->
+      <action    path="/registration"
+                 forward="/registration.jsp"/>
 
-    <!-- Process a user logon -->
-    <action    path="/logon"
-               type="org.apache.struts.webapp.example.LogonAction"
-               name="logonForm"
-              scope="session"
-              input="logon">
-      <exception
-                key="expired.password"
-               type="org.apache.struts.webapp.example.ExpiredPasswordException"
-               path="/changePassword.jsp"/>
-    </action>
+      <!-- Display logon page -->
+      <action    path="/mainMenu"
+                 forward="/mainMenu.jsp"/>
 
-    <!-- Save mail subscription -->
-    <action    path="/saveSubscription"
-               type="org.apache.struts.webapp.example.SaveSubscriptionAction"
-               name="subscriptionForm"
-              scope="request"
-              input="subscription">
-      <forward name="subscription"    path="/subscription.jsp"/>
-      <forward name="success"         path="/editRegistration.do?action=Edit"/>
-    </action>
+      <!-- Display logon page -->
+      <action    path="/logon"
+                 forward="/logon.jsp"/>
 
+       <!-- Process a user logon -->
+       <action    path="/submitLogon"
+                  type="org.apache.struts.webapp.example.LogonAction"
+                  name="logonForm"
+                 scope="session"
+                 input="logon">
+         <exception
+                   key="expired.password"
+                  type="org.apache.struts.webapp.example.ExpiredPasswordException"
+                  path="/changePassword.jsp"/>
+       </action>
 
-    <!-- Display the "walking tour" documentation -->
-    <action    path="/tour"
-            forward="/tour.htm">
-    </action>
+      <!-- Process a user logoff -->
+       <action    path="/logoff"
+                  type="org.apache.struts.webapp.example.LogoffAction">
+         <forward name="success"              path="/welcome.do"/>
+       </action>
+
+      <!-- Edit mail subscription -->
+      <action    path="/editSubscription"
+                 type="org.apache.struts.webapp.example.EditSubscriptionAction"
+                 name="subscriptionForm"
+                scope="request"
+             validate="false">
+        <forward name="failure"              path="/mainMenu.do"/>
+        <forward name="success"              path="/subscription.jsp"/>
+      </action>
+
+       <!-- Save mail subscription -->
+       <action    path="/saveSubscription"
+                  type="org.apache.struts.webapp.example.SaveSubscriptionAction"
+                  name="subscriptionForm"
+                 scope="request"
+                 input="subscription">
+         <forward name="subscription"    path="/subscription.jsp"/>
+         <forward name="success"         path="/editRegistration.do?action=Edit"/>
+       </action>
+
+      <!-- Display the "walking tour" documentation -->
+      <action    path="/tour"
+              forward="/tour.htm">
+      </action>
 
   </action-mappings>
-
 
   <!-- ========== Controller Configuration ================================ -->
 

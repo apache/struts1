@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditSubscriptionAction.java,v 1.14 2003/09/04 16:03:42 husted Exp $
- * $Revision: 1.14 $
- * $Date: 2003/09/04 16:03:42 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditSubscriptionAction.java,v 1.15 2003/12/21 22:43:19 husted Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/12/21 22:43:19 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.action.ActionMapping;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2003/09/04 16:03:42 $
+ * @version $Revision: 1.15 $ $Date: 2003/12/21 22:43:19 $
  */
 public final class EditSubscriptionAction extends Action {
 
@@ -94,21 +94,7 @@ public final class EditSubscriptionAction extends Action {
 
     // --------------------------------------------------------- Public Methods
 
-    /**
-     * Process the specified HTTP request, and create the corresponding HTTP
-     * response (or forward to another web component that will create it).
-     * Return an <code>ActionForward</code> instance describing where and how
-     * control should be forwarded, or <code>null</code> if the response has
-     * already been completed.
-     *
-     * @param mapping The ActionMapping used to select this instance
-     * @param form The optional ActionForm bean for this request (if any)
-     * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
-     *
-     * @exception Exception if the application business logic throws
-     *  an exception
-     */
+        // See superclass for Javadoc
     public ActionForward execute(
         ActionMapping mapping,
         ActionForm form,
@@ -157,27 +143,6 @@ public final class EditSubscriptionAction extends Action {
             session.setAttribute(Constants.SUBSCRIPTION_KEY, subscription);
         }
 
-        /* The body of the if block below should *never* be executed.
-         * Since this Action has a RegistrationForm attribute, struts has
-         * already created the form.  The check below is just to guard against
-         * a null pointer exception in case someone inadvertently removes the 
-         * attribute="registrationForm" from struts-config-registration.xml
-         */
-        if (form == null) {
-            if (log.isTraceEnabled()) {
-                log.trace(
-                    " Creating new SubscriptionForm bean under key "
-                        + mapping.getAttribute());
-            }
-            
-            form = new SubscriptionForm();
-            if ("request".equals(mapping.getScope())) {
-                request.setAttribute(mapping.getAttribute(), form);
-            } else {
-                session.setAttribute(mapping.getAttribute(), form);
-            }
-        }
-        
         SubscriptionForm subform = (SubscriptionForm) form;
         subform.setAction(action);
         if (!action.equals("Create")) {

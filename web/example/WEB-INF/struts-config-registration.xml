@@ -11,7 +11,7 @@
   </display-name>
     <description><![CDATA[
      This is the Struts configuration file for the registration 
-     portion of the example application, using the proposed new syntax.
+     portion of the example application, using the wildcard syntax.
   ]]>
   </description>
 
@@ -26,7 +26,7 @@
 
   <!-- ========== Global Forward Definitions ============================== -->
   <global-forwards>
-    <forward   name="Registration"         path="/Registration.jsp"/>
+    <forward   name="Registration"         path="/registration.jsp"/>
   </global-forwards>
 
   <!-- ========== Action Mapping Definitions ============================== -->
@@ -35,7 +35,7 @@
     <!-- Matches all edit actions (in this case, only user regstration) -->
     <action    path="/edit*"
                type="org.apache.struts.webapp.example.Edit{1}Action"
-          attribute="{1}Form"
+               name="{1}Form"
               scope="request"
            validate="false">
       <forward name="success"              path="/{1}.jsp"/>
