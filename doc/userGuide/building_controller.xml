@@ -1072,7 +1072,7 @@ public ActionForward execute(ActionMapping mapping,
           described earlier might look like this:</p>
 
 <pre>
-http://www.mycompany.com/myapplication/execute/logon
+http://www.mycompany.com/myapplication/do/logon
 </pre>
 
         <p>
@@ -1111,7 +1111,7 @@ http://www.mycompany.com/myapplication/logon.do
         servlet.</p>
 
         <p><font color="red"><strong>WARNING</strong></font> - If you are using
-        the new multi-application support in Struts 1.1, you should be aware
+        the new module support in Struts 1.1, you should be aware
         that <strong>only</strong> extension mapping is supported.</p>
 
       </section>
