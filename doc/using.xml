@@ -19,20 +19,20 @@
 
   <ul>
   <li>
-    <a href="Bugs">report a bug or feature request</a>,
+    <a href="#Bugs">report a bug or feature request</a>,
   </li>
   <li>
-    <a href="Patches">contribute a patch</a>,
+    <a href="#Patches">contribute a patch</a>,
   </li>
   <li>
-    <a href="Lists">join the mailing lists</a>,
+    <a href="#Lists">join the mailing lists</a>,
   </li>
   <li>
-    <a href="Questions">post a question</a>,
+    <a href="#Questions">post a question</a>,
   </li>
   <li>
     or otherwise
-    <a href="Involved">become involved</a>
+    <a href="#Involved">become involved</a>
   with the Struts Community.
   </li>
   </ul>
