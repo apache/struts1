@@ -3,13 +3,14 @@
 <!--
   Default configuration file for examples application.
   Each module also has its own struts-config under: /WEB-INF/$MODULE/
-  @version $Revision: 1.6 $ $Date: 2004/02/19 00:09:37 $
+  @version $Revision: 1.7 $ $Date: 2004/02/19 01:10:33 $
 -->
 <struts-config>
   <data-sources />
   <form-beans type="org.apache.struts.webapp.examples.CustomFormBean">
-      <form-bean name="example" type="org.apache.struts.webapp.examples.CustomFormBean" />
+      <form-bean name="example" type="org.apache.struts.webapp.examples.CustomFormBean" >
       <set-property property="example" value="EXAMPLE" />
+      </form-bean>
   </form-beans>
   <global-exceptions />
   <global-forwards type="org.apache.struts.webapp.examples.CustomActionForward">
