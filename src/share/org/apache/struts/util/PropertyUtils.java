@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.1 2000/08/29 00:42:24 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/08/29 00:42:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.2 2000/09/21 03:39:34 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/09/21 03:39:34 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import java.util.Hashtable;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.1 $ $Date: 2000/08/29 00:42:24 $
+ * @version $Revision: 1.2 $ $Date: 2000/09/21 03:39:34 $
  */
 
 public final class PropertyUtils {
@@ -476,7 +476,7 @@ public final class PropertyUtils {
 
 
     /**
-     * Return the Java Class repesenting the property type of the specified
+     * Return the Java Class representing the property type of the specified
      * property, or <code>null</code> if there is no such property for the
      * specified bean.  This method follows the same name resolution rules
      * used by <code>getPropertyDescriptor()</code>, so if the last element
@@ -503,10 +503,13 @@ public final class PropertyUtils {
 
 	PropertyDescriptor descriptor =
 	    getPropertyDescriptor(bean, name);
-	if (descriptor != null)
+	if (descriptor == null)
+            return (null);
+        else if (descriptor instanceof IndexedPropertyDescriptor)
+            return (((IndexedPropertyDescriptor) descriptor).
+                    getIndexedPropertyType());
+        else
 	    return (descriptor.getPropertyType());
-	else
-	    return (null);
 
     }
 
@@ -680,6 +683,7 @@ public final class PropertyUtils {
 		subscript[0] = new Integer(index);
 		subscript[1] = value;
 		writeMethod.invoke(bean, subscript);
+                return;
 	    }
 	}
 
