@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.7 2003/07/10 01:16:03 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/07/10 01:16:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.8 2003/07/10 01:16:38 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/10 01:16:38 $
  *
  * ====================================================================
  *
@@ -66,6 +66,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.taglib.tiles.util.TagUtils;
 import org.apache.struts.tiles.AttributeDefinition;
 import org.apache.struts.tiles.DefinitionNameAttribute;
@@ -418,7 +419,7 @@ public class PutTag extends BodyTagSupport implements ComponentConstants {
         try {
             Object bean = TagUtils.retrieveBean(beanName, beanScope, pageContext);
             if (bean != null && beanProperty != null) {
-                realValue = TagUtils.getProperty(bean, beanProperty);
+                realValue = PropertyUtils.getProperty(bean, beanProperty);
             } else {
                 realValue = bean; // value can be null
             }
