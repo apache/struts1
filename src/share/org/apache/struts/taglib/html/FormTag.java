@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.59 2004/04/21 05:21:08 rleland Exp $
- * $Revision: 1.59 $
- * $Date: 2004/04/21 05:21:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.60 2004/07/21 21:02:22 niallp Exp $
+ * $Revision: 1.60 $
+ * $Date: 2004/07/21 21:02:22 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -44,7 +44,7 @@ import org.apache.struts.util.RequestUtils;
  * Custom tag that represents an input form, associated with a bean whose
  * properties correspond to the various fields of the form.
  *
- * @version $Revision: 1.59 $ $Date: 2004/04/21 05:21:08 $
+ * @version $Revision: 1.60 $ $Date: 2004/07/21 21:02:22 $
  */
 public class FormTag extends TagSupport {
 
@@ -164,6 +164,12 @@ public class FormTag extends TagSupport {
      * associated <code>ActionMapping</code> otherwise.
      */
     protected String beanType = null;
+
+    /**
+     * The list of character encodings for input data that the server should
+     * accept.
+     */
+    protected String acceptCharset = null;
 
     // ------------------------------------------------------------- Properties
 
@@ -379,6 +385,26 @@ public class FormTag extends TagSupport {
 
     }
 
+    /**
+     * Return the list of character encodings accepted.
+     */
+    public String getAcceptCharset() {
+
+        return acceptCharset;
+
+    }
+
+    /**
+     * Set the list of character encodings accepted.
+     *
+     * @param acceptCharset The list of character encodings
+     */
+    public void setAcceptCharset(String acceptCharset) {
+
+        this.acceptCharset= acceptCharset;
+
+    }
+
 
     // --------------------------------------------------------- Public Methods
 
@@ -465,6 +491,11 @@ public class FormTag extends TagSupport {
                 
         results.append("\"");
         
+        if (acceptCharset != null) {
+            results.append(" accept-charset=\"");
+            results.append(getAcceptCharset());
+            results.append("\"");
+        }
         if (styleClass != null) {
             results.append(" class=\"");
             results.append(styleClass);
@@ -650,6 +681,7 @@ public class FormTag extends TagSupport {
         styleClass = null;
         styleId = null;
         target = null;
+        acceptCharset = null;
 
     }
 
