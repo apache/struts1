@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
 
-     $Id: tiles-config_1_1.dtd,v 1.3 2002/12/13 05:57:26 martinc Exp $
+     $Id: tiles-config_1_1.dtd,v 1.4 2003/05/03 15:36:49 jholmes Exp $
 -->
 
 
@@ -75,7 +75,7 @@
 -->
 <!ELEMENT tiles-definitions (definition+)>
 
-<!-- The "definition" element describes definition that can be inserted in a jsp
+<!-- The "definition" element describes a definition that can be inserted in a jsp
      page. This definition is identified by its logical name. A definition allows
      to define all the attributes that can be set in <insert> tag from a jsp page.
 
@@ -86,14 +86,14 @@
                      containing appropriate attributes will be available.
 
      page            Same as path.
-     template        Same as path. For compatibility with the template taglib.
+     template        Same as path. For compatibility with the template tag library.
 
      extends         Name of a definition that is used as ancestor of this definition.
                      All attributes from the ancestor are available to the new
                      definition. Any attribute inherited from the ancestor can
                      be overloaded by providing a new value.
 
-     role            security role name that is allowed access to this definition
+     role            Security role name that is allowed access to this definition
                      object. The definition is inserted only if the role name is
                      allowed.
 
@@ -133,10 +133,10 @@
                      associated, it will be used as a hint to process the value
                      when the attribute will be used in the inserted tiles.
 
-     content         Same as value. For compatibility with the template taglib.
+     content         Same as value. For compatibility with the template tag library.
 
      direct          Same as type="string". For compatibility with the template
-                     taglib.
+                     tag library.
 -->
 <!ELEMENT put (#PCDATA)>
 <!ATTLIST put              id               ID              #IMPLIED>
@@ -171,10 +171,10 @@
                      associated, it will be used as a hint to process the value
                      when the attribute will be used in the inserted tiles.
 
-     content         Same as value. For compatibility with the template taglib.
+     content         Same as value. For compatibility with the template tag library.
 
      direct          Same as type="string". For compatibility with the template
-                     taglib.
+                     tag library.
 -->
 <!ELEMENT add (#PCDATA)>
 <!ATTLIST add              id               ID              #IMPLIED>
@@ -212,12 +212,12 @@
 
 
 <!-- The "item" element describes an element of a list. It create a bean added as
-     element to the list. Each bean can contains different properties: value, link,
-     icon, tooltip. This properties are to be interpreted by the jsp page using
+     element to the list. Each bean can contain different properties: value, link,
+     icon, tooltip. These properties are to be interpreted by the jsp page using
      them.
      By default the bean is of type
      "org.apache.struts.tiles.beans.SimpleMenuItem". This bean is useful to
-     create list of beans used as menu items.
+     create a list of beans used as menu items.
 
      value           The bean 'value' property.
 
@@ -227,8 +227,8 @@
 
      tooltip         The bean 'tooltip' property.
 
-     classtype       The fully qualified classname for this bean.
-                     If specified, the classname must be a subclass of the interface
+     classtype       The fully qualified classtype for this bean.
+                     If specified, the classtype must be a subclass of the interface
                      "org.apache.struts.tiles.beans.MenuItem".
 -->
 <!ELEMENT item (#PCDATA)>
