@@ -1,4 +1,4 @@
-<%@ taglib uri="WEB-INF/struts-logic.tld" prefix="logic" %>
+<%@ taglib uri="/tags/struts-logic" prefix="logic" %>
 <logic:redirect action="welcome"/>
 
 <%--
