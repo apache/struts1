@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.6 2000/08/14 18:12:31 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/08/14 18:12:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.7 2000/08/14 20:19:45 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/08/14 20:19:45 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.6 $ $Date: 2000/08/14 18:12:31 $
+ * @version $Revision: 1.7 $ $Date: 2000/08/14 20:19:45 $
  */
 
 public final class BeanUtils {
@@ -487,11 +487,6 @@ public final class BeanUtils {
      * corresponding JavaBeans "property setter" methods in the bean's class.
      * Suitable conversion is done for argument types as described under
      * <code>convert()</code>.
-     * <p>
-     * <strong>IMPLEMENTATION NOTE</strong>:  If you have more than one setter
-     * for the same property name (with different argument types supported by
-     * this logic), the setter method that is actually called will be
-     * arbitrarily determined.
      *
      * @param bean The JavaBean whose properties are to be set
      * @param request The HTTP request whose parameters are to be used
@@ -516,10 +511,9 @@ public final class BeanUtils {
      * setter" methods in the bean's class.  Suitable conversion is done for
      * argument types as described under <code>setProperties()</code>.
      * <p>
-     * <strong>IMPLEMENTATION NOTE</strong>:  If you have more than one setter
-     * for the same property name (with different argument types supported by
-     * this logic), the setter method that is actually called will be
-     * arbitrarily determined.
+     * If you specify a non-null <code>prefix</code> and a non-null
+     * <code>suffix</code>, the parameter name must match <strong>both</strong>
+     * conditions for its value(s) to be used in populating bean properties.
      *
      * @param bean The JavaBean whose properties are to be set
      * @param prefix The prefix (if any) to be prepend to bean property
@@ -541,17 +535,19 @@ public final class BeanUtils {
 	Enumeration names = request.getParameterNames();
 	while (names.hasMoreElements()) {
 	    String name = (String) names.nextElement();
+	    String stripped = name;
 	    if (prefix != null) {
-		if (!name.startsWith(prefix))
+		if (!stripped.startsWith(prefix))
 		    continue;
-		name = name.substring(prefix.length());
+		stripped = stripped.substring(prefix.length());
 	    }
 	    if (suffix != null) {
-		if (!name.endsWith(suffix))
+		if (!stripped.endsWith(suffix))
 		    continue;
-		name = name.substring(0, name.length() - suffix.length());
+		stripped =
+		  stripped.substring(0, stripped.length() - suffix.length());
 	    }
-	    properties.put(name, request.getParameterValues(name));
+	    properties.put(stripped, request.getParameterValues(name));
 	}
 
 	// Set the corresponding properties of our bean
@@ -572,6 +568,17 @@ public final class BeanUtils {
      * <code>int</code>, <code>long</code>, <code>float</code>, and
      * <code>double</code>.  In addition, array setters for these types (or the
      * corresponding primitive types) can also be identified.
+     * <p>
+     * The particular setter method to be called for each property is
+     * determined using the usual JavaBeans introspection mechanisms.  Thus,
+     * you may identify custom setter methods using a BeanInfo class that is
+     * associated with the class of the bean itself.  If no such BeanInfo
+     * class is available, the standard method name conversion ("set" plus
+     * the capitalized name of the property in question) is used.
+     * <p>
+     * <strong>NOTE</strong>:  It is contrary to the JavaBeans Specification
+     * to have more than one setter method (with different argument
+     * signatures) for the same property.
      *
      * @param bean JavaBean whose properties are being populated
      * @param properties Hashtable keyed by property name, with the
