@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.25 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.25 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.26 2004/05/18 20:00:10 germuska Exp $
+ * $Revision: 1.26 $
+ * $Date: 2004/05/18 20:00:10 $
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -147,7 +147,7 @@ public class ExceptionHandler {
         ActionForward forward,
         String scope) {
 
-        this.storeException(request, property, error, forward, scope);
+        this.storeException(request, property, (ActionMessage) error, forward, scope);
         // :TODO: Remove after Struts 1.2
 
     }
