@@ -6,11 +6,11 @@
 # to "build.properties" in the same directory that contains the Struts
 # "build.xml" file.
 #
-# The JARS required for each release or beta distribution are available 
-# as a single archive from the Struts downloads directory. 
+# The JARS required for each release or beta distribution are available
+# as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.29 2003/02/08 20:10:01 rleland Exp $
+# $Id: build.properties.sample,v 1.30 2003/02/27 19:21:56 cedric Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -30,28 +30,28 @@ apache.home=D:/Java/Programs/Apache
 # if you are going to execute the "deploy.catalina" target.
 catalina.home=${apache.home}/jakarta-tomcat-4.0.6
 
-# The JAR file containing the Beanutils package (Version 1.5 or later)  
+# The JAR file containing the Beanutils package (Version 1.5 or later)
 # from the Jakarta Commons project.
 
 commons-beanutils.jar=${commons-lib.home}/beanutils/dist/commons-beanutils.jar
 
-# The JAR file containing the Collections package (Version 2.1 or later) 
+# The JAR file containing the Collections package (Version 2.1 or later)
 # from the Jakarta Commons project.
 commons-collections.jar=${commons-lib.home}/collections/dist/commons-collections.jar
 
-# The JAR file containing the DBCP package (Version 1.0 or later) 
+# The JAR file containing the DBCP package (Version 1.0 or later)
 # from the Jakarta Commons project.
 commons-dbcp.jar=${commons-lib.home}/dbcp/dist/commons-dbcp.jar
 
-# The JAR file containing the Digester package (Version 1.3 or later) 
+# The JAR file containing the Digester package (Version 1.3 or later)
 # from the Jakarta Commons project.
 commons-digester.jar=${commons-lib.home}/digester/dist/commons-digester.jar
 
-# The JAR file containing the FileUpload package (recent Nightly Build) 
+# The JAR file containing the FileUpload package (recent Nightly Build)
 # from the Jakarta Commons project.
 commons-fileupload.jar=${commons-lib.home}/fileupload/target/commons-fileupload-1.0-dev.jar
 
-# The JAR file containing the Lang package (Version 1.1 or later) 
+# The JAR file containing the Lang package (Version 1.1 or later)
 # from the Jakarta Commons project.
 commons-lang.jar=${commons-lib.home}/lang/dist/commons-lang-1.1.jar
 
@@ -59,19 +59,19 @@ commons-lang.jar=${commons-lib.home}/lang/dist/commons-lang-1.1.jar
 # from the Jakarta Commons project.
 commons-logging.jar=${commons-lib.home}/logging/dist/commons-logging.jar
 
-# The JAR file containing the POOL package (Version 1.0.1 or later) 
+# The JAR file containing the POOL package (Version 1.0.1 or later)
 # from the Jakarta Commons project.
 commons-pool.jar=${commons-lib.home}/pool/dist/commons-pool.jar
 
-# The JAR file containing the Resources package (recent Nightly Build) 
+# The JAR file containing the Resources package (recent Nightly Build)
 # from the Jakarta Commons project.
 commons-resources.jar=${commons-sandbox-lib.home}/resources/target/commons-resources.jar
 
-# The JAR file containing the Validator package (Version 1.0.1 or later) 
+# The JAR file containing the Validator package (Version 1.0.1 or later)
 # from the Jakarta Commons project.
 commons-validator.jar=${commons-lib.home}/validator/dist/commons-validator.jar
 
-# The JAR file containing the Jakarta ORO project version 2.06 (or later) 
+# The JAR file containing the Jakarta ORO project version 2.06 (or later)
 jakarta-oro.jar=${apache.home}/jakarta-oro-2.0.6/jakarta-oro-2.0.6.jar
 
 # The JAR file containing the JDBC 2.0 Optional Package extensions API
@@ -106,7 +106,7 @@ checkstyle.jar = /Java/checkstyle-2.4/checkstyle-all-2.4.jar
 # you do not have PMD installed, do not set this property.
 pmd.jar = /Java/pmd/lib/pmd-1.01.jar
 
-# Properties related to Struts Contrib 
+# Properties related to Struts Contrib
 # -----------------------------------------
 
 # These links to the JSTL jar files are only required for building the
@@ -142,6 +142,9 @@ ant.optional.jar = ${apache.home}/jakarta-ant-1.5.1/lib/optional.jar
 
 # AspectJ from Cactus distribution
 aspectjrt.jar = ${cactus.lib}/aspectjrt.jar
+
+# The httpunit runtime jar
+httpunit.jar = ${cactus.lib}/httpunit.jar
 
 # Httpclient from Jakarta-Commons
 commons-httpclient.jar = ${commons-lib.home}/httpclient/dist/commons-httpclient.jar
