@@ -1,11 +1,11 @@
-// $ANTLR 2.7.2: "validWhenParser.g" -> "ValidWhenParser.java"$
+// $ANTLR 2.7.2: "ValidWhenParser.g" -> "ValidWhenParser.java"$
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.java,v 1.9 2004/03/14 06:23:53 sraeburn Exp $
- * $Revision: 1.9 $
- * $Date: 2004/03/14 06:23:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.java,v 1.10 2004/09/03 18:06:58 niallp Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/09/03 18:06:58 $
  *
- * Copyright 2003,2004 The Apache Software Foundation.
+ * Copyright 2003-2004 The Apache Software Foundation.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,26 +22,30 @@
 
 package org.apache.struts.validator.validwhen;
 
-import java.util.Stack;
-
+import java.util.Stack; 
 import org.apache.commons.validator.util.ValidatorUtils;
 
-import antlr.NoViableAltException;
-import antlr.ParserSharedInputState;
-import antlr.RecognitionException;
-import antlr.Token;
+
 import antlr.TokenBuffer;
-import antlr.TokenStream;
 import antlr.TokenStreamException;
+import antlr.TokenStreamIOException;
+import antlr.ANTLRException;
+import antlr.LLkParser;
+import antlr.Token;
+import antlr.TokenStream;
+import antlr.RecognitionException;
+import antlr.NoViableAltException;
+import antlr.MismatchedTokenException;
+import antlr.SemanticException;
+import antlr.ParserSharedInputState;
 import antlr.collections.impl.BitSet;
 
-public class ValidWhenParser extends antlr.LLkParser      
-	implements ValidWhenParserTokenTypes {
-
-	Stack argStack = new Stack();
-	Object form;
-	int index;
-	String value;
+public class ValidWhenParser extends antlr.LLkParser       implements ValidWhenParserTokenTypes
+ {
+Stack argStack = new Stack();
+Object form;
+int index;
+String value;
 
     public void setForm(Object f) { form = f; };
     public void setIndex (int i) { index = i; };
@@ -195,21 +199,21 @@ public ValidWhenParser(ParserSharedInputState state) {
 		{
 			d = LT(1);
 			match(DECIMAL_LITERAL);
-			argStack.push(Integer.valueOf(d.getText()));
+			argStack.push(Integer.decode(d.getText()));
 			break;
 		}
 		case HEX_LITERAL:
 		{
 			h = LT(1);
 			match(HEX_LITERAL);
-			argStack.push(Integer.valueOf(d.getText()));
+			argStack.push(Integer.decode(h.getText()));
 			break;
 		}
 		case OCTAL_LITERAL:
 		{
 			o = LT(1);
 			match(OCTAL_LITERAL);
-			argStack.push(Integer.valueOf(d.getText()));
+			argStack.push(Integer.decode(o.getText()));
 			break;
 		}
 		default:

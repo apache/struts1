@@ -1,8 +1,8 @@
 header {
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.g,v 1.6 2004/06/24 23:51:52 husted Exp $
- * $Revision: 1.6 $
- * $Date: 2004/06/24 23:51:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.g,v 1.7 2004/09/03 18:06:58 niallp Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/09/03 18:06:58 $
  *
  * Copyright 2003-2004 The Apache Software Foundation.
  * 
@@ -156,9 +156,9 @@ String value;
 
 
 integer
-: d:DECIMAL_LITERAL { argStack.push(Integer.valueOf(d.getText())); }
-| h:HEX_LITERAL { argStack.push(Integer.valueOf(d.getText())); }
-| o:OCTAL_LITERAL { argStack.push(Integer.valueOf(d.getText())); } ;
+: d:DECIMAL_LITERAL { argStack.push(Integer.decode(d.getText())); }
+| h:HEX_LITERAL { argStack.push(Integer.decode(h.getText())); }
+| o:OCTAL_LITERAL { argStack.push(Integer.decode(o.getText())); } ;
 
 string : str:STRING_LITERAL { argStack.push(str.getText().substring(1, str.getText().length()-1)); };
 
@@ -246,11 +246,11 @@ WS : ( ' ' | '\t' | '\n' | '\r' )+
      { $setType(Token.SKIP); }
    ;
 
-DECIMAL_LITERAL : ('1'..'9') ('0'..'9')* ;
+DECIMAL_LITERAL : ('-')? ('1'..'9') ('0'..'9')*;
 
 HEX_LITERAL : '0' 'x'  ('0'..'9' | 'a'..'f')+ ;
 
-OCTAL_LITERAL : '0' ('0'..'7')+ ;
+OCTAL_LITERAL : '0' ('0'..'7')* ;
 
 STRING_LITERAL : ('\'' (~'\'')+ '\'') | ('\"' (~'\"')+ '\"') ;
 
