@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.21 2003/03/04 04:46:03 martinc Exp $
- * $Revision: 1.21 $
- * $Date: 2003/03/04 04:46:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.22 2003/07/26 17:22:28 rleland Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/07/26 17:22:28 $
  *
  * ====================================================================
  *
@@ -76,6 +76,7 @@ import org.apache.commons.collections.IteratorUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Custom tag that iterates the elements of a collection, which can be
@@ -85,7 +86,7 @@ import org.apache.struts.util.ResponseUtils;
  * or a Map (which includes Hashtables) whose elements will be iterated over.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.21 $ $Date: 2003/03/04 04:46:03 $
+ * @version $Revision: 1.22 $ $Date: 2003/07/26 17:22:28 $
  */
 
 public class IterateTag extends BodyTagSupport {
@@ -274,7 +275,7 @@ public class IterateTag extends BodyTagSupport {
         // Acquire the collection we are going to iterate over
         Object collection = this.collection;
         if (collection == null) {
-            collection = RequestUtils.lookup(pageContext, name, property, scope);
+            collection = TagUtils.getInstance().lookup(pageContext, name, property, scope);
         }
 
         if (collection == null) {
@@ -319,7 +320,7 @@ public class IterateTag extends BodyTagSupport {
             try {
                 offsetValue = Integer.parseInt(offset);
             } catch (NumberFormatException e) {
-                Integer offsetObject = (Integer) RequestUtils.lookup(pageContext, offset, null);
+                Integer offsetObject = (Integer) TagUtils.getInstance().lookup(pageContext, offset, null);
                 if (offsetObject == null) {
                     offsetValue = 0;
                 } else {
@@ -338,7 +339,7 @@ public class IterateTag extends BodyTagSupport {
             try {
                 lengthValue = Integer.parseInt(length);
             } catch (NumberFormatException e) {
-                Integer lengthObject = (Integer) RequestUtils.lookup(pageContext, length, null);
+                Integer lengthObject = (Integer) TagUtils.getInstance().lookup(pageContext, length, null);
                 if (lengthObject == null) {
                     lengthValue = 0;
                 } else {

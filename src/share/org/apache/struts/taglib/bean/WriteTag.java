@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.24 2003/07/26 01:17:55 dgraham Exp $
- * $Revision: 1.24 $
- * $Date: 2003/07/26 01:17:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.25 2003/07/26 17:22:27 rleland Exp $
+ * $Revision: 1.25 $
+ * $Date: 2003/07/26 17:22:27 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.ResponseUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.24 $ $Date: 2003/07/26 01:17:55 $
+ * @version $Revision: 1.25 $ $Date: 2003/07/26 17:22:27 $
  */
 public class WriteTag extends TagSupport {
 
@@ -262,13 +262,13 @@ public class WriteTag extends TagSupport {
 
         // Look up the requested bean (if necessary)
         if (ignore) {
-            if (RequestUtils.lookup(pageContext, name, scope) == null) {
+            if (TagUtils.getInstance().lookup(pageContext, name, scope) == null) {
                 return (SKIP_BODY); // Nothing to output
             }
         }
 
         // Look up the requested property value
-        Object value = RequestUtils.lookup(pageContext, name, property, scope);
+        Object value = TagUtils.getInstance().lookup(pageContext, name, property, scope);
 
         if (value == null) {
             return (SKIP_BODY); // Nothing to output

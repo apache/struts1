@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.15 2003/07/13 23:50:50 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/07/13 23:50:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.16 2003/07/26 17:22:28 rleland Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/07/26 17:22:28 $
  *
  * ====================================================================
  *
@@ -69,13 +69,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Evalute the nested body content of this tag if the specified value
  * is present for this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2003/07/13 23:50:50 $
+ * @version $Revision: 1.16 $ $Date: 2003/07/26 17:22:28 $
  */
 public class PresentTag extends ConditionalTagBase {
 
@@ -158,9 +159,9 @@ public class PresentTag extends ConditionalTagBase {
         Object value = null;
         try {
             if (this.property != null) {
-                value = RequestUtils.lookup(pageContext, name, this.property, scope);
+                value = TagUtils.getInstance().lookup(pageContext, name, this.property, scope);
             } else {
-                value = RequestUtils.lookup(pageContext, name, scope);
+                value = TagUtils.getInstance().lookup(pageContext, name, scope);
             }
         } catch (JspException e) {
             value = null;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.27 2003/03/12 00:42:18 jmitchell Exp $
- * $Revision: 1.27 $
- * $Date: 2003/03/12 00:42:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.28 2003/07/26 17:22:27 rleland Exp $
+ * $Revision: 1.28 $
+ * $Date: 2003/07/26 17:22:27 $
  *
  * ====================================================================
  *
@@ -69,6 +69,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 
 import org.apache.struts.Globals;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
@@ -85,7 +86,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.27 $
+ * @version $Revision: 1.28 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -602,7 +603,7 @@ public class ImgTag extends BaseHandlerTag {
             }
             src.append(paramId);
             src.append('=');
-            Object value = RequestUtils.lookup(pageContext, paramName, paramProperty, paramScope);
+            Object value = TagUtils.getInstance().lookup(pageContext, paramName, paramProperty, paramScope);
             if (value != null)
                 src.append(RequestUtils.encodeURL(value.toString()));
         }
@@ -619,7 +620,7 @@ public class ImgTag extends BaseHandlerTag {
         }
 
         // Look up the map we will be using
-        Object mapObject = RequestUtils.lookup(pageContext, name, property, scope);
+        Object mapObject = TagUtils.getInstance().lookup(pageContext, name, property, scope);
         Map map = null;
         try {
             map = (Map) mapObject;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.15 2003/05/18 19:18:00 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/05/18 19:18:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.16 2003/07/26 17:22:27 rleland Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/07/26 17:22:27 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Custom tag that represents an HTML select element, associated with a
@@ -75,7 +76,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.15 $ $Date: 2003/05/18 19:18:00 $
+ * @version $Revision: 1.16 $ $Date: 2003/07/26 17:22:27 $
  */
 public class SelectTag extends BaseHandlerTag {
 
@@ -296,7 +297,7 @@ public class SelectTag extends BaseHandlerTag {
             this.match[0] = this.value;
             
         } else {
-            Object bean = RequestUtils.lookup(pageContext, name, null);
+            Object bean = TagUtils.getInstance().lookup(pageContext, name, null);
             if (bean == null) {
                 JspException e =
                     new JspException(messages.getMessage("getter.bean", name));

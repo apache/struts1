@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.28 2003/07/03 04:54:35 dgraham Exp $
- * $Revision: 1.28 $
- * $Date: 2003/07/03 04:54:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.29 2003/07/26 17:22:27 rleland Exp $
+ * $Revision: 1.29 $
+ * $Date: 2003/07/26 17:22:27 $
  *
  * ====================================================================
  *
@@ -73,6 +73,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.logic.IterateTag;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
@@ -84,7 +85,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Don Clasen
  * @author James Turner
- * @version $Revision: 1.28 $ $Date: 2003/07/03 04:54:35 $
+ * @version $Revision: 1.29 $ $Date: 2003/07/26 17:22:27 $
  */
 public abstract class BaseHandlerTag extends BodyTagSupport {
 
@@ -904,7 +905,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     protected String lookupProperty(String beanName, String property)
         throws JspException {
 
-        Object bean = RequestUtils.lookup(this.pageContext, beanName, null);
+        Object bean = TagUtils.getInstance().lookup(this.pageContext, beanName, null);
         if (bean == null) {
             throw new JspException(messages.getMessage("getter.bean", beanName));
         }

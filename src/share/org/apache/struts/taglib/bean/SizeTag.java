@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/SizeTag.java,v 1.4 2002/10/25 05:28:46 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/25 05:28:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/SizeTag.java,v 1.5 2003/07/26 17:22:27 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/26 17:22:27 $
  *
  * ====================================================================
  *
@@ -71,6 +71,7 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.TagUtils;
 
 
 /**
@@ -78,7 +79,7 @@ import org.apache.struts.util.RequestUtils;
  * found in a specified array, Collection, or Map.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/10/25 05:28:46 $
+ * @version $Revision: 1.5 $ $Date: 2003/07/26 17:22:27 $
  */
 
 public class SizeTag extends TagSupport {
@@ -189,7 +190,7 @@ public class SizeTag extends TagSupport {
                 throw e;
             }
             
-            value = RequestUtils.lookup(pageContext, name, property, scope);
+            value = TagUtils.getInstance().lookup(pageContext, name, property, scope);
         }
 
         // Identify the number of elements, based on the collection type

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.18 2003/07/04 20:23:10 dgraham Exp $
- * $Revision: 1.18 $
- * $Date: 2003/07/04 20:23:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.19 2003/07/26 17:22:27 rleland Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/07/26 17:22:27 $
  *
  * ====================================================================
  *
@@ -64,12 +64,13 @@ package org.apache.struts.taglib.html;
 import javax.servlet.jsp.JspException;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2003/07/04 20:23:10 $
+ * @version $Revision: 1.19 $ $Date: 2003/07/26 17:22:27 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -192,7 +193,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
             results.append(ResponseUtils.filter(value));
 
         } else if (redisplay || !"password".equals(type)) {
-            Object value = RequestUtils.lookup(pageContext, name, property, null);
+            Object value = TagUtils.getInstance().lookup(pageContext, name, property, null);
             if (value == null) {
                 value = "";
             }

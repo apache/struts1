@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.18 2002/12/16 03:41:43 craigmcc Exp $
- * $Revision: 1.18 $
- * $Date: 2002/12/16 03:41:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.19 2003/07/26 17:22:27 rleland Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/07/26 17:22:27 $
  *
  * ====================================================================
  *
@@ -68,6 +68,7 @@ import javax.servlet.jsp.PageContext;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.Globals;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -81,7 +82,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2002/12/16 03:41:43 $
+ * @version $Revision: 1.19 $ $Date: 2003/07/26 17:22:27 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {
@@ -230,7 +231,7 @@ public class MultiboxTag extends BaseHandlerTag {
         }
         results.append(ResponseUtils.filter(value));
         results.append("\"");
-        Object bean = RequestUtils.lookup(pageContext, name, null);
+        Object bean = TagUtils.getInstance().lookup(pageContext, name, null);
         String values[] = null;
         if (bean == null)
             throw new JspException(messages.getMessage("getter.bean", name));

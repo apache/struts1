@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.5 2003/07/26 01:22:31 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/07/26 01:22:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.6 2003/07/26 17:22:27 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/07/26 17:22:27 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
@@ -71,11 +72,13 @@ import javax.servlet.jsp.PageContext;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.Globals;
 
 /**
  * Provides helper methods for JSP tags.
@@ -84,7 +87,7 @@ import org.apache.struts.util.RequestUtils;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -226,6 +229,117 @@ public class TagUtils {
         return RequestUtils.getUserLocale(
             (HttpServletRequest) pageContext.getRequest(),
             locale);
+    }
+
+    /**
+     * Locate and return the specified bean, from an optionally specified
+     * scope, in the specified page context.  If no such bean is found,
+     * return <code>null</code> instead.  If an exception is thrown, it will
+     * have already been saved via a call to <code>saveException()</code>.
+     *
+     * @param pageContext Page context to be searched
+     * @param name Name of the bean to be retrieved
+     * @param scopeName Scope to be searched (page, request, session, application)
+     *  or <code>null</code> to use <code>findAttribute()</code> instead
+     * @return JavaBean in the specified page context
+     * @exception JspException if an invalid scope name
+     *  is requested
+     */
+    public static Object lookup(PageContext pageContext, String name, String scopeName)
+        throws JspException {
+
+        if (scopeName == null) {
+            return pageContext.findAttribute(name);
+        }
+
+        try {
+            return pageContext.getAttribute(name, instance.getScope(scopeName));
+
+        } catch (JspException e) {
+            saveException(pageContext, e);
+            throw e;
+        }
+
+    }
+    /**
+     * Locate and return the specified property of the specified bean, from
+     * an optionally specified scope, in the specified page context.  If an
+     * exception is thrown, it will have already been saved via a call to
+     * <code>saveException()</code>.
+     *
+     * @param pageContext Page context to be searched
+     * @param name Name of the bean to be retrieved
+     * @param property Name of the property to be retrieved, or
+     *  <code>null</code> to retrieve the bean itself
+     * @param scope Scope to be searched (page, request, session, application)
+     *  or <code>null</code> to use <code>findAttribute()</code> instead
+     * @return property of specified JavaBean
+     *
+     * @exception JspException if an invalid scope name
+     *  is requested
+     * @exception JspException if the specified bean is not found
+     * @exception JspException if accessing this property causes an
+     *  IllegalAccessException, IllegalArgumentException,
+     *  InvocationTargetException, or NoSuchMethodException
+     * @since Struts 1.2
+     */
+    public static Object lookup(
+        PageContext pageContext,
+        String name,
+        String property,
+        String scope)
+        throws JspException {
+
+        // Look up the requested bean, and return if requested
+        Object bean = lookup(pageContext, name, scope);
+        if (bean == null) {
+            JspException e = null;
+            if (scope == null) {
+                e = new JspException(messages.getMessage("lookup.bean.any", name));
+            } else {
+                e = new JspException(messages.getMessage("lookup.bean", name, scope));
+            }
+            saveException(pageContext, e);
+            throw e;
+        }
+
+        if (property == null) {
+            return bean;
+        }
+
+        // Locate and return the specified property
+        try {
+            return PropertyUtils.getProperty(bean, property);
+
+        } catch (IllegalAccessException e) {
+            saveException(pageContext, e);
+            throw new JspException(messages.getMessage("lookup.access", property, name));
+
+        } catch (InvocationTargetException e) {
+            Throwable t = e.getTargetException();
+            if (t == null) {
+                t = e;
+            }
+            saveException(pageContext, t);
+            throw new JspException(messages.getMessage("lookup.target", property, name));
+
+        } catch (NoSuchMethodException e) {
+            saveException(pageContext, e);
+            throw new JspException(messages.getMessage("lookup.method", property, name));
+        }
+
+    }
+
+    /**
+     * Save the specified exception as a request attribute for later use.
+     *
+     * @param pageContext The PageContext for the current page
+     * @param exception The exception to be saved
+     */
+    public static void saveException(PageContext pageContext, Throwable exception) {
+
+        pageContext.setAttribute(Globals.EXCEPTION_KEY, exception, PageContext.REQUEST_SCOPE);
+
     }
 
 }

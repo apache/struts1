@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsCollectionTag.java,v 1.9 2003/02/01 05:30:28 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/02/01 05:30:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsCollectionTag.java,v 1.10 2003/07/26 17:22:27 rleland Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/07/26 17:22:27 $
  * 
  * ====================================================================
  *
@@ -76,6 +76,7 @@ import org.apache.commons.collections.IteratorUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Tag for creating multiple &lt;select&gt; options from a collection. The
@@ -90,7 +91,7 @@ import org.apache.struts.util.ResponseUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Martin Cooper
- * @version $Revision: 1.9 $ $Date: 2003/02/01 05:30:28 $
+ * @version $Revision: 1.10 $ $Date: 2003/07/26 17:22:27 $
  * @since Struts 1.1
  */
 
@@ -216,7 +217,7 @@ public class OptionsCollectionTag extends TagSupport {
         }
 
         // Acquire the collection containing our options
-        Object collection = RequestUtils.lookup(pageContext, name, property, null);
+        Object collection = TagUtils.getInstance().lookup(pageContext, name, property, null);
 
         if (collection == null) {
             JspException e =

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.12 2003/07/13 23:57:32 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/07/13 23:57:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.13 2003/07/26 17:22:27 rleland Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/07/26 17:22:27 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.Globals;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -78,7 +79,7 @@ import org.apache.struts.util.ResponseUtils;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2003/07/13 23:57:32 $
+ * @version $Revision: 1.13 $ $Date: 2003/07/26 17:22:27 $
  */
 public class MessageTag extends TagSupport {
 
@@ -252,7 +253,7 @@ public class MessageTag extends TagSupport {
         String key = this.key;
         if (key == null) {
             // Look up the requested property value
-            Object value = RequestUtils.lookup(pageContext, name, property, scope);
+            Object value = TagUtils.getInstance().lookup(pageContext, name, property, scope);
             if (value != null && !(value instanceof String)) {
                 JspException e =
                     new JspException(messages.getMessage("message.property", key));

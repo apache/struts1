@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.8 2003/07/13 23:28:03 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/07/13 23:28:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.9 2003/07/26 17:22:28 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/07/26 17:22:28 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import java.util.Map;
 import javax.servlet.jsp.JspException;
 
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Evalute the nested body content of this tag if the specified value
@@ -74,7 +75,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.8 $ $Date: 2003/07/13 23:28:03 $
+ * @version $Revision: 1.9 $ $Date: 2003/07/26 17:22:28 $
  * @since Struts 1.1
  */
 public class EmptyTag extends ConditionalTagBase {
@@ -118,9 +119,9 @@ public class EmptyTag extends ConditionalTagBase {
         
 		Object value = null;
 		if (this.property == null) {
-			value = RequestUtils.lookup(pageContext, name, scope);
+			value = TagUtils.getInstance().lookup(pageContext, name, scope);
 		} else {
-			value = RequestUtils.lookup(pageContext, name, property, scope);
+			value = TagUtils.getInstance().lookup(pageContext, name, property, scope);
 		}
         
         boolean empty = true;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HiddenTag.java,v 1.4 2002/10/05 22:53:57 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/05 22:53:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HiddenTag.java,v 1.5 2003/07/26 17:22:27 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/26 17:22:27 $
  *
  * ====================================================================
  *
@@ -66,13 +66,14 @@ package org.apache.struts.taglib.html;
 import javax.servlet.jsp.JspException;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
+import org.apache.struts.taglib.TagUtils;
 
 
 /**
  * Custom tag for input fields of type "hidden".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/10/05 22:53:57 $
+ * @version $Revision: 1.5 $ $Date: 2003/07/26 17:22:27 $
  */
 
 public class HiddenTag extends BaseFieldTag {
@@ -134,7 +135,7 @@ public class HiddenTag extends BaseFieldTag {
         if (value != null) {
             results = ResponseUtils.filter(value);
         } else {
-            Object value = RequestUtils.lookup(pageContext, name, property,
+            Object value = TagUtils.getInstance().lookup(pageContext, name, property,
                                                null);
             if (value == null) {
                 results = "";
