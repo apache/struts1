@@ -80,8 +80,9 @@
     <info>
     <p>This tag evaluates its nested body content only if the specified value
     is either absent (i.e. <code>null</code>), an empty string (i.e. a
-    <code>java.lang.String</code> with a length of zero) or an empty java.util.Collection
-    (tested by the .isEmpty() method on the java.util.Collection interface).</p>
+    <code>java.lang.String</code> with a length of zero), or an empty
+    <code>java.util.Collection</code> or <code>java.util.Map</code> (tested by
+    the .isEmpty() method on the respective interface).</p>
     </info>
 
     <attribute>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.3 2002/06/25 00:53:41 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2002/06/25 00:53:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.4 2002/10/12 19:19:18 martinc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/12 19:19:18 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@
 package org.apache.struts.taglib.logic;
 
 import java.util.Collection;
+import java.util.Map;
 import javax.servlet.jsp.JspException;
 import org.apache.struts.util.RequestUtils;
 
@@ -72,7 +73,7 @@ import org.apache.struts.util.RequestUtils;
  * is empty for this request.
  *
  * @author Martin Cooper
- * @version $Revision: 1.3 $ $Date: 2002/06/25 00:53:41 $
+ * @version $Revision: 1.4 $ $Date: 2002/10/12 19:19:18 $
  * @since Struts 1.1
  */
 
@@ -121,6 +122,9 @@ public class EmptyTag extends ConditionalTagBase {
                 } else if (value instanceof Collection) {
                     Collection collValue = (Collection)value;
                     empty = collValue.isEmpty();
+                } else if (value instanceof Map) {
+                    Map mapValue = (Map)value;
+                    empty = mapValue.isEmpty();
                 } else {
                     empty = false;
                 }
