@@ -486,6 +486,10 @@ public class MultipartIterator {
         BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(tempFile),
                                                             diskBufferSize);
         byte[] lineBuffer = inputStream.readLine();
+        if (lineBuffer == null)
+        {
+            throw new IOException("Premature end of stream while reading multipart request");
+        }
 	    int bytesRead = lineBuffer.length;
 
         boolean cutCarriage = false;
@@ -511,6 +515,10 @@ public class MultipartIterator {
                         cutNewline = true;
                         fos.write(lineBuffer, 0, bytesRead);
                         lineBuffer = inputStream.readLine();
+                        if (lineBuffer == null)
+                        {
+                            throw new IOException("Premature end of stream while reading multipart request");
+                        }
                         bytesRead = lineBuffer.length;
             }
         }
