@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.14 2001/09/17 04:52:58 martinc Exp $
- * $Revision: 1.14 $
- * $Date: 2001/09/17 04:52:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.15 2001/11/05 04:51:40 martinc Exp $
+ * $Revision: 1.15 $
+ * $Date: 2001/11/05 04:51:40 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2001/09/17 04:52:58 $
+ * @version $Revision: 1.15 $ $Date: 2001/11/05 04:51:40 $
  */
 
 public class FormTag extends TagSupport {
@@ -691,8 +691,8 @@ public class FormTag extends TagSupport {
         int question = action.indexOf("?");
         if (question >= 0)
             value = value.substring(0, question);
-        int slash = action.lastIndexOf("/");
-        int period = action.lastIndexOf(".");
+        int slash = value.lastIndexOf("/");
+        int period = value.lastIndexOf(".");
         if ((period >= 0) && (period > slash))
             value = value.substring(0, period);
         if (value.startsWith("/"))
