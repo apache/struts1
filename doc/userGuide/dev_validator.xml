@@ -56,6 +56,15 @@ contributed by David Winterfeldt.
 </li>
 </ul>
 </section>
+<section href="validator-bugs" name="Known Bugs">
+<p> The Struts Validator relies on the commons-validator. As of November 15 there
+is a bug for non default LOCALE's that prevents validation from working.
+Stated another way, if the browser and server locales do not match, validation will fail.
+See 
+<a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=14384">Bugzilla bug 14384 </a>.
+Until the commons validator is fixed, you must rebuild the validator with this patch applied.
+</p>
+</section>
 <section href="validator-changes" name="Changes and deprecations">
 
 <p> <strong>Validating against the DTD in the commons-validator.jar. </strong></p>
