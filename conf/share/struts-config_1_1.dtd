@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.39 2003/02/21 05:25:24 dgraham Exp $
+     $Id: struts-config_1_1.dtd,v 1.40 2003/05/14 08:17:16 turner Exp $
 -->
 
 
@@ -199,7 +199,9 @@ The "form-bean" element describes a particular form bean, which is a
 
      initial         String representation of the initial value for this property.
                      If not specified, primitives will be initialized to zero and
-                     objects initialized to null.
+                     objects initialized to the zero-argument instantiation of that
+                     object class.  For example, Strings will be initialized to ""
+
 
      name            The name of the JavaBean property described by this element.
 
