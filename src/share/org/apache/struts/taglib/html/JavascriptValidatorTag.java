@@ -1,7 +1,7 @@
 /*
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -87,7 +87,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.19 $ $Date: 2002/12/08 06:54:51 $
+ * @version $Revision: 1.20 $ $Date: 2003/01/16 03:55:09 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -528,12 +528,9 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         sb.append(this.getStartElement());
         
-        if (this.isXhtml()) {
-            sb.append("<![CDATA[\r\n");
-        }
-        
-        if ("true".equals(htmlComment))
+        if ("true".equals(htmlComment)) {
             sb.append(htmlBeginComment);
+        }
         sb.append("\n     var bCancel = false; \n\n");
 
         if (methodName == null || methodName.length() == 0)
@@ -590,10 +587,6 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         sb.append("\n");
         if ("true".equals(htmlComment)){
             sb.append(htmlEndComment);
-        }
-        
-         if (this.isXhtml()) {
-            sb.append("]]>\r\n");
         }
         
         sb.append("</script>\n\n");
