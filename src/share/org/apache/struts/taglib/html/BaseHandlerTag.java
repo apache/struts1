@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.26 2003/07/02 02:50:15 dgraham Exp $
- * $Revision: 1.26 $
- * $Date: 2003/07/02 02:50:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.27 2003/07/03 04:50:28 dgraham Exp $
+ * $Revision: 1.27 $
+ * $Date: 2003/07/03 04:50:28 $
  *
  * ====================================================================
  *
@@ -84,9 +84,8 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Don Clasen
  * @author James Turner
- * @version $Revision: 1.26 $ $Date: 2003/07/02 02:50:15 $
+ * @version $Revision: 1.27 $ $Date: 2003/07/03 04:50:28 $
  */
-
 public abstract class BaseHandlerTag extends BodyTagSupport {
 
     /**
@@ -565,7 +564,8 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
         if (literal != null) {
             if (key != null) {
-                JspException e = new JspException(messages.getMessage("common.both"));
+                JspException e =
+                    new JspException(messages.getMessage("common.both"));
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             } else {
@@ -573,7 +573,11 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
             }
         } else {
             if (key != null) {
-                return (RequestUtils.message(pageContext, getBundle(), getLocale(), key));
+                return RequestUtils.message(
+                    pageContext,
+                    getBundle(),
+                    getLocale(),
+                    key);
             } else {
                 return null;
             }
@@ -588,50 +592,59 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     private boolean triedJstlInit = false;
     private boolean triedJstlSuccess = false;
 
-    private Integer getJstlLoopIndex () {
-	if (!triedJstlInit) {
-	    triedJstlInit = true;
-	    try {
-		loopTagSupportClass = 
-		    RequestUtils.applicationClass("javax.servlet.jsp.jstl.core.LoopTagSupport");
-		loopTagSupportGetStatus = 
-		    loopTagSupportClass.getDeclaredMethod("getLoopStatus", null);
-		loopTagStatusClass =
-		    RequestUtils.applicationClass("javax.servlet.jsp.jstl.core.LoopTagStatus");
-		loopTagStatusGetIndex = 
-		    loopTagStatusClass.getDeclaredMethod("getIndex", null);
-		triedJstlSuccess = true;
-	    }
-	    // These just mean that JSTL isn't loaded, so ignore
-	    catch (ClassNotFoundException ex) {}
-	    catch (NoSuchMethodException ex) {}
-	}
-	if (triedJstlSuccess) {
-	    try {
-		Object loopTag = findAncestorWithClass(this, loopTagSupportClass);
-		if (loopTag == null)  {
-		    return null;
-		}
-		Object status = loopTagSupportGetStatus.invoke(loopTag, null);
-		return (Integer) loopTagStatusGetIndex.invoke(status, null);
-	    } 
-	    catch (IllegalAccessException ex) {
-		log.error(ex.getMessage(), ex);
-	    }
-	    catch (IllegalArgumentException ex) {
-		log.error(ex.getMessage(), ex);
-	    }
-	    catch (InvocationTargetException ex) {
-		log.error(ex.getMessage(), ex);
-	    }
-	    catch (NullPointerException ex) {
-		log.error(ex.getMessage(), ex);
-	    }
-	    catch (ExceptionInInitializerError ex) {
-		log.error(ex.getMessage(), ex);
-	    }
-	}
-	return null;
+    private Integer getJstlLoopIndex() {
+        if (!triedJstlInit) {
+            triedJstlInit = true;
+            try {
+                loopTagSupportClass =
+                    RequestUtils.applicationClass(
+                        "javax.servlet.jsp.jstl.core.LoopTagSupport");
+
+                loopTagSupportGetStatus =
+                    loopTagSupportClass.getDeclaredMethod("getLoopStatus", null);
+
+                loopTagStatusClass =
+                    RequestUtils.applicationClass(
+                        "javax.servlet.jsp.jstl.core.LoopTagStatus");
+
+                loopTagStatusGetIndex =
+                    loopTagStatusClass.getDeclaredMethod("getIndex", null);
+
+                triedJstlSuccess = true;
+
+            } catch (ClassNotFoundException ex) {
+                // These just mean that JSTL isn't loaded, so ignore
+            } catch (NoSuchMethodException ex) {
+            }
+        }
+
+        if (triedJstlSuccess) {
+            try {
+                Object loopTag = findAncestorWithClass(this, loopTagSupportClass);
+                if (loopTag == null) {
+                    return null;
+                }
+
+                Object status = loopTagSupportGetStatus.invoke(loopTag, null);
+                return (Integer) loopTagStatusGetIndex.invoke(status, null);
+
+            } catch (IllegalAccessException ex) {
+                log.error(ex.getMessage(), ex);
+
+            } catch (IllegalArgumentException ex) {
+                log.error(ex.getMessage(), ex);
+
+            } catch (InvocationTargetException ex) {
+                log.error(ex.getMessage(), ex);
+
+            } catch (NullPointerException ex) {
+                log.error(ex.getMessage(), ex);
+
+            } catch (ExceptionInInitializerError ex) {
+                log.error(ex.getMessage(), ex);
+            }
+        }
+        return null;
     }
 
     /**
@@ -640,36 +653,46 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      *  @param handlers The StringBuffer that output will be appended to.
      *  @exception JspException if 'indexed' tag used outside of iterate tag.
      */
-    protected void prepareIndex(StringBuffer handlers, String name) throws JspException {
-	int index = 0;
-	boolean found = false;
+    protected void prepareIndex(StringBuffer handlers, String name)
+        throws JspException {
+        int index = 0;
+        boolean found = false;
 
         // look for outer iterate tag
-        IterateTag iterateTag = (IterateTag) findAncestorWithClass(this, IterateTag.class);
-	// Look for JSTL loops
-	if (iterateTag == null) {
-	    Integer i = getJstlLoopIndex();
-	    if (i != null) {
-		index = i.intValue();
-		found = true;
-	    }
-	} else {
-	    index = iterateTag.getIndex();
-	    found = true;
-	}
+        IterateTag iterateTag =
+            (IterateTag) findAncestorWithClass(this, IterateTag.class);
+
+        // Look for JSTL loops
+        if (iterateTag == null) {
+            Integer i = getJstlLoopIndex();
+            if (i != null) {
+                index = i.intValue();
+                found = true;
+            }
+
+        } else {
+            index = iterateTag.getIndex();
+            found = true;
+        }
+
         if (!found) {
             // this tag should only be nested in iteratetag, if it's not, throw exception
-            JspException e = new JspException(messages.getMessage("indexed.noEnclosingIterate"));
+            JspException e =
+                new JspException(messages.getMessage("indexed.noEnclosingIterate"));
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-        if (name != null)
+
+        if (name != null) {
             handlers.append(name);
+        }
+
         handlers.append("[");
         handlers.append(index);
         handlers.append("]");
-        if (name != null)
+        if (name != null) {
             handlers.append(".");
+        }
     }
 
     /**
@@ -880,7 +903,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      */
     protected String lookupProperty(String beanName, String property)
         throws JspException {
-            
+
         Object bean = RequestUtils.lookup(this.pageContext, beanName, null);
         if (bean == null) {
             throw new JspException(messages.getMessage("getter.bean", beanName));
