@@ -20,7 +20,7 @@ the Struts framework. Consequently, the majority of the HTML tags involve HTML f
 
 <p>
 The HTML taglib contains tags used to create Struts input forms, as well as other tags generally useful
-in the creation of HTML-based user interfaces.
+in the creation of HTML-based user interfaces.  The output is HTML 4.01 compliant or XHTML 1.0 when in XHTML mode.
 </p>
 </section>
 
