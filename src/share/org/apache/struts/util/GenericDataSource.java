@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.4 2001/02/12 00:32:13 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/12 00:32:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.5 2001/04/18 22:15:56 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/04/18 22:15:56 $
  *
  * ====================================================================
  *
@@ -158,7 +158,7 @@ import javax.sql.DataSource;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.4 $ $Date: 2001/02/12 00:32:13 $
+ * @version $Revision: 1.5 $ $Date: 2001/04/18 22:15:56 $
  */
 
 public class GenericDataSource implements DataSource {
@@ -415,8 +415,10 @@ public class GenericDataSource implements DataSource {
             // Create a new connection if we are not yet at the maximum
             if (activeCount < maxCount) {
                 Connection conn = createConnection();
-                useCount++;
-                return (conn);
+                if (conn != null) {
+                    useCount++;
+                    return (conn);
+                }
             }
 
             // Wait for an existing connection to be returned
@@ -618,9 +620,12 @@ public class GenericDataSource implements DataSource {
      */
     protected synchronized Connection createConnection() throws SQLException {
 
-        Connection conn = driver.connect(url, properties);
-        activeCount++;
-        return (new GenericConnection(this, conn, autoCommit, readOnly));
+        if (activeCount < maxCount) {
+            Connection conn = driver.connect(url, properties);
+            activeCount++;
+            return (new GenericConnection(this, conn, autoCommit, readOnly));
+        }
+        return (null);
 
     }
 
