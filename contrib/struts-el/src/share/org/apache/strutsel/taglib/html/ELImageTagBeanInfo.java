@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImageTagBeanInfo.java,v 1.1 2002/10/14 03:11:08 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/14 03:11:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImageTagBeanInfo.java,v 1.2 2002/12/11 17:12:20 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/11 17:12:20 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -84,7 +84,7 @@ public class ELImageTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[33];
+        PropertyDescriptor[]  result   = new PropertyDescriptor[34];
 
         try {
             result[0] = new PropertyDescriptor("accesskey", ELImageTag.class,
@@ -156,15 +156,15 @@ public class ELImageTagBeanInfo extends SimpleBeanInfo
             result[28] = new PropertyDescriptor("styleClass",
                                                ELImageTag.class,
                                                null, "setStyleClass");
-//             result[21] = new PropertyDescriptor("styleId", ELImageTag.class,
-//                                                null, "setStyleId");
-            result[29] = new PropertyDescriptor("tabindex", ELImageTag.class,
+            result[29] = new PropertyDescriptor("styleId", ELImageTag.class,
+                                               null, "setStyleId");
+            result[30] = new PropertyDescriptor("tabindex", ELImageTag.class,
                                                null, "setTabindex");
-            result[30] = new PropertyDescriptor("title", ELImageTag.class,
+            result[31] = new PropertyDescriptor("title", ELImageTag.class,
                                                null, "setTitle");
-            result[31] = new PropertyDescriptor("titleKey", ELImageTag.class,
+            result[32] = new PropertyDescriptor("titleKey", ELImageTag.class,
                                                null, "setTitleKey");
-            result[32] = new PropertyDescriptor("value", ELImageTag.class,
+            result[33] = new PropertyDescriptor("value", ELImageTag.class,
                                                null, "setValue");
         }
         catch (IntrospectionException ex) {
