@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.5 2002/11/16 04:24:36 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2002/11/16 04:24:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.6 2002/12/11 06:30:21 martinc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/12/11 06:30:21 $
  *
  * ====================================================================
  *
@@ -119,7 +119,7 @@ public class XmlParser
 	digester.setDebug(digesterDebugLevel);
 	digester.setValidating(validating);
 	digester.setNamespaceAware(true);
-  //digester.setUseContextClassLoader(true);
+	digester.setUseContextClassLoader(true);
 	// Register our local copy of the DTDs that we can find
   for (int i = 0; i < registrations.length; i += 2) {
       URL url = this.getClass().getResource(registrations[i+1]);
