@@ -29,7 +29,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.collections.IteratorUtils;
+import org.apache.struts.util.IteratorAdapter;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -343,7 +343,7 @@ public class OptionsCollectionTag extends TagSupport {
             return (((Map) collection).entrySet().iterator());
 
         } else if (collection instanceof Enumeration) {
-            return IteratorUtils.asIterator((Enumeration) collection);
+            return new IteratorAdapter((Enumeration) collection);
 
         } else {
             throw new JspException(

@@ -29,7 +29,7 @@ import java.util.Map;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
-import org.apache.commons.collections.IteratorUtils;
+import org.apache.struts.util.IteratorAdapter;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -260,7 +260,7 @@ public class IterateTag extends BodyTagSupport {
         } else if (collection instanceof Map) {
             iterator = ((Map) collection).entrySet().iterator();
         } else if (collection instanceof Enumeration) {
-            iterator = IteratorUtils.asIterator((Enumeration) collection);
+            iterator = new IteratorAdapter((Enumeration) collection);
         } else {
             JspException e = new JspException(messages.getMessage("iterate.iterator"));
             TagUtils.getInstance().saveException(pageContext, e);
