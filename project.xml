@@ -158,7 +158,8 @@
   </contributors>
   <dependencies>
     <dependency>
-      <id>commons-beanutils</id>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
       <version>1.6.1</version>
       <url>http://jakarta.apache.org/commons/beanutils.html</url>
       <properties>
@@ -167,7 +168,8 @@
       </properties>
     </dependency>
     <dependency>
-      <id>commons-collections</id>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
       <version>2.1</version>
       <url>http://jakarta.apache.org/commons/collections.html</url>
       <properties>
@@ -176,7 +178,8 @@
       </properties>
     </dependency>
     <dependency>
-      <id>commons-digester</id>
+      <groupId>commons-digester</groupId>
+      <artifactId>commons-digester</artifactId>
       <version>1.5</version>
       <url>http://jakarta.apache.org/commons/digester.html</url>
       <properties>
@@ -185,7 +188,8 @@
       </properties>
     </dependency>
     <dependency>
-      <id>commons-fileupload</id>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
       <version>1.0</version>
       <url>http://jakarta.apache.org/commons/fileupload/</url>
       <properties>
@@ -194,7 +198,8 @@
       </properties>
     </dependency>
     <dependency>
-      <id>commons-logging</id>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
       <version>1.0.3</version>
       <url>http://jakarta.apache.org/commons/logging.html</url>
       <properties>
@@ -203,24 +208,25 @@
       </properties>
     </dependency>
     <dependency>
-      <!-- 
-              Note that this version of commons-validator is not yet
-              served from the iBiblio repository.  You can download 
-              a distribution from http://www.apache.org/~rleland/ValidatorAlpha/1.1.1/
-              or build it from the CVS repository.  (With Maven, you can use 
-              the goal jar:install to build a jar and put it in your Maven repository.)
-              
-              If you download the binary, don't forget to rename to include the version number 
-              (from "commons-validator.jar" to "commons-validator-1.1.1.jar"
-              
-              If you build it from the CVS repository, you will probably end up with
-              version 1.1.2-dev.  You can tell Maven to use that version with Struts
-              by editing your "build.properties" file in the root of your local
-              copy of the Struts CVS distribution.  Include these two lines:
-              maven.jar.override=on
-              maven.jar.commons-validator=1.1.2-dev
-            -->
-      <id>commons-validator</id>
+      <!--
+                    Note that this version of commons-validator is not yet
+                    served from the iBiblio repository.  You can download
+                    a distribution from http://www.apache.org/~rleland/ValidatorAlpha/1.1.1/
+                    or build it from the CVS repository.  (With Maven, you can use
+                    the goal jar:install to build a jar and put it in your Maven repository.)
+
+                    If you download the binary, don't forget to rename to include the version number
+                    (from "commons-validator.jar" to "commons-validator-1.1.1.jar"
+
+                    If you build it from the CVS repository, you will probably end up with
+                    version 1.1.2-dev.  You can tell Maven to use that version with Struts
+                    by editing your "build.properties" file in the root of your local
+                    copy of the Struts CVS distribution.  Include these two lines:
+                    maven.jar.override=on
+                    maven.jar.commons-validator=1.1.2-dev
+                  -->
+      <groupId>commons-validator</groupId>
+      <artifactId>commons-validator</artifactId>
       <version>1.1.1</version>
       <url>http://jakarta.apache.org/commons/validator/</url>
       <properties>
@@ -229,7 +235,8 @@
       </properties>
     </dependency>
     <dependency>
-      <id>oro</id>
+      <groupId>oro</groupId>
+      <artifactId>oro</artifactId>
       <version>2.0.7</version>
       <url>http://jakarta.apache.org/oro/</url>
       <properties>
@@ -238,7 +245,8 @@
       </properties>
     </dependency>
     <dependency>
-      <id>xml-apis</id>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
       <version>2.0.2</version>
       <url>http://xml.apache.org/commons/</url>
       <properties>
@@ -254,17 +262,20 @@
       </properties>
     </dependency>
     <dependency>
-      <id>servletapi</id>
+      <groupId>servletapi</groupId>
+      <artifactId>servletapi</artifactId>
       <version>2.2</version>
     </dependency>
     <!-- for unit tests -->
     <dependency>
-      <id>junit</id>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <url>http://www.junit.org</url>
     </dependency>
     <dependency>
-      <id>commons-lang</id>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
       <version>2.0</version>
       <url>http://jakarta.apache.org/commons/lang.html</url>
     </dependency>
@@ -336,15 +347,15 @@
   </build>
   <reports>
     <!--
-         |
-         | These should all be completely self contained. You should be able
-         | to generate each of them individually without needing the final
-         | xdoc transformation.
-         |
-         | Each report plugin with it's POM and plugin.jelly logic should
-         | contain everything needed to produced the report.
-         |
-        -->
+             |
+             | These should all be completely self contained. You should be able
+             | to generate each of them individually without needing the final
+             | xdoc transformation.
+             |
+             | Each report plugin with it's POM and plugin.jelly logic should
+             | contain everything needed to produced the report.
+             |
+            -->
     <report>maven-jdepend-plugin</report>
     <report>maven-checkstyle-plugin</report>
     <report>maven-changes-plugin</report>
