@@ -29,18 +29,6 @@
       which do not have direct relationships with code bases.</p>
     </info>
 
-    <task name="Users Guide">
-      <info>
-        <p>Update the Struts User's Guide to reflect Struts 1.0 APIs and
-        design patterns.  Split into multiple files as required for good
-        organization.</p>
-        [STRUTS-DEV, Gidado-Yisa Immanuel, 10/31/2000]
-      </info>
-      <assigned>
-      Michael Schachter
-      </assigned>
-    </task>
-
     <task name="Platform Specific Installation Notes">
       <info>
         <p>Document specific installation instructions, problems, and/or

@@ -337,7 +337,11 @@
     </copy>
     <mkdir   dir="${catalina.home}/webapps/struts-test"/>
     <copy  todir="${catalina.home}/webapps/struts-test">
-      <fileset dir="${build.home}/test"/>
+      <fileset dir="${catalina.home}/test"/>
+    </copy>
+    <mkdir   dir="${catalina.home}/webapps/struts-upload"/>
+    <copy  todir="${catalina.home}/webapps/struts-upload">
+      <fileset dir="${build.home}/upload"/>
     </copy>
   </target>
 
@@ -358,6 +362,10 @@
     <mkdir   dir="${tomcat.home}/webapps/struts-test"/>
     <copy  todir="${tomcat.home}/webapps/struts-test">
       <fileset dir="${build.home}/test"/>
+    </copy>
+    <mkdir   dir="${tomcat.home}/webapps/struts-upload"/>
+    <copy  todir="${tomcat.home}/webapps/struts-upload">
+      <fileset dir="${build.home}/upload"/>
     </copy>
   </target>
 
