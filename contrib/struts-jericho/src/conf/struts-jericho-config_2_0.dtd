@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
        "http://jakarta.apache.org/struts/dtds/struts-jericho-config_2_0.dtd">
 
-     $Id: struts-jericho-config_2_0.dtd,v 1.4 2003/12/19 02:31:14 husted Exp $
+     $Id: struts-jericho-config_2_0.dtd,v 1.5 2003/12/19 02:35:07 husted Exp $
 -->
 
 
@@ -27,7 +27,7 @@
 <!ENTITY % AttributeName "CDATA">
 
 
-<!-- A "PropObject" is the identifier of an object, such as a form,
+<!-- A "PropObject" is the identifier of an object, such as an input form,
      and also serves as the name of the corresponding scripting variable
      and the name of the attribute under which the object is accessed.
      Therefore, it must conform to the rules for an Identifier.
@@ -75,7 +75,7 @@
 <!ENTITY % RequestPath "CDATA">
 
 
-<!-- The name of a scope within which a object, such as a form handler, may be accessed.
+<!-- The name of a scope within which a object, such as an input handler, may be accessed.
 -->
 <!ENTITY % Scope "(request|session|application)">
 
@@ -116,11 +116,11 @@
      Properties can be used to avoid redundacy. For example, an often-used
      class name can be listed in the properties file:
 
-         formHandler = app.struts.MyFormHandler
+         inputHandler = app.struts.MyInputHandler
 
      and then referred to as the value for an attribute:
 
-         handler = ${formHandler}
+         handler = ${inputHandler}
 
      The following attribute is defined:
 
@@ -151,14 +151,14 @@
 The following attribute is defined:
 
      config          Fully qualified Java class to use when instantiating
-                     Form objects. If specified, the object must implement
-                     org.apache.struts.core.Form.
-                     ["org.apache.struts.core.FormBase"]
+                     Input objects. If specified, the object must implement
+                     org.apache.struts.core.Input.
+                     ["org.apache.struts.core.InputBase"]
 
      handler         Fully qualified Java class to use when instantiating
-                     FormHandler objects. If specified, the object must implement
-                     org.apache.struts.core.FormHandler.
-                     ["org.apache.struts.core.DynaFormHandlerBase"]
+                     InputHandler objects. If specified, the object must implement
+                     org.apache.struts.core.InputHandler.
+                     ["org.apache.struts.core.DynaInputHandlerBase"]
 -->
 <!ELEMENT inputs (input*)>
 <!ATTLIST inputs id              ID              #IMPLIED>
@@ -170,8 +170,8 @@ The following attribute is defined:
      instance that can be referenced by a Mapping instance.
 
      name            The unique identifier for this input descriptor.
-                     Referenced by the "form" attribute of the <mapping> element
-                     to specify which form to use with a matching request. May also
+                     Referenced by the "input" attribute of the <mapping> element
+                     to specify which input handler to use with a matching request. May also
                      be referenced by an "extends" attribute in another <input> element.
 
      extends         Name of an input descriptor that is used as a value template for
@@ -179,12 +179,12 @@ The following attribute is defined:
                      the new element. Any attribute inherited from the template can
                      be overloaded by providing a new value.
 
-     config          Fully qualified class name of the Form class to use with
-                     this form that implements org.apache.struts.core.Input.
+     config          Fully qualified class name of the Input class to use with
+                     this input that implements org.apache.struts.core.Input.
                      ["org.apache.struts.core.InputBase"]
 
      handler         Fully qualified class name of the InputHandler class to use with
-                     this form that implements org.apache.struts.core.InputHandler.
+                     this input that implements org.apache.struts.core.InputHandler.
                      ["org.apache.struts.core.DynaInputHandlerBase"]
 
 -->
@@ -265,7 +265,7 @@ The following attribute is defined:
                      complete the request/response. May also be referenced by
                      an "extends" attribute of another <location> element.
 
-     extends         Name of a form descriptor that is used as a value template for
+     extends         Name of a location descriptor that is used as a value template for
                      this element. All attributes from the template are available to
                      the new element. Any attribute inherited from the template can
                      be overridden by providing a new value.
@@ -574,15 +574,15 @@ The following attribute is defined:
                      this mapping.
 
      attribute       Name of the request-scope or session-scope attribute that
-                     is used to access our FormHandler object, if it is other than
-                     the object's default "form". Optional if "form" is specified,
+                     is used to access our InputHandler object, if it is other than
+                     the object's default "input". Optional if "input" is specified,
                      else not valid.
 
      input           Name of the input descriptor, if any, to use with this mapping.
                      (This is *not* the dispatch Location if validate fails.)
 
      scope           The scope ("request" or "session") that is used to
-                     access our FormHandler, if any. Optional if <input> is
+                     access our InputHandler, if any. Optional if <input> is
                      specified, else not valid.
 
      populate        Set to "false" if the populate method of the InputHandler
