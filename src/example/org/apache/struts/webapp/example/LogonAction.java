@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.5 2002/03/05 04:23:56 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/03/05 04:23:56 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.6 2002/03/05 04:55:51 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/03/05 04:55:51 $
  *
  * ====================================================================
  *
@@ -70,6 +70,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
@@ -86,10 +88,20 @@ import org.apache.commons.beanutils.PropertyUtils;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/03/05 04:23:56 $
+ * @version $Revision: 1.6 $ $Date: 2002/03/05 04:55:51 $
  */
 
 public final class LogonAction extends Action {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The <code>Log</code> instance for this application.
+     */
+    private Log log =
+        LogFactory.getLog("org.apache.struts.webapp.Example");
 
 
     // --------------------------------------------------------- Public Methods
@@ -149,9 +161,10 @@ public final class LogonAction extends Action {
 	// Save our logged-in user in the session
 	HttpSession session = request.getSession();
 	session.setAttribute(Constants.USER_KEY, user);
-	if (servlet.getDebug() >= 1)
-	    servlet.log("LogonAction: User '" + user.getUsername() +
-	                "' logged on in session " + session.getId());
+        if (log.isDebugEnabled()) {
+            log.debug("LogonAction: User '" + user.getUsername() +
+                      "' logged on in session " + session.getId());
+        }
 
         // Remove the obsolete form bean
 	if (mapping.getAttribute() != null) {

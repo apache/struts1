@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditRegistrationAction.java,v 1.5 2002/03/05 04:23:56 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/03/05 04:23:56 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditRegistrationAction.java,v 1.6 2002/03/05 04:55:51 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/03/05 04:55:51 $
  *
  * ====================================================================
  *
@@ -73,6 +73,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -87,10 +89,20 @@ import org.apache.struts.util.MessageResources;
  * User (if any).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/03/05 04:23:56 $
+ * @version $Revision: 1.6 $ $Date: 2002/03/05 04:55:51 $
  */
 
 public final class EditRegistrationAction extends Action {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The <code>Log</code> instance for this application.
+     */
+    private Log log =
+        LogFactory.getLog("org.apache.struts.webapp.Example");
 
 
     // --------------------------------------------------------- Public Methods
@@ -124,27 +136,30 @@ public final class EditRegistrationAction extends Action {
 	String action = request.getParameter("action");
 	if (action == null)
 	    action = "Create";
-        if (servlet.getDebug() >= 1)
-            servlet.log("EditRegistrationAction:  Processing " + action +
+        if (log.isDebugEnabled()) {
+            log.debug("EditRegistrationAction:  Processing " + action +
                         " action");
+        }
 
 	// Is there a currently logged on user?
 	User user = null;
 	if (!"Create".equals(action)) {
 	    user = (User) session.getAttribute(Constants.USER_KEY);
 	    if (user == null) {
-		if (servlet.getDebug() >= 1)
-		    servlet.log(" User is not logged on in session "
-	                        + session.getId());
+                if (log.isDebugEnabled()) {
+                    log.debug(" User is not logged on in session "
+                              + session.getId());
+                }
 		return (mapping.findForward("logon"));
 	    }
 	}
 
 	// Populate the user registration form
 	if (form == null) {
-            if (servlet.getDebug() >= 1)
-                servlet.log(" Creating new RegistrationForm bean under key "
-                            + mapping.getAttribute());
+            if (log.isTraceEnabled()) {
+                log.trace(" Creating new RegistrationForm bean under key "
+                          + mapping.getAttribute());
+            }
 	    form = new RegistrationForm();
             if ("request".equals(mapping.getScope()))
                 request.setAttribute(mapping.getAttribute(), form);
@@ -153,8 +168,9 @@ public final class EditRegistrationAction extends Action {
 	}
 	RegistrationForm regform = (RegistrationForm) form;
 	if (user != null) {
-            if (servlet.getDebug() >= 1)
-                servlet.log(" Populating form from " + user);
+            if (log.isTraceEnabled()) {
+                log.trace(" Populating form from " + user);
+            }
             try {
                 PropertyUtils.copyProperties(regform, user);
                 regform.setAction(action);
@@ -164,22 +180,24 @@ public final class EditRegistrationAction extends Action {
                 Throwable t = e.getTargetException();
                 if (t == null)
                     t = e;
-                servlet.log("RegistrationForm.populate", t);
+                log.error("RegistrationForm.populate", t);
                 throw new ServletException("RegistrationForm.populate", t);
             } catch (Throwable t) {
-                servlet.log("RegistrationForm.populate", t);
+                log.error("RegistrationForm.populate", t);
                 throw new ServletException("RegistrationForm.populate", t);
             }
 	}
 
         // Set a transactional control token to prevent double posting
-        if (servlet.getDebug() >= 1)
-            servlet.log(" Setting transactional control token");
+        if (log.isTraceEnabled()) {
+            log.trace(" Setting transactional control token");
+        }
         saveToken(request);
 
 	// Forward control to the edit user registration page
-        if (servlet.getDebug() >= 1)
-            servlet.log(" Forwarding to 'success' page");
+        if (log.isTraceEnabled()) {
+            log.trace(" Forwarding to 'success' page");
+        }
 	return (mapping.findForward("success"));
 
     }

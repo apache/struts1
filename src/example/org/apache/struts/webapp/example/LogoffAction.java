@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogoffAction.java,v 1.2 2001/04/14 12:53:08 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2001/04/14 12:53:08 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogoffAction.java,v 1.3 2002/03/05 04:55:51 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/03/05 04:55:51 $
  *
  * ====================================================================
  *
@@ -72,6 +72,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -85,10 +87,20 @@ import org.apache.struts.util.MessageResources;
  * user logoff.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/04/14 12:53:08 $
+ * @version $Revision: 1.3 $ $Date: 2002/03/05 04:55:51 $
  */
 
 public final class LogoffAction extends Action {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The <code>Log</code> instance for this application.
+     */
+    private Log log =
+        LogFactory.getLog("org.apache.struts.webapp.Example");
 
 
     // --------------------------------------------------------- Public Methods
@@ -123,13 +135,15 @@ public final class LogoffAction extends Action {
 
 	// Process this user logoff
 	if (user != null) {
-	    if (servlet.getDebug() >= 1)
-	        servlet.log("LogoffAction: User '" + user.getUsername() +
-	                    "' logged off in session " + session.getId());
+            if (log.isDebugEnabled()) {
+                log.debug("LogoffAction: User '" + user.getUsername() +
+                          "' logged off in session " + session.getId());
+            }
 	} else {
-	    if (servlet.getDebug() >= 1)
-	        servlet.log("LogoffActon: User logged off in session " +
-	                    session.getId());
+            if (log.isDebugEnabled()) {
+                log.debug("LogoffActon: User logged off in session " +
+                          session.getId());
+            }
 	}
 	session.removeAttribute(Constants.SUBSCRIPTION_KEY);
 	session.removeAttribute(Constants.USER_KEY);

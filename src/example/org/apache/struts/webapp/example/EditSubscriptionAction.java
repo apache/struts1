@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditSubscriptionAction.java,v 1.5 2002/03/05 04:23:56 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/03/05 04:23:56 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditSubscriptionAction.java,v 1.6 2002/03/05 04:55:51 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/03/05 04:55:51 $
  *
  * ====================================================================
  *
@@ -73,6 +73,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -86,10 +88,20 @@ import org.apache.struts.util.MessageResources;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/03/05 04:23:56 $
+ * @version $Revision: 1.6 $ $Date: 2002/03/05 04:55:51 $
  */
 
 public final class EditSubscriptionAction extends Action {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The <code>Log</code> instance for this application.
+     */
+    private Log log =
+        LogFactory.getLog("org.apache.struts.webapp.Example");
 
 
     // --------------------------------------------------------- Public Methods
@@ -125,17 +137,17 @@ public final class EditSubscriptionAction extends Action {
 	    action = "Create";
         }
 	String host = request.getParameter("host");
-        if (servlet.getDebug() >= 1) {
-            servlet.log("EditSubscriptionAction:  Processing " + action +
-                        " action");
+        if (log.isDebugEnabled()) {
+            log.debug("EditSubscriptionAction:  Processing " + action +
+                      " action");
         }
 
 	// Is there a currently logged on user?
 	User user = (User) session.getAttribute(Constants.USER_KEY);
 	if (user == null) {
-	    if (servlet.getDebug() >= 1) {
-	        servlet.log(" User is not logged on in session "
-	                    + session.getId());
+            if (log.isTraceEnabled()) {
+                log.trace(" User is not logged on in session "
+                          + session.getId());
             }
 	    return (mapping.findForward("logon"));
 	}
@@ -144,9 +156,9 @@ public final class EditSubscriptionAction extends Action {
 	Subscription subscription =
             user.findSubscription(request.getParameter("host"));
 	if ((subscription == null) && !action.equals("Create")) {
-	    if (servlet.getDebug() >= 1) {
-		servlet.log(" No subscription for user " +
-			    user.getUsername() + " and host " + host);
+            if (log.isTraceEnabled()) {
+                log.trace(" No subscription for user " +
+                          user.getUsername() + " and host " + host);
             }
 	    return (mapping.findForward("failure"));
 	}
@@ -156,9 +168,9 @@ public final class EditSubscriptionAction extends Action {
 
 	// Populate the subscription form
 	if (form == null) {
-            if (servlet.getDebug() >= 1) {
-                servlet.log(" Creating new SubscriptionForm bean under key "
-                            + mapping.getAttribute());
+            if (log.isTraceEnabled()) {
+                log.trace(" Creating new SubscriptionForm bean under key "
+                          + mapping.getAttribute());
             }
 	    form = new SubscriptionForm();
             if ("request".equals(mapping.getScope())) {
@@ -170,8 +182,8 @@ public final class EditSubscriptionAction extends Action {
 	SubscriptionForm subform = (SubscriptionForm) form;
 	subform.setAction(action);
         if (!action.equals("Create")) {
-            if (servlet.getDebug() >= 1) {
-                servlet.log(" Populating form from " + subscription);
+            if (log.isTraceEnabled()) {
+                log.trace(" Populating form from " + subscription);
             }
             try {
                 PropertyUtils.copyProperties(subform, subscription);
@@ -180,17 +192,17 @@ public final class EditSubscriptionAction extends Action {
                 Throwable t = e.getTargetException();
                 if (t == null)
                     t = e;
-                servlet.log("SubscriptionForm.populate", t);
+                log.error("SubscriptionForm.populate", t);
                 throw new ServletException("SubscriptionForm.populate", t);
             } catch (Throwable t) {
-                servlet.log("SubscriptionForm.populate", t);
+                log.error("SubscriptionForm.populate", t);
                 throw new ServletException("SubscriptionForm.populate", t);
             }
         }
 
 	// Forward control to the edit subscription page
-        if (servlet.getDebug() >= 1) {
-            servlet.log(" Forwarding to 'success' page");
+        if (log.isTraceEnabled()) {
+            log.trace(" Forwarding to 'success' page");
         }
 	return (mapping.findForward("success"));
 
