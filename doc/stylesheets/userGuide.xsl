@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: userGuide.xsl,v 1.2 2001/06/12 03:19:07 craigmcc Exp $ -->
+<!-- $Id: userGuide.xsl,v 1.3 2001/09/17 19:58:17 husted Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -157,6 +157,97 @@
       <tr><td>
         <blockquote>
           <xsl:apply-templates/>
+        </blockquote>
+      </td></tr>
+    </table>
+  </xsl:template>
+
+
+  <!-- Process a tag library section -->
+  <xsl:template match="taglib">
+    <table border="0" cellspacing="5" cellpadding="5" width="98%">
+      <tr><td bgcolor="{$banner-bg}">
+        <font color="{$banner-fg}" face="arial,helvetica,sanserif" size="+1">
+          <strong><xsl:value-of select="display-name"/></strong>
+        </font>
+      </td></tr>
+      <tr><td>
+        <blockquote>
+          <xsl:apply-templates select="info"/>
+        </blockquote>
+      </td></tr>
+      <tr><td>
+        <blockquote>
+          <table border="1" cellspacing="2" cellpadding="2">
+            <tr>
+              <th width="15%">Tag Name</th>
+              <th>Description</th>
+            </tr>
+            <xsl:for-each select="tag">
+              <tr>
+                <td align="center">
+                  <xsl:variable name="name">
+                    <xsl:value-of select="name"/>
+                  </xsl:variable>
+                  <a href="#{$name}"><xsl:value-of select="name"/></a>
+                </td>
+                <td>
+                  <xsl:value-of select="summary"/>
+                </td>
+              </tr>
+            </xsl:for-each>
+          </table>
+        </blockquote>
+      </td></tr>
+    </table>
+    <xsl:apply-templates select="tag"/>
+  </xsl:template>
+
+  <!-- Process an individual tag -->
+  <xsl:template match="tag">
+    <xsl:variable name="name">
+      <xsl:value-of select="name"/>
+    </xsl:variable>
+    <a name="{$name}"></a>
+    <table border="0" cellspacing="2" cellpadding="2">
+      <tr><td bgcolor="{$banner-bg}">
+        <font color="{$banner-fg}" face="arial,helvetica,sanserif">
+          <strong><xsl:value-of select="name"/></strong> -
+          <xsl:value-of select="summary"/>
+        </font>
+      </td></tr>
+      <tr><td>
+        <blockquote>
+          <xsl:apply-templates select="info"/>
+        </blockquote>
+      </td></tr>
+      <tr><td>
+        <blockquote>
+          <table border="1" cellspacing="2" cellpadding="2">
+            <tr>
+              <th width="15%">Attribute Name</th>
+              <th>Description</th>
+            </tr>
+            <xsl:for-each select="attribute">
+              <tr>
+                <td align="center">
+                  <xsl:value-of select="name"/>
+                </td>
+                <td>
+                  <xsl:apply-templates select="info"/>
+                  <xsl:variable name="required">
+                    <xsl:value-of select="required"/>
+                  </xsl:variable>
+                  <xsl:if test="required='true'">
+                    [Required]
+                  </xsl:if>
+                  <xsl:if test="rtexprvalue='true'">
+                    [RT Expr]
+                  </xsl:if>
+                </td>
+              </tr>
+            </xsl:for-each>
+          </table>
         </blockquote>
       </td></tr>
     </table>
