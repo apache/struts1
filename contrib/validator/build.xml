@@ -23,25 +23,44 @@
   <property name="package.example" value="com/wintecinc/struts/example/validator"/>
   <property name="package.jdbc.example" value="com/wintecinc/struts/example/validator/jdbc"/>
   <property name="package.test" value="com/wintecinc/test"/>
-                                                        
+
   <target name="prepare">
     <!-- Create the time stamp -->
     <tstamp/>
     <!-- Create the build directory structure used by compile -->
     <mkdir dir="${build}" />
   </target>
+  
+  <property name="validator.jar.prefix" value="${name}"/>
+  
+  <!-- Setting Classpath -->
+  <path id="base.classpath">
+     <pathelement path="${servlet.jar}"/>
+     <pathelement path="${struts.jar}"/>
+     <pathelement path="${commons-beanutils.jar}"/>
+     <pathelement path="${commons-collections.jar}"/>
+     <pathelement path="${commons-digester.jar}"/>
+     <pathelement path="${regexp.jar}"/>
+     <pathelement path="${jdbc20ext.jar}"/>
+  </path>
 
+  <path id="main.classpath">
+     <path refid="base.classpath"/>
+     <pathelement path="${cactus.jar}"/>
+     <pathelement path="${dist}/${validator.jar.prefix}-${DSTAMP}.jar" />
+  </path>
+
+  <path id="javadoc.classpath">
+     <path refid="main.classpath"/>
+     <pathelement location="${xerces.jar}"/>
+  </path>
+                                                            
   <target name="compile" depends="prepare">
     <!-- Compile the java code from ${src} into ${build} -->
     <javac srcdir="${src}/${share}" 
            destdir="${build}"
            excludes="${package.example}/**">
-       <classpath>
-          <pathelement path="${servlet.jar}"/>
-          <fileset dir="lib">
-             <include name="**/*.jar" />
-          </fileset>
-       </classpath>      
+       <classpath refid="base.classpath" />
     </javac>
   </target>
 
@@ -51,7 +70,7 @@
 
     <!-- Put everything in ${build} into the Editor-${DSTAMP}.jar file -->
     <!-- <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}" /> -->
-    <jar jarfile="${dist}/${name}-${DSTAMP}.jar" 
+    <jar jarfile="${dist}/${validator.jar.prefix}-${DSTAMP}.jar" 
          basedir="${build}" 
          includes="${package.root}/**"
          excludes="${package.example}/**,${package.test}/"/>
@@ -61,26 +80,13 @@
     <!-- Compile the java code from ${src}/${example} into ${build} -->
     <javac srcdir="${src}/${example}" 
            destdir="${build}">
-       <classpath>
-          <pathelement path="${servlet.jar}"/>
-          <pathelement location="${cactus.jar}"/>
-          <pathelement path="${dist}/${name}-${DSTAMP}.jar" />
-          <fileset dir="lib">
-             <include name="**/*.jar" />
-          </fileset>
-       </classpath>      
+       <classpath refid="main.classpath" />
     </javac>
 
     <!-- Compile the java code from ${src}/${jdbc.example} into ${build} -->
     <javac srcdir="${src}/${jdbc.example}" 
            destdir="${build}">
-       <classpath>
-          <pathelement path="${servlet.jar}"/>
-          <pathelement path="${dist}/${name}-${DSTAMP}.jar" />
-          <fileset dir="lib">
-             <include name="**/*.jar" />
-          </fileset>
-       </classpath>      
+       <classpath refid="main.classpath" />
     </javac>
 
   </target>
@@ -103,31 +109,40 @@
      <copy todir="${web}/${example}/WEB-INF/tlds" >
        <fileset dir="${dist}" 
                 includes="struts-validator.tld"/>
+       <fileset dir="${struts.tlds}">
+          <include name="*.tld" />
+       </fileset>
      </copy>
 
      <copy todir="${web}/${jdbc.example}/WEB-INF/tlds" >
        <fileset dir="${dist}" 
                 includes="struts-validator.tld"/>
+       <fileset dir="${struts.tlds}">
+          <include name="*.tld" />
+       </fileset>
      </copy>
 
   </target>
     
   <target name="war" depends="copy_example">
+    <mkdir dir="${webapps}" />
+     
+    <mkdir dir="lib" />
+    <copy file="${struts.jar}" todir="lib"/>
+    <copy file="${commons-beanutils.jar}" todir="lib"/>
+    <copy file="${commons-collections.jar}" todir="lib"/>
+    <copy file="${commons-digester.jar}" todir="lib"/>
+    <copy file="${regexp.jar}" todir="lib"/>
     
     <war warfile="${webapps}/validator.war" webxml="${web}/${example}/WEB-INF/web.xml">
       <fileset dir="${web}/${example}">
          <include name="**/**" />
          <exclude name="WEB-INF/web.xml" />
       </fileset>
-      <fileset dir="struts">
-         <include name="**/**" />
-      </fileset>
-      <lib dir="lib">
-        <exclude name="jdbc2_0-stdext.jar" />
-      </lib>
       <lib dir="${dist}">
-         <include name="${name}-${DSTAMP}.jar" />
+         <include name="${validator.jar.prefix}-${DSTAMP}.jar" />
       </lib>
+      <lib dir="lib" />
       <classes dir="${build}">
          <include name="${package.example}/**" />
          <include name="${package.test}/" />
@@ -139,14 +154,9 @@
          <include name="**/**" />
          <exclude name="WEB-INF/web.xml" />
       </fileset>
-      <fileset dir="struts">
-         <include name="**/**" />
-      </fileset>
-      <lib dir="lib">
-        <exclude name="jdbc2_0-stdext.jar" />
-      </lib>
+      <lib dir="lib" />
       <lib dir="${dist}">
-         <include name="${name}-${DSTAMP}.jar" />
+         <include name="${validator.jar.prefix}-${DSTAMP}.jar" />
       </lib>
       <classes dir="${build}">
          <include name="${package.jdbc.example}/**" />
@@ -166,12 +176,7 @@
              version="true"
              windowtitle="${title} API"
              doctitle="${title}">
-       <classpath>
-          <pathelement path="${servlet.jar}"/>
-          <fileset dir="lib">
-             <include name="**/*.jar" />
-          </fileset>
-       </classpath>    
+       <classpath refid="javadoc.classpath" />
     </javadoc>
   </target>
 

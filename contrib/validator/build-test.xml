@@ -1,8 +1,33 @@
 <project name="Struts Unit Tests" default="compile" basedir=".">
 
+    <path id="test.classpath">
+       <!-- base.classpath -->
+       <pathelement path="${servlet.jar}"/>
+       <pathelement path="${struts.jar}"/>
+       <!--
+       <pathelement path="${commons-beanutils.jar}"/>
+       <pathelement path="${commons-collections.jar}"/>
+       <pathelement path="${commons-digester.jar}"/>
+       <pathelement path="${regexp.jar}"/>
+       <pathelement path="${jdbc20ext.jar}"/>
+       -->
+    
+       <!-- main.classpath -->
+       <pathelement path="${cactus.jar}"/>
+       <pathelement path="${dist}/${validator.jar.prefix}-${DSTAMP}.jar" />
+    
+       <pathelement location="${junit.jar}"/>
+    
+       <!-- For cactus.properties -->
+       <pathelement location="conf/test"/>
+    
+       <!-- Why do I need Ant here? -->
+       <pathelement location="${ant.jar}"/>
+       <pathelement location="${ant.optional.jar}"/>
+    </path>
+
     <!-- Global test initialization - independent of Server type -->
     <target name="init">
-        <property name="struts.jar" value="${build.home}/library/${app.name}.jar" />
         <property name="server.root" value="${basedir}/test" />
         <property name="test.conf" value="conf/test/tomcat" />
         <property name="test.root" value="test" />
@@ -160,20 +185,7 @@
     <target name="tests" depends="">
 
         <junit printsummary="yes" haltonfailure="yes" fork="yes">
-            <classpath>
-                <pathelement location="${servlet.jar}"/>
-                <pathelement location="${struts.jar}"/>
-                <pathelement location="${junit.jar}"/>
-                <pathelement location="${cactus.jar}"/>
-                <pathelement location="${build}"/>
-                
-                <!-- For cactus.properties -->
-                <pathelement location="conf/test"/>
-                
-                <!-- Why do I need Ant here? -->
-                <pathelement location="${ant.jar}"/>
-                <pathelement location="${ant.optional.jar}"/>
-            </classpath>
+            <classpath refid="test.classpath" />
 
             <formatter type="plain" usefile="false"/>
 
