@@ -9,7 +9,30 @@
 <body> 
 <chapter name="Struts Resources"> 
 
-<section name="Other Struts-Related Utilities">
+<section name="Other Struts-Related Tools and Utilities">
+
+    <p>
+        <a href="http://displaytag.sourceforge.net/"><strong>The display tag library</strong></a> is an open source
+        suite of custom tags that provide high level web presentation patterns which will work in a MVC model,
+        and provide a significant amount of functionality while still being simple and straight-forward to use.
+    </p>
+
+    <p>
+        <a href="http://fitnesse.org"><strong>Fitnesse</strong></a>The fully integrated standalone wiki, and acceptance
+        testing framework.
+    </p>
+
+    <p>
+        <a href="http://www.jamesholmes.com/struts/"><strong>Faces Console</strong></a> by James Holmes.
+        The Faces Console is a FREE standalone Java Swing application for managing JavaServer Faces-based
+        applications. With the Faces Console you can visually edit JavaServer Faces configuration files as well as
+        JSP Tag Library files.
+    </p>
+
+    <p>
+        <a href="http://wwws.sun.com/software/products/projectrave/">Project Rave</a> - a new generation tool for Java
+        application development (early release).
+    </p>
 
     <p>
         <a href="http://www.jplates.com/">JPlates</a> produces standards-based software tools that dramatically improve
@@ -17,25 +40,21 @@
     </p>
 
     <p>
-        <a href="http://ultrawork.org/wtk/index.html"><strong>Web Toolkit</strong></a> - provides a component-based approach to
-        building markup-driven applications (not Struts specific). Alternative to the Template and Tiles taglibs.
+        <a href="http://ultrawork.org/wtk/index.html"><strong>Web Toolkit</strong></a> - provides a component-based
+        approach to building markup-driven applications (not Struts specific). Alternative to the Template and Tiles
+        taglibs.
     </p>
 
     <p>
-        <a href="http://edhill.its.uiowa.edu/display/"><strong>The &lt;display:*> tag library</strong></a> - An open source suite
-        of custom tags that provide high level web presentation patterns (like tables, tabs, templates, inspectors,
-        trees, etc...)
+        <a href="http://jdbforms.sourceforge.net/"><strong>dbForms</strong></a> - RAD framework for database
+        applications.
     </p>
 
     <p>
-        <a href="http://jdbforms.sourceforge.net/"><strong>dbForms</strong></a> - RAD framework for database applications.
-    </p>
-
-    <p>
-        <a href="http://jsptags.com/tags/navigation/pager/"><strong>Pager Tag Library</strong></a> - helps generate Google and
-        AltaVista style search result navigators. It will take multiple pages worth of information, dynamically split
-        it up into page sized pieces and generate a browsable index. It does this in a flexible way that allows
-        designers to give the index just about any look desired.
+        <a href="http://jsptags.com/tags/navigation/pager/"><strong>Pager Tag Library</strong></a> - helps generate
+        Google and AltaVista style search result navigators. It will take multiple pages worth of information,
+        dynamically split it up into page sized pieces and generate a browsable index. It does this in a flexible way
+        that allows designers to give the index just about any look desired.
     </p>
 
 </section>

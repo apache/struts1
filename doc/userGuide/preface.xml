@@ -695,7 +695,7 @@
     The Struts distribution includes several JSP tags that make it easy to access the framework's
     features from a JavaServer Page.</p>
 
-    <p>For more about JavaServerPages and JSP Tag Libraries see  </p>
+    <p>For more about JavaServerPages and Custom JSP Tag Libraries see  </p>
 
     <ul>
     <li><a href="http://java.sun.com/products/jsp/"><strong>The
@@ -750,6 +750,19 @@
             Additional Struts/JSF integration tools are sure to appear as the specification is finalized and comes into
             widespread use.
         </p>
+
+        <p>For more about JSTL and JavaServer Faces see  </p>
+
+       <ul>
+           <li>
+               <a href="http://today.java.net/pub/a/today/2003/10/07/jstl1.html">Practical JSTL, Part 1</a> by Sue Spielman
+           </li>
+           <li>
+               <a href="http://www.jsfcentral.com"><strong>JSF Central</strong></a> - JavaServer Faces resources.
+            </li><li>
+               <a href="http://www.jamesholmes.com/JavaServerFaces/"><strong>JavaServer Faces Resources</strong></a> - James Holmes dot Com.
+           </li>
+       </ul>
 
     </section>
 

@@ -65,6 +65,133 @@
 <hr/>
 -->
 
+        <h4 id="a20031017">17 Oct 2003 - Spring Framework Integration Library for Struts</h4>
+        <p>
+            This project integrates the Spring Framework's Inversion of Control (IoC)
+            into Struts 1.1+. It allows a Struts application to take advantage of IoC
+            with little or no references to Spring. Now, instead of relying on
+            singletons and static factories, Struts actions can have their
+            dependencies automatically resolved.
+        </p>
+
+        <p>
+            The integration uses Spring to create and populate Struts actions, using
+            IoC to resolve dependencies. It does NOT use a custom request processor
+            and therefore can be more easily used with existing web applications
+            and/or other Struts extensions.
+        </p>
+
+        <p>
+            To demonstrate the project, I modified the Struts-Example web app that is
+            distributed with Struts 1.1 to use Spring to resolve all UserDatabase
+            dependencies automatically. I invite any comments and suggestions.
+        </p>
+
+        <p>
+            Website:  <a href="http://www.twdata.org/struts-spring">http://www.twdata.org/struts-spring</a>
+        </p>
+        <p>
+           Download: <a href="http://www.twdata.org/struts-spring/struts-spring-0.1.zip">http://www.twdata.org/struts-spring/struts-spring-0.1.zip</a>
+        </p>
+        <p>
+            Spring:   <a href="http://www.springframework.org">http://www.springframework.org</a>
+        </p>
+        <p>
+            PS. This functionality adds under 100k to a Struts application
+        </p>
+        <hr/>
+
+        <h4 id="a20031006">2003-10-06 - New Eclpse-based Struts Studio 5.0 - must see tool!</h4>
+        <p>
+            Here is a good new plugin for Eclipse specially designed for Struts and JSP development.
+        </p>
+        <p>
+            Key Features:
+        </p>
+        <ul>
+            <li>
+              Based on Eclipse Development Platform.
+            </li><li>
+              Supports both Struts 1.1 (latest version) and Struts 1.0
+            </li><li>
+              Allows viewing and editing Struts configuration files using Web Flow, a tool for the visual development of Web applications using a drag-and- connect metaphor
+              </li><li>
+              Includes a built-in JSP editor with syntax highlighting, and two-way coordination with Web Flow
+              </li><li>
+              Includes a "one-click" library of Struts-specific tags in the built-in JSP editor
+              </li><li>
+              Allows editing in Web Flow before finishing JSP coding
+              </li><li>
+              Integrates with Tomcat Servlet engines for easy preview and running of Struts applications
+              </li><li>
+              Integrates with Ant for easy project control
+              </li><li>
+              Allows to import of pre-existing Struts projects into Exadel Struts Studio with intelligent auto-placement of the components in Web Flow and without any modifications required for the existing code
+              </li><li>
+              Includes a Code Wizard that automatically creates stub code for Action, FormBean, Forward, and Exception classes
+              </li><li>
+              Includes standard skeleton templates for new projects
+              </li><li>
+              Ability to edit templates for new code generation
+              </li>
+            </ul>
+        <p>
+        <a href="http://www.strutsstudio.com"><strong>www.strutsstudio.com</strong></a>
+        </p>
+        <hr/>
+
+        <h4 id="a20030923">2003-09-23 - Display Tag 1.0 beta 1 Released!</h4>
+        <p>
+            The Display Tag Library has a new release! This release is pretty
+            stellar - checkout the full list of changes at
+            <a href="http://displaytag.sourceforge.net/changes-report.html#1.0-b1">
+                http://displaytag.sourceforge.net/changes-report.html#1.0-b1</a>.
+        </p>
+
+        <h4 id="a20030922"> - JSF Central site expanded</h4>
+        <p>
+            JSFCentral.com has been expanded to cover news, products, and links related to JavaServer Faces,
+            in addition to the FAQ that has been there for the past few months.
+            You can find the site at <a href="http://www.jsfcentral.com">http://www.jsfcentral.com</a>.
+        </p>
+        <hr/>
+
+        <h4 id="b20030916">2003-09-16 - new version of sslext for Struts 1.10 posted</h4>
+        <p>
+            Minor change to fix a bug in previously-posted version that could result in
+            exceptions if the action specified in the sslext:link or sslext:form tags could
+            not be found.
+        </p>
+        <p>
+            sslext for Struts 1.10 - 3 is the latest version, available at
+            <a href="http://sslext.sourceforge.net">http://sslext.sourceforge.net</a>.
+            I will be deprecating previous Struts 1.10 release.
+        </p>
+        <hr/>
+
+        <h4 id="a20030916">2003-09-16 - StrutsDoc 0.4 Released</h4>
+        <p>
+            StrutsDoc 0.4 has been released, fixing a bug with the TilesPlugin and
+            adding the Validator to the generated documentation.
+        </p>
+        <p>
+            The project can be downloaded from
+            <a href="http://struts.sf.net/projects/strutsdoc">http://struts.sf.net/projects/strutsdoc</a>
+        </p>
+        <p>
+            What is StrutsDoc?
+        </p>
+        <p>
+            StrutsDoc is an Ant task that generates JavaDoc-like documentation from
+            a Struts configuration file. StrutsDoc currently only supports the 1.1
+            version of Struts. StrutsDoc is released under the BSD license.
+        </p>
+        <p>
+            An example using the struts-example.war can be found at:
+            <a href="http://www.systemmobile.com/strutsdoc/example">http://www.systemmobile.com/strutsdoc/example</a>
+        </p>
+        <hr/>
+
         <h4 id="a20030912">2003-09-12 - Oracle JDeveloper 10g Preview (Struts-savvy IDE)</h4>
         <p>
             Anyone doing Java and Struts development should download and checkout the new developer preview release of
