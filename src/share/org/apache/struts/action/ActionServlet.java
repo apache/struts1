@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.116 2002/07/24 00:30:24 craigmcc Exp $
- * $Revision: 1.116 $
- * $Date: 2002/07/24 00:30:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.117 2002/07/24 00:47:23 craigmcc Exp $
+ * $Revision: 1.117 $
+ * $Date: 2002/07/24 00:47:23 $
  *
  * ====================================================================
  *
@@ -114,6 +114,7 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ServletContextWriter;
+import org.xml.sax.InputSource;
 
 
 /**
@@ -301,7 +302,7 @@ import org.apache.struts.util.ServletContextWriter;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.116 $ $Date: 2002/07/24 00:30:24 $
+ * @version $Revision: 1.117 $ $Date: 2002/07/24 00:47:23 $
  */
 
 public class ActionServlet
@@ -852,8 +853,11 @@ public class ActionServlet
 
             Digester digester = initConfigDigester();
             digester.push(config);
+            URL url = getServletContext().getResource(path);
+            InputSource is = new InputSource(url.toExternalForm());
             input = getServletContext().getResourceAsStream(path);
-            digester.parse(input);
+            is.setByteStream(input);
+            digester.parse(is);
             input.close();
             getServletContext().setAttribute
                 (Action.APPLICATION_KEY + prefix, config);
