@@ -11,19 +11,30 @@
 
 <struts-config>
 
+
+  <!-- ========== Data Source Configuration =============================== -->
+<!--
+  <data-sources>
+    <data-source
+       autoCommit="false"
+      description="Example Data Source Configuration"
+      driverClass="org.postgresql.Driver"
+         maxCount="4"
+         minCount="2"
+         password="mypassword"
+              url="jdbc:postgresql://localhost/mydatabase"
+             user="myusername"
+    />
+  </data-sources>
+-->
+
   <!-- ========== Form Bean Definitions =================================== -->
   <form-beans>
-    <form-bean       name="testDynaFormBean"
-                     type="org.apache.struts.validator.DynaValidatorForm">
-      <form-property name="field1" type="java.lang.String"/>
-      <form-property name="field2" type="java.lang.String"/>
-    </form-bean>
 
-
-    <!-- Registration form bean -->
-    <form-bean      name="testFormBean"
-                    type="org.apache.struts.taglib.SimpleFormBeanForTesting"/>
-
+    <!-- Example logon form bean 
+    <form-bean      name="logonForm"
+                    type="org.apache.struts.webapp.example.LogonForm"/>
+     -->
 
   </form-beans>
 
@@ -34,30 +45,49 @@
     <!-- Example logon forward 
      <forward   name="logon"                path="/logon.jsp"/>
      -->
-     <forward name="testIncludeTagForward" 
-     			path="/test/org/apache/struts/taglib/bean/resources/IncludeTagTest.jsp"/>
-</global-forwards>
+
+  </global-forwards>
 
 
   <!-- ========== Action Mapping Definitions ============================== -->
   <action-mappings>
 
-    <!-- Process a user logoff -->
-    <action    path="/testIncludeTagTransaction"
-               type="org.apache.struts.taglib.bean.resources.IncludeTagTransactionTestAction">
-      <forward name="success"              
-      			path="/test/org/apache/struts/taglib/bean/resources/IncludeTagTest.jsp"/>
+    <!-- Example logon action 
+    <action    path="/logon"
+               type="org.apache.struts.webapp.example.LogonAction"
+               name="logonForm"
+              scope="request"
+              input="/logon.jsp">
     </action>
+    -->
+
+    <!-- Example logoff action 
+    <action    path="/logoff"
+               type="org.apache.struts.webapp.example.LogoffAction">
+      <forward name="success"              path="/index.jsp"/>
+    </action>
+    -->
+
+
+    <!-- The standard administrative actions available with Struts -->
+    <!-- These would be either omitted or protected by security -->
+    <!-- in a real application deployment -->
+    <action    path="/admin/addFormBean"
+               type="org.apache.struts.actions.AddFormBeanAction"/>
+    <action    path="/admin/addForward"
+               type="org.apache.struts.actions.AddForwardAction"/>
+    <action    path="/admin/addMapping"
+               type="org.apache.struts.actions.AddMappingAction"/>
+    <action    path="/admin/reload"
+               type="org.apache.struts.actions.ReloadAction"/>
+    <action    path="/admin/removeFormBean"
+               type="org.apache.struts.actions.RemoveFormBeanAction"/>
+    <action    path="/admin/removeForward"
+               type="org.apache.struts.actions.RemoveForwardAction"/>
+    <action    path="/admin/removeMapping"
+               type="org.apache.struts.actions.RemoveMappingAction"/>
+
 
   </action-mappings>
-
-
-  <message-resources
-    parameter="org.apache.struts.taglib.bean.resources.ApplicationResources"/>
-
-  <message-resources
-    parameter="org.apache.struts.taglib.bean.resources.AlternateApplicationResources"
-    key="alternate"/>
-
 
 </struts-config>
