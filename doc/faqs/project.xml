@@ -55,12 +55,11 @@
         <item 
             name="Welcome"                 
             href="../index.html"/>
-        <item 
-            name="News and Status"         
-            href="../news/index.html"/>
+
         <item
-            name="FAQs and HowTos *"         
-            href="index.html"/>
+        	name="User and Developer Guides"
+            href="../userGuide/index.html"
+            />
     </menu>
 
 </project>

@@ -52,7 +52,7 @@
 <section href="roadmap" name="Development Roadmap">
 
     <p class="version">
-    $Id: status.xml,v 1.50 2003/11/27 04:06:51 husted Exp $
+    $Id: status.xml,v 1.51 2003/11/27 05:09:26 husted Exp $
     </p>
 
     <p>
@@ -479,8 +479,8 @@
 </section>
 
 <section>
-    <p class="version">Website updated from CVS: 2003 NOV 10 by husted.</p>
-    <p class="version">Javadocs updated from CVS: 2003 SEP 14 by husted.</p>
+    <p class="version">Website updated from CVS: 2003 NOV 26 by husted.</p>
+    <p class="version">Javadocs updated from CVS: 2003 NOV 26 by husted.</p>
 </section>
 
 </body></document>
