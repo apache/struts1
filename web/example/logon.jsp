@@ -10,7 +10,7 @@
 <struts:errors/>
 
 <struts:form action="logon.do" name="logonForm" focus="username"
-               type="org.apache.struts.example.LogonForm">
+               scope="request" type="org.apache.struts.example.LogonForm">
 <table border="0" width="100%">
 
   <tr>

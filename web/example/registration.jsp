@@ -1,18 +1,18 @@
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/app.tld"    prefix="app" %>
 <%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
-<struts:ifPropertyEquals name="registrationForm"
+<struts:ifPropertyEquals name="registrationForm" scope="request"
                          property="action" value="Edit">
   <app:checkLogon/>
 </struts:ifPropertyEquals>
 
 <html>
 <head>
-<struts:ifPropertyEquals name="registrationForm"
+<struts:ifPropertyEquals name="registrationForm" scope="request"
                          property="action" value="Create">
   <title><struts:message key="registration.title.create"/></title>
 </struts:ifPropertyEquals>
-<struts:ifPropertyEquals name="registrationForm"
+<struts:ifPropertyEquals name="registrationForm" scope="request"
                          property="action" value="Edit">
   <title><struts:message key="registration.title.edit"/></title>
 </struts:ifPropertyEquals>
@@ -22,7 +22,7 @@
 <struts:errors/>
 
 <struts:form action="saveRegistration.do" name="registrationForm"
-               type="org.apache.struts.example.RegistrationForm">
+             scope="request" type="org.apache.struts.example.RegistrationForm">
 <struts:hidden property="action"/>
 <table border="0" width="100%">
 
@@ -31,11 +31,11 @@
       <struts:message key="prompt.username"/>
     </th>
     <td align="left">
-      <struts:ifPropertyEquals name="registrationForm"
+      <struts:ifPropertyEquals name="registrationForm" scope="request"
                                property="action" value="Create">
         <struts:text property="username" size="16" maxlength="16"/>
       </struts:ifPropertyEquals>
-      <struts:ifPropertyEquals name="registrationForm"
+      <struts:ifPropertyEquals name="registrationForm" scope="request"
                                property="action" value="Edit">
         <struts:property property="username"/>
 	<struts:hidden property="username"/>
@@ -108,7 +108,7 @@
 </table>
 </struts:form>
 
-<struts:ifPropertyEquals name="registrationForm"
+<struts:ifPropertyEquals name="registrationForm" scope="request"
                          property="action" value="Edit">
 
 <div align="center">

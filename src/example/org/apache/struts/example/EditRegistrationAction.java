@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditRegistrationAction.java,v 1.8 2000/10/15 03:34:52 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/10/15 03:34:52 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditRegistrationAction.java,v 1.9 2000/10/16 05:02:38 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/10/16 05:02:38 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.util.PropertyUtils;
  * User (if any).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/10/15 03:34:52 $
+ * @version $Revision: 1.9 $ $Date: 2000/10/16 05:02:38 $
  */
 
 public final class EditRegistrationAction extends Action {
@@ -146,7 +146,10 @@ public final class EditRegistrationAction extends Action {
                 servlet.log(" Creating new RegistrationForm bean under key "
                             + mapping.getAttribute());
 	    form = new RegistrationForm();
-	    session.setAttribute(mapping.getAttribute(), form);
+            if ("request".equals(mapping.getScope()))
+                request.setAttribute(mapping.getAttribute(), form);
+            else
+                session.setAttribute(mapping.getAttribute(), form);
 	}
 	RegistrationForm regform = (RegistrationForm) form;
 	if (user != null) {

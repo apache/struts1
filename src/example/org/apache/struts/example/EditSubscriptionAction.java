@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditSubscriptionAction.java,v 1.8 2000/10/15 03:34:52 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/10/15 03:34:52 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditSubscriptionAction.java,v 1.9 2000/10/16 05:02:38 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/10/16 05:02:38 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.PropertyUtils;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/10/15 03:34:52 $
+ * @version $Revision: 1.9 $ $Date: 2000/10/16 05:02:38 $
  */
 
 public final class EditSubscriptionAction extends Action {
@@ -159,7 +159,10 @@ public final class EditSubscriptionAction extends Action {
                 servlet.log(" Creating new SubscriptionForm bean under key "
                             + mapping.getAttribute());
 	    form = new SubscriptionForm();
-	    session.setAttribute(mapping.getAttribute(), form);
+            if ("request".equals(mapping.getScope()))
+                request.setAttribute(mapping.getAttribute(), form);
+            else
+                session.setAttribute(mapping.getAttribute(), form);
 	}
 	SubscriptionForm subform = (SubscriptionForm) form;
 	subform.setAction(action);

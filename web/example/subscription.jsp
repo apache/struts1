@@ -13,15 +13,15 @@
 
 <html>
 <head>
-<struts:ifPropertyEquals name="subscriptionForm"
+<struts:ifPropertyEquals name="subscriptionForm" scope="request"
                          property="action" value="Create">
   <title><struts:message key="subscription.title.create"/></title>
 </struts:ifPropertyEquals>
-<struts:ifPropertyEquals name="subscriptionForm"
+<struts:ifPropertyEquals name="subscriptionForm" scope="request"
                          property="action" value="Delete">
   <title><struts:message key="subscription.title.delete"/></title>
 </struts:ifPropertyEquals>
-<struts:ifPropertyEquals name="subscriptionForm"
+<struts:ifPropertyEquals name="subscriptionForm" scope="request"
                          property="action" value="Edit">
   <title><struts:message key="subscription.title.edit"/></title>
 </struts:ifPropertyEquals>
@@ -32,6 +32,7 @@
 
 <struts:form action="saveSubscription.do" name="subscriptionForm"
               focus="host"
+              scope="request"
                type="org.apache.struts.example.SubscriptionForm">
 <struts:hidden property="action"/>
 <table border="0" width="100%">

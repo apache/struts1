@@ -46,6 +46,25 @@
       actions would normally be configured behind security constraints to
       prevent interference with the operation of your application but can be
       very useful during development.</li>
+  <li>A new representation of error messages (<code>ActionError</code> and
+      <code>ActionErrors</code>) has been created that allows errors to be
+      associated with individual fields, and stores parameter replacement
+      values along with the messages keys.</li>
+  <li>The <code>ActionForm</code> interface has been converted to a base class,
+      with default implementations of some useful functionality.  In addition,
+      the new class provides two <code>validate()</code> methods that take
+      the current mapping and current request as arguments, in order to provide
+      access to more context information than just the properties of this
+      particular form bean.</li>
+  <li>The new <code>ActionForm</code> class also provides to
+      <code>reset()</code> methods that take the current mapping and current
+      request as arguments, in order to provide access to more context
+      information (particularly important on multi-page forms so that the form
+      bean knows which properties to reset).  Among other things, use of the
+      <code>reset()</code> methods can prevent problems with checkbox fields
+      -- simply reset boolean fields to <code>false</code> and they will be
+      set to <code>true</code> (during auto-population of the form bean
+      properties) only if the checkbox was actually checked.</li>
   </ul>
 
   <p>The following major new features have been added to the
@@ -109,6 +128,15 @@
   <li>New <code>log(String, int)</code> method that logs the associated message
       only if you have configured the debugging detail level for the servlet to
       an equal or higher value.</li>
+  <li>In <code>ActionServlet</code>, the functionality to populate form bean
+      parameters from a request, and the functionality to validate the form
+      bean's contents, has been separated into two methods that can be
+      overridden individually if required.</li>
+  <li>The <code>ActionServlet</code> functionality to call the
+      <code>validate()</code> method of a form bean is skipped if the user
+      pressed the Cancel key (i.e. the submit button created by the
+      <code>&lt;struts:cancel&gt;</code> custom tag), or if the selected
+      mapping does not define an input form to return control to.</li>
   </ul>
 
   <p>The following changes and bug fixes to the Digester module
@@ -130,6 +158,33 @@
   <li>Functionality in <code>BeanUtils</code> that previously duplicated
       functionality that was earlier moved to <code>PropertyUtils</code>
       has been removed.</li>
+  <li>Fixed <code>PropertyUtils.copyProperties()</code> to skip cases where
+      the origin bean has a getter method but the destination bean does not
+      have a setter method.</li>
+  </ul>
+
+  <p>The following changes and bug fixes to the Struts Example Application
+  (package <code>org.apache.struts.example</code> and the corresponding web
+  components) have occurred:</p>
+  <ul>
+  <li>Used the <code>reset()</code> methods defined by the
+      <code>ActionForm</code> interface to reset form bean properties to
+      default values.  This is particularly important to make boolean
+      properties (represented visually by checkboxes) work correctly.</li>
+  <li>Eliminate the special-case handling of null String values in the
+      form beans.  Such handling is not necessary because the custom tags
+      correctly deal with null String values.</li>
+  <li>Use the <code>PropertyUtils.copyProperties()</code> method to initially
+      populate form beans from underlying data objects, and to update date
+      objects when a transaction is successfully completed.  Note that using
+      this approach dramatically lessens an action class's dependence on the
+      specific properties of the form bean and corresponding data object
+      in many use cases.</li>
+  <li>Added an <code>autoConnect</code> boolean property to the Subscription
+      data object, primarily to illustrate that representing a boolean
+      property with a checkbox now works correctly if you set the property
+      to <code>false</code> in the <code>reset()</code> method of your
+      form beans.</li>
   </ul>
 
   </section>

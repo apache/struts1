@@ -50,14 +50,16 @@
     <!-- Edit user registration -->
     <action    path="/editRegistration"
                type="org.apache.struts.example.EditRegistrationAction"
-               name="registrationForm">
+               name="registrationForm"
+              scope="request">
       <forward name="success"              path="/registration.jsp"/>
     </action>
 
     <!-- Edit mail subscription -->
     <action    path="/editSubscription"
                type="org.apache.struts.example.EditSubscriptionAction"
-               name="subscriptionForm">
+               name="subscriptionForm"
+              scope="request">
       <forward name="failure"              path="/mainMenu.jsp"/>
       <forward name="success"              path="/subscription.jsp"/>
     </action>
@@ -72,6 +74,7 @@
     <action    path="/logon"
                type="org.apache.struts.example.LogonAction"
                name="logonForm"
+              scope="request"
               input="/logon.jsp">
     </action>
 
@@ -79,12 +82,14 @@
     <action    path="/saveRegistration"
                type="org.apache.struts.example.SaveRegistrationAction"
                name="registrationForm"
+              scope="request"
               input="/registration.jsp"/>
 
     <!-- Save mail subscription -->
     <action    path="/saveSubscription"
                type="org.apache.struts.example.SaveSubscriptionAction"
                name="subscriptionForm"
+              scope="request"
               input="/subscription.jsp">
       <forward name="success"         path="/editRegistration.do?action=Edit"/>
     </action>
