@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.111 2003/07/25 07:26:53 sraeburn Exp $
- * $Revision: 1.111 $
- * $Date: 2003/07/25 07:26:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.112 2003/07/25 09:15:57 sraeburn Exp $
+ * $Revision: 1.112 $
+ * $Date: 2003/07/25 09:15:57 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.111 $ $Date: 2003/07/25 07:26:53 $
+ * @version $Revision: 1.112 $ $Date: 2003/07/25 09:15:57 $
  */
 
 public class RequestUtils {
@@ -501,13 +501,7 @@ public class RequestUtils {
         }
 
         // Look up the module configuration for this request
-        ModuleConfig config =
-            (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
-        if (config == null) { // Backwards compatibility hack
-            config =
-                (ModuleConfig) pageContext.getServletContext().getAttribute(Globals.MODULE_KEY);
-            pageContext.getRequest().setAttribute(Globals.MODULE_KEY, config);
-        }
+        ModuleConfig config = getModuleConfig(pageContext);
 
         // Calculate the appropriate URL
         StringBuffer url = new StringBuffer();
@@ -681,8 +675,7 @@ public class RequestUtils {
 
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         StringBuffer value = new StringBuffer(request.getContextPath());
-        ModuleConfig config =
-            (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
+        ModuleConfig config = getRequestModuleConfig(request);
         if (config != null) {
             value.append(config.getPrefix());
         }
@@ -1085,8 +1078,7 @@ public class RequestUtils {
         }
 
         if (resources == null) {
-            ModuleConfig config = (ModuleConfig) pageContext.getAttribute(
-                    Globals.MODULE_KEY, PageContext.REQUEST_SCOPE);
+            ModuleConfig config = getModuleConfig(pageContext);
             resources =
                 (MessageResources) pageContext.getAttribute(
                     bundle + config.getPrefix(),
@@ -1303,7 +1295,7 @@ public class RequestUtils {
             }
         }
 
-        ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+        ModuleConfig moduleConfig = getRequestModuleConfig(request);
         multipartClass = moduleConfig.getControllerConfig().getMultipartClass();
 
         // Try to initialize the global request handler
@@ -1457,7 +1449,7 @@ public class RequestUtils {
             sb.append(pattern.substring(0, pattern.length() - 2));
             sb.append(action.getPath());
         } else if (pattern.startsWith("*.")) {
-            ModuleConfig appConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+            ModuleConfig appConfig = getRequestModuleConfig(request);
             sb.append(appConfig.getPrefix());
             sb.append(action.getPath());
             sb.append(pattern.substring(1));
@@ -1524,7 +1516,7 @@ public class RequestUtils {
         }
 
         // Calculate a context relative path for this ForwardConfig
-        ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+        ModuleConfig moduleConfig = getRequestModuleConfig(request);
         String forwardPattern = moduleConfig.getControllerConfig().getForwardPattern();
         if (forwardPattern == null) {
             // Performance optimization for previous default behavior
@@ -1586,7 +1578,7 @@ public class RequestUtils {
     public static String pageURL(HttpServletRequest request, String page) {
 
         StringBuffer sb = new StringBuffer();
-        ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+        ModuleConfig moduleConfig = getRequestModuleConfig(request);
         String pagePattern = moduleConfig.getControllerConfig().getPagePattern();
         if (pagePattern == null) {
             sb.append(moduleConfig.getPrefix());
@@ -1820,6 +1812,7 @@ public class RequestUtils {
         ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
         if (moduleConfig == null) {
             moduleConfig = (ModuleConfig) context.getAttribute(Globals.MODULE_KEY);
+            request.setAttribute(Globals.MODULE_KEY, moduleConfig);
         }
         return moduleConfig;
     }
