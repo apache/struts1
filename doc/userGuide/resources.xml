@@ -9,57 +9,69 @@
 <chapter name="Struts Resources" href="resources"> 
 
 <section name="Contributor Taglibs" href="taglibs"> 
+<p><a href="http://husted.com/struts/resources/velstruts.zip"><b>Velocity-Tools / Struts</b></a> by the <a href="http://jakarta.apache.org/velocity">Velocity</a> Team. (WAR zipped for download).  Use Velocity templates with Struts 1.0 and beyond! This is the sample WAR from a recent <a href="http://cvs.apache.org/viewcvs/jakarta-velocity-tools/">CVS snapsho</a>t. Just autodeploy, and see for yourself!</p>
 <p><a href="http://www.keyboardmonkey.com/struts/index.html"><b>MonkeyStruts</b></a> by Arron Bates. An approach to nesting beans.</p>
-<p><a href="http://www.multimania.com/bist77/struts.php"><font size="2"><b>REGEXP.VALIDATOR.STRUTS</b></font></a> by Emmanuel Boudrant - A validation component that works with Struts 1.0, to manage form validation on server-side and client-side.</p>
-<p><a href="http://husted.com/struts/resources/struts-was.zip"><b>Struts-WAS.jar</b></a> by Christopher Assenza - Modified Struts 1.0 JAR for Websphere 3.5 or 4. Zipped for download. (For additional tips regarding Websphere 3.5 see <a href="http://jakarta.apache.org/struts/installation-was352-x.html">http://jakarta.apache.org/struts/installation-was352-x.html</a>.)</p>
+<p><a href="http://www.multimania.com/bist77/struts.php"><font size="2"><b>REGEXP.VALIDATOR.STRUTS</b></font></a> by Emmanuel Boudrant - A validation component that works with Struts 1.0, to manage form validation on server-side and client-side. </p>
+<p><a href="resources/struts-was.zip"><b>Struts-WAS.jar</b></a> by Christopher Assenza - Modified Struts 1.0 JAR for Websphere 3.5 or 4. Zipped for download. <font size="1"> (For additional tips regarding Websphere 3.5 see <a href="http://jakarta.apache.org/struts/installation-was352-x.html">http://jakarta.apache.org/struts/installation-was352-x.html</a>.)</font></p>
 <p><a href="http://struts.application-servers.com/"><b>Struts Layout</b></a> by Improve - An extension library to      improve interfaces creation with Struts.</p>
-<p><a href="http://husted.com/struts/resources/indexed-tags.htm"><b>Indexed Tags</b></a> [Also available in the nightly build] by Dave Hays - Produce indexed names such as &lt;input type="text" name="parameter[0].value" value="Mac">. Link, Submit, and Select tags are included too.</p>
-<p><a href="http://husted.com/struts/resources/logic-niallp.htm"><b>Struts IF/THEN/ELSE and SWITCH tags</b></a> by Niall Pemberton.</p>
+<p><a href="resources/indexed-tags.htm"><b>Indexed Tags</b></a> [Also available in the nightly build] by Dave Hays - Produce indexed names such as &lt;input type="text" name="parameter[0].value" value="Mac">. Link, Submit, and Select tags are included too.</p>
+<p><a href="resources/linkParam.htm"><b>LinkParam Tag</b></a> by Eric Fesler - Multiple request parameter for the html:link tag.</p>
+<p><a href="resources/logic-niallp.htm"><b>Struts IF/THEN/ELSE and SWITCH tags</b></a> by Niall Pemberton.</p>
 <p><a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg01251.html"><b>TextArea Wrapping</b></a> by Matthias Bauer. Patch to HTML:TextArea tag to provide wrapping of long lines.</p>
+<p><a href="resources/rowtag.zip"><b>RowTag</b></a>  (ZIP file for download) by Amarda Business Systems Ltd - Source for a Struts-compatible tag to generate alternating row colors in a table by Niall Pemberton. [<i>NOTE: Requires a Struts build dated after 2001-04-28</i>]</p>
+<p><a href="resources/grid.htm"><b>Grid tag</b></a> by Jeff Trent - write grid-style JSP code.</p>
 <p><a href="http://husted.com/struts/resources/rowtag.zip"><b>RowTag</b></a> (ZIP file for download) - Source for a Struts-compatible tag to generate alternating row colors in a table by Niall Pemberton. [<i>NOTE: Requires a Struts build dated after 2001-04-28</i>]</p>
 </section>
 
 <section name="Contributor Extensions" href="extensions"> 
-<p><a href="http://www.webappwriter.com"><b>webAppWriter</b></a> is a web site which is actually a web application for building Struts-based applications.</p>
-<p><a href="http://strutstestcase.sourceforge.net/"><b>StrutsTestCase v1.5 for JUnit</b></a> (by Deryl Seal) is an extension of the standard JUnit TestCase class that provides facilities for testing code based on the Struts framework.</p>
-<p><a href="http://www.objectwave.com/html/tools/tool1_3.htm"><b>X2J</b></a> is a code generation tool for building Struts applications. It includes wizard for easily creating JSPs, and the required Action and ActionForm classes as well as graphical tools for updating the config file. </p>
-<p><a href="http://www.inigoserrano.com/ISValidator/en/ejemploStrutsCompleto0010ISValidator.htm"><b>ISValidator</b></a> validates data in diferents scenarios, command line arguements, Servlets Parameters, et cetera. Includes example using theLogonForm from the example application. </p>
-<p><a href="resources/checker.html"><b>StrutsResourcesChecker</b></a> - Parses struts JSP files and looks for those tags which make reference to the application properties file. </p>
-<p><a href="resources/pow2acl.htm"><b>Pow2ACL</b></a> - Access Control List library. Track of application users roles and                          permissions. User can be authenticated: - directly using the package API - using custom JSP tag libraries.</p>
+<p><a href="http://xsltgenerator.sourceforge.net/"><b>Struts XSLT Code Generator</b></a> by Shengmeng Liu - An XSLT based code generator for Struts, completely based on the XSLT transformation and a set of stylesheet files. Ideally, users can customize the stylesheet for each type of Struts files nbsp; to have templates of their own without having to access the source code and recompile it.</p>
+<p><a href="http://struts.ditlinger.com/"><b>SSL Ext</b></a> by eBuilt, Inc.<b> </b>- Switch between using the http &amp; https protocols on a page by page basis. See README.txt.</p>
+<p><a href="http://www.objectventure.com/products/objectassembler.html"><b>ObjectAssembler</b></a> by ObjectVentur - supports the development of Struts applications, a popular open source web application framework that is part of Apache's Jakarta Project. The same visual development and code synchronization available with J2EE components are available for Struts components.</p>
+<p><a href="http://sourceforge.net/projects/htmltable/"><b>HTMLTable framework for Struts framework</b></a> by Yuriy Zubarev - Incorporate look and feel and behaviour (in terms of columns order) of tables in XML configuration file with capabilities of properties inheritance.</p>
+<p><a href="http://netmeme.org/simper/"><b>Simper</b></a>  by Bryan Field-Elliot - A simple persistence mechanism - wraps up table rows as &quot;Dynabeans&quot; (see <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-beanutils/">Jakarta Commons BeanUtils, nightly build</a>), automatically detects changes, and writes the changes back to the database upon completion of each web request; supports creating, deleting rows, querying; basic relations (1-1 and 1-m). </p>
+<p><a href="http://webAppWriter.com"><b>webAppWriter </b></a>by dataFundamentals - A Struts application that generates code for Struts applications a/la Expresso.</p>
+<p><a href="http://strutstestcase.sourceforge.net/"><b>StrutsTestCase v1.5 for JUnit</b></a>  by Deryl Seal - An extension of the standard JUnit TestCase class that provides facilities for testing code based on the Struts framework.</p>
+<p><a href="http://www.objectwave.com/html/tools/tool1_3.htm"><b>X2J</b></a>  by Objectwave - A code generation tool for building Struts applications. It includes wizard for easily creating JSPs, and the required Action and ActionForm classes as well as graphical tools for updating the config file. </p>
+<p><a href="http://www.inigoserrano.com/ISValidator/en/ejemploStrutsCompleto0010ISValidator.htm"><b>ISValidator</b></a>  by Inigo Serrano - Validates data in differents scenarios, command line arguements, Servlets Parameters, et cetera. Includes example using theLogonForm from the example application. </p>
+<p><a href="resources/checker.html"><b>StrutsResourcesChecker</b></a>  by David White - Parses struts JSP files and looks for those tags which make reference to the application properties file. </p>
+<p><a href="resources/pow2acl.htm"><b>Pow2ACL</b></a>  by Luca Fossato - Access Control List library. Track of application users roles and                          permissions. User can be authenticated: - directly using the package API - using custom JSP tag libraries. </p>
 <p><a href="http://bist77.multimania.com/struts.php#rose"><b>Struts .. in Rose</b></a> by Emmanuel.Boudrant - Use Struts with the Rational Rose UML model. </p>
-<p><a href="http://husted.com/struts/resources/multi-struts.htm"><b>Multi-Controller</b></a> by Sukachevin, Stoehr - Use more than once ActionServlet in your Struts application </p>
+<p><a href="resources/multi-struts.htm"><b>Multi-Controller</b></a> by Sukachevin, Stoehr - Use more than once ActionServlet in your Struts application </p>
 <p><a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg16093.html"><b>JavaScript with html:errors - new Struts validation</b></a> by Adam Grohs.  </p>
-<p><a href="http://www.scioworks.com/scioworks_camino.html"><b>Scioworks Camino</b></a> by Scioworks Pte Ltd. A visual tool for Struts. </p>
-<p><a href="http://www.ejcenter.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a Java Swing application that provides an easy to use interface for editing Struts' &quot;struts-config.xml&quot; configuration file.</p>
-<p><a href="http://jcorporate.com/"><b>Expresso</b></a> by JCorporate. An open source application development (AD) framework integrated with Struts.</p>
-<p><a href="http://husted.com/struts/resources/DynamicProperties.htm"><b>Dynamic ActionForm Properties</b></a> by Jan Sorensen.</p>
-<p><a href="http://husted.com/struts/resources/bean-util.htm"><b>Bean Utils with Indexed Strings</b></a> by Gregor Rayman.</p>
-<p><a href="http://husted.com/struts/resources/struts-security.htm"><b>Role-Based Actions</b></a> by Nic Hobs. Set a security role for an Action from with struts-config.</p>
-<p><a href="http://husted.com/struts/resources/codemaker.htm"><b>Struts CodeMaker</b></a> by Ravindran Ramaiah - Generate Struts application by reading configuration file or JSP files. Updated 2001-08-21.</p>
+<p><a href="http://www.scioworks.com/scioworks_camino.html"><b>Scioworks Camino</b></a> by Scioworks Pte Ltd. - A visual tool for Struts. </p>
+<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console</b></a>  1.1 Final by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Sun Forte for Java, NetBeans, and Borland JBuilder. </p>
+<p><a href="http://jcorporate.com/"><b>Expresso</b></a> by jCorporate - Expresso provides a foundation set of reusable, standards-based Java software components designed to shorten time-to-delivery of Web applications, and is integrated with the Struts framework.</p>
+<p><a href="resources/DynamicProperties.htm"><b>Dynamic ActionForm Properties</b></a> by Jan Sorensen.</p>
+<p><a href="resources/bean-util.htm"><b>Bean Utils with Indexed Strings</b></a> by Gregor Rayman.</p>
+<p><a href="resources/struts-security.htm"><b>Role-Based Actions</b></a> by Nic Hobs. Set a security role for an Action from with struts-config.</p>
+<p><a href="resources/codemaker.htm"><b>Struts CodeMaker</b></a> by Ravindran Ramaiah - Generate Struts application by reading configuration file or JSP files. Updated 2001-08-21.</p>
 <p><a href="http://home.earthlink.net/~dwinterfeldt/generator/"><b>Struts Generator</b></a> by David Winterfeldt - Based on the generator.xml and a table/query an xml file is generated.  Based on the generated xml file a primary key class, data bean class, jdbc class, and an ActionForm (Struts) can be generated.</p>
-<p><a href="http://husted.com/struts/resources/ValueIterator.zip"><b>ValueIterator</b></a> by Ted Husted - Simple wrapper around a RowSet for use with Struts iterator tag. Also includes generic toMap(), set(map) methods for flexible data transfer.</p>
-<p><a href="http://www.rpsenterprises.com/struts/index.html"><b>Struts Transformer</b></a> by Ron Smith - Transformations are responsible for taking an object in one form and transforming it into another. A forward transformation takes an object from its primary form to a secondary form (e.g. Date object to String).  A reverse transformation takes an object from a secondary form to its primary form (e.g. String to Date).</p>
+<p><a href="resources/ValueIterator.zip"><b>ValueIterator</b></a> by Ted Husted - Simple wrapper around a RowSet for use with Struts iterator tag. Also includes generic toMap(), set(map) methods for flexible data transfer.</p>
+<p><a href="http://www.rpsenterprises.com/struts/index.html"><b>Struts Transformer</b></a> by Ron Smith - Transformations are responsible for taking an object in one form and transforming it into another.(e.g. Date object to String;  String to Date).</p>
 <p><a href="http://www.rpsenterprises.com/struts/index.html"><b>Struts Extender</b></a> by Ron Smith - Add extensions to the struts framework via entries in the Struts configuration file.</p>
-<p><a href="http://husted.com/struts/resources/mapper.zip"><b>Mapper Framework</b></a> by Capco - The Mapper framework can be used for automating the process of validating/converting/transferring data fields. <font size="2">(See README to get started. Updated 18-JUL-2001.)</font></p>
+<p><a href="resources/mapper.htm"><b>Mapper Framework</b></a> by Capco - The Mapper framework can be used for automating the process of validating/converting/transferring data fields. <font size="2">(See README to get started. Updated 18-JUL-2001.)</font></p>
 <p><a href="http://www.sura.ru/~gonza/bean-factory/"><b>Bean factory</b></a> by Oleg V Alexeev - Adds the ability to easily link data bean creation to any Struts Action. All information about databeans and actions mappings stored in the standard Struts configuraton file. </p>
-<p><a href="http://husted.com/struts/resources/workflow.htm"><b>Workflow Extension</b></a> by Matthias Bauer - An extension to the core Struts framework which provides control flow between actions.</p>
-<p><a href="http://husted.com/struts/resources/struts-menu.zip"><b>Struts Menu</b></a> by Scott Sayles (ZIP file for download) - A Struts-compatible web menuing component (early release - work in progress) - unzip to a &quot;struts-menu&quot; folder, and see the README.</p>
-<p><a href="http://home.earthlink.net/~dwinterfeldt/"><b>Struts Validator</b></a> [Also in the nightly build /contrib folder] by David Winterfeldt - Perform basic validations to check if a field is required, matches a regular expression, and some basic type checking. Different validation rules can be defined for different locales. The framework has basic support for user defined constants which can be used in some field attributes. The validation routines are modifiable in the validation.xml file so custom validation routines can be created and added to the framework.</p>
-<p><a href="http://husted.com/struts/resources/tldtovlm.zip"><b>TLD to VLM</b></a> by Mario Busche - Simple Java program to convert standard TLD's to the VLM format used by Homesite, CF Studio, and JRun Studio.</p>
+<p><a href="resources/velservlet.htm"><b>VelServlet</b></a> by Geir Magnusson Jr.  - Working demo of how to use Velocity templates with Struts, based on the example application. </p>
+<p><a href="resources/workflow.htm"><b>Workflow Extension</b></a> by Matthias Bauer - An extension to the core Struts framework which provides control flow between actions.</p>
+<p><a href="resources/struts-menu.zip"><b>Struts Menu</b></a> by Scott Sayles (ZIP file for download) - A Struts-compatible web menuing component (early release - work in progress) - unzip to a &quot;struts-menu&quot; folder, and see the README.</p>
+<p><a href="http://home.earthlink.net/~dwinterfeldt/"><b>Struts Validator</b></a>  [<b>Also in the nightly build /contrib folder</b>] by David Winterfeldt - Perform basic validations to check if a field is required, matches a regular expression, or some other Javascript check, and some basic type checking. </p>
+<p><a href="resources/tldtovlm.zip"><b>TLD to VLM</b></a> by Mario Busche - Simple Java program to convert standard TLD's to the VLM format used by Homesite, CF Studio, and JRun Studio.</p>
 <p><a href="http://jakarta.apache.org/taglibs/doc/ultradev4-doc/intro.html"><b>UltraDev 4.0 Custom Tag Library Extension</b></a> - Hosted by Jakarta Taglibs.</p>
-<p><a href="http://www.lifl.fr/~dumoulin/tiles/"><b>Tiles Library for building JSP views</b></a> [Also in the nightly build /contrib folder] by Cedric Dumoulin - A component is a JSP page that can be inserted in another JSP page, like templates, but can take "parameters" (URLs or 'direct' string intemplates).</p>
+<p><a href="http://www.lifl.fr/~dumoulin/tiles/"><b>Tiles Library for building JSP views</b></a>  [<b>Also in the nightly build /contrib folder</b>] by Cedric Dumoulin - A component is a JSP page that can be inserted in another JSP page, like templates, but can take "parameters" (URLs or 'direct' string intemplates).</p>
 </section>
 
 <section name="Projects and Examples" href="examples">
+<p><a href="http://chiki.emaho.org/"><b>Chiki</b></a> by GhootEmaho - A Wiki-like webapp built using Struts and J2EE,  and runs on Tomcat.</p>
 <p><a href="http://husted.com/struts/resources/artimus.zip"><b>Artimus</b></a> by Ted  Husted - Simple news poster application. Demonstrates using helper beans and a JDBC database with Struts. WAR zipped for download. Uses Scaffold package. See WEB-INF/README.txt for setup.</p>
 <p><a href="http://husted.com/struts/resources/scaffold.zip"><b>Scaffold</b></a> by Ted Husted - Utility package of classes that can be used with various Web applications.</p>
-<p><a href="http://husted.com/struts/resources/polls-20010812.zip"><b>Struts Polls</b></a> by Ted Husted - Simple poll application. Demonstrates using a database with Struts.</p>
+<p><a href="http://husted.com/struts/resources/polls-20011024.zip"><b>Struts Polls</b></a> by Ted Husted - Simple poll application. Demonstrates using a database with Struts.</p>
 <p><a href="http://www.raibledesigns.com/struts/"><b>Struts-example modified for iPlanet Application Server SP2</b></a> by Matt Raible.</p>
 <p><a href="http://www.newparticles.com/struts/"><b>The Struts Framework</b></a> by Steve Wilkinson - Excerpt from latest Wrox Professional JSP book.</p>
-<p><a href="http://husted.com/struts/resources/struts-simple.zip"><b>Struts-Simple</b></a> by Ted Husted - (WAR file zipped for download) A simple skeleton application outlining the files needs to input and re-display data. Now also demonstrates using &quot;nested&quot; beans.</p>
 <p><a href="http://mycart.cjb.net/"><b>myCart</b></a> - Example Shopping Cart application using Struts - joint project with several contributors.</p>
 <p><a href="http://www.oakgrovesoftware.com/~rbackhouse"><b>Sample hdml/wireless based struts application</b></a> by Richard Backhouse.</p>
 <p><a href="http://husted.com/struts/resources/struts-logon.zip"><b>Struts Login</b></a> (WAR file zipped for download) by Ted Husted - A minimalist Struts application demonstrating form validation and tracking users with a session attribute (WAR file).</p>
+<p><a href="http://husted.com/struts/resources/struts-simple.zip"><b>Struts-Simple</b></a> by Ted Husted - (WAR file zipped for download) A simple skeleton application outlining the files needs to input and re-display data. Now also demonstrates using &quot;wizards&quot; and &quot;nested&quot; beans.</p>
+<p><a href="http://gallery.bluestone.com/scripts/SaISAPI.dll/Gallery.class/demos/i18n/index.jsp"><b>Sonic Struts Storefront</b></a><b> -</b> The Sonic Struts Storefront sample application demonstrates how to assemble                            an internationalized e-business application using the Struts framework.</p>
 </section>
 
 <section name="Tutorials" href="tutorials"> 
@@ -80,24 +92,29 @@
 </section>
 
 <section name="Seminars" href="seminars"> 
-<p><a href="http://www.basebean.com/"><b> Fast Track to MVC Frameworks</b></a> - 2001-Dec-2.</p>
-<p><a href="http://bravepoint.com/scripts/wsisa.dll/WService=training/training_course.html?courseid=354"><b>BravePoint - Advanced JSP Architecture for J2EE</b></a> - 2001-11-19, 2001-12-10.</p>
+<p><a href="http:/www.sysdeo.com/index.html?page=/430/page.html?action=View&amp;id=430"><b>Sysdeo - Framework Struts pour les applications Web</b></a> (in french) </p>
+<p><a href="http://www.basebean.com/"><b> Fast Track to MVC Frameworks</b></a> </p>
+<p><a href="http://bravepoint.com/scripts/wsisa.dll/WService=training/training_course.html?courseid=354"><b>BravePoint - Advanced JSP Architecture for J2EE</b></a> </p>
 <p><a href="http://www.avantsoft.com/jsp.html"><b>AvantSoft Inc. - JSP, Servlets and Struts</b></a></p>
 </section>
 
 <section name="Articles" href="articles"> 
+<p><a href="http://www.sysdeo.com/docs/struts1.pdf"><b>Struts, vous avez dit Struts</b></a>? (in french)</p>
+<p><a href="http://www.xenonsoft.demon.co.uk/products/java.html"><b>Best Practice with Expresso Framework 4.0</b></a> (and Struts) - 2nd edition - by Peter Pilgrim.</p>
+<p><a href="http://dcb.sun.com/practices/devnotebook/struts.jsp"><b>Getting to Know Struts</b></a>                      by Jerry Ackerman and David Dick.</p>
+<p><a href="http://www.javaworld.com/javaworld/jw-01-2002/jw-0104-tilestrut.html"><b>UI design with Tiles and Struts</b></a> by By Prakash Malani.</p>
 <p><a href="http://www.informit.com/content/index.asp?product_id={0917F29F-56D8-4B25-9C67-211EC945BBAB}"><b>The Struts Framework's Action Mappings Configuration File</b></a> by Wellington L.S. da Silva</p>
 <p><a href="http://husted.com/struts/resources/web_dev_products.htm"><b>Web Development Products Spreadsheet</b> </a>by Dan Cancro.</p>
 <p><a href="http://www.javadude.com/articles/layering.html"><b>Layering Applications</b></a> by Scott Stanchfield.</p>
 <p><a href="http://www.sys-con.com/java/article.cfm?id=1175"><b>MVC and Struts</b></a> by Steven Sweeting, Clive Jones, and Aaron Rustad.</p>
-<p><a href="http://www.onjava.com/pub/a/onjava/2001/09/11/jsp_servlets.html"><b>Introduction to Jakarta Struts Framework</b></a> by Sue Spielman.</p>
-<p><a href="http://www.informit.com/content/index.asp?product_id={0917F29F-56D8-4B25-9C67-211EC945BBAB}"><b>The Struts Framework's Action Mappings Configuration File</b></a> by Wellington L.S. da Silva</p>
-<p><a href="http://husted.com/struts/resources/performant.htm"><b>Is Struts Performant?</b></a> by Ted Husted -- An analysis of framework components, and how they contribute to overall efficiency.</p>
+<p><a href="http://www.onjava.com/pub/a/onjava/2001/09/11/jsp_servlets.html"><b>Introduction to Jakarta Struts Framework</b></a> by Sue Spielman.- <a href="http://www.onjava.com/pub/a/onjava/2001/10/31/struts2.html"><b>Learning Jakarta Struts, Part 2</b></a></p>
+<p><a href="http://husted.com/scaffolding/performant.htm"><b>Is Struts Performant?</b></a> by Ted Husted -- An analysis of framework components, and how they contribute to overall efficiency.</p>
 <p><a href="http://husted.com/struts/resources/strutsforeveryone.zip"><b>Struts for Everyone</b></a> by Jonathan Asbell -- Word document zipped for download. Early release: still in working draft form.</p>
 <p><a href="http://husted.com/struts/resources/1291-authentication.zip"><b>Approaches to User Authentication and Access Control in Web Applications</b></a> by Craig McClanahan. Slides from the JavaOne BOF (June 2001 #1291). Star Office Format. Zipped for download.</p>
-<p><b>Support your application development with Struts</b> [404] by McClanahan, McCay, and Bergenholtz.</p>
+<p><b>Support your application development with Struts</b> <font color="#FF0000">[<a href="http://www.sys-con.com/java/archives/0603/mcclanahan/">404</a>]</font> by McClanahan, McCay, and Bergenholtz.</p>
+<p><a href="http://http://www.zdnetindia.com/techzone/coding/stories/22419.html"><b>JSP Insider 4: An Introduction to Struts</b></a> - by Casey Kochmer.</p>
 <p><a href="http://www.computer-programmer.org/articles/struts/"><b>Introduction to MVC and the Jakarta Struts Framework</b></a> by <a href="mailto:craiger@tataryn.net">Craig Tataryn</a>.</p>
-<p><a href="http://husted.com/struts/resources/kickstart.html"><b>Kickstart</b></a><b>  </b>- The obligatory Struts Q&amp;A.</p>
+<p><a href="http://husted.com/about/scaffolding/kickstart.html"><b>Kickstart</b></a><b>  </b>- The obligatory Struts Q&amp;A.</p>
 <p><a href="http://www-106.ibm.com/developerworks/library/j-struts/?n-j-2151"><b>Struts, an open-source MVC implementation</b></a>  by <a href="mailto:malcolm@nuearth.com">Malcom Davis</a>.</p>
 <p><a href="http://www.javaworld.com/javaworld/jw-12-2000/jw-1201-struts.html"><b>Strut Your Stuff With JSP Tags</b></a>, by <a href="mailto:Thor.Kristmundsson@javaworld.com">Thor Kristmundsson</a>.</p>
 <p><a href="http://informit.com/books/authors/author_template/index.asp?authorid={A08A00B0-71BB-42DB-9B29-08879A9A7ABE}&amp;t={94AE5B48-1D7D-462A-A4A6-83CE19EC0705}&amp;n={4641FAF9-E21F-4902-8F6E-0C8FAF114C62}"><b>Using the Struts Framework to Develop a Message Board</b></a> by Maneesh Sahu (article requires registration with informit.com).</p>
@@ -106,14 +123,15 @@
 
 <section name="Books" href="books"> 
 <ul>
-<li><a href="http://www.atlasbooks.com/marktplc/00670.htm"><b>Struts Fast Track: J2EE / JSP Framework</b></a><b> </b>by Victor Cekvenich - Practical Application with Database Access and Struts Extensions.</li>
+<li><a href="http://www.amazon.com/exec/obidos/ISBN=0971661901/hitchhikeguidetoA/"><b>Struts Fast Track: J2EE / JSP Framework</b></a><b> </b>by Victor Cekvenich - Practical Application with Database Access and Struts Extensions</li>
 <li><a href="http://www.amazon.com/exec/obidos/ISBN=1861005512/hitchhikeguidetoA/"><b>Professional JSP Site Design</b></a> - Wrox book - Features Struts throughout.</li>
 <li><a href="http://www.amazon.com/exec/obidos/ISBN=0735710953/hitchhikeguidetoA/"><b>JSP and Tag Libraries for Web Development </b></a>- by Wellington L. S. Da Silva. Several chapters regarding Struts.</li>
 <li><a href="http://www.redbooks.ibm.com/redpieces/pdfs/sg246134.pdf"><b>Websphere Version 4 Application Development Handbook</b></a> <font size="1">(PDF)</font> - Chapter 7 covers designing with both the Struts and Websphere frameworks,</li>
 <li><a href="http://shannon.informatik.fh-wiesbaden.de/jsp/index.html"><b>Java Server Pages and J2EE Web-based Applications for Enterprises</b></a> - In German, with a Chapter regarding MVC and Struts.</li>
 <li><a href="http://www.amazon.com/exec/obidos/ISBN=0130648841/hitchhikeguidetoA/"><b>Core J2EE Patterns</b></a> - Many of these patterns are deployed in Struts.</li>
 <li><a href="http://www.amazon.com/exec/obidos/ISBN=1861004958/hitchhikeguidetoA/"><b>Professional JSP 2nd Edition</b></a> - Wrox book - long chapter on Struts.</li>
-<li><a href="http://www.amazon.com/exec/obidos/ISBN=0130307041/hitchhikeguidetoA/"><b>Advanced JavaServer Pages</b></a> by David Geary - features template tag library from Struts 1.0</li>
+<li><a href="http://www.amazon.com/exec/obidos/ISBN=0130307041/hitchhikeguidetoA/"><b>Advanced JavaServer Pages</b></a> by David Geary - Features template tag library from Struts 1.0</li>
+<li><a href="http://www.amazon.com/exec/obidos/ISBN=0201633612/hitchhikeguidetoA/"><b>Design Patterns: Elements of Reusable Object-Orientated Software</b></a> by Gama, Helm, Johnson, and Vlissides - Inspired the core patterns used by Struts.</li>
 </ul>
 </section>
 
