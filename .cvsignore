@@ -1,6 +1,7 @@
 build.properties
 dist
 target
+m-target
 release
 cactus_client.log
 cactus_server.log
