@@ -14,6 +14,7 @@
     <forward name="absolute" path="http://jakarta.apache.org/struts" />
     <forward name="context-relative" path="/welcome.do" contextRelative="true" />
     <forward name="relative" path="/welcome.do" />
+    <forward name="redirect-default" path="/" redirect="true" />
     <forward name="logic-forward" path="/logic-forward.do" />
   </global-forwards>
   <action-mappings>

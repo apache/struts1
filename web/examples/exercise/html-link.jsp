@@ -139,6 +139,9 @@
       <li>
         <html:link forward="absolute">Struts website</html:link>
       </li>
+      <li>
+        <html:link forward="redirect-default">Redirect to the default page ("/")</html:link>
+      </li>
     </ul>
   </body>
 </html:html>
