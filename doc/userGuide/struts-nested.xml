@@ -918,12 +918,6 @@
     </attribute>
 
     <attribute>
-      <name>name</name>
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
-    </attribute>
-
-    <attribute>
       <name>onreset</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -931,12 +925,6 @@
 
     <attribute>
       <name>onsubmit</name>
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
-    </attribute>
-
-    <attribute>
-      <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
     </attribute>
@@ -965,11 +953,6 @@
       <rtexprvalue>true</rtexprvalue>
     </attribute>
 
-    <attribute>
-      <name>type</name>
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
-    </attribute>
   </tag>
 
   <tag document-attributes="false">

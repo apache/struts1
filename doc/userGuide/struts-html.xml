@@ -1366,28 +1366,8 @@
                 the input fields with the current property values from the bean.
             </p>
             <p>
-                The associated form bean is determined in one of two ways:
-            </p>
-            <ul>
-                <li>
-                    If the <code>name</code> and <code>type</code> attributes
-                    are not specified, then the form bean will be located, and
-                    created if necessary, based on the form bean specification
-                    for the associated <code>ActionMapping</code>.
-                </li>
-                <li>
-                    If the <code>name</code> and <code>type</code> attributes
-                    are specified, then the form bean will be located, and created
-                    if necessary, using the specified values for <code>name</code>,
-                    <code>type</code> and <code>scope</code>.
-                </li>
-            </ul>
-            <p>
-                <strong>NOTE</strong>: The use of the <code>name</code>,
-                <code>type</code> and <code>scope</code> attributes is
-                deprecated. The preferred usage is to allow the appropriate
-                values to be determined automatically from the corresponding
-                <code>ActionMapping</code>.
+                The form bean is located, and created if necessary, based on the 
+                form bean specification for the associated <code>ActionMapping</code>.
             </p>
         </info>
 
@@ -1459,31 +1439,6 @@
         </attribute>
 
         <attribute>
-            <name>name</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-                <p>Name of the request scope or session scope bean
-                (as defined by the <code>scope</code> attribute)
-                whose properties will be used to populate the input
-                field values.  If no such bean is found, a new bean
-                will be created and added to the appropriate scope,
-                using the Java class name specified by the
-                <code>type</code> attribute.</p>
-
-                <p>If this attribute is not specified, the name of the bean
-                will be calculated by using the value of the
-                <code>action</code> attribute to look up the
-                corresponding <code>ActionMapping</code> element, from which
-                the specified form bean name will be selected.</p>
-            </info>
-            <deprecated>
-                The bean name will be determined from the corresponding
-                <code>ActionMapping</code>.
-            </deprecated>
-        </attribute>
-
-        <attribute>
             <name>onreset</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -1501,28 +1456,6 @@
             </info>
         </attribute>
 
-        <attribute>
-            <name>scope</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-                <p>Scope within which the form bean associated with
-                this input form will be accessed or created (must be
-                either <code>request</code> or <code>session</code>).
-                </p>
-
-                <p>If this attribute is not specified, the scope of the bean
-                will be calculated by using the value of the
-                <code>action</code> attribute to look up the
-                corresponding <code>ActionMapping</code> element, from which
-                the specified form bean scope will be selected.</p>
-            </info>
-            <deprecated>
-                The bean scope will be determined from the corresponding
-                <code>ActionMapping</code>.
-            </deprecated>
-        </attribute>
-        
 		<attribute>
             <name>scriptLanguage</name>
             <required>false</required>
@@ -1574,26 +1507,6 @@
             </info>
         </attribute>
 
-        <attribute>
-            <name>type</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-            <info>
-                <p>Fully qualified Java class name of the form bean to
-                be created, if no such bean is found in the specified
-                scope.</p>
-
-                <p>If this attribute is not specified, the type of the bean
-                will be calculated by using the value of the
-                <code>action</code> attribute to look up the
-                corresponding <code>ActionMapping</code> element, from which
-                the specified form bean type will be selected.</p>
-            </info>
-            <deprecated>
-                The bean type will be determined from the corresponding
-                <code>ActionMapping</code>.
-            </deprecated>
-        </attribute>
     </tag>
 
     <tag>

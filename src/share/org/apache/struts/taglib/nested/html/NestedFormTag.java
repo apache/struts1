@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.9 2003/02/28 05:15:06 arron Exp $
- * $Revision: 1.9 $
- * $Date: 2003/02/28 05:15:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.10 2003/08/10 09:14:04 sraeburn Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/08/10 09:14:04 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -70,9 +70,39 @@ import org.apache.struts.taglib.nested.NestedPropertyHelper;
  * NestedFormTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.9 $ $Date: 2003/02/28 05:15:06 $
+ * @version $Revision: 1.10 $ $Date: 2003/08/10 09:14:04 $
  */
 public class NestedFormTag extends FormTag implements NestedNameSupport {
+
+
+    //TODO: name property was removed from FormTag but appears to be required
+    //      for the nested version to work. See if it can be removed 
+    //      from here altogether.
+    /**
+     * The name
+     */
+    protected String name = null;
+
+    /**
+     * Return the name.
+     */
+    public String getName() {
+
+        return (this.name);
+
+    }
+
+    /**
+     * Set the name.
+     *
+     * @param name The new name
+     */
+    public void setName(String name) {
+
+        this.name = name;
+
+    }
+
 
   /**
    * Get the string value of the "property" property.

@@ -1,12 +1,12 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.10 2003/08/10 00:48:28 dmkarr Exp $
- * $Revision: 1.10 $
- * $Date: 2003/08/10 00:48:28 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.11 2003/08/10 09:14:04 sraeburn Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/08/10 09:14:04 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -75,7 +75,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class ELFormTag extends FormTag {
 
@@ -105,11 +105,6 @@ public class ELFormTag extends FormTag {
      */
     private String methodExpr;
     /**
-     * Instance variable mapped to "name" tag attribute.
-     * (Mapping set in associated BeanInfo class.)
-     */
-    private String nameExpr;
-    /**
      * Instance variable mapped to "onreset" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -119,11 +114,6 @@ public class ELFormTag extends FormTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String onsubmitExpr;
-    /**
-     * Instance variable mapped to "scope" tag attribute.
-     * (Mapping set in associated BeanInfo class.)
-     */
-    private String scopeExpr;
     /**
      * Instance variable mapped to "scriptLanguage" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -149,11 +139,6 @@ public class ELFormTag extends FormTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String targetExpr;
-    /**
-     * Instance variable mapped to "type" tag attribute.
-     * (Mapping set in associated BeanInfo class.)
-     */
-    private String typeExpr;
 
     /**
      * Getter method for "action" tag attribute.
@@ -181,11 +166,6 @@ public class ELFormTag extends FormTag {
      */
     public String getMethodExpr() { return (methodExpr); }
     /**
-     * Getter method for "name" tag attribute.
-     * (Mapping set in associated BeanInfo class.)
-     */
-    public String getNameExpr() { return (nameExpr); }
-    /**
      * Getter method for "onreset" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -195,11 +175,6 @@ public class ELFormTag extends FormTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public String getOnsubmitExpr() { return (onsubmitExpr); }
-    /**
-     * Getter method for "scope" tag attribute.
-     * (Mapping set in associated BeanInfo class.)
-     */
-    public String getScopeExpr() { return (scopeExpr); }
     /**
      * Getter method for "scriptLanguage" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -225,11 +200,6 @@ public class ELFormTag extends FormTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public String getTargetExpr() { return (targetExpr); }
-    /**
-     * Getter method for "type" tag attribute.
-     * (Mapping set in associated BeanInfo class.)
-     */
-    public String getTypeExpr() { return (typeExpr); }
 
     /**
      * Setter method for "action" tag attribute.
@@ -257,11 +227,6 @@ public class ELFormTag extends FormTag {
      */
     public void setMethodExpr(String methodExpr) { this.methodExpr = methodExpr; }
     /**
-     * Setter method for "name" tag attribute.
-     * (Mapping set in associated BeanInfo class.)
-     */
-    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
-    /**
      * Setter method for "onreset" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -271,11 +236,6 @@ public class ELFormTag extends FormTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public void setOnsubmitExpr(String onsubmitExpr) { this.onsubmitExpr = onsubmitExpr; }
-    /**
-     * Setter method for "scope" tag attribute.
-     * (Mapping set in associated BeanInfo class.)
-     */
-    public void setScopeExpr(String scopeExpr) { this.scopeExpr = scopeExpr; }
     /**
      * Setter method for "scriptLanguage" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -301,11 +261,6 @@ public class ELFormTag extends FormTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public void setTargetExpr(String targetExpr) { this.targetExpr = targetExpr; }
-    /**
-     * Setter method for "type" tag attribute.
-     * (Mapping set in associated BeanInfo class.)
-     */
-    public void setTypeExpr(String typeExpr) { this.typeExpr = typeExpr; }
 
     /**
      * Resets attribute values for tag reuse.
@@ -318,16 +273,13 @@ public class ELFormTag extends FormTag {
         setFocusExpr(null);
         setFocusIndexExpr(null);
         setMethodExpr(null);
-        setNameExpr(null);
         setOnresetExpr(null);
         setOnsubmitExpr(null);
-        setScopeExpr(null);
         setScriptLanguageExpr(null);
         setStyleExpr(null);
         setStyleClassExpr(null);
         setStyleIdExpr(null);
         setTargetExpr(null);
-        setTypeExpr(null);
     }
     
     /**
@@ -370,10 +322,6 @@ public class ELFormTag extends FormTag {
                                             this, pageContext)) != null)
             setMethod(string);
 
-        if ((string = EvalHelper.evalString("name", getNameExpr(),
-                                            this, pageContext)) != null)
-            setName(string);
-
         if ((string = EvalHelper.evalString("onreset", getOnresetExpr(),
                                             this, pageContext)) != null)
             setOnreset(string);
@@ -381,10 +329,6 @@ public class ELFormTag extends FormTag {
         if ((string = EvalHelper.evalString("onsubmit", getOnsubmitExpr(),
                                             this, pageContext)) != null)
             setOnsubmit(string);
-
-        if ((string = EvalHelper.evalString("scope", getScopeExpr(),
-                                            this, pageContext)) != null)
-            setScope(string);
 
        if ((bool = EvalHelper.evalBoolean("scriptLanguage", getScriptLanguageExpr(),
                                           this, pageContext)) != null)
@@ -406,8 +350,5 @@ public class ELFormTag extends FormTag {
                                             this, pageContext)) != null)
             setTarget(string);
 
-        if ((string = EvalHelper.evalString("type", getTypeExpr(),
-                                            this, pageContext)) != null)
-            setType(string);
     }
 }
