@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.22 2002/11/08 05:39:24 rleland Exp $
- * $Revision: 1.22 $
- * $Date: 2002/11/08 05:39:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.23 2002/11/13 06:10:54 dgraham Exp $
+ * $Revision: 1.23 $
+ * $Date: 2002/11/13 06:10:54 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.Globals;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.22 $
+ * @version $Revision: 1.23 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -465,7 +465,7 @@ public class ImgTag extends BaseHandlerTag {
         }
         results.append(prepareStyles());
         results.append(prepareEventHandlers());
-        results.append(">");
+        results.append(getElementClose(this));
 
         // Print this element to our output writer
         ResponseUtils.write(pageContext, results.toString());
