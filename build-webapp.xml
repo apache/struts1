@@ -167,15 +167,6 @@
   <!-- Should we copy Struts library and TLD files? -->
   <available property="webapp.struts"    file="${struts.libs}" />
 
-  <!-- FIXME debugging messages -->
-  <echo message="copy.libs = ${copy.libs}"/>
-  <echo message="webapp.compile = ${webapp.compile}"/>
-  <echo message="webapp.struts = ${webapp.struts}"/>
-  <echo message="servlet.jar = ${servlet.jar}"/>
-  <echo message="struts.libs = ${struts.libs}"/>
-  <echo message="webapp.libs = ${webapp.libs}"/>
-  <echo message="compile.classpath = ${compile.classpath}"/>
-
 </target>
 
 

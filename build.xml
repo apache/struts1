@@ -61,7 +61,7 @@
   </target>
 
   <!-- BUILD:  Compile code for web applications -->
-  <target name="compile.webapps" depends="compile.library">
+  <target name="compile.webapps" depends="compile.library,static.webapps">
     <ant  antfile="build-webapps.xml" target="compile">
     </ant>
   </target>
@@ -102,7 +102,7 @@
   </target>
 
   <!-- DIST:  Construct distributable web applications -->
-  <target name="dist.webapps" depends="compile.javadoc">
+  <target name="dist.webapps" depends="compile.webapps,compile.javadoc">
     <ant  antfile="build-webapps.xml" target="dist">
     </ant>
   </target>
