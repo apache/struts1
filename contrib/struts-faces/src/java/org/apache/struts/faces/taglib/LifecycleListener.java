@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/LifecycleListener.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2003/12/24 03:21:01 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/LifecycleListener.java,v 1.5 2003/12/29 22:45:52 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/12/29 22:45:52 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.faces.application.PropertyResolverImpl;
  * <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
+ * @version $Revision: 1.5 $ $Date: 2003/12/29 22:45:52 $
  */
 
 public class LifecycleListener
@@ -131,8 +131,8 @@ public class LifecycleListener
         log.info("attributeAdded(" + name + "," + event.getValue() + ")");
         if (name.equals(Globals.ACTION_SERVLET_KEY)) {
             servlet = (ActionServlet) event.getValue();
-        } else if (name.startsWith(Globals.MODULE_KEY)) {
-            createProcessor(servlet, (ModuleConfig) event.getValue());
+            // } else if (name.startsWith(Globals.MODULE_KEY)) {
+            //     createProcessor(servlet, (ModuleConfig) event.getValue());
         }
 
     }
@@ -210,6 +210,7 @@ public class LifecycleListener
      * @param servlet ActionServlet instance we are associated with
      * @param modConfig ModuleConfig instance we are associated with
      */
+    /*
     private RequestProcessor createProcessor(ActionServlet servlet,
                                              ModuleConfig modConfig) {
 
@@ -228,6 +229,7 @@ public class LifecycleListener
         return (processor);
 
     }
+    */
 
 
     /**

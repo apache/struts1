@@ -1,5 +1,5 @@
 The Struts-Faces Integration Library (Version 0.4) README File
-$Id: README.txt,v 1.4 2003/12/24 04:47:55 craigmcc Exp $
+$Id: README.txt,v 1.5 2003/12/29 22:45:52 craigmcc Exp $
 
 
 ============
@@ -159,7 +159,7 @@ Directory "src":
 
                        application -- Integrate with ActionListener,
                                       custom PropertyResolver,
-                                      custom RequestProcessor
+                                      custom RequestProcessor(s)
 
                        component   -- Custom JavaServer Faces component
                                       implementations (only Form for now)
@@ -208,6 +208,7 @@ the Java Runtime Environment), version 1.3 or later.  It was tested against
 Sun's JDK 1.4.2 release, available at:
 
     http://java.sun.com/j2se/
+
 
 Install a Servlet Container:
 ---------------------------
@@ -453,6 +454,17 @@ applications is straightforward, and requires the following steps:
     library counterparts, and the expression language syntax is the same
     as that used for value reference expressions.
 
+* Modify your struts-config.xml file to include identification of the custom
+  request processor implementation class to be used, by adding the following
+  element in the appropriate location (typically just before any existing
+  <message-resources> and <plug-in> elements):
+
+    <controller>
+      <set-property property="processorClass"
+       value="org.apache.struts.faces.application.FacesRequestProcessor"/>
+    </controller>
+
+
 * For each JSP page that you have modified to use JavaServer Faces
   components instead of traditional Struts tags, modify any <forward>
   elements in your webapp's struts-config.xml file to include "/faces"
@@ -478,6 +490,11 @@ applications is straightforward, and requires the following steps:
     immediate="false" (which is the default value) that are nested
     inside a Struts-Faces <s:form> tag will be forwarded through the
     normal Struts request processing lifecycle.
+
+* If your application contains cancel buttons rendered by the <html:cancel>
+  tag, you should replace them with an <h:command_button> that has an
+  "id" attribute set to "cancel" in order for this button to be recognized
+  by Struts as a cancel button.
 
 * If your application itself provides additional UIComponent and/or
   Renderer implementations, you must register them with the default

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/ActionListenerImpl.java,v 1.3 2003/12/24 03:21:01 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2003/12/24 03:21:01 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/ActionListenerImpl.java,v 1.4 2003/12/29 22:45:52 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/29 22:45:52 $
  *
  * ====================================================================
  *
@@ -80,6 +80,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
+import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.faces.Constants;
@@ -94,7 +95,7 @@ import org.apache.struts.util.RequestUtils;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/12/24 03:21:01 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/29 22:45:52 $
  */
 
 public class ActionListenerImpl implements ActionListener {
@@ -186,9 +187,8 @@ public class ActionListenerImpl implements ActionListener {
                 log.trace("Assigned to module with prefix '" +
                           moduleConfig.getPrefix() + "'");
             }
-            RequestProcessor processor = (RequestProcessor)
-                servletContext.getAttribute
-                (Globals.REQUEST_PROCESSOR_KEY + moduleConfig.getPrefix());
+            RequestProcessor processor =
+                getRequestProcessor(moduleConfig, servletContext);
             if (log.isTraceEnabled()) {
                 log.trace("Invoking request processor instance " + processor);
             }
@@ -205,5 +205,56 @@ public class ActionListenerImpl implements ActionListener {
 
     // ------------------------------------------------------ Protected Methods
 
+
+    /**
+     * <p>Look up and return the <code>RequestProcessor</code> responsible for
+     * the specified module, creating a new one if necessary.  This method is
+     * based on the corresponding code in <code>ActionServlet</code>, which
+     * cannot be used directly because it is a protected method.</p>
+     *
+     * @param config The module configuration for which to
+     *  acquire and return a RequestProcessor
+     * @param context The <code>ServletContext</code> instance
+     *  for this web application
+     *
+     * @exception IllegalStateException if we cannot instantiate a
+     *  RequestProcessor instance
+     */
+    protected RequestProcessor getRequestProcessor(ModuleConfig config,
+                                                   ServletContext context) {
+            
+        String key = Globals.REQUEST_PROCESSOR_KEY + config.getPrefix();
+        RequestProcessor processor =
+            (RequestProcessor) context.getAttribute(key);
+            
+        if (processor == null) {
+            try {
+                if (log.isDebugEnabled()) {
+                    log.debug("Instantiating RequestProcessor of class " +
+                              config.getControllerConfig().getProcessorClass());
+                }
+                ActionServlet servlet = (ActionServlet)
+                context.getAttribute(Globals.ACTION_SERVLET_KEY);
+                processor =
+                    (RequestProcessor) RequestUtils.applicationInstance(
+                        config.getControllerConfig().getProcessorClass());
+                processor.init(servlet, config);
+                context.setAttribute(key, processor);
+            } catch (Exception e) {
+                log.error("Cannot instantiate RequestProcessor of class "
+                          + config.getControllerConfig().getProcessorClass(),
+                          e);
+                throw new IllegalStateException(
+                    "Cannot initialize RequestProcessor of class "
+                        + config.getControllerConfig().getProcessorClass()
+                        + ": "
+                        + e);
+            }
+
+        }
+        return (processor);
+
+    }
+    
 
 }
