@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.28 2001/12/26 23:14:50 craigmcc Exp $
- * $Revision: 1.28 $
- * $Date: 2001/12/26 23:14:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.29 2001/12/28 07:20:00 martinc Exp $
+ * $Revision: 1.29 $
+ * $Date: 2001/12/28 07:20:00 $
  *
  * ====================================================================
  *
@@ -108,7 +108,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.28 $ $Date: 2001/12/26 23:14:50 $
+ * @version $Revision: 1.29 $ $Date: 2001/12/28 07:20:00 $
  */
 
 public class Action {
@@ -608,8 +608,13 @@ public class Action {
     protected String toHex(byte buffer[]) {
 
         StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < buffer.length; i++)
-            sb.append(Integer.toHexString((int) buffer[i] & 0xff));
+        String s = null;
+        for (int i = 0; i < buffer.length; i++) {
+            s = Integer.toHexString((int) buffer[i] & 0xff);
+            if (s.length() < 2)
+                sb.append('0');
+            sb.append(s);
+        }
         return (sb.toString());
 
     }
