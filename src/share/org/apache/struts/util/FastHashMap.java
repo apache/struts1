@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/FastHashMap.java,v 1.4 2001/05/20 01:15:17 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/05/20 01:15:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/FastHashMap.java,v 1.4.2.1 2001/05/20 21:06:43 craigmcc Exp $
+ * $Revision: 1.4.2.1 $
+ * $Date: 2001/05/20 21:06:43 $
  *
  * ====================================================================
  *
@@ -98,7 +98,7 @@ import java.util.Set;
  *  an equivalent class in the Jakarta Commons Collections package.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/05/20 01:15:17 $
+ * @version $Revision: 1.4.2.1 $ $Date: 2001/05/20 21:06:43 $
  */
 
 public class FastHashMap extends HashMap {
@@ -303,7 +303,7 @@ public class FastHashMap extends HashMap {
         if (fast) {
             if (mo.size() != map.size())
                 return (false);
-            Iterator i = map.entrySet().iterator();
+            java.util.Iterator i = map.entrySet().iterator();
             while (i.hasNext()) {
                 Map.Entry e = (Map.Entry) i.next();
                 Object key = e.getKey();
@@ -321,7 +321,7 @@ public class FastHashMap extends HashMap {
             synchronized (map) {
                 if (mo.size() != map.size())
                     return (false);
-                Iterator i = map.entrySet().iterator();
+                java.util.Iterator i = map.entrySet().iterator();
                 while (i.hasNext()) {
                     Map.Entry e = (Map.Entry) i.next();
                     Object key = e.getKey();
@@ -371,14 +371,14 @@ public class FastHashMap extends HashMap {
 
         if (fast) {
             int h = 0;
-            Iterator i = map.entrySet().iterator();
+            java.util.Iterator i = map.entrySet().iterator();
             while (i.hasNext())
                 h += i.next().hashCode();
             return (h);
         } else {
             synchronized (map) {
                 int h = 0;
-                Iterator i = map.entrySet().iterator();
+                java.util.Iterator i = map.entrySet().iterator();
                 while (i.hasNext())
                     h += i.next().hashCode();
                 return (h);
