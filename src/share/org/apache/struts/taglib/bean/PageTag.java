@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/PageTag.java,v 1.7 2002/09/22 06:32:46 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/09/22 06:32:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/PageTag.java,v 1.8 2003/07/27 06:54:28 rleland Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/27 06:54:28 $
  *
  * ====================================================================
  *
@@ -66,7 +66,7 @@ package org.apache.struts.taglib.bean;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.TagUtils;
 
 
 /**
@@ -74,7 +74,7 @@ import org.apache.struts.util.RequestUtils;
  * item as a scripting variable and a page scope bean.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/09/22 06:32:46 $
+ * @version $Revision: 1.8 $ $Date: 2003/07/27 06:54:28 $
  */
 
 public class PageTag extends TagSupport {
@@ -146,7 +146,7 @@ public class PageTag extends TagSupport {
         else {
             JspException e = new JspException
                 (messages.getMessage("page.selector", property));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 

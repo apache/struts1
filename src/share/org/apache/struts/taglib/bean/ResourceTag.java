@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.12 2003/07/14 00:02:29 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/07/14 00:02:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.13 2003/07/27 06:54:28 rleland Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/07/27 06:54:28 $
  *
  * ====================================================================
  *
@@ -69,14 +69,14 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Define a scripting variable based on the contents of the specified
  * web application resource.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2003/07/14 00:02:29 $
+ * @version $Revision: 1.13 $ $Date: 2003/07/27 06:54:28 $
  */
 public class ResourceTag extends TagSupport {
 
@@ -151,7 +151,7 @@ public class ResourceTag extends TagSupport {
         if (stream == null) {
             JspException e =
                 new JspException(messages.getMessage("resource.get", name));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 
@@ -178,7 +178,7 @@ public class ResourceTag extends TagSupport {
             pageContext.setAttribute(id, sb.toString());
             
         } catch (IOException e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException(messages.getMessage("resource.get", name));
         }
         

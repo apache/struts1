@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/SizeTag.java,v 1.5 2003/07/26 17:22:27 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2003/07/26 17:22:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/SizeTag.java,v 1.6 2003/07/27 06:54:28 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/07/27 06:54:28 $
  *
  * ====================================================================
  *
@@ -70,7 +70,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.taglib.TagUtils;
 
 
@@ -79,7 +78,7 @@ import org.apache.struts.taglib.TagUtils;
  * found in a specified array, Collection, or Map.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2003/07/26 17:22:27 $
+ * @version $Revision: 1.6 $ $Date: 2003/07/27 06:54:28 $
  */
 
 public class SizeTag extends TagSupport {
@@ -186,7 +185,7 @@ public class SizeTag extends TagSupport {
                 // attribute.
                 JspException e = new JspException
                     (messages.getMessage("size.noCollectionOrName"));
-                RequestUtils.saveException(pageContext, e);
+                TagUtils.getInstance().saveException(pageContext, e);
                 throw e;
             }
             
@@ -198,7 +197,7 @@ public class SizeTag extends TagSupport {
         if (value == null) {
             JspException e = new JspException
                 (messages.getMessage("size.collection"));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         } else if (value.getClass().isArray()) {
             size = Array.getLength(value);
@@ -209,7 +208,7 @@ public class SizeTag extends TagSupport {
         } else {
             JspException e = new JspException
                 (messages.getMessage("size.collection"));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.14 2003/07/26 01:22:31 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2003/07/26 01:22:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.15 2003/07/27 06:54:28 rleland Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/07/27 06:54:28 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -77,7 +76,7 @@ import org.apache.struts.util.RequestUtils;
  * internal configuraton object.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2003/07/26 01:22:31 $
+ * @version $Revision: 1.15 $ $Date: 2003/07/27 06:54:28 $
  */
 
 public class StrutsTag extends TagSupport {
@@ -173,7 +172,7 @@ public class StrutsTag extends TagSupport {
         if (n != 1) {
             JspException e = new JspException
                 (messages.getMessage("struts.selector"));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 
@@ -196,7 +195,7 @@ public class StrutsTag extends TagSupport {
         if (object == null) {
             JspException e = new JspException
                 (messages.getMessage("struts.missing", selector));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTag.java,v 1.9 2003/07/14 00:00:14 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/07/14 00:00:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTag.java,v 1.10 2003/07/27 06:54:28 rleland Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/07/27 06:54:28 $
  *
  * ====================================================================
  *
@@ -65,14 +65,14 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Define a scripting variable based on the value(s) of the specified
  * parameter received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2003/07/14 00:00:14 $
+ * @version $Revision: 1.10 $ $Date: 2003/07/27 06:54:28 $
  */
 public class ParameterTag extends TagSupport {
 
@@ -159,7 +159,7 @@ public class ParameterTag extends TagSupport {
             if (value == null) {
                 JspException e =
                     new JspException(messages.getMessage("parameter.get", name));
-                RequestUtils.saveException(pageContext, e);
+                TagUtils.getInstance().saveException(pageContext, e);
                 throw e;
             }
 
@@ -178,7 +178,7 @@ public class ParameterTag extends TagSupport {
         if ((values == null) || (values.length == 0)) {
             JspException e =
                 new JspException(messages.getMessage("parameter.get", name));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
         

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.14 2003/07/26 19:12:41 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2003/07/26 19:12:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.15 2003/07/27 06:54:28 rleland Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/07/27 06:54:28 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 /**
@@ -79,7 +78,7 @@ import org.apache.struts.util.ResponseUtils;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2003/07/26 19:12:41 $
+ * @version $Revision: 1.15 $ $Date: 2003/07/27 06:54:28 $
  */
 public class MessageTag extends TagSupport {
 
@@ -257,7 +256,7 @@ public class MessageTag extends TagSupport {
             if (value != null && !(value instanceof String)) {
                 JspException e =
                     new JspException(messages.getMessage("message.property", key));
-                RequestUtils.saveException(pageContext, e);
+               TagUtils.getInstance().saveException(pageContext, e);
                 throw e;
             }
             key = (String) value;
@@ -279,7 +278,7 @@ public class MessageTag extends TagSupport {
             JspException e =
                 new JspException(
                     messages.getMessage("message.message", "\"" + key + "\""));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 

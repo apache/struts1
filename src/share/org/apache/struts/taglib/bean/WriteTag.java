@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.26 2003/07/26 19:11:57 dgraham Exp $
- * $Revision: 1.26 $
- * $Date: 2003/07/26 19:11:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.27 2003/07/27 06:54:28 rleland Exp $
+ * $Revision: 1.27 $
+ * $Date: 2003/07/27 06:54:28 $
  *
  * ====================================================================
  *
@@ -74,7 +74,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 /**
@@ -83,7 +82,7 @@ import org.apache.struts.util.ResponseUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.26 $ $Date: 2003/07/26 19:11:57 $
+ * @version $Revision: 1.27 $ $Date: 2003/07/27 06:54:28 $
  */
 public class WriteTag extends TagSupport {
 
@@ -381,7 +380,7 @@ public class WriteTag extends TagSupport {
                         JspException ex =
                             new JspException(
                                 messages.getMessage("write.format", formatString));
-                        RequestUtils.saveException(pageContext, ex);
+                        TagUtils.getInstance().saveException(pageContext, ex);
                         throw ex;
                     }
                 }

@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.21 2003/07/27 06:30:09 rleland Exp $
+ * $Id: IncludeTag.java,v 1.22 2003/07/27 06:54:28 rleland Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -85,7 +85,7 @@ import org.apache.struts.taglib.TagUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.21 $ $Date: 2003/07/27 06:30:09 $
+ * @version $Revision: 1.22 $ $Date: 2003/07/27 06:54:28 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -220,7 +220,7 @@ public class IncludeTag extends TagSupport {
         URL url = null;
         try {
             urlString =
-                RequestUtils.computeURL(pageContext, forward, href, page, params, anchor, false);
+                TagUtils.getInstance().computeURL(pageContext, forward, href, page, null,params, anchor, false);
             if (urlString.indexOf(':') < 0) {
                 HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
                 url = new URL(RequestUtils.requestURL(request), urlString);
