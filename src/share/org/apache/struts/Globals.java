@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.3 2002/11/07 05:18:26 rleland Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/07 05:18:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.4 2002/11/16 06:03:06 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/11/16 06:03:06 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import java.io.Serializable;
  * themselves have not changed.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/11/07 05:18:26 $
+ * @version $Revision: 1.4 $ $Date: 2002/11/16 06:03:06 $
  */
 
 public class Globals implements Serializable {
@@ -286,6 +286,14 @@ public class Globals implements Serializable {
      */
     public static final String TRANSACTION_TOKEN_KEY =
         "org.apache.struts.action.TOKEN";
+        
+    /**
+     * The page attributes key under which xhtml status is stored.  This may be "true"
+     * or "false".  When set to true, the html tags output xhtml.
+     * @since Struts 1.1
+     */
+    public static final String XHTML_KEY =
+        "org.apache.struts.globals.XHTML";
 
 
 }
