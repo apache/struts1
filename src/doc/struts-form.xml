@@ -1587,12 +1587,38 @@
 		<tagclass>org.apache.struts.taglib.form.OptionsTag</tagclass>
 		<bodycontent>empty</bodycontent>
 		<info>
-			<p>
-				Renders a set of HTML <code>&lt;option&gt;</code> elements, representing
-				possible choices for a <code>&lt;select&gt;</code> element.  This tag can be
-				used multiple times within a particular <code>&lt;struts:select&gt;</code>
-				element, either in conjunction with or instead of one or more
-				<code>&lt;struts:option&gt;</code> tags.</p>
+                <p>Renders a set of HTML <code>&lt;option&gt;</code> elements,
+                representing possible choices for a <code>&lt;select&gt;</code>
+                element.  This tag can be used multiple times within a single
+                <code>&lt;form:select&gt;</code> element, either in conjunction
+                with or instead of one or more <code>&lt;form:option&gt;</code>
+                elements.</p>
+
+                <p>This tag operates in one of two major modes, depending on
+                whether or not the <code>collection</code> attribute is
+                specified.  If the <code>collection</code> attribute is
+                included, the following rules apply:</p>
+                <ul>
+                <li>The <strong>collection</strong> attribute is interpreted
+                    as the name of a JSP bean, in some scope, that itself
+                    represents a collection of individual beans, one per option
+                    value to be rendered.</li>
+                <li>The <strong>property</strong> attribute is interpreted as
+                    the name of a property of the individual beans included in
+                    the collection, and is used to retrieve the value that will
+                    be returned to the server if this option is selected.</li>
+                <li>The <strong>labelProperty</strong> attribute is interpreted
+                    as the name of a property of the individual beans included
+                    in the collection, and is used to retrieve the label that
+                    will be displayed to the user for this option.  If the
+                    <code>labelProperty</code> attribute is not specified, the
+                    property named by the <code>property</code> attribute will
+                    be used to select both the value returned to the server and
+                    the label displayed to the user for this option.</li>
+                </ul>
+
+                <p>If the <code>collection</code> attribute is not specified,
+                the rules described in the remainder of this section apply.</p>
 				
 				<p>The collection of values actually selected depends on the presence or
 				absence of the <code>name</code> and <code>property</code> attributes.  The
@@ -1634,6 +1660,19 @@
 				</ul>
 				
 		</info>
+
+                <attribute>
+                        <name>collection</name>
+                        <required>false</required>
+                        <rtexprvalue>true</rtexprvalue>
+                        <info>
+                        Name of the JSP bean (in some scope) which is itself a
+                        Collection of other beans, each of which has properties
+                        named by the "property" and "labelProperty" attributes
+                        that are used to retrieve the value and label for each
+                        option, respectively.
+                        </info>
+                </attribute>
 
 		<attribute>
 			<name>labelName</name>

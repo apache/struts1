@@ -103,12 +103,6 @@
       &lt;bean:struts id="link" forward="success"/&gt;
       &lt;bean:write name="link" property="path"/&gt;
       </pre></li>
-  </ul>
-
-  <p>The following major new features have been added to the
-  <em>struts-bean</em> custom tag library (package
-  <code>org.apache.struts.taglib.bean</code>):</p>
-  <ul>
   <li>All of the tags in this library that accept a <code>name</code>
       attribute referring to a JSP bean now also accept an optional
       <code>scope</code> attribute to define the scope in which to search
@@ -143,6 +137,11 @@
       tag that generates hyperlinks.  These constants can be useful when
       you are creating JavaScript code that needs to be aware of Struts
       addressing concepts.</li>
+  <li>The <code>options</code> tag now supports a new "collection" attribute,
+      which can be used to specify a collection whose beans have properties
+      that return the value (to be returned to the server) and the label (to
+      be displayed to the user) from a single collection.  The previous
+      support for processing parallel collections is still available.</li>
   </ul>
 
   <p>The following major new features have been added to the
@@ -212,6 +211,9 @@
   <li>The <code>ActionMappings.getUnknown()</code> method now takes the current
       request as an parameter, so that context-sensitive decisions can be
       made.</li>
+  <li>When the controller servlet processes an <code>ActionForward</code> that
+      has the <code>redirect</code> property set, it now performs URL rewriting
+      to maintain session state even if cookies are not being used.</li>
   </ul>
 
   <p>The following changes and bug fixes to the Digester module

@@ -92,6 +92,22 @@ public class OptionsTag extends TagSupport {
      MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
 
     /**
+     * The name of the collection containing beans that have properties to
+     * provide both the values and the labels (identified by the
+     * <code>property</code> and <code>labelProperty</code> attributes).
+     */
+    protected String collection = null;
+
+    public String getCollection() {
+        return (this.collection);
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
+
+
+    /**
      * The name of the bean containing the labels collection.
      */
     protected String labelName = null;
@@ -169,30 +185,63 @@ public class OptionsTag extends TagSupport {
 	    throw new JspException
 	        (messages.getMessage("optionsTag.select"));
 	String match = selectTag.getMatch();
-
-	// Construct iterators for the values and labels collections
-	Iterator valuesIterator = getIterator(name, property);
-	Iterator labelsIterator = null;
-	if ((labelName == null) && (labelProperty == null))
-	    labelsIterator = getIterator(name, property); // Same collection
-	else
-	    labelsIterator = getIterator(labelName, labelProperty);
-
-	// Render the options tags for each element of the values collection
 	StringBuffer sb = new StringBuffer();
-	while (valuesIterator.hasNext()) {
-	    String value = (String) valuesIterator.next();
-	    String label = value;
-	    if (labelsIterator.hasNext())
-	        label = (String) labelsIterator.next();
-	    sb.append("<option value=\"");
-	    sb.append(value);
-	    sb.append("\"");
-	    if (match.equals(value))
-	        sb.append(" selected");
-	    sb.append(">");
-	    sb.append(label);
-	    sb.append("</option>\r\n");
+
+        // If a collection was specified, use that mode to render options
+        if (collection != null) {
+            Iterator collIterator = getIterator(collection, null);
+            while (collIterator.hasNext()) {
+                Object bean = collIterator.next();
+                Object value = null;
+                Object label = null;;
+                try {
+                    value = BeanUtils.getPropertyValue(bean, property);
+                    if (value == null)
+                        value = "";
+                    if (labelProperty != null)
+                        label =
+                            BeanUtils.getPropertyValue(bean, labelProperty);
+                    else
+                        label = value;
+                    if (label == null)
+                        label = "";
+                } catch (IllegalAccessException e) {
+                    throw new JspException
+                        (messages.getMessage("getter.access",
+                                             property, collection));
+                } catch (InvocationTargetException e) {
+                    Throwable t = e.getTargetException();
+                    throw new JspException
+                        (messages.getMessage("getter.result",
+                                             property, t.toString()));
+                } catch (NoSuchMethodException e) {
+                    throw new JspException
+                        (messages.getMessage("getter.method",
+                                             property, collection));
+                }
+                addOption(sb, value.toString(), label.toString(), match);
+            }
+        }
+
+        // Otherwise, use the separate iterators mode to render options
+        else {
+
+              // Construct iterators for the values and labels collections
+              Iterator valuesIterator = getIterator(name, property);
+              Iterator labelsIterator = null;
+              if ((labelName == null) && (labelProperty == null))
+                  labelsIterator = getIterator(name, property); // Same coll.
+              else
+                  labelsIterator = getIterator(labelName, labelProperty);
+
+              // Render the options tags for each element of the values coll.
+              while (valuesIterator.hasNext()) {
+                  String value = (String) valuesIterator.next();
+                  String label = value;
+                  if (labelsIterator.hasNext())
+                      label = (String) labelsIterator.next();
+                  addOption(sb, value, label, match);
+              }
 	}
 
 	// Render this element to our writer
@@ -215,6 +264,7 @@ public class OptionsTag extends TagSupport {
     public void release() {
 
 	super.release();
+        collection = null;
 	labelName = null;
 	labelProperty = null;
 	name = null;
@@ -224,6 +274,30 @@ public class OptionsTag extends TagSupport {
 
 
     // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Add an option element to the specified StringBuffer based on the
+     * specified parameters.
+     *
+     * @param sb StringBuffer accumulating our results
+     * @param value Value to be returned to the server for this option
+     * @param label Value to be shown to the user for this option
+     * @param match Match value that will cause this option to be selected
+     */
+    protected void addOption(StringBuffer sb, String value, String label,
+                             String match) {
+
+        sb.append("<option value=\"");
+        sb.append(value);
+        sb.append("\"");
+        if (match.equals(value))
+            sb.append(" selected");
+        sb.append(">");
+        sb.append(label);
+        sb.append("</option>\r\n");
+
+    }
 
 
     /**

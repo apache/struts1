@@ -7,10 +7,10 @@
 
 <%-- In real life, these would be loaded from a database --%>
 <%
-  pageContext.setAttribute("serverTypeValues",
-    new String[] { "imap", "pop3" });
-  pageContext.setAttribute("serverTypeLabels",
-    new String[] { "IMAP Protocol", "POP3 Protocol" });
+  java.util.ArrayList list = new java.util.ArrayList();
+  list.add(new org.apache.struts.example.LabelValueBean("IMAP Protocol", "imap"));
+  list.add(new org.apache.struts.example.LabelValueBean("POP3 Protocol", "pop3"));
+  pageContext.setAttribute("serverTypes", list);
 %>
 
 <form:html>
@@ -82,8 +82,8 @@
     </th>
     <td align="left">
       <form:select property="type">
-        <form:options name="serverTypeValues"
-                 labelName="serverTypeLabels"/>
+        <form:options collection="serverTypes" property="value"
+                   labelProperty="label"/>
       </form:select>
     </td>
   </tr>
