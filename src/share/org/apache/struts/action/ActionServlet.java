@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.48 2000/12/30 21:28:04 craigmcc Exp $
- * $Revision: 1.48 $
- * $Date: 2000/12/30 21:28:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.49 2001/01/02 20:17:34 craigmcc Exp $
+ * $Revision: 1.49 $
+ * $Date: 2001/01/02 20:17:34 $
  *
  * ====================================================================
  *
@@ -155,9 +155,12 @@ import org.xml.sax.SAXException;
  * define additional initialization parameters.</p>
  * <ul>
  * <li><strong>application</strong> - Java class name of the application
- *     resources bundle base class.  [NONE].</li>
+ *     resources bundle base class.  [NONE]</li>
+ * <li><strong>bufferSize</strong> - The size of the input buffer used when
+ *     processing file uploads.  [4096]</li>
  * <li><strong>config</strong> - Context-relative path to the XML resource
- *     containing our configuration information.  [/WEB-INF/action.xml]</li>
+ *     containing our configuration information.
+ *     [/WEB-INF/struts-config.xml]</li>
  * <li><strong>content</strong> - Default content type and character encoding
  *     to be set on each response; may be overridden by a forwarded-to
  *     servlet or JSP page.  [text/html]</li>
@@ -199,6 +202,14 @@ import org.xml.sax.SAXException;
  *         defaults the <code>scope</code> property to "session".  (Same
  *         as the ActionMapping default value).
  *     </ul></li>
+ * <li><strong>maxFileSize</strong> - The maximum size (in bytes) of a file
+ *     to be accepted as a file upload.  Can be expressed as a number followed
+ *     by a "K" "M", or "G", which are interpreted to mean kilobytes,
+ *     megabytes, or gigabytes, respectively.  [250M]</li>
+ * <li><strong>multipartClass</strong> - The fully qualified name of the
+ *     MultiplartRequestHandler implementation class to be used for processing
+ *     file uploads.  [org.apache.struts.upload.DiskMultipartRequestHandler]
+ *     </li>
  * <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
  *     to every response intended to defeat browser caching of any response we
  *     generate or forward to.  [false]</li>
@@ -206,12 +217,15 @@ import org.xml.sax.SAXException;
  *     resources to return <code>null</code> if an unknown message key is used.
  *     Otherwise, an error message including the offending message key will
  *     be returned.  [true]</li>
+ * <li><strong>tempDir</strong> - The temporary working directory to use when
+ *     processing file uploads.  [The working directory provided to this web
+ *     application as a servlet context attribute]</li>
  * <li><strong>validate</strong> - Are we using the new configuration file
- *     format?  [false]</li>
+ *     format?  [true]</li>
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.48 $ $Date: 2000/12/30 21:28:04 $
+ * @version $Revision: 1.49 $ $Date: 2001/01/02 20:17:34 $
  */
 
 public class ActionServlet
@@ -237,7 +251,7 @@ public class ActionServlet
     /**
      * The context-relative path to our configuration resource.
      */
-    protected String config = "/WEB-INF/action.xml";
+    protected String config = "/WEB-INF/struts-config.xml";
 
 
     /**
@@ -352,7 +366,7 @@ public class ActionServlet
     /**
      * Are we using the new configuration file format?
      */
-    protected boolean validate = false;
+    protected boolean validate = true;
     
         /**
      * The size in bytes of the buffer used to read files from a client upload
