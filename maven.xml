@@ -29,12 +29,6 @@
       </ant:fileset>
     </ant:copy>
 
-    <ant:copy todir="${maven.dist.src.assembly.dir}/build">
-      <ant:fileset dir="./build">
-        <ant:include name="**/*"/>
-      </ant:fileset>
-    </ant:copy>
-
   </postGoal>
 
 </project>
