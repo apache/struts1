@@ -101,10 +101,11 @@ public class ExceptionHandler {
         // or from the form input
         if (ae.getPath() != null) {
             forward = new ActionForward(ae.getPath());
-	    forward.setContextRelative(true);
         } else {
 	    forward = new ActionForward(mapping.getInput());
         }
+
+        forward.setContextRelative(true);
 
         // Figure out the error
         if (ex instanceof ModuleException) {
