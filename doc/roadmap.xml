@@ -32,7 +32,7 @@
 
     <p>
     An outline of the enhancements proposed here can be found on the
-    <a href="Milestones.html">Milestones</a> page.
+    <a href="milestones.html">Milestones</a> page.
     </p>
 
     </section>
@@ -110,7 +110,7 @@
     </p>
 
     <p>
-        Future release <a href="milestomes.html">milestones</a> are provided for enhancements
+        Future release <a href="milestones.html">milestones</a> are provided for enhancements
         which are being actively planned or developed
         but may not be ready for the very next release.
         If a report has not been tagged for a specific milestone by a working developer,
@@ -138,7 +138,7 @@
 
         <p>
             An outline of the Struts 1.x enhancements proposed here can be found on the
-            <a href="Milestones.html">Milestones</a> page.
+            <a href="milestones.html">Milestones</a> page.
         </p>
 
         <p>
@@ -516,7 +516,7 @@
     </section>
 
 <section>
-    <p class="version">Website updated from repository: 2004 DEC 23 by husted.</p>
+    <p class="version">Website updated from repository: 2004 DEC 24 by husted.</p>
     <p class="version">Javadocs updated from repository: 2004 OCT 23 by husted.</p>
 </section>
 </chapter>
