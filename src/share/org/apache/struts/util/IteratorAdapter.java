@@ -18,6 +18,7 @@
 
 package org.apache.struts.util;
 
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -32,23 +33,23 @@ import java.util.NoSuchElementException;
  */
 
 public class IteratorAdapter implements Iterator {
-    private java.util.Enumeration enum;
+    private Enumeration e;
 
-    public IteratorAdapter(java.util.Enumeration enum) {
-        this.enum = enum;
+    public IteratorAdapter(Enumeration e) {
+        this.e = e;
     }
 
     public boolean hasNext() {
-        return enum.hasMoreElements();
+        return e.hasMoreElements();
    }
 
     public Object next() {
-        if (!enum.hasMoreElements()) {
+        if (!e.hasMoreElements()) {
             throw new NoSuchElementException("IteratorAdaptor.next() has no more elements");
         }
-        return enum.nextElement();
+        return e.nextElement();
     }
     public void remove() {
-        throw new java.lang.UnsupportedOperationException("Method IteratorAdaptor.remove() not implemented");
+        throw new UnsupportedOperationException("Method IteratorAdaptor.remove() not implemented");
     }
 }
