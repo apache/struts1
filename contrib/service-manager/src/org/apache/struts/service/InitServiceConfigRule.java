@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/Attic/InitServiceConfigRule.java,v 1.2 2001/07/18 04:22:19 oalexeev Exp $
- * $Revision: 1.2 $
- * $Date: 2001/07/18 04:22:19 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/Attic/InitServiceConfigRule.java,v 1.3 2001/07/18 12:33:57 oalexeev Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/07/18 12:33:57 $
  *
  * ====================================================================
  *
@@ -63,11 +63,11 @@ package org.apache.struts.service;
 
 import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.Rule;
-import org.xml.sax.AttributeList;
+import org.xml.sax.Attributes;
 
 /** 
  * @author Oleg V Alexeev
- * @version $Revision: 1.2 $ $Date: 2001/07/18 04:22:19 $
+ * @version $Revision: 1.3 $ $Date: 2001/07/18 12:33:57 $
  */
 public class InitServiceConfigRule extends Rule {
 
@@ -78,7 +78,7 @@ public class InitServiceConfigRule extends Rule {
                 this.service = service;
         }
 
-        public void begin( AttributeList attributes ) throws Exception {
+        public void begin( Attributes attributes ) throws Exception {
                 digester.push( service );
         }
 
