@@ -668,9 +668,8 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<info>
-				Value of the label to be placed on this button. This value will
-				also be submitted as the value of the specified request parameter.
-				[Body of this tag (if any), or "Cancel"]
+                        The value to be transmitted if this checkbox is
+                        checked when the form is submitted.
 			</info>
 		</attribute>
 	</tag>
@@ -1968,9 +1967,8 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<info>
-				Value of the label to be placed on this button. This value will
-				also be submitted as the value of the specified request parameter.
-				[Body of this tag (if any), or "Cancel"]
+                        The value to be transmitted if this checkbox is
+                        checked when the form is submitted.
 			</info>
 		</attribute>
 	</tag>
