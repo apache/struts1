@@ -31,13 +31,21 @@
       be phased out by the 1.0 release.</li>
   <li>If enabled by setting the <code>locale</code> servlet initialization
       parameter to <code>true</code>, the controller servlet will now calculate
-      a Locale for this user (based on the HTTP headers included with the
-      request) and store it in the user's session, unless the application
+      a Locale for this user (based on the Locale returned by the servlet
+      container, or by the HTTP headers included with the request)
+      and store it in the user's session, unless the application
       has stored one there already.</li>
   <li>Application <code>Action</code> instances now have lifecycle support.
       The controller servlet will call <code>setServlet()</code> with a
       non-null argument when the instance is first created, and call it with
       a <code>null</code> argument when the instance is being shut down.</li>
+  <li>The collection of "standard" Struts actions (in package
+      <code>org.apache.struts.actions</code>) is kicked off with a set of
+      simple actions that allow on-the-fly changes in the form bean, forward,
+      and mapping definitions registered with the controller servlet.  These
+      actions would normally be configured behind security constraints to
+      prevent interference with the operation of your application but can be
+      very useful during development.</li>
   </ul>
 
   </section>

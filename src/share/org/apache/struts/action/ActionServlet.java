@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.27 2000/10/07 20:57:42 craigmcc Exp $
- * $Revision: 1.27 $
- * $Date: 2000/10/07 20:57:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.28 2000/10/07 22:55:13 craigmcc Exp $
+ * $Revision: 1.28 $
+ * $Date: 2000/10/07 22:55:13 $
  *
  * ====================================================================
  *
@@ -197,7 +197,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.27 $ $Date: 2000/10/07 20:57:42 $
+ * @version $Revision: 1.28 $ $Date: 2000/10/07 22:55:13 $
  */
 
 public class ActionServlet
@@ -540,6 +540,33 @@ public class ActionServlet
 
         if (debug >= level)
             log(message);
+
+    }
+
+
+    /**
+     * Reload the configuration of this controller servlet from our
+     * underlying configuration files.
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     */
+    public void reload() throws IOException, ServletException {
+
+        if (debug >= 1)
+            log(internal.getMessage("reloading"));
+
+        // Shut down our existing environment
+        destroyActions();
+        destroyApplication();
+        destroyInternal();
+
+        // Restart from our confirmation files
+        initInternal();
+        initDebug();
+        initApplication();
+        initMapping();
+        initOther();
 
     }
 
