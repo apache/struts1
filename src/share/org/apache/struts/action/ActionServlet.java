@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.157 2003/07/03 03:43:37 dgraham Exp $
- * $Revision: 1.157 $
- * $Date: 2003/07/03 03:43:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.158 2003/07/03 04:44:13 dgraham Exp $
+ * $Revision: 1.158 $
+ * $Date: 2003/07/03 04:44:13 $
  *
  * ====================================================================
  *
@@ -230,7 +230,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.157 $ $Date: 2003/07/03 03:43:37 $
+ * @version $Revision: 1.158 $ $Date: 2003/07/03 04:44:13 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -1082,6 +1082,11 @@ public class ActionServlet extends HttpServlet {
 
         InputStream input =
             getServletContext().getResourceAsStream("/WEB-INF/web.xml");
+            
+        if (input == null) {
+            log.error(internal.getMessage("configWebXml"));
+            throw new ServletException(internal.getMessage("configWebXml"));
+        }
 
         try {
             digester.parse(input);
