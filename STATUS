@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.34 2002/07/20 17:13:42 jholmes Exp $
+$Id: STATUS,v 1.35 2002/07/21 01:00:40 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           18 open bugs to swat!!
+                           17 open bugs to swat!!
 
 
 Controller:
@@ -54,7 +54,6 @@ Unknown:
 
 Utilities:
 ---------
-10897 PropertyMessageResources loading resources from the wrong ClassLoader
 
 
 Validator Framework:

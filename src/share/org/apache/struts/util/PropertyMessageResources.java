@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.4 2002/06/28 01:08:39 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/06/28 01:08:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.5 2002/07/21 01:00:40 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/07/21 01:00:40 $
  *
  * ====================================================================
  * 
@@ -87,7 +87,7 @@ import org.apache.commons.logging.LogFactory;
  * the same locale + key combination.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/06/28 01:08:39 $
+ * @version $Revision: 1.5 $ $Date: 2002/07/21 01:00:40 $
  */
 
 public class PropertyMessageResources extends MessageResources {
@@ -287,7 +287,12 @@ public class PropertyMessageResources extends MessageResources {
             if (log.isTraceEnabled()) {
                 log.trace("  Loading resource '" + name + "'");
             }
-            is = this.getClass().getClassLoader().getResourceAsStream(name);
+            ClassLoader classLoader =
+                Thread.currentThread().getContextClassLoader();
+            if (classLoader == null) {
+                classLoader = this.getClass().getClassLoader();
+            }
+            is = classLoader.getResourceAsStream(name);
             if (is != null) {
                 props.load(is);
                 is.close();
