@@ -1,4 +1,4 @@
-<%@ taglib prefix="s" uri="http://jakarta.apache.org/struts/tags-faces" %>
+<%@ taglib prefix="s" uri="http://struts.apache.org/tags-faces" %>
 
 
 <!--
