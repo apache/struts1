@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.21 2003/07/26 04:25:16 rleland Exp $
- * $Revision: 1.21 $
- * $Date: 2003/07/26 04:25:16 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.22 2003/08/02 21:18:46 dgraham Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/08/02 21:18:46 $
  *
  * ====================================================================
  *
@@ -68,6 +68,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.jsp.JspException;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -76,8 +77,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.RequestProcessor;
-import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.ForwardConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.mock.MockFormBean;
 import org.apache.struts.mock.MockPrincipal;
 import org.apache.struts.mock.TestMockBase;
@@ -88,7 +89,7 @@ import org.apache.struts.taglib.html.Constants;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.21 $ $Date: 2003/07/26 04:25:16 $
+ * @version $Revision: 1.22 $ $Date: 2003/08/02 21:18:46 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -1489,7 +1490,7 @@ public class TestRequestUtils extends TestMockBase {
     public void testSelectApplication1a() {
 
         request.setPathElements("/myapp", "/noform.do", null, null);
-        RequestUtils.selectModule(request, context);
+        ModuleUtils.getInstance().selectModule(request, context);
         ModuleConfig moduleConfig = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
         assertNotNull("Selected a module", moduleConfig);
@@ -1506,7 +1507,7 @@ public class TestRequestUtils extends TestMockBase {
         context.setAttribute(Globals.MODULE_PREFIXES_KEY, prefixes);    
         request.setPathElements("/myapp", "/2/noform.do", null, null);
         
-        RequestUtils.selectModule(request, context);
+        ModuleUtils.getInstance().selectModule(request, context);
         ModuleConfig moduleConfig = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
         assertNotNull("Selected a module", moduleConfig);
@@ -1523,7 +1524,7 @@ public class TestRequestUtils extends TestMockBase {
         request.setPathElements("/myapp", "/2/noform.do", null, null);
         request.setAttribute(RequestProcessor.INCLUDE_SERVLET_PATH,
                              "/noform.do");
-        RequestUtils.selectModule(request, context);
+        ModuleUtils.getInstance().selectModule(request, context);
         ModuleConfig moduleConfig = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
         assertNotNull("Selected an application", moduleConfig);
@@ -1541,7 +1542,7 @@ public class TestRequestUtils extends TestMockBase {
         request.setPathElements("/myapp", "/noform.do", null, null);
         request.setAttribute(RequestProcessor.INCLUDE_SERVLET_PATH,
                              "/2/noform.do");
-        RequestUtils.selectModule(request, context);
+        ModuleUtils.getInstance().selectModule(request, context);
         ModuleConfig moduleConfig = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
         assertNotNull("Selected a module", moduleConfig);

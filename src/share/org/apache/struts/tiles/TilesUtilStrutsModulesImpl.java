@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsModulesImpl.java,v 1.5 2003/07/09 00:24:00 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/07/09 00:24:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsModulesImpl.java,v 1.6 2003/08/02 21:16:54 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/08/02 21:16:54 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ModuleUtils;
 
 /**
  * Implementation of TilesUtil for Struts multi modules.
@@ -198,12 +198,13 @@ public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
         HttpServletRequest request,
         ServletContext servletContext) {
 
-        ModuleConfig moduleConfig = RequestUtils.getRequestModuleConfig(request);
+        ModuleConfig moduleConfig =
+            ModuleUtils.getInstance().getRequestModuleConfig(request);
 
         if (moduleConfig == null) {
             // ModuleConfig not found in current request. Select it.
-            RequestUtils.selectModule(request, servletContext);
-            moduleConfig = RequestUtils.getRequestModuleConfig(request);
+            ModuleUtils.getInstance().selectModule(request, servletContext);
+            moduleConfig = ModuleUtils.getInstance().getRequestModuleConfig(request);
         }
 
         return moduleConfig;

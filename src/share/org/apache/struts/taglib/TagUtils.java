@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.19 2003/08/02 20:40:18 dgraham Exp $
- * $Revision: 1.19 $
- * $Date: 2003/08/02 20:40:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.20 2003/08/02 21:07:33 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/08/02 21:07:33 $
  *
  * ====================================================================
  *
@@ -91,6 +91,7 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ModuleUtils;
 import org.apache.struts.util.RequestUtils;
 
 /**
@@ -101,7 +102,7 @@ import org.apache.struts.util.RequestUtils;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -167,6 +168,7 @@ public class TagUtils {
     public static TagUtils getInstance() {
         return instance;
     }
+    
     /**
      * Compute a set of query parameters that will be dynamically added to
      * a generated URL.  The returned Map is keyed by parameter name, and the
@@ -700,7 +702,7 @@ public class TagUtils {
 
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         StringBuffer value = new StringBuffer(request.getContextPath());
-        ModuleConfig config = RequestUtils.getRequestModuleConfig(request);
+        ModuleConfig config = ModuleUtils.getInstance().getRequestModuleConfig(request);
         
         if (config != null) {
             value.append(config.getPrefix());
@@ -801,7 +803,7 @@ public class TagUtils {
      * @return the ModuleConfig object
      */
     public ModuleConfig getModuleConfig(PageContext pageContext) {
-        return RequestUtils.getModuleConfig(
+        return ModuleUtils.getInstance().getModuleConfig(
             (HttpServletRequest) pageContext.getRequest(),
             pageContext.getServletContext());
     }
@@ -1025,7 +1027,7 @@ public class TagUtils {
     public String pageURL(HttpServletRequest request, String page) {
 
         StringBuffer sb = new StringBuffer();
-        ModuleConfig moduleConfig = RequestUtils.getRequestModuleConfig(request);
+        ModuleConfig moduleConfig = ModuleUtils.getInstance().getRequestModuleConfig(request);
         String pagePattern = moduleConfig.getControllerConfig().getPagePattern();
         
         if (pagePattern == null) {

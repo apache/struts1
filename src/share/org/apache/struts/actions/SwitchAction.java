@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.10 2003/07/11 23:47:57 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2003/07/11 23:47:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.11 2003/08/02 21:21:31 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/08/02 21:21:31 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ModuleUtils;
 
 /**
  * <p>A standard <strong>Action</strong> that switches to a new module
@@ -93,7 +93,7 @@ import org.apache.struts.util.RequestUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2003/07/11 23:47:57 $
+ * @version $Revision: 1.11 $ $Date: 2003/08/02 21:21:31 $
  * @since Struts 1.1
  */
 public class SwitchAction extends Action {
@@ -148,7 +148,7 @@ public class SwitchAction extends Action {
         }
 
         // Switch to the requested module
-        RequestUtils.selectModule(prefix, request, getServlet().getServletContext());
+        ModuleUtils.getInstance().selectModule(prefix, request, getServlet().getServletContext());
         
         if (request.getAttribute(Globals.MODULE_KEY) == null) {
             String message = messages.getMessage("switch.prefix", prefix);

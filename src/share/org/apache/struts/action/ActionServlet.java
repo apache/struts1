@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.164 2003/07/27 04:57:35 rleland Exp $
- * $Revision: 1.164 $
- * $Date: 2003/07/27 04:57:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.165 2003/08/02 21:08:55 dgraham Exp $
+ * $Revision: 1.165 $
+ * $Date: 2003/08/02 21:08:55 $
  *
  * ====================================================================
  *
@@ -111,6 +111,7 @@ import org.apache.struts.config.PlugInConfig;
 import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
+import org.apache.struts.util.ModuleUtils;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ServletContextWriter;
 import org.xml.sax.InputSource;
@@ -234,7 +235,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.164 $ $Date: 2003/07/27 04:57:35 $
+ * @version $Revision: 1.165 $ $Date: 2003/08/02 21:08:55 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -1161,14 +1162,11 @@ public class ActionServlet extends HttpServlet {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception is thrown
      */
-    protected void process(HttpServletRequest request,
-                           HttpServletResponse response)
+    protected void process(HttpServletRequest request, HttpServletResponse response)
         throws IOException, ServletException {
 
-        RequestUtils.selectModule(request, getServletContext());
-        getRequestProcessor(getModuleConfig(request)).process
-            (request, response);
-
+        ModuleUtils.getInstance().selectModule(request, getServletContext());
+        getRequestProcessor(getModuleConfig(request)).process(request, response);
     }
 
 

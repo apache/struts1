@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.65 2003/07/26 00:30:43 dgraham Exp $
- * $Revision: 1.65 $
- * $Date: 2003/07/26 00:30:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.66 2003/08/02 21:12:16 dgraham Exp $
+ * $Revision: 1.66 $
+ * $Date: 2003/08/02 21:12:16 $
  *
  * ====================================================================
  *
@@ -74,6 +74,7 @@ import javax.sql.DataSource;
 import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ModuleUtils;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.TokenProcessor;
 
@@ -108,7 +109,7 @@ import org.apache.struts.util.TokenProcessor;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.65 $ $Date: 2003/07/26 00:30:43 $
+ * @version $Revision: 1.66 $ $Date: 2003/08/02 21:12:16 $
  */
 public class Action {
 
@@ -281,11 +282,10 @@ public class Action {
 
         // Identify the current module
         ServletContext context = getServlet().getServletContext();
-        ModuleConfig moduleConfig = RequestUtils.getModuleConfig(request,context);
+        ModuleConfig moduleConfig =
+            ModuleUtils.getInstance().getModuleConfig(request, context);
 
-        // Return the requested data source instance
-        return ((DataSource) context.getAttribute(key + moduleConfig.getPrefix()));
-
+        return (DataSource) context.getAttribute(key + moduleConfig.getPrefix());
     }
 
 
@@ -320,16 +320,18 @@ public class Action {
      *
      * @since Struts 1.1
      */
-    protected MessageResources getResources(HttpServletRequest request,
-                                            String key) {
+    protected MessageResources getResources(
+        HttpServletRequest request,
+        String key) {
 
         // Identify the current module
         ServletContext context = getServlet().getServletContext();
-        ModuleConfig moduleConfig = RequestUtils.getModuleConfig(request,context);
+        ModuleConfig moduleConfig =
+            ModuleUtils.getInstance().getModuleConfig(request, context);
 
         // Return the requested message resources instance
-        return ((MessageResources) context.getAttribute
-                (key + moduleConfig.getPrefix()));
+        return (MessageResources) context.getAttribute(
+            key + moduleConfig.getPrefix());
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.132 2003/08/02 21:03:41 dgraham Exp $
- * $Revision: 1.132 $
- * $Date: 2003/08/02 21:03:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.133 2003/08/02 21:16:54 dgraham Exp $
+ * $Revision: 1.133 $
+ * $Date: 2003/08/02 21:16:54 $
  *
  * ====================================================================
  *
@@ -106,7 +106,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.132 $ $Date: 2003/08/02 21:03:41 $
+ * @version $Revision: 1.133 $ $Date: 2003/08/02 21:16:54 $
  */
 public class RequestUtils {
 
@@ -899,13 +899,16 @@ public class RequestUtils {
             }
         }
 
-        ModuleConfig moduleConfig = getRequestModuleConfig(request);
+        ModuleConfig moduleConfig =
+            ModuleUtils.getInstance().getRequestModuleConfig(request);
+            
         multipartClass = moduleConfig.getControllerConfig().getMultipartClass();
 
         // Try to initialize the global request handler
         if (multipartClass != null) {
             try {
                 multipartHandler = (MultipartRequestHandler) applicationInstance(multipartClass);
+                
             } catch (ClassNotFoundException cnfe) {
                 throw new ServletException(
                     "Cannot find multipart class \""
@@ -913,6 +916,7 @@ public class RequestUtils {
                         + "\""
                         + ", exception: "
                         + cnfe.getMessage());
+                        
             } catch (InstantiationException ie) {
                 throw new ServletException(
                     "InstantiaionException when instantiating "
@@ -920,6 +924,7 @@ public class RequestUtils {
                         + multipartClass
                         + "\", exception: "
                         + ie.getMessage());
+                        
             } catch (IllegalAccessException iae) {
                 throw new ServletException(
                     "IllegalAccessException when instantiating "
@@ -1049,15 +1054,19 @@ public class RequestUtils {
         if (pattern.endsWith("/*")) {
             sb.append(pattern.substring(0, pattern.length() - 2));
             sb.append(action.getPath());
+            
         } else if (pattern.startsWith("*.")) {
-            ModuleConfig appConfig = getRequestModuleConfig(request);
+            ModuleConfig appConfig =
+                ModuleUtils.getInstance().getRequestModuleConfig(request);
             sb.append(appConfig.getPrefix());
             sb.append(action.getPath());
             sb.append(pattern.substring(1));
+            
         } else {
             throw new IllegalArgumentException(pattern);
         }
-        return (sb.toString());
+        
+        return sb.toString();
 
     }
 
@@ -1117,7 +1126,8 @@ public class RequestUtils {
         }
 
         // Calculate a context relative path for this ForwardConfig
-        ModuleConfig moduleConfig = getRequestModuleConfig(request);
+        ModuleConfig moduleConfig =
+            ModuleUtils.getInstance().getRequestModuleConfig(request);
         String forwardPattern = moduleConfig.getControllerConfig().getForwardPattern();
         if (forwardPattern == null) {
             // Performance optimization for previous default behavior
@@ -1127,6 +1137,7 @@ public class RequestUtils {
                 sb.append("/");
             }
             sb.append(path);
+            
         } else {
             boolean dollar = false;
             for (int i = 0; i < forwardPattern.length(); i++) {
@@ -1158,6 +1169,7 @@ public class RequestUtils {
                 }
             }
         }
+        
         return (sb.toString());
 
     }

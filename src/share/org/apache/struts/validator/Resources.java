@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.18 2003/07/26 00:40:29 dgraham Exp $
- * $Revision: 1.18 $
- * $Date: 2003/07/26 00:40:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.19 2003/08/02 21:12:16 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/08/02 21:12:16 $
  *
  * ====================================================================
  *
@@ -74,6 +74,7 @@ import org.apache.struts.Globals;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ModuleUtils;
 import org.apache.struts.util.RequestUtils;
 
 /**
@@ -83,7 +84,7 @@ import org.apache.struts.util.RequestUtils;
  * @author David Winterfeldt
  * @author Eddie Bush
  * @author David Graham
- * @version $Revision: 1.18 $ $Date: 2003/07/26 00:40:29 $
+ * @version $Revision: 1.19 $ $Date: 2003/08/02 21:12:16 $
  * @since Struts 1.1
  */
 public class Resources  {
@@ -132,7 +133,10 @@ public class Resources  {
         HttpServletRequest request) {
             
         String prefix =
-            RequestUtils.getModuleConfig(request, application).getPrefix();
+            ModuleUtils
+                .getInstance()
+                .getModuleConfig(request, application)
+                .getPrefix();
             
         return (ValidatorResources) application.getAttribute(
             ValidatorPlugIn.VALIDATOR_KEY + prefix);
