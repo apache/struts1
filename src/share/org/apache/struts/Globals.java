@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.7 2003/07/04 21:35:50 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/07/04 21:35:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.8 2003/08/08 23:26:36 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/08/08 23:26:36 $
  *
  * ====================================================================
  *
@@ -68,7 +68,7 @@ import java.io.Serializable;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.7 $ $Date: 2003/07/04 21:35:50 $
+ * @version $Revision: 1.8 $ $Date: 2003/08/08 23:26:36 $
  */
 public class Globals implements Serializable {
 
@@ -137,7 +137,6 @@ public class Globals implements Serializable {
     public static final String ERROR_KEY =
       "org.apache.struts.action.ERROR";
 
-
     /**
      * The request attributes key under which Struts custom tags might store a
      * <code>Throwable</code> that caused them to report a JspException at
@@ -146,31 +145,6 @@ public class Globals implements Serializable {
      */
     public static final String EXCEPTION_KEY =
         "org.apache.struts.action.EXCEPTION";
-
-
-    /**
-     * The context attributes key under which our
-     * <code>org.apache.struts.action.ActionFormBeans</code> collection
-     * is normally stored, unless overridden when initializing our
-     * ActionServlet.
-     *
-     * @deprecated Replaced by collection in ModuleConfig
-     */
-    public static final String FORM_BEANS_KEY =
-        "org.apache.struts.action.FORM_BEANS";
-
-
-    /**
-     * The context attributes key under which our
-     * <code>org.apache.struts.action.ActionForwards</code> collection
-     * is normally stored, unless overridden when initializing our
-     * ActionServlet.
-     *
-     * @deprecated Replaced by collection in ModuleConfig.
-     */
-    public static final String FORWARDS_KEY =
-      "org.apache.struts.action.FORWARDS";
-
 
     /**
      * The session attributes key under which the user's selected
@@ -182,7 +156,6 @@ public class Globals implements Serializable {
     public static final String LOCALE_KEY =
       "org.apache.struts.action.LOCALE";
 
-
     /**
      * The request attributes key under which our
      * <code>org.apache.struts.ActionMapping</code> instance
@@ -190,19 +163,6 @@ public class Globals implements Serializable {
      */
     public static final String MAPPING_KEY =
         "org.apache.struts.action.mapping.instance";
-
-
-    /**
-     * The context attributes key under which our
-     * <code>org.apache.struts.action.ActionMappings</code> collection
-     * is normally stored, unless overridden when initializing our
-     * ActionServlet.
-     *
-     * @deprecated Replaced by collection in ModuleConfig
-     */
-    public static final String MAPPINGS_KEY =
-      "org.apache.struts.action.MAPPINGS";
-
 
     /**
      * The request attributes key under which your action should store an

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.8 2003/08/04 12:07:34 jmitchell Exp $
- * $Revision: 1.8 $
- * $Date: 2003/08/04 12:07:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.9 2003/08/08 23:26:36 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/08/08 23:26:36 $
  *
  * ====================================================================
  *
@@ -75,11 +75,8 @@ import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionFormBean;
-import org.apache.struts.action.ActionFormBeans;
 import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionForwards;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMappings;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.MessageResources;
@@ -110,7 +107,7 @@ import org.apache.struts.util.MessageResources;
  * @since Struts 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.8 $ $Date: 2003/08/04 12:07:34 $
+ * @version $Revision: 1.9 $ $Date: 2003/08/08 23:26:36 $
  */
 public class ConfigHelper implements ConfigHelperInterface {
 
@@ -228,49 +225,6 @@ public class ConfigHelper implements ConfigHelperInterface {
             return null;
         return (ActionMessages) this.application.getAttribute(Globals.MESSAGE_KEY);
 
-    }
-
-    /**
-     * The <code>org.apache.struts.action.ActionFormBeans</code> collection
-     * for this application.
-     * @deprecated deprecated in struts 1.2 ActionFormBeans is replaced by a collection in ModuleConfig.
-     */
-    public ActionFormBeans getActionFormBeans() {
-
-        if (this.application == null) {
-            return null;
-        }
-        return (ActionFormBeans) this.application.getAttribute(Globals.FORM_BEANS_KEY);
-
-    }
-
-    /**
-     * The <code>org.apache.struts.action.ActionForwards</code> collection
-     * for this application.
-     * @deprecated deprecated in struts 1.2 ActionForwards is replaced by a collection in ModuleConfig.
-
-     */
-    public ActionForwards getActionForwards() {
-
-        if (this.application == null) {
-            return null;
-        }
-        return (ActionForwards) this.application.getAttribute(Globals.FORWARDS_KEY);
-
-    }
-
-    /**
-     * The context attributes key under which our
-     * <code>org.apache.struts.action.ActionMappings</code> collection
-     * is normally stored, unless overridden when initializing our
-     * ActionServlet.
-     * @deprecated deprecated in struts 1.2 ActionMappings is replaced by a collection in ModuleConfig.
-     */
-    public ActionMappings getActionMappings() {
-        if (this.application == null) {
-            return null;
-        }
-        return (ActionMappings) this.application.getAttribute(Globals.MAPPINGS_KEY);
     }
 
     /**
@@ -445,13 +399,7 @@ public class ConfigHelper implements ConfigHelperInterface {
      * @param name Logical name of the requested form bean definition
      */
     public ActionFormBean getFormBean(String name) {
-
-        ActionFormBeans formBeans = getActionFormBeans();
-
-        if (formBeans == null)
-            return null;
-        return formBeans.findFormBean(name);
-
+        return null;
     }
 
     /**
@@ -461,13 +409,7 @@ public class ConfigHelper implements ConfigHelperInterface {
      * @param name Logical name of the requested forwarding
      */
     public ActionForward getActionForward(String name) {
-
-        ActionForwards forwards = getActionForwards();
-
-        if (forwards == null)
-            return null;
-        return forwards.findForward(name);
-
+        return null;
     }
 
     /**
@@ -477,13 +419,7 @@ public class ConfigHelper implements ConfigHelperInterface {
      * @param path Request path for which a mapping is requested
      */
     public ActionMapping getActionMapping(String path) {
-
-        ActionMappings mappings = getActionMappings();
-
-        if (mappings == null)
-            return null;
-        return mappings.findMapping(path);
-
+        return null;
     }
 
     /**

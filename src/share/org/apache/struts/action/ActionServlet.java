@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.165 2003/08/02 21:08:55 dgraham Exp $
- * $Revision: 1.165 $
- * $Date: 2003/08/02 21:08:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.166 2003/08/08 23:26:36 dgraham Exp $
+ * $Revision: 1.166 $
+ * $Date: 2003/08/08 23:26:36 $
  *
  * ====================================================================
  *
@@ -99,11 +99,9 @@ import org.apache.commons.digester.RuleSet;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
-import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ConfigRuleSet;
 import org.apache.struts.config.DataSourceConfig;
 import org.apache.struts.config.FormBeanConfig;
-import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.MessageResourcesConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.ModuleConfigFactory;
@@ -235,7 +233,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.165 $ $Date: 2003/08/02 21:08:55 $
+ * @version $Revision: 1.166 $ $Date: 2003/08/08 23:26:36 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -731,17 +729,7 @@ public class ActionServlet extends HttpServlet {
             }
         }
 
-        // Special handling for the default module (for
-        // backwards compatibility only, will be removed later)
-        if (prefix.length() < 1) {
-            defaultFormBeansConfig(config);
-            defaultForwardsConfig(config);
-            defaultMappingsConfig(config);
-        }
-
-        // Return the completed configuration object
         return config;
-
     }
 
     /**
@@ -1167,84 +1155,6 @@ public class ActionServlet extends HttpServlet {
 
         ModuleUtils.getInstance().selectModule(request, getServletContext());
         getRequestProcessor(getModuleConfig(request)).process(request, response);
-    }
-
-
-    // -------------------------------------------------------- Private Methods
-
-    /**
-     * Perform backwards-compatible configuration of an ActionFormBeans
-     * collection, and expose it as a servlet context attribute (as was
-     * used in Struts 1.0).  Note that the current controller code does
-     * not (and should not) reference this attribute for any reason.
-     *
-     * @param config The ModuleConfig object for the default app
-     *
-     * @since Struts 1.1
-     * @deprecated Will be removed in a release after Struts 1.1.
-     */
-    private void defaultFormBeansConfig(ModuleConfig config) {
-
-        FormBeanConfig fbcs[] = config.findFormBeanConfigs();
-        ActionFormBeans afb = new ActionFormBeans();
-        afb.setFast(false);
-        for (int i = 0; i < fbcs.length; i++) {
-            afb.addFormBean((ActionFormBean) fbcs[i]);
-        }
-        afb.setFast(true);
-        getServletContext().setAttribute(Globals.FORM_BEANS_KEY, afb);
-
-    }
-
-
-    /**
-     * Perform backwards-compatible configuration of an ActionForwards
-     * collection, and expose it as a servlet context attribute (as was
-     * used in Struts 1.0).  Note that the current controller code does
-     * not (and should not) reference this attribute for any reason.
-     *
-     * @param config The ModuleConfig object for the default app
-     *
-     * @since Struts 1.1
-     * @deprecated Will be removed in a release after Struts 1.1.
-     */
-    private void defaultForwardsConfig(ModuleConfig config) {
-
-        ForwardConfig fcs[] = config.findForwardConfigs();
-        ActionForwards af = new ActionForwards();
-        af.setFast(false);
-        for (int i = 0; i < fcs.length; i++) {
-            af.addForward((ActionForward) fcs[i]);
-        }
-        af.setFast(true);
-        getServletContext().setAttribute(Globals.FORWARDS_KEY, af);
-
-    }
-
-
-    /**
-     * Perform backwards-compatible configuration of an ActionMappings
-     * collection, and expose it as a servlet context attribute (as was
-     * used in Struts 1.0).  Note that the current controller code does
-     * not (and should not) reference this attribute for any reason.
-     *
-     * @param config The ModuleConfig object for the default app
-     *
-     * @since Struts 1.1
-     * @deprecated Will be removed in a release after Struts 1.1.
-     */
-    private void defaultMappingsConfig(ModuleConfig config) {
-
-        ActionConfig acs[] = config.findActionConfigs();
-        ActionMappings am = new ActionMappings();
-        am.setServlet(this);
-        am.setFast(false);
-        for (int i = 0; i < acs.length; i++) {
-            am.addMapping((ActionMapping) acs[i]);
-        }
-        am.setFast(true);
-        getServletContext().setAttribute(Globals.MAPPINGS_KEY, am);
-
     }
 
 }

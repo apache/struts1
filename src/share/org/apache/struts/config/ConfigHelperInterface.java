@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelperInterface.java,v 1.6 2003/07/04 20:53:42 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/07/04 20:53:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelperInterface.java,v 1.7 2003/08/08 23:26:36 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/08/08 23:26:36 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -65,18 +65,15 @@ package org.apache.struts.config;
 
 import java.util.Iterator;
 import java.util.Locale;
+
 import javax.sql.DataSource;
 
 import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMappings;
-import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionFormBean;
-import org.apache.struts.action.ActionFormBeans;
 import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionForwards;
-
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.MessageResources;
 
@@ -107,7 +104,7 @@ import org.apache.struts.util.MessageResources;
  * @since Struts 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.6 $ $Date: 2003/07/04 20:53:42 $
+ * @version $Revision: 1.7 $ $Date: 2003/08/08 23:26:36 $
  */
 public interface ConfigHelperInterface {
 
@@ -116,42 +113,16 @@ public interface ConfigHelperInterface {
 
     public DataSource getDataSource();
 
-
     /**
      * The <code>org.apache.struts.action.ActionFormBeans</code> collection
      * for this application.
      */
     public ActionMessages getActionMessages();
 
-
-    /**
-     * The <code>org.apache.struts.action.ActionFormBeans</code> collection
-     * for this application.
-     */
-    public ActionFormBeans getActionFormBeans();
-
-
-    /**
-     * The <code>org.apache.struts.action.ActionForwards</code> collection
-     * for this application.
-     */
-    public ActionForwards getActionForwards();
-
-
-    /**
-     * The context attributes key under which our
-     * <code>org.apache.struts.action.ActionMappings</code> collection
-     * is normally stored, unless overridden when initializing our
-     * ActionServlet.
-     */
-    public ActionMappings getActionMappings();
-
-
     /**
      * The application resources for this application.
      */
     public MessageResources getMessageResources();
-
 
     /**
      * The path-mapped pattern (<code>/action/*</code>) or
