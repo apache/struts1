@@ -3,7 +3,7 @@
 
   <properties>
     <author>Craig R. McClanahan</author>
-    <title>The Struts Project TODO List for Version 1.1</title>
+    <title>Features We'd Like To See - The Struts Project Wish List</title>
   </properties>
 
   <body>
@@ -49,9 +49,12 @@
  
   <p>See also the Tiles, Validator, and Service Manager packages in the contrib folder.</p>
 
-  <p>The TODO list tasks are divided into functional areas that correspond
-  to the major components of the Struts Framework.  References in square
-  brackets are the Java package containing the corresponding source code.</p>
+  <p>The wish list tasks are divided into functional areas that correspond
+  to the major components of the Struts Framework. References in square
+  brackets are the Java package containing the corresponding source code. 
+  Listing a task here is not a guarantee that it will be present in the 
+  next release. Again, whether a wish becomes a feature depends on whether 
+  there are volunteers who choose to work on the task. </p>
 
   </section>
 
@@ -61,6 +64,13 @@
       <p>Omnibus task list for items related to the Struts Documentation,
       which do not have direct relationships with code bases.</p>
     </info>
+
+    <task name="Taglib Chapters for User Guide">
+    <info>
+     Incorporate the Taglib documentation and Developer Guides into the User Guide, 
+     by including the source of these from their present locations.
+    </info>   
+    </task>
 
     <task name="TODO stylesheet">
     <info>
