@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.12 2003/07/04 21:25:23 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/07/04 21:25:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.13 2003/08/03 14:18:03 jmitchell Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/08/03 14:18:03 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.util.HashMap;
  * module configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2003/07/04 21:25:23 $
+ * @version $Revision: 1.13 $ $Date: 2003/08/03 14:18:03 $
  * @since Struts 1.1
  */
 public class ActionConfig implements Serializable {
@@ -651,7 +651,7 @@ public class ActionConfig implements Serializable {
 
 
     /**
-     * Return the form bean configurations for this application.  If there
+     * Return all forward configurations for this application.  If there
      * are none, a zero-length array is returned.
      */
     public ForwardConfig[] findForwardConfigs() {
