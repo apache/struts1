@@ -18,32 +18,35 @@
    <table>
     <tr>
      <td>
-      <html-el:radio property="stringProperty" value="flagOne"/>
+      <html-el:radio property="stringProperty" value="flagOne"
+                     title="Flag One" tabindex="3" accesskey="1"/>
      </td>
      <td>flag one</td>
     </tr>
     <tr>
      <td>
-      <html-el:radio property="stringProperty" value="flagTwo"/>
+      <html-el:radio property="stringProperty" value="flagTwo"
+                     title="Flag Two" tabindex="2" accesskey="2"/>
      </td>
      <td>flag two</td>
     </tr>
     <tr>
      <td>
       <html-el:radio property="stringProperty" value="flagThree"
-                     onblur="showit('onblur')"
-                     onchange="showit('onchange')"
-                     onclick="showit('onclick')"
-                     ondblclick="showit('ondblclick')"
-                     onfocus="showit('onfocus')"
-                     onkeydown="showit('onkeydown')"
-                     onkeypress="showit('onkeypress')"
-                     onkeyup="showit('onkeyup')"
-                     onmousedown="showit('onmousedown')"
-                     onmousemove="showit('onmousemove')"
-                     onmouseout="showit('onmouseout')"
-                     onmouseover="showit('onmouseover')"
-                     onmouseup="showit('onmouseup')"
+                     title="Flag Three" tabindex="1" accesskey="3"
+                     onblur="showevent(event)"
+                     onchange="showevent(event)"
+                     onclick="showevent(event)"
+                     ondblclick="showevent(event)"
+                     onfocus="showevent(event)"
+                     onkeydown="showevent(event)"
+                     onkeypress="showevent(event)"
+                     onkeyup="showevent(event)"
+                     onmousedown="showevent(event)"
+                     onmousemove="showevent(event)"
+                     onmouseout="showevent(event)"
+                     onmouseover="showevent(event)"
+                     onmouseup="showevent(event)"
       />
      </td>
      <td>flag three</td>
@@ -58,7 +61,10 @@
 
   <script>
    <!--
-    function showit(thing) { window.status = thing; }
+    function showevent(evt)
+	 {
+        window.status = evt.type;
+    }
     // -->
   </script>
 
