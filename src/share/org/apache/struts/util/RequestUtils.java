@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.88 2003/02/25 04:39:31 dgraham Exp $
- * $Revision: 1.88 $
- * $Date: 2003/02/25 04:39:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.89 2003/02/25 04:58:30 dgraham Exp $
+ * $Revision: 1.89 $
+ * $Date: 2003/02/25 04:58:30 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author James Turner
- * @version $Revision: 1.88 $ $Date: 2003/02/25 04:39:31 $
+ * @version $Revision: 1.89 $ $Date: 2003/02/25 04:58:30 $
  */
 
 public class RequestUtils {
@@ -1337,7 +1337,7 @@ public class RequestUtils {
      * @param pattern URL pattern used to map the controller servlet
      * @return  context-relative URL relative to the module
      *
-     * @since Struts 1.1b2
+     * @since Struts 1.1
      */
     public static String actionURL(
         HttpServletRequest request,
@@ -1473,7 +1473,7 @@ public class RequestUtils {
      *  to the <code>pagePattern</code> pattern for the current module
      *  (<strong>MUST</strong> start with a slash)
      * @return context-relative URL
-     * @since Struts 1.1b2
+     * @since Struts 1.1
      */
     public static String pageURL(HttpServletRequest request, String page) {
 
@@ -1604,7 +1604,7 @@ public class RequestUtils {
      * @param prefix The module prefix of the desired module
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
-     * @since struts 1.1b3
+     * @since struts 1.1
      */
     public static void selectModule(
         String prefix,
@@ -1711,7 +1711,7 @@ public class RequestUtils {
      * Return the ModuleConfig object if it exists, null if otherwise.
      * @param pageContext The page context.
      * @return the ModuleConfig object
-     * @since 1.1b3
+     * @since 1.1
      */
     public static ModuleConfig getModuleConfig(PageContext pageContext) {
         ModuleConfig moduleConfig =
@@ -1734,7 +1734,7 @@ public class RequestUtils {
      * @param request The servlet request we are processing
      * @return the ModuleConfig object from request, or null if none is set in
      * the request.
-     * @since 1.1b3
+     * @since 1.1
      */
     public static ModuleConfig getRequestModuleConfig( HttpServletRequest request) {
         return (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
@@ -1745,7 +1745,7 @@ public class RequestUtils {
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
      * @return the ModuleConfig object
-     * @since 1.1b3
+     * @since 1.1
      */
     public static ModuleConfig getModuleConfig(
         HttpServletRequest request,

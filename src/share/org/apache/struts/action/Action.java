@@ -1,14 +1,14 @@
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.55 2003/02/16 02:51:32 craigmcc Exp $
- * $Revision: 1.55 $
- * $Date: 2003/02/16 02:51:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.56 2003/02/25 04:58:29 dgraham Exp $
+ * $Revision: 1.56 $
+ * $Date: 2003/02/25 04:58:29 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -115,7 +115,7 @@ import org.apache.struts.util.RequestUtils;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.55 $ $Date: 2003/02/16 02:51:32 $
+ * @version $Revision: 1.56 $ $Date: 2003/02/25 04:58:29 $
  */
 
 public class Action {
@@ -516,7 +516,7 @@ public class Action {
      *
      * @param request The servlet request we are processing
      *
-     * @since Struts 1.1b2
+     * @since Struts 1.1
      */
     protected DataSource getDataSource(HttpServletRequest request) {
 
@@ -534,7 +534,7 @@ public class Action {
      *  <code>&lt;message-resources&gt;</code> element for the
      *  requested bundle
      *
-     * @since Struts 1.1b2
+     * @since Struts 1.1
      */
     protected DataSource getDataSource(HttpServletRequest request,
                                        String key) {
@@ -603,7 +603,7 @@ public class Action {
      *  <code>&lt;message-resources&gt;</code> element for the
      *  requested bundle
      *
-     * @since Struts 1.1b2
+     * @since Struts 1.1
      */
     protected MessageResources getResources(HttpServletRequest request,
                                             String key) {

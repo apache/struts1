@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.9 2003/01/25 05:52:35 martinc Exp $
- * $Revision: 1.9 $
- * $Date: 2003/01/25 05:52:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.10 2003/02/25 04:58:30 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/02/25 04:58:30 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -77,10 +77,10 @@ import org.apache.commons.validator.ValidatorResources;
  * <p>This class helps provides some useful methods for retrieving objects
  * from different scopes of the application.</p>
  *
- * @deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.Resources}
+ * @deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.Resources}
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.9 $ $Date: 2003/01/25 05:52:35 $
+ * @version $Revision: 1.10 $ $Date: 2003/02/25 04:58:30 $
  * @since Struts 1.1
 */
 public class StrutsValidatorUtil  {
@@ -103,7 +103,7 @@ public class StrutsValidatorUtil  {
    /**
     * Retrieve <code>ValidatorResources</code> for the module.
     *
-    * @deprecated In Struts 1.1b3 This method can only return the resources for the default
+    * @deprecated In Struts 1.1 This method can only return the resources for the default
     *  module.  Use getValidatorResources(HttpServletRequest, ServletContext)
     *  to get the resources for the current application module.
    */
@@ -160,7 +160,7 @@ public class StrutsValidatorUtil  {
    /**
     * Gets the locale sensitive message based on the <code>ValidatorAction</code> message and the
     * <code>Field</code>'s arg objects.
-    *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.Resources#getMessage(MessageResources, Locale, ValidatorAction , Field)}
+    *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.Resources#getMessage(MessageResources, Locale, ValidatorAction , Field)}
    */
    public static String getMessage(MessageResources messages, Locale locale,
                                    ValidatorAction va, Field field) {
@@ -170,7 +170,7 @@ public class StrutsValidatorUtil  {
    /**
     * Gets the <code>ActionError</code> based on the <code>ValidatorAction</code> message and the
     * <code>Field</code>'s arg objects.
-    *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.Resources#getActionError(HttpServletRequest, ValidatorAction, Field)}
+    *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.Resources#getActionError(HttpServletRequest, ValidatorAction, Field)}
    */
    public static ActionError getActionError(HttpServletRequest request,
                                             ValidatorAction va, Field field) {
@@ -181,7 +181,7 @@ public class StrutsValidatorUtil  {
    /**
     * Gets the message arguments based on the current <code>ValidatorAction</code>
     * and <code>Field</code>.
-    *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.Resources#getArgs(String,MessageResources,Locale,Field)}
+    *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.Resources#getArgs(String,MessageResources,Locale,Field)}
    */
    public static String[] getArgs(String actionName, MessageResources messages,
                                   Locale locale, Field field) {
@@ -191,7 +191,7 @@ public class StrutsValidatorUtil  {
 
    /**
     * Initialize the <code>Validator</code> to perform validation.
-    *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.Resources#initValidator(String,Object,ServletContext,HttpServletRequest,ActionErrors,int)}
+    *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.Resources#initValidator(String,Object,ServletContext,HttpServletRequest,ActionErrors,int)}
     *
     * @param    key     The key that the validation rules are under
     *               (the form elements name attribute).

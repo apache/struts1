@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.8 2002/11/28 07:38:57 rleland Exp $
- * $Revision: 1.8 $
- * $Date: 2002/11/28 07:38:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.9 2003/02/25 04:58:29 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/02/25 04:58:29 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -84,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.8 $ $Date: 2002/11/28 07:38:57 $
+ * @version $Revision: 1.9 $ $Date: 2003/02/25 04:58:29 $
  * @since Struts 1.1
 */
 public class Resources  {
@@ -110,7 +110,7 @@ public class Resources  {
     * Retrieve <code>ValidatorResources</code> for the module.
     * @param application servlet context
     *
-    * @deprecated In Struts 1.1b3 This method can only return the resources for the default
+    * @deprecated In Struts 1.1 This method can only return the resources for the default
     *  module.  Use getValidatorResources(HttpServletRequest, ServletContext)
     *  to get the resources for the current application module.
    */

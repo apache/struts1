@@ -1,7 +1,7 @@
 /*
  *  The Apache Software License, Version 1.1
  *
- *  Copyright (c) 1999 The Apache Software Foundation.  All rights
+ *  Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  *  reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -72,7 +72,7 @@ import org.apache.struts.action.ActionErrors;
  * In general passin in a null or blank will return a null Object or a false
  * boolean. However, nulls and blanks do not result in an error being added to the
  * errors.
- *@deprecated  As of Struts 1.1b3, replaced by    {@link org.apache.struts.validator.FieldChecks }
+ *@deprecated  As of Struts 1.1, replaced by    {@link org.apache.struts.validator.FieldChecks }
  *
  *@author     David Winterfeldt
  *@author     James Turner
@@ -94,7 +94,7 @@ public class StrutsValidator implements Serializable {
      *
      *  Checks if the field isn't null and length of the field is greater than zero
      *  not including whitespace.</p>
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateRequired(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateRequired(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
@@ -120,7 +120,7 @@ public class StrutsValidator implements Serializable {
      *
      *  Checks if the field matches the regular expression in the field's mask attribute.
      *  </p>
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateMask(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateMask(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
@@ -144,7 +144,7 @@ public class StrutsValidator implements Serializable {
      *  <p>
      *
      *  Checks if the field can safely be converted to a byte primitive.</p>
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateByte(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateByte(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
@@ -168,7 +168,7 @@ public class StrutsValidator implements Serializable {
      *  <p>
      *
      *  Checks if the field can safely be converted to a short primitive.</p>
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateShort(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateShort(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
@@ -191,7 +191,7 @@ public class StrutsValidator implements Serializable {
      *  <p>
      *
      *  Checks if the field can safely be converted to an int primitive.</p>
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateInteger(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateInteger(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
@@ -214,7 +214,7 @@ public class StrutsValidator implements Serializable {
      *  <p>
      *
      *  Checks if the field can safely be converted to a long primitive.</p>
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateLong(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateLong(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
@@ -237,7 +237,7 @@ public class StrutsValidator implements Serializable {
      *  <p>
      *
      *  Checks if the field can safely be converted to a float primitive.</p>
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateFloat(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateFloat(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
@@ -260,7 +260,7 @@ public class StrutsValidator implements Serializable {
      *  <p>
      *
      *  Checks if the field can safely be converted to a double primitive.</p>
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateDouble(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateDouble(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
@@ -290,7 +290,7 @@ public class StrutsValidator implements Serializable {
      *  variable is specified, then the field gets the DateFormat.SHORT format for
      *  the locale. The setLenient method is set to <code>false</code> for all variations.
      *  </p>
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateDate(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateDate(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
@@ -314,7 +314,7 @@ public class StrutsValidator implements Serializable {
      *
      *  Checks if a fields value is within a range (min &amp; max specified in the
      *  vars attribute).</p>
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateIntRange(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateIntRange(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
      *@param  field    The <code>Field</code> object associated with the current
@@ -336,7 +336,7 @@ public class StrutsValidator implements Serializable {
      *  <p>
      *
      *  Checks if the field is a valid credit card number.</p> <p>
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateCreditCard(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateCreditCard(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *
      *  Translated to Java by Ted Husted (<a href="mailto:husted@apache.org">husted@apache.org
      *  </a>).<br>
@@ -365,7 +365,7 @@ public class StrutsValidator implements Serializable {
      *  <p>
      *
      *  Checks if a field has a valid e-mail address.</p> <p>
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateEmail(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateEmail(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *
      *  Based on a script by Sandeep V. Tamhankar (stamhankar@hotmail.com), http://javascript.internet.com
      *  </p>
@@ -394,7 +394,7 @@ public class StrutsValidator implements Serializable {
      *  Checks if the field's length is less than or equal to the maximum value.
      *  A <code>Null</code> will be considered an error.</p>
      *
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateMaxLength(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateMaxLength(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
      *@param  field    The <code>Field</code> object associated with the current
@@ -419,7 +419,7 @@ public class StrutsValidator implements Serializable {
      *  Checks if the field's length is greater than or equal to the minimum value.
      *  A <code>Null</code> will be considered an error.</p>
      *
-     *@deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.FieldChecks#validateMinLength(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link org.apache.struts.validator.FieldChecks#validateMinLength(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
      *@param  field    The <code>Field</code> object associated with the current

@@ -560,7 +560,7 @@ public class FieldChecks implements Serializable {
      *
      *  Checks if a fields value is within a range (min &amp; max specified in the
      *  vars attribute).</p>
-     *@deprecated  As of Struts 1.1b3, replaced by {@link #validateIntRange(java.lang.Object,org.apache.commons.validator.ValidatorAction,org.apache.commons.validator.Field,org.apache.struts.action.ActionErrors,javax.servlet.http.HttpServletRequest)}
+     *@deprecated  As of Struts 1.1, replaced by {@link #validateIntRange(java.lang.Object,org.apache.commons.validator.ValidatorAction,org.apache.commons.validator.Field,org.apache.struts.action.ActionErrors,javax.servlet.http.HttpServletRequest)}
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
      *@param  field    The <code>Field</code> object associated with the current

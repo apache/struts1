@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.26 2002/11/06 04:48:28 rleland Exp $
- * $Revision: 1.26 $
- * $Date: 2002/11/06 04:48:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.27 2003/02/25 04:58:29 dgraham Exp $
+ * $Revision: 1.27 $
+ * $Date: 2003/02/25 04:58:29 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -85,7 +85,7 @@ import org.apache.struts.config.ForwardConfig;
  * are using.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.26 $ $Date: 2002/11/06 04:48:28 $
+ * @version $Revision: 1.27 $ $Date: 2003/02/25 04:58:29 $
  */
 
 public class ActionMapping extends ActionConfig {
@@ -174,7 +174,7 @@ public class ActionMapping extends ActionConfig {
      * <p>Create (if necessary) and return an {@link ActionForward} that
      * corresponds to the <code>input</code> property of this Action.
      *
-     * @since Struts 1.1b2
+     * @since Struts 1.1
      */
     public ActionForward getInputForward() {
 

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.5 2002/11/16 06:04:28 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2002/11/16 06:04:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.6 2003/02/25 04:58:30 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/02/25 04:58:30 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -76,7 +76,7 @@ import org.apache.commons.beanutils.BeanUtils;
  *
  * @author Cedric Dumoulin
  * @since 1.1
- * @version $Revision: 1.5 $ $Date: 2002/11/16 06:04:28 $
+ * @version $Revision: 1.6 $ $Date: 2003/02/25 04:58:30 $
  */
 public class DefinitionsFactoryConfig implements Serializable
 {
@@ -117,7 +117,7 @@ public class DefinitionsFactoryConfig implements Serializable
     /**
      * The name associated to this factory.
      * <br>
-     * With Struts > 1.1b3, this name is the module name to which this factory
+     * With Struts 1.1, this name is the module name to which this factory
      * belong. It is set by the system.
      * <br>
      * In other versions, this properties is not used.
