@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.97 2003/04/22 02:28:52 dgraham Exp $
- * $Revision: 1.97 $
- * $Date: 2003/04/22 02:28:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.98 2003/04/25 00:36:10 dgraham Exp $
+ * $Revision: 1.98 $
+ * $Date: 2003/04/25 00:36:10 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.97 $ $Date: 2003/04/22 02:28:52 $
+ * @version $Revision: 1.98 $ $Date: 2003/04/25 00:36:10 $
  */
 
 public class RequestUtils {
@@ -127,11 +127,6 @@ public class RequestUtils {
      * Commons Logging instance.
      */
     protected static Log log = LogFactory.getLog(RequestUtils.class);
-
-    /**
-     * The default Locale for our server.
-     */
-    private static final Locale defaultLocale = Locale.getDefault();
 
     /**
      * The message resources for this package.
@@ -898,13 +893,14 @@ public class RequestUtils {
      * Look up and return current user locale, based on the specified parameters.
      *
      * @param pageContext The PageContext associated with this request
-     * @param locale Name of the session attribute for our user's Locale
+     * @param locale Name of the session attribute for our user's Locale.  If this is 
+     * <code>null</code>, the default locale key is used for the lookup.
      * @return current user locale
      */
     public static Locale retrieveUserLocale(PageContext pageContext, String locale) {
         Locale userLocale = null;
         HttpSession session = pageContext.getSession();
-
+ 
         if (locale == null) {
             locale = Globals.LOCALE_KEY;
         }
@@ -915,6 +911,7 @@ public class RequestUtils {
         }
 
         if (userLocale == null) {
+            // Returns Locale based on Accept-Language header or the server default
             userLocale = pageContext.getRequest().getLocale();
         }
 
@@ -962,34 +959,11 @@ public class RequestUtils {
         Object args[])
         throws JspException {
 
-        MessageResources resources = null;
+       	MessageResources resources =
+			retrieveMessageResources(pageContext, bundle);
 
-        // Look up the requested MessageResources
-        if (bundle == null) {
-            bundle = Globals.MESSAGES_KEY;
-        }
-        
-        resources =
-                (MessageResources) pageContext.getAttribute(bundle, PageContext.REQUEST_SCOPE);
-
-        if (resources == null) {
-            resources =
-                (MessageResources) pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
-        }
-        
-        if (resources == null) {
-            JspException e = new JspException(messages.getMessage("message.bundle", bundle));
-            saveException(pageContext, e);
-            throw e;
-        }
-
-        // Look up the requested Locale
-        if (locale == null) {
-            locale = Globals.LOCALE_KEY;
-        }
         Locale userLocale = retrieveUserLocale(pageContext, locale);
-
-        // Return the requested message
+        
         if (args == null) {
             return (resources.getMessage(userLocale, key));
         } else {
@@ -997,6 +971,59 @@ public class RequestUtils {
         }
 
     }
+
+    /**
+     * Returns the appropriate MessageResources object for the current module and 
+     * the given bundle.
+     * 
+     * @param pageContext Search the context's scopes for the resources.
+     * @param bundle The bundle name to look for.  If this is <code>null</code>, the 
+     * default bundle name is used.
+     * @return MessageResources The bundle's resources stored in some scope. 
+     * @throws JspException if the MessageResources object could not be found.
+     * 
+     * @FIXME The bundle name needs the module prefix appended to it before searching
+     * to fix PR# 11932.
+     */
+	private static MessageResources retrieveMessageResources(
+		PageContext pageContext,
+		String bundle)
+		throws JspException {
+            
+		MessageResources resources = null;
+
+		if (bundle == null) {
+			bundle = Globals.MESSAGES_KEY;
+		}
+
+		resources =
+			(MessageResources) pageContext.getAttribute(
+				bundle,
+				PageContext.PAGE_SCOPE);
+
+		if (resources == null) {
+			resources =
+				(MessageResources) pageContext.getAttribute(
+					bundle,
+					PageContext.REQUEST_SCOPE);
+		}
+
+		if (resources == null) {
+			resources =
+				(MessageResources) pageContext.getAttribute(
+					bundle,
+					PageContext.APPLICATION_SCOPE);
+		}
+
+		if (resources == null) {
+			JspException e =
+				new JspException(messages.getMessage("message.bundle", bundle));
+			saveException(pageContext, e);
+			throw e;
+		}
+
+		return resources;
+	}
 
     /**
      * Populate the properties of the specified JavaBean from the specified
@@ -1287,54 +1314,20 @@ public class RequestUtils {
      * @exception JspException if a lookup error occurs (will have been
      *  saved in the request already)
      */
-    public static boolean present(
-        PageContext pageContext,
-        String bundle,
-        String locale,
-        String key)
-        throws JspException {
+	public static boolean present(
+		PageContext pageContext,
+		String bundle,
+		String locale,
+		String key)
+		throws JspException {
 
-        MessageResources resources = null;
+		MessageResources resources =
+			retrieveMessageResources(pageContext, bundle);
 
-        // Look up the requested MessageResources in page scope
-        if (bundle == null) {
-            bundle = Globals.MESSAGES_KEY;
-            resources = (MessageResources) pageContext.getAttribute(bundle, PageContext.PAGE_SCOPE);
-        }
+		Locale userLocale = retrieveUserLocale(pageContext, locale);
 
-        // Look up the requested MessageResources in request scope
-        if (resources == null) {
-            resources =
-                (MessageResources) pageContext.getAttribute(bundle, PageContext.REQUEST_SCOPE);
-        }
-
-        // Look up the requested MessageResources in application scope
-        if (resources == null) {
-            resources =
-                (MessageResources) pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
-        }
-
-        // Not found in any scope
-        if (resources == null) {
-            JspException e = new JspException(messages.getMessage("message.bundle", bundle));
-            saveException(pageContext, e);
-            throw e;
-        }
-
-        // Look up the requested Locale
-        if (locale == null) {
-            locale = Globals.LOCALE_KEY;
-        }
-
-        Locale userLocale = (Locale) pageContext.getAttribute(locale, PageContext.SESSION_SCOPE);
-
-        if (userLocale == null) {
-            userLocale = defaultLocale;
-        }
-
-        // Return the requested message presence indicator
-        return (resources.isPresent(userLocale, key));
-    }
+		return (resources.isPresent(userLocale, key));
+	}
 
     /**
      * Compute the printable representation of a URL, leaving off the
