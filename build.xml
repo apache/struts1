@@ -38,6 +38,7 @@
     <copy  todir="${build.home}/documentation/dtds">
       <fileset dir="src/conf" includes="**/*.dtd"/>
     </copy>
+    <mkdir   dir="${build.home}/documentation/userGuide"/>
     <mkdir   dir="${build.home}/documentation/WEB-INF"/>
     <mkdir   dir="${build.home}/documentation/WEB-INF/classes"/>
     <mkdir   dir="${build.home}/documentation/WEB-INF/lib"/>
@@ -157,10 +158,21 @@
     <style   basedir="src/doc" destdir="${build.home}/documentation"
            extension=".html" style="stylesheets/struts.xsl" includes="*.xml"/>
     <!-- Create the user guide -->
-    <style   basedir="src/doc/userGuide" destdir="${build.home}/documentation"
-           extension=".html" style="../stylesheets/userGuide.xsl" includes="*.xml"/>
+    <style   basedir="src/doc/userGuide"
+             destdir="${build.home}/documentation/userGuide"
+           extension=".html" style="../stylesheets/userGuide.xsl"
+            includes="*.xml"/>
     <copy      todir="${build.home}/documentation">
       <fileset   dir="src/doc">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
+    <copy      todir="${build.home}/documentation/userGuide">
+      <fileset   dir="src/doc/userGuide">
         <include name="**/*.css"/>
         <include name="**/*.gif"/>
         <include name="**/*.html"/>

@@ -11,9 +11,9 @@
 
   <body>
 
-  <chapter name="Introduction" href="introduction">
+  <chapter name="1. Introduction" href="introduction">
 
-	<section name="Preface: Forward into the Past! (or a brief history of Struts)" href="preface">
+	<section name="1.1 Preface: Forward into the Past! (or a brief history of Struts)" href="preface">
 
 			<p>
 				When Java servlets were first invented, many programmers quickly realized that they were a
@@ -62,7 +62,7 @@
 			</p>
 		</section>
 		
-  		<section name="The Model-View-Controller ('MVC') Design Pattern" href="mvc">
+  		<section name="1.2 The Model-View-Controller ('MVC') Design Pattern" href="mvc">
   		
   			<p>
 	  			In the MVC design pattern, the application flow is controlled by a central <i>Controller</i>,
@@ -78,7 +78,7 @@
   		</section>
   		
 
-      <section name="Struts Framework Overview" href="overview">
+      <section name="1.3 Struts Framework Overview" href="overview">
       
 	       <p>
 	         True to the Model-View-Controller design pattern, Struts applications have three 
@@ -196,7 +196,7 @@
 		      
    	</section>
 
-		<section name="The Model: System State and Business Logic JavaBeans" href="modelConcepts">
+		<section name="1.4 The Model: System State and Business Logic JavaBeans" href="modelConcepts">
 			
 			<p>
 				The <i>Model</i> portion of an MVC-based system can be subdivided into
@@ -241,7 +241,7 @@
 			</p>
 		</section>
 
-		<section name="1.4 The View: JSP Pages and Presentation Components" href="presentationConcepts">
+		<section name="1.5 The View: JSP Pages and Presentation Components" href="presentationConcepts">
 			
 			<p>
 				The <i>View</i> portion of a Struts-based application is generally
@@ -273,7 +273,7 @@
 			</p>
 		</section>
 		
-		<section name="1.5 The Controller: ActionServlet and ActionMapping" href="controllerConcepts">
+		<section name="1.6 The Controller: ActionServlet and ActionMapping" href="controllerConcepts">
 			
 			<p>
 				The <i>Controller</i> portion of the application is focused on receiving
