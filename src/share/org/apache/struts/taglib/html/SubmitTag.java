@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.21 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.21 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.22 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.22 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -28,7 +28,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Tag for input fields of type "submit".
  *
- * @version $Revision: 1.21 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.22 $ $Date: 2004/09/23 00:34:14 $
  */
 public class SubmitTag extends BaseHandlerTag {
 
@@ -153,43 +153,14 @@ public class SubmitTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-        // Acquire the label value we will be generating
-        String label = value;
-        if ((label == null) && (text != null)) {
-            label = text;
-        }
-        if ((label == null) || (label.length() < 1)) {
-            label = "Submit";
-        }
-
         // Generate an HTML element
         StringBuffer results = new StringBuffer();
-        results.append("<input type=\"submit\"");
-        if (property != null) {
-            results.append(" name=\"");
-            results.append(property);
-            // * @since Struts 1.1
-            if (indexed) {
-                prepareIndex( results, null );
-            }
-            results.append("\"");
-        }
-
-        if (accesskey != null) {
-            results.append(" accesskey=\"");
-            results.append(accesskey);
-            results.append("\"");
-        }
-        if (tabindex != null) {
-            results.append(" tabindex=\"");
-            results.append(tabindex);
-            results.append("\"");
-        }
-        results.append(" value=\"");
-        results.append(label);
-        results.append("\"");
+        results.append(getElementOpen());
+        prepareName(results);
+        prepareButtonAttributes(results);
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
+        prepareOtherAttributes(results);
         results.append(getElementClose());
 
         TagUtils.getInstance().write(pageContext, results.toString());
@@ -198,6 +169,66 @@ public class SubmitTag extends BaseHandlerTag {
 
     }
 
+    /**
+     * Render the openning element
+     * @param results The StringBuffer that output will be appended to.
+     */
+    protected String getElementOpen() {
+        return "<input type=\"submit\"";
+    }
+
+    /**
+     * Render the name element
+     * @param results The StringBuffer that output will be appended to.
+     */
+    protected void prepareName(StringBuffer results) throws JspException {
+
+        if (property != null) {
+            results.append(" name=\"");
+            results.append(property);
+            // * @since Struts 1.1
+            if( indexed )
+                prepareIndex( results, null );
+            results.append("\"");
+        }
+
+    }
+
+    /**
+     * Render the button attributes
+     * @param results The StringBuffer that output will be appended to.
+     */
+    protected void prepareButtonAttributes(StringBuffer results) 
+                      throws JspException {
+        prepareAttribute(results, "accesskey", getAccesskey());
+        prepareAttribute(results, "tabindex", getTabindex());
+        prepareValue(results);
+    }
+
+    /**
+     * Render the value element
+     * @param results The StringBuffer that output will be appended to.
+     */
+    protected void prepareValue(StringBuffer results) {
+
+        // Acquire the label value we will be generating
+        String label = value;
+        if ((label == null) && (text != null))
+            label = text;
+        if ((label == null) || (label.trim().length() < 1))
+            label = getDefaultValue();
+
+        prepareAttribute(results, "value", label);
+
+    }
+
+    /**
+     * Return the default value
+     * @param defaultValue The default value if none supplied
+     */
+    protected String getDefaultValue() {
+        return "Submit";
+    }
 
     /**
      * Release any acquired resources.

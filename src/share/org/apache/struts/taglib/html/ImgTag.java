@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.41 2004/08/24 22:53:35 husted Exp $
- * $Revision: 1.41 $
- * $Date: 2004/08/24 22:53:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.42 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.42 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -42,7 +42,7 @@ import org.apache.struts.util.ModuleUtils;
  *       <strong>lowsrc</strong> settable from properties (for i18n)</li>
  * </ul>
  *
- * @version $Revision: 1.41 $
+ * @version $Revision: 1.42 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -436,63 +436,25 @@ public class ImgTag extends BaseHandlerTag {
         String tmp = src();
         String srcurl = url(tmp);
         if (srcurl != null) {
-            results.append(" src=\"");
-            results.append(response.encodeURL(srcurl));
-            results.append("\"");
+            prepareAttribute(results, "src", response.encodeURL(srcurl));
         }
         String lowsrcurl = url(this.lowsrc);
         if (lowsrcurl != null) {
-            results.append(" lowsrc=\"");
-            results.append(response.encodeURL(lowsrcurl));
-            results.append("\"");
+            prepareAttribute(results, "lowsrcurl", response.encodeURL(lowsrcurl));
         }
-        if (imageName != null) {
-            results.append(" name=\"");
-            results.append(imageName);
-            results.append("\"");
-        }
-        if (height != null) {
-            results.append(" height=\"");
-            results.append(height);
-            results.append("\"");
-        }
-        if (width != null) {
-            results.append(" width=\"");
-            results.append(width);
-            results.append("\"");
-        }
-        if (align != null) {
-            results.append(" align=\"");
-            results.append(align);
-            results.append("\"");
-        }
-        if (border != null) {
-            results.append(" border=\"");
-            results.append(border);
-            results.append("\"");
-        }
-        if (hspace != null) {
-            results.append(" hspace=\"");
-            results.append(hspace);
-            results.append("\"");
-        }
-        if (vspace != null) {
-            results.append(" vspace=\"");
-            results.append(vspace);
-            results.append("\"");
-        }
-        if (ismap != null) {
-            results.append(" ismap=\"");
-            results.append(ismap);
-            results.append("\"");
-        }
-        if (usemap != null) {
-            results.append(" usemap=\"");
-            results.append(usemap);
-            results.append("\"");
-        }
+
+        prepareAttribute(results, "name", getImageName());
+        prepareAttribute(results, "height", getHeight());
+        prepareAttribute(results, "width", getWidth());
+        prepareAttribute(results, "align", getAlign());
+        prepareAttribute(results, "border", getBorder());
+        prepareAttribute(results, "hspace", getHspace());
+        prepareAttribute(results, "vspace", getVspace());
+        prepareAttribute(results, "ismap", getIsmap());
+        prepareAttribute(results, "usemap", getUsemap());
         results.append(prepareStyles());
         results.append(prepareEventHandlers());
+        prepareOtherAttributes(results);
         results.append(getElementClose());
 
         TagUtils.getInstance().write(pageContext, results.toString());

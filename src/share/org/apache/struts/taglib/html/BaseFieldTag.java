@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.25 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.25 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.26 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.26 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -27,7 +27,7 @@ import org.apache.struts.taglib.TagUtils;
 /**
  * Convenience base class for the various input tags for text fields.
  *
- * @version $Revision: 1.25 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.26 $ $Date: 2004/09/23 00:34:14 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -48,19 +48,6 @@ public abstract class BaseFieldTag extends BaseInputTag {
 
     public void setAccept(String accept) {
         this.accept = accept;
-    }
-
-    /**
-     * The name of the bean containing our underlying property.
-     */
-    protected String name = Constants.BEAN_KEY;
-
-    public String getName() {
-        return (this.name);
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     /**
@@ -105,45 +92,28 @@ public abstract class BaseFieldTag extends BaseInputTag {
      * @since Struts 1.2
      */
     protected String renderInputElement() throws JspException {
-        StringBuffer results = new StringBuffer("<input type=\"");
-        results.append(this.type);
-        results.append("\" name=\"");
+        StringBuffer results = new StringBuffer("<input");
 
-        if (indexed) {
-            this.prepareIndex(results, name);
-        }
+        prepareAttribute(results, "type", this.type);
+        prepareName(results);
+        prepareAttribute(results, "accesskey", getAccesskey());
+        prepareAttribute(results, "accept", getAccept());
+        prepareAttribute(results, "maxlength", getMaxlength());
+        prepareAttribute(results, "size", getCols());
+        prepareAttribute(results, "tabindex", getTabindex());
+        prepareValue(results);
+        results.append(this.prepareEventHandlers());
+        results.append(this.prepareStyles());
+        prepareOtherAttributes(results);
+        results.append(this.getElementClose());
+        return results.toString();
+    }
 
-        results.append(property);
-        results.append("\"");
-        if (accesskey != null) {
-            results.append(" accesskey=\"");
-            results.append(accesskey);
-            results.append("\"");
-        }
-
-        if (accept != null) {
-            results.append(" accept=\"");
-            results.append(accept);
-            results.append("\"");
-        }
-
-        if (maxlength != null) {
-            results.append(" maxlength=\"");
-            results.append(maxlength);
-            results.append("\"");
-        }
-
-        if (cols != null) {
-            results.append(" size=\"");
-            results.append(cols);
-            results.append("\"");
-        }
-
-        if (tabindex != null) {
-            results.append(" tabindex=\"");
-            results.append(tabindex);
-            results.append("\"");
-        }
+    /**
+     * Render the value element
+     * @param results The StringBuffer that output will be appended to.
+     */
+    protected void prepareValue(StringBuffer results) throws JspException {
 
         results.append(" value=\"");
         if (value != null) {
@@ -157,11 +127,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
         }
 
         results.append('"');
-        results.append(this.prepareEventHandlers());
-        results.append(this.prepareStyles());
-        results.append(this.getElementClose());
 
-        return results.toString();
     }
     
     /**

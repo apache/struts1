@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.28 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.28 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.29 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.29 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -28,7 +28,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Tag for input fields of type "radio".
  *
- * @version $Revision: 1.28 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.29 $ $Date: 2004/09/23 00:34:14 $
  */
 public class RadioTag extends BaseHandlerTag {
 
@@ -216,31 +216,17 @@ public class RadioTag extends BaseHandlerTag {
         throws JspException {
             
         StringBuffer results = new StringBuffer("<input type=\"radio\"");
-        results.append(" name=\"");
-        // @since Struts 1.1
-        if (indexed) {
-            prepareIndex(results, name);
-        }
-        results.append(this.property);
-        results.append("\"");
-        if (accesskey != null) {
-            results.append(" accesskey=\"");
-            results.append(accesskey);
-            results.append("\"");
-        }
-        if (tabindex != null) {
-            results.append(" tabindex=\"");
-            results.append(tabindex);
-            results.append("\"");
-        }
-        results.append(" value=\"");
-        results.append(serverValue);
-        results.append("\"");
+
+        prepareName(results);
+        prepareAttribute(results, "accesskey", getAccesskey());
+        prepareAttribute(results, "tabindex", getTabindex());
+        prepareAttribute(results, "value", serverValue);
         if (serverValue.equals(checkedValue)) {
             results.append(" checked=\"checked\"");
         }
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
+        prepareOtherAttributes(results);
         results.append(getElementClose());
         return results.toString();
     }
@@ -275,6 +261,23 @@ public class RadioTag extends BaseHandlerTag {
         }
         
         return (EVAL_PAGE);
+
+    }
+
+    /**
+     * Render the name element
+     * @param results The StringBuffer that output will be appended to.
+     */
+    protected void prepareName(StringBuffer results) throws JspException {
+
+        if (property != null) {
+            results.append(" name=\"");
+            // * @since Struts 1.1
+            if( indexed )
+                prepareIndex(results, name);
+            results.append(property);
+            results.append("\"");
+        }
 
     }
 

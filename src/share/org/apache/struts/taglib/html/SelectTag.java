@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.22 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.22 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.23 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.23 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -33,7 +33,7 @@ import org.apache.struts.util.MessageResources;
  * bean property specified by our attributes.  This tag must be nested
  * inside a form tag.
  *
- * @version $Revision: 1.22 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.23 $ $Date: 2004/09/23 00:34:14 $
  */
 public class SelectTag extends BaseHandlerTag {
 
@@ -212,33 +212,16 @@ public class SelectTag extends BaseHandlerTag {
     protected String renderSelectStartElement() throws JspException {
         StringBuffer results = new StringBuffer("<select");
         
-        results.append(" name=\"");
-        // * @since Struts 1.1
-        if (this.indexed) {
-            prepareIndex(results, name);
-        }
-        results.append(property);
-        results.append("\"");
-        if (accesskey != null) {
-            results.append(" accesskey=\"");
-            results.append(accesskey);
-            results.append("\"");
-        }
+        prepareName(results);
+        prepareAttribute(results, "accesskey", getAccesskey());
         if (multiple != null) {
             results.append(" multiple=\"multiple\"");
         }
-        if (size != null) {
-            results.append(" size=\"");
-            results.append(size);
-            results.append("\"");
-        }
-        if (tabindex != null) {
-            results.append(" tabindex=\"");
-            results.append(tabindex);
-            results.append("\"");
-        }
+        prepareAttribute(results, "size", getSize());
+        prepareAttribute(results, "tabindex", getTabindex());
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
+        prepareOtherAttributes(results);
         results.append(">");
         
         return results.toString();
@@ -331,6 +314,23 @@ public class SelectTag extends BaseHandlerTag {
         TagUtils.getInstance().write(pageContext, results.toString());
 
         return (EVAL_PAGE);
+    }
+
+    /**
+     * Render the name element
+     * @param results The StringBuffer that output will be appended to.
+     */
+    protected void prepareName(StringBuffer results) throws JspException {
+
+        if (property != null) {
+            results.append(" name=\"");
+            // * @since Struts 1.1
+            if( indexed )
+                prepareIndex(results, name);
+            results.append(property);
+            results.append("\"");
+        }
+
     }
 
     /**

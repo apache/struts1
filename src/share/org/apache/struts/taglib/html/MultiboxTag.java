@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.25 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.25 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.26 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.26 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -37,7 +37,7 @@ import org.apache.struts.util.MessageResources;
  * "checked" if the value listed for the "value" attribute is present in the
  * values returned by the property getter.
  *
- * @version $Revision: 1.25 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.26 $ $Date: 2004/09/23 00:34:14 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {
@@ -165,29 +165,47 @@ public class MultiboxTag extends BaseHandlerTag {
 
         // Create an appropriate "input" element based on our parameters
         StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
-        results.append(" name=\"");
-        results.append(this.property);
-        results.append("\"");
-        if (accesskey != null) {
-            results.append(" accesskey=\"");
-            results.append(accesskey);
-            results.append("\"");
-        }
-        if (tabindex != null) {
-            results.append(" tabindex=\"");
-            results.append(tabindex);
-            results.append("\"");
-        }
-        results.append(" value=\"");
+
+        prepareAttribute(results, "name", getProperty());
+        prepareAttribute(results, "accesskey", getAccesskey());
+        prepareAttribute(results, "tabindex", getTabindex());
+        String value = prepareValue(results);
+        prepareChecked(results, value);
+        results.append(prepareEventHandlers());
+        results.append(prepareStyles());
+        prepareOtherAttributes(results);
+        results.append(getElementClose());
+
+        TagUtils.getInstance().write(pageContext, results.toString());
+
+        return EVAL_PAGE;
+    }
+
+    /**
+     * Render the value element
+     * @param results The StringBuffer that output will be appended to.
+     */
+    protected String prepareValue(StringBuffer results) throws JspException {
+
         String value = (this.value == null) ? this.constant : this.value;
-            
         if (value == null) {
             JspException e = new JspException(messages.getMessage("multiboxTag.value"));
             pageContext.setAttribute(Globals.EXCEPTION_KEY, e, PageContext.REQUEST_SCOPE);
             throw e;
         }
-        results.append(TagUtils.getInstance().filter(value));
-        results.append("\"");
+
+        prepareAttribute(results, "value", TagUtils.getInstance().filter(value));
+
+        return value;
+
+    }
+
+    /**
+     * Render the checked element
+     * @param results The StringBuffer that output will be appended to.
+     */
+    protected void prepareChecked(StringBuffer results, String value) throws JspException {
+
         Object bean = TagUtils.getInstance().lookup(pageContext, name, null);
         String values[] = null;
         
@@ -216,15 +234,9 @@ public class MultiboxTag extends BaseHandlerTag {
                 break;
             }
         }
-        
-        results.append(prepareEventHandlers());
-        results.append(prepareStyles());
-        results.append(getElementClose());
 
-        TagUtils.getInstance().write(pageContext, results.toString());
-
-        return EVAL_PAGE;
     }
+
 
     /**
      * Release any acquired resources.

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseInputTag.java,v 1.6 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseInputTag.java,v 1.7 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -26,7 +26,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Abstract base class for the various input tags.
  *
- * @version $Revision: 1.6 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.7 $ $Date: 2004/09/23 00:34:14 $
  */
 public abstract class BaseInputTag extends BaseHandlerTag {
 
@@ -65,7 +65,20 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     protected String value = null;
 
+    /**
+     * The name of the bean containing our underlying property.
+     */
+    protected String name = Constants.BEAN_KEY;
+
     // ------------------------------------------------------------- Properties
+
+    public String getName() {
+        return (this.name);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     /**
      * Return the number of columns for this field.
@@ -213,11 +226,29 @@ public abstract class BaseInputTag extends BaseHandlerTag {
     }
 
     /**
+     * Render the name element
+     * @param results The StringBuffer that output will be appended to.
+     */
+    protected void prepareName(StringBuffer results) throws JspException {
+
+        if (property != null) {
+            results.append(" name=\"");
+            // * @since Struts 1.1
+            if( indexed )
+                prepareIndex(results, name);
+            results.append(property);
+            results.append("\"");
+        }
+
+    }
+
+    /**
      * Release any acquired resources.
      */
     public void release() {
 
         super.release();
+        name = Constants.BEAN_KEY;
         cols = null;
         maxlength = null;
         property = null;

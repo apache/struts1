@@ -10,7 +10,7 @@
 		<html:cancel style="Put something here"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<input type="submit" name="org.apache.struts.taglib.html.CANCEL" value="Cancel" style="Put something here" onclick="bCancel=true;">
+		<input type="submit" name="org.apache.struts.taglib.html.CANCEL" value="Cancel" onclick="bCancel=true;" style="Put something here">
 	</bean:define>
 </logic:equal>
 
@@ -19,7 +19,7 @@
 		<html:cancel styleClass="Put something here"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<input type="submit" name="org.apache.struts.taglib.html.CANCEL" value="Cancel" class="Put something here" onclick="bCancel=true;">
+		<input type="submit" name="org.apache.struts.taglib.html.CANCEL" value="Cancel" onclick="bCancel=true;" class="Put something here">
 	</bean:define>
 </logic:equal>
 
@@ -28,7 +28,7 @@
 		<html:cancel styleId="Put something here"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<input type="submit" name="org.apache.struts.taglib.html.CANCEL" value="Cancel" id="Put something here" onclick="bCancel=true;">
+		<input type="submit" name="org.apache.struts.taglib.html.CANCEL" value="Cancel" onclick="bCancel=true;" id="Put something here">
 	</bean:define>
 </logic:equal>
 
@@ -46,7 +46,7 @@
 		<html:cancel title="Put something here"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<input type="submit" name="org.apache.struts.taglib.html.CANCEL" value="Cancel" title="Put something here" onclick="bCancel=true;">
+		<input type="submit" name="org.apache.struts.taglib.html.CANCEL" value="Cancel" onclick="bCancel=true;" title="Put something here">
 	</bean:define>
 </logic:equal>
 
@@ -55,7 +55,7 @@
 		<html:cancel titleKey="default.bundle.message"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<input type="submit" name="org.apache.struts.taglib.html.CANCEL" value="Cancel" title="Testing Message" onclick="bCancel=true;">
+		<input type="submit" name="org.apache.struts.taglib.html.CANCEL" value="Cancel" onclick="bCancel=true;" title="Testing Message">
 	</bean:define>
 </logic:equal>
 
@@ -64,7 +64,7 @@
 		<html:cancel titleKey="default.bundle.message"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<input type="submit" name="org.apache.struts.taglib.html.CANCEL" value="Cancel" title="Message D'Essai" onclick="bCancel=true;">
+		<input type="submit" name="org.apache.struts.taglib.html.CANCEL" value="Cancel" onclick="bCancel=true;" title="Message D'Essai">
 	</bean:define>
 </logic:equal>
 

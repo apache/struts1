@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.18 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.18 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.19 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.19 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -20,169 +20,27 @@
 
 package org.apache.struts.taglib.html;
 
-import javax.servlet.jsp.JspException;
-
-import org.apache.struts.taglib.TagUtils;
-
 /**
  * Renders an HTML BUTTON tag within the Struts framework.
  *
- * @version $Revision: 1.18 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.19 $ $Date: 2004/09/23 00:34:14 $
  */
-public class ButtonTag extends BaseHandlerTag {
-
-
-    // ----------------------------------------------------- Instance Variables
+public class ButtonTag extends SubmitTag {
 
     /**
-     * The property name of the generated button.
+     * Render the openning element
+     * @param results The StringBuffer that output will be appended to.
      */
-    protected String property = null;
-
-
-    /**
-     * The body content of this tag (if any).
-     */
-    protected String text = null;
-
-
-    /**
-     * The value of the button label.
-     */
-    protected String value = null;
-
-
-    // ------------------------------------------------------------- Properties
-
-
-    /**
-     * Return the property name.
-     */
-    public String getProperty() {
-        return (property);
+    protected String getElementOpen() {
+        return "<input type=\"button\"";
     }
 
     /**
-     * Set the property name.
-     *
-     * @param property The property name
+     * Return the default value
+     * @param defaultValue The default value if none supplied
      */
-    public void setProperty(String property) {
-        this.property = property;
-    }
-
-
-    /**
-     * Return the label value.
-     */
-    public String getValue() {
-        return (value);
-    }
-
-
-    /**
-     * Set the label value.
-     * @param value The label value
-     */
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-
-    // --------------------------------------------------------- Public Methods
-
-
-    /**
-     * Process the start of this tag.
-     * @exception JspException if a JSP exception has occurred
-     */
-    public int doStartTag() throws JspException {
-
-        // Do nothing until doEndTag() is called
-        this.text = null;
-        return (EVAL_BODY_TAG);
-
-    }
-
-
-    /**
-     * Save the associated label from the body content (if any).
-     * @exception JspException if a JSP exception has occurred
-     */
-    public int doAfterBody() throws JspException {
-
-        if (bodyContent != null) {
-            String value = bodyContent.getString().trim();
-            if (value.length() > 0)
-                text = value;
-        }
-        return (SKIP_BODY);
-
-    }
-
-
-    /**
-     * Process the end of this tag.
-     * <p>
-     * Support for indexed property since Struts 1.1
-     * @exception JspException if a JSP exception has occurred
-     */
-    public int doEndTag() throws JspException {
-
-        // Acquire the label value we will be generating
-        String label = value;
-        if ((label == null) && (text != null))
-            label = text;
-        if ((label == null) || (label.trim().length() < 1))
-            label = "Click";
-
-        // Generate an HTML element
-        StringBuffer results = new StringBuffer();
-        results.append("<input type=\"button\"");
-        if (property != null) {
-            results.append(" name=\"");
-            results.append(property);
-            // * @since Struts 1.1
-            if( indexed )
-                prepareIndex( results, null );
-            results.append("\"");
-        }
-        if (accesskey != null) {
-            results.append(" accesskey=\"");
-            results.append(accesskey);
-            results.append("\"");
-        }
-        if (tabindex != null) {
-            results.append(" tabindex=\"");
-            results.append(tabindex);
-            results.append("\"");
-        }
-        results.append(" value=\"");
-        results.append(label);
-        results.append("\"");
-        results.append(prepareEventHandlers());
-        results.append(prepareStyles());
-        results.append(getElementClose());
-
-        // Render this element to our writer
-        TagUtils.getInstance().write(pageContext, results.toString());
-
-        // Evaluate the remainder of this page
-        return (EVAL_PAGE);
-
-    }
-
-
-    /**
-     * Release any acquired resources.
-     */
-    public void release() {
-
-        super.release();
-        property = null;
-        text = null;
-        value = null;
-
+    protected String getDefaultValue() {
+        return "Click";
     }
 
 

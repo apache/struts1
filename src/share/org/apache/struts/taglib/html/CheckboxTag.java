@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.24 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.24 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.25 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.25 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -28,7 +28,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Tag for input fields of type "checkbox".
  *
- * @version $Revision: 1.24 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.25 $ $Date: 2004/09/23 00:34:14 $
  */
 public class CheckboxTag extends BaseHandlerTag {
 
@@ -95,7 +95,7 @@ public class CheckboxTag extends BaseHandlerTag {
      */
     public String getValue() {
 
-        return (this.value);
+        return value == null ? "on" : value;
 
     }
 
@@ -123,42 +123,18 @@ public class CheckboxTag extends BaseHandlerTag {
 
         // Create an appropriate "input" element based on our parameters
         StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
-        results.append(" name=\"");
+        prepareName(results);
+        prepareAttribute(results, "accesskey", getAccesskey());
+        prepareAttribute(results, "tabindex", getTabindex());
 
-        if (indexed) {
-            prepareIndex(results, name);
+        prepareAttribute(results, "value", getValue());
+        if (isChecked()) {
+            results.append(" checked=\"checked\"");
         }
-
-        results.append(this.property);
-        results.append("\"");
-        if (accesskey != null) {
-            results.append(" accesskey=\"");
-            results.append(accesskey);
-            results.append("\"");
-        }
-
-        if (tabindex != null) {
-            results.append(" tabindex=\"");
-            results.append(tabindex);
-            results.append("\"");
-        }
-
-        results.append(" value=\"");
-
-        if (value == null) {
-            results.append("on");
-        } else {
-            results.append(value);
-        }
-
-        results.append("\"");
-        
-		if (this.isChecked()) {
-			results.append(" checked=\"checked\"");
-		}
 
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
+        prepareOtherAttributes(results);
         results.append(getElementClose());
 
         // Print this field to our output writer
@@ -226,6 +202,23 @@ public class CheckboxTag extends BaseHandlerTag {
 
         // Evaluate the remainder of this page
         return (EVAL_PAGE);
+
+    }
+
+    /**
+     * Render the name element
+     * @param results The StringBuffer that output will be appended to.
+     */
+    protected void prepareName(StringBuffer results) throws JspException {
+
+        if (property != null) {
+            results.append(" name=\"");
+            // * @since Struts 1.1
+            if( indexed )
+                prepareIndex(results, name);
+            results.append(property);
+            results.append("\"");
+        }
 
     }
 

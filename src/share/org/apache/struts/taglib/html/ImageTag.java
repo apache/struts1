@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.31 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.31 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.32 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.32 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -34,7 +34,7 @@ import org.apache.struts.taglib.TagUtils;
 /**
  * Tag for input fields of type "image".
  *
- * @version $Revision: 1.31 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.32 $ $Date: 2004/09/23 00:34:14 $
  */
 
 public class ImageTag extends SubmitTag {
@@ -104,21 +104,6 @@ public class ImageTag extends SubmitTag {
         this.pageKey = pageKey;
     }
 
-
-    /**
-     * The name attribute for the image button.
-     */
-    protected String property = "";
-
-    public String getProperty() {
-        return (this.property);
-    }
-
-    public void setProperty(String property) {
-        this.property = property;
-    }
-
-
     /**
      * The URL of this image.
      */
@@ -147,85 +132,40 @@ public class ImageTag extends SubmitTag {
     }
 
 
-    // --------------------------------------------------------- Public Methods
+    // --------------------------------------------------------- Constructor
 
-
-    /**
-     * Process the start of this tag.
-     *
-     * @exception JspException if a JSP exception has occurred
-     */
-    public int doStartTag() throws JspException {
-
-        return (EVAL_BODY_TAG);
-
+    public ImageTag() {
+        super();
+        property = ""; 
     }
 
-
+    // --------------------------------------------------------- Protected Methods
 
     /**
-     * Process the end of this tag.
-     * [Indexed property since Struts 1.1]
-     *
-     * @exception JspException if a JSP exception has occurred
+     * Render the openning element
+     * @param results The StringBuffer that output will be appended to.
      */
-    public int doEndTag() throws JspException {
+    protected String getElementOpen() {
+        return "<input type=\"image\"";
+    }
 
-        // Generate an HTML <input type="image"> element
-        HttpServletResponse response =
-            (HttpServletResponse) pageContext.getResponse();
-        String tmp = null;
-        StringBuffer results = new StringBuffer();
-        results.append("<input type=\"image\"");
-        if (property != null) {
-            results.append(" name=\"");
-            results.append(property);
-
-            if (indexed) {
-                prepareIndex(results, null);
-            }
-            results.append("\"");
-        }
-        
-        tmp = src();
+    /**
+     * Render the button attributes
+     * @param results The StringBuffer that output will be appended to.
+     */
+    protected void prepareButtonAttributes(StringBuffer results)
+                      throws JspException {
+        String tmp = src();
         if (tmp != null) {
-            results.append(" src=\"");
-            results.append(response.encodeURL(tmp));
-            results.append("\"");
+            HttpServletResponse response =
+                (HttpServletResponse) pageContext.getResponse();
+            prepareAttribute(results, "src", response.encodeURL(tmp));
         }
-        if (align != null) {
-            results.append(" align=\"");
-            results.append(align);
-            results.append("\"");
-        }
-        if (border != null) {
-            results.append(" border=\"");
-            results.append(border);
-            results.append("\"");
-        }
-        if (value != null) {
-            results.append(" value=\"");
-            results.append(value);
-            results.append("\"");
-        }
-        if (accesskey != null) {
-            results.append(" accesskey=\"");
-            results.append(accesskey);
-            results.append("\"");
-        }
-        if (tabindex != null) {
-            results.append(" tabindex=\"");
-            results.append(tabindex);
-            results.append("\"");
-        }
-        results.append(prepareEventHandlers());
-        results.append(prepareStyles());
-        results.append(getElementClose());
-
-        TagUtils.getInstance().write(pageContext, results.toString());
-
-        return (EVAL_PAGE);
-
+        prepareAttribute(results, "align", getAlign());
+        prepareAttribute(results, "border", getBorder());
+        prepareAttribute(results, "value", getValue());
+        prepareAttribute(results, "accesskey", getAccesskey());
+        prepareAttribute(results, "tabindex", getTabindex());
     }
 
 

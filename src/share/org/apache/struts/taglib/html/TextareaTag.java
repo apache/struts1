@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.19 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.19 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.20 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.20 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -27,26 +27,9 @@ import org.apache.struts.taglib.TagUtils;
 /**
  * Custom tag for input fields of type "textarea".
  *
- * @version $Revision: 1.19 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.20 $ $Date: 2004/09/23 00:34:14 $
  */
 public class TextareaTag extends BaseInputTag {
-
-
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * The name of the bean containing our underlying property.
-     */
-    protected String name = Constants.BEAN_KEY;
-
-    public String getName() {
-        return (this.name);
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 
     // --------------------------------------------------------- Public Methods
@@ -73,35 +56,14 @@ public class TextareaTag extends BaseInputTag {
     protected String renderTextareaElement() throws JspException {
         StringBuffer results = new StringBuffer("<textarea");
         
-        results.append(" name=\"");
-        // @since Struts 1.1
-        if (indexed) {
-            prepareIndex(results, name);
-        }
-        results.append(property);
-        results.append("\"");
-        if (accesskey != null) {
-            results.append(" accesskey=\"");
-            results.append(accesskey);
-            results.append("\"");
-        }
-        if (tabindex != null) {
-            results.append(" tabindex=\"");
-            results.append(tabindex);
-            results.append("\"");
-        }
-        if (cols != null) {
-            results.append(" cols=\"");
-            results.append(cols);
-            results.append("\"");
-        }
-        if (rows != null) {
-            results.append(" rows=\"");
-            results.append(rows);
-            results.append("\"");
-        }
+        prepareName(results);
+        prepareAttribute(results, "accesskey", getAccesskey());
+        prepareAttribute(results, "tabindex", getTabindex());
+        prepareAttribute(results, "cols", getCols());
+        prepareAttribute(results, "rows", getRows());
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
+        prepareOtherAttributes(results);
         results.append(">");
         
         results.append(this.renderData());

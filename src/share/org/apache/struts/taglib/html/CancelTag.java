@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CancelTag.java,v 1.16 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.16 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CancelTag.java,v 1.17 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.17 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -21,182 +21,67 @@
 
 package org.apache.struts.taglib.html;
 
-
-import javax.servlet.jsp.JspException;
-
-import org.apache.struts.taglib.TagUtils;
-import org.apache.struts.util.MessageResources;
-
-
 /**
  * Tag for input fields of type "cancel".
  *
- * @version $Revision: 1.16 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.17 $ $Date: 2004/09/23 00:34:14 $
  */
 
-public class CancelTag extends BaseHandlerTag {
-
-
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * The message resources for this package.
-     */
-    protected static MessageResources messages =
-     MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
-
-
-    /**
-     * The property name of the generated button.
-     */
-    protected String property = Constants.CANCEL_PROPERTY;
-
-
-    /**
-     * The body content of this tag (if any).
-     */
-    protected String text = null;
-
-
-    /**
-     * The value of the button label.
-     */
-    protected String value = null;
+public class CancelTag extends SubmitTag {
 
 
     // ------------------------------------------------------------- Properties
 
 
-    /**
-     * Return the property name.
-     */
-    public String getProperty() {
-        return (property);
+    /** Returns the onClick event handler. */
+    public String getOnclick() {
+        return super.getOnclick() == null ? "bCancel=true;"
+                               : super.getOnclick();
     }
 
-    /**
-     * Set the property name.
-     *
-     * @param property The property name
-     */
-    public void setProperty(String property) {
-        this.property = property;
-    }
+    // --------------------------------------------------------- Constructor
 
+    public CancelTag() {
 
-    /**
-     * Return the label value.
-     */
-    public String getValue() {
-        return (value);
-    }
-
-
-    /**
-     * Set the label value.
-     * @param value The label value
-     */
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-
-    // --------------------------------------------------------- Public Methods
-
-
-    /**
-     * Process the start of this tag.
-     * @exception JspException if a JSP exception has occurred
-     */
-    public int doStartTag() throws JspException {
-
-        // Do nothing until doEndTag() is called
-        this.text = null;
-        return (EVAL_BODY_TAG);
+        super();
+        property = Constants.CANCEL_PROPERTY;
 
     }
 
+    // --------------------------------------------------------- Protected Methods
 
     /**
-     * Save the associated label from the body content.
-     *
-     * @exception JspException if a JSP exception has occurred
+     * Render the openning element
+     * @param results The StringBuffer that output will be appended to.
      */
-    public int doAfterBody() throws JspException {
-
-        if (bodyContent != null) {
-            String value = bodyContent.getString().trim();
-            if (value.length() > 0)
-                text = value;
-        }
-        return (SKIP_BODY);
-
+    protected String getElementOpen() {
+        return "<input type=\"submit\"";
     }
-
 
     /**
-     * Process the end of this tag.
-     * @exception JspException if a JSP exception has occurred
+     * Render the name element
+     * @param results The StringBuffer that output will be appended to.
      */
-    public int doEndTag() throws JspException {
-
-        // Acquire the label value we will be generating
-        String label = value;
-        if ((label == null) && (text != null))
-            label = text;
-        if ((label == null) || (label.trim().length() < 1))
-            label = "Cancel";
-
-        // Generate an HTML element
-        StringBuffer results = new StringBuffer();
-        results.append("<input type=\"submit\"");
-        results.append(" name=\"");
-        results.append(property);
-        results.append("\"");
-        if (accesskey != null) {
-            results.append(" accesskey=\"");
-            results.append(accesskey);
-            results.append("\"");
-        }
-        if (tabindex != null) {
-            results.append(" tabindex=\"");
-            results.append(tabindex);
-            results.append("\"");
-        }
-        results.append(" value=\"");
-        results.append(label);
-        results.append("\"");
-        results.append(prepareEventHandlers());
-        results.append(prepareStyles());
-        
-        // if no onclick event was provided, put in the cancel script
-        if(results.toString().indexOf("onclick=")==-1){
-          results.append(" onclick=\"bCancel=true;\"");
-        }
-        
-        results.append(getElementClose());
-
-        // Render this element to our writer
-        TagUtils.getInstance().write(pageContext, results.toString());
-
-        // Evaluate the remainder of this page
-        return (EVAL_PAGE);
-
+    protected void prepareName(StringBuffer results) {
+        prepareAttribute(results, "name", property);
     }
 
+    /**
+     * Return the default value
+     * @param defaultValue The default value if none supplied
+     */
+    protected String getDefaultValue() {
+        return "Cancel";
+    }
 
     /**
      * Release any acquired resources.
      */
     public void release() {
 
-	super.release();
-	property = Constants.CANCEL_PROPERTY;
-        text = null;
-	value = null;
+        super.release();
+        property = Constants.CANCEL_PROPERTY;
 
     }
-
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.38 2004/08/01 03:00:28 niallp Exp $
- * $Revision: 1.38 $
- * $Date: 2004/08/01 03:00:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.39 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.39 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -33,7 +33,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Generate a URL-encoded hyperlink to the specified URI.
  *
- * @version $Revision: 1.38 $ $Date: 2004/08/01 03:00:28 $
+ * @version $Revision: 1.39 $ $Date: 2004/09/23 00:34:14 $
  */
 public class LinkTag extends BaseHandlerTag {
 
@@ -322,35 +322,19 @@ public class LinkTag extends BaseHandlerTag {
         StringBuffer results = new StringBuffer("<a");
 
         // Special case for name anchors
-        if (linkName != null) {
-            results.append(" name=\"");
-            results.append(linkName);
-            results.append("\"");            
-        }
+        prepareAttribute(results, "name", getLinkName());
+
         // * @since Struts 1.1
-        if (linkName == null || forward != null  || href != null ||
-            page != null || action != null) {
-            results.append(" href=\"");
-            results.append(calculateURL());
-            results.append("\"");
+        if (getLinkName() == null || getForward() != null  || getHref() != null ||
+            getPage() != null || getAction() != null) {
+            prepareAttribute(results, "href", calculateURL());
         }
-        if (target != null) {
-            results.append(" target=\"");
-            results.append(target);
-            results.append("\"");
-        }
-        if (accesskey != null) {
-            results.append(" accesskey=\"");
-            results.append(accesskey);
-            results.append("\"");
-        }
-        if (tabindex != null) {
-            results.append(" tabindex=\"");
-            results.append(tabindex);
-            results.append("\"");
-        }
+        prepareAttribute(results, "target", getTarget());
+        prepareAttribute(results, "accesskey", getAccesskey());
+        prepareAttribute(results, "tabindex", getTabindex());
         results.append(prepareStyles());
         results.append(prepareEventHandlers());
+        prepareOtherAttributes(results);
         results.append(">");
 
         TagUtils.getInstance().write(pageContext, results.toString());

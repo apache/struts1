@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FrameTag.java,v 1.13 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.13 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FrameTag.java,v 1.14 2004/09/23 00:34:14 niallp Exp $
+ * $Revision: 1.14 $
+ * $Date: 2004/09/23 00:34:14 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -41,7 +41,7 @@ import org.apache.struts.taglib.TagUtils;
  * currently no rewriting is supported.  The attribute is set directly from
  * the property value.
  *
- * @version $Revision: 1.13 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.14 $ $Date: 2004/09/23 00:34:14 $
  * @since Struts 1.1
  */
 public class FrameTag extends LinkTag {
@@ -159,44 +159,21 @@ public class FrameTag extends LinkTag {
     public int doStartTag() throws JspException {
 
     // Print this element to our output writer
-        StringBuffer results = new StringBuffer("<frame ");
-        results.append("src=\"");
-        results.append(calculateURL());
-        results.append("\"");
-        if (frameName != null) {
-            results.append(" name=\"");
-            results.append(frameName);
-            results.append("\"");
-        }
+        StringBuffer results = new StringBuffer("<frame");
+
+        prepareAttribute(results, "src", calculateURL());
+        prepareAttribute(results, "name", getFrameName());
+
         if (noresize) {
             results.append(" noresize=\"noresize\"");
         }
-        if (scrolling != null) {
-            results.append(" scrolling=\"");
-            results.append(scrolling);
-            results.append("\"");
-        }
-        if (marginheight != null) {
-            results.append(" marginheight=\"");
-            results.append(marginheight);
-            results.append("\"");
-        }
-        if (marginwidth != null) {
-            results.append(" marginwidth=\"");
-            results.append(marginwidth);
-            results.append("\"");
-        }
-        if (frameborder != null) {
-            results.append(" frameborder=\"");
-            results.append(frameborder);
-            results.append("\"");
-        }
-        if (longdesc != null) {
-            results.append(" longdesc=\"");
-            results.append(longdesc);
-            results.append("\"");
-        }
+        prepareAttribute(results, "scrolling", getScrolling());
+        prepareAttribute(results, "marginheight", getMarginheight());
+        prepareAttribute(results, "marginwidth", getMarginwidth());
+        prepareAttribute(results, "frameborder", getFrameborder());
+        prepareAttribute(results, "longdesc", getLongdesc());
         results.append(prepareStyles());
+        prepareOtherAttributes(results);
         results.append(getElementClose());
         TagUtils.getInstance().write(pageContext,results.toString());
 
