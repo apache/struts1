@@ -29,14 +29,6 @@
       which do not have direct relationships with code bases.</p>
     </info>
 
-    <task name="Platform Specific Installation Notes">
-      <info>
-        <p>Document specific installation instructions, problems, and/or
-        user experiences on a variety of application server and servlet
-        container platforms.</p>
-      </info>
-    </task>
-
   </task-list>
 
 
@@ -56,16 +48,6 @@
       <p>This is the core controller servlet, with support for the developer's
       action and form bean classes, plus the supporting data structures.</p>
     </info>
-
-    <task name="Developer Guide">
-      <info>
-        <p>Create developer guide documentation for this package, in
-        file "package.html".</p>
-      </info>
-      <assigned>
-	    Ted Husted
-	  </assigned>
-   </task>
 
     <task name="Deprecation Warnings">
       <info>

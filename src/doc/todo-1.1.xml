@@ -508,6 +508,76 @@
   </task-list>
 
 
+  <task-list name="Unit Test Suites" href="Unit Tests">
+
+    <info>
+      <p>Unit test components compatible with the JUnit and J2EEUnit testing
+      frameworks, to test and validate internal APIs of the Struts framework.
+      Volunteers will typically agree to develop tests for an entire package
+      within the Java source code of Struts.
+      </p>
+    </info>
+
+    <task name="Action">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.action</code> package.</p>
+      </info>
+      <assigned>
+        <a href="mailto:Robert@freetocreate.org">Rob Leland</a>
+      </assigned>
+    </task>
+
+    <task name="Actions">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.actions</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Digester">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.digester</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Taglib.Bean">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.taglib.bean</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Taglib.Html">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.taglib.html</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Taglib.Logic">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.taglib.logic</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Taglib.Template">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.taglib.template</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Upload">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.taglib.upload</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Util">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.util</code> package.</p>
+      </info>
+    </task>
+
+  </task-list>
+
+
   <task-list name="Additional Possibilities" href="Additional">
 
     <info>
