@@ -80,15 +80,21 @@
                 <li><a href="building_controller.html#request_controller">4.4.1 Request Processor</a></li>
                 <li><a href="building_controller.html#exception_handler">4.4.2 Exception Handler</a></li>
                 <li><a href="building_controller.html#actionmapping">4.5 The ActionMapping Implementation</a></li>
-                <li><a href="building_controller.html#config">4.4 The Struts Configuration File</a></li>
-                <li><a href="building_controller.html#dd_config">4.5 The Web Application Deployment Descriptor</a>
+                <li><a href="building_controller.html#config">4.6 The Struts Configuration File</a>
                     <ul>
-                    <li><a href="building_controller.html#dd_config_servlet">4.5.1 Configure the Action Servlet Instance</a></li>
-                    <li><a href="building_controller.html#dd_config_mapping">4.5.2 Configure the Action Servlet Mapping</a></li>
-                    <li><a href="building_controller.html#dd_config_taglib">4.5.3 Configure the Struts Tag Library</a></li>
-                    <li><a href="building_controller.html#config_add">4.6 Add Struts Components To Your Application</a></li>
+                    <li><a href="building_controller.html#action_mapping_example">4.6.1</a>ActionMapping Example</li>
+                    <li><a href="building_controller.html#other_config">4.6.2</a>Other Configuration Objects</li>
+                    <li><a href="building_controller.html#module_config">4.6.3 Configuring your application for modules (sub-applications)</a></li>
+                    </ul></li>
+                <li><a href="building_controller.html#dd_config">4.7 The Web Application Deployment Descriptor</a>
+                    <ul>
+                    <li><a href="building_controller.html#dd_config_servlet">4.7.1 Configure the Action Servlet Instance</a></li>
+                    <li><a href="building_controller.html#dd_config_mapping">4.7.2 Configure the Action Servlet Mapping</a></li>
+                    <li><a href="building_controller.html#dd_config_taglib">4.7.3 Configure the Struts Tag Library</a></li>
                     </ul></li>
                 </ul></li>
+                <li><a href="building_controller.html#config_add">4.8 Add Struts Components To Your Application</a></li>
+                <li><a href="building_controller.html#logging">4.9 Using The Commons Logging Interface</a></li>
              <li>5. Getting Started</li>
                 <ul>
                 <li><a href="release-notes.html">Release Notes</a></li>

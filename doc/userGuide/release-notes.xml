@@ -105,23 +105,40 @@
     Struts internal versions.  In nearly every case, this involved changing
     only the <code>import</code> statements at the top of your classes.  Any
     applications that utilize these classes will need to be modified in the
-    same way.  The following Commons packages contain the replacements for the
+    same way.  </p>
+    <p>The following Commons packages contain the replacements for the
     corresponding Struts 1.0 classes:</p>
     <ul>
-    <li><strong>BeanUtils Package</strong> [<code>org.apache.commons.beanutils</code>] -
+    <li><strong>BeanUtils Package</strong> 
+        [<a href="http://jakarta.apache.org/commons/beanutils.html"><code>org.apache.commons.beanutils</code></a>] -
         <code>org.apache.struts.utils.BeanUtils</code>,
         <code>org.apache.struts.utils.ConvertUtils</code>, and
         <code>org.apache.struts.utils.PropertyUtils</code>.</li>
     <li><strong>Collections Package</strong>
-        [<code>org.apache.commons.collections</code>]  -
+        [<a href="http://jakarta.apache.org/commons/collections.html"><code>org.apache.commons.collections</code></a>]  -
         <code>org.apache.struts.util.ArrayStack</code>,
         <code>org.apache.struts.util.FastArrayList</code>,
         <code>org.apache.struts.util.FastHashMap</code>,
         <code>org.apache.struts.util.FastTreeMap</code>.</li>
     <li><strong>Digester Package</strong> -
-        [<code>org.apache.commons.digester</code>] -
+        [<a href="http://jakarta.apache.org/commons/digester.html"><code>org.apache.commons.digester</code></a>] -
         <code>org.apache.struts.digester.*</code>.</li>
     </ul>
+    <p>The following Commons packages are also now used by various components 
+    of the Struts framework:</p>
+    <ul>
+    <li><strong>Database Connection Pool Package</strong> 
+    [<a href="http://jakarta.apache.org/commons/dbcp.html"><code>org.apache.commons.dbpc</code></a>]</li>
+    <li><strong>Logging Package</strong> 
+    [<a href="http://jakarta.apache.org/commons/logging.html"><code>org.apache.commons.logging</code></a>]</li>
+    <li><strong>Pool Package</strong> 
+    [<a href="http://jakarta.apache.org/commons/pool/index.html"><code>org.apache.commons.pool</code></a>]</li>
+    <li><strong>Services Package</strong> 
+    [<a href="http://cvs.apache.org/viewcvs/jakarta-commons-sandbox/services/"><code>org.apache.commons.services</code></a>]</li>
+    <li><strong>Validator Package</strong> 
+    [<a href="http://cvs.apache.org/viewcvs/jakarta-commons/validator/"><code>org.apache.commons.validator</code></a>]</li>
+    </ul>
+
 
     <p><strong>NOTE! XML Parser Prerequisite Updated</strong></p>
 
