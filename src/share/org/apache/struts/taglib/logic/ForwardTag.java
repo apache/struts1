@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.8 2002/01/13 00:25:37 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/01/13 00:25:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.9 2002/09/23 05:22:08 martinc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/09/23 05:22:08 $
  *
  * ====================================================================
  *
@@ -63,12 +63,9 @@
 package org.apache.struts.taglib.logic;
 
 
-import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForward;
@@ -82,7 +79,7 @@ import org.apache.struts.util.RequestUtils;
  * configuration information associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/01/13 00:25:37 $
+ * @version $Revision: 1.9 $ $Date: 2002/09/23 05:22:08 $
  */
 
 public class ForwardTag extends TagSupport {

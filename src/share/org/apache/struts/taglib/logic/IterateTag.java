@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.15 2002/08/03 23:53:45 craigmcc Exp $
- * $Revision: 1.15 $
- * $Date: 2002/08/03 23:53:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.16 2002/09/23 05:22:08 martinc Exp $
+ * $Revision: 1.16 $
+ * $Date: 2002/09/23 05:22:08 $
  *
  * ====================================================================
  *
@@ -71,10 +71,7 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.util.IteratorAdapter;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
@@ -89,7 +86,7 @@ import org.apache.struts.util.ResponseUtils;
  * or a Map (which includes Hashtables) whose elements will be iterated over.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2002/08/03 23:53:45 $
+ * @version $Revision: 1.16 $ $Date: 2002/09/23 05:22:08 $
  */
 
 public class IterateTag extends BodyTagSupport {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.13 2002/07/09 23:59:01 husted Exp $
- * $Revision: 1.13 $
- * $Date: 2002/07/09 23:59:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.14 2002/09/23 05:22:08 martinc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/09/23 05:22:08 $
  *
  * ====================================================================
  *
@@ -65,30 +65,19 @@ package org.apache.struts.taglib.logic;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Iterator;
 import java.util.Map;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionForward;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
-import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Generate a URL-encoded redirect to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2002/07/09 23:59:01 $
+ * @version $Revision: 1.14 $ $Date: 2002/09/23 05:22:08 $
  */
 
 public class RedirectTag extends TagSupport {

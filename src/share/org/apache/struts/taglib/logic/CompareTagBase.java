@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.8 2002/03/16 03:00:44 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/03/16 03:00:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.9 2002/09/23 05:22:08 martinc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/09/23 05:22:08 $
  *
  * ====================================================================
  *
@@ -67,7 +67,6 @@ import java.lang.reflect.InvocationTargetException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
@@ -78,7 +77,7 @@ import org.apache.struts.util.RequestUtils;
  * define values for desired1 and desired2.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/03/16 03:00:44 $
+ * @version $Revision: 1.9 $ $Date: 2002/09/23 05:22:08 $
  */
 
 public abstract class CompareTagBase extends ConditionalTagBase {

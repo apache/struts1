@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.11 2002/03/16 01:47:14 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2002/03/16 01:47:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.12 2002/09/23 05:22:08 martinc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/09/23 05:22:08 $
  *
  * ====================================================================
  *
@@ -68,8 +68,6 @@ import java.util.StringTokenizer;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
-import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
 
 
@@ -78,7 +76,7 @@ import org.apache.struts.util.RequestUtils;
  * is present for this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/03/16 01:47:14 $
+ * @version $Revision: 1.12 $ $Date: 2002/09/23 05:22:08 $
  */
 
 public class PresentTag extends ConditionalTagBase {

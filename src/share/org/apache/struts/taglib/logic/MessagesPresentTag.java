@@ -57,9 +57,7 @@
 package org.apache.struts.taglib.logic;
 
 import java.util.Iterator;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
-//import javax.servlet.jsp.PageContext;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.RequestUtils;
@@ -72,7 +70,7 @@ import org.apache.struts.util.RequestUtils;
  * class or for the property specified.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.3 $ $Date: 2002/06/25 00:53:41 $
+ * @version $Revision: 1.4 $ $Date: 2002/09/23 05:22:08 $
  * @since Struts 1.1
  */
 
