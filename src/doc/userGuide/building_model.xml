@@ -59,10 +59,10 @@
         a bean stored as a request attribute in a servlet like this:
       </p>
         
-      <pre>
-         MyCart mycart = new MyCart(...);
-         request.setAttribute("cart", mycart);
-      </pre>
+<pre>
+	 MyCart mycart = new MyCart(...);
+	 request.setAttribute("cart", mycart);
+</pre>
       
       <p>
         is immediately visible to a JSP page which this servlet forwards to,
@@ -226,28 +226,27 @@
         <code>perform()</code> method will show you how to do it:
       </p>
       <p>
-        <pre>
-          public ActionForward perform(ActionMapping mapping,
-                              ActionForm form,
-                              HttpServletRequest request,
-                              HttpServletResponse response) {
-            try {
-              javax.sql.DataSource dataSource = 
-                (DataSource) getServlet().getServletContext().getAttribute(Action.DATA_SOURCE_KEY);
-              
-              Connection myConnection = dataSource.getConnection();
-              //do what you wish with myConnection
-            }
-            catch (SQLException sqle) {
-              sqle.printStackTrace();
-            }
-            finally {
-              //enclose this in a finally block to make
-              //sure the connection is closed
-              myConnection.close();
-            }
-          }
-        </pre>
+<pre>
+  public ActionForward perform(ActionMapping mapping,
+                      ActionForm form,
+                      HttpServletRequest request,
+                      HttpServletResponse response) {
+    try {
+      javax.sql.DataSource dataSource = getServlet().findDataSource(null);
+      
+      Connection myConnection = dataSource.getConnection();
+      //do what you wish with myConnection
+    }
+    catch (SQLException sqle) {
+      sqle.printStackTrace();
+    }
+    finally {
+      //enclose this in a finally block to make
+      //sure the connection is closed
+      myConnection.close();
+    }
+  }
+</pre>
       </p>
       
       <p align="center">

@@ -136,10 +136,10 @@
         <code>username</code> field might look like this (in JSP)
       
       
-        <pre>
-          &lt;input type="text" name="username"
-          value="&lt;%= loginBean.getUsername() %&gt;">
-        </pre>
+<pre>
+  &lt;input type="text" name="username"
+  value="&lt;%= loginBean.getUsername() %&gt;">
+</pre>
       
       
         which is difficult to type correctly, confuses HTML developers who are
@@ -148,9 +148,9 @@
         building forms, based on the Custom Tag Library facility of JSP 1.1.
         The case above would be rendered like this using Struts:
         
-        <pre>
-          &lt;html:text name="username"/&gt;
-        </pre>
+<pre>
+  &lt;html:text name="username"/&gt;
+</pre>
         
         with no need to explicitly refer to the JavaBean from which the initial
         value is retrieved.  That is handled automatically by the framework.
@@ -173,55 +173,55 @@
           example application included with Struts) named <code>logon.jsp</code>:
         </p>
         
-        <pre>
-            &lt;%@ page language="java" %&gt;
-            &lt;%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %&gt;
-            &lt;%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %&gt;
+<pre>
+&lt;%@ page language="java" %&gt;
+&lt;%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %&gt;
+&lt;%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %&gt;
 
-          
-            &lt;html&gt;
-            &lt;head&gt;
-            &lt;title&gt;&lt;bean:message key="logon.title"/&gt;&lt;/title&gt;
-            &lt;body bgcolor="white"&gt;
-          
-            &lt;html:errors/&gt;
-          
-            &lt;html:form action="logon.do"&gt;
-            &lt;table border="0" width="100%"&gt;
-              &lt;tr&gt;
-                &lt;th align="right"&gt;
-                  &lt;html:message key="prompt.username"/&gt;
-                &lt;/th&gt;
-                &lt;td align="left"&gt;
-                  &lt;html:text name="username" size="16"/&gt;
-                &lt;/td&gt;
-              &lt;/tr&gt;
-              &lt;tr&gt;
-                &lt;th align="right"&gt;
-                  &lt;html:message key="prompt.password"/&gt;
-                &lt;/th&gt;
-                &lt;td align="left"&gt;
-                  &lt;html:password name="password" size="16"/&gt;
-                &lt;/td&gt;
-              &lt;/tr&gt;
-              &lt;tr&gt;
-                &lt;td align="right"&gt;
-                  &lt;struts:submit&gt;
-                    &lt;bean:message key="button.submit"/&gt;
-                  &lt;/struts:submit&gt;
-                &lt;/td&gt;
-                &lt;td align="right"&gt;
-                  &lt;html:reset&gt;
-                    &lt;bean:message key="button.reset"/&gt;
-                  &lt;/html:reset&gt;
-                &lt;/td&gt;
-              &lt;/tr&gt;
-            &lt;/table&gt;
-            &lt;/html:form&gt;
-          
-            &lt;/body&gt;
-            &lt;/html&gt;
-        </pre>
+
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;&lt;bean:message key="logon.title"/&gt;&lt;/title&gt;
+&lt;body bgcolor="white"&gt;
+
+&lt;html:errors/&gt;
+
+&lt;html:form action="logon.do"&gt;
+&lt;table border="0" width="100%"&gt;
+  &lt;tr&gt;
+    &lt;th align="right"&gt;
+      &lt;html:message key="prompt.username"/&gt;
+    &lt;/th&gt;
+    &lt;td align="left"&gt;
+      &lt;html:text name="username" size="16"/&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th align="right"&gt;
+      &lt;html:message key="prompt.password"/&gt;
+    &lt;/th&gt;
+    &lt;td align="left"&gt;
+      &lt;html:password name="password" size="16"/&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="right"&gt;
+      &lt;struts:submit&gt;
+        &lt;bean:message key="button.submit"/&gt;
+      &lt;/struts:submit&gt;
+    &lt;/td&gt;
+    &lt;td align="right"&gt;
+      &lt;html:reset&gt;
+        &lt;bean:message key="button.reset"/&gt;
+      &lt;/html:reset&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/html:form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
           
         <p>
           The following items illustrate the key features of form handling in Struts,
@@ -288,52 +288,52 @@
         </p>
           
         <p>
-          <pre>
-            &lt;%@page language="java">
-            
-            &lt;%@taglib uri="/WEB-INF/struts-html.tld" prefix="html">
-            
-            &lt;html:form action="uploadAction.do">
-              Please Input Text: &lt;html:text property="myText">&lt;br />
-              Please Input The File You Wish to Upload:&lt;br />
-              &lt;html:file property="myFile">&lt;br />
-              &lt;html:submit />
-            &lt;/html:form>
-          </pre>
+<pre>
+&lt;%@page language="java">
+
+&lt;%@taglib uri="/WEB-INF/struts-html.tld" prefix="html">
+
+&lt;html:form action="uploadAction.do">
+  Please Input Text: &lt;html:text property="myText">&lt;br />
+  Please Input The File You Wish to Upload:&lt;br />
+  &lt;html:file property="myFile">&lt;br />
+  &lt;html:submit />
+&lt;/html:form>
+</pre>
         </p>
         <p>
           The next step is to create your ActionForm bean:
         </p>
         <p>
-          <pre>
-            import javax.servlet.http.HttpServletRequest;
-            import javax.servlet.http.HttpServletResponse;
-            import org.apache.struts.action.ActionForm;
-            import org.apache.struts.action.ActionMapping;
-            import org.apache.struts.upload.FormFile;
-            
-            public class UploadForm extends ActionForm {
-              
-              protected String myText;
-              protected FormFile myFile;
-              
-              public void setMyText(String text) {
-                myText = text;
-              }
-              
-              public String getMyText() {
-                return myText;
-              }
-              
-              public void setMyFile(FormFile file) {
-                myFile = file;
-              }
-              
-              public FormFile getMyFile() {
-                return myFile;
-              }
-            }
-          </pre>
+<pre>
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
+
+public class UploadForm extends ActionForm {
+  
+  protected String myText;
+  protected FormFile myFile;
+  
+  public void setMyText(String text) {
+    myText = text;
+  }
+  
+  public String getMyText() {
+    return myText;
+  }
+  
+  public void setMyFile(FormFile file) {
+    myFile = file;
+  }
+  
+  public FormFile getMyFile() {
+    return myFile;
+  }
+}
+</pre>
         </p>
         
         <p>
@@ -416,10 +416,10 @@
           offers an additional facility to validate the input fields it has received.
           To utilize this feature, override the following method in your ActionForm 
           class:
-          <pre>
-                  public ActionErrors validate(ActionMapping mapping,
-                                      HttpServletRequest request)
-               </pre>
+  <pre>
+          public ActionErrors validate(ActionMapping mapping,
+                              HttpServletRequest request)
+  </pre>
         </p>
         
         <p>
@@ -537,7 +537,8 @@
               flush="true" /&gt;</code>) is processed at request time, and is handled
               transparently by the server.  Among other things, that means you
               can conditionally perform the include by nesting it within a tag
-              like <a href="struts-logic.html#ifParameterEquals">ifParameterEquals</a>.</li>
+              like <a href="struts-logic.html#equals">equals</a> by using it's
+              parameter attribute.</li>
           <li>The <a href="struts-bean.html#include">bean:include</a> tag takes either a
              an argument "forward" representing a logical name mapped to the jsp to include,
              or the "id" argument, which represents a page context String variable to print

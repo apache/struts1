@@ -24,10 +24,9 @@
 				<li>Write an <code>Action</code> class (that is, an extension of the
 				    <code>Action</code> class) for each logical request
 				    that may be received.</li>
-				<li>Write an <code>ActionMapping</code> class (that is, an extension
-				    of the <code>ActionMapping</code> class) that defines the class
-				    names and other information associated with each possible
-				    mapping.</li>
+				<li>[Optionally] Write an <code>ActionMapping</code> class (that is, an
+					 extension of the <code>ActionMapping</code> class) that defines the class
+					 names and other information associated with each possible mapping.</li>
 				<li>Write the action mapping configuration file (in XML) that is used
 				    to configure the controller servlet.</li>
 				<li>Update the web application deployment descriptor file (in XML)
@@ -40,19 +39,19 @@
 			
 			<p>The <code>Action</code> class defines two methods that could be
 				executed depending on your servlet environment:
-				<pre>
-				    public ActionForward perform(ActionMapping mapping,
-				 											ActionForm form,
-				 											HttpServletRequest request,
-															HttpServletResponse response)
-						throws IOException, ServletException
-						
-					 public ActionForward perform(ActionMapping mapping,
-				 											ActionForm form,
-				 											ServletRequest request,
-															ServletResponse response)
-						throws IOException, ServletException
-				</pre>
+<pre>
+   public ActionForward perform(ActionMapping mapping,
+											ActionForm form,
+											HttpServletRequest request,
+										HttpServletResponse response)
+	throws IOException, ServletException
+		
+   public ActionForward perform(ActionMapping mapping,
+											ActionForm form,
+											ServletRequest request,
+										ServletResponse response)
+	throws IOException, ServletException
+</pre>
 			</p>
 				
 			<p>
@@ -228,7 +227,7 @@
 				
 				<blockquote>
 					<b>&lt;form-beans&gt;</b><br />
-						This section contains your form bean definitions.  You use a &gt;form-bean&lt; element
+						This section contains your form bean definitions.  You use a &lt;form-bean&gt; element
 						for each form bean, which has the following important attributes:
 						<ul>
 							<li>
@@ -242,7 +241,7 @@
 				</blockquote>
 				<blockquote>
 					<b>&lt;action-mappings&gt;</b><br />
-						This section contains your action definitions.  You use an &gt;action&lt; element
+						This section contains your action definitions.  You use an &lt;action&gt; element
 						for each of your actions you would like to define.  Each action element has requires
 						the follwing attributes to be defined:
 						
@@ -266,29 +265,29 @@
 				to illustrate the requirements.  Note that the entries for all the other actions
 				are left out:
 			</p>
-				<pre>
-				  &lt;struts-config>
-				  		&lt;form-beans>
-				  			&lt;form-bean name="logonForm"
-				  						  type="org.apache.struts.example.LogonForm">
-				  		&lt;/form-beans>
-				  		
-				  		&lt;global-forwards type="org.apache.struts.action.ActionForward">
- 							&lt;forward name="logon" path="/logon.jsp" redirect="false" /> 
- 						&lt;/global-forwards>
-				  		
-					  &lt;action-mappings&gt;
-					   
-  						&lt;action path="/logon" 
-  									  type="org.apache.struts.example.LogonAction"
-  									  name="logonForm"
-  									  scope="request"
-  									  input="/logon.jsp"
-  									  unknown="false"
-  									  validate="true" /> 					
-					  &lt;/action-mappings&gt;
-				 &lt;/struts-config>
-				</pre>
+<pre>
+  &lt;struts-config>
+  		&lt;form-beans>
+  			&lt;form-bean name="logonForm"
+  						  type="org.apache.struts.example.LogonForm">
+  		&lt;/form-beans>
+  		
+  		&lt;global-forwards type="org.apache.struts.action.ActionForward">
+			&lt;forward name="logon" path="/logon.jsp" redirect="false" /> 
+		&lt;/global-forwards>
+  		
+	  &lt;action-mappings&gt;
+	   
+			&lt;action path="/logon" 
+						  type="org.apache.struts.example.LogonAction"
+						  name="logonForm"
+						  scope="request"
+						  input="/logon.jsp"
+						  unknown="false"
+						  validate="true" /> 					
+	  &lt;/action-mappings&gt;
+ &lt;/struts-config>
+</pre>
 			
 			<p>
 				First the form bean is defined.  A basic bean of class "org.apache.struts.example.LogonForm"
@@ -311,23 +310,25 @@
 			</p>
 				
 			<p>
-				One more section of good use is the <code>&lt;data-source></code> section, which 
+				One more section of good use is the <code>&lt;data-sources></code> section, which 
 				specifies data sources that your application can use.This is how you would specify a basic data source for your application inside
 				of struts-config.xml:
 			</p>
 			<p>
-				<pre>
-					&lt;struts-config>
-						&lt;data-source autoCommit="false"
-											 description="Example Data Source Description"
-											 driverClass="org.postgresql.Driver"
-									       maxCount="4"
-									       minCount="2"
-									       password="mypassword"
-									       url="jdbc:postgresql://localhost/mydatabase"
-									       user="myusername"/>
-					&lt;/struts-config>
-				</pre>
+<pre>
+	&lt;struts-config>
+		&lt;data-sources>
+			&lt;data-source autoCommit="false"
+								 description="Example Data Source Description"
+								 driverClass="org.postgresql.Driver"
+						       maxCount="4"
+						       minCount="2"
+						       password="mypassword"
+						       url="jdbc:postgresql://localhost/mydatabase"
+						       user="myusername"/>
+		&lt;/data-sources>
+	&lt;/struts-config>
+</pre>
 			</p>  
 			<p>
 				For information on how to retrieve the data source, see the 
@@ -350,29 +351,29 @@
 				<p>
 					Add an entry defining the action servlet itself, along with the appropriate
 					initialization parameters.  Such an entry might look like this:
-					<pre>
-					    &lt;servlet&gt;
-					      &lt;servlet-name&gt;action&lt;/servlet-name&gt;
-					      &lt;servlet-class&gt;org.apache.struts.action.ActionServlet&lt;/servlet-class&gt;
-					      &lt;init-param&gt;
-					        &lt;param-name&gt;application&lt;/param-name&gt;
-					        &lt;param-value&gt;org.apache.struts.example.ApplicationResources&lt;/param-value&gt;
-					      &lt;/init-param&gt;
-					      &lt;init-param&gt;
-					        &lt;param-name&gt;config&lt;/param-name&gt;
-					        &lt;param-value&gt;/WEB-INF/struts-config.xml&lt;/param-value&gt;
-					      &lt;/init-param&gt;
-					      &lt;init-param&gt;
-					        &lt;param-name&gt;debug&lt;/param-name&gt;
-					        &lt;param-value&gt;2&lt;/param-value&gt;
-					      &lt;/init-param&gt;
-					      &lt;init-param&gt;
-					        &lt;param-name&gt;mapping&lt;/param-name&gt;
-					        &lt;param-value&gt;org.apache.struts.example.ApplicationMapping&lt;/param-value&gt;
-					      &lt;/init-param&gt;
-					      &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
-					    &lt;/servlet&gt;
-					</pre>
+<pre>
+   &lt;servlet&gt;
+     &lt;servlet-name&gt;action&lt;/servlet-name&gt;
+     &lt;servlet-class&gt;org.apache.struts.action.ActionServlet&lt;/servlet-class&gt;
+     &lt;init-param&gt;
+       &lt;param-name&gt;application&lt;/param-name&gt;
+       &lt;param-value&gt;org.apache.struts.example.ApplicationResources&lt;/param-value&gt;
+     &lt;/init-param&gt;
+     &lt;init-param&gt;
+       &lt;param-name&gt;config&lt;/param-name&gt;
+       &lt;param-value&gt;/WEB-INF/struts-config.xml&lt;/param-value&gt;
+     &lt;/init-param&gt;
+     &lt;init-param&gt;
+       &lt;param-name&gt;debug&lt;/param-name&gt;
+       &lt;param-value&gt;2&lt;/param-value&gt;
+     &lt;/init-param&gt;
+     &lt;init-param&gt;
+       &lt;param-name&gt;mapping&lt;/param-name&gt;
+       &lt;param-value&gt;org.apache.struts.example.ApplicationMapping&lt;/param-value&gt;
+     &lt;/init-param&gt;
+     &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+   &lt;/servlet&gt;
+</pre>
 				</p>
 				
 				<p>
@@ -471,12 +472,12 @@
 					path part) with a particular value to be passed to this servlet.  Such an
 					entry might look like this:
 				</p>
-					<pre>
-					    &lt;servlet-mapping&gt;
-					      &lt;servlet-name&gt;action&lt;/servlet-name&gt;
-					      &lt;url-pattern&gt;/execute/*&lt;/url-pattern&gt;
-					    &lt;/servlet-mapping&gt;
-					</pre>
+<pre>
+   &lt;servlet-mapping&gt;
+     &lt;servlet-name&gt;action&lt;/servlet-name&gt;
+     &lt;url-pattern&gt;/execute/*&lt;/url-pattern&gt;
+   &lt;/servlet-mapping&gt;
+</pre>
 				
 				<p>
 					which means that a request URI to match the <code>/logon</code> path
@@ -498,12 +499,12 @@
 					to the <code>*.jsp</code> pattern so that it is called to process every
 					JSP page that is requested.  To use the <code>*.do</code> extension (which
 					implies "do something"), the mapping entry would look like this:
-					<pre>
-					    &lt;servlet-mapping&gt;
-					      &lt;servlet-name&gt;action&lt;/servlet-name&gt;
-					      &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
-					    &lt;/servlet-mapping&gt;
-					</pre>
+<pre>
+   &lt;servlet-mapping&gt;
+     &lt;servlet-name&gt;action&lt;/servlet-name&gt;
+     &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
+   &lt;/servlet-mapping&gt;
+</pre>
 				</p>
 				
 				<p>
@@ -545,24 +546,24 @@
 					Below is how you would define all taglibs for use within your application,
 					in reality you would only specify the taglib's that your application will use:
 					
-					<pre>
-					  &lt;taglib&gt;
-					    &lt;taglib-uri&gt;/WEB-INF/struts-bean.tld&lt;/taglib-uri&gt;
-					    &lt;taglib-location&gt;/WEB-INF/struts-bean.tld&lt;/taglib-location&gt;
-					  &lt;/taglib&gt;
-					  &lt;taglib&gt;
-					    &lt;taglib-uri&gt;/WEB-INF/struts-html.tld&lt;/taglib-uri&gt;
-					    &lt;taglib-location&gt;/WEB-INF/struts-html.tld&lt;/taglib-location&gt;
-					  &lt;/taglib&gt;
-					  &lt;taglib&gt;
-					    &lt;taglib-uri&gt;/WEB-INF/struts-logic.tld&lt;/taglib-uri&gt;
-					    &lt;taglib-location&gt;/WEB-INF/struts-logic.tld&lt;/taglib-location&gt;
-					  &lt;/taglib&gt;
-					  &lt;taglib&gt;
-					    &lt;taglib-uri&gt;/WEB-INF/struts-template.tld&lt;/taglib-uri&gt;
-					    &lt;taglib-location&gt;/WEB-INF/struts-template.tld&lt;/taglib-location&gt;
-					  &lt;/taglib&gt;
-					</pre>
+<pre>
+ &lt;taglib&gt;
+   &lt;taglib-uri&gt;/WEB-INF/struts-bean.tld&lt;/taglib-uri&gt;
+   &lt;taglib-location&gt;/WEB-INF/struts-bean.tld&lt;/taglib-location&gt;
+ &lt;/taglib&gt;
+ &lt;taglib&gt;
+   &lt;taglib-uri&gt;/WEB-INF/struts-html.tld&lt;/taglib-uri&gt;
+   &lt;taglib-location&gt;/WEB-INF/struts-html.tld&lt;/taglib-location&gt;
+ &lt;/taglib&gt;
+ &lt;taglib&gt;
+   &lt;taglib-uri&gt;/WEB-INF/struts-logic.tld&lt;/taglib-uri&gt;
+   &lt;taglib-location&gt;/WEB-INF/struts-logic.tld&lt;/taglib-location&gt;
+ &lt;/taglib&gt;
+ &lt;taglib&gt;
+   &lt;taglib-uri&gt;/WEB-INF/struts-template.tld&lt;/taglib-uri&gt;
+   &lt;taglib-location&gt;/WEB-INF/struts-template.tld&lt;/taglib-location&gt;
+ &lt;/taglib&gt;
+</pre>
 				</p>
 					
 				<p>
