@@ -3665,7 +3665,7 @@
 
   </tag>
 
-  <tag>
+  <tag document-attributes="false">
 
     <name>messagesNotPresent</name>
     <summary>
@@ -3703,7 +3703,7 @@
 
   </tag>
 
-  <tag>
+  <tag document-attributes="false">
 
     <name>messagesPresent</name>
     <summary>
