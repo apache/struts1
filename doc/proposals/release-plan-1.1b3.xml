@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.5 2002/12/27 01:53:59 husted Exp $</font></p>
+  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.6 2002/12/29 11:49:35 husted Exp $</font></p>
 
   <p>The objective of the <strong>Struts 1.1 Beta 3</strong> release is to
   create a milestone release against which a final series of bug fixes and
@@ -168,7 +168,7 @@
       <td colspan="3"><strong>Documentation</strong></td>
     </tr>
     <tr>
-        <td>[ ]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=10537">10537</a></td>
 	  <td>[:TODO:] sections</td>
