@@ -245,6 +245,7 @@
     <!-- Copy the basic documentation files -->
     <copy      todir="${build.home}/documentation">
       <fileset   dir="${doc.dir}">
+        <include name="**/*.cgi"/>
         <include name="**/*.css"/>
         <include name="**/*.gif"/>
         <include name="**/*.html"/>
