@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.3 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.4 2002/01/28 06:03:31 martinc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/01/28 06:03:31 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import java.io.Serializable;
  * @since 1.1
  * @author Craig R. McClanahan
  * @author David Winterfeldt
- * @version $Revision: 1.3 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.4 $ $Date: 2002/01/28 06:03:31 $
  */
 
 public class ActionMessage implements Serializable {
@@ -92,7 +92,8 @@ public class ActionMessage implements Serializable {
      */
     public ActionMessage(String key) {
 
-        this(key, null, null, null, null);
+        this.key = key;
+        this.values = null;
 
     }
 
@@ -105,7 +106,8 @@ public class ActionMessage implements Serializable {
      */
     public ActionMessage(String key, Object value0) {
 
-        this(key, value0, null, null, null);
+        this.key = key;
+        this.values = new Object[] { value0 };
 
     }
 
@@ -119,7 +121,8 @@ public class ActionMessage implements Serializable {
      */
     public ActionMessage(String key, Object value0, Object value1) {
 
-        this(key, value0, value1, null, null);
+        this.key = key;
+        this.values = new Object[] { value0, value1 };
 
     }
 
@@ -135,7 +138,8 @@ public class ActionMessage implements Serializable {
     public ActionMessage(String key, Object value0, Object value1,
                        Object value2) {
 
-        this(key, value0, value1, value2, null);
+        this.key = key;
+        this.values = new Object[] { value0, value1, value2 };
 
     }
 
@@ -152,12 +156,21 @@ public class ActionMessage implements Serializable {
     public ActionMessage(String key, Object value0, Object value1,
                        Object value2, Object value3) {
 
-        super();
         this.key = key;
-        values[0] = value0;
-        values[1] = value1;
-        values[2] = value2;
-        values[3] = value3;
+        this.values = new Object[] { value0, value1, value2, value3 };
+    }
+
+
+    /**
+     * Construct an action message with the specified replacement values.
+     *
+     * @param key Message key for this message
+     * @param values Array of replacement values
+     */
+    public ActionMessage(String key, Object[] values) {
+
+        this.key = key;
+        this.values = values;
 
     }
 
@@ -174,7 +187,7 @@ public class ActionMessage implements Serializable {
     /**
      * The replacement values for this mesasge.
      */
-    protected Object values[] = { null, null, null, null };
+    protected Object values[] = null;
 
 
     // --------------------------------------------------------- Public Methods

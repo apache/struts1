@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionError.java,v 1.6 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionError.java,v 1.7 2002/01/28 06:03:31 martinc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/01/28 06:03:31 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import java.io.Serializable;
  * placeholder is '{0}', the second is '{1}', etc.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.7 $ $Date: 2002/01/28 06:03:31 $
  */
 
 public class ActionError extends ActionMessage implements Serializable {
@@ -93,7 +93,7 @@ public class ActionError extends ActionMessage implements Serializable {
      */
     public ActionError(String key) {
 
-        this(key, null, null, null, null);
+        super(key);
 
     }
 
@@ -106,7 +106,7 @@ public class ActionError extends ActionMessage implements Serializable {
      */
     public ActionError(String key, Object value0) {
 
-        this(key, value0, null, null, null);
+        super(key, value0);
 
     }
 
@@ -120,7 +120,7 @@ public class ActionError extends ActionMessage implements Serializable {
      */
     public ActionError(String key, Object value0, Object value1) {
 
-        this(key, value0, value1, null, null);
+        super(key, value0, value1);
 
     }
 
@@ -136,7 +136,7 @@ public class ActionError extends ActionMessage implements Serializable {
     public ActionError(String key, Object value0, Object value1,
                        Object value2) {
 
-        this(key, value0, value1, value2, null);
+        super(key, value0, value1, value2);
 
     }
 
@@ -154,6 +154,19 @@ public class ActionError extends ActionMessage implements Serializable {
                        Object value2, Object value3) {
 
         super(key, value0, value1, value2, value3);
+
+    }
+
+
+    /**
+     * Construct an action error with the specified replacement values.
+     *
+     * @param key Message key for this message
+     * @param values Array of replacement values
+     */
+    public ActionError(String key, Object[] values) {
+
+        super(key, values);
 
     }
 
