@@ -17,7 +17,7 @@
     <section href="Releases" name="Release Guidelines">
       <p>A 
       <a href="http://jakarta.apache.org/commons/versioning.html">point release</a> should be made before and after any product change that is not a "fully-compatible change" (see link). This includes moving a dependency from an internal package to an external product, including products distributed through the Jakarta Commons. We should place any fully-compatible changes in the hands of the community before starting on a change that is only "interface" or "external-interface" compatible.</p>
-      <p>A fully-compatible point release does not always need a "preview" beta or milestone release. If appropriate, a Release Candidate can be cut, uploaded to the Release Manager's home directory on cvs.apache.org (~/public_html), and voted to be released to the general public from there.</p>
+      <p>A fully-compatible point release does not always need a "preview" beta or milestone release. If appropriate, a Release Candidate can be cut, uploaded to the development distribution directories on cvs.apache.org (/www/cvs.apache.org/dist/struts/ and http://cvs.apache.org/repository/struts/), and voted to be released to the general public from there. </p>
       <p>Any release should follow the same general process used by the Jakarta Commons and the Apache HTTP Server project.</p>
       <ul>
         <li>
