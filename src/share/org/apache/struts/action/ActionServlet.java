@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.97 2002/03/14 06:15:55 craigmcc Exp $
- * $Revision: 1.97 $
- * $Date: 2002/03/14 06:15:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.98 2002/03/22 23:47:18 craigmcc Exp $
+ * $Revision: 1.98 $
+ * $Date: 2002/03/22 23:47:18 $
  *
  * ====================================================================
  *
@@ -269,7 +269,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.97 $ $Date: 2002/03/14 06:15:55 $
+ * @version $Revision: 1.98 $ $Date: 2002/03/22 23:47:18 $
  */
 
 public class ActionServlet
@@ -651,7 +651,7 @@ public class ActionServlet
             if (value instanceof ApplicationConfig) {
                 ApplicationConfig config = (ApplicationConfig) value;
                 try {
-                    config.getProcessor().destroy();
+                    getRequestProcessor(config).destroy();
                 } catch (Throwable t) {
                     ;
                 }
@@ -738,6 +738,39 @@ public class ActionServlet
 
 
     /**
+     * Look up and return the {@link RequestProcessor} responsible for the
+     * specified sub-application, creating a new one if necessary.
+     *
+     * @param appConfig The sub-application configuration for which to
+     *  acquire and return a RequestProcessor.
+     *
+     * @exception ServletException if we cannot instantiate a RequestProcessor
+     *  instance
+     */
+    protected synchronized RequestProcessor
+        getRequestProcessor(ApplicationConfig config) throws ServletException {
+
+        String key = Action.REQUEST_PROCESSOR_KEY + config.getPrefix();
+        RequestProcessor processor = (RequestProcessor)
+            getServletContext().getAttribute(key);
+        if (processor == null) {
+            try {
+                processor = (RequestProcessor)
+                    RequestUtils.applicationInstance
+                    (config.getControllerConfig().getProcessorClass());
+                processor.init(this, config);
+                getServletContext().setAttribute(key, processor);
+            } catch (Throwable t) {
+                throw new UnavailableException
+                    ("Cannot initialize RequestProcessor of class " +
+                     config.getControllerConfig().getProcessorClass()
+                     + ": " + t);
+            }
+        }
+        return (processor);
+
+    }
+    /**
      * <p>Initialize the application configuration information for the
      * specified sub-application.</p>
      *
@@ -760,7 +793,7 @@ public class ActionServlet
         InputStream input = null;
         String mapping = null;
         try {
-            config = new ApplicationConfig(prefix, this);
+            config = new ApplicationConfig(prefix);
 
             // Support for application-wide ActionMapping override
             mapping = getServletConfig().getInitParameter("mapping");
@@ -881,7 +914,7 @@ public class ActionServlet
 
         PlugIn plugIns[] = config.findPlugIns();
         for (int i = 0; i < plugIns.length; i++) {
-            plugIns[i].init(config);
+            plugIns[i].init(this, config);
         }
 
 
@@ -1106,7 +1139,7 @@ public class ActionServlet
         throws IOException, ServletException {
 
         RequestUtils.selectApplication(request, getServletContext());
-        getApplicationConfig(request).getProcessor().process
+        getRequestProcessor(getApplicationConfig(request)).process
             (request, response);
 
     }

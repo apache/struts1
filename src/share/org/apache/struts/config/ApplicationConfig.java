@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.12 2002/03/10 01:23:30 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2002/03/10 01:23:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.13 2002/03/22 23:47:18 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/03/22 23:47:18 $
  *
  * ====================================================================
  *
@@ -68,10 +68,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
-import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
-import org.apache.struts.action.RequestProcessor;
-import org.apache.struts.util.RequestUtils;
  
 
 
@@ -85,7 +82,7 @@ import org.apache.struts.util.RequestUtils;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2002/03/10 01:23:30 $
+ * @version $Revision: 1.13 $ $Date: 2002/03/22 23:47:18 $
  * @since Struts 1.1
  */
 
@@ -100,13 +97,11 @@ public class ApplicationConfig implements Serializable {
      * parameter values.
      *
      * @param prefix Context-relative URI prefix for this application
-     * @param servlet ActionServlet that is managing this application
      */
-    public ApplicationConfig(String prefix, ActionServlet servlet) {
+    public ApplicationConfig(String prefix) {
 
         super();
         this.prefix = prefix;
-        this.servlet = servlet;
 
     }
 
@@ -208,43 +203,6 @@ public class ApplicationConfig implements Serializable {
 
     public String getPrefix() {
         return (this.prefix);
-    }
-
-
-    /**
-     * The initialized RequestProcessor instance to be used for processing
-     * requests for this application.
-     */
-    protected RequestProcessor processor = null;
-
-    public synchronized RequestProcessor getProcessor()
-        throws ServletException {
-
-        if (processor == null) {
-            try {
-                processor = (RequestProcessor)
-                    RequestUtils.applicationInstance
-                    (getControllerConfig().getProcessorClass());
-                processor.init(servlet, this);
-            } catch (Throwable t) {
-                throw new UnavailableException
-                    ("Cannot initialize RequestProcessor of class " +
-                     getControllerConfig().getProcessorClass() + ": " + t);
-            }
-        }
-        return (this.processor);
-
-    }
-
-
-    /**
-     * The <code>ActionServlet</code> instance that is managing this
-     * application.
-     */
-    protected ActionServlet servlet = null;
-
-    public ActionServlet getServlet() {
-        return (this.servlet);
     }
 
 

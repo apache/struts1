@@ -229,8 +229,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
     protected void retrieveTempDir(ApplicationConfig appConfig) { 
         
         //attempt to retrieve the servlet container's temporary directory
-        ServletContext context =
-            appConfig.getServlet().getServletContext();
+        ServletContext context = getServlet().getServletContext();
        
         try {
             tempDir =
@@ -248,7 +247,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
                 //default to system-wide tempdir
                 tempDir = System.getProperty("java.io.tmpdir");
 
-                if (appConfig.getServlet().getDebug() > 1) {
+                if (getServlet().getDebug() > 1) {
                     log.debug("DiskMultipartRequestHandler.handleRequest(): " +
                     "defaulting to java.io.tmpdir directory \"" +
                     tempDir);

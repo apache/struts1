@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.1 2002/03/05 04:23:57 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/03/05 04:23:57 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.2 2002/03/22 23:47:18 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/03/22 23:47:18 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.webapp.example.UserDatabase;
  * of your servlet container.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/03/05 04:23:57 $
+ * @version $Revision: 1.2 $ $Date: 2002/03/22 23:47:18 $
  */
 
 public final class MemoryDatabasePlugIn implements PlugIn {
@@ -178,18 +178,20 @@ public final class MemoryDatabasePlugIn implements PlugIn {
     /**
      * Initialize and load our initial database from persistent storage.
      *
+     * @param servlet The ActionServlet for this web application
      * @param config The ApplicationConfig for our owning sub-application
      *
      * @exception ServletException if we cannot configure ourselves correctly
      */
-    public void init(ApplicationConfig config) throws ServletException {
+    public void init(ActionServlet servlet, ApplicationConfig config)
+        throws ServletException {
 
         log.info("Initializing memory database plug in from '" +
                  pathname + "'");
 
         // Remember our associated configuration and servlet
         this.config = config;
-        this.servlet = config.getServlet();
+        this.servlet = servlet;
 
         // Construct a new database and make it available
         database = new MemoryUserDatabase();

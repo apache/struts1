@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.1 2002/02/23 22:54:17 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/02/23 22:54:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.2 2002/03/22 23:47:18 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/03/22 23:47:18 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.config.ApplicationConfig;
  * been called before the <code>init()</code> method is invoked.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/02/23 22:54:17 $
+ * @version $Revision: 1.2 $ $Date: 2002/03/22 23:47:18 $
  */
 
 public interface PlugIn {
@@ -100,13 +100,16 @@ public interface PlugIn {
      * <p>Receive notification that the specified sub-applicaiton is being
      * started up.</p>
      *
+     * @param servlet ActionServlet that is managing all the sub-applications
+     *  in this web application
      * @param config ApplicationConfig for the sub-application with which
      *  this plug in is associated
      *
      * @exception ServletException if this <code>PlugIn</code> cannot
      *  be successfully initialized
      */
-    public void init(ApplicationConfig config) throws ServletException;
+    public void init(ActionServlet servlet, ApplicationConfig config)
+        throws ServletException;
 
 
 }

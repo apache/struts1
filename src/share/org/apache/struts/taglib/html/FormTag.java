@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.18 2002/01/28 06:07:38 martinc Exp $
- * $Revision: 1.18 $
- * $Date: 2002/01/28 06:07:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.19 2002/03/22 23:47:18 craigmcc Exp $
+ * $Revision: 1.19 $
+ * $Date: 2002/03/22 23:47:18 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2002/01/28 06:07:38 $
+ * @version $Revision: 1.19 $ $Date: 2002/03/22 23:47:18 $
  */
 
 public class FormTag extends TagSupport {
@@ -819,7 +819,8 @@ public class FormTag extends TagSupport {
                                      PageContext.REQUEST_SCOPE);
             throw e;
         }
-        servlet = appConfig.getServlet();
+        servlet = (ActionServlet)
+            pageContext.getServletContext().getAttribute(Action.ACTION_SERVLET_KEY);
 
         // Look up the action mapping we will be submitting to
         String mappingName = getActionMappingName();

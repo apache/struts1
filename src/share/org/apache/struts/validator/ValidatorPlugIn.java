@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.1 2002/03/18 01:42:51 dwinterfeldt Exp $
- * $Revision: 1.1 $
- * $Date: 2002/03/18 01:42:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.2 2002/03/22 23:47:18 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/03/22 23:47:18 $
  *
  * ====================================================================
  *
@@ -152,15 +152,17 @@ public class ValidatorPlugIn implements PlugIn {
     /**
      * Initialize and load our resources.
      *
+     * @param servlet The ActionServlet for our application
      * @param config The ApplicationConfig for our owning sub-application
      *
      * @exception ServletException if we cannot configure ourselves correctly
     */
-    public void init(ApplicationConfig config) throws ServletException {
+    public void init(ActionServlet servlet, ApplicationConfig config)
+        throws ServletException {
 
         // Remember our associated configuration and servlet
         this.config = config;
-        this.servlet = config.getServlet();
+        this.servlet = servlet;
 
 	// Load our database from persistent storage
 	try {
