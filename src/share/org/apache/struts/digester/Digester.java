@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.19 2001/04/15 22:21:18 craigmcc Exp $
- * $Revision: 1.19 $
- * $Date: 2001/04/15 22:21:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.20 2001/06/11 19:55:40 craigmcc Exp $
+ * $Revision: 1.20 $
+ * $Date: 2001/06/11 19:55:40 $
  *
  * ====================================================================
  * 
@@ -103,7 +103,7 @@ import org.xml.sax.SAXParseException;
  * even from the same thread.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.19 $ $Date: 2001/04/15 22:21:18 $
+ * @version $Revision: 1.20 $ $Date: 2001/06/11 19:55:40 $
  */
 
 public class Digester extends HandlerBase {
@@ -385,7 +385,7 @@ public class Digester extends HandlerBase {
 	if (rules != null) {
 	    //	    if (debug >= 3)
 	    //		log("  Firing 'body' events for " + rules.size() + " rules");
-	    String bodyText = this.bodyText.toString();
+	    String bodyText = this.bodyText.toString().trim();
 	    for (int i = 0; i < rules.size(); i++) {
 		try {
 		    ((Rule) rules.get(i)).body(bodyText);
