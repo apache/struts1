@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.4 2003/08/10 10:20:50 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2003/08/10 10:20:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.5 2003/08/14 03:19:43 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/08/14 03:19:43 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.xml.sax.SAXException;
  * 
  * @author Joe Germuska
  * @author David Graham
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  * @see org.apache.struts.PlugIn
  * @since Struts 1.2
  */
@@ -115,7 +115,7 @@ public class DigestingPlugIn implements PlugIn {
 
     protected ModuleConfig moduleConfig = null;
 
-    protected String ruleSets = null;
+    protected String rulesets = null;
 
     protected ActionServlet servlet = null;
 
@@ -241,27 +241,27 @@ public class DigestingPlugIn implements PlugIn {
 
     /**
      * Instantiate any <code>RuleSet</code> classes defined in the 
-     * <code>ruleSets</code> property and use them to add rules to our 
+     * <code>rulesets</code> property and use them to add rules to our 
      * <code>Digester</code>.
      * @param digester the Digester instance to add RuleSet objects to.
      * @throws ServletException
      */
     protected void applyRuleSets(Digester digester) throws ServletException {
 
-        if (this.ruleSets == null || this.ruleSets.trim().length() == 0) {
+        if (this.rulesets == null || this.rulesets.trim().length() == 0) {
             return;
         }
 
-        ruleSets = ruleSets.trim();
+        rulesets = rulesets.trim();
         String ruleSet = null;
-        while (ruleSets.length() > 0) {
-            int comma = ruleSets.indexOf(",");
+        while (rulesets.length() > 0) {
+            int comma = rulesets.indexOf(",");
             if (comma < 0) {
-                ruleSet = ruleSets.trim();
-                ruleSets = "";
+                ruleSet = rulesets.trim();
+                rulesets = "";
             } else {
-                ruleSet = ruleSets.substring(0, comma).trim();
-                ruleSets = ruleSets.substring(comma + 1).trim();
+                ruleSet = rulesets.substring(0, comma).trim();
+                rulesets = rulesets.substring(comma + 1).trim();
             }
 
             if (log.isDebugEnabled()) {
@@ -426,15 +426,15 @@ public class DigestingPlugIn implements PlugIn {
      * <p>A comma-delimited list of one or more classes which implement
      * <code>org.apache.commons.digester.RuleSet</code>. (Optional)</p>
      */
-    public void setRuleSets(String ruleSets) {
-        this.ruleSets = ruleSets;
+    public void setRulesets(String ruleSets) {
+        this.rulesets = ruleSets;
     }
 
     /**
      * @return The configured list of <code>RuleSet</code> classes.
      */
-    public String getRuleSets() {
-        return this.ruleSets;
+    public String getRulesets() {
+        return this.rulesets;
     }
 
     /**
