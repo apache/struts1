@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts Documentation -->
-<!-- $Id: struts.xsl,v 1.2 2000/08/29 00:28:54 craigmcc Exp $ -->
+<!-- $Id: struts.xsl,v 1.3 2000/08/29 23:57:13 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -112,12 +112,14 @@
 
   <!-- Process a documentation section -->
   <xsl:template match="section">
-    <xsl:when test="@href">
-      <xsl:variable name="href">
-        <xsl:value-of select="@href"/>
-      </xsl:variable>
-      <a name="{$href}"></a>
-    </xsl:when>
+    <xsl:choose>
+      <xsl:when test="@href">
+        <xsl:variable name="href">
+          <xsl:value-of select="@href"/>
+        </xsl:variable>
+        <a name="{$href}"></a>
+      </xsl:when>
+    </xsl:choose>
     <table border="0" cellspacing="5" cellpadding="5" width="100%">
       <tr><td bgcolor="{$banner-bg}">
         <font color="{$banner-fg}" face="arial,helvetica,sanserif" size="+1">
