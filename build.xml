@@ -94,6 +94,11 @@
                                       to copy.  This is required only when
                                       executing the "deploy.catalina" target.
 
+        ant.jar                       (optional) The path to the ant.jar that 
+                                      is being used to build from this script
+                                      This is required only when executing the 
+                                      "generate.taglib.doc" target.
+
 -->
 
     <!-- Load local and user build preferences -->
@@ -339,6 +344,25 @@
             <classpath refid="compile.classpath"/>
         </javadoc>
     </target>
+
+<!--
+        Generate new taglib JavaDoc-like documentation
+-->
+    <target name="generate-reports" if="ant.jar">
+        <mkdir  dir="${dist.home}/contrib"/>
+        <ant    dir="${basedir}/contrib/tag-doc"
+             target="clean" inheritAll="false"/>
+        <ant    dir="${basedir}/contrib/tag-doc"
+             target="dist" inheritAll="false"/>
+        <ant    dir="${basedir}/contrib/tag-doc"
+             target="generate-reports" inheritAll="false"/>
+        <mkdir  dir="${dist.home}/contrib/tag-doc"/>
+        <copy todir="${dist.home}/contrib/tag-doc">
+           <fileset dir="${basedir}/contrib/tag-doc/target"/>
+        </copy>
+
+    </target>
+
 
 <!--
         Create directories and copy files for distribution

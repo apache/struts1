@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.32 2003/03/06 04:20:49 craigmcc Exp $
+# $Id: build.properties.sample,v 1.33 2003/03/29 05:58:14 jmitchell Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -115,22 +115,102 @@ pmd.jar = /Java/pmd/lib/pmd-1.01.jar
 # contrib library (although it doesn't prevent you from building it directly in
 # "contrib/struts-el".
 
-jstl.jar		= ${apache.home}/jakarta-taglibs/jstl-1.0/lib/jstl.jar
-jstl-standard.jar	= ${apache.home}/jakarta-taglibs/jstl-1.0/lib/standard.jar
+jstl.home		=${apache.home}/jakarta-taglibs/standard-1.0
+jstl.jar		=${jstl.home}/lib/jstl.jar
+jstl-standard.jar	=${jstl.home}/lib/standard.jar
 
 # Properties related to Struts unit testing
+# Choose your Cactus!
 # -----------------------------------------
+# Cactus 12-1.3 home
+#cactus.home=${apache.home}/jakarta-cactus-12-1.3
+#cactus.lib=${cactus.home}/lib
 
-# Cactus home
-cactus.home=${apache.home}/jakarta-cactus-12-1.3
+# Cactus jar for the Servlet API corresponding to the servlet.jar file
+# selected above (either 2.2 or 2.3)
+#cactus.jar = ${cactus.lib}/cactus.jar
+
+# Cactus Ant custom tasks jar
+#cactus.ant.jar = ${cactus.lib}/cactus-ant.jar
+
+# AspectJ from Cactus distribution
+#aspectjrt.jar = ${cactus.lib}/aspectjrt.jar
+
+# The httpunit runtime jar
+httpunit.jar = ${cactus.lib}/httpunit.jar
+
+# -----------------------------------------
+# Cactus 12-1.4 home
+#cactus.home=${apache.home}/jakarta-cactus-12-1.4
+#cactus.lib=${cactus.home}/lib
+
+# Cactus jar for the Servlet API corresponding to the servlet.jar file
+# selected above (either 2.2 or 2.3)
+#cactus.jar = ${cactus.lib}/cactus-1.4.jar
+
+# Cactus Ant custom tasks jar
+#cactus.ant.jar = ${cactus.lib}/cactus-ant-1.4.jar
+
+# AspectJ from Cactus distribution
+#aspectjrt.jar = ${cactus.lib}/aspectjrt-1.0.5.jar
+
+# The httpunit runtime jar
+httpunit.jar = ${cactus.lib}/httpunit-1.4.1.jar
+
+# -----------------------------------------
+# Cactus 12-1.4.1 home
+#cactus.home=${apache.home}/jakarta-cactus-12-1.4.1
+#cactus.lib=${cactus.home}/lib
+
+# Cactus jar for the Servlet API corresponding to the servlet.jar file
+# selected above (either 2.2 or 2.3)
+#cactus.jar = ${cactus.lib}/cactus-1.4.1.jar
+
+# Cactus Ant custom tasks jar
+#cactus.ant.jar = ${cactus.lib}/cactus-ant-1.4.1.jar
+
+# AspectJ from Cactus distribution
+#aspectjrt.jar = ${cactus.lib}/aspectjrt-1.0.5.jar
+
+# The httpunit runtime jar
+httpunit.jar = ${cactus.lib}/httpunit-1.4.1.jar
+
+# -----------------------------------------
+# Cactus 13-1.3 home
+#cactus.home=${apache.home}/jakarta-cactus-13-1.3
+#cactus.lib=${cactus.home}/lib
+
+# Cactus jar for the Servlet API corresponding to the servlet.jar file
+# selected above (either 2.2 or 2.3)
+#cactus.jar = ${cactus.lib}/cactus.jar
+
+# Cactus Ant custom tasks jar
+#cactus.ant.jar = ${cactus.lib}/cactus-ant.jar
+
+# AspectJ from Cactus distribution
+#aspectjrt.jar = ${cactus.lib}/aspectjrt.jar
+
+# The httpunit runtime jar
+httpunit.jar = ${cactus.lib}/httpunit.jar
+
+# -----------------------------------------
+# Cactus 13-1.4.1 home
+cactus.home=${apache.home}/jakarta-cactus-13-1.4.1
 cactus.lib=${cactus.home}/lib
 
 # Cactus jar for the Servlet API corresponding to the servlet.jar file
 # selected above (either 2.2 or 2.3)
-cactus.jar = ${cactus.lib}/cactus.jar
+cactus.jar = ${cactus.lib}/cactus-1.4.1.jar
 
 # Cactus Ant custom tasks jar
-cactus.ant.jar = ${cactus.lib}/cactus-ant.jar
+cactus.ant.jar = ${cactus.lib}/cactus-ant-1.4.1.jar
+
+# AspectJ from Cactus distribution
+aspectjrt.jar = ${cactus.lib}/aspectjrt-1.0.5.jar
+
+# The httpunit runtime jar
+httpunit.jar = ${cactus.lib}/httpunit-1.4.1.jar
+
 
 # URL used to run tests for cactus, change to non standard port
 # if container is already running on that port.
@@ -141,11 +221,8 @@ cactus.contextURL = http://localhost:9090/test
 # Ant Optional Jars for Junit task
 ant.optional.jar = ${apache.home}/jakarta-ant-1.5.1/lib/optional.jar
 
-# AspectJ from Cactus distribution
-aspectjrt.jar = ${cactus.lib}/aspectjrt.jar
-
-# The httpunit runtime jar
-httpunit.jar = ${cactus.lib}/httpunit.jar
+# Ant Jar for optional taglib documentation task
+ant.jar=${apache.home}/apache-ant-1.5.2/lib/ant.jar
 
 # Httpclient from Jakarta-Commons
 commons-httpclient.jar = ${commons-lib.home}/httpclient/dist/commons-httpclient.jar
