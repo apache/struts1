@@ -27,6 +27,17 @@
 
 <faces-config>
 
+
+  <!-- Backing Bean for mainMenu.jsp -->
+  <managed-bean>
+    <managed-bean-name>mainMenuBacking</managed-bean-name>
+    <managed-bean-class>
+      org.apache.struts.webapp.example.MainMenuBacking
+    </managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+
+
   <!-- Backing Bean for registration.jsp -->
   <managed-bean>
     <managed-bean-name>registrationBacking</managed-bean-name>

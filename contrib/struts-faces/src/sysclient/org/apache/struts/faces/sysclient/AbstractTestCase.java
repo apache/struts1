@@ -18,6 +18,7 @@ package org.apache.struts.faces.sysclient;
 
 import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlBody;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
@@ -43,7 +44,7 @@ import org.apache.commons.httpclient.HttpState;
 /**
  * <p>Abstract base class for system integration tests based on HtmlUnit.</p>
  *
- * @version $Revision: 1.2 $ $Date: 2004/08/08 03:28:35 $
+ * @version $Revision: 1.3 $ $Date: 2004/08/21 18:21:33 $
  */
 
 public abstract class AbstractTestCase extends TestCase {
@@ -217,6 +218,24 @@ public abstract class AbstractTestCase extends TestCase {
 
 
     /**
+     * <p>Click the specified hyperlink, and retrieve the subsequent page,
+     * saving a reference so that other utility methods may be used to
+     * retrieve information from it.</p>
+     *
+     * @param anchor Anchor component to click
+     *
+     * @exception IOException if an input/output error occurs
+     */
+    protected HtmlPage link(HtmlAnchor anchor) throws IOException {
+
+        HtmlPage page = (HtmlPage) anchor.click();
+        this.page = page;
+        return page;
+
+    }
+
+
+    /**
      * <p>Retrieve and return the page at the specified context relative path.
      * Save a reference to this page so that other utility methods may be used
      * to retrieve information from it.</p>
@@ -245,7 +264,7 @@ public abstract class AbstractTestCase extends TestCase {
      * the subsequent page, saving a reference so that other utility methods
      * may be used to retrieve information from it.</p>
      *
-     * @param submit Submit component to click
+     * @param submit Submit button component to click
      *
      * @exception IOException if an input/output error occurs
      */

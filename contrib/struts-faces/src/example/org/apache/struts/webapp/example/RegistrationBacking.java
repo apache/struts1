@@ -30,7 +30,7 @@ import org.apache.commons.logging.LogFactory;
  * <p>Backing bean for the <code>registration.jsp</code> page.</p>
  */
 
-public class RegistrationBacking {
+public class RegistrationBacking extends AbstractBacking {
 
 
     // -------------------------------------------------------- Static Variables
@@ -80,7 +80,7 @@ public class RegistrationBacking {
             log.debug("create()");
         }
         FacesContext context = FacesContext.getCurrentInstance();
-        StringBuffer url = base(context);
+        StringBuffer url = subscription(context);
         url.append("?action=Create");
         url.append("&username=");
         User user = (User)
@@ -101,7 +101,7 @@ public class RegistrationBacking {
             log.debug("delete()");
         }
         FacesContext context = FacesContext.getCurrentInstance();
-        StringBuffer url = base(context);
+        StringBuffer url = subscription(context);
         url.append("?action=Delete");
         url.append("&username=");
         User user = (User)
@@ -126,7 +126,7 @@ public class RegistrationBacking {
             log.debug("edit()");
         }
         FacesContext context = FacesContext.getCurrentInstance();
-        StringBuffer url = base(context);
+        StringBuffer url = subscription(context);
         url.append("?action=Edit");
         url.append("&username=");
         User user = (User)
@@ -166,51 +166,10 @@ public class RegistrationBacking {
         }
 
         // Forward back to the edit registration page
-        forward(context, "/editRegistration.do?action=Edit");
+        StringBuffer sb = registration(context);
+        sb.append("?action=Edit");
+        forward(context, sb.toString());
         return (null);
-
-    }
-
-
-    // --------------------------------------------------------- Private Methods
-
-
-    /**
-     * <p>Return the context relative base URL for the "edit subscriptions"
-     * action.</p>
-     *
-     * @param context <code>FacesContext</code> for the current request
-     */
-    private StringBuffer base(FacesContext context) {
-
-        // FIXME - assumes extension mapping for Struts
-        return (new StringBuffer("/editSubscription.do"));
-
-    }
-
-
-    /**
-     * <p>Forward to the specified URL and mark this response as having
-     * been completed.</p>
-     *
-     * @param context <code>FacesContext</code> for the current request
-     * @param url Context-relative URL to forward to
-     *
-     * @exception FacesException if any error occurs
-     */
-    private void forward(FacesContext context, String url) {
-
-        if (log.isDebugEnabled()) {
-            log.debug("forward(" + url + ")");
-        }
-        try {
-            context.getExternalContext().dispatch(url);
-        } catch (IOException e) {
-            log.error("IOException from dispatch()", e);
-            throw new FacesException(e);
-        } finally {
-            context.responseComplete();
-        }
 
     }
 

@@ -34,6 +34,8 @@
 </head>
 <body>
 
+<h:form                id="mainMenuForm">
+
   <h:panelGrid    columns="1"
               headerClass="list header"
                rowClasses="list row even,list row odd"
@@ -47,6 +49,7 @@
       </h:panelGroup>
     </f:facet>
 
+<%--
     <h:outputLink   value="editRegistration.do"
                styleClass="link">
       <f:param       name="action"
@@ -58,8 +61,27 @@
                styleClass="link">
       <s:message      key="mainMenu.logoff"/>
     </h:outputLink>
+--%>
+
+    <s:commandLink     id="edit"
+                   action="#{mainMenuBacking.edit}"
+                immediate="true"
+               styleClass="link">
+      <f:param       name="action"
+                    value="Edit"/>
+      <s:message      key="mainMenu.registration"/>
+    </s:commandLink>
+
+    <s:commandLink     id="logoff"
+                   action="#{mainMenuBacking.logoff}"
+                immediate="true"
+               styleClass="link">
+      <s:message      key="mainMenu.logoff"/>
+    </s:commandLink>
 
   </h:panelGrid>
+
+</h:form>
 
 </body>
 </s:html>

@@ -66,6 +66,9 @@
                         type="SUBMIT"
                        value="#{messages['button.cancel']}"/>
 
+        <s:commandLink    id="submit2"
+                       value="#{messages['button.logon']}"/>
+
       </h:panelGrid>
 
       </s:form>
