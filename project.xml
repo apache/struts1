@@ -308,6 +308,22 @@ and proven design patterns.
         <include>org/apache/struts/config/TestActionConfigMatcher.java</include>
         <include>org/apache/struts/util/Test*.java</include>
       </includes>
+      <resources>
+        <resource>
+		  <directory>${basedir}/conf/share</directory>
+		  <targetPath>org/apache/struts/resources</targetPath>
+		  <includes>
+		    <include>**/*.xml</include>
+		    <include>**/*.dtd</include>
+		  </includes>
+		</resource>
+		<resource>
+		  <directory>${basedir}/src/test</directory>
+		  <includes>
+			<include>**/*.xml</include>
+		  </includes>
+		</resource>
+      </resources>
     </unitTest>
 
     <!-- J A R  R E S O U R C E S -->
