@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.131 2003/08/02 20:40:18 dgraham Exp $
- * $Revision: 1.131 $
- * $Date: 2003/08/02 20:40:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.132 2003/08/02 21:03:41 dgraham Exp $
+ * $Revision: 1.132 $
+ * $Date: 2003/08/02 21:03:41 $
  *
  * ====================================================================
  *
@@ -90,7 +90,6 @@ import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionServletWrapper;
 import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.DynaActionFormClass;
-import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
@@ -107,9 +106,8 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.131 $ $Date: 2003/08/02 20:40:18 $
+ * @version $Revision: 1.132 $ $Date: 2003/08/02 21:03:41 $
  */
-
 public class RequestUtils {
 
     // ------------------------------------------------------- Static Variables
@@ -1261,27 +1259,15 @@ public class RequestUtils {
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
      * @since Struts 1.1
+     * @deprecated Use ModuleUtils.selectModule() instead.  This will be
+     * removed after Struts 1.2.
      */
     public static void selectModule(
         String prefix,
         HttpServletRequest request,
         ServletContext context) {
 
-        // Expose the resources for this module
-        ModuleConfig config = (ModuleConfig) context.getAttribute(Globals.MODULE_KEY + prefix);
-        if (config != null) {
-            request.setAttribute(Globals.MODULE_KEY, config);
-        } else {
-            request.removeAttribute(Globals.MODULE_KEY);
-        }
-        MessageResources resources =
-            (MessageResources) context.getAttribute(Globals.MESSAGES_KEY + prefix);
-        if (resources != null) {
-            request.setAttribute(Globals.MESSAGES_KEY, resources);
-        } else {
-            request.removeAttribute(Globals.MESSAGES_KEY);
-        }
-
+        ModuleUtils.getInstance().selectModule(prefix, request, context);
     }
 
     /**
@@ -1290,13 +1276,11 @@ public class RequestUtils {
      *
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
+     * @deprecated Use ModuleUtils.selectModule() instead.  This will be
+     * removed after Struts 1.2.
      */
     public static void selectModule(HttpServletRequest request, ServletContext context) {
-        // Compute module name
-        String prefix = getModuleName(request, context);
-        // Expose the resources for this module
-        selectModule(prefix, request, context);
-
+        ModuleUtils.getInstance().selectModule(request, context);
     }
 
     /**
@@ -1304,16 +1288,11 @@ public class RequestUtils {
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
      * @return The module prefix or ""
+     * @deprecated Use ModuleUtils.getModuleName() instead.  This will be
+     * removed after Struts 1.2.
      */
     public static String getModuleName(HttpServletRequest request, ServletContext context) {
-
-        // Acquire the path used to compute the module
-        String matchPath = (String) request.getAttribute(RequestProcessor.INCLUDE_SERVLET_PATH);
-
-        if (matchPath == null) {
-            matchPath = request.getServletPath();
-        }
-        return getModuleName( matchPath, context);
+        return ModuleUtils.getInstance().getModuleName(request, context);
     }
 
     /**
@@ -1321,34 +1300,11 @@ public class RequestUtils {
      * @param matchPath The uri from which we want the module name.
      * @param context The ServletContext for this web application
      * @return The module prefix or ""
+     * @deprecated Use ModuleUtils.getModuleName() instead.  This will be
+     * removed after Struts 1.2.
      */
     public static String getModuleName(String matchPath, ServletContext context) {
-        if (log.isDebugEnabled()) {
-            log.debug("Get module name for path " + matchPath);
-        }
-
-        String prefix = ""; // Initialize prefix before we try lookup
-        String prefixes[] = getModulePrefixes(context); // Get all other possible prefixes
-        int lastSlash = 0; // Initialize before loop
-
-        while (prefix.equals("") && ((lastSlash = matchPath.lastIndexOf("/")) > 0)) {
-
-            // We may be in a non-default module.  Try to get it's prefix.
-            matchPath = matchPath.substring(0, lastSlash);
-
-            // Match against the list of module prefixes
-            for (int i = 0; i < prefixes.length; i++) {
-                if (matchPath.equals(prefixes[i])) {
-                    prefix = prefixes[i];
-                    break;
-                }
-            }
-        }
-
-        if (log.isDebugEnabled()) {
-            log.debug("Module name found: " + (prefix.equals("") ? "default" : prefix));
-        }
-        return prefix;
+        return ModuleUtils.getInstance().getModuleName(matchPath, context);
     }
 
     /**
@@ -1363,9 +1319,11 @@ public class RequestUtils {
      * @return the ModuleConfig object from request, or null if none is set in
      * the request.
      * @since Struts 1.1
+     * @deprecated Use ModuleUtils.getRequestModuleConfig() instead.  This will be
+     * removed after Struts 1.2.
      */
     public static ModuleConfig getRequestModuleConfig( HttpServletRequest request) {
-        return (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+        return ModuleUtils.getInstance().getRequestModuleConfig(request);
     }
 
     /**
@@ -1374,17 +1332,14 @@ public class RequestUtils {
      * @param context The ServletContext for this web application
      * @return the ModuleConfig object
      * @since Struts 1.1
+     * @deprecated Use ModuleUtils.getModuleConfig() instead.  This will be
+     * removed after Struts 1.2.
      */
     public static ModuleConfig getModuleConfig(
         HttpServletRequest request,
         ServletContext context) {
-            
-        ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
-        if (moduleConfig == null) {
-            moduleConfig = (ModuleConfig) context.getAttribute(Globals.MODULE_KEY);
-            request.setAttribute(Globals.MODULE_KEY, moduleConfig);
-        }
-        return moduleConfig;
+        
+        return ModuleUtils.getInstance().getModuleConfig(request, context);
     }
     
     /**
@@ -1407,9 +1362,11 @@ public class RequestUtils {
      * @param context The ServletContext for this web application.
      * @return An array of module prefixes.
      * @since Struts 1.1
+     * @deprecated Use ModuleUtils.getModulePrefixes() instead.  This will be
+     * removed after Struts 1.2.
      */
     public static String[] getModulePrefixes(ServletContext context) {
-        return (String[]) context.getAttribute(Globals.MODULE_PREFIXES_KEY);
+        return ModuleUtils.getInstance().getModulePrefixes(context);
     }
 
     /**
