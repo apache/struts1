@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTei.java,v 1.4 2001/02/12 01:26:57 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/12 01:26:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTei.java,v 1.5 2001/10/04 03:26:44 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/10/04 03:26:44 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/02/12 01:26:57 $
+ * @version $Revision: 1.5 $ $Date: 2001/10/04 03:26:44 $
  */
 
 public class CookieTei extends TagExtraInfo {
@@ -85,14 +85,15 @@ public class CookieTei extends TagExtraInfo {
      */
     public VariableInfo[] getVariableInfo(TagData data) {
 
+        String className = null;
         Object type = null;
         if (data.getAttribute("multiple") == null)
-            type = new Cookie("name", "value");
+            className = "javax.servlet.http.Cookie";
         else
-            type = new Cookie[0];
+            className = "javax.servlet.http.Cookie[]";
 	return new VariableInfo[] {
 	  new VariableInfo(data.getAttributeString("id"),
-	                   type.getClass().getName(),
+	                   className,
 	                   true,
 	                   VariableInfo.AT_BEGIN)
 	};
