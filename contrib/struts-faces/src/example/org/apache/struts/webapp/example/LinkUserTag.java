@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LinkUserTag.java,v 1.1 2003/03/07 03:22:42 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:42 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LinkUserTag.java,v 1.2 2003/07/27 06:39:56 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/07/27 06:39:56 $
  *
  * ====================================================================
  *
@@ -64,12 +64,13 @@ package org.apache.struts.webapp.example;
 
 
 import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
+
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
 
@@ -79,7 +80,7 @@ import org.apache.struts.util.ResponseUtils;
  * associated query parameters selecting a specified User.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:42 $
+ * @version $Revision: 1.2 $ $Date: 2003/07/27 06:39:56 $
  */
 
 public class LinkUserTag extends TagSupport {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.1 2003/03/07 03:22:42 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:42 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.2 2003/07/27 06:39:56 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/07/27 06:39:56 $
  *
  * ====================================================================
  *
@@ -75,8 +75,9 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.AppException;
+
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ModuleException;
 import org.apache.commons.beanutils.PropertyUtils;
 
 
@@ -84,7 +85,7 @@ import org.apache.commons.beanutils.PropertyUtils;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:42 $
+ * @version $Revision: 1.2 $ $Date: 2003/07/27 06:39:56 $
  */
 
 public final class LogonAction extends Action {
@@ -149,7 +150,7 @@ public final class LogonAction extends Action {
 	}
 
 	// Report any errors we have discovered back to the original form
-	if (!errors.empty()) {
+	if (!errors.isEmpty()) {
 	    saveErrors(request, errors);
             return (mapping.getInputForward());
 	}
@@ -189,7 +190,7 @@ public final class LogonAction extends Action {
      * @exception AppException if a business logic rule is violated
      */
     public User getUser(UserDatabase database, String username)
-        throws AppException {
+        throws ModuleException {
 
         // Force an ArithmeticException which can be handled explicitly
         if ("arithmetic".equals(username)) {

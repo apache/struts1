@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.1 2003/03/07 03:22:42 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:42 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.2 2003/07/27 06:39:56 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/07/27 06:39:56 $
  *
  * ====================================================================
  *
@@ -65,10 +65,12 @@ package org.apache.struts.webapp.example;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -87,7 +89,7 @@ import org.apache.struts.util.MessageResources;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:42 $
+ * @version $Revision: 1.2 $ $Date: 2003/07/27 06:39:56 $
  */
 
 public final class SaveRegistrationAction extends Action {
@@ -200,7 +202,7 @@ public final class SaveRegistrationAction extends Action {
 	}
 
 	// Report any errors we have discovered back to the original form
-	if (!errors.empty()) {
+	if (!errors.isEmpty()) {
 	    saveErrors(request, errors);
             saveToken(request);
             return (mapping.getInputForward());
