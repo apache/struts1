@@ -81,8 +81,9 @@ import org.apache.struts.util.StrutsValidatorUtil;
 
 
 /**
- * Custom tag that generates Javascript for client side validation based 
- * on the validation.xml file.
+ * Custom tag that generates JavaScript for client side validation based 
+ * on the validation rules loaded by the <code>ValidatorPlugIn</code> 
+ * defined in the struts-config.xml file.
  *
  * @since 1.1
  * @author David Winterfeldt
@@ -95,32 +96,29 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
     /**
      * The servlet context attribute key for our resources.
-     */
+    */
     protected String bundle = Action.MESSAGES_KEY;
 
 
     /**
      * The default locale on our server.
-     */
+    */
     protected static Locale defaultLocale = Locale.getDefault();
 
     /**
      * The name of the form that corresponds with the action name 
-     * in struts-config.xml.  This won't be needed if this is incorporated
-     * as an option in the html:form tag (ex: javascript="true").
-     */
+     * in struts-config.xml.
+    */
     protected String formName = null;
 
     /**
-     * The page number we are on in a multi-part form.  This won't be needed 
-     * if this is incorporated as an option in the html:form tag (should be able to be set 
-     * or retrieved from scope).
+     * The current page number of a multi-part form. 
     */
     protected int page = 0;
 
     /**
-     * This will be used as is for the Javascript validation method name if it has a value.  This is 
-     * the method name of the main Javascript method that the form calls to perform validations.
+     * This will be used as is for the JavaScript validation method name if it has a value.  This is 
+     * the method name of the main JavaScript method that the form calls to perform validations.
     */
     protected String methodName = null;
 
@@ -139,50 +137,110 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     */
     protected String src = null;
     
+    /**
+     * Gets the key (form name) that will be used 
+     * to retrieve a set of validation rules to be 
+     * performed on the bean passed in for validation.
+    */
     public String getFormName() {
        return formName;	
     }
-    
+
+    /**
+     * Sets the key (form name) that will be used 
+     * to retrieve a set of validation rules to be 
+     * performed on the bean passed in for validation.
+    */
     public void setFormName(String formName) {
        this.formName = formName;
     }
-    
+
+    /**
+     * Gets the current page number of a multi-part form. 
+     * Only field validations with a matching page numer 
+     * will be generated that match the current page number.
+    */
     public int getPage() {
        return page;	
     }
-    
+
+    /**
+     * Sets the current page number of a multi-part form. 
+     * Only field validations with a matching page numer 
+     * will be generated that match the current page number.
+    */
     public void setPage(int page) {
        this.page = page;
     }
 
+    /**
+     * Gets the method name that will be used for the Javascript 
+     * validation method name if it has a value.  This overrides 
+     * the auto-generated method name based on the key (form name) 
+     * passed in.
+    */
     public String getMethod() {
        return methodName;	
     }
-    
+
+    /**
+     * Sets the method name that will be used for the Javascript 
+     * validation method name if it has a value.  This overrides 
+     * the auto-generated method name based on the key (form name) 
+     * passed in.
+    */
     public void setMethod(String methodName) {
        this.methodName = methodName;
     }
     
+    /**
+     * Gets whether or not to generate the static 
+     * JavaScript.  If this is set to 'true', which 
+     * is the default, the static JavaScript will be generated.
+    */
     public String getStaticJavascript() {
        return staticJavascript;	
     }
-    
+
+    /**
+     * Sets whether or not to generate the static 
+     * JavaScript.  If this is set to 'true', which 
+     * is the default, the static JavaScript will be generated.
+    */
     public void setStaticJavascript(String staticJavascript) {
        this.staticJavascript = staticJavascript;
     }
 
+    /**
+     * Gets whether or not to generate the dynamic 
+     * JavaScript.  If this is set to 'true', which 
+     * is the default, the dynamic JavaScript will be generated.
+    */
     public String getDynamicJavascript() {
        return dynamicJavascript;	
     }
-    
+
+    /**
+     * Sets whether or not to generate the dynamic 
+     * JavaScript.  If this is set to 'true', which 
+     * is the default, the dynamic JavaScript will be generated.
+    */
     public void setDynamicJavascript(String dynamicJavascript) {
        this.dynamicJavascript = dynamicJavascript;
     }
 
+    /**
+     * Gets the src attribute's value when defining 
+     * the html script element.
+    */
     public String getSrc() {
        return src;	
     }
-    
+
+    /**
+     * Sets the src attribute's value when defining 
+     * the html script element.
+    */
     public void setSrc(String src) {
        this.src = src;
     }
@@ -191,7 +249,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * Render the JavaScript for to perform validations based on the form name.
      *
      * @exception JspException if a JSP exception has occurred
-     */
+    */
     public int doStartTag() throws JspException {
        StringBuffer results = new StringBuffer();
        
@@ -281,10 +339,11 @@ public class JavascriptValidatorTag extends BodyTagSupport {
              String jscriptVar = null;
              String functionName = null;
              
-             if (va.getJsFunctionName() != null && va.getJsFunctionName().length() > 0)
+             if (va.getJsFunctionName() != null && va.getJsFunctionName().length() > 0) {
                 functionName = va.getJsFunctionName();
-             else 
+             } else {
                 functionName = va.getName();
+             }
              
              results.append("	 function " + functionName + " () { \n");
              for (Iterator x = form.getFields().iterator(); x.hasNext(); ) {
@@ -436,8 +495,9 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * &nbsp;&nbsp;&nbsp; ex: "zz" will return <code>null</code>
     */ 
     private String getNextVar(String input) {
-       if (input == null)
+       if (input == null) {
           return "aa";
+       }
           
        input = input.toLowerCase();
        
