@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.30 2003/07/26 18:51:34 dgraham Exp $
- * $Revision: 1.30 $
- * $Date: 2003/07/26 18:51:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.31 2003/07/26 19:11:57 dgraham Exp $
+ * $Revision: 1.31 $
+ * $Date: 2003/07/26 19:11:57 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Don Clasen
  * @author James Turner
- * @version $Revision: 1.30 $ $Date: 2003/07/26 18:51:34 $
+ * @version $Revision: 1.31 $ $Date: 2003/07/26 19:11:57 $
  */
 public abstract class BaseHandlerTag extends BodyTagSupport {
 
@@ -574,7 +574,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
             }
         } else {
             if (key != null) {
-                return RequestUtils.message(
+                return TagUtils.getInstance().message(
                     pageContext,
                     getBundle(),
                     getLocale(),

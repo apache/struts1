@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.19 2003/06/21 03:12:48 dgraham Exp $
- * $Revision: 1.19 $
- * $Date: 2003/06/21 03:12:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.20 2003/07/26 19:11:57 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/07/26 19:11:57 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 import org.apache.struts.Globals;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -78,7 +79,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.19 $ $Date: 2003/06/21 03:12:48 $
+ * @version $Revision: 1.20 $ $Date: 2003/07/26 19:11:57 $
  */
 public class OptionTag extends BodyTagSupport {
 
@@ -357,7 +358,8 @@ public class OptionTag extends BodyTagSupport {
         String optionText = this.text;
 
         if ((optionText == null) && (this.key != null)) {
-            optionText = RequestUtils.message(pageContext, bundle, locale, key);
+            optionText =
+                TagUtils.getInstance().message(pageContext, bundle, locale, key);
         }
 
         // no body text and no key to lookup so display the value

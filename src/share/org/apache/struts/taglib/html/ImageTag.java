@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.25 2002/11/16 06:05:21 dgraham Exp $
- * $Revision: 1.25 $
- * $Date: 2002/11/16 06:05:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.26 2003/07/26 19:11:57 dgraham Exp $
+ * $Revision: 1.26 $
+ * $Date: 2003/07/26 19:11:57 $
  *
  * ====================================================================
  *
@@ -66,17 +66,19 @@ package org.apache.struts.taglib.html;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
+
+import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
-import org.apache.struts.Globals;
 
 
 /**
  * Tag for input fields of type "image".
  *
  * @author Oleg V Alexeev
- * @version $Revision: 1.25 $ $Date: 2002/11/16 06:05:21 $
+ * @version $Revision: 1.26 $ $Date: 2003/07/26 19:11:57 $
  */
 
 public class ImageTag extends SubmitTag {
@@ -333,13 +335,22 @@ public class ImageTag extends SubmitTag {
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
             if (config == null) {
-                return (request.getContextPath() +
-                        RequestUtils.message(pageContext, getBundle(),
-                                             getLocale(), this.pageKey));
+                return (
+                    request.getContextPath()
+                        + TagUtils.getInstance().message(
+                            pageContext,
+                            getBundle(),
+                            getLocale(),
+                            this.pageKey));
             } else {
-                return (request.getContextPath() + config.getPrefix() +
-                        RequestUtils.message(pageContext, getBundle(),
-                                             getLocale(), this.pageKey));
+                return (
+                    request.getContextPath()
+                        + config.getPrefix()
+                        + TagUtils.getInstance().message(
+                            pageContext,
+                            getBundle(),
+                            getLocale(),
+                            this.pageKey));
             }
         }
 
@@ -361,8 +372,12 @@ public class ImageTag extends SubmitTag {
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-        return (RequestUtils.message(pageContext, getBundle(),
-                                     getLocale(), this.srcKey));
+        
+        return TagUtils.getInstance().message(
+            pageContext,
+            getBundle(),
+            getLocale(),
+            this.srcKey);
 
     }
 

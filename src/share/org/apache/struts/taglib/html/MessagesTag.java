@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.16 2003/06/20 03:25:59 dgraham Exp $
- * $Revision: 1.16 $
- * $Date: 2003/06/20 03:25:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.17 2003/07/26 19:11:57 dgraham Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/07/26 19:11:57 $
  *
  * ====================================================================
  *
@@ -70,6 +70,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -82,7 +83,7 @@ import org.apache.struts.util.ResponseUtils;
  * to the default <code>ErrorsTag</code>.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.16 $ $Date: 2003/06/20 03:25:59 $
+ * @version $Revision: 1.17 $ $Date: 2003/07/26 19:11:57 $
  * @since Struts 1.1
  */
 public class MessagesTag extends BodyTagSupport {
@@ -252,7 +253,7 @@ public class MessagesTag extends BodyTagSupport {
         
         ActionMessage report = (ActionMessage) this.iterator.next();
         String msg =
-            RequestUtils.message(
+            TagUtils.getInstance().message(
                 pageContext,
                 bundle,
                 locale,
@@ -275,7 +276,7 @@ public class MessagesTag extends BodyTagSupport {
 
         if (header != null && header.length() > 0) {
             String headerMessage =
-                RequestUtils.message(pageContext, bundle, locale, header);
+                TagUtils.getInstance().message(pageContext, bundle, locale, header);
                 
             if (headerMessage != null) {
                 ResponseUtils.write(pageContext, headerMessage);
@@ -304,10 +305,14 @@ public class MessagesTag extends BodyTagSupport {
 
         // Decide whether to iterate or quit
         if (iterator.hasNext()) {
-               ActionMessage report = (ActionMessage)iterator.next();
-               String msg = RequestUtils.message(pageContext, bundle,
-                                                 locale, report.getKey(),
-                                                 report.getValues());
+            ActionMessage report = (ActionMessage) iterator.next();
+            String msg =
+                TagUtils.getInstance().message(
+                    pageContext,
+                    bundle,
+                    locale,
+                    report.getKey(),
+                    report.getValues());
 
            pageContext.setAttribute(id, msg);
 
@@ -326,15 +331,16 @@ public class MessagesTag extends BodyTagSupport {
      */
     public int doEndTag() throws JspException {
        if (processed && footer != null && footer.length() > 0) {
-          String footerMessage = RequestUtils.message(pageContext, bundle,
-                                                         locale, footer);
+        
+        String footerMessage =
+            TagUtils.getInstance().message(pageContext, bundle, locale, footer);
+            
           if (footerMessage != null) {
-             // Print the results to our output writer
              ResponseUtils.write(pageContext, footerMessage);
           }
        }
-       // Continue processing this page
-       return (EVAL_PAGE);
+
+       return EVAL_PAGE;
     }
 
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.13 2003/07/26 17:22:27 rleland Exp $
- * $Revision: 1.13 $
- * $Date: 2003/07/26 17:22:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.14 2003/07/26 19:12:41 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/07/26 19:12:41 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.ResponseUtils;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2003/07/26 17:22:27 $
+ * @version $Revision: 1.14 $ $Date: 2003/07/26 19:12:41 $
  */
 public class MessageTag extends TagSupport {
 
@@ -268,7 +268,7 @@ public class MessageTag extends TagSupport {
 
         // Retrieve the message string we are looking for
         String message =
-            RequestUtils.message(
+            TagUtils.getInstance().message(
                 pageContext,
                 this.bundle,
                 this.localeKey,

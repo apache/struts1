@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.28 2003/07/26 17:22:27 rleland Exp $
- * $Revision: 1.28 $
- * $Date: 2003/07/26 17:22:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.29 2003/07/26 19:11:57 dgraham Exp $
+ * $Revision: 1.29 $
+ * $Date: 2003/07/26 19:11:57 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.28 $
+ * @version $Revision: 1.29 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -548,12 +548,20 @@ public class ImgTag extends BaseHandlerTag {
             if (config == null) {
                 return (
                     request.getContextPath()
-                        + RequestUtils.message(pageContext, getBundle(), getLocale(), this.pageKey));
+                        + TagUtils.getInstance().message(
+                            pageContext,
+                            getBundle(),
+                            getLocale(),
+                            this.pageKey));
             } else {
                 return (
                     request.getContextPath()
                         + config.getPrefix()
-                        + RequestUtils.message(pageContext, getBundle(), getLocale(), this.pageKey));
+                        + TagUtils.getInstance().message(
+                            pageContext,
+                            getBundle(),
+                            getLocale(),
+                            this.pageKey));
             }
         }
 
@@ -573,7 +581,12 @@ public class ImgTag extends BaseHandlerTag {
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-        return (RequestUtils.message(pageContext, getBundle(), getLocale(), this.srcKey));
+        
+        return TagUtils.getInstance().message(
+            pageContext,
+            getBundle(),
+            getLocale(),
+            this.srcKey);
 
     }
 
