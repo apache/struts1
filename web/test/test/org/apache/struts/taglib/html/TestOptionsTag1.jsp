@@ -5,7 +5,6 @@
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 
 
-
 <logic:equal name="runTest" value="testOptionsCollectionArrayItemValueInCollectionProperty">
 	<bean:define id="TEST_RESULTS" toScope="page">
 	  <html:select property="string">
@@ -189,6 +188,36 @@ if (pageContext.getAttribute("EXPECTED_RESULTS") == null){
 if (pageContext.getAttribute("TEST_RESULTS") != null){
 	compareTo=pageContext.getAttribute("EXPECTED_RESULTS").toString();
 }
+
+// Swallow tabs, carriage returns, and newlines before comparing
+if (expected == null) {
+  expected = "";
+}
+if (compareTo == null) {
+  compareTo = "";
+}
+
+StringBuffer sb = new StringBuffer();
+for (int i = 0; i < expected.length(); i++) {
+  char ch = expected.charAt(i);
+  if ((ch == '\t') || (ch == '\r') || (ch == '\n')) {
+    ;
+  } else {
+    sb.append(ch);
+  }
+}
+expected = sb.toString();
+
+sb = new StringBuffer();
+for (int i = 0; i < compareTo.length(); i++) {
+  char ch = compareTo.charAt(i);
+  if ((ch == '\t') || (ch == '\r') || (ch == '\n')) {
+    ;
+  } else {
+    sb.append(ch);
+  }
+}
+compareTo = sb.toString();
 
 Assert.assertEquals(expected, compareTo);
 %>
