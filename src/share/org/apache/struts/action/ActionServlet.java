@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.142 2003/01/28 19:30:23 craigmcc Exp $
- * $Revision: 1.142 $
- * $Date: 2003/01/28 19:30:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.143 2003/02/07 05:42:45 martinc Exp $
+ * $Revision: 1.143 $
+ * $Date: 2003/02/07 05:42:45 $
  *
  * ====================================================================
  *
@@ -65,6 +65,8 @@ package org.apache.struts.action;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -82,6 +84,8 @@ import javax.sql.DataSource;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.converters.BigDecimalConverter;
+import org.apache.commons.beanutils.converters.BigIntegerConverter;
 import org.apache.commons.beanutils.converters.BooleanConverter;
 import org.apache.commons.beanutils.converters.ByteConverter;
 import org.apache.commons.beanutils.converters.CharacterConverter;
@@ -302,7 +306,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.142 $ $Date: 2003/01/28 19:30:23 $
+ * @version $Revision: 1.143 $ $Date: 2003/02/07 05:42:45 $
  */
 
 public class ActionServlet
@@ -1315,6 +1319,10 @@ public class ActionServlet
         }
         if (convertNull) {
             ConvertUtils.deregister();
+            ConvertUtils.register(new BigDecimalConverter(null),
+                                  BigDecimal.class);
+            ConvertUtils.register(new BigIntegerConverter(null),
+                                  BigInteger.class);
             ConvertUtils.register(new BooleanConverter(null), Boolean.class);
             ConvertUtils.register(new ByteConverter(null), Byte.class);
             ConvertUtils.register(new CharacterConverter(null),
