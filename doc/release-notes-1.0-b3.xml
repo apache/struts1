@@ -135,6 +135,13 @@
     <p>The following new features have been added to the utility classes
     (package <code>org.apache.struts.util</code>):</p>
     <ul>
+    <li><code>GenericDataSource</code> can now be configured with a "ping"
+        type command (via the <code>pingCommand</code> and
+        <code>pingQuery</code> properties) that will be executed before
+        returning a connection from <code>getConnection()</code>.  This
+        can be used to detect stale connections due to timeouts or a
+        database server restart.  If the ping command fails, the corresponding
+        connection will be thrown away, and a new one allocated.</li>
     </ul>
 
 
@@ -241,6 +248,9 @@
         examples.</li>
     <li>Fix the stylesheet used to transform XML into HTML documentation so
         that nested <code>&lt;body&gt;</code> tags are not created.</li>
+    <li>The DTD for Struts configuration files has been refined to highlight
+        the fact that you should use <code>&lt;set-property&gt;</code>
+        elements to configure your data source implementation.</li>
     </ul>
 
     <p>The following changes and bug fixes to the Struts Example Application
