@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/ModuleConfigVerifier.java,v 1.3 2003/12/30 16:28:35 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2003/12/30 16:28:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/ModuleConfigVerifier.java,v 1.4 2003/12/31 01:06:53 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/31 01:06:53 $
  *
  * ====================================================================
  *
@@ -79,14 +79,14 @@ import org.apache.struts.util.RequestUtils;
  * for this application module as is practical.  Based on the setting of the
  * <code>fatal</code> property (which defaults to <code>true</code>), the
  * detection of any such errors will cause a <code>ServletException</code>
- * to be thrown from the <code>init()</code> method, which will ultimately
+ * to be thrown from the <code>init</code> method, which will ultimately
  * cause the initialization of your Struts controller servlet to fail.</p>
  *
  * <p>Under all circumstances, errors that are detected will be logged via
- * calls to <code>ServletContext.log()</code>.</p>
+ * calls to <code>ServletContext.log</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/12/30 16:28:35 $
+ * @version $Revision: 1.4 $ $Date: 2003/12/31 01:06:53 $
  * @since Struts 1.1
  */
 
@@ -153,18 +153,7 @@ public class ModuleConfigVerifier implements PlugIn {
     }
 
 
-    /**
-     * <p>Receive notification that the specified module is being
-     * started up.</p>
-     *
-     * @param servlet ActionServlet that is managing all the
-     *  modules in this web application
-     * @param config ModuleConfig for the module with which
-     *  this plug-in is associated
-     *
-     * @exception ServletException if this <code>PlugIn</code> cannot
-     *  be successfully initialized
-     */
+        // See interface for Javadoc.
     public void init(ActionServlet servlet, ModuleConfig config)
         throws ServletException {
 
@@ -238,7 +227,7 @@ public class ModuleConfigVerifier implements PlugIn {
 
     /**
      * <p>Return <code>true</code> if information returned by
-     * <code>config.getActionMappingClass()</code> is all valid;
+     * <code>config.getActionMappingClass</code> is all valid;
      * otherwise, log error messages and return <code>false</code>.</p>
      */
     protected boolean verifyActionMappingClass() {
@@ -263,7 +252,7 @@ public class ModuleConfigVerifier implements PlugIn {
 
     /**
      * <p>Return <code>true</code> if information returned by
-     * <code>config.findForwardConfigs() is all valid;
+     * <code>config.findForwardConfigs</code> is all valid;
      * otherwise, log error messages and return <code>false</code>.</p>
      */
     protected boolean verifyForwardConfigs() {
@@ -290,7 +279,7 @@ public class ModuleConfigVerifier implements PlugIn {
 
     /**
      * <p>Return <code>true</code> if information returned by
-     * <code>config.findMessageResourcesConfigs() is all valid;
+     * <code>config.findMessageResourcesConfigs</code> is all valid;
      * otherwise, log error messages and return <code>false</code>.</p>
      */
     protected boolean verifyMessageResourcesConfigs() {
@@ -326,7 +315,7 @@ public class ModuleConfigVerifier implements PlugIn {
 
     /**
      * <p>Return <code>true</code> if information returned by
-     * <code>config.findPluginConfigs() is all valid;
+     * <code>config.findPluginConfigs</code> is all valid;
      * otherwise, log error messages and return <code>false</code>.</p>
      */
     protected boolean verifyPlugInConfigs() {
