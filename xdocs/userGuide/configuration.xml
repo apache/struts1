@@ -1107,7 +1107,7 @@
 
     <p>
     <strong>Servlet 2.3 Users:</strong> See
-    <a href="#dd_config_taglib_23">section 4.5.3.1</a>
+    <a href="#dd_config_taglib_23">section 5.4.3.1</a>
     for how to avoid copying the tlds into your application.
     </p>
 
