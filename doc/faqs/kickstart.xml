@@ -283,13 +283,13 @@ appear to help these technologies work as well with Struts.
     is available and distributed with Struts beginning with the 1.1 release.
 </p>
     <p>
-        Meanwhile, the JSF specification is still under development,
-        although an early-release reference implementation is available through the
-        <a href="http://java.sun.com/webservices/download.html">Java Web Services Developer Pack</a>.
+        The JSF specification and reference implementation is available through Sun's
+        <a href="http://java.sun.com/j2ee/javaserverfaces/index.jsp">Java ServerFaces page</a>.
         An early-release JavaServer Faces taglib for Struts,
-        <a href="http://archive.apache.org/dist/jakarta/struts/old/release/struts-faces/">
+        <a href="http://cvs.apache.org/builds/jakarta-struts/nightly/struts-faces/">
         <strong>Struts-Faces</strong></a>, is also in early release and available
-        through the nightly build.
+        through the nightly build. The Struts Faces taglib is expected to work with any
+        compliant JSF implementation, including <a href="http://www.myfaces.org/">MyFaces</a>.
     </p>
     <p>
         For more about what JavaServer Faces means to the Struts community,

@@ -9,110 +9,11 @@
    <body>
       <chapter name="Who We Are" href="whoWeAre">
          <section name="Community Support" href="support">
-            <p>In August 2003, there were 2700 subscribers to STRUTS-USER (including the digest version). It's the largest user mailing list at Jakarta, exceeding the TOMCAT-USER list of about 2400 subscribers. In addition to the regular subscribers, an unknown number of developers read the lists through newsfeed mirrors and through several list archives.</p>
+            <p>In July 2004, there were almost 2700 subscribers to STRUTS-USER (including the digest version). It's the largest user mailing list at Jakarta, exceeding the TOMCAT-USER list of about 2400 subscribers. In addition to the regular subscribers, an unknown number of developers read the lists through newsfeed mirrors and through several list archives.</p>
 
             <p>According to recently released 
-            <a href="http://www.apache.org/~vgritsenko/stats/projects/struts">statistics</a>, Struts downloads range between 10,000 and 30,000 a week, roughly the same as Jakarta Tomcat.</p>
+            <a href="http://www.apache.org/~vgritsenko/stats/projects/struts">statistics</a>, Struts downloads range around 15,000 a month.</p>
 
-         </section>
-
-         <section name="Source Code Contributors" href="contributors.source">
-            <p>More than fifty developers have contributed code or documentation to Struts. We've tried to list all of our volunteers on this page (and apologize to anyone we missed!).</p>
-
-            <ul>
-               <li>Anthony Kay</li>
-               <li>Arron Bates</li>
-               <li>Arun M. Thomas</li>
-               <li>Berin Loritsch</li>
-               <li>Cedric Dumoulin</li>
-               <li>Chris Audley</li>
-               <li>Craig R. McClanahan</li>
-               <li>David Geary</li>
-               <li>David Graham</li>
-               <li>David M. Karr</li>
-               <li>David Winterfeldt</li>
-               <li>Dominique Plante</li>
-               <li>Don Brown</li>
-               <li>Don Clasen</li>
-               <li>Eddie Bush</li>
-               <li>Erik Hatcher</li>
-               <li>Florent Carpentier</li>
-               <li>Giacomo Pati</li>  
-               <li>Greg Ludington</li>  
-               <li>James Holmes</li>
-               <li>James Mitchell</li>
-               <li>James Turner</li>
-               <li>Jea-noel Ribette</li>
-               <li>Jeff Hutchison</li>
-               <li>Jimmy Larsson</li>
-               <li>Joe Germuska</li>
-               <li>Kurt Post</li>
-               <li>Leonardo Quijano</li>
-               <li>Luis Arias</li>
-               <li>Marcus Brito</li>    
-               <li>Marius Barduta</li>
-               <li>Martin Cooper</li>
-               <li>Michael Westbay</li>
-               <li>Mike Schachter</li>
-               <li>Niall Pemberton</li>
-               <li>Oleg V Alexeev</li>
-               <li>Paul Sundling</li>
-               <li>Pierpaolo Fumagalli</li>
-               <li>Ralph Schaer</li>
-               <li>Rob Leland</li>
-               <li>Saul Q Yuan</li>              
-               <li>Scott Carlson</li>
-               <li>Sean M. Kelley</li>
-               <li>Stefano Mazzocchi</li>
-               <li>Steve Raeburn</li>
-               <li>Steve Stair</li>   
-               <li>Ted Husted</li>
-            </ul>
-         </section>
-
-         <section name="Documentation Contributors" href="contributors.documentation">
-            <ul>
-               <li>Craig R. McClanahan</li>
-               <li>David Geary</li>
-               <li>Mike Schachter</li>
-               <li>Ted Husted</li>
-               <li>Martin Cooper</li>
-               <li>Arron Bates</li>
-               <li>Cedric Dumoulin</li>
-               <li>David Winterfeldt</li>
-               <li>Chris Assenza</li>
-               <li>dIon Gillard</li>
-               <li>Dominique Plante</li>
-               <li>Ed Burns</li>
-               <li>Eric Wu</li>
-               <li>James DeVries</li>
-               <li>John Rousseau</li>
-               <li>John Ueltzhoeffer</li>
-               <li>Larry McCay</li>
-               <li>Mark Budai</li>
-               <li>Matthias Kerkhoff</li>
-               <li>Paul Runyan</li>
-               <li>Paul Sundling</li>
-               <li>Robert Hayden</li>
-               <li>Rob Leland</li>
-               <li>Stanley Santiago</li>
-               <li>Wong Kok Kai</li>
-               <li>Donald Ball</li>
-               <li>Dan Walker</li>
-               <li>Eddie Bush</li>
-               <li>Yann Cebron</li>
-               <li>David Graham</li>
-               <li>Steve Ditlinger</li>
-               <li>David M. Karr</li>
-               <li>Tim O'Brien</li>
-               <li>Edgar Dollin</li>
-               <li>Phil Steitz</li>
-               <li>Steve Raeburn</li>
-               <li>Tetsuo Ajima</li>
-               <li>Tatsuo Takahashi</li>
-               <li>Satoshi Hioki</li>
-               <li>Yoshinori Ashizawa</li>
-            </ul>
          </section>
 
          <section name="Active Committers" href="committers">

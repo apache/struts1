@@ -112,7 +112,7 @@
     </p>
 
     <p>
-        The <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsProjectPages"><strong>Struts Wiki</strong></a> is a
+        The <a href="http://wiki.apache.org/struts/"><strong>Struts Wiki</strong></a> is a
         relatively new addition to the Struts documentation.
         All members of the Struts Community are invited to post comments to the Wiki, as well as the User List.
         The Wiki is best suited for threads that you think are of lasting importance, while the mailing lists are best
@@ -152,17 +152,19 @@
         <li>
             Blank - A simple template for starting new Struts applications.</li>
         <li>
-            Exercise-Taglib - A set of test pages that also demonstrate use of the custom tags.</li>
-        <li>
             Documentation - The Struts documentation bundle, as seen on the website.</li>
         <li>
             <strong>MailReader</strong> - The original Struts example application. <em>Try me first!</em></li>
+        <li>Examples - Various demonstration applications combined as separate modules:<ul>
+        <li>
+            Exercise-Taglib - A set of test pages that also demonstrate use of the custom tags.</li>
         <li>
             Tiles-Doc - Extensive demonstration of Tiles extension.</li>
         <li>
             Upload - Demonstrates using the file upload facilities. (Based on Commons Upload.)</li>
         <li>
             Validator - Demonstrates using the Validator extension.</li>
+        </ul></li>
     </ul>
 
     <p>
@@ -248,27 +250,26 @@
     <section name="Struts Community Resources" href="resources">
 
     <p>
-        Struts has attracted a large and robust community of developers.
-        Some of these developers have a created an independant SourceForge site to promote new extensions to the Struts framework.
-        As a service to our community, the Struts SourceForge site maintains an
-        <a href="http://struts.sf.net/community/index.html">extensive directory of Struts resources</a>. including.
+        Struts has attracted a large and robust community of developers,
+        which have created a vast number of Struts related resources.
+        Several pages on our wiki are devoted to listing <a href="http://wiki.apache.org/struts/StrutsResources">Struts resources</a>.
     </p>
 
     <ul>
         <li>
-            <a href="http://struts.sf.net/community/articles.html">articles</a>,
+            <a href="http://wiki.apache.org/struts/StrutsArticles">articles</a>,
         </li>
 
     <li>
-        <a href="http://struts.sf.net/community/books.html">books</a>,
+        <a href="http://wiki.apache.org/struts/StrutsBooks">books</a>,
     </li>
 
         <li>
-            <a href="http://struts.sf.net/community/examples.html">sample applications</a>,
+            <a href="http://wiki.apache.org/struts/StrutsApplications">sample applications</a>,
         </li>
 
         <li>
-            <a href="http://struts.sf.net/community/tutorials.html">tutorials</a>, and more!
+            <a href="http://wiki.apache.org/struts/StrutsTraining">training</a>, and more!
         </li>
 
     </ul>
@@ -280,8 +281,8 @@
        <p>
        The Apache Software Foundation does not provide printed manuals,
        but several third-party books about Struts are available.
-       A current list of books about Struts is maintained by the
-       <a href="http://struts.sf.net/community/index.html">Struts Community Resources area</a>.
+       A current list of books about Struts is maintained as a
+       <a href="http://wiki.apache.org/struts/StrutsBooks">wiki page</a>.
        </p>
 
     </section>
