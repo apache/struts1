@@ -147,7 +147,7 @@
 
 <!-- ======================================== Message Resources Definitions -->
 
-    <message-resources parameter="MessageResources"/>
+    <message-resources parameter="MessageResources" />
 
 
 <!-- =============================================== Plug Ins Configuration -->
@@ -179,6 +179,16 @@
 
 	  Paths found in Tiles definitions are relative to the main context.
   -->
+
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+
+      <!-- Path to XML definition file -->
+      <set-property property="definitions-config"
+                       value="/WEB-INF/tiles-defs.xml" />
+      <!-- Set Module-awareness to true -->
+      <set-property property="moduleAware" value="true" />
+    </plug-in>
+
 
   <!-- =================================================== Validator plugin -->
 
