@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.34 2002/03/23 01:38:15 craigmcc Exp $
- * $Revision: 1.34 $
- * $Date: 2002/03/23 01:38:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.35 2002/04/08 04:30:41 craigmcc Exp $
+ * $Revision: 1.35 $
+ * $Date: 2002/04/08 04:30:41 $
  *
  * ====================================================================
  *
@@ -110,7 +110,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.34 $ $Date: 2002/03/23 01:38:15 $
+ * @version $Revision: 1.35 $ $Date: 2002/04/08 04:30:41 $
  */
 
 public class RequestUtils {
@@ -553,10 +553,10 @@ public class RequestUtils {
         }
 
         // Look up any existing form bean instance
-        if (appConfig.getControllerConfig().getDebug() >= 2) {
-            LOG.info(" Looking for ActionForm bean instance in scope '" +
-                        mapping.getScope() + "' under attribute key '" +
-                        attribute + "'");
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(" Looking for ActionForm bean instance in scope '" +
+                      mapping.getScope() + "' under attribute key '" +
+                      attribute + "'");
         }
         ActionForm instance = null;
         HttpSession session = null;
@@ -573,10 +573,11 @@ public class RequestUtils {
                 String className =
                     ((DynaBean) instance).getDynaClass().getName();
                 if (className.equals(config.getName())) {
-                    if (appConfig.getControllerConfig().getDebug() >= 2) {
-                        servlet.log
+                    if (LOG.isDebugEnabled()) {
+                        LOG.debug
                             (" Recycling existing DynaActionForm instance " +
                             "of type '" + className + "'");
+                        LOG.trace(" --> " + instance);
                     }
                     return (instance);
                 }
@@ -584,10 +585,11 @@ public class RequestUtils {
                 String className =
                     instance.getClass().getName();
                 if (className.equals(config.getType())) {
-                    if (appConfig.getControllerConfig().getDebug() >= 2) {
-                        servlet.log
+                    if (LOG.isDebugEnabled()) {
+                        LOG.debug
                             (" Recycling existing ActionForm instance " +
-                            "of class '" + className + "'");
+                             "of class '" + className + "'");
+                        LOG.trace(" --> " + instance);
                     }
                     return (instance);
                 }
@@ -600,6 +602,12 @@ public class RequestUtils {
                 DynaActionFormClass dynaClass =
                     DynaActionFormClass.createDynaActionFormClass(config);
                 instance = (ActionForm) dynaClass.newInstance();
+                if (LOG.isDebugEnabled()) {
+                    LOG.debug
+                        (" Creating new DynaActionForm instance " +
+                            "of type '" + config.getType() + "'");
+                    LOG.trace(" --> " + instance);
+                }
             } catch (Throwable t) {
                 LOG.error(servlet.getInternal().getMessage
                             ("formBean", config.getName()), t);
@@ -608,9 +616,15 @@ public class RequestUtils {
         } else {
             try {
                 instance = (ActionForm) applicationInstance(config.getType());
+                if (LOG.isDebugEnabled()) {
+                    LOG.debug
+                        (" Creating new ActionForm instance " +
+                            "of type '" + config.getType() + "'");
+                    LOG.trace(" --> " + instance);
+                }
             } catch (Throwable t) {
                 LOG.error(servlet.getInternal().getMessage
-                            ("formBean", config.getType()), t);
+                          ("formBean", config.getType()), t);
                 return (null);
             }
         }
