@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.15 2003/07/13 23:33:27 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/07/13 23:33:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.16 2003/07/13 23:40:46 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/07/13 23:40:46 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.RequestUtils;
  * Generate a URL-encoded redirect to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2003/07/13 23:33:27 $
+ * @version $Revision: 1.16 $ $Date: 2003/07/13 23:40:46 $
  */
 public class RedirectTag extends TagSupport {
 
@@ -266,7 +266,18 @@ public class RedirectTag extends TagSupport {
      */
     public int doEndTag() throws JspException {
 
-        // Calculate the redirect URL
+        this.doRedirect(this.generateRedirectURL());
+
+        return (SKIP_PAGE);
+
+    }
+
+    /**
+     * Calculate the url to redirect to.
+     * @throws JspException
+     * @since Struts 1.2
+     */
+    protected String generateRedirectURL() throws JspException {
         Map params =
             RequestUtils.computeParameters(
                 pageContext,
@@ -296,8 +307,17 @@ public class RedirectTag extends TagSupport {
             throw new JspException(
                 messages.getMessage("redirect.url", e.toString()));
         }
+        
+        return url;
+    }
 
-        // Perform the redirection
+    /**
+     * Redirect to the given url converting exceptions to JspException.
+     * @param url The path to redirect to.
+     * @throws JspException
+     * @since Struts 1.2
+     */
+    protected void doRedirect(String url) throws JspException {
         HttpServletResponse response =
             (HttpServletResponse) pageContext.getResponse();
             
@@ -308,10 +328,6 @@ public class RedirectTag extends TagSupport {
             RequestUtils.saveException(pageContext, e);
             throw new JspException(e.getMessage());
         }
-
-        // Skip the remainder of this apge
-        return (SKIP_PAGE);
-
     }
 
     /**
