@@ -121,7 +121,7 @@
 <pre>
 &lt;activity id="Simple Wizard Application"&gt;
 
-  &lt;!-- Display the first page of the interation --&gt;
+  &lt;!-- Display the first page of the iteration --&gt;
   &lt;!-- (Using Struts-specific logical-to-physical mapping) --&gt;
   &lt;struts:forward id="page1" name="Simple Wizard Page 1"&gt;
 
@@ -133,7 +133,7 @@
     &lt;struts:branch control="NEXT"   idref="page2"/&gt;
   &lt;/struts:navigate&gt;
 
-  &lt;!-- Display the second page of the interation --&gt;
+  &lt;!-- Display the second page of the iteration --&gt;
   &lt;struts:forward id="page2" name="Simple Wizard Page 2"&gt;
 
   &lt;!-- Process navigation input from the second page --&gt;
@@ -144,7 +144,7 @@
     &lt;struts:branch control="PREV"   idref="page1"/&gt;
   &lt;/struts:navigate&gt;
 
-  &lt;!-- Display the third page of the interation --&gt;
+  &lt;!-- Display the third page of the iteration --&gt;
   &lt;struts:forward id="page3" name="Simple Wizard Page 3"&gt;
 
   &lt;!-- Process navigation input from the third page --&gt;
@@ -208,7 +208,7 @@
       also be nested inside other steps, to provide for looping and
       conditional processing.  A rich set of built-in Step implementations
       shall be provided (including powerful capabilities such as the
-      execution of an abitrary method on an arbitrary Java object), and
+      execution of an arbitrary method on an arbitrary Java object), and
       mechanisms to extend the set of supported Step implementations
       allows arbitrary extensibility.</p>
 
@@ -224,7 +224,7 @@
       Context support a number of individual Scopes, each of which can be
       plugged in from application logic, to provide integration into
       existing application functionality.  For example, in a web application
-      imlementation, Scopes will generally be mapped directly to request
+      implementation, Scopes will generally be mapped directly to request
       attributes, session attributes, and servlet context attributes as
       provided by the Servlet API.</p>
 
@@ -322,7 +322,7 @@
     <ul>
     <li><a href="http://www.w3.org/TR/xslt">XSL Transformations (XSLT)</a>
         - Includes control flow mechanisms that are becoming widely
-        known and understood, which could be mimiced.</li>
+        known and understood, which could be mimicked.</li>
     <li><a href="http://jakarta.apache.org/taglibs/jsptl-doc/intro.html">
         JSP Standard Tag Library (Early Access)</a> - The design goals for
         many of the JSP custom tags in this library (produced by the
@@ -339,7 +339,7 @@
     consider include:</p>
     <ul>
     <li><a href="http://www.w3.org/TR/xpath">XML Path Language (XPath)</a>
-        - Will be familar to XML-oriented application developers because
+        - Will be familiar to XML-oriented application developers because
         it is used throughout the suite of XML specifications.</li>
     <li>JavaScript like expression languages - Will be familiar to page
         developers (as well as Struts developers familiar with the

@@ -146,7 +146,7 @@ Along with developing JavaServer Faces itself (I am the specification lead
 for JSR-127), I have been working on just such an integration library for
 Struts (1.1 only; sorry in advance to 1.0 users).  While not completed
 yet, it is clear that the goals stated in the previous paragraph are
-achieveable with the current evolving design of JSF.  While things can
+achievable with the current evolving design of JSF.  While things can
 always change in the future, many JSR-127 expert group members consider
 high quality integration with Struts to be an important success factor for
 JavaServer Faces to be accepted.  Therefore, I do not expect that JSF will

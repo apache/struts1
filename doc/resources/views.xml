@@ -16,7 +16,7 @@
 <p><a href="http://www.openroad.ca/opencode/"><b>Stxx</b></a> - Stxx is an extension to Struts, extending its existing functionality to help Action classes to return XML            that will be transformed by an XSL file.</p>
 <p><a href="http://xsltgenerator.sourceforge.net/"><b>Struts XSLT Code Generator</b></a> by Shengmeng Liu - An XSLT based code generator for Struts, completely based on the XSLT transformation and a set of stylesheet files. Ideally, users can customize the stylesheet for each type of Struts files  to have templates of their own without having to access the source code and recompile it.</p>
 <p><a href="http://www.javaworld.com/javaworld/jw-02-2002/jw-0201-strutsxslt.html"><b>Boost Struts with XSLT and XML</b></a> By Julien Mercay and Gilbert Bouzeid.</p>
-<p><a href="http://husted.com/struts/resources/velstruts.zip"><b>Velocity-Tools / Struts</b></a> by the <a href="http://jakarta.apache.org/velocity">Velocity</a> Team. (WAR zipped for download).  Use Velocity templates with Struts 1.0 and beyond! This is the sample WAR from a recent <a href="http://cvs.apache.org/viewcvs/jakarta-velocity-tools/">CVS snapsho</a>t. Just autodeploy, and see for yourself!</p>
+<p><a href="http://husted.com/struts/resources/velstruts.zip"><b>Velocity-Tools / Struts</b></a> by the <a href="http://jakarta.apache.org/velocity">Velocity</a> Team. (WAR zipped for download).  Use Velocity templates with Struts 1.0 and beyond! This is the sample WAR from a recent <a href="http://cvs.apache.org/viewcvs/jakarta-velocity-tools/">CVS snapshot</a>t. Just autodeploy, and see for yourself!</p>
 </section>
 
 </chapter></body></document>
