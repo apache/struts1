@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.32 2002/10/29 05:41:46 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.33 2002/12/08 00:22:56 craigmcc Exp $
 -->
 
 
@@ -480,15 +480,15 @@ The "form-bean" element describes a particular form bean, which is a
                      it starts with a slash (and when the contextRelative
                      property is false). This value may consist of any
                      combination of the following:
-                     - "$A" - Replaced by the app prefix of this module
+                     - "$M" - Replaced by the module prefix of this module
                      - "$P" - Replaced by the "path" attribute of the  selected
                      "forward" element
                      - "$$" - Causes a literal dollar sign to be rendered
                      - "$x" - (Where "x" is any character not defined above)
                      Silently swallowed, reserved for future use
-                     If not specified, the default forwardPattern is "$A$P",
+                     If not specified, the default forwardPattern is "$M$P",
                      which is consistent with the previous behavior of
-                     forwards.  Since Struts 1.1.  ["$A$P"]
+                     forwards.  Since Struts 1.1.  ["$M$P"]
 
      inputForward    Set to "true" if you want the "input" attribute of
                      <action> elements to be the name of a local or global
@@ -500,7 +500,7 @@ The "form-bean" element describes a particular form bean, which is a
                      [false]
 
      locale          Set to "true" if you want a Locale object stored in the
-                     user agent's session if not already present.
+                     user's session if not already present.
                      [true]
 
      maxFileSize     The maximum size (in bytes) of a file to be accepted as a
@@ -521,15 +521,15 @@ The "form-bean" element describes a particular form bean, which is a
                      custom tags using it is mapped to a context-relative URL
                      of the corresponding resource.  This value may consist of
                      any combination of the following:
-                     - "$A" - Replaced by the app prefix of this module
+                     - "$M" - Replaced by the module prefix of this module
                      - "$P" - Replaced by the value of the "page" attribute
                      - "$$" - Causes a literal dollar sign to be rendered
                      - "$x" - (Where "x" is any character not defined above)
                               Silently swallowed, reserved for future use
                      If not specified, the default forwardPattern is
-                     "$A$P", which is consistent with previous hard coded
-                     behavior of URL evaluation for "page" attributes.  [$A$P]
-                     ["$A$P"]
+                     "$M$P", which is consistent with previous hard coded
+                     behavior of URL evaluation for "page" attributes.
+                     ["$M$P"]
 
      processorClass  The fully qualified Java class name of the
                      RequestProcessor subclass to be used with this module.

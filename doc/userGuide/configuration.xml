@@ -12,12 +12,13 @@
     <author>Eddie Bush</author>
     <author>Yann Cebron</author>
     <author>David Graham</author>
+    <author>Tim O'Brien</author>
   </properties>
 
   <body>
   <chapter name="7. Configuring Applications" href="config_apps">
   
- <section name="7.1">
+ <section name="7.1 Overview" href="config-overview">
 
 	<p>
 	[:TODO:]
@@ -30,7 +31,7 @@
   	<p>
     The <a href="building_controller.html#config">Building Controller 
     Components</a> chapter covered writing the form-bean and action-mapping 
-    portions of the Stgruts configuration file. 
+    portions of the Struts configuration file. 
   	These elements usually play an important role in the development of a 
   	Struts application.
   	The other elements in Struts configuration file tend to be static: 
@@ -49,21 +50,117 @@
 
  <section name="7.2.1 Controller Configuration" href="controller_config">
       <p>
-        The &lt;controller&gt; element allows you to configure the ActionServlet. 
-        Many of the controller parameters were previously defined by servlet init. parameters in your web.xml file but have been moved to this section of struts-config.xml. 
+        The <code>&lt;controller&gt;</code> element allows you to configure
+        the ActionServlet.  Many of the controller parameters were previously
+        defined by servlet initialization parameters in your
+        <code>web.xml</code> file but have been moved to this section of
+        <code>struts-config.xml</code> in order to allow different modules
+        in the same web application to be configured differently.
         For full details on available parameters see the 
-        <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">struts-config_1_1.dtd</a>.
+        <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">struts-config_1_1.dtd</a>
+        or the list below.
       </p>
+      <blockquote>
+      <ul>
+      <li>
+      <b>bufferSize</b> - The size (in bytes) of the input buffer
+      used when processing file uploads.  [4096] (optional)
+      </li>
+      <li>
+      <b>className</b> - Classname of configuration bean.
+      [org.apache.struts.config.ControllerConfig] (optional)
+      </li>
+      <li>
+      <b>contentType</b> - Default content type (and optional character
+      encoding) to be set on each response.  May be overridden by the
+      Action, JSP, or other rewource to which the request is forwarded.
+      [text/html] (optional)
+      </li>
+      <li>
+      <b>forwardPattern</b> - Replacement pattern defining how the "path"
+      attribute of a <code>&lt;forward&gt;</code> element is mapped to a
+      context-relative URL when it starts with a slash (and when the
+      <code>contextRelative</code> property is <code>false</code>).
+      This value may consist of any combination of the following:
+          <ul>
+          <li><em>$M</em> - Replaced by the module prefix of this module.</li>
+          <li><em>$P</em> - Replaced by the "path" attribute of the selected
+              <code>&lt;forward&gt;</code> element.</li>
+          <li><em>$$</em> - Causes a literal dollar sign to be rendered.</li>
+          <li><em>$x</em> - (Where "x" is any character not defined above)
+              Silently swallowed, reserved for future use.</li>
+          </ul>
+      If not specified, the default forwardPattern is consistent with the
+      previous behavior of forwards.  [$M$P] (optional)
+      </li>
+      <li>
+      <b>inputForward</b> - Set to <code>true</code> if you want the
+      <code>input</code> attribute of <code>&lt;action&gt;</code> elements
+      to be the name of a local or global <code>ActionForward</code>, which
+      will then be used to calculate the ultimate URL.  Set to
+      <code>false</code> to treat the <code>input</code> parameter of
+      <code>&lt;action&gt;</code> elements as a module-relative path to
+      the resource to be used as the input form.  [false] (optional)
+      </li>
+      <li>
+      <b>locale</b> - Set to <code>true</code> if you want a
+      <code>Locale</code> object stored in the user's session if not already
+      present.  [true] (optional)
+      </li>
+      <li>
+      <b>maxFileSize</b> - The maximum size (in bytes) of a file to be accepted
+      as a file upload.  Can be expressed as a number followed by a "K",
+      "M", or "G", which are interpreted to mean kilobytes, megabytes, or
+      gigabytes, respectively.  [250M] (optional)
+      </li>
+      <li>
+      <b>multipartClass</b> - The fully qualified Java class name of the
+      multipart request handler class to be used with this module.
+      [org.apache.struts.upload.CommonsMultipartRequesthandler] (optional)
+      </li>
+      <li>
+      <b>nocache</b> - Set to <code>true</code> if you want the controller
+      to add HTTP headers for defeating caching to every response from
+      this module.  [false] (optional)
+      </li>
+      <li>
+      <b>pagePattern</b> - Replacement pattern defining how the
+      <code>page</code> attribute of custom tags using it is mapped to a
+      context-relative URL of the corresponding resource.  This value may
+      consist of any combination of the following:
+          <ul>
+          <li><em>$M</em> - Replaced by the module prefix of this module.</li>
+          <li><em>$P</em> - Replaced by the "path" attribute of the selected
+              <code>&lt;forward&gt;</code> element.</li>
+          <li><em>$$</em> - Causes a literal dollar sign to be rendered.</li>
+          <li><em>$x</em> - (Where "x" is any character not defined above)
+              Silently swallowed, reserved for future use.</li>
+          </ul>
+      If not specified, the default pagePattern is consistent with the
+      previous behavior of URL calculation.  [$M$P] (optional)
+      </li>
+      <li>
+      <b>processorClass</b> - The fully qualified Java class name of the
+      <code>RequestProcessor</code> subclass to be used with this module.
+      [org.apache.struts.action.RequestProcessor] (optional)
+      </li>
+      <li>
+      <b>tempDir</b> - Temporary working directory to use when processing
+      file uploads.
+      [{the directory provided by the servlet container}]
+      </li>
+      </ul>
+      </blockquote>
       <p>
         This example uses the default values for several controller parameters.  
         If you only want default behavior you can omit the controller section altogether.
       </p>
-        <pre><![CDATA[
-        <controller 
-            processorClass="org.apache.struts.action.RequestProcessor"
-            debug="0"
-            contentType="text/html"/>;
-        ]]></pre>
+<pre><![CDATA[
+<controller 
+    processorClass="org.apache.struts.action.RequestProcessor"
+             debug="0"
+       contentType="text/html"/>;
+]]></pre>
       </section>
 
  <section name="7.2.2 Message Resources Configuration" href="resources_config">

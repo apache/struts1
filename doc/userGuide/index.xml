@@ -163,9 +163,8 @@
                 
              <li>7. Configuring Applications</li>
              	<ul>
-             	<li><a href="">7.1 </a></li>
-                <li>
-                	<a href="configuration.html#config">7.2 The Struts Configuration File</a>
+             	<li><a href="configuration.html#config-overview">7.1 Overview</a></li>
+                <li><a href="configuration.html#config">7.2 The Struts Configuration File</a>
                     <ul>
                     <li><a href="configuration.html#plugin_config">7.2.1 Controller Configurationn</a></li>
                     <li><a href="configuration.html#resources_config">7.2.2 Message Resources Configuration</a></li>
