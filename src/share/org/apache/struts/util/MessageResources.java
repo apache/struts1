@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.17 2003/07/02 03:34:04 dgraham Exp $
- * $Revision: 1.17 $
- * $Date: 2003/07/02 03:34:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.18 2003/07/02 03:42:09 dgraham Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/07/02 03:42:09 $
  *
  * ====================================================================
  * 
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights 
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,19 +57,17 @@
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */ 
-
+ */
 
 package org.apache.struts.util;
-
 
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Locale;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 
 /**
  * General purpose abstract class that describes an API for retrieving
@@ -91,11 +89,9 @@ import org.apache.commons.logging.LogFactory;
  * application server environments.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2003/07/02 03:34:04 $
+ * @version $Revision: 1.18 $ $Date: 2003/07/02 03:42:09 $
  */
-
 public abstract class MessageResources implements Serializable {
-
 
     // ------------------------------------------------------------- Properties
 
@@ -103,7 +99,6 @@ public abstract class MessageResources implements Serializable {
      * Commons Logging instance.
      */
     protected static Log log = LogFactory.getLog(MessageResources.class);
-
 
     /**
      * The configuration parameter used to initialize this MessageResources.
@@ -118,12 +113,10 @@ public abstract class MessageResources implements Serializable {
         return (this.config);
     }
 
-
     /**
      * The default Locale for our environment.
      */
     protected Locale defaultLocale = Locale.getDefault();
-
 
     /**
      * The <code>MessageResourcesFactory</code> that created this instance.
@@ -138,13 +131,11 @@ public abstract class MessageResources implements Serializable {
         return (this.factory);
     }
 
-
     /**
      * The set of previously created MessageFormat objects, keyed by the
      * key computed in <code>messageKey()</code>.
      */
     protected HashMap formats = new HashMap();
-
 
     /**
      * Indicate is a <code>null</code> is returned instead of an error message string
@@ -171,9 +162,7 @@ public abstract class MessageResources implements Serializable {
         this.returnNull = returnNull;
     }
 
-
     // ----------------------------------------------------------- Constructors
-
 
     /**
      * Construct a new MessageResources according to the specified parameters.
@@ -187,7 +176,6 @@ public abstract class MessageResources implements Serializable {
 
     }
 
-
     /**
      * Construct a new MessageResources according to the specified parameters.
      *
@@ -195,8 +183,10 @@ public abstract class MessageResources implements Serializable {
      * @param config The configuration parameter for this MessageResources
      * @param returnNull The returnNull property we should initialize with
      */
-    public MessageResources(MessageResourcesFactory factory, String config,
-                         boolean returnNull) {
+    public MessageResources(
+        MessageResourcesFactory factory,
+        String config,
+        boolean returnNull) {
 
         super();
         this.factory = factory;
@@ -205,10 +195,7 @@ public abstract class MessageResources implements Serializable {
 
     }
 
-
     // --------------------------------------------------------- Public Methods
-
-
 
     /**
      * Returns a text message for the specified key, for the default Locale.
@@ -217,10 +204,9 @@ public abstract class MessageResources implements Serializable {
      */
     public String getMessage(String key) {
 
-	return (getMessage((Locale) null, key));
+        return this.getMessage((Locale) null, key);
 
     }
-
 
     /**
      * Returns a text message after parametric replacement of the specified
@@ -231,10 +217,9 @@ public abstract class MessageResources implements Serializable {
      */
     public String getMessage(String key, Object args[]) {
 
-	return (getMessage((Locale) null, key, args));
+        return this.getMessage((Locale) null, key, args);
 
     }
-
 
     /**
      * Returns a text message after parametric replacement of the specified
@@ -245,10 +230,9 @@ public abstract class MessageResources implements Serializable {
      */
     public String getMessage(String key, Object arg0) {
 
-	return (getMessage((Locale) null, key, arg0));
+        return this.getMessage((Locale) null, key, arg0);
 
     }
-
 
     /**
      * Returns a text message after parametric replacement of the specified
@@ -260,10 +244,9 @@ public abstract class MessageResources implements Serializable {
      */
     public String getMessage(String key, Object arg0, Object arg1) {
 
-	return (getMessage((Locale) null, key, arg0, arg1));
+        return this.getMessage((Locale) null, key, arg0, arg1);
 
     }
-
 
     /**
      * Returns a text message after parametric replacement of the specified
@@ -274,13 +257,11 @@ public abstract class MessageResources implements Serializable {
      * @param arg1 The replacement for placeholder {1} in the message
      * @param arg2 The replacement for placeholder {2} in the message
      */
-    public String getMessage(String key, Object arg0, Object arg1,
-			     Object arg2) {
+    public String getMessage(String key, Object arg0, Object arg1, Object arg2) {
 
-	return (getMessage((Locale) null, key, arg0, arg1, arg2));
+        return this.getMessage((Locale) null, key, arg0, arg1, arg2);
 
     }
-
 
     /**
      * Returns a text message after parametric replacement of the specified
@@ -292,13 +273,16 @@ public abstract class MessageResources implements Serializable {
      * @param arg2 The replacement for placeholder {2} in the message
      * @param arg3 The replacement for placeholder {3} in the message
      */
-    public String getMessage(String key, Object arg0, Object arg1,
-			     Object arg2, Object arg3) {
+    public String getMessage(
+        String key,
+        Object arg0,
+        Object arg1,
+        Object arg2,
+        Object arg3) {
 
-	return (getMessage((Locale) null, key, arg0, arg1, arg2, arg3));
+        return this.getMessage((Locale) null, key, arg0, arg1, arg2, arg3);
 
     }
-
 
     /**
      * Returns a text message for the specified key, for the default Locale.
@@ -315,7 +299,6 @@ public abstract class MessageResources implements Serializable {
      */
     public abstract String getMessage(Locale locale, String key);
 
-
     /**
      * Returns a text message after parametric replacement of the specified
      * parameter placeholders.  A null string result will be returned by
@@ -328,30 +311,31 @@ public abstract class MessageResources implements Serializable {
      */
     public String getMessage(Locale locale, String key, Object args[]) {
 
-	// Cache MessageFormat instances as they are accessed
-        if (locale == null)
+        // Cache MessageFormat instances as they are accessed
+        if (locale == null) {
             locale = defaultLocale;
-	MessageFormat format = null;
-	String formatKey = messageKey(locale, key);
-	synchronized (formats) {
-	    format = (MessageFormat) formats.get(formatKey);
-	    if (format == null) {
-		String formatString = getMessage(locale, key);
-		if (formatString == null) {
-		    if (returnNull)
-			return (null);
-		    else
-			return ("???" + formatKey + "???");
-		}
-		format = new MessageFormat(escape(formatString));
-		formats.put(formatKey, format);
-	    }
+        }
 
-	}
-	return (format.format(args));
+        MessageFormat format = null;
+        String formatKey = messageKey(locale, key);
 
+        synchronized (formats) {
+            format = (MessageFormat) formats.get(formatKey);
+            if (format == null) {
+                String formatString = getMessage(locale, key);
+
+                if (formatString == null) {
+                    return returnNull ? null : ("???" + formatKey + "???");
+                }
+
+                format = new MessageFormat(escape(formatString));
+                formats.put(formatKey, format);
+            }
+
+        }
+
+        return format.format(args);
     }
-
 
     /**
      * Returns a text message after parametric replacement of the specified
@@ -364,13 +348,8 @@ public abstract class MessageResources implements Serializable {
      * @param arg0 The replacement for placeholder {0} in the message
      */
     public String getMessage(Locale locale, String key, Object arg0) {
-
-	Object args[] = new Object[1];
-	args[0] = arg0;
-	return (getMessage(locale, key, args));
-
+        return this.getMessage(locale, key, new Object[] { arg0 });
     }
-
 
     /**
      * Returns a text message after parametric replacement of the specified
@@ -383,16 +362,9 @@ public abstract class MessageResources implements Serializable {
      * @param arg0 The replacement for placeholder {0} in the message
      * @param arg1 The replacement for placeholder {1} in the message
      */
-    public String getMessage(Locale locale,
-			     String key, Object arg0, Object arg1) {
-
-	Object args[] = new Object[2];
-	args[0] = arg0;
-	args[1] = arg1;
-	return (getMessage(locale, key, args));
-
+    public String getMessage(Locale locale, String key, Object arg0, Object arg1) {
+        return this.getMessage(locale, key, new Object[] { arg0, arg1 });
     }
-
 
     /**
      * Returns a text message after parametric replacement of the specified
@@ -406,18 +378,15 @@ public abstract class MessageResources implements Serializable {
      * @param arg1 The replacement for placeholder {1} in the message
      * @param arg2 The replacement for placeholder {2} in the message
      */
-    public String getMessage(Locale locale,
-			     String key, Object arg0, Object arg1,
-			     Object arg2) {
+    public String getMessage(
+        Locale locale,
+        String key,
+        Object arg0,
+        Object arg1,
+        Object arg2) {
 
-	Object args[] = new Object[3];
-	args[0] = arg0;
-	args[1] = arg1;
-	args[2] = arg2;
-	return (getMessage(locale, key, args));
-
+        return this.getMessage(locale, key, new Object[] { arg0, arg1, arg2 });
     }
-
 
     /**
      * Returns a text message after parametric replacement of the specified
@@ -443,7 +412,6 @@ public abstract class MessageResources implements Serializable {
         return this.getMessage(locale, key, new Object[] { arg0, arg1, arg2, arg3 });
     }
 
-
     /**
      * Return <code>true</code> if there is a defined message for the specified
      * key in the system default locale.
@@ -452,10 +420,9 @@ public abstract class MessageResources implements Serializable {
      */
     public boolean isPresent(String key) {
 
-        return (isPresent(null, key));
+        return this.isPresent(null, key);
 
     }
-
 
     /**
      * Return <code>true</code> if there is a defined message for the specified
@@ -468,18 +435,20 @@ public abstract class MessageResources implements Serializable {
     public boolean isPresent(Locale locale, String key) {
 
         String message = getMessage(locale, key);
-        if (message == null)
-            return (false);
-        else if (message.startsWith("???") && message.endsWith("???"))
-            return (false); // FIXME - Only valid for default implementation
-        else
-            return (true);
+
+        if (message == null) {
+            return false;
+
+        } else if (message.startsWith("???") && message.endsWith("???")) {
+            return false; // FIXME - Only valid for default implementation
+
+        } else {
+            return true;
+        }
 
     }
 
-
     // ------------------------------------------------------ Protected Methods
-
 
     /**
      * Escape any single quote characters that are included in the specified
@@ -489,20 +458,26 @@ public abstract class MessageResources implements Serializable {
      */
     protected String escape(String string) {
 
-        if ((string == null) || (string.indexOf('\'') < 0))
-            return (string);
+        if ((string == null) || (string.indexOf('\'') < 0)) {
+            return string;
+        }
+
         int n = string.length();
         StringBuffer sb = new StringBuffer(n);
+
         for (int i = 0; i < n; i++) {
             char ch = string.charAt(i);
-            if (ch == '\'')
+
+            if (ch == '\'') {
                 sb.append('\'');
+            }
+
             sb.append(ch);
         }
-        return (sb.toString());
+
+        return sb.toString();
 
     }
-
 
     /**
      * Compute and return a key to be used in caching information by a Locale.
@@ -512,16 +487,8 @@ public abstract class MessageResources implements Serializable {
      * @param locale The locale for which a key is desired
      */
     protected String localeKey(Locale locale) {
-
-        if (locale == null)
-            return ("");
-        //        else if (locale.equals(defaultLocale))
-        //            return ("");
-        else
-            return (locale.toString());
-
+        return (locale == null) ? "" : locale.toString();
     }
-
 
     /**
      * Compute and return a key to be used in caching information
@@ -536,7 +503,6 @@ public abstract class MessageResources implements Serializable {
 
     }
 
-
     /**
      * Compute and return a key to be used in caching information
      * by locale key and message key.
@@ -550,9 +516,7 @@ public abstract class MessageResources implements Serializable {
 
     }
 
-
     // --------------------------------------------------------- Static Methods
-
 
     /**
      * The default MessageResourcesFactory used to create MessageResources
@@ -560,22 +524,20 @@ public abstract class MessageResources implements Serializable {
      */
     protected static MessageResourcesFactory defaultFactory = null;
 
-
     /**
      * Create and return an instance of <code>MessageResources</code> for the
      * created by the default <code>MessageResourcesFactory</code>.
      *
      * @param config Configuration parameter for this message bundle.
      */
-    public synchronized static MessageResources
-        getMessageResources(String config) {
+    public synchronized static MessageResources getMessageResources(String config) {
 
-        if (defaultFactory == null)
+        if (defaultFactory == null) {
             defaultFactory = MessageResourcesFactory.createFactory();
+        }
+
         return defaultFactory.createResources(config);
-
     }
-
 
     /**
      * Log a message to the Writer that has been configured for our use.
@@ -585,7 +547,6 @@ public abstract class MessageResources implements Serializable {
     public void log(String message) {
         log.debug(message);
     }
-
 
     /**
      * Log a message and exception to the Writer that has been configured
@@ -597,6 +558,5 @@ public abstract class MessageResources implements Serializable {
     public void log(String message, Throwable throwable) {
         log.debug(message, throwable);
     }
-
 
 }
