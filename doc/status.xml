@@ -16,7 +16,7 @@
 <section href="roadmap" name="Development Roadmap">
 
     <p class="version">
-    $Id: status.xml,v 1.45 2003/09/15 12:23:04 husted Exp $
+    $Id: status.xml,v 1.46 2003/10/18 02:45:52 mrdon Exp $
     </p>
 
     <p>
@@ -171,8 +171,8 @@
                             <li><a href="http://strutstestcase.sourceforge.net/">TestCase</a></li>
                             <li><a href="http://stxx.sourceforge.net">Stxx</a> (XLST)</li>
                             <li><a href="http://www.livinglogic.de/Struts/">Workflow</a></li>
-                            <li><a href="http://struts.sf.net">Cocoon Plugin</a></li>
-                            <li><a href="http://struts.sf.net">Scriptable Actions using BSF</a> (Bean Scripting
+                            <li><a href="http://struts.sf.net/struts-cocoon/">Cocoon Plugin</a></li>
+                            <li><a href="http://struts.sf.net/struts-bsf/">Scriptable Actions using BSF</a> (Bean Scripting
                                 Framework)</li>
                         </ul>
                     </li>
