@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.21 2002/07/16 00:05:27 jholmes Exp $
+$Id: STATUS,v 1.22 2002/07/16 02:22:58 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           24 open bugs to swat!!
+                           22 open bugs to swat!!
 
 
 Controller:
@@ -62,7 +62,6 @@ Validator Framework:
  7351 Validator JavaScript Primitive Validation Error
  7353 Validator JavaScript Select Error
  8446 Zero values are not validated as byte, integer, etc.
- 9051 [PATCH] 0 should be a valid float
 10191 Validator range checking bug
 10348 Validator is not available under sub-application
 10349 Validator: date validation does not allow blank input?
