@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.3 2002/07/19 10:03:03 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/07/19 10:03:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.4 2002/10/10 16:32:27 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/10 16:32:27 $
  *
  * ====================================================================
  *
@@ -70,7 +70,8 @@ import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.RequestProcessor;
 
-import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.Map;
 
@@ -104,8 +105,8 @@ import org.apache.struts.config.ApplicationConfig;
  */
 public class TilesPlugin implements PlugIn {
 
-    /** Debug flag */
-  public static final boolean debug = true;
+    /** Commons Logging instance. */
+  protected static Log log = LogFactory.getLog(TilesPlugin.class);
     /** Associated definition factory */
   protected DefinitionsFactory definitionFactory;
 
@@ -133,10 +134,9 @@ public class TilesPlugin implements PlugIn {
   definitionFactory = DefinitionsUtil.getDefinitionsFactory( servlet.getServletContext() );
   if( definitionFactory != null )
     {
-    if(debug)
+    if(log.isInfoEnabled())
       {
-      System.out.println( "Info - TilesPlugin : factory already exists. No new creation." );
-      servlet.log( "Info - TilesPlugin : factory already exists. No new creation." );
+      log.info("Factory already exists. No new creation." );
       }
     return;
     } // end if
@@ -150,8 +150,12 @@ public class TilesPlugin implements PlugIn {
     {
     throw new ServletException( ex );
     }
+    if(log.isInfoEnabled())
+      {
+      log.info( "Tiles definition factory loaded for processor '" + config.getPrefix() + "'." );
+    }
 
-  servlet.log( "Tiles definition factory loaded for processor '" + config.getPrefix() + "'." );
+  //servlet.log( "Tiles definition factory loaded for processor '" + config.getPrefix() + "'." );
   }
 
     /**
@@ -185,8 +189,8 @@ public class TilesPlugin implements PlugIn {
     }
    catch(Exception ex)
     {
-    if( debug )
-      ex.printStackTrace();
+    if(log.isDebugEnabled())
+      log.debug( "", ex);
     throw new UnavailableException( "Can't populate DefinitionsFactoryConfig class from 'web.xml': " + ex.getMessage() );
     }
     // Get init parameters from struts-config.xml
@@ -197,8 +201,8 @@ public class TilesPlugin implements PlugIn {
     }
    catch(Exception ex)
     {
-    if( debug )
-      ex.printStackTrace();
+    if(log.isDebugEnabled())
+      log.debug( "", ex);
     throw new UnavailableException( "Can't populate DefinitionsFactoryConfig class from '"
                                     + config.getPrefix() + "/struts-config.xml':"
                                     + ex.getMessage() );
@@ -231,8 +235,10 @@ public class TilesPlugin implements PlugIn {
   if( plugIns[index] != this )
     {
     String msg = "Can't initialize tiles definition factory : plugin configuration object not found.";
-    System.out.println( msg );
-    servlet.log( msg );
+    if(log.isFatalEnabled())
+    {
+        log.fatal(msg);
+    }
     throw new ServletException( msg );
     } // end if
     // Get plugin
@@ -272,7 +278,10 @@ public class TilesPlugin implements PlugIn {
     if( !tilesProcessorClass.isAssignableFrom( configProcessorClass))
       {  // Not compatible
       String msg = "TilesPlugin : Specified RequestProcessor not compatible with TilesRequestProcessor";
-      System.out.println( msg );
+        if(log.isFatalEnabled())
+        {
+            log.fatal(msg);
+        }
       throw new ServletException( msg );
       } // end if
     }

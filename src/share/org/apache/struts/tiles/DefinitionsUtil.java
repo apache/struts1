@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.3 2002/07/11 17:37:01 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/07/11 17:37:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.4 2002/10/10 16:32:27 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/10 16:32:27 $
  *
  * ====================================================================
  *
@@ -65,22 +65,18 @@ package org.apache.struts.tiles;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.ServletRequest;
 
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Enumeration;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
-import org.apache.struts.tiles.definition.ReloadableDefinitionsFactory;
 import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
-import org.apache.struts.tiles.xmlDefinition.I18nFactorySet;
 import org.apache.struts.taglib.tiles.ComponentConstants;
 
-import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Utilities class for definitions factory.
@@ -89,6 +85,8 @@ import org.apache.commons.beanutils.BeanUtils;
  */
 public class DefinitionsUtil implements ComponentConstants
 {
+    /** Commons Logging instance. */
+  protected static Log log = LogFactory.getLog(DefinitionsUtil.class);
 
     /** Global user defined debug level */
   public static int userDebugLevel = 0;
@@ -120,15 +118,10 @@ public class DefinitionsUtil implements ComponentConstants
     }
 
    /**
-   * Create Definition factory.
-   * If
-   * Create MapperCollection, and put it in appropriate servlet context.
-   * This method is used to initialize Component Instances. It is usually
-   * called by the initialization servlet.
-   * @param servletContext
-   * @return newly created MapperCollection.
-   * @throws DefinitionsFactoryException If an error occur while initializing factory
-   * @deprecated Use createDefinitionsFactory instead.
+   * Init user debug level.
+   *
+   * @param servletConfig
+   * @deprecated Use commons-logging package instead.
    */
   public static void initUserDebugLevel(ServletConfig servletConfig)
   {
@@ -144,12 +137,12 @@ public class DefinitionsUtil implements ComponentConstants
       int level = Integer.parseInt( str );
       setUserDebugLevel( level );
       if( userDebugLevel > 1 )
-        System.out.println( "Component Definitions debug level = " +  userDebugLevel );
+        log.debug( "Component Definitions debug level = " +  userDebugLevel );
       }
     }
    catch(Exception ex)
     {  // silently fail
-    System.out.println( "Set user level fail" );
+    log.debug( "Set user level fail" );
     ex.printStackTrace();
     }
   }
@@ -338,7 +331,7 @@ public class DefinitionsUtil implements ComponentConstants
    * Get a definition by its name.
    * First, retrieve definition factory, and then get requested definition.
    * Throw appropriate exception if definition or definition factory is not found.
-   * @param name Name of requested definition.
+   * @param definitionName Name of requested definition.
    * @param request Current servelet request
    * @param servletContext current servlet context
    * @throws FactoryNotFoundException Can't find definition factory.
@@ -364,9 +357,8 @@ public class DefinitionsUtil implements ComponentConstants
    * Get a component / template definition by its name.
    * First, retrieve instance factory, and then get requested instance.
    * Throw appropriate exception if definition is not found.
-   * @param name Name of requested definition.
-   * @param request Current servelet request
-   * @param servletContext current servlet context
+   * @param definitionName Name of requested definition.
+   * @param pageContext Current pageContext
    * @throws FactoryNotFoundException Can't find definition factory.
    * @throws DefinitionsFactoryException General error in factory while getting definition.
    * @throws NoSuchDefinitionException No definition found for specified name
@@ -430,11 +422,11 @@ public class DefinitionsUtil implements ComponentConstants
 
   /**
    * Populate Definition Factory Config from web.xml properties.
-   * @param config Definition Factory Config to populate.
-   * @param servletContext Current servlet context containing web.xml properties.
+   * @param factoryConfig Definition Factory Config to populate.
+   * @param servletConfig Current servlet config containing web.xml properties.
    * @exception IllegalAccessException if the caller does not have
    *  access to the property accessor method
-   * @exception InvocationTargetException if the property accessor method
+   * @exception java.lang.reflect.InvocationTargetException if the property accessor method
    *  throws an exception
    * @see org.apache.commons.beanutils.BeanUtil
    * @since tiles 20020708
@@ -449,11 +441,9 @@ public class DefinitionsUtil implements ComponentConstants
   /**
    * Create FactoryConfig and initialize it from web.xml.
    *
-   * @param servlet ActionServlet that is managing all the sub-applications
-   *  in this web application
-   * @param config ApplicationConfig for the sub-application with which
+   * @param servletConfig ServletConfig for the sub-application with which
    *  this plug in is associated
-   * @exception ServletException if this <code>PlugIn</code> cannot
+   * @exception DefinitionsFactoryException if this <code>PlugIn</code> cannot
    *  be successfully initialized
    */
   static protected DefinitionsFactoryConfig readFactoryConfig(ServletConfig servletConfig)

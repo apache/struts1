@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.3 2002/07/11 16:48:25 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/07/11 16:48:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.4 2002/10/10 16:32:26 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/10 16:32:26 $
  *
  * ====================================================================
  *
@@ -65,6 +65,8 @@ package org.apache.struts.tiles.xmlDefinition;
 import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.FactoryNotFoundException;
 import org.apache.struts.tiles.DefinitionsUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletContext;
@@ -98,8 +100,9 @@ import org.xml.sax.SAXException;
 */
 public class I18nFactorySet extends FactorySet
 {
-    /** Debug flag */
-  static public final boolean debug = false;
+    /** Commons Logging instance. */
+  protected static Log log = LogFactory.getLog(I18nFactorySet.class);
+
     /** Config file parameter name
      * @deprecated use DEFINITIONS_CONFIG_PARAMETER_NAME
      */
@@ -195,10 +198,7 @@ public class I18nFactorySet extends FactorySet
       }
      catch( NumberFormatException ex )
       {
-      System.out.println( "Bad format for parameter '"
-                        + PARSER_DETAILS_PARAMETER_NAME
-                        + "'. Integer expected.");
-      servletContext.log( "Tiles factory init : Bad format for parameter '"
+      log.error( "Bad format for parameter '"
                         + PARSER_DETAILS_PARAMETER_NAME
                         + "'. Integer expected.");
       }
@@ -213,12 +213,12 @@ public class I18nFactorySet extends FactorySet
     try
       {
       initFactory( servletContext, filename );
-          if( DefinitionsUtil.userDebugLevel > 0)
-            System.out.println( "Factory initialized from file '" + filename + "'." );
+          if(log.isDebugEnabled())
+            log.debug( "Factory initialized from file '" + filename + "'." );
       }
      catch( FileNotFoundException ex )
         { // A filename is specified, throw appropriate error.
-          System.out.println( ex.getMessage() + " : Can't find file '" +filename + "'" );
+          log.error( ex.getMessage() + " : Can't find file '" +filename + "'" );
           throw new FactoryNotFoundException( ex.getMessage() + " : Can't find file '" +filename + "'" ) ;
         } // end catch
       }
@@ -230,9 +230,9 @@ public class I18nFactorySet extends FactorySet
         try
           {
           initFactory( servletContext, filename );
-          if( DefinitionsUtil.userDebugLevel > 0)
+          if(log.isInfoEnabled())
             {
-            System.out.println( "Factory initialized from file '" + filename + "'." );
+            log.info( "Factory initialized from file '" + filename + "'." );
             }
           }
          catch( FileNotFoundException ex )
@@ -265,8 +265,8 @@ public class I18nFactorySet extends FactorySet
 
     loaded = new HashMap();
     defaultFactory = createDefaultFactory( servletContext );
-    if(debug)
-      System.out.println( "default factory:" + defaultFactory );
+    if(log.isDebugEnabled())
+      log.debug( "default factory:" + defaultFactory );
   }
 
   /**
@@ -297,12 +297,12 @@ public class I18nFactorySet extends FactorySet
 
     rootXmlConfig.resolveInheritances();
 
-    if(debug)
-      System.out.println( rootXmlConfig );
+    if(log.isDebugEnabled())
+      log.debug( rootXmlConfig );
 
     DefinitionsFactory factory = new DefinitionsFactory( rootXmlConfig );
-    if( DefinitionsUtil.userDebugLevel > DefinitionsUtil.NO_DEBUG )
-      System.out.println( "factory loaded : " + factory );
+    if(log.isInfoEnabled())
+      log.info( "factory loaded : " + factory );
 
     return factory;
     }
@@ -325,7 +325,7 @@ public class I18nFactorySet extends FactorySet
     }
    catch( ClassCastException ex )
     { //
-    System.out.println( "Error - I18nFactorySet.getDefinitionsFactoryKey" );
+    log.error( "I18nFactorySet.getDefinitionsFactoryKey" );
     ex.printStackTrace();
     }
 
@@ -396,8 +396,8 @@ public class I18nFactorySet extends FactorySet
     factory = new DefinitionsFactory(rootXmlConfig);
     loaded.put( lastPostfix, factory );
       // User help
-    if( DefinitionsUtil.userDebugLevel > DefinitionsUtil.NO_DEBUG )
-      System.out.println( "factory loaded : " + factory );
+    if(log.isDebugEnabled())
+      log.debug( "factory loaded : " + factory );
       // return last available found !
     return factory;
     }
@@ -408,8 +408,6 @@ public class I18nFactorySet extends FactorySet
      * Method copied from java.util.ResourceBundle
      * @param baseName the base bundle name
      * @param locale the locale
-     * @param names the vector used to return the names of the bundles along
-     * the search path.
      */
     private static List calculatePostixes(String baseName, Locale locale) {
         final List result = new ArrayList(MAX_BUNDLES_SEARCHED);
@@ -502,8 +500,8 @@ public class I18nFactorySet extends FactorySet
         // If still nothing found, this mean no config file is associated
 	    if(input == null )
         {
-        //if(debug)
-          //System.out.println( "Can't open file '" + filename + "'" );
+        if(log.isDebugEnabled())
+          log.debug( "Can't open file '" + filename + "'" );
         return xmlDefinitions;
         }
 
@@ -512,8 +510,8 @@ public class I18nFactorySet extends FactorySet
       //if( xmlParser == null )
       if( true )
         {  // create it
-        if(debug)
-          System.out.println( "Create xmlParser");
+        //if(log.isDebugEnabled())
+          //log.debug( "Create xmlParser");
         xmlParser = new XmlParser();
         xmlParser.setValidating(isValidatingParser);
         xmlParser.setDetailLevel(parserDetailLevel);
@@ -521,8 +519,8 @@ public class I18nFactorySet extends FactorySet
         // Check if definition set already exist.
       if( xmlDefinitions == null )
         {  // create it
-        if(debug)
-          System.out.println( "Create xmlDefinitions");
+        //if(log.isDebugEnabled())
+          //log.debug( "Create xmlDefinitions");
         xmlDefinitions = new XmlDefinitionsSet();
         }
 
@@ -530,9 +528,9 @@ public class I18nFactorySet extends FactorySet
 	    }
 	   catch( SAXException ex )
 	    {
-      if( debug)
+      if(log.isDebugEnabled())
         {
-        System.out.println( "Error while parsing file '"  + filename + "'.");
+        log.debug( "Error while parsing file '"  + filename + "'.");
         ex.printStackTrace();
         }
 	    throw new DefinitionsFactoryException( "Error while parsing file '" + filename + "'. " + ex.getMessage(), ex );

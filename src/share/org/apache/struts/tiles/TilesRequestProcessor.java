@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.6 2002/08/29 13:24:03 jholmes Exp $
- * $Revision: 1.6 $
- * $Date: 2002/08/29 13:24:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.7 2002/10/10 16:32:27 cedric Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/10/10 16:32:27 $
  *
  * ====================================================================
  *
@@ -62,27 +62,16 @@
 
 package org.apache.struts.tiles;
 
-import org.apache.struts.taglib.tiles.ComponentConstants;
-
-import java.util.Locale;
-
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.action.ActionServlet;
-import org.apache.struts.action.ActionForward;
 import org.apache.struts.config.ForwardConfig;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.Action;
 import org.apache.struts.config.ApplicationConfig;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
-import java.io.InputStream;
 import java.io.IOException;
-import java.io.FileNotFoundException;
-import org.apache.struts.taglib.html.Constants;
-import org.apache.struts.upload.MultipartRequestWrapper;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * <p><strong>RequestProcessor</strong> contains the processing logic that
@@ -98,10 +87,12 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  */
 public class TilesRequestProcessor extends RequestProcessor
 {
-    /** Debug flag */
-  public static final boolean debug = false;
     /** Definitions factory */
   private DefinitionsFactory definitionsFactory;
+     /**
+      * Commons Logging instance.
+      */
+     protected static Log log = LogFactory.getLog(RequestProcessor.class);
 
     /**
      * Initialize this request processor instance.
@@ -127,12 +118,18 @@ public class TilesRequestProcessor extends RequestProcessor
     definitionsFactory = DefinitionsUtil.getDefinitionsFactory(getServletContext());
     if( definitionsFactory == null )
       {  // problem !
-      log( "Error - TilesRequestProcessor : Definition Factory not found for subapp '"
-          + appConfig.getPrefix() + "'. "
-          + "Do you have declared appropriate plugin in struts-config.xml ?" );
+        if(log.isErrorEnabled())
+          {
+            log.error( "Definition Factory not found for subapp '"
+                + appConfig.getPrefix() + "'. "
+                + "Have you declared the appropriate plugin in struts-config.xml ?" );
+          }
       return;
       }
-    log( "Tiles definition factory found for request processor '" + appConfig.getPrefix() + "'.");
+    if(log.isInfoEnabled())
+      {
+            log.info("Tiles definition factory found for request processor '" + appConfig.getPrefix() + "'.");
+      }
     }
 
 
@@ -211,6 +208,10 @@ public class TilesRequestProcessor extends RequestProcessor
         }
        catch( java.lang.InstantiationException ex )
         {
+        if (log.isErrorEnabled())
+          {
+          log.error("Can't create associated controller", ex);
+          }
         throw new ServletException( "Can't create associated controller", ex );
         }
        catch( DefinitionsFactoryException ex )
@@ -231,6 +232,8 @@ public class TilesRequestProcessor extends RequestProcessor
 
       // If request comes from a previous Tile, do an include.
       // This allows to insert an action in a Tile.
+    if(log.isDebugEnabled())
+      log.debug( "uri=" + uri + " doInclude=" + doInclude);
     if( doInclude )
       doInclude(uri, request, response);
      else
@@ -282,20 +285,20 @@ public class TilesRequestProcessor extends RequestProcessor
       return;
       }
 
-    if(debug)
-      System.out.println( "processActionForward("
+    if(log.isDebugEnabled())
+      log.debug( "processForwardConfig("
                         + forward.getPath() + ", "
                         + forward.getContextRelative() + ")" );
 
       // Try to process the definition.
     if (processTilesDefinition( forward.getPath(), forward.getContextRelative(), request, response))
       {
-      if(debug)
-        System.out.println( "  '" +forward.getPath() + "' - processed as definition" );
+      if(log.isDebugEnabled())
+        log.debug( "  '" +forward.getPath() + "' - processed as definition" );
       return;
       }
-    if(debug)
-      System.out.println( "  '" +forward.getPath() + "' - processed as uri" );
+    if(log.isDebugEnabled())
+      log.debug( "  '" +forward.getPath() + "' - processed as uri" );
       // forward doesn't contains a definition, let parent do processing
     super.processForwardConfig(request, response, forward );
     }

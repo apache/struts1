@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlAttribute.java,v 1.1 2002/06/25 03:15:43 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:15:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlAttribute.java,v 1.2 2002/10/10 16:32:26 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/10/10 16:32:26 $
  *
  * ====================================================================
  *
@@ -62,10 +62,8 @@
 
 package org.apache.struts.tiles.xmlDefinition;
 
-import org.apache.struts.tiles.AttributeDefinition;
 import org.apache.struts.tiles.DirectStringAttribute;
 import org.apache.struts.tiles.PathAttribute;
-import org.apache.struts.tiles.DefinitionAttribute;
 import org.apache.struts.tiles.DefinitionNameAttribute;
 import org.apache.struts.tiles.UntyppedAttribute;
 
@@ -229,7 +227,6 @@ public class XmlAttribute
     {
     if( body.length() == 0 )
       return;
-    //System.out.println("body set to'" + body + "'");
     setValue(body);
     }
   /**

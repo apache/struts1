@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlDefinition.java,v 1.1 2002/06/25 03:15:43 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:15:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlDefinition.java,v 1.2 2002/10/10 16:32:26 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/10/10 16:32:26 $
  *
  * ====================================================================
  *
@@ -64,6 +64,8 @@ package org.apache.struts.tiles.xmlDefinition;
 
 import org.apache.struts.tiles.ComponentDefinition;
 import org.apache.struts.tiles.NoSuchDefinitionException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.Iterator;
 
@@ -77,8 +79,8 @@ public class XmlDefinition extends ComponentDefinition
    */
   private String inherit;
 
-    /** Debug flag */
-  static public final boolean debug = false;
+    /** Commons Logging instance. */
+   protected static Log log = LogFactory.getLog(XmlDefinition.class);
 
   /**
    * Use for resolving inheritance.
@@ -149,7 +151,7 @@ public class XmlDefinition extends ComponentDefinition
      * First, resolve parent's inheritance, then set path to the parent's path.
      * Also copy attributes setted in parent, and not set in child
      * If instance doesn't extends something, do nothing.
-     * @throws NoSuchInstanceException If a inheritance can be solved.
+     * @throws NoSuchDefinitionException If a inheritance can be solved.
      */
   public void resolveInheritance( XmlDefinitionsSet definitionsSet )
     throws NoSuchDefinitionException
@@ -158,10 +160,9 @@ public class XmlDefinition extends ComponentDefinition
     if( isVisited || !isExtending() )
       return;
 
-    if( debug)
-      System.out.println( "Resolve definition for child name='"
-                           + getName()    + "' extends='"
-                           + getExtends() + "'." );
+    if(log.isDebugEnabled())
+      log.debug( "Resolve definition for child name='" + getName()
+              + "' extends='" + getExtends() + "'.");
 
       // Set as visited to avoid endless recurisvity.
     setIsVisited( true );
@@ -173,7 +174,7 @@ public class XmlDefinition extends ComponentDefinition
       String msg = "Error while resolving definition inheritance: child '"
                            + getName() +    "' can't find its ancestor '"
                            + getExtends() + "'. Please check your description file.";
-      System.out.println( msg );
+      log.error( msg );
         // to do : find better exception
       throw new NoSuchDefinitionException( msg );
       }

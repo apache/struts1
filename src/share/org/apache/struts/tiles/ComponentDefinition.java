@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinition.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinition.java,v 1.2 2002/10/10 16:32:27 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/10/10 16:32:27 $
  *
  * ====================================================================
  *
@@ -63,13 +63,13 @@
 package org.apache.struts.tiles;
 
 import org.apache.struts.tiles.Controller;
-import org.apache.struts.action.Action;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.io.Serializable;
-import org.apache.struts.taglib.tiles.DefinitionTagSupport;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Definition of a template / component attributes.
@@ -78,8 +78,8 @@ import org.apache.struts.taglib.tiles.DefinitionTagSupport;
  */
 public class ComponentDefinition implements Serializable
 {
-  /** Debug flag */
-  public static final boolean debug = false;
+    /** Commons Logging instance. */
+  protected static Log log = LogFactory.getLog(ComponentDefinition.class);
 
   /**
    * Definition name
@@ -118,7 +118,6 @@ public class ComponentDefinition implements Serializable
   private Controller controllerInstance;
 
   /**
-   * @return void
    * Sets the value of the attributes property.
    *
    * @param aAttributes the new value of the attributes property
@@ -193,7 +192,6 @@ public class ComponentDefinition implements Serializable
     return name;}
 
   /**
-   * @return void
 * Sets the value of the name property.
 *
 * @param aName the new value of the name property
@@ -215,7 +213,6 @@ public class ComponentDefinition implements Serializable
    * Sets the value of the path property.
    *
    * @param aPath the new value of the path property
-   * @return void
    */
   public void setPage(String page)
     {
@@ -233,7 +230,6 @@ public class ComponentDefinition implements Serializable
     }
 
   /**
-   * @return void
    * Sets the value of the path property.
    *
    * @param aPath the new value of the path property
@@ -254,7 +250,6 @@ public class ComponentDefinition implements Serializable
     }
 
   /**
-   * @return void
    * Sets the value of the template property.
    * Same as setPath()
    *
@@ -267,7 +262,7 @@ public class ComponentDefinition implements Serializable
 
   /**
    * Access method for the role property.
-   * @return   the current value of the template property
+   * @return   the current value of the role property
    */
   public String getRole()
     {
@@ -275,10 +270,9 @@ public class ComponentDefinition implements Serializable
     }
 
   /**
-   * @return void
    * Sets the value of the role property.
    *
-   * @param template the new value of the path property
+   * @param role the new value of the path property
    */
   public void setRole(String role)
     {
@@ -478,9 +472,9 @@ public class ComponentDefinition implements Serializable
    * URL is specified as a string.
    * @param url Url called locally
    */
-  public void setController(String name)
+  public void setController(String url)
   {
-  this.controller = name;
+  this.controller = url;
   }
 
     /**
@@ -544,8 +538,8 @@ public class ComponentDefinition implements Serializable
    static public Controller createController(String name, String controllerType)
        throws InstantiationException
    {
-   if(debug)
-     System.out.println( "Create controller name="+ name+", type=" + controllerType );
+   if(log.isDebugEnabled())
+     log.debug( "Create controller name="+ name+", type=" + controllerType );
    Controller controller = null;
 
    if( controllerType == null )
@@ -570,7 +564,6 @@ public class ComponentDefinition implements Serializable
      /**
       * Create a controller from specified classname
       * @param classname Controller classname.
-      * @param controllerType Expected Controller type
       * @return org.apache.struts.tiles.Controller
       * @throws InstantiationException if an error occur while instanciating Controller :
       * (classname can't be instanciated, Illegal access with instanciated class,
@@ -589,8 +582,8 @@ public class ComponentDefinition implements Serializable
        instance = new ActionController( (Action)instance );
        } // end if
      */
-     if(debug)
-       System.out.println( "Controller created : " + instance );
+     if(log.isDebugEnabled())
+       log.debug( "Controller created : " + instance );
      return (Controller)instance;
      }
     catch( java.lang.ClassNotFoundException ex)

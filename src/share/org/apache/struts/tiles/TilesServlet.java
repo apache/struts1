@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/TilesServlet.java,v 1.2 2002/07/19 09:40:22 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/19 09:40:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/TilesServlet.java,v 1.3 2002/10/10 16:32:27 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/10 16:32:27 $
  *
  * ====================================================================
  *
@@ -64,9 +64,10 @@ package org.apache.struts.tiles;
 
 import org.apache.struts.tiles.DefinitionsUtil;
 import org.apache.struts.tiles.DefinitionsFactoryException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 
 
@@ -80,6 +81,8 @@ import javax.servlet.http.HttpServlet;
 
 public class TilesServlet extends HttpServlet
 {
+    /** Commons Logging instance. */
+  protected static Log log = LogFactory.getLog(TilesServlet.class);
 
     /**
      * Initialize this servlet
@@ -88,8 +91,8 @@ public class TilesServlet extends HttpServlet
      */
   public void init() throws ServletException
   {
-  log(  "Start Tiles initialization");
-  System.out.println( "Start Tiles initialization" );
+  if(log.isInfoEnabled())
+    log.info("Start Tiles initialization");
   super.init();
 
     // Create tiles definitions config object
@@ -101,18 +104,24 @@ public class TilesServlet extends HttpServlet
     }
    catch(Exception ex)
     {
-    throw new ServletException( "Can't populate DefinitionsFactoryConfig class from 'web.xml': " + ex.getMessage() );
+    String msg="Can't populate DefinitionsFactoryConfig class from 'web.xml'";
+    if (log.isErrorEnabled())
+      log.error(msg, ex);
+    throw new ServletException( msg + ex.getMessage() );
     }
 
   try
     {
-    System.out.println( "Try to load Tiles factory" );
+    if(log.isInfoEnabled())
+        log.info("Try to load Tiles factory");
     DefinitionsUtil.createDefinitionsFactory(getServletContext(), factoryConfig );
-    log(  "Tiles Factory loaded");
+    if(log.isInfoEnabled())
+        log.info("Tiles Factory successfully loaded");
     }
    catch( DefinitionsFactoryException ex )
     {
-      log(  "Tiles Factory load fail !", ex);
+      if(log.isErrorEnabled())
+          log.error("Tiles Factory load fail !", ex);
     throw new ServletException( ex );
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.3 2002/08/15 09:35:56 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/08/15 09:35:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.4 2002/10/10 16:32:27 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/10 16:32:27 $
  *
  * ====================================================================
  *
@@ -72,19 +72,19 @@ import org.apache.struts.tiles.DefinitionsFactoryException;
 
 import org.apache.struts.tiles.AttributeDefinition;
 import org.apache.struts.tiles.DirectStringAttribute;
-import org.apache.struts.tiles.PathAttribute;
 import org.apache.struts.tiles.DefinitionAttribute;
 import org.apache.struts.tiles.DefinitionNameAttribute;
 
 import org.apache.struts.taglib.tiles.util.TagUtils;
 
 import org.apache.struts.action.Action;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.Map;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.TagSupport;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -97,12 +97,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.3 $ $Date: 2002/08/15 09:35:56 $
+ * @version $Revision: 1.4 $ $Date: 2002/10/10 16:32:27 $
  */
 public class InsertTag extends DefinitionTagSupport implements PutTagParent, ComponentConstants, PutListTagParent
 {
-    /** debug flag */
-  public final static boolean debug = false;
+    /** Commons Logging instance. */
+  protected static Log log = LogFactory.getLog(InsertTag.class);
 
     /* JSP Tag attributes */
     /** Flush attribute value */
@@ -617,7 +617,7 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
         } // end catch
      catch( DefinitionsFactoryException ex )
         {
-        if(debug)
+        if(log.isDebugEnabled())
           ex.printStackTrace( );
           // Save exception to be able to show it later
         pageContext.setAttribute(Action.EXCEPTION_KEY, ex, PageContext.REQUEST_SCOPE);
@@ -861,8 +861,8 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
         } // end if
 
       try {
-        if( DefinitionsUtil.userDebugLevel > DefinitionsUtil.NO_DEBUG )
-          System.out.println( "insert page='" + page + "'." );
+        if(log.isDebugEnabled())
+          log.debug( "insert page='" + page + "'." );
 
          // set new context for included component.
         pageContext.setAttribute( ComponentConstants.COMPONENT_CONTEXT, subCompContext, pageContext.REQUEST_SCOPE);
@@ -919,9 +919,9 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
         if( msg == null )
           msg = ex.getMessage();
 
-        if(debug)
+        if(log.isDebugEnabled())
           {  // show full trace
-          System.out.println( msg );
+          log.debug( msg );
           ex.printStackTrace();
           pageContext.getOut().println(msg);
           ex.printStackTrace(new PrintWriter(pageContext.getOut(), true) );
@@ -987,8 +987,8 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
         }
        catch (IOException ex)
         {
-        if(debug)
-          System.out.println( "Can't write string '"+ value + "' : " + ex.getMessage() );
+        if(log.isDebugEnabled())
+          log.debug( "Can't write string '"+ value + "' : " + ex.getMessage() );
         pageContext.setAttribute(ComponentConstants.EXCEPTION_KEY, ex, PageContext.REQUEST_SCOPE);
         throw new JspException( "Can't write string '"+ value + "' : " + ex.getMessage() );
         }

@@ -7,17 +7,17 @@
 	<body>
 		<chapter name="Tiles Guide">
 			<section href="tiles" name="The Tiles Document Assembly Framework">
-				<p>Tiles builds on the "include" feature provided by the JavaServer Page 
-specification to provided a full-featured, robust framework for assembling 
-presentation pages from component parts. Each part, or tile, can be 
-reused as often as needed throughout your application. This reduces the 
-amount of markup that needs to be maintained and makes it easier to 
+				<p>Tiles builds on the "include" feature provided by the JavaServer Page
+specification to provided a full-featured, robust framework for assembling
+presentation pages from component parts. Each part, or tile, can be
+reused as often as needed throughout your application. This reduces the
+amount of markup that needs to be maintained and makes it easier to
 change the look and feel of a website. </p>
 			</section>
 			<section href="features" name="Overview of Tiles Features">
 				<ul>
 					<li>
-                     Screen definitions 
+                     Screen definitions
                      <ul>
 							<li>
                            Create a screen by assembling
@@ -27,7 +27,7 @@ change the look and feel of a website. </p>
                            menu, body
                         </li>
 							<li>
-                           Definitions can take place : 
+                           Definitions can take place :
                            <ul>
 									<li>
                                  in a centralized xml
@@ -49,7 +49,7 @@ change the look and feel of a website. </p>
 						</ul>
 					</li>
 					<li>
-                     Templating 
+                     Templating
                      <ul>
 							<li>
 								<strong>
@@ -69,7 +69,7 @@ change the look and feel of a website. </p>
 						</ul>
 					</li>
 					<li>
-                     Layouts 
+                     Layouts
                      <ul>
 							<li>
                            Define common page layouts and reuse
@@ -93,7 +93,7 @@ change the look and feel of a website. </p>
 						</ul>
 					</li>
 					<li>
-                     Dynamic page building 
+                     Dynamic page building
                      <ul>
 							<li>
                            Tiles are gather dynamically during
@@ -107,7 +107,7 @@ change the look and feel of a website. </p>
                      Reuse of <strong>
 							<em>Tiles</em>
 						</strong> /
-                     Components 
+                     Components
                      <ul>
 							<li>
                            If well defined, a
@@ -172,11 +172,11 @@ change the look and feel of a website. </p>
 				</ul>
 			</section>
 			<section href="setup" name="Enabling your application for Tiles">
-				<p>The Tiles framework is bundled with Struts. It is not enabled by default. 
+				<p>The Tiles framework is bundled with Struts. It is not enabled by default.
 To enable Tiles you need to:
 </p>
 				<ul>
-					<li>Setup the struts-tiles taglib in your <code>WEB-INF/web.xml</code> 
+					<li>Setup the struts-tiles taglib in your <code>WEB-INF/web.xml</code>
       file to include the following tag library declarations:</li>
 				</ul>
 				<pre>&lt;taglib&gt;
@@ -198,38 +198,52 @@ To enable Tiles you need to:
 		 files.</li>
 					<ul>
 						<li>Create a file containing your definitions and give it a name (ex :
-	   <code>WEB-INF/tiles-defs.xml</code>). You can use the <code>tiles-defs.xml</code> 
+	   <code>WEB-INF/tiles-defs.xml</code>). You can use the <code>tiles-defs.xml</code>
 	   file from the Tiles application for a detailed example of the required syntax.</li>
 						<li>Setup Tiles plugin in each <code>struts-config.xml</code> file corresponding to
 	 a module:</li>
 					</ul>
 					<pre>
  &lt;plug-in className="org.apache.struts.tiles.TilesPlugin" &gt;
-   &lt;set-property property="definitions-config" 
+   &lt;set-property property="definitions-config"
                     value="/WEB-INF/tiles-defs.xml,
                            /WEB-INF/tiles-tests-defs.xml" /&gt;
-   &lt;set-property property="definitions-debug" value="0" /&gt;
-   &lt;set-property property="definitions-parser-details" value="0" /&gt;
    &lt;set-property property="definitions-parser-validate" value="true" /&gt;
  &lt;/plug-in&gt;
 </pre>
 					<ul>
 						<li>
-							<strong>note:</strong> This plugin creates one single shared factory even if you have 
-	several modules. The plugin first read factory parameters from <code>web.xml</code> and 
-	then overload them with parameters from the first <code>struts-config.xml</code> file read. 
+							<strong>note:</strong> This plugin creates one single shared factory even if you have
+	several modules. The plugin first read factory parameters from <code>web.xml</code> and
+	then overload them with parameters from the first <code>struts-config.xml</code> file read.
 	Read order is determined by the order of module declarations in <code>web.xml</code>.</li>
 					</ul>
 				</ul>
+        <ul>
+          <li>
+            <strong>note:</strong> Tiles framework now use the commons-logging package to output different
+            information or debug data. Please refer to this package documentation to enable it. The
+            simplest way to enable logging is to create two files under <code>WEB-INF/classes</code>:
+					<pre>
+          <strong>commons-logging.properties</strong>
+          org.apache.commons.logging.Log=org.apache.commons.logging.impl.SimpleLog
+          <strong>simplelog.properties</strong>
+          # Logging detail level,
+          # Must be one of ("trace", "debug", "info", "warn", "error", or "fatal").
+          org.apache.commons.logging.simplelog.defaultlog=trace
+</pre>
+
+          </li>
+        </ul>
 			</section>
 			<section href="tiles" name="Tiles API Guide">
 <ul>
-<li>A concise 
+<li>A concise
 <a href="../api/org/apache/struts/tiles/package-summary.html#package_description">Tiles API Guide</a> is available to help you get started with the Tiles framework.</li>
 <li><a href="struts-tiles.html">Tiles Taglib Syntax Reference</a></li>
 </ul>
 			</section>
-			
+
 			<section href="resources" name="Tiles Resources">
 				<p>
 					<a href="http://www-106.ibm.com/developerworks/java/library/j-strutstiles.html?loc=j">
@@ -245,8 +259,8 @@ To enable Tiles you need to:
 <p>
 					<b>
 						<u>Developing applications with Tiles</u>
-					</b> by Cedric Dumoulin and Ted Husted. 
-Sample chapter from <u>Java Web Development with Struts</u>; available as a 
+					</b> by Cedric Dumoulin and Ted Husted.
+Sample chapter from <u>Java Web Development with Struts</u>; available as a
 <u>free download</u> (PDF).
 </p>
 -->

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.2 2002/07/17 09:24:29 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/17 09:24:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.3 2002/10/10 16:32:27 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/10 16:32:27 $
  *
  * ====================================================================
  *
@@ -66,8 +66,9 @@ import org.apache.struts.taglib.tiles.util.TagUtils;
 import org.apache.struts.tiles.ComponentDefinition;
 import org.apache.struts.tiles.AttributeDefinition;
 import org.apache.struts.tiles.UntyppedAttribute;
-import org.apache.struts.tiles.DefinitionsUtil;
-import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import javax.servlet.jsp.JspException;
 
 /**
@@ -76,10 +77,12 @@ import javax.servlet.jsp.JspException;
  * used in &lt;tiles:insert&gt.
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.2 $ $Date: 2002/07/17 09:24:29 $
+ * @version $Revision: 1.3 $ $Date: 2002/10/10 16:32:27 $
  */
 public class DefinitionTag extends DefinitionTagSupport implements PutTagParent, PutListTagParent
 {
+    /** Commons Logging instance. */
+  //protected static Log log = LogFactory.getLog(DefinitionTag.class);
 
     /* JSP Tag attributes */
 		/**
@@ -263,7 +266,8 @@ public class DefinitionTag extends DefinitionTagSupport implements PutTagParent,
    if( extendsDefinition != null && !extendsDefinition.equals("") )
      {
      ComponentDefinition parentDef = TagUtils.getComponentDefinition( extendsDefinition, pageContext );
-     //System.out.println( "parent definition=" + parentDef );
+     //if(log.isDebugEnabled())
+         //log.debug( "parent definition=" + parentDef );
      definition = new ComponentDefinition( parentDef );
      }  // end if
     else
@@ -275,7 +279,8 @@ public class DefinitionTag extends DefinitionTagSupport implements PutTagParent,
    if( role != null )
      definition.setRole(role);
 
-   //System.out.println( "definition=" + definition );
+   //if(log.isDebugEnabled())
+       //log.debug( "definition=" + definition );
    return EVAL_BODY_INCLUDE;
    }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.2 2002/07/11 16:46:40 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/11 16:46:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.3 2002/10/10 16:32:27 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/10 16:32:27 $
  *
  * ====================================================================
  *
@@ -66,14 +66,14 @@ import org.apache.struts.tiles.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -106,10 +106,12 @@ import org.apache.struts.action.ActionMapping;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.2 $ $Date: 2002/07/11 16:46:40 $
+ * @version $Revision: 1.3 $ $Date: 2002/10/10 16:32:27 $
  */
 
 public final class DefinitionDispatcherAction extends Action {
+    /** Commons Logging instance. */
+   protected static Log log = LogFactory.getLog(DefinitionDispatcherAction.class);
 
     /**
      * Process the specified HTTP request, and create the corresponding HTTP
@@ -153,7 +155,8 @@ public final class DefinitionDispatcherAction extends Action {
         {
           // Read definition from factory, but we can create it here.
         ComponentDefinition definition = DefinitionsUtil.getDefinition( name, request, getServlet().getServletContext() );
-        System.out.println("get Definition " + definition );
+        if(log.isDebugEnabled())
+            log.debug("get Definition " + definition );
         DefinitionsUtil.setActionDefinition( request, definition);
         }
        catch( FactoryNotFoundException ex )
