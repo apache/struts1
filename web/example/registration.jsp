@@ -118,14 +118,17 @@
 <table border="1" width="100%">
 
   <tr>
-    <th align="center" width="35%">
+    <th align="center" width="30%">
       <struts:message key="heading.host"/>
     </th>
     <th align="center" width="25%">
       <struts:message key="heading.user"/>
     </th>
-    <th align="center" width="15%">
+    <th align="center" width="10%">
       <struts:message key="heading.type"/>
+    </th>
+    <th align="center" width="10%">
+      <struts:message key="heading.autoConnect"/>
     </th>
     <th align="center" width="15%">
       <struts:message key="heading.action"/>
@@ -142,6 +145,9 @@
     </td>
     <td align="center">
       <struts:htmlProperty name="subscription" property="type"/>
+    </td>
+    <td align="center">
+      <struts:htmlProperty name="subscription" property="autoConnect"/>
     </td>
     <td align="center">
       <app:linkSubscription href="editSubscription.do?action=Delete">

@@ -1,8 +1,9 @@
 <database>
 
-  <user username="user" password="pass"
+  <user username="user"
+        password="pass"
         fullName="John Q. User"
-        fromAddress="John.User@somewhere.com">
+     fromAddress="John.User@somewhere.com">
 
      <subscription host="mail.yahoo.com"     type="imap"
                    username="jquser"     password="foo"/>

@@ -85,6 +85,15 @@
   </tr>
 
   <tr>
+    <th align="right">
+      <struts:message key="prompt.autoConnect"/>
+    </th>
+    <td align="left">
+      <struts:checkbox property="autoConnect"/>
+    </td>
+  </tr>
+
+  <tr>
     <td align="right">
       <struts:ifParameterNotEquals name="action" value="Delete">
         <struts:submit>
