@@ -83,7 +83,8 @@
       <blockquote>
         <b>Note:</b> While ActionForm beans often have properties that correspond 
         to properties in your Model beans, the form beans themselves should 
-        be considered part of the view.
+        be considered a Controller component. As such, they are able to 
+        transfer data between the Model and View layers. 
       </blockquote>
       <p>
         The Struts framework generally assumes that you have defined an
@@ -239,23 +240,43 @@
     </section>
     
     <section name="2.6 Accessing Relational Databases" href="databases">
-      
+
       <p>
-        Struts can define the datasources for an application from within its standard 
-        configuration file. A <b>simple</b> JDBC connection pool is also provided. See <a 
-        href="building_controller.html#config">The Action Mappings Configuration File</a>
-        section and the Utilities Developer Guide for details. 
+        Ideally, the business logic beans should encapsulate the data access 
+        details, including acquiring a database connection. However, some 
+        application designs expect that the caller able to provide a
+        with a database connection or datasource instance. When this is the 
+        case, the Struts datasource manager can make it easy for your Action 
+        to produce these resources on demand. 
+      </p>      
+      <p>
+        The Struts datasource manager is configured as an element in the 
+        Struts configuration file (struts-config.xml). The manager can 
+        used to deploy any connection pool that implements the         
+        <code>javax.sql.DataSource</code> interface and is configurable totally
+        from JavaBean properties. If your DBMS or container provides a 
+        connection pool that meets these requirements, then that component 
+        might your first choice. 
+       </p>
+       <p>
+        Otherwise, the Struts distribution includes a Generic DataSource pool  
+        [org.apache.struts.util.GenericDataSource]
+        that works well with the datasource manager. If another component 
+        is not specified, the Generic DataSource pool is used by default.
+        See <a  href="building_controller.html#config">The Action Mappings 
+        Configuration File</a> section and the Utilities Developer Guide for 
+        more detail. 
       </p>
       <p>
-        After the datasource is defined, here is an example of establishing a connection 
-        from within a Action perform method.
+        After the datasource is defined, here is an example of using the 
+        manger to establishing a connection from within an Action's <code>execute</code> method.
       </p>
 <pre>
 public ActionForward
-       perform(ActionMapping mapping,
+       execute(ActionMapping mapping,
                ActionForm form,
                HttpServletRequest request,
-               HttpServletResponse response)
+               HttpServletResponse response) throws Exception 
 {
  javax.sql.DataSource dataSource;
  java.sql.Connection myConnection;
@@ -281,10 +302,11 @@ public ActionForward
 </pre>
       
       <p>
-        Note that the Struts generic connection pool is an <b>optional</b> component. Many 
-        Struts applications use other connection pools for better performance, 
-        especially with high-volume production systems. 
-       </p>
+        Note that the Struts connection pool [org.apache.struts.util.GenericDataSource] 
+        has <b>not</b> been optimized for performance. Many Struts applications use other connection 
+        pools, especially with high-volume production systems. If your DBMS or container 
+        provides a connection pool of its own, that may be a better choice. 
+      </p>
       <p align="center">
         Next: <a href="building_view.html">Building View Components</a>
       </p>
