@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.10 2001/04/19 22:58:40 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2001/04/19 22:58:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.11 2001/04/29 03:11:39 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2001/04/29 03:11:39 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2001/04/19 22:58:40 $
+ * @version $Revision: 1.11 $ $Date: 2001/04/29 03:11:39 $
  */
 
 public class FormTag extends TagSupport {
@@ -512,7 +512,8 @@ public class FormTag extends TagSupport {
         ResponseUtils.write(pageContext, results.toString());
 
 	// Store this tag itself as a page attribute
-	pageContext.setAttribute(Constants.FORM_KEY, this);
+	pageContext.setAttribute(Constants.FORM_KEY, this,
+                                 PageContext.REQUEST_SCOPE);
         
 	// Locate or create the bean associated with our form
 	int scope = PageContext.SESSION_SCOPE;
@@ -535,7 +536,8 @@ public class FormTag extends TagSupport {
 	    }
 	    pageContext.setAttribute(name, bean, scope);
 	}
-	pageContext.setAttribute(Constants.BEAN_KEY, bean);
+	pageContext.setAttribute(Constants.BEAN_KEY, bean,
+                                 PageContext.REQUEST_SCOPE);
 
 	// Continue processing this page
 	return (EVAL_BODY_INCLUDE);
@@ -551,8 +553,10 @@ public class FormTag extends TagSupport {
     public int doEndTag() throws JspException {
 
 	// Remove the page scope attributes we created
-	pageContext.removeAttribute(Constants.BEAN_KEY);
-	pageContext.removeAttribute(Constants.FORM_KEY);
+	pageContext.removeAttribute(Constants.BEAN_KEY,
+                                    PageContext.REQUEST_SCOPE);
+	pageContext.removeAttribute(Constants.FORM_KEY,
+                                    PageContext.REQUEST_SCOPE);
 
 	// Render a tag representing the end of our current form
 	StringBuffer results = new StringBuffer("</form>");
