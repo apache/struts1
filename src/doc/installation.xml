@@ -101,9 +101,10 @@
     </pre>
 
     <p>This command will create a binary distribution of Struts, in a
-    directory named <code>../dist/struts</code> (relative to where you
+    directory named <code>dist</code> (relative to where you
     are compiling from).  This directory contains an exact replica of the
-    files included in a binary distribution of Struts.</p>
+    files included in a binary distribution of Struts, as described
+    in the following section.</p>
 
   </section>
 
@@ -138,13 +139,13 @@
         You can install this web application on any servlet container
         compatible with the Servlet 2.2 (or later) and JSP 1.1 (or later)
         specifications.</li>
+    <li><strong>webapps/struts-template.war</strong> - This web application
+        both introduces and demonstrates the Struts template tags.</li>       
     <li><strong>webapps/struts-test.war</strong> - This web application
         contains test pages for the various custom tags supported by Struts.
         It is primarily of use to developers who are enhancing the Struts
         custom tag libraries, but may also be useful as simple examples of
         the usage of various Struts tags.</li>
-    <li><strong>webapps/struts-template.war</strong> - This web application
-        both introduces and demonstrates the Struts template tags.</li>       
     <li><strong>webapps/struts-upload.war</strong> - This web application
         is a quick example of uploading files using the Struts framework.</li>
         </ul>
