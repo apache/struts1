@@ -1,5 +1,5 @@
 The Struts-Faces Integration Library (Version 1.0) README File
-$Id: README.txt,v 1.16 2004/08/21 18:25:10 craigmcc Exp $
+$Id: README.txt,v 1.17 2004/09/03 05:13:57 craigmcc Exp $
 
 
 ============
@@ -32,6 +32,15 @@ Struts-Faces Integration Library (Version 1.0):
 
 This release of the Struts-Faces Integration Library (Version 1.0) has the
 following new features relative to the previous (0.4) release:
+
+* As of the nightly build 20040902, the URI for the struts-faces tag library
+  has changed.  You should now be using:
+
+    <%@ taglib prefix="s" uri="http://struts.apache.org/tags-faces" %>
+
+  instead of:
+
+    <%@ taglib prefix="s" uri="http://jakarta.apache.org/struts/tags-faces" %>
 
 * It is now possible to mix pure JavaServer Faces pages, and those
   using the struts-faces integration library, in the same webapp.  Previously,
@@ -400,7 +409,7 @@ applications is straightforward, and requires the following steps:
     <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
     <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
     <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
-    <%@ taglib prefix="s" uri="http://jakarta.apache.org/struts/tags-faces" %>
+    <%@ taglib prefix="s" uri="http://struts.apache.org/tags-faces" %>
 
   - The Struts-Faces tag library (prefix "s" above) contains replacements
     for functionality in the existing Struts HTML tag library that are
