@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.74 2002/12/10 06:03:21 martinc Exp $
- * $Revision: 1.74 $
- * $Date: 2002/12/10 06:03:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.75 2002/12/23 20:52:37 craigmcc Exp $
+ * $Revision: 1.75 $
+ * $Date: 2002/12/23 20:52:37 $
  *
  * ====================================================================
  *
@@ -97,6 +97,7 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionServletWrapper;
+import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.DynaActionFormClass;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ActionConfig;
@@ -113,7 +114,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.74 $ $Date: 2002/12/10 06:03:21 $
+ * @version $Revision: 1.75 $ $Date: 2002/12/23 20:52:37 $
  */
 
 public class RequestUtils {
@@ -600,6 +601,7 @@ public class RequestUtils {
                 DynaActionFormClass dynaClass =
                     DynaActionFormClass.createDynaActionFormClass(config);
                 instance = (ActionForm) dynaClass.newInstance();
+                ((DynaActionForm) instance).initialize(mapping);
                 if (log.isDebugEnabled()) {
                     log.debug(
                         " Creating new DynaActionForm instance "

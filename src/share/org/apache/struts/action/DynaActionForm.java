@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.6 2002/11/06 04:48:28 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2002/11/06 04:48:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.7 2002/12/23 20:52:37 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/12/23 20:52:37 $
  *
  * ====================================================================
  *
@@ -83,8 +83,15 @@ import org.apache.struts.config.FormPropertyConfig;
  * of form beans with dynamic sets of properties, without requiring the
  * developer to create a Java class for each type of form bean.</p>
  *
+ * <p><strong>USAGE NOTE</strong> - Since Struts 1.1-b3, the
+ * <code>reset()</code> method no longer initializes property values to those
+ * specified in <code>&lt;form-property&gt;</code> elements in the Struts
+ * module configuration file.  If you wish to utilize that behavior, the
+ * simplest solution is to subclass <code>DynaActionForm</code> and call
+ * the <code>initialize()</code> method inside it.</p>
+ *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/11/06 04:48:28 $
+ * @version $Revision: 1.7 $ $Date: 2002/12/23 20:52:37 $
  * @since Struts 1.1
  */
 
@@ -111,12 +118,41 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Reset all bean properties to their default state.  This method is
+     * <p>Initialize all bean properties to their initial values, as specified
+     * in the {@link FormPropertyConfig} elements associated with the
+     * definition of this <code>DynaActionForm</code>.</p>
+     *
+     * @param mapping The mapping used to select this instance
+     *
+     * @since Struts 1.1-b3
+     */
+    public void initialize(ActionMapping mapping) {
+
+        String name = mapping.getName();
+        if (name == null) {
+            return;
+        }
+        FormBeanConfig config =
+            mapping.getModuleConfig().findFormBeanConfig(name);
+        if (config == null) {
+            return;
+        }
+        FormPropertyConfig props[] = config.findFormPropertyConfigs();
+        for (int i = 0; i < props.length; i++) {
+            set(props[i].getName(), props[i].initial());
+        }
+
+    }
+
+
+
+    /**
+     * <p>Reset all bean properties to their default state.  This method is
      * called before the properties are repopulated by the controller
-     * servlet.
-     * <p>
-     * The default implementation attempts to forward to the HTTP
-     * version of this method.
+     * servlet.</p>
+     * 
+     * <p>The default implementation attempts to forward to the HTTP
+     * version of this method.</p>
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
@@ -133,30 +169,23 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Reset all bean properties to their default state.  This method is
+     * <p>Reset all bean properties to their default state.  This method is
      * called before the properties are repopulated by the controller servlet.
-     * <p>
-     * The default implementation uses the initial value specified in the
-     * FormPropertyConfig element for each property.
+     * </p>
+     * 
+     * <p>The default implementation (since Struts 1.1-b3) does nothing.
+     * Subclasses may override this method to reset bean properties to
+     * default values, or the <code>initialize()</code> method may be used to
+     * initialize property values to those provided in the form property
+     * configuration information (which was the previous behavior of
+     * this method).</p>
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
      */
     public void reset(ActionMapping mapping, HttpServletRequest request) {
 
-        String name = mapping.getName();
-        if (name == null) {
-            return;
-        }
-        FormBeanConfig config =
-            mapping.getModuleConfig().findFormBeanConfig(name);
-        if (config == null) {
-            return;
-        }
-        FormPropertyConfig props[] = config.findFormPropertyConfigs();
-        for (int i = 0; i < props.length; i++) {
-            set(props[i].getName(), props[i].initial());
-        }
+        ;       // Default implementation does nothing
 
     }
 
