@@ -33,8 +33,8 @@
       <code>name</code>, <code>parameter</code>, <code>property</code>)
       present on this tag.  It will be converted to the appropriate type
       for the comparison, as determined above.</li>
-  <li>A request time exception will be thrown if the specified variable
-      cannot be retrieved, or has a null value.</li>
+  <li>If the specified variable or property returns null, it will be
+      coerced to a zero-length string before the comparison occurs.</li>
   <li>The specific comparison for this tag will be performed, and the nested
       body content of this tag will be evaluated if the comparison returns
       a <code>true</code> result.</li>
@@ -453,7 +453,7 @@
     <p>The collection to be iterated over MUST conform to one of the following
     requirements in order for iteration to be successful:</p>
     <ul>
-    <li>An array of Java objects or primitves.</li>
+    <li>An array of Java objects or primitives.</li>
 
     <li>An implementation of <code>java.util.Collection</code>, including
         <code>ArrayList</code> and <code>Vector</code>.</li>
@@ -882,6 +882,118 @@
       <info>
       <p>The constant value which is checked for existence as a substring
       of the specified variable.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
+  <tag>
+
+    <name>messagesNotPresent</name>
+    <summary>
+    Generate the nested body content of this tag if the specified
+    message is not present in this request.
+    </summary>
+    <tagclass>org.apache.struts.taglib.logic.MessagesNotPresentTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+    <p>Evaluates the nested body content of this tag if 
+       an <code>ActionMessages</code>
+       object, <code>ActionErrors</code> object, a String,
+       or a String array is not in request scope.  If
+       such a bean is not found, nothing will be rendered.
+    </p>
+    </info>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The parameter key to retrieve the message from request scope.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Name of the property for which messages should be
+         retrieved.  If not specified, all messages (regardless
+         of property) are retrieved.
+      </p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>message</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>By default the tag will retrieve the request scope bean it will
+         iterate over from the <code>Action.ERROR_KEY</code> constant string,
+         but if this attribute is set to 'true' the request scope bean
+         will be retrieved from the <code>Action.MESSAGE_KEY</code>
+         constant string.  Also if this is set to 'true', any value
+         assigned to the name attribute will be ignored.
+      </p>
+      </info>
+    </attribute>
+
+  </tag>
+
+  <tag>
+
+    <name>messagesPresent</name>
+    <summary>
+    Generate the nested body content of this tag if the specified
+    message is present in this request.
+    </summary>
+    <tagclass>org.apache.struts.taglib.logic.MessagesPresentTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+    <p>Evaluates the nested body content of this tag if 
+       an <code>ActionMessages</code>
+       object, <code>ActionErrors</code> object, a String,
+       or a String array is in request scope.  If
+       such a bean is not found, nothing will be rendered.
+    </p>
+    </info>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The parameter key to retrieve the message from request scope.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Name of the property for which messages should be
+         retrieved.  If not specified, all messages (regardless
+         of property) are retrieved.
+      </p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>message</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>By default the tag will retrieve the request scope bean it will
+         iterate over from the <code>Action.ERROR_KEY</code> constant string,
+         but if this attribute is set to 'true' the request scope bean
+         will be retrieved from the <code>Action.MESSAGE_KEY</code>
+         constant string.  Also if this is set to 'true', any value
+         assigned to the name attribute will be ignored.
+      </p>
       </info>
     </attribute>
 
@@ -1368,12 +1480,13 @@
                 <ul>
                 <li><em>forward</em> - Use the value of this attribute as the
                     name of a global <code>ActionForward</code> to be looked
-                    up, and use the context-relative URI found there.</li>
+                    up, and use the application-relative or context-relative
+                    URI found there.</li>
                 <li><em>href</em> - Use the value of this attribute unchanged.
                     </li>
-                <li><em>page</em> - Use the value of this attribute as a
-                    context-relative URI, and generate a server-relative URI
-                    by including the context path.</li>
+                <li><em>page</em> - Use the value of this attribute as an
+                    applicaiton-relative URI, and generate a server-relative
+                    URI by including the context path.</li>
                 </ul>
 
                 <p>Normally, the redirect you specify with one of the

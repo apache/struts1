@@ -452,7 +452,8 @@
 
     <p>The collection to be iterated over MUST conform to one of the following
     requirements in order for iteration to be successful:</p>
-    <ul><li>An array of Java objects or primitves.</li>
+    <ul>
+    <li>An array of Java objects or primitives.</li>
 
     <li>An implementation of <code>java.util.Collection</code>, including
         <code>ArrayList</code> and <code>Vector</code>.</li>
@@ -488,9 +489,6 @@
     iteration.  You can use the <code>&lt;logic:present&gt;</code> and
     <code>&lt;logic:notPresent&gt;</code> tags to test for this case.</p>
 
-    <p><strong>WARNING</strong> - Currently, this tag cannot deal with
-    arrays of primitive data types.  Only arrays of Java objects (including
-    Strings) are supported.</p>
     </info>
 
     <attribute>
