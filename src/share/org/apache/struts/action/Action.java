@@ -1,7 +1,8 @@
+
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.53 2002/11/12 03:56:08 dgraham Exp $
- * $Revision: 1.53 $
- * $Date: 2002/11/12 03:56:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.54 2002/12/29 22:09:40 husted Exp $
+ * $Revision: 1.54 $
+ * $Date: 2002/12/29 22:09:40 $
  *
  * ====================================================================
  *
@@ -114,7 +115,7 @@ import org.apache.struts.util.RequestUtils;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.53 $ $Date: 2002/11/12 03:56:08 $
+ * @version $Revision: 1.54 $ $Date: 2002/12/29 22:09:40 $
  */
 
 public class Action {
@@ -355,12 +356,16 @@ public class Action {
 
 
     /**
-     * Process the specified HTTP request, and create the corresponding HTTP
-     * response (or forward to another web component that will create it),
-     * with provision for handling exceptions thrown by the business logic.
+     * Process the specified non-HTTP request, and create the
+     * corresponding non-HTTP response (or forward to another web
+     * component that will create it), with provision for handling
+     * exceptions thrown by the business logic.
      * Return an {@link ActionForward} instance describing where and how
-     * control should be forwarded, or <code>null</code> if the response
-     * has already been completed.
+     * control should be forwarded, or <code>null</code> if the response has
+     * already been completed.
+     * <p>
+     * The default implementation attempts to forward to the HTTP
+     * version of this method.
      *
      * @param mapping The ActionMapping used to select this instance
      * @param form The optional ActionForm bean for this request (if any)
