@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/action/TestActionMessage.java,v 1.4 2003/11/15 21:22:33 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/11/15 21:22:33 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/action/TestActionMessage.java,v 1.5 2003/11/15 21:25:05 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/11/15 21:25:05 $
  *
  * ====================================================================
  * 
@@ -69,7 +69,7 @@ import junit.framework.TestSuite;
  * Unit tests for the <code>org.apache.struts.action.ActionMessage</code> class.
  *
  * @author Dominique Plante
- * @version $Revision: 1.4 $ $Date: 2003/11/15 21:22:33 $
+ * @version $Revision: 1.5 $ $Date: 2003/11/15 21:25:05 $
  */
 public class TestActionMessage extends TestCase {
     
@@ -116,24 +116,14 @@ public class TestActionMessage extends TestCase {
     }
     
     public void testActionMessageWithNoValue() {
-        assertTrue(
-            "testActionMessageWithNoValue value is not null",
-            amWithNoValue.getValues() == null);
-        assertTrue(
-            "testActionMessageWithNoValue key is not amWithNoValue",
-            amWithNoValue.getKey() == "amWithNoValue");
+        assertTrue(amWithNoValue.getValues() == null);
+        assertTrue(amWithNoValue.getKey() == "amWithNoValue");
     }
 
     public void testActionMessageWithAStringValue() {
         Object[] values = amWithOneValue.getValues();
-        assertTrue(
-            "testActionMessageWithAStringValue value is not null",
-            values != null);
-        assertTrue(
-            "testActionMessageWithAStringValue value[0] is not the string stringValue",
-            values[0].equals("stringValue"));
-        assertTrue(
-            "testActionMessageWithAStringValue key is not amWithOneValue",
-            amWithOneValue.getKey() == "amWithOneValue");
+        assertTrue(values != null);
+        assertTrue(values[0].equals("stringValue"));
+        assertTrue(amWithOneValue.getKey() == "amWithOneValue");
     }
 }
