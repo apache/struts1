@@ -11,6 +11,7 @@
     <author>Ted Husted</author>
     <author>Martin Cooper</author>
     <author>James Holmes</author>
+    <author>David Graham</author>
 </properties>
 
 <body>
@@ -20,14 +21,13 @@
     <p>
     Welcome to Struts!
     The goal of this project is to provide an open source framework for 
-    building web applications.
+    building Java web applications.
     </p>
 
     <p>
     The core of the Struts framework is a flexible control layer based on
     <a href="userGuide/preface.html">standard technologies</a> like Java 
-    Servlets, JavaBeans, ResourceBundles, and Extensible Markup Language 
-    (XML), as well as various
+    Servlets, JavaBeans, ResourceBundles, and XML, as well as various
     <a href="http://jakarta.apache.org/commons/index.html">Jakarta Commons</a> packages.
     Struts encourages application architectures based on the Model 2 approach,
     a variation of the classic
@@ -38,13 +38,16 @@
     <p>
         Struts provides its own <strong>Controller</strong> component and integrates with <a href="userGuide/preface.html#layers">
         other technologies</a> to provide the Model and the View.
+
         For the <strong>Model</strong>, Struts can interact with standard <a href="resources/models.html">data access
-        technologies</a>, like Enterprise Java Beans and JDBC, as well as most any third-party packages, like
+        technologies</a>, like <a href="http://java.sun.com/products/jdbc/">JDBC</a> and 
+        <a href="http://java.sun.com/products/ejb/">EJB</a>, as well as most any third-party packages, like
         Hibernate, iBATIS, or Object Relational Bridge.
-        For the <strong>View</strong>, Struts works well with JavaServer Pages, including
+
+        For the <strong>View</strong>, Struts works well with 
+        <a href="http://java.sun.com/products/jsp/">JavaServer Pages</a>, including
         <a href="./faqs/kickstart.html#jsf">JSTL and JSF</a>, as well as Velocity Templates, XSLT, and
-        <a href="resources/views.html">other presentation systems
-        </a>.
+        <a href="resources/views.html">other presentation systems</a>.
     </p>
 
     <p>
