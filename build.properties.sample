@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.41 2003/06/19 11:16:41 jmitchell Exp $
+# $Id: build.properties.sample,v 1.42 2003/06/29 05:27:58 martinc Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -32,7 +32,7 @@ apache.home=D:/Java/Programs/Apache
 # if you are going to execute the "deploy.catalina" target.
 catalina.home=${apache.home}/jakarta-tomcat-4.0.6
 
-# The JAR file containing the Beanutils package (Version 1.5 or later)
+# The JAR file containing the Beanutils package (Version 1.6.1 or later)
 # from the Jakarta Commons project.
 commons-beanutils.jar=${commons-lib.home}/beanutils/dist/commons-beanutils.jar
 
@@ -40,27 +40,27 @@ commons-beanutils.jar=${commons-lib.home}/beanutils/dist/commons-beanutils.jar
 # from the Jakarta Commons project.
 commons-collections.jar=${commons-lib.home}/collections/dist/commons-collections.jar
 
-# The JAR file containing the Digester package (Version 1.3 or later)
+# The JAR file containing the Digester package (Version 1.5 or later)
 # from the Jakarta Commons project.
 commons-digester.jar=${commons-lib.home}/digester/dist/commons-digester.jar
 
-# The JAR file containing the FileUpload package (Version 1.0 RC1 or later)
+# The JAR file containing the FileUpload package (Version 1.0 or later)
 # from the Jakarta Commons project.
-commons-fileupload.jar=${commons-lib.home}/fileupload/dist/commons-fileupload.jar
+commons-fileupload.jar=${commons-lib.home}/fileupload/dist/commons-fileupload-1.0.jar
 
 # The JAR file containing the Lang package (Version 1.0.1 or later)
 # from the Jakarta Commons project.
-commons-lang.jar=${commons-lib.home}/lang/dist/commons-lang.jar
+commons-lang.jar=${commons-lib.home}/lang/dist/commons-lang-1.0.1.jar
 
 # The JAR file containing the Logging package (Version 1.0.3 or later)
 # from the Jakarta Commons project.
 commons-logging.jar=${commons-lib.home}/logging/dist/commons-logging.jar
 
-# The JAR file containing the Validator package (Version 1.0.1 or later)
+# The JAR file containing the Validator package (Version 1.0.2 or later)
 # from the Jakarta Commons project.
 commons-validator.jar=${commons-lib.home}/validator/dist/commons-validator.jar
 
-# The JAR file containing the Jakarta ORO project version 2.06 (or later)
+# The JAR file containing the Jakarta ORO package (Version 2.0.6 or later)
 jakarta-oro.jar=${apache.home}/jakarta-oro-2.0.6/jakarta-oro-2.0.6.jar
 
 # The JAR file containing the JDBC 2.0 Optional Package extensions API
