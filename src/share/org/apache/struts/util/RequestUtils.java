@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.105.2.1 2003/07/16 04:57:44 martinc Exp $
- * $Revision: 1.105.2.1 $
- * $Date: 2003/07/16 04:57:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.105.2.2 2003/07/16 05:11:10 martinc Exp $
+ * $Revision: 1.105.2.2 $
+ * $Date: 2003/07/16 05:11:10 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.105.2.1 $ $Date: 2003/07/16 04:57:44 $
+ * @version $Revision: 1.105.2.2 $ $Date: 2003/07/16 05:11:10 $
  */
 
 public class RequestUtils {
@@ -1062,9 +1062,6 @@ public class RequestUtils {
      * default bundle name is used.
      * @return MessageResources The bundle's resources stored in some scope. 
      * @throws JspException if the MessageResources object could not be found.
-     * 
-     * @FIXME The bundle name needs the module prefix appended to it before searching
-     * to fix PR# 11932.
      */
     private static MessageResources retrieveMessageResources(
         PageContext pageContext,
@@ -1093,9 +1090,11 @@ public class RequestUtils {
         }
 
         if (resources == null) {
+            ModuleConfig config = (ModuleConfig) pageContext.getAttribute(
+                    Globals.MODULE_KEY, PageContext.REQUEST_SCOPE);
             resources =
                 (MessageResources) pageContext.getAttribute(
-                    bundle,
+                    bundle + config.getPrefix(),
                     PageContext.APPLICATION_SCOPE);
         }
 
