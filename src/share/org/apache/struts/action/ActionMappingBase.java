@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.6 2000/06/30 01:19:32 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/06/30 01:19:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.7 2000/07/17 00:46:38 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/07/17 00:46:38 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.util.Hashtable;
  * subclassing this class and adding new "getter" and "setter" methods.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/06/30 01:19:32 $
+ * @version $Revision: 1.7 $ $Date: 2000/07/17 00:46:38 $
  */
 
 public class ActionMappingBase implements ActionMapping {
@@ -119,6 +119,13 @@ public class ActionMappingBase implements ActionMapping {
      * against form instance properties (if any).
      */
     protected String formPrefix = null;
+
+
+    /**
+     * The scope (request or session) within which the form bean associated
+     * with this mapping will be created or looked up.
+     */
+    protected String formScope = "session";
 
 
     /**
@@ -241,6 +248,28 @@ public class ActionMappingBase implements ActionMapping {
     public void setFormPrefix(String formPrefix) {
 
 	this.formPrefix = formPrefix;
+
+    }
+
+
+    /**
+     * Return the scope within which our form bean will be accessed.
+     */
+    public String getFormScope() {
+
+	return (this.formScope);
+
+    }
+
+
+    /**
+     * Set the scope within which our form bean will be accessed.
+     *
+     * @param formScope The new scope ("request" or "session")
+     */
+    public void setFormScope(String formScope) {
+
+	this.formScope = formScope;
 
     }
 

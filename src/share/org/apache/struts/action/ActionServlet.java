@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.16 2000/07/16 00:49:21 craigmcc Exp $
- * $Revision: 1.16 $
- * $Date: 2000/07/16 00:49:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.17 2000/07/17 00:46:39 craigmcc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2000/07/17 00:46:39 $
  *
  * ====================================================================
  *
@@ -151,9 +151,30 @@ import org.xml.sax.SAXException;
  *     we utilize in <code>initMapping()</code>, which logs to System.out
  *     instead of the servlet log.  [0]
  * <li><strong>forward</strong> - The Java class name of the ActionForward
- *     implementation to use [org.apache.struts.action.ActionForward]
+ *     implementation to use [org.apache.struts.action.ActionForward].
+ *     Two convenient classes you may wish to use are:
+ *     <ul>
+ *     <li><em>org.apache.struts.action.ForwardingActionForward</em> -
+ *         Subclass of <code>org.apache.struts.action.ActionForward</code>
+ *         that defaults the <code>redirect</code> property to
+ *         <code>false</code> (same as the ActionForward default value).
+ *     <li><em>org.apache.struts.action.RedirectingActionForward</em> -
+ *         Subclass of <code>org.apache.struts.action.ActionForward</code>
+ *         that defaults the <code>redirect</code> property to
+ *         <code>true</code>.
+ *     </ul>
  * <li><strong>mapping</strong> - The Java class name of the ActionMapping
- *     implementation to use [org.apache.struts.action.ActionMappingBase]
+ *     implementation to use [org.apache.struts.action.ActionMappingBase].
+ *     Two convenient classes you may wish to use are:
+ *     <ul>
+ *     <li><em>org.apache.struts.action.RequestActionMapping</em> - Subclass
+ *         of <code>org.apache.struts.action.ActionMappingBase</code> that
+ *         defaults the <code>formScope</code> property to "request".
+ *     <li><em>org.apache.struts.action.SessionActionMapping</em> - Subclass
+ *         of <code>org.apache.struts.action.ActionMappingBase</code> that
+ *         defaults the <code>formScope</code> property to "session".  (Same
+ *         as the ActionMappingBase default value).
+ *     </ul>
  * <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
  *     to every response intended to defeat browser caching of any response we
  *     generate or forward to.  [false]
@@ -164,7 +185,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2000/07/16 00:49:21 $
+ * @version $Revision: 1.17 $ $Date: 2000/07/17 00:46:39 $
  */
 
 public class ActionServlet
@@ -704,8 +725,14 @@ public class ActionServlet
 	    if (debug >= 1)
 	        log(" Looking for ActionForm bean under attribute '" +
 		    formAttribute + "'");
-	    session = request.getSession();
-	    formInstance = (ActionForm) session.getAttribute(formAttribute);
+	    if ("request".equals(mapping.getFormScope())) {
+		formInstance =
+		    (ActionForm) request.getAttribute(formAttribute);
+	    } else {
+		session = request.getSession();
+		formInstance =
+		    (ActionForm) session.getAttribute(formAttribute);
+	    }
 	    if (formInstance == null) {
 		if (debug >= 1)
 		    log(" Creating new ActionForm instance");
@@ -714,7 +741,10 @@ public class ActionServlet
 		    if (debug >= 1)
 		        log(" Storing instance under attribute '" +
 			    formAttribute + "'");
-		    session.setAttribute(formAttribute, formInstance);
+		    if ("request".equals(mapping.getFormScope()))
+			request.setAttribute(formAttribute, formInstance);
+		    else
+			session.setAttribute(formAttribute, formInstance);
 	        }
 	    }
 	}

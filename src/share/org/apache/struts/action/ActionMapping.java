@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.5 2000/06/30 01:19:32 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/06/30 01:19:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.6 2000/07/17 00:46:38 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/07/17 00:46:38 $
  *
  * ====================================================================
  *
@@ -87,6 +87,9 @@ package org.apache.struts.action;
  * <li><strong>formPrefix</strong> - Prefix used to match request parameter
  *     names when populating the properties of our <code>ActionForm</code>
  *     bean (if any).
+ * <li><strong>formScope</strong> - Scope within which the form bean associated
+ *     with this mapping will be created or looked for.  Valid values are
+ *     "request" or "session".
  * <li><strong>formSuffix</strong> - Suffix used to match request parameter
  *     names when populating the properties of our <code>ActionForm</code>
  *     bean (if any).
@@ -97,7 +100,7 @@ package org.apache.struts.action;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/06/30 01:19:32 $
+ * @version $Revision: 1.6 $ $Date: 2000/07/17 00:46:38 $
  */
 
 public interface ActionMapping {
@@ -160,6 +163,20 @@ public interface ActionMapping {
      * @param formPrefix The new form prefix
      */
     public void setFormPrefix(String formPrefix);
+
+
+    /**
+     * Return the scope within which our form bean will be accessed.
+     */
+    public String getFormScope();
+
+
+    /**
+     * Set the scope within which our form bean will be accessed.
+     *
+     * @param formScope The new scope ("request" or "session")
+     */
+    public void setFormScope(String formScope);
 
 
     /**
