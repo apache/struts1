@@ -1,3 +1,17 @@
+-[BOARD REPORT] 21-Jul-2004 Apache Struts-
+
+We have started a reorganization of our repository. The goals of the refactoring are to better support subprojects  with their own release cycles and building Struts with Apache Maven.
+
+An initial draft of the reorganization is being done under Subversion on a private server, with all discussions taking place on the public DEV list. We will be ready to move the work to an Apache server soon, now that we have a consensus in favor of Subversion and Maven.
+
+We completed a draft of Apache Struts bylaws and developer guidelines, which is available at <http://struts.apache.org/bylaws.html>.
+
+There was a discussion on the DEV list regarding the "bar" for Committership. The consensus is to keep the bar set fairly high and wait until a contributor has submitted a good number of useful patches directly to Struts.
+
+Our latest stable release is still 1.1 (29 June 2003). We issued a 1.2.1 release on 11 July 2004, which is currently catagorized as a beta. We anticipate 1.2.1 (or a 1.2.2) being promoted to GA over the next 30 days.
+
+----
+
 -[STATUS LOG] 20-Jul-2004 Apache Struts-
 
 * PMC Members
@@ -116,5 +130,5 @@
     * Niall Pemberton (niallp at apache.org)
 
 
-$Id: STATUS.txt,v 1.13 2004/07/21 16:32:03 husted Exp $
+$Id: STATUS.txt,v 1.14 2004/07/22 13:31:53 husted Exp $
 ###
