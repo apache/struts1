@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELNotMatchTag.java,v 1.6 2003/03/09 05:47:26 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2003/03/09 05:47:26 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELNotMatchTag.java,v 1.7 2003/03/09 07:47:09 dmkarr Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/03/09 07:47:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -75,7 +75,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ELNotMatchTag extends NotMatchTag {
 
@@ -224,6 +224,25 @@ public class ELNotMatchTag extends NotMatchTag {
     }
 
     /**
+     * Evaluated value of expression.
+     */
+    private String   exprValue;
+
+    /**
+     * Returns the evaluated expression.
+     */
+    public  String   getExprValue() {
+        return (exprValue);
+    }
+
+    /**
+     * Sets the evaluated expression.
+     */
+    public  void  setExprValue(String exprValue) {
+        this.exprValue  = exprValue;
+    }
+
+    /**
      * Releases state of custom tag so this instance can be reused.
      */
     public void release()
@@ -238,6 +257,7 @@ public class ELNotMatchTag extends NotMatchTag {
         setScopeExpr(null);
         setValueExpr(null);
         setExpr(null);
+        setExprValue(null);
     }
     
     /**
@@ -260,10 +280,10 @@ public class ELNotMatchTag extends NotMatchTag {
      */
     protected boolean condition(boolean desired) throws JspException {
         boolean   result   = false;
-        if (getExpr() != null) {
+        if (getExprValue() != null) {
             result   =
-                ELMatchSupport.condition(!desired, getExpr(), value, location,
-                                         messages, pageContext);
+                ELMatchSupport.condition(desired, getExprValue(), value,
+                                         location, messages, pageContext);
         }
         else {
             result   = super.condition(desired);
@@ -286,7 +306,7 @@ public class ELNotMatchTag extends NotMatchTag {
 
         if ((string = EvalHelper.evalString("expr", getExpr(),
                                             this, pageContext)) != null)
-            setExpr(string);
+            setExprValue(string);
 
         if ((string = EvalHelper.evalString("header", getHeaderExpr(),
                                             this, pageContext)) != null)
