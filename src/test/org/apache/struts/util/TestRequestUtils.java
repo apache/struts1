@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.17 2003/02/08 22:12:09 craigmcc Exp $
- * $Revision: 1.17 $
- * $Date: 2003/02/08 22:12:09 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.18 2003/05/04 22:41:13 dgraham Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/05/04 22:41:13 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.taglib.html.Constants;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2003/02/08 22:12:09 $
+ * @version $Revision: 1.18 $ $Date: 2003/05/04 22:41:13 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -163,7 +163,7 @@ public class TestRequestUtils extends TestMockBase {
     // Default application -- extension mapping
     public void testActionURL1() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig);
+        request.setAttribute(Globals.MODULE_KEY, appConfig);
         request.setPathElements("/myapp", "/foo.do", null, null);
         String url = RequestUtils.actionURL
             (request, appConfig.findActionConfig("/dynamic"), "*.do");
@@ -178,7 +178,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second application -- extension mapping
     public void testActionURL2() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, appConfig2);
         request.setPathElements("/myapp", "/2/foo.do", null, null);
         String url = RequestUtils.actionURL
             (request, appConfig2.findActionConfig("/dynamic2"), "*.do");
@@ -193,7 +193,7 @@ public class TestRequestUtils extends TestMockBase {
     // Default application -- path mapping
     public void testActionURL3() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig);
+        request.setAttribute(Globals.MODULE_KEY, appConfig);
         request.setPathElements("/myapp", "/do/foo", null, null);
         String url = RequestUtils.actionURL
             (request, appConfig.findActionConfig("/dynamic"), "/do/*");
@@ -660,7 +660,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module -- Forward only
     public void testComputeURL2a() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, appConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -682,7 +682,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module -- Href only
     public void testComputeURL2b() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, appConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -704,7 +704,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module -- Page only
     public void testComputeURL2c() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, appConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -726,7 +726,7 @@ public class TestRequestUtils extends TestMockBase {
     // Default module -- Forward with pattern
     public void testComputeURL2d() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, appConfig2);
         appConfig2.getControllerConfig().setForwardPattern
             ("$C/WEB-INF/pages$M$P");
         request.setPathElements("/myapp", "/2/action.do", null, null);
@@ -752,7 +752,7 @@ public class TestRequestUtils extends TestMockBase {
 
         appConfig2.getControllerConfig().setPagePattern
             ("$C/WEB-INF/pages$M$P");
-        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, appConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -774,7 +774,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module -- Forward with relative path (non-context-relative)
     public void testComputeURL2f() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, appConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -796,7 +796,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module -- Forward with relative path (context-relative)
     public void testComputeURL2g() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, appConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -818,7 +818,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module -- Forward with external path
     public void testComputeURL2h() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, appConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
@@ -1211,7 +1211,7 @@ public class TestRequestUtils extends TestMockBase {
     // Default module (default forwardPattern)
     public void testForwardURL1() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig);
+        request.setAttribute(Globals.MODULE_KEY, appConfig);
         request.setPathElements("/myapp", "/action.do", null, null);
         ForwardConfig forward = null;
         String result = null;
@@ -1276,7 +1276,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module (default forwardPattern)
     public void testForwardURL2() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, appConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         ForwardConfig forward = null;
         String result = null;
@@ -1341,7 +1341,7 @@ public class TestRequestUtils extends TestMockBase {
     // Third module (custom forwardPattern)
     public void testForwardURL3() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig3);
+        request.setAttribute(Globals.MODULE_KEY, appConfig3);
         request.setPathElements("/myapp", "/3/action.do", null, null);
         ForwardConfig forward = null;
         String result = null;
@@ -1409,7 +1409,7 @@ public class TestRequestUtils extends TestMockBase {
     // Default module (default pagePattern)
     public void testPageURL1() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig);
+        request.setAttribute(Globals.MODULE_KEY, appConfig);
         request.setPathElements("/myapp", "/action.do", null, null);
         String page = null;
         String result = null;
@@ -1428,7 +1428,7 @@ public class TestRequestUtils extends TestMockBase {
     // Second module (default pagePattern)
     public void testPageURL2() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setAttribute(Globals.MODULE_KEY, appConfig2);
         request.setPathElements("/myapp", "/2/action.do", null, null);
         String page = null;
         String result = null;
@@ -1447,7 +1447,7 @@ public class TestRequestUtils extends TestMockBase {
     // Third module (custom pagePattern)
     public void testPageURL3() {
 
-        request.setAttribute(Action.APPLICATION_KEY, appConfig3);
+        request.setAttribute(Globals.MODULE_KEY, appConfig3);
         request.setPathElements("/myapp", "/3/action.do", null, null);
         String page = null;
         String result = null;
@@ -1492,7 +1492,7 @@ public class TestRequestUtils extends TestMockBase {
         request.setPathElements("/myapp", "/noform.do", null, null);
         RequestUtils.selectApplication(request, context);
         ApplicationConfig appConfig = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
+            request.getAttribute(Globals.MODULE_KEY);
         assertNotNull("Selected an application", appConfig);
         assertEquals("Selected correct application",
                      "", appConfig.getPrefix());
@@ -1507,7 +1507,7 @@ public class TestRequestUtils extends TestMockBase {
         request.setPathElements("/myapp", "/2/noform.do", null, null);
         RequestUtils.selectApplication(request, context);
         ApplicationConfig appConfig = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
+            request.getAttribute(Globals.MODULE_KEY);
         assertNotNull("Selected an application", appConfig);
         assertEquals("Selected correct application",
                      "/2", appConfig.getPrefix());
@@ -1524,7 +1524,7 @@ public class TestRequestUtils extends TestMockBase {
                              "/noform.do");
         RequestUtils.selectApplication(request, context);
         ApplicationConfig appConfig = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
+            request.getAttribute(Globals.MODULE_KEY);
         assertNotNull("Selected an application", appConfig);
         assertEquals("Selected correct application",
                      "", appConfig.getPrefix());
@@ -1541,7 +1541,7 @@ public class TestRequestUtils extends TestMockBase {
                              "/2/noform.do");
         RequestUtils.selectApplication(request, context);
         ApplicationConfig appConfig = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
+            request.getAttribute(Globals.MODULE_KEY);
         assertNotNull("Selected an application", appConfig);
         assertEquals("Selected correct application",
                      "/2", appConfig.getPrefix());

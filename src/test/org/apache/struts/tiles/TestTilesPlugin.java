@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/tiles/TestTilesPlugin.java,v 1.2 2003/02/28 02:42:15 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/28 02:42:15 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/tiles/TestTilesPlugin.java,v 1.3 2003/05/04 22:41:13 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/05/04 22:41:13 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.RequestUtils;
  * <p>Unit tests for <code>org.apache.struts.tiles.*</code>.</p>
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.2 $ $Date: 2003/02/28 02:42:15 $
+ * @version $Revision: 1.3 $ $Date: 2003/05/04 22:41:13 $
  */
 
 public class TestTilesPlugin extends TestMockBase {
@@ -141,19 +141,31 @@ public class TestTilesPlugin extends TestMockBase {
      * Create a module configuration
      * @param moduleName
      */
-  public ModuleConfig createModuleConfig( String moduleName, String configFileName, boolean moduleAware )
-  {
-  ModuleConfig moduleConfig = ModuleConfigFactory.createFactory().createModuleConfig(moduleName);
-  context.setAttribute(Action.APPLICATION_KEY + moduleName, moduleConfig);
-
-    // Set tiles plugin
-  PlugInConfig pluginConfig = new PlugInConfig();
-  pluginConfig.setClassName( "org.apache.struts.tiles.TilesPlugin" );
-  pluginConfig.addProperty( "moduleAware", (moduleAware==true?"true":"false") );
-  pluginConfig.addProperty( "definitions-config", "/org/apache/struts/tiles/config/" + configFileName );
-  moduleConfig.addPlugInConfig( pluginConfig );
-  return moduleConfig;
-  }
+    public ModuleConfig createModuleConfig(
+    	String moduleName,
+    	String configFileName,
+    	boolean moduleAware) {
+            
+    	ModuleConfig moduleConfig =
+    		ModuleConfigFactory.createFactory().createModuleConfig(moduleName);
+            
+    	context.setAttribute(Globals.MODULE_KEY + moduleName, moduleConfig);
+    
+    	// Set tiles plugin
+    	PlugInConfig pluginConfig = new PlugInConfig();
+    	pluginConfig.setClassName("org.apache.struts.tiles.TilesPlugin");
+        
+    	pluginConfig.addProperty(
+    		"moduleAware",
+    		(moduleAware == true ? "true" : "false"));
+            
+    	pluginConfig.addProperty(
+    		"definitions-config",
+    		"/org/apache/struts/tiles/config/" + configFileName);
+            
+    	moduleConfig.addPlugInConfig(pluginConfig);
+    	return moduleConfig;
+    }
 
     /**
      * Fake call to init module plugins
@@ -192,33 +204,41 @@ public class TestTilesPlugin extends TestMockBase {
     /**
      * Test multi factory creation when moduleAware=true.
      */
-  public void testMultiFactory()
-  {
-    // init TilesPlugin
-  module1 = createModuleConfig( "/module1", "tiles-defs.xml", true );
-  module2 = createModuleConfig( "/module2", "tiles-defs.xml", true );
-  initModulePlugIns(module1);
-  initModulePlugIns(module2);
-
-    // mock request context
-  request.setAttribute(Action.APPLICATION_KEY, module1);
-  request.setPathElements("/myapp", "/module1/foo.do", null, null);
-    // Retrieve factory for module1
-  DefinitionsFactory factory1 = TilesUtil.getDefinitionsFactory( request, context);
-  assertNotNull( "factory found", factory1);
-  assertEquals( "factory name", "/module1", factory1.getConfig().getFactoryName() );
-
-    // mock request context
-  request.setAttribute(Action.APPLICATION_KEY, module2);
-  request.setPathElements("/myapp", "/module2/foo.do", null, null);
-    // Retrieve factory for module2
-  DefinitionsFactory factory2 = TilesUtil.getDefinitionsFactory( request, context);
-  assertNotNull( "factory found", factory2);
-  assertEquals( "factory name", "/module2", factory2.getConfig().getFactoryName() );
-
-    // Check that factory are different
-  assertNotSame("Factory from different modules", factory1, factory2);
-  }
+    public void testMultiFactory() {
+    	// init TilesPlugin
+    	module1 = createModuleConfig("/module1", "tiles-defs.xml", true);
+    	module2 = createModuleConfig("/module2", "tiles-defs.xml", true);
+    	initModulePlugIns(module1);
+    	initModulePlugIns(module2);
+    
+    	// mock request context
+    	request.setAttribute(Globals.MODULE_KEY, module1);
+    	request.setPathElements("/myapp", "/module1/foo.do", null, null);
+    	// Retrieve factory for module1
+    	DefinitionsFactory factory1 =
+    		TilesUtil.getDefinitionsFactory(request, context);
+            
+    	assertNotNull("factory found", factory1);
+    	assertEquals(
+    		"factory name",
+    		"/module1",
+    		factory1.getConfig().getFactoryName());
+    
+    	// mock request context
+    	request.setAttribute(Globals.MODULE_KEY, module2);
+    	request.setPathElements("/myapp", "/module2/foo.do", null, null);
+    	// Retrieve factory for module2
+    	DefinitionsFactory factory2 =
+    		TilesUtil.getDefinitionsFactory(request, context);
+    	assertNotNull("factory found", factory2);
+    	assertEquals(
+    		"factory name",
+    		"/module2",
+    		factory2.getConfig().getFactoryName());
+    
+    	// Check that factory are different
+    	assertNotSame("Factory from different modules", factory1, factory2);
+    }
 
     /**
      * Test single factory creation when moduleAware=false.
@@ -232,7 +252,7 @@ public class TestTilesPlugin extends TestMockBase {
   initModulePlugIns(module2);
 
     // mock request context
-  request.setAttribute(Action.APPLICATION_KEY, module1);
+  request.setAttribute(Globals.MODULE_KEY, module1);
   request.setPathElements("/myapp", "/module1/foo.do", null, null);
     // Retrieve factory for module1
   DefinitionsFactory factory1 = TilesUtil.getDefinitionsFactory( request, context);
@@ -240,7 +260,7 @@ public class TestTilesPlugin extends TestMockBase {
   assertEquals( "factory name", "/module1", factory1.getConfig().getFactoryName() );
 
     // mock request context
-  request.setAttribute(Action.APPLICATION_KEY, module2);
+  request.setAttribute(Globals.MODULE_KEY, module2);
   request.setPathElements("/myapp", "/module2/foo.do", null, null);
     // Retrieve factory for module2
   DefinitionsFactory factory2 = TilesUtil.getDefinitionsFactory( request, context);

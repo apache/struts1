@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.2 2003/02/28 02:24:46 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/28 02:24:46 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.3 2003/05/04 22:41:12 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/05/04 22:41:12 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.tiles.actions.TilesAction;
  *
  * @author Ted Husted
  * @author Cedric Dumoulin
- * @version $Revision: 1.2 $ $Date: 2003/02/28 02:24:46 $
+ * @version $Revision: 1.3 $ $Date: 2003/05/04 22:41:12 $
  */
 public final class RssChannelsAction extends TilesAction {
 
@@ -178,7 +178,7 @@ public final class RssChannelsAction extends TilesAction {
         }
 
         // -- Handle Errors ---
-        if (!errors.empty()) {
+        if (!errors.isEmpty()) {
             saveErrors(request, errors);
             // If no input page, use error forwarding
          if(debug)
@@ -213,9 +213,9 @@ public final class RssChannelsAction extends TilesAction {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.2 2003/02/28 02:24:46 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/28 02:24:46 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.3 2003/05/04 22:41:12 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/05/04 22:41:12 $
  *
  * ====================================================================
  *

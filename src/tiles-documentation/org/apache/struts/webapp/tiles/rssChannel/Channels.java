@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.3 2003/02/28 02:24:46 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/02/28 02:24:46 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.4 2003/05/04 22:41:12 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/05/04 22:41:12 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.tiles.ComponentContext;
  * @expects an input page or error forwarding if exception digesting RSS
  * @author Ted Husted
  * @author Cedric Dumoulin
- * @version $Revision: 1.3 $ $Date: 2003/02/28 02:24:46 $
+ * @version $Revision: 1.4 $ $Date: 2003/05/04 22:41:12 $
  */
 public final class Channels extends Action {
 
@@ -178,7 +178,7 @@ public final class Channels extends Action {
         }
 
         // -- Handle Errors ---
-        if (!errors.empty()) {
+        if (!errors.isEmpty()) {
             saveErrors(request, errors);
             if (mapping.getInput()!=null)
                 return (new ActionForward(mapping.getInput()));

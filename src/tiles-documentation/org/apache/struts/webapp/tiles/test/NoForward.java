@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/NoForward.java,v 1.1 2003/03/22 00:31:09 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/22 00:31:09 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/NoForward.java,v 1.2 2003/05/04 22:41:13 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/05/04 22:41:13 $
  *
  * ====================================================================
  *
@@ -61,9 +61,6 @@
 
 package org.apache.struts.webapp.tiles.test;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -72,7 +69,6 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.tiles.ComponentContext;
-import org.apache.struts.tiles.ComponentDefinition;
 
 
 /**
@@ -91,7 +87,7 @@ import org.apache.struts.tiles.ComponentDefinition;
  *  </action>
  * </pre>
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2003/03/22 00:31:09 $
+ * @version $Revision: 1.2 $ $Date: 2003/05/04 22:41:13 $
  */
 
 public final class NoForward extends Action {

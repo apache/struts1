@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.4 2002/11/12 03:56:09 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/12 03:56:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.5 2003/05/04 22:41:13 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/05/04 22:41:13 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.util.MessageResources;
  * @since 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.4 $ $Date: 2002/11/12 03:56:09 $
+ * @version $Revision: 1.5 $ $Date: 2003/05/04 22:41:13 $
  */
 public class ConfigHelper implements ConfigHelperInterface {
 
@@ -237,9 +237,10 @@ public class ConfigHelper implements ConfigHelperInterface {
      */
     public ActionFormBeans getActionFormBeans() {
 
-        if (this.application == null)
+        if (this.application == null) {
             return null;
-        return (ActionFormBeans) this.application.getAttribute(Action.FORM_BEANS_KEY);
+        }
+        return (ActionFormBeans) this.application.getAttribute(Globals.FORM_BEANS_KEY);
 
     }
 
@@ -249,9 +250,10 @@ public class ConfigHelper implements ConfigHelperInterface {
      */
     public ActionForwards getActionForwards() {
 
-        if (this.application == null)
+        if (this.application == null) {
             return null;
-        return (ActionForwards) this.application.getAttribute(Action.FORWARDS_KEY);
+        }
+        return (ActionForwards) this.application.getAttribute(Globals.FORWARDS_KEY);
 
     }
 
@@ -262,9 +264,10 @@ public class ConfigHelper implements ConfigHelperInterface {
      * ActionServlet.
      */
     public ActionMappings getActionMappings() {
-        if (this.application == null)
+        if (this.application == null) {
             return null;
-        return (ActionMappings) this.application.getAttribute(Action.MAPPINGS_KEY);
+        }
+        return (ActionMappings) this.application.getAttribute(Globals.MAPPINGS_KEY);
     }
 
     /**
@@ -272,8 +275,9 @@ public class ConfigHelper implements ConfigHelperInterface {
      */
     public MessageResources getMessageResources() {
 
-        if (this.application == null)
+        if (this.application == null) {
             return null;
+        }
         return (MessageResources) this.application.getAttribute(Globals.MESSAGES_KEY);
 
     }
@@ -285,8 +289,9 @@ public class ConfigHelper implements ConfigHelperInterface {
      */
     public String getServletMapping() {
 
-        if (this.application == null)
+        if (this.application == null) {
             return null;
+        }
         return (String) this.application.getAttribute(Globals.SERVLET_KEY);
 
     }
@@ -303,11 +308,13 @@ public class ConfigHelper implements ConfigHelperInterface {
     public Locale getLocale() {
         Locale locale = null;
 
-        if (session != null)
+        if (session != null) {
             locale = (Locale) session.getAttribute(Globals.LOCALE_KEY);
+        }
 
-        if ((locale == null) && (request != null))
+        if ((locale == null) && (request != null)) {
             locale = request.getLocale();
+        }
 
         return locale;
     }
@@ -317,8 +324,9 @@ public class ConfigHelper implements ConfigHelperInterface {
      */
     public String getToken() {
 
-        if (this.session == null)
+        if (this.session == null) {
             return null;
+        }
         return (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
 
     }
@@ -331,8 +339,9 @@ public class ConfigHelper implements ConfigHelperInterface {
      */
     public ActionErrors getActionErrors() {
 
-        if (this.request == null)
+        if (this.request == null) {
             return null;
+        }
         return (ActionErrors) this.request.getAttribute(Globals.ERROR_KEY);
 
     }
@@ -344,8 +353,9 @@ public class ConfigHelper implements ConfigHelperInterface {
      */
     public Throwable getException() {
 
-        if (this.request == null)
+        if (this.request == null) {
             return null;
+        }
         return (Throwable) this.request.getAttribute(Globals.EXCEPTION_KEY);
 
     }
@@ -355,8 +365,9 @@ public class ConfigHelper implements ConfigHelperInterface {
      */
     public MultipartRequestWrapper getMultipartRequestWrapper() {
 
-        if (this.request == null)
+        if (this.request == null) {
             return null;
+        }
         return (MultipartRequestWrapper) this.request.getAttribute(Globals.MULTIPART_KEY);
     }
 
@@ -366,8 +377,9 @@ public class ConfigHelper implements ConfigHelperInterface {
       */
     public ActionMapping getMapping() {
 
-        if (this.request == null)
+        if (this.request == null) {
             return null;
+        }
         return (ActionMapping) this.request.getAttribute(Globals.MAPPING_KEY);
 
     }
@@ -385,8 +397,9 @@ public class ConfigHelper implements ConfigHelperInterface {
         // Look up the requested MessageResources
         MessageResources resources = getMessageResources();
 
-        if (resources == null)
+        if (resources == null) {
             return false;
+        }
 
         // Return the requested message presence indicator
         return (resources.isPresent(getLocale(), key));

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.10 2003/02/08 21:01:52 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2003/02/08 21:01:52 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.11 2003/05/04 22:41:13 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/05/04 22:41:13 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionForward;
@@ -88,7 +89,7 @@ import org.apache.struts.config.ForwardConfig;
  * environment was set up correctly.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2003/02/08 21:01:52 $
+ * @version $Revision: 1.11 $ $Date: 2003/05/04 22:41:13 $
  */
 
 public class TestMockBase extends TestCase {
@@ -165,7 +166,7 @@ public class TestMockBase extends TestCase {
         ActionMapping mapping = null;
 
         appConfig = new ApplicationConfig("");
-        context.setAttribute(Action.APPLICATION_KEY, appConfig);
+        context.setAttribute(Globals.MODULE_KEY, appConfig);
 
         // Forward "external" to "http://jakarta.apache.org/"
         appConfig.addForwardConfig
@@ -306,7 +307,7 @@ public class TestMockBase extends TestCase {
         ActionMapping mapping = null;
 
         appConfig2 = new ApplicationConfig("/2");
-        context.setAttribute(Action.APPLICATION_KEY + "/2", appConfig2);
+        context.setAttribute(Globals.MODULE_KEY + "/2", appConfig2);
 
         // Forward "external" to "http://jakarta.apache.org/"
         appConfig2.addForwardConfig
@@ -411,7 +412,7 @@ public class TestMockBase extends TestCase {
 
 
         appConfig3 = new ApplicationConfig("/3");
-        context.setAttribute(Action.APPLICATION_KEY + "/3", appConfig3);
+        context.setAttribute(Globals.MODULE_KEY + "/3", appConfig3);
 
         // Instantiate the controller configuration for this app
         ControllerConfig controller = new ControllerConfig();
@@ -515,13 +516,13 @@ public class TestMockBase extends TestCase {
         assertNotNull("appConfig is present", appConfig);
         assertEquals("context-->appConfig",
                      appConfig,
-                     context.getAttribute(Action.APPLICATION_KEY));
+                     context.getAttribute(Globals.MODULE_KEY));
 
         // Validate the configuration for the second module
         assertNotNull("appConfig2 is present", appConfig2);
         assertEquals("context-->appConfig2",
                      appConfig2,
-                     context.getAttribute(Action.APPLICATION_KEY + "/2"));
+                     context.getAttribute(Globals.MODULE_KEY + "/2"));
 
     }
 
