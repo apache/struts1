@@ -165,6 +165,34 @@ public class OptionsTag extends TagSupport {
 
 
     /**
+     * The style associated with this tag.
+     */
+    private String style = null;
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+
+    /**
+     * The named style class associated with this tag.
+     */
+    private String styleClass = null;
+
+    public String getStyleClass() {
+        return styleClass;
+    }
+
+    public void setStyleClass(String styleClass) {
+        this.styleClass = styleClass;
+    }
+
+
+    /**
      * Process the start of this tag.
      *
      * @exception JspException if a JSP exception has occurred
@@ -291,6 +319,8 @@ public class OptionsTag extends TagSupport {
 	labelProperty = null;
 	name = null;
 	property = null;
+	style = null;
+	styleClass = null;
 
     }
 
@@ -315,6 +345,16 @@ public class OptionsTag extends TagSupport {
         sb.append("\"");
         if (matched)
             sb.append(" selected=\"selected\"");
+        if (style != null) {
+            sb.append(" style=\"");
+            sb.append(style);
+            sb.append("\"");
+        }
+        if (styleClass != null) {
+            sb.append(" class=\"");
+            sb.append(styleClass);
+            sb.append("\"");
+        }
         sb.append(">");
         sb.append(ResponseUtils.filter(label));
         sb.append("</option>\r\n");
