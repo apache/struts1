@@ -4,6 +4,7 @@
   <properties>
     <author>Craig R. McClanahan</author>
     <author>Mike Schachter</author>
+    <author>Ted Husted</author>
     <title>The Struts User's Guide - Building View Components</title>
   </properties>
   
@@ -69,7 +70,7 @@
             the first runtime argument, <code>{1}</code> is replaced by the second
             argument, and so on.</li>
         <li><b>MessageResources</b> - The Struts class
-            <code>org.apache.struts.util.MessageResources</code> lets you treat
+            <code><a href="api/org/apache/struts/util/MessageResources.html">org.apache.struts.util.MessageResources</a></code> lets you treat
             a set of resource bundles like a database, and allows you to request
             a particular message string for a particular Locale (normally one
             associated with the current user) instead of for the default Locale
@@ -80,7 +81,7 @@
         For an internationalized application, follow the steps described in
         the Internationalization document in the JDK documentation bundle for your
         platform to create a properties file containing the messages for each
-        language.  An example will illustrate this further.
+        language.  An example will illustrate this further:
       </p>
         
       <p>
@@ -110,7 +111,17 @@
         deployment descriptor, one of the things you will need to define in
         an initialization parameter is the base name of the resource bundle
         for the application.  In the case described above, it would be
-        <code>com.mycompany.mypackage.MyResources</code>.
+        <code>com.mycompany.mypackage.MyResources</code>. 
+      </p>
+<pre>
+&lt;servlet><br/>  &lt;servlet-name>action&lt;/servlet-name><br/>  &lt;servlet-class>org.apache.struts.action.ActionServlet&lt;/servlet-class><br/>  &lt;init-param><br/>    &lt;param-name>application&lt;/param-name><br/>    &lt;param-value>com.mycompany.mypackage.MyResources&lt;/param-value><br/>  &lt;/init-param><br/>  &lt;.../><br/>&lt;/servlet></pre>
+     
+      <p>
+        The important thing is for the resource bundle to be found on the 
+        class path for your application. Another approach is to store 
+        the <code>MyResources.properties</code> file in your application's 
+        class folder. You can then simply specify "myResources" as the 
+        application value.
       </p>
     </section>
 
@@ -133,9 +144,7 @@
        </p>
       
 <pre>
-&lt;input type="text" name="username"
-      value="&lt;%= loginBean.getUsername() %&gt;"/&gt;
-</pre>
+&lt;input type="text" name="username"<br/>      value="&lt;%= loginBean.getUsername() %&gt;"/&gt;</pre>
       
       <p>
         which is difficult to type correctly, confuses HTML developers who are
@@ -145,9 +154,8 @@
         The case above would be rendered like this using Struts:
       </p>
 
-<pre>        
-&lt;html:text property="username"/&gt;
-</pre>
+<pre>
+&lt;html:text property="username"/&gt;</pre>
 
       <p> 
         with no need to explicitly refer to the JavaBean from which the initial
@@ -170,58 +178,18 @@
           and standard JSP facilities.  Consider the following page (based on the
           example application included with Struts) named <code>logon.jsp</code>:
         </p>       
-
+<hr/>
 <pre>
-&lt;%@ page language="java" %&gt;
-&lt;%@ taglib uri="/WEB-INF/struts-html.tld"
-        prefix="html" %&gt;
-&lt;%@ taglib uri="/WEB-INF/struts-bean.tld"
-        prefix="bean" %&gt;
-&lt;html:html&gt;
-&lt;head&gt;
-&lt;title&gt;
-  &lt;bean:message key="logon.title"/&gt;
-&lt;/title&gt;
-&lt;body bgcolor="white"&gt;
-&lt;html:errors/&gt;
-&lt;html:form name="logonForm" action="logon.do"&gt;
-&lt;table border="0" width="100%"&gt;
-  &lt;tr&gt;
-    &lt;th align="right"&gt;
-      &lt;html:message key="prompt.username"/&gt;
-    &lt;/th&gt;
-    &lt;td align="left"&gt;
-      &lt;html:text property="username"
-                     size="16"/&gt;
-    &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;th align="right"&gt;
-      &lt;html:message key="prompt.password"/&gt;
-    &lt;/th&gt;
-    &lt;td align="left"&gt;
-      &lt;html:password property="password"
-                         size="16"/&gt;
-    &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td align="right"&gt;
-      &lt;struts:submit&gt;
-        &lt;bean:message key="button.submit"/&gt;
-      &lt;/struts:submit&gt;
-    &lt;/td&gt;
-    &lt;td align="right"&gt;
-      &lt;html:reset&gt;
-        &lt;bean:message key="button.reset"/&gt;
-      &lt;/html:reset&gt;
-    &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
-&lt;/html:form&gt;
-&lt;/body&gt;
-&lt;/html:html&gt;
-</pre>         
-
+&lt;%@ page language="java" %&gt;<br/>&lt;%@ taglib uri="/WEB-INF/struts-html.tld"<br/>        prefix="html" %&gt;<br/>&lt;%@ taglib uri="/WEB-INF/struts-bean.tld"<br/>        prefix="bean" %&gt;
+&lt;html:html&gt;<br/>&lt;head&gt;<br/>&lt;title&gt;<br/>  &lt;bean:message key="logon.title"/&gt;<br/>&lt;/title&gt;<br/>
+&lt;body bgcolor="white"&gt;<br/>&lt;html:errors/&gt;<br/>
+&lt;html:form name="logonForm" action="logon.do"<br/>  type="org.apache.struts.example.LogonForm"&gt;<br/>&lt;table border="0" width="100%"&gt;<br/>
+  &lt;tr&gt;<br/>    &lt;th align="right"&gt;<br/>      &lt;html:message key="prompt.username"/&gt;<br/>    &lt;/th&gt;<br/>    &lt;td align="left"&gt;<br/>      &lt;html:text property="username"<br/>                     size="16"/&gt;<br/>    &lt;/td&gt;<br/>  &lt;/tr&gt;
+  &lt;tr&gt;<br/>    &lt;th align="right"&gt;<br/>      &lt;html:message key="prompt.password"/&gt;<br/>    &lt;/th&gt;<br/>    &lt;td align="left"&gt;<br/>      &lt;html:password property="password"<br/>                         size="16"/&gt;<br/>    &lt;/td&gt;<br/>  &lt;/tr&gt;
+  &lt;tr&gt;<br/>
+    &lt;td align="right"&gt;<br/>      &lt;struts:submit&gt;<br/>        &lt;bean:message key="button.submit"/&gt;<br/>      &lt;/struts:submit&gt;<br/>    &lt;/td&gt;<br/>    &lt;td align="right"&gt;<br/>      &lt;html:reset&gt;<br/>        &lt;bean:message key="button.reset"/&gt;<br/>      &lt;/html:reset&gt;<br/>    &lt;/td&gt;<br/>  &lt;/tr&gt;<br/>&lt;/table&gt;<br/>&lt;/html:form&gt;
+&lt;/body&gt;<br/>&lt;/html:html&gt;</pre>         
+<hr/>
         <p>
           The following items illustrate the key features of form handling in Struts,
           based on this example:
@@ -262,10 +230,12 @@
               This bean is used to provide initial values for all of the input
               fields that have names matching the property names of the bean.
               If an appropriate bean is not found, a new one will be created
-              automatically, using the specified Java class name. (The form bean name 
-              can also be specified in the Struts configuration file, and then omitted 
+              automatically, using the specified Java class name.
+              <li>The form bean can also be specified in the Struts configuration file, 
+              in which case the Name and Type can be omitted 
               here. See "<a href="building_controller.html#config">The Action Mappings 
               Configuration File</a>" for details.)</li>
+              </li>
           <li>The text tag renders an HTML
               <code>&lt;input&gt;</code> element of type "text".  In this case,
               the number of character positions to occupy on the browser's screen
@@ -288,48 +258,25 @@
           creating a multipart form is to utilize the struts-html taglib to create the presentation
           page:
         </p>
-          
-<pre>
-&lt;%@page language="java">
-&lt;%@taglib uri="/WEB-INF/struts-html.tld"
-       prefix="html">
-&lt;html:form action="uploadAction.do">
-  Please Input Text:
-  &lt;html:text property="myText">&lt;br/>
-  Please Input The File You Wish to Upload:&lt;br/>
-  &lt;html:file property="myFile">&lt;br />
-  &lt;html:submit />
-&lt;/html:form>
-</pre>
 
+<hr/>          
+<pre>
+&lt;%@page language="java"><br/>&lt;%@taglib uri="/WEB-INF/struts-html.tld"<br/>       prefix="html"><br/>
+&lt;html:form action="uploadAction.do"><br/>  Please Input Text:<br/>  &lt;html:text property="myText">&lt;br/><br/>  Please Input The File You Wish to Upload:&lt;br/><br/>  &lt;html:file property="myFile">&lt;br /><br/>  &lt;html:submit /><br/>&lt;/html:form></pre>
+<hr/>
         <p>
           The next step is to create your ActionForm bean:
         </p>
 
+<hr/>
 <pre>
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.upload.FormFile;
-public class UploadForm extends ActionForm {
-  protected String myText;
-  protected FormFile myFile;
-  public void setMyText(String text) {
-    myText = text;
-  }
-  public String getMyText() {
-    return myText;
-  }
-  public void setMyFile(FormFile file) {
-    myFile = file;
-  }
-  public FormFile getMyFile() {
-    return myFile;
-  }
-}
-</pre>
-        
+import javax.servlet.http.HttpServletRequest;<br/>import javax.servlet.http.HttpServletResponse;<br/>import org.apache.struts.action.ActionForm;<br/>import org.apache.struts.action.ActionMapping;<br/>import org.apache.struts.upload.FormFile;
+public class UploadForm extends ActionForm {<br/>  protected String myText;<br/>  protected FormFile myFile;
+  public void setMyText(String text) {<br/>    myText = text;<br/>  }
+  public String getMyText() {<br/>    return myText;<br/>  }
+  public void setMyFile(FormFile file) {<br/>    myFile = file;<br/>  }
+  public FormFile getMyFile() {<br/>    return myFile;<br/>  }<br/>}</pre>
+<hr/>        
         <p>
           Look at the <a href="../api/index.html">javadocs</a> for FormFile to see the
           methods it exposes to manipulate files in file uploading.  Also look at the
@@ -344,7 +291,7 @@ public class UploadForm extends ActionForm {
       <section name="3.3.2 Input Field Types Supported" href="form_input">
         
         <p>
-          Struts defines tags for all of the following types of input fields,
+          Struts defines HTML tags for all of the following types of input fields,
           with hyperlinks to the corresponding reference information.
         </p>
         
@@ -378,10 +325,10 @@ public class UploadForm extends ActionForm {
         
         <ul>
        
-          <li><a href="../struts-logic.html#iterate">iterate</a> repeats its tag body once
+          <li>[logic] <a href="../struts-logic.html#iterate">iterate</a> repeats its tag body once
               for each element of a specified collection (which can be an Enumeration,
               a Hashtable, a Vector, or an array of objects).</li>
-          <li><a href="../struts-logic.html#present">present</a> depending on which attribute
+          <li>[logic] <a href="../struts-logic.html#present">present</a> depending on which attribute
               is specified, this tag checks the current request, and evaluates the nested 
               body content of this tag only if the specified value is present. Only one of 
               the attributes may be used in one occurrence of this tag, unless you use the
@@ -389,22 +336,26 @@ public class UploadForm extends ActionForm {
               attributes include cookie, header, name, parameter, property, role, scope, 
               and user.
           </li>
-          <li><a href="../struts-logic.html#notPresent">notPresent</a> the companion tag to 
+          <li>[logic] <a href="../struts-logic.html#notPresent">notPresent</a> the companion tag to 
               present, notPresent provides the same functionality when the specified attribute
               is not present.</li>        
-          <li><a href="../struts-html.html#link">link</a> generates a HTML &lt;a&gt; element 
+          <li>[html] <a href="../struts-html.html#link">link</a> generates a HTML &lt;a&gt; element 
               as an anchor definition or a hyperlink to the specified URL, and automatically
               applies URL encoding to maintain session state in the absence of
               cookie support.</li>
-          <li><a href="../struts-bean.html#parameter">parameter</a> retrieves the value of the 
+          <li>[html] <a href="../struts-html.html#img">img</a> generates a HTML &lt;img&gt; element 
+              with the ability to dynamically modify the URLs specified by the "src" and 
+              "lowsrc" attributes in the same manner that &lt;html:link> can.
+         </li>  
+          <li>[bean] <a href="../struts-bean.html#parameter">parameter</a> retrieves the value of the 
               specified request parameter, and defines the result as a page scope attribute of
               type String or String[].</li>
         </ul>
         
       </section>
       
-      <section name="3.3.4 Automatic Form Validation" href="form_validation">
-      
+      <section name="3.3.4 Automatic Form Validation" href="form_validation">    
+     
         <p>
           In addition to the form and bean interactions described above, Struts
           offers an additional facility to validate the input fields it has received.
@@ -412,11 +363,7 @@ public class UploadForm extends ActionForm {
           class:
         </p>
 
-<pre>
-public ActionErrors
-           validate(ActionMapping mapping,
-                    HttpServletRequest request);
-</pre>
+<pre>public ActionErrors<br/>  validate(ActionMapping mapping,<br/>    HttpServletRequest request);</pre>
         
         <p>
           The validate() method is called by the controller servlet after the bean
@@ -427,9 +374,9 @@ public ActionErrors
         
         <ul>
           <li>Perform the appropriate validations and find no problems -- Return either
-              <code>null</code> or a zero-length ActionErrors instance, and the controller servlet
-              will proceed to call the <code>perform()</code> method of the appropriate
-              <code>Action</code> class.</li>
+              <code>null</code> or a zero-length ActionErrors instance, and the controller 
+              servlet will proceed to call the <code>perform()</code> method of the 
+              appropriate <code>Action</code> class.</li>
           <li>Perform the appropriate validations and find problems -- Return an ActionErrors
               instance containing <code>ActionError</code>'s, which are classes that contain
               the error message keys (into the application's
@@ -445,6 +392,11 @@ public ActionErrors
           of the validate() method returns <code>null</code>, and the controller servlet
           will assume that any required validation is done by the action class.
         </p>
+        <p>
+          One common approach is to perform simple validations using the validate() method, and 
+          also provide further "business logic" validation as part of your Action object. 
+        </p>
+
       </section>
     </section>
     
@@ -469,16 +421,16 @@ public ActionErrors
         </p>
         
         <ul>
-          <li><code>checkLogon</code> - Checks for the existence of a particular session
+          <li><b>checkLogon</b> - Checks for the existence of a particular session
               object, and forwards control to the logon page if it is missing.  This is
               used to catch cases where a user has bookmarked a page in the middle of
               your application and tries to bypass logging on, or if the user's session
               has been timed out.</li>
-          <li><code>linkSubscription</code> - Generates a hyperlink to a details page
+          <li><b>linkSubscription</b> - Generates a hyperlink to a details page
               for a Subscription, which passes the required primary key values as
               request attributes.  This is used when listing the subscriptions associated
               with a user, and providing links to edit or delete them.</li>
-          <li><code>linkUser</code> - Generates a hyperlink to a details page
+          <li><b>linkUser</b> - Generates a hyperlink to a details page
               for a User, which passes the required primary key values as
               request attributes.</li>
         </ul>

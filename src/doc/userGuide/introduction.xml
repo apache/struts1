@@ -77,8 +77,9 @@
       
          <p>
            True to the Model-View-Controller design pattern, Struts applications have three 
-          major components: a servlet controller, JavaServer pages, and the application's         
-          business logic (or the "model"). Let's step through how this all fits together.</p>
+          major components: a servlet controller, JavaServer pages (the "view"), and the 
+          application's business logic (or the "model"). Let's step through how this all 
+          fits together.</p>
          <p>
            The controller bundles and routes HTTP requests to other objects in the framework,
           including JavaServer Pages. When initialized, the controller parses a configuration 

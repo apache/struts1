@@ -4,6 +4,7 @@
   <properties>
     <author>Craig R. McClanahan</author>
     <author>Mike Schachter</author>
+    <author>Ted Husted</author>
     <title>The Struts User's Guide - Building Model Components</title>
   </properties>
   
@@ -119,15 +120,10 @@
             <li>The ActionForm object also offers a standard validation mechanism. 
             If you override a "stub" method, and provide error messages in the 
             standard application resource, Struts will automatically validate the 
-            input from the form (using your method). If validation fails, Struts 
-            can automatically return the user to the input form, re-populate 
-            the form from the form bean, and display your error messages (via a 
-            custom tag), all before the Action object is ever called. This is a 
-            quick and easy way to get simple validation out of the way, but you 
-            might also want to provide further  "business logic" validation as 
-            part of your Action object. (See "Action Form Validation" for details.) 
-            Of course, you can also ignore the ActionForm validation and provide 
-            your own in the Action object.</li>            
+            input from the form (using your method). See "<a 
+            href="./building_view.html#form_validation">Action Form Validation</a>" 
+            for details. Of course, you can also ignore the ActionForm validation 
+            and provide your own in the Action object.</li>            
         <li>Define a property (with associated <code>getXxx()</code> and
             <code>setXxx()</code> methods) for each field that is present
             in the form.  The field name and property name must match according
@@ -137,9 +133,9 @@
         <li>You may also place a bean instance on your form, and use nested property 
             references. For example, you might have a "customer" bean on your Action 
             Form, and then refer to the property "customer.name" in your JSP view. 
-            This would correspond to the methods customer.getName() and 
-            customer.setName(string Name) on your customer bean. See the Tag Library 
-            Developer Guides for more about nested syntax.</li>
+            This would correspond to the methods <code>customer.getName()</code> and 
+            <code>customer.setName(string Name)</code> on your customer bean. See the 
+            Tag Library Developer Guides for more about nested syntax.</li>
       </ul>
         
       <p>
@@ -152,8 +148,8 @@
         properties for all of the fields, no matter which page the field is actually
         displayed on.  Likewise, the various pages of the same form should all be
         submitted to the same Action Class.  If you follow these suggestions, the
-        page designers can rearrange the fields among the various pages, with no
-        changes required to the processing logic in most cases.
+        page designers can rearrange the fields among the various pages, pftem without 
+        requiring changes to the processing logic.
       </p>
     </section>
     
@@ -176,7 +172,7 @@
         for a long period of time, a set of system state beans may contain all the
         knowledge that the system ever has of these particular details.  Or, as is
         often the case, the system state beans will represent information that is
-        stored permanently in some external database (such as a CustomerBean object
+        stored permanently in some external database (such as a <code>CustomerBean</code> object
         that corresponds to a particular row in the CUSTOMERS table), and are
         created or removed from the server's memory as needed.  Entity Enterprise
         JavaBeans are also used for this purpose in large scale applications.
@@ -230,31 +226,10 @@
         from within a Action perform method.
       </p>
 <pre>
-public ActionForward
-       perform(ActionMapping mapping,
-               ActionForm form,
-               HttpServletRequest request,
-               HttpServletResponse response)
-{
-  try {
-    javax.sql.DataSource dataSource =
-      servlet.findDataSource(null);      
-    java.sql.Connection myConnection =
-      dataSource.getConnection();
-    //do what you wish with myConnection
-  } catch (SQLException sqle) {
-    getServlet().log("Connection.process", sqle);
-  } finally {
-    //enclose this in a finally block to make
-    //sure the connection is closed
-    try {
-      myConnection.close();
-    } catch (SQLException e) {
-      getServlet().log("Connection.close", e);
-    }
-  }
-}
-</pre>
+public ActionForward<br/>       perform(ActionMapping mapping,<br/>               ActionForm form,<br/>               HttpServletRequest request,<br/>               HttpServletResponse response)<br/>{<br/>
+  try {<br/>    javax.sql.DataSource dataSource =<br/>      servlet.findDataSource(null);<br/>    java.sql.Connection myConnection =<br/>      dataSource.getConnection();<br/>
+    //do what you wish with myConnection<br/>  } catch (SQLException sqle) {<br/>    getServlet().log("Connection.process", sqle);<br/>  } finally {<br/>
+    //enclose this in a finally block to make<br/>    //sure the connection is closed<br/>    try {<br/>      myConnection.close();<br/>    } catch (SQLException e) {<br/>      getServlet().log("Connection.close", e);<br/>    }<br/>  }<br/>}<br/></pre>
       
       <p align="center">
         Next: <a href="building_view.html">Building View Components</a>
