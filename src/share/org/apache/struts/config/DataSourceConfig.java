@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/DataSourceConfig.java,v 1.6 2002/07/09 23:57:37 husted Exp $
- * $Revision: 1.6 $
- * $Date: 2002/07/09 23:57:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/DataSourceConfig.java,v 1.7 2002/07/24 05:28:05 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/07/24 05:28:05 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import org.apache.struts.Globals;
 
 
 /**
@@ -79,7 +80,7 @@ import java.util.Map;
  * of them may be ignored by custom data source implementations.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/07/09 23:57:37 $
+ * @version $Revision: 1.7 $ $Date: 2002/07/24 05:28:05 $
  * @since Struts 1.1
  */
 
@@ -103,7 +104,7 @@ public class DataSourceConfig implements Serializable {
      * The servlet context attribute key under which this data source
      * is stored and made available.
      */
-    protected String key = null;
+    protected String key = Globals.DATA_SOURCE_KEY;
 
     public String getKey() {
         return (this.key);

@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.26 2002/07/10 20:36:23 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.27 2002/07/24 05:28:04 craigmcc Exp $
 -->
 
 
@@ -111,10 +111,10 @@
 
      key             Servlet context attribute key under which this data source
                      will be stored.  Default is the value specified by string
-                     constant defined by Action.DATA_SOURCE_KEY. The application
+                     constant defined by Globals.DATA_SOURCE_KEY. The application
                      module prefix (if any) is appended to the key
                      (${key}$prefix}).
-                     [org.apache.struts.Action.DATA_SOURCE_KEY]
+                     [org.apache.struts.Globals.DATA_SOURCE_KEY]
 
                      NOTE: The application module prefix includes the leading
                      slash, so the default datasource for a module named "foo" is
@@ -128,7 +128,7 @@
 <!ELEMENT data-source (set-property*)>
 <!ATTLIST data-source    id             ID              #IMPLIED>
 <!ATTLIST data-source    className      %ClassName;     #IMPLIED>
-<!ATTLIST data-source    key            %AttributeName; "org.apache.struts.action.DATA_SOURCE">
+<!ATTLIST data-source    key            %AttributeName; #IMPLIED>
 <!ATTLIST data-source    type           %ClassName;     #IMPLIED>
 
 
@@ -148,8 +148,8 @@
     bundle           Servlet context attribute for the message resources bundle
                      associated with this handler. The default attribute is the
                      value specified by the string constant declared at
-                     Action.MESSAGES_KEY.
-                     [org.apache.struts.Action.MESSAGES_KEY]
+                     Globals.MESSAGES_KEY.
+                     [org.apache.struts.Globals.MESSAGES_KEY]
 
     className        The configuration bean for this ExceptionHandler object.
                      If specified, className must be a subclass of the default
@@ -575,9 +575,9 @@ The "form-bean" element describes a particular form bean, which is a
      key             Servlet context attribute under which this message
                      resources bundle will be stored. The default attribute is
                      the value specified by the string constant at
-                     [Action.MESSAGES_KEY]. The application module prefix (if
+                     [Globals.MESSAGES_KEY]. The application module prefix (if
                      any) is appended to the key (${key}${prefix}).
-                     [org.apache.struts.Action.MESSAGES_KEY]
+                     [org.apache.struts.Globals.MESSAGES_KEY]
 
                      NOTE: The application module  prefix includes the leading
                      slash, so the default message resource bundle for a module
@@ -595,7 +595,7 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST message-resources id          ID              #IMPLIED>
 <!ATTLIST message-resources className   %ClassName;     #IMPLIED>
 <!ATTLIST message-resources factory     %ClassName;     #IMPLIED>
-<!ATTLIST message-resources key         %AttributeName; "org.apache.struts.action.MESSAGE">
+<!ATTLIST message-resources key         %AttributeName; #IMPLIED>
 <!ATTLIST message-resources null        %Boolean;       #IMPLIED>
 <!ATTLIST message-resources parameter   CDATA           #REQUIRED>
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.117 2002/07/24 00:47:23 craigmcc Exp $
- * $Revision: 1.117 $
- * $Date: 2002/07/24 00:47:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.118 2002/07/24 05:28:04 craigmcc Exp $
+ * $Revision: 1.118 $
+ * $Date: 2002/07/24 05:28:04 $
  *
  * ====================================================================
  *
@@ -302,7 +302,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.117 $ $Date: 2002/07/24 00:47:23 $
+ * @version $Revision: 1.118 $ $Date: 2002/07/24 05:28:04 $
  */
 
 public class ActionServlet
@@ -1067,11 +1067,23 @@ public class ActionServlet
             return (configDigester);
         }
 
+        // Check the status of the "validating" initialization parameter
+        boolean validating = true;
+        String value = getServletConfig().getInitParameter("validating");
+        if (value != null) {
+            if ("false".equalsIgnoreCase(value) ||
+                "no".equalsIgnoreCase(value) ||
+                "n".equalsIgnoreCase(value) ||
+                "0".equalsIgnoreCase(value)) {
+                validating = false;
+            }
+        }
+
         // Create a new Digester instance with standard capabilities
         configDigester = new Digester();
         configDigester.setDebug(detail);
         configDigester.setNamespaceAware(true);
-        configDigester.setValidating(true);
+        configDigester.setValidating(validating);
         configDigester.setUseContextClassLoader(true);
         configDigester.addRuleSet(new ConfigRuleSet());
         for (int i = 0; i < registrations.length; i += 2) {
