@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.15 2003/08/31 23:53:36 husted Exp $
- * $Revision: 1.15 $
- * $Date: 2003/08/31 23:53:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.16 2003/08/31 23:58:08 husted Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/08/31 23:58:08 $
  *
  *  ====================================================================
  *
@@ -154,6 +154,7 @@ import org.apache.struts.util.MessageResources;
  * @author David Graham
  * @author Leonardo Quijano
  * @author Rob Leland
+ * @author Ted Husted
  */
 public abstract class LookupDispatchAction extends DispatchAction {
 

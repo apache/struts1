@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.19 2003/08/13 17:19:58 rleland Exp $
- * $Revision: 1.19 $
- * $Date: 2003/08/13 17:19:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.20 2003/08/31 23:58:08 husted Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/08/31 23:58:08 $
  *
  * ====================================================================
  *
@@ -135,7 +135,7 @@ import org.apache.struts.util.MessageResources;
  * @author Ted Husted
  * @author Leonardo Quijano
  * @author Rob Leland
- * @version $Revision: 1.19 $ $Date: 2003/08/13 17:19:58 $
+ * @version $Revision: 1.20 $ $Date: 2003/08/31 23:58:08 $
  */
 public abstract class DispatchAction extends Action {
 
@@ -261,7 +261,7 @@ public abstract class DispatchAction extends Action {
      * Method which is dispatched to when the request is a cancel button submit.
      * Subclasses of <code>DispatchAction</code> should override this method if
      * they wish to provide default behavior different than returning null.
-     * @since Struts 1.2.1
+     * @since Struts 1.2.0
      */
     protected ActionForward cancelled(ActionMapping mapping,
                                       ActionForm form,
@@ -372,7 +372,7 @@ public abstract class DispatchAction extends Action {
      * @param parameter The <code>ActionMapping</code> parameter's name
      *
      * @return The method's name.
-     * @since Struts 1.2.1
+     * @since Struts 1.2.0
      */
     protected String getMethodName(ActionMapping mapping,
                                    ActionForm form,

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/MappingDispatchAction.java,v 1.4 2003/08/13 17:19:58 rleland Exp $
- * $Revision: 1.4 $
- * $Date: 2003/08/13 17:19:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/MappingDispatchAction.java,v 1.5 2003/08/31 23:58:08 husted Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/08/31 23:58:08 $
  *
  * ====================================================================
  *
@@ -166,7 +166,7 @@ import org.apache.struts.action.ActionMapping;
  * @author Anthony Kay
  * @author Steve Raeburn
  * @author Leonardo Quijano
- * @version $Revision: 1.4 $ $Date: 2003/08/13 17:19:58 $
+ * @version $Revision: 1.5 $ $Date: 2003/08/31 23:58:08 $
  * @since Struts 1.2
  */
 public class MappingDispatchAction extends DispatchAction {
@@ -262,7 +262,7 @@ public class MappingDispatchAction extends DispatchAction {
      * @param parameter The <code>ActionMapping</code> parameter's name
      *
      * @return The method's name.
-     * @since Struts 1.2.1
+     * @since Struts 1.2.0
      */
     protected String getMethodName(
         ActionMapping mapping,
