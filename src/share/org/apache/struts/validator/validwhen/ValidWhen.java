@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhen.java,v 1.5 2003/07/04 20:34:53 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/07/04 20:34:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhen.java,v 1.6 2003/07/04 20:38:19 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/07/04 20:38:19 $
  *
  * ====================================================================
  *
@@ -79,12 +79,12 @@ import org.apache.struts.validator.Resources;
  * @since Struts 1.2
  */
 public class ValidWhen {
-    private static Class stringClass = new String().getClass();
 
-    private static boolean isString(Object o) {
-        if (o == null)
-            return true;
-        return (stringClass.isInstance(o));
+    /**
+     * Returns true if <code>obj</code> is null or a String.
+     */
+    private static boolean isString(Object obj) {
+        return (obj == null) ? true : String.class.isInstance(obj);
     }
 
     /**
