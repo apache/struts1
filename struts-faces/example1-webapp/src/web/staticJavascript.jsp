@@ -1,4 +1,8 @@
-<!--
+<%@ page language="java" %>
+<%-- set document type to Javascript (addresses a bug in Netscape according to a web resource --%>
+<%@ page contentType="application/x-javascript" %>
+
+<%--
 
  Copyright 2002,2004 The Apache Software Foundation.
  
@@ -14,12 +18,8 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 
--->
+--%>
 
-
-<%@ page language="java" %>
-<%-- set document type to Javascript (addresses a bug in Netscape according to a web resource --%>
-<%@ page contentType="application/x-javascript" %>
 
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 
