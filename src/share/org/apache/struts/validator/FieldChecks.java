@@ -1,61 +1,62 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.14 2003/09/28 17:02:51 rleland Exp $
- * $Revision: 1.14 $
- * $Date: 2003/09/28 17:02:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.15 2003/10/06 04:04:06 rleland Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/10/06 04:04:06 $
  *
  * ====================================================================
  *
- *  The Apache Software License, Version 1.1
+ * The Apache Software License, Version 1.1
  *
- *  Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
- *  reserved.
+ * Copyright (c) 2000-2003 The Apache Software Foundation.  All rights
+ * reserved.
  *
- *  Redistribution and use in source and binary forms, with or without
- *  modification, are permitted provided that the following conditions
- *  are met:
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
  *
- *  1. Redistributions of source code must retain the above copyright
- *  notice, this list of conditions and the following disclaimer.
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
  *
- *  2. Redistributions in binary form must reproduce the above copyright
- *  notice, this list of conditions and the following disclaimer in
- *  the documentation and/or other materials provided with the
- *  distribution.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
  *
- *  3. The end-user documentation included with the redistribution, if
- *  any, must include the following acknowlegement:
- *  "This product includes software developed by the
- *  Apache Software Foundation (http://www.apache.org/)."
- *  Alternately, this acknowlegement may appear in the software itself,
- *  if and wherever such third-party acknowlegements normally appear.
+ * 3. The end-user documentation included with the redistribution, if
+ *    any, must include the following acknowledgement:
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowlegement may appear in the software itself,
+ *    if and wherever such third-party acknowlegements normally appear.
  *
- *  4. The names "The Jakarta Project", "Struts", and "Apache Software
- *  Foundation" must not be used to endorse or promote products derived
- *  from this software without prior written permission. For written
- *  permission, please contact apache@apache.org.
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
+ *    Foundation" must not be used to endorse or promote products derived
+ *    from this software without prior written permission. For written
+ *    permission, please contact apache@apache.org.
  *
- *  5. Products derived from this software may not be called "Apache"
- *  nor may "Apache" appear in their names without prior written
- *  permission of the Apache Group.
+ * 5. Products derived from this software may not be called "Apache"
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
  *
- *  THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
- *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- *  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- *  DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
- *  ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
- *  USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- *  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- *  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
- *  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- *  SUCH DAMAGE.
- *  ====================================================================
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+ * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ * ====================================================================
  *
- *  This software consists of voluntary contributions made by many
- *  individuals on behalf of the Apache Software Foundation.  For more
- *  information on the Apache Software Foundation, please see
- *  <http://www.apache.org/>.
+ * This software consists of voluntary contributions made by many
+ * individuals on behalf of the Apache Software Foundation.  For more
+ * information on the Apache Software Foundation, please see
+ * <http://www.apache.org/>.
+ *
  */
 
 package org.apache.struts.validator;
@@ -78,7 +79,7 @@ import org.apache.struts.util.RequestUtils;
 
 /**
  * <p>
- * This class contains the default validations that are used in the 
+ * This class contains the default validations that are used in the
  * validator-rules.xml file.
  * </p>
  * <p>
@@ -86,7 +87,7 @@ import org.apache.struts.util.RequestUtils;
  * boolean. However, nulls and blanks do not result in an error being added to the
  * errors.
  * </p>
- * 
+ *
  * @author David Winterfeldt
  * @author James Turner
  * @author Rob Leland
@@ -104,14 +105,14 @@ public class FieldChecks implements Serializable {
     public static final String FIELD_TEST_EQUAL = "EQUAL";
 
     /**
-     * Checks if the field isn't null and length of the field is greater than zero not 
+     * Checks if the field isn't null and length of the field is greater than zero not
      * including whitespace.
      *
      * @param bean The bean validation is being performed on.
      * @param va The <code>ValidatorAction</code> that is currently being performed.
-     * @param field The <code>Field</code> object associated with the current 
+     * @param field The <code>Field</code> object associated with the current
      * field being validated.
-     * @param errors The <code>ActionMessages</code> object to add errors to if 
+     * @param errors The <code>ActionMessages</code> object to add errors to if
      * any validation errors occur.
      * @param request Current request object.
      * @return true if meets stated requirements, false otherwise.
@@ -127,7 +128,7 @@ public class FieldChecks implements Serializable {
         } else {
             value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
-        
+
         if (GenericValidator.isBlankOrNull(value)) {
             errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
             return false;
@@ -141,13 +142,13 @@ public class FieldChecks implements Serializable {
      * Checks if the field isn't null based on the values of other fields.
      *
      * @param bean The bean validation is being performed on.
-     * @param va The <code>ValidatorAction</code> that is currently being 
+     * @param va The <code>ValidatorAction</code> that is currently being
      * performed.
-     * @param field The <code>Field</code> object associated with the current 
+     * @param field The <code>Field</code> object associated with the current
      * field being validated.
-     * @param errors The <code>ActionMessages</code> object to add errors to if 
+     * @param errors The <code>ActionMessages</code> object to add errors to if
      * any validation errors occur.
-     * @param validator The <code>Validator</code> instance, used to access 
+     * @param validator The <code>Validator</code> instance, used to access
      * other field values.
      * @param request Current request object.
      * @return true if meets stated requirements, false otherwise.
@@ -157,37 +158,37 @@ public class FieldChecks implements Serializable {
                                              ActionMessages errors,
                                              org.apache.commons.validator.Validator validator,
                                              HttpServletRequest request) {
-                                                 
+
         Object form = validator.getParameterValue(org.apache.commons.validator.Validator.BEAN_PARAM);
         String value = null;
         boolean required = false;
-        
+
         if (isString(bean)) {
             value = (String) bean;
         } else {
             value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
-        
+
         int i = 0;
         String fieldJoin = "AND";
         if (!GenericValidator.isBlankOrNull(field.getVarValue("fieldJoin"))) {
             fieldJoin = field.getVarValue("fieldJoin");
         }
-        
+
         if (fieldJoin.equalsIgnoreCase("AND")) {
             required = true;
         }
-        
+
         while (!GenericValidator.isBlankOrNull(field.getVarValue("field[" + i + "]"))) {
             String dependProp = field.getVarValue("field[" + i + "]");
             String dependTest = field.getVarValue("fieldTest[" + i + "]");
             String dependTestValue = field.getVarValue("fieldValue[" + i + "]");
             String dependIndexed = field.getVarValue("fieldIndexed[" + i + "]");
-            
+
             if (dependIndexed == null) {
                 dependIndexed = "false";
             }
-            
+
             String dependVal = null;
             boolean thisRequired = false;
             if (field.isIndexed() && dependIndexed.equalsIgnoreCase("true")) {
@@ -197,7 +198,7 @@ public class FieldChecks implements Serializable {
                     dependProp = ind + dependProp;
                 }
             }
-            
+
             dependVal = ValidatorUtils.getValueAsString(form, dependProp);
             if (dependTest.equals(FIELD_TEST_NULL)) {
                 if ((dependVal != null) && (dependVal.length() > 0)) {
@@ -206,7 +207,7 @@ public class FieldChecks implements Serializable {
                     thisRequired = true;
                 }
             }
-            
+
             if (dependTest.equals(FIELD_TEST_NOTNULL)) {
                 if ((dependVal != null) && (dependVal.length() > 0)) {
                     thisRequired = true;
@@ -214,26 +215,26 @@ public class FieldChecks implements Serializable {
                     thisRequired = false;
                 }
             }
-            
+
             if (dependTest.equals(FIELD_TEST_EQUAL)) {
                 thisRequired = dependTestValue.equalsIgnoreCase(dependVal);
             }
-            
+
             if (fieldJoin.equalsIgnoreCase("AND")) {
                 required = required && thisRequired;
             } else {
                 required = required || thisRequired;
             }
-            
+
             i++;
         }
-        
+
 		if (required) {
 			if (GenericValidator.isBlankOrNull(value)) {
 				errors.add(
 					field.getKey(),
 					Resources.getActionMessage(request, va, field));
-				
+
                 return false;
 
 			} else {
@@ -247,11 +248,11 @@ public class FieldChecks implements Serializable {
      * Checks if the field matches the regular expression in the field's mask attribute.
      *
      * @param bean The bean validation is being performed on.
-     * @param va The <code>ValidatorAction</code> that is currently being 
+     * @param va The <code>ValidatorAction</code> that is currently being
      * performed.
-     * @param field The <code>Field</code> object associated with the current 
+     * @param field The <code>Field</code> object associated with the current
      * field being validated.
-     * @param errors   The <code>ActionMessages</code> object to add errors to if 
+     * @param errors   The <code>ActionMessages</code> object to add errors to if
      * any validation errors occur.
      * @param request Current request object.
      * @return true if field matches mask, false otherwise.
@@ -268,11 +269,11 @@ public class FieldChecks implements Serializable {
         } else {
             value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
-        
+
         try {
             if (!GenericValidator.isBlankOrNull(value)
                 && !GenericValidator.matchRegexp(value, mask)) {
-                    
+
                 errors.add(
                     field.getKey(),
                     Resources.getActionMessage(request, va, field));
@@ -293,9 +294,9 @@ public class FieldChecks implements Serializable {
      *
      *@param bean The bean validation is being performed on.
      *@param va The <code>ValidatorAction</code> that is currently being performed.
-     *@param field The <code>Field</code> object associated with the current 
+     *@param field The <code>Field</code> object associated with the current
      *field being validated.
-     *@param errors The <code>ActionMessages</code> object to add errors to if 
+     *@param errors The <code>ActionMessages</code> object to add errors to if
      *any validation errors occur.
      *@param request Current request object.
      *@return A Byte if valid, null otherwise.
@@ -330,9 +331,9 @@ public class FieldChecks implements Serializable {
      *
      * @param bean The bean validation is being performed on.
      * @param va The <code>ValidatorAction</code> that is currently being performed.
-     * @param field The <code>Field</code> object associated with the current 
+     * @param field The <code>Field</code> object associated with the current
      * field being validated.
-     * @param errors The <code>ActionMessages</code> object to add errors to if 
+     * @param errors The <code>ActionMessages</code> object to add errors to if
      * any validation errors occur.
      * @param request Current request object.
      * @return A Short if valid, otherwise null.
@@ -563,27 +564,6 @@ public class FieldChecks implements Serializable {
     /**
      * Checks if a fields value is within a range (min &amp; max specified in the
      * vars attribute).
-     * 
-     *@deprecated  As of Struts 1.1, replaced by {@link #validateIntRange(java.lang.Object,org.apache.commons.validator.ValidatorAction,org.apache.commons.validator.Field,org.apache.struts.action.ActionMessages,javax.servlet.http.HttpServletRequest)}
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
-     *      field being validated.
-     *@param  errors   The <code>ActionMessages</code> object to add errors to if any
-     *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          True if in range, false otherwise.
-     */
-    public static boolean validateRange(Object bean,
-                                        ValidatorAction va, Field field,
-                                        ActionMessages errors,
-                                        HttpServletRequest request) {
-        return validateIntRange(bean, va, field, errors, request);
-    }
-
-    /**
-     * Checks if a fields value is within a range (min &amp; max specified in the
-     * vars attribute).
      *
      * @param  bean     The bean validation is being performed on.
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
@@ -719,7 +699,7 @@ public class FieldChecks implements Serializable {
 
     /**
      *  Checks if the field is a valid credit card number.
-     * 
+     *
      * @param  bean     The bean validation is being performed on.
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
      * @param  field    The <code>Field</code> object associated with the current
@@ -874,6 +854,37 @@ public class FieldChecks implements Serializable {
         return true;
     }
 
+    /**
+     *  Checks if a field has a valid url.
+     *
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
+     *      field being validated.
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
+     *      validation errors occur.
+     * @param  request  Current request object.
+     * @return True if valid, false otherwise.
+     */
+    public static boolean validateUrl(Object bean,
+                                        ValidatorAction va, Field field,
+                                        ActionMessages errors,
+                                        HttpServletRequest request) {
+
+        String value = null;
+        if (isString(bean)) {
+            value = (String) bean;
+        } else {
+            value = ValidatorUtils.getValueAsString(bean, field.getProperty());
+        }
+
+        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isUrl(value)) {
+            errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     /**
      *  Return <code>true</code> if the specified object is a String or a <code>null</code>
