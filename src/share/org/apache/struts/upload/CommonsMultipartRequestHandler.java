@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.7 2003/02/07 07:00:49 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2003/02/07 07:00:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.8 2003/02/15 12:39:23 husted Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/02/15 12:39:23 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.Globals;
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
   * @author Martin Cooper
-  * @version $Revision: 1.7 $ $Date: 2003/02/07 07:00:49 $
+  * @version $Revision: 1.8 $ $Date: 2003/02/15 12:39:23 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -656,6 +656,15 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
             }
 
             return fileName;
+        }
+
+        /**
+         * Returns the (client-side) file name for this file.
+         *
+         * @return The client-size file name.
+         */
+        public String toString() {
+            return getFileName();
         }
     }
 }
