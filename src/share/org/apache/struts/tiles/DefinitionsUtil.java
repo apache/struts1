@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.8 2002/12/17 00:57:36 cedric Exp $
- * $Revision: 1.8 $
- * $Date: 2002/12/17 00:57:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.9 2002/12/27 10:49:34 cedric Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/12/27 10:49:34 $
  *
  * ====================================================================
  *
@@ -333,7 +333,7 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants
    */
  static  public DefinitionsFactory getDefinitionsFactory(ServletContext servletContext)
   {
-  return getDefaultDefinitionsFactory(servletContext);
+  return (DefinitionsFactory)servletContext.getAttribute(DEFINITIONS_FACTORY);
   }
 
   /**
