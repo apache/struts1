@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTag.java,v 1.4 2002/10/14 03:18:38 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/14 03:18:38 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTag.java,v 1.5 2003/01/06 21:29:27 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/01/06 21:29:27 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -66,17 +66,16 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
- * Generate an HTML <code>&lt;frame&gt;</code> tag with similar capabilities
- * as those the <code>&lt;html:link&gt;</code> tag provides for hyperlink
+ * Generate an HTML <code>&lt;frame&gt;</code> tag with similar capabilities as
+ * those the <code>&lt;html:link&gt;</code> tag provides for hyperlink
  * elements.  The <code>src</code> element is rendered using the same technique
- * that {@link LinkTag} uses to render the <code>href</code> attribute of a
- * hyperlink.  Additionall, the HTML 4.0
+ * that {@link org.apache.struts.taglib.html.LinkTag LinkTag} uses to render
+ * the <code>href</code> attribute of a hyperlink.  Additionally, the HTML 4.0
  * frame tag attributes <code>noresize</code>, <code>scrolling</code>,
  * <code>marginheight</code>, <code>marginwidth</code>,
- * <code>frameborder</code>, and <code>longdesc</code> are supported.
- * The frame
- * <code>name</code> attribute is rendered based on the <code>frameName</code>
- * property.
+ * <code>frameborder</code>, and <code>longdesc</code> are supported.  The
+ * frame <code>name</code> attribute is rendered based on the
+ * <code>frameName</code> property.
  *<p>
  * Note that the value of <code>longdesc</code> is intended to be a URI, but
  * currently no rewriting is supported.  The attribute is set directly from
@@ -89,7 +88,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ELFrameTag extends FrameTag {
 
