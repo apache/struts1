@@ -1612,6 +1612,9 @@
                 application-relative URI, and generate a server-relative
                 URI by including the context path and application
                 prefix.</li>
+            <li><em>action</em> - Use the value of this attribute as the
+                logical name of a global Action that contains the actual 
+                content-relative URI of the destination of this transfer.</li>
             </ul>
 
             <p>Normally, the hyperlink you specify with one of the
@@ -1987,6 +1990,7 @@
             Render A Hidden Field
         </summary>
         <tagclass>org.apache.struts.taglib.html.HiddenTag</tagclass>
+        <bodycontent>empty</bodycontent>
         <info>
             <p>
                 Renders an HTML &lt;input&gt; element of type hidden, populated
