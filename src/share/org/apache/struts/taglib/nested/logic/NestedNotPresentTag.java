@@ -1,4 +1,7 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedNotPresentTag.java,v 1.2 2002/01/22 03:30:51 arron Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/01/22 03:30:51 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -65,7 +68,9 @@ import org.apache.struts.taglib.logic.NotPresentTag;
 /**
  * NestedNotPresentTag.
  *
- * @author Arron Bates <arron@keyboardmonkey.com>
+ * @author Arron Bates
+ * @since Struts 1.1
+ * @version $Revision: 1.2 $ $Date: 2002/01/22 03:30:51 $
  */
 public class NestedNotPresentTag extends NotPresentTag implements NestedNameSupport {
   

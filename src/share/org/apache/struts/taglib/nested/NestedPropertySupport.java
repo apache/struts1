@@ -1,4 +1,7 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertySupport.java,v 1.2 2002/01/22 03:30:50 arron Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/01/22 03:30:50 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -60,7 +63,9 @@ package org.apache.struts.taglib.nested;
  * This interface is for managing classes of the nested extension, so they can
  * know to set the tag's <i>property</i> property.
  *
- * @author Arron Bates <arron@keyboardmonkey.com>
+ * @author Arron Bates
+ * @since Struts 1.1
+ * @version $Revision: 1.2 $ $Date: 2002/01/22 03:30:50 $
  */
 public interface NestedPropertySupport extends NestedTagSupport {
   
