@@ -399,7 +399,7 @@
 -->
     <target name="dist.legacy" >
         <ant antfile="build.xml" dir="contrib/struts-legacy"
-             inheritAll="false" target="dist"/>
+              target="dist"/>
     </target>
 
 
