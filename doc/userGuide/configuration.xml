@@ -20,32 +20,32 @@
   
  <section name="7.1 Overview" href="config-overview">
 
-	<p>
-	[:TODO:]
-	</p>
-  		
+    <p>
+    [:TODO:]
+    </p>
+        
  </section>
-  	
+    
  <section name="7.2 The Struts configuration file"  href="struts-config">
-  		
-  	<p>
+        
+    <p>
     The <a href="building_controller.html#config">Building Controller 
     Components</a> chapter covered writing the form-bean and action-mapping 
     portions of the Struts configuration file. 
-  	These elements usually play an important role in the development of a 
-  	Struts application.
-  	The other elements in Struts configuration file tend to be static: 
-  	you set them once and leave them alone. 
-  	</p>
-  	
-  	<p>
-  	These "static" configuration elements are :
-  	</p>
-  	
-  	<ul>
-	  	<li>[:TODO:]</li>
+    These elements usually play an important role in the development of a 
+    Struts application.
+    The other elements in Struts configuration file tend to be static: 
+    you set them once and leave them alone. 
+    </p>
+    
+    <p>
+    These "static" configuration elements are :
+    </p>
+    
+    <ul>
+        <li>[:TODO:]</li>
     </ul>
-  	
+    
  </section>
 
  <section name="7.2.1 Controller Configuration" href="controller_config">
@@ -73,7 +73,7 @@
       <li>
       <b>contentType</b> - Default content type (and optional character
       encoding) to be set on each response.  May be overridden by the
-      Action, JSP, or other rewource to which the request is forwarded.
+      Action, JSP, or other resource to which the request is forwarded.
       [text/html] (optional)
       </li>
       <li>
@@ -166,7 +166,7 @@
  <section name="7.2.2 Message Resources Configuration" href="resources_config">
 
     <p>
-    Struts has builtin support for internationalization (I18N).
+    Struts has built in support for internationalization (I18N).
     You can define one or more <code>&lt;message-resources&gt;</code> elements for your webapp; 
     modules can define their own resource bundles.
     Different bundles can be used simultaneously in your application, the 'key' attribute is used to specify the desired bundle.
@@ -390,7 +390,7 @@ null="false" />
 
         <p>
           (My struts-default.xml would be equivalent to what most folks call struts-config.xml.  I just
-          like the symmety of having all my Struts module files being named struts-&lt;module&gt;.xml)
+          like the symmetry of having all my Struts module files being named struts-&lt;module&gt;.xml)
         </p>
 
       </section>

@@ -42,7 +42,7 @@
   </li>
 
   <li> Note: "&lt;PLUGIN&gt;" represents the plugin you are using for your specific
-    webserver. For apache on Windows, it might be "cgi-bin/SaCGI.exe", for IIS
+    webserver. For Apache on Windows, it might be "cgi-bin/SaCGI.exe", for IIS
     on Windows, it might be "scripts/SaCGI.exe" or "scripts/ISAPI.dll". Consult
     the UBS documentation for more information. </li>
 </ul>

@@ -43,7 +43,7 @@
             <a href="http://jakarta.apache.org/commons/">Jakarta Commons
             Project</a> that Struts relies on.  You are welcome to use these
             classes in your own applications.  These JAR files should be
-            copied into the <code>/WEB-INF/lib</code> dirctory of
+            copied into the <code>/WEB-INF/lib</code> directory of
             your web application.</li>
         <li><code>struts.jar</code> - JAR file that contains the compiled
             Java classes of Struts.  You must
@@ -266,7 +266,7 @@ multipart requests.</li>
     <li><code>ConvertUtils.convertCharacter()</code> will now detect empty strings and return the default value.</li>
     </ul>
 
-    <p>The following changes and bug fixes have occured in the
+    <p>The following changes and bug fixes have occurred in the
     <em>struts-bean</em> custom tag library (package
     <code>org.apache.struts.taglib.bean</code>):</p>
     <ul>
@@ -279,7 +279,7 @@ multipart requests.</li>
     "private".</li>
     </ul>
 
-    <p>The following changes and bug fixes have occured in the
+    <p>The following changes and bug fixes have occurred in the
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>
@@ -315,7 +315,7 @@ multipart requests.</li>
     <p>The following changes and bug fixes to the Struts Example Application
     have occurred:</p>
     <ul>
-    <li>Add Russiand and Japanese translations of the application resources and set the character set for the example JSP pages to "UTF-8" so that it can display either English or Japanese.</li>
+    <li>Add Russian and Japanese translations of the application resources and set the character set for the example JSP pages to "UTF-8" so that it can display either English or Japanese.</li>
     <li>Exchange "name" for "attribute" properties for Edit mappings in Struts configuration file.</li>
     <li>Remove references to saving database data from "tour" document, since this functionality was removed.</li>
     </ul>
@@ -326,7 +326,7 @@ multipart requests.</li>
     <li>None.</li>
     </ul> 
 
-    <p>The following changes and bug fixes to the Struts Excercise Taglib Example
+    <p>The following changes and bug fixes to the Struts Exercise Taglib Example
     Application have occurred:</p>
     <ul>
     <li>Added test case for &lt;html:select> using &lt;html:options> based on a collection

@@ -125,7 +125,7 @@
         encapsulated as a servlet or JSP page, via use of two new standard
         actions:  <code>org.apache.struts.actions.ForwardAction</code> and
         <code>org.apache.struts.actions.IncludeAction</code>.  These actions
-        let you take advantage of the standard processing perfomed by the
+        let you take advantage of the standard processing performed by the
         controller servlet (including form bean population and calling the
         <code>validate()</code> method), but not have to write Java code to
         perform (or wrap) the required business logic.</li>
@@ -211,7 +211,7 @@
     <li>Attribute getter methods have been added to all of the custom
         tag implementation classes to facilitate reuse.</li>
     <li>The <code>&lt;template:get&gt;</code> tag now has an optional
-        "flush" attribute that causes the response to be commited prior
+        "flush" attribute that causes the response to be committed prior
         to performing the include, if set to "true".  This allows working
         around problems on broken servlet containers.</li>
     </ul>
@@ -246,7 +246,7 @@
         message, making some problems difficult to track down.</li>
     </ul>
 
-    <p>The following changes and bug fixes have occured in the
+    <p>The following changes and bug fixes have occurred in the
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>

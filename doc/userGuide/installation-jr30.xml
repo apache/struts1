@@ -33,7 +33,7 @@ thrown:</p>
 <pre>
 /struts-example/index.jsp:
 
-javax.servlet.ServletException: Compilation error occured:
+javax.servlet.ServletException: Compilation error occurred:
 
 allaire.jrun.scripting.DefaultCFE:
 

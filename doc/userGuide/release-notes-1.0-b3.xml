@@ -222,7 +222,7 @@
         contain more than one name/value pair.</li>
     </ul>
 
-    <p>The following changes and bug fixes have occured in the
+    <p>The following changes and bug fixes have occurred in the
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>

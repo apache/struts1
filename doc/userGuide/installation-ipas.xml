@@ -133,7 +133,7 @@ copy contents into the following directories: etc, lib, src and web.</p>
             <p>The first time you deploy you will be prompted by a Deploy wizard and asked to
 supply both locations of the struts-example.ear file and of the cc.xml file.
 Once both elements have been satisfied continue until the finish button and
-click it. The EAR file should deploy sucessfully.</p>
+click it. The EAR file should deploy successfully.</p>
             <p>Test the sample application by using the following URL in the browser:</p>
             <p>
                 <code>http://hostname:9000/struts-example/index.jsp</code>

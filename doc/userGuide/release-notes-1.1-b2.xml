@@ -44,7 +44,7 @@
             <a href="http://jakarta.apache.org/commons/">Jakarta Commons
             Project</a> that Struts relies on.  You are welcome to use these
             classes in your own applications.  These JAR files should be
-            copied into the <code>/WEB-INF/lib</code> dirctory of
+            copied into the <code>/WEB-INF/lib</code> directory of
             your web application.</li>
         <li><code>struts.jar</code> - JAR file that contains the compiled
             Java classes of Struts.  You must
@@ -149,7 +149,7 @@
     (rather than JAXP/1.0) APIs. Parsers known to work include the JAXP/1.1
     reference implementation, and Xerces 1.3.1.</p>
 
-    <p><strong>SOURCE DEVELOPERS NOTE! Ant Prerequiste Updated</strong></p>
+    <p><strong>SOURCE DEVELOPERS NOTE! Ant Prerequisite Updated</strong></p>
     <p>To build Struts from source Ant 1.4 or later is now required. This
     does not affect developers that use Struts from the binary distribution.</p>
 
@@ -168,7 +168,7 @@
     <p>New example applications for the Validator and Tiles are now part
     of the Struts distribution.</p>
 
-    <p><strong>New Contrib directory for optional compoonents</strong></p>
+    <p><strong>New Contrib directory for optional components</strong></p>
     <p>A new directory (<code>contrib</code>) in the CVS source repository has
     been added to accumulate Struts add-on extensions that are generally
     useful but have not yet been integrated into the standard code base.</p>
@@ -220,7 +220,7 @@
     <em>struts-bean</em> custom tag library
     [<code>org.apache.struts.taglib.bean</code>]:</p>
     <ul>
-    <li><code>&lt;bean:write></code>: Add format, locale and bundle attributes to to support formatting values according to current
+    <li><code>&lt;bean:write></code>: Add format, locale and bundle attributes to support formatting values according to current
     user locale, format string from attribute or format string from string resources.</li>
     <li><code>&lt;bean:cookie>, &lt;bean:header>, or &lt;bean:parameter>:</code> Correct the generated scripting variable type when tag is used with the "multiple" attribute.</li>
     <li><code>&lt;bean:message&gt;:</code> Added <code>name</code>, <code>property</code>, and  <code>scope</code> attributes to the tag, so that the message source key can be obtained dynamically from a bean or bean property.</li>
@@ -273,7 +273,7 @@
     <li>Kickstart FAQ: The questions most likely to be asked when selecting Struts.</li>
     <li>1.0 JavaDoc: Added archival copy to web site for future reference.</li>
     <li>The UserGuide "Building" pages: General revisions to reflect new features and current practices.</li>
-    <li>Installation: Upated instructions for SilverStream and Resin. Add installation notes for Jetty. Added RexIP to list of nominal containers.</li>
+    <li>Installation: Updated instructions for SilverStream and Resin. Add installation notes for Jetty. Added RexIP to list of nominal containers.</li>
     <li>JavaDocs: New <code>@since Struts 1.1</code> tag to indicate new packages, classes, and members added after the Struts 1.0.x version</li>
     </ul>
 
@@ -347,7 +347,7 @@
     </ul>
 
     <p><strong>Bean Taglib Package Changes</strong></p>
-    <p>The following changes and bug fixes have occured in the
+    <p>The following changes and bug fixes have occurred in the
     <em>struts-bean</em> custom tag library
     [<code>org.apache.struts.taglib.bean</code>]:</p>
     <ul>
@@ -361,7 +361,7 @@
     </ul>
 
     <p><strong>HTML Taglib Package Changes</strong></p>
-    <p>The following changes and bug fixes have occured in the
+    <p>The following changes and bug fixes have occurred in the
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>
@@ -408,7 +408,7 @@
     </ul>
 
     <p><strong>Exercise Taglib Example Application Changes</strong></p>
-    <p>The following changes and bug fixes to the Struts Excercise Taglib Example
+    <p>The following changes and bug fixes to the Struts Exercise Taglib Example
     Application have occurred:</p>
     <ul>
     <li>Added test case for &lt;html:select> using &lt;html:options> based on a collection

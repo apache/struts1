@@ -308,7 +308,7 @@ about how to configure additional security manager permissions.</p>
   <li>Jetty - <a href="installation-jetty.html">Additional steps required.</a></li>
   <li>JRun - <a href="installation-jr30.html">Additional steps required.</a></li>
   <li>Novell ExteNd Application Server 4.0+ -
-      <a href="installation-novell.html">Additional steps requird.</a></li>
+      <a href="installation-novell.html">Additional steps required.</a></li>
   <li>Orion Application Server - <a href="installation-oas.html">Additional steps
     required.</a></li>
   <li>Resin 1.2+ "standalone" - No additional steps required.</li>
@@ -405,7 +405,7 @@ about how to configure additional security manager permissions.</p>
     from the Jakarta Commons project, must be in your classpath when
     compiling Struts. The <code>build.xml</code> provided does this
     automatically.  If you use your development machine to test Struts
-    application locally, be sure that the <code>stuts.jar</code> is
+    application locally, be sure that the <code>struts.jar</code> is
     <strong>NOT</strong> on your classpath when your container is running.
     </p>
 

@@ -1491,7 +1491,7 @@
                 <li><em>href</em> - Use the value of this attribute unchanged.
                     </li>
                 <li><em>page</em> - Use the value of this attribute as an
-                    applicaiton-relative URI, and generate a server-relative
+                    application-relative URI, and generate a server-relative
                     URI by including the context path.</li>
                 </ul>
 
@@ -1628,7 +1628,7 @@
                   added to the generated hyperlink.  The corresponding value is
                   defined by the <code>paramName</code> and (optional)
                   <code>paramProperty</code> attributes, optionally scoped by
-                  the <code>paramScope</code> attributel</p>
+                  the <code>paramScope</code> attribute</p>
                   </info>
                 </attribute>
 

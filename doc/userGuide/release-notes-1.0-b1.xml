@@ -150,7 +150,7 @@
   <li>A new <code>&lt;image&gt;</code> tag has been added, to create
       HTML input tags of type "image".</li>
 <li>The <code>form</code> tag has been enhanced to read its configuration from 
-      a corresponding action mapping entry in the"struts-config.xml" file, 
+      a corresponding action mapping entry in the "struts-config.xml" file, 
       if the <code>name</code>, <code>scope</code>, and <code>type</code> 
       attributes are not specified. It can look up the name of the
       form bean, its Java class, the scope in which the bean should be

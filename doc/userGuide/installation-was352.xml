@@ -105,7 +105,7 @@ org/apache/struts/action/ActionServlet.class</code></li>
   <code>$STRUTS_HOME/lib/struts-config_1_0.dtd</code> <br/>
   to <br/>
   <code>$WAS_HOME/AppServer/hosts/default_host/struts-example/servlets/org/apache/struts/resources/struts-config_1_0.dtd</code><br/>
-  or be connected to the Internet to fetch the dtd from the jakarta web site.</li>
+  or be connected to the Internet to fetch the dtd from the Jakarta web site.</li>
 
 <li>Start your webapp in the Admin Console</li>
 

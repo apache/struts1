@@ -221,7 +221,7 @@
         path in <code>RequestUtils.absoluteURL()</code>.</li>
     </ul>
 
-    <p>The following changes and bug fixes have occured in the
+    <p>The following changes and bug fixes have occurred in the
     <em>struts-bean</em> custom tag library (package
     <code>org.apache.struts.taglib.bean</code>):</p>
     <ul>
@@ -232,7 +232,7 @@
         were using URL rewriting.</li>
     </ul>
 
-    <p>The following changes and bug fixes have occured in the
+    <p>The following changes and bug fixes have occurred in the
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>

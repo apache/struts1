@@ -143,7 +143,7 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-        true/false vaule, describing to the tag if the result if to be URLEncoded.
+        true/false value, describing to the tag if the result if to be URLEncoded.
         Helps JavaScript along if the result is required for URL hacking.
       </info>
     </attribute>
@@ -171,7 +171,7 @@
         need to provide their logic.
       </p>
       <p>
-        <strong>Note</strong>: The acess to a bean via the <code>name</code>
+        <strong>Note</strong>: The access to a bean via the <code>name</code>
         attribute takes priority over looking for the reference from other
         parent tags. So if a name is specified, a bean will have to be there
         waiting for it. It was made this way so that you could use separate
@@ -1947,7 +1947,7 @@
       <strong>Note:</strong> The nested context of this tag relies on the use
       of the "property" property, and the internal use of the "name" property.
       The nested tags rely on these properties and will attempt to set them
-      iteself. The <code>&lt;html:options&gt;</code> tag this tag extendeds
+      itself. The <code>&lt;html:options&gt;</code> tag this tag extended
       allows other options for the tag which don't use these properties.
       To take advantage of these options, markup using the
       <code>&lt;html:options&gt;</code> tag instead of the nested tag.

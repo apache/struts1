@@ -67,7 +67,7 @@ here</a></p>
 <section href="validator-changes" name="Changes and deprecations">
 
 <p> <strong>Validating against the DTD in the commons-validator.jar. </strong></p>
-<p> Struts no longer maintains a seperate dtd for validator-rules.xml and validator.xml.
+<p> Struts no longer maintains a separate dtd for validator-rules.xml and validator.xml.
     Additionally, commons-validator now maintains a unified validator.dtd.
     Change all validator.xml DTD references to: 
 <ol><pre>
@@ -219,7 +219,7 @@ A concise
 <section href="resources" name="Validator Resources">
 <p>
 <a href="http://www.strutskickstart.com/">
-<b>DynaForms and the Validator</b></a> by by James Turner and Kevin Bedell.
+<b>DynaForms and the Validator</b></a> by James Turner and Kevin Bedell.
 Sample chapter from 
 <a href="http://www.strutskickstart.com/">Struts Kickstart</a>; 
 available as a free download (PDF).

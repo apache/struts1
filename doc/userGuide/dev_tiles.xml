@@ -117,7 +117,7 @@ Layouts
 </li>
 
 <li>
-  It is possible to define library ofreusable <em><strong>Tiles</strong>
+  It is possible to define library of reusable <em><strong>Tiles</strong>
 </em>.
 </li>
 
@@ -151,7 +151,7 @@ A mechanism similar to Java properties files is used for definitions files : you
 </li>
 
 <li>
-  For example, key could be user provilege, browser type, ...
+  For example, key could be user privilege, browser type, ...
 </li>
 
 <li>

@@ -206,16 +206,16 @@
     <section name="0.5.3 DynaBeans" href="dynabeans">
 
     <p>
-    DynaBeans combine the extensibility of JavaBeans with the flexbility of a Map. 
+    DynaBeans combine the extensibility of JavaBeans with the flexibility of a Map. 
     Defining even the simplest JavaBean requires defining a new class and coding a field and two methods for each property. 
     The properties of a DynaBean can be configured via an XML descriptor. 
     The virtual properties of a DynaBean can't be called by standard Java methods, 
-    but work well with components that rely on relfection and introspection. 
+    but work well with components that rely on reflection and introspection. 
     </p>
     
     <p>
     In a Struts application, you can use DynaBeans to describe your HTML forms. 
-    This stategy can avoid creating a formal JavaBean subclass to store a few simple properties. 
+    This strategy can avoid creating a formal JavaBean subclass to store a few simple properties. 
     </p>
 
     <p>
@@ -336,27 +336,27 @@
         <b>Web Applications</b></a> in the Java Web Services Tutorial.</li>
     </ul>
 
-	</section>
-		
-	<section name="0.7.1 Servlets and threads" href="threads">
+    </section>
+        
+    <section name="0.7.1 Servlets and threads" href="threads">
 
- 	<p>
- 	To boost performance, the container can multi-thread servlets. 
- 	Only one instance of a particular servlet is created, 
- 	and each request for that servlet passes through the same object. 
- 	This strategy helps the container make the best use of available resources. 
-	The tradeoff is that the servlet's <code>doGet()</code> and <code>doPost()</code> methods must be programmed in a <em>thread-safe</em> manner.
- 	</p>
- 	
- 	<p>
-	For more about servlets and thread-safety, see:
- 	</p>
- 	
- 	<ul>
+    <p>
+    To boost performance, the container can multi-thread servlets. 
+    Only one instance of a particular servlet is created, 
+    and each request for that servlet passes through the same object. 
+    This strategy helps the container make the best use of available resources. 
+    The tradeoff is that the servlet's <code>doGet()</code> and <code>doPost()</code> methods must be programmed in a <em>thread-safe</em> manner.
+    </p>
+    
+    <p>
+    For more about servlets and thread-safety, see:
+    </p>
+    
+    <ul>
     <li>
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets5.html#64386">Controlling Concurrent Access to Shared Resources</a> in JWST.
     </li>
- 	</ul>
+    </ul>
 
     </section>
 
@@ -383,15 +383,15 @@
           </li>
       </ul>
 
- 	<p>
-	For more about the servlet context, see:
- 	</p>
- 	
- 	<ul>
+    <p>
+    For more about the servlet context, see:
+    </p>
+    
+    <ul>
     <li>
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets10.html#64724">Accessing the Web Context</a> in JWST.
     </li>
- 	</ul>
+    </ul>
 
       </section>
 
@@ -440,15 +440,15 @@
       generally have to worry about the thread safety of your access to
       request properties and attributes.</p>
 
- 	<p>
-	For more about the servlet request, see:
- 	</p>
- 	
- 	<ul>
+    <p>
+    For more about the servlet request, see:
+    </p>
+    
+    <ul>
     <li>
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets7.html#64433">Getting Information from Requests</a> in JWST.
     </li>
- 	</ul>
+    </ul>
 
       </section>
 
@@ -496,18 +496,18 @@
       
       <p>
       Other presentation systems, like Velocity Tools for Struts, 
-      may delegate rendering the response to a specialized serlvet, 
+      may delegate rendering the response to a specialized servlet, 
       but the same pattern holds true. 
       You create a template, 
       and the dynamic response is generated automatically from the template.
       </p>
       
-	<p>
-	For more about the servlet response, see:
- 	</p>
- 	
- 	<ul>
- 	<li>
+    <p>
+    For more about the servlet response, see:
+    </p>
+    
+    <ul>
+    <li>
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets7.html#64531">Constructing Responses</a> in JWST.
     </li>
     </ul>
@@ -538,11 +538,11 @@
       For more about filters, see:
       </p>
 
-	<ul>
+    <ul>
     <li>
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets8.html#64572">Filtering Requests and Responses</a>
-	</li>
-	</ul>
+    </li>
+    </ul>
 
       </section>
 
@@ -592,9 +592,9 @@
       For more about sessions, see:
       </p>      
       <ul>
-      	<li>
-		<a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets11.html#64744">Maintaining Client State</a> in JWST
-		</li>
+        <li>
+        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets11.html#64744">Maintaining Client State</a> in JWST
+        </li>
         <li>
         <a href="http://java.sun.com/products/servlet/2.1/api/javax.servlet.http.HttpSession.html"><code>javax.servlet.http.HttpSession</code></a>
         </li>
@@ -610,7 +610,7 @@
       Struts uses this feature to pass a request through specialized components, 
       each handling one aspect of the response. 
       In the normal course, a request may pass through a controller object, a model object, 
-      and finaly to a view object as part of a single request/response cycle.
+      and finally to a view object as part of a single request/response cycle.
       </p>
 
       </section>
@@ -631,8 +631,8 @@
     </p>      
     <ul>
     <li>
-		<a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp.html#76431">Web Applications</a> in JWST
-	</li>
+        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp.html#76431">Web Applications</a> in JWST
+    </li>
     </ul>
 
       </section>
@@ -655,15 +655,15 @@
       
       </section>
 
-	<section name="0.7.10 Security" href="security">
+    <section name="0.7.10 Security" href="security">
 
     <p>
     One detail that can be configured in the Web application deployment descriptor is container-managed security. 
     Declarative security can be used to protect requests for URIs that match given patterns. 
-    Progmatic security can be used to fine-tune security make authorization decisions based on the time of day, 
+    Pragmatic security can be used to fine-tune security make authorization decisions based on the time of day, 
     the parameters of a call, or the internal state of a Web component.
-    It can also be used to restrict authentification based on information in a database.  
-	</p>
+    It can also be used to restrict authentication based on information in a database.  
+    </p>
 
       <p>For more information about container-managed security, see:</p>
       <ul>
@@ -801,13 +801,13 @@
 
     <section name="0.11 JAAS" href="jaas">
 
-    <p>While Struts can work with any approach to user authentification and authorization, Struts 1.1 will offer
+    <p>While Struts can work with any approach to user authentication and authorization, Struts 1.1 will offer
     direct support for the standard Java Authentication and Authorization Service (JAAS). In Struts 1.1 (and the
     current nightly build), you can specify security roles on an action-by-action basis.</p>
 
     <p>For more about JAAS, see the <a href="http://java.sun.com/products/jaas/index-14.html">Javasoft product page</a>
     and the <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebAppSecurity.html">
-    Web Applicaton Security</a> chapter of the
+    Web Application Security</a> chapter of the
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html">Web Services Tutorial</a>.</p>
 
     <p align="center">

@@ -156,14 +156,14 @@
     <li><code>ConvertUtils.convertCharacter()</code> will now detect empty strings and return the default value.</li>
     </ul>
 
-    <p>The following changes and bug fixes have occured in the
+    <p>The following changes and bug fixes have occurred in the
     <em>struts-bean</em> custom tag library (package
     <code>org.apache.struts.taglib.bean</code>):</p>
     <ul>
     <li>Correct the generated scripting variable type when the &lt;bean:cookie&gt;, &lt;bean:header&gt;, or &lt;bean:parameter&gt; tag is used with the "multiple" attribute.</li>
     </ul>
 
-    <p>The following changes and bug fixes have occured in the
+    <p>The following changes and bug fixes have occurred in the
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>

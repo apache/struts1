@@ -58,7 +58,7 @@
           design pattern abstracted from the venerable 
           <a href="http://st-www.cs.uiuc.edu/users/smarch/st-docs/mvc.html">Smalltalk MVC framework</a>. 
           Java Web developers now tend to use the terms Model 2 and MVC interchangeably. In this guide, we use 
-          the MVC paradigm to describe the Struts architechture, which might be best termed a Model 2/MVC 
+          the MVC paradigm to describe the Struts architecture, which might be best termed a Model 2/MVC 
           design.
         </p>
 
@@ -162,7 +162,7 @@
       </p>
           
       <p>
-        Struts includes a set of custom custom tag libraries that facilitate
+        Struts includes a set of custom tag libraries that facilitate
         creating user interfaces that are fully internationalized, and that
         interact gracefully with <code>ActionForm</code> beans that are part
         of the <i>Model</i> portion of the system.  
@@ -311,9 +311,9 @@
           Web applications is retaining and validating what a user has entered between
           requests. With Struts, you can define your own set of input bean classes, by
           subclassing 
-          <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionForm.html">Actionform</a>
+          <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionForm.html">ActionForm</a>
           [<code>org.apache.struts.action.ActionForm</code>]. The ActionForm class makes it
-          easy to store <b>and validate</b> the data for your appplication's input forms. 
+          easy to store <b>and validate</b> the data for your application's input forms. 
           The ActionForm bean is automatically saved in one of the standard, shared context 
           collections, so that it can be used by other objects, like an Action object or 
           another JSP.
@@ -343,7 +343,7 @@
         <ul>
         <li>The controller servlet either retrieves or creates the ActionForm bean instance.</li>
         <li>The controller servlet passes the bean to the Action object.</li>
-        <li>If the request is being used to to submit an input page, the Action object 
+        <li>If the request is being used to submit an input page, the Action object 
         can examine the data. If necessary, the data can be sent back to the input 
         form along with a list of messages to display on the page. Otherwise the data can 
         be passed along to the business tier.</li>
@@ -359,10 +359,10 @@
         </p>
         <p>
           Other Struts tags can automatically output messages queued by an Action 
-          or ActionForm and simply need to be intergrated into the page's markup. 
+          or ActionForm and simply need to be integrated into the page's markup. 
           The messages are designed for
           <a href="http://developer.java.sun.com/developer/technicalArticles/Intl/IntlIntro/">localization</a> 
-          and will render the best available mesage for a user's locale.
+          and will render the best available message for a user's locale.
         </p>
         
         <p>

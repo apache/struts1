@@ -275,7 +275,7 @@ public ActionForward
 
       <p>
         Note that you can define as many datasource objects as your application requires and
-        refer to each using a logical name. This can be useful in proding better security or
+        refer to each using a logical name. This can be useful in providing better security or
         scalability, or even to test datasource implementations against each other.
       </p>
 
