@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: struts.xsl,v 1.13 2003/09/11 19:20:14 sraeburn Exp $ -->
+<!-- $Id: struts.xsl,v 1.14 2003/09/11 21:31:24 sraeburn Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns="http://www.w3.org/1999/xhtml"
@@ -93,30 +93,31 @@
 
         <div id="main">
             <xsl:apply-templates select="body"/>
-
-            <!-- TODO
-            <hr/>
-            <h3>Contributors</h3>
-            <p>Project/@Authors: <xsl:value-of select="boolean($project/@authors)"/></p>
-            <p>Document/@Authors: <xsl:value-of select="boolean(/document/@authors)"/></p>
-            
-            <xsl:if test="/document[@authors!='false'] and 
-                          ($project[@authors='true'] or /document[@authors='true'])">
-            <div class="authors">
-            <p>Contributors</p>
-                <ul>
-	        <xsl:for-each select="/document/properties/author">
-	        <li><xsl:value-of select="."/></li>
-	        </xsl:for-each>
-            </ul>
-            </div>
-            </xsl:if>
-            -->
-
         </div>
 
         <div id="menu">
             <xsl:apply-templates select="$project"/>
+
+            <!-- 
+                 Output contributors list if the project 'authors' attribute 
+                 is true and the document level 'authors' attribute is either
+                 true or not specified.
+            -->
+            <xsl:if test="(boolean($project[@authors='true']) 
+                 and not(/document/@authors)) or /document[@authors='true']">
+                 
+                <!-- Only output contributors if there are any specified for this document -->     
+                <xsl:if test="/document/properties/author">            
+                <div class="authors">
+                <p><strong>Contributors</strong></p>
+                  <ul>
+	          <xsl:for-each select="/document/properties/author">
+	            <li><xsl:value-of select="."/></li>
+	          </xsl:for-each>
+                  </ul>
+                </div>
+                </xsl:if>
+            </xsl:if>
         </div>
         
         </div>
@@ -126,7 +127,8 @@
           <xsl:value-of select="$relative-path"/><xsl:value-of select="$powered-logo"/>
         </xsl:variable>
         <img src="{$src}" alt="Powered by Struts" id="powered-logo"/>
-        Copyright (c) 2000-2003, Apache Software Foundation <span class="noprint">- <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsDocComments">Comments?</a></span>
+        Copyright (c) 2000-2003, Apache Software Foundation <span class="noprint">- 
+        <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsDocComments">Comments?</a></span>
       </div>
 
     </body>
@@ -266,53 +268,42 @@
 
       <xsl:apply-templates select="info"/>
 
-      <xsl:if test="not(@document-attributes)">
-        <xsl:call-template name="document-tag-attributes" />
-      </xsl:if>
-      <xsl:if test="@document-attributes='true'">
-        <xsl:call-template name="document-tag-attributes" />
-      </xsl:if>
+      <xsl:if test="./attribute">
+        <table class="tag-attributes">
+         <thead>
+          <tr>
+            <th class="attribute">Attribute Name</th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <xsl:apply-templates select="attribute"/>
+        </table>
+      </xsl:if>     
       
-<!-- 
-      <xsl:if test="child::task">
-        <xsl:apply-templates select="attribute"/>
-      </xsl:if>
--->      
-
       </div>
       <p><a href="#top">Back to top</a></p>
 
   </xsl:template>
 
   <!-- Create the table of documentation for a tag -->
-  <xsl:template name="document-tag-attributes">
-        <table class="tag-attributes">
-         <thead>
-          <tr>
-            <th>Attribute Name</th>
-            <th>Description</th>
-          </tr>
-          </thead>
-          <xsl:for-each select="attribute">
-            <tr>
-              <td align="center">
-                <xsl:value-of select="name"/>
-              </td>
-              <td>
-                <xsl:apply-templates select="info"/>
-                <xsl:variable name="required">
-                  <xsl:value-of select="required"/>
-                </xsl:variable>
-                <xsl:if test="required='true'">
-                  [Required]
-                </xsl:if>
-                <xsl:if test="rtexprvalue='true'">
-                  [RT Expr]
-                </xsl:if>
-              </td>
-            </tr>
-          </xsl:for-each>
-        </table>
+  <xsl:template match="attribute">
+      <tr>
+        <td align="center">
+          <xsl:value-of select="name"/>
+        </td>
+        <td>
+          <xsl:apply-templates select="info"/>
+          <xsl:variable name="required">
+            <xsl:value-of select="required"/>
+          </xsl:variable>
+          <xsl:if test="required='true'">
+            [Required]
+          </xsl:if>
+          <xsl:if test="rtexprvalue='true'">
+            [RT Expr]
+          </xsl:if>
+        </td>
+      </tr>
   </xsl:template>
 
 

@@ -1,170 +1,239 @@
 a {
 	color: #023264;
 }
+
 body {
-	margin: 0;
-	padding: 21px 16px;
 	background: #FFFFFF;
 	color: #000000;
+	margin: 0;
+	padding: 21px 16px;
 }
+
+div.authors{
+	background: #EEEEFF;
+	border: 1px solid #CCCCFF;
+	color: #333333;
+	margin: 2em 0 0;
+	padding-bottom: 0.5em;
+}
+
+div.authors li {
+	color: #023264;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+}
+
+div.authors ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
 div.indent {
 	padding: 0 5%;
 }
+
 div.notice {
-	width: 80%;
+	background: #00FFFF;
+	border: 1px solid #000000;
 	margin-left: 8%;
 	padding: 0 2%;
-	border: 1px solid #000000;
-	background: #00FFFF;
+	width: 80%;
 }
-h1 {
-	padding: 5px;
-	background: #023264;
-	font-size: 1.2em;
-	font-weight: bold;
+
+
+h1, h2 , h3 {
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 1em 0;
 }
+
 h1 a, h2 a, h3 a {
 	color: #FFFFFF;
 }
-h1, h2 , h3 {
-	margin: 1em 0;
-	color: #FFFFFF;
-	font-family: Arial, Helvetica, sans-serif;
+
+h1 {
+	background: #023264;
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 5px;
 }
+
 h2 {
-	padding: 3px 5px;
 	background: #023264;
 	font-size: 1.1em;
 	font-weight: normal;
+	padding: 3px 5px;
 }
+
 h3 {
-	padding: 2px 5px;
 	background: #023264;
 	font-size: 1em;
 	font-weight: normal;
+	padding: 2px 5px;
 }
+
 h4 {
 	font-size: 1.1em;
 }
+
 hr {
-	border: none;
 	background: #CCCCCC;
-	height: 1px;
-}
-hr.section {
 	border: none;
-	background: #023264;
 	height: 1px;
 }
+
+hr.section {
+	background: #023264;
+	border: none;
+	height: 1px;
+}
+
 img {
 	border: none;
 }
+
 img.book {
 	margin: 10px;
 }
+
 q {
 	font-family: Arial, Helvetica, sans-serif;
 }
+
 table {
 	border: 2px solid #CCCCCC;
 	border-collapse: collapse;
 }
+
 table.noborder, table.noborder td, table.noborder td th {
 	border: none;
 }
+
 table.tag-attributes{
 	width: 100%;
 }
+
 table.taglib-summary {
 	width: 100%;
 }
+
 table.task-list {
 	width: 100%;
 }
+
 td,th {
 	border: 1px solid #CCCCCC;
 	padding: 3px;
 }
+
+th.attribute {
+	width: 15%;
+}
+
 thead {
 	border: 2px solid #CCCCCC;
 }
+
 .center {
 	text-align: center;
 }
+
+.clear{
+	clear: both;
+}
+
 .float-left {
 	float: left;
 }
+
 .float-right {
 	float: right;
 }
+
 .left {
 	text-align: left;
 }
+
 .right{
 	text-align: right;
 }
+
 .version {
-	margin: 0;
+	color: #999999;
 	font: 0.7em Arial, Helvetica, sans-serif;
-	color: #999;
+	margin: 0;
 }
+
 .warning {
 	color: #FF0000;
 	font-weight: bold;
 }
+
 #footer {
-	clear: both;
 	border-top: 1px solid #333333;
-	padding-top: 10px;
+	clear: both;
 	color: #023264;
 	font-size: 0.83em;
 	font-style: italic;
+	padding-top: 10px;
 	text-align: center;
 }
+
 #heading {
 	border-bottom: 1px solid #333333;
+	height: 100px;
 	margin-bottom: 0.5em;
 	position: relative;
-	height: 100px;
 }
+
 #jakarta-logo {
+	left: 0;
 	position: absolute;
 	top: 0;
-	left: 0;
 }
+
 #main {
-	width: 85%;
 	float: right;
 	margin-bottom: 1em;
+	width: 85%;
 }
+
 #menu {
 	margin: 1em 86% 1em 0;
 	padding: 0.2em;
 }
+
 #menu li {
-	margin: 0 0 0.5em 2em;
 	font-size: 0.84em;
 	font-weight: normal;
+	margin: 0 0 0.5em 2em;
 }
+
 #menu p {
-	margin: 0.5em;
 	color: #023264;
 	font-weight: bold;
+	margin: 0.5em;
 }
+
 #menu ul {
+	list-style: none;
 	margin: 0 0 1em;
 	padding: 0;
-	list-style: none;
 }
+
 #powered-logo {
 	float: right;
 	margin-bottom: 20px;
 }
+
 #struts-logo {
 	position: absolute;
-	top: 0;
 	right: 0;
+	top: 0;
 }
+
 @media print {
 .noprint, #menu, #jakarta-logo {
 	display: none;

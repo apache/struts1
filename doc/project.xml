@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project 
 	name="Struts Framework"
-    href="http://jakarta.apache.org/struts"
-    image="images/struts.gif"
-    >
+        href="http://jakarta.apache.org/struts"
+       image="images/struts.gif">
 
     <title>
     	Apache Struts Web Application Framework
-    	</title>
+    </title>
 
     <menu name="Struts">
         <item 

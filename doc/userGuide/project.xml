@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="Struts User's Guide"
          href="http://jakarta.apache.org/struts/userGuide"
-        image="../images/struts.gif">
+        image="../images/struts.gif"
+      authors="true">
 
     <title>Getting Started</title>
-
+    
     <menu name="User Guide">
       <item 
         name="Table of Contents"     
