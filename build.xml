@@ -77,19 +77,19 @@
             file="src/doc/images/struts-power.gif"/>
   </target>
 
-  <!-- BUILD:  Create directories and copy files for test application -->
-  <target name="prepare.test">
+  <!-- BUILD:  Create directories and copy files for exercise-taglib application -->
+  <target name="prepare.exercise-taglib">
     <mkdir   dir="${build.home}"/>
-    <mkdir   dir="${build.home}/test"/>
-    <mkdir   dir="${build.home}/test/WEB-INF"/>
-    <mkdir   dir="${build.home}/test/WEB-INF/classes"/>
-    <mkdir   dir="${build.home}/test/WEB-INF/lib"/>
-    <mkdir   dir="${build.home}/test/WEB-INF/src"/>
-    <copy  todir="${build.home}/test/WEB-INF/src">
-      <fileset dir="src/test"/>
+    <mkdir   dir="${build.home}/exercise-taglib"/>
+    <mkdir   dir="${build.home}/exercise-taglib/WEB-INF"/>
+    <mkdir   dir="${build.home}/exercise-taglib/WEB-INF/classes"/>
+    <mkdir   dir="${build.home}/exercise-taglib/WEB-INF/lib"/>
+    <mkdir   dir="${build.home}/exercise-taglib/WEB-INF/src"/>
+    <copy  todir="${build.home}/exercise-taglib/WEB-INF/src">
+      <fileset dir="src/exercise-taglib"/>
     </copy>
-    <copy  todir="${build.home}/test">
-      <fileset dir="web/test"/>
+    <copy  todir="${build.home}/exercise-taglib">
+      <fileset dir="web/exercise-taglib"/>
     </copy>
   </target>
 
@@ -278,23 +278,23 @@
             todir="${build.home}/upload/WEB-INF" />
   </target>
 
-  <!-- BUILD:  Compile test application components -->
-  <target name="compile.test"
-       depends="dist.library,prepare.test">
-    <javac srcdir="src/test"
-          destdir="${build.home}/test/WEB-INF/classes"
+  <!-- BUILD:  Compile exercise-taglib application components -->
+  <target name="compile.exercise-taglib"
+       depends="dist.library,prepare.exercise-taglib">
+    <javac srcdir="src/exercise-taglib"
+          destdir="${build.home}/exercise-taglib/WEB-INF/classes"
         classpath="${build.home}/library/classes:${servlet.jar}"
             debug="${debug}" optimize="${optimize}"
       deprecation="${deprecation}"/>
-    <copy  todir="${build.home}/test/WEB-INF/classes">
-      <fileset dir="src/test" includes="**/*.properties"/>
+    <copy  todir="${build.home}/exercise-taglib/WEB-INF/classes">
+      <fileset dir="src/exercise-taglib" includes="**/*.properties"/>
     </copy>
-    <copy   todir="${build.home}/test">
-      <fileset dir="web/test"/>
+    <copy   todir="${build.home}/exercise-taglib">
+      <fileset dir="web/exercise-taglib"/>
     </copy>
     <copy    file="${dist.home}/lib/${app.name}.jar"
-           tofile="${build.home}/test/WEB-INF/lib/${app.name}.jar"/>
-    <copy   todir="${build.home}/test/WEB-INF">
+           tofile="${build.home}/exercise-taglib/WEB-INF/lib/${app.name}.jar"/>
+    <copy   todir="${build.home}/exercise-taglib/WEB-INF">
       <fileset dir="${dist.home}/lib" includes="*.tld"/>
     </copy>
   </target>
@@ -351,10 +351,10 @@
           basedir="${build.home}/template" includes="**"/>
   </target>
 
-  <!-- DIST:  Construct test distributables -->
-  <target name="dist.test" depends="dist.library,compile.test">
-    <jar  jarfile="${dist.home}/webapps/${app.name}-test.war"
-          basedir="${build.home}/test" includes="**"/>
+  <!-- DIST:  Construct exercise-taglib distributables -->
+  <target name="dist.exercise-taglib" depends="dist.library,compile.exercise-taglib">
+    <jar  jarfile="${dist.home}/webapps/${app.name}-exercise-taglib.war"
+          basedir="${build.home}/exercise-taglib" includes="**"/>
   </target>
 
   <!-- DIST:  Construct upload example distributables -->
@@ -381,10 +381,10 @@
 
   <!-- DIST:  Construct complete release distribution -->
   <target name="dist"
-       depends="dist.library,dist.blank,dist.documentation,dist.example,dist.template,dist.test,dist.upload,dist.source"/>
+       depends="dist.library,dist.blank,dist.documentation,dist.example,dist.template,dist.exercise-taglib,dist.upload,dist.source"/>
 
   <!-- DEPLOY:  Deploy these applications on Catalina -->
-  <target name="deploy.catalina" depends="compile.blank,compile.documentation,compile.example,compile.template,compile.test,compile.upload">
+  <target name="deploy.catalina" depends="compile.blank,compile.documentation,compile.example,compile.template,compile.exercise-taglib,compile.upload">
     <mkdir   dir="${catalina.home}/webapps/struts-blank"/>
     <copy  todir="${catalina.home}/webapps/struts-blank">
       <fileset dir="${build.home}/blank"/>
@@ -413,11 +413,11 @@
     <copy  todir="${catalina.home}/webapps/struts-template/WEB-INF/lib">
       <fileset dir="${xerces.home}" includes="xerces.jar"/>
     </copy>
-    <mkdir   dir="${catalina.home}/webapps/struts-test"/>
-    <copy  todir="${catalina.home}/webapps/struts-test">
-      <fileset dir="${build.home}/test"/>
+    <mkdir   dir="${catalina.home}/webapps/struts-exercise-taglib"/>
+    <copy  todir="${catalina.home}/webapps/struts-exercise-taglib">
+      <fileset dir="${build.home}/exercise-taglib"/>
     </copy>
-    <copy  todir="${catalina.home}/webapps/struts-test/WEB-INF/lib">
+    <copy  todir="${catalina.home}/webapps/struts-exercise-taglib/WEB-INF/lib">
       <fileset dir="${xerces.home}" includes="xerces.jar"/>
     </copy>
     <mkdir   dir="${catalina.home}/webapps/struts-upload"/>
@@ -430,7 +430,7 @@
   </target>
 
   <!-- DEPLOY:  Deploy these applications on Tomcat -->
-  <target name="deploy.tomcat" depends="compile.blank,compile.documentation,compile.example,compile.template,compile.test,compile.upload">
+  <target name="deploy.tomcat" depends="compile.blank,compile.documentation,compile.example,compile.template,compile.exercise-taglib,compile.upload">
     <mkdir   dir="${tomcat.home}/webapps/struts-blank"/>
     <copy  todir="${tomcat.home}/webapps/struts-blank">
       <fileset dir="${build.home}/blank"/>
@@ -447,9 +447,9 @@
     <copy  todir="${tomcat.home}/webapps/struts-template">
       <fileset dir="${build.home}/template"/>
     </copy>
-    <mkdir   dir="${tomcat.home}/webapps/struts-test"/>
-    <copy  todir="${tomcat.home}/webapps/struts-test">
-      <fileset dir="${build.home}/test"/>
+    <mkdir   dir="${tomcat.home}/webapps/struts-exercise-taglib"/>
+    <copy  todir="${tomcat.home}/webapps/struts-exercise-taglib">
+      <fileset dir="${build.home}/exercise-taglib"/>
     </copy>
     <mkdir   dir="${tomcat.home}/webapps/struts-upload"/>
     <copy  todir="${tomcat.home}/webapps/struts-upload">
@@ -463,19 +463,19 @@
     <echo message="ANT build for ${project.name} ${project.version}"/>
     <echo message=""/>
     <echo message="The following targets are available:"/>
-    <echo message="  all                    Cleans and builds library and webapps"/>
-    <echo message="  clean                  Cleans the build and distribution directories"/>
-    <echo message="  compile.blank          Builds the blank starter app"/>
-    <echo message="  compile.documentation  Builds the documentation webapp"/>
-    <echo message="  compile.example        Builds the examples webapp"/>
-    <echo message="  compile.javadoc        Builds Javadoc API docs for Struts"/>
-    <echo message="  compile.library        Builds the main packages"/>
-    <echo message="  compile.template       Builds the template example webapp"/>
-    <echo message="  compile.upload         Builds the upload example webapp"/>
-    <echo message="  compile.test           Builds the tests webapp"/>
-    <echo message="  deploy.catalina        Deploys build to Catalina build directory"/>
-    <echo message="  deploy.tomcat          Depoys build to Tomcat build directory"/>
-    <echo message="  dist                   Builds binary distribution in dist directory"/>
+    <echo message="  all                     Cleans and builds library and webapps"/>
+    <echo message="  clean                   Cleans the build and distribution directories"/>
+    <echo message="  compile.blank           Builds the blank starter app"/>
+    <echo message="  compile.documentation   Builds the documentation webapp"/>
+    <echo message="  compile.example         Builds the examples webapp"/>
+    <echo message="  compile.javadoc         Builds Javadoc API docs for Struts"/>
+    <echo message="  compile.library         Builds the main packages"/>
+    <echo message="  compile.template        Builds the template example webapp"/>
+    <echo message="  compile.upload          Builds the upload example webapp"/>
+    <echo message="  compile.exercise-taglib Builds the exercise-taglibs webapp"/>
+    <echo message="  deploy.catalina         Deploys build to Catalina build directory"/>
+    <echo message="  deploy.tomcat           Depoys build to Tomcat build directory"/>
+    <echo message="  dist                    Builds binary distribution in dist directory"/>
     <echo message=""/>
     <echo message="Default target is 'compile.library'"/>
   </target>
@@ -488,6 +488,6 @@
 
   <!-- UTILITY:  All-in-one build target -->
   <target name="all"
-       depends="clean,compile.library,compile.documentation,compile.example,compile.test"/>
+       depends="clean,compile.library,compile.documentation,compile.example,compile.exercise-taglib"/>
 
 </project>
