@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.14 2003/03/24 04:33:42 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2003/03/24 04:33:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.15 2003/07/13 23:50:50 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/07/13 23:50:50 $
  *
  * ====================================================================
  *
@@ -59,26 +59,24 @@
  *
  */
 
-
 package org.apache.struts.taglib.logic;
-
 
 import java.security.Principal;
 import java.util.StringTokenizer;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
-import org.apache.struts.util.RequestUtils;
 
+import org.apache.struts.util.RequestUtils;
 
 /**
  * Evalute the nested body content of this tag if the specified value
  * is present for this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2003/03/24 04:33:42 $
+ * @version $Revision: 1.15 $ $Date: 2003/07/13 23:50:50 $
  */
-
 public class PresentTag extends ConditionalTagBase {
 
 
@@ -118,32 +116,14 @@ public class PresentTag extends ConditionalTagBase {
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         
         if (cookie != null) {
-            Cookie cookies[] = request.getCookies();
-            if (cookies != null) {
-                for (int i = 0; i < cookies.length; i++) {
-                    if (cookie.equals(cookies[i].getName())) {
-                        present = true;
-                        break;
-                    }
-                }
-            }
+            present = this.isCookiePresent(request);
             
         } else if (header != null) {
             String value = request.getHeader(header);
             present = (value != null);
             
         } else if (name != null) {
-            Object value = null;
-            try {
-                if (property != null) {
-                    value = RequestUtils.lookup(pageContext, name, property, scope);
-                } else {
-                    value = RequestUtils.lookup(pageContext, name, scope);
-                }
-            } catch (JspException e) {
-                value = null;
-            }
-            present = (value != null);
+            present = this.isBeanPresent();
             
         } else if (parameter != null) {
             String value = request.getParameter(parameter);
@@ -168,6 +148,44 @@ public class PresentTag extends ConditionalTagBase {
 
         return (present == desired);
 
+    }
+
+    /**
+     * Returns true if the bean given in the <code>name</code> attribute is found.
+     * @since Struts 1.2
+     */
+    protected boolean isBeanPresent() {
+        Object value = null;
+        try {
+            if (this.property != null) {
+                value = RequestUtils.lookup(pageContext, name, this.property, scope);
+            } else {
+                value = RequestUtils.lookup(pageContext, name, scope);
+            }
+        } catch (JspException e) {
+            value = null;
+        }
+        
+        return (value != null);
+    }
+
+    /**
+     * Returns true if the cookie is present in the request.
+     * @since Struts 1.2
+     */
+    protected boolean isCookiePresent(HttpServletRequest request) {
+        Cookie cookies[] = request.getCookies();
+        if (cookies == null) {
+            return false;
+        }
+        
+        for (int i = 0; i < cookies.length; i++) {
+            if (this.cookie.equals(cookies[i].getName())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
