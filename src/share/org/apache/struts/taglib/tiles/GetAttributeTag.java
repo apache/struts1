@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetAttributeTag.java,v 1.1 2002/06/25 03:16:30 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:16:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetAttributeTag.java,v 1.2 2002/07/11 16:54:33 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/11 16:54:33 $
  *
  * ====================================================================
  *
@@ -172,6 +172,7 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
       throw new JspException ( "Error - tag.getProperty : IOException ");
       }
 
+    release();
     return EVAL_PAGE;
   }
 }

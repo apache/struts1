@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.1 2002/06/25 03:16:30 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:16:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.2 2002/07/11 16:54:33 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/11 16:54:33 $
  *
  * ====================================================================
  *
@@ -315,10 +315,21 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
         // Compute real value from attributes set.
     realValue = value;
 
+        // If realValue is not set, value must come from body
+    if( value == null && beanName == null )
+        {
+          // Test body content in case of empty body.
+        if( bodyContent != null )
+          realValue = bodyContent.getString();
+         else
+          realValue = "";
+        }
+
         // Does value comes from a bean ?
-      if( value == null && beanName != null )
+      if( realValue == null && beanName != null )
         {
         getRealValueFromBean();
+        return;
         } // end if
 
       // Is there a type set ?
@@ -333,9 +344,9 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
         valueType = "path";
       }  // end if
 
-    if( value != null && valueType!=null && !(value instanceof AttributeDefinition) )
+    if( realValue != null && valueType!=null && !(value instanceof AttributeDefinition) )
       {
-      String strValue = value.toString();
+      String strValue = realValue.toString();
         if( valueType.equalsIgnoreCase( "string" ) )
           {
           realValue = new DirectStringAttribute( strValue );
@@ -422,17 +433,8 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
      */
   public int doEndTag() throws JspException
     {
-        // If nothing is set, value must come from body
-    if( value == null && beanName == null )
-        {  // body
-          // Test body content in case of empty body.
-        if( bodyContent != null )
-          value = bodyContent.getString();
-         else
-          value = "";
-        }
+      // Call parent tag which in turn do what it want
     callParent();
-
         // clean up tag handler for reuse.
     releaseInternal();
 
