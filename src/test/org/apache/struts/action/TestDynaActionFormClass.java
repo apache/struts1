@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/action/TestDynaActionFormClass.java,v 1.9 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.9 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/action/TestDynaActionFormClass.java,v 1.10 2004/04/08 22:47:55 mrdon Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/04/08 22:47:55 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -26,6 +26,7 @@ import junit.framework.TestSuite;
 import org.apache.commons.beanutils.DynaProperty;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.FormPropertyConfig;
+import org.apache.struts.config.impl.ModuleConfigImpl;
 
 
 /**
@@ -125,10 +126,14 @@ public class TestDynaActionFormClass extends TestCase
         for (int i = 0; i < dynaProperties.length; i++) {
             beanConfig.addFormPropertyConfig(dynaProperties[i]);
         }
+        
+        // Create a temporary ModuleConfig
+        ModuleConfigImpl moduleConfig = new ModuleConfigImpl("");
 
         // Construct a corresponding DynaActionFormClass
         dynaClass =
-            DynaActionFormClass.createDynaActionFormClass(beanConfig);
+            DynaActionFormClass.createDynaActionFormClass(beanConfig, 
+                                                          moduleConfig);
 
     }
 
