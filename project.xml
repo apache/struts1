@@ -196,16 +196,19 @@ and proven design patterns.
     <dependency>
       <id>commons-beanutils</id>
       <version>1.6.1</version>
+      <url>http://jakarta.apache.org/commons/beanutils.html</url>
     </dependency>
 
     <dependency>
       <id>commons-collections</id>
       <version>2.1</version>
+      <url>http://jakarta.apache.org/commons/collections.html</url>
     </dependency>
 
     <dependency>
       <id>commons-digester</id>
       <version>1.5</version>
+      <url>http://jakarta.apache.org/commons/digester.html</url>
     </dependency>
 
     <dependency>
@@ -221,16 +224,19 @@ and proven design patterns.
     <dependency>
       <id>commons-logging</id>
       <version>1.0.3</version>
+      <url>http://jakarta.apache.org/commons/logging.html</url>
     </dependency>
     
     <dependency>
       <id>commons-validator</id>
-      <version>1.0.2</version>
+      <version>1.1.0</version>
+      <url>http://jakarta.apache.org/commons/validator.html</url>
     </dependency>
     
     <dependency>
       <id>oro</id>
-      <version>2.0.6</version>
+      <version>2.0.7</version>
+      <url>http://jakarta.apache.org/oro/</url>
     </dependency>
 
     <dependency>
@@ -306,4 +312,32 @@ and proven design patterns.
     <jars>
     </jars>
   </build>
+
+  <reports>
+    <!--
+     |
+     | These should all be completely self contained. You should be able
+     | to generate each of them individually without needing the final
+     | xdoc transformation.
+     |
+     | Each report plugin with it's POM and plugin.jelly logic should
+     | contain everything needed to produced the report.
+     |
+    -->
+
+    <report>maven-jdepend-plugin</report>
+    <report>maven-checkstyle-plugin</report>
+    <report>maven-changes-plugin</report>
+    <report>maven-changelog-plugin</report>
+    <report>maven-file-activity-plugin</report>
+    <report>maven-developer-activity-plugin</report>
+    <report>maven-javadoc-plugin</report>
+    <report>maven-jxr-plugin</report>
+    <report>maven-junit-report-plugin</report>
+    <report>maven-tasklist-plugin</report>
+    <report>maven-pmd-plugin</report>
+    <report>maven-simian-plugin</report>
+    <report>maven-faq-plugin</report>
+  </reports>
+
 </project>
