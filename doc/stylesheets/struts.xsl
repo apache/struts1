@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: struts.xsl,v 1.12 2003/09/09 21:29:10 sraeburn Exp $ -->
+<!-- $Id: struts.xsl,v 1.13 2003/09/11 19:20:14 sraeburn Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns="http://www.w3.org/1999/xhtml"
@@ -93,6 +93,26 @@
 
         <div id="main">
             <xsl:apply-templates select="body"/>
+
+            <!-- TODO
+            <hr/>
+            <h3>Contributors</h3>
+            <p>Project/@Authors: <xsl:value-of select="boolean($project/@authors)"/></p>
+            <p>Document/@Authors: <xsl:value-of select="boolean(/document/@authors)"/></p>
+            
+            <xsl:if test="/document[@authors!='false'] and 
+                          ($project[@authors='true'] or /document[@authors='true'])">
+            <div class="authors">
+            <p>Contributors</p>
+                <ul>
+	        <xsl:for-each select="/document/properties/author">
+	        <li><xsl:value-of select="."/></li>
+	        </xsl:for-each>
+            </ul>
+            </div>
+            </xsl:if>
+            -->
+
         </div>
 
         <div id="menu">
@@ -246,9 +266,18 @@
 
       <xsl:apply-templates select="info"/>
 
+      <xsl:if test="not(@document-attributes)">
+        <xsl:call-template name="document-tag-attributes" />
+      </xsl:if>
+      <xsl:if test="@document-attributes='true'">
+        <xsl:call-template name="document-tag-attributes" />
+      </xsl:if>
+      
+<!-- 
       <xsl:if test="child::task">
         <xsl:apply-templates select="attribute"/>
       </xsl:if>
+-->      
 
       </div>
       <p><a href="#top">Back to top</a></p>
@@ -337,15 +366,6 @@
       </td>
       <td><xsl:value-of select="assigned"/></td>
     </tr>
-  </xsl:template>
-
-<!-- Contributors -->
-  <xsl:template match="contributors">
-    <ul>
-    <xsl:for-each select="/document/properties/author">
-    <li><xsl:value-of select="."/></li>
-    </xsl:for-each>
-    </ul>
   </xsl:template>
 
 
