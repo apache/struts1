@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/CheckLogonTag.java,v 1.1 2003/03/07 03:22:42 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:42 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/CheckLogonTag.java,v 1.2 2003/07/27 06:35:48 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/07/27 06:35:48 $
  *
  * ====================================================================
  *
@@ -63,14 +63,9 @@
 package org.apache.struts.webapp.example;
 
 
-import java.io.IOException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.action.Action;
-import org.apache.struts.util.MessageResources;
 
 
 /**
@@ -79,7 +74,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Craig R. McClanahan
  * @author Marius Barduta
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:42 $
+ * @version $Revision: 1.2 $ $Date: 2003/07/27 06:35:48 $
  */
 
 public final class CheckLogonTag extends TagSupport {

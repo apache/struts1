@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LinkSubscriptionTag.java,v 1.2 2003/06/04 17:37:36 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:37:36 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LinkSubscriptionTag.java,v 1.3 2003/07/27 06:37:37 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/27 06:37:37 $
  *
  * ====================================================================
  *
@@ -63,7 +63,6 @@
 package org.apache.struts.webapp.example;
 
 
-import java.io.IOException;
 import javax.faces.component.UIComponent;
 import javax.faces.webapp.UIComponentTag;
 
@@ -73,7 +72,7 @@ import javax.faces.webapp.UIComponentTag;
  * associated query parameters selecting a specified Subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:37:36 $
+ * @version $Revision: 1.3 $ $Date: 2003/07/27 06:37:37 $
  */
 
 public class LinkSubscriptionTag extends UIComponentTag {

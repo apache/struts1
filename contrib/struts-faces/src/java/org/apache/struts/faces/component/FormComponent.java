@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/component/FormComponent.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:38:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/component/FormComponent.java,v 1.3 2003/07/27 06:41:39 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/27 06:41:39 $
  *
  * ====================================================================
  *
@@ -63,11 +63,11 @@ package org.apache.struts.faces.component;
 
 
 import java.io.IOException;
+
 import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -87,7 +87,7 @@ import org.apache.struts.util.RequestUtils;
  * creation of form beans in request or session scope.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
+ * @version $Revision: 1.3 $ $Date: 2003/07/27 06:41:39 $
  */
 public class FormComponent extends UIForm {
 

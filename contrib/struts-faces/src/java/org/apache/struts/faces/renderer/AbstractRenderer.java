@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/AbstractRenderer.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:38:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/AbstractRenderer.java,v 1.3 2003/07/27 06:43:16 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/27 06:43:16 $
  *
  * ====================================================================
  *
@@ -64,10 +64,10 @@ package org.apache.struts.faces.renderer;
 
 import java.io.IOException;
 import java.util.Map;
+
 import javax.faces.FactoryFinder;
 import javax.faces.application.Application;
 import javax.faces.application.ApplicationFactory;
-import javax.faces.application.Message;
 import javax.faces.application.MessageImpl;
 import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
@@ -84,7 +84,7 @@ import javax.faces.render.Renderer;
  * <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
+ * @version $Revision: 1.3 $ $Date: 2003/07/27 06:43:16 $
  */
 
 public abstract class AbstractRenderer extends Renderer {

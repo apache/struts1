@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/Attic/LinkSubscriptionRenderer.java,v 1.2 2003/06/04 17:37:36 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:37:36 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/Attic/LinkSubscriptionRenderer.java,v 1.3 2003/07/27 06:37:37 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/27 06:37:37 $
  *
  * ====================================================================
  *
@@ -63,20 +63,20 @@ package org.apache.struts.webapp.example;
 
 
 import java.io.IOException;
+
 import javax.faces.FacesException;
 import javax.faces.FactoryFinder;
 import javax.faces.application.Application;
 import javax.faces.application.ApplicationFactory;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.el.ValueBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.Globals;
 import org.apache.struts.faces.renderer.AbstractRenderer;
 import org.apache.struts.util.ResponseUtils;
 
@@ -86,7 +86,7 @@ import org.apache.struts.util.ResponseUtils;
  * <code>linkSubscription</code> tag for the Struts Example application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:37:36 $
+ * @version $Revision: 1.3 $ $Date: 2003/07/27 06:37:37 $
  */
 
 public class LinkSubscriptionRenderer extends AbstractRenderer {

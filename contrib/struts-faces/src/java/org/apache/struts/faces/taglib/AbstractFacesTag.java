@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/AbstractFacesTag.java,v 1.2 2003/06/04 17:38:14 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:38:14 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/AbstractFacesTag.java,v 1.3 2003/07/27 06:45:04 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/27 06:45:04 $
  *
  * ====================================================================
  *
@@ -65,7 +65,6 @@ package org.apache.struts.faces.taglib;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIOutput;
 import javax.faces.webapp.UIComponentTag;
-import javax.servlet.jsp.JspException;
 
 
 /**
@@ -74,7 +73,7 @@ import javax.servlet.jsp.JspException;
  *
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:14 $
+ * @version $Revision: 1.3 $ $Date: 2003/07/27 06:45:04 $
  */
 
 public abstract class AbstractFacesTag extends UIComponentTag {

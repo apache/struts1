@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/ActionListenerImpl.java,v 1.1 2003/06/04 17:38:13 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/06/04 17:38:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/ActionListenerImpl.java,v 1.2 2003/07/27 06:41:27 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/07/27 06:41:27 $
  *
  * ====================================================================
  *
@@ -70,10 +70,10 @@ import javax.faces.event.PhaseId;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
-import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.faces.Constants;
@@ -87,7 +87,7 @@ import org.apache.struts.util.RequestUtils;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/06/04 17:38:13 $
+ * @version $Revision: 1.2 $ $Date: 2003/07/27 06:41:27 $
  */
 
 public class ActionListenerImpl implements ActionListener {

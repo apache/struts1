@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/FormRenderer.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:38:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/FormRenderer.java,v 1.3 2003/07/27 06:43:16 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/27 06:43:16 $
  *
  * ====================================================================
  *
@@ -63,12 +63,12 @@ package org.apache.struts.faces.renderer;
 
 
 import java.io.IOException;
+
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.servlet.http.HttpSession;
-import org.apache.commons.beanutils.DynaBean;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
@@ -82,7 +82,7 @@ import org.apache.struts.faces.component.FormComponent;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
+ * @version $Revision: 1.3 $ $Date: 2003/07/27 06:43:16 $
  */
 
 public class FormRenderer extends AbstractRenderer {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/PropertyResolverImpl.java,v 1.1 2003/06/04 17:38:13 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/06/04 17:38:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/PropertyResolverImpl.java,v 1.2 2003/07/27 06:41:27 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/07/27 06:41:27 $
  *
  * ====================================================================
  *
@@ -63,10 +63,11 @@ package org.apache.struts.faces.application;
 
 
 import java.util.Map;
+
 import javax.faces.el.PropertyNotFoundException;
 import javax.faces.el.PropertyResolver;
+
 import org.apache.commons.beanutils.DynaBean;
-import org.apache.commons.beanutils.DynaClass;
 import org.apache.commons.beanutils.DynaProperty;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -117,7 +118,7 @@ import org.apache.struts.action.DynaActionForm;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/06/04 17:38:13 $
+ * @version $Revision: 1.2 $ $Date: 2003/07/27 06:41:27 $
  */
 
 public class PropertyResolverImpl extends PropertyResolver {

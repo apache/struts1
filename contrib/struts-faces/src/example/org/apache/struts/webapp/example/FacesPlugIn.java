@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/Attic/FacesPlugIn.java,v 1.1 2003/03/07 03:22:42 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:42 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/Attic/FacesPlugIn.java,v 1.2 2003/07/27 06:37:03 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/07/27 06:37:03 $
  *
  * ====================================================================
  *
@@ -64,10 +64,10 @@ package org.apache.struts.webapp.example;
 
 
 import javax.faces.FactoryFinder;
-import javax.faces.render.Renderer;
 import javax.faces.render.RenderKit;
 import javax.faces.render.RenderKitFactory;
 import javax.servlet.ServletException;
+
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
 import org.apache.struts.config.ModuleConfig;
@@ -77,7 +77,7 @@ import org.apache.struts.config.ModuleConfig;
  * <p>PlugIn to register application-specific JavaServer Faces classes.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:42 $
+ * @version $Revision: 1.2 $ $Date: 2003/07/27 06:37:03 $
  */
 
 public class FacesPlugIn implements PlugIn {
