@@ -13,6 +13,5 @@ Class-Path: commons-dbcp.jar
 Class-Path: commons-digester.jar
 Class-Path: commons-logging.jar
 Class-Path: commons-pool.jar
-Class-Path: commons-services.jar
 Class-Path: commons-validator.jar
 Class-Path: jakarta-oro.jar

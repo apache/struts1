@@ -6,7 +6,7 @@
 # to "build.properties" in the same directory that contains the Struts
 # "build.xml" file.
 #
-# $Id: build.properties.sample,v 1.19 2002/12/22 04:42:24 rleland Exp $
+# $Id: build.properties.sample,v 1.20 2002/12/22 06:13:07 martinc Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -62,10 +62,6 @@ commons-pool.jar=${commons-lib.home}/pool/dist/commons-pool.jar
 # The JAR file containing version 1.0 (or later) of the Resources package
 # from the Jakarta Commons project.
 commons-resources.jar=${commons-sandbox-lib.home}/resources/target/commons-resources-1.0-dev.jar
-
-# The JAR file containing a recent version of the SERVICES package
-# from the Jakarta Commons project.
-commons-services.jar=${commons-sandbox-lib.home}/services/dist/commons-services.jar
 
 # The JAR file containing a recent version of the VALIDATOR package
 # from the Jakarta Commons project.
