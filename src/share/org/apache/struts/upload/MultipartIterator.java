@@ -214,7 +214,7 @@ public class MultipartIterator {
 
                     element = new MultipartElement(name, filename, contentType, elementFile);
                 } catch (IOException ioe) {
-                    throw new ServletException("IOException while reading file element: ioe.getMessage()", ioe);
+                    throw new ServletException("IOException while reading file element: " + ioe.getMessage(), ioe);
                 }
             }
             else {
@@ -228,13 +228,6 @@ public class MultipartIterator {
                 while ((line != null) && (!line.startsWith(boundary))) {
                     textData.append(line);
                     line = readLine();
-
-                    if (maxSize > -1) {
-                        if (totalLength > maxSize) {
-                            throw new ServletException("Multipart data size exceeds the maximum " +
-                                "allowed post size");
-                        }
-                    }
                 }
 
                 if (textData.length() > 0) {
@@ -322,9 +315,8 @@ public class MultipartIterator {
                 
         }
         catch (IOException ioe) {
-            throw new ServletException("MultipartIterator.parseRequest(): " +
-                                       "IOException while trying to obtain " +
-                                       "ServletInputStream");
+            throw new ServletException("Problem while reading request: " + 
+                ioe.getMessage(), ioe);
         }
        
         if ((boundary == null) || (boundary.length() < 1)) {

@@ -52,6 +52,16 @@ public class BufferedMultipartInputStream extends InputStream {
      */
     protected long maxSize = -1;
     
+    /**
+     * Whether or not bytes up to the Content-Length have been read
+     */
+    protected boolean contentLengthMet = false;
+    
+    /**
+     * Whether or not bytes up to the maximum length have been read
+     */
+    protected boolean maxLengthMet = false;
+    
     
     /**
      * Public constructor for this class, just wraps the InputStream
@@ -70,6 +80,11 @@ public class BufferedMultipartInputStream extends InputStream {
         this.bufferSize = bufferSize;
         this.contentLength = contentLength;
         this.maxSize = maxSize;
+        
+        if (maxSize < contentLength) {
+            throw new IOException("Posted Content-Length of " + contentLength +
+                " bytes exceeds maximum post size of " + maxSize + " bytes");
+        }
         buffer = new byte[bufferSize];
         fill();
     }
@@ -105,11 +120,34 @@ public class BufferedMultipartInputStream extends InputStream {
     }
     
     /**
+     * @return true if the maximum length has been reached, false otherwise
+     */
+    public boolean maxLengthMet() {
+        return maxLengthMet;
+    }
+    
+    /**
+     * @return true if the content length has been reached, false otherwise
+     */
+    public boolean contentLengthMet() {
+        return contentLengthMet;
+    }
+    
+    /**
      * This method returns the next byte in the buffer, and refills it if necessary.
      * @return The next byte read in the buffer, or -1 if the end of the stream has
      *         been reached
      */
-    public int read() throws IOException {        
+    public int read() throws IOException {
+        
+        if (maxLengthMet) {
+            throw new IOException("Maximum post length of " + maxSize + " bytes " +
+                "has been reached");
+        }
+        if (contentLengthMet) {
+            throw new IOException("Content-Length of " + contentLength + " bytes " +
+                "has been exceeded");
+        }
         if (buffer == null) {
             return -1;
         }
@@ -190,12 +228,21 @@ public class BufferedMultipartInputStream extends InputStream {
     protected void fill() throws IOException {
 
         if ((bufferOffset > -1) && (bufferLength > -1)) {
-            int length = Math.min(bufferSize, (int) contentLength);
-            if (maxSize > -1) {
-                length = Math.min(length, (int) maxSize);
+            int length = Math.min(bufferSize, (((int) contentLength+1) - totalLength));
+            if (length == 0) {
+                contentLengthMet = true;
+            }
+            if ((maxSize > -1) && (length > 0)){
+                length = Math.min(length, ((int) maxSize - totalLength));
+                if (length == 0) {
+                    maxLengthMet = true;
+                }
             }
 
-            int bytesRead = inputStream.read(buffer, 0, length);
+            int bytesRead = -1;
+            if (length > 0) {
+                bytesRead = inputStream.read(buffer, 0, length);
+            }
             if (bytesRead == -1) {
                 buffer = null;
                 bufferOffset = -1;
@@ -204,7 +251,7 @@ public class BufferedMultipartInputStream extends InputStream {
             else {
                 bufferLength = bytesRead;
                 totalLength += bytesRead;
-                bufferOffset = 0;
+                bufferOffset = 0;            
             }
         }
     }
