@@ -890,6 +890,118 @@
 
   </tag>
 
+  <tag>
+
+    <name>messagesNotPresent</name>
+    <summary>
+    Generate the nested body content of this tag if the specified
+    message is not present in this request.
+    </summary>
+    <tagclass>org.apache.struts.taglib.logic.MessagesNotPresentTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+    <p>Evaluates the nested body content of this tag if 
+       an <code>ActionMessages</code>
+       object, <code>ActionErrors</code> object, a String,
+       or a String array is not in request scope.  If
+       such a bean is not found, nothing will be rendered.
+    </p>
+    </info>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The parameter key to retrieve the message from request scope.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Name of the property for which messages should be
+         retrieved.  If not specified, all messages (regardless
+         of property) are retrieved.
+      </p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>message</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>By default the tag will retrieve the request scope bean it will
+         iterate over from the <code>Action.ERROR_KEY</code> constant string,
+         but if this attribute is set to 'true' the request scope bean
+         will be retrieved from the <code>Action.MESSAGE_KEY</code>
+         constant string.  Also if this is set to 'true', any value
+         assigned to the name attribute will be ignored.
+      </p>
+      </info>
+    </attribute>
+
+  </tag>
+
+  <tag>
+
+    <name>messagesPresent</name>
+    <summary>
+    Generate the nested body content of this tag if the specified
+    message is present in this request.
+    </summary>
+    <tagclass>org.apache.struts.taglib.logic.MessagesPresentTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+    <p>Evaluates the nested body content of this tag if 
+       an <code>ActionMessages</code>
+       object, <code>ActionErrors</code> object, a String,
+       or a String array is in request scope.  If
+       such a bean is not found, nothing will be rendered.
+    </p>
+    </info>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The parameter key to retrieve the message from request scope.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Name of the property for which messages should be
+         retrieved.  If not specified, all messages (regardless
+         of property) are retrieved.
+      </p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>message</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>By default the tag will retrieve the request scope bean it will
+         iterate over from the <code>Action.ERROR_KEY</code> constant string,
+         but if this attribute is set to 'true' the request scope bean
+         will be retrieved from the <code>Action.MESSAGE_KEY</code>
+         constant string.  Also if this is set to 'true', any value
+         assigned to the name attribute will be ignored.
+      </p>
+      </info>
+    </attribute>
+
+  </tag>
+
 
   <tag>
 
