@@ -72,6 +72,9 @@ import org.apache.commons.validator.ValidatorResourcesInitializer;
 /**
  * <p><strong>ValidatorServlet</strong> loads validation values into application scope.</p>
  *
+ * @deprecated This is no longer needed.  Use the Struts Plugin Interface 
+ * (<code>org.apache.struts.action.PlugIn</code) instead.
+ *
  * @author David Winterfeldt
  */
 
@@ -244,7 +247,7 @@ public class ValidatorServlet extends HttpServlet {
               // until second file is loaded
               ValidatorResourcesInitializer.initialize(resources, bis, false);
            } catch (Exception e) {
-              log.error("ValidatorServlet::initMapping - " + e.getMessage(), e);
+              log.error(e.getMessage(), e);
            }
 	} else {
 	   log.error("Skipping validation rules file from '" + configRules + "'.  No stream could be opened.");	
@@ -270,7 +273,7 @@ public class ValidatorServlet extends HttpServlet {
            // pass in true so resources are processed
            ValidatorResourcesInitializer.initialize(resources, bis, true);
         } catch (Exception e) {
-           log.error("ValidatorServlet::initMapping - " + e.getMessage(), e);
+           log.error(e.getMessage(), e);
         }
 
     }
