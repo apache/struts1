@@ -1,4 +1,4 @@
--[STATUS LOG] 15-Mar-2003 Jakarta Struts-
+-[STATUS LOG] 15-Mar-2004 Jakarta Struts-
 
 * Releases
 * Showstappers
@@ -101,5 +101,5 @@
     * Joe Germuska (germuska at apache.org)
 
 
-$Id: STATUS.txt,v 1.2 2004/03/16 15:52:41 husted Exp $
+$Id: STATUS.txt,v 1.3 2004/03/16 15:53:27 husted Exp $
 ###
