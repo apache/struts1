@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.6 2002/12/29 11:49:35 husted Exp $</font></p>
+  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.7 2002/12/29 17:01:57 husted Exp $</font></p>
 
   <p>The objective of the <strong>Struts 1.1 Beta 3</strong> release is to
   create a milestone release against which a final series of bug fixes and
@@ -101,16 +101,16 @@
       <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=11021">11021</a>
       </td>
-	  <td>ActionForward or &lt;html:link&gt; tag does not support absolute URIs</td>
-	</tr>
+      <td>ActionForward or &lt;html:link&gt; tag does not support absolute URIs</td>
+    </tr>
     <tr>
         <td nowrap="nowrap">[ ]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=12302">12302</a></td>
-	  <td>Sporadic error in html:form action attribute</td>
+      <td>Sporadic error in html:form action attribute</td>
     </tr>
     <tr>
-        <td>[ ]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=13645">13645</a></td>
       <td>Add action attribute to &lt;html:link&gt;</td>
@@ -148,19 +148,19 @@
         <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=12871">12871</a></td>
-	  <td>ExceptionHandler does not obey controller inputForward rule</td>
+      <td>ExceptionHandler does not obey controller inputForward rule</td>
     </tr>
     <tr>
         <td>[ ]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=14054">14054</a></td>
-	  <td>Rename "Application" components to "Module"</td>
+      <td>Rename "Application" components to "Module"</td>
     </tr>
     <tr>
         <td>[ ]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=14749">14749</a></td>
-	  <td>Action "input" not starting with '/' and not a valid forward will cause an internal server error</td>
+      <td>Action "input" not starting with '/' and not a valid forward will cause an internal server error</td>
     </tr>
 
     <!-- Documentation -->
@@ -171,13 +171,13 @@
         <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=10537">10537</a></td>
-	  <td>[:TODO:] sections</td>
+      <td>[:TODO:] sections</td>
     </tr>
     <tr>
         <td>[ ]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15167">15167</a></td>
-	  <td>Updated Action documentation</td>
+      <td>Updated Action documentation</td>
     </tr>
 
     <!-- Utilities -->
@@ -188,7 +188,7 @@
         <td>[ ]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=11932">11932</a></td>
-	  <td>(Message Resource is not multi-app aware) Multi-Resource not work in Multi-Appliction config environment</td>
+      <td>(Message Resource is not multi-app aware) Multi-Resource not work in Multi-Appliction config environment</td>
     </tr>
 
     <!-- Unknown -->
@@ -199,7 +199,7 @@
         <td>[ ]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=14042">14042</a></td>
-	  <td>Unknown Memory leaks with JBoss 3.x +(Tomcat/Jetty)</td>
+      <td>Unknown Memory leaks with JBoss 3.x +(Tomcat/Jetty)</td>
     </tr>
 
   </table>
