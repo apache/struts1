@@ -1402,15 +1402,19 @@
                 <p>Renders an HTML <code>&lt;img&gt;</code> element with
                 the image at the specified URL.  Like the link tag, URL
                 rewriting will be applied automatically to the value
-                specified in <code>src</code>, to maintain session state
+                specified in <code>src</code> or <code>page</code>,
+                to maintain session state
                 in the absence of cookies.  This will allow dynamic
                 generation of an image where the content displayed for this
                 image will be taken from the attributes of this tag.</p>
 
                 <p>The base URL for this image is calculated based on
-                the value specified in <code>src</code>.</p>
+                the value specified in <code>src</code> or <code>page</code>.
+                You <strong>must</strong> specify exactly one of these
+                attributes.</p>
 
-                <p>Normally, the <code>src</code> you specify will be left
+                <p>Normally, the <code>src</code> or <code>page</code> that
+                you specify will be left
                 unchanged (other than URL rewriting if necessary).  However,
                 there are two ways you can append one or more dynamically
                 defined query parameters to the <code>src</code> URL --
@@ -1521,18 +1525,6 @@
                 </attribute>
 
                 <attribute>
-                  <name>imageName</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The scriptable name to be defined within this page, so 
-                  thatyou can reference it with intra-page scripts.  In other
-                  words, the value specified here will render a "name" element
-                  in the generated image tag.</p>
-                  </info>
-                </attribute>
-
-                <attribute>
                   <name>height</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -1600,50 +1592,6 @@
                 </attribute>
 
                 <attribute>
-                  <name>src</name>
-                  <required>true</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The URL to which this image will be transferred from
-                  This image may be dynamically modified
-                  by the inclusion of query parameters, as described in the
-                  tag description.  You <strong>must</strong> specify
-                  the <code>src</code> attribute.</p>
-                  </info>
-                </attribute>
-
-                <attribute>
-                  <name>usemap</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The name of the map as defined within this page for
-                     mapping hot-spot areas of this image.</p>
-                  </info>
-                </attribute>
-
-                <attribute>
-                  <name>vspace</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The amount of vertical spacing between the icon and
-                     the text, above and below.</p>
-                  </info>
-                </attribute>
-
-                <attribute>
-                  <name>width</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The width of the image being displayed.  This parameter
-                     is very nice to specificy (along with <code>height</code>)
-                     to help the browser render the page faster.</p>
-                  </info>
-                </attribute>
-
-                <attribute>
                   <name>onkeydown</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -1683,6 +1631,22 @@
                   defined by the <code>paramName</code> and (optional)
                   <code>paramProperty</code> attributes, optionally scoped by
                   the <code>paramScope</code> attributel</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>page</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The context-relative path, starting with a slash, of
+                  the image to be displayed by this tag.  The rendered
+                  URL for this image will automatically prepend the context
+                  path of this web application (in the same manner as the
+                  <code>page</code> attribute on the link tag works),
+                  in addition to any necessary URL rewriting.  You
+                  <strong>must</strong> specify either the <code>page</code>
+                  attribute or the <code>src</code> attribute.</p>
                   </info>
                 </attribute>
 
@@ -1751,6 +1715,22 @@
                 </attribute>
 
                 <attribute>
+                  <name>src</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The URL to which this image will be transferred from
+                  This image may be dynamically modified
+                  by the inclusion of query parameters, as described in the
+                  tag description.  This value will be used unmodified (other
+                  than potential URL rewriting) as the value of the "src"
+                  attribute in the rendered tag.  You <strong>must</strong>
+                  specify either the <code>page</code> attribute or the
+                  the <code>src</code> attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
                   <name>style</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -1765,6 +1745,37 @@
                   <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>CSS stylesheet class to be applied to this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>usemap</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of the map as defined within this page for
+                     mapping hot-spot areas of this image.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>vspace</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The amount of vertical spacing between the icon and
+                     the text, above and below.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>width</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The width of the image being displayed.  This parameter
+                     is very nice to specificy (along with <code>height</code>)
+                     to help the browser render the page faster.</p>
                   </info>
                 </attribute>
 

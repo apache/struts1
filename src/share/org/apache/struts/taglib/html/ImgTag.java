@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.2 2001/01/31 22:00:16 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/31 22:00:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.3 2001/02/07 23:10:44 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/02/07 23:10:44 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -235,6 +235,21 @@ public class ImgTag extends BaseHandlerTag {
 
     public void setName(String name) {
 	this.name = name;
+    }
+
+
+    /**
+     * The context-relative path, starting with a slash character, of the
+     * image to be displayed by this rendered tag.
+     */
+    protected String page = null;
+
+    public String getPage() {
+        return (this.page);
+    }
+
+    public void setPage(String page) {
+        this.page = page;
     }
 
 
@@ -404,10 +419,23 @@ public class ImgTag extends BaseHandlerTag {
     public int doEndTag() throws JspException {
 
 	// Generate the name definition or image element
+        HttpServletRequest request =
+	  (HttpServletRequest) pageContext.getRequest();
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
 	StringBuffer results = new StringBuffer("<img");
-        String srcurl = url(this.src);
+	String srcurl = null;
+	if (this.src != null)
+	    srcurl = url(this.src);
+	else if (this.page != null)
+	    srcurl = url(request.getContextPath() + this.page);
+	else {
+	    JspException e = new JspException
+	      (messages.getMessage("imgTag.source"));
+	    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+				     PageContext.REQUEST_SCOPE);
+	    throw e;
+	}
         String lowsrcurl = url(this.lowsrc);
         if (srcurl != null) {
             results.append(" src=\"");
@@ -503,6 +531,7 @@ public class ImgTag extends BaseHandlerTag {
         ismap = null;
         lowsrc = null;
 	name = null;
+        page = null;
         paramId = null;
         paramName = null;
         paramProperty = null;
