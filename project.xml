@@ -283,12 +283,6 @@
       <url>http://www.junit.org</url>
     </dependency>
     <dependency>
-      <groupId>commons-lang</groupId>
-      <artifactId>commons-lang</artifactId>
-      <version>2.0</version>
-      <url>http://jakarta.apache.org/commons/lang.html</url>
-    </dependency>
-    <dependency>
       <groupId>cactus</groupId>
       <artifactId>cactus</artifactId>
       <version>12-1.4.1</version>
