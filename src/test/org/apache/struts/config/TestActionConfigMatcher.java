@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/config/TestActionConfigMatcher.java,v 1.1 2003/10/10 22:09:26 mrdon Exp $
- * $Revision: 1.1 $
- * $Date: 2003/10/10 22:09:26 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/config/TestActionConfigMatcher.java,v 1.2 2003/10/10 23:19:57 mrdon Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/10/10 23:19:57 $
  *
  * ====================================================================
  *
@@ -91,7 +91,7 @@ import org.apache.struts.taglib.html.Constants;
  * <p>Unit tests for <code>org.apache.struts.util.ActionConfigMatcher</code>.</p>
  *
  * @author Don Brown
- * @version $Revision: 1.1 $ $Date: 2003/10/10 22:09:26 $
+ * @version $Revision: 1.2 $ $Date: 2003/10/10 23:19:57 $
  */
 
 public class TestActionConfigMatcher extends TestMockBase {
@@ -167,7 +167,10 @@ public class TestActionConfigMatcher extends TestMockBase {
         configs[0] = mapping;
         ActionConfigMatcher matcher = new ActionConfigMatcher(configs);
         
-        assertNotNull("ActionConfig should be matched", matcher.match("/fooBar"));
+        ActionConfig matched = matcher.match("/fooBar");
+        assertNotNull("ActionConfig should be matched", matched);
+        assertTrue("ActionConfig should have two action forward", matched.findForwardConfigs().length == 2);
+        assertTrue("ActionConfig should have two exception forward", matched.findExceptionConfigs().length == 2);
     }
     
     public void testCheckSubstitutionsMatch() {
@@ -219,12 +222,33 @@ public class TestActionConfigMatcher extends TestMockBase {
         mapping.setInclude("include,{1}");
         mapping.setInput("input,{1}");
 
-        ForwardConfig[] fConfigs = mapping.findForwardConfigs();
         ForwardConfig cfg = new ActionForward();
         cfg.setContextRelative(true);
         cfg.setName("name");
         cfg.setPath("path,{1}");
         mapping.addForwardConfig(cfg);
+        
+        cfg = new ActionForward();
+        cfg.setContextRelative(true);
+        cfg.setName("name2");
+        cfg.setPath("path2");
+        mapping.addForwardConfig(cfg);
+ 
+        ExceptionConfig excfg = new ExceptionConfig();
+        excfg.setKey("foo");
+        excfg.setType("foo.Bar");
+        excfg.setPath("path");
+        mapping.addExceptionConfig(excfg);
+
+        excfg = new ExceptionConfig();
+        excfg.setKey("foo2");
+        excfg.setType("foo.Bar2");
+        excfg.setPath("path2");
+        mapping.addExceptionConfig(excfg);
+
+
+        mapping.freeze();
+
         return mapping;
     }
 

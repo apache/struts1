@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.1 2003/10/10 22:03:33 mrdon Exp $
- * $Revision: 1.1 $
- * $Date: 2003/10/10 22:03:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.2 2003/10/10 23:19:57 mrdon Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/10/10 23:19:57 $
  *
  * ====================================================================
  *
@@ -203,6 +203,14 @@ public class ActionConfigMatcher {
             config.removeForwardConfig(fConfigs[x]);
             config.addForwardConfig(cfg);
         }
+        
+        ExceptionConfig[] exConfigs = orig.findExceptionConfigs();
+        for (int x = 0; x < exConfigs.length; x++) {
+            config.addExceptionConfig(exConfigs[x]);
+        }
+        
+        config.freeze();
+        
         return config;
     }
 
