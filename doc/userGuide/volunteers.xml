@@ -19,6 +19,7 @@ Apache Jarakta Website.</p>
 
 <section name="Source Code Contributors" href="contributors.source"> 
 <ul>
+<li>Arron Bates</li>
 <li>Arun M. Thomas</li>
 <li>Chris Audley</li>
 <li>Craig R. McClanahan</li>
@@ -41,6 +42,7 @@ Apache Jarakta Website.</p>
 
 <section name="User Guide Contributors" href="contributors.documentation"> 
 <ul>
+<li>Arron Bates</li>
 <li>Chris Assenza</li>
 <li>Craig R. McClanahan</li>
 <li>David Geary</li>
@@ -60,21 +62,23 @@ Apache Jarakta Website.</p>
 
 <section name="Active Committers" href="committers"> 
 <ul>
-<li><b>Craig R. McClanahan</b></li> (craigmcc at apache.org)
-<li><b>David Geary</b></li>         (dgeary at apache.org)
-<li><b>Michael Schachter</b></li>   (mschachter at apache.org)
-<li><b>Ted Husted</b></li>          (husted at apache.org)
-<li><b>Rob Leland</b></li>          (rleland at apache.org)
-<li><b>Vincent Massol</b></li>      (vmassol at apache.org)
-<li><b>Cedric Dumoulin</b></li>     (cedric.dumoulin at lifl.fr)
-<li><b>Martin Cooper</b></li>       (martinc at apache.org)
-<li><b>David Winterfeldt</b></li>   (dwinterfeldt at apache.org)
-<li><b>Oleg Alexeev</b></li>        (oalexeev at apache.org)
+<li><b>Craig R. McClanahan</b> (craigmcc at apache.org)</li>
+<li><b>Michael Schachter</b>   (mschachter at apache.org)</li>
+<li><b>Ted Husted</b>          (husted at apache.org)</li>
+<li><b>Rob Leland</b>          (rleland at apache.org)</li>
+<li><b>Vincent Massol</b>      (vmassol at apache.org)</li>
+<li><b>Cedric Dumoulin</b>     (cedric.dumoulin at lifl.fr)</li>
+<li><b>Martin Cooper</b>       (martinc at apache.org)</li>
+<li><b>David Winterfeldt</b>   (dwinterfeldt at apache.org)</li> 
+<li><b>Oleg Alexeev</b>        (oalexeev at apache.org)</li>
+<li>Arron Bates                (arron at apache.org)</li> 
+
 </ul>
 </section>
 
 <section name="Emeritus Committers" href="comitters.emeritus"> 
 <ul>
+<li>David Geary</li>
 <li>Luis Arias</li>
 <li>Pierre Delilse</li>
 </ul>
