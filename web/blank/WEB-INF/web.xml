@@ -62,7 +62,7 @@
 
   <taglib>
     <taglib-uri>/tags/struts-tiles</taglib-uri>
-    <taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+    <taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
   </taglib>
 
 </web-app>
