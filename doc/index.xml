@@ -45,17 +45,17 @@
 
   <section name="Acquiring Struts" href="Acquiring">
 
-  <p>A new milestone release, <strong>Struts 1.0-beta-1</strong> has been
+  <p>A new beta release, <strong>Struts 1.0-beta-2</strong> has been
   created and made available at
-  <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b1">
-  http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b1</a>.  This
+  <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b2">
+  http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b2</a>.  This
   release is considered to be of production quality, and only bug fixes will
   occur between this release and an upcoming <strong>Struts 1.0</strong>
   final release.</p>
 
-  <p>Check the <a href="release.html">Release Notes</a> for a summary of what
-  new features have been added, and other significant changes, since the
-  Struts 0.5 milestone release.</p>
+  <p>Check the <a href="release-notes-1.0-b2.html">Release Notes</a>
+  for a summary of what new features have been added, and other significant
+  changes, since the Struts 1.0-beta-1 release.</p>
 
   <hr width="75%"/>
   
