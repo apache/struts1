@@ -85,12 +85,12 @@ public class ExceptionHandler {
      *
      * @exception ServletException if a servlet exception occurs
      */
-    protected ActionForward execute(Exception ex,
-                                    ExceptionConfig ae,
-                                    ActionMapping mapping,
-                                    ActionForm formInstance,
-                                    HttpServletRequest request,
-                                    HttpServletResponse response)
+    public ActionForward execute(Exception ex,
+                                 ExceptionConfig ae,
+                                 ActionMapping mapping,
+                                 ActionForm formInstance,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response)
         throws ServletException {
 
 	ActionForward forward = null;
