@@ -12,7 +12,7 @@
        <table border=0 cellpadding=4 cellspacing=0 width=100% bgcolor="0000AA"><tr><td>
           <table border=0 cellpadding=1 cellspacing=0 width=100% bgcolor=FFFFFF><tr width=100%><td>
              &nbsp;<font size=+3>Struts Validator</font>
-             <BR>
+             <br>
              &nbsp;<font size=+1>Validation Framework for Struts</font>
           </td></tr></table>
        </td></tr></table>
@@ -49,9 +49,22 @@
        </td>
        <!-- Body -->
        <td valign="top">
-          <H2>Overview</H2>
+          <p>
+             <a href="#overview">Overview</a><br>
+             <a href="#setup">Setup</a><br>
+             <a href="#i18n">Internationalization</a><br>
+             <a href="#constantsAndVars">Constants/Variables</a><br>
+             <a href="#validators">Pluggable Validators</a><br>
+             <a href="#creatingValidators">Creating Pluggable Validators</a><br>
+             <a href="#multiPageForms">Multi Page Forms</a><br>
+             <a href="#comparingTwoFields">Comparing Two Fields</a><br>
+             <a href="#validatingOutsideOfStruts">Validating Outside of Struts</a><br>
+          </p>
+          
+          <H2><a name="overview">Overview</a></H2>
           <p>The Validation Framework was made to work with 
-          <a href="http://jakarta.apache.org/struts">Struts</a>.  It can perform basic 
+          <a href="http://jakarta.apache.org/struts">Struts</a>, but can be used for validation of any 
+          java bean.  It can perform basic 
           validations to check if a field is required, matches a regular expression, 
           email, credit card, and server side type checking and date validation.  Different 
           validation rules can be defined for different locales.  The framework has basic support for 
@@ -59,8 +72,28 @@
           are modifiable in the validation.xml file so custom validation routines can be created and added 
           to the framework.
           </p>
+          
+          <H3><a name="setup">Setup</a></H3>
+          <p>In Struts once you have defined the ValidatorServlet in the web.xml so it can 
+             load your ValidatorResources you just have to extend 
+             com.wintecinc.struts.action.ValidatorForm instead of 
+             org.apache.struts.action.ActionForm.  Then when the validate method is called 
+             the action's name attribute from the struts-config.xml is used to load the 
+             validations for the current form.  So the form element's name attribute in 
+             the validation.xml should match action element's name attribute.
+          </p>
+          
+          <p>Another alternative is to use the action mapping you are currently on by 
+             extending the ValidatorActionForm instead of the ValidatorForm.  The 
+             ValidatorActionForm uses the action element's 'path' attribute from the 
+             struts-config.xml which should match the form element's name attribute 
+             in the validation.xml.  Then a separate action can be defined for 
+             each page in a multi-page form and the validation rules can be associated 
+             with the action and not a page number as in the example of a multi-page form 
+             in the validator example.
+          </p>
 
-          <H3>Internationalization</H3>
+          <H3><a name="i18n">Internationalization</a></H3>
           <p>Validation rules for forms can be grouped under a FormSet in the validation.xml file.  
           The FormSet has language, country, and variant attributes that correspond with the 
           java.util.Locale class.  If they are not used, the FormSet will be set to the default locale.  
@@ -70,12 +103,14 @@
           </p>
           
           <p>The default error message for a pluggable validator can be overriden with the 
-          msg element.<BR>
-          <BR>
-          ex: &lt;field    property="lastName" <BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="required,mask"&gt; <BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;msg name="mask" key="registrationForm.lastname.maskmsg"/&gt; <BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg0 key="registrationForm.lastname.displayname"/&gt; <BR>
+          msg element.  So instead of using the msg attribute for the mask validator to generate the 
+          error message the msg attribute from the field will be used if the name of the field's name 
+          attribute matches the validator's name attribute.<br>
+          <br>
+          ex: &lt;field    property="lastName" <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="required,mask"&gt; <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;msg name="mask" key="registrationForm.lastname.maskmsg"/&gt; <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg0 key="registrationForm.lastname.displayname"/&gt; <br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-name&gt;mask&lt;/var-name&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-value&gt;^[a-zA-Z]*$&lt;/var-value&gt;<br>
@@ -87,12 +122,12 @@
           If the arg0-arg3 elements' name attribute isn't set, it will become the default arg 
           value for the different error messages constructed.  If the name attribute is set, 
           you can specify the argument for a specific pluggable validator and then this will be 
-          used for constructing the error message.<BR>
-          <BR>
-          ex: &lt;field    property="lastName" <BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="required,mask"&gt; <BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;msg name="mask" key="registrationForm.lastname.maskmsg"/&gt; <BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg0 key="registrationForm.lastname.displayname"/&gt; <BR>
+          used for constructing the error message.<br>
+          <br>
+          ex: &lt;field    property="lastName" <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="required,mask"&gt; <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;msg name="mask" key="registrationForm.lastname.maskmsg"/&gt; <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg0 key="registrationForm.lastname.displayname"/&gt; <br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-name&gt;mask&lt;/var-name&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-value&gt;^[a-zA-Z]*$&lt;/var-value&gt;<br>
@@ -103,13 +138,13 @@
           
           <p>By default the arg0-arg3 elements will try to look up the key attribute in the 
           message resources.  If the resource attribute is set to false, it will pass in the 
-          value directly without retrieving the value from the message resources.<BR>
-          <BR>
-          ex: &lt;field    property="integer" <BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="required,integer,range"&gt;<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg0 key="typeForm.integer.displayname"/&gt;<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg1 name="range" key="${var:min}" resource="false"/&gt;<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg2 name="range" key="${var:max}" resource="false"/&gt;<BR>
+          value directly without retrieving the value from the message resources.<br>
+          <br>
+          ex: &lt;field    property="integer" <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="required,integer,range"&gt;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg0 key="typeForm.integer.displayname"/&gt;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg1 name="range" key="${var:min}" resource="false"/&gt;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg2 name="range" key="${var:max}" resource="false"/&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-name&gt;min&lt;/var-name&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-value&gt;10&lt;/var-value&gt;<br>
@@ -118,24 +153,24 @@
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-name&gt;max&lt;/var-name&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-value&gt;20&lt;/var-value&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/var&gt;<br>
-          &nbsp;&nbsp;&nbsp;&nbsp; &lt;/field&gt;<BR>
+          &nbsp;&nbsp;&nbsp;&nbsp; &lt;/field&gt;<br>
           </p>
           
-          <H3>Constants/Variables</H3>
+          <H3><a name="constantsAndVars">Constants/Variables</a></H3>
           <p>Global constants can be inside the global tags and FormSet/Locale constants can be created 
           in the formset tags.  Constants are currently only replaced in the Field's property attribute, 
           the Field's var element value attribute, the Field's msg element key attribute, 
           and Field's arg0-arg3 element's key attribute.  A Field's variables can also be 
           substituted in the arg0-arg3 elements (ex: ${var:min}).  The order of replacement is 
           FormSet/Locale constants are replaced first, Global constants second, and for the 
-          arg elements variables are replaced last.<BR>
-          ex: &lt;global&gt; <BR>
-	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;constant name="zip" value="^\d{5}(-\d{4})?$" /&gt; <BR>
-	  &nbsp;&nbsp;&nbsp;&nbsp; &lt;/global&gt; <BR>
-          <BR>
-          &nbsp;&nbsp;&nbsp;&nbsp; &lt;field    property="zip"<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="required,mask"&gt;<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg0 key="registrationForm.zippostal.displayname"/&gt;<BR>
+          arg elements variables are replaced last.<br>
+          ex: &lt;global&gt; <br>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;constant name="zip" value="^\d{5}(-\d{4})?$" /&gt; <br>
+	  &nbsp;&nbsp;&nbsp;&nbsp; &lt;/global&gt; <br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp; &lt;field    property="zip"<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="required,mask"&gt;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg0 key="registrationForm.zippostal.displayname"/&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-name&gt;mask&lt;/var-name&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-value&gt;${zip}&lt;/var-value&gt;<br>
@@ -145,13 +180,13 @@
           
           
           <p>The var element under a field can be used to store variables for use by a pluggable 
-          validator.  These variables are available through the Field's getVar(String key) method.<BR>
-          &nbsp;&nbsp;&nbsp;ex: <BR>
-          &nbsp;&nbsp;&nbsp;&nbsp; &lt;field    property="integer" <BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="required,integer,range"&gt;<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg0 key="typeForm.integer.displayname"/&gt;<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg1 name="range" key="${var:min}" resource="false"/&gt;<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg2 name="range" key="${var:max}" resource="false"/&gt;<BR>
+          validator.  These variables are available through the Field's getVar(String key) method.<br>
+          &nbsp;&nbsp;&nbsp;ex: <br>
+          &nbsp;&nbsp;&nbsp;&nbsp; &lt;field    property="integer" <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="required,integer,range"&gt;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg0 key="typeForm.integer.displayname"/&gt;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg1 name="range" key="${var:min}" resource="false"/&gt;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg2 name="range" key="${var:max}" resource="false"/&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-name&gt;min&lt;/var-name&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-value&gt;10&lt;/var-value&gt;<br>
@@ -160,14 +195,14 @@
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-name&gt;max&lt;/var-name&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-value&gt;20&lt;/var-value&gt;<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/var&gt;<br>
-          &nbsp;&nbsp;&nbsp;&nbsp; &lt;/field&gt;<BR>
-          <BR>
+          &nbsp;&nbsp;&nbsp;&nbsp; &lt;/field&gt;<br>
+          <br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <font size=-1><i>See type form's integer field in the example 
                                        web app for a working example.</i></font>
           </p>
           
-          <H3>Pluggable Validators</H3>
+          <H3><a name="validators">Pluggable Validators</a></H3>
           <p>Validation actions are read from the validation.xml file.  The default actions are 
           setup in the validation.xml file.  The ones currently configured are required, 
           mask ,byte, short, int, long, float, double, date (without locale support), 
@@ -189,26 +224,27 @@
           <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">org.apache.regexp.RE</a>.  
           </p>
 
-          <p>Example Validator Configuration from validation.xml.<BR>
-          &nbsp;&nbsp;&nbsp;&lt;validator name="required"<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classname="com.wintecinc.struts.validation.Validator"<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;method="validateRequired"<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg="errors.required"/&gt;<BR>
-          <BR>
-          &nbsp;&nbsp;&nbsp;&lt;validator name="mask"<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classname="com.wintecinc.struts.validation.Validator"<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;method="validateMask"<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;depends="required"<BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg="errors.invalid"/&gt;<BR>
+          <p>Example Validator Configuration from validation.xml.<br>
+          &nbsp;&nbsp;&nbsp;&lt;validator name="required"<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classname="com.wintecinc.struts.validation.Validator"<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;method="validateRequired"<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg="errors.required"/&gt;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&lt;validator name="mask"<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classname="com.wintecinc.struts.validation.Validator"<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;method="validateMask"<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;depends="required"<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg="errors.invalid"/&gt;<br>
  	  </p>
 
-          <H3>Creating Pluggable Validators</H3>
-          <p>The ValidatorAction method needs to have the following signature.
-          <BR>
-          &nbsp;&nbsp;&nbsp;(java.lang.Object, <BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;com.wintecinc.struts.validation.ValidatorAction, com.wintecinc.struts.validation.Field, <BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;org.apache.struts.action.ActionErrors, , <BR>
-          &nbsp;&nbsp;&nbsp;&nbsp;javax.servlet.http.HttpServletRequest, javax.servlet.ServletContext)<BR>
+          <H3><a name="creatingValidators">Creating Pluggable Validators</a></H3>
+          <p>The ValidatorAction method needs to have the following signature.  See the 
+             com.wintecinc.struts.validation.StrutsValidator class for examples.<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;(java.lang.Object, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;com.wintecinc.struts.validation.ValidatorAction, com.wintecinc.struts.validation.Field, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;org.apache.struts.action.ActionErrors, , <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;javax.servlet.http.HttpServletRequest, javax.servlet.ServletContext)<br>
           <table>
           <tr><td><b>java.lang.Object</b></td><td>Bean validation is being performed on.</td></tr>
           <tr><td><b>com.wintecinc.struts.validation.ValidatorAction</b></td><td>The current ValidatorAction being performed.</td></tr>
@@ -219,13 +255,137 @@
           </table>
           </p>
           
-          <H3>Multi Page Forms</H3>
+          <H3><a name="multiPageForms">Multi Page Forms</a></H3>
           <p>The field element has an optional page attribute.  It can be set to an integer.  All validation 
           for the any field page value less than or equal to the current page is performed server side.  
           All validation for the any field page equal to the current page is generated for the client side 
-          Javascript.  A mutli-part form expects the page attribute to be set.<BR>
+          Javascript.  A mutli-part form expects the page attribute to be set.<br>
           &nbsp;&nbsp;&nbsp;ex: &lt;html:hidden property="page" value="1"/&gt;
           </p>
+          
+          <H3><a name="comparingTwoFields">Comparing Two Fields</a></H3>
+          <p>This is an example of how you could compare two fields to see 
+             if they have the same value.   A good example of this is when you are 
+             validating a user changing their password and there is the main password field 
+             and a confirmation field.
+          </p>             
+          <p>
+             &lt;validator name="twofields"<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; classname="com.mysite.StrutsValidator"<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; method="validateTwoFields"<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; msg="errors.twofields"/>
+           </p>
+           <p>  
+             &lt;field    property="password"<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="required,twofields"><br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg0 key="typeForm.password.displayname"/><br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var><br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-name>secondProperty&lt;/var-name><br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;var-value>password2&lt;/var-value><br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/var><br>
+             &lt;/field><br>
+           </p>
+           <p>
+             public static boolean validateTwoFields(Object bean, <br>
+             &nbsp;&nbsp;&nbsp; 			      ValidatorAction va, Field field, <br>
+             &nbsp;&nbsp;&nbsp; 			      ActionErrors errors, <br>
+             &nbsp;&nbsp;&nbsp;                               HttpServletRequest request, ServletContext application) {<br>
+             &nbsp;&nbsp;&nbsp;        <br>
+             &nbsp;&nbsp;&nbsp;    String value = ValidatorUtil.getValueAsString(bean, field.getProperty());<br>
+             &nbsp;&nbsp;&nbsp;    String sProperty2 = field.getVarValue("secondProperty");<br>
+             &nbsp;&nbsp;&nbsp;    String value2 = ValidatorUtil.getValueAsString(bean, sProperty2);<br>
+             &nbsp;&nbsp;&nbsp;    <br>
+             &nbsp;&nbsp;&nbsp;    if (!GenericValidator.isBlankOrNull(value)) {<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       try {<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          if (!value.equals(value2)) {<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;             errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));<br>
+             <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;             return false;<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       } catch (Exception e) {<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          return false;<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       }<br>
+             &nbsp;&nbsp;&nbsp;    }<br>
+             &nbsp;&nbsp;&nbsp;    <br>
+             &nbsp;&nbsp;&nbsp;    return true;<br>
+             }<br>
+           </p>
+
+          <H3><a name="validatingOutsideOfStruts">Validating Outside of Struts</a></H3>
+          <p>Here is a short example of validating something outside of the Struts Framework.  
+             The validator element's methodParams attribute have a default method signature 
+             that all the StrutsValidator validation methods use.  
+          </p>
+          <p>
+             &lt;form-validation> <br>
+             &nbsp;&nbsp;&nbsp; &lt;global> <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;validator name="capLetter"<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  classname="com.mysite.Validator"<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; methodParams="java.lang.Object,com.wintecinc.struts.validation.Field,java.util.List"<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; method="isCapLetter"<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; msg="Letter is not in upper case."/><br>
+             &nbsp;&nbsp;&nbsp; &lt;/global> <br>
+             &nbsp;&nbsp;&nbsp; &lt;formset> <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;form    name="testForm"><br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;field    property="letter" <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="capLetter"&gt; <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/field&gt;<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/form><br>
+             &nbsp;&nbsp;&nbsp; &lt;/formset>  <br>
+             &lt;/form-validation> <br>
+             
+          </p>
+          <p>The method signature and parameters are dynamically created based on 
+             the methodParams and the resources added to the Validator using the 
+             class name as a key.  The class "java.lang.Object" is reserved for the
+             bean that is being validated and there can't be any duplicate class names 
+             because they are used as the key when associating the actual instance 
+             of the class when setting up the Validator.
+          </p>
+          <p>
+             The ValidatorAction and the Field are automatically passed in if specified in the
+             methodParams attribute.  The other instances of classes need to be added to the 
+             Validator using the addResource method along with the class they represent from 
+             the validator element's methodParams attribute. Bean is the object 
+             being validated.  The ValidatorResourcesInitializer can be used to load 
+             the validation.xml file and return an instance of ValidatorResources based on 
+             the xml file.  So based on the validation.xml file defined above the 
+             getLetter method will be called on the bean variable.<br>
+             <br>
+             &nbsp;&nbsp;&nbsp; ValidatorResources resources = ValidatorResourcesInitializer.initialize("validation.xml", debug);<br>
+             &nbsp;&nbsp;&nbsp; Validator validator = new Validator(resources, "testForm");<br>
+             &nbsp;&nbsp;&nbsp; validator.addResource(Validator.BEAN_KEY, bean);<br>
+             &nbsp;&nbsp;&nbsp; validator.addResource("java.util.List", lErrors);<br>
+             <br>
+             &nbsp;&nbsp;&nbsp; try { <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; validator.validate(); <br>
+             &nbsp;&nbsp;&nbsp; } catch (ValidatorException e) { <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Log Exception <br>
+             &nbsp;&nbsp;&nbsp; }<br>
+          </p>
+          <p>This is the validation method being used by the capLetter validator.  The 
+             validation fails if the value retrieved is null, has a length other than one, 
+             and the character doesn't fall in the range A-Z.  Error messages are added to 
+             the java.util.List that is passed into the method.<br>
+             <br>
+             &nbsp;&nbsp;&nbsp; public static boolean isCapLetter(Object bean, Field field, List l) { <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   String value = ValidatorUtil.getValueAsString(bean, field.getProperty()); <br>
+             &nbsp;&nbsp;&nbsp;<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   if (value != null &amp;&amp; value.length() == 1) { <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      if (value.charAt(0) >= 'A' && value.charAt(0) <= 'Z') { <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         return true; <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      } else { <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         l.add(field.getMsg); <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         return false; <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      } <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   } else { <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      l.add(field.getMsg); <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      return false; <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   } <br>
+             &nbsp;&nbsp;&nbsp; }
+          </p>
+          <p>&nbsp;</p>
        </td>
        <!-- / Body -->
     </tr>
