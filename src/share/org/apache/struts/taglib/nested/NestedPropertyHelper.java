@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.4 2002/01/23 06:38:22 arron Exp $
- * $Revision: 1.4 $
- * $Date: 2002/01/23 06:38:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.5 2002/02/12 07:01:57 arron Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/02/12 07:01:57 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,7 +76,7 @@ import org.apache.struts.taglib.html.FormTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.4 $ $Date: 2002/01/23 06:38:22 $
+ * @version $Revision: 1.5 $ $Date: 2002/02/12 07:01:57 $
  */ 
 public class NestedPropertyHelper {
   
@@ -272,17 +272,16 @@ public class NestedPropertyHelper {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < count; i++) {
           result.append(proT.nextToken());
-          
-          /* don't place dot if there's no property to append afterwards
-             (for parent referencing) */
-          if ((i == (count-1)) && (property.length() > 0)) {
-            result.append('.');
-          }
+          result.append('.');
         }
         result.append(property);
         
-        /* return stepped property */
-        return result.toString();
+        /* parent reference will have a dot on the end. Leave it off */
+        if (result.charAt(result.length()-1) == '.') {
+          return result.substring(0,result.length()-1);
+        } else {
+          return result.toString();
+        }
       }
     }
   }
