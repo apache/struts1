@@ -108,7 +108,7 @@ public class TestGreaterThanTag extends JspTestCase {
     //----- Test initApplication() method --------------------------------------
 	
     /**
-     * Create cookie for testCookiePresent method test.
+     * Create cookie for testCookieGreaterThan method test.
     */
     public void beginCookieGreaterThan(WebRequest testRequest) {
        testRequest.addCookie(COOKIE_KEY, GREATER_VAL);

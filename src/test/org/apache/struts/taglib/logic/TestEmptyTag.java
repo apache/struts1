@@ -122,7 +122,7 @@ public class TestEmptyTag extends JspTestCase {
 
     /**
      * Testing <code>EmptyTag</code> using name attribute in
-     * the application scope.
+     * the some scope.
     */
     public void testEmptyTagUsingName() 
     	throws ServletException,  JspException {
@@ -163,7 +163,7 @@ public class TestEmptyTag extends JspTestCase {
     
     /**
      * Testing <code>EmptyTag</code> using name attribute in
-     * the application scope.
+     * the some scope.
     */
     public void testEmptyTagUsingProperty() 
     	throws ServletException,  JspException {
