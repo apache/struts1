@@ -22,9 +22,18 @@
 
         cactus.home                   The home directory of your Cactus
                                       installation (version 1.3+ required)
-                                      
-        cactus.contextURL             The URL used for testing
-                                      
+
+        cactus.contextScheme         The scheme used for testing, ie https, http
+
+
+        cactus.contextHost           The hostname used for testing, ie localhost, www.apache.org, etc.
+
+
+        cactus.contextPort           The Port used for testing
+
+
+        cactus.contextApp             The application(context) being tested, ie test
+
 
         aspectjrt.jar                 The AspectJ runtime jar that is
                                       included with Cactus 1.3
@@ -83,6 +92,9 @@
 
     <!-- Output directory for tests -->
     <property name="out.test.dir" value="${build.home}/test"/>
+
+    <!-- Context test is taking place on -->
+    <property name="cactus.contextURL" value="${cactus.contextScheme}://${cactus.contextHost}:${cactus.contextPort}/${cactus.contextApp}"/>
 
     <!-- Compilation Classpath -->
     <path id="compile.classpath">
@@ -160,8 +172,9 @@
         <copy todir="${out.test.dir}/classes">
             <fileset dir="${src.test.dir}" excludes="**/*.java"/>
         </copy>
-        <copy todir="${out.test.dir}/classes">
-            <fileset dir="${conf.test.dir}" includes="**/*.properties"/>
+        <filter token="cactus.contextURL" value="${cactus.contextURL}"/>
+        <copy todir="${out.test.dir}/classes" filtering="on">
+            <fileset dir="${conf.test.dir}" includes="*.properties"/>
         </copy>
         <copy todir="${out.test.dir}/WEB-INF">
             <fileset dir="${build.home}/library" includes="struts-*.tld"/>
@@ -289,6 +302,7 @@
 
         <property name="out.tomcat.32.dir" value="${out.test.dir}/servers/tomcat32"/>
         <filter token="out.tomcat.32.dir" value="${out.tomcat.32.dir}"/>
+        <filter token="tomcat.connector.port" value="${cactus.contextPort}"/>
 
         <mkdir dir="${out.tomcat.32.dir}/webapps"/>
         <mkdir dir="${out.tomcat.32.dir}/conf"/>
@@ -365,6 +379,7 @@
 
         <property name="out.tomcat.33.dir" value="${out.test.dir}/servers/tomcat33"/>
         <filter token="out.tomcat.33.dir" value="${out.tomcat.33.dir}"/>
+        <filter token="tomcat.connector.port" value="${cactus.contextPort}"/>
 
         <mkdir dir="${out.tomcat.33.dir}/webapps"/>
         <mkdir dir="${out.tomcat.33.dir}/conf"/>
@@ -458,6 +473,7 @@
 
         <property name="out.tomcat.40.dir" value="${out.test.dir}/servers/tomcat40"/>
         <filter token="out.tomcat.40.full.dir" value="${out.tomcat.40.dir}"/>
+        <filter token="tomcat.connector.port" value="${cactus.contextPort}"/>
 
         <mkdir dir="${out.tomcat.40.dir}/webapps"/>
         <mkdir dir="${out.tomcat.40.dir}/conf"/>
@@ -541,6 +557,7 @@
 
         <property name="out.tomcat.41.dir" value="${out.test.dir}/servers/tomcat41"/>
         <filter token="out.tomcat.41.full.dir" value="${out.tomcat.41.dir}"/>
+        <filter token="tomcat.connector.port" value="${cactus.contextPort}"/>
 
         <mkdir dir="${out.tomcat.41.dir}/webapps"/>
         <mkdir dir="${out.tomcat.41.dir}/conf"/>

@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.44 2003/07/27 04:30:16 rleland Exp $
+# $Id: build.properties.sample,v 1.45 2003/08/01 04:55:51 rleland Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -101,7 +101,7 @@ xerces.jar=${apache.home}/xerces-1_4_4/xerces.jar
 # The JAR file containing the ANTLR runtime support classes, needed for the
 # validwhen validator rule to work.  You can get this file from:
 # http://www.antlr.org/
-antlr.jar = ../../..//antlr-2.7.1/antlr.jar
+antlr.jar = ../../../antlr-2.7.2/antlr.jar
 
 
 # Properties related to optional tasks
@@ -131,8 +131,8 @@ struts.home			=../../
 # Properties related to Struts unit testing
 # Choose your Cactus!
 # (Uncomment only one set of properties)
-# 
-# In order for the Cactus tests to work, you must have a copy of 
+#
+# In order for the Cactus tests to work, you must have a copy of
 # junit.jar in ANT_HOME/lib (See Ant docs on JUnit task)
 #
 # -----------------------------------------
@@ -300,10 +300,15 @@ commons-httpclient.jar = ${cactus.lib}/commons-httpclient-2.0alpha1-20020606.jar
 # -----------------------------------------
 
 
-# URL used to run tests for cactus, change to non standard port
+# Scheme used to run tests for cactus, http, https.
+cactus.contextScheme = http
+# Host used to run tests for cactus, localhost.
+cactus.contextHost = localhost
+# Port used to run tests for cactus, change to non standard port
 # if container is already running on that port.
-cactus.contextURL = http://localhost:9090/test
-
+cactus.contextPort = 8080
+# Application(context) used to run tests for cactus.
+cactus.contextApp = test
 
 # Ant Optional Jars for Junit task
 ant.optional.jar = ${apache.home}/apache-ant-1.5.3-1/lib/optional.jar
