@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.16 2004/01/10 21:03:38 dgraham Exp $
- * $Revision: 1.16 $
- * $Date: 2004/01/10 21:03:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.17 2004/02/20 16:16:05 husted Exp $
+ * $Revision: 1.17 $
+ * $Date: 2004/02/20 16:16:05 $
  *
  * ====================================================================
  *
@@ -296,9 +296,9 @@ public class FieldChecks implements Serializable {
      *@param errors The <code>ActionMessages</code> object to add errors to if
      *any validation errors occur.
      *@param request Current request object.
-     *@return A Byte if valid, null otherwise.
+     *@return true if valid, false otherwise.
      */
-    public static Byte validateByte(Object bean,
+    public static boolean validateByte(Object bean,
                                     ValidatorAction va, Field field,
                                     ActionMessages errors,
                                     HttpServletRequest request) {
@@ -311,15 +311,17 @@ public class FieldChecks implements Serializable {
             value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
 
-        if (!GenericValidator.isBlankOrNull(value)) {
-            result = GenericTypeValidator.formatByte(value);
-
-            if (result == null) {
-                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
-            }
+        if (GenericValidator.isBlankOrNull(value)) {
+            return true;
         }
 
-        return result;
+        result = GenericTypeValidator.formatByte(value);
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
+        }
+
+        return result == null ? false : true;
     }
 
 
@@ -333,9 +335,9 @@ public class FieldChecks implements Serializable {
      * @param errors The <code>ActionMessages</code> object to add errors to if
      * any validation errors occur.
      * @param request Current request object.
-     * @return A Short if valid, otherwise null.
+     * @return true if valid, false otherwise.
      */
-    public static Short validateShort(Object bean,
+    public static boolean validateShort(Object bean,
                                       ValidatorAction va, Field field,
                                       ActionMessages errors,
                                       HttpServletRequest request) {
@@ -347,15 +349,17 @@ public class FieldChecks implements Serializable {
             value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
 
-        if (!GenericValidator.isBlankOrNull(value)) {
-            result = GenericTypeValidator.formatShort(value);
-
-            if (result == null) {
-                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
-            }
+        if (GenericValidator.isBlankOrNull(value)) {
+            return true;
         }
 
-        return result;
+        result = GenericTypeValidator.formatShort(value);
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
+        }
+
+        return result == null ? false : true;
     }
 
 
@@ -369,9 +373,9 @@ public class FieldChecks implements Serializable {
      * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
-     * @return          An Integer if valid, a null otherwise.
+     * @return true if valid, false otherwise.
      */
-    public static Integer validateInteger(Object bean,
+    public static boolean validateInteger(Object bean,
                                           ValidatorAction va, Field field,
                                           ActionMessages errors,
                                           HttpServletRequest request) {
@@ -383,15 +387,17 @@ public class FieldChecks implements Serializable {
             value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
 
-        if (!GenericValidator.isBlankOrNull(value)) {
-            result = GenericTypeValidator.formatInt(value);
-
-            if (result == null) {
-                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
-            }
+        if (GenericValidator.isBlankOrNull(value)) {
+            return true;
         }
 
-        return result;
+        result = GenericTypeValidator.formatInt(value);
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
+        }
+
+        return result == null ? false : true;
     }
 
 
@@ -405,9 +411,9 @@ public class FieldChecks implements Serializable {
      * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
-     * @return          A Long if valid, a null otherwise.
+     * @return true if valid, false otherwise.
      */
-    public static Long validateLong(Object bean,
+    public static boolean validateLong(Object bean,
                                     ValidatorAction va, Field field,
                                     ActionMessages errors,
                                     HttpServletRequest request) {
@@ -419,15 +425,17 @@ public class FieldChecks implements Serializable {
             value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
 
-        if (!GenericValidator.isBlankOrNull(value)) {
-            result = GenericTypeValidator.formatLong(value);
-
-            if (result == null) {
-                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
-            }
+        if (GenericValidator.isBlankOrNull(value)) {
+            return true;
         }
 
-        return result;
+        result = GenericTypeValidator.formatLong(value);
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
+        }
+
+        return result == null ? false : true;
     }
 
 
@@ -441,9 +449,9 @@ public class FieldChecks implements Serializable {
      * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
-     * @return A Float if valid, a null otherwise.
+     * @return true if valid, false otherwise.
      */
-    public static Float validateFloat(Object bean,
+    public static boolean validateFloat(Object bean,
                                       ValidatorAction va, Field field,
                                       ActionMessages errors,
                                       HttpServletRequest request) {
@@ -455,15 +463,17 @@ public class FieldChecks implements Serializable {
             value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
 
-        if (!GenericValidator.isBlankOrNull(value)) {
-            result = GenericTypeValidator.formatFloat(value);
-
-            if (result == null) {
-                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
-            }
+        if (GenericValidator.isBlankOrNull(value)) {
+            return true;
         }
 
-        return result;
+        result = GenericTypeValidator.formatFloat(value);
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
+        }
+
+        return result == null ? false : true;
     }
 
 
@@ -477,9 +487,9 @@ public class FieldChecks implements Serializable {
      * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
-     * @return A Double if valid, a null otherwise.
+     * @return true if valid, false otherwise.
      */
-    public static Double validateDouble(Object bean,
+    public static boolean validateDouble(Object bean,
                                         ValidatorAction va, Field field,
                                         ActionMessages errors,
                                         HttpServletRequest request) {
@@ -491,15 +501,17 @@ public class FieldChecks implements Serializable {
             value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
 
-        if (!GenericValidator.isBlankOrNull(value)) {
-            result = GenericTypeValidator.formatDouble(value);
-
-            if (result == null) {
-                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
-            }
+        if (GenericValidator.isBlankOrNull(value)) {
+            return true;
         }
 
-        return result;
+        result = GenericTypeValidator.formatDouble(value);
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
+        }
+
+        return result == null ? false : true;
     }
 
 
@@ -519,9 +531,9 @@ public class FieldChecks implements Serializable {
      * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
-     * @return A Date if valid, a null if blank or invalid.
+     * @return true if valid, false otherwise.
      */
-    public static Date validateDate(Object bean,
+    public static boolean validateDate(Object bean,
                                     ValidatorAction va, Field field,
                                     ActionMessages errors,
                                     HttpServletRequest request) {
@@ -537,25 +549,27 @@ public class FieldChecks implements Serializable {
         String datePatternStrict = field.getVarValue("datePatternStrict");
         Locale locale = RequestUtils.getUserLocale(request, null);
 
-        if (!GenericValidator.isBlankOrNull(value)) {
-            try {
-                if (datePattern != null && datePattern.length() > 0) {
-                    result = GenericTypeValidator.formatDate(value, datePattern, false);
-                } else if (datePatternStrict != null && datePatternStrict.length() > 0) {
-                    result = GenericTypeValidator.formatDate(value, datePatternStrict, true);
-                } else {
-                    result = GenericTypeValidator.formatDate(value, locale);
-                }
-            } catch (Exception e) {
-                log.error(e.getMessage(), e);
-            }
-
-            if (result == null) {
-                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
-            }
+        if (GenericValidator.isBlankOrNull(value)) {
+            return true;
         }
 
-        return result;
+        try {
+            if (datePattern != null && datePattern.length() > 0) {
+                result = GenericTypeValidator.formatDate(value, datePattern, false);
+            } else if (datePatternStrict != null && datePatternStrict.length() > 0) {
+                result = GenericTypeValidator.formatDate(value, datePatternStrict, true);
+            } else {
+                result = GenericTypeValidator.formatDate(value, locale);
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
+        }
+
+        return result == null ? false : true;
     }
 
     /**
@@ -704,9 +718,9 @@ public class FieldChecks implements Serializable {
      * @param  errors   The <code>ActionMessages</code> object to add errors to if any
      *      validation errors occur.
      * @param  request  Current request object.
-     * @return The credit card as a Long, a null if invalid, blank, or null.
+     * @return true if valid, false otherwise.
      */
-    public static Long validateCreditCard(Object bean,
+    public static boolean validateCreditCard(Object bean,
                                           ValidatorAction va, Field field,
                                           ActionMessages errors,
                                           HttpServletRequest request) {
@@ -719,15 +733,17 @@ public class FieldChecks implements Serializable {
             value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
 
-        if (!GenericValidator.isBlankOrNull(value)) {
-            result = GenericTypeValidator.formatCreditCard(value);
-
-            if (result == null) {
-                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
-            }
+        if (GenericValidator.isBlankOrNull(value)) {
+            return true;
         }
 
-        return result;
+        result = GenericTypeValidator.formatCreditCard(value);
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
+        }
+
+        return result == null ? false : true;
     }
 
 
@@ -895,3 +911,4 @@ public class FieldChecks implements Serializable {
     }
 
 }
+
