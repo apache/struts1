@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.5 2003/02/06 03:32:10 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/02/06 03:32:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.6 2003/07/16 04:52:44 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/07/16 04:52:44 $
  *
  * ====================================================================
  *
@@ -59,7 +59,6 @@
  *
  */
 
-
 package org.apache.struts.config.impl;
 
 import java.io.Serializable;
@@ -85,12 +84,12 @@ import org.apache.struts.config.PlugInConfig;
  * string) is selected, which is elegantly backwards compatible with the
  * previous Struts behavior that only supported one module.</p>
  *
- *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2003/02/06 03:32:10 $
+ * @version $Revision: 1.6 $ $Date: 2003/07/16 04:52:44 $
  * @since Struts 1.1
  */
 public class ModuleConfigImpl implements Serializable, ModuleConfig {
+    
     /**
      * Construct an ModuleConfigImpl object according to the specified
      * parameter values.
@@ -110,32 +109,6 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         this.forwards = new HashMap();
         this.messageResources = new HashMap();
         this.plugIns = new ArrayList();
-    }
-
-    /**
-     * Only used while we are deprecating ApplicationConfig.
-     * performs a shallow copy to ensure that any operations
-     * performed on an ApplicationConfig object is
-     * performed on the same underlying
-     * ModuleConfigImpl sub objects
-     * @param moduleConfig
-     * @deprecated   Only used while we are deprecating ApplicationConfig to insure maximum compatability.
-     */
-    public ModuleConfigImpl(ModuleConfigImpl moduleConfig) {
-
-        super();
-        this.actionConfigs = moduleConfig.actionConfigs;
-        this.actionMappingClass = moduleConfig.actionMappingClass;
-        this.configured = moduleConfig.configured;
-        this.controllerConfig = moduleConfig.controllerConfig;
-        this.dataSources = moduleConfig.dataSources;
-        this.exceptions = moduleConfig.exceptions;
-        this.formBeans = moduleConfig.formBeans;
-        this.forwards = moduleConfig.forwards;
-        this.messageResources = moduleConfig.messageResources;
-        this.plugIns = moduleConfig.plugIns;
-        this.prefix = moduleConfig.prefix;
-
     }
 
 
@@ -206,8 +179,8 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
     /**
      * The default class name to be used when creating action mapping
      * instances.
-     * @param actionMappingClass  default class name to be used when creating action mapping
-     * instances.
+     * @param actionMappingClass  default class name to be used when creating 
+     * action mapping instances.
      */
     public void setActionMappingClass(String actionMappingClass) {
         this.actionMappingClass = actionMappingClass;
@@ -542,7 +515,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      *
      * @param config ActionConfig instance to be removed
      *
-     * @exception java.lang.IllegalStateException if this module configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeActionConfig(ActionConfig config) {
@@ -560,7 +533,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      *
      * @param config ActionConfig instance to be removed
      *
-     * @exception java.lang.IllegalStateException if this module configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeExceptionConfig(ExceptionConfig config) {
@@ -577,7 +550,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      *
      * @param config DataSourceConfig instance to be removed
      *
-     * @exception java.lang.IllegalStateException if this module configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeDataSourceConfig(DataSourceConfig config) {
@@ -594,7 +567,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      *
      * @param config FormBeanConfig instance to be removed
      *
-     * @exception java.lang.IllegalStateException if this module configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeFormBeanConfig(FormBeanConfig config) {
@@ -612,7 +585,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      *
      * @param config ForwardConfig instance to be removed
      *
-     * @exception java.lang.IllegalStateException if this module configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeForwardConfig(ForwardConfig config) {
@@ -629,7 +602,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      *
      * @param config MessageResourcesConfig instance to be removed
      *
-     * @exception java.lang.IllegalStateException if this module configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeMessageResourcesConfig(MessageResourcesConfig config) {
@@ -640,12 +613,6 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         messageResources.remove(config.getKey());
 
     }
-
-
-    // -------------------------------------------------------- Package Methods
-
-
-    // ------------------------------------------------------ Protected Methods
 
     // ----------------------------------------------------- Instance Variables
     // Instance Variables at end to make comparing Interface and implementation easier.

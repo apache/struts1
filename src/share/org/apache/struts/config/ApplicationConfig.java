@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.19 2002/11/07 05:18:26 rleland Exp $
- * $Revision: 1.19 $
- * $Date: 2002/11/07 05:18:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.20 2003/07/16 04:50:13 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/07/16 04:50:13 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.config.impl.ModuleConfigImpl;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2002/11/07 05:18:26 $
+ * @version $Revision: 1.20 $ $Date: 2003/07/16 04:50:13 $
  * @since Struts 1.1
  * @deprecated Usage replaced by ModuleConfig Interface.
  */
@@ -98,19 +98,5 @@ public class ApplicationConfig extends ModuleConfigImpl {
         this.prefix = prefix;
 
     }
-
-    /**
-     * Only used while we are deprecating ApplicationConfig.
-     * performs a shallow copy to ensure that any operations
-     * performed on an ApplicationConfig object is
-     * performed on the same underlying
-     * ModuleConfigImpl sub objects
-     * @param moduleConfig
-     * @deprecated   Only used while we are deprecating ApplicationConfig to insure maximum compatability.
-     */
-    public ApplicationConfig(ModuleConfigImpl moduleConfig) {
-       super(moduleConfig);
-    }
-
 
 }
