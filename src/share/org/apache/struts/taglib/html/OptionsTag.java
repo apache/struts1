@@ -68,6 +68,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.util.IteratorAdapter;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 
@@ -412,7 +413,7 @@ public class OptionsTag extends TagSupport {
 	String beanName = name;
 	if (beanName == null)
 	    beanName = Constants.BEAN_KEY;
-	Object bean = pageContext.findAttribute(beanName);
+        Object bean = RequestUtils.lookup(pageContext, beanName, null);
 	if (bean == null)
 	    throw new JspException
 	        (messages.getMessage("getter.bean", beanName));

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.18 2002/11/16 06:05:21 dgraham Exp $
- * $Revision: 1.18 $
- * $Date: 2002/11/16 06:05:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.19 2002/12/16 03:41:43 craigmcc Exp $
+ * $Revision: 1.19 $
+ * $Date: 2002/12/16 03:41:43 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 
@@ -75,7 +76,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.18 $ $Date: 2002/11/16 06:05:21 $
+ * @version $Revision: 1.19 $ $Date: 2002/12/16 03:41:43 $
  */
 
 public class RadioTag extends BaseHandlerTag {
@@ -223,7 +224,7 @@ public class RadioTag extends BaseHandlerTag {
 
         // Acquire the current value of the appropriate field
         Object current = null;
-        Object bean = pageContext.findAttribute(name);
+        Object bean = RequestUtils.lookup(pageContext, name, null);
         if (bean == null)
             throw new JspException
                 (messages.getMessage("getter.bean", name));
@@ -235,7 +236,7 @@ public class RadioTag extends BaseHandlerTag {
 
             // @since Struts 1.1
             if (idName != null) {
-                Object idBean = pageContext.findAttribute(idName);
+                Object idBean = RequestUtils.lookup(pageContext, idName, null);
                 if (idBean == null)
                    throw new JspException
                     (messages.getMessage("getter.bean", idName));

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.16 2002/09/23 05:22:08 martinc Exp $
- * $Revision: 1.16 $
- * $Date: 2002/09/23 05:22:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.17 2002/12/16 03:41:43 craigmcc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2002/12/16 03:41:43 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.ResponseUtils;
  * or a Map (which includes Hashtables) whose elements will be iterated over.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2002/09/23 05:22:08 $
+ * @version $Revision: 1.17 $ $Date: 2002/12/16 03:41:43 $
  */
 
 public class IterateTag extends BodyTagSupport {
@@ -344,8 +344,8 @@ public class IterateTag extends BodyTagSupport {
 	    try {
 		offsetValue = Integer.parseInt(offset);
 	    } catch (NumberFormatException e) {
-		Integer offsetObject =
-		  (Integer) pageContext.findAttribute(offset);
+		Integer offsetObject = (Integer)
+                    RequestUtils.lookup(pageContext, offset, null);
 		if (offsetObject == null)
 		    offsetValue = 0;
 		else
@@ -362,8 +362,8 @@ public class IterateTag extends BodyTagSupport {
 	    try {
 		lengthValue = Integer.parseInt(length);
 	    } catch (NumberFormatException e) {
-		Integer lengthObject =
-		  (Integer) pageContext.findAttribute(length);
+		Integer lengthObject = (Integer)
+                    RequestUtils.lookup(pageContext, length, null);
 		if (lengthObject == null)
 		    lengthValue = 0;
 		else

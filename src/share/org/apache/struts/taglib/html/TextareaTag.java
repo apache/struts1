@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.11 2002/09/23 05:13:43 martinc Exp $
- * $Revision: 1.11 $
- * $Date: 2002/09/23 05:13:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.12 2002/12/16 03:41:43 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/12/16 03:41:43 $
  *
  * ====================================================================
  *
@@ -66,6 +66,7 @@ package org.apache.struts.taglib.html;
 import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 
@@ -73,7 +74,7 @@ import org.apache.struts.util.ResponseUtils;
  * Custom tag for input fields of type "textarea".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/09/23 05:13:43 $
+ * @version $Revision: 1.12 $ $Date: 2002/12/16 03:41:43 $
  */
 
 public class TextareaTag extends BaseInputTag {
@@ -141,7 +142,7 @@ public class TextareaTag extends BaseInputTag {
         if (value != null) {
             results.append(ResponseUtils.filter(value));
         } else {
-            Object bean = pageContext.findAttribute(name);
+            Object bean = RequestUtils.lookup(pageContext, name, null);
             if (bean == null)
                 throw new JspException
                     (messages.getMessage("getter.bean", name));
