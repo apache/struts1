@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/BaseFieldTag.java,v 1.3 2000/12/08 00:16:43 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/12/08 00:16:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/BaseFieldTag.java,v 1.4 2001/01/06 04:00:58 mschachter Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/01/06 04:00:58 $
  *
  * ====================================================================
  *
@@ -69,7 +69,9 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.struts.upload.FormFile;
 import org.apache.struts.util.BeanUtils;
+import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.MessageResources;
 
 
@@ -77,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/12/08 00:16:43 $
+ * @version $Revision: 1.4 $ $Date: 2001/01/06 04:00:58 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -174,15 +176,22 @@ public abstract class BaseFieldTag extends BaseInputTag {
 		throw new JspException
 		    (messages.getMessage("getter.bean", name));
 	    try {
-		String value = BeanUtils.getScalarProperty(bean, property);
-		if (value == null)
-		    value = "";
+                String value = "";
+                Object objvalue = PropertyUtils.getProperty(bean, property);
+                
+                if (!(objvalue instanceof FormFile)) {
+                    value = (String) objvalue;
+                }
+                if (value == null) {
+                    value = "";
+                }
 		results.append(BeanUtils.filter(value));
 	    } catch (IllegalAccessException e) {
 		throw new JspException
 		    (messages.getMessage("getter.access", property, name));
 	    } catch (InvocationTargetException e) {
 		Throwable t = e.getTargetException();
+                t.printStackTrace();
 		throw new JspException
 		    (messages.getMessage("getter.result",
 					 property, t.toString()));
