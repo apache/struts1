@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorActionForm.java,v 1.13 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.13 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorActionForm.java,v 1.14 2004/04/02 14:30:57 germuska Exp $
+ * $Revision: 1.14 $
+ * $Date: 2004/04/02 14:30:57 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -21,16 +21,9 @@
 package org.apache.struts.validator;
 
 import java.io.Serializable;
-
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.beanutils.DynaBean;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.commons.validator.Validator;
-import org.apache.commons.validator.ValidatorException;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 
 /**
@@ -43,43 +36,22 @@ import org.apache.struts.action.ActionMapping;
  * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
  * for validation rules.</li></ul>
  *
- * @version $Revision: 1.13 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Revision: 1.14 $ $Date: 2004/04/02 14:30:57 $
  * @since Struts 1.1
  */
 public class DynaValidatorActionForm extends DynaValidatorForm implements DynaBean, Serializable {
 
     /**
-     * Commons Logging instance.
-     */
-    private static Log log = LogFactory.getLog(DynaValidatorActionForm.class);
-
-    /**
-     * Validate the properties that have been set from this HTTP request,
-     * and return an <code>ActionErrors</code> object that encapsulates any
-     * validation errors that have been found.  If no errors are found, return
-     * <code>null</code> or an <code>ActionErrors</code> object with no
-     * recorded error messages.
+     * Returns the Validation key.
      *
-     * @param mapping The mapping used to select this instance.
-     * @param request The servlet request we are processing.
-     * @return ActionErrors containing validation errors.
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
+     * @return validation key - the action element's 'path' attribute in this case
      */
-    public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
-        this.setPageFromDynaProperty();
-        
-        ServletContext application = getServlet().getServletContext();
-        ActionErrors errors = new ActionErrors();
+    public String getValidationKey(ActionMapping mapping,
+                                   HttpServletRequest request) {
 
-        Validator validator =
-            Resources.initValidator(mapping.getPath(), this, application, request, errors, page);
-
-        try {
-            validatorResults = validator.validate();
-        } catch (ValidatorException e) {
-            log.error(e.getMessage(), e);
-        }
-
-        return errors;
+        return mapping.getPath();
     }
 
 }

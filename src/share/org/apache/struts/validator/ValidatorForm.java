@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorForm.java,v 1.13 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.13 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorForm.java,v 1.14 2004/04/02 14:30:57 germuska Exp $
+ * $Revision: 1.14 $
+ * $Date: 2004/04/02 14:30:57 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -45,7 +45,7 @@ import org.apache.struts.action.ActionMapping;
  * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
  * for validation rules.</li></ul>
  *
- * @version $Revision: 1.13 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Revision: 1.14 $ $Date: 2004/04/02 14:30:57 $
  * @see org.apache.struts.action.ActionForm
  * @since Struts 1.1
  */
@@ -101,7 +101,9 @@ public class ValidatorForm extends ActionForm implements Serializable {
         ServletContext application = getServlet().getServletContext();
         ActionErrors errors = new ActionErrors();
 
-        Validator validator = Resources.initValidator(mapping.getAttribute(),
+        String validationKey = getValidationKey(mapping, request);
+
+        Validator validator = Resources.initValidator(validationKey,
                              this,
                              application, request,
                              errors, page);
@@ -113,6 +115,19 @@ public class ValidatorForm extends ActionForm implements Serializable {
         }
 
         return errors;
+    }
+
+    /**
+     * Returns the Validation key.
+     *
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
+     * @return validation key - the form element's name in this case
+     */
+    public String getValidationKey(ActionMapping mapping,
+                                   HttpServletRequest request) {
+
+        return mapping.getAttribute();
     }
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.15 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.15 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.16 2004/04/02 14:30:57 germuska Exp $
+ * $Revision: 1.16 $
+ * $Date: 2004/04/02 14:30:57 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -46,7 +46,7 @@ import org.apache.struts.action.DynaActionForm;
  * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
  * for validation rules.</li></ul>
  *
- * @version $Revision: 1.15 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Revision: 1.16 $ $Date: 2004/04/02 14:30:57 $
  * @since Struts 1.1
  * @see org.apache.struts.action.ActionForm
  */
@@ -101,8 +101,12 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
         ServletContext application = getServlet().getServletContext();
         ActionErrors errors = new ActionErrors();
 
-        Validator validator =
-            Resources.initValidator(mapping.getAttribute(), this, application, request, errors, page);
+        String validationKey = getValidationKey(mapping, request);
+
+        Validator validator = Resources.initValidator(validationKey,
+                             this,
+                             application, request,
+                             errors, page);
 
         try {
             validatorResults = validator.validate();
@@ -111,6 +115,19 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
         }
 
         return errors;
+    }
+
+    /**
+     * Returns the Validation key.
+     *
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
+     * @return validation key - the form element's name in this case
+     */
+    public String getValidationKey(ActionMapping mapping,
+                                   HttpServletRequest request) {
+
+        return mapping.getAttribute();
     }
 
     /**
