@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.94 2003/03/18 04:13:06 dgraham Exp $
- * $Revision: 1.94 $
- * $Date: 2003/03/18 04:13:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.95 2003/03/24 04:39:35 dgraham Exp $
+ * $Revision: 1.95 $
+ * $Date: 2003/03/24 04:39:35 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.94 $ $Date: 2003/03/18 04:13:06 $
+ * @version $Revision: 1.95 $ $Date: 2003/03/24 04:39:35 $
  */
 
 public class RequestUtils {
@@ -874,15 +874,19 @@ public class RequestUtils {
         // Locate and return the specified property
         try {
             return (PropertyUtils.getProperty(bean, property));
+            
         } catch (IllegalAccessException e) {
             saveException(pageContext, e);
             throw new JspException(messages.getMessage("lookup.access", property, name));
+        
         } catch (InvocationTargetException e) {
             Throwable t = e.getTargetException();
-            if (t == null)
+            if (t == null) {
                 t = e;
+            }
             saveException(pageContext, t);
             throw new JspException(messages.getMessage("lookup.target", property, name));
+        
         } catch (NoSuchMethodException e) {
             saveException(pageContext, e);
             throw new JspException(messages.getMessage("lookup.method", property, name));
@@ -1222,8 +1226,9 @@ public class RequestUtils {
                         + iae.getMessage());
             }
 
-            if (multipartHandler != null)
+            if (multipartHandler != null) {
                 return multipartHandler;
+            }
         }
 
         return multipartHandler;
@@ -1904,8 +1909,9 @@ public class RequestUtils {
                 errors.add(ActionErrors.GLOBAL_ERROR, new ActionError((String) value));
             } else if (value instanceof String[]) {
                 String keys[] = (String[]) value;
-                for (int i = 0; i < keys.length; i++)
+                for (int i = 0; i < keys.length; i++) {
                     errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(keys[i]));
+                }
             } else if (value instanceof ErrorMessages) {
                 String keys[] = ((ErrorMessages) value).getErrors();
                 if (keys == null) {
