@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.10 2002/06/25 01:30:40 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2002/06/25 01:30:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.11 2002/06/26 18:49:17 rleland Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/06/26 18:49:17 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.10 $ $Date: 2002/06/25 01:30:40 $
+ * @version $Revision: 1.11 $ $Date: 2002/06/26 18:49:17 $
  * @since Struts 1.1
  */
 
@@ -389,6 +389,11 @@ public class RequestProcessor {
 
         if (forward == null) {
             return;
+        }
+
+        //unwrap the multipart request if there is one
+        if (request instanceof MultipartRequestWrapper) {
+            request = ((MultipartRequestWrapper) request).getRequest();
         }
 
         String path = forward.getPath();
@@ -962,6 +967,7 @@ public class RequestProcessor {
                              HttpServletResponse response)
         throws IOException, ServletException
     {
+
         RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
         if (rd == null) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
