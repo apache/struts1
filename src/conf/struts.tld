@@ -293,7 +293,7 @@
     <name>textarea</name>
     <tagclass>org.apache.struts.taglib.TextareaTag</tagclass>
     <attribute>
-      <name>maxlength</name>
+      <name>cols</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -303,7 +303,7 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <name>size</name>
+      <name>rows</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/TextareaTag.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/TextareaTag.java,v 1.2 2000/06/11 22:18:56 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/11 22:18:56 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Custom tag for input fields of type "textarea".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:12 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/11 22:18:56 $
  */
 
 public class TextareaTag extends BaseInputTag {
@@ -108,7 +108,7 @@ public class TextareaTag extends BaseInputTag {
 
 	// Create an appropriate "input" element based on our parameters
 	StringBuffer results = new StringBuffer("<textarea");
-	results.append("name=\"");
+	results.append(" name=\"");
 	results.append(name);
 	results.append("\"");
 	if (cols >= 0) {
