@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.24 2002/07/07 19:00:13 husted Exp $
+     $Id: struts-config_1_1.dtd,v 1.25 2002/07/07 22:02:17 husted Exp $
 -->
 
 
@@ -89,40 +89,40 @@
 <!ATTLIST struts-config  id             ID              #IMPLIED>
 
 
-<!-- The "data-sources" element describes a set of DataSource objects [JDBC 2.0 
+<!-- The "data-sources" element describes a set of DataSource objects [JDBC 2.0
      Standard Extension]. The individual DataSource objects are configured through
-     nested "data-source" elements.
+     nested <data-source> elements.
 -->
 <!ELEMENT data-sources (data-source*)>
 <!ATTLIST data-sources   id             ID              #IMPLIED>
 
 
-<!-- The "data-source" element describes a DataSource object [JDBC 2.0 Standard 
-     Extension] that will be instantiated, configured, and made available as a 
-     servlet context attribute (or "application-scope bean"). Any object can be 
-     specified so long as it implements javax.sql.DataSource and can be
-     configured entirely from JavaBean properties. The following attributes 
+<!-- The "data-source" element describes a DataSource object [JDBC 2.0 Standard
+     Extension] that will be instantiated, configured, and made available as a
+     servlet context attribute (or "application-scope bean"). Any object can be
+     specified so long as it implements [javax.sql.DataSource] and can be
+     configured entirely from JavaBean properties. The following attributes
      are required:
 
-     className       The configuration bean for this DataSource object. If 
-                     specified, the object must be a subclass of the default 
+     className       The configuration bean for this DataSource object. If
+                     specified, the object must be a subclass of the default
                      configuration bean.
-                     [org.apache.struts.config.DataSourceConfig]
+                     ["org.apache.struts.config.DataSourceConfig"]
 
-     key             Servlet context attribute key under which this data source 
-                     will be stored.  Default is the value specified by string 
+     key             Servlet context attribute key under which this data source
+                     will be stored.  Default is the value specified by string
                      constant defined by Action.DATA_SOURCE_KEY. The application
-                     module prefix (if any) is appended to the key 
-                     (${key}$prefix}). 
+                     module prefix (if any) is appended to the key
+                     (${key}$prefix}).
                      [org.apache.struts.Action.DATA_SOURCE_KEY]
 
-                     NOTE: The application module prefix includes the leading 
+                     NOTE: The application module prefix includes the leading
                      slash, so the default datasource for a module named "foo" is
                      stored under "org.apache.struts.action.DATA_SOURCE/foo".
 
      type            Fully qualified Java class name for this data source object.
-                     The class must implement DataSource [javax.sql.DataSource], 
-                     and the object must be configurable entirely from JavaBean     
+                     The class must implement DataSource [javax.sql.DataSource],
+                     and the object must be configurable entirely from JavaBean
                      properties.
 -->
 <!ELEMENT data-source (set-property*)>
@@ -132,10 +132,10 @@
 <!ATTLIST data-source    type           %ClassName;     #IMPLIED>
 
 
-<!-- The "global-exceptions" element describes a set of exceptions that might be 
-     thrown by an Action object. The handling of individual exception types is 
-     configured through nested exception elements. An "action" element may
-     override a global exception handler by registering a local exception handler 
+<!-- The "global-exceptions" element describes a set of exceptions that might be
+     thrown by an Action object. The handling of individual exception types is
+     configured through nested exception elements. An <action> element may
+     override a global exception handler by registering a local exception handler
      for the same exception type. Since Struts 1.1.
 -->
 <!ELEMENT global-exceptions (exception*)>
@@ -147,29 +147,30 @@
 
     bundle           Servlet context attribute for the message resources bundle
                      associated with this handler. The default attribute is the
-                     value specified by the string constant declared at 
-                     [org.apache.struts.Action.MESSAGES_KEY].                    
+                     value specified by the string constant declared at
+                     Action.MESSAGES_KEY.
+                     [org.apache.struts.Action.MESSAGES_KEY]
 
     className        The configuration bean for this ExceptionHandler object.
                      If specified, className must be a subclass of the default
                      configuration bean
-                     [org.apache.struts.config.ExceptionConfig]
+                     ["org.apache.struts.config.ExceptionConfig"]
 
     handler          Fully qualified Java class name for this exception handler.
-                     [org.apache.struts.action.ExceptionHandler]
+                     ["org.apache.struts.action.ExceptionHandler"]
 
     key              The key to use with this handler's message resource bundle
                      that will retrieve the error message template for this
                      exception.
 
-    path             The module-relative URI to the resource that will complete 
+    path             The module-relative URI to the resource that will complete
                      the request/response if this exception occurs.
 
-    scope            The context ("request" or "session") that is used to access 
+    scope            The context ("request" or "session") that is used to access
                      the ActionError object [org.apache.struts.action.ActionError]
                      for this exception.
 
-    type             Fully qualified Java class name of the exception type to 
+    type             Fully qualified Java class name of the exception type to
                      register with this handler.
 -->
 <!ELEMENT exception (icon?, display-name?, description?, set-property*)>
@@ -183,11 +184,11 @@
 <!ATTLIST exception      type           %ClassName;     #REQUIRED>
 
 
-<!-- The "form-beans" element describes the set of form bean descriptors for this 
+<!-- The "form-beans" element describes the set of form bean descriptors for this
      application module. The following attributes are defined:
 
-     type            Fully qualified Java class to use when instantiating 
-                     ActionFormBean objects. If specified, the object must be a 
+     type            Fully qualified Java class to use when instantiating
+                     ActionFormBean objects. If specified, the object must be a
                      subclass of the default class type.
                      DEPRECATED.
 
@@ -201,30 +202,30 @@
 <!ATTLIST form-beans     type           %ClassName;     #IMPLIED>
 
 
-<!-- The "form-bean" element describes an ActionForm subclass 
-     [org.apache.struts.action.ActionForm] that can be referenced by an "action" 
-     element. 
+<!-- The "form-bean" element describes an ActionForm subclass
+     [org.apache.struts.action.ActionForm] that can be referenced by an "action"
+     element.
 
 
 The "form-bean" element describes a particular form bean, which is a
      JavaBean that implements the org.apache.struts.action.ActionForm
      class.  The following attributes are defined:
 
-     className       The configuration bean for this form bean object. If 
+     className       The configuration bean for this form bean object. If
                      specified, the object must be a subclass of the default
                      configuration bean.
-                     [org.apache.struts.config.FormBeanConfig]
+                     ["org.apache.struts.config.FormBeanConfig"]
 
-     dynamic         If the form bean type is a  DynaActionForm subclass (that you 
-                     created), then (and only then) set this attribute to true. If 
-                     the type is set to the default DynaActionForm or any
+     dynamic         If the form bean type is a  DynaActionForm subclass (that you
+                     created), then (and only then) set this attribute to "true".
+                     If the type is set to the default DynaActionForm or any
                      conventional ActionForm subclass, then this attribute can be
                      omitted.
                      [true] if type is "org.apache.struts.action.DynaActionForm"
                      [false] otherwise
 
-     name            The unique identifier for this form bean. Referenced by the 
-                     "action" element to specify which form bean to use with its 
+     name            The unique identifier for this form bean. Referenced by the
+                     <action> element to specify which form bean to use with its
                      request.
 
      type            Fully qualified Java class name of the ActionForm subclass
@@ -238,19 +239,19 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST form-bean      type           %ClassName;     #REQUIRED>
 
 
-<!-- The "form-property" element describes a JavaBean property that can be used to 
+<!-- The "form-property" element describes a JavaBean property that can be used to
      configure an instance of a DynaActionForm or a subclass thereof. This element
      is only utilized when the "type" attribute of the enclosing "form-bean" element
-     is [org.apache.struts.action.DynaActionForm] or a subclass of DynaActionForm. If 
-     a custom DynaActionForm subclass is used, then the "dynamic" attribute of the 
-     enclosing "form-bean" element must be set to true. Since Struts 1.1.
+     is [org.apache.struts.action.DynaActionForm] or a subclass of DynaActionForm. If
+     a custom DynaActionForm subclass is used, then the "dynamic" attribute of the
+     enclosing <form-bean> element must be set to "true". Since Struts 1.1.
 
      className       The configuration bean for this form property object. If
                      specified, the object must be a subclass of the default
                      configuration bean.
-                     [org.apache.struts.config.FormPropertyConfig]
+                     ["org.apache.struts.config.FormPropertyConfig"]
 
-     initial         String representation of the initial value for this property. 
+     initial         String representation of the initial value for this property.
                      If not specified, primitives will be initialized to zero and
                      objects initialized to null.
 
@@ -270,8 +271,8 @@ The "form-bean" element describes a particular form bean, which is a
 <!-- The "global-forwards" element describes a set of ActionForward objects
      [org.apache.struts.action.ActionForward] that are available to all Action
      objects as a return value. The individual ActionForwards are configured
-     through nested "forward" elements. An "action" element may override a global
-     forward by defining a local "forward" of the same name.
+     through nested <forward> elements. An <action> element may override a global
+     forward by defining a local <forward> of the same name.
 
      type            Fully qualified Java class to use when instantiating
                      ActionForward objects.  If specified, the object must be a
@@ -288,39 +289,39 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST global-forwards type          %ClassName;     #IMPLIED>
 
 
-<!-- The "forward" element describes an ActionForward that is to be made 
+<!-- The "forward" element describes an ActionForward that is to be made
      available to an Action as a return value. An ActionForward is referenced by
      a logical name and encapsulates a URI. A "forward" element may be used to
      describe both global and local ActionForwards. Global forwards are available
      to all the Action objects in the application module. Local forwards can be
-     nested within an "action" element and only available to an Action object
+     nested within an <action> element and only available to an Action object
      when it is invoked through that ActionMapping.
 
      className       Fully qualified Java class name of ActionForward
-                     subclass to use for this object.                      
-                     [org.apache.struts.action.ActionForward]
+                     subclass to use for this object.
+                     ["org.apache.struts.action.ActionForward"]
 
-    contextRelative  Set this to "true" if, in a modular application, the path 
-                     attribute starts with a slash "/" and should be considered 
-                     relative to the entire web application rather than the module. 
+    contextRelative  Set this to "true" if, in a modular application, the path
+                     attribute starts with a slash "/" and should be considered
+                     relative to the entire web application rather than the module.
                      Since Struts 1.1.
                      [false]
 
-     name            The unique identifier for this forward. Referenced by the 
-                     Action object at runtime to select - by its logical name - 
+     name            The unique identifier for this forward. Referenced by the
+                     Action object at runtime to select - by its logical name -
                      the resource that should complete the request/response.
 
-     path            The module-relative or context-relative path to the resources 
-                     that is encapsulated by the logical name of this ActionForward. 
+     path            The module-relative or context-relative path to the resources
+                     that is encapsulated by the logical name of this ActionForward.
                      If the path is to be considered context-relative when used in
                      a modular application, then the contextRelative attribute
-                     should be set to true. This value should begin with a slash
+                     should be set to "true". This value should begin with a slash
                      ("/") character.
 
      redirect        Set to "true" if a redirect instruction should be issued to
                      the user-agent so that a new request is issued for this
                      forward's resource. If true,  RequestDispatcher.Redirect is
-                     called. If false, RequestDispatcher.forward is called instead.
+                     called. If "false", RequestDispatcher.forward is called instead.
                      [false]
 -->
 <!ELEMENT forward (icon?, display-name?, description?, set-property*)>
@@ -332,101 +333,107 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST forward        redirect       %Boolean;       #IMPLIED>
 
 
-<!-- The "action-mappings" element describes a set of ActionMapping objects 
-     [org.apache.struts.action.ActionMapping] that are available to process 
-     requests matching the url-pattern our ActionServlet registered with the 
+<!-- The "action-mappings" element describes a set of ActionMapping objects
+     [org.apache.struts.action.ActionMapping] that are available to process
+     requests matching the url-pattern our ActionServlet registered with the
      container. The individual ActionMappings are configured through nested
-     "action" elements. The following attributes are defined:
+     <action> elements. The following attributes are defined:
 
-     type           Fully qualified Java class to use when instantiating 
+     type           Fully qualified Java class to use when instantiating
                     ActionMapping objects. If specified, the object must be a
                     subclass of the default class type.
 
-                     WARNING:  For Struts 1.0, this value is ignored.  You
-                     can set the default implementation class name with the
-                     "mapping" initialization parameter to the Struts
-                     controller servlet.
+                    WARNING:  For Struts 1.0, this value is ignored.  You
+                    can set the default implementation class name with the
+                    "mapping" initialization parameter to the Struts
+                    controller servlet.
 -->
 <!ELEMENT action-mappings (action*)>
 <!ATTLIST action-mappings id             ID              #IMPLIED>
 <!ATTLIST action-mappings type           %ClassName;     #IMPLIED>
 
 
-<!-- The "action" element describes an ActionMapping object that is to be used 
-     to process a request for a specific module-relative URI. The following 
+<!-- The "action" element describes an ActionMapping object that is to be used
+     to process a request for a specific module-relative URI. The following
      attributes are defined:
 
-     attribute       Name of the request-scope or session-scope attribute
-                     under which our form bean is accessed, if it is other
-                     than the bean's specified "name".  Optional if
-                     "name" is specified, else not allowed.
+     attribute       Name of the request-scope or session-scope attribute that
+                     is used to access our ActionForm bean, if it is other than
+                     the bean's specified "name". Optional if "name" is specified,
+                     else not valid.
 
-     className       Implementation subclass of the standard configuration
-                     bean, if you do not want to use the standard value.
-                     [org.apache.struts.action.ActionMapping]
+     className       The fully qualified Java class name of the ActionMapping
+                     subclass to use for this action mapping object. Defaults to
+                     the type specified by the enclosing <action-mappings>
+                     element or to "org.apache.struts.action.ActionMapping" if
+                     not specified.
+                     ["org.apache.struts.action.ActionMapping"]
 
-     forward         Application-relative path of the servlet or JSP resource
-                     that will process this request, instead of instantiating
-                     and calling the Action class specified by "type".
-                     Exactly one of "forward", "include", or "type" must be
-                     specified.
+     forward         Module-relative path of the servlet or other resource that
+                     will process this request, instead of the Action class
+                     specified by "type". Exactly one of "forward", "include",
+                     or "type" must be specified.
 
-     include         Application-relative path of the servlet or JSP resource
-                     that will process this request, instead of instantiating
-                     and calling the Action class specified by "type".
-                     Exactly one of "forward", "include", or "type" must be
-                     specified.
+     include         Module-relative path of the servlet or other resource that
+                     will process this request, instead of the Action class
+                     specified by "type". Exactly one of "forward", "include", or
+                     "type" must be specified.
 
-     input           Application-relative path of the input form to which
-                     control should be returned if a validation error is
-                     encountered.  Required if "name" is specified and the
-                     input bean returns validation errors.  Optional if "name"
-                     is specified and the input bean does not return validation
-                     errors.  Not allowed if "name" is not specified.
+     input           Module-relative path of the action or other resource to
+                     which control should be returned if a validation error is
+                     encountered. Valid only when "name" is specified. Required
+                     if "name" is specified and the input bean returns
+                     validation errors. Optional if "name" is specified and the
+                     input bean does not return validation errors.
 
-     name            Name of the form bean, if any, that is associated
-                     with this action.
+     name            Name of the form bean, if any, that is associated with this
+                     action mapping.
 
-     path            The Application-relative path of the submitted request,
-                     starting with a "/" character, and without the
-                     filename extension if extension mapping is used.
+     path            The module-relative path of the submitted request, starting
+                     with a "/" character, and without the filename extension if
+                     extension mapping is used.
+
                      NOTE:  Do *not* include a period in your path name,
                      because it will look like a filename extension and
                      cause your Action to not be located.
 
-     parameter       General purpose configuration parameter that can be used
-                     to pass extra information to the Action selected by this
-                     mapping.
+     parameter       General-purpose configuration parameter that can be used to
+                     pass extra information to the Action object selected by
+                     this action mapping.
 
-     prefix          Prefix used to match request parameter names to form bean
-                     property names, if any.  Optional if "name" is specified,
+     prefix          Prefix used to match request parameter names to ActionForm
+                     property names, if any. Optional if "name" is specified,
                      else not allowed.
 
-     roles           Comma-delimited list of security role names allowed to
-                     request this Action.
+     roles           Comma-delimited list of security role names that are allowed
+                     access to this ActionMapping object. Since Struts 1.1.
 
-     scope           Identifier of the scope ("request" or "session") within
-                     which our form bean is accessed, if any.  Optional if
-                     "name" is specified, else not allowed.
+     scope           The context ("request" or "session") that is used to
+                     access our ActionForm bean, if any.  Optional if "name" is
+                     specified, else not valid.
 
-     suffix          Suffix used to match request parameter names to form bean
-                     property names, if any.  Optional if "name" is specified,
-                     else not allowed.
+     suffix          Suffix used to match request parameter names to ActionForm
+                     bean property names, if any. Optional if "name" is
+                     specified, else not valid.
 
-     type            Fully qualified Java class name of the Action class
-                     (implements org.apache.struts.action.Action) to be
-                     used to process requests for this mapping if the "forward"
-                     or "include" attribute is not included.  Exactly one
-                     of "forward", "include", or "type" must be specified.
+     type            Fully qualified Java class name of the Action subclass
+                     [org.apache.struts.action.Action] that will process requests
+                     for this action mapping. Not valid if either the "forward"
+                     or "include" attribute is specified.  Exactly one of
+                     "forward", "include", or "type" must be specified.
 
-     unknown         Set to "true" if this action should be configured as the
-                     default for this application, to handle all requests
-                     not handled by another action.  Only one action can be
-                     defined as a default within a single application.
+     unknown         Set to "true" if this object should be configured as the
+                     default action mapping for this module. If a request does not
+                     match another object, it will be passed to the ActionMapping
+                     object with unknown set to "true". Only one ActionMapping
+                     can be marked as "unknown" within a module.
+                     [false]
 
-     validate        Set to "true" if the validate() method of the form bean
-                     should be called prior to calling this action, or set to
-                     "false" if you do not want validation performed.
+     validate        Set to "true" if the validate method of the ActionForm bean
+                     should be called prior to calling the Action object for this
+                     action mapping, or set to "false" if you do not want the
+                     validate method called.
+                     [true]
 -->
 <!ELEMENT action (icon?, display-name?, description?, set-property*, exception*, forward*)>
 <!ATTLIST action         id             ID              #IMPLIED>
@@ -447,59 +454,69 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST action         validate       %Boolean;       #IMPLIED>
 
 
-<!-- The "controller" element specifies the controller characterstics for
-     requests directed to this application.  The following attributes are
-     defined:
+<!-- The "controller" element describes the ControllerConfig bean
+     [org.apache.struts.config.ControllerConfig] that encapsulates
+     an application module's runtime configuration. The following
+     attributes are defined:
 
      bufferSize      The size of the input buffer used when processing
-                     file uploads.  [4096]
+                     file uploads.
+                     [4096]
 
-     className       Implementation subclass of the standard configuration
-                     bean, if you do not want to use the standard value.
-                     [org.apache.struts.config.ControllerConfig]
+     className       Fully qualified Java class name of the
+                     ControllerConfig subclass for this controller object.
+                     If specified, the object must be a subclass of the
+                     default class.
+                     ["org.apache.struts.config.ControllerConfig"]
 
-     contentType     Default content type (and optional character encoding)
-                     to be set on each response.  May be overridden by a
-                     forwarded-to servlet or JSP page.  [text/html]
+     contentType     Default content type (and optional character encoding) to
+                     be set on each response. May be overridden by the Action,
+                     JSP, or other resource to which the request is forwarded.
+                     ["text/html"]
 
-     debug           Debugging detail level for this application.  [0]
+     debug           Debugging detail level for this module.
+                     [0]
 
-     forwardPattern  Replacement pattern defining how the "path" attribute of
-                     a "forward" element is mapped to a context-relative URL
-                     when it starts with a slash (and when the contextRelative
-                     property is false).  This value may consist of any
+     forwardPattern  Replacement pattern defining how the "path" attribute of a
+                     <forward> element is mapped to a context-relative URL when
+                     it starts with a slash (and when the contextRelative
+                     property is false). This value may consist of any
                      combination of the following:
-                     - "$A" - Replaced by the app prefix of this subapp
-                     - "$P" - Replaced by the "path" attribute of the
-                              selected "forward" element
+                     - "$A" - Replaced by the app prefix of this module
+                     - "$P" - Replaced by the "path" attribute of the  selected
+                     "forward" element
                      - "$$" - Causes a literal dollar sign to be rendered
                      - "$x" - (Where "x" is any character not defined above)
-                              Silently swallowed, reserved for future use
-                     If not specified, the default forwardPattern is
-                     "$A$P", which is consistent with previous hard coded
-                     behavior of forwards.  [$A$P]
+                     Silently swallowed, reserved for future use
+                     If not specified, the default forwardPattern is "$A$P",
+                     which is consistent with the previous behavior of forwards.
+                     Since Struts 1.1.
+                     ["$A$P"]
 
-     inputForward    Set to true if you want the "input" parameter of
-                     "action" elements to be the name of a local or global
-                     "forward" element used to calculate the ultimate URL.
-                     Set to false (the default) to treat the "input" parameter
-                     of "action" elements as a subapp-relative path to the
-                     resource used for the input form.  [false]
+     inputForward    Set to "true" if you want the "input" attribute of <action>
+                     elements to be the name of a local or global ActionForward,
+                     which will then be used to calculate the ultimate URL. Set
+                     to "false" (the default) to treat the "input" parameter of
+                     <action> elements as a module-relative path to the resource
+                     to be used as the input form. Since Struts 1.1.
+                     [false]
 
-     locale          Set to true if you want a Locale object stored in the
-                     user's session if not already present.  [true]
+     locale          Set to "true" if you want a Locale object stored in the
+                     user agent's session if not already present.
+                     [true]
 
-     maxFileSize     The maximum size (in bytes) of a file to be accepted
-                     as a file upload.  Can be expressed as a number followed
-                     by a "K", "M", or "G", which are interpreted to mean
-                     kilobytes, megabytes, or gigabytes, respectively.  [250M]
+     maxFileSize     The maximum size (in bytes) of a file to be accepted as a
+                     file upload.  Can be expressed as a number followed by a
+                     "K", "M", or "G", which are interpreted to mean kilobytes,
+                     megabytes, or gigabytes, respectively.
+                     ["250M"]
 
-     multipartClass  The fully qualified Java class name of the multipart
-                     request handler class to be used.
-                     [org.apache.struts.upload.DiskMultipartRequestHandler]
+     multipartClass  The fully qualified Java class name of the multipart request
+                     handler class to be used with this module.
+                     ["org.apache.struts.upload.DiskMultipartRequestHandler"]
 
-     nocache         Set to <code>true</code> if you want Struts to add
-                     HTTP headers for defeating caching to every response.
+     nocache         Set to "true" if you want the controller to add HTTP headers
+                     for defeating caching to every response from this module.
                      [false]
 
      pagePattern     Replacement pattern defining how the "page" attribute of
@@ -514,20 +531,22 @@ The "form-bean" element describes a particular form bean, which is a
                      If not specified, the default forwardPattern is
                      "$A$P", which is consistent with previous hard coded
                      behavior of URL evaluation for "page" attributes.  [$A$P]
+                     ["$A$P"]
 
      processorClass  The fully qualified Java class name of the
-                     RequestProcessor class to be used.
-                     [org.apache.struts.action.RequestProcessor]
+                     RequestProcessor subclass to be used with this module.
+                     ["org.apache.struts.action.RequestProcessor"]
 
      tempDir         Temporary working directory to use when processing
-                     file uploads.  [Directory provided by servlet container]
+                     file uploads.
+                     [{Directory provided by servlet container}]
 -->
 <!ELEMENT controller     (set-property*)>
 <!ATTLIST controller     id             ID              #IMPLIED>
 <!ATTLIST controller     bufferSize     %Integer;       #IMPLIED>
 <!ATTLIST controller     className      %ClassName;     #IMPLIED>
 <!ATTLIST controller     contentType    CDATA           #IMPLIED>
-<!ATTLIST controller     debug          %Integer;       #IMPLIED>  
+<!ATTLIST controller     debug          %Integer;       #IMPLIED>
 <!ATTLIST controller     forwardPattern CDATA           #IMPLIED>
 <!ATTLIST controller     inputForward   %Boolean;       #IMPLIED>
 <!ATTLIST controller     locale         %Boolean;       #IMPLIED>
@@ -539,34 +558,37 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST controller     tempDir        CDATA           #IMPLIED>
 
 
-<!-- The "message-resources" element specifies the characteristics of the
-     MessageResources containing the messages for this application.  The
-     following attributes are defined:
+<!-- The "message-resources" element describes a MessageResources object with
+     message templates for this module. The following attributes are defined:
 
-     className       Implementation subclass of the standard configuration
-                     bean, if you do not want to use the standard value.
-                     [org.apache.struts.config.MessageResourcesConfig]
+     className       The configuration bean for this message resources object.
+                     If specified, the object must be a subclass of the default
+                     configuration bean.
+                     ["org.apache.struts.config.MessageResourcesConfig"]
 
      factory         Fully qualified Java class name of the
-                     MessageResourcesFactory class we should use, if any.
-                     By default, this is set to
-                     org.apache.struts.util.PropertyMessageResourcesFactory.
+                     MessageResourcesFactory subclass to use for this message
+                     resources object.
+                     ["org.apache.struts.util.PropertyMessageResourcesFactory"]
 
-     key             Servlet context attribute key under which this
-                     message resources bundle will be stored.  Default is the
-                     value specified by the string constant
-                     Action.MESSAGES_KEY.
+     key             Servlet context attribute under which this message
+                     resources bundle will be stored. The default attribute is
+                     the value specified by the string constant at
+                     [Action.MESSAGES_KEY]. The application module prefix (if
+                     any) is appended to the key (${key}${prefix}).
+                     [org.apache.struts.Action.MESSAGES_KEY]
 
-                     NOTE:  The attribute under which this message resources is
-                     actually stored will be the key value suffixed by
-                     the application prefix for this sub-application
+                     NOTE: The application module  prefix includes the leading
+                     slash, so the default message resource bundle for a module
+                     named "foo" is stored under
+                     "org.apache.struts.action.MESSAGE/foo".
 
-     null            Set to true if you want our message resources to return
-                     a null string for unknown message keys, or false to
-                     return a message with the bad key value.  [true]
+     null            Set to "true" if you want our message resources to return a
+                     null string for unknown message keys, or "false" to return a
+                     message with the bad key value.
 
-     parameter       Configuration parameter to be passed to the
-                     createResources() method of our MessageResourcesFactory.
+     parameter       Configuration parameter to be passed to the createResources
+                     method of our factory object.
 -->
 <!ELEMENT message-resources (set-property*)>
 <!ATTLIST message-resources id          ID              #IMPLIED>
@@ -578,14 +600,13 @@ The "form-bean" element describes a particular form bean, which is a
 
 
 <!-- The "plug-in" element specifies the fully qualified class name of a
-     general purpose application plug-in module that receives notification
-     of application startup and shutdown events.  An instance of the
-     specified class is created for each element, and can be configured
-     with nested "set-property" elements.  The following attributes
-     are supported:
+     general-purpose application plug-in module that receives notification of
+     application startup and shutdown events. An instance of the specified class
+     is created for each element, and can be configured with nested <set-property>
+     elements. The following attributes are supported:
 
-     className       Fully qualified Java class name of the plug-in class
-                     (must implement org.apache.struts.PlugIn).
+     className       Fully qualified Java class name of the plug-in class; must
+                     implement [org.apache.struts.PlugIn].
 -->
 <!ELEMENT plug-in           (set-property*)>
 <!ATTLIST plug-in           id          ID              #IMPLIED>
@@ -625,12 +646,14 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST large-icon     id             ID              #IMPLIED>
 
 
-<!-- The "set-property" element specifies the name and value of an additional
-     JavaBeans configuration property whose setter method will be called
-     on the object that represents our surrounding element.  This is especially
-     useful when an extended implementation class (with additional properties)
-     is configured on the <global-forwards> or <action-mappings> elements.
-     The following attributes are defined:
+<!-- The "set-property" element specifies the method name and initial value of
+     an additional JavaBean configuration property. When the object representing
+     the surrounding element is instantiated, the accessor for the indicated
+     property is called and passed the indicated value. The "set-property"
+     element is especially useful when a custom subclass is used with
+     <data-source>, <forward>, <action>, or <plug-in> elements. The subclass
+     can be passed whatever other properties may be required to configure the
+     object without changing how the struts-config is parsed.
 
      property        Name of the JavaBeans property whose setter method
                      will be called.
