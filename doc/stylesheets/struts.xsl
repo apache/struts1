@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts Documentation -->
-<!-- $Id: struts.xsl,v 1.2 2001/05/31 18:36:59 craigmcc Exp $ -->
+<!-- $Id: struts.xsl,v 1.3 2001/06/12 03:19:07 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -80,12 +80,17 @@
 
   </xsl:template>
 
+  <!-- Process the project element for the navigation bar -->
+  <xsl:template match="project">
+    <xsl:apply-templates/>
+  </xsl:template>
+
   <!-- Process a menu for the navigation bar -->
   <xsl:template match="menu">
     <table border="0" cellspacing="5">
       <tr>
         <th colspan="2" align="left">
-          <font color="{body-link}"><strong>
+          <font color="{$body-link}"><strong>
             <xsl:value-of select="@name"/>
           </strong></font>
         </th>
