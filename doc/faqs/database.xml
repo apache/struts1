@@ -85,9 +85,10 @@
     [<code>org.apache.commons.dbcp.BasicDataSource</code>] also works well
     with the DataSource manager, if a native component is not available.
     The Struts distribution includes a Generic DataSource class in its util
-    package, but this is now only a wrapper around the BasicDataSource.
-    The GenericDataSource class is deprecated as of Struts 1.1 and replaced
-    by direct use of the BasicDataSource.
+    package, but this is a very simple implementation.
+    The Generic DataSource is deprecated and will be removed in a future
+    release in favor of plugging in the BasicDataSource, or another
+    DataSource implementation.
     </p>
 
     <p>
