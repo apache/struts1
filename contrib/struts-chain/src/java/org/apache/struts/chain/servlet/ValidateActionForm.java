@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/ValidateActionForm.java,v 1.3 2003/11/13 01:29:59 mrdon Exp $
- * $Revision: 1.3 $
- * $Date: 2003/11/13 01:29:59 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/ValidateActionForm.java,v 1.4 2004/02/29 13:53:24 germuska Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/02/29 13:53:24 $
  *
  * ====================================================================
  *
@@ -78,12 +78,12 @@ import org.apache.struts.config.ActionConfig;
 /**
  * <p>Validate the properties of the form bean for this request.  If there are
  * any validation errors, execute the child commands in our chain; otherwise,
- * proceed normally.  Also, if any errors are found and the request is a 
+ * proceed normally.  Also, if any errors are found and the request is a
  * multipart request, rollback the <code>MultipartRequestHandler</code>.</p>
  *
  * @author Craig R. McClanahan
  * @author Don Brown
- * @version $Revision: 1.3 $ $Date: 2003/11/13 01:29:59 $
+ * @version $Revision: 1.4 $ $Date: 2004/02/29 13:53:24 $
  */
 
 public class ValidateActionForm extends AbstractValidateActionForm {
@@ -92,8 +92,8 @@ public class ValidateActionForm extends AbstractValidateActionForm {
 
 
     private static final Log log =
-        LogFactory.getLog(ValidateActionForm.class);    
-    
+        LogFactory.getLog(ValidateActionForm.class);
+
 
     // ------------------------------------------------------- Protected Methods
 
@@ -112,9 +112,9 @@ public class ValidateActionForm extends AbstractValidateActionForm {
         ServletWebContext swcontext = (ServletWebContext) context;
         ActionErrors errors = (actionForm.validate((ActionMapping) actionConfig,
                                     swcontext.getRequest()));
-        
+
         // Special handling for multipart request
-        if ((errors == null) || errors.isEmpty()) {
+        if (errors != null && !errors.isEmpty()) {
             if (actionForm.getMultipartRequestHandler() != null) {
                 if (log.isTraceEnabled()) {
                     log.trace("  Rolling back multipart request");
@@ -122,7 +122,7 @@ public class ValidateActionForm extends AbstractValidateActionForm {
                 actionForm.getMultipartRequestHandler().rollback();
             }
         }
-        
+
         return errors;
 
     }
