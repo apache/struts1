@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.79 2003/01/12 20:31:21 dmkarr Exp $
- * $Revision: 1.79 $
- * $Date: 2003/01/12 20:31:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.80 2003/02/05 05:28:52 dgraham Exp $
+ * $Revision: 1.80 $
+ * $Date: 2003/02/05 05:28:52 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author James Turner
- * @version $Revision: 1.79 $ $Date: 2003/01/12 20:31:21 $
+ * @version $Revision: 1.80 $ $Date: 2003/02/05 05:28:52 $
  */
 
 public class RequestUtils {
@@ -1354,13 +1354,12 @@ public class RequestUtils {
      * Return the context-relative URL that corresponds to the specified
      * {@link ForwardConfig}, relative to the module associated
      * with the current {@link ModuleConfig}. The forward path is
-     * gracefully prefixed with a '/' according to the boolean
-     *
+     * gracefully prefixed with a '/' according to the boolean.
      *
      * @param request The servlet request we are processing
      * @param forward ForwardConfig to be evaluated
      * @return context-relative URL
-     * @since Struts 1.1b2
+     * @since Struts 1.1
      */
     public static String forwardURL(HttpServletRequest request, ForwardConfig forward) {
 
@@ -1377,11 +1376,11 @@ public class RequestUtils {
         }
 
         // Calculate a context relative path for this ForwardConfig
-        ModuleConfig appConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
-        String forwardPattern = appConfig.getControllerConfig().getForwardPattern();
+        ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+        String forwardPattern = moduleConfig.getControllerConfig().getForwardPattern();
         if (forwardPattern == null) {
             // Performance optimization for previous default behavior
-            sb.append(appConfig.getPrefix());
+            sb.append(moduleConfig.getPrefix());
             // smoothly insert a '/' if needed
             if (!path.startsWith("/")) {
                 sb.append("/");
@@ -1394,7 +1393,7 @@ public class RequestUtils {
                 if (dollar) {
                     switch (ch) {
                         case 'M' :
-                            sb.append(appConfig.getPrefix());
+                            sb.append(moduleConfig.getPrefix());
                             break;
                         case 'P' :
                             // add '/' if needed
@@ -1437,10 +1436,10 @@ public class RequestUtils {
     public static String pageURL(HttpServletRequest request, String page) {
 
         StringBuffer sb = new StringBuffer();
-        ModuleConfig appConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
-        String pagePattern = appConfig.getControllerConfig().getPagePattern();
+        ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+        String pagePattern = moduleConfig.getControllerConfig().getPagePattern();
         if (pagePattern == null) {
-            sb.append(appConfig.getPrefix());
+            sb.append(moduleConfig.getPrefix());
             sb.append(page);
         } else {
             boolean dollar = false;
@@ -1449,7 +1448,7 @@ public class RequestUtils {
                 if (dollar) {
                     switch (ch) {
                         case 'M' :
-                            sb.append(appConfig.getPrefix());
+                            sb.append(moduleConfig.getPrefix());
                             break;
                         case 'P' :
                             sb.append(page);
