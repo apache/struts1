@@ -27,31 +27,30 @@
         jdbc20ext.jar                 (required).  The path to the JAR file
                                       for the JDBC 2.0 Optional Package APIs.
 
-        servletapi.home               (required).  The path to the binary
-                                      distribution directory of your
-                                      servlet API distribution.
+        servlet.jar                   (required).  The path to the Servlet API
+                                      classes to compile against (currently,
+                                      either version 2.2 or 2.3 supported).
 
         tomcat.home                   (optional). The path to the Tomcat 3.x
                                       installation. This is required only when
                                       executing the "deploy.tomcat" target.
 
-        xerces.home                   (optional) Distribution directory for the
-                                      Xerces XML parser. This is required only
-                                      when executing the "deploy.catalina"
-                                      target.
+        xerces.jar                    (optional) The path to the Xerces classes
+                                      to copy.  This is required only when
+                                      executing the "deploy.catalina" target.
 
 -->
 
     <!-- Load local and user build preferences -->
     <property file="build.properties"/>
-    <property file="${user.home}/.build.properties"/>
+    <property file="${user.home}/build.properties"/>
 
     <!-- Default values for unspecified properties -->
     <property name="catalina.home"   value="../jakarta-tomcat-4.0/build"/>
     <property name="jdbc20ext.jar"   value="../jdbc2_0-stdext.jar"/>
-    <property name="servletapi.home" value="../jakarta-servletapi"/>
+    <property name="servlet.jar"     value="../jakarta-servletapi/lib/servlet.jar"/>
     <property name="tomcat.home"     value="../build/tomcat"/>
-    <property name="xerces.home"     value="../xml-xerces"/>
+    <property name="xerces.jar"      value="../xml-xerces/xerces.jar"/>
 
 
 <!-- ========== Initialization Properties ================================= -->
@@ -114,9 +113,6 @@
 
     <!-- Web directory -->
     <property name="web.dir" value="web"/>
-
-    <!-- Location of the "servlet.jar" file to compile against -->
-    <property name="servlet.jar"     value="${servletapi.home}/lib/servlet.jar"/>
 
     <!-- Compilation Classpath -->
     <path id="compile.classpath">
@@ -216,7 +212,7 @@
         <mkdir dir="${build.home}/documentation/api"/>
         <javadoc sourcepath="${src.share.dir}"
             destdir="${build.home}/documentation/api"
-            classpath="${servlet.jar}:${java.class.path}"
+            classpath="${servlet.jar}:${jdbc20ext.jar}"
             packagenames="org.apache.struts.*"
             author="true"
             private="true"
@@ -285,48 +281,47 @@
 -->
     <target name="deploy.catalina" depends="compile.webapps"
      description="Deploy Struts web.apps in Catalina (Tomcat 4.0)">
+
         <mkdir dir="${catalina.home}/webapps/struts-blank"/>
         <copy todir="${catalina.home}/webapps/struts-blank">
             <fileset dir="${build.home}/blank"/>
         </copy>
-        <copy todir="${catalina.home}/webapps/struts-blank/WEB-INF/lib">
-            <fileset dir="${xerces.home}" includes="xerces.jar"/>
-        </copy>
+        <copy todir="${catalina.home}/webapps/struts-blank"
+               file="${xerces.jar}"/>
+
         <mkdir dir="${catalina.home}/webapps/struts-documentation"/>
         <copy todir="${catalina.home}/webapps/struts-documentation">
             <fileset dir="${build.home}/documentation"/>
         </copy>
-        <copy todir="${catalina.home}/webapps/struts-documentation/WEB-INF/lib">
-            <fileset dir="${xerces.home}" includes="xerces.jar"/>
-        </copy>
+
         <mkdir dir="${catalina.home}/webapps/struts-example"/>
         <copy todir="${catalina.home}/webapps/struts-example">
             <fileset dir="${build.home}/example"/>
         </copy>
-        <copy todir="${catalina.home}/webapps/struts-example/WEB-INF/lib">
-            <fileset dir="${xerces.home}" includes="xerces.jar"/>
-        </copy>
+        <copy todir="${catalina.home}/webapps/struts-example"
+               file="${xerces.jar}"/>
+
         <mkdir dir="${catalina.home}/webapps/struts-template"/>
         <copy todir="${catalina.home}/webapps/struts-template">
             <fileset dir="${build.home}/template-example"/>
         </copy>
-        <copy todir="${catalina.home}/webapps/struts-template/WEB-INF/lib">
-            <fileset dir="${xerces.home}" includes="xerces.jar"/>
-        </copy>
+        <copy todir="${catalina.home}/webapps/struts-template"
+               file="${xerces.jar}"/>
+
         <mkdir dir="${catalina.home}/webapps/struts-exercise-taglib"/>
         <copy todir="${catalina.home}/webapps/struts-exercise-taglib">
             <fileset dir="${build.home}/exercise-taglib"/>
         </copy>
-        <copy todir="${catalina.home}/webapps/struts-exercise-taglib/WEB-INF/lib">
-            <fileset dir="${xerces.home}" includes="xerces.jar"/>
-        </copy>
+        <copy todir="${catalina.home}/webapps/struts-exercise-taglib"
+               file="${xerces.jar}"/>
+
         <mkdir dir="${catalina.home}/webapps/struts-upload"/>
         <copy todir="${catalina.home}/webapps/struts-upload">
             <fileset dir="${build.home}/upload"/>
         </copy>
-        <copy todir="${catalina.home}/webapps/struts-upload/WEB-INF/lib">
-            <fileset dir="${xerces.home}" includes="xerces.jar"/>
-        </copy>
+        <copy todir="${catalina.home}/webapps/struts-upload"
+               file="${xerces.jar}"/>
+
     </target>
 
 <!--
@@ -334,30 +329,37 @@
 -->
     <target name="deploy.tomcat" depends="compile.webapps"
      description="Deploy Struts web.apps in Tomcat 3.x">
+
         <mkdir dir="${tomcat.home}/webapps/struts-blank"/>
         <copy todir="${tomcat.home}/webapps/struts-blank">
             <fileset dir="${build.home}/blank"/>
         </copy>
+
         <mkdir dir="${tomcat.home}/webapps/struts-documentation"/>
         <copy todir="${tomcat.home}/webapps/struts-documentation">
             <fileset dir="${build.home}/documentation"/>
         </copy>
+
         <mkdir dir="${tomcat.home}/webapps/struts-example"/>
         <copy todir="${tomcat.home}/webapps/struts-example">
             <fileset dir="${build.home}/example"/>
         </copy>
+
         <mkdir dir="${tomcat.home}/webapps/struts-template"/>
         <copy todir="${tomcat.home}/webapps/struts-template">
             <fileset dir="${build.home}/template-example"/>
         </copy>
+
         <mkdir dir="${tomcat.home}/webapps/struts-exercise-taglib"/>
         <copy todir="${tomcat.home}/webapps/struts-exercise-taglib">
             <fileset dir="${build.home}/exercise-taglib"/>
         </copy>
+
         <mkdir dir="${tomcat.home}/webapps/struts-upload"/>
         <copy todir="${tomcat.home}/webapps/struts-upload">
             <fileset dir="${build.home}/upload"/>
         </copy>
+
     </target>
 
 <!--
@@ -366,6 +368,7 @@
     <target name="clean"
      description="Clean build and distribution directories">
         <delete dir="${build.home}"/>
+        <delete dir="${dist.home}"/>
     </target>
 
 <!--
