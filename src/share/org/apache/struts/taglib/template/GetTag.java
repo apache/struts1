@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.2 2000/10/08 01:15:14 dgeary Exp $
- * $Revision: 1.2 $
- * $Date: 2000/10/08 01:15:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.3 2000/10/12 23:05:21 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/12 23:05:21 $
  *
  * ====================================================================
  *
@@ -65,7 +65,7 @@ import java.util.Stack;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-
+import org.apache.struts.action.Action;
 import org.apache.struts.taglib.template.util.*;
 
 /**
@@ -74,7 +74,7 @@ import org.apache.struts.taglib.template.util.*;
  * it, depending upon the value of the content's direct attribute.
  *
  * @author David Geary
- * @version $Revision: 1.2 $ $Date: 2000/10/08 01:15:14 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/12 23:05:21 $
  */
 public class GetTag extends TagSupport {
 
@@ -114,6 +114,8 @@ public class GetTag extends TagSupport {
                pageContext.getOut().print(content.toString());
             }
             catch(java.io.IOException ex) {
+               pageContext.setAttribute(Action.EXCEPTION_KEY, ex,
+                                        PageContext.REQUEST_SCOPE);
                throw new JspException(ex.getMessage());
             }
          }
@@ -123,6 +125,8 @@ public class GetTag extends TagSupport {
                pageContext.include(content.toString());
             }
             catch(Exception ex) { 
+               pageContext.setAttribute(Action.EXCEPTION_KEY, ex,
+                                        PageContext.REQUEST_SCOPE);
                throw new JspException(ex.getMessage());
             }
          }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.2 2000/10/08 21:10:31 dgeary Exp $
- * $Revision: 1.2 $
- * $Date: 2000/10/08 21:10:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.3 2000/10/12 23:05:21 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/12 23:05:21 $
  *
  * ====================================================================
  *
@@ -63,15 +63,16 @@ package org.apache.struts.taglib.template;
 import java.util.Hashtable;
 import java.util.Stack;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-
+import org.apache.struts.action.Action;
 import org.apache.struts.taglib.template.util.Content;
 
 /**
  * Tag handler for &lt;template:put&gt;, which puts content into request scope.
  *
  * @author David Geary
- * @version $Revision: 1.2 $ $Date: 2000/10/08 21:10:31 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/12 23:05:21 $
  */
 public class PutTag extends TagSupport {
 
@@ -176,6 +177,8 @@ public class PutTag extends TagSupport {
          klass = Class.forName(className);
       }
       catch(ClassNotFoundException ex) {
+         pageContext.setAttribute(Action.EXCEPTION_KEY, ex,
+                                  PageContext.REQUEST_SCOPE);
          throw new JspException(ex.getMessage());
       }
       return (TagSupport)findAncestorWithClass(this, klass);
