@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:50 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTag.java,v 1.4 2002/10/26 05:24:44 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/26 05:24:44 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,7 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import org.apache.struts.taglib.html.JavascriptValidatorTag;
 import javax.servlet.jsp.JspException;
-import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
+import org.apache.strutsel.taglib.utils.EvalHelper;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
@@ -77,9 +77,36 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
+
+    /**
+     * String value of the "page" attribute.
+     */
+    private String   pageExpr;
+
+    /**
+     * Returns the string value of the "page" attribute.
+     */
+    public  String   getPageExpr() { return (pageExpr); }
+
+    /**
+     * Sets the string value of the "page" attribute.  This attribute is mapped
+     * to this method by the <code>ELJavascriptValidatorTagBeanInfo</code>
+     * class.
+     */
+    public  void     setPageExpr(String pageExpr)
+    { this.pageExpr  = pageExpr; }
+
+    /**
+     * Resets attribute values for tag reuse.
+     */
+    public void release()
+    {
+        super.release();
+        setPageExpr(null);
+    }
 
     /**
      * Process the start tag.
@@ -93,7 +120,8 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
     
     /**
      * Evaluates and returns a single attribute value, given the attribute
-     * name, attribute value, and attribute type.  It uses
+     * name, attribute value, and attribute type.  It uses the
+     * <code>EvalHelper</code> class to interface to
      * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
      * it passes to this the name of the current tag, the <code>this</code>
      * pointer, and the current pageContext.
@@ -101,6 +129,8 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
      * @param attrName attribute name being evaluated
      * @param attrValue String value of attribute to be evaluated using EL
      * @param attrType Required resulting type of attribute value
+     * @exception NullAttributeException if either the <code>attrValue</code>
+     * was null, or the resulting evaluated value was null.
      * @return Resulting attribute value
      */
     private Object   evalAttr(String   attrName,
@@ -108,8 +138,8 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
                               Class    attrType)
         throws JspException, NullAttributeException
     {
-        return (ExpressionUtil.evalNotNull("javascript", attrName, attrValue,
-                                           attrType, this, pageContext));
+        return (EvalHelper.eval("javascript", attrName, attrValue, attrType,
+                                this, pageContext));
     }
     
     /**
@@ -143,7 +173,7 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
         }
 
         try {
-            setPage(((Integer) evalAttr("page", getPage() + "", Integer.class)).
+            setPage(((Integer) evalAttr("page", getPageExpr(), Integer.class)).
                     intValue());
         } catch (NullAttributeException ex) {
             setPage(0);
@@ -161,6 +191,13 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
                                                   String.class));
         } catch (NullAttributeException ex) {
             setStaticJavascript(null);
+        }
+
+        try {
+            setHtmlComment((String) evalAttr("htmlComment", getHtmlComment(),
+                                             String.class));
+        } catch (NullAttributeException ex) {
+            setHtmlComment(null);
         }
     }
 }
