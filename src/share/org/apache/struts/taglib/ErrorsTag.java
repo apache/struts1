@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.8 2000/08/01 20:03:31 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/08/01 20:03:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.9 2000/10/12 21:52:52 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/10/12 21:52:52 $
  *
  * ====================================================================
  *
@@ -64,12 +64,15 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Locale;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.ErrorMessages;
 import org.apache.struts.util.MessageResources;
@@ -92,7 +95,7 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/08/01 20:03:31 $
+ * @version $Revision: 1.9 $ $Date: 2000/10/12 21:52:52 $
  */
 
 public final class ErrorsTag extends TagSupport {
@@ -150,29 +153,34 @@ public final class ErrorsTag extends TagSupport {
     public int doStartTag() throws JspException {
 
 	// Were any error messages specified?
-	String errors[] = null;
+	ActionErrors errors = new ActionErrors();
 	try {
 	    Object value = pageContext.getAttribute
-	      (name, PageContext.REQUEST_SCOPE);
+                (name, PageContext.REQUEST_SCOPE);
 	    if (value == null) {
-		errors = null;
+		;
 	    } else if (value instanceof String) {
-		errors = new String[1];
-		errors[0] = (String) value;
+		errors.add(ActionErrors.GLOBAL_ERROR,
+                           new ActionError((String) value));
 	    } else if (value instanceof String[]) {
-		errors = (String[]) value;
-	    } else if (value instanceof ErrorMessages) {
-		errors = ((ErrorMessages) value).getErrors();
-		if (errors == null)
-		    errors = new String[0];
-	    } else {
-		errors = new String[1];
-		errors[0] = value.toString();
+                String keys[] = (String[]) value;
+                for (int i = 0; i < keys.length; i++)
+                    errors.add(ActionErrors.GLOBAL_ERROR,
+                               new ActionError(keys[i]));
+            } else if (value instanceof ErrorMessages) {
+		String keys[] = ((ErrorMessages) value).getErrors();
+                if (keys == null)
+                    keys = new String[0];
+                for (int i = 0; i < keys.length; i++)
+                    errors.add(ActionErrors.GLOBAL_ERROR,
+                               new ActionError(keys[i]));
+            } else if (value instanceof ActionErrors) {
+                errors = (ActionErrors) value;
 	    }
-	} catch (Exception e) {
-	    errors = null;
+        } catch (Exception e) {
+            ;
 	}
-	if (errors == null)
+        if (errors.empty())
 	    return (EVAL_BODY_INCLUDE);
 
 	// Render the error messages appropriately
@@ -195,8 +203,12 @@ public final class ErrorsTag extends TagSupport {
 	    results.append(message);
 	    results.append("\r\n");
 	}
-	for (int i = 0; i < errors.length; i++) {
-	    message = messages.getMessage(locale, errors[i]);
+        Iterator reports = errors.get();
+        while (reports.hasNext()) {
+            ActionError report = (ActionError) reports.next();
+	    message =
+                messages.getMessage(locale,
+                                    report.getKey(), report.getValues());
 	    if (message != null) {
 		results.append(message);
 		results.append("\r\n");
