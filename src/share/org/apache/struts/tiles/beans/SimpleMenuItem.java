@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/beans/SimpleMenuItem.java,v 1.2 2003/02/27 19:20:25 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/27 19:20:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/beans/SimpleMenuItem.java,v 1.3 2003/07/12 00:15:01 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/12 00:15:01 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,111 +59,111 @@
  *
  */
 
-
 package org.apache.struts.tiles.beans;
 
 import java.io.Serializable;
 
+/**
+ * A MenuItem implementation.
+ * Used to read menu items in definitions.
+ */
+public class SimpleMenuItem implements MenuItem, Serializable {
 
-  /**
-   * A MenuItem implementation.
-   * Used to read menu items in definitions.
-   */
-public class SimpleMenuItem implements MenuItem, Serializable
-{
+    private String value = null;
 
-  private String value;
-  private String link;
-  private String icon;
-  private String tooltip;
+    private String link = null;
+
+    private String icon = null;
+
+    private String tooltip = null;
 
     /**
      * Constructor.
      */
-  public SimpleMenuItem()
-  {
-  }
+    public SimpleMenuItem() {
+        super();
+    }
+
     /**
      * Set value property.
      */
-  public void setValue(String value)
-  {
-    this.value = value;
-  }
+    public void setValue(String value) {
+        this.value = value;
+    }
 
     /**
      * Get value property.
      */
-  public String getValue()
-  {
-    return value;
-  }
+    public String getValue() {
+        return value;
+    }
 
     /**
      * Set link property.
      */
-  public void setLink(String link)
-  {
-    this.link = link;
-  }
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     /**
      * Get link property.
      */
-  public String getLink()
-  {
-    return link;
-  }
+    public String getLink() {
+        return link;
+    }
 
     /**
      * Set icon property.
      */
-  public void setIcon(String icon)
-  {
-    this.icon = icon;
-  }
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 
     /**
      * Get icon property.
      */
-  public String getIcon()
-  {
-    return icon;
-  }
+    public String getIcon() {
+        return icon;
+    }
 
     /**
      * Set tooltip property.
      */
-  public void setTooltip(String tooltip)
-  {
-    this.tooltip = tooltip;
-  }
+    public void setTooltip(String tooltip) {
+        this.tooltip = tooltip;
+    }
 
     /**
      * Get tooltip property.
      */
-  public String getTooltip()
-  {
-    return tooltip;
-  }
+    public String getTooltip() {
+        return tooltip;
+    }
 
     /**
      * Return String representation.
      */
-  public String toString()
-  {
-  StringBuffer buff = new StringBuffer();
+    public String toString() {
+        StringBuffer buff = new StringBuffer("SimpleMenuItem[");
 
-  buff.append( "SimpleMenuItem[");
-  if( getValue() != null )
-    buff.append( "value=" ).append(getValue()).append( ", " );
-  if( getLink() != null )
-    buff.append( "link=" ).append(getLink()).append( ", " );
-  if( getTooltip() != null )
-    buff.append( "tooltip=" ).append(getTooltip()).append( ", " );
-  if( getIcon() != null )
-    buff.append( "icon=" ).append(getIcon()).append( ", " );
-  buff.append( "]");
-  return buff.toString();
-  }
+        if (getValue() != null) {
+            buff.append("value=").append(getValue()).append(", ");
+        }
+
+        if (getLink() != null) {
+            buff.append("link=").append(getLink()).append(", ");
+        }
+
+        if (getTooltip() != null) {
+            buff.append("tooltip=").append(getTooltip()).append(", ");
+        }
+
+        if (getIcon() != null) {
+            buff.append("icon=").append(getIcon()).append(", ");
+        }
+
+        buff.append("]");
+        return buff.toString();
+    }
+
 }

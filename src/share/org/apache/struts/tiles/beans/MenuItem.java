@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/beans/MenuItem.java,v 1.2 2003/02/27 19:20:25 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/27 19:20:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/beans/MenuItem.java,v 1.3 2003/07/12 00:15:01 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/12 00:15:01 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,55 +59,53 @@
  *
  */
 
-
 package org.apache.struts.tiles.beans;
 
 import java.io.Serializable;
 
-
-  /**
-   * Interface for MenuItems.
-   * @see SimpleMenuItem
-   */
-public interface MenuItem extends Serializable
-{
+/**
+ * Interface for MenuItems.
+ * @see SimpleMenuItem
+ */
+public interface MenuItem extends Serializable {
+    
     /**
      * Set value property.
      */
-  public void setValue(String value);
+    public void setValue(String value);
 
     /**
      * Get value property.
      */
-  public String getValue();
+    public String getValue();
 
     /**
      * Set link property.
      */
-  public void setLink(String link);
+    public void setLink(String link);
 
     /**
      * Get link property.
      */
-  public String getLink();
+    public String getLink();
 
     /**
      * Set icon property.
      */
-  public void setIcon(String link);
+    public void setIcon(String link);
 
     /**
      * Get icon property.
      */
-  public String getIcon();
+    public String getIcon();
 
     /**
      * Set tooltip property.
      */
-  public void setTooltip(String link);
+    public void setTooltip(String link);
 
     /**
      * Get tooltip property.
      */
-  public String getTooltip();
+    public String getTooltip();
 }
