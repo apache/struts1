@@ -142,6 +142,9 @@
     <!-- The base directory for distribution targets -->
     <property name="dist.home" value="dist" />
 
+    <!-- The base directory for release targets -->
+    <property name="release.home" value="release" />
+
     <!-- Source directory -->
     <property name="src.dir" value="src"/>
 
@@ -232,8 +235,11 @@
         Create directories and copy files for the core struts library
 -->
     <target name="prepare.library" depends="init">
+        <mkdir dir="${build.home}/library/classes/META-INF"/>
         <mkdir dir="${build.home}/library/classes/META-INF/tlds"/>
         <mkdir dir="${build.home}/library/classes/org/apache/struts/resources"/>
+        <copy file="LICENSE"
+            tofile="${build.home}/library/classes/META-INF/LICENSE"/>
         <copy todir="${build.home}/library/classes/org/apache/struts/resources">
             <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
         </copy>
@@ -321,7 +327,7 @@
             version="true"
             windowtitle="Apache Struts API Documentation"
             doctitle="&lt;h1&gt;Apache Struts Framework (Version ${project.version})&lt;/h1&gt;"
-            bottom="Copyright &#169; 2000-2001 - Apache Software Foundation">
+            bottom="Copyright &#169; 2000-2002 - Apache Software Foundation">
             <classpath refid="compile.classpath"/>
         </javadoc>
     </target>
@@ -363,10 +369,32 @@
     </target>
 
 <!--
-        Construct complete release distribution
+        Construct complete binary distribution
 -->
     <target name="dist" depends="dist.library,dist.webapps,dist.source"
      description="Construct binary distribution"/>
+
+<!--
+        Construct complete release distributions
+-->
+    <target name="release" depends="clean,dist">
+        <mkdir dir="${release.home}"/>
+        <zip zipfile="${release.home}/${project.name}-${project.version}.zip">
+            <zipfileset dir="${dist.home}" prefix="${project.name}-${project.version}"/>
+        </zip>
+        <zip zipfile="${release.home}/${project.name}-${project.version}-lib.zip">
+            <zipfileset dir="${dist.home}" includes="LICENSE"/>
+            <zipfileset dir="${dist.home}" prefix="${project.name}-${project.version}"/>
+        </zip>
+        <zip zipfile="${release.home}/${project.name}-${project.version}-src.zip">
+            <zipfileset dir="." prefix="${project.name}-${project.version}-src">
+                <exclude name="build.properties"/>
+                <exclude name="target/**"/>
+                <exclude name="dist/**"/>
+                <exclude name="release/**"/>
+            </zipfileset>
+        </zip>
+    </target>
 
 <!--
         Deploy these applications on Catalina
@@ -451,6 +479,7 @@
      description="Clean build and distribution directories">
         <delete dir="${build.home}"/>
         <delete dir="${dist.home}"/>
+        <delete dir="${release.home}"/>
     </target>
 
 <!--
