@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.2 2002/07/11 17:37:01 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/11 17:37:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.3 2002/07/19 10:03:03 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/07/19 10:03:03 $
  *
  * ====================================================================
  *
@@ -124,22 +124,23 @@ public class TilesPlugin implements PlugIn {
   public void init(ActionServlet servlet, ApplicationConfig config)
       throws ServletException
   {
+    // Create factory config object
+  DefinitionsFactoryConfig factoryConfig = readFactoryConfig(servlet, config);
+    // Set RequestProcessor class
+  initRequestProcessorClass( config );
+
     // Check if factory already exist in context.
   definitionFactory = DefinitionsUtil.getDefinitionsFactory( servlet.getServletContext() );
   if( definitionFactory != null )
     {
     if(debug)
       {
-      System.out.println( "Warning - TilesPlugin : factory already exists. No new creation." );
-      servlet.log( "Warning - TilesPlugin : factory already exists. No new creation." );
+      System.out.println( "Info - TilesPlugin : factory already exists. No new creation." );
+      servlet.log( "Info - TilesPlugin : factory already exists. No new creation." );
       }
     return;
     } // end if
 
-    // Initialize
-  DefinitionsFactoryConfig factoryConfig = readFactoryConfig(servlet, config);
-    // Set RequestProcessor class
-  initRequestProcessorClass( config );
     // Create configurable factory
   try
     {
