@@ -79,6 +79,11 @@
         attribute of the <code>&lt;html:form&gt;</code> tag now works even
         when you use nested or indexed property expressions.  Previously,
         this would generate an invalid JavaScript reference to the field.</li>
+    <li>The <code>&lt;html:checkbox&gt;</code> tag now conforms to its
+        documentation, and sends the specified <code>value</code> to the
+        server if this checkbox is checked at submit time.  In addition, a
+        default value of <code>on</code> is sent if no value attribute is
+        specified.</li>
     </ul>
 
     <p>The following changes and bug fixes to the Struts Documentation
