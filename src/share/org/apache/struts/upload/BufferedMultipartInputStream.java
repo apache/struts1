@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/BufferedMultipartInputStream.java,v 1.7 2002/07/06 04:44:07 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/07/06 04:44:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/BufferedMultipartInputStream.java,v 1.8 2002/11/07 05:58:03 rleland Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/11/07 05:58:03 $
  *
  * ====================================================================
  *
@@ -143,7 +143,7 @@ public class BufferedMultipartInputStream extends InputStream {
         this.contentLength = contentLength;
         this.maxSize = maxSize;
         
-        if (maxSize < contentLength) {
+        if ((maxSize != -1) && (maxSize < contentLength)) {
             throw new MaxLengthExceededException(maxSize);
         }
         buffer = new byte[bufferSize];
