@@ -2,8 +2,8 @@
 
 
     <!-- Local system paths -->
-    <property name="servlet.jar" value="/javasoft/lib/jdbc2_0-stdext.jar"/>
-    <property name="jdbc20ext.jar" value="/javasoft/lib/servlet.jar"/>
+    <property name="servlet.jar" value="/javasoft/lib/servlet.jar"/>
+    <property name="jdbc20ext.jar" value="/javasoft/lib/jdbc2_0-stdext.jar"/>
         <!-- NOTE: If "dist" target is used, a local
              "projects/lib" directory will be utilized or created -->
     <property name="distpath.project" value="/projects/lib"/>
