@@ -1,7 +1,7 @@
 /*
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,13 +52,12 @@
  * <http://www.apache.org/>.
  */
 
-
 package org.apache.struts.webapp.validator;
 
-import java.util.Locale;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
@@ -66,22 +65,19 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.MessageResources;
-
 
 /**
  * Implementation of <strong>Action</strong> that validates a multi-page
  * registration form.
  *
  * @author David Wintefeldt
-*/
+ */
 public final class MultiRegistrationAction extends Action {
 
     /**
      * Commons Logging instance.
-    */
+     */
     private Log log = LogFactory.getFactory().getInstance(this.getClass().getName());
-
 
     /**
      * Process the specified HTTP request, and create the corresponding HTTP
@@ -97,46 +93,50 @@ public final class MultiRegistrationAction extends Action {
      *
      * @exception Exception if an input/output error or servlet exception occurs
      */
-    public ActionForward execute(ActionMapping mapping,
-                 ActionForm form,
-                 HttpServletRequest request,
-                 HttpServletResponse response)
-    throws Exception {
+    public ActionForward execute(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws Exception {
 
-    // Extract attributes we will need
-    HttpSession session = request.getSession();
-    Locale locale = getLocale(request);
-    MessageResources messages = getResources(request);
-    RegistrationForm info = (RegistrationForm)form;
-    String action = request.getParameter("action");
+        // Extract attributes we will need
+        RegistrationForm info = (RegistrationForm) form;
 
-    // Was this transaction cancelled?
-    if (isCancelled(request)) {
-        if (log.isInfoEnabled()) {
-           log.info(" " + mapping.getAttribute() + " - Registration transaction was cancelled");
+
+        // Was this transaction cancelled?
+        if (isCancelled(request)) {
+            if (log.isInfoEnabled()) {
+                log.info(
+                    " "
+                        + mapping.getAttribute()
+                        + " - Registration transaction was cancelled");
+            }
+
+            removeFormBean(mapping, request);
+
+            return (mapping.findForward("success"));
         }
 
-        removeFormBean(mapping, request);
+        ActionErrors errors = info.validate(mapping, request);
 
-        return (mapping.findForward("success"));
-    }
+        if (errors != null && errors.isEmpty()) {
+            if (info.getPage() == 1)
+                return mapping.findForward("input2");
+                
+            if (info.getPage() == 2)
+                return mapping.findForward("success");
+                
+        } else {
+            saveErrors(request, errors);
+            if (info.getPage() == 1)
+                return mapping.findForward("input" + info.getPage());
+                
+            if (info.getPage() == 2)
+                return mapping.findForward("input" + info.getPage());
+        }
 
-    ActionErrors errors = info.validate(mapping, request);
-
-    if (errors != null && errors.isEmpty()) {
-       if (info.getPage() == 1)
-          return mapping.findForward("input2");
-       if (info.getPage() == 2)
-              return mapping.findForward("success");
-    } else {
-       saveErrors(request, errors);
-       if (info.getPage() == 1)
-          return mapping.findForward("input" + info.getPage());
-       if (info.getPage() == 2)
-          return mapping.findForward("input" + info.getPage());
-    }
-
-    return mapping.findForward("input1");
+        return mapping.findForward("input1");
     }
 
     /**
@@ -144,16 +144,19 @@ public final class MultiRegistrationAction extends Action {
      *
      * @param mapping The ActionMapping used to select this instance
      * @param request The HTTP request we are processing
-    */
-    protected void removeFormBean(ActionMapping mapping, HttpServletRequest request) {
-       // Remove the obsolete form bean
-       if (mapping.getAttribute() != null) {
-           if ("request".equals(mapping.getScope())) {
-               request.removeAttribute(mapping.getAttribute());
-           } else {
-              HttpSession session = request.getSession();
-              session.removeAttribute(mapping.getAttribute());
-           }
-       }
+     */
+    protected void removeFormBean(
+        ActionMapping mapping,
+        HttpServletRequest request) {
+            
+        // Remove the obsolete form bean
+        if (mapping.getAttribute() != null) {
+            if ("request".equals(mapping.getScope())) {
+                request.removeAttribute(mapping.getAttribute());
+            } else {
+                HttpSession session = request.getSession();
+                session.removeAttribute(mapping.getAttribute());
+            }
+        }
     }
 }
