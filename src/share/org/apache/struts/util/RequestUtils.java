@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.8 2001/03/11 00:58:45 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2001/03/11 00:58:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.9 2001/04/18 23:32:35 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/04/18 23:32:35 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2001/03/11 00:58:45 $
+ * @version $Revision: 1.9 $ $Date: 2001/04/18 23:32:35 $
  */
 
 public class RequestUtils {
@@ -492,6 +492,49 @@ public class RequestUtils {
         } catch (Exception e) {
             throw new ServletException("BeanUtils.populate", e);
         }
+
+    }
+
+
+    /**
+     * Return true if a message string for the specified message key
+     * is present for the specified Locale.
+     *
+     * @param pageContext The PageContext associated with this request
+     * @param bundle Name of the servlet context attribute for our
+     *  message resources bundle
+     * @param locale Name of the session attribute for our user's Locale
+     * @param key Message key to be looked up and returned
+     *
+     * @exception JspException if a lookup error occurs (will have been
+     *  saved in the request already)
+     */
+    public static boolean present(PageContext pageContext, String bundle,
+                                  String locale, String key)
+        throws JspException {
+
+        // Look up the requested MessageResources
+        if (bundle == null)
+            bundle = Action.MESSAGES_KEY;
+        MessageResources resources = (MessageResources)
+            pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
+        if (resources == null) {
+            JspException e = new JspException
+                (messages.getMessage("message.bundle", bundle));
+            saveException(pageContext, e);
+            throw e;
+        }
+
+        // Look up the requested Locale
+        if (locale == null)
+            locale = Action.LOCALE_KEY;
+        Locale userLocale = (Locale)
+            pageContext.getAttribute(locale, PageContext.SESSION_SCOPE);
+        if (userLocale == null)
+            userLocale = defaultLocale;
+
+        // Return the requested message presence indicator
+        return (resources.isPresent(userLocale, key));
 
     }
 

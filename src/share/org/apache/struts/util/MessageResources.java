@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.9 2001/02/12 00:32:13 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2001/02/12 00:32:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.10 2001/04/18 23:32:35 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/04/18 23:32:35 $
  *
  * ====================================================================
  * 
@@ -89,7 +89,7 @@ import java.util.Locale;
  * application server environments.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/02/12 00:32:13 $
+ * @version $Revision: 1.10 $ $Date: 2001/04/18 23:32:35 $
  */
 
 public abstract class MessageResources implements Serializable {
@@ -416,6 +416,40 @@ public abstract class MessageResources implements Serializable {
 	args[2] = arg2;
 	args[3] = arg3;
 	return (getMessage(locale, key, args));
+
+    }
+
+
+    /**
+     * Return <code>true</code> if there is a defined message for the specified
+     * key in the system default locale.
+     *
+     * @param key The message key to look up
+     */
+    public boolean isPresent(String key) {
+
+        return (isPresent(null, key));
+
+    }
+
+
+    /**
+     * Return <code>true</code> if there is a defined message for the specified
+     * key in the specified Locale.
+     *
+     * @param locale The requested message Locale, or <code>null</code>
+     *  for the system default Locale
+     * @param key The message key to look up
+     */
+    public boolean isPresent(Locale locale, String key) {
+
+        String message = getMessage(locale, key);
+        if (message == null)
+            return (false);
+        else if (message.startsWith("???") && message.endsWith("???"))
+            return (false); // FIXME - Only valid for default implementation
+        else
+            return (true);
 
     }
 

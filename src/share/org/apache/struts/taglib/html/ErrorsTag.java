@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.7 2001/02/20 03:11:20 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/02/20 03:11:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.8 2001/04/18 23:32:34 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/04/18 23:32:34 $
  *
  * ====================================================================
  *
@@ -98,7 +98,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/02/20 03:11:20 $
+ * @version $Revision: 1.8 $ $Date: 2001/04/18 23:32:34 $
  */
 
 public class ErrorsTag extends TagSupport {
@@ -225,10 +225,18 @@ public class ErrorsTag extends TagSupport {
         if (errors.empty())
 	    return (EVAL_BODY_INCLUDE);
 
+        // Check for presence of header and footer message keys
+        boolean headerPresent =
+            RequestUtils.present(pageContext, bundle, locale, "errors.header");
+        boolean footerPresent =
+            RequestUtils.present(pageContext, bundle, locale, "errors.footer");
+        
         // Render the error messages appropriately
 	StringBuffer results = new StringBuffer();
-        String message = RequestUtils.message(pageContext, bundle,
-                                              locale, "errors.header");
+        String message = null;
+        if (headerPresent)
+            message = RequestUtils.message(pageContext, bundle,
+                                           locale, "errors.header");
 	if (message != null) {
 	    results.append(message);
 	    results.append("\r\n");
@@ -248,8 +256,10 @@ public class ErrorsTag extends TagSupport {
 		results.append("\r\n");
 	    }
 	}
-        message = RequestUtils.message(pageContext, bundle,
-                                       locale, "errors.footer");
+        message = null;
+        if (footerPresent)
+            message = RequestUtils.message(pageContext, bundle,
+                                           locale, "errors.footer");
 	if (message != null) {
 	    results.append(message);
 	    results.append("\r\n");
