@@ -204,7 +204,7 @@
     <attribute>
       <name>controllerUrl</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       Url of a controller called immediately before page is inserted.<br></br> 
 	  Url usually denote a Struts action. Controller (action) is used to prepare data
@@ -217,7 +217,7 @@
     <attribute>
       <name>controllerClass</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       Class type of a controller called immediately before page is inserted.<br></br> 
 	  Controller is used to prepare data to be render by inserted Tile.
