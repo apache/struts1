@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.34 2003/03/29 14:20:09 jmitchell Exp $
+# $Id: build.properties.sample,v 1.35 2003/04/19 22:12:32 jmitchell Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -19,9 +19,11 @@ compile.deprecation=true
 
 # commons-lib.home Where the CVS toplevel commons live
 commons-lib.home=D:/Projects/Apache/jakarta-commons
+
 # commons-sandbox.home Where the CVS toplevel commons-sandbox live.
 commons-sandbox-lib.home=D:/Projects/Apache/jakarta-commons-sandbox
-# apache.home - Where precompiled jar files form Apache live.
+
+# apache.home - Where precompiled jar files from Apache live.
 apache.home=D:/Java/Programs/Apache
 
 # The directory containing your binary distribution of Tomcat 4.0 ("Catalina"
@@ -32,7 +34,6 @@ catalina.home=${apache.home}/jakarta-tomcat-4.0.6
 
 # The JAR file containing the Beanutils package (Version 1.5 or later)
 # from the Jakarta Commons project.
-
 commons-beanutils.jar=${commons-lib.home}/beanutils/dist/commons-beanutils.jar
 
 # The JAR file containing the Collections package (Version 2.1 or later)
@@ -121,6 +122,7 @@ jstl-standard.jar	=${jstl.home}/lib/standard.jar
 
 # Properties related to Struts unit testing
 # Choose your Cactus!
+# (Uncomment only one set of properties)
 # -----------------------------------------
 # Cactus 12-1.3 home
 #cactus.home=${apache.home}/jakarta-cactus-12-1.3
@@ -138,6 +140,15 @@ jstl-standard.jar	=${jstl.home}/lib/standard.jar
 
 # The httpunit runtime jar
 #httpunit.jar = ${cactus.lib}/httpunit.jar
+
+# Log4J from Jakarta-Commons
+#log4j.jar = ${cactus.lib}/log4j-1.2rc1.jar
+
+# JUnit jar file, version 3.81 or newer required.
+#junit.jar = ${cactus.lib}/junit.jar
+
+# Httpclient from Jakarta-Commons
+#commons-httpclient.jar = ${cactus.lib}/commons-httpclient-20020421.jar
 
 # -----------------------------------------
 # Cactus 12-1.4 home
@@ -157,6 +168,15 @@ jstl-standard.jar	=${jstl.home}/lib/standard.jar
 # The httpunit runtime jar
 #httpunit.jar = ${cactus.lib}/httpunit-1.4.1.jar
 
+# Log4J from Jakarta-Commons
+#log4j.jar = ${cactus.lib}/log4j-1.2.5.jar
+
+# JUnit jar file, version 3.81 or newer required.
+#junit.jar = ${cactus.lib}/junit-3.7.jar
+
+# Httpclient from Jakarta-Commons
+#commons-httpclient.jar = ${cactus.lib}/commons-httpclient-2.0alpha1-20020606.jar
+
 # -----------------------------------------
 # Cactus 12-1.4.1 home
 #cactus.home=${apache.home}/jakarta-cactus-12-1.4.1
@@ -174,6 +194,15 @@ jstl-standard.jar	=${jstl.home}/lib/standard.jar
 
 # The httpunit runtime jar
 #httpunit.jar = ${cactus.lib}/httpunit-1.4.1.jar
+
+# Log4J from Jakarta-Commons
+#log4j.jar = ${cactus.lib}/log4j-1.2.5.jar
+
+# JUnit jar file, version 3.81 or newer required.
+#junit.jar = ${cactus.lib}/junit-3.7.jar
+
+# Httpclient from Jakarta-Commons
+#commons-httpclient.jar = ${cactus.lib}/commons-httpclient-2.0alpha1-20020606.jar
 
 # -----------------------------------------
 # Cactus 13-1.3 home
@@ -193,6 +222,42 @@ jstl-standard.jar	=${jstl.home}/lib/standard.jar
 # The httpunit runtime jar
 #httpunit.jar = ${cactus.lib}/httpunit.jar
 
+# Log4J from Jakarta-Commons
+#log4j.jar = ${cactus.lib}/log4j-1.2rc1.jar
+
+# JUnit jar file, version 3.81 or newer required.
+#junit.jar = ${cactus.lib}/junit.jar
+
+# Httpclient from Jakarta-Commons
+#commons-httpclient.jar = ${cactus.lib}/commons-httpclient.jar
+
+# -----------------------------------------
+# Cactus 13-1.4 home
+#cactus.home=${apache.home}/jakarta-cactus-13-1.4
+#cactus.lib=${cactus.home}/lib
+
+# Cactus jar for the Servlet API corresponding to the servlet.jar file
+# selected above (either 2.2 or 2.3)
+#cactus.jar = ${cactus.lib}/cactus-1.4.jar
+
+# Cactus Ant custom tasks jar
+#cactus.ant.jar = ${cactus.lib}/cactus-ant-1.4.jar
+
+# AspectJ from Cactus distribution
+#aspectjrt.jar = ${cactus.lib}/aspectjrt-1.0.5.jar
+
+# The httpunit runtime jar
+#httpunit.jar = ${cactus.lib}/httpunit-1.4.1.jar
+
+# Log4J from Jakarta-Commons
+#log4j.jar = ${cactus.lib}/log4j-1.2.5.jar
+
+# JUnit jar file, version 3.81 or newer required.
+#junit.jar = ${cactus.lib}/junit-3.7.jar
+
+# Httpclient from Jakarta-Commons
+#commons-httpclient.jar = ${cactus.lib}/commons-httpclient-2.0alpha1-20020606.jar
+
 # -----------------------------------------
 # Cactus 13-1.4.1 home
 cactus.home=${apache.home}/jakarta-cactus-13-1.4.1
@@ -211,11 +276,21 @@ aspectjrt.jar = ${cactus.lib}/aspectjrt-1.0.5.jar
 # The httpunit runtime jar
 httpunit.jar = ${cactus.lib}/httpunit-1.4.1.jar
 
+# Log4J from Jakarta-Commons
+log4j.jar = ${cactus.lib}/log4j-1.2.5.jar
+
+# JUnit jar file, version 3.81 or newer required.
+junit.jar = ${cactus.lib}/junit-3.7.jar
+
+# Httpclient from Jakarta-Commons
+commons-httpclient.jar = ${cactus.lib}/commons-httpclient-2.0alpha1-20020606.jar
+
+# -----------------------------------------
+
 
 # URL used to run tests for cactus, change to non standard port
 # if container is already running on that port.
 cactus.contextURL = http://localhost:9090/test
-
 
 
 # Ant Optional Jars for Junit task
@@ -223,15 +298,6 @@ ant.optional.jar = ${apache.home}/jakarta-ant-1.5.1/lib/optional.jar
 
 # Ant Jar for optional taglib documentation task
 ant.jar=${apache.home}/apache-ant-1.5.2/lib/ant.jar
-
-# Httpclient from Jakarta-Commons
-commons-httpclient.jar = ${commons-lib.home}/httpclient/dist/commons-httpclient.jar
-
-# Log4J from Jakarta-Commons
-log4j.jar = D:/Java/Programs/Apache/jakarta-log4j-1.2.6/dist/lib/log4j-1.2.6.jar
-
-# JUnit jar file, version 3.81 or newer required.
-junit.jar = /Java/Lib/Junit3.8.1/junit.jar
 
 # Servlet engine locations for the tests
 
@@ -241,3 +307,4 @@ junit.jar = /Java/Lib/Junit3.8.1/junit.jar
 
 tomcat.home.33 = ${apache.home}/jakarta-tomcat-3.3.1
 tomcat.home.40 = ${apache.home}/jakarta-tomcat-4.0.6
+tomcat.home.41 = ${apache.home}/jakarta-tomcat-4.1.18-LE-jdk14
