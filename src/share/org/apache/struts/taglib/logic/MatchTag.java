@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.7 2001/02/12 21:49:57 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/02/12 21:49:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.8 2001/07/16 00:44:57 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/07/16 00:44:57 $
  *
  * ====================================================================
  *
@@ -67,7 +67,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
-import org.apache.struts.util.PropertyUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
 
 
@@ -76,7 +76,7 @@ import org.apache.struts.util.RequestUtils;
  * is a substring of the specified variable.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/02/12 21:49:57 $
+ * @version $Revision: 1.8 $ $Date: 2001/07/16 00:44:57 $
  */
 
 public class MatchTag extends ConditionalTagBase {

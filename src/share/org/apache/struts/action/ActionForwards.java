@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionForwards.java,v 1.4 2001/02/21 00:35:44 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/21 00:35:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionForwards.java,v 1.5 2001/07/16 00:44:52 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/07/16 00:44:52 $
  *
  * ====================================================================
  *
@@ -64,7 +64,7 @@ package org.apache.struts.action;
 
 
 import java.io.Serializable;
-import org.apache.struts.util.FastHashMap;
+import org.apache.commons.collections.FastHashMap;
 
 
 /**
@@ -72,7 +72,7 @@ import org.apache.struts.util.FastHashMap;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/02/21 00:35:44 $
+ * @version $Revision: 1.5 $ $Date: 2001/07/16 00:44:52 $
  */
 
 public class ActionForwards implements Serializable {

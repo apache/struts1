@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.2 2001/04/14 12:53:08 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2001/04/14 12:53:08 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.3 2001/07/16 00:44:51 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/07/16 00:44:51 $
  *
  * ====================================================================
  *
@@ -72,6 +72,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
@@ -80,7 +81,6 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.PropertyUtils;
 
 
 /**
@@ -89,7 +89,7 @@ import org.apache.struts.util.PropertyUtils;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/04/14 12:53:08 $
+ * @version $Revision: 1.3 $ $Date: 2001/07/16 00:44:51 $
  */
 
 public final class SaveRegistrationAction extends Action {

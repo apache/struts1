@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.18 2001/06/13 03:00:51 craigmcc Exp $
- * $Revision: 1.18 $
- * $Date: 2001/06/13 03:00:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.19 2001/07/16 00:44:59 craigmcc Exp $
+ * $Revision: 1.19 $
+ * $Date: 2001/07/16 00:44:59 $
  *
  * ====================================================================
  *
@@ -79,6 +79,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -95,7 +97,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2001/06/13 03:00:51 $
+ * @version $Revision: 1.19 $ $Date: 2001/07/16 00:44:59 $
  */
 
 public class RequestUtils {

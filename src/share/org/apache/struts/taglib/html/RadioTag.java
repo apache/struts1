@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.5 2001/06/10 03:53:31 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/06/10 03:53:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.6 2001/07/16 00:44:55 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/07/16 00:44:55 $
  *
  * ====================================================================
  *
@@ -68,7 +68,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
-import org.apache.struts.util.BeanUtils;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
 
@@ -77,7 +77,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "radio".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/06/10 03:53:31 $
+ * @version $Revision: 1.6 $ $Date: 2001/07/16 00:44:55 $
  */
 
 public class RadioTag extends BaseHandlerTag {

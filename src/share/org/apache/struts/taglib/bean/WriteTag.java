@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.10 2001/02/12 01:26:58 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2001/02/12 01:26:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.11 2001/07/16 00:44:54 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2001/07/16 00:44:54 $
  *
  * ====================================================================
  *
@@ -66,7 +66,7 @@ package org.apache.struts.taglib.bean;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.util.PropertyUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
@@ -77,7 +77,7 @@ import org.apache.struts.util.ResponseUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2001/02/12 01:26:58 $
+ * @version $Revision: 1.11 $ $Date: 2001/07/16 00:44:54 $
  */
 
 public class WriteTag extends TagSupport {

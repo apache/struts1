@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Attic/DatabaseServlet.java,v 1.3 2001/04/29 01:14:37 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/04/29 01:14:37 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Attic/DatabaseServlet.java,v 1.4 2001/07/16 00:44:50 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/07/16 00:44:50 $
  *
  * ====================================================================
  *
@@ -79,8 +79,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.struts.digester.Digester;
-import org.apache.struts.util.BeanUtils;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.digester.Digester;
 import org.apache.struts.util.MessageResources;
 
 
@@ -90,7 +90,7 @@ import org.apache.struts.util.MessageResources;
  * Demonstration Application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/04/29 01:14:37 $
+ * @version $Revision: 1.4 $ $Date: 2001/07/16 00:44:50 $
  */
 
 public final class DatabaseServlet
@@ -237,6 +237,7 @@ public final class DatabaseServlet
 	Digester digester = new Digester();
 	digester.push(this);
 	digester.setDebug(debug);
+        digester.setNamespaceAware(true);
 	digester.setValidating(false);
 	digester.addObjectCreate("database/user",
 				 "org.apache.struts.webapp.example.User");

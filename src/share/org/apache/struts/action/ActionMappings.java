@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.6 2001/02/21 00:35:45 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/02/21 00:35:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.7 2001/07/16 00:44:52 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/07/16 00:44:52 $
  *
  * ====================================================================
  *
@@ -68,7 +68,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.util.FastHashMap;
+import org.apache.commons.collections.FastHashMap;
 
 
 /**
@@ -76,7 +76,7 @@ import org.apache.struts.util.FastHashMap;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/02/21 00:35:45 $
+ * @version $Revision: 1.7 $ $Date: 2001/07/16 00:44:52 $
  */
 
 public class ActionMappings implements Serializable {

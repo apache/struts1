@@ -59,19 +59,19 @@ package org.apache.struts.taglib.html;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.util.IteratorAdapter;
-import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.PropertyUtils;
-import org.apache.struts.util.ResponseUtils;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.struts.util.IteratorAdapter;
+import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**

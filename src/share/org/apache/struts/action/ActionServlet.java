@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.72 2001/06/25 00:02:27 craigmcc Exp $
- * $Revision: 1.72 $
- * $Date: 2001/06/25 00:02:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.73 2001/07/16 00:44:52 craigmcc Exp $
+ * $Revision: 1.73 $
+ * $Date: 2001/07/16 00:44:52 $
  *
  * ====================================================================
  *
@@ -80,17 +80,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
-import org.apache.struts.digester.Digester;
-import org.apache.struts.digester.Rule;
+import org.apache.commons.collections.FastHashMap;
+import org.apache.commons.digester.Digester;
+import org.apache.commons.digester.Rule;
 import org.apache.struts.taglib.html.Constants;
-import org.apache.struts.util.FastHashMap;
+import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ServletContextWriter;
-import org.apache.struts.upload.MultipartRequestWrapper;
-import org.xml.sax.AttributeList;
+import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
 
@@ -228,7 +228,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.72 $ $Date: 2001/06/25 00:02:27 $
+ * @version $Revision: 1.73 $ $Date: 2001/07/16 00:44:52 $
  */
 
 public class ActionServlet
@@ -1109,6 +1109,7 @@ public class ActionServlet
 	Digester digester = new Digester();
 	digester.push(this);
 	digester.setDebug(detail);
+        digester.setNamespaceAware(true);
 	digester.setValidating(validating);
 
 	// Register our local copy of the DTDs that we can find
@@ -1335,6 +1336,7 @@ public class ActionServlet
         Digester digester = new Digester();
         digester.push(this);
         digester.setDebug(this.debug);
+        digester.setNamespaceAware(true);
         digester.setValidating(false);
 
 	// Register our local copy of the DTDs that we can find
@@ -1351,6 +1353,8 @@ public class ActionServlet
         digester.addCallParam("web-app/servlet-mapping/url-pattern", 1);
 
         // Process the web application deployment descriptor
+        if (debug >= 1)
+            log("Scanning web.xml for controller servlet mapping");
         InputStream input= null;
         try {
             input =
@@ -2100,12 +2104,12 @@ final class AddDataSourceRule extends Rule {
     }
 
 
-    public void begin(AttributeList attributes) throws Exception {
+    public void begin(Attributes attributes) throws Exception {
 
         // Acquire the key under which this data source will be stored
         String key = null;
         for (int i = 0; i < attributes.getLength(); i++) {
-            if ("key".equals(attributes.getName(i))) {
+            if ("key".equals(attributes.getQName(i))) {
                 key = attributes.getValue(i);
                 break;
             }
