@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.7 2000/09/23 22:53:53 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/09/23 22:53:53 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.8 2000/10/12 21:53:41 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/10/12 21:53:41 $
  *
  * ====================================================================
  *
@@ -72,11 +72,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
-import org.apache.struts.util.ErrorMessages;
 import org.apache.struts.util.MessageResources;
 
 
@@ -84,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/09/23 22:53:53 $
+ * @version $Revision: 1.8 $ $Date: 2000/10/12 21:53:41 $
  */
 
 public final class LogonAction extends Action {
@@ -120,25 +121,27 @@ public final class LogonAction extends Action {
 	User user = null;
 
 	// Validate the request parameters specified by the user
-	ErrorMessages errors = new ErrorMessages();
+	ActionErrors errors = new ActionErrors();
 	String username = ((LogonForm) form).getUsername();
 	String password = ((LogonForm) form).getPassword();
 	Hashtable database = (Hashtable)
 	  servlet.getServletContext().getAttribute(Constants.DATABASE_KEY);
 	if (database == null)
-	    errors.addError("error.database.missing");
+            errors.add(ActionErrors.GLOBAL_ERROR,
+                       new ActionError("error.database.missing"));
 	else {
 	    user = (User) database.get(username);
 	    if ((user != null) && !user.getPassword().equals(password))
 		user = null;
 	    if (user == null)
-		errors.addError("error.password.mismatch");
+                errors.add(ActionErrors.GLOBAL_ERROR,
+                           new ActionError("error.password.mismatch"));
 	}
 
 	// Report any errors we have discovered back to the original form
-	if (errors.getSize() > 0) {
+	if (!errors.empty()) {
 	    saveErrors(request, errors);
-	    return (new ActionForward(mapping.getInputForm()));
+	    return (new ActionForward(mapping.getInput()));
 	}
 
 	// Save our logged-in user in the session

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditRegistrationAction.java,v 1.6 2000/09/23 22:53:52 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/09/23 22:53:52 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditRegistrationAction.java,v 1.7 2000/10/12 21:53:40 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/10/12 21:53:40 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * User (if any).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/09/23 22:53:52 $
+ * @version $Revision: 1.7 $ $Date: 2000/10/12 21:53:40 $
  */
 
 public final class EditRegistrationAction extends Action {
@@ -138,7 +138,7 @@ public final class EditRegistrationAction extends Action {
 	// Populate the user registration form
 	if (form == null) {
 	    form = new RegistrationForm();
-	    session.setAttribute(mapping.getFormAttribute(), form);
+	    session.setAttribute(mapping.getAttribute(), form);
 	}
 	RegistrationForm regform = (RegistrationForm) form;
 	regform.setAction(action);

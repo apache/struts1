@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.6 2000/09/24 03:59:49 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/09/24 03:59:49 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.7 2000/10/12 21:53:42 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/10/12 21:53:42 $
  *
  * ====================================================================
  *
@@ -63,9 +63,11 @@
 package org.apache.struts.example;
 
 
-import java.util.Vector;
-import org.apache.struts.action.ValidatingActionForm;
-import org.apache.struts.util.ErrorMessages;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
 
 
 /**
@@ -88,10 +90,10 @@ import org.apache.struts.util.ErrorMessages;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/09/24 03:59:49 $
+ * @version $Revision: 1.7 $ $Date: 2000/10/12 21:53:42 $
  */
 
-public final class RegistrationForm implements ValidatingActionForm  {
+public final class RegistrationForm extends ActionForm  {
 
 
     // --------------------------------------------------- Instance Variables
@@ -322,32 +324,47 @@ public final class RegistrationForm implements ValidatingActionForm  {
 
 
     /**
-     * Validate the properties of this form bean, and return an array of
-     * message keys for any errors we encounter.
+     * Validate the properties that have been set from this HTTP request,
+     * and return an <code>ActionErrors</code> object that encapsulates any
+     * validation errors that have been found.  If no errors are found, return
+     * <code>null</code> or an <code>ActionErrors</code> object with no
+     * recorded error messages.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param request The servlet request we are processing
      */
-    public String[] validate() {
+    public ActionErrors validate(ActionMapping mapping,
+                                 HttpServletRequest request) {
 
-	ErrorMessages errors = new ErrorMessages();
-	if ((username == null) || (username.length() < 1))
-	    errors.addError("error.username.required");
-	if (!password.equals(password2))
-	    errors.addError("error.password.match");
-	if ((fromAddress == null) || (fromAddress.length() < 1))
-	    errors.addError("error.fromAddress.required");
-	else {
+        ActionErrors errors = new ActionErrors();
+        if ((username == null) || (username.length() < 1))
+            errors.add("username",
+                       new ActionError("error.username.required"));
+        if (!password.equals(password2))
+            errors.add("password2",
+                       new ActionError("error.password.match"));
+        if ((fromAddress == null) || (fromAddress.length() < 1))
+            errors.add("fromAddress",
+                       new ActionError("error.fromAddress.required"));
+        else {
 	    int atSign = fromAddress.indexOf("@");
 	    if ((atSign < 1) || (atSign >= (fromAddress.length() - 1)))
-		errors.addError("error.fromAddress.format");
+		errors.add("fromAddress",
+                           new ActionError("error.fromAddress.format",
+                                           fromAddress));
 	}
 	if ((fullName == null) || (fullName.length() < 1))
-	    errors.addError("error.fullName.required");
+            errors.add("fullName",
+                       new ActionError("error.fullName.required"));
 	if ((replyToAddress != null) && (replyToAddress.length() > 0)) {
 	    int atSign = replyToAddress.indexOf("@");
 	    if ((atSign < 1) || (atSign >= (replyToAddress.length() - 1)))
-		errors.addError("error.replyToAddress.format");
+                errors.add("replyToAddress",
+                           new ActionError("error.replyToAddress.format",
+                                           replyToAddress));
 	}
 
-	return (errors.getErrors());
+        return errors;
 
     }
 

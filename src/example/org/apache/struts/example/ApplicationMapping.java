@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/ApplicationMapping.java,v 1.2 2000/08/01 20:03:22 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/08/01 20:03:22 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/ApplicationMapping.java,v 1.3 2000/10/12 21:53:39 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/12 21:53:39 $
  *
  * ====================================================================
  *
@@ -63,7 +63,7 @@
 package org.apache.struts.example;
 
 
-import org.apache.struts.action.ActionMappingBase;
+import org.apache.struts.action.ActionMapping;
 
 
 /**
@@ -79,10 +79,10 @@ import org.apache.struts.action.ActionMappingBase;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/08/01 20:03:22 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/12 21:53:39 $
  */
 
-public final class ApplicationMapping extends ActionMappingBase {
+public final class ApplicationMapping extends ActionMapping {
 
 
     // --------------------------------------------------- Instance Variables

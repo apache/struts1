@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.8 2000/09/23 22:53:53 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/09/23 22:53:53 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.9 2000/10/12 21:53:42 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/10/12 21:53:42 $
  *
  * ====================================================================
  *
@@ -72,11 +72,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
-import org.apache.struts.util.ErrorMessages;
 import org.apache.struts.util.MessageResources;
 
 
@@ -85,7 +86,7 @@ import org.apache.struts.util.MessageResources;
  * updates the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/09/23 22:53:53 $
+ * @version $Revision: 1.9 $ $Date: 2000/10/12 21:53:42 $
  */
 
 public final class SaveSubscriptionAction extends Action {
@@ -146,8 +147,8 @@ public final class SaveSubscriptionAction extends Action {
 	    if (servlet.getDebug() >= 1)
 	        servlet.log("SaveSubscriptionAction:  Transaction '" + action +
 	                    "' was cancelled");
-	    if (mapping.getFormAttribute() != null)
-	        session.removeAttribute(mapping.getFormAttribute());
+	    if (mapping.getAttribute() != null)
+	        session.removeAttribute(mapping.getAttribute());
 	    session.removeAttribute(Constants.SUBSCRIPTION_KEY);
 	    return (mapping.findForward("success"));
 	}
@@ -160,8 +161,8 @@ public final class SaveSubscriptionAction extends Action {
 	                    user.getUsername() + "'");
 	    subscription.setHost(null);
 	    subscription.setUser(null);
-	    if (mapping.getFormAttribute() != null)
-	        session.removeAttribute(mapping.getFormAttribute());
+	    if (mapping.getAttribute() != null)
+	        session.removeAttribute(mapping.getAttribute());
 	    session.removeAttribute(Constants.SUBSCRIPTION_KEY);
 	    return (mapping.findForward("success"));
 	}
@@ -179,8 +180,8 @@ public final class SaveSubscriptionAction extends Action {
 	    subscription.setType(subform.getType());
 
 	// Remove any obsolete session objects
-	if (mapping.getFormAttribute() != null)
-	    session.removeAttribute(mapping.getFormAttribute());
+	if (mapping.getAttribute() != null)
+	    session.removeAttribute(mapping.getAttribute());
 	session.removeAttribute(Constants.SUBSCRIPTION_KEY);
 
 	// Forward control to the specified success URI

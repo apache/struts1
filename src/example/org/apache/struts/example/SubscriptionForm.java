@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SubscriptionForm.java,v 1.6 2000/08/01 20:03:25 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/08/01 20:03:25 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SubscriptionForm.java,v 1.7 2000/10/12 21:53:43 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/10/12 21:53:43 $
  *
  * ====================================================================
  *
@@ -63,9 +63,11 @@
 package org.apache.struts.example;
 
 
-import java.util.Vector;
-import org.apache.struts.action.ValidatingActionForm;
-import org.apache.struts.util.ErrorMessages;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
 
 
 /**
@@ -82,10 +84,10 @@ import org.apache.struts.util.ErrorMessages;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/08/01 20:03:25 $
+ * @version $Revision: 1.7 $ $Date: 2000/10/12 21:53:43 $
  */
 
-public final class SubscriptionForm implements ValidatingActionForm  {
+public final class SubscriptionForm extends ActionForm  {
 
 
     // --------------------------------------------------- Instance Variables
@@ -253,24 +255,37 @@ public final class SubscriptionForm implements ValidatingActionForm  {
 
 
     /**
-     * Validate the properties of this form bean, and return an array of
-     * message keys for any errors we encounter.
+     * Validate the properties that have been set from this HTTP request,
+     * and return an <code>ActionErrors</code> object that encapsulates any
+     * validation errors that have been found.  If no errors are found, return
+     * <code>null</code> or an <code>ActionErrors</code> object with no
+     * recorded error messages.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param request The servlet request we are processing
      */
-    public String[] validate() {
+    public ActionErrors validate(ActionMapping mapping,
+                                 HttpServletRequest request) {
 
-	ErrorMessages errors = new ErrorMessages();
+        ActionErrors errors = new ActionErrors();
+
 	if ((host == null) || (host.length() < 1))
-	    errors.addError("error.host.required");
+            errors.add("host",
+                       new ActionError("error.host.required"));
 	if ((username == null) || (username.length() < 1))
-	    errors.addError("error.username.required");
+            errors.add("username",
+                       new ActionError("error.username.required"));
 	if ((password == null) || (password.length() < 1))
-	    errors.addError("error.password.required");
+            errors.add("password",
+                       new ActionError("error.password.required"));
 	if ((type == null) || (type.length() < 1))
-	    errors.addError("error.type.required");
+            errors.add("type",
+                       new ActionError("error.type.required"));
 	else if (!"imap".equals(type) && !"pop3".equals(type))
-	    errors.addError("error.type.invalid");
+            errors.add("type",
+                       new ActionError("error.type.invalid", type));
 
-	return (errors.getErrors());
+	return (errors);
 
     }
 

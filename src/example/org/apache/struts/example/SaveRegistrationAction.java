@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.8 2000/09/23 22:53:53 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/09/23 22:53:53 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.9 2000/10/12 21:53:42 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/10/12 21:53:42 $
  *
  * ====================================================================
  *
@@ -72,11 +72,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
-import org.apache.struts.util.ErrorMessages;
 import org.apache.struts.util.MessageResources;
 
 
@@ -86,7 +87,7 @@ import org.apache.struts.util.MessageResources;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/09/23 22:53:53 $
+ * @version $Revision: 1.9 $ $Date: 2000/10/12 21:53:42 $
  */
 
 public final class SaveRegistrationAction extends Action {
@@ -137,8 +138,8 @@ public final class SaveRegistrationAction extends Action {
 	    if (servlet.getDebug() >= 1)
 	        servlet.log("SaveRegistrationAction:  Transaction '" + action +
 	                    "' was cancelled");
-	    if (mapping.getFormAttribute() != null)
-	        session.removeAttribute(mapping.getFormAttribute());
+	    if (mapping.getAttribute() != null)
+	        session.removeAttribute(mapping.getAttribute());
 	    session.removeAttribute(Constants.SUBSCRIPTION_KEY);
 	    return (mapping.findForward("success"));
 	}
@@ -147,24 +148,28 @@ public final class SaveRegistrationAction extends Action {
 
 	// Validate the request parameters specified by the user
 	String value = null;
-	ErrorMessages errors = new ErrorMessages();
+	ActionErrors errors = new ActionErrors();
 	value = regform.getUsername();
 	if (("Create".equals(action)) &&
 	    (database.get(value) != null))
-	    errors.addError("error.username.unique");
+            errors.add("username",
+                       new ActionError("error.username.unique",
+                                       regform.getUsername()));
 	if ("Create".equals(action)) {
 	    value = regform.getPassword();
 	    if ((value == null) || (value.length() <1))
-		errors.addError("error.password.required");
+                errors.add("password",
+                           new ActionError("error.password.required"));
 	    value = regform.getPassword2();
 	    if ((value == null) || (value.length() < 1))
-		errors.addError("error.password2.required");
+                errors.add("password2",
+                           new ActionError("error.password2.required"));
 	}
 
 	// Report any errors we have discovered back to the original form
-	if (errors.getSize() > 0) {
+	if (!errors.empty()) {
 	    saveErrors(request, errors);
-	    return (new ActionForward(mapping.getInputForm()));
+	    return (new ActionForward(mapping.getInput()));
 	}
 
 	// Update the user's persistent profile information
@@ -196,8 +201,8 @@ public final class SaveRegistrationAction extends Action {
 	}
 
 	// Remove any obsolete session objects
-	if (mapping.getFormAttribute() != null)
-	    session.removeAttribute(mapping.getFormAttribute());
+	if (mapping.getAttribute() != null)
+	    session.removeAttribute(mapping.getAttribute());
 
 	// Forward control to the specified success URI
 	return (mapping.findForward("success"));

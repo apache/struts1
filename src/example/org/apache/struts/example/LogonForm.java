@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonForm.java,v 1.3 2000/08/01 20:03:24 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/08/01 20:03:24 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonForm.java,v 1.4 2000/10/12 21:53:41 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/10/12 21:53:41 $
  *
  * ====================================================================
  *
@@ -63,8 +63,11 @@
 package org.apache.struts.example;
 
 
-import java.util.Vector;
-import org.apache.struts.action.ValidatingActionForm;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
 
 
 /**
@@ -76,10 +79,10 @@ import org.apache.struts.action.ValidatingActionForm;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/08/01 20:03:24 $
+ * @version $Revision: 1.4 $ $Date: 2000/10/12 21:53:41 $
  */
 
-public final class LogonForm implements ValidatingActionForm {
+public final class LogonForm extends ActionForm {
 
 
     // --------------------------------------------------- Instance Variables
@@ -154,24 +157,25 @@ public final class LogonForm implements ValidatingActionForm {
 
 
     /**
-     * Validate the properties of this form bean, and return an array of
-     * message keys for any errors we encounter.
+     * Validate the properties that have been set from this HTTP request,
+     * and return an <code>ActionErrors</code> object that encapsulates any
+     * validation errors that have been found.  If no errors are found, return
+     * <code>null</code> or an <code>ActionErrors</code> object with no
+     * recorded error messages.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param request The servlet request we are processing
      */
-    public String[] validate() {
+    public ActionErrors validate(ActionMapping mapping,
+                                 HttpServletRequest request) {
 
-        Vector errors = new Vector();
-	if ((username == null) || (username.length() < 1))
-	    errors.addElement("error.username.required");
-	if ((password == null) || (password.length() < 1))
-	    errors.addElement("error.password.required");
+        ActionErrors errors = new ActionErrors();
+        if ((username == null) || (username.length() < 1))
+            errors.add("username", new ActionError("error.username.required"));
+        if ((password == null) || (password.length() < 1))
+            errors.add("password", new ActionError("error.password.required"));
 
-        String[] results = null;
-        if (errors.size() > 0) {
-            results = new String[errors.size()];
-            for (int i = 0; i < results.length; i++)
-                results[i] = (String) errors.elementAt(i);
-        }
-        return results;
+        return errors;
 
     }
 
