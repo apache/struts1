@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.52 2002/08/08 23:53:44 craigmcc Exp $
- * $Revision: 1.52 $
- * $Date: 2002/08/08 23:53:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.53 2002/08/23 02:37:12 jholmes Exp $
+ * $Revision: 1.53 $
+ * $Date: 2002/08/23 02:37:12 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.52 $ $Date: 2002/08/08 23:53:44 $
+ * @version $Revision: 1.53 $ $Date: 2002/08/23 02:37:12 $
  */
 
 public class RequestUtils {
@@ -597,7 +597,7 @@ public class RequestUtils {
                     return (instance);
                 } catch (Throwable t) {
                     LOG.error(servlet.getInternal().getMessage
-                              ("formBean", config.getName()), t);
+                              ("formBean", config.getType()), t);
                     return (null);
                 }
             }
@@ -617,7 +617,7 @@ public class RequestUtils {
                 }
             } catch (Throwable t) {
                 LOG.error(servlet.getInternal().getMessage
-                            ("formBean", config.getName()), t);
+                            ("formBean", config.getType()), t);
                 return (null);
             }
         } else {
@@ -631,7 +631,7 @@ public class RequestUtils {
                 }
             } catch (Throwable t) {
                 LOG.error(servlet.getInternal().getMessage
-                          ("formBean", config.getName()), t);
+                          ("formBean", config.getType()), t);
                 return (null);
             }
         }
