@@ -1,7 +1,5 @@
 package org.apache.artimus.article;
 
-import java.util.Collection;
-
 import org.apache.scaffold.model.ModelBeanBase;
 import org.apache.scaffold.model.ModelException;
 import org.apache.scaffold.model.ModelParameterException;
@@ -12,7 +10,7 @@ import org.apache.scaffold.model.ModelResultBase;
 /**
  * Search for article author.
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:12 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 08:26:37 $
  */
 public class SearchCreator extends SearchProperty {
 

@@ -1,7 +1,5 @@
 package org.apache.artimus.wizard.http;
 
-import java.io.IOException;
-
 import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +16,7 @@ import org.apache.struts.action.ActionMapping;
 
 /**
  * @author Ted Husted
- * @version $Revision: 1.1 $ $dateString: 2001/10/25 $
+ * @version $Revision: 1.2 $ $dateString: 2001/10/25 $
  */
 public class Form extends ActionForm {
 // public final class Form extends ValidatorForm {

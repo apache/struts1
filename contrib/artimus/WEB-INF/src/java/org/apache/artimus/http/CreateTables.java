@@ -4,8 +4,6 @@ package org.apache.artimus.http;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,8 +12,6 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
-
 
 /**
  * Create database tables used by application.
@@ -30,7 +26,7 @@ import org.apache.struts.action.ActionServlet;
  * definitions.
  * <p>
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:13 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 08:26:37 $
  */
 public final class CreateTables extends Action {
 
@@ -83,9 +79,9 @@ public final class CreateTables extends Action {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/http/CreateTables.java,v 1.1 2001/11/10 12:04:13 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2001/11/10 12:04:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/http/CreateTables.java,v 1.2 2002/12/08 08:26:37 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/08 08:26:37 $
  *
  * ====================================================================
  *

@@ -3,10 +3,7 @@ package org.apache.artimus.article;
 
 import java.io.IOException;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.Timestamp;
 
 import java.util.Collection;
@@ -41,7 +38,7 @@ import org.apache.lucene.index.Term;
  * This class could be based on an interface if another
  * (non-SQL) type of access was needed.
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/01/01 13:45:43 $
+ * @version $Revision: 1.3 $ $Date: 2002/12/08 08:26:37 $
 **/
 public final class Access {
 

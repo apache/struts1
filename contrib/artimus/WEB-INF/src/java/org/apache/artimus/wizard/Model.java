@@ -1,7 +1,6 @@
 package org.apache.artimus.wizard;
 
 
-import java.io.IOException;
 import java.util.Collection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -25,7 +24,7 @@ import org.apache.artimus.wizard.sql.Statements;
  * This class could be based on an interface if another
  * (non-SQL) type of access was needed.
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:13 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 08:26:37 $
  */
 public final class Model {
 
@@ -34,7 +33,7 @@ public final class Model {
      * @return The Integer key value to be inserted
      * @exception ModelException if SQL error occurs
      * @author Ted Husted
-     * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:13 $
+     * @version $Revision: 1.2 $ $Date: 2002/12/08 08:26:37 $
     **/
     public synchronized static final Integer allocateKey()
             throws ModelException {
@@ -107,7 +106,7 @@ public final class Model {
      * @param key
      * @param target Object object to create Collection from ResultSet
      * @author Ted Husted
-     * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:13 $
+     * @version $Revision: 1.2 $ $Date: 2002/12/08 08:26:37 $
     **/
     public static final Collection select(Object target, int key)
             throws ModelException {

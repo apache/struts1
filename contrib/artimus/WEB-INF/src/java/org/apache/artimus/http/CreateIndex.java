@@ -4,8 +4,6 @@ package org.apache.artimus.http;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.sql.SQLException;
-
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -16,7 +14,6 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -30,7 +27,7 @@ import org.apache.artimus.article.Access;
 /**
  * Create search engine indexes used by application.
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/01/01 13:46:07 $
+ * @version $Revision: 1.3 $ $Date: 2002/12/08 08:26:37 $
 **/
 public final class CreateIndex extends Action {
 
@@ -100,9 +97,9 @@ public final class CreateIndex extends Action {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/http/CreateIndex.java,v 1.2 2002/01/01 13:46:07 husted Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/01 13:46:07 $
+ * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/http/CreateIndex.java,v 1.3 2002/12/08 08:26:37 rleland Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/12/08 08:26:37 $
  *
  * ====================================================================
  *

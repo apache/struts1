@@ -1,18 +1,14 @@
 package org.apache.artimus.article.http;
 
 
-import java.io.IOException;
-import java.util.Map;
-import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts.action.Action;
+
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
-import org.apache.commons.beanutils.BeanUtils;
 
 
 /**
@@ -22,7 +18,7 @@ import org.apache.commons.beanutils.BeanUtils;
  * to an internal object that uses native types and implements a business
  * logic interface.
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/01/23 21:41:32 $
+ * @version $Revision: 1.3 $ $Date: 2002/12/08 08:26:37 $
  */
 public class Form extends ActionForm {
 
@@ -108,7 +104,7 @@ public class Form extends ActionForm {
     /**
      * Set the contributed of the article.
      * <p>
-     * @param contributed The new contributed
+     * @param contributedText The new contributed
      */
     public void setContributedText(String contributedText) {
         this.contributedText = contributedText;
@@ -214,10 +210,10 @@ public class Form extends ActionForm {
 
 
     /**
-     * Set the key
+     * Set the article
      * Generic mutator linked to this object's key field.
      * <p>
-     * @param key The new key
+     * @param article The new article
      */
     public void setKey(String article) {
         setArticle(article);

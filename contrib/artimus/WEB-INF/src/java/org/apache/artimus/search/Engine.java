@@ -3,8 +3,6 @@ package org.apache.artimus.search;
 
 import java.io.IOException;
 
-import java.util.Collection;
-
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.StopAnalyzer;
 
@@ -33,7 +31,7 @@ import org.apache.scaffold.search.LuceneUtils;
  * Search engine methods for Articles application.
  * <p>
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/01/01 13:46:17 $
+ * @version $Revision: 1.3 $ $Date: 2002/12/08 08:26:37 $
 **/
 public final class Engine {
 
