@@ -321,6 +321,7 @@ public class ActionServlet extends HttpServlet {
             */
         }
 
+        CatalogFactory.clear();
         PropertyUtils.clearDescriptors();
     }
     
