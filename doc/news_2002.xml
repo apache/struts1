@@ -6,12 +6,90 @@
     <author email="mcooper@apache.org">Martin Cooper</author>
     <author email="husted@apache.org">Ted Husted</author>
 
-    <title>New and Status</title>
+    <title>New and Status - Jakarta Struts</title>
   </properties>
 
 <body>
 
-<section name="News &amp; Status">
+<section name="Status">
+<p>
+The <b>stable production release</b> is <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/">Struts 1.02</a> (11 February 2002).
+</p>
+<p>
+<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b1/">Struts 1.1b</a> is in its first <b>beta release</b> (19 March 2002). 
+</p>
+<hr size="1" noshade=""/>
+<ul>
+<li>See <a href="http://jakarta.apache.org/site/bugs.html">the Apache Bug Database</a> for outstanding issues and enhancement requests. </li>
+<li>See <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/">the Struts Nightly Build</a> for the latest development distribution.</li>. 
+<li>See <a href="http://jakarta.apache.org/site/mail.html">the Jakarta Struts-Dev list</a> for current development communications.</li>
+<li>See <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">the Jakarta Struts CVS</a> for the current development codebase. </li>
+</ul>
+<hr size="1" noshade=""/>
+<p>
+Struts is a completely open product. The 
+<a href="http://jakarta.apache.org/struts/volunteers.html">Struts Committers</a> conduct all development 
+business using the resources cited here, which are all available to the public. Only 
+Struts Committers may write to the 
+<a href="http://cvs.apache.org/viewcvs/jakarta-struts/">CVS</a>. Developer contributions may be posted 
+to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a>.
+</p>
+
+</section>
+ 
+<section name="News">
+
+<h3><a name="20020527.1"></a>27 May 2002 - Struts Action Plug-in Extension 1.0</h3>
+<p>
+The Action Plug-In Extension is, in concept, very similar to the Servlet Filter mechanism. It 
+is meant to provide a clean and transparent way to plug-in common controller logic (such as 
+authentication, workflow, etc.) for Struts actions in an application. 
+</p>
+<p>
+<a href="http://www.asqdotcom.be/struts/">www.asqdotcom.be/struts</a>
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020527"></a>27 May 2002 - Eclipse Struts Wizard v1.0</h3>
+<p>
+Same user interface as our JBuilder Wizard but:
+</p>
+<p>
+Features:
+<ul>
+<li>ActionForm, Action, input JSP and struts-config.xml generation powered by eclipse framework.</li>
+<li>Compatible with Tomcat plugin from Sysdeo.</li>
+<li>And some bug fixes ... </li>
+</ul>
+</p>
+<p>
+Available at <a href="http://www.mycgiserver.com/~eboudrant/">www.mycgiserver.com/~eboudrant/</a>
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020525"></a>25 May 2002 - Struts Console version 1.11</h3>
+<p>Struts Console version 1.11 is now available.</p>
+<p>
+<a href="http://www.jamesholmes.com/struts/">www.jamesholmes.com/struts/</a><br/>
+<a href="http://www.jamesholmes.com/struts/struts-console-1.11.zip">www.jamesholmes.com/struts/struts-console-1.11.zip</a><br/>
+<a href="http://www.jamesholmes.com/struts/struts-console-1.11.tar.gz">www.jamesholmes.com/struts/struts-console-1.11.tar.gz</a>
+</p>
+<p>
+This release adds more support for 1.1 config files and updates some of the help documentation.
+</p>
+<p>
+Changes with Struts Console v1.11
+</p>
+<ul>
+<li>Fixed bug in NetBeans/Forte module where Struts Console module was disabling printing for Struts config files.</li>
+<li>Added support for &lt;messages-resources> and &lt;plug-in> elements in 1.1 config files.</li>
+<li>Updated code to be more efficient and use less memory.</li>
+<li>Changed distribution to have a master directory (i.e. struts-console-1.11).</li>
+</ul>
+<hr size="1" noshade=""/>
+
 
 <h3><a name="20020522.1"></a>22 May 2002 - O'Reilly Chapter 10</h3>
 <p>
@@ -226,6 +304,42 @@ from Strut 1.0, are available at:</p>
 </p>
 <hr size="1" noshade=""/>
 
+<h3><a name="20020423.1"></a>23 Apr 2002 - Synthis Corporation annouces support for the Apache Struts J2EE Architecture</h3>
+<p>
+Synthis Corporation is pleased to announce that Adalon, a next-generation functional design tool for modeling Internet
+applications, now offers full support for the Struts framework, the leading open-source J2EE Web application architecture
+from the Apache Software Foundation.
+</p>
+<p>
+Adalon provides a single, integrated environment to gather and track business requirements, visually model the process
+foundations of an application, and generate complete functional design documentation and code frameworks for ANY target
+software architecture, programming language, and development platform.
+</p>
+<p>
+Here is what people are saying about Adalon and Struts: 
+</p>
+<blockquote>
+"The hardest part of designing any application can be deciding what to build.  Adalon helps clients clearly define "the
+what" and "the why" of an application, and the code generation templates give Struts developers a serious jumpstart on "the
+how", helping us to build not only a great application, but also the right application." -- Ted Husted, 
+Active contributor to the Jakarta-Struts framework.
+</blockquote>
+<blockquote>
+"We have incorporated Adalon into our development process and are currently training our consultants on the product.  With
+Adalon, our consultants now have a great tool to manage the process of developing custom Struts solutions, from initial
+requirements gathering through to the delivery of implemented code." -- Dmitry Shugaev, Vice President of Technology, 
+Computer Consulting Services Corporation (CCSC).
+</blockquote>
+<p>
+Synthis is offering support for Struts in the Adalon Struts Community Edition, and the Adalon Developer Edition.  For more
+details on the Adalon Struts Community Edition and the Adalon Developer Edition, please visit 
+<a href="http://www.synthis.com/products/adalon/overview.jsp">www.synthis.com/products/adalon</a>.
+</p>
+<p>
+To download a 30-day evaluation version of Adalon, please visit <a href="http://www.synthis.com/downloads/index.jsp">www.synthis.com/downloads</a>.
+</p>
+<hr size="1" noshade=""/>
+
 
 <h3><a name="20020423"></a>23 Apr 2002 - JForms: a visual tool for Struts-based Web forms</h3>
 <p>
@@ -250,6 +364,7 @@ The site address is:<br/>
 <a href="http://www.solanasoft.com">http://www.solanasoft.com</a>
 </p>
 <hr size="1" noshade=""/>
+
 
 <h3><a name="20020422"></a>22 Apr 2002 - Expresso 4.1 rc2</h3>
 <p>
@@ -303,6 +418,35 @@ Added support for new 1.1 config file elements:
 <hr size="1" noshade=""/>
 
 
+<h3><a name="20020409"></a>09 Apr 2002  - Struts Tutorial (Wiesner)</h3>
+<p>
+An easy step by step introduction to Struts. 
+</p>
+<p>
+<a href="http://rzserv2.fhnon.de/~lg002556/struts/">rzserv2.fhnon.de/~lg002556/struts</a>
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020405"></a>05 Apr 2002  - Struts Tutorial in Spanish (Izura)</h3>
+<p>
+This is an announcement of a new tutorial of Struts written in Spanish, with sample code.
+</p>
+<p>
+Saludos!
+Por si a alguien le interesa hay un nuevo tutorial sobre struts que se
+puede descargar de javahispano.org o de ciberia.ya.com/pxai.
+Contiene ejemplos de codigo que pueden ser utiles para iniciarse.
+</p>
+<p>
+Hasta otra!
+</p>
+<p>
+<a href="http://rzserv2.fhnon.de/~lg002556/struts/">rzserv2.fhnon.de/~lg002556/struts</a>
+</p>
+<hr size="1" noshade=""/>
+
+
 <h3><a name="20020404"></a>04 Apr 2002  - struts-layout 0.4 released</h3>
 <p>
 struts-layout is a specialized and open source taglib for struts that allows 
@@ -321,440 +465,12 @@ For more information about struts-layout please visit<br/>
 </p>
 <hr size="1" noshade=""/>
 
-
-<h3><a name="20020319"></a>19 March 2002 - Struts 1.1 Beta 1 Released</h3>
-<p>
-The Struts team announces the release of Struts 1.1 Beta 1. This release
-includes substantial new functionality, while retaining full backwards
-compatibility with earlier versions of Struts. It also incorporates fixes
-for a number of bugs which were reported against earlier versions.
-</p>
-<p>
-The binary distribution for this release is available 
-<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b1/">
-<b>here</b></a>
-and the source distribution
-is available 
-<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b1/src/">
-<b>here</b></a>. 
-In addition, a library distribution, which consists of a minimal
-binary distribution, without sample web applications or additional code, is
-available 
-<a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.1-b1/lib/">
-<b>here</b></a>. 
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="200204"></a>12 Mar 2002  - Chiki v0.27 released (now with Revision Control)</h3>
-<p>
-Chiki v0.27 released and ready for download.
-</p>
-<p>
-This released includes:
-</p>
-<ul>
-<li> 
-Simple Revision Control: providing Revision History and Tracking and the option to 
-Revert to a previous revision. ('diff' not included in this release). Uses Xml binding 
-(via Castor) to provide 'out-of-the-box' behaviour. Future version will integrate with 
-CVS.</li>
-<li>some Content Translation bugs fixed</li>
-<li>other minor bug fixes</li>
-</ul>
-<p> 
-Full details can be found on the website <a href="http://chiki.emaho.org">http://chiki.emaho.org</a>.
-</p>
-<hr size="1" noshade=""/>
-
-
-
-<h3><a name="20020304"></a>04 March 2002 - Best Practice with Expresso-Struts Framework</h3>
-<p>
-In this article, Peter Pilgrim looks at the best practice of using a popular web
-application toolkit, The Expresso Framework. The Expresso Framework, until version 3, had its
-own Model View Controller engine. It now  integrates Struts, further reducing the amount of
-code that developers need to write. As well as having an  MVC framework, Struts also has its
-own powerful custom tag actions. Custom tag libraries and their powerful bean introspection
-core further reduce the total amount of Java scriptlets in Java Server Pages."
-</p>
-<p>
-<a href="http://www.theserverside.com/resources/article.jsp?l=Expresso-Struts">
-HTML</a> | 
-<a href="http://www.theserverside.com/resources/articles/Expresso-Struts/Expresso_Framework_Struts.pdf">
-PDF</a>
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020301"></a>01 March 2002 - Simper 0.2</h3>
-<p>
-Simper is a simple JDBC persistence mechanism for Java web apps. It
-features many of the interesting features of EJB, such as automatic
-transaction demarcation (by way of Servlet Filters), and automatic
-change detection of database rows (by way of DynaBeans). Lastly, the
-notation by which you reference rows, as well as relations between
-tables, is extremely JSP friendly.
-</p>
-<p>
-<a href="http://www.netmeme.org/simper/">http://www.netmeme.org/simper/</a>
-</p>
-<p>
-0.2 is not a new release (it's been out for about a month), but, a
-SourceForge project has been set up, with mailing lists, CVS, etc., so
-that others can discuss and contribute (as I am getting quite busy
-lately)
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020228.3"></a>28 February 2002 - Struts Whitepaper</h3>
-<p>
-I've been collecting, in a document, Struts examples 
-and know how while I have been learning Struts.  I 
-have decided to make this available to everyone in 
-a white paper.
-</p>
-<p>
-It's available on my companies web-site at:<br/>
-<a href="http://stealthis.athensgroup.com/presentations/">
-http://stealthis.athensgroup.com/presentations/
-</a>
-</p>
-<p>
-It's under the Model_Layer_Framework heading.  The
-link to the paper is called Struts_Whitepaper.doc
-(it's a word document.)
-</p>
-<p>
-I hope others will find this to be useful.
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020228.2"></a>28 February 2002 - Struts Workflow Extension Package</h3>
-<p>
-To all struts users!
-</p>
-<p>
-It has been quite some time since I first announced the Struts Workflow
-Extension Package. Since then, I have received several requests for an example
-application and pretty good ideas for further enhancements. Here now is the 
-first official release that includes an example application and most of the 
-suggested enhancements.
-</p>
-<p>
-I know that there is a proposal and already some work going on in the Jakarta
-Commons Project for a generic workflow package that is not directly based on 
-Struts, but should be easily integratable. Unfortunately this work is not 
-progressing as quickly as some struts user would like to see. Thus, if you have 
-a need (and in each Web-Application you normally have) for workflow control, try 
-this extension and check whether it is appropriate for you.
-</p>
-<p>
-For more information, the general concepts, documentation and downloading the 
-sources, visit
-</p>
-<p>
-<a href="http://www.livinglogic.de/Struts/">
-http://www.livinglogic.de/Struts/</a>
-</p>
-<p>
-Of course, your feedback is very welcome.
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020228"></a>28 February 2002 - Tutorial for implementing i18n</h3>
-<p>
-I have posted a simple step by step tutorial of getting internationalization
-working with Struts.
-</p>
-<p>
-You can find it here:<br/>
-<a href="http://www.anassina.com/struts/i18n/i18n.html">
-http://www.anassina.com/struts/i18n/i18n.html</a>
-</p>
-<p>
-I welcome any comments, as I intend on improving it where necessary.
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020223"></a>23 February 2002 - New Plugin mechanism</h3>
-<p>
-A new lightweight PlugIn mechanism is now available in the nightly build.
-</p>
-<p>
-<a href="http://www.mail-archive.com/struts-dev%40jakarta.apache.org/msg05002.html">
-http://www.mail-archive.com/struts-dev%40jakarta.apache.org/msg05002.html</a>
-</p>
-<p>
-The PlugIn API is somewhat stripped down compared to the ServiceManager, so
-it's possible that it won't meet your needs. The ServiceManager itself has
-largely been moved to Jakarta Commons, and is currently in the sandbox:
-</p>
-<p>
-<a href="http://cvs.apache.org/viewcvs/jakarta-commons-sandbox/services/">
-http://cvs.apache.org/viewcvs/jakarta-commons-sandbox/services/</a>
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020212"></a>12 February 2002 - Stxx for transforming XML</h3>
-<p>
-<a href="http://www.oroad.com/opencode/">
-<b>Struts for transforming XML with XSL</b></a> (stxx) is an extension of 
-the Struts framework to enhance support for XML and XSL.
-</p>
-<p>
-stxx sits on top of Struts, extending it's existing functionality to allow
-Action classes to return XML that will be transformed by an XSL file.
-</p>
-<p>
-The idea of stxx is to remove the need to be use JSP and TagLibs for the
-presentation layer of this framework. However, stxx does not force you to go the
-XML/XSL route, both technologies should work side by side.
-</p>
-<p>
-So, adding XSL support to struts is ALMOST as simple as adding the following
-tags to your struts-config.xml file:
-</p>
-<pre>
-&lt;action path="/welcome"
-        type="com.oroad.stxx.example.ExampleWelcomeAction"
-        scope="request">
-        &lt;forward name="success">
-&lt;!-- 
-    the transform tags take the XML returned by the Action
-    and transform them. The transform tag used is determined
-    by matching the user agent against the name attribute (or
-    default if nothing matches)
--->
-                &lt;transform name="default" path="/login.xsl"/>
-                &lt;transform name="Mozilla" path="/login_netscape.xsl"/>
-                &lt;transform name="MSIE" path="/login_msie.xsl"/>
-        &lt;/forward>
-&lt;/action>
-</pre>
-<p>
-stxx features:
-</p>
-<ul>
-<li>
-Enhances the &lt;forward> tag in the struts-config.xml file to allow
-one to many &lt;transform> tags. These &lt;transform> tags represent 
-the XSL file to be used depending on the user-agent of the 
-browser accessing struts
-</li><li>
-A new class variable for the Action class, A JDOM Document, which 
-you use to append your data in your Action class too. This 
-Document object will be transformed by the XSL file in your 
-&lt;transform> tag.
-</li><li>
-stxx automatically flattens the ApplicationResources file to XML 
-and attaches it to the Document object returned by the new Action   
-class.
-</li><li>
-stxx also automatically appends the request parameters and 
-attributes, as well as ActionErrors as XML to the Document 
-object.
-</li>
-</ul>
-<p> 
-Please note: stxx is a work in progress, however, at this point I've been using
-it for about 4 months and it works great for me, I realize it might not fit
-everyone elses needs. Please send me feedback, opinions, complains, etc.
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020211"></a>11 February 2002 - Struts 1.0.2 Released</h3>
-<p>
-The Struts team announces the release of Struts 1.0.2. This release is a
-bug fix only release, which fixes a compatibility problem inadvertently introduced
-with the previous 1.0.1 release. 
-</p>
-<p>
-The binary distribution for this release is available 
-<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/">
-<b>here</b></a>
-and the source distribution
-is available 
-<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/src/">
-<b>here</b></a>. 
-In addition, a library distribution, which consists of a minimal
-binary distribution, without sample web applications or additional code, is
-available 
-<a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.2/lib/">
-<b>here</b></a>. 
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3>6 February 2002 - Struts Console v1.4</h3>
-<p>
-Struts Console version 1.4 is now available.
-</p>
-<p>
-<a href="http://www.jamesholmes.com/struts/">
-http://www.jamesholmes.com/struts/</a><br/>
-<a href="http://www.jamesholmes.com/struts/struts-console-1.4.zip">
-http://www.jamesholmes.com/struts/struts-console-1.4.zip</a>
-</p>
-<p>
-This release adds plugin support for the new Oracle
-JDeveloper 9i IDE.  This release also adds significant
-new funcionality to the "JSP Converter" and renames it
-to "Page Converter".
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3>26 January 2002 - Free Struts Development Tool</h3>
-<p>
-"ObjectAssembler Standard is focused on supporting developers whose sole
-area of concern is developing Servlets, JSPs, JavaBeans and Struts
-components. It provides a visual development and code synchronization
-environment for the creation and assembly of these components into web
-applications."
-</p>
-<p>
-Here is the download page:<br/>
-<a href="http://www.objectventure.com/products/objectassembler.html">
-http://www.objectventure.com/products/objectassembler.html</a>
-</p>
-<p>
-Here is a Viewlet showing some of ObjectAssembler's features:<br/>
-<a href="http://www.objectventure.com/demo/IntroStruts_viewlet.html">
-http://www.objectventure.com/demo/IntroStruts_viewlet.html</a>
-</p>
-<p>
-Please give it a try and tell us what you think. We are currently working on
-our next major release that will provide J2EE 1.3 support. We also plan to
-support Struts as it evolves (multi-app support, etc.), so any input we
-receive would make that support even better.
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020118"></a>18 Jan 2002 - Nested Taglib added to nightly build</h3>
-<p>
-Struts tags support a dotted notation to refer to a nested beans. The Nested 
-Talib extends this notation to automatically include a parent tag. Instead of 
-referring to a property as parent<strong>.</strong>child, "parent" can be 
-defined with the <code>nest</code> tag, and other Struts tags within that 
-tag can simply refer to the "child" property. Tags can be nested arbitarily 
-deep. 
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3>17 January 2002 - Chiki v0.23</h3>
-<p>
-Chiki is a Wiki-like webapp built using Struts. This is the first
-publicly available release, so as much feedback as possible would be
-greatly appreciated. 
-</p>
-<p> 
-Chiki can be found at:<br/>
-<a href="http://chiki.emaho.org">
-http://chiki.emaho.org </a>
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3>14 January 2002 - New Committer, Arron Bates </h3>
-<p>
-Arron Bates, known for his interesting and popular nesting extension to 
-the Struts taglibs has been elected as a Struts Committer. 
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3>13 Janaury 2002 - Scioworks Camino v1.0</h3>
-<p>
-We are pleased to announce the general availability of the Scioworks Camino 
-v1.0, visual tool for Struts application development.
-</p>
-<p>
-Download is available at <br/>
-<a href="http://www.scioworks.com/scioworks_camino_download.html.">
-http://www.scioworks.com/scioworks_camino_download.html.</a>
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020112.2"></a>12 Jan 2002 - MultiApp Capability Added</h3>
-<p>
-Support for multiple application modules has been added to the nightly build. 
-Developers can now provide multiple Struts configuration files, each of which 
-can defines its own "module prefix". All of the "context-relative" values in 
-the Struts configuration are now "module-relative". Struts components which '
-handle context-relative URIs now transparently handle module-relative URIs. 
-</p>
-<p>
-Existing configuration files, JavaServer Pages, or Actions do not need to be 
-changed to use this capability. The only change is to specify the module 
-prefix to be used with each additional configuration. 
-</p>
-<p>
-This feature allows different teams to work on different parts of an 
-application at the same time, without conflict over the configuration file. 
-It also allows Struts applications that were developed independantly to be 
-easily merged. 
-</p>
-<p>
-Formal documentation is pending. See the Mailing List Archive for details. 
-<ul>
-<li><a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg04354.html">
-The BIG Check-In for Multi-App Support</a></li>
-<li><a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg04773.html">
-Action mappings and The BIG Check-In</a></li>
-<li><a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg04740.html">
-[proposal] Multi-app sources modifications</a></li>
-<li><a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg04460.html">
-Struts Next</a></li>
-</ul>
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020112"></a>12 Jan 2002 - Struts 1.0.1 Released</h3>
-<p>
-  The Struts team is proud to announce the release of Struts 1.0.1. This
-  release is primarily a bug fix release, which fixes a number of known
-  problems with the previous 1.0 release.
-</p>
-<p>
-  The binary distribution for this release is available
-  <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.1/">here</a>
-  and the source distribution is available
-  <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.1/src/">here</a>.
-  In addition, a library distribution, which consists of a minimal binary distribution,
-  without sample web applications or additional code, is available
-  <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.1/lib/">here</a>.
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020103"></a>03 Jan 2002 - Struts + Velocity + Tools</h3>
-<p>
-The first code for the new 
-<a href="http://cvs.apache.org/viewcvs/jakarta-velocity-tools/">
-Velocity Tool Subproject</a> is in and
-can be found in CVS as jakarta-velocity-tools. The first 
-functionality includes integration with Jakarta Struts as well as a
-generic template-rendering servlet with tool support.
-</p>
-<hr size="1" noshade=""/>
-
 <p align="center">
-<a href="news_2001.html">
+<a href="news_2002_q1.html">
 <b>MORE NEWS</b></a>
 </p>
 
-  </section>
+</section>
 
 
 </body>

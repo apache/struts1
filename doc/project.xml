@@ -16,6 +16,7 @@
     <menu name="Downloads">
         <item name="Binaries"                href="http://jakarta.apache.org/site/binindex.html"/>
         <item name="Source Code"             href="http://jakarta.apache.org/site/sourceindex.html"/>
+        <item name="CVS Repository"          href="http://cvs.apache.org/viewcvs/jakarta-struts/"/>
     </menu>
 
     <menu name="Stable Release (1.0.2)">
