@@ -19,11 +19,18 @@ Apache Jakarta Website.</p>
 
 <section name="Source Code Contributors" href="contributors.source">
 <ul>
-<li>Arron Bates</li>
-<li>Arun M. Thomas</li>
-<li>Chris Audley</li>
 <li>Craig R. McClanahan</li>
 <li>David Geary</li>
+<li>Mike Schachter</li>
+<li>Ted Husted</li>
+<li>Rob Leland</li>
+<li>Martin Cooper</li>
+<li>Arron Bates</li>
+<li>Cedric Dumoulin</li>
+<li>David Winterfeldt</li>
+<li>Arun M. Thomas</li>
+<li>Chris Audley</li>
+<li>Dominique Plante</li>
 <li>Don Clasen</li>
 <li>Florent Carpentier</li>
 <li>James Holmes</li>
@@ -31,34 +38,38 @@ Apache Jakarta Website.</p>
 <li>Jimmy Larsson</li>
 <li>Luis Arias</li>
 <li>Marius Barduta</li>
-<li>Martin Cooper</li>
-<li>Mike Schachter</li>
 <li>Niall Pemberton</li>
 <li>Ralph Schaer</li>
-<li>Rob Leland</li>
 <li>Sean M. Kelley</li>
-<li>Ted Husted</li>
 </ul>
 </section>
 
 <section name="User Guide Contributors" href="contributors.documentation">
 <ul>
-<li>Arron Bates</li>
-<li>Chris Assenza</li>
-<li>Craig R. McClanahan</li>
-<li>David Geary</li>
-<li>dIon Gillard</li>
-<li>Eric Wu</li>
-<li>John Rousseau</li>
-<li>James Holmes</li>
-<li>Larry McCay</li>
-<li>Martin Cooper</li>
-<li>Matthias Kerkhoff</li>
-<li>Mike Schachter</li>
-<li>Robert Hayden</li>
-<li>Stanley Santiago</li>
-<li>Ted Husted</li>
-<li>Wong Kok Kai</li>
+    <li>Craig R. McClanahan</li>
+    <li>David Geary</li>
+    <li>Mike Schachter</li>
+    <li>Ted Husted</li>
+    <li>Martin Cooper</li>
+    <li>Arron Bates</li>
+    <li>Cedric Dumoulin</li>
+    <li>David Winterfeldt</li>
+    <li>Chris Assenza</li>
+    <li>dIon Gillard</li>
+    <li>Dominique Plante</li>
+    <li>Ed Burns</li>
+    <li>Eric Wu</li>
+    <li>James DeVries</li>
+    <li>John Rousseau</li>
+    <li>John Ueltzhoeffer</li>
+    <li>Larry McCay</li>
+    <li>Mark Budai</li>
+    <li>Matthias Kerkhoff</li>
+    <li>Paul Runyan</li>
+    <li>Robert Hayden</li>
+    <li>Robert Leland</li>
+    <li>Stanley Santiago</li>
+    <li>Wong Kok Kai</li>
 </ul>
 </section>
 
