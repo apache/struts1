@@ -16,6 +16,10 @@
     list.add("Fourth");
     list.add("Fifth");
     pageContext.setAttribute("list", list, PageContext.PAGE_SCOPE);
+
+    int intArray[] = new int[]
+     { 0, 10, 20, 30, 40 };
+    pageContext.setAttribute("intArray", intArray, PageContext.PAGE_SCOPE);
   }
 %>
 
@@ -86,6 +90,33 @@
   <li><em><bean:write name="item"/></em>&nbsp;[<bean:write name="index"/>]</li>
 </logic:iterate>
 </ol>
+
+<h3>Test 8 - Iterate Over an int array</h3>
+
+<ol>
+<logic:iterate id="item" name="intArray" indexId="index">
+  <li><em><bean:write name="item"/></em>&nbsp;[<bean:write name="index"/>]</li>
+</logic:iterate>
+</ol>
+
+<h3>Test 9 - Iterate Over an int array [0..2]</h3>
+
+<ol>
+<logic:iterate id="item" name="intArray" indexId="index"
+           length="3">
+  <li><em><bean:write name="item"/></em>&nbsp;[<bean:write name="index"/>]</li>
+</logic:iterate>
+</ol>
+
+<h3>Test 10 - Iterate Over an int array [2..4]</h3>
+
+<ol>
+<logic:iterate id="item" name="intArray" indexId="index"
+           offset="2" length="3">
+  <li><em><bean:write name="item"/></em>&nbsp;[<bean:write name="index"/>]</li>
+</logic:iterate>
+</ol>
+
 
 </body>
 </html>
