@@ -11,7 +11,7 @@
 
       <section name="Objective" href="objective">
           <p>
-              <font size="-2">$Id: release-plan_1_2_0.xml,v 1.1 2003/08/11 11:34:26 husted Exp $</font>
+              <font size="-2">$Id: release-plan_1_2_0.xml,v 1.2 2003/08/11 13:25:56 husted Exp $</font>
           </p>
 
           <p>
@@ -118,10 +118,10 @@
                   In the case of a Struts 1.x.x release, these containers are:
                   <ul>
                       <li>
-                          Tomcat 3.3 (Servlet/JSP 2.3/1.2 Reference Implementation)
+                          Tomcat 3.3 (Servlet/JSP 2.2/1.1 Reference Implementation)
                       </li>
                       <li>
-                          Tomcat 4.1 (Servlet/JSP 2.2/1.1 Reference Implementation)
+                          Tomcat 4.1 (Servlet/JSP 2.3/1.2 Reference Implementation)
                       </li>
                   </ul>
                       The best available version of each container shall be used, as documented by the
