@@ -7,6 +7,9 @@
       size=2>Installation / Requirements</FONT>  
       </A></div></TD></TR>
   <TR>
+    <TD><A href="http://www.lifl.fr/~dumoulin/tiles/tilesAdvancedFeatures.pdf"><P align=center><FONT 
+    size=2>tilesAdvancedFeatures.pdf (draft)</FONT></A></P></TD></TR>
+  <TR>
     <TD><A href="<%=request.getContextPath()%>/doc/tutorial.jsp"><P align=center><FONT 
     size=2>Tutorial</FONT></A></P></TD></TR>
   <TR>

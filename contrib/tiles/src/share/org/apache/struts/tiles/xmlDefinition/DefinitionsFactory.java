@@ -11,6 +11,7 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.io.Serializable;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletConfig;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
  * A factory for definitions.
  * This factory allows to retrieve definitions by their keys.
  */
-public class DefinitionsFactory
+public class DefinitionsFactory implements Serializable
 {
      /** */
    protected Map definitions;

@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+
 <project name="Struts Web Applications" default="compile" basedir=".">
 
 
@@ -42,7 +44,7 @@
                                       of the Jakarta Commons Logging
                                       package (version 1.0 or later).
 
-        struts.libs                   (required).  The directory containing 
+        struts.libs                   (required).  The directory containing
                                       struts.jar and the associated TLD files.
 
         tiles.libs                    The directory containing tiles.jar and
@@ -52,8 +54,8 @@
                                       directory from which all available
                                       "*.jar" files are copied to the web
                                       application's WEB-INF/lib directory.
-									  
-        struts1.0.home                If specified, must be the directory 
+
+        struts1.0.home                If specified, must be the directory
 		                              containing struts1.0
                                       struts.jar and the associated TLD files..
 -->
@@ -103,7 +105,7 @@
 -->
 
 <!--
-        The "static.optional.struts1.0" target causes the "static" target of 
+        The "static.optional.struts1.0" target causes the "static" target of
         individual web application depending on struts1.0 to be executed.
 		webapp.name : application name in dist
 		webapp.war  : jar file name
@@ -117,7 +119,7 @@
     <property name="webapp.web"      value="web/blank"/>
     <property name="struts.libs"    value="${struts1.0.home}/lib"/>
   </ant>
-  <move file="${build.home}/blank-struts1-0/WEB-INF/web-struts.xml" 
+  <move file="${build.home}/blank-struts1-0/WEB-INF/web-struts.xml"
       tofile="${build.home}/blank-struts1-0/WEB-INF/web.xml" />
   <replace file="${build.home}/blank-struts1-0/WEB-INF/struts-config.xml">
     <replacetoken><![CDATA[<!-- struts1.1 only begin -->]]></replacetoken>
@@ -128,16 +130,16 @@
     <replacevalue><![CDATA[     struts1.1 only end -->]]></replacevalue>
   </replace>
   <replace file="${build.home}/blank-struts1-0/WEB-INF/struts-config.xml">
-    <replacefilter 
-        token="Struts Configuration 1.1//EN" 
+    <replacefilter
+        token="Struts Configuration 1.1//EN"
         value="Struts Configuration 1.0//EN"/>
-    <replacefilter 
-        token="struts-config_1_1.dtd" 
+    <replacefilter
+        token="struts-config_1_1.dtd"
         value="struts-config_1_0.dtd"/>
-		
+
 	</replace>
   <delete file="${build.home}/blank-struts1-0/WEB-INF/lib/tiles.jar" />
-  <copy file="${build.home}/library/struts1.0/tilesForStruts1-0.jar" 
+  <copy file="${build.home}/library/struts1.0/tilesForStruts1-0.jar"
        todir="${build.home}/blank-struts1-0/WEB-INF/lib" />
 </target>
 
@@ -172,7 +174,7 @@
     <property name="webapp.web"      value="web/blank"/>
     <property name="struts.libs"    value="${struts.libs}"/>
   </ant>
-  <move file="${build.home}/blank-struts1-1/WEB-INF/web-struts.xml" 
+  <move file="${build.home}/blank-struts1-1/WEB-INF/web-struts.xml"
       tofile="${build.home}/blank-struts1-1/WEB-INF/web.xml" />
     <!-- 1.0 applications -->
   <antcall target="static.optional.struts1.0" />
@@ -191,7 +193,7 @@
     <copy  todir="${build.home}/documentation/dtds">
       <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
     </copy>
-	
+
   <ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="documentation"/>
     <property name="webapp.web"       value="web/doc"/>
@@ -204,7 +206,7 @@
         The "static" target causes non-generic static activity required
         for specific tag libraries to be executed.
 -->
-<target name="static" 
+<target name="static"
         description="Copy static resources for individual web applications">
 	<antcall target="static.required" />
 	<antcall target="static.optional" />
@@ -244,14 +246,19 @@
   </ant>
 </target>
 
-<!--
-        The "compile.documentation" target causes the documentation to be 
+<target name="setStamp" >
+  <tstamp>
+    <format property="DATE_SPACE" pattern="yyyy MM dd" locale="en"/>
+  </tstamp>
+</target>
+  <!--
+        The "compile.documentation" target causes the documentation to be
 		compiled.
 		webapp.name : application name in dist
 		webapp.war  : jar file name
 		webapp.web  : webapp directory name in module
 -->
-<target name="compile.documentation" >
+<target name="compile.documentation" depends="setStamp">
   <ant  antfile="build-webapp.xml"    target="compile">
     <property name="webapp.name"      value="documentation"/>
     <property name="webapp.web"      value="web/doc"/>
@@ -284,6 +291,10 @@
     <style   basedir="${doc.dir}" destdir="${build.home}/documentation/doc"
            extension=".html" style="${doc.dir}/stylesheets/tiles.xsl"
             includes="*.xml" excludes="tiles*.xml" />
+    <!-- Replace variable in sources -->
+    <replace dir="${build.home}" >
+      <replacefilter token="@compilation-date@" value="${DATE_SPACE}"/>
+    </replace>
 </target>
 
 
@@ -299,7 +310,7 @@
         The "compile" target causes non-generic compile activity required
         for specific tag libraries to be executed.
 -->
-<target name="compile" 
+<target name="compile"
         description="Compile individual web applications">
   <antcall target="compile.required" />
   <antcall target="compile.optional" />

@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+
 <project name="Generic Webapp" default="compile" basedir=".">
 
 <!--
@@ -199,7 +201,7 @@
 
   <!-- Should we copy Tiles library and TLD files? -->
   <available property="webapp.tiles"    file="${tiles.libs}" />
-  
+
 </target>
 
 
@@ -340,10 +342,11 @@
         your completed web application, suitable for deployment on any
         compatible servlet container.
 -->
-<target name="dist" 
+<target name="dist"
         description="Create web application archive">
   <echo    message="Processing webapp ${webapp.name}"/>
   <jar  jarfile="${webapp.dist}/${webapp.war}"
+        manifest="${build.home}/library/classes/META-INF/MANIFEST.MF"
         basedir="${webapp.target}"/>
 </target>
 

@@ -3,7 +3,12 @@
 <th bgcolor="aqua"><font size="+1"><strong>News</strong></font></th></tr>
 <tr>
 <td>
-      <FONT size=2>Updated 20 Feb. 2002</FONT></P>
+      <FONT size=2>Updated 22 May 2002</FONT></P>
+      <P><STRONG><EM><FONT color=#ff0000>Tiles Advanced Features Documentation (draft version)</FONT></EM></STRONG>
+	  <br><FONT color=#000000 size=2>
+	  <a href="http://www.lifl.fr/~dumoulin/tiles/tilesAdvancedFeatures.pdf" />tilesAdvancedFeatures.pdf</a>
+	  </FONT><FONT color=#ff0000><EM><STRONG></STRONG></EM></FONT></P>
+	  
       <P><STRONG><EM><FONT color=#ff0000>Tiles-blank Applications</FONT></EM></STRONG>
 	  <br><FONT color=#000000 size=2>
 	  Different <code>tiles-blanc.war</code> files are now provided to help starting new project using Tiles. 
@@ -55,6 +60,5 @@
       <P>
       <FONT size=2>Check "History" for latest modifications (further in this page)</FONT></P>
       <P>
-      <FONT size=2>Updated 12 Jan. 2002</FONT></P>
 	  
 </td></tr></table>

@@ -94,6 +94,7 @@ public class XmlParser
 
    /**
     * Init digester for components syntax.
+    * This is an old set of rules, left for backward compatibilities.
     *
     */
   private void initDigesterForComponentsDefinitionsSyntax( Digester digester )
@@ -177,13 +178,14 @@ public class XmlParser
 	digester.addSetNext(       ADD_LIST_ELE_TAG, "add", putAttributeHandlerClass);
 	digester.addSetProperties( ADD_LIST_ELE_TAG);
 	digester.addCallMethod(    ADD_LIST_ELE_TAG, "setBody", 0);
-    // list elements rules
+    // bean elements rules
     // We use Attribute class to avoid rewriting a new class.
     // Name part can't be used in listElement attribute.
   //String ADD_WILDCARD = LIST_TAG + "/addItem";
   // non String ADD_WILDCARD = LIST_TAG + "/addx*";
   String ADD_WILDCARD = "*/item";
-	digester.addObjectCreate(  ADD_WILDCARD, putAttributeHandlerClass, "classtype");
+  String menuItemDefaultClass = "org.apache.struts.tiles.beans.SimpleMenuItem";
+	digester.addObjectCreate(  ADD_WILDCARD, menuItemDefaultClass, "classtype");
 	digester.addSetNext(       ADD_WILDCARD, "add", "java.lang.Object");
 	digester.addSetProperties( ADD_WILDCARD);
   }

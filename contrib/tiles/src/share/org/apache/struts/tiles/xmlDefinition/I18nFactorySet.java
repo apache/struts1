@@ -61,8 +61,11 @@ public class I18nFactorySet extends FactorySet
                       "/WEB-INF/instanceDefinitions.xml"};
     /** Default factory */
   protected DefinitionsFactory defaultFactory;
-    /** Xml parser used */
-  protected XmlParser xmlParser;
+    /** Xml parser used.
+     *  Attribute is transient to allow serialization. In this implementaiton,
+     *  xmlParser is created each time we need it ;-(.
+     */
+  protected transient XmlParser xmlParser;
     /** Does we want validating parser ? Default is false.
      *  Can be set from servlet config file
      */

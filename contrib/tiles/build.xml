@@ -44,7 +44,7 @@
         struts.home                   (required). The path to the Struts
                                       library installation. .
 
-        struts.libs                   (required). The directory containing 
+        struts.libs                   (required). The directory containing
                                       struts.jar and the associated TLD files.
 									  At least one of struts.home or struts.libs
 									  is required.
@@ -53,10 +53,10 @@
                                       to copy.  This is required only when
                                       executing the "deploy.catalina" target.
 
-        struts1.0.home                If specified, must be the directory 
+        struts1.0.home                If specified, must be the directory
 		                              containing struts1.0
                                       struts.jar and the associated TLD files..
-									  
+
 -->
 
     <!-- Load local and user build preferences -->
@@ -100,7 +100,7 @@
 
     <!-- Version of the project -->
     <property name="project.version" value="1.1-dev"/>
-	
+
     <!-- Version of the project -->
     <property name="struts.libs" value="${struts.home}/lib"/>
 
@@ -124,6 +124,9 @@
 
     <!-- Directory where core tiles library configurations files are stored -->
     <property name="conf.share.dir" value="conf/share"/>
+
+    <!-- Directory where manifest is stored -->
+    <property name="manifest.dir" value="${build.home}/library/classes/META-INF"/>
 
     <!-- Directory where test configurations files are stored -->
     <property name="conf.test.dir" value="conf/test"/>
@@ -209,6 +212,10 @@
             <fileset dir="${conf.share.dir}" includes="*.dtd"/>
             <fileset dir="${conf.share.dir}" includes="*.tld"/>
         </copy>
+          <!-- copy manifest -->
+        <copy todir="${manifest.dir}">
+            <fileset dir="${conf.share.dir}" includes="*.MF"/>
+        </copy>
           <!-- create and copy tld for application -->
         <style basedir="${doc.dir}"
             destdir="${build.home}/library"
@@ -243,7 +250,7 @@
           <classpath refid="compile.classpath"/>
        </javac>
         <jar jarfile="${build.home}/library/${app.name}.jar"
-            manifest="${conf.share.dir}/MANIFEST.MF"
+            manifest="${manifest.dir}/MANIFEST.MF"
             basedir="${build.home}/library/classes"
             includes="**"/>
     </target>
@@ -266,10 +273,11 @@
             optimize="${compile.optimize}"
             deprecation="${compile.deprecation}">
           <exclude name="org/apache/struts/tiles/TilesRequestProcessor.java" />
+          <exclude name="org/apache/struts/tiles/TilesPlugin.java" />
           <classpath refid="compile.classpath.struts1.0"/>
         </javac>
         <jar jarfile="${build.home}/library/${jar.name}.jar"
-            manifest="${conf.share.dir}/MANIFEST.MF"
+            manifest="${manifest.dir}/MANIFEST.MF"
             basedir="${build.home}/library/classes"
             includes="**"/>
 

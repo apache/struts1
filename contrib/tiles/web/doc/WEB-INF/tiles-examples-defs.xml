@@ -73,11 +73,9 @@
   <put name="title" value="Examples" />
   <putList name="items" >
     <item value="Examples Home"
-			link="/examples/index.jsp"
-          	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+			link="/examples/index.jsp" />
     <item value="Portal"
-			link="/examples/portal.jsp"
-          	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+			link="/examples/portal.jsp" />
     <item value="my Portal"
 			link="/examples/myPortal.jsp"
           	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />

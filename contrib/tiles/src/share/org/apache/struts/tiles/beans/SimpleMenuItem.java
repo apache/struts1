@@ -84,4 +84,24 @@ public class SimpleMenuItem implements MenuItem, Serializable
   {
     return tooltip;
   }
+
+    /**
+     * toString method
+     */
+  public String toString()
+  {
+  StringBuffer buff = new StringBuffer();
+
+  buff.append( "SimpleMenuItem[");
+  if( getValue() != null )
+    buff.append( "value=" ).append(getValue()).append( ", " );
+  if( getLink() != null )
+    buff.append( "link=" ).append(getLink()).append( ", " );
+  if( getTooltip() != null )
+    buff.append( "tooltip=" ).append(getTooltip()).append( ", " );
+  if( getIcon() != null )
+    buff.append( "icon=" ).append(getIcon()).append( ", " );
+  buff.append( "]");
+  return buff.toString();
+  }
 }
