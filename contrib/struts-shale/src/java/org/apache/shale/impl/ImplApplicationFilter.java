@@ -113,7 +113,7 @@ public class ImplApplicationFilter implements Filter {
         phaseListener = new ImplPhaseListener();
         getLifecycle().addPhaseListener(phaseListener);
         // FIXME - make the mapper pluggable
-        context.setAttibute(ImplConstants.VIEW_MAPPER,
+        context.setAttribute(ImplConstants.VIEW_MAPPER,
           new DefaultViewControllerMapper());
 
     }
