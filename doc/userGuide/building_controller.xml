@@ -608,8 +608,10 @@ http://www.mycompany.com/myapplication/logon.do
       <section name="4.5.4 Add Struts Components To Your Application" href="config_add">
         
         <p>
-          To use struts, you must copy the .tld files that you require into your
-          WEB-INF directory, and copy struts.jar into your WEB-INF/lib directory.
+         To use Struts, you must copy the .tld files that you require into
+         your <code>WEB-INF</code> directory, and copy <code>struts.jar</code>
+         (and all of the <code>commons-*.jar</code> files) into your
+         <code>WEB-INF/lib</code> directory.
         </p>
                                 <p>
                                         Next: <a href="resources.html">Struts Resources</a>

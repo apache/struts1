@@ -48,6 +48,17 @@
       distribution from
       <a href="http://jakarta.apache.org/builds/jakarta-servletapi">here</a>.
       </li>
+  <li><strong>Jakarta Commons Packages</strong> - Struts utilizes several
+      packages from the <a href="http://jakarta.apache.org/commons/">Jakarta
+      Commons Project</a>.  If you are utilizing a binary distriubtion of
+      Struts, the corresponding JAR files are included in the <code>lib</code>
+      directory.  However, if you wish to build Struts from source, you will
+      need to download and install the following packages:
+      <ul>
+      <li><em>Beanutils</em> (Version 1.0 or later)</li>
+      <li><em>Collections</em> (Version 1.0 or later)</li>
+      <li><em>Digester</em> (Version 1.0 or later)</li>
+      </ul></li>
   <li><strong>JDBC 2.0 Optional Package Classes</strong> - Struts supports
       an optional implementation of <code>javax.sql.DataSource</code>, so it
       requires the API classes to be compiled.  They can be downloaded from
@@ -100,6 +111,12 @@
         <li><strong>catalina.home</strong> - Pathname to the directory of your
             binary distribution of Tomcat 4.0 (required only if you wish to
             use the <code>deploy.catalina</code> target).</li>
+        <li><strong>commons-beanutils.jar</strong> - Pathname of the BeanUtils
+            package JAR file from the Jakarta Commons project.</li>
+        <li><strong>commons-collections.jar</strong> - Pathname of the
+            Collections package JAR file from the Jakarta Commons project.</li>
+        <li><strong>commons-digester.jar</strong> - Pathname of the
+            Digester package JAR file from the Jakarta Commons project.</li>
         <li><strong>servletapi.home</strong> - Pathname to the directory of
             your binary distribution of the Servlet API classes.</li>
         <li><strong>tomcat.home</strong> - Pathname to the directory of your
@@ -130,11 +147,13 @@
     files included in a binary distribution of Struts, as described
     in the following section.</p>
 
-    <p>IMPORTANT NOTE: The <code>struts.jar</code> must be in your classpath when 
-    compiling Struts. The <code>build.xml</code> provided does this automatically. 
-    If you use your development machine to test Struts application locally, be 
-    sure that the <code>stuts.jar</code> is NOT on your classpath when your 
-    container is running. </p>    
+    <p>IMPORTANT NOTE: The <code>struts.jar</code>, as well as the JAR files
+    from the Jakarta Commons project, must be in your classpath when 
+    compiling Struts. The <code>build.xml</code> provided does this
+    automatically.  If you use your development machine to test Struts
+    application locally, be sure that the <code>stuts.jar</code> is
+    <strong>NOT</strong> on your classpath when your container is running.
+    </p>
 
 
   </section>
@@ -153,6 +172,14 @@
     distribution consists of the following contents:</p>
 
     <ul>
+    <li><strong>lib/commons-*.jar</strong> - These JAR files contain packages
+        from the Jakarta Commons project that are utilized within Struts
+        itself.  When you assemble a Struts-based application, you will need
+        to copy these files to the <code>WEB-INF/lib</code> directory.</li>
+    <li><strong>lib/jdbc2_0-stdext.jar</strong> - The JDBC 2.0 Optional Package
+        API classes.  You will need to copy this file to your
+        <code>WEB-INF/lib</code> directory if you are utilizing the data
+        sources support provided by Struts.</li>
     <li><strong>lib/struts.jar</strong> - This JAR file contains all of the
         Java classes included in Struts.  It should be copied into the
         <code>WEB-INF/lib</code> directory of your web application.
@@ -162,7 +189,7 @@
         supported by your container.  Be advised that this will like cause you
         to encounter ClassNotFoundException problems unless <em>all</em> of
         your application classes are stored in the shared repository.</li>
-    <li><strong>lib/struts*.tld</strong> - These are the "tag library
+    <li><strong>lib/struts-*.tld</strong> - These are the "tag library
         descriptor" files that describe the custom tags in the various Struts
         tag libraries.  They should be copied into the <code>WEB-INF</code>
         directory of your web application.</li>
@@ -196,10 +223,13 @@
     <p>To use Struts in your own application, you will need to follow
     these steps:</p>
     <ul>
+    <li>Copy the files <code>lib/commons-*.jar</code> from the Struts
+        distribution into the <code>WEB-INF/lib</code> directory of your
+        web application.</li>
     <li>Copy the file <code>lib/struts.jar</code> from the Struts distribution
         into the <code>WEB-INF/lib</code> directory of your web application.
         </li>
-    <li>Copy the all of the files that match <code>lib/struts*.tld</code>
+    <li>Copy the all of the files that match <code>lib/struts-*.tld</code>
         from the Struts distribution into the <code>WEB-INF</code> directory
         of your web application.</li>
     <li>Modify the <code>WEB-INF/web.xml</code> file for your web application
@@ -218,8 +248,8 @@
 &lt;/taglib&gt;
 
 &lt;taglib&gt;
-  &lt;taglib-uri&gt;/WEB-INF/struts-form.tld&lt;/taglib-uri&gt;
-  &lt;taglib-location&gt;/WEB-INF/struts-form.tld&lt;/taglib-location&gt;
+  &lt;taglib-uri&gt;/WEB-INF/struts-html.tld&lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;/WEB-INF/struts-html.tld&lt;/taglib-location&gt;
 &lt;/taglib&gt;
 
 &lt;taglib&gt;
@@ -244,14 +274,15 @@
     </ul>
 
 <pre>&lt;@ taglib uri="/WEB-INF/struts-bean.tld" prefix="struts-bean" %&gt;
-&lt;@ taglib uri="/WEB-INF/struts-form.tld" prefix="struts-form" %&gt;
+&lt;@ taglib uri="/WEB-INF/struts-html.tld" prefix="struts-html" %&gt;
 &lt;@ taglib uri="/WEB-INF/struts-logic.tld" prefix="struts-logic" %&gt;
 &lt;@ taglib uri="/WEB-INF/struts-template.tld" prefix="struts-template" %&gt;
 </pre>
 
     <ul>
     <li>When compiling the Java classes that comprise your application, be sure
-        to include the <code>struts.jar</code> file (copied earlier) on the
+        to include the <code>struts.jar</code> and
+        <code>commons-*.jar</code> files (copied earlier) on the
         CLASSPATH that is submitted to the compiler.</li>
     </ul>
 </section> <section name="Installing Struts with your servlet container" href="Containers"> 

@@ -1,4 +1,4 @@
-$Id: README,v 1.13 2001/03/24 00:05:36 craigmcc Exp $
+$Id: README,v 1.14 2001/07/15 04:08:55 craigmcc Exp $
 
 				Struts
 				======
@@ -76,8 +76,9 @@ and not the MVC framework, only the steps marked (*) are required.
 - (*) Copy the files "lib/struts*.tld" from the Struts distribution into the
   "WEB-INF" directory of your web application.
 
-- (*) Copy the file "lib/struts.jar" from the Struts distribution into the
-  "WEB-INF/lib" directory of your web application.
+- (*) Copy the JAR files from the "lib" directory of the Struts distribution
+  (such as "struts.jar" and "commons-*.jar") into the "WEB-INF/lib" directory
+  of your web application.
 
 - (*) Modify your "WEB-INF/web.xml" file to include a <servlet> element to
   define the controller servlet, and a <servlet-mapping> element to establish
@@ -107,7 +108,7 @@ and not the MVC framework, only the steps marked (*) are required.
   (If you wish, you can use a prefix other that "struts-bean").
 
 - When compiling your web application components, be sure that the
-  "struts.jar" file (copied above) is included on the CLASSPATH environment
+  JAR files (copied above) are included on the CLASSPATH environment
   variable used by your Java compiler.
 
 
