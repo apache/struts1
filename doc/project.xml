@@ -72,25 +72,17 @@
 
     <menu name="Nightly Build">
         <item 
-        	name="User Guide"
+        	name="User and Developer Guides"
             href="userGuide/index.html"
             />
-        <item 
-        	name="FAQs and Howtos"         
-        	href="faqs/index.html"
-        	/>
         <item 
         	name="Javadoc"
             href="api/index.html"
             />
         <item 
-        	name="Release Notes"
-            href="userGuide/release-notes.html"
-            />
-        <item 
-        	name="Installation"
-            href="userGuide/installation.html"
-            />
+        	name="FAQs and Howtos"         
+        	href="faqs/index.html"
+        	/>
     </menu>
 
     <menu name="Beta Release (1.1-b2)">

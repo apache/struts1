@@ -17,7 +17,7 @@
   The <i>production release</i> of <strong>Struts 1.0.2</strong> is available in
   a convenient binary distribution and also with complete source code. In
   addition, a library distribution is available, which contains the latest
-  Struts binaries without the sample applications, providing a smaller,
+  Struts binaries without the documentation or sample applications, providing a smaller,
   faster download.
   </p>
 
@@ -232,6 +232,14 @@
   </p>
 
   </section>
+
+
+  <section>
+  <p align="center">
+  Next: <a href="using.html">Using Struts</a>
+  </p>
+  </section>
+
 
   </body>
 </document>

@@ -16,63 +16,105 @@
   <p>
   The <b>official documentation</b> for the framework is provided both online
   and as a self-installing WAR in the distribution. The
-  <code>struts-documentation.war</code> includes our
-  <a href="./faqs/index.html">FAQs and Howtos</a>,
-  <a href="./faqs/newbie.html">Newbie</a> along with the
-  <a href="userGuide/index.html">Users Guide</a>,
-  <a href="api/index.html">Javadocs</a>, and everything else you find here.
-  You are invited to preview the documentation online, and then install the
-  application locally for closer study.
+  <code>struts-documentation.war</code> includes our 
+  </p>
+  
+  <ul>
+  	<li>
+	<a href="userGuide/index.html">User and Developer Guides</a>,
+	</li>
+	<li>
+    <a href="api/index.html">Javadocs</a>,
+	</li>
+	<li>
+	<a href="./faqs/index.html">FAQs and Howtos</a>,
+	</li>
+	<li>
+	and everything else you find here.
+	</li>
+  </ul>
+  
+  <p>
+  You are invited to preview the documentation online and then install the application locally for closer study.
   </p>
 
   <blockquote>
-  Note: Most of the links in this section refer to the <b>Nightly Build</b>.
-  When learning about Struts, <b>be sure to refer to the documentation for the
-  version you are actually using</b>. The documentation is bundled with each
-  distribution as an application that you can install locally. Links to the
-  documentation for the current stable release (1.0.2) are also provided on the
-  menu bar. Whenever possible, please help conserve our bandwidth, and install
-  the documentation locally.
+  <b>NOTE:</b> If you are previewing the documentation on the website, most of the links in this section will refer to the <b>Nightly Build</b>.
+  When learning about Struts, <b>be sure to refer to the documentation for the version you are actually using</b>. 
+  The documentation is bundled with each distribution as an application that you can install locally. 
+  Once you start working with Struts, you should refer to the documentation bundled with the release you are using. 
+  For your convenience, links to the documentation for the current stable release (1.0.2) are also provided on the menu bar. 
+  Whenever possible, please help conserve our bandwidth and install the documentation locally.
   </blockquote>
 
-  <p><a name="faqs"></a>
-  The <a href="./faqs/kickstart.html"><b>Kickstart FAQ</b></a> answers the most common
-  non-technical questions people first ask about Struts. The
-  <a href="./faqs/newbie.html">Struts Newbie FAQ</a> answers the most common
-  technical questions asked by first-timer Struts developers. The
-  <a href="./faqs/helping.html">How to Help</a> FAQ answers the most common questions
-  about contributing to the Jakarta-Struts project. A more extensive
-  Struts knowledgebase is available at the
-  <a href="http://jguru.com/faq/Struts">JGuru FAQ</a> and
-  <a href="http://jguru.com/forums/Struts">Forum</a>.
-  </p>
-
   <p>
-  The concise Struts <a href="userGuide/index.html"><b>Users Guide</b></a> introduces the
-  Model-View-Controller architecture, and how it relates to the major components of Struts.
-  To help you get started with the Struts JSP tag extensions and utility packages,
-  several <b>Developer Guides</b> supplement the Users Guide. The Users Guide also
-  includes detailed installation instructions and release notes for each version of the
-  framework.
+  The concise Struts <a href="userGuide/index.html"><b>User Guide</b></a> introduces the Model-View-Controller architecture, 
+  and how it relates to the major components of Struts.
+  If you want to find out "How Struts works", this is the place to start: <b>Read me first</b>.
+  Along with an architectural overview, 
+  the User Guide also includes detailed installation instructions and release notes for each version of the framework.
+  </p>
+  
+  <p>
+  Our <b>Developer Guides</b> are detailed technical references to the extensions and components provided in the Struts distribution. 
+  Included are package overviewa and API referencea for each of the Struts taglibs, 
+  along with guides to the Struts Utilities and the Struts Validator. 
+  The Developer Guides are designed as a day-to-day reference to help you get the most out of the standard packages.
   </p>
 
   <p>
   For more detail about a specific class or package, the Struts
   <a href="api/index.html"><b>Javadocs</b></a>
-  are <b>surprisingly comprehensive and carefully maintained</b>. It is <i>strongly</i> recommended that
-  you refer to the
+  are <b>surprisingly comprehensive and carefully maintained</b>. 
+  It is <i>strongly</i> recommended that you refer to the
   <a href="api/index.html">
-  Javadoc</a> for each class as you begin to use it, to be sure important features
-  and options are not overlooked. <i>What you don't know, can't help you.</i>
+  Javadoc</a> for each class as you begin to use it. 
+  This will help ensure that important features and options are not overlooked. 
+  <i>What you don't know, can't help you.</i>
+  </p>
+
+  <p><a name="faqs"></a>
+  The Struts <b>FAQs</b> are designed to fill in any small gaps left by the Javadocs or the User and Developer Guides. 
+  </p>
+  
+  <ul>
+  <li>The 
+  <a href="./faqs/kickstart.html">Kickstart FAQ</a> 
+  answers the most common non-technical questions people first ask about Struts. 
+  </li>
+  <li>
+  The 
+  <a href="./faqs/newbie.html">Struts Newbie FAQ</a> 
+  answers the most common technical questions asked by first-timer Struts developers. 
+  </li>
+  <li>
+  The
+  <a href="./faqs/helping.html">How to Help FAQ</a> 
+  answers the most common questions about contributing to the Jakarta-Struts project. 
+  </li>
+  </ul>
+  
+  <p><a name="howtos"></a>
+  The <b>Howto Guides</b> are designed to help you get started with some of the optional extensions and components available for Struts. 
+  These include topics like using the Secure Socket Layer (SSL) protocol with Struts and how to unit test your Struts applications. 
+  </p>
+  
+  <p>
+  A more extensive Struts knowledgebase is available at the
+  <a href="http://jguru.com/faq/Struts">JGuru FAQ</a> and
+  <a href="http://jguru.com/forums/Struts">Forum</a>.
   </p>
 
   <p>
-  Of course, the only true documentation is the code itself. If you have any questions
-  about how Struts actually works, do not hesitate to <i>use the source</i>. For the
-  complete, buildable source code to the entire Struts framework, see the "src" folder in
-  the <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/src/">
-  <b>Struts 1.0.2 source distribution</b></a>.
+  Of course, the only true documentation is the code itself. 
+  If you have any questions about how Struts actually works, do not hesitate to <i>use the source</i>. 
+  For the complete, buildable source code to the entire Struts framework, see the "src" folder in the 
+  <a href="http://jakarta.apache.org/site/sourceindex.html"><b>your source distribution</b></a>.
   </p>
+
+  </section>
+	
+  <section name="Learning More About Struts" href="Docs">
 
   <p>
   The Struts <a href="#Involved">Mailing Lists</a> are a treasure trove of useful,
@@ -115,7 +157,7 @@
   </p>
 
   <p>
-  The Struts <a href="news.html"><b>News &amp; Status</b></a> page highlights current
+  The Struts <a href="news/index.html"><b>News &amp; Status</b></a> page highlights current
   events affecting the framework, including new releases, proposals for new features,
   and additions to the Resources page.
   </p>
@@ -136,6 +178,12 @@
   <a href="resources/articles.html">the resource area</a>
   </p>
 
+  </section>
+
+  <section>
+  <p align="center">
+  Next: <a href="acquiring.html">Acquiring Struts</a>
+  </p>
   </section>
 
   </body>
