@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.64 2002/10/18 15:27:43 jholmes Exp $
- * $Revision: 1.64 $
- * $Date: 2002/10/18 15:27:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.65 2002/10/29 21:04:38 ekbush Exp $
+ * $Revision: 1.65 $
+ * $Date: 2002/10/29 21:04:38 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.64 $ $Date: 2002/10/18 15:27:43 $
+ * @version $Revision: 1.65 $ $Date: 2002/10/29 21:04:38 $
  */
 
 public class RequestUtils {
@@ -1456,7 +1456,7 @@ public class RequestUtils {
         int lastSlash = 0;  // Initialize before loop
         
         while (prefix.equals("") &&
-               ((lastSlash = matchPath.lastIndexOf("/")) != 0)) {
+               ((lastSlash = matchPath.lastIndexOf("/")) > 0)) {
             
             // We may be in a non-default module.  Try to get it's prefix.
             matchPath = matchPath.substring(0, lastSlash);
