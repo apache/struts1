@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.18 2003/05/17 03:42:00 dgraham Exp $
- * $Revision: 1.18 $
- * $Date: 2003/05/17 03:42:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.19 2003/06/21 03:12:48 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/06/21 03:12:48 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.18 $ $Date: 2003/05/17 03:42:00 $
+ * @version $Revision: 1.19 $ $Date: 2003/06/21 03:12:48 $
  */
 public class OptionTag extends BodyTagSupport {
 
@@ -286,7 +286,7 @@ public class OptionTag extends BodyTagSupport {
         if (disabled) {
             results.append(" disabled=\"disabled\"");
         }
-        if (this.selectTag().isMatched(value)) {
+        if (this.selectTag().isMatched(this.value)) {
             results.append(" selected=\"selected\"");
         }
         if (style != null) {
@@ -305,13 +305,8 @@ public class OptionTag extends BodyTagSupport {
             results.append("\"");
         }
         results.append(">");
-        
-        String text = text();
-        if (text == null) {
-            results.append(value);
-        } else {
-            results.append(text);
-        }
+
+        results.append(text());
         
         results.append("</option>");
         return results.toString();
@@ -359,15 +354,18 @@ public class OptionTag extends BodyTagSupport {
      * @exception JspException if an error occurs
      */
     protected String text() throws JspException {
+        String optionText = this.text;
 
-        if (this.text != null) {
-            return (this.text);
-        } else if (this.key != null) {
-            return (RequestUtils.message(pageContext, bundle, locale, key));
-        } else {
-            return "";  // no body text and no key to lookup so display nothing
+        if ((optionText == null) && (this.key != null)) {
+            optionText = RequestUtils.message(pageContext, bundle, locale, key);
         }
 
+        // no body text and no key to lookup so display the value
+        if (optionText == null) {
+            optionText = this.value;    
+        }
+
+        return optionText;
     }
 
 }
