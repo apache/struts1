@@ -135,7 +135,7 @@ public class ContextTestCase extends AbstractTestCase {
         assertEquals("", span.asText());
 
         span = (HtmlSpan) element("form:requestContextPathEC");
-        assertEquals("/struts-faces-systest", span.asText()); // FIXME - Ant property?
+        assertEquals("/struts-faces-systest1", span.asText()); // FIXME - Ant property?
 
 
         span = (HtmlSpan) element("form:requestLocaleEC");
@@ -153,7 +153,7 @@ public class ContextTestCase extends AbstractTestCase {
         assertEquals("", span.asText());
 
         span = (HtmlSpan) element("form:contextPathRQ");
-        assertEquals("/struts-faces-systest", span.asText()); // FIXME - Ant property?
+        assertEquals("/struts-faces-systest1", span.asText()); // FIXME - Ant property?
 
         span = (HtmlSpan) element("form:localeRQ");
         assertEquals(formRequestLocaleEC, span.asText());
@@ -206,7 +206,7 @@ public class ContextTestCase extends AbstractTestCase {
         assertEquals("", span.asText());
 
         span = (HtmlSpan) element("form:requestContextPathEC");
-        assertEquals("/struts-faces-systest", span.asText()); // FIXME - Ant property?
+        assertEquals("/struts-faces-systest1", span.asText()); // FIXME - Ant property?
 
         span = (HtmlSpan) element("form:requestLocaleEC");
         String formRequestLocaleEC = span.asText(); // FIXME - validate this
@@ -223,7 +223,7 @@ public class ContextTestCase extends AbstractTestCase {
         assertEquals("", span.asText());
 
         span = (HtmlSpan) element("form:contextPathRQ");
-        assertEquals("/struts-faces-systest", span.asText()); // FIXME - Ant property?
+        assertEquals("/struts-faces-systest1", span.asText()); // FIXME - Ant property?
         spanCA = (HtmlSpan) element("form:contextPathCA");
         assertEquals(span.asText(), spanCA.asText());
 
