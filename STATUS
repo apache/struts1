@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.59 2002/09/02 10:31:32 jholmes Exp $
+$Id: STATUS,v 1.60 2002/10/20 18:14:56 dgraham Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b2 AND NIGHTLY BUILDS
@@ -17,9 +17,7 @@ Custom Tags:
 -----------
  1586 The <html:form> tag generates incorrect focus javascript for radio buttons.
 11574 Nested logic tags are brittle
-12023 The "align" attribute on "html:image" and "html:img" should be removed
 12185 HTML tags badly parsed in text/xml mode
-12209 <html:link> tabindex isn't working
 
 
 Documentation:
@@ -41,7 +39,6 @@ Standard Actions:
 
 Tiles Framework:
 ---------------
-11757 Tiles code needs to be converted to use Commons Logging
 12159 Link to tutorial incorrect
 
 
@@ -51,8 +48,6 @@ Unknown:
 
 Utilities:
 ---------
- 4776 ResponseUtils.filter() does not encode the apostrophe character
-10897 PropertyMessageResources loading resources from the wrong ClassLoader
 11685 Unsafe URLEncoding in RequestUtil
 11932 (Message Resource is not multi-app aware) Multi-Resource not work in Multi-Appliction config environment
 
@@ -60,13 +55,10 @@ Utilities:
 Validator Framework:
 -------------------
  7353 Validator JavaScript Select Error
-10191 Validator range checking bug
 10348 Validator is not available under sub-application
 11520 [validator-rules.xml] javascript validateRequired() function does not work with radio objects
 11950 Missing <script> in generated javascipt
 12178 Validator restricted to one Message Resource bundle.
-12212 Validator seems to be adding a form that I don't have
-12213 Validator does not seem to be using commons-logging
 
 
 Web Site:
