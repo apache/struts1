@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.17 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.17 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.18 2004/04/08 22:07:56 mrdon Exp $
+ * $Revision: 1.18 $
+ * $Date: 2004/04/08 22:07:56 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -42,7 +42,7 @@ import org.apache.struts.util.RequestUtils;
  * implementation of dynamic action form beans. Application developers
  * never need to consult this documentation.</p>
  *
- * @version $Revision: 1.17 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Revision: 1.18 $ $Date: 2004/04/08 22:07:56 $
  * @since Struts 1.1
  */
 
@@ -256,19 +256,20 @@ public class DynaActionFormClass implements DynaClass, Serializable {
      *
      * @param config The FormBeanConfig instance describing the properties
      *  of the bean to be created
+     * @param moduleConfig The ModuleConfig instance containing all the
+     *  configuration information for the current module
      *
      * @exception IllegalArgumentException if the bean implementation class
      *  specified in the configuration is not DynaActionForm (or a subclass
      *  of DynaActionForm)
      */
     public static DynaActionFormClass
-        createDynaActionFormClass(FormBeanConfig config) {
+        createDynaActionFormClass(FormBeanConfig config, ModuleConfig moduleConfig) {
 
         synchronized (lock) {
             if (dynaClasses == null) {
                 dynaClasses = new HashMap();
             }
-            ModuleConfig moduleConfig = config.getModuleConfig();
             String key = config.getName();
             if (moduleConfig != null) {
                 key += moduleConfig.getPrefix();

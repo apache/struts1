@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.11 2004/03/14 06:23:53 sraeburn Exp $
- * $Revision: 1.11 $
- * $Date: 2004/03/14 06:23:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.12 2004/04/08 22:07:56 mrdon Exp $
+ * $Revision: 1.12 $
+ * $Date: 2004/04/08 22:07:56 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -44,7 +44,7 @@ import org.apache.struts.config.PlugInConfig;
  * string) is selected, which is elegantly backwards compatible with the
  * previous Struts behavior that only supported one module.</p>
  *
- * @version $Revision: 1.11 $ $Date: 2004/03/14 06:23:53 $
+ * @version $Revision: 1.12 $ $Date: 2004/04/08 22:07:56 $
  * @since Struts 1.1
  */
 public class ModuleConfigImpl implements Serializable, ModuleConfig {
@@ -233,7 +233,6 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
-        config.setModuleConfig(this);
         formBeans.put(config.getName(), config);
 
     }
@@ -579,7 +578,6 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
-        config.setModuleConfig(null);
         formBeans.remove(config.getName());
 
     }

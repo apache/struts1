@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.148 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.148 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.149 2004/04/08 22:07:56 mrdon Exp $
+ * $Revision: 1.149 $
+ * $Date: 2004/04/08 22:07:56 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -61,7 +61,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * <p>General purpose utility methods related to processing a servlet request
  * in the Struts controller framework.</p>
  *
- * @version $Revision: 1.148 $ $Date: 2004/03/14 06:23:51 $
+ * @version $Revision: 1.149 $ $Date: 2004/04/08 22:07:56 $
  */
 public class RequestUtils {
 
@@ -190,7 +190,7 @@ public class RequestUtils {
             return (null);
         }
 
-        return createActionForm(config, servlet);
+        return createActionForm(config, moduleConfig, servlet);
     }
 
 
@@ -275,11 +275,13 @@ public class RequestUtils {
      * which could be reused.</p>
      *
      * @param config The configuration for the Form bean which is to be created.
+     * @param moduleConfig The configuration for the current module.
      * @param servlet The action servlet
      *
      * @return ActionForm instance associated with this request
      */
-    public static ActionForm createActionForm(FormBeanConfig config, ActionServlet servlet)
+    public static ActionForm createActionForm(FormBeanConfig config, ModuleConfig moduleConfig,
+                                              ActionServlet servlet)
     {
         if (config == null)
         {
@@ -291,7 +293,7 @@ public class RequestUtils {
         if (config.getDynamic()) {
             try {
                 DynaActionFormClass dynaClass =
-                        DynaActionFormClass.createDynaActionFormClass(config);
+                        DynaActionFormClass.createDynaActionFormClass(config, moduleConfig);
                 instance = (ActionForm) dynaClass.newInstance();
                 ((DynaActionForm) instance).initialize(config);
                 if (log.isDebugEnabled()) {

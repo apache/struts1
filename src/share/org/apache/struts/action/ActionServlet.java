@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.174 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.174 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.175 2004/04/08 22:07:56 mrdon Exp $
+ * $Revision: 1.175 $
+ * $Date: 2004/04/08 22:07:56 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -166,7 +166,7 @@ import org.xml.sax.SAXException;
  *     process the configuration file (strongly recommended)? [true]</li>
  * </ul>
  *
- * @version $Revision: 1.174 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Revision: 1.175 $ $Date: 2004/04/08 22:07:56 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -674,7 +674,7 @@ public class ActionServlet extends HttpServlet {
         FormBeanConfig fbs[] = config.findFormBeanConfigs();
         for (int i = 0; i < fbs.length; i++) {
             if (fbs[i].getDynamic()) {
-                DynaActionFormClass.createDynaActionFormClass(fbs[i]);
+                DynaActionFormClass.createDynaActionFormClass(fbs[i], config);
             }
         }
 
