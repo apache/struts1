@@ -269,6 +269,7 @@
   <mkdir   dir="${webapp.target}/WEB-INF/lib"/>
   <copy  todir="${webapp.target}/WEB-INF/lib">
     <fileset dir="${struts.libs}" includes="commons-*.jar"/>
+    <fileset dir="${struts.libs}" includes="jakarta-oro.jar"/>
     <fileset dir="${struts.libs}" includes="struts.jar"/>
   </copy>
 </target>

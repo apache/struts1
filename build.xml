@@ -56,6 +56,10 @@
                                       of the Jakarta Commons VALIDATOR
                                       package (version 1.0 or later).
 
+        jakarta-oro.jar        	      (required).  The path to the JAR file
+                                      of the Jakarta ORO
+                                      package (version 2.06 or later).
+
         jdbc20ext.jar                 (required).  The path to the JAR file
                                       for the JDBC 2.0 Optional Package APIs.
 
@@ -191,7 +195,7 @@
       <pathelement location="${commons-pool.jar}"/>
       <pathelement location="${commons-services.jar}"/>
       <pathelement location="${commons-validator.jar}"/>
-      <pathelement location="${regexp.jar}"/>
+      <pathelement location="${jakarta-oro.jar}"/>
       <pathelement location="${jdbc20ext.jar}"/>
       <pathelement location="${servlet.jar}"/>
       <pathelement location="${xerces.jar}"/>
@@ -214,6 +218,7 @@
     <pathelement location="${commons-pool.jar}"/>
     <pathelement location="${commons-services.jar}"/>
     <pathelement location="${commons-validator.jar}"/>
+    <pathelement location="${jakarta-oro.jar}"/>
     <pathelement location="${servlet.jar}"/>
     <pathelement location="${junit.jar}"/>
     <pathelement location="${jdbc20ext.jar}"/>
@@ -275,6 +280,8 @@
             tofile="${build.home}/library/commons-services.jar"/>
         <copy file="${commons-validator.jar}"
             tofile="${build.home}/library/commons-validator.jar"/>
+        <copy file="${jakarta-oro.jar}"
+            tofile="${build.home}/library/jakarta-oro.jar"/>
         <copy file="${jdbc20ext.jar}"
             tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
     </target>
