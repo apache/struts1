@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.17 2001/03/23 22:21:34 craigmcc Exp $
- * $Revision: 1.17 $
- * $Date: 2001/03/23 22:21:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.18 2001/05/20 04:54:41 craigmcc Exp $
+ * $Revision: 1.18 $
+ * $Date: 2001/05/20 04:54:41 $
  *
  * ====================================================================
  *
@@ -77,43 +77,17 @@ import java.io.Serializable;
  * Additional properties can be added by a subclass, simply by
  * providing appropriate public "getter" and "setter" methods.
  * <ul>
- * <li><em>actionClass</em> - Fully qualified Java class name of the
- *     <code>Action</code> implementation class used by this mapping.  This
- *     property is required.  <em>DEPRECATED - use <code>type</code>
- *     instead</em>.
  * <li><strong>attribute</strong> - Name of the request-scope or
  *     session-scope attribute under which our form bean is accessed, if it
- *     is other than the bean's specified name.  Replaces the old
- *     <code>formAttribute</code> property.
- * <li><em>formAttribute</em> - Name of the session attribute under
- *     which an <code>ActionForm</code> bean is created and/or updated for
- *     this mapping.  If not present, no <code>ActionForm</code> bean will
- *     be maintained automatically.  <em>DEPRECATED - use
- *     <code>attribute</code> instead.</em>
- * <li><em>formClass</em> - Fully qualified Java class name of the
- *     <code>ActionForm</code> implementation class used by this mapping
- *     (if any).  <em>DEPRECATED - use the <code>name</code> attribute
- *     to look up the corresponding ActionFormBean information</em>.
- * <li><em>formPrefix</em> - Prefix used to match request parameter
- *     names when populating the properties of our <code>ActionForm</code>
- *     bean (if any).  <em>DEPRECATED - use <code>prefix</code>
- *     instead</em>.
- * <li><em>formScope</em> - Scope within which the form bean associated
- *     with this mapping will be created or looked for.  Valid values are
- *     "request" or "session".  <em>DEPRECATED - use <code>scope</code>
- *     instead</em>.
- * <li><em>formSuffix</em> - Suffix used to match request parameter
- *     names when populating the properties of our <code>ActionForm</code>
- *     bean (if any).  <em>DEPRECATED - use <code>suffix</code>
- *     instead</em>.
+ *     is other than the bean's specified name.</li>
  * <li><strong>forward</strong> - Context-relative path of the resource that
  *     should serve this request (via a call to
  *     <code>RequestDispatcher.forward()</code>) instead of instantiating the
  *     Action class specified by the <code>type</code> property.
  *     Exactly one of the <code>forward</code>, <code>include</code>, or
- *     <code>type</code> properties must be specified.
+ *     <code>type</code> properties must be specified.</li>
  * <li><strong>forwards</strong> - The set of ActionForwards locally
- *     associated with this mapping.
+ *     associated with this mapping.</li>
  * <li><strong>include</strong> - Context-relative path of the resource that
  *     should serve this request (via a call to
  *     <code>RequestDispatcher.include()</code>) instead of instantiating the
@@ -122,46 +96,41 @@ import java.io.Serializable;
  *     <code>type</code> properties must be specified.</li>
  * <li><strong>input</strong> - Context-relative path of the input form
  *     to which control should be returned if a validation error is
- *     encountered.  Replaces the old <code>inputForm</code> property.
- * <li><em>inputForm</em> - Context-relative path of the input form
- *     to which control should be returned if a validation error is
- *     encountered.  <em>DEPRECATED - use <code>input</code> instead</em>.
+ *     encountered.</li>
  * <li><strong>mappings</strong> - The <code>ActionMappings</code>
- *     collection of which we are a part.
+ *     collection of which we are a part.</li>
  * <li><strong>name</strong> - Name of the form bean, if any, associated
- *     with this action.
+ *     with this action.</li>
  * <li><strong>parameter</strong> - General purpose configuration parameter
  *     that can be used to pass extra information to the <code>Action</code>
- *     selected by this <code>ActionMapping</code>.
+ *     selected by this <code>ActionMapping</code>.</li>
  * <li><strong>path</strong> - Request URI path used to select this mapping.
  *     If extension mapping is used for the controller servlet, the extension
- *     will be stripped before comparisions against this value are made.
+ *     will be stripped before comparisions against this value are made.</li>
  * <li><strong>prefix</strong> - Prefix used to match request parameter
- *     names to form bean property names, if any.  Replaces the old
- *     <code>formPrefix</code> property.
+ *     names to form bean property names, if any.</li>
  * <li><strong>scope</strong> - Identifier of the scope ("request" or
  *     "session" within which the form bean, if any, associated with this
- *     action will be created.  Replaces the old <code>formScope</code>
- *     attribute.
+ *     action will be created.</li>
  * <li><strong>suffix</strong> - Suffix used to match request parameter
  *     names when populating the properties of our <code>ActionForm</code>
- *     bean (if any).  Replaces the old <code>formSuffix</code> property.
+ *     bean (if any).</li>
  * <li><strong>type</strong> - Fully qualified Java class name of the
  *     <code>Action</code> implementation class used by this mapping.
  *     Replaces the old <code>actionClass</code> property.  Exactly one of
  *     the <code>forward</code>, <code>include</code>, or <code>type</code>
- *     properties must be specified.
+ *     properties must be specified.</li>
  * <li><strong>unknown</strong> - Set to <code>true</code> if this action
  *     should be configured as the default for this application, to handle
  *     all requests not handled by another action.  Only one action can be
- *     defined as a default within a single application.
+ *     defined as a default within a single application.</li>
  * <li><strong>validate</strong> - Set to <code>true</code> if the
  *     <code>validate()</code> method of the form bean (if any) associated
- *     with this mapping should be called.
+ *     with this mapping should be called.</li>
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2001/03/23 22:21:34 $
+ * @version $Revision: 1.18 $ $Date: 2001/05/20 04:54:41 $
  */
 
 public class ActionMapping implements Serializable {
@@ -287,32 +256,6 @@ public class ActionMapping implements Serializable {
 
 
     /**
-     * Return the action class name for this mapping.
-     *
-     * @deprecated Use getType() instead
-     */
-    public String getActionClass() {
-
-        return (getType());
-
-    }
-
-
-    /**
-     * Set the action class name for this mapping.
-     *
-     * @param actionClass The new action class name
-     *
-     * @deprecated Use setType(String) instead
-     */
-    public void setActionClass(String actionClass) {
-
-        setType(actionClass);
-
-    }
-
-
-    /**
      * Return the attribute name for our form bean.
      */
     public String getAttribute() {
@@ -333,137 +276,6 @@ public class ActionMapping implements Serializable {
     public void setAttribute(String attribute) {
 
         this.attribute = attribute;
-
-    }
-
-
-    /**
-     * Return the form session attribute key for this mapping, if any.
-     *
-     * @deprecated Use getAttribute() instead
-     */
-    public String getFormAttribute() {
-
-        return (getAttribute());
-
-    }
-
-
-    /**
-     * Set the form session attribute key for this mapping.
-     *
-     * @param formAttribute The new form session attribute key
-     *
-     * @deprecated Use setAttribute(String) instead
-     */
-    public void setFormAttribute(String formAttribute) {
-
-        setAttribute(formAttribute);
-
-    }
-
-
-    /**
-     * Return the form class name for this mapping.
-     *
-     * @deprecated Use the bean name to look up the corresponding
-     *  ActionFormBean instead
-     */
-    public String getFormClass() {
-
-        return (getName());
-
-    }
-
-
-    /**
-     * Set the form class name for this mapping.
-     *
-     * @param formClass The new form class name
-     *
-     * @deprecated Modify the corresponding ActionFormBean instead
-     */
-    public void setFormClass(String formClass) {
-
-        setName(formClass);
-
-    }
-
-
-    /**
-     * Return the form parameter name prefix for this mapping.
-     *
-     * @deprecated Use getPrefix() instead
-     */
-    public String getFormPrefix() {
-
-        return (getPrefix());
-
-    }
-
-
-    /**
-     * Set the form parameter name prefix for this mapping.
-     *
-     * @param formPrefix The new form prefix
-     *
-     * @deprecated Use setPrefix(String) instead
-     */
-    public void setFormPrefix(String formPrefix) {
-
-        setPrefix(formPrefix);
-
-    }
-
-
-    /**
-     * Return the scope within which our form bean will be accessed.
-     *
-     * @deprecated Use getScope() instead
-     */
-    public String getFormScope() {
-
-        return (getScope());
-
-    }
-
-
-    /**
-     * Set the scope within which our form bean will be accessed.
-     *
-     * @param formScope The new scope ("request" or "session")
-     *
-     * @deprecated Use setScope(String) instead
-     */
-    public void setFormScope(String formScope) {
-
-        setScope(formScope);
-
-    }
-
-
-    /**
-     * Return the form parameter name suffix for this mapping.
-     *
-     * @deprecated Use getSuffix() instead
-     */
-    public String getFormSuffix() {
-
-        return (getSuffix());
-
-    }
-
-
-    /**
-     * Set the form parameter name suffix for this mapping.
-     *
-     * @param formSuffix The new form suffix
-     *
-     * @deprecated Use setSuffix(String) instead
-     */
-    public void setFormSuffix(String formSuffix) {
-
-        setSuffix(formSuffix);
 
     }
 
@@ -530,32 +342,6 @@ public class ActionMapping implements Serializable {
     public void setInput(String input) {
 
         this.input = input;
-
-    }
-
-
-    /**
-     * Return the input form URI for this mapping.
-     *
-     * @deprecated Use getInput() instead
-     */
-    public String getInputForm() {
-
-        return (getInput());
-
-    }
-
-
-    /**
-     * Set the input form URI for this mapping.
-     *
-     * @param inputForm The new input form URI
-     *
-     * @deprecated Use setInput(String) instead
-     */
-    public void setInputForm(String inputForm) {
-
-        setInput(inputForm);
 
     }
 
@@ -816,32 +602,6 @@ public class ActionMapping implements Serializable {
     public void addForward(ActionForward forward) {
 
         forwards.addForward(forward);
-
-    }
-
-
-    /**
-     * Create and return an initialized instance of our form class.  If
-     * instantiation fails for any reason, <code>null</code> is returned.
-     *
-     * @deprecated Creation of ActionForm instances is now the responsibility
-     *  of the controller servlet
-     */
-    public ActionForm createFormInstance() {
-
-        // Look up the Java class name to be instantiated
-        ActionFormBean formBean =
-            getMappings().getServlet().findFormBean(getName());
-        if (formBean == null)
-            return (null);
-
-        // Instantiate and return an instance of this class
-        try {
-            Class clazz = Class.forName(formBean.getType());
-            return ((ActionForm) clazz.newInstance());
-        } catch (Throwable t) {
-            return (null);
-        }
 
     }
 

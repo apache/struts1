@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.21 2001/05/11 22:33:31 mschachter Exp $
- * $Revision: 1.21 $
- * $Date: 2001/05/11 22:33:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.22 2001/05/20 04:54:41 craigmcc Exp $
+ * $Revision: 1.22 $
+ * $Date: 2001/05/20 04:54:41 $
  *
  * ====================================================================
  *
@@ -108,7 +108,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.21 $ $Date: 2001/05/11 22:33:31 $
+ * @version $Revision: 1.22 $ $Date: 2001/05/20 04:54:41 $
  */
 
 public class Action {
@@ -281,36 +281,6 @@ public class Action {
      * it).  Return an <code>ActionForward</code> instance describing where
      * and how control should be forwarded, or <code>null</code> if the
      * response has already been completed.
-     *
-     * @deprecated Use the new perform() method without a servlet argument
-     *
-     * @param servlet The ActionServlet instance owning this Action
-     * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are processing
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
-     */
-    public ActionForward perform(ActionServlet servlet,
-                                 ActionMapping mapping,
-                                 ActionForm form,
-                                 ServletRequest request,
-                                 ServletResponse response)
-        throws IOException, ServletException {
-
-        return (perform(mapping, form, request, response));
-
-    }
-
-
-    /**
-     * Process the specified non-HTTP request, and create the corresponding
-     * non-HTTP response (or forward to another web component that will create
-     * it).  Return an <code>ActionForward</code> instance describing where
-     * and how control should be forwarded, or <code>null</code> if the
-     * response has already been completed.
      * <p>
      * The default implementation attempts to forward to the HTTP version of
      * this method.
@@ -336,36 +306,6 @@ public class Action {
         } catch (ClassCastException e) {
             return (null);
         }
-
-    }
-
-
-    /**
-     * Process the specified HTTP request, and create the corresponding
-     * HTTP response (or forward to another web component that will create
-     * it).  Return an <code>ActionForward</code> instance describing where
-     * and how control should be forwarded, or <code>null</code> if the
-     * response has already been completed.
-     *
-     * @deprecated Use the new perform() method without a servlet argument
-     *
-     * @param servlet The ActionServlet instance owning this Action
-     * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are processing
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
-     */
-    public ActionForward perform(ActionServlet servlet,
-                                 ActionMapping mapping,
-                                 ActionForm form,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response)
-        throws IOException, ServletException {
-
-        return (perform(mapping, form, request, response));
 
     }
 
