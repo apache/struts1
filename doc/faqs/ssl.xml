@@ -104,6 +104,11 @@ tag is defined for allowing users to specify the transmission protocol for an in
 JSP. This is most often used for form-based authentication pages.
 </p>
 
+<p>
+The sslext library may be obtained from <a href="http://sslext.sourceforge.net">
+http://sslext.sourceforge.net</a>
+</p>
+
 </section>
 
 <section href="legacy" name="Legacy Browser Issue">
