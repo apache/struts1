@@ -40,6 +40,50 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
  
 <section name="News" href="news">
 
+<h3><a name="20020709"></a>9 July 2002 - Struts Console version 2.0</h3>
+<p>
+Struts Console version 2.0 is now available.
+</p>
+<ul>
+<li><a href="http://www.jamesholmes.com/struts/">http://www.jamesholmes.com/struts/</a></li>
+</ul>
+<p>Download Now:</p>
+<p><a href="http://www.jamesholmes.com/struts/struts-console-2.0.zip">www.jamesholmes.com/struts/struts-console-2.0.zip</a></p>
+<p>-- OR --</p>
+<p><a href="http://www.jamesholmes.com/struts/struts-console-2.0.tar.gz">www.jamesholmes.com/struts/struts-console-2.0.tar.gz</a></p>
+<p>
+Struts Console is FREE software.
+</p>
+<p>
+This release is adds new features and fixes many bugs,
+but most notably adds support for Tiles configuration
+files. This release also adds support for all of the
+latest 1.1 config changes.
+</p>
+<p>
+Changes with Struts Console v2.0
+</p>
+<ul>
+<li>Fixed bug where Edit button was not properly being disabled for Properties and Form Properties which would allow Edit to be selected when no row was highlighted and thus causing exceptions to be thrown.</li>
+<li>Fixed bug where Properties and Form Properties tables weren't being updated after a row had been edited.</li>
+<li>Fixed bug where Forwards and Exceptions were not properly being removed from Actions.</li>
+<li>Fixed bug where changing an Action from using a Form Bean to "&lt;none&gt;" would wrongfully set the Action's "name" attribute to "&lt;none&gt;".</li>
+<li>Fixed bug in standalone app where after performing "Save As" on a file, the GUI wouldn't indicate whether or not a file had changes or not.</li>
+<li>Fixed bug in Page Converter where an exception was thrown when trying to write files to a different directory.</li>
+<li>Added support for Tiles configuration files.</li>
+<li>Added support for "roles" attribute to Action screen for 1.1 config files.</li>
+<li>Added support for "forwardPattern", "pagePattern" and "inputForward" attributes to Controller screen for 1.1 config files.</li>
+<li>Added support for "bundle" attribute to Exception screen for 1.1 config files.</li>
+<li>Added ability to move elements up and down in relation to their parent.</li>
+<li>Added ability to specifiy the number of lines between elements in the Ouput Options.</li>
+<li>Added "Key" column to Exceptions tables and make "Key" a required field per the latest DTD for 1.1 config files.</li>
+<li>Updated Data Sources screen to be more consistent with the other screens.</li>
+<li>Extensive refactorings to improve performance and reduce code size.</li>
+</ul>
+<hr size="1" noshade=""/>
+
+
+
 <h3><a name="20020709"></a>09 July 2002 - Struts Adoption article</h3>
 <p>
 <a href="http://www.scioworks.net/devnews/articles/struts_adoption_issues/index.html">
