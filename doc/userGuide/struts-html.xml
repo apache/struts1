@@ -2791,6 +2791,107 @@
 
         </tag>
 
+    <tag>
+
+        <name>javascript</name>
+        <summary>
+            Render JavaScript validation based on the 
+            validation rules loaded by the <code>ValidatorPlugIn</code>.
+        </summary>
+        <tagclass>org.apache.struts.taglib.html.JavascriptValidatorTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>
+            <p>
+                Render JavaScript validation based on the 
+                validation rules loaded by the <code>ValidatorPlugIn</code>.  
+                The set of validation rules that should be generated is based 
+                on the formName attribute passed in, which should match 
+                the name attribute of the form element in the xml file.
+            <p>
+            </p>
+                The dynamicJavascript and staticJavascript attributes 
+                default to true, but if dynamicJavascript is set to <code>true</code> 
+                and staticJavascript is set to <code>false</code> then only 
+                the dynamic JavaScript will be rendered.  If dynamicJavascript 
+                is set to <code>false</code> 
+                and staticJavascript is set to <code>true</code> then only 
+                the static JavaScript will be rendered which can then be put in  
+                separate JSP page so the browser can cache the static JavaScript.
+            </p>
+        </info>
+
+        <attribute>
+            <name>dynamicJavascript</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+               <p>
+                  Whether or not to render the dynamic JavaScript.  
+                  Defaults to <code>true</code>.
+               </p>
+            </info>
+        </attribute>
+        <attribute>
+            <name>formName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+               <p>
+                  The key (form name) to retrieve a specific 
+                  set of validation rules.
+               </p>
+            </info>
+        </attribute>
+        <attribute>
+            <name>method</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+               <p>
+                  The alternate JavaScript method name to be used 
+                  instead of the of the default.  The default is 
+                  'validate' concatenated in front of 
+                  the key (form name) passed in (ex: validateRegistrationForm).
+               </p>
+            </info>
+        </attribute>
+        <attribute>
+            <name>page</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+               <p>
+                  The current page of a set of validation rules 
+                  if the page attribute for the field element 
+                  in the xml file is in use.
+               </p>
+            </info>
+        </attribute>
+        <attribute>
+            <name>src</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+               <p>
+                  The src attribute's value when defining 
+                  the html script element.
+               </p>
+            </info>
+        </attribute>
+        <attribute>
+            <name>staticJavascript</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+               <p>
+                  Whether or not to render the static JavaScript.  
+                  Defaults to <code>true</code>.
+               </p>
+            </info>
+        </attribute>
+
+    </tag>
+
         <tag>
 
                 <name>link</name>
