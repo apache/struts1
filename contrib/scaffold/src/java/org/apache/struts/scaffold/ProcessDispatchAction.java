@@ -34,7 +34,7 @@ import org.apache.commons.scaffold.util.ResultListBase;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.8 $ $Date: 2002/12/08 08:14:29 $
+ * @version $Revision: 1.9 $ $Date: 2003/01/15 10:19:26 $
  */
 public class ProcessDispatchAction extends ProcessFormAction {
 
@@ -166,7 +166,7 @@ public class ProcessDispatchAction extends ProcessFormAction {
         }
 
         // Execute business logic, using  map
-        checkOutcome(mapping,request,result);
+        checkOutcome(mapping,request,response,result);
      }
 
 } // end ProcessDispatchAction

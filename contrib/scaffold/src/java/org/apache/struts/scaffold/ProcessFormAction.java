@@ -2,6 +2,7 @@ package org.apache.struts.scaffold;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -32,7 +33,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  *
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.8 $ $Date: 2003/01/02 19:43:45 $
+ * @version $Revision: 1.9 $ $Date: 2003/01/15 10:19:26 $
  */
 public class ProcessFormAction extends ProcessAction {
 
@@ -56,6 +57,7 @@ public class ProcessFormAction extends ProcessAction {
      */
     protected void exposeInScope(
             HttpServletRequest request,
+            HttpServletResponse response,
             String name,
             String scope,
             Object bean) {
@@ -63,7 +65,7 @@ public class ProcessFormAction extends ProcessAction {
         if (null==scope) {
             servlet.log(Log.PROCESS_BEAN_NULL_SCOPE,Log.DEBUG);
         }
-        if (null==bean) super.exposeInScope(request,name,scope,bean);
+        if (null==bean) super.exposeInScope(request,response,name,scope,bean);
         else if (Tokens.REQUEST.equals(scope)) {
             Object form = request.getAttribute(name);
             if (null==form) {

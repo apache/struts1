@@ -24,7 +24,7 @@ import java.util.Map;
  * @author Ted Husted
  * @author  Synthis Corporation.
  * @author OK State DEQ
- * @version $Revision: 1.9 $ $Date: 2003/01/02 19:43:27 $
+ * @version $Revision: 1.10 $ $Date: 2003/01/15 10:19:26 $
  * @deprecated Use BizAction instead
  */
 public class ProcessAction extends BaseHelperAction {
@@ -43,6 +43,7 @@ public class ProcessAction extends BaseHelperAction {
      */
     protected void exposeInScope(
             HttpServletRequest request,
+            HttpServletResponse response,
             String name,
             String scope,
             Object bean) {
@@ -87,6 +88,7 @@ public class ProcessAction extends BaseHelperAction {
     protected void checkDataSingle(
             ActionMapping mapping,
             HttpServletRequest request,
+            HttpServletResponse response,
             ProcessResult result) {
 
         String name = result.getName();
@@ -112,7 +114,7 @@ public class ProcessAction extends BaseHelperAction {
             }
         }
         if (result.isExposed()) {
-            exposeInScope(request,name,scope,bean);
+            exposeInScope(request,response,name,scope,bean);
 
         }
 
@@ -134,10 +136,11 @@ public class ProcessAction extends BaseHelperAction {
     protected void checkData(
             ActionMapping mapping,
             HttpServletRequest request,
+            HttpServletResponse response,
             ProcessResult result) {
 
         if (result.isSingleForm()) {
-            checkDataSingle(mapping,request,result);
+            checkDataSingle(mapping,request,response,result);
         }
         else {
 
@@ -150,7 +153,7 @@ public class ProcessAction extends BaseHelperAction {
             Object bean = result.getData();
 
             if (result.isExposed()) {
-                exposeInScope(request,name,scope,bean);
+                exposeInScope(request,response,name,scope,bean);
             }
         }
 
@@ -167,6 +170,7 @@ public class ProcessAction extends BaseHelperAction {
     protected void checkMessages(
             ActionMapping mapping,
             HttpServletRequest request,
+            HttpServletResponse response,
             ProcessResult processResult) {
 
         saveMessages(request,processResult.getMessages());
@@ -194,6 +198,7 @@ public class ProcessAction extends BaseHelperAction {
     protected void checkDispatch(
             ActionMapping mapping,
             HttpServletRequest request,
+            HttpServletResponse response,
             ProcessResult processResult) {
 
         String dispatch = processResult.getDispatch();
@@ -317,6 +322,7 @@ public class ProcessAction extends BaseHelperAction {
     protected void checkOutcome(
             ActionMapping mapping,
             HttpServletRequest request,
+            HttpServletResponse response,
             ProcessResult result) throws Exception {
 
         if (result!=null) {
@@ -331,20 +337,20 @@ public class ProcessAction extends BaseHelperAction {
                 while (iterator.hasNext()) {
                     ProcessResult nextResult =
                         (ProcessResult) iterator.next();
-                    checkOutcome(mapping,request,nextResult);
+                    checkOutcome(mapping,request,response,nextResult);
                 }
             }
 
             else {
                     // call extension points for whatever is returned
                 if (result.isData())
-                    checkData(mapping,request,result);
+                    checkData(mapping,request,response,result);
 
                 if (result.isMessages())
-                    checkMessages(mapping,request,result);
+                    checkMessages(mapping,request,response,result);
 
                 if (result.isDispatch())
-                    checkDispatch(mapping,request,result);
+                    checkDispatch(mapping,request,response,result);
             }
         }
 
@@ -477,7 +483,7 @@ public class ProcessAction extends BaseHelperAction {
                 dataBean.execute(properties);
 
                 // Analyze result of business logic
-            checkOutcome(mapping,request,result);
+            checkOutcome(mapping,request,response,result);
 
         } // end for
 
