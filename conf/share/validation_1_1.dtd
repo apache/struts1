@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-
 <!--
     DTD for the Validation Configuration File, Version 1.1
 
@@ -11,7 +9,7 @@
       "-//Apache Software Foundation//DTD Struts Validation Configuration 1.1//EN"
       "http://jakarta.apache.org/struts/dtds/validation_1_1.dtd">
 
-    $Id: validation_1_1.dtd,v 1.2 2002/07/11 12:07:23 husted Exp $
+    $Id: validation_1_1.dtd,v 1.3 2002/10/11 03:11:41 martinc Exp $
 -->
 
 

@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-
 <!--
     DTD for the Validator Rules Configuration File, Version 1.1
 
@@ -11,7 +9,7 @@
      "-//Apache Software Foundation//DTD Struts Validator Rules Configuration 1.1//EN"
      "http://jakarta.apache.org/struts/dtds/validator-rules_1_1.dtd">
 
-    $Id: validator-rules_1_1.dtd,v 1.3 2002/08/02 21:22:52 jholmes Exp $
+    $Id: validator-rules_1_1.dtd,v 1.4 2002/10/11 03:11:41 martinc Exp $
 -->
 
 
