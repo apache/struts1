@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.10 2002/07/27 23:26:09 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2002/07/27 23:26:09 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.11 2002/10/13 01:59:32 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/10/13 01:59:32 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.mock.TestMockBase;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2002/07/27 23:26:09 $
+ * @version $Revision: 1.11 $ $Date: 2002/10/13 01:59:32 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -831,7 +831,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Add parameters only
+    // Add parameters only -- forward URL
     public void testComputeURL3a() {
 
         request.setPathElements("/myapp", "/action.do", null, null);
@@ -849,13 +849,13 @@ public class TestRequestUtils extends TestMockBase {
         }
         assertNotNull("url present", url);
         assertTrue("url value",
-                   url.equals("/myapp/bar?foo1=bar1&foo2=bar2") ||
-                   url.equals("/myapp/bar?foo2=bar2&foo1=bar1"));
+                   url.equals("/myapp/bar?foo1=bar1&amp;foo2=bar2") ||
+                   url.equals("/myapp/bar?foo2=bar2&amp;foo1=bar1"));
 
     }
 
 
-    // Add anchor only
+    // Add anchor only -- forward URL
     public void testComputeURL3b() {
 
         request.setPathElements("/myapp", "/action.do", null, null);
@@ -876,7 +876,7 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
-    // Add parameters + anchor
+    // Add parameters + anchor -- forward URL
     public void testComputeURL3c() {
 
         request.setPathElements("/myapp", "/action.do", null, null);
@@ -894,8 +894,77 @@ public class TestRequestUtils extends TestMockBase {
         }
         assertNotNull("url present", url);
         assertTrue("url value",
-                   url.equals("/myapp/bar?foo1=bar1&foo2=bar2#anchor") ||
-                   url.equals("/myapp/bar?foo2=bar2&foo1=bar1#anchor"));
+                   url.equals("/myapp/bar?foo1=bar1&amp;foo2=bar2#anchor") ||
+                   url.equals("/myapp/bar?foo2=bar2&amp;foo1=bar1#anchor"));
+
+    }
+
+
+    // Add parameters only -- redirect URL
+    public void testComputeURL3d() {
+
+        request.setPathElements("/myapp", "/action.do", null, null);
+        Map map = new HashMap();
+        map.put("foo1", "bar1");
+        map.put("foo2", "bar2");
+        String url = null;
+        try {
+            url = RequestUtils.computeURL
+                (page, null,
+                 null, "/bar",
+                 map, null, true);
+        } catch (MalformedURLException e) {
+            fail("MalformedURLException: " + e);
+        }
+        assertNotNull("url present", url);
+        assertTrue("url value",
+                   url.equals("/myapp/bar?foo1=bar1&foo2=bar2") ||
+                   url.equals("/myapp/bar?foo2=bar2&foo1=bar1"));
+
+    }
+
+
+    // Add anchor only -- redirect URL
+    public void testComputeURL3e() {
+
+        request.setPathElements("/myapp", "/action.do", null, null);
+        String url = null;
+        try {
+            url = RequestUtils.computeURL
+                (page, null,
+                 null, "/bar",
+                 null, "anchor", true);
+        } catch (MalformedURLException e) {
+            fail("MalformedURLException: " + e);
+        }
+        assertNotNull("url present", url);
+        assertEquals("url value",
+                     "/myapp/bar#anchor",
+                     url);
+
+    }
+
+
+    // Add parameters + anchor -- redirect URL
+    public void testComputeURL3f() {
+
+        request.setPathElements("/myapp", "/action.do", null, null);
+        Map map = new HashMap();
+        map.put("foo1", "bar1");
+        map.put("foo2", "bar2");
+        String url = null;
+        try {
+            url = RequestUtils.computeURL
+                (page, null,
+                 null, "/bar",
+                 map, "anchor", false);
+        } catch (MalformedURLException e) {
+            fail("MalformedURLException: " + e);
+        }
+        assertNotNull("url present", url);
+        assertTrue("url value",
+                   url.equals("/myapp/bar?foo1=bar1&amp;foo2=bar2#anchor") ||
+                   url.equals("/myapp/bar?foo2=bar2&amp;foo1=bar1#anchor"));
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.58 2002/10/13 01:33:38 craigmcc Exp $
- * $Revision: 1.58 $
- * $Date: 2002/10/13 01:33:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.59 2002/10/13 01:59:31 craigmcc Exp $
+ * $Revision: 1.59 $
+ * $Date: 2002/10/13 01:59:31 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.58 $ $Date: 2002/10/13 01:33:38 $
+ * @version $Revision: 1.59 $ $Date: 2002/10/13 01:59:31 $
  */
 
 public class RequestUtils {
@@ -448,6 +448,12 @@ public class RequestUtils {
                 anchor = null;
             }
 
+            // Define the parameter separator
+            String separator = "&amp;";
+            if (redirect) {
+                separator = "&";
+            }
+
             // Add the required request parameters
             boolean question = temp.indexOf('?') >= 0;
             Iterator keys = params.keySet().iterator();
@@ -459,7 +465,7 @@ public class RequestUtils {
                         url.append('?');
                         question = true;
                     } else {
-                        url.append("&");
+                        url.append(separator);
                     }
                     url.append(URLEncoder.encode(key));
                     url.append('='); // Interpret null as "no value"
@@ -468,7 +474,7 @@ public class RequestUtils {
                         url.append('?');
                         question = true;
                     } else {
-                        url.append("&");
+                        url.append(separator);
                     }
                     url.append(URLEncoder.encode(key));
                     url.append('=');
@@ -480,7 +486,7 @@ public class RequestUtils {
                             url.append('?');
                             question = true;
                         } else {
-                            url.append("&");
+                            url.append(separator);
                         }
                         url.append(URLEncoder.encode(key));
                         url.append('=');
@@ -491,7 +497,7 @@ public class RequestUtils {
                         url.append('?');
                         question = true;
                     } else {
-                        url.append("&");
+                        url.append(separator);
                     }
                     url.append(URLEncoder.encode(key));
                     url.append('=');
