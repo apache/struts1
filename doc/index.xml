@@ -44,7 +44,7 @@
   <a href="http://jakarta.apache.org/velocity/index.html">
   Velocity Templates</a>, 
   <a href="http://www.w3.org/TR/xslt">XSLT</a>, and 
-  <a href="resources.html#views">
+  <a href="resources/views.html">
   other presentation systems
   </a>.
   </p>
@@ -138,12 +138,12 @@
   </p>
 
   <p>
-  The Struts <a href="resources.html"><b>Resources</b></a> page provides links to 
+  The Struts <a href="resources/index.html"><b>Resources</b></a> page provides links to 
   everything else published about  Struts, including 
-  <a href="resources.html#books">books</a>, 
-  <a href="resources.html#articles">articles</a>, 
-  <a href="resources.html#tutorials">tutorials</a>, 
-  <a href="resources.html#seminars">seminars</a>, 
+  <a href="resources/books.html">books</a>, 
+  <a href="resources/articles.html">articles</a>, 
+  <a href="resources/tutorials.html">tutorials</a>, 
+  <a href="resources/seminars.html">seminars</a>, 
   and sample applications. There are also links to public sites "Powered by Struts" and
   a directory of professional Struts consultants.
   </p>

@@ -91,19 +91,19 @@
 
 <section href="help" name="Where can I get help with Struts?">
 <p>The Struts package comes complete with a <a href="http://jakarta.apache.org/struts/userGuide/index.html">users guide</a> to introduce people to the framework and its underlying technologies. Various components also have their own in-depth developers guide, to cover more advanced topics. Comprehesive <a href="http://jakarta.apache.org/struts/api-1.0/index.html">Javadocs</a> are included along with the <b>full source code</b>. The <a href="http://jakarta.apache.org/site/mail.html">Strut's mailing list</a> is also very active, and welcomes posts from new users.</p>
-<p>There are also many third-party tutorials, articles, and books that cover Struts. See our <a href="resources.html#tutorials">Resources page</a> for current listings and links. Two very useful resources are the <a href="http://www.mail-archive.com/index.php3?hunt=struts">mailing list archives</a> and the <a href="http://www.jguru.com/forums/Struts">Struts Forum at JGuru</a>.</p>
+<p>There are also many third-party tutorials, articles, and books that cover Struts. See our <a href="resources/tutorials.html">Resources page</a> for current listings and links. Two very useful resources are the <a href="http://www.mail-archive.com/index.php3?hunt=struts">mailing list archives</a> and the <a href="http://www.jguru.com/forums/Struts">Struts Forum at JGuru</a>.</p>
 </section>
 
 <section href="support" name="Is commercial support available?">
-<p>There is no official, commercial support for Struts, though third parties may offer different degrees of support. A list of Struts consultants is available on our <a href="resources.html#consultants">Resources page</a></p>
+<p>There is no official, commercial support for Struts, though third parties may offer different degrees of support. A list of Struts consultants is available on our <a href="resources/consultants.html">Resources page</a></p>
 </section>
 
 <section href="providers" name="Are there ISPs that will host my Struts application?">
-<p>For a listing of some Java and Struts ISPs, visit our <a href="resources.html#hosts">Resources page</a>.</p>
+<p>For a listing of some Java and Struts ISPs, visit our <a href="resources/hosts.html">Resources page</a>.</p>
 </section>
 
 <section href="powered" name="What Web sites are already Powered by Struts?">
-<p>For a listing of some Struts-powered Web sites available to the public, visit our <a href="resources.html#powered">Resources page</a>.</p>
+<p>For a listing of some Struts-powered Web sites available to the public, visit our <a href="resources/powered.html">Resources page</a>.</p>
 </section>
 
 <section href="turbine" name="What's the difference between Jakarta Struts and Jakarta Turbine?">
