@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.146 2004/02/13 11:07:54 husted Exp $
- * $Revision: 1.146 $
- * $Date: 2004/02/13 11:07:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.147 2004/03/12 06:03:56 rleland Exp $
+ * $Revision: 1.147 $
+ * $Date: 2004/03/12 06:03:56 $
  *
  * ====================================================================
  *
@@ -102,7 +102,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * <p>General purpose utility methods related to processing a servlet request
  * in the Struts controller framework.</p>
  *
- * @version $Revision: 1.146 $ $Date: 2004/02/13 11:07:54 $
+ * @version $Revision: 1.147 $ $Date: 2004/03/12 06:03:56 $
  */
 public class RequestUtils {
 
@@ -753,7 +753,52 @@ public class RequestUtils {
         return sb.toString();
 
     }
-    
+  /**
+     * <p>Return the context-relative URL that corresponds to the specified
+     * <code>ForwardConfig</code>. The URL is calculated based on the properties
+     * of the {@link ForwardConfig} instance as follows:</p>
+     * <ul>
+     * <li>If the <code>contextRelative</code> property is set, it is
+     *     assumed that the <code>path</code> property contains a path
+     *     that is already context-relative:
+     *     <ul>
+     *     <li>If the <code>path</code> property value starts with a slash,
+     *         it is returned unmodified.</li>
+     *     <li>If the <code>path</code> property value does not start
+     *         with a slash, a slash is prepended.</li>
+     *     </ul></li>
+     * <li>Acquire the <code>forwardPattern</code> property from the
+     *     <code>ControllerConfig</code> for the application module used
+     *     to process this request. If no pattern was configured, default
+     *     to a pattern of <code>$M$P</code>, which is compatible with the
+     *     hard-coded mapping behavior in Struts 1.0.</li>
+     * <li>Process the acquired <code>forwardPattern</code>, performing the
+     *     following substitutions:
+     *     <ul>
+     *     <li><strong>$M</strong> - Replaced by the module prefix for the
+     *         application module processing this request.</li>
+     *     <li><strong>$P</strong> - Replaced by the <code>path</code>
+     *         property of the specified {@link ForwardConfig}, prepended
+     *         with a slash if it does not start with one.</li>
+     *     <li><strong>$$</strong> - Replaced by a single dollar sign
+     *         character.</li>
+     *     <li><strong>$x</strong> (where "x" is any charater not listed
+     *         above) - Silently omit these two characters from the result
+     *         value.  (This has the side effect of causing all other
+     *         $+letter combinations to be reserved.)</li>
+     *     </ul></li>
+     * </ul>
+     *
+     * @param request The servlet request we are processing
+     * @param forward ForwardConfig to be evaluated
+     *
+     * @return context-relative URL
+     * @since Struts 1.1
+     */
+    public static String forwardURL(HttpServletRequest request, ForwardConfig forward) {
+         return forwardURL(request,forward,null);
+    }
+
 	/**
 	 * <p>Return the context-relative URL that corresponds to the specified
 	 * <code>ForwardConfig</code>. The URL is calculated based on the properties
@@ -792,9 +837,10 @@ public class RequestUtils {
 	 *
 	 * @param request The servlet request we are processing
 	 * @param forward ForwardConfig to be evaluated
+   * @param moduleConfig Base forward on this module config.
 	 *
 	 * @return context-relative URL
-	 * @since Struts 1.1
+	 * @since Struts 1.2
 	 */
 	public static String forwardURL(HttpServletRequest request, ForwardConfig forward, ModuleConfig moduleConfig) {
 		//load the current moduleConfig, if null
@@ -1251,7 +1297,7 @@ public class RequestUtils {
      * @exception MalformedURLException if a URL cannot be created
      *  for the specified parameters
      * @deprecated This will be removed after Struts 1.2.
-     * Use {@link org.apache.struts.taglib.TagUtils#computeURL(PageContext,String,String,String,String,Map,String,boolean)} instead.
+     * Use {@link org.apache.struts.taglib.TagUtils#computeURL(PageContext,String,String,String,String,String,Map,String,	boolean)} instead.
      */
     public static String computeURL(
             PageContext pageContext,
@@ -1305,7 +1351,7 @@ public class RequestUtils {
      * @exception MalformedURLException if a URL cannot be created
      *  for the specified parameters
      * @deprecated This will be removed after Struts 1.2.
-     * Use {@link org.apache.struts.taglib.TagUtils#computeURL(PageContext,String,String,String,String,Map,String,boolean,boolean)} instead.
+     * Use {@link org.apache.struts.taglib.TagUtils#computeURL(PageContext,String,String,String,String,String,Map,String,boolean,boolean)} instead.
      */
     public static String computeURL(
             PageContext pageContext,
@@ -1576,7 +1622,7 @@ public class RequestUtils {
 
      * @return context-relative URL
      * @since Struts 1.1
-     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#pageURL(HttpServletRequest,String)} instead.
+     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#pageURL(HttpServletRequest request, String page, ModuleConfig moduleConfig)} instead.
      * This will be removed after Struts 1.2.
      */
     public static String pageURL(HttpServletRequest request, String page) {
