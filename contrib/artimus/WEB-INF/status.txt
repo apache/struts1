@@ -32,6 +32,11 @@ TODO:
 - Unit tests
 
 
+31-DEC-01
+---------
++ article.http.Form: Change reset to use setters.
+
+
 06-NOV-01
 ---------
 + Rename article/Model,key/Model to Access (i.e. Data Access).

@@ -1,16 +1,18 @@
 <!-- 
 @author Ted Husted
-@version $Revision: 1.1 $ $Date: 2001/11/10 12:04:12 $
+@version $Revision: 1.2 $ $Date: 2002/01/01 15:06:23 $
 -->
-<project name="artimus" basedir="." default="compile">
+<project name="artimus" basedir="." default="project">
 <property name="project.title" value="Artimus"/>
-<property name="project.version" value="1.0"/>
+<property name="project.version" value="0.2"/>
 <property name="dist.name" value="artimus"/>
 
 
     <!-- Build working classpath -->
     <path id="project.class.path">
         <pathelement path ="lib/commons-digester.jar"/>
+        <pathelement path ="lib/commons-beanutils.jar"/>
+        <pathelement path ="lib/commons-collections.jar"/>
         <pathelement path ="lib/lucene.jar"/>
         <pathelement path ="lib/poolman.jar"/>
         <pathelement path ="lib/scaffold.jar"/>
