@@ -24,7 +24,8 @@
 
 <html:errors/>
 
-<html:form action="/saveRegistration">
+<html:form action="/saveRegistration"
+         onsubmit="return validateLogonForm(this);">
 <html:hidden property="action"/>
 <table border="0" width="100%">
 
@@ -174,6 +175,11 @@
                      
 
 </logic:equal>
+
+<html:javascript formName="registrationForm"
+        dynamicJavascript="true"
+         staticJavascript="false"/>
+<script language="Javascript1.1" src="staticJavascript.jsp"></script>
 
 </body>
 </html:html>

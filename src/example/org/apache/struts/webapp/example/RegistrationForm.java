@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/RegistrationForm.java,v 1.3 2002/03/05 04:23:56 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/03/05 04:23:56 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/RegistrationForm.java,v 1.4 2002/07/19 02:44:06 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/07/19 02:44:06 $
  *
  * ====================================================================
  *
@@ -68,6 +68,7 @@ import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.validator.ValidatorForm;
 
 
 /**
@@ -90,10 +91,10 @@ import org.apache.struts.action.ActionMapping;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/03/05 04:23:56 $
+ * @version $Revision: 1.4 $ $Date: 2002/07/19 02:44:06 $
  */
 
-public final class RegistrationForm extends ActionForm  {
+public final class RegistrationForm extends ValidatorForm  {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -334,34 +335,14 @@ public final class RegistrationForm extends ActionForm  {
     public ActionErrors validate(ActionMapping mapping,
                                  HttpServletRequest request) {
 
-        ActionErrors errors = new ActionErrors();
-        if ((username == null) || (username.length() < 1))
-            errors.add("username",
-                       new ActionError("error.username.required"));
-        if (!password.equals(password2))
+        // Perform validator framework validations
+        ActionErrors errors = super.validate(mapping, request);
+
+        // Only need crossfield validations here
+        if (!password.equals(password2)) {
             errors.add("password2",
                        new ActionError("error.password.match"));
-        if ((fromAddress == null) || (fromAddress.length() < 1))
-            errors.add("fromAddress",
-                       new ActionError("error.fromAddress.required"));
-        else {
-	    int atSign = fromAddress.indexOf("@");
-	    if ((atSign < 1) || (atSign >= (fromAddress.length() - 1)))
-		errors.add("fromAddress",
-                           new ActionError("error.fromAddress.format",
-                                           fromAddress));
-	}
-	if ((fullName == null) || (fullName.length() < 1))
-            errors.add("fullName",
-                       new ActionError("error.fullName.required"));
-	if ((replyToAddress != null) && (replyToAddress.length() > 0)) {
-	    int atSign = replyToAddress.indexOf("@");
-	    if ((atSign < 1) || (atSign >= (replyToAddress.length() - 1)))
-                errors.add("replyToAddress",
-                           new ActionError("error.replyToAddress.format",
-                                           replyToAddress));
-	}
-
+        }
         return errors;
 
     }
