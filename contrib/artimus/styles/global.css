@@ -1,0 +1,56 @@
+body {
+  background-color:#FFFFFF;
+  color:#000000;
+  font-family:verdana;
+  font-size:10pt;
+  text-align:center;
+}
+
+.author {
+  font-style:italic;
+  font-size:8pt;
+}
+
+table.parent {
+  width:600px;
+  border-width:1px;
+  border-style:solid;
+  border-color:#000000;
+  border-collapse:collapse;
+  padding:0px,0px,0px,0px;
+}
+
+table.child {
+  width:98%;
+}
+
+input {
+  font-family:verdana;
+  font-size:10pt;
+}
+
+h2 {
+  font-family:arial;
+}
+
+td {
+  font-family:verdana;
+  font-size:10pt;
+}
+
+td.options {
+  background-color:#CCCCCC;
+  text-align:center;
+  font-size:8pt;
+  padding-top:4px;
+  padding-bottom:4px;
+  border-width:1px;
+  border-style:solid;
+  border-color:#000000;
+  margin:0px,0px,0px,0px;
+}
+
+a {
+  color:#336699;
+  font-weight:bold;
+}
