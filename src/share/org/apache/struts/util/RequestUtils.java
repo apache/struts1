@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.106 2003/07/02 03:09:47 dgraham Exp $
- * $Revision: 1.106 $
- * $Date: 2003/07/02 03:09:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.107 2003/07/03 01:47:05 dgraham Exp $
+ * $Revision: 1.107 $
+ * $Date: 2003/07/03 01:47:05 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.106 $ $Date: 2003/07/02 03:09:47 $
+ * @version $Revision: 1.107 $ $Date: 2003/07/03 01:47:05 $
  */
 
 public class RequestUtils {
@@ -133,11 +133,6 @@ public class RequestUtils {
      */
     private static MessageResources messages =
         MessageResources.getMessageResources("org.apache.struts.util.LocalStrings");
-
-    /**
-     * The context attribute under which we store our prefixes list.
-     */
-    private static final String PREFIXES_KEY = "org.apache.struts.util.PREFIXES";
     
     /**
      * Java 1.4 encode method to use instead of deprecated 1.3 version.
@@ -1844,38 +1839,15 @@ public class RequestUtils {
 
     /**
      * Return the list of module prefixes that are defined for
-     * this web application, creating it if necessary.  <strong>NOTE</strong> -
+     * this web application.  <strong>NOTE</strong> -
      * the "" prefix for the default module is not included in this list.
      *
-     * @param context The ServletContext for this web application
-     * @return an array of module prefixes
+     * @param context The ServletContext for this web application.
+     * @return An array of module prefixes.
      * @since Struts 1.1
      */
-    public synchronized static String[] getModulePrefixes(ServletContext context) {
-        // TODO Move prefix list initialization to ActionServlet.init() and unsynchronize
-        // this method in Struts 1.2 
-        
-        String prefixes[] = (String[]) context.getAttribute(PREFIXES_KEY);
-        if (prefixes != null) {
-            return (prefixes);
-        }
-
-        ArrayList list = new ArrayList();
-        Enumeration names = context.getAttributeNames();
-        while (names.hasMoreElements()) {
-            String name = (String) names.nextElement();
-            if (!name.startsWith(Globals.MODULE_KEY)) {
-                continue;
-            }
-            String prefix = name.substring(Globals.MODULE_KEY.length());
-            if (prefix.length() > 0) {
-                list.add(prefix);
-            }
-        }
-        prefixes = (String[]) list.toArray(new String[list.size()]);
-        context.setAttribute(PREFIXES_KEY, prefixes);
-        return (prefixes);
-
+    public static String[] getModulePrefixes(ServletContext context) {
+        return (String[]) context.getAttribute(Globals.MODULE_PREFIXES_KEY);
     }
 
     /**

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.5 2003/02/16 02:51:32 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2003/02/16 02:51:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.6 2003/07/03 01:47:05 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/07/03 01:47:05 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,26 +59,17 @@
  *
  */
 
-
 package org.apache.struts;
-
 
 import java.io.Serializable;
 
-
 /**
- * <p>Global manifest constants for the entire Struts Framework.</p>
- *
- * <p>Many of these constants were initially defined in <code>Action</code>,
- * but were moved here so that they could be referenced without referencing
- * the <code>Action</code> class itself.  For backwards compatibility,
- * constant references there point at this class, and the constant values
- * themselves have not changed.</p>
+ * Global manifest constants for the entire Struts Framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2003/02/16 02:51:32 $
+ * @author David Graham
+ * @version $Revision: 1.6 $ $Date: 2003/07/03 01:47:05 $
  */
-
 public class Globals implements Serializable {
 
 
@@ -138,6 +129,14 @@ public class Globals implements Serializable {
      */
     public static final String MODULE_KEY =
         "org.apache.struts.action.MODULE";
+        
+    /**
+     * The ServletContext attribute under which we store the module prefixes 
+     * String[].
+     * @since Struts 1.2
+     */
+    public static final String MODULE_PREFIXES_KEY =
+        "org.apache.struts.globals.MODULE_PREFIXES";
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.153 2003/07/02 04:02:40 dgraham Exp $
- * $Revision: 1.153 $
- * $Date: 2003/07/02 04:02:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.154 2003/07/03 01:47:05 dgraham Exp $
+ * $Revision: 1.154 $
+ * $Date: 2003/07/03 01:47:05 $
  *
  * ====================================================================
  *
@@ -72,6 +72,7 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.MissingResourceException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServlet;
@@ -298,7 +299,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.153 $ $Date: 2003/07/02 04:02:40 $
+ * @version $Revision: 1.154 $ $Date: 2003/07/03 01:47:05 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -445,13 +446,15 @@ public class ActionServlet extends HttpServlet {
         initOther();
         initServlet();
 
-        // Initialize modules as needed
         getServletContext().setAttribute(Globals.ACTION_SERVLET_KEY, this);
+        
+        // Initialize modules as needed
         ModuleConfig moduleConfig = initModuleConfig("", config);
         initModuleMessageResources(moduleConfig);
         initModuleDataSources(moduleConfig);
         initModulePlugIns(moduleConfig);
         moduleConfig.freeze();
+        
         Enumeration names = getServletConfig().getInitParameterNames();
         while (names.hasMoreElements()) {
             String name = (String) names.nextElement();
@@ -466,8 +469,37 @@ public class ActionServlet extends HttpServlet {
             initModulePlugIns(moduleConfig);
             moduleConfig.freeze();
         }
-        destroyConfigDigester();
-
+        
+        this.initModulePrefixes(this.getServletContext());
+        
+        this.destroyConfigDigester();
+    }
+    
+    /**
+     * Saves a String[] of module prefixes in the ServletContext under 
+     * Globals.MODULE_PREFIXES_KEY.  <strong>NOTE</strong> -
+     * the "" prefix for the default module is not included in this list.
+     * 
+     * @since Struts 1.2
+     */
+    protected void initModulePrefixes(ServletContext context) {
+        ArrayList prefixList = new ArrayList();
+        
+        Enumeration names = context.getAttributeNames();
+        while (names.hasMoreElements()) {
+            String name = (String) names.nextElement();
+            if (!name.startsWith(Globals.MODULE_KEY)) {
+                continue;
+            }
+            
+            String prefix = name.substring(Globals.MODULE_KEY.length());
+            if (prefix.length() > 0) {
+                prefixList.add(prefix);
+            }
+        }
+        
+        String[] prefixes = (String[]) prefixList.toArray(new String[prefixList.size()]);
+        context.setAttribute(Globals.MODULE_PREFIXES_KEY, prefixes);
     }
 
 
