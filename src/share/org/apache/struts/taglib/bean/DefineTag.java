@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.13 2002/02/21 17:48:14 oalexeev Exp $
- * $Revision: 1.13 $
- * $Date: 2002/02/21 17:48:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.14 2002/02/25 20:56:53 oalexeev Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/02/25 20:56:53 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.RequestUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2002/02/21 17:48:14 $
+ * @version $Revision: 1.14 $ $Date: 2002/02/25 20:56:53 $
  */
 
 public class DefineTag extends BodyTagSupport {
@@ -196,21 +196,37 @@ public class DefineTag extends BodyTagSupport {
     // --------------------------------------------------------- Public Methods
 
     /**
+    *
+    * Check if we need to evaluate the body of the tag
+    *
+    * @exception JspException if a JSP exception has occurred
+    */
+    public int doStartTag() throws JspException {
+       
+        if( this.name!=null || this.value!=null )
+            return (SKIP_BODY);
+        else
+            return (EVAL_BODY_BUFFERED);
+    }
+
+    /**
      * Retrieve the required property and expose it as a scripting variable.
      *
      * @exception JspException if a JSP exception has occurred
      */
     public int doEndTag() throws JspException {
 
-        if( this.value!=null && bodyContent!=null )
+        if( ( this.value!=null || 
+              this.name!=null ) && 
+                bodyContent!=null )
                 throw new JspException( messages.getMessage("define.value", name) );
 
         // Retrieve the required property value
         Object value = this.value;
+        if (value == null && name!=null) 
+            value = RequestUtils.lookup(pageContext, name, property, scope);
         if (value == null) 
             value = bodyContent.getString();
-        if (value == null) 
-            value = RequestUtils.lookup(pageContext, name, property, scope);
 
         // Expose this value as a scripting variable
         int inScope = PageContext.PAGE_SCOPE;
