@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseInputTag.java,v 1.3 2000/06/16 04:41:07 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/16 04:41:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseInputTag.java,v 1.4 2000/06/27 02:48:07 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/27 02:48:07 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.util.MessageResources;
  * Abstract base class for the various input tags.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/16 04:41:07 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/27 02:48:07 $
  */
 
 public abstract class BaseInputTag extends BaseHandlerTag {
@@ -141,18 +141,6 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      *
      * @param cols The new number of columns
      */
-    public void setCols(int cols) {
-
-	this.cols = cols;
-
-    }
-
-
-    /**
-     * Set the number of columns for this field.
-     *
-     * @param cols The new number of columns
-     */
     public void setCols(String cols) {
 
 	try {
@@ -170,18 +158,6 @@ public abstract class BaseInputTag extends BaseHandlerTag {
     public int getMaxlength() {
 
 	return (this.maxlength);
-
-    }
-
-
-    /**
-     * Set the maximum length allowed.
-     *
-     * @param maxlength The new maximum length
-     */
-    public void setMaxlength(int maxlength) {
-
-	this.maxlength = maxlength;
 
     }
 
@@ -239,18 +215,6 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      *
      * @param rows The new number of rows
      */
-    public void setRows(int rows) {
-
-	this.rows = rows;
-
-    }
-
-
-    /**
-     * Set the number of rows for this field.
-     *
-     * @param rows The new number of rows
-     */
     public void setRows(String rows) {
 
 	try {
@@ -268,18 +232,6 @@ public abstract class BaseInputTag extends BaseHandlerTag {
     public int getSize() {
 
 	return (getCols());
-
-    }
-
-
-    /**
-     * Set the size of this field (synonym for <code>setCols()</code>).
-     *
-     * @param size The new size
-     */
-    public void setSize(int size) {
-
-	setCols(size);
 
     }
 
