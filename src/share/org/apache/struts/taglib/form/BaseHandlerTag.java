@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/BaseHandlerTag.java,v 1.1 2000/11/03 18:44:57 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/03 18:44:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/BaseHandlerTag.java,v 1.2 2000/11/14 21:44:58 mschachter Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/11/14 21:44:58 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import org.apache.struts.util.MessageResources;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.1 $ $Date: 2000/11/03 18:44:57 $
+ * @version $Revision: 1.2 $ $Date: 2000/11/14 21:44:58 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -264,7 +264,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     }
 
     /** Sets the onKeyUp event handler. */
-    public void setOnkeup(String onKeyUp) {
+    public void setOnkeyup(String onKeyUp) {
         this.onkeyup = onKeyUp;
     }
 
@@ -291,7 +291,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     }
 
     /** Returns the onChange event handler. */
-    public String getOnChange() {
+    public String getOnchange() {
         return onchange;
     }
 
