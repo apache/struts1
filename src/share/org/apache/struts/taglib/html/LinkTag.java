@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.8 2001/04/18 01:31:15 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2001/04/18 01:31:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.9 2001/04/18 22:41:26 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/04/18 22:41:26 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.util.ResponseUtils;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2001/04/18 01:31:15 $
+ * @version $Revision: 1.9 $ $Date: 2001/04/18 22:41:26 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -439,6 +439,8 @@ public class LinkTag extends BaseHandlerTag {
             n++;
         if (href != null)
             n++;
+        if (name != null)
+            n++;
         if (page != null)
             n++;
         if (n != 1) {
@@ -478,6 +480,11 @@ public class LinkTag extends BaseHandlerTag {
 		(HttpServletRequest) pageContext.getRequest();
             href = RequestUtils.absoluteURL(request, forward.getPath());
 	}
+
+        // If "name" was specified, return null
+        else if (name != null) {
+            return (null);
+        }
 
         // If "page" was specified, compute the "href" to forward to
         else if (page != null) {
