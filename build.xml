@@ -253,9 +253,9 @@
         <mkdir dir="${build.home}/library/classes/META-INF"/>
         <mkdir dir="${build.home}/library/classes/META-INF/tlds"/>
         <mkdir dir="${build.home}/library/classes/org/apache/struts/resources"/>
-        <copy file="LICENSE.txt"
+        <copy file="build/LICENSE.txt"
             tofile="${build.home}/library/classes/META-INF/LICENSE"/>
-        <copy file="NOTICE.txt"
+        <copy file="build/NOTICE.txt"
             tofile="${build.home}/library/classes/META-INF/NOTICE"/>
         <copy file="${conf.share.dir}/chain-config.xml"
             tofile="${build.home}/library/classes/org/apache/struts/chain/chain-config.xml" />
