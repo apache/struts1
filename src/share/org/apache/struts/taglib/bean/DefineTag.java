@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.9 2001/01/26 20:12:35 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2001/01/26 20:12:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.10 2001/01/27 03:59:35 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/01/27 03:59:35 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.RequestUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/01/26 20:12:35 $
+ * @version $Revision: 1.10 $ $Date: 2001/01/27 03:59:35 $
  */
 
 public class DefineTag extends TagSupport {
@@ -282,6 +282,7 @@ public class DefineTag extends TagSupport {
         scope = null;
         toScope = "page";
         type = null;
+        value = null;
 
     }
 
