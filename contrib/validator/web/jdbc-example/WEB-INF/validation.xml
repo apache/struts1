@@ -36,6 +36,82 @@
          </javascript>
       </validator>
 
+      <validator name="minlength"
+                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 method="validateMinLength"
+                 depends="required"
+                 msg="errors.minlength">
+         <javascript><![CDATA[
+            function validateMinLength(form) {                                                                                                    
+                var bValid = true;
+                var focusField = null;
+                var i = 0;                                                                                                                    
+                var fields = new Array();                                                                                                     
+                oMinLength = new minlength();                                                                                                        
+                                                                                                                                              
+                for (x in oMinLength) {                                                                                                          
+                    if (form[oMinLength[x][0]].type == 'text' || form[oMinLength[x][0]].type == 'textarea') {   
+                       var iMin = parseInt(oMinLength[x][2]("minlength"));
+            
+                       if (!(form[oMinLength[x][0]].value.length >= iMin)) {
+                          if (i == 0)
+                             focusField = form[oMinLength[x][0]]; 
+            
+                          fields[i++] = oMinLength[x][1];
+            
+                          bValid = false;                                                                                                     
+                       }                                                                                                                      
+                    }                                                                                                                         
+                }                                                                                                                             
+                                                                                                                                              
+                if (fields.length > 0) {
+                   focusField.focus();
+                   alert(fields.join('\n'));                                                                                                  
+                }                                                                                                                             
+                                                                                                                                              
+                return bValid;                                                                                                                
+            }]]>
+         </javascript>
+      </validator>
+
+      <validator name="maxlength"
+                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 method="validateMaxLength"
+                 depends="required"
+                 msg="errors.maxlength">
+         <javascript><![CDATA[
+            function validateMaxLength(form) {                                                                                                    
+                var bValid = true;
+                var focusField = null;
+                var i = 0;                                                                                                                    
+                var fields = new Array();                                                                                                     
+                oMaxLength = new maxlength();                                                                                                        
+                                                                                                                                              
+                for (x in oMaxLength) {                                                                                                          
+                    if (form[oMaxLength[x][0]].type == 'text' || form[oMaxLength[x][0]].type == 'textarea') {   
+                       var iMax = parseInt(oMaxLength[x][2]("maxlength"));
+            
+                       if (!(form[oMaxLength[x][0]].value.length <= iMax)) {
+                          if (i == 0)
+                             focusField = form[oMaxLength[x][0]]; 
+            
+                          fields[i++] = oMaxLength[x][1];
+            
+                          bValid = false;                                                                                                     
+                       }                                                                                                                      
+                    }                                                                                                                         
+                }                                                                                                                             
+                                                                                                                                              
+                if (fields.length > 0) {
+                   focusField.focus();
+                   alert(fields.join('\n'));                                                                                                  
+                }                                                                                                                             
+                                                                                                                                              
+                return bValid;                                                                                                                
+            }]]>
+         </javascript>
+      </validator>
+
       <validator name="mask"
                  classname="com.wintecinc.struts.validation.StrutsValidator"
                  method="validateMask"
