@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTagBeanInfo.java,v 1.1 2002/10/26 05:24:44 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/26 05:24:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTagBeanInfo.java,v 1.2 2003/01/18 05:04:14 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/01/18 05:04:14 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -85,28 +85,31 @@ public class ELJavascriptValidatorTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        PropertyDescriptor[]  result   = new PropertyDescriptor[7];
+        PropertyDescriptor[]  result   = new PropertyDescriptor[8];
 
         try {
-            result[0] = new PropertyDescriptor("dynamicJavascript",
+            result[0] = new PropertyDescriptor("cdata",
+                                               ELJavascriptValidatorTag.class,
+                                               null, "setCdata");
+            result[1] = new PropertyDescriptor("dynamicJavascript",
                                                ELJavascriptValidatorTag.class,
                                                null, "setDynamicJavascript");
-            result[1] = new PropertyDescriptor("formName",
+            result[2] = new PropertyDescriptor("formName",
                                                ELJavascriptValidatorTag.class,
                                                null, "setFormName");
-            result[2] = new PropertyDescriptor("method",
+            result[3] = new PropertyDescriptor("method",
                                                ELJavascriptValidatorTag.class,
                                                null, "setMethod");
-            result[3] = new PropertyDescriptor("page",
+            result[4] = new PropertyDescriptor("page",
                                                ELJavascriptValidatorTag.class,
                                                null, "setPageExpr");
-            result[4] = new PropertyDescriptor("src",
+            result[5] = new PropertyDescriptor("src",
                                                ELJavascriptValidatorTag.class,
                                                null, "setSrc");
-            result[5] = new PropertyDescriptor("staticJavascript",
+            result[6] = new PropertyDescriptor("staticJavascript",
                                                ELJavascriptValidatorTag.class,
                                                null, "setStaticJavascript");
-            result[6] = new PropertyDescriptor("htmlComment",
+            result[7] = new PropertyDescriptor("htmlComment",
                                                ELJavascriptValidatorTag.class,
                                                null, "setHtmlComment");
         }

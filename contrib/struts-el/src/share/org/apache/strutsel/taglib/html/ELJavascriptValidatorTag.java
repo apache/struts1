@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTag.java,v 1.4 2002/10/26 05:24:44 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/26 05:24:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTag.java,v 1.5 2003/01/18 05:04:14 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/01/18 05:04:14 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -77,7 +77,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
 
@@ -151,6 +151,13 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
      * @exception JspException if a JSP exception has occurred
      */
     private void evaluateExpressions() throws JspException {
+        try {
+            setCdata((String) evalAttr("cdata", getCdata(),
+                                       String.class));
+        } catch (NullAttributeException ex) {
+            setCdata(null);
+        }
+
         try {
             setDynamicJavascript((String) evalAttr("dynamicJavascript",
                                                    getDynamicJavascript(), 

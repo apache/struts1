@@ -2933,6 +2933,23 @@
             </p>
         </info>
 
+		<attribute>
+            <name>cdata</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+               <p>
+                  If set to "true" and XHTML has been enabled, the JavaScript will
+                  be wrapped in a CDATA section to prevent XML parsing.  Current browsers
+                  don't support this convention, causing the scripts to fail.  To allow the
+                  script to work in current browsers as well as hide it from XML parsers you 
+                  need to set this attribute to "false" and htmlComment to "true".  The default is
+                  "true" to comply with the W3C's recommendation.
+               </p>
+            </info>
+            <since>Struts 1.1</since>
+        </attribute>
+        
         <attribute>
             <name>dynamicJavascript</name>
             <required>false</required>
