@@ -777,7 +777,7 @@
         <code>collection</code> attribute.</li>
     <li>As a JSP bean specified by the <code>name</code> attribute.</li>
     <li>As the property, specified by the <code>property</code> attribute,
-        of the JSP bean specified by the <code>bean</code> attribute.</li>
+        of the JSP bean specified by the <code>name</code> attribute.</li>
     </ul>
     </info>
 
