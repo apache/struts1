@@ -2,11 +2,11 @@
 
   <!-- Initialization properties -->
   <property name="app.name"       value="struts"/>
-  <property name="build.home"     value="build"/>
+  <property name="build.home"     value="target"/>
   <property name="catalina.home"  value="../jakarta-tomcat-4.0/build"/>
   <property name="debug"          value="true"/>
   <property name="deprecation"    value="false"/>
-  <property name="dist.home"      value="dist"/>
+  <property name="dist.home"      value="${build.home}/dist"/>
   <property name="optimize"       value="true"/>
   <property name="project.name"   value="jakarta-struts"/>
   <property name="project.version" value="1.0-b1"/>
@@ -148,6 +148,9 @@
     <copy    todir="${build.home}/library/classes/META-INF/tlds">
       <fileset dir="${build.home}/library" includes="struts-*.tld"/>
     </copy>
+    <jar  jarfile="${build.home}/library/${app.name}.jar"
+         manifest="src/conf/MANIFEST.MF"
+          basedir="${build.home}/library/classes" includes="**"/>
   </target>
 
   <!-- BUILD:  Compile blank application components -->
@@ -166,7 +169,7 @@
     <copy   todir="${build.home}/blank">
       <fileset dir="web/blank"/>
     </copy>
-    <copy    file="${dist.home}/lib/${app.name}.jar"
+    <copy    file="${build.home}/library/${app.name}.jar"
            tofile="${build.home}/blank/WEB-INF/lib/${app.name}.jar"/>
     <copy   todir="${build.home}/blank/WEB-INF">
       <fileset dir="${dist.home}/lib" includes="*.tld"/>
@@ -187,7 +190,7 @@
 -->
 
     <!-- Copy Struts JAR file and TLDs to the documentation app -->
-    <copy    file="${dist.home}/lib/${app.name}.jar"
+    <copy    file="${build.home}/library/${app.name}.jar"
            tofile="${build.home}/documentation/WEB-INF/lib/${app.name}.jar"/>
     <copy   todir="${build.home}/documentation/WEB-INF">
       <fileset dir="${dist.home}/lib" includes="*.tld"/>
@@ -241,7 +244,7 @@
     <copy   todir="${build.home}/example">
       <fileset dir="web/example"/>
     </copy>
-    <copy    file="${dist.home}/lib/${app.name}.jar"
+    <copy    file="${build.home}/library/${app.name}.jar"
            tofile="${build.home}/example/WEB-INF/lib/${app.name}.jar"/>
     <copy   todir="${build.home}/example/WEB-INF">
       <fileset dir="${dist.home}/lib" includes="*.tld"/>
@@ -254,7 +257,7 @@
     <copy   todir="${build.home}/template">
       <fileset dir="web/template-example"/>
     </copy>
-    <copy    file="${dist.home}/lib/${app.name}.jar"
+    <copy    file="${build.home}/library/${app.name}.jar"
            tofile="${build.home}/template/WEB-INF/lib/${app.name}.jar"/>
     <copy   todir="${build.home}/template/WEB-INF/tlds">
       <fileset dir="${dist.home}/lib" includes="*.tld"/>
@@ -272,7 +275,7 @@
       <copy todir="${build.home}/upload">
         <fileset dir="web/upload" />
       </copy>
-      <copy file="${dist.home}/lib/${app.name}.jar"
+      <copy file="${build.home}/library/${app.name}.jar"
             tofile="${build.home}/upload/WEB-INF/lib/${app.name}.jar"/>
       <copy file="${dist.home}/lib/${app.name}-html.tld"
             todir="${build.home}/upload/WEB-INF" />
@@ -292,7 +295,7 @@
     <copy   todir="${build.home}/exercise-taglib">
       <fileset dir="web/exercise-taglib"/>
     </copy>
-    <copy    file="${dist.home}/lib/${app.name}.jar"
+    <copy    file="${build.home}/library/${app.name}.jar"
            tofile="${build.home}/exercise-taglib/WEB-INF/lib/${app.name}.jar"/>
     <copy   todir="${build.home}/exercise-taglib/WEB-INF">
       <fileset dir="${dist.home}/lib" includes="*.tld"/>
@@ -319,11 +322,9 @@
   <target name="dist.library" depends="prepare.dist,compile.library">
     <copy   todir="${dist.home}/lib">
       <fileset dir="${build.home}/library" includes="*.dtd"/>
+      <fileset dir="${build.home}/library" includes="*.jar"/>
       <fileset dir="${build.home}/library" includes="*.tld"/>
     </copy>
-    <jar  jarfile="${dist.home}/lib/${app.name}.jar"
-         manifest="src/conf/MANIFEST.MF"
-          basedir="${build.home}/library/classes" includes="**"/>
   </target>
 
   <!-- DIST:  Construct blank distributables -->
@@ -483,7 +484,6 @@
   <!-- UTILITY:  Clean up build and distribution directories -->
   <target name="clean">
     <delete dir="${build.home}"/>
-    <delete dir="${dist.home}"/>
   </target>
 
   <!-- UTILITY:  All-in-one build target -->
