@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesRequestProcessor.java,v 1.4 2003/12/24 03:21:01 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2003/12/24 03:21:01 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesRequestProcessor.java,v 1.5 2003/12/28 22:03:27 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/12/28 22:03:27 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.faces.component.FormComponent;
  * requests as well.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2003/12/24 03:21:01 $
+ * @version $Revision: 1.5 $ $Date: 2003/12/28 22:03:27 $
  */
 
 public class FacesRequestProcessor extends RequestProcessor {
@@ -115,91 +115,6 @@ public class FacesRequestProcessor extends RequestProcessor {
 
 
     /**
-     * <p>Do a forward to specified uri using request dispatcher.
-     * This method is used by all internal method needing to transfer
-     * control to a new resource to create the response.  For a Faces
-     * request, select the new response component tree in addition to
-     * the standard processing.</p>
-     *
-     * @param uri Uri or Definition name to forward
-     * @param request Current page request
-     * @param response Current page response
-     */
-    protected void doForward(String uri, HttpServletRequest request,
-                             HttpServletResponse response)
-        throws IOException, ServletException
-    {
-
-        if (log.isTraceEnabled()) {
-            log.trace("Forwarding to URI '" + uri + "'");
-        }
-
-        // On a Faces request, select the new view
-        FacesContext context = FacesContext.getCurrentInstance();
-        /*
-        if ((context != null) && !uri.startsWith("/faces/")) {
-            selectView(context, uri);
-        } else {
-        */
-            if (response.isCommitted()) {
-                doInclude(uri, request, response);
-            } else {
-                super.doForward(uri, request, response);
-            }
-            /*
-            if (context != null) {
-                context.responseComplete();
-            }
-            */
-        /*
-        }
-        */
-
-    }
-
-
-    /**
-     * <p>Do a include to specified uri using request dispatcher.
-     * This method is used by all internal method needing to transfer
-     * control to a new resource to create the response.  For a Faces
-     * request, select the new response component tree in addition to
-     * the standard processing.</p>
-     *
-     * @param uri Uri or Definition name to forward
-     * @param request Current page request
-     * @param response Current page response
-     */
-    protected void doInclude(String uri, HttpServletRequest request,
-                             HttpServletResponse response)
-        throws IOException, ServletException
-    {
-
-        if (log.isTraceEnabled()) {
-            log.trace("Including to URI '" + uri + "'");
-        }
-
-        // On a Faces request, select the new view
-        FacesContext context = FacesContext.getCurrentInstance();
-        /*
-        if ((context != null)  && !uri.startsWith("/faces/")) {
-            ; // FIXME - JSF spec is probably broken w.r.t includes!
-            selectView(context, uri);
-        } else {
-        */
-            super.doInclude(uri, request, response);
-            /*
-            if (context != null) {
-                context.responseComplete();
-            }
-            */
-        /*
-        }
-        */
-
-    }
-
-
-    /**
      * <p>Identify and return the path component (from the request URI for a
      * non-Faces request, or from the form event for a Faces request)
      * that we will use to select an ActionMapping to dispatch with.
@@ -215,9 +130,11 @@ public class FacesRequestProcessor extends RequestProcessor {
                                  HttpServletResponse response)
         throws IOException {
 
-        // Handle non-Faces requests in the usual way
+        // Are we processing a Faces request?
         ActionEvent event = (ActionEvent)
             request.getAttribute(Constants.ACTION_EVENT_KEY);
+
+        // Handle non-Faces requests in the usual way
         if (event == null) {
             if (log.isTraceEnabled()) {
                 log.trace("Performing standard processPath() processing");
@@ -234,7 +151,7 @@ public class FacesRequestProcessor extends RequestProcessor {
         while (!(component instanceof FormComponent)) {
             component = component.getParent();
             if (component == null) {
-                log.warn("command component was not nested in a Struts form!");
+                log.warn("Command component was not nested in a Struts form!");
                 return (null);
             }
         }
@@ -295,33 +212,6 @@ public class FacesRequestProcessor extends RequestProcessor {
                 }
                 request.setAttribute(Globals.CANCEL_KEY, Boolean.TRUE);
             }
-        }
-
-    }
-
-
-    // --------------------------------------------------------- Private Methods
-
-
-    /**
-     * <p>Select the response view that corresponds to the specified
-     * URI, which is being forwarded to or included.</p>
-     *
-     * @param context FacesContext for the request we are processing
-     * @param uri Context-relative URI of the new resource
-     */
-    private void selectView(FacesContext context, String uri) {
-
-        if (log.isTraceEnabled()) {
-            log.trace("Selecting view '" + uri + "'");
-        }
-
-        // Look up the view that corresponds to this URI
-        try {
-            ViewHandler vh = context.getApplication().getViewHandler();
-            UIViewRoot view = vh.createView(context, uri);
-        } catch (FacesException e) {
-            log.error("selectView(" + uri + ")", e);
         }
 
     }
