@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/TestBean.java,v 1.1 2000/09/05 21:28:03 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/09/05 21:28:03 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/TestBean.java,v 1.2 2000/09/07 01:38:37 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/09/07 01:38:37 $
  *
  * ====================================================================
  *
@@ -67,7 +67,7 @@ package org.apache.struts.test;
  * General purpose test bean for Struts custom tag tests.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/09/05 21:28:03 $
+ * @version $Revision: 1.2 $ $Date: 2000/09/07 01:38:37 $
  */
 
 public class TestBean {
@@ -119,20 +119,6 @@ public class TestBean {
 
 
     /**
-     * An integer property.
-     */
-    private int intProperty = 123;
-
-    public int getIntProperty() {
-        return (this.intProperty);
-    }
-
-    public void setIntProperty(int intProperty) {
-        this.intProperty = intProperty;
-    }
-
-
-    /**
      * An integer array that is accessed as an array as well as indexed.
      */
     private int intArray[] = { 0, 10, 20, 30, 40 };
@@ -155,14 +141,16 @@ public class TestBean {
 
 
     /**
-     * A nested reference to another test bean (populated as needed).
+     * An integer property.
      */
-    private TestBean nested = null;
+    private int intProperty = 123;
 
-    public TestBean getNested() {
-        if (nested == null)
-            nested = new TestBean();
-        return (nested);
+    public int getIntProperty() {
+        return (this.intProperty);
+    }
+
+    public void setIntProperty(int intProperty) {
+        this.intProperty = intProperty;
     }
 
 
@@ -181,16 +169,28 @@ public class TestBean {
 
 
     /**
-     * A String property.
+     * A nested reference to another test bean (populated as needed).
      */
-    private String stringProperty = "This is a string";
+    private TestBean nested = null;
 
-    public String getStringProperty() {
-        return (this.stringProperty);
+    public TestBean getNested() {
+        if (nested == null)
+            nested = new TestBean();
+        return (nested);
     }
 
-    public void setStringProperty(String stringProperty) {
-        this.stringProperty = stringProperty;
+
+    /**
+     * A String property with an initial value of null.
+     */
+    private String nullProperty = null;
+
+    public String getNullProperty() {
+        return (this.nullProperty);
+    }
+
+    public void setNullProperty(String nullProperty) {
+        this.nullProperty = nullProperty;
     }
 
 
@@ -214,6 +214,20 @@ public class TestBean {
 
     public void setStringIndexed(int index, String value) {
         stringArray[index] = value;
+    }
+
+
+    /**
+     * A String property.
+     */
+    private String stringProperty = "This is a string";
+
+    public String getStringProperty() {
+        return (this.stringProperty);
+    }
+
+    public void setStringProperty(String stringProperty) {
+        this.stringProperty = stringProperty;
     }
 
 
