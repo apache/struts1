@@ -56,4 +56,6 @@ Core components will implement signatures that reference a StrutsContext. Implem
 
 * Adopt Struts Workflow and Struts Menu as standard options, like Validator and Tiles.
 
+* Utilize JodaBeans <http://www.joda.org/> as a foundation class for core components.
+
 ###
