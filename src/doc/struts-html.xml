@@ -1593,7 +1593,7 @@
                   <p>Where the image is aligned to.  Can be one of the
                   following attributes:</p>
                   <ul>
-                   <li>left - left justify, wrapping text on right</li>
+                   <li>left - left justify, wrapping text on right</li>
                     <li>right -right justify, wrapping test on left</li>
                     <li>top - aligns the image with the top of the text on
                         the same row</li>
@@ -2021,6 +2021,11 @@
                 a String or a String array representing the parameter value(s).
                 If a String array is specified, more than one value for the
                 same query parameter name will be created.</p>
+
+                <p>You can also request that an anchor ("#xxx") be added to the
+                end of the URL that is created by any of the above mechanisms,
+                by using the <code>anchor</code> attribute.</p>
+
                 </info>
 
                 <attribute>
@@ -2030,6 +2035,17 @@
                   <info>
                   <p>The keyboard character used to move focus immediately
                   to this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>anchor</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>Optional anchor tag ("#xxx") to be added to the generated
+                  hyperlink.  Specify this value <strong>without</strong> any
+                  "#" character.</p>
                   </info>
                 </attribute>
 
