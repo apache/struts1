@@ -1079,7 +1079,7 @@ throws Exception;
     It would be possible (but tedious) to write a small Java class that simply
     instantiated new <code>ActionMapping</code> instances, and called all of
     the appropriate setter methods.  
-    To make this process easier, Struts uses the Jakarta-Digester component 
+    To make this process easier, Struts uses the Jakarta Commons Digester component
     to parse an XML-based description of the desired mappings and create the 
     appropriate objects initialized to the appropriate default values.
     See the <a href="http://jakarta.apache.org/commons">Jakarta Commons 
