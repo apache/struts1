@@ -37,7 +37,7 @@ import org.apache.commons.logging.LogFactory;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2004/03/08 02:50:53 $
+ * @version $Revision: 1.6 $ $Date: 2004/07/06 03:21:32 $
  */
 
 public class CreateAction implements Command {
@@ -173,6 +173,11 @@ public class CreateAction implements Command {
         // Skip processing if the current request is not valid
         Boolean valid = (Boolean) context.get(getValidKey());
         if ((valid == null) || !valid.booleanValue()) {
+            return (false);
+        }
+        
+        // Check to see if an action has already been created
+        if (context.get(getActionKey()) != null) {
             return (false);
         }
 
