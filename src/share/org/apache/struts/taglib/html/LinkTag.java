@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.3 2001/01/08 21:36:07 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/01/08 21:36:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.4 2001/02/08 01:08:15 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/02/08 01:08:15 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.RequestUtils;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/01/08 21:36:07 $
+ * @version $Revision: 1.4 $ $Date: 2001/02/08 01:08:15 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -377,6 +377,10 @@ public class LinkTag extends BaseHandlerTag {
         linkName = null;
 	name = null;
         page = null;
+	paramId = null;
+	paramName = null;
+	paramProperty = null;
+	paramScope = null;
 	property = null;
         scope = null;
 	target = null;
