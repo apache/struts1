@@ -452,9 +452,8 @@
 
     <p>The collection to be iterated over MUST conform to one of the following
     requirements in order for iteration to be successful:</p>
-    <ul>
-    <li>An array of Java objects (but not primitive data types such as
-        "int")</li>
+    <ul><li>An array of Java objects or primitves.</li>
+
     <li>An implementation of <code>java.util.Collection</code>, including
         <code>ArrayList</code> and <code>Vector</code>.</li>
     <li>An implementation of <code>java.util.Enumeration</code>.</li>
