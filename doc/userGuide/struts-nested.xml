@@ -99,7 +99,7 @@
       </pre>
       Can instead become...
       <pre>
-&lt;nested:nest property="myNestedLevel" /&gt;
+&lt;nested:nest property="myNestedLevel" &gt;
   &lt;nested:write property="propertyOne" /&gt;
   &lt;nested:write property="propertyTwo" /&gt;
   &lt;nested:write property="propertyThree" /&gt;
