@@ -79,6 +79,7 @@ import org.apache.struts.action.ActionErrors;
  * errors.
  *
  *@author     David Winterfeldt
+ *@author     James Turner
  *@created    March 18, 2002
  *@since      Struts 1.1
  */
