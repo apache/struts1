@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartElement.java,v 1.5 2002/07/06 04:44:07 martinc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/07/06 04:44:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartElement.java,v 1.6 2003/07/31 03:53:23 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/07/31 03:53:23 $
  *
  * ====================================================================
  *
@@ -112,28 +112,6 @@ public class MultipartElement
      */
     protected boolean isFile = false;
 
-
-    /**
-     * @deprecated Use the constructor that takes an File as an argument
-     *             as opposed to a byte array argument, which can cause
-     *             memory problems.
-     */
-    public MultipartElement(String name, String fileName,
-                            String contentType, byte[] data)
-    {
-
-        this.name = name;
-        this.fileName = fileName;
-        this.contentType = contentType;
-        this.data = data;
-
-        if (fileName != null)
-        {
-              isFile = true;
-        }
-
-    }
-
     /**
      * Constructor for a file element.
      * @param name The form name of the element
@@ -171,19 +149,6 @@ public class MultipartElement
     {
          return contentType;
     }
-
-
-    /**
-     * Retrieve the data.
-     * @deprecated Use the getFile method to get a File representing the
-     *             data for this element
-     */
-    public byte[] getData()
-    {
-
-        return data;
-    }
-
 
     /**
      * Get the File that holds the data for this element.
@@ -277,14 +242,4 @@ public class MultipartElement
         this.value = value;
     }
 
-
-    /**
-     * Set the data.
-     * @deprecated Use the setFile method to set the file
-     *             that represents the data of this element
-     */
-    public void setData(byte[] data)
-    {
-        this.data = data;
-    }
 }
