@@ -5,30 +5,23 @@
 
     <title>Struts Framework</title>
 
-    <menu name="About Struts">
+    <menu name="Welcome">
         <item name="Home"                    href="index.html"/>
         <item name="User Guide"              href="userGuide/index.html"/>
         <item name="Resources"               href="userGuide/resources.html"/>
+        <item name="Kickstart FAQ"           href="userGuide/kickstart.html"/> 
         <item name="Who We Are"              href="userGuide/volunteers.html"/>
-        <!-- item name="FAQ"                 href="userGuide/faq/index.html"/ --> 
+    </menu>
+
+    <menu name="Getting Started">
+        <item name="Installation"            href="installation-1.0.html"/>
+        <item name="Release Notes"           href="release-notes-1.0.html"/>
+        <item name="Javadoc"                 href="api-1.0/index.html"/>
         <item name="Mailing Lists"           href="http://jakarta.apache.org/site/mail.html"/>
         <item name="Bug Database"            href="http://jakarta.apache.org/site/bugs.html"/>
     </menu>
 
-    <menu name="Getting Started">
-        <item name="Installation"            href="installation.html"/>
-        <item name="Release Notes"           href="release-notes-1.0.html"/>
-        <item name="Javadoc"                 href="api-1.0/index.html"/>
-    </menu>
-
-    <menu name="Java Developer Guides">
-        <item name="Digester"
-              href="api-1.0/org/apache/struts/digester/package-summary.html#package_description"/>
-        <item name="Utilities"
-              href="api-1.0/org/apache/struts/util/package-summary.html#package_description"/>
-    </menu>
-
-    <menu name="Tag Library Guides">
+    <menu name="Developer Guides">
         <item name="Bean Tags"
               href="api-1.0/org/apache/struts/taglib/bean/package-summary.html#package_description"/>
         <item name="HTML Tags"
@@ -37,16 +30,15 @@
               href="api-1.0/org/apache/struts/taglib/logic/package-summary.html#package_description"/>
         <item name="Template Tags"
               href="api-1.0/org/apache/struts/taglib/template/package-summary.html#package_description"/>
-    </menu>
-
-    <menu name="Tag Library Reference">
-        <item name="Bean Tags"          href="struts-bean.html"/>
-        <item name="HTML Tags"          href="struts-html.html"/>
-        <item name="Logic Tags"         href="struts-logic.html"/>
-        <item name="Template Tags"      href="struts-template.html"/>
+        <item name="Digester"
+              href="api-1.0/org/apache/struts/digester/package-summary.html#package_description"/>
+        <item name="Utilities"
+              href="api-1.0/org/apache/struts/util/package-summary.html#package_description"/>
     </menu>
 
     <menu name="Current Development">
+        <item name="Release Notes (1.01)"    href="release-notes-1.01.html"/>
+        <item name="Installation (nightly)"  href="installation.html"/>
         <item name="Release Notes (nightly)" href="release-notes.html"/>
         <item name="Javadoc (nightly)"       href="api/index.html"/>
         <item name="Workflow Proposal"       href="proposal-workflow.html"/>

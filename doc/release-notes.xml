@@ -26,7 +26,7 @@
   <section name="What's Included?" href="Included">
 
     <p>The binary distribution of this release includes the following
-    files relevant to Struts 1.0:</p>
+    files relevant to Struts:</p>
     <ul>
     <li><code>INSTALL</code> - Brief installation instructions.  See
         the <code>Struts Documentation Application</code>, or online at
@@ -126,10 +126,17 @@
     been added to accumulate Struts add-on extensions that are generally
     useful but have not yet been integrated into the standard code base.</p>
 
+    <p>
+    <ul>
+    <li>ValidatorForm - Client and Server-side validation library.</li>
+    <li>Tiles - Advanced templating library (see Struts-Tiles.war).</li>
+    <li>Service Manager - Add custom services without subclassing controller.</li>
+    </ul>
+    </p>  
+
     <p><strong>UNIT TESTING SUPPORT</strong>:  Support for running unit tests
     on Struts components and custom tags is being added, utilizing the
-    <a href="http://jakarta.apache.org/commons/cactus/">Cactus</a> package
-    from the Jakarta Commons project.</p>
+    <a href="http://jakarta.apache.org/cactus/">Jakarta Cactus</a> product.</p>
 
     <p>The following new features have been added to the basic controller
     framework (package <code>org.apache.struts.action</code>):</p>
@@ -142,7 +149,9 @@
     <p>The following new features have been added to the utility classes
     (package <code>org.apache.struts.util</code>):</p>
     <ul>
-    <li>None.</li>
+    <li>MessageResources: Escape any single quote characters that are included in the specified message string.</li>
+    <li>Allow a transaction token to be the only parameter in computeParameters().</li>
+    <li>Change RequestUtils to encode ampersands when building a query string.</li>
     </ul>
 
     <p>The following new features have been added to the
@@ -164,6 +173,9 @@
         the message resource key can be obtained dynamically from a bean.</li>
     <li>Added a new <code>&lt;html:messages&gt;</code> tag to iterate through
         a message collection in the new <code>ActionMessages</code> class.</li>
+    <li><code>ActionForm</code> will now call <code>reset()</code> if it 
+        instantiates the ActionForm bean.</li>
+    <li>Added indexed property to the SubmitTag, SelectTag, LinkTag.java, CheckboxTag, ButtonTag, ImageTag, RadioTag, and TextArea.Tag.</li>
     </ul>
 
     <p>The following new features have been added to the
@@ -187,7 +199,11 @@
     <p>The following new features have been added to the Struts Documentation
     application (and corresponding contents on the Struts web site):</p>
     <ul>
-    <li>None.</li>
+    <li>Move Tag Library documentation into User's Guide.</li>
+    <li>Added Kickstart FAQ.</li>
+    <li>Added Reference copy of 1.0 JavaDoc.</li>
+    <li>Revised the example page in the User's Guide (Building View Components) to reflect current practice.</li>
+    <li>Revised installation instructions for SilverStream and Resin.</li>
     </ul>
 
   </section>
@@ -212,6 +228,7 @@
         responsibility to reset these two properties.</li>
     <li>Removed deprecated Struts 0.5 methods, and support for the Struts 0.5
         configuration file format.</li>
+    <li>The initial order a property/key is added in is now maintained by ActionMessages class.</li>
     </ul>
 
     <p>The following changes and bug fixes have occurred in the file upload
@@ -235,7 +252,7 @@
     has no errors. Previously errors were always printed ! Future
     enhancements would include additional attributes to always turn
     off the header or footer. </li>
-    <li>Make the remaining helper methods "protected" rather than 
+    <li>Made the remaining helper methods "protected" rather than 
     "private".</li>
     </ul>
 
@@ -243,7 +260,9 @@
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>
-    <li>None.</li>
+    <li>Added indexed attribute to ImageTag, RadioTag, and TextAreaTag.</li>
+    <li>Added MessagesTag.</li>
+    <li>Correctly URLEncode the query string parameter value on ImgTag, even if there is only a single parameter.</li>
     </ul>
 
     <p>The following changes and bug fixes have occurred in the
@@ -263,7 +282,8 @@
     <p>The following changes and bug fixes to the Struts Example Application
     have occurred:</p>
     <ul>
-    <li>None.</li>
+    <li>Exchange "name" for "attribute" properties for Edit mappings in Struts configuration file.</li>
+    <li>Remove references to saving database data from "tour" document, since this functionality was removed.</li>
     </ul>
 
     <p>The following changes and bug fixes to the Struts Template Example
