@@ -104,7 +104,7 @@
 
     <!-- Locale Action -->
     <action    path="/locale"
-               type="org.apache.struts.webapp.validator.LocaleAction"
+               type="org.apache.struts.actions.LocaleAction"
                name="localeForm"
                scope="request">
        <forward name="success"              path="/index.jsp"/>
