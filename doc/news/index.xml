@@ -14,7 +14,7 @@ The <b>stable production release</b> is <a href="http://jakarta.apache.org/build
 </p>
 
 <p>
-<a href="http://www.apache.org/dist/jakarta/struts/">Struts 1.1</a> is in its third <b>beta release</b> (30 December 2002).
+<a href="http://www.apache.org/dist/jakarta/struts/">Struts 1.1</a> is in its first <b>release candidate</b> build (20 February 2003).
 </p>
 
 <hr size="1" noshade=""/>
@@ -111,6 +111,46 @@ which only just trails Tomcat:
 </p>
 <hr size="1" noshade=""/>
 -->
+
+    <h3><a name="20030220"></a>20 Feb 2003 - Struts 1.1 Release Candidate 1 Released</h3>
+    <p>
+        The Struts team is proud to announce the release of Struts 1.1 Release
+        Candidate 1. This release includes some new functionality, as well as
+        fixes for a number of bugs which were reported against earlier versions.
+        The Struts Team believes that this release is ready for prime time, hence
+        its designation as a release candidate.
+    </p>
+    <p>
+        The binary distribution is available at:
+    </p>
+    <p>
+        <a href="http://www.apache.org/dist/jakarta/struts/binaries/">
+        http://www.apache.org/dist/jakarta/struts/binaries/</a>
+    </p>
+    <p>
+        and the source distribution is available at:
+    </p>
+    <p>
+        <a href="http://www.apache.org/dist/jakarta/struts/source/">
+        http://www.apache.org/dist/jakarta/struts/source/</a>
+    </p>
+    <p>
+        In addition, the library distribution, which contains updated binaries
+        without the sample applications, is available at:
+    </p>
+    <p>
+        <a href="http://www.apache.org/dist/jakarta/struts/library/">
+        http://www.apache.org/dist/jakarta/struts/library/</a>
+    </p>
+    <p>
+        Details of the changes in this release are available in the Release
+        Notes, which can be found here:
+    </p>
+    <p>
+        <a href="http://jakarta.apache.org/struts/userGuide/release-notes-1.1-rc1.html">
+        http://jakarta.apache.org/struts/userGuide/release-notes-1.1-rc1.html</a>
+    </p>
+    <hr size="1" noshade=""/>
 
     <h3><a name="20030217"></a>17 Feb 2003 - Struts talk .. &amp; labs live online w/ 4 Authors</h3>
     <p>

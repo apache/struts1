@@ -18,7 +18,7 @@
 <section href="status" name="Development Roadmap">
 
     <p>
-    <font size="-2">$Id: status.xml,v 1.27 2003/02/15 13:53:53 husted Exp $</font>
+    <font size="-2">$Id: status.xml,v 1.28 2003/02/20 06:30:43 martinc Exp $</font>
     </p>
 
     <p>
@@ -68,8 +68,8 @@
     </p>
 
     <p>
-        <a href="proposals/release-plan-1.1b3.html">Struts 1.1 beta 3</a> is in circulation
-        and we are working toward a release candidate.
+        <a href="proposals/release-plan-1.1rc1.html">Struts 1.1 Release Candidate 1</a>
+        is in circulation and we are working toward a final release.
     </p>
 </section>
 
@@ -234,7 +234,7 @@
     <ul>
 
         <li>
-        <a href="proposals/release-plan-1.1b3.html">Release Plan 1.1-b3</a>
+        <a href="proposals/release-plan-1.1rc1.html">Release Plan 1.1-rc1</a>
         </li>
 
         <li>
