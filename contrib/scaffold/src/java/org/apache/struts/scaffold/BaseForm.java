@@ -20,8 +20,10 @@ import org.apache.commons.scaffold.lang.ChainedException;
 
 /**
  * Enhanced base ActionForm.
+ * :TODO: Change from BeanUtil.populate to copyProperties
+ * in 1.1 version.
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/08/14 18:30:09 $
+ * @version $Revision: 1.2 $ $Date: 2002/08/16 21:06:47 $
  */
 public class BaseForm extends ValidatorForm {
 
