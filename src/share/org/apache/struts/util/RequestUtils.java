@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.112 2003/07/25 09:15:57 sraeburn Exp $
- * $Revision: 1.112 $
- * $Date: 2003/07/25 09:15:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.113 2003/07/26 00:19:44 dgraham Exp $
+ * $Revision: 1.113 $
+ * $Date: 2003/07/26 00:19:44 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.112 $ $Date: 2003/07/25 09:15:57 $
+ * @version $Revision: 1.113 $ $Date: 2003/07/26 00:19:44 $
  */
 
 public class RequestUtils {
@@ -967,8 +967,21 @@ public class RequestUtils {
      * @return current user locale
      */
     public static Locale retrieveUserLocale(PageContext pageContext, String locale) {
+        return getUserLocale((HttpServletRequest) pageContext.getRequest(), locale);
+    }
+    
+    /**
+     * Look up and return current user locale, based on the specified parameters.
+     *
+     * @param request The request used to lookup the Locale 
+     * @param locale Name of the session attribute for our user's Locale.  If this is 
+     * <code>null</code>, the default locale key is used for the lookup.
+     * @return current user locale
+     * @since Struts 1.2
+     */
+    public static Locale getUserLocale(HttpServletRequest request, String locale) {
         Locale userLocale = null;
-        HttpSession session = pageContext.getSession();
+        HttpSession session = request.getSession(false);
  
         if (locale == null) {
             locale = Globals.LOCALE_KEY;
@@ -981,7 +994,7 @@ public class RequestUtils {
 
         if (userLocale == null) {
             // Returns Locale based on Accept-Language header or the server default
-            userLocale = pageContext.getRequest().getLocale();
+            userLocale = request.getLocale();
         }
 
         return userLocale;
