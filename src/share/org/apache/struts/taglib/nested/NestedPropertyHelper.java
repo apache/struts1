@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.10 2002/11/16 04:30:03 jmitchell Exp $
- * $Revision: 1.10 $
- * $Date: 2002/11/16 04:30:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.11 2002/11/16 07:07:07 rleland Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/11/16 07:07:07 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,7 +76,7 @@ import org.apache.struts.taglib.html.FormTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.10 $ $Date: 2002/11/16 04:30:03 $
+ * @version $Revision: 1.11 $ $Date: 2002/11/16 07:07:07 $
  */ 
 public class NestedPropertyHelper {
   
@@ -85,7 +85,7 @@ public class NestedPropertyHelper {
   
   /** Sets the passed reference to the session object, and returns any reference
    * that was already there
-   * @param session User's session object
+   * @param request User's request object
    * @param reference New reference to put into the session
    */
   public static final NestedReference setIncludeReference(HttpServletRequest request,
@@ -124,11 +124,9 @@ public class NestedPropertyHelper {
     /* loop all parent tags until we get one that can be nested against  */
     do {
       namedTag = namedTag.getParent();
-      if (parentTag == null) {
-        if (namedTag instanceof NestedParentSupport ||
-            namedTag instanceof FormTag) {
-          parentTag = namedTag;
-        }
+      if (namedTag instanceof NestedParentSupport ||
+          namedTag instanceof FormTag) {
+        parentTag = namedTag;
       }
     } while (parentTag == null && namedTag != null);
     
