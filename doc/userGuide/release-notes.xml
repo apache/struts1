@@ -25,8 +25,12 @@
      <section name="Version 1.2.6 [DEV]" href="STRUTS_1_2_6">
 
          <p>
-            2004-10-29 [56018] - Change BeanUtils dependency to 1.7.0 and
-             remove Collections Dependency
+            2004-11-03 [56532] - add LazyValidatorForm
+         </p>
+
+         <p>
+            2004-10-29 [56018 / 56513 / 56520] - Change BeanUtils dependency to 1.7.0,
+             Digester dependency to 1.6 and remove Collections Dependency
          </p>
 
          <p>
