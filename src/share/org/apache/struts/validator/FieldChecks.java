@@ -1,4 +1,10 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.8 2003/05/22 01:05:44 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/05/22 01:05:44 $
+ *
+ * ====================================================================
+ *
  *  The Apache Software License, Version 1.1
  *
  *  Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
@@ -69,46 +75,44 @@ import org.apache.commons.validator.ValidatorUtil;
 import org.apache.struts.action.ActionErrors;
 
 /**
- *  <p>
- *
- *  This class contains the default validations that are used in the validator-rules.xml
- *  file.</p>
- *
+ * <p>
+ * This class contains the default validations that are used in the 
+ * validator-rules.xml file.
+ * </p>
+ * <p>
  * In general passing in a null or blank will return a null Object or a false
  * boolean. However, nulls and blanks do not result in an error being added to the
  * errors.
- *
- *@author     David Winterfeldt
- *@author     James Turner
- *@author     Rob Leland
- *@since      Struts 1.1
+ * </p>
+ * 
+ * @author David Winterfeldt
+ * @author James Turner
+ * @author Rob Leland
+ * @since Struts 1.1
  */
 public class FieldChecks implements Serializable {
 
     /**
      *  Commons Logging instance.
      */
-    private static Log LOG = LogFactory.getLog(FieldChecks.class);
+    private static final Log log = LogFactory.getLog(FieldChecks.class);
 
-    public final static String FIELD_TEST_NULL = "NULL";
-    public final static String FIELD_TEST_NOTNULL = "NOTNULL";
-    public final static String FIELD_TEST_EQUAL = "EQUAL";
-
+    public static final String FIELD_TEST_NULL = "NULL";
+    public static final String FIELD_TEST_NOTNULL = "NOTNULL";
+    public static final String FIELD_TEST_EQUAL = "EQUAL";
 
     /**
-     *  <p>
+     * Checks if the field isn't null and length of the field is greater than zero not 
+     * including whitespace.
      *
-     *  Checks if the field isn't null and length of the field is greater than zero
-     *  not including whitespace.</p>
-     *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
-     *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
-     *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          True if meets stated requirements, False otherwise
+     * @param bean The bean validation is being performed on.
+     * @param va The <code>ValidatorAction</code> that is currently being performed.
+     * @param field The <code>Field</code> object associated with the current 
+     * field being validated.
+     * @param errors The <code>ActionErrors</code> object to add errors to if 
+     * any validation errors occur.
+     * @param request Current request object.
+     * @return true if meets stated requirements, false otherwise.
      */
     public static boolean validateRequired(Object bean,
                                            ValidatorAction va, Field field,
@@ -121,10 +125,9 @@ public class FieldChecks implements Serializable {
         } else {
             value = ValidatorUtil.getValueAsString(bean, field.getProperty());
         }
+        
         if (GenericValidator.isBlankOrNull(value)) {
-            errors.add(field.getKey(),
-                                 Resources.getActionError(request, va, field));
-
+            errors.add(field.getKey(), Resources.getActionError(request, va, field));
             return false;
         } else {
             return true;
@@ -132,85 +135,97 @@ public class FieldChecks implements Serializable {
 
     }
 
-
     /**
-     *  <p>
-     *  Checks if the field isn't null based on the values of other fields.
-     *  </p>
+     * Checks if the field isn't null based on the values of other fields.
      *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
-     *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
-     *      validation errors occur.
-     *@param  validator The <code>Validator</code> instance, used to access other field values.
-     *@param  request  Current request object.
-     *@return          True if meets stated requirements, False otherwise
+     * @param bean The bean validation is being performed on.
+     * @param va The <code>ValidatorAction</code> that is currently being 
+     * performed.
+     * @param field The <code>Field</code> object associated with the current 
+     * field being validated.
+     * @param errors The <code>ActionErrors</code> object to add errors to if 
+     * any validation errors occur.
+     * @param validator The <code>Validator</code> instance, used to access 
+     * other field values.
+     * @param request Current request object.
+     * @return true if meets stated requirements, false otherwise.
      */
     public static boolean validateRequiredIf(Object bean,
                                              ValidatorAction va, Field field,
                                              ActionErrors errors,
                                              org.apache.commons.validator.Validator validator,
                                              HttpServletRequest request) {
+                                                 
         Object form = validator.getResource(org.apache.commons.validator.Validator.BEAN_KEY);
         String value = null;
         boolean required = false;
+        
         if (isString(bean)) {
             value = (String) bean;
         } else {
             value = ValidatorUtil.getValueAsString(bean, field.getProperty());
         }
+        
         int i = 0;
         String fieldJoin = "AND";
         if (!GenericValidator.isBlankOrNull(field.getVarValue("fieldJoin"))) {
             fieldJoin = field.getVarValue("fieldJoin");
         }
+        
         if (fieldJoin.equalsIgnoreCase("AND")) {
             required = true;
         }
+        
         while (!GenericValidator.isBlankOrNull(field.getVarValue("field[" + i + "]"))) {
             String dependProp = field.getVarValue("field[" + i + "]");
             String dependTest = field.getVarValue("fieldTest[" + i + "]");
             String dependTestValue = field.getVarValue("fieldValue[" + i + "]");
             String dependIndexed = field.getVarValue("fieldIndexed[" + i + "]");
-            if (dependIndexed == null)
+            
+            if (dependIndexed == null) {
                 dependIndexed = "false";
+            }
+            
             String dependVal = null;
-            boolean this_required = false;
+            boolean thisRequired = false;
             if (field.isIndexed() && dependIndexed.equalsIgnoreCase("true")) {
                 String key = field.getKey();
-                if ((key.indexOf("[") > -1) &&
-                                     (key.indexOf("]") > -1)) {
+                if ((key.indexOf("[") > -1) && (key.indexOf("]") > -1)) {
                     String ind = key.substring(0, key.indexOf(".") + 1);
                     dependProp = ind + dependProp;
                 }
             }
+            
             dependVal = ValidatorUtil.getValueAsString(form, dependProp);
             if (dependTest.equals(FIELD_TEST_NULL)) {
                 if ((dependVal != null) && (dependVal.length() > 0)) {
-                    this_required = false;
+                    thisRequired = false;
                 } else {
-                    this_required = true;
+                    thisRequired = true;
                 }
             }
+            
             if (dependTest.equals(FIELD_TEST_NOTNULL)) {
                 if ((dependVal != null) && (dependVal.length() > 0)) {
-                    this_required = true;
+                    thisRequired = true;
                 } else {
-                    this_required = false;
+                    thisRequired = false;
                 }
             }
+            
             if (dependTest.equals(FIELD_TEST_EQUAL)) {
-                this_required = dependTestValue.equalsIgnoreCase(dependVal);
+                thisRequired = dependTestValue.equalsIgnoreCase(dependVal);
             }
+            
             if (fieldJoin.equalsIgnoreCase("AND")) {
-                required = required && this_required;
+                required = required && thisRequired;
             } else {
-                required = required || this_required;
+                required = required || thisRequired;
             }
+            
             i++;
         }
+        
         if (required) {
             if ((value != null) && (value.length() > 0)) {
                 return true;
@@ -223,19 +238,17 @@ public class FieldChecks implements Serializable {
     }
 
     /**
-     *  <p>
+     * Checks if the field matches the regular expression in the field's mask attribute.
      *
-     *  Checks if the field matches the regular expression in the field's mask attribute.
-     *  </p>
-     *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
-     *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
-     *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          True if field matches mask, false otherwise.
+     * @param bean The bean validation is being performed on.
+     * @param va The <code>ValidatorAction</code> that is currently being 
+     * performed.
+     * @param field The <code>Field</code> object associated with the current 
+     * field being validated.
+     * @param errors   The <code>ActionErrors</code> object to add errors to if 
+     * any validation errors occur.
+     * @param request Current request object.
+     * @return true if field matches mask, false otherwise.
      */
     public static boolean validateMask(Object bean,
                                        ValidatorAction va, Field field,
@@ -247,40 +260,39 @@ public class FieldChecks implements Serializable {
         if (isString(bean)) {
             value = (String) bean;
         } else {
-            value = ValidatorUtil.getValueAsString(bean,
-                                 field.getProperty());
+            value = ValidatorUtil.getValueAsString(bean, field.getProperty());
         }
+        
         try {
-            if (!GenericValidator.isBlankOrNull(value) &&
-                                 !GenericValidator.matchRegexp(value, mask)) {
-                errors.add(field.getKey(),
-                                     Resources.getActionError(request, va,
-                                                          field));
+            if (!GenericValidator.isBlankOrNull(value)
+                && !GenericValidator.matchRegexp(value, mask)) {
+                    
+                errors.add(
+                    field.getKey(),
+                    Resources.getActionError(request, va, field));
 
                 return false;
             } else {
                 return true;
             }
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return true;
     }
 
 
     /**
-     *  <p>
+     * Checks if the field can safely be converted to a byte primitive.
      *
-     *  Checks if the field can safely be converted to a byte primitive.</p>
-     *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
-     *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
-     *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          A Byte if valid, a null otherwise.
+     *@param bean The bean validation is being performed on.
+     *@param va The <code>ValidatorAction</code> that is currently being performed.
+     *@param field The <code>Field</code> object associated with the current 
+     *field being validated.
+     *@param errors The <code>ActionErrors</code> object to add errors to if 
+     *any validation errors occur.
+     *@param request Current request object.
+     *@return A Byte if valid, null otherwise.
      */
     public static Byte validateByte(Object bean,
                                     ValidatorAction va, Field field,
@@ -308,18 +320,16 @@ public class FieldChecks implements Serializable {
 
 
     /**
-     *  <p>
+     * Checks if the field can safely be converted to a short primitive.
      *
-     *  Checks if the field can safely be converted to a short primitive.</p>
-     *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
-     *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
-     *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          A Short if valid, otherwise a null.
+     * @param bean The bean validation is being performed on.
+     * @param va The <code>ValidatorAction</code> that is currently being performed.
+     * @param field The <code>Field</code> object associated with the current 
+     * field being validated.
+     * @param errors The <code>ActionErrors</code> object to add errors to if 
+     * any validation errors occur.
+     * @param request Current request object.
+     * @return A Short if valid, otherwise null.
      */
     public static Short validateShort(Object bean,
                                       ValidatorAction va, Field field,
@@ -346,18 +356,16 @@ public class FieldChecks implements Serializable {
 
 
     /**
-     *  <p>
+     * Checks if the field can safely be converted to an int primitive.
      *
-     *  Checks if the field can safely be converted to an int primitive.</p>
-     *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
      *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          An Integer if valid, a null otherwise.
+     * @param  request  Current request object.
+     * @return          An Integer if valid, a null otherwise.
      */
     public static Integer validateInteger(Object bean,
                                           ValidatorAction va, Field field,
@@ -384,18 +392,16 @@ public class FieldChecks implements Serializable {
 
 
     /**
-     *  <p>
+     * Checks if the field can safely be converted to a long primitive.
      *
-     *  Checks if the field can safely be converted to a long primitive.</p>
-     *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
      *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          A Long if valid, a null otherwise.
+     * @param  request  Current request object.
+     * @return          A Long if valid, a null otherwise.
      */
     public static Long validateLong(Object bean,
                                     ValidatorAction va, Field field,
@@ -422,18 +428,16 @@ public class FieldChecks implements Serializable {
 
 
     /**
-     *  <p>
+     * Checks if the field can safely be converted to a float primitive.
      *
-     *  Checks if the field can safely be converted to a float primitive.</p>
-     *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
      *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          A Float if valid, a null otherwise.
+     * @param  request  Current request object.
+     * @return A Float if valid, a null otherwise.
      */
     public static Float validateFloat(Object bean,
                                       ValidatorAction va, Field field,
@@ -460,18 +464,16 @@ public class FieldChecks implements Serializable {
 
 
     /**
-     *  <p>
+     *  Checks if the field can safely be converted to a double primitive.
      *
-     *  Checks if the field can safely be converted to a double primitive.</p>
-     *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
      *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          A Double if valid, a null otherwise.
+     * @param  request  Current request object.
+     * @return A Double if valid, a null otherwise.
      */
     public static Double validateDouble(Object bean,
                                         ValidatorAction va, Field field,
@@ -498,8 +500,6 @@ public class FieldChecks implements Serializable {
 
 
     /**
-     *  <p>
-     *
      *  Checks if the field is a valid date. If the field has a datePattern variable,
      *  that will be used to format <code>java.text.SimpleDateFormat</code>. If the
      *  field has a datePatternStrict variable, that will be used to format <code>java.text.SimpleDateFormat</code>
@@ -507,16 +507,15 @@ public class FieldChecks implements Serializable {
      *  the format 'MM/dd/yyyy' because the month isn't two digits. If no datePattern
      *  variable is specified, then the field gets the DateFormat.SHORT format for
      *  the locale. The setLenient method is set to <code>false</code> for all variations.
-     *  </p>
      *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
      *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          A Date if valid, a null if blank or invalid.
+     * @param  request  Current request object.
+     * @return A Date if valid, a null if blank or invalid.
      */
     public static Date validateDate(Object bean,
                                     ValidatorAction va, Field field,
@@ -544,7 +543,7 @@ public class FieldChecks implements Serializable {
                     result = GenericTypeValidator.formatDate(value, locale);
                 }
             } catch (Exception e) {
-                LOG.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
             }
 
             if (result == null) {
@@ -556,10 +555,9 @@ public class FieldChecks implements Serializable {
     }
 
     /**
-     *  <p>
-     *
-     *  Checks if a fields value is within a range (min &amp; max specified in the
-     *  vars attribute).</p>
+     * Checks if a fields value is within a range (min &amp; max specified in the
+     * vars attribute).
+     * 
      *@deprecated  As of Struts 1.1, replaced by {@link #validateIntRange(java.lang.Object,org.apache.commons.validator.ValidatorAction,org.apache.commons.validator.Field,org.apache.struts.action.ActionErrors,javax.servlet.http.HttpServletRequest)}
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
@@ -578,19 +576,17 @@ public class FieldChecks implements Serializable {
     }
 
     /**
-     *  <p>
+     * Checks if a fields value is within a range (min &amp; max specified in the
+     * vars attribute).
      *
-     *  Checks if a fields value is within a range (min &amp; max specified in the
-     *  vars attribute).</p>
-     *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
      *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          True if in range, false otherwise.
+     * @param  request  Current request object.
+     * @return True if in range, false otherwise.
      */
     public static boolean validateIntRange(Object bean,
                                            ValidatorAction va, Field field,
@@ -603,16 +599,14 @@ public class FieldChecks implements Serializable {
         } else {
             value = ValidatorUtil.getValueAsString(bean, field.getProperty());
         }
-        String sMin = field.getVarValue("min");
-        String sMax = field.getVarValue("max");
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
-                int iValue = Integer.parseInt(value);
-                int min = Integer.parseInt(sMin);
-                int max = Integer.parseInt(sMax);
+                int intValue = Integer.parseInt(value);
+                int min = Integer.parseInt(field.getVarValue("min"));
+                int max = Integer.parseInt(field.getVarValue("max"));
 
-                if (!GenericValidator.isInRange(iValue, min, max)) {
+                if (!GenericValidator.isInRange(intValue, min, max)) {
                     errors.add(field.getKey(), Resources.getActionError(request, va, field));
 
                     return false;
@@ -627,19 +621,17 @@ public class FieldChecks implements Serializable {
     }
 
     /**
-     *  <p>
-     *
      *  Checks if a fields value is within a range (min &amp; max specified in the
-     *  vars attribute).</p>
+     *  vars attribute).
      *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
      *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          True if in range, false otherwise.
+     * @param  request  Current request object.
+     * @return          True if in range, false otherwise.
      */
     public static boolean validateDoubleRange(Object bean,
                                               ValidatorAction va, Field field,
@@ -652,16 +644,14 @@ public class FieldChecks implements Serializable {
         } else {
             value = ValidatorUtil.getValueAsString(bean, field.getProperty());
         }
-        String sMin = field.getVarValue("min");
-        String sMax = field.getVarValue("max");
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
-                double dValue = Double.parseDouble(value);
-                double min = Double.parseDouble(sMin);
-                double max = Double.parseDouble(sMax);
+                double doubleValue = Double.parseDouble(value);
+                double min = Double.parseDouble(field.getVarValue("min"));
+                double max = Double.parseDouble(field.getVarValue("max"));
 
-                if (!GenericValidator.isInRange(dValue, min, max)) {
+                if (!GenericValidator.isInRange(doubleValue, min, max)) {
                     errors.add(field.getKey(), Resources.getActionError(request, va, field));
 
                     return false;
@@ -676,19 +666,17 @@ public class FieldChecks implements Serializable {
     }
 
     /**
-     *  <p>
-     *
      *  Checks if a fields value is within a range (min &amp; max specified in the
-     *  vars attribute).</p>
+     *  vars attribute).
      *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
      *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          True if in range, false otherwise.
+     * @param  request  Current request object.
+     * @return True if in range, false otherwise.
      */
     public static boolean validateFloatRange(Object bean,
                                              ValidatorAction va, Field field,
@@ -701,16 +689,14 @@ public class FieldChecks implements Serializable {
         } else {
             value = ValidatorUtil.getValueAsString(bean, field.getProperty());
         }
-        String sMin = field.getVarValue("min");
-        String sMax = field.getVarValue("max");
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
-                float fValue = Float.parseFloat(value);
-                float min = Float.parseFloat(sMin);
-                float max = Float.parseFloat(sMax);
+                float floatValue = Float.parseFloat(value);
+                float min = Float.parseFloat(field.getVarValue("min"));
+                float max = Float.parseFloat(field.getVarValue("max"));
 
-                if (!GenericValidator.isInRange(fValue, min, max)) {
+                if (!GenericValidator.isInRange(floatValue, min, max)) {
                     errors.add(field.getKey(), Resources.getActionError(request, va, field));
 
                     return false;
@@ -726,23 +712,16 @@ public class FieldChecks implements Serializable {
 
 
     /**
-     *  <p>
-     *
-     *  Checks if the field is a valid credit card number.</p> <p>
-     *
-     *  Translated to Java by Ted Husted (<a href="mailto:husted@apache.org">husted@apache.org
-     *  </a>).<br>
-     *  &nbsp;&nbsp;&nbsp; Reference Sean M. Burke's script at http://www.ling.nwu.edu/~sburke/pub/luhn_lib.pl
-     *  </p>
-     *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
+     *  Checks if the field is a valid credit card number.
+     * 
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
      *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          The credit card as a Long, a null if invalid, blank, or null.
+     * @param  request  Current request object.
+     * @return The credit card as a Long, a null if invalid, blank, or null.
      */
     public static Long validateCreditCard(Object bean,
                                           ValidatorAction va, Field field,
@@ -770,21 +749,16 @@ public class FieldChecks implements Serializable {
 
 
     /**
-     *  <p>
+     *  Checks if a field has a valid e-mail address.
      *
-     *  Checks if a field has a valid e-mail address.</p> <p>
-     *
-     *  Based on a script by Sandeep V. Tamhankar (stamhankar@hotmail.com), http://javascript.internet.com
-     *  </p>
-     *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
      *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          True if valid, false otherwise.
+     * @param  request  Current request object.
+     * @return True if valid, false otherwise.
      */
     public static boolean validateEmail(Object bean,
                                         ValidatorAction va, Field field,
@@ -808,19 +782,17 @@ public class FieldChecks implements Serializable {
 
 
     /**
-     *  <p>
-     *
      *  Checks if the field's length is less than or equal to the maximum value.
-     *  A <code>Null</code> will be considered an error.</p>
+     *  A <code>Null</code> will be considered an error.
      *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
      *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          True if stated conditions met.
+     * @param  request  Current request object.
+     * @return True if stated conditions met.
      */
     public static boolean validateMaxLength(Object bean,
                                             ValidatorAction va, Field field,
@@ -833,11 +805,10 @@ public class FieldChecks implements Serializable {
         } else {
             value = ValidatorUtil.getValueAsString(bean, field.getProperty());
         }
-        String sMaxLength = field.getVarValue("maxlength");
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
-                int max = Integer.parseInt(sMaxLength);
+                int max = Integer.parseInt(field.getVarValue("maxlength"));
 
                 if (!GenericValidator.maxLength(value, max)) {
                     errors.add(field.getKey(), Resources.getActionError(request, va, field));
@@ -855,19 +826,17 @@ public class FieldChecks implements Serializable {
 
 
     /**
-     *  <p>
+     * Checks if the field's length is greater than or equal to the minimum value.
+     * A <code>Null</code> will be considered an error.
      *
-     *  Checks if the field's length is greater than or equal to the minimum value.
-     *  A <code>Null</code> will be considered an error.</p>
-     *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * @param  errors   The <code>ActionErrors</code> object to add errors to if any
      *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          True if stated conditions met.
+     * @param  request  Current request object.
+     * @return True if stated conditions met.
      */
     public static boolean validateMinLength(Object bean,
                                             ValidatorAction va, Field field,
@@ -880,11 +849,10 @@ public class FieldChecks implements Serializable {
         } else {
             value = ValidatorUtil.getValueAsString(bean, field.getProperty());
         }
-        String sMinLength = field.getVarValue("minlength");
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
-                int min = Integer.parseInt(sMinLength);
+                int min = Integer.parseInt(field.getVarValue("minlength"));
 
                 if (!GenericValidator.minLength(value, min)) {
                     errors.add(field.getKey(), Resources.getActionError(request, va, field));
@@ -902,20 +870,14 @@ public class FieldChecks implements Serializable {
 
 
     /**
-     *  <p>
-     *
      *  Return <code>true</code> if the specified object is a String or a <code>null</code>
-     *  value.</p>
+     *  value.
      *
-     *@param  o  Object to be tested
-     *@return    The string value
+     * @param o Object to be tested
+     * @return The string value
      */
     protected static boolean isString(Object o) {
-
-        if (o == null) {
-            return (true);
-        }
-        return (String.class.isInstance(o));
+        return (o == null) ? true : String.class.isInstance(o);
     }
 
 }
