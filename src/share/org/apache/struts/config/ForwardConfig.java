@@ -86,8 +86,7 @@ public class ForwardConfig implements Serializable {
     }
 
     /**
-     * Construct a new instance with the specified values.
-     *
+     * <p>Construct a new instance with the specified values.</p>
      * @param name Name of this forward
      * @param path Path to which control should be forwarded or redirected
      * @param redirect Should we do a redirect?
@@ -198,6 +197,12 @@ public class ForwardConfig implements Serializable {
 	/**
 	 * <p>The prefix of the module to which this <code>ForwardConfig</code> entry points,
 	 * which must start with a slash ("/") character.  </p>
+     * <p>Usage note: If a forward config is used in a hyperlink,
+     * and a module is specified, the path must lead to another
+     * action and not directly to a page. This is in keeping with
+     * rule that in a modular application all links must be to
+     * an action rather than a page.
+     * </p>
 	 */
 	protected String module = null;
 

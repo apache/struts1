@@ -63,7 +63,13 @@ public class LinkTag extends BaseHandlerTag {
 
 
     /**
-     * The logical forward name from which to retrieve the hyperlink URI.
+     * <p>The logical forward name from which to retrieve the hyperlink URI.</p>
+     * <p>Usage note: If a forward config is used in a hyperlink,
+     * and a module is specified, the path must lead to another
+     * action and not directly to a page. This is in keeping with
+     * rule that in a modular application all links must be to
+     * an action rather than a page.
+     * </p>
      */
     protected String forward = null;
 
