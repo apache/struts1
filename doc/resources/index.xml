@@ -6,8 +6,8 @@
 <author>James Holmes</author>
 <title>Resources - Jakarta Struts</title>
 </properties>
-<body> 
-<chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
+<body>
+<chapter name="Struts Resources" href="http://husted.com/struts/resources">
 
 
 <section name="Resource Index">
@@ -22,6 +22,7 @@
  </ul>
 
  <ul>
+    <li><a href="models.html">Data Access Systems</a></li>
     <li><a href="views.html">Presentation Systems</a></li>
     <li><a href="guis.html">Code Generators and GUIs</a></li>
     <li><a href="taglibs.html">Contributor Taglibs</a></li>

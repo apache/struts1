@@ -11,9 +11,26 @@
 
   <body>
 
+  <section name="Beta Notes" href="beta">
+
+    <p>This section contains the release notes for
+    <strong>nightly build</strong> of the Struts Framework,
+    for changes that have taken place since
+    <a href="release-notes-1.1-b2.html">Version 1.1 beta 2</a>
+    was released. For a complete list of changes since the last
+    production release, see the <a href="#Introduction">Introduction</a> </p>
+
+  </section>
+
+  <section name="Beta Fixes" href="beta.Changes">
+
+  <p>Blank application: Fixed configuration problem with Struts Blank application.</p>
+
+  </section>
+
   <section name="Introduction" href="Introduction">
 
-    <p>This document contains the release notes for
+    <p>The remainder of this document contains the release notes for
     <strong>nightly build</strong> of the Struts Framework,
     and covers changes that have taken place since
     <a href="release-notes-1.0.2.html">Version 1.0.2</a>

@@ -6,12 +6,12 @@
 <author>James Holmes</author>
 <title>Resources - Books - Jakarta Struts</title>
 </properties>
-<body> 
-<chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
+<body>
+<chapter name="Struts Resources" href="http://husted.com/struts/resources">
 
 <section name="Books">
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=1558608621/hitchhikeguidetoA/"><b>The Struts Framework: Practical Guide for Programmers</b></a> by Sue Spielman - Not yet published.</p>
-<p><a href="http://www.theserverside.com/resources/strutsreview.jsp"><b>"The OReilly Struts Book"</b></a> by Chuck Cavaness - Partial draft online.</p>
+<p><a href="http://www.theserverside.com/resources/strutsreview.jsp"><b>"The OReilly Struts Book"</b></a> by Chuck Cavaness - Public review draft online.</p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/"><b>Java Web Development with Struts</b></a> by Ted Husted, Cedric Dumoulin, George Franciscus, and David Winterfeldt; Foreword by Craig R. McClanahan - Not yet published.</p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0471213020/hitchhikeguidetoA/"><b>Mastering Jakarta Struts</b></a> by James Goodwill - Not yet published.</p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0971661901/hitchhikeguidetoA/"><b>Struts Fast Track: J2EE / JSP Framework</b></a> by Victor Cekvenich - Practical Application with Database Access and Struts Extensions.</p>

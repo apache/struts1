@@ -15,7 +15,7 @@
 
     <p>
       This User Guide is written for active web developers and assumes a working
-      knowledge about how Java web applications work. Before getting started, you should
+      knowledge about how Java web applications are built. Before getting started, you should
       understand the basics of several core technologies:
     </p>
 
@@ -580,9 +580,49 @@
 
     </section>
 
-    <section name="0.10 JAAS" href="jaas">
+    <section name="0.10 Other layers" href="layers">
 
-    <p>[:TODO:]</p>
+    <p>
+      Struts provides the control layer for a web application. Developers can use this layer with
+      other standard technologies to provide the data access and presentation layers. Some
+      popular Data access technologies include:
+    </p>
+
+        <ul>
+        <li><a href="http://castor.exolab.org/">Castor</a></li>
+        <li><a href="http://java.sun.com/products/ejb/index.html">Enterprise Java Beans</a></li>
+        <li><a href="http://java.sun.com/products/jdbc/index.html">JDBC</a></li>
+        <li><a href="http://jakarta.apache.org/ojb">Object Relational Bridge</a></li>
+        <li><a href="http://sourceforge.net/projects/simper">Simper</a></li>
+        </ul>
+
+    <p>
+      Presentation layer technologies include:
+    </p>
+
+        <ul>
+        <li><a href="http://java.sun.com/products/jsp">JavaServer Pages</a></li>
+        <li><a href="http://jakarta.apache.org/velocity/index.html">Velocity Templates</a></li>
+        <li><a href="http://www.w3.org/TR/xslt">XSL Transformations </a></li>
+        </ul>
+
+    <p>
+      Other <a href="../resources/models.html">data access</a> and <a href="../resources/views.html">presentation</a>
+      systems are listed in the Struts <a href="../resources/">Resource Guide</a>.
+    </p>
+
+    </section>
+
+    <section name="0.11 JAAS" href="jaas">
+
+    <p>While Struts can work with any approach to user authentification and authorization, Struts 1.1 will offer
+    direct support for the standard Java Authentication and Authorization Service (JAAS). In Struts 1.1 (and the
+    current nightly build), you can specify security roles on an action-by-action basis.</p>
+
+    <p>For more about JAAS, see the <a href="http://java.sun.com/products/jaas/index-14.html">Javasoft product page</a>
+    and the <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebAppSecurity.html">
+    Web Applicaton Security</a> chapter of the
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html">Web Services Tutorial</a>.</p>
 
     <p align="center">
     Next: <a href="introduction.html">Introduction</a>

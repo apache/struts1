@@ -6,11 +6,11 @@
 <author>James Holmes</author>
 <title>Resources - Contributor Extensions - Jakarta Struts</title>
 </properties>
-<body> 
-<chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
+<body>
+<chapter name="Struts Resources" href="http://husted.com/struts/resources">
 
 <section name="Contributor Extensions">
-<p><a href="http://www.asqdotcom.be/struts/"><b>Struts Action Plug-in Extension 1.0 (for Struts 1.1b)</b></a> by Gerrie Kimpen. Provides a clean and transparent way to plug-in common controller logic (such as authentication, workflow, etc.) for all Struts actions in an application</p>
+<p><a href="http://www.asqdotcom.be/struts/"><b>Struts Action Plug-in Extension 1.0 (for Struts 1.1b)</b></a> by ASQ dot COM. Provides a clean and transparent way to plug-in common controller logic (such as authentication, workflow, etc.) for all Struts actions in an application</p>
 <p><a href="http://struts.ditlinger.com/"><b>SSL Ext</b></a> by eBuilt, Inc.<b> </b>- Switch between using the http &amp; https protocols on a page by page basis. See README.txt.</p>
 <p><a href="http://sourceforge.net/projects/htmltable/"><b>HTMLTable framework for Struts framework</b></a> by Yuriy Zubarev - Incorporate look and feel and behaviour (in terms of columns order) of tables in XML configuration file with capabilities of properties inheritance. </p>
 <p><a href="http://netmeme.org/simper/"><b>Simper</b></a>  by Bryan Field-Elliot - A simple persistence mechanism - wraps up table rows as &quot;Dynabeans&quot; (see <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-beanutils/">Jakarta Commons BeanUtils, nightly build</a>), automatically detects changes, and writes the changes back to the database upon completion of each web request; supports creating, deleting rows, querying; basic relations (1-1 and 1-m). </p>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document url="./views.xml">
+<properties>
+<author>Mike Schachter</author>
+<author>Ted Husted</author>
+<author>James Holmes</author>
+<title>Resources - Data Access Systems - Jakarta Struts</title>
+</properties>
+<body>
+<chapter name="Struts Resources" href="http://husted.com/struts/resources">
+
+<section name="Persistance Layers">
+
+  <p><a href="http://castor.exolab.org/">Castor</a></p>
+  <p><a href="http://objectstyle.org/cayenne/">Cayenne Object-To-Relational Mapping Framework</a></p>
+  <p><a href="http://databind.sourceforge.net/">DataBind</a></p>
+  <p><a href="http://dbforms.org/">DbForms</a></p>
+  <p><a href="http://java.sun.com/products/ejb/index.html">Enterprise Java Beans</a></p>
+  <p><a href="http://hibernate.sourceforge.net/">Hibernate</a></p>
+  <p><a href="http://www.softwaretree.com/products/jdx/Jdx1.htm">JDX - J-Database Exchange</a></p>
+  <p><a href="http://www.objectweb.org/jorm/index.html">JORM - Homepage</a></p>
+  <p><a href="http://jrf.sourceforge.net/">jRelationalFramework</a></p>
+  <p><a href="http://jakarta.apache.org/ojb">Object Relational Bridge</a></p>
+  <p><a href="http://osage.sourceforge.net/">Osage - Persistence Plus XML</a></p>
+  <p><a href="http://player.sourceforge.net/">Persistence layer</a></p>
+  <p><a href="http://sourceforge.net/projects/simper">Simper</a></p>
+  <p><a href="http://jakarta.apache.org/turbine/torque/index.html">Torque / Peers</a></p>
+  <p><a href="http://www.working-dogs.com/index.php?SCREEN=village">Village</a></p>
+
+</section>
+
+<section name="Pure Java Database Engines">
+
+  <p><i>Most any database system will work with a Struts application through
+  <a href="http://java.sun.com/products/jdbc/index.html">JDBC</a>. This is a listing of
+  some <b>pure Java</b> database systems that can be easily bundled with an application.</i>
+  See the <a href="http://dmoz.org/">Open Directory</a> for an exhaustive list of
+  <a href="http://dmoz.org/Computers/Software/Databases/">database systems</a>.</p>
+
+  <p><a href="http://sourceforge.net/projects/hsqldb/">HyperSonic SQL</a></p>
+  <p><a href="http://www.lutris.com/products/projects/instantDB/">instantDB</a></p>
+  <p><a href="http://www.mckoi.com/database/">Mckoi</a></p>
+  <p><a href="http://www.ozone-db.org/">Ozone</a></p>
+
+</section>
+
+<section name="More about the model">
+
+<p>Scott Ambler's classic whitepapers:</p>
+<ul>
+  <li><a href="http://www.ambysoft.com/mappingObjects.pdf">Mapping Objects to Relational Databases</a></li>
+  <li><a href="http://www.ambysoft.com/persistenceLayer.pdf">The Design of a Robust Persistence Layer For Relational Databases</a></li>
+</ul>
+
+</section>
+
+
+</chapter></body></document>
