@@ -1395,7 +1395,7 @@
  		<attribute>
             <name>focusIndex</name>
             <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
+            <rtexprvalue>false</rtexprvalue>
             <info>
                 If the focus field is a field array, such as a radio button group, you can 
                 specify the index in the array to receive focus.
