@@ -22,10 +22,10 @@
 
     <p>
     Many requirements documents used for building web applications focus on 
-    the <i>View</i>.  
+    the <em>View</em>.  
     However, you should ensure that the processing required for each submitted 
-    request is also clearly defined from the <i>Model's</i> perspective.  
-    In general, the developer of the <i>Model</i> components will be focusing 
+    request is also clearly defined from the <em>Model's</em> perspective.  
+    In general, the developer of the <em>Model</em> components will be focusing 
     on the creation of JavaBeans classes that support all of the functional 
     requirements.  
     The precise nature of the beans required by a particular application will 
@@ -45,7 +45,7 @@
     Each collection has different rules for the lifetime of that collection, 
     and the visibility of the beans stored there.  
     Together, the rules defining lifetime and visibility are called the 
-    <i>scope</i> of those beans.  
+    <em>scope</em> of those beans.  
     The JavaServer Pages (JSP) Specification defines scope choices using 
     the following terms (with the equivalent servlet API concept defined in 
     parentheses):
@@ -54,27 +54,27 @@
     <ul>
     
         <li>
-        <b>page</b> - Beans that are visible within a single JSP page,
+        <strong>page</strong> - Beans that are visible within a single JSP page,
         for the lifetime of the current request.  
         (Local variables of the <code>service</code> method)
         </li>
 
         <li>
-        <b>request</b> - Beans that are visible within a single JSP page,
+        <strong>request</strong> - Beans that are visible within a single JSP page,
         as well as to any page or servlet that is included in this page,
         or forwarded to by this page.
         (Request attributes)
         </li>
 
         <li>
-        <b>session</b> - Beans that are visible to all JSP pages and
+        <strong>session</strong> - Beans that are visible to all JSP pages and
         servlets that participate in a particular user session, across one
         or more requests.
         (Session attributes)
         </li>
 
         <li>
-        <b>application</b> - Beans that are visible to all JSP pages and
+        <strong>application</strong> - Beans that are visible to all JSP pages and
         servlets that are part of a web application.  
         (Servlet context attributes)
         </li>
@@ -108,12 +108,12 @@
 
 <section name="2.3 ActionForm Beans" href="actionform">
 
-    <blockquote>
-    <b>Note:</b> While ActionForm beans often have properties that 
+    
+    <strong>Note:</strong> While ActionForm beans often have properties that 
     correspond to properties in your Model beans, the form beans themselves 
     should be considered a Controller component. 
     As such, they are able to transfer data between the Model and View layers.
-    </blockquote>
+    
 
     <p>
     The Struts framework generally assumes that you have defined an
@@ -243,7 +243,7 @@
 
     <p>
     For maximum code re-use, business logic beans should be designed and
-    implemented so that they do <b>not</b> know they are being executed in a
+    implemented so that they do <strong>not</strong> know they are being executed in a
     web application environment.  
     If you find yourself having to import a <code>javax.servlet.*</code> class 
     in your bean, you are tying this business logic to the web application 
@@ -274,7 +274,7 @@
 </section>
 
 <section>
-    <p align="right">
+    <p class="right">
     Next: <a href="building_view.html">Building View Components</a>
     </p>
 </section>

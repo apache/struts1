@@ -129,13 +129,10 @@
 
     <p>The following new features have been added to the basic controller
     framework (package <code>org.apache.struts.action</code>):</p>
-    <ul>
-    </ul>
 
     <p>The following new features have been added to the utility classes
     (package <code>org.apache.struts.util</code>):</p>
-    <ul>
-    </ul>
+
 
     <p>The following new features have been added to the
     <em>struts-html</em> custom tag library (package
@@ -160,13 +157,10 @@
     <p>The following new features have been added to the
     <em>struts-template</em> custom tag library (package
     <code>org.apache.struts.taglib.template</code>):</p>
-    <ul>
-    </ul>
+
 
     <p>The following new features have been added to the Struts Documentation
     application (and corresponding contents on the Struts web site):</p>
-    <ul>
-    </ul>
 
   </section>
 
@@ -281,8 +275,6 @@
 
     <p>The following changes and bug fixes to the Struts Template Example
     Application have occurred:</p>
-    <ul>
-    </ul> 
 
   </section>
 

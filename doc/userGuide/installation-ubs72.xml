@@ -9,7 +9,7 @@
   <body>
 <chapter name="5.2 Installation" href="installation">
 <section name="Installing Struts with your servlet container" href="Containers">
-<h3><a name="bluestone">Bluestone Universal Business Server 7.2</a></h3>
+<h4 id="bluestone">Bluestone Universal Business Server 7.2</h4>
 
 <ul>
   <li>You need UBS version 7.2 to run war file applications. The UBS 7.2.2 evaluation
@@ -36,7 +36,7 @@
     and "struts-example.war" files into that webapp directory, and start the UBS
     (read documentation distributed with UBS for information on how to start it
     if necessary). Your webapps are now accessible from the following URL:
-    <p align="center"> http://localhost/&lt;PLUGIN&gt;/SaServletEngine.class/struts-example/<br />
+    <p class="center"> http://localhost/&lt;PLUGIN&gt;/SaServletEngine.class/struts-example/<br />
       http://localhost/&lt;PLUGIN&gt;/SaServletEngine.class/struts-documentation/
     </p>
   </li>

@@ -53,7 +53,7 @@
        <strong> Bean Tag Library Tags NOT Implemented in Struts-EL</strong>
     </p>
 
-    <table border="1">
+    <table>
     <tr><th>Struts Tag</th><th>JSTL Tag</th></tr>
     <tr><td>cookie</td><td>c:set, EL</td></tr>
     <tr><td>define</td><td>c:set, EL</td></tr>
@@ -67,7 +67,7 @@
        <strong>Bean Tag Library Tags NOT Implemented in Struts-EL</strong>
     </p>
 
-    <table border="1">
+    <table>
     <tr><th>Struts Tag</th><th>JSTL Tag</th></tr>
     <tr><td>empty</td><td>c:if, c:when, EL</td></tr>
     <tr><td>equal</td><td>c:if, c:when, EL</td></tr>

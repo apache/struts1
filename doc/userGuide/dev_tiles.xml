@@ -9,7 +9,7 @@ The Struts User's Guide - Tiles Guide
 <body>
 <chapter name="Tiles Guide">
 
-<section href="tiles" name="The Tiles Document Assembly Framework">
+<section name="The Tiles Document Assembly Framework">
 
 <p>Tiles builds on the "include" feature provided by the JavaServer Pages
 specification to provide a full-featured, robust framework for assembling
@@ -233,35 +233,35 @@ org.apache.commons.logging.simplelog.defaultlog=trace</pre>
 
 <p>
 <a href="http://www.manning.com/getpage.html?project=husted&amp;filename=chapters.html">
-<b>Developing applications with Tiles</b></a> by Cedric Dumoulin and Ted Husted.
+<strong>Developing applications with Tiles</strong></a> by Cedric Dumoulin and Ted Husted.
 Sample chapter from
 <a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/">Struts in Action</a>; available as a free download (PDF).
 </p>
 
 <p>
 <a href="http://www.oreilly.com/catalog/jakarta/chapter/">
-<b>Using Tiles</b></a> Sample beta chapter from
+<strong>Using Tiles</strong></a> Sample beta chapter from
 <a href="http://www.amazon.com/exec/obidos/ISBN=0596003285/hitchhikeguidetoA/">Programming Jakarta Struts</a>; available as a free download (PDF).
 </p>
 
 <p>
 <a href="http://www-106.ibm.com/developerworks/java/library/j-strutstiles.html?loc=j">
-<b>Struts and Tiles aid component-based development</b></a> by Wellie Chao.
+<strong>Struts and Tiles aid component-based development</strong></a> by Wellie Chao.
 </p>
 
 <p>
 <a href="http://www.javaworld.com/javaworld/jw-01-2002/jw-0104-tilestrut.html">
-<b>UI design with Tiles and Struts</b></a> by Prakash Malani.
+<strong>UI design with Tiles and Struts</strong></a> by Prakash Malani.
 </p>
 
 <p>
 <a href="http://www.theserverside.com/resources/article.jsp?l=Tiles101">
-<b>Tiles 101/201</b></a> by Patrick Peak.
+<strong>Tiles 101/201</strong></a> by Patrick Peak.
 </p>
 
 <p>
 <a href="http://www.lifl.fr/~dumoulin/tiles/tilesAdvancedFeatures.pdf">
-<b>Tiles Advanced Features</b></a> by Cedric Dumoulin.
+<strong>Tiles Advanced Features</strong></a> by Cedric Dumoulin.
 </p>
 
 </section>

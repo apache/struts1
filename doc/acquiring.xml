@@ -18,7 +18,7 @@
     <section name="Acquiring Struts" href="Acquiring">
 
     <p>
-    The latest <i>production release</i> of Struts is
+    The latest <em>production release</em> of Struts is
     available in a convenient binary distribution and also with complete
     source code. 
     </p>
@@ -27,33 +27,33 @@
             Apache downloads are now mirrored.
             When you follow either the Binary or Source link,
             please select your preferred mirror and then click on the link
-            to the <b>Struts</b> download.
+            to the <strong>Struts</strong> download.
         </p>
 
     <ul>
         
     <li>
         <a href="http://jakarta.apache.org/site/binindex.cgi">
-        <b>Struts Binary Distribution - Latest stable release</b></a>
+        <strong>Struts Binary Distribution - Latest stable release</strong></a>
     </li>
 
     <li>
         <a href="http://jakarta.apache.org/site/sourceindex.cgi">
-        <b>Struts Source Code Distribution - Latest stable release</b></a>
+        <strong>Struts Source Code Distribution - Latest stable release</strong></a>
     </li>
     
     </ul>
 
     <p>
-    <b>In addition to a Struts distribution,</b> you will need to ensure that you have
+    <strong>In addition to a Struts distribution,</strong> you will need to ensure that you have
     downloaded and installed all of the
-    <a href="http://jakarta.apache.org/struts/userGuide/installation.html#Prerequisites">
+    <a href="userGuide/installation.html#Prerequisites">
     prerequisite</a> software applications. 
     Then, follow the appropriate instructions to
-    <a href="http://jakarta.apache.org/struts/userGuide/installation.html#Installing">
+    <a href="userGuide/installation.html#Installing">
     install and use a Struts binary distribution</a> in your web application 
     or for
-    <a href="http://jakarta.apache.org/struts/userGuide/installation.html#Building">
+    <a href="userGuide/installation.html#Building">
     building Struts from the source distribution</a>.
     </p>
     
@@ -106,7 +106,7 @@
     
     <p>
     Also be sure to check the
-    <a href="http://jakarta.apache.org/struts/userGuide/release-notes.html">
+    <a href="userGuide/release-notes.html">
     Release Notes</a> for the nightly builds so you know what you are getting!
     </p>
 
@@ -121,7 +121,7 @@
 </section>
 
 <section>
-    <p align="right">
+    <p class="right">
     Next: <a href="using.html">Using Struts</a>
     </p>
 </section>

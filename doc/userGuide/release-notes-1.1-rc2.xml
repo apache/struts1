@@ -26,7 +26,7 @@
 <section name="RC/Beta Fixes" href="beta.Changes">
 
     <p>
-        In RC2, the <b>Commons-DBCP and Commons-Pool dependencies have been removed</b>.
+        In RC2, the <strong>Commons-DBCP and Commons-Pool dependencies have been removed</strong>.
         These are replaced with a dependency on the Struts-Legacy package,
         containing the GenericDataSource and GenericConnection classes from Struts 1.0.2.
         These are distributed for J2SE 1.3 but may be recompiled for J2SE 1.4.
@@ -34,7 +34,7 @@
     </p>
 
     <p>
-        RC2 is dependent upon <b>Commons FileUpload RC1</b>.
+        RC2 is dependent upon <strong>Commons FileUpload RC1</strong>.
         The final release of Struts 1.1 cannot happen until this dependency is
         updated to a final release of FileUpload.
         All other dependencies are in their final release.
@@ -45,11 +45,11 @@
     </p>
 
     <p>
-        <b>OTHER CHANGES:</b>
+        <strong>OTHER CHANGES:</strong>
     </p>
 
     <p>
-        <b>Action package:</b>
+        <strong>Action package:</strong>
         Deprecated processActionForward() because ActionForward is a subclass of ForwardConfig so there's no reason we can't use processForwardConfig() instead.
         Updated to use processForwardConfig instead of deprecated processActionForward.
         Deprecated the rest of the Action constants in favor of Globals.
@@ -58,7 +58,7 @@
     </p>
 
     <p>
-        <b>Documentation:</b>
+        <strong>Documentation:</strong>
         Document the &lt;html:html&gt; tag's locale attribute behaviour of creating a session if needed.
         Added note to validator section regarding the converNull servlet parameter and required validations of java.lang.Integer fields.
         Moved sites and consultants page to Struts Wiki.
@@ -66,7 +66,7 @@
     </p>
 
     <p>
-        <b>EL package:</b>
+        <strong>EL package:</strong>
         Fixed mapping of "onkeypress" attribute.
         Separated "expr" attribute into "expr" and "exprValue", being the original attribute value and the evaluated value.
         Fixed probably long-standing bug in notMatch tag that made it behave identically to the "match" tag (instead of the reverse).
@@ -74,28 +74,28 @@
     </p>
 
     <p>
-        <b>Example applicattions:</b>
+        <strong>Example applicattions:</strong>
         Added Multi-config files for the example app.
     </p>
 
 
     <p>
-        <b>Legacy package:</b>
+        <strong>Legacy package:</strong>
         Added package under contrib to host old GenericDataSource and GenericConnection classes.
 
     </p>
     <p>
-        <b>Taglibs packages:</b>
+        <strong>Taglibs packages:</strong>
         Fixed several import statements.
         Refactored converting a scope name into its integer constant into a new method RequestUtils.getScope(String), and changed the DefineTag, EmptyTag, and TagUtils classes to use the new method.
     </p>
 
     <p>
-        <i>faces taglib.</i> Added early release to contrib area.
+        <em>faces taglib.</em> Added early release to contrib area.
     </p>
 
     <p>
-       <i>html taglib.</i>
+       <em>html taglib.</em>
        Reset the 'processed' flag at the beginning of each usage of the tag. Use a local copy of the 'name' attribute to avoid modifying the attribute value itself.
        Fixed references to static members.
        For FrameTag and HiddenTag, conform TLD with implementations.
@@ -114,7 +114,7 @@
     </p>
 
     <p>
-        <i>logic taglib.</i>
+        <em>logic taglib.</em>
         Set 'iterator' to null in doEndTag() so that we release the iterator reference as early as possible. We cannot do the same for 'collection' since it is a tag attribute, and needs to remain unchanged to comply with the JSP spec.
         Don't create empty cookies array if null, just don't run the loop at all.
         In ForwardTag, remove unnecessary test for null.
@@ -122,14 +122,14 @@
     </p>
 
    <p>
-       <i>nested tablibs.</i>
+       <em>nested tablibs.</em>
        Improved support for Tomcat 4.1.18.
        Replace EVAL_BODY_AGAIN with EVAL_BODY_TAG so that the code compiles against the JSP 1.1 API.
        Changed the &lt;nested:define&gt; tag's tei class to reference a new custom tei class for the nested tags.
    </p>
 
     <p>
-        <i>tiles taglib.</i>
+        <em>tiles taglib.</em>
         Fixed references to static members.
         Deprecated outdated Tiles TextTag.
         For InsertTag, only include page if it's non-null.
@@ -137,18 +137,18 @@
     </p>
 
     <p>
-        <b>Test packages:</b>
+        <strong>Test packages:</strong>
         Added several new tests for the bean, html, and logic taglibs to the suite setup at the tail-end of RC1.
         Note: We cannot resolve request.getServerPort() in the Cactus 1.4.x environment, so for now, our tests will only run on Cactus 1.3
     </p>
 
     <p>
-        <b>Tiles package:</b>
+        <strong>Tiles package:</strong>
         Deprecated TilesUtil.applicationClass() in favor of RequestUtils.applicationClass()
     </p>
 
     <p>
-        <b>Util package:</b>
+        <strong>Util package:</strong>
         retrieveUserLocale now uses the request.getLocale() method for finding the user's preferred locale.
         If user has not specified this with Accept-Language header, the server default locale is used.
         Change encodeURL() to not use reflection on every call.
@@ -156,14 +156,14 @@
     </p>
 
     <p>
-        <b>Validator package:</b>
+        <strong>Validator package:</strong>
         Deprecate logging methods and indicate that commons-logging should be used.
         Logic simplification and minor formatting fixes to Resources class.
 
     </p>
 
     <p>
-        <b>build files:</b>
+        <strong>build files:</strong>
     </p>
 
     <ul>
@@ -181,7 +181,7 @@
 
 
     <p>
-        <b>Bugzilla Problem Report fixes:</b>
+        <strong>Bugzilla Problem Report fixes:</strong>
     </p>
 
     <ul>
@@ -333,8 +333,8 @@
             Project</a> that Struts relies on.  You are welcome to use these
             classes in your own applications.  These JAR files should be
             copied into the <code>/WEB-INF/lib</code> directory of
-            your web application.</li> See below for the version of each
-            Commons library that is included.
+            your web application. See below for the version of each
+            Commons library that is included.</li>
         <li><code>struts.jar</code> - JAR file that contains the compiled
             Java classes of Struts.  You must
             place this file in the <code>/WEB-INF/lib</code> directory of
@@ -468,14 +468,12 @@
     been added to accumulate Struts add-on extensions that are generally
     useful but have not yet been integrated into the standard code base.</p>
 
-    <p>
     <ul>
     <li>Scaffold - An extension of the Commons Scaffold toolkit of reusable
     classes for building web applications.</li>
     <li>Struts-EL - The optional Struts-EL taglib makes it easy to use Struts
     with JSTL. (Container with Servlet 2.3 support required.)</li>
     </ul>
-    </p>
 
     <p>The source for these components is available in the Struts source
     distribution. Binary distributions may also be made available in the Struts
@@ -881,7 +879,7 @@
 </section>
 
 <section>
-    <p align="right">
+    <p class="right">
     Next: <a href="installation.html">Installation</a>
     </p>
 </section>

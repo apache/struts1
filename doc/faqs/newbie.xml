@@ -17,8 +17,8 @@
     <p>
     Here are answers to the most common questions people ask when using
     Struts on their first project.
-    <b>For an in-depth, searchable FAQ, visit our friends at
-    <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b>
+    <strong>For an in-depth, searchable FAQ, visit our friends at
+    <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</strong>
     </p>
 
     <ul>
@@ -328,14 +328,14 @@ multiple submit types to a single <code>Action</code> class.
 There is more than one way to achieve this functionality.</p>
 <p>
 The way that is suggested by struts is right out of the javadoc for
-<a href="http://jakarta.apache.org/struts/api/org/apache/struts/actions/LookupDispatchAction.html">
+<a href="../api/org/apache/struts/actions/LookupDispatchAction.html">
 <code>LookupDispatchAction</code></a>.
 Basically, <code>LookupDispatchAction</code> is using the keys from
 <code>ApplicationProperties.resources</code> as keys to a map of actions
 available to your <code>Action</code> class.  It uses
 <a href="http://java.sun.com/j2se/1.3/docs/guide/reflection/">reflection</a> to
 decode the request and invoke the proper action.  It also takes advantage of
-the struts <a href="http://jakarta.apache.org/struts/userGuide/struts-html.html#submit">
+the struts <a href="../userGuide/struts-html.html#submit">
 <code>&lt;html:submit&gt;</code></a> tags and is straight forward to implement.</p>
 <p>
 You can roll your own with JavaScript events and <code>javascript:void
@@ -494,7 +494,7 @@ If the form is in request scope, everything already just started at the initial 
 <section href="scriptlets" name="Can't I just create some of my JavaBeans in the JSP using a scriptlet?">
 <p>
 Struts is designed to encourage a
-<a href="http://www.javaworld.com/javaworld/jw-12-1999/f_jw-12-ssj-jspmvc.html">
+<a href="http://www.javaworld.com/javaworld/jw-12-1999/jw-12-ssj-jspmvc.html">
 Model 2/MVC architecture</a>. But there is nothing that prevents you from using Model 1
 techniques in your JavaServer Pages, so the answer  to the question is "Yes, you can".
 </p>
@@ -541,7 +541,7 @@ mailing list</a>, where there are more people still using these approaches.
     them in your form beans. Here are some examples:
     </p>
     <p>
-    <i>Collections as properties</i> Suppose that you need to display a pulldown list of
+    <em>Collections as properties</em> Suppose that you need to display a pulldown list of
     available colors on an input form in your application. You can include a string-valued
     <code>colorSelected</code> property in your <code>ActionForm</code> to represent the user's
     selection and a <code>colorOptions</code> property implemented as a <code>Collection</code>
@@ -567,7 +567,7 @@ mailing list</a>, where there are more people still using these approaches.
     form bean properties before rendering edit forms that expect properties to be pre-set.
     </p>
     <p>
-    <i>Independent DTO</i> An <code>Action</code> that retrieves a list of open orders (as an
+    <em>Independent DTO</em> An <code>Action</code> that retrieves a list of open orders (as an
     <code>ArrayList</code> of <code>Order</code> objects) can use a DTO independently of any
     form bean to transfer search results to the view. First, the Action's
     <code>execute</code> method performs the search and puts the DTO into the request:
@@ -594,8 +594,8 @@ mailing list</a>, where there are more people still using these approaches.
 
 <section href="tags" name="Why do the Struts tags provide for so little formatting?">
 <p>
-<i>The Struts tags seem to provide only the most rudimentary functionality.
-Why is there not better support for date formatting and advanced string handling?</i>
+<em>The Struts tags seem to provide only the most rudimentary functionality.
+Why is there not better support for date formatting and advanced string handling?</em>
 </p>
 <p>
 Three reasons:
@@ -789,17 +789,16 @@ XHTML specification</a></p>
     form beans to be exposed.  These include indexed attributes and mapped
     attributes.  They are covered in detail in other areas of the Struts
     documentation, in particular:</p>
-    <blockquote>
-    <a href="http://jakarta.apache.org/struts/faqs/indexedprops.html">
-    http://jakarta.apache.org/struts/faqs/indexedprops.html</a>
-    </blockquote>
+    
+    <a href="indexedprops.html">indexedprops.html</a>
+    
 
     <p>For a complete explanation of what a JavaBean is, and everything it can
     do, see the JavaBeans Specification (version 1.01) at:</p>
-    <blockquote>
+    
     <a href="http://java.sun.com/products/javabeans/docs/beans.101.pdf">
     http://java.sun.com/products/javabeans/docs/beans.101.pdf</a>
-    </blockquote>
+    
 
 </section>
 
@@ -950,7 +949,7 @@ so it does not need a form.
 </p>
 
     <p>
-    However, you cannot use the &lt;html:form&gt; <b>tag</b> without an ActionForm.
+    However, you cannot use the &lt;html:form&gt; <strong>tag</strong> without an ActionForm.
     Even if you want to use the &lt;html:form&gt; tag with a simple Action that does not require input,
     the tag will expect you to use some type of ActionForm, even if it is an empty subclass without any properties.
     </p>
@@ -1179,21 +1178,21 @@ to add this attribute and set it to <code>false</code>.
     </p>
 
     <p>
-        <b>forms.MyWizard.java</b> - the form bean holding the information required
+        <strong>forms.MyWizard.java</strong> - the form bean holding the information required
     </p>
     <p>
-        <b>actions.MyWizard.java</b> - the actions of the wizard, note the use of
+        <strong>actions.MyWizard.java</strong> - the actions of the wizard, note the use of
         LookupDispatchAction allows for one action class with several methods.  All the
         real work will be done in the 'finish' method.
     </p>
     <p>
-        <b>mywizard[x].jsp</b> - the data collection jsp's
+        <strong>mywizard[x].jsp</strong> - the data collection jsp's
     </p>
     <p>
-        <b>mywizarddone.jsp</b> - the 'success' page
+        <strong>mywizarddone.jsp</strong> - the 'success' page
     </p>
     <p>
-        <b>mywizardcancel.jsp</b> - the 'cancel' page
+        <strong>mywizardcancel.jsp</strong> - the 'cancel' page
     </p>
 
 </section>
@@ -1288,7 +1287,7 @@ to add this attribute and set it to <code>false</code>.
        </p>
 
         <p>
-    As a rule, chaining Actions is <b>not</b> recommended.
+    As a rule, chaining Actions is <strong>not</strong> recommended.
     If your business classes are properly factored, you should be able to call
     whatever methods you need from any Action, without splicing them together
     into a cybernetic Rube Goldberg device.

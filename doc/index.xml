@@ -32,16 +32,16 @@
     Struts encourages application architectures based on the Model 2 approach,
     a variation of the classic
     <a href="http://java.sun.com/blueprints/guidelines/designing_enterprise_applications_2e/web-tier/web-tier5.html">
-    <b>Model-View-Controller</b></a> (MVC) design paradigm.
+    <strong>Model-View-Controller</strong></a> (MVC) design paradigm.
     </p>
 
     <p>
-        Struts provides its own <b>Controller</b> component and integrates with <a href="userGuide/preface.html#layers">
+        Struts provides its own <strong>Controller</strong> component and integrates with <a href="userGuide/preface.html#layers">
         other technologies</a> to provide the Model and the View.
-        For the <b>Model</b>, Struts can interact with standard <a href="resources/models.html">data access
+        For the <strong>Model</strong>, Struts can interact with standard <a href="resources/models.html">data access
         technologies</a>, like Enterprise Java Beans and JDBC, as well as most any third-party packages, like
         Hibernate, iBATIS, or Object Relational Bridge.
-        For the <b>View</b>, Struts works well with JavaServer Pages, including
+        For the <strong>View</strong>, Struts works well with JavaServer Pages, including
         <a href="./faqs/kickstart.html#jsf">JSTL and JSF</a>, as well as Velocity Templates, XSLT, and
         <a href="resources/views.html">other presentation systems
         </a>.
@@ -68,91 +68,62 @@
 
 <section name="Books about Struts" href="books">
 
-    <div align="center">
-    <center>
-    <table border="0" cellpadding="6">
-      <tr>
+    <div class="center">
+        <a href="resources/books.html">
+        <img class="book" 
+             src="images/books/0471213020.jpg" 
+             width="49" 
+             height="60" 
+             alt=""/>
+        </a>
 
-        <td width="17%">
-            <a href="resources/books.html">
-            <img 
-                border="0" 
-                src="images/books/0471213020.jpg" 
-                width="49" 
-                height="60" 
-                alt=""/>
-            </a>
-        </td>
+        <a href="resources/books.html">
+        <img class="book" 
+             src="images/books/0596003285.jpg" 
+             width="49" 
+             height="60"
+             alt=""/>
+        </a>
 
-        <td width="16%">
-            <a href="resources/books.html">
-            <img 
-                border="0" 
-                src="images/books/0596003285.jpg" 
-                width="49" 
-                height="60"
-                alt=""/>
-            </a>
-        </td>
+        <a href="resources/books.html">
+        <img class="book" 
+             src="images/books/0672324725.jpg" 
+             width="49" 
+             height="60" 
+             alt=""/>
+        </a>
 
-        <td width="16%">
-            <a href="resources/books.html">
-            <img 
-                border="0" 
-                src="images/books/0672324725.jpg" 
-                width="49" 
-                height="60" 
-                alt=""/>
-            </a>
-        </td>
+        <a href="resources/books.html">
+        <img class="book" 
+             src="images/books/0971661901.jpg" 
+             width="49" 
+             height="60"
+             alt=""/>
+        </a>
 
-        <td width="16%">
-            <a href="resources/books.html">
-            <img 
-                border="0" 
-                src="images/books/0971661901.jpg" 
-                width="49" 
-                height="60"
-                alt=""/>
-            </a>
-        </td>
+        <a href="resources/books.html">
+        <img class="book" 
+             src="images/books/1558608621.jpg" 
+             width="49" 
+             height="60" 
+             alt=""/>
+        </a>
 
-        <td width="16%">
-            <a href="resources/books.html">
-            <img 
-                border="0" 
-                src="images/books/1558608621.jpg" 
-                width="49" 
-                height="60" 
-                alt=""/>
-            </a>
-        </td>
+        <a href="resources/books.html">
+        <img class="book" 
+             src="images/books/1861007817.jpg"
+             width="49" 
+             height="60"
+             alt=""/>
+        </a>
 
-        <td width="16%">
-            <a href="resources/books.html">
-            <img 
-                border="0" 
-                src="images/books/1861007817.jpg"
-                width="49" 
-                height="60"
-                alt=""/>
-            </a>
-        </td>
-
-          <td width="16%">
-              <a href="resources/books.html">
-              <img
-                  border="0"
-                  src="images/books/1930110502.jpg"
-                  width="49"
-                  height="60" 
-                  alt=""/>
-              </a>
-          </td>
-
-      </tr>
-    </table>
-    </center>
+        <a href="resources/books.html">
+        <img class="book" 
+             src="images/books/1930110502.jpg"
+             width="49"
+             height="60" 
+             alt=""/>
+        </a>
     </div>
 
    <p>
@@ -166,14 +137,14 @@
 </section>
 
 <section>
-   <p align="center">
+   <p>
    Next: <a href="learning.html">Learning About Struts</a>
    </p>
 </section>
 
 <section>
     <p>
-        <a href="faqs/kickstart.html#jsf">What about JSTL and JavaServer Faces?</a>
+    <a href="faqs/kickstart.html#jsf">What about JSTL and JavaServer Faces?</a>
     </p>
 </section>
 

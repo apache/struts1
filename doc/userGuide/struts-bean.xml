@@ -174,7 +174,7 @@
     non-empty String, or the define tag must be wrapped within a logic tag
     to test for an empty or null value.</p>
 
-    <p><strong>USAGE NOTE</strong> - You cannot use bean:define to <b>instantiate</b>
+    <p><strong>USAGE NOTE</strong> - You cannot use bean:define to <strong>instantiate</strong>
     a DynaActionForm (type="org.apache.struts.action.DynaActionForm") with
     the properties specified in the struts-config. The mechanics of creating
     the dyna-properties is complex and cannot be handled by a no-argument

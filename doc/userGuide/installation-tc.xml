@@ -9,7 +9,7 @@
   <body>
 <chapter name="5.2 Installation" href="installation">
 <section name="Installing Struts with your servlet container" href="Containers">
-<h3><a name="tc321">Tomcat 3.2.1 With Apache</a></h3>
+<h4 id="tc321">Tomcat 3.2.1 With Apache</h4>
 <p>Note that the instructions for Tomcat 4 will be different than those for Tomcat 3,
 but the Tomcat 4.0 web connector is still under development. Versions of Tomcat prior
 to 3.2.1 are not recommend for use with Struts.</p>

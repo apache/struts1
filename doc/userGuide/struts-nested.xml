@@ -25,7 +25,7 @@
     reference to the Struts system.
     </p>
 
-    <p><b>It's all about nesting beans...</b><br />
+    <p><strong>It's all about nesting beans...</strong><br />
     A bean holds a reference to another bean internally, and all access to that
     bean is handled through the current bean. This act of having one bean's
     access go through another bean is known as "nesting beans". The first bean
@@ -34,7 +34,7 @@
     model's hierarchy.
     </p>
 
-    <p><b>A simple example... </b><br />
+    <p><strong>A simple example... </strong><br />
      Take an object which represents a monkey. The monkey's job is to pick
      bunches of bananas. On each bunch picked hangs many bananas. If this case
      was translated to bean objects, the monkey object would have a reference to
@@ -42,7 +42,7 @@
      to the bananas hanging in the bunch.
     </p>
 
-    <p><b>To describe this... </b><br />
+    <p><strong>To describe this... </strong><br />
      The monkey object is the parent to the bunch object, and the bunch object
      is a child of the monkey object. The bunch object is parent to its child
      banana objects, and the child banana objects children of the bunch object.

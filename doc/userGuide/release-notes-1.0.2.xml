@@ -40,7 +40,7 @@
         licensed by Apache).</li>
     <li><code>README</code> - A brief introduction to Struts.</li>
     <li><code>lib/</code> - Directory containing files you will need in
-        your own applications.  The individual files of interest are:</li>
+        your own applications.  The individual files of interest are:
         <ul>
         <li><code>struts.jar</code> - JAR file that contains the compiled
             Java classes for version 1.0.2 of Struts.  You must
@@ -69,14 +69,13 @@
             for web.xml files conforming to the Servlet 2.3 specification.
             This copy is for reference purposes only.</li>
         </ul>
+        </li>
         <li><code>webapps/</code> - Web Application Archive (WAR) files for the
             web applications that are included with Struts.</li>
     </ul>
 
     <p>The struts 0.5 milestone API release is no longer supported,
        and will be removed as of Struts 1.1.</p>
-    <ul>
-    </ul>
 
   </section>
 

@@ -11,7 +11,7 @@
 <chapter name="5.2 Installation" href="installation">
 <section name="Installing Struts with your servlet container" href="Containers">
 
-<h3><a name="wls5">Weblogic 5.1 (service pack 8)</a></h3>
+<h4 id="wls5">Weblogic 5.1 (service pack 8)</h4>
 <ul>
   <li>Obtain and install the Xerces XML parser (problems have been reported with
     the Sun reference implementation). Put xerces.jar in your WebLogic system

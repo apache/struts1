@@ -87,7 +87,7 @@
     </p>
     
     <p>
-    <b>Note:</b> The Generic DataSource which was included with previous 
+    <strong>Note:</strong> The Generic DataSource which was included with previous 
     versions of Struts has been removed as of release 1.2.0 in favor of 
     plugging in the BasicDataSource, or another DataSource implementation.
     </p>
@@ -172,13 +172,13 @@ public ActionForward
 </code></pre>
 
     <p>
-    <i>Note: If you use the Commons BasicDataSource with Struts,
+    <em>Note: If you use the Commons BasicDataSource with Struts,
     the query you provide for the pingQuery attribute (if you choose to
-    include it) must return at least one row.</i>
+    include it) must return at least one row.</em>
     </p>
 
     <p>
-    <b>Example:</b> <code>SELECT COUNT(*) FROM VALIDTABLE</code>
+    <strong>Example:</strong> <code>SELECT COUNT(*) FROM VALIDTABLE</code>
     </p>
 
     <p>
@@ -282,7 +282,7 @@ public ActionForward
         <a href="http://jakarta.apache.org/commons/beanutils/api/org/apache/commons/beanutils/ResultSetDynaClass.html">ResultSetDynaClass</a>
         to transfer the ResultSet into an ArrayList of DynaBeans.
         The Struts custom tags can use DynaBean properties as easily as they use conventional JavaBean properties.
-        (See <b>DynaActionForm classes</b> in the Struts User Guide for details.)
+        (See <strong>DynaActionForm classes</strong> in the Struts User Guide for details.)
     </p>
 
     <p>

@@ -17,22 +17,22 @@
     </p>
 
     <p>
-        <a href="http://ultrawork.org/wtk/index.html"><b>Web Toolkit</b></a> - provides a component-based approach to
+        <a href="http://ultrawork.org/wtk/index.html"><strong>Web Toolkit</strong></a> - provides a component-based approach to
         building markup-driven applications (not Struts specific). Alternative to the Template and Tiles taglibs.
     </p>
 
     <p>
-        <a href="http://edhill.its.uiowa.edu/display/"><b>The &lt;display:*> tag library</b></a> - An open source suite
+        <a href="http://edhill.its.uiowa.edu/display/"><strong>The &lt;display:*> tag library</strong></a> - An open source suite
         of custom tags that provide high level web presentation patterns (like tables, tabs, templates, inspectors,
         trees, etc...)
     </p>
 
     <p>
-        <a href="http://dbforms.org/"><b>dbForms</b></a> - RAD framework for database applications.
+        <a href="http://jdbforms.sourceforge.net/"><strong>dbForms</strong></a> - RAD framework for database applications.
     </p>
 
     <p>
-        <a href="http://jsptags.com/tags/navigation/pager/"><b>Pager Tag Library</b></a> - helps generate Google and
+        <a href="http://jsptags.com/tags/navigation/pager/"><strong>Pager Tag Library</strong></a> - helps generate Google and
         AltaVista style search result navigators. It will take multiple pages worth of information, dynamically split
         it up into page sized pieces and generate a browsable index. It does this in a flexible way that allows
         designers to give the index just about any look desired.

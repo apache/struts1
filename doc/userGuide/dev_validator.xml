@@ -823,7 +823,7 @@ public static boolean validateTwoFields(
 
     <p>
     A concise
-    <a href="http://jakarta.apache.org/struts/api/org/apache/struts/validator/package-summary.html#package_description">
+    <a href="../api/org/apache/struts/validator/package-summary.html#package_description">
     Struts Validator API Guide</a> is available to help you get started.
     </p>
 
@@ -833,13 +833,13 @@ public static boolean validateTwoFields(
 
     <p>
     <a href="http://tinyurl.com/6jnv">
-    <b>Struts Validator: Validating Two Fields Match</b></a> by Matt Raible.
+    <strong>Struts Validator: Validating Two Fields Match</strong></a> by Matt Raible.
     Howto article.
     </p>
 
     <p>
     <a href="http://www.strutskickstart.com/">
-    <b>DynaForms and the Validator</b></a> by James Turner and Kevin Bedell.
+    <strong>DynaForms and the Validator</strong></a> by James Turner and Kevin Bedell.
     Sample chapter from
     <a href="http://www.strutskickstart.com/">Struts Kickstart</a>;
     available as a free download (PDF).
@@ -847,7 +847,7 @@ public static boolean validateTwoFields(
 
     <p>
     <a href="http://www.manning.com/getpage.html?project=husted&amp;filename=chapters.html">
-    <b>Validating user input</b></a> by David Winterfeldt and Ted Husted.
+    <strong>Validating user input</strong></a> by David Winterfeldt and Ted Husted.
     Sample chapter from
     <a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/">
     Struts in Action</a>;

@@ -11,14 +11,14 @@
 <section name="Status" href="status">
 
 <p>
-The <b>stable production release</b> is <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/">Struts 1.02</a> (11 February 2002).
+The <strong>stable production release</strong> is <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/">Struts 1.02</a> (11 February 2002).
 </p>
 
 <p>
-<a href="http://www.apache.org/dist/jakarta/struts/">Struts 1.1</a> is in its first <b>release candidate</b> build (20 February 2003).
+<a href="http://www.apache.org/dist/jakarta/struts/">Struts 1.1</a> is in its first <strong>release candidate</strong> build (20 February 2003).
 </p>
 
-<hr size="1" noshade=""/>
+<hr/>
 
 <ul>
 <li>
@@ -26,7 +26,7 @@ The <b>stable production release</b> is <a href="http://jakarta.apache.org/build
   </li>
 <li>
   See <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/">the Struts Nightly Build</a> for the latest development distribution.
-  </li>.
+  </li>
 <li>
   See <a href="http://jakarta.apache.org/site/mail.html">the Jakarta Struts-Dev list</a> for current development communications.
   </li>
@@ -35,11 +35,11 @@ The <b>stable production release</b> is <a href="http://jakarta.apache.org/build
   </li>
 </ul>
 
-<hr size="1" noshade=""/>
+<hr/>
 
 <p>
 Struts is a completely open product. The
-<a href="http://jakarta.apache.org/struts/volunteers.html">Struts Committers</a> conduct all development
+<a href="volunteers.html">Struts Committers</a> conduct all development
 business using the resources cited here, which are all available to the public. Only
 Struts Committers may write to the
 <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">CVS</a>. Developer contributions may be posted

@@ -11,9 +11,9 @@
 <chapter name="5.2 Installation" href="installation">
 <section name="Installing Struts with your servlet container" href="Containers">
 
-<h3><a name="jrun">JRUN 3.0 SP2A, VERSION 3.02A.11614</a></h3>
+<h4 id="jrun">JRUN 3.0 SP2A, VERSION 3.02A.11614</h4>
 
-<b>Tested with: Microsoft IIS 5.0, Windows 2000</b>
+<strong>Tested with: Microsoft IIS 5.0, Windows 2000</strong>
 
 <h4>Important Note:</h4>
 
@@ -45,7 +45,7 @@ Error: No match was found for method "setLocale(java.lang.String)".
 </pre>
 
 <p>(For more details see refer to:<br/>
-<font size="-1"><a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01860.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01860.html</a></font>)</p>
+<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01860.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01860.html</a>)</p>
 
 <p>The following instructions describe how to install the Struts Example
 Application under JRun. A subsequent section describes how the Struts Example
@@ -79,7 +79,7 @@ Application can be patched to work with Struts</p>
   shown.</li>
 
 <li>On the right pane, click on Deploy an Application. Complete the Web
-  Application Information form as follows:</li>
+  Application Information form as follows:
 
   <ul>
   <li>Servlet War File or Directory:  Enter the full path where
@@ -93,6 +93,7 @@ Application can be patched to work with Struts</p>
       $APP_SERVER_NAME/Struts Example (or the name as specified for
       Application Name).</li>
   </ul>
+</li>  
 
 <li>Once the form is complete, click on the Deploy button.</li>
 
@@ -121,7 +122,7 @@ Application can be patched to work with Struts</p>
 <li>On the right pane, click on Create an Application and complete the
   Web Application Information form as follows:</li>
 
-<li>JRun Server Name:  $APP_SERVER_NAME</li>
+<li>JRun Server Name:  $APP_SERVER_NAME
 
   <ul>
   <li>Application Name:  myApplication</li>
@@ -130,6 +131,7 @@ Application can be patched to work with Struts</p>
   <li>Application Deploy Directory:  will default to<br/>
     <code>$APP_SERVER_NAME/myApplication</code></li>
   </ul>
+</li>  
 
 <li>Click on Create to submit the form.</li>
 
@@ -145,12 +147,13 @@ Application can be patched to work with Struts</p>
   the Web Applications branch and click on myApplication. The right pane
   will display the configuration options for myApplication. Click on
   Servlet URL Mappings. A list of existing mappings will be shown. Click
-  the Edit button and create the following entry:</li>
+  the Edit button and create the following entry:
 
   <ul>
   <li>Virtual Path/Extension:   *.do</li>
   <li>Servlet Invoked:  action</li>
   </ul>
+</li>  
 
 <li>Click on the Update button to save the changes.</li>
 <li>Restart the application server.</li>

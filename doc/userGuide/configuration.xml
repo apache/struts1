@@ -82,23 +82,23 @@
     struts-config_1_1.dtd</a> or the list below.
     </p>
 
-    <blockquote>
+    
 
     <ul>
 
         <li>
-        <b>bufferSize</b> - The size (in bytes) of the input buffer
+        <strong>bufferSize</strong> - The size (in bytes) of the input buffer
         used when processing file uploads.
         [4096] (optional)
         </li>
 
         <li>
-        <b>className</b> - Classname of configuration bean.
+        <strong>className</strong> - Classname of configuration bean.
         [org.apache.struts.config.ControllerConfig] (optional)
         </li>
 
         <li>
-        <b>contentType</b> - Default content type (and optional character
+        <strong>contentType</strong> - Default content type (and optional character
         encoding) to be set on each response.
         May be overridden by the Action, JSP, or other resource to which
         the request is forwarded.
@@ -106,7 +106,7 @@
         </li>
 
         <li>
-        <b>forwardPattern</b> - Replacement pattern defining how the "path"
+        <strong>forwardPattern</strong> - Replacement pattern defining how the "path"
         attribute of a <code>&lt;forward&gt;</code> element is mapped to a
         context-relative URL when it starts with a slash (and when the
         <code>contextRelative</code> property is <code>false</code>).
@@ -140,7 +140,7 @@
         </li>
 
         <li>
-        <b>inputForward</b> - Set to <code>true</code> if you want the
+        <strong>inputForward</strong> - Set to <code>true</code> if you want the
         <code>input</code> attribute of <code>&lt;action&gt;</code> elements
         to be the name of a local or global <code>ActionForward</code>, which
         will then be used to calculate the ultimate URL.
@@ -151,14 +151,14 @@
         </li>
 
         <li>
-        <b>locale</b> - Set to <code>true</code> if you want a
+        <strong>locale</strong> - Set to <code>true</code> if you want a
         <code>Locale</code> object stored in the user's session if not already
         present.
         [true] (optional)
         </li>
 
         <li>
-        <b>maxFileSize</b> - The maximum size (in bytes) of a file to be
+        <strong>maxFileSize</strong> - The maximum size (in bytes) of a file to be
         accepted as a file upload.
         Can be expressed as a number followed by a "K", "M", or "G",
         which are interpreted to mean kilobytes, megabytes, or gigabytes,
@@ -167,20 +167,20 @@
         </li>
 
         <li>
-        <b>multipartClass</b> - The fully qualified Java class name of the
+        <strong>multipartClass</strong> - The fully qualified Java class name of the
         multipart request handler class to be used with this module.
         [org.apache.struts.upload.CommonsMultipartRequestHandler] (optional)
         </li>
 
         <li>
-        <b>nocache</b> - Set to <code>true</code> if you want the controller
+        <strong>nocache</strong> - Set to <code>true</code> if you want the controller
         to add HTTP headers for defeating caching to every response from
         this module.
         [false] (optional)
         </li>
 
         <li>
-        <b>pagePattern</b> - Replacement pattern defining how the
+        <strong>pagePattern</strong> - Replacement pattern defining how the
         <code>page</code> attribute of custom tags using it is mapped to a
         context-relative URL of the corresponding resource.
         This value may consist of any combination of the following:
@@ -213,20 +213,20 @@
         </li>
         <li>
 
-        <b>processorClass</b> - The fully qualified Java class name of the
+        <strong>processorClass</strong> - The fully qualified Java class name of the
         <code>RequestProcessor</code> subclass to be used with this module.
         [org.apache.struts.action.RequestProcessor] (optional)
         </li>
 
         <li>
-        <b>tempDir</b> - Temporary working directory to use when processing
+        <strong>tempDir</strong> - Temporary working directory to use when processing
         file uploads.
         [{the directory provided by the servlet container}]
         </li>
 
     </ul>
 
-    </blockquote>
+    
 
     <p>
     This example uses the default values for several controller parameters.
@@ -253,39 +253,39 @@
     attribute is used to specify the desired bundle.
     </p>
 
-    <blockquote>
+    
 
     <ul>
 
         <li>
-        <b>className</b> - Classname of configuration bean.
+        <strong>className</strong> - Classname of configuration bean.
         [org.apache.struts.config.MessageResourcesConfig] (optional)
         </li>
 
         <li>
-        <b>factory</b> - Classname of MessageResourcesFactory.
+        <strong>factory</strong> - Classname of MessageResourcesFactory.
         [org.apache.struts.util.PropertyMessageResourcesFactory] (optional)
         </li>
 
         <li>
-        <b>key</b> - ServletContext attribute key to store this bundle.
+        <strong>key</strong> - ServletContext attribute key to store this bundle.
         [org.apache.struts.action.MESSAGE] (optional)
         </li>
 
         <li>
-        <b>null</b> - Set to <code>false</code> to display missing resource
-        keys in your application like '<i>???keyname???</i>' instead of
+        <strong>null</strong> - Set to <code>false</code> to display missing resource
+        keys in your application like '<em>???keyname???</em>' instead of
         <code>null</code>.
         [true] (optional)
         </li>
 
         <li>
-        <b>parameter</b> - Name of the resource bundle. (required)
+        <strong>parameter</strong> - Name of the resource bundle. (required)
         </li>
 
     </ul>
 
-    </blockquote>
+    
 
     <p>Example configuration:</p>
 
@@ -298,7 +298,7 @@
     <p>
     This would set up a message resource bundle provided in the file
     <code>MyWebAppResources.properties</code> under the default key.
-    Missing resource keys would be displayed as '<i>???keyname???</i>'.
+    Missing resource keys would be displayed as '<em>???keyname???</em>'.
     </p>
 
 </section>
@@ -653,7 +653,7 @@
         This may also be a comma-delimited list of configuration files.
         Each file is loaded in turn, and its objects are appended to the
         internal data structure. [/WEB-INF/struts-config.xml].<br/>
-        <font color="red"><strong>WARNING</strong></font> - If you define
+        <strong>WARNING</strong> - If you define
         an object of the same name in more than one configuration file,
         the last one loaded quietly wins.
 
@@ -696,7 +696,7 @@
 
      <p>
      The following parameters may still be used with the Struts 1.1 release
-     but are <b>deprecated</b>.
+     but are <strong>deprecated</strong>.
      </p>
 
      <ul>
@@ -869,7 +869,7 @@
      </ul>
 
      <p>
-       <font color="red"><strong>WARNING</strong></font> - Struts will not
+       <strong>WARNING</strong> - Struts will not
        operate correctly if you define more than one
        <code>&lt;servlet&gt;</code> element for a controller
        servlet, or a subclass of the standard controller servlet class.
@@ -950,14 +950,14 @@
 <pre><code>http://www.mycompany.com/myapplication/logon.do</code></pre>
 
         <p>
-        <font color="red"><strong>WARNING</strong></font> - Struts will not
+        <strong>WARNING</strong> - Struts will not
         operate correctly if you define more than one
         <code>&lt;servlet-mapping&gt;</code> element for the controller
         servlet.
         </p>
 
         <p>
-        <font color="red"><strong>WARNING</strong></font> - If you are using
+        <strong>WARNING</strong> - If you are using
         the new module support in Struts 1.1, you should be aware
         that <strong>only</strong> extension mapping is supported.
         </p>
@@ -1059,7 +1059,7 @@
     href="dd_config_taglib_23">
 
     <p>
-    <b>Servlet 2.3 Users only:</b> The Servlet 2.3 specification simplifies
+    <strong>Servlet 2.3 Users only:</strong> The Servlet 2.3 specification simplifies
     the deployment and configuration of tag libraries.
     The instructions above will work on older containers as well as 2.3
     containers (Struts only requires a servlet 2.2 container);
@@ -1080,7 +1080,7 @@
     </code></pre>
 
     <p>
-    Note that you <b>must use the full uri</b> defined in the various struts
+    Note that you <strong>must use the full uri</strong> defined in the various struts
     tlds so that the container knows where to find the tag's class files.
     You don't have to alter your web.xml file or copy tlds into any
     application directories.
@@ -1100,18 +1100,15 @@
     </p>
 
     <p>
-    <b>Servlet 2.3 Users:</b> See
+    <strong>Servlet 2.3 Users:</strong> See
     <a href="#dd_config_taglib_23">section 4.5.3.1</a>
     for how to avoid copying the tlds into your application.
     </p>
 
-    <div align="center">
-      <table border="1" cellspacing="0" cellpadding="5" width="80%">
-      <tr><td bgcolor="cyan">
-
-      <h3 align="center">
+    <div class="notice">
+      <h4 class="center">
         Sidebar:  Sharing JAR Files Across Web Applications
-      </h3>
+      </h4>
 
       <p>
         Many servlet containers and application servers provide facilities
@@ -1141,7 +1138,7 @@
           Classes loaded from the shared class loader cannot see classes
           in the web application's class loader, unless they are specifically
           programmed to use the Thread context class loader.
-          <blockquote>
+          
             For example, Struts dynamically loads your action and form bean
             classes, and normally would not be able to find those classes.
             Struts has been programmed to deal with this in <em>most</em>
@@ -1149,7 +1146,7 @@
             it works in <em>all</em> scenarios.  The Commons libraries that
             Struts uses have <strong>NOT</strong> been audited to catch all
             possible scenarios where this might become a problem.
-          </blockquote>
+          
         </li>
         <li>
           When a class is loaded from a shared class loader, static variables
@@ -1157,13 +1154,13 @@
           inter-webapp conflicts when the underlying code assumes that the
           statics are global only within a particular web applicaiton (which
           would be true if the class was loaded from the webapp class loader).
-          <blockquote>
+          
             There are many cases where Struts, and the Commons libraries it
             relies on, use static variables to maintain information that is
             presumed to be visible only within a single web applicaiton.
             Sharing these JAR files can cause unwanted interactions, and
             probably cause incorrect behavior.
-          </blockquote>
+          
         </li>
         <li>
           When JAR files are shared like this, it is not possible to update
@@ -1189,8 +1186,6 @@
         problem exists with the JAR files in their recommended location,
         in the <code>/WEB-INF/lib</code> subdirectory of your webapp.
       </p>
-      </td></tr>
-      </table>
     </div>
 
 </section>
@@ -1293,7 +1288,7 @@
     Building Applications HowTo</a>.
     </p>
 
-    <p align="right">
+    <p class="right">
     Next: <a href="./release-notes.html">Release Notes</a>
     </p>
 

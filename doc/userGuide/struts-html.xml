@@ -4389,13 +4389,13 @@
                 absence of the <code>name</code> and <code>property</code> attributes.  The
                 following combinations are allowed:</p>
                 <ul>
-                <li><i>Only <code>name</code> is specified</i> - The value of this attribute
+                <li><em>Only <code>name</code> is specified</em> - The value of this attribute
                     is the name of a JSP bean in some scope that is the
                     collection.</li>
-                <li><i>Only <code>property</code> is specified</i> - The value of this
+                <li><em>Only <code>property</code> is specified</em> - The value of this
                     attribute is the name of a property of the ActionForm bean associated
                     with our form, which will return the collection.</li>
-                <li><i>Both <code>name</code> and <code>property</code> are specified</i> -
+                <li><em>Both <code>name</code> and <code>property</code> are specified</em> -
                     The value of the <code>name</code> attribute identifies a JSP bean
                     in some scope.  The value of the <code>property</code> attribute is the
                     name of some property of that bean which will return the collection.</li>
@@ -4408,17 +4408,17 @@
                 the same number of elements as the corresponding collection of values.
                 The following combinations are allowed:</p>
                 <ul>
-                <li><i>Neither <code>labelName</code> nor <code>labelProperty</code> is
-                    specified</i> - The labels will be the same as the option values
+                <li><em>Neither <code>labelName</code> nor <code>labelProperty</code> is
+                    specified</em> - The labels will be the same as the option values
                     themselves.</li>
-                <li><i>Only <code>labelName</code> is specified</i> - The value of this
+                <li><em>Only <code>labelName</code> is specified</em> - The value of this
                     attribute is the name of a JSP bean in some scope that is the
                     collection.</li>
-                <li><i>Only <code>labelProperty</code> is specified</i> - The value of this
+                <li><em>Only <code>labelProperty</code> is specified</em> - The value of this
                     attribute is the name of a property of the ActionForm bean associated
                     with our form, which will return the collection.</li>
-                <li><i>Both <code>labelName</code> and <code>labelProperty</code> are
-                    specified</i> - The value of the <code>labelName</code> attribute
+                <li><em>Both <code>labelName</code> and <code>labelProperty</code> are
+                    specified</em> - The value of the <code>labelName</code> attribute
                     identifies a JSP bean in some scope.  The value of the
                     <code>labelProperty</code> attribute is the name of some property of
                     that bean which will return the collection.</li>

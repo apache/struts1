@@ -41,28 +41,28 @@
 <html:form action="/logon" focus="username">
 <table border="0" width="100%">
     <tr>
-        <th align="right">
+        <th class="right">
             <bean:message key="prompt.username"/>
         </th>
-        <td align="left">
+        <td class="left">
             <html:text  property="username" size="16"/>
         </td>
     </tr>
     <tr>
-        <th align="right">
+        <th class="right">
             <bean:message key="prompt.password"/>
         </th>
-        <td align="left">
+        <td class="left">
             <html:password property="password" size="16"/>
         </td>
     </tr>
     <tr>
-        <td align="right">
+        <td class="right">
             <html:submit>
                 <bean:message key="button.submit"/>
             </html:submit>
         </td>
-        <td align="right">
+        <td class="right">
             <html:reset>
                 <bean:message key="button.reset"/>
             </html:reset>
@@ -86,7 +86,7 @@
 
         <li>
         The <code>taglib</code> directive tells the JSP page compiler where to
-        find the <i>tag library descriptor</i> for the Struts tag library.  
+        find the <em>tag library descriptor</em> for the Struts tag library.  
         In this case, we are using <code>bean</code> as the prefix that 
         identifies tags from the struts-bean library, and "html" as the prefix  
         that identifies tags from the struts-html library.  
@@ -95,7 +95,7 @@
           
         <li>
         This page uses several occurrences of the
-        <b>message</b> tag to look up internationalized
+        <strong>message</strong> tag to look up internationalized
         message strings from a <code>MessageResources</code> object containing
         all the resources for this application.  
         For this page to work, the following message keys must be defined in 
@@ -104,23 +104,23 @@
         <ul>
         
             <li>
-            <b>logon.title</b> - Title of the logon page
+            <strong>logon.title</strong> - Title of the logon page
             </li>
 
             <li>
-            <b>prompt.username</b> - A "Username:" prompt string
+            <strong>prompt.username</strong> - A "Username:" prompt string
             </li>
 
             <li>
-            <b>prompt.password</b> - A "Password:" prompt string
+            <strong>prompt.password</strong> - A "Password:" prompt string
             </li>
 
             <li>
-            <b>button.submit</b> - "Submit" for the button label
+            <strong>button.submit</strong> - "Submit" for the button label
             </li>
 
             <li>
-            <b>button.reset</b> - "Reset" for the button label
+            <strong>button.reset</strong> - "Reset" for the button label
         </li>
         
         </ul>
@@ -135,14 +135,14 @@
         </li>
           
         <li>
-        The <b>errors</b> tag displays any error messages that have been 
+        The <strong>errors</strong> tag displays any error messages that have been 
         stored by a business logic component, or nothing if no errors have been 
         stored.  
         This tag will be described further below.
         </li>
           
         <li>
-        The <b>form</b> tag renders an HTML <code>&lt;form&gt;</code> element, 
+        The <strong>form</strong> tag renders an HTML <code>&lt;form&gt;</code> element, 
         based on the specified attributes.
         It also associates all of the fields within this form with a 
         <code>ActionForm</code> bean 
@@ -171,7 +171,7 @@
         </li>
 
         <li>
-        The <b>text</b> tag renders an HTML <code>&lt;input&gt;</code> 
+        The <strong>text</strong> tag renders an HTML <code>&lt;input&gt;</code> 
         element of type "text".  
         In this case, the number of character positions to occupy on the 
         browser's screen has been specified as well. 
@@ -181,13 +181,13 @@
         </li>
 
         <li>
-        The <b>password</b> tag is used similarly.
+        The <strong>password</strong> tag is used similarly.
         The difference is that the browser will echo asterisk characters,
         instead of the input value, as the user types their password.
         </li>
 
         <li>
-        The <b>submit</b> and<b>reset</b> tags generate the corresponding
+        The <strong>submit</strong> and<strong>reset</strong> tags generate the corresponding
         buttons at the bottom of the form.  
         The text labels for each button are created using message tags,
         as with the prompts, so that these values are internationalized.
@@ -269,9 +269,9 @@ public class UploadForm extends ActionForm {
     FormFile</a></code> to see the methods it exposes to manipulate files in 
     file uploading.
     Also look at the Javadocs for
-    <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">
+    <a href="../api/org/apache/struts/action/ActionServlet.html">
     ActionServlet</a> and
-    <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionMapping.html">
+    <a href="../api/org/apache/struts/action/ActionMapping.html">
     ActionMapping</a> for the various parameters you can specify to change 
     how files are uploaded.  
     Basically in your <code>execute</code> method in your action class you 

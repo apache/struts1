@@ -10,35 +10,35 @@
 <chapter name="Struts Resources"> 
 
 <section name="Tutorials">
-<p><a href="http://www.reumann.net/do/struts/main"><b>Struttin' with Struts</b></a> by Rick Reumann - How to use iBATIS Database Layer with Struts, lessons and examples.</p>
-<p><a href="http://developer.java.sun.com/developer/Quizzes/misc.html"><b>The Struts Quiz</b></a> by Ted Husted - Part of an ongoing series at java.sun.com.</p>
-<p><a href="http://javaboutique.internet.com/tutorials/Swing/"><b>Struts meets Swing</b></a> by Keld H. Hansen - Learn how to add a Swing client to your Struts application.</p>
-<p><a href="http://www.projectrefinery.com/struts.html"><b>Introduction to Struts</b></a> by Roger W. Barnes - PowerPoint Presentation reviewing the basics of the Struts was architecture.</p>
-<p><a href="http://www.projectrefinery.com/struts.html"><b>Struts Cross-Reference</b></a> by Roger W. Barnes - (PDF) Shows how the struts-config of the Struts MailReader example relates to its Java classes and JavaServer Pages.</p>
-<p><a href="http://www.fawcette.com/javapro/2002_07/online/kjones/"><b>Create Better Web Apps with Struts</b></a> by Kevin Jones.</p>
-<p><a href="http://javaboutique.internet.com/tutorials/Struts/"><b>Stepping through Jakarta Struts</b></a> by Keld H. Hansen.</p>
-<p><a href="http://javaboutique.internet.com/tutorials/Struts2/"><b>Coding your second Jakarta Struts Application</b></a> by Keld H. Hansen.</p>
-<p><a href="http://otn.oracle.com/products/jdev/howtos/jsp/StrutsHowTo.html"><b>How Do I use Jakarta Struts with Oracle9i JDeveloper?</b></a> by Oracle Corporation.</p>
-<p><a href="http://husted.com/struts/tips/"><b>Struts Tips</b></a> by Ted Husted - Practical cut-and-paste advice.</p>
-<p><a href="http://rzserv2.fhnon.de/~lg002556/struts/"><b>Struts Tutorial</b></a> by Stephan Wiesner - An easy step by step introduction to Struts. </p>
-<p><a href="http://www.anassina.com/struts/i18n/i18n.html"><b>Struts i18n</b></a> by Aaron Rustad.</p>
-<p><a href="http://husted.com/struts/resources/fb-auth.htm"><b>How To: (Form-Based Authentication) use the form-error page to login</b></a> by Matt Raible.</p>
-<p><a href="http://www.redbooks.ibm.com/pubs/pdfs/redbooks/sg246134.pdf"><b>WebSphere Version 4 Application Development Handbook</b></a> <font size="1">(PDF)</font> - IBM Redbook, Chapter 7 covers designing with both the Struts and WebSphere frameworks.</p>
-<p><a href="http://husted.com/struts/catalog.html"><b>Struts Catalog</b></a> by Ted Husted - Overview of Struts Design Patterns and Strategies.</p>
-<p><a href="http://home.iprimus.com.au/moktc/howto/struts/howto_forte_struts.htm"><b>HOWTO Setup and Debug STRUTS Example in Forte</b></a> by Michael Mok.</p>
-<p><a href="http://www.netstore.ch/mesi/strutsTutorial/"><b>JBuilder 5, Struts 1.0 &amp; WebLogic 6.0, a Tutorial</b></a> by Markus Colombo.</p>
-<p><a href="http://www1.tramsasp.com/?section=dev"><b>Using JBuilder5 with Struts 1.0 Release</b></a> by Anthony Martin.</p>
-<p><a href="http://www.borland.com/conf2001/updates/"><b>3148 Configuring AppServer to Work with Struts</b></a> by Ken Sipe (7/25/2001)</p>
-<p><a href="http://www.borland.com/conf2001/updates/"><b>3004 Building Extensible Web Frameworks Using XML, XSL-T, and Java</b></a> by Richard Vowles 7/21/2001</p>
-<p><a href="http://husted.com/struts/strutByStrut.html"><b>Strut by Strut</b></a> by Ted Husted - Building a web application from the ground up (maintenance release 2001/Aug/19).</p>
-<p><a href="http://www.keyboardmonkey.com/pilotlight"><b>Nested Tags</b></a> by Arron Bates - Two part tutorial, from straight-up beginners to intermediate. Also a good kicker for simply learning nesting.</p>
-<p><a href="http://www.keyboardmonkey.com/pilotlight"><b>Tree Structures</b></a> by Arron Bates - Two part tutorial, which uses the Nested Tags in Struts 1.1 (or separate download) to create dynamic tree structures.</p>
-<p><a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPTags3.html"><b>J2EE Tutorial</b></a> - Featuring Struts 1.0 tags.</p>
-<p><a href="http://developer.bluestone.com/scripts/SaISAPI.dll/Gallery.class/demos/trailMaps/index.jsp"><b>Welcome to the Struts Framework</b></a> by <a href="http://www.bluestone.com">Bluestone Software</a>.</p>
-<p><a href="http://www.jspinsider.com/tutorials/jsp/struts/strutsintro.html"><b>An Introduction to Struts</b></a> by Casey Kochmer.</p>
-<p><a href="http://husted.com/struts/resources/uml-jps.pdf"><b>Struts UML Diagrams</b></a> (PDF) by Jean-Pierre Schnyder.</p>
-<p><a href="http://husted.com/struts/example-spec.html"><b>Blueprinting a Struts Application</b></a> by Ted Husted - Sample specification and API for the Struts Example application.</p>
-<p><a href="http://www.isabelle-hurbain.com/repository/docs/struts-onefile/"><b>Jakarta Struts: A Beginner's Tutorial</b></a> by Isabelle Hurbain - For people who want to learn Struts from scratch.</p>
+<p><a href="http://www.reumann.net/do/struts/main"><strong>Struttin' with Struts</strong></a> by Rick Reumann - How to use iBATIS Database Layer with Struts, lessons and examples.</p>
+<p><a href="http://developer.java.sun.com/developer/Quizzes/misc.html"><strong>The Struts Quiz</strong></a> by Ted Husted - Part of an ongoing series at java.sun.com.</p>
+<p><a href="http://javaboutique.internet.com/tutorials/Swing/"><strong>Struts meets Swing</strong></a> by Keld H. Hansen - Learn how to add a Swing client to your Struts application.</p>
+<p><a href="http://www.projectrefinery.com/struts.html"><strong>Introduction to Struts</strong></a> by Roger W. Barnes - PowerPoint Presentation reviewing the basics of the Struts was architecture.</p>
+<p><a href="http://www.projectrefinery.com/struts.html"><strong>Struts Cross-Reference</strong></a> by Roger W. Barnes - (PDF) Shows how the struts-config of the Struts MailReader example relates to its Java classes and JavaServer Pages.</p>
+<p><a href="http://www.fawcette.com/javapro/2002_07/online/kjones/"><strong>Create Better Web Apps with Struts</strong></a> by Kevin Jones.</p>
+<p><a href="http://javaboutique.internet.com/tutorials/Struts/"><strong>Stepping through Jakarta Struts</strong></a> by Keld H. Hansen.</p>
+<p><a href="http://javaboutique.internet.com/tutorials/Struts2/"><strong>Coding your second Jakarta Struts Application</strong></a> by Keld H. Hansen.</p>
+<p><a href="http://otn.oracle.com/products/jdev/howtos/jsp/StrutsHowTo.html"><strong>How Do I use Jakarta Struts with Oracle9i JDeveloper?</strong></a> by Oracle Corporation.</p>
+<p><a href="http://husted.com/struts/tips/"><strong>Struts Tips</strong></a> by Ted Husted - Practical cut-and-paste advice.</p>
+<p><a href="http://rzserv2.fhnon.de/~lg002556/struts/"><strong>Struts Tutorial</strong></a> by Stephan Wiesner - An easy step by step introduction to Struts. </p>
+<p><a href="http://www.anassina.com/struts/i18n/i18n.html"><strong>Struts i18n</strong></a> by Aaron Rustad.</p>
+<p><a href="http://husted.com/struts/resources/fb-auth.htm"><strong>How To: (Form-Based Authentication) use the form-error page to login</strong></a> by Matt Raible.</p>
+<p><a href="http://www.redbooks.ibm.com/pubs/pdfs/redbooks/sg246134.pdf"><strong>WebSphere Version 4 Application Development Handbook</strong></a> (PDF) - IBM Redbook, Chapter 7 covers designing with both the Struts and WebSphere frameworks.</p>
+<p><a href="http://husted.com/struts/catalog.html"><strong>Struts Catalog</strong></a> by Ted Husted - Overview of Struts Design Patterns and Strategies.</p>
+<p><a href="http://home.iprimus.com.au/moktc/howto/struts/howto_forte_struts.htm"><strong>HOWTO Setup and Debug STRUTS Example in Forte</strong></a> by Michael Mok.</p>
+<p><a href="http://www.netstore.ch/mesi/strutsTutorial/"><strong>JBuilder 5, Struts 1.0 &amp; WebLogic 6.0, a Tutorial</strong></a> by Markus Colombo.</p>
+<p><a href="http://www1.tramsasp.com/?section=dev"><strong>Using JBuilder5 with Struts 1.0 Release</strong></a> by Anthony Martin.</p>
+<p><a href="http://www.borland.com/conf2001/updates/"><strong>3148 Configuring AppServer to Work with Struts</strong></a> by Ken Sipe (7/25/2001)</p>
+<p><a href="http://www.borland.com/conf2001/updates/"><strong>3004 Building Extensible Web Frameworks Using XML, XSL-T, and Java</strong></a> by Richard Vowles 7/21/2001</p>
+<p><a href="http://husted.com/struts/strutByStrut.html"><strong>Strut by Strut</strong></a> by Ted Husted - Building a web application from the ground up (maintenance release 2001/Aug/19).</p>
+<p><a href="http://www.keyboardmonkey.com/pilotlight"><strong>Nested Tags</strong></a> by Arron Bates - Two part tutorial, from straight-up beginners to intermediate. Also a good kicker for simply learning nesting.</p>
+<p><a href="http://www.keyboardmonkey.com/pilotlight"><strong>Tree Structures</strong></a> by Arron Bates - Two part tutorial, which uses the Nested Tags in Struts 1.1 (or separate download) to create dynamic tree structures.</p>
+<p><a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPTags3.html"><strong>J2EE Tutorial</strong></a> - Featuring Struts 1.0 tags.</p>
+<p><a href="http://developer.bluestone.com/scripts/SaISAPI.dll/Gallery.class/demos/trailMaps/index.jsp"><strong>Welcome to the Struts Framework</strong></a> by <a href="http://www.bluestone.com">Bluestone Software</a>.</p>
+<p><a href="http://www.jspinsider.com/tutorials/jsp/struts/strutsintro.html"><strong>An Introduction to Struts</strong></a> by Casey Kochmer.</p>
+<p><a href="http://husted.com/struts/resources/uml-jps.pdf"><strong>Struts UML Diagrams</strong></a> (PDF) by Jean-Pierre Schnyder.</p>
+<p><a href="http://husted.com/struts/example-spec.html"><strong>Blueprinting a Struts Application</strong></a> by Ted Husted - Sample specification and API for the Struts Example application.</p>
+<p><a href="http://www.isabelle-hurbain.com/doc/index.en.html"><strong>Jakarta Struts: A Beginner's Tutorial</strong></a> by Isabelle Hurbain - For people who want to learn Struts from scratch.</p>
 </section>
 
 </chapter></body></document>

@@ -43,8 +43,8 @@
         <p>Another model was clearly needed ...</p>
 
         <p>
-          Many clever developers realized that JavaServer Pages AND servlets could be used <b>
-          together</b> to deploy web applications. The servlets could help with the control-flow, and the
+          Many clever developers realized that JavaServer Pages AND servlets could be used <strong>
+          together</strong> to deploy web applications. The servlets could help with the control-flow, and the
           JSPs could focus on the nasty business of writing HTML. In due course, using JSPs and servlets
           together became known as 
           <a href="http://www.javaworld.com/javaworld/jw-12-1999/jw-12-ssj-jspmvc.html">Model 2</a> 
@@ -92,13 +92,13 @@
     <section name="1.2.1 The Model: System State and Business Logic JavaBeans" href="modelConcepts">
       
       <p>
-        The <i>Model</i> portion of an MVC-based system can be often be divided into
-        two major subsystems -- the <b>internal state</b> of the system 
-        and the <b>actions</b> that can be taken to change that state.
+        The <em>Model</em> portion of an MVC-based system can be often be divided into
+        two major subsystems -- the <strong>internal state</strong> of the system 
+        and the <strong>actions</strong> that can be taken to change that state.
       </p>
 
        <p>In grammatical terms, we might think about
-        state information as <b>nouns</b> (things) and actions as <b>verbs</b>
+        state information as <strong>nouns</strong> (things) and actions as <strong>verbs</strong>
         (changes to the state of those things).
       </p>
         
@@ -135,7 +135,7 @@
   
       <p>
         The Struts framework architecture is flexible enough to support most any 
-        approach to accessing the Model, but we <b>strongly</b> recommend that you 
+        approach to accessing the Model, but we <strong>strongly</strong> recommend that you 
         separate the business logic ("how it's done") from the role that 
         <code>Action</code> classes play ("what to do"). 'nuff said.
       </p>    
@@ -150,7 +150,7 @@
     <section name="1.2.2 The View: JSP Pages and Presentation Components" href="presentationConcepts">     
 
       <p>
-        The <i>View</i> portion of a Struts-based application is most often 
+        The <em>View</em> portion of a Struts-based application is most often 
         constructed using JavaServer Pages (JSP) technology.  JSP pages can
         contain static HTML (or XML) text called "template text", plus the
         ability to insert dynamic content based on the interpretation (at page
@@ -165,7 +165,7 @@
         Struts includes a set of custom tag libraries that facilitate
         creating user interfaces that are fully internationalized, and that
         interact gracefully with <code>ActionForm</code> beans that are part
-        of the <i>Model</i> portion of the system.  
+        of the <em>Model</em> portion of the system.  
       </p>
 
       <p>
@@ -180,7 +180,7 @@
     <section name="1.2.3 The Controller: ActionServlet and ActionMapping" href="controllerConcepts">
       
       <p>
-        The <i>Controller</i> portion of the application is focused on receiving
+        The <em>Controller</em> portion of the application is focused on receiving
         requests from the client (typically a user running a web browser), deciding
         what business logic function is to be performed, and then delegating
         responsibility for producing the next phase of the user interface to
@@ -217,13 +217,13 @@
       <section name="1.3 Struts Control Flow" href="flow">
       
         <p>
-          The Struts framework provides several components that make up the <b>Control</b> 
+          The Struts framework provides several components that make up the <strong>Control</strong> 
           layer of a MVC-style application. These include a controller servlet, 
           developer-defined request handlers, and several supporting objects.
         </p>
 
         <p>
-          The Struts custom tag libraries provide direct support for the <b>View</b> layer 
+          The Struts custom tag libraries provide direct support for the <strong>View</strong> layer 
           of a MVC application. Some of these access the control-layer objects. 
           Others are generic tags found convenient when writing applications. Other 
           taglibs, including 
@@ -235,7 +235,7 @@
         </p>
 
         <p>
-          The <b>Model</b> layer in a MVC application is often project-specific. Struts is 
+          The <strong>Model</strong> layer in a MVC application is often project-specific. Struts is 
           designed to make it easy to access the business-end of your application, 
           but leaves that part of the programming to other products, like 
           <a href="http://java.sun.com/products/jdbc/index.html">JDBC</a>, 
@@ -252,16 +252,16 @@
         <p>
           When initialized, the controller parses a configuration
           file (<code>struts-config.xml</code>) and uses it to deploy other control layer objects. 
-          Together, these objects form the <b>Struts Configuration</b>. The Struts Configuration 
+          Together, these objects form the <strong>Struts Configuration</strong>. The Struts Configuration 
           defines (among other things) the 
-          <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionMappings.html">ActionMappings</a>
+          <a href="../api/org/apache/struts/action/ActionMappings.html">ActionMappings</a>
           [<code>org.apache.struts.action.ActionMappings</code>] for an application. 
         </p>
 
         <p>
           The Struts controller servlet consults the ActionMappings as it routes HTTP 
           requests to other components in the framework. Requests may be forwarded to JavaServer Pages or 
-          <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/Action.html">Action</a> 
+          <a href="../api/org/apache/struts/action/Action.html">Action</a> 
           [<code>org.apache.struts.action.Action</code>] subclasses provided by the
           Struts developer. Often, a request is first forwarded to an Action and then to a JSP 
           (or other presentation page). The mappings help the controller turn HTTP requests into application 
@@ -270,12 +270,12 @@
         
         <p>
         An individual 
-        <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionMapping.html">ActionMapping</a>
+        <a href="../api/org/apache/struts/action/ActionMapping.html">ActionMapping</a>
         [<code>org.apache.struts.action.ActionMapping</code>] 
         will usually contain a number of properties including:</p>
         <ul>
-          <li>a <b>request path</b> (or "URI"),</li>
-          <li>the <b>object type</b> (Action subclass) to act upon the request, and</li>
+          <li>a <strong>request path</strong> (or "URI"),</li>
+          <li>the <strong>object type</strong> (Action subclass) to act upon the request, and</li>
           <li>other properties as needed. </li>
         </ul>
         <p>
@@ -311,9 +311,9 @@
           Web applications is retaining and validating what a user has entered between
           requests. With Struts, you can define your own set of input bean classes, by
           subclassing 
-          <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionForm.html">ActionForm</a>
+          <a href="../api/org/apache/struts/action/ActionForm.html">ActionForm</a>
           [<code>org.apache.struts.action.ActionForm</code>]. The ActionForm class makes it
-          easy to store <b>and validate</b> the data for your application's input forms. 
+          easy to store <strong>and validate</strong> the data for your application's input forms. 
           The ActionForm bean is automatically saved in one of the standard, shared context 
           collections, so that it can be used by other objects, like an Action object or 
           another JSP.
@@ -328,10 +328,10 @@
         
         <p>
           Another element of the Struts Configuration are the 
-          <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionFormBeans.html">ActionFormBeans</a>
+          <a href="../api/org/apache/struts/action/ActionFormBeans.html">ActionFormBeans</a>
           [<code>org.apache.struts.action.ActionFormBeans</code>].
           This is a collection of 
-          <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionFormBean.html">descriptor objects</a>
+          <a href="../api/org/apache/struts/action/ActionFormBean.html">descriptor objects</a>
           that are used to create instances of the ActionForm objects at runtime. 
           When a mapping needs an ActionForm, the servlet looks up the form-bean descriptor by name and uses 
           it to create an ActionForm instance of the specified type.
@@ -369,7 +369,7 @@
           The Struts framework and its custom tag libraries were designed from the ground-up 
           to support the internationalization features built into the Java platform. All the field labels
           and messages can be retrieved from a 
-          <a href="http://jakarta.apache.org/struts/api/org/apache/struts/util/MessageResources.html">message resource</a>.
+          <a href="../api/org/apache/struts/util/MessageResources.html">message resource</a>.
           To provide messages for another language, simply add another file to the resource bundle.
         </p>
         
@@ -381,8 +381,8 @@
         
         <p>
           For the simplest applications, an Action object may sometimes handle the business logic
-          associated with a request. <b>However, in most cases, an Action object should 
-          invoke another object, usually a JavaBean, to perform the actual business logic.</b> 
+          associated with a request. <strong>However, in most cases, an Action object should 
+          invoke another object, usually a JavaBean, to perform the actual business logic.</strong> 
           This lets the Action focus on error handling and control flow, rather than 
           business logic. To allow  reuse on other platforms, business-logic JavaBeans should not refer to any Web 
           application objects. The Action object should translate needed details from the 
@@ -422,7 +422,7 @@
 </section>
 
 <section>
-    <p align="right">
+    <p class="right">
     Next: <a href="building_model.html">Building Model Components</a>
     </p>
 </section>

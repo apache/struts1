@@ -26,7 +26,7 @@
 <section name="Beta Fixes" href="beta.Changes">
 
   <p>
-  <b>ApplicationConfig:</b> In Struts 1.2 was removed.
+  <strong>ApplicationConfig:</strong> In Struts 1.2 was removed.
   </p>
 
 
@@ -331,12 +331,12 @@
     <p>util</p>
     
     <p><strong>Classes with members added in Struts 1.2</strong></p>
-    <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">action.A</a><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">ActionServlet</a></p>
+    <p><a href="../api/org/apache/struts/action/ActionServlet.html">action.A</a><a href="../api/org/apache/struts/action/ActionServlet.html">ActionServlet</a></p>
     <ul>
       <li>initModuleConfigFactory()</li>
       <li>methods created for backward-compatiblity only</li>
     </ul>
-    <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/validator/ValidatorPlugin.html">validator.html</a></p>
+    <p><a href="../api/org/apache/struts/validator/ValidatorPlugin.html">validator.html</a></p>
     <ul>
       <li>isStopOnFirstError</li>
       <li>setStopOnFirstError</li>
@@ -344,11 +344,11 @@
     <p><strong>Classes deprecated between Struts 1.1 and Struts 1.2</strong></p>
     <p>action</p>
     <ul>
-      <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/xxx/xxxx.html"> xxx</a></li>
+      <li><a href="../api/org/apache/struts/xxx/xxxx.html"> xxx</a></li>
     </ul>
     
     <p><strong>Classes with members deprecated between Struts 1.1 and Struts 1.2</strong></p>
-    <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/xxxx/xxxx.html">class.method</a></p>
+    <p><a href="../api/org/apache/struts/xxxx/xxxx.html">class.method</a></p>
 
   
     <p><strong>Classes with members removed between Struts 1.1 and Struts 1.2</strong></p>
@@ -357,7 +357,7 @@
 </section>
 
 <section>
-    <p align="right">
+    <p class="right">
     Next: <a href="installation.html">Installation</a>
     </p>
 </section>

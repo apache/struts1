@@ -6,8 +6,7 @@
   <title>Indexed Properties, Mapped Properties, and Indexed Tags</title>
  </properties>
  <body>
-  <chapter href="indexedprops"
-           name="Indexed Properties, Mapped Properties, and Indexed Tags">
+  <chapter name="Indexed Properties, Mapped Properties, and Indexed Tags">
    <section href="introduction" name="Introduction">
     <p>
      The JSP specification discusses using "indexed properties" in reference to
@@ -257,10 +256,12 @@ public class StringBean4 extends ActionForm {
      three groups, split by what they do to incorporate the loop index into the
      resulting HTML component.
     </p>
-    <table border="1">
+    <table>
+     <thead>
      <tr>
       <th>Group 1</th><th>Group 2</th><th>Group 3</th>
      </tr>
+     </thead>
      <tr><td>checkbox</td><td>button</td><td>link</td></tr>
      <tr><td>file</td><td>image</td><td>&#160;</td></tr>
      <tr><td>hidden</td><td>submit</td><td>&#160;</td></tr>

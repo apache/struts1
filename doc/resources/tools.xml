@@ -38,37 +38,37 @@ your business logic and deploy. Also available as an Eclipse plugin.
 </section>
 
 <section name="IDE Plugins (Eclipse)">
-<p><a href="http://www.strecl.com/"><b>STRECL</b></a> - A set of tools offering easier utilization of Struts framework, two-way editing of XML files, code generation using wizards (JDBC DAO), JSP editor and many other functions. Oct 16: JSP editor (beta version) is released.</p>
-<p><a href="http://www.improve-technologies.com/alpha/struts-config-editor/"><b>Improve Struts Configuration File Editor></b></a> - struts-config graphical view</p>
-<p><a href="http://easystruts.sourceforge.net/"><b>Easy Struts 0.6.4</b></a> by Emmanuel Boudrant - The aim of this project is to provide a bunch of development tools, for Eclipse v2.0 and Borland JBuilder 5-7, in order to facilitate the development of a Struts application. A GUI editor for struts-config.xml files is available in Eclipse 2.0 plugin.</p>
-<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Eclipse, IBM WSAD, IntelliJ IDEA, JBuilder, NetBeans, Oracle JDeveloper and Sun One Studio (Forte).</p>
-<p><a href="http://sourceforge.net/projects/tinman"><b>Tinman Project:</b></a> Essential Java Documentation</p>
-<p><a href="http://www.sysdeo.com/eclipse/tomcatPlugin.html"><b>Tomcat Launcher Plugin</b></a> by Sysdeo</p>
+<p><a href="http://www.strecl.com/"><strong>STRECL</strong></a> - A set of tools offering easier utilization of Struts framework, two-way editing of XML files, code generation using wizards (JDBC DAO), JSP editor and many other functions. Oct 16: JSP editor (beta version) is released.</p>
+<p><a href="http://www.improve-technologies.com/alpha/struts-config-editor/"><strong>Improve Struts Configuration File Editor></strong></a> - struts-config graphical view</p>
+<p><a href="http://easystruts.sourceforge.net/"><strong>Easy Struts 0.6.4</strong></a> by Emmanuel Boudrant - The aim of this project is to provide a bunch of development tools, for Eclipse v2.0 and Borland JBuilder 5-7, in order to facilitate the development of a Struts application. A GUI editor for struts-config.xml files is available in Eclipse 2.0 plugin.</p>
+<p><a href="http://www.jamesholmes.com/struts/"><strong>Struts Console</strong></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Eclipse, IBM WSAD, IntelliJ IDEA, JBuilder, NetBeans, Oracle JDeveloper and Sun One Studio (Forte).</p>
+<p><a href="http://sourceforge.net/projects/tinman"><strong>Tinman Project:</strong></a> Essential Java Documentation</p>
+<p><a href="http://www.sysdeo.com/eclipse/tomcatPlugin.html"><strong>Tomcat Launcher Plugin</strong></a> by Sysdeo</p>
 <p><a href="http://www.eclipse.org/webtools/">Eclipse Web Tools</a></p>
-<p><a href="http://eclipse-plugins.2y.net/eclipse/"><b>More plugins for Eclipse</b> ...</a></p>
+<p><a href="http://eclipse-plugins.2y.net/eclipse/"><strong>More plugins for Eclipse</strong> ...</a></p>
 </section>
 
 <section name="IDE Plugins (other)">
-<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Eclipse, IBM WSAD, IntelliJ IDEA, JBuilder, NetBeans, Oracle JDeveloper and Sun One Studio (Forte).</p>
-<p><a href="http://jakarta.apache.org/taglibs/doc/ultradev4-doc/intro.html"><b>UltraDev 4.0 Custom Tag Library Extension</b></a> - Hosted by Jakarta Taglibs.</p>
+<p><a href="http://www.jamesholmes.com/struts/"><strong>Struts Console</strong></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Eclipse, IBM WSAD, IntelliJ IDEA, JBuilder, NetBeans, Oracle JDeveloper and Sun One Studio (Forte).</p>
+<p><a href="http://jakarta.apache.org/taglibs/doc/ultradev4-doc/intro.html"><strong>UltraDev 4.0 Custom Tag Library Extension</strong></a> - Hosted by Jakarta Taglibs.</p>
 </section>
 
 <section name="Visual Tools (GUIs)">
-<p><a href="http://www.alien-factory.co.uk/strutsgui/"><b>Struts GUI 3.2.3</b></a> by Alien-Factory - Alien-Factory's Struts GUI for Microsoft Visio is essentially a Visio Stencil with Visual Basic Macros.</p>
-<p><a href="http://www.exadel.com/products_strutsstudio.htm"><b>Struts Studio 4.7</b></a> by Exadel Inc. - A visual drag-and-connect approach to rapid development of Struts web applications.</p>
-<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console 4.0.4</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Eclipse, IBM WSAD, IntelliJ IDEA, JBuilder, NetBeans, Oracle JDeveloper and Sun One Studio (Forte).</p>
-<p><a href="http://www.objectventure.com/products/objectassembler.html"><b>ObjectAssembler 2.5 Pro</b></a> by ObjectVentur - supports the development of Struts applications, a popular open source web application framework that is part of Apache's Jakarta Project. The same visual development and code synchronization available with J2EE components are available for Struts components.</p>
-<p><a href="http://www.scioworks.com/scioworks_camino.html"><b>Scioworks Camino 3</b></a> by Scioworks Pte Ltd. - A visual tool for Struts. </p>
-<p><a href="http://rivernorth.sourceforge.net"><b>Struts Builder 0.4b</b></a> by RiverNorth - an Opensource tool (GPL license) originally developed for internal use to aid in development of Struts-based web applications (1.1 style).</p>
+<p><a href="http://www.alien-factory.co.uk/strutsgui/"><strong>Struts GUI 3.2.3</strong></a> by Alien-Factory - Alien-Factory's Struts GUI for Microsoft Visio is essentially a Visio Stencil with Visual Basic Macros.</p>
+<p><a href="http://www.exadel.com/products_strutsstudio.htm"><strong>Struts Studio 4.7</strong></a> by Exadel Inc. - A visual drag-and-connect approach to rapid development of Struts web applications.</p>
+<p><a href="http://www.jamesholmes.com/struts/"><strong>Struts Console 4.0.4</strong></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Eclipse, IBM WSAD, IntelliJ IDEA, JBuilder, NetBeans, Oracle JDeveloper and Sun One Studio (Forte).</p>
+<p><a href="http://www.objectventure.com/products/objectassembler.html"><strong>ObjectAssembler 2.5 Pro</strong></a> by ObjectVentur - supports the development of Struts applications, a popular open source web application framework that is part of Apache's Jakarta Project. The same visual development and code synchronization available with J2EE components are available for Struts components.</p>
+<p><a href="http://www.scioworks.com/scioworks_camino.html"><strong>Scioworks Camino 3</strong></a> by Scioworks Pte Ltd. - A visual tool for Struts. </p>
+<p><a href="http://rivernorth.sourceforge.net"><strong>Struts Builder 0.4b</strong></a> by RiverNorth - an Opensource tool (GPL license) originally developed for internal use to aid in development of Struts-based web applications (1.1 style).</p>
 </section>
 	
 <section name="Code Generators">
-<p><a href="http://www.javanovic.com"><b>Karapan Sapi 1.1.2:</b></a> open source generator software for the Struts framework.</p>
-<p><a href="http://husted.com/struts/resources/codemaker.htm"><b>Struts CodeMaker</b></a> by Ravindran Ramaiah - Generate Struts application by reading configuration file or JSP files. Updated 2001-08-21.</p>
-<p><a href="http://husted.com/struts/resources/StrutsGen.htm"><b>Struts Gen</b></a> by Cyberzombie - A rudimentary wrapper tool for value objects.</p>
-<p><a href="http://home.earthlink.net/~dwinterfeldt/generator/"><b>Struts Generator</b></a> by David Winterfeldt - Based on the generator.xml and a table/query an xml file is generated.  Based on the generated xml file a primary key class, data bean class, jdbc class, and an ActionForm (Struts) can be generated.</p>
-<p><a href="http://xsltgenerator.sourceforge.net/"><b>Struts XSLT Code Generator</b></a> by Shengmeng Liu - An XSLT based code generator for Struts, completely based on the XSLT transformation and a set of stylesheet files. Ideally, users can customize the stylesheet for each type of Struts files  to have templates of their own without having to access the source code and recompile it.</p>
-<p><a href="http://www.objectwave.com/html/tools/tool1_3.htm"><b>X2J</b></a>  by Objectwave - A code generation tool for building Struts applications. It includes wizard for easily creating JSPs, and the required Action and ActionForm classes as well as graphical tools for updating the config file. </p>
+<p><a href="http://www.javanovic.com"><strong>Karapan Sapi 1.1.2:</strong></a> open source generator software for the Struts framework.</p>
+<p><a href="http://husted.com/struts/resources/codemaker.htm"><strong>Struts CodeMaker</strong></a> by Ravindran Ramaiah - Generate Struts application by reading configuration file or JSP files. Updated 2001-08-21.</p>
+<p><a href="http://husted.com/struts/resources/StrutsGen.htm"><strong>Struts Gen</strong></a> by Cyberzombie - A rudimentary wrapper tool for value objects.</p>
+<p><a href="http://home.earthlink.net/~dwinterfeldt/generator/"><strong>Struts Generator</strong></a> by David Winterfeldt - Based on the generator.xml and a table/query an xml file is generated.  Based on the generated xml file a primary key class, data bean class, jdbc class, and an ActionForm (Struts) can be generated.</p>
+<p><a href="http://xsltgenerator.sourceforge.net/"><strong>Struts XSLT Code Generator</strong></a> by Shengmeng Liu - An XSLT based code generator for Struts, completely based on the XSLT transformation and a set of stylesheet files. Ideally, users can customize the stylesheet for each type of Struts files  to have templates of their own without having to access the source code and recompile it.</p>
+<p><a href="http://www.objectwave.com/html/tools/tool1_3.htm"><strong>X2J</strong></a>  by Objectwave - A code generation tool for building Struts applications. It includes wizard for easily creating JSPs, and the required Action and ActionForm classes as well as graphical tools for updating the config file. </p>
 </section>
 
 </chapter></body></document>

@@ -8,6 +8,7 @@
     <menu name="News and Status">
         <item href="index.html#status" name="Status"/>
         <item href="index.html#news"   name="Recent News"/>
+        <item href="news_2003_q2.html" name="2003 2nd Quarter News"/>
         <item href="news_2003_q1.html" name="2003 1st Quarter News"/>
         <item href="news_2002_q4.html" name="2002 4th Quarter News"/>
         <item href="news_2002_q3.html" name="2002 3rd Quarter News"/>

@@ -10,7 +10,7 @@
 
 <section name="Press Releases">
 
-<h3 align="center">Struts 1.0 Released</h3>
+<h4 class="center">Struts 1.0 Released</h4>
 
 <p>
 (2001-June-15) The production release of Struts 1.0, an open source framework for building Web applications, is now available for download at jakarta.apache.org. Struts encourages application architectures based on the Model-View-Controller (MVC) pattern and provides services common
@@ -50,7 +50,7 @@ and may be downloaded at jakarta.apache.org.
 Twenty-six independent developers contributed to the creation of Struts 1.0, with the help of over 1300 subscribers to the Struts mailing lists.<br/>
 </p>
 
-<hr noshade="" size="1"/>
+<hr />
 
 </section>
 

@@ -10,14 +10,13 @@
 <chapter name="Struts Resources"> 
 
 <section name="Seminars">
-<p><a href="http://www.nvisia.com/nvisia/services/classes/nvisia.html"><b>Introduction to Struts</b></a></p>
-<p><a href="http://www.onsitejava.com/outlines.html"><b>Onsite Java -- J2EE Web Architecture</b></a></p>
-<p><a href="http://www.aragost.com/training.html"><b>aragost - Struts Beginner &amp; Advanced Courses</b></a> (in English, German, and Danish)</p>
-<p><a href="http://www.improve-institute.com/str10.html"><b>Improve Struts 1.0 Seminar (French)</b></a></p>
-<p><a href="http://www.sysdeo.com/430/page.html"><b>Sysdeo - Framework Struts pour les applications Web</b></a> (in French) </p>
-<p><a href="http://www.basebean.com/"><b> Fast Track to MVC Frameworks</b></a> </p>
-<p><a href="http://bravepoint.com/scripts/wsisa.dll/WService=training/training_course.html?courseid=354"><b>BravePoint - Advanced JSP Architecture for J2EE</b></a> </p>
-<p><a href="http://www.avantsoft.com/jsp.html"><b>AvantSoft Inc. - JSP, Servlets and Struts</b></a></p>
+<p><a href="http://www.nvisia.com/nvisia/services/classes/nvisia.html"><strong>Introduction to Struts</strong></a></p>
+<p><a href="http://www.onsitejava.com/outlines.html"><strong>Onsite Java -- J2EE Web Architecture</strong></a></p>
+<p><a href="http://www.aragost.com/training.html"><strong>aragost - Struts Beginner &amp; Advanced Courses</strong></a> (in English, German, and Danish)</p>
+<p><a href="http://www.improve-institute.com/str10.html"><strong>Improve Struts 1.0 Seminar (French)</strong></a></p>
+<p><a href="http://www.basebean.com/"><strong> Fast Track to MVC Frameworks</strong></a> </p>
+<p><a href="http://bravepoint.com/scripts/wsisa.dll/WService=training/training_course.html?courseid=354"><strong>BravePoint - Advanced JSP Architecture for J2EE</strong></a> </p>
+<p><a href="http://www.avantsoft.com/jsp.html"><strong>AvantSoft Inc. - JSP, Servlets and Struts</strong></a></p>
 </section>
 
 </chapter></body></document>

@@ -11,9 +11,7 @@
 </properties>
 
 <body>
-<chapter href="status" name="Release Guidelines">
-
-<section href="status" name="Release Guidelines">
+    <section href="status" name="Release Guidelines">
 
     <p>
     This document describes the Struts <a href="#Releases">release process</a> and our <a href="#Coding">coding
@@ -85,7 +83,7 @@
                 Our beta can be dependant on another beta,
                 but should avoid a dependance on a nightly build.
                 Our release candidate can have a dependance on another RC,
-                but should not have a dependance on a beta (and certainly <b>not</b> a nightly build).
+                but should not have a dependance on a beta (and certainly <strong>not</strong> a nightly build).
                 Our final release can only have dependencies on other final releases.
             </li>
             <li>
@@ -99,7 +97,7 @@
             <li>
                 Test building the distribution under prior version of J2SE, if possible,
                 to ensure that we are still backwardly-compatible.
-                But, our Release distribution should be built using the <b>latest release of J2SE</b>,
+                But, our Release distribution should be built using the <strong>latest release of J2SE</strong>,
                 to take advantage of all available compiler enhancements.
             </li>
             <li>
@@ -253,12 +251,12 @@
         Our favorite science fiction author is
         <a href="http://www.nitrosyncretic.com/rah/">Robert Heinlein</a>.
         <a href="http://www.tuxedo.org/~esr/jargon/html/entry/TANSTAAFL.html">
-        <font size="-1">TANSTAAFL</font></a>.<br />
+        TANSTAAFL</a>.<br />
         (Except on Friday, when we favor
         <a href="http://carbon.cudenver.edu/~mstilman/zaphod/">Douglas
         Adams</a>.
         <a href="http://news.bbc.co.uk/1/hi/uk/1326657.stm">
-        <font size="-1">SLATFATF</font></a>.)
+        SLATFATF</a>.)
         </li>
 
     </ul>
@@ -266,9 +264,9 @@
 </section>
 
 <section>
-    <p align="right">
+    <p class="right">
     Next: <a href="news/index.html">News and Status</a>
     </p>
 </section>
 
-</chapter></body></document>
+</body></document>

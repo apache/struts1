@@ -13,7 +13,7 @@
 
 <section name="News">
 
-<h3><a name="20020319"></a>19 March 2002 - Struts 1.1 Beta 1 Released</h3>
+<h4 id="S20020319">19 March 2002 - Struts 1.1 Beta 1 Released</h4>
 <p>
 The Struts team announces the release of Struts 1.1 Beta 1. This release
 includes substantial new functionality, while retaining full backwards
@@ -23,21 +23,21 @@ for a number of bugs which were reported against earlier versions.
 <p>
 The binary distribution for this release is available 
 <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b1/">
-<b>here</b></a>
+<strong>here</strong></a>
 and the source distribution
 is available 
 <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b1/src/">
-<b>here</b></a>. 
+<strong>here</strong></a>. 
 In addition, a library distribution, which consists of a minimal
 binary distribution, without sample web applications or additional code, is
 available 
 <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.1-b1/lib/">
-<b>here</b></a>. 
+<strong>here</strong></a>. 
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="200204"></a>12 Mar 2002  - Chiki v0.27 released (now with Revision Control)</h3>
+<h4 id="S200204">12 Mar 2002  - Chiki v0.27 released (now with Revision Control)</h4>
 <p>
 Chiki v0.27 released and ready for download.
 </p>
@@ -56,11 +56,11 @@ CVS.</li>
 <p> 
 Full details can be found on the website <a href="http://chiki.emaho.org">http://chiki.emaho.org</a>.
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
 
-<h3><a name="20020304"></a>04 March 2002 - Best Practice with Expresso-Struts Framework</h3>
+<h4 id="S20020304">04 March 2002 - Best Practice with Expresso-Struts Framework</h4>
 <p>
 In this article, Peter Pilgrim looks at the best practice of using a popular web
 application toolkit, The Expresso Framework. The Expresso Framework, until version 3, had its
@@ -75,10 +75,10 @@ HTML</a> |
 <a href="http://www.theserverside.com/resources/articles/Expresso-Struts/Expresso_Framework_Struts.pdf">
 PDF</a>
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20020301"></a>01 March 2002 - Simper 0.2</h3>
+<h4 id="S20020301">01 March 2002 - Simper 0.2</h4>
 <p>
 Simper is a simple JDBC persistence mechanism for Java web apps. It
 features many of the interesting features of EJB, such as automatic
@@ -96,10 +96,10 @@ SourceForge project has been set up, with mailing lists, CVS, etc., so
 that others can discuss and contribute (as I am getting quite busy
 lately)
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20020228.3"></a>28 February 2002 - Struts Whitepaper</h3>
+<h4 id="S20020228.3">28 February 2002 - Struts Whitepaper</h4>
 <p>
 I've been collecting, in a document, Struts examples 
 and know how while I have been learning Struts.  I 
@@ -120,10 +120,10 @@ link to the paper is called Struts_Whitepaper.doc
 <p>
 I hope others will find this to be useful.
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20020228.2"></a>28 February 2002 - Struts Workflow Extension Package</h3>
+<h4 id="S20020228.2">28 February 2002 - Struts Workflow Extension Package</h4>
 <p>
 To all struts users!
 </p>
@@ -153,10 +153,10 @@ http://www.livinglogic.de/Struts/</a>
 <p>
 Of course, your feedback is very welcome.
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20020228"></a>28 February 2002 - Tutorial for implementing i18n</h3>
+<h4 id="S20020228">28 February 2002 - Tutorial for implementing i18n</h4>
 <p>
 I have posted a simple step by step tutorial of getting internationalization
 working with Struts.
@@ -169,10 +169,10 @@ http://www.anassina.com/struts/i18n/i18n.html</a>
 <p>
 I welcome any comments, as I intend on improving it where necessary.
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20020223"></a>23 February 2002 - New Plugin mechanism</h3>
+<h4 id="S20020223">23 February 2002 - New Plugin mechanism</h4>
 <p>
 A new lightweight PlugIn mechanism is now available in the nightly build.
 </p>
@@ -189,13 +189,13 @@ largely been moved to Jakarta Commons, and is currently in the sandbox:
 <a href="http://cvs.apache.org/viewcvs/jakarta-commons-sandbox/services/">
 http://cvs.apache.org/viewcvs/jakarta-commons-sandbox/services/</a>
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20020212"></a>12 February 2002 - Stxx for transforming XML</h3>
+<h4 id="S20020212">12 February 2002 - Stxx for transforming XML</h4>
 <p>
 <a href="http://www.oroad.com/opencode/">
-<b>Struts for transforming XML with XSL</b></a> (stxx) is an extension of 
+<strong>Struts for transforming XML with XSL</strong></a> (stxx) is an extension of 
 the Struts framework to enhance support for XML and XSL.
 </p>
 <p>
@@ -257,10 +257,10 @@ Please note: stxx is a work in progress, however, at this point I've been using
 it for about 4 months and it works great for me, I realize it might not fit
 everyone elses needs. Please send me feedback, opinions, complains, etc.
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20020211"></a>11 February 2002 - Struts 1.0.2 Released</h3>
+<h4 id="S20020211">11 February 2002 - Struts 1.0.2 Released</h4>
 <p>
 The Struts team announces the release of Struts 1.0.2. This release is a
 bug fix only release, which fixes a compatibility problem inadvertently introduced
@@ -269,21 +269,21 @@ with the previous 1.0.1 release.
 <p>
 The binary distribution for this release is available 
 <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/">
-<b>here</b></a>
+<strong>here</strong></a>
 and the source distribution
 is available 
 <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/src/">
-<b>here</b></a>. 
+<strong>here</strong></a>. 
 In addition, a library distribution, which consists of a minimal
 binary distribution, without sample web applications or additional code, is
 available 
 <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.2/lib/">
-<b>here</b></a>. 
+<strong>here</strong></a>. 
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3>6 February 2002 - Struts Console v1.4</h3>
+<h4>6 February 2002 - Struts Console v1.4</h4>
 <p>
 Struts Console version 1.4 is now available.
 </p>
@@ -299,10 +299,10 @@ JDeveloper 9i IDE.  This release also adds significant
 new funcionality to the "JSP Converter" and renames it
 to "Page Converter".
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3>26 January 2002 - Free Struts Development Tool</h3>
+<h4>26 January 2002 - Free Struts Development Tool</h4>
 <p>
 "ObjectAssembler Standard is focused on supporting developers whose sole
 area of concern is developing Servlets, JSPs, JavaBeans and Struts
@@ -326,10 +326,10 @@ our next major release that will provide J2EE 1.3 support. We also plan to
 support Struts as it evolves (multi-app support, etc.), so any input we
 receive would make that support even better.
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20020118"></a>18 Jan 2002 - Nested Taglib added to nightly build</h3>
+<h4 id="S20020118">18 Jan 2002 - Nested Taglib added to nightly build</h4>
 <p>
 Struts tags support a dotted notation to refer to a nested beans. The Nested 
 Talib extends this notation to automatically include a parent tag. Instead of 
@@ -338,10 +338,10 @@ defined with the <code>nest</code> tag, and other Struts tags within that
 tag can simply refer to the "child" property. Tags can be nested arbitarily 
 deep. 
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3>17 January 2002 - Chiki v0.23</h3>
+<h4>17 January 2002 - Chiki v0.23</h4>
 <p>
 Chiki is a Wiki-like webapp built using Struts. This is the first
 publicly available release, so as much feedback as possible would be
@@ -352,18 +352,18 @@ Chiki can be found at:<br/>
 <a href="http://chiki.emaho.org">
 http://chiki.emaho.org </a>
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3>14 January 2002 - New Committer, Arron Bates </h3>
+<h4>14 January 2002 - New Committer, Arron Bates </h4>
 <p>
 Arron Bates, known for his interesting and popular nesting extension to 
 the Struts taglibs has been elected as a Struts Committer. 
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3>13 Janaury 2002 - Scioworks Camino v1.0</h3>
+<h4>13 Janaury 2002 - Scioworks Camino v1.0</h4>
 <p>
 We are pleased to announce the general availability of the Scioworks Camino 
 v1.0, visual tool for Struts application development.
@@ -373,10 +373,10 @@ Download is available at <br/>
 <a href="http://www.scioworks.com/scioworks_camino_download.html.">
 http://www.scioworks.com/scioworks_camino_download.html.</a>
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20020112.2"></a>12 Jan 2002 - MultiApp Capability Added</h3>
+<h4 id="S20020112.2">12 Jan 2002 - MultiApp Capability Added</h4>
 <p>
 Support for multiple application modules has been added to the nightly build. 
 Developers can now provide multiple Struts configuration files, each of which 
@@ -408,10 +408,10 @@ Action mappings and The BIG Check-In</a></li>
 <li><a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg04460.html">
 Struts Next</a></li>
 </ul>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20020112"></a>12 Jan 2002 - Struts 1.0.1 Released</h3>
+<h4 id="S20020112">12 Jan 2002 - Struts 1.0.1 Released</h4>
 <p>
   The Struts team is proud to announce the release of Struts 1.0.1. This
   release is primarily a bug fix release, which fixes a number of known
@@ -426,10 +426,10 @@ Struts Next</a></li>
   without sample web applications or additional code, is available
   <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.1/lib/">here</a>.
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20020103"></a>03 Jan 2002 - Struts + Velocity + Tools</h3>
+<h4 id="S20020103">03 Jan 2002 - Struts + Velocity + Tools</h4>
 <p>
 The first code for the new 
 <a href="http://cvs.apache.org/viewcvs/jakarta-velocity-tools/">
@@ -438,11 +438,11 @@ can be found in CVS as jakarta-velocity-tools. The first
 functionality includes integration with Jakarta Struts as well as a
 generic template-rendering servlet with tool support.
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
-<p align="center">
+<p class="center">
 <a href="news_2001.html">
-<b>MORE NEWS</b></a>
+<strong>MORE NEWS</strong></a>
 </p>
 
 </section>

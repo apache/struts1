@@ -13,12 +13,12 @@
 <section href="contents" name="Index">
 
 <p>
-<font face="Arial, Helvetica, sans serif">
+
 "You can't always get what you want / 
 but if you try real hard / 
 you might just find /
 that you get what you need". 
-</font><br/>
+<br/>
 [Rolling Stones]
 </p>
 
@@ -69,7 +69,7 @@ and you want to give your company an author's credit, that's fine with us.
 </p>
 
 <p>
-If Struts doesn't do what <i>you</i> want, it's up to <b>you</b> to step up 
+If Struts doesn't do what <em>you</em> want, it's up to <strong>you</strong> to step up 
 and propose the patch.
 If Struts doesn't ship as often as you would like, it's up to you to step up 
 with the tests and fixes that get a release out the door.
@@ -113,7 +113,7 @@ list first.
 But to sure that an issue is resolved, read 
 <a href="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html">
 How to Report Bugs Effectively</a> and report it to
-<a href="http://jakarta.apache.org/site/bugs.html"><b>Bugzilla</b></a>.
+<a href="http://jakarta.apache.org/site/bugs.html"><strong>Bugzilla</strong></a>.
 </p>
 
 <p>
@@ -166,12 +166,12 @@ who make the actual decisions about Strut's codebase.
 
 <p>
 If you are new to open source development, see the
-"<a href="http://jakarta.apache.org/site/getinvolved.html">
-How to get involved</a>" page the main Jakarta site.
+<a href="http://jakarta.apache.org/site/getinvolved.html">
+How to get involved</a> page the main Jakarta site.
 </p>
 
 <p>
-A very good place to start is by <b>reviewing the list of open issues</b> and 
+A very good place to start is by <strong>reviewing the list of open issues</strong> and 
 pending feature requests (<a href="#bugs">Bugzilla</a>). 
 If you see an issue that needs a patch you can write, 
 feel free to annex your patch. 
@@ -185,7 +185,7 @@ cast your vote for the issue and its patch.
 
 <p>
 If none of the pending issues scratch your itch, 
-another good place to start is by <b>contributing unit tests</b> 
+another good place to start is by <strong>contributing unit tests</strong> 
 for existing features (even those that still work).
 </p>
 
@@ -309,7 +309,7 @@ Really, you do.
 </p>
 
 <p>
-<i>So, what do you tell your team?</i> 
+<em>So, what do you tell your team?</em> 
 If you can ship your application based the nightly build of your choice, 
 then consider that an option. 
 You can still ship yours, even if we don't ship ours, 
@@ -329,7 +329,7 @@ This way you are at least forewarned and forearmed.
 <ul>
 
 <li>
-  Most importantly, <b>download the latest beta</b> or release-candidate and 
+  Most importantly, <strong>download the latest beta</strong> or release-candidate and 
   test it against your own applications. 
   Report any and all issues or suspected issues to 
   <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a>. 
@@ -340,7 +340,7 @@ This way you are at least forewarned and forearmed.
 </li>
 
 <li>
-  <b>Contribute <a href="kickstart.html#tests">unit tests</a></b>. 
+  <strong>Contribute <a href="kickstart.html#tests">unit tests</a></strong>. 
   The closer we get to a release, the more we worry about breaking something. 
   The more tests we have, the more confident we can when applying patches. 
   Tests that proves that a pending issue is actually a bug are the most 
@@ -350,14 +350,14 @@ This way you are at least forewarned and forearmed.
 </li>
 
 <li>
-  <b>Review the list of issues</b> at <a href="#bugs">Bugzilla</a>. 
+  <strong>Review the list of issues</strong> at <a href="#bugs">Bugzilla</a>. 
   If there are any to which you can respond, please do. 
   If there any patches posted, feel free to test the patch your system, 
   report the results, and cast your vote if it works.
 </li>
 
 <li>
-  <b>Confirm an issue's category and status</b>. 
+  <strong>Confirm an issue's category and status</strong>. 
   Newbies often post feature requests or help-desk questions as "bugs". 
   This bloats the list of fixes we (apparently) need to apply before the next 
   beta, making it hard to see the forest for the trees. 
@@ -371,7 +371,7 @@ This way you are at least forewarned and forearmed.
 </li>
 
 <li>
-  Use Bugzilla to <b>vote for issues</b> you feel should be handled
+  Use Bugzilla to <strong>vote for issues</strong> you feel should be handled
   first. 
   If an issue on your ballot doesn't include a patch, feel free to try coding 
   one yourself. 
@@ -382,7 +382,7 @@ This way you are at least forewarned and forearmed.
 </li>
 
 <li>
-  <b>Answer questions on the user list.</b> 
+  <strong>Answer questions on the user list.</strong> 
   The Committers only have so much time to volunteer. 
   If Developers are supporting each other on the lists, 
   the  Committers have more time to spend on the next release.
@@ -414,8 +414,8 @@ it is interesting to watch how the HTTPD team works on the server.
 The Struts project has its own <a href="../using.html#Lists">Dev list</a>, 
 where all of the decisions regarding Struts are made. 
 Most development takes place via
-"<a href="http://jakarta.apache.org/site/proposal.html#decisions/voting/items">
-Lazy Consensus</a>".
+<a href="http://jakarta.apache.org/site/proposal.html#decisions/voting/items">
+Lazy Consensus</a>.
 Committers post most changes to the product unilaterally, using their own best 
 judgment, and only discuss or vote upon controversial matters. 
 Another Committer can veto any change in an unreleased product with cause.

@@ -7,10 +7,10 @@
     <body>
     <chapter name="5.2 Installation" href="installation">
         <section name="Installing Struts with your servlet container" href="Containers">
-            <h3>
+            <h4>
                 <a name="ipas13">iPortal Application Server 1.3</a>
-            </h3>
-            <b>Tested with: Windows 2000</b>
+            </h4>
+            <strong>Tested with: Windows 2000</strong>
             <h4>Important Note:</h4>
             <p>At the moment, iPAS 1.3 is not fully compliant with the JSP 1.1/1.2
 specification. </p>
@@ -39,9 +39,9 @@ Compilation failed [IT_Builder:1000]
  1 error
 </pre>
             <p>(For more details see refer to:<br/>
-                <font size="-1">
+                
                     <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01860.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01860.html</a>
-                </font>)
+                )
         </p>
             <p>The following instructions describe how to install the Struts Example
 Application under iPAS 1.3. A subsequent section describes how the Struts
@@ -86,7 +86,7 @@ copy contents into the following directories: etc, lib, src and web.</p>
                     <code>$INSTALLDIR\IONA\jars\struts-examples\src\struts-example.war\lib</code>
                 </li>
                 <li>Copy the directory <br/>
-                    <code><font size="-1">$INSTALLDIR\jakarta-tomcat-3.2.1\webapps\struts-example\WEB-INF\classes</font></code>
+                    <code>$INSTALLDIR\jakarta-tomcat-3.2.1\webapps\struts-example\WEB-INF\classes</code>
                     <br/>
    into the earsco directory<br/>
                     <code>$INSTALLDIR\IONA\jars\struts-examples\src\struts-example.war\src</code>

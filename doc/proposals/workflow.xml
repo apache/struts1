@@ -306,30 +306,30 @@
   None of the APIs in the workflow engine itself will have any reference
   to the web layer (i.e. no imports of <code>javax.servlet.*</code>).</p>
 
-    <blockquote><em>
-    <p>Suitable object factory and pluggability APIs will be included
-    to guarantee extensibility of the basic framework.</p>
-    </em></blockquote>
+  <p>Suitable object factory and pluggability APIs will be included
+  to guarantee extensibility of the basic framework.
+  </p>
 
   <p>Scripting of business transactions will be codified in XML documents
   that conform to an appropriate DTD and/or schema.  The XML technology
   that is used will facilitate extensible definitions of <em>Steps</em>
   and other components, in both the XML description of these components and
-  in the set of Java objects that implements them.</p>
+  in the set of Java objects that implements them.
+  </p>
 
-    <blockquote><em>
-    <p>When designing the detailed syntax of the XML representation
-    of Steps, consider whether it is feasible for advanced development
-    tools to "compile" activities into individual classes to optimize
-    overall performance.</p>
-    </em></blockquote>
-
-    <blockquote><em>
-    <p>When designing the detailed syntax of the XML representation
-    of Steps, consideration should be given to emulating the syntax
-    of other XML applications that are similar in spirit or detail
-    to the concepts of scripting a business transaction.  Useful
-    models to consider include:</p>
+    
+  <p>When designing the detailed syntax of the XML representation
+  of Steps, consider whether it is feasible for advanced development
+  tools to "compile" activities into individual classes to optimize
+  overall performance.
+  </p>
+  
+  <p>When designing the detailed syntax of the XML representation
+  of Steps, consideration should be given to emulating the syntax
+  of other XML applications that are similar in spirit or detail
+  to the concepts of scripting a business transaction.  Useful
+  models to consider include:
+  </p>
     <ul>
     <li><a href="http://www.w3.org/TR/xslt">XSL Transformations (XSLT)</a>
         - Includes control flow mechanisms that are becoming widely
@@ -341,9 +341,7 @@
         enough to provide a useful model for conditionals, looping, and
         interaction with objects in arbitrary scopes.</li>
     </ul>
-    </em></blockquote>
 
-    <blockquote><em>
     <p>To maximize the usefulness of built-in actions, an expression
     language that knows how to manipulate objects in the Scopes associated
     with the current Context will need to be supported.  Useful models to
@@ -356,15 +354,12 @@
         developers (as well as Struts developers familiar with the
         nested and indexed property accessor syntax of many Struts tags).</li>
     </ul>
-    </em></blockquote>
 
-    <blockquote><em>
     <p>From the workflow script developer's point of view, XML namespaces
     will be used to introduce extended sets of Step implementations.  There
     will need to be mechanisms to map a particular namespace to a set of
     legal XML elements (within that namespace) and corresponding Java
     classes that provide the functionality for those Steps.</p>
-    </em></blockquote>
 
   <p>The web layer integration will include a mechanism to map scopes (from
   the workflow perspective) into the standard <em>request</em>,
@@ -380,12 +375,10 @@
   Actions (or otherwise synthesize business logic out of the constituent
   pieces).</p>
 
-    <blockquote><em>
-    <p>Components in the web layer integration may import APIs from the
-    Servlet and JSP specifications, but not from any application specific
-    framework.  Framework-specific integration will occur on top of the
-    generic web layer integration.</p>
-    </em></blockquote>
+  <p>Components in the web layer integration may import APIs from the
+  Servlet and JSP specifications, but not from any application specific
+  framework.  Framework-specific integration will occur on top of the
+  generic web layer integration.</p>
 
   <p>In addition, the Struts integration will include a small custom tag
   library will be included, so that page

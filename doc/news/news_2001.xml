@@ -13,27 +13,27 @@
 
 <section name="News &amp; Status - 2001">
 
-<h3><a name="20011220"></a>20 Dec 2001 - New version of ISValidator in English</h3>
+<h4 id="S20011220">20 Dec 2001 - New version of ISValidator in English</h4>
 <p>
 Inigo Serrano has released a new version of 
 <a href="http://isvalidator.sourceforge.net/en/exampleStrutsFull0010.htm">
-<b>ISValidator</b></a>, a collection of Java routines to 
+<strong>ISValidator</strong></a>, a collection of Java routines to 
 validate data Struts forms, is now available in English. 
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20011217"></a>17 Dec 2001 - Mapper ActionForm-to-Value Object and back</h3>
+<h4 id="S20011217">17 Dec 2001 - Mapper ActionForm-to-Value Object and back</h4>
 <p>
 Andrej Sobkowski has 
 <a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg04028.html">
 released an extension</a> to help map ActionForm 
 properties to more business-oriented value objects.
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20011210"></a>10 Dec 3001 - eContent 2.0 released</h3>
+<h4 id="S20011210">10 Dec 3001 - eContent 2.0 released</h4>
 <p>
 Now with Struts integrated, Jcorporate (www.jcorporate.com) has today
 released a new version of its web content management system (CMS), 
@@ -57,14 +57,14 @@ A full list of
 <a href="http://www.jcorporate.com/product/econtent.html">
 new demo is also available online</a>.
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20011113"></a>13 Nov 2001 - Expresso version 4.0 released</h3>
+<h4 id="S20011113">13 Nov 2001 - Expresso version 4.0 released</h4>
 <p>
 Expresso version 4.0 is now available at 
 <a href="http://www.jcorporate.com/">
-<b>www.jcorporate.com</b></a>. For more
+<strong>www.jcorporate.com</strong></a>. For more
 information and to download the expresso4-00-complete.jar see
 <a href="http://www.jcorporate.com/product/expresso.html">
 http://www.jcorporate.com/product/expresso.html.
@@ -80,10 +80,10 @@ http://www.jcorporate.com/product/expresso.html.
       registration objects, configuration management, automatic database
       maintenance...and so on.
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20011130"></a>30 Nov 2001 - Struts/MVC Book and Training Seminars</h3>
+<h4 id="S20011130">30 Nov 2001 - Struts/MVC Book and Training Seminars</h4>
 <p>
 [PUBLIC/PRIVATE TRAINING]
 </p>
@@ -153,22 +153,22 @@ http://www.jcorporate.com/product/expresso.html.
       For more information, please visit the 
       <a href="http://www.basebeans.com">BaseBeans Engineering</a> web site. 
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20011127"></a>27 Nov 2001 - Routines to validate Data in Struts</h3>
+<h4 id="S20011127">27 Nov 2001 - Routines to validate Data in Struts</h4>
 <p>
 The 
 <a href="http://www.inigoserrano.com/ISValidator/en/ejemploStrutsCompleto0010ISValidator.htm">
-<b>ISValidator</b></a> is a set of routines designed to help validate data 
+<strong>ISValidator</strong></a> is a set of routines designed to help validate data 
 in different scenarios, command line arguments, Servlets Parameters, 
 and so forth. Support has now been added to use ISValidator with
 Struts 1.0. 
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3>27 Nov 2001 - Struts 1.0.1-rc1 Released</h3>
+<h4>27 Nov 2001 - Struts 1.0.1-rc1 Released</h4>
 <p>
   The first <strong>Release Candidate</strong> for Struts 1.0.1 is now
   available. This release fixes a number of known problems with the
@@ -180,21 +180,21 @@ Struts 1.0.
   and the source distribution is available
   <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.1-rc1/src/">here</a>.
 </p>
-<hr size="1" noshade="noshade"/>
+<hr/>
 
 
-<h3><a name="20011005"></a>05 Oct 2001 - Free remote JSP/java debugger for Tomcat</h3>
+<h4 id="S20011005">05 Oct 2001 - Free remote JSP/java debugger for Tomcat</h4>
 <p>
 Day Corp.'s 
 <a href="http://www.day.com/devnet">
-<b>Communique JSP Debugger</b></a> is a remote java/jsp debugger for
+<strong>Communique JSP Debugger</strong></a> is a remote java/jsp debugger for
 Tomcat. it's based on JPDA 1.0 (Java Platform Debugger Architecture),
 which is the official debugging support for the Java 2 platform.
 </p>
-<hr noshade="noshade" size="1"/>
+<hr />
 
 
-<h3><a name="20010615"></a>15 Jun 2001 - Struts 1.0 Released</h3>
+<h4 id="S20010615">15 Jun 2001 - Struts 1.0 Released</h4>
 <p>
 As promised at JavaOne, the
 <a href="http://jakarta.apache.org/struts/">Struts</a> project team is proud
@@ -204,10 +204,10 @@ Struts Framework.  The binary distribution for Struts 1.0 is available
 and the source distribution is available
 <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0/src/">here</a>. 
 </p>
-<hr noshade="noshade" size="1"/>
+<hr />
 
 
-<h3><a name="20010602"></a>02 Jun 2001 - Struts 1.0-beta-3 Released </h3>
+<h4 id="S20010602">02 Jun 2001 - Struts 1.0-beta-3 Released </h4>
 <p><strong>Struts 1.0-beta-3</strong> is a release candidate version of the
 Struts Framework, likely to be the final beta prior to the Struts 1.0 Final
 Release, which is currently scheduled for <strong>June 15, 2001</strong>.
@@ -220,10 +220,10 @@ final release, and report them to our bug tracking system at
 and the source distribution of Struts 1.0-beta-3 is available
 <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0-b3/src/">here</a>.
 </p>
-<hr noshade="noshade" size="1"/>
+<hr />
 
 
-<h3><a name="20010519"></a>19 May 2001 - Jakarta Struts 1.0-b2 Released</h3>
+<h4 id="S20010519">19 May 2001 - Jakarta Struts 1.0-b2 Released</h4>
 <p><strong>Struts 1.0-b2</strong> is an update release in preparation for a
 final release of Struts 1.0 prior to JavaOne 2001.  The changes included are
 documented in the
@@ -231,10 +231,10 @@ documented in the
 Notes</a>.  Get your copy of this latest release
 <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0-b2/">here</a>.
 </p>
-<hr noshade="noshade" size="1"/>
+<hr />
 
 
-<h3><a name="20010223"></a>23 Feb 2001 - Struts 1.0 Beta 1 Released </h3>
+<h4 id="S20010223">23 Feb 2001 - Struts 1.0 Beta 1 Released </h4>
 <p>
   <a href="http://jakarta.apache.org/struts/">Version 1.0-beta-1 of the Struts 
   Framework is now available for download.</a>
@@ -246,15 +246,15 @@ Notes</a>.  Get your copy of this latest release
   Struts encourages application architectures based on the
   Model-View-Controller (MVC) design paradigm.
 </p>
-<hr noshade="noshade" size="1"/>
+<hr />
 
 
-<h3><a name="20010107"></a>07 Jan 2001 - MySQL Database Admin Tool</h3>
+<h4 id="S20010107">07 Jan 2001 - MySQL Database Admin Tool</h4>
 <p>
 A database administration tool based on STRUTS 0.5 is 
 available online at
 <a href="http://www.webappcabaret.com/teatimej">
-<b>www.webappcabaret.com/teatimej</b></a>
+<strong>www.webappcabaret.com/teatimej</strong></a>
 </p>
 <p>
       You will be asked to provide a user id and password.
@@ -269,7 +269,7 @@ available online at
       iterate tag, indexed properties, template, form:select, jdbc connection
       and so forth.
 </p>
-<hr noshade="noshade" size="1"/>
+<hr />
 
   </section>
 

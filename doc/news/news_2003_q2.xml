@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <author email="husted@apache.org">Ted Husted</author>
+    <title>New and Status - Jakarta Struts</title>
+  </properties>
+
+<body>
+
+<section name="News" href="news">
+
+    <!--
+    <h4 id=""> - </h4>
+      <p>
+    <a href=""></a>
+    </p>
+    <hr/>
+    -->
+
+     <h4 id="S20030630">30 Jun 2003 - Struts 1.1 Final released</h4>
+     <p>
+         The Struts team is proud, and extremely pleased, to announce the Final
+         release of Struts 1.1. This release includes significant new
+         functionality, as well as numerous fixes for bugs which were reported
+         against the previous release, and supersedes the earlier 1.0.2 version
+         as the latest official release of Struts from the Apache Software
+         Foundation.
+     </p>
+     <p>The binary distribution is available at: <a href=
+     "http://www.apache.org/dist/jakarta/struts/binaries/">
+     http://www.apache.org/dist/jakarta/struts/binaries/</a> </p>
+     <p>and the source distribution is available at: <a href=
+     "http://www.apache.org/dist/jakarta/struts/source/">
+     http://www.apache.org/dist/jakarta/struts/source/</a></p>
+     <p>In addition, the library distribution, which contains updated binaries
+        without the sample applications, is available at: </p>
+     <p><a href="http://www.apache.org/dist/jakarta/struts/library/">
+     http://www.apache.org/dist/jakarta/struts/library/</a> </p>
+     <p>Details of the changes in this release are available in the Release
+     Notes,which can be found here: </p>
+     <p><a href=
+     "http://jakarta.apache.org/struts/userGuide/release-notes-1.1.html">
+     http://jakarta.apache.org/struts/userGuide/release-notes-1.1.html</a> </p>
+     <hr/>
+ 
+ 
+     <h4 id="S20030624">24 Jun 2003 - JPlates 2.1 is available - great
+     alternative to JSP for Struts</h4>
+ 
+     <p>I know you're all busy with your current projects, but maybe the next
+        one will be much easier if you use JPlates. </p>
+     <p>JPlates 2.1 is now available for licensed use and evaluation. JPlates
+        is a fully object-oriented template-processing system that combines
+        many of
+        the best features of Java with great template processing features to
+        create
+        a terrific alternate to JSP for use    with Struts. </p>
+     <p>JPlates generates true JVM classes that are seamlessly compatible with
+        Java, and every JPlates method is an executable template. What that
+        means is
+        that you can build your MVC views using objects and classes and methods
+        (and
+        not includes), just    like you build everything else. </p>
+     <p>Take a look at
+        <a href="http://www.jplates.com/">http://www.jplates.com/</a>,
+        and please follow the link on the left side to the note about JSP
+        scriptlets. </p>
+     <hr/>
+ 
+ 
+     <h4 id="S20030617">17 Jun 2003 - Eclipse begins new webtools project</h4>
+     <p>I know this list contains a wealth of production minded talent. So, I
+        wanted to let everyone know that eclipse.org has begun discussions on a
+        new
+        project to create a webtools platform for developing J2EE projects
+        under the
+        Eclipse IDE. It is currently open to discussion on the webtools list.
+        So, if
+        you want to donate    some talent and/or ideas ... go to
+        <a href="http://www.eclipse.org/webtools/index.html">
+        http://www.eclipse.org/webtools/index.html</a>. </p>
+     <hr/>
+ 
+ 
+     <h4 id="S20030611">11 Jun 2003 - Last chance to register for online web
+     training for advancedStruts.</h4>
+     <p>Advanced Struts best practices web cast training by winner of best
+     training
+        with money back guarantee (this is no *Intro* To    Struts): </p>
+     <p>Last chance to Register now by going to www.baseBeans.com and click
+     training,
+        then click register. The cost is very reasonable and cost effective
+        take web
+        training, compared to a conference cost. The rate goes up a lot as we
+        get closer
+        to the start date to $300+; register today for $180. Training starts in
+        a few
+        weeks, right after JavaOne; on 6/21. We will meet every Saturday for 3
+        Saturdays
+        via a web cast (DSL/Cable recommended) at 10AM Eastern (NYC) Time to
+        complete
+        the labs. Outstanding reviews/references. If you can't get private
+        training
+        paid by your company, this is it, (and over the web!-ask voice
+        questions via
+        webcast!) </p>
+     <p>Best training hands on labs, voted by Java Developers Journal (search
+        for Training) </p>
+     <p>We offer money back guarantee, take the classes; you must do the labs,
+        and after you watch all the sessions, ask for money back if you do not
+        think
+        it was valuable! If you know Struts. This WILL    make you a better
+        programmer. </p>
+     <p>Shortly after you register, you will receive the training materials, a
+        book and the labs. </p>
+     <p>We will write an application from scratch in Struts with DB access,
+     updates,
+        master detail processing, validation, navigation, tiles, JSTL, testing,
+        reporting,
+        mail, etc. We will cover good practices and bad. Full agenda to follow
+        on the
+        mail list (sign up    for mail list on the main page of baseBeans.com).
+        </p>
+     <p>Students are always able to retake future training for FREE (even live
+           in person training offered in the big north east    cities) </p>
+     <p>Struts Instructors: If you want to teach Advanced Struts in the future
+           with baseBeans materials, you must sit trough a class by    Vic! </p
+           >
+     <hr/>
+ 
+ 
+     <h4 id="S20030608">08 Jun 2003 - Wildcard-Matched    Actions</h4>
+     <p>This project allows wildcards to be used in Struts 1.1+ action
+     mappings.
+        The wildcard-matched values can then be substituted in the values of
+        various
+        Struts action mapping and action forward attributes. It uses the
+        wildcard matching
+        class from Apache Cocoon which is the default matching class used to
+        match
+        XML transformation pipelines.</p>
+     <p>The bottom line of this project is you can write generic actions that
+        can be used to match multiple actions. Even the "type" attribute which
+        specifies the Action class can have wildcard-matched values
+        substituted to match multiple Action classes for one action mapping. It
+        also
+        works great for Struts applications that use DispatchActions or other
+        generic
+        Actions. </p>
+     <p>For example:</p>
+ <pre><code>
+               &lt;action    path="/edit*"
+                          type="org.twdata.struts.ScriptAction"
+                     attribute="{1}Form"
+                         scope="request"
+                      validate="false"
+                     parameter="/WEB-INF/scripts/Edit{1}.bsh"&gt;
+ 
+                   &lt;forward name="failure" path="/mainMenu.jsp"/&gt;
+                   &lt;forward name="success" path="/{1}.jsp"/&gt;
+               &lt;/action&gt;
+ </code></pre>
+ 
+     <p>Project page:
+        <a href="http://www.twdata.org/struts-wildcard/">
+        http://www.twdata.org/struts-wildcard/</a> </p>
+     <p>Comments and suggestions always welcome. </p>
+     <hr/>
+ 
+ 
+     <h4 id="S20030604">04 Jun 2003 - Updated Struts-Faces Integration Library
+     </h4>
+     <p>As you might already be aware, the Public Draft 2 version of the
+     JavaServer
+        Faces specification is now available: </p>
+     <p>
+        <a href="http://java.sun.com/j2ee/javaserverfaces/download.html">
+        http://java.sun.com/j2ee/javaserverfaces/download.html</a> </p>
+     <p>with many new and exciting features. The EA4 version of the JavaServer
+        Faces reference implementation is available as part of the Java Web
+        Services
+        Developer Pack 1.2 release (and easily    separable for use on other
+        containers): </p>
+     <p>
+     <a href="http://java.sun.com/webservices/downloads/webservicespack.html">
+     http://java.sun.com/webservices/downloads/webservicespack.html</a> </p>
+     <p>This release of the Struts-Faces integration library has been updated
+           to accomodate the API changes in the new version. Nightly builds of
+           the updated
+           code, starting with the 20030605 version    (i.e. tonight) will be
+           available at: </p>
+     <p>
+        <a href=
+        "http://jakarta.apache.org/builds/jakarta-struts/nightly/struts-faces/"
+        >http://jakarta.apache.org/builds/jakarta-struts/nightly/struts-faces/
+        </a> </p>
+     <p>(Versions up through and including 20030604 are for the EA3 release of
+        Faces.)</p>
+     <hr/>
+ 
+ 
+     <h4 id="S20030527.1">27 May 2003 - new release of bP</h4>
+     <p>basicPortal is an open source Portal app that stores content via DB
+     access,
+           a sample Struts v.1 webapp. It is built on scaffoldingXPress,
+           commercially
+           supported, with JSTL and DAO. Both    are available on <a
+                 href="http://basicportal.sf.net/">http://basicportal.sf.net/
+                 </a> </p>
+     <p>New release (v095) includes a video demo sample, includes Tomcat (in
+     addition
+           to Resin), reporting (helper based on Jasper), includes stress test,
+           async
+           operations, options collection example    and misc. fixes. </p>
+     <hr/>
+ 
+ 
+     <h4 id="S20030527">27 May 2003 - Barracuda 1.2.0    Released!</h4>
+     <p>The long awaited stable release of Barracuda 1.2.0 is finally    here!
+     </p>
+     <p>You can download it at:
+        <a href="http://barracudamvc.org/downloads/">
+        http://barracudamvc.org/downloads/</a> </p>
+     <p>A lot has changed since the 1.1.1 release. Barracuda moved to
+        <a
+        href="http://www.barracudamvc.org/">http://www.barracudamvc.org/</a>,
+        the source has been refactored, there now exist two contrib packages
+        with reusable
+        code and example webapps to show off their functionality, numerous bugs
+        have
+        been fixed, quite a few new features have been added and many features
+        improved,
+        and deployment of Barracuda and BarracudaDiscRack is now incredibly
+        simplified. </p>
+     <p>See the most important changes here... <br />
+        <a href=
+        "http://barracudamvc.org/Barracuda/docs/changes.html#1_2_0_Release_Note
+        s">
+        http://barracudamvc.org/Barracuda/docs/changes.html#1_2_0_Release_Notes
+        </a> and
+        here...
+        <a href="http://barracudamvc.org/BarracudaDiscRack/docs/changes.html">
+        http://barracudamvc.org/BarracudaDiscRack/docs/changes.html</a> </p>
+     <p>For a more detailed explanation of the changes, see.... <br />
+        <a href=
+        "http://barracudamvc.org/Barracuda/javadocs/org/enhydra/barracuda/A_Cha
+        nges_H">
+        http://barracudamvc.org/Barracuda/javadocs/org/enhydra/barracuda/A_Chan
+        ges_H</a> </p>
+     <p>For information on building and deploying Barracuda, see... <br />
+        <a href="http://barracudamvc.org/Barracuda/docs/build_deploy.html">
+        http://barracudamvc.org/Barracuda/docs/build_deploy.html</a> </p>
+     <p>And, of course, don't forget to try out the new contrib apps.    See...
+     <br />
+        <a href="http://barracudamvc.org/Barracuda/docs/contrib_package.html">
+        http://barracudamvc.org/Barracuda/docs/contrib_package.html</a> </p>
+     <p>All this information, and more, is available at: <br />
+        <a href="http://barracudamvc.org/Barracuda/index.html">
+        http://barracudamvc.org/Barracuda/index.html</a> <br />
+        and here... <br />
+        <a href="http://barracudamvc.org/BarracudaDiscRack/docs/index.html">
+        http://barracudamvc.org/BarracudaDiscRack/docs/index.html</a> </p>
+     <p>Thanks to everyone on the BarraucdaMVC team for all your hard work and
+        thanks to all the users who continue to utilize this great project! Oh,
+        and
+        special thanks to those who donated hosting, time, money, and effort to
+        make
+        barracudamvc.org    possible. <br />
+        <a href="http://www.visi.com/~hoju/barracuda/donations.html">
+        http://www.visi.com/~hoju/barracuda/donations.html</a> </p>
+     <hr/>
+ 
+ 
+     <h4 id="S20030404">04 Apr 2003 - Struts Action    Scripting</h4>
+     <p>Struts Action Scripting is a Struts plug-in that allows development of
+        Struts actions using the power and simplicity of any favorite scripting
+        language.
+        This plug-in to the Struts Framework provides the ScriptedAction, a
+        Struts
+        Action class that, using BSF (Bean Scripting Framework), enables Struts
+        developers
+        to create Struts Actions in the language of their choice. Supported
+        languages
+        include JavaScript, Python, TCL, ActiveScript,    PerlScript, and
+        others </p>
+     <p><a href="http://alphaworks.ibm.com/tech/strutsscripting">
+     http://alphaworks.ibm.com/tech/strutsscripting</a> </p>
+     <hr/>
+ 
+    <p class="center">
+        <a href="news_2003_q1.html">
+    <strong>MORE NEWS</strong></a>
+    </p>
+
+</section>
+
+</body>
+</document>

@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1b2.xml,v 1.2 2002/10/18 15:27:42 jholmes Exp $</font></p>
+  <p>$Id: release-plan-1.1b2.xml,v 1.3 2003/09/09 17:49:21 sraeburn Exp $</p>
 
   <p>The objective of the <strong>Struts 1.1 Beta 2</strong> release is to
   create a milestone release against which a final series of bug fixes and
@@ -86,53 +86,53 @@
 
   <p>The following bugs must be addressed before Final Release of Struts 1.1.</p>
 
-  <table>
+  <table class="noborder">
     <tr>
       <td colspan="2"><strong>Custom Tags</strong></td>
     </tr>
     <tr>
-      <td width="75">1586</td>
+      <td>1586</td>
       <td>The &lt;html:form&gt; tag generates incorrect focus javascript for radio buttons.</td>
     </tr>
     <tr>
       <td colspan="2"><strong>Documentation</strong></td>
     </tr>
     <tr>
-      <td width="75">10537</td>
+      <td>10537</td>
       <td>[:TODO:] sections (18)</td>
     </tr>
     <tr>
       <td colspan="2"><strong>Example Webapps</strong></td>
     </tr>
     <tr>
-      <td width="75">10955</td>
+      <td>10955</td>
       <td>Error running struts-blank applicaiton under JRun 3.1</td>
     </tr>
     <tr>
       <td colspan="2"><strong>Validator Framework</strong></td>
     </tr>
     <tr>
-      <td width="75">7353</td>
+      <td>7353</td>
       <td>Validator JavaScript Select Error</td>
     </tr>
     <tr>
-      <td width="75">10191</td>
+      <td>10191</td>
       <td>Validator range checking bug</td>
     </tr>
     <tr>
-      <td width="75">10348</td>
+      <td>10348</td>
       <td>Validator is not available under module</td>
     </tr>
     <tr>
-      <td width="75">10349</td>
+      <td>10349</td>
       <td>Validator: date validation does not allow blank input?</td>
     </tr>
     <tr>
-      <td width="75">10432</td>
+      <td>10432</td>
       <td>DynaValidatorActionForm does not validate data</td>
     </tr>
     <tr>
-      <td width="75">10584</td>
+      <td>10584</td>
       <td>Not all validation files are read in Validation PlugIn</td>
     </tr>
   </table>

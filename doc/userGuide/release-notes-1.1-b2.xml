@@ -173,12 +173,10 @@
     been added to accumulate Struts add-on extensions that are generally
     useful but have not yet been integrated into the standard code base.</p>
 
-    <p>
     <ul>
     <li>Scaffold - Library of reusable classes for building web applications.</li>
     <li>Service Manager - Add custom services without subclassing controller.</li>
     </ul>
-    </p>
 
     <p>The source for these components is available in the Struts source
     distribution. Binary distributions may also be made available with the Struts

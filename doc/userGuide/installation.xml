@@ -31,20 +31,20 @@
   follows:</p>
 
   <ul>
-  <li><strong>Java Development Kit</strong> - You <b>must</b> download and install
+  <li><strong>Java Development Kit</strong> - You <strong>must</strong> download and install
       a Java2 (version 1.2 or later) Java Development Kit implementation for
       your operating system platform.
       A good starting point for locating Java Development Kit distributions is
       <a href="http://java.sun.com/j2se">http://java.sun.com/j2se</a>.</li>
 
-  <li><strong>Servlet Container</strong> - You <b>must</b> download and install a
+  <li><strong>Servlet Container</strong> - You <strong>must</strong> download and install a
       servlet container that is compatible with the Servlet API Specification,
       version 2.2 or later, and the JavaServer Pages (JSP) Specification,
       version 1.1 or later.  One popular choice is to download Apache's
       <a href="http://jakarta.apache.org/tomcat">Tomcat</a> (version 3.1
       or later required, version 3.3 or later recommended).</li>
 
-  <li><strong>XML Parser</strong> - Struts <b>requires</b> the presence of an XML
+  <li><strong>XML Parser</strong> - Struts <strong>requires</strong> the presence of an XML
       parser that is compatible with the Java API for XML Parsing (JAXP)
       specification, 1.1 or later. This is bundled with J2SE 1.4 and later.
       (For earlier versions of Java, the easiest way to obtain JAXP is
@@ -268,7 +268,7 @@
   <li>In some cases, you may need to restart your container if it is running.</li>
 </ul>
 
-<h3>Running Struts Applications Under A Security Manager</h3>
+<h4>Running Struts Applications Under A Security Manager</h4>
 
 <p>Many application servers execute web applications under the control of a
 Java security manager, with restricted permissions on what classes in the web
@@ -282,7 +282,7 @@ set of permissions granted to your Struts application's codebase:</p>
 <p>Consult the documentation on your application server for more information
 about how to configure additional security manager permissions.</p>
 
-<h3>Installing Struts on Various Containers</h3>
+<h4>Installing Struts on Various Containers</h4>
 <ul>
   <li>Bluestone Universal Business Server 7.2 - <a href="installation-ubs72.html">Additional
     steps required.</a></li>
@@ -316,7 +316,7 @@ about how to configure additional security manager permissions.</p>
 
     <p>First, download a source distribution of Struts by following the
     instructions <a href="../acquiring.html">here</a>.  Then, make sure
-    you have downloaded and installed <b>all</b> of the
+    you have downloaded and installed <strong>all</strong> of the
     <a href="#Prerequisites">prerequisite</a> software packages described
     above.</p>
 
@@ -393,7 +393,7 @@ about how to configure additional security manager permissions.</p>
   </section>
 
 <section>
-    <p align="right">
+    <p class="right">
     Next: <a href="../faqs/index.html">FAQs and HowTos</a>
     </p>
 </section>

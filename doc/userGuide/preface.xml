@@ -36,9 +36,9 @@
     For your convenience, links to further information are provided if you would like to learn more about a technology.
     </p>
 
-    <p><a target="JavaWebServicesTutorial"></a>If you are familiar with Java, but not these technologies,
+    <p id="JavaWebServicesTutorial">If you are familiar with Java, but not these technologies,
     the best overall starting point is
-    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html"><b>The Java Web Services Tutorial</b></a>.
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html"><strong>The Java Web Services Tutorial</strong></a>.
     This document is also available for download in
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JavaWSTutorial.pdf">PDF</a> format.
     </p>
@@ -49,9 +49,9 @@
     useful in any Java project.
     </p>
 
-    <p><a target="jt"></a>If you are not familiar with the Java language generally,
+    <p id="jt">If you are not familiar with the Java language generally,
     then the best starting point is
-    <a href="http://java.sun.com/docs/books/tutorial/index.html"><b>The Java Tutorial</b></a>.
+    <a href="http://java.sun.com/docs/books/tutorial/index.html"><strong>The Java Tutorial</strong></a>.
     This overlaps with the Java Web Services Tutorial in some places, but the two work well together.
     </p>
 
@@ -77,9 +77,9 @@
     <p>For more about HTTP, HTML, and User Agents, see:</p>
 
     <ul>
-    <li><a href="http://www.w3.org/MarkUp/Guide/"><b>Getting started with HTML</b></a> by Dave Raggett</li>
+    <li><a href="http://www.w3.org/MarkUp/Guide/"><strong>Getting started with HTML</strong></a> by Dave Raggett</li>
     <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/HTTP.html#63796">
-    <b>HTTP Overview</b></a> in the Java Web Services Tutorial.</li>
+    <strong>HTTP Overview</strong></a> in the Java Web Services Tutorial.</li>
     <li><a href="http://www.rfc-editor.org/rfc/rfc2616.txt"><strong>HTTP/1.1
         </strong></a> Specification</li>
     <li><a href="http://www.rfc-editor.org/rfc/rfc2617.txt"><strong>HTTP
@@ -97,7 +97,7 @@
     Frameworks like Struts abstract much of these nuts and bolts, but it is important to understand
     what is happening behind the scenes. </p>
 
-    <p>If you are not familiar with the HTTP request/response cycle, we <b>strongly</b> recommend the
+    <p>If you are not familiar with the HTTP request/response cycle, we <strong>strongly</strong> recommend the
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/HTTP.html#63796">
     HTTP Overview</a> in the Java Web Services Tutorial.
     </p>
@@ -118,9 +118,9 @@
     <p>For more about Java and threads, see </p>
 
     <ul>
-    <li><a href="http://java.sun.com/docs/books/tutorial/java/index.html"><b>Learning the Java Language</b></a> in the Java Tutorial</li>
-    <li><a href="http://java.sun.com/docs/books/tutorial/essentials/threads/index.html">
-        <b>Threads: Doing Two or More Tasks At Once</b></a> in the Java Language
+    <li><a href="http://java.sun.com/docs/books/tutorial/java/index.html"><strong>Learning the Java Language</strong></a> in the Java Tutorial</li>
+    <li><a href="http://java.sun.com/docs/books/tutorial/essential/threads/index.html">
+        <strong>Threads: Doing Two or More Tasks At Once</strong></a> in the Java Language
         Tutorial</li>
     </ul>
 
@@ -129,8 +129,8 @@
     frameworks, see the classic white papers</p>
 
     <ul>
-    <li><a href="http://www.laputan.org/drc/drc.html"><b>Designing Reusable Classes</b></a> by Ralph E. Johnson &amp; Brian Foote</li>
-    <li><a href="http://www.cs.wustl.edu/~schmidt/CACM-frameworks.html"><b>Object-Oriented Application Frameworks</b></a>
+    <li><a href="http://www.laputan.org/drc/drc.html"><strong>Designing Reusable Classes</strong></a> by Ralph E. Johnson &amp; Brian Foote</li>
+    <li><a href="http://www.cs.wustl.edu/~schmidt/CACM-frameworks.html"><strong>Object-Oriented Application Frameworks</strong></a>
     by Mohamed Fayad and Douglas C. Schmidt</li>
     </ul>
 
@@ -160,9 +160,9 @@
         <a href="http://java.sun.com/products/javabeans/docs/spec.html">
         JavaBeans 1.01 Specification</a></li>
     <li><a href="http://java.sun.com/docs/books/tutorial/javabeans/index.html">
-        <b>The JavaBean Trail</b></a> in the Java Tutorial</li>
+        <strong>The JavaBean Trail</strong></a> in the Java Tutorial</li>
     <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPBeans.html">
-        <b>JavaBeans Components in JSP Pages</b></a> in the Java Web Services Tutorial
+        <strong>JavaBeans Components in JSP Pages</strong></a> in the Java Web Services Tutorial
         </li>
     </ul>
 
@@ -250,7 +250,7 @@
 
     <ul>
     <li><a href="http://java.sun.com/docs/books/tutorial/essential/attributes/properties.html">
-    <b>Using Properties to Manage Program Attributes</b></a> in The Java Tutorial</li>
+    <strong>Using Properties to Manage Program Attributes</strong></a> in The Java Tutorial</li>
     </ul>
 
     <p>Java ResourceBundles use one or more Properties files to provide internationalized messages
@@ -261,7 +261,7 @@
     <p>For more about localization and ResourceBundles, see </p>
 
     <ul>
-    <li><a href="http://java.sun.com/docs/books/tutorial/i18n/resbundle/concept.html"><b>About the ResourceBundle Class</b></a>
+    <li><a href="http://java.sun.com/docs/books/tutorial/i18n/resbundle/concept.html"><strong>About the ResourceBundle Class</strong></a>
     in the Java Tutorial</li>
     </ul>
 
@@ -335,13 +335,13 @@
     <li><a href="http://java.sun.com/products/servlet/"><strong>The
         Java Servlet Technology</strong></a> page at
         <code>java.sun.com</code></li>
-    <li><a href="http://java.sun.com/products/servlet/download/"><strong>The
+    <li><a href="http://java.sun.com/products/servlet/download.html"><strong>The
         Servlet 2.2 and 2.3 Specifications</strong></a> download page at
         <code>java.sun.com</code></li>
     <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets.html">
-        <b>Java Servlet Technology</b></a> in the Java Web Services Tutorial.</li>
+        <strong>Java Servlet Technology</strong></a> in the Java Web Services Tutorial.</li>
     <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp.html">
-        <b>Web Applications</b></a> in the Java Web Services Tutorial.</li>
+        <strong>Web Applications</strong></a> in the Java Web Services Tutorial.</li>
     </ul>
 
     </section>
@@ -675,8 +675,8 @@
 
       <p>For more information about container-managed security, see:</p>
       <ul>
-      <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/WebAppSecurity.html">
-          Web Application Security</a> in the Java Web Services Tutorial
+      <li><a href="http://java.sun.com/webservices/docs/1.2/tutorial/doc/index.html">
+          Web Application Security (Chapter 24)</a> in the Java Web Services Tutorial
       </li>
       </ul>
 
@@ -686,10 +686,10 @@
     <p><a href="http://java.sun.com/products/jsp/product.html">JavaServer Pages</a> (JSPs) are
     "inside-out servlets" that make it easier to create and maintain dynamic web pages. Instead
     of putting what you want to write to the HTTP response inside of a Java <code>print</code>
-    statement, everything in a JavaServer Page is written to the response, <b>except</b> what is
+    statement, everything in a JavaServer Page is written to the response, <strong>except</strong> what is
     placed within special Java statements.</p>
 
-    <p>With <b>JavaServer Pages</b> you can start by writing the page in standard HTML and then add the
+    <p>With <strong>JavaServer Pages</strong> you can start by writing the page in standard HTML and then add the
     dynamic features using statements in the Java language or by using
     <a href="http://java.sun.com/products/jsp/taglibraries.html">JSP tags</a>.
     The Struts distribution includes several JSP tags that make it easy to access the framework's
@@ -701,11 +701,11 @@
     <li><a href="http://java.sun.com/products/jsp/"><strong>The
         JavaServer Pages Technology</strong></a> page at
         <code>java.sun.com</code></li>
-    <li><a href="http://java.sun.com/products/jsp/download/"><strong>The
+    <li><a href="http://java.sun.com/products/jsp/download.html"><strong>The
         JSP 1.1 and 1.2 Specifications</strong></a> download page at
         <code>java.sun.com</code></li>
-    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPIntro.html"><b>JavaServer Pages Technology</b></a> in the Java Web Services Tutorial</li>
-    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPTags.html"><b>Custom Tags in JSP Pages</b></a> in the Java Web Services Tutorial</li>
+    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPIntro.html"><strong>JavaServer Pages Technology</strong></a> in the Java Web Services Tutorial</li>
+    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPTags.html"><strong>Custom Tags in JSP Pages</strong></a> in the Java Web Services Tutorial</li>
     </ul>
 
     <p>Many times, JSP tags work hand-in-hand with JavaBeans. The application sends a JavaBean to
@@ -714,7 +714,7 @@
     in the Java Web Services Tutorial.</p>
 
     <p>Struts also works well with the new
-    <a href="http://java.sun.com/products/jsp/jstl"><b>JavaServer Pages Standard Tag Library</b></a>
+    <a href="http://java.sun.com/products/jsp/jstl"><strong>JavaServer Pages Standard Tag Library</strong></a>
     (JSTL) and taglibs from other sources, like
     <a href="http://jsptags.com/">JSP Tags</a> and
     <a href="http://jakarta.apache.org/taglibs/index.html">Jakarta Taglibs</a>.
@@ -734,14 +734,14 @@
     </p>
 
         <p>
-            The newest star on the Java horizon is <b>Java Server Faces</b>.
+            The newest star on the Java horizon is <strong>Java Server Faces</strong>.
             <a href="http://java.sun.com/j2ee/javaserverfaces/">JavaServer Faces technology</a> simplifies building
             user interfaces for JavaServer applications, both for the web and for the desktop.
             The JSF specification is still under development, although an early-release reference implementation is
             available through the <a href="http://java.sun.com/webservices/download.html">Java Web Services Developer
             Pack</a>.
             Likewise, an early-release JavaServer Faces taglib for Struts,
-            <a href="http://cvs.apache.org/builds/jakarta-struts/nightly/struts-faces/"><b>Struts-Faces</b></a>, is
+            <a href="http://cvs.apache.org/builds/jakarta-struts/nightly/struts-faces/"><strong>Struts-Faces</strong></a>, is
             also in early release and available through the nightly build.
        </p>
 
@@ -844,7 +844,7 @@
 </section>
 
 <section>
-    <p align="right">
+    <p class="right">
     Next: <a href="introduction.html">Introduction</a>
     </p>
 </section>

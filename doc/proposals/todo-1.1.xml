@@ -22,7 +22,7 @@
   list. If there is a feature here that you need, or already have, please 
   start a thread and show us the code!</p>
 
-  <p align="center"><a href="../faqs/helping.html#release"><b>So, when is the next release coming out?</b></a></p>
+  <p class="center"><a href="../faqs/helping.html#release"><strong>So, when is the next release coming out?</strong></a></p>
 
   <p>An external development that is likely to affect the development of
   Struts 1.1 will be the emerging Standard Tag Library, being produced under
@@ -148,7 +148,7 @@
         would be provided by a set of standard <code>Actions</code>, and
         will offer an alternative mechanism (not a replacement of Actions)
         to organizing your business logic.</p>
-        <p><a href="proposal-workflow.html"><b>A Workflow Proposal is pending.</b></a></p>    
+        <p><a href="proposal-workflow.html"><strong>A Workflow Proposal is pending.</strong></a></p>    
       </info>
       <assigned>
         <a href="mailto:craiger@tataryn.net">Craig Tataryn</a>,
@@ -358,9 +358,9 @@
         <p>Add conditional tags that emulate the "case" or "switch"
         capability of many programming languages.</p>
         <p>NOTE: Pending the outcome of the JSPTL, this functionality will 
-        <b>not</b> be added to the Struts-Logic tags. However, a 
-        <a href="http://husted.com/struts/resources/logic-niallp.htm"><b>contributor 
-         taglib</b></a> is available.</p>
+        <strong>not</strong> be added to the Struts-Logic tags. However, a 
+        <a href="http://husted.com/struts/resources/logic-niallp.htm"><strong>contributor 
+         taglib</strong></a> is available.</p>
       </info>
       <assigned>
         <a href="mailto:niall.pemberton@btInternet.com">Niall Pemberton</a>
@@ -437,8 +437,8 @@
         <p>Create a tool that takes an XML-based description of the
         properties of the form bean, and automatically generates
         the corresponding Java class.</p>
-        <p><a href="http://husted.com/struts/resources/codemaker.htm"><b>A 
-        contributor extension is now available.</b></a></p>
+        <p><a href="http://husted.com/struts/resources/codemaker.htm"><strong>A 
+        contributor extension is now available.</strong></a></p>
         <p>
         [STRUTS-DEV, Mark Wutka, 06/01/2000 and 06/16/2000]
         </p>
@@ -484,7 +484,7 @@
     </task>
   </task-list>
 
-  <task-list name="Unit Test Suites" href="Unit Tests">
+  <task-list name="Unit Test Suites" href="UnitTests">
 
     <info>
       <p>Unit test components compatible with the JUnit and Cactus testing

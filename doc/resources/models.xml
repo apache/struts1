@@ -15,7 +15,7 @@
   <p><a href="http://castor.exolab.org/">Castor</a></p>
   <p><a href="http://objectstyle.org/cayenne/">Cayenne Object-To-Relational Mapping Framework</a></p>
   <p><a href="http://databind.sourceforge.net/">DataBind</a></p>
-  <p><a href="http://dbforms.org/">DbForms</a></p>
+  <p><a href="http://jdbforms.sourceforge.net/">DbForms</a></p>
   <p><a href="http://java.sun.com/products/ejb/index.html">Enterprise Java Beans</a></p>
   <p><a href="http://hibernate.sourceforge.net/">Hibernate</a></p>
   <p><a href="http://sourceforge.net/projects/ibatisdb">iBATIS</a></p>
@@ -33,14 +33,14 @@
 
 <section name="Pure Java Database Engines">
 
-  <p><i>Most any database system will work with a Struts application through
+  <p><em>Most any database system will work with a Struts application through
   <a href="http://java.sun.com/products/jdbc/index.html">JDBC</a>. This is a listing of
-  some <b>pure Java</b> database systems that can be easily bundled with an application.</i>
+  some <strong>pure Java</strong> database systems that can be easily bundled with an application.</em>
   See the <a href="http://dmoz.org/">Open Directory</a> for an exhaustive list of
   <a href="http://dmoz.org/Computers/Software/Databases/">database systems</a>.</p>
 
   <p><a href="http://sourceforge.net/projects/hsqldb/">HyperSonic SQL</a></p>
-  <p><a href="http://www.lutris.com/products/projects/instantDB/">instantDB</a></p>
+  <!-- <p><a href="http://www.lutris.com/products/projects/instantDB/">instantDB</a></p> --> 
   <p><a href="http://www.mckoi.com/database/">Mckoi</a></p>
   <p><a href="http://www.ozone-db.org/">Ozone</a></p>
 

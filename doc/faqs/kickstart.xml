@@ -13,7 +13,7 @@
 <section href="contents" name="Index">
 
 <p>
-Here are answers to the usual getting-started questions. <b>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b>
+Here are answers to the usual getting-started questions. <strong>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</strong>
 </p>
 
   <ul>
@@ -109,14 +109,14 @@ containers</a> are available.</p>
 </section>
 
 <section href="jar" name="When do I need &quot;struts.jar&quot; on my classpath?">
-<p>When you are compiling an application that uses the Struts classes, you must have the &quot;struts.jar&quot; on the classpath your <b>compiler</b> sees -- it does not <i> have</i> to be on your CLASSPATH environment variable.</p>
-<p>Why is that an important distinction? Because if you are using a servlet container on your development machine to test your application, the &quot;struts.jar&quot; <b>must not</b> be on your CLASSPATH environment variable when running the container. (This is because each Web application must also have their own copy of the Struts classes, and the container will become confused if it is on the environment path as well.)</p>
+<p>When you are compiling an application that uses the Struts classes, you must have the &quot;struts.jar&quot; on the classpath your <strong>compiler</strong> sees -- it does not <em> have</em> to be on your CLASSPATH environment variable.</p>
+<p>Why is that an important distinction? Because if you are using a servlet container on your development machine to test your application, the &quot;struts.jar&quot; <strong>must not</strong> be on your CLASSPATH environment variable when running the container. (This is because each Web application must also have their own copy of the Struts classes, and the container will become confused if it is on the environment path as well.)</p>
 <p>There are several general approaches to this issue:</p>
 <ul>
-<li><b>Use ANT</b> for building your projects -- it can easily assemble classpaths for the compiler.  (This is how Struts itself is  built, along with Tomcat and most other Java-based projects).</li>
-<li><b>Use an IDE</b> where you can configure the "class path" used  for compilation independent of the CLASSPATH environment  variable.</li>
-<li><b>Use a shell script</b> that temporarily adds struts.jar  to the classpath just for compilation, for example<br/>
-<i>javac -classpath /path/to/struts.jar:$CLASSPATH $@</i></li>
+<li><strong>Use ANT</strong> for building your projects -- it can easily assemble classpaths for the compiler.  (This is how Struts itself is  built, along with Tomcat and most other Java-based projects).</li>
+<li><strong>Use an IDE</strong> where you can configure the "class path" used  for compilation independent of the CLASSPATH environment  variable.</li>
+<li><strong>Use a shell script</strong> that temporarily adds struts.jar  to the classpath just for compilation, for example<br/>
+<em>javac -classpath /path/to/struts.jar:$CLASSPATH $@</em></li>
 </ul>
 </section>
 
@@ -160,11 +160,11 @@ We are grateful for any patches, and we welcome new ideas, but the best way to s
 
 <section href="help" name="Where can I get help with Struts?">
 <p>The Struts package comes complete with a
-<a href="http://jakarta.apache.org/struts/userGuide/index.html">Users Guide</a> to
+<a href="../userGuide/index.html">Users Guide</a> to
 introduce people to the framework and its underlying technologies. Various components
 also have their own in-depth Developers Guide, to cover more advanced topics. Comprehensive
-<a href="http://jakarta.apache.org/struts/api/index.html">Javadocs</a> are included
-along with the <b>full source code</b>. For your convenience, these are bundled together as
+<a href="../api/index.html">Javadocs</a> are included
+along with the <strong>full source code</strong>. For your convenience, these are bundled together as
 a self-installing application. The <code>struts-documentation.war</code> is the same
 bundle that is deployed as the
 <a href="http://jakarta.apache.org/struts/">Struts Web site</a>.
@@ -175,7 +175,7 @@ The
 very active, and welcomes posts from new users. Before posting a new question, be
 sure to consult the
 <a href="http://www.mail-archive.com/struts-user%40jakarta.apache.org/">
-<b>MAILING LIST ARCHIVE</b></a> and the very excellent
+<strong>MAILING LIST ARCHIVE</strong></a> and the very excellent
 <a href="http://www.tuxedo.org/~esr/faqs/smart-questions.html">
 How To Ask Questions The Smart Way</a> by Eric Raymond. Please do be sure
 to <a href="http://expita.com/nomime.html">turn off HTML</a> in your
@@ -289,7 +289,7 @@ appear to help these technologies work as well with Struts.
     The JSTL reference implementation is available through the
     <a href="http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html">Jakarta Taglibs site</a>.
     A JSTL taglibs for Struts,
-    <a href="http://jakarta.apache.org/struts/userGuide/building_view.html#struts-el"><b>Struts-El</b></a>,
+    <a href="../userGuide/building_view.html#struts-el"><strong>Struts-El</strong></a>,
     is available and distributed with Struts beginning with the 1.1 release.
 </p>
     <p>
@@ -298,7 +298,7 @@ appear to help these technologies work as well with Struts.
         <a href="http://java.sun.com/webservices/download.html">Java Web Services Developer Pack</a>.
         An early-release JavaServer Faces taglib for Struts,
         <a href="http://cvs.apache.org/builds/jakarta-struts/nightly/struts-faces/">
-        <b>Struts-Faces</b></a>, is also in early release and available
+        <strong>Struts-Faces</strong></a>, is also in early release and available
         through the nightly build.
     </p>
     <p>
@@ -355,7 +355,7 @@ or <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">user digest<
 
 <section href="unsubscribe" name="How do I unsubscribe from the mailing list?">
 <p>
-<b>From the email account used to subscribe to the list,</b> <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">send a blank message</a> to &lt; <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">struts-user-unsubscribe@jakarta.apache.org</a>&gt;.
+<strong>From the email account used to subscribe to the list,</strong> <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">send a blank message</a> to &lt; <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">struts-user-unsubscribe@jakarta.apache.org</a>&gt;.
 </p>
 <p>
 If you are receiving the digest, you must send a blank email to

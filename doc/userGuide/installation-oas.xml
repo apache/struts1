@@ -9,7 +9,7 @@
 <chapter name="5.2 Installation" href="installation">
 <section name="Installing Struts with your servlet container" href="Containers">
 
-<h4><a name="orion">Orion Application Server</a></h4>
+<h4 id="orion">Orion Application Server</h4>
 
 <p>In the steps below, <code>$ORION_HOME</code> refers to the directory in which
   you have installed Orion, and <code>$STRUTS_HOME</code> is the directory in
@@ -56,7 +56,7 @@ http://localhost/struts-example
     <code>javax.servlet.jsp.JspException: Missing resources attributeorg.apache.struts.action.MESSAGE</code><br/>
     followed by an error traceback. There will also be an initialization error
     message in the <code>ORION_HOME/log/global-application.log</code> log file.
-    To work around this problem, you can take the following steps:</li>
+    To work around this problem, you can take the following steps:
   <ul>
     <li>Go to the <code>$STRUTS_HOME/webapps</code> directory, where you will
       note that Orion has automatically expanded each web application into an
@@ -75,6 +75,7 @@ http://localhost/struts-example
       Therefore, you should be sure you do not store sensitive information (such
       as database passwords) in this file. </li>
   </ul>
+  </li>
 </ul>
 
   <hr/>

@@ -126,13 +126,11 @@
     been added to accumulate Struts add-on extensions that are generally
     useful but have not yet been integrated into the standard code base.</p>
 
-    <p>
     <ul>
     <li>ValidatorForm - Client and Server-side validation library.</li>
     <li>Tiles - Advanced templating library (see Struts-Tiles.war).</li>
     <li>Service Manager - Add custom services without subclassing controller.</li>
     </ul>
-    </p>  
 
     <p><strong>UNIT TESTING SUPPORT</strong>:  Support for running unit tests
     on Struts components and custom tags is being added, utilizing the

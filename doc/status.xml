@@ -13,12 +13,10 @@
 </properties>
 
 <body>
-<chapter href="status" name="Development Roadmap">
+<section href="roadmap" name="Development Roadmap">
 
-<section href="status" name="Development Roadmap">
-
-    <p>
-    <font size="-2">$Id: status.xml,v 1.40 2003/09/02 23:44:08 husted Exp $</font>
+    <p class="version">
+    $Id: status.xml,v 1.41 2003/09/09 17:49:21 sraeburn Exp $
     </p>
 
     <p>
@@ -93,15 +91,15 @@
 
     <p>
         Enhancement requests are logged in Bugzilla they are suggested.
-        <b>The listing of an enhancement in Bugzilla does not imply that is being "planned"</b>, merely that some
+        <strong>The listing of an enhancement in Bugzilla does not imply that is being "planned"</strong>, merely that some
         member of the community has suggested it, and the idea hasn't been ruled out (yet).
     </p>
 
     <p>
         Future release milestones are provided for enhancements which are being actively planned or developed
         but may not be ready for the very next release.
-        If a report has not been tagged for a specific milestone by a working developer, then <b>it may never be
-        resolved</b>.
+        If a report has not been tagged for a specific milestone by a working developer, then <strong>it may never be
+        resolved</strong>.
         When developers (including non-Committers) are actually working on an enhancement, they should re-tag it for a
         specific release milestone, such as "1.2.1" or "1.2.2".
     </p>
@@ -119,7 +117,7 @@
 
         <p>
             These are some general ideas we have about what may happen in the Struts 1.x series.
-            This is a <b>whiteboard</b> and everything here is <b>subject to change</b>.
+            This is a <strong>whiteboard</strong> and everything here is <strong>subject to change</strong>.
         </p>
 
         <ul>
@@ -358,14 +356,14 @@
 </section>
 
 <section>
-    <p align="right">
+    <p class="right">
     Next: <a href="releases.html">Release Guidelines</a>
     </p>
 </section>
 
 <section>
-    <p><font size="-2">Website updated from CVS: 2003 AUG 29 by husted.</font></p>
-    <p><font size="-2">Javadocs updated from CVS: 2003 JUN 29 by mcooper.</font></p>
+    <p class="version">Website updated from CVS: 2003 AUG 29 by husted.</p>
+    <p class="version">Javadocs updated from CVS: 2003 JUN 29 by mcooper.</p>
 </section>
 
-</chapter></body></document>
+</body></document>

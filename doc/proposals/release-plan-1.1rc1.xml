@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1rc1.xml,v 1.1 2003/02/16 05:35:54 martinc Exp $</font></p>
+  <p>$Id: release-plan-1.1rc1.xml,v 1.2 2003/09/09 17:49:21 sraeburn Exp $</p>
 
   <p>The objective of the <strong>Struts 1.1 Release Candidate 1</strong>
   release is to create a milestone release in preparation for an imminent

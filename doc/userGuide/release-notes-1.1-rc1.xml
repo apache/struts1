@@ -26,16 +26,16 @@
 <section name="Beta Fixes" href="beta.Changes">
 
   <p>
-  <b>ApplicationConfig:</b> In Struts 1.1. beta 3, the ApplicationConfig class 
+  <strong>ApplicationConfig:</strong> In Struts 1.1. beta 3, the ApplicationConfig class 
   is renamed to ModuleConfig, to conform with the venacular.
   </p>
 
   <p>
-  <b>Dyna*Form:</b> In Struts 1.1. beta 3, the reset method was changed so that 
+  <strong>Dyna*Form:</strong> In Struts 1.1. beta 3, the reset method was changed so that 
   it conforms to the original ActionForm implementation.</p>
 
   <p>
-  <b>Blank application:</b> Fixed configuration problem with Struts Blank 
+  <strong>Blank application:</strong> Fixed configuration problem with Struts Blank 
   application.
   </p>
 
@@ -201,14 +201,12 @@
     been added to accumulate Struts add-on extensions that are generally
     useful but have not yet been integrated into the standard code base.</p>
 
-    <p>
     <ul>
     <li>Scaffold - An extension of the Commons Scaffold toolkit of reusable 
     classes for building web applications.</li>
     <li>Struts-el - The optional Struts-el taglib makes it easy to use Struts 
     with JSTL (container with servlet 2.3 support required). </li>    
     </ul>
-    </p>
 
     <p>The source for these components is available in the Struts source
     distribution. Binary distributions may also be made available with the Struts
@@ -609,7 +607,7 @@
 </section>
 
 <section>
-    <p align="right">
+    <p class="right">
     Next: <a href="installation.html">Installation</a>
     </p>
 </section>

@@ -369,7 +369,7 @@
       <rtexprvalue>false</rtexprvalue>
       <info>
       Determines how content is handled: true means content is
-      printed <i>direct</i>ly; false, the default, means content
+      printed <em>direct</em>ly; false, the default, means content
       is included.
       This is another way to specify content type. If 'direct=true' content is 'string', if
       'direct=false', content is 'page'.
@@ -501,7 +501,7 @@
       <rtexprvalue>false</rtexprvalue>
       <info>
       Determines how content is handled: true means content is
-      printed <i>direct</i>ly; false, the default, means content
+      printed <em>direct</em>ly; false, the default, means content
       is included.
       This is another way to specify content type. If 'direct=true' content is 'string', if
       'direct=false', content is 'page'.

@@ -10,7 +10,7 @@
 <chapter name="5.2 Installation" href="installation">
 <section name="Installing Struts with your servlet container" href="Containers">
 
-<h3><a name="was352">WebSphere Application Server 3.5 FixPack 2</a></h3>
+<h4 id="was352">WebSphere Application Server 3.5 FixPack 2</h4>
 
 <ul>
 <li>In the steps below, <code>$WAS_HOME</code> refers to the directory in which you

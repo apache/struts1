@@ -73,7 +73,7 @@
     You can upload a proposed <a href="http://jakarta.apache.org/site/source.html#Patches">
     patch</a> to either the code or documentation by creating a feature request in
     <a href="#Bugs">Bugzilla</a>. 
-    <b>After creating the ticket</b>, you can go back and upload a file 
+    <strong>After creating the ticket</strong>, you can go back and upload a file 
     containing your patch.
     </p>
 
@@ -149,7 +149,7 @@
     
     <li>
       <strong>STRUTS-USER Newsgroup</strong> - The User list is also mirrored online,
-      so that you can participate <b>without</b> subscribing to the regular mailing
+      so that you can participate <strong>without</strong> subscribing to the regular mailing
       list.<br/>
       [<a href="http://www.proj.com/subscribe.jsp">Struts Newsgroup</a>]<br/>
       This is another way to post to the User list without subscribing to the 
@@ -165,7 +165,7 @@
     <p>
     Before posting a new question, be sure to consult the
     <a href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42">
-    <b>MAILING LIST ARCHIVE</b></a> and the very excellent
+    <strong>MAILING LIST ARCHIVE</strong></a> and the very excellent
     <a href="http://www.catb.org/~esr/faqs/smart-questions.html">
     How To Ask Questions The Smart Way</a> by Eric Raymond.
     </p>
@@ -188,8 +188,8 @@
 </section>
 
 <section>
-    <p align="right">
-    <b>Next:</b> <a href="volunteers.html">Who We Are</a>
+    <p class="right">
+    <strong>Next:</strong> <a href="volunteers.html">Who We Are</a>
     </p>
 </section>
 

@@ -10,20 +10,20 @@
 <chapter name="Struts Resources">
 
 <section name="Contributor Taglibs">
-<p><a href="http://sourceforge.net/projects/struts-wml"><b>WML Tag Support #2</b></a> by Davor Cengija - Struts support for WML markup.</p>
-<p><a href="http://sourceforge.net/projects/struts"><b>WML Tag Support #1</b></a> by Mitchell Morris - Struts support for WML markup.</p>
+<p><a href="http://sourceforge.net/projects/struts-wml"><strong>WML Tag Support #2</strong></a> by Davor Cengija - Struts support for WML markup.</p>
+<p><a href="http://sourceforge.net/projects/struts"><strong>WML Tag Support #1</strong></a> by Mitchell Morris - Struts support for WML markup.</p>
 <p><a href="http://jakarta.apache.org/builds/jakarta-struts/release/struts-faces/">Struts Java Server Faces tablib (early release)</a></p>
-<p><a href="http://www.keyboardmonkey.com/next"><b>Nested Taglib v2</b></a> [Also included in Struts 1.1] by Arron Bates - More efficient markup of beans and their nested children (linked site provides library for previous struts versions).</p>
-<p><a href="http://www.mycgiserver.com/~eboudrant/#regexp"><font size="2"><b>REGEXP.VALIDATOR.STRUTS</b></font></a> by Emmanuel Boudrant - A validation component that works with Struts 1.0, to manage form validation on server-side and client-side. </p>
-<p><a href="http://husted.com/struts/resources/struts-was.zip"><b>Struts-WAS.jar</b></a> by Christopher Assenza - Modified Struts 1.0 JAR for Websphere 3.5 or 4. Zipped for download. <font size="1"> (For additional tips regarding Websphere 3.5 see <a href="../userGuide/installation-was352-x.html">http://jakarta.apache.org/struts/installation-was352-x.html</a>.)</font></p>
-<p><a href="http://struts.application-servers.com/"><b>Struts Layout</b></a> by Improve - An extension library to      improve interfaces creation with Struts.</p>
-<p><a href="http://sourceforge.net/projects/struts-menu/"><b>Struts Menu</b></a> by Scott Sayles - Web menuing framework for JSP and Struts based applications. Menus can be defined in an XML file and displayed through the use of JSP tags. Support for dynamic javascript menus is included.</p>
-<p><a href="http://husted.com/struts/resources/indexed-tags.htm"><b>Indexed Tags</b></a> [Also available in the nightly build] by Dave Hays - Produce indexed names such as &lt;input type="text" name="parameter[0].value" value="Mac">. Link, Submit, and Select tags are included too.</p>
-<p><a href="http://husted.com/struts/resources/linkParam.htm"><b>LinkParam Tag</b></a> by Eric Fesler - Multiple request parameter for the html:link tag.</p>
-<p><a href="http://husted.com/struts/resources/logic-niallp.htm"><b>Struts IF/THEN/ELSE and SWITCH tags</b></a> by Niall Pemberton.</p>
-<p><a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg01251.html"><b>TextArea Wrapping</b></a> by Matthias Bauer. Patch to HTML:TextArea tag to provide wrapping of long lines.</p>
-<p><a href="http://husted.com/struts/resources/rowtag.zip"><b>RowTag</b></a>  (ZIP file for download) by Amarda Business Systems Ltd - Source for a Struts-compatible tag to generate alternating row colors in a table by Niall Pemberton. [<i>NOTE: Requires a Struts build dated after 2001-04-28</i>]</p>
-<p><a href="http://husted.com/struts/resources/grid.htm"><b>Grid tag</b></a> by Jeff Trent - write grid-style JSP code.</p>
+<p><a href="http://www.keyboardmonkey.com/next"><strong>Nested Taglib v2</strong></a> [Also included in Struts 1.1] by Arron Bates - More efficient markup of beans and their nested children (linked site provides library for previous struts versions).</p>
+<p><a href="http://www.mycgiserver.com/~eboudrant/#regexp"><strong>REGEXP.VALIDATOR.STRUTS</strong></a> by Emmanuel Boudrant - A validation component that works with Struts 1.0, to manage form validation on server-side and client-side. </p>
+<p><a href="http://husted.com/struts/resources/struts-was.zip"><strong>Struts-WAS.jar</strong></a> by Christopher Assenza - Modified Struts 1.0 JAR for Websphere 3.5 or 4. Zipped for download.  (For additional tips regarding Websphere 3.5 see <a href="../userGuide/installation-was352-x.html">installation-was352-x.html</a>.)</p>
+<p><a href="http://struts.application-servers.com/"><strong>Struts Layout</strong></a> by Improve - An extension library to      improve interfaces creation with Struts.</p>
+<p><a href="http://sourceforge.net/projects/struts-menu/"><strong>Struts Menu</strong></a> by Scott Sayles - Web menuing framework for JSP and Struts based applications. Menus can be defined in an XML file and displayed through the use of JSP tags. Support for dynamic javascript menus is included.</p>
+<p><a href="http://husted.com/struts/resources/indexed-tags.htm"><strong>Indexed Tags</strong></a> [Also available in the nightly build] by Dave Hays - Produce indexed names such as &lt;input type="text" name="parameter[0].value" value="Mac">. Link, Submit, and Select tags are included too.</p>
+<p><a href="http://husted.com/struts/resources/linkParam.htm"><strong>LinkParam Tag</strong></a> by Eric Fesler - Multiple request parameter for the html:link tag.</p>
+<p><a href="http://husted.com/struts/resources/logic-niallp.htm"><strong>Struts IF/THEN/ELSE and SWITCH tags</strong></a> by Niall Pemberton.</p>
+<p><a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg01251.html"><strong>TextArea Wrapping</strong></a> by Matthias Bauer. Patch to HTML:TextArea tag to provide wrapping of long lines.</p>
+<p><a href="http://husted.com/struts/resources/rowtag.zip"><strong>RowTag</strong></a>  (ZIP file for download) by Amarda Business Systems Ltd - Source for a Struts-compatible tag to generate alternating row colors in a table by Niall Pemberton. [<em>NOTE: Requires a Struts build dated after 2001-04-28</em>]</p>
+<p><a href="http://husted.com/struts/resources/grid.htm"><strong>Grid tag</strong></a> by Jeff Trent - write grid-style JSP code.</p>
 </section>
 
 </chapter></body></document>

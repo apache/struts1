@@ -18,20 +18,20 @@
   follows:</p>
 
   <ul>
-  <li><strong>Java Development Kit</strong> - You <b>must</b> download and install
+  <li><strong>Java Development Kit</strong> - You <strong>must</strong> download and install
       a Java2 (version 1.2 or later) Java Development Kit implementation for
       your operating system platform.
       A good starting point for locating Java Development Kit distributions is
       <a href="http://java.sun.com/j2se">http://java.sun.com/j2se</a>.</li>
   
-  <li><strong>Servlet Container</strong> - You <b>must</b> download and install a
+  <li><strong>Servlet Container</strong> - You <strong>must</strong> download and install a
       servlet container that is compatible with the Servlet API Specification,
       version 2.2 or later, and the JavaServer Pages (JSP) Specification,
       version 1.1 or later.  One popular choice is to download Apache's
       <a href="http://jakarta.apache.org/tomcat">Tomcat</a> (version 3.1
       or later required, version 3.2 or later recommended).</li>
 
-  <li><strong>XML Parser</strong> - Struts <b>requires</b> the presence of an XML
+  <li><strong>XML Parser</strong> - Struts <strong>requires</strong> the presence of an XML
       parser that is compatible with the Java API for XML Parsing (JAXP)
       specification, 1.0 or later.  You can download and install the JAXP
       <a href="http://java.sun.com/xml">reference implementation</a>,
@@ -206,7 +206,7 @@ each individual web app!  Doing so will cause problems with
     containers <code>webapps</code> directory. </li>
   <li>In some cases, you may need to restart your container if it is running.</li>
 </ul>
-<h3>Status of various containers</h3>
+<h4>Status of various containers</h4>
 <ul>
   <li>Bluestone Universal Business Server - <a href="installation-ubs72.html">Additional 
     steps required.</a></li>
@@ -238,7 +238,7 @@ each individual web app!  Doing so will cause problems with
 
     <p>First, download a source distribution of Struts by following the
     instructions <a href="../acquiring.html">here</a>.  Then, make sure
-    you have downloaded and installed <b>all</b> of the
+    you have downloaded and installed <strong>all</strong> of the
     <a href="#Prerequisites">prerequisite</a> software packages described
     above.</p>
 

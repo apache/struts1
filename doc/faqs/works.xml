@@ -30,7 +30,7 @@
       servlets.<br/>
 
       In this file, you configure the Struts
-      <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html"><code>ActionServlet</code></a>
+      <a href="../api/org/apache/struts/action/ActionServlet.html"><code>ActionServlet</code></a>
       as the servlet that will handle all requests for a given mapping (usually
       the extension <code>.do</code>). This is the "switchboard" mentioned
       above.<br/>
@@ -48,7 +48,7 @@
    <li>
       In the Struts configuration file(s), you associate paths with
       the controller components of your application, known as
-      <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/Action.html"><code>Action</code></a>
+      <a href="../api/org/apache/struts/action/Action.html"><code>Action</code></a>
       classes (i.e. "login" ==&gt; LoginAction class). This tells the Struts
       <code>ActionServlet</code> that when the incoming request is
       <code>http://myhost/myapp/login.do</code> it should invoke your
@@ -67,11 +67,11 @@
       least two: one for success, and one for failure).<br/>
 
       Your <code>Action</code> (the controller component you write) is based on
-      these <i>logical</i> result mapping names. It reports back to the
+      these <em>logical</em> result mapping names. It reports back to the
       <code>ActionServlet</code> using words like "success", "failure",
       "ready", "ok", "UserIsIncompetent", etc.  The Struts system (through the
       configuration that you wrote) knows how to forward to the proper
-      <i>specific</i> page. This has the added advantage of reconfiguration of
+      <em>specific</em> page. This has the added advantage of reconfiguration of
       the view layer by simply editing the Struts XML configuration file.<br/>
 
       At this point Struts knows how to delegate to your controller components,
@@ -95,7 +95,7 @@
       the view, and Actions in the controller.<br/>
 
       <strong>Note</strong>: You must be using some sort of server-side
-      technology (JSP, Velocity, XSLT) for the view layer (going <i>to</i> the
+      technology (JSP, Velocity, XSLT) for the view layer (going <em>to</em> the
       client) to see this data (plain HTML won't work). Struts works on the
       server side, so the client's view has to be composed there.<br/>
 

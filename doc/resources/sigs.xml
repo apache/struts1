@@ -9,36 +9,38 @@
 <body> 
 <chapter name="Struts Resources"> 
 
-    <section name="Special Interest Groups"/>
+    <section name="Special Interest Groups">
 
-    <section name="Local">
+    <subsection name="Local">
 
     <p>
-        <a href="http://www.struts-atlanta.org/"><b>Atlanta Struts Users Group</b></a> -  The Atlanta Struts Users
+        <a href="http://www.struts-atlanta.org/"><strong>Atlanta Struts Users Group</strong></a> -  The Atlanta Struts Users
         Group (ASUG) is a free, informal, all-volunteer, technically-savvy group of Atlanta Struts enthusiasts,
         professionals and zealots who keep each other informed about issues and innovations in the Struts Framework.
         Come to the meetings and contribute!
     </p>
 
     <p>
-        <a href="http://www.baychi.org/bof/struts"><b>Silicon Valley Struts User Group</b></a> - The Silicon Valley
+        <a href="http://www.baychi.org/bof/struts"><strong>Silicon Valley Struts User Group</strong></a> - The Silicon Valley
         Struts User Group (SVSUG) meets on the first Wednesday of the month at various locations in the south bay.
         All levels of Struts user experience are welcome.
         Meetings are free and open to all.
     </p>
 
-    </section>
+    </subsection>
 
-    <section name="Online">
+    <subsection name="Online">
 
     <p>
-        <a href="http://groups.yahoo.com/group/model_struts/"><b>Model Layer in MVC (Struts)</b></a>.
+        <a href="http://groups.yahoo.com/group/model_struts/"><strong>Model Layer in MVC (Struts)</strong></a>.
     </p>
 
     <p>
-        <a href="http://www.basebeans.com:8081/mailman/listinfo/mvc-programmers"><b>MVC Programmers</b></a>.
+        <a href="http://www.basebeans.net:8080/mailman/listinfo/mvc-programmers"><strong>MVC Programmers</strong></a>.
     </p>
 
+    </subsection>
+    
     </section>
 
 </chapter></body></document>

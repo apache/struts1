@@ -7,14 +7,14 @@
 <body>
 <chapter name="5.2 Installation" href="installation">
 <section name="Installing Struts with your servlet container" href="Containers">
-<h3><a name="ipws42">iPlanet Application Server 6.0</a></h3>
+<h4 id="ipws60">iPlanet Application Server 6.0</h4>
 <p>Service Pack 2 is recommended.</p>
 <p>NOTE: At present, the Struts example application still uses a non-Serializable
 servlet context attribute, and will not run in an environment that requires them,
 like iPlanet Application Server.</p>
-<h3><a name="ipws42">iPlanet Web Server 4.2</a></h3>
+<h4 id="ipws42">iPlanet Web Server 4.2</h4>
 <p>Here are the issues I ran into while moving my struts based application from
-  Tomcat (supports WebApps and WAR) to iWS 4.1 (does <b>NOT</b> support Webapps
+  Tomcat (supports WebApps and WAR) to iWS 4.1 (does <strong>NOT</strong> support Webapps
   and WAR). </p>
 <p>Webapps and WAR will be supported in iWS 5.0, as mentioned in iWS5.0 roadmap.</p>
 <h4>Classpath issues.</h4>

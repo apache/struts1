@@ -129,8 +129,6 @@
 
     <p>The following new features have been added to the basic controller
     framework (package <code>org.apache.struts.action</code>):</p>
-    <ul>
-    </ul>
 
     <p>The following new features have been added to the utility classes
     (package <code>org.apache.struts.util</code>):</p>
@@ -168,19 +166,14 @@
     <p>The following new features have been added to the
     <em>struts-logic</em> custom tag library (package
     <code>org.apache.struts.taglib.logic</code>):</p>
-    <ul>
-    </ul>
 
     <p>The following new features have been added to the
     <em>struts-template</em> custom tag library (package
     <code>org.apache.struts.taglib.template</code>):</p>
-    <ul>
-    </ul>
 
     <p>The following new features have been added to the Struts Documentation
     application (and corresponding contents on the Struts web site):</p>
-    <ul>
-    </ul>
+
 
   </section>
 
@@ -198,8 +191,7 @@
 
     <p>The following changes and bug fixes have occurred in the basic
     controller framework (package <code>org.apache.struts.action</code>):</p>
-    <ul>
-    </ul>
+
 
     <p>The following changes and bug fixes have occurred in the utilities
     (package <code>org.apache.struts.util</code>):</p>
@@ -237,8 +229,7 @@
     <p>The following changes and bug fixes have occurred in the
     <em>struts-logic</em> custom tag library (package
     <code>org.apache.struts.taglib.logic</code>):</p>
-    <ul>
-    </ul>
+
 
     <p>The following changes and bug fixes to the Struts Documentation
     application (and corresponding contents on the Struts web site) have
@@ -255,13 +246,11 @@
 
     <p>The following changes and bug fixes to the Struts Example Application
     have occurred:</p>
-    <ul>
-    </ul>
+
 
     <p>The following changes and bug fixes to the Struts Template Example
     Application have occurred:</p>
-    <ul>
-    </ul> 
+
 
   </section>
 

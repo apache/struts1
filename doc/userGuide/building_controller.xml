@@ -155,7 +155,7 @@
     in-turn:
     </p>
 
-    <table border="1">
+    <table>
 
     <tr>
         <td>
@@ -408,7 +408,7 @@
     </li>
     
     <li>
-    <i>Caution:</i> If you nest an existing bean instance on your form, think
+    <em>Caution:</em> If you nest an existing bean instance on your form, think
     about the properties it exposes. 
     Any public property on an ActionForm that accepts a single String value 
     can be set with a query string. 
@@ -545,7 +545,7 @@
     "property", the tags will automatically use the DynaActionForm properties
     just like those of a conventional JavaBean.
     You can even expose DynaActionForm properties using bean:define.
-    (Although, tou can't use bean:define to <b>instantiate</b> a DynaActionForm,
+    (Although, tou can't use bean:define to <strong>instantiate</strong> a DynaActionForm,
     since it needs to be setup with the appropriate dyna-properties).
     </p>
 
@@ -577,13 +577,13 @@
 
     <p>
     DynaActionForms are meant as an easy solution to a common problem:
-    <i>Your ActionForms use simple properties and standard validations,
-    and you just pass these properties over to another JavaBean</i>
+    <em>Your ActionForms use simple properties and standard validations,
+    and you just pass these properties over to another JavaBean</em>
     (say using <code>BeanUtils.copyProperties(myBusinessBean,form)</code>).
     </p>
 
     <p>
-    DynaActionForms are <b>not</b> a drop-in replacement for ActionForms.
+    DynaActionForms are <strong>not</strong> a drop-in replacement for ActionForms.
     If you need to access ActionForm properties in your Action, you will need to
     use the map-style accessor, like <code>myForm.get("name")</code>.
     If you actively use the ActionForm object in your Action,
@@ -734,7 +734,7 @@
     <p>
         While map-backed ActionForms provide you with more flexibility, they do not support the same range of syntax
         available to conventional or DynaActionForms.
-        You might have difficulty referencing <a href="../faqs/indexedprops">indexed or mapped properties</a>
+        You might have difficulty referencing <a href="../faqs/indexedprops.html">indexed or mapped properties</a>
         using a map-backed ActionForm.
     </p>
 
@@ -774,7 +774,7 @@ throws Exception;
     object that identifies where control should be forwarded (e.g. a JSP, 
     Tile definition, Velocity template, or another Action) to provide the 
     appropriate response.  
-    In the <i>MVC/Model 2</i> design pattern, a typical <code>Action</code> 
+    In the <em>MVC/Model 2</em> design pattern, a typical <code>Action</code> 
     class will often implement logic like the following in its 
     <code>execute</code> method:
     </p>
@@ -803,8 +803,8 @@ throws Exception;
         <li>
         Perform the processing required to deal with this request (such as
         saving a row into a database).  
-        This <i>can</i> be done by logic code embedded within the 
-        <code>Action</code> class itself, <b>but</b> should generally be 
+        This <em>can</em> be done by logic code embedded within the 
+        <code>Action</code> class itself, <strong>but</strong> should generally be 
         performed by calling an appropriate method of a business logic bean.
         </li>
 
@@ -859,9 +859,9 @@ throws Exception;
     <ul>
     
         <li>
-        <b>Write code for a multi-threaded environment</b> -
-        The controller servlet creates <b>only one instance of your
-        <code>Action</code> class</b>, and uses this one instance to service
+        <strong>Write code for a multi-threaded environment</strong> -
+        The controller servlet creates <strong>only one instance of your
+        <code>Action</code> class</strong>, and uses this one instance to service
         all requests.  
         Thus, you need to write thread-safe <code>Action</code> classes.
         Follow the same guidelines you would use to write thread-safe 
@@ -872,9 +872,9 @@ throws Exception;
         <ul>
         
             <li>
-            <b>Only Use Local Variables</b> - The most important principle 
+            <strong>Only Use Local Variables</strong> - The most important principle 
             that aids in thread-safe coding is to use only local variables, 
-            <b>not instance variables</b>, in your <code>Action</code> class.  
+            <strong>not instance variables</strong>, in your <code>Action</code> class.  
             Local variables are created on a stack that is assigned (by your 
             JVM) to each request thread, so there is no need to worry about 
             sharing them.  
@@ -886,7 +886,7 @@ throws Exception;
             </li>
             
             <li>
-            <b>Conserve Resources</b> - As a general rule, allocating scarce 
+            <strong>Conserve Resources</strong> - As a general rule, allocating scarce 
             resources and keeping them across requests from the same user 
             (in the user's session) can cause scalability problems.  
             For example, if your application uses JDBC and you  allocate a 
@@ -904,7 +904,7 @@ throws Exception;
         </li>
 
         <li>
-        <b>Don't throw it, catch it!</b> - Ever used a commercial website only to 
+        <strong>Don't throw it, catch it!</strong> - Ever used a commercial website only to 
         have a stack trace or exception thrown in your face after you've already 
         typed in your credit card number and clicked the purchase button?  
         Let's just say it doesn't inspire confidence.  
@@ -931,7 +931,7 @@ throws Exception;
     to another conceptual layer; 
     otherwise, you may be left with an inflexible application which can only 
     be accessed in a web-application environment.
-    Struts should be viewed as simply the <b>foundation</b> for implementing 
+    Struts should be viewed as simply the <strong>foundation</strong> for implementing 
     MVC in your applications. 
     Struts provides you with a useful control layer, but it is not a fully 
     featured platform for building MVC applications, soup to nuts.
@@ -995,7 +995,7 @@ throws Exception;
 <section name="4.6 PlugIn Classes" href="plugin_classes">
 
     <p>
-    The <i>PlugIn</i> interface extends Action and so that applications can
+    The <em>PlugIn</em> interface extends Action and so that applications can
     easily hook into the ActionServlet lifecycle. 
     This interface defines two methods, <code>init()</code> and 
     <code>destroy()</code>, which are called at application startup and 
@@ -1029,7 +1029,7 @@ throws Exception;
     to know several things about how each request URI should be mapped to an
     appropriate <code>Action</code> class.  
     The required knowledge has been encapsulated in a Java class named 
-    <i>ActionMapping</i>, the most important properties are as follows:
+    <em>ActionMapping</em>, the most important properties are as follows:
     </p>
 
     <ul>
@@ -1131,7 +1131,7 @@ throws Exception;
     </ul>
     
     <p>
-    <code><b>&lt;form-beans&gt;</b></code><br />
+    <code><strong>&lt;form-beans&gt;</strong></code><br />
     This section contains your form bean definitions.  
     Form beans are descriptors that are used to create ActionForm instances 
     at runtime. 
@@ -1156,7 +1156,7 @@ throws Exception;
     </ul>
 
     <p>
-    <b>&lt;global-forwards&gt;</b><br />
+    <strong>&lt;global-forwards&gt;</strong><br />
     This section contains your global forward definitions.  
     Forwards are instances of the ActionForward class returned from an 
     ActionForm's <code>execute</code> method. 
@@ -1190,7 +1190,7 @@ throws Exception;
     </ul>
     
     <p>
-    <code><b>&lt;action-mappings&gt;</b></code><br />
+    <code><strong>&lt;action-mappings&gt;</strong></code><br />
     This section contains your action definitions.  
     You use an <code>&lt;action&gt;</code> element for each of the mappings 
     you would like to define.  
@@ -1300,7 +1300,7 @@ throws Exception;
     mapping, the request URI you specify in a JSP page would end in 
     <code>/logon.do</code>).
     When a request that matches this path is received, an instance of the
-    <i>LogonAction</i> class will be created (the first time only) and used.
+    <em>LogonAction</em> class will be created (the first time only) and used.
     The controller servlet will look for a bean in request scope under key
     <code>logonForm</code>, creating and saving a bean of the specified class
     if needed.
@@ -1350,7 +1350,7 @@ throws Exception;
 <section name="4.9 Using ActionMappings for Pages" href="module_config-use_actions">
 
     <p>
-    Fronting your pages with ActionMappings is <i>essential</i> when using 
+    Fronting your pages with ActionMappings is <em>essential</em> when using 
     application modules, since doing so is the only way you involve the 
     controller in the request -- and you want to!  
     The controller puts the application configuration in the request,
@@ -1393,7 +1393,7 @@ throws Exception;
     </ul>
     
     <p>
-    The commons-logging interface is an <i>ultra-thin</i> bridge to many 
+    The commons-logging interface is an <em>ultra-thin</em> bridge to many 
     different logging implementations.  
     The intent is to remove compile- and run-time dependencies on any 
     single logging implementation.  
@@ -1406,9 +1406,9 @@ throws Exception;
     
     <p>
     Because Struts uses commons-logging and, therefore, includes the necessary 
-    JAR files for <b>you</b> to use commons-logging, you've probably had the 
-    occasional fleeting thought, <i>"Should I use
-    commons-logging?"</i> 
+    JAR files for <strong>you</strong> to use commons-logging, you've probably had the 
+    occasional fleeting thought, <em>"Should I use
+    commons-logging?"</em> 
     The answer (surprise!) depends on the requirements for your particular 
     project. 
     If one of your requirements is the ability to easily change logging 
@@ -1417,8 +1417,8 @@ throws Exception;
     </p>
     
     <p>
-    <i>"Great!  What do I do to get started using commons-logging in my own 
-    code?"</i>
+    <em>"Great!  What do I do to get started using commons-logging in my own 
+    code?"</em>
     </p>
     
     <p>
@@ -1464,7 +1464,7 @@ public class Foo {
 </section>
 
 <section>
-    <p align="right">
+    <p class="right">
     Next: <a href="./configuration.html">Configuring Applications</a>
     </p>
 </section>

@@ -10,13 +10,13 @@
 <chapter name="Struts Resources"> 
 
 <section name="Enabling Technologies"> 
-<p><b>Sun technologies</b></p>
+<p><strong>Sun technologies</strong></p>
 <p><a href="http://java.sun.com/products/servlet/download.html">Java Servlet API</a></p>
 <p><a href="http://java.sun.com/products/jsp/technical.html">JavaServer Pages</a></p>
 <p><a href="http://java.sun.com/products/javabeans/docs/">JavaBeans</a></p>
 <p><a href="http://java.sun.com/products/jsp/technical.html">JSP Tag Libraries</a></p>
 <ul>
-<li><a href="http://jakarta.apache.org/taglibs/doc/jsptl-doc/intro.html">JavaServer Pages Standard Tag Library (JSTL) Early Release</a></li>
+<li><a href="http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html">JavaServer Pages Standard Tag Library (JSTL)</a></li>
 </ul>
 
 <p><a href="http://jcp.org/jsr/detail/127.jsp">JavaServer Faces JSR</a> </p>
@@ -28,7 +28,7 @@
 <p><a href="http://java.sun.com/j2se/1.3/docs/guide/jdbc/index.html">JDBC API Documentation</a></p>
 <p><a href="http://java.sun.com/products/jaas/index-10.html">Java Authentication and Authorization Service</a> (JAAS)</p>
 
-<p><b>Internet technologies</b></p>
+<p><strong>Internet technologies</strong></p>
 <p><a href="http://www.w3.org/MarkUp/">HyperText Markup Language (HTML)</a> (w3c)</p>
 <ul>
 <li><a href="http://www.w3.org/TR/html4/">HTML 4.01 Specification</a></li>
@@ -51,16 +51,16 @@
 <li><a href="http://jakarta.apache.org/slide/index.html">Jakarta Slide</a></li>
 </ul>
 
-<p><b>Other standard technologies</b></p>
+<p><strong>Other standard technologies</strong></p>
 <p><a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">Regular Expressions</a> (Struts Validator)</p>
 <ul>
 <li><a href="http://developer.java.sun.com/developer/JDCTechTips/2002/tt0423.html">JDC Tech Tip - Pattern Matching</a></li>
 <li><a href="http://etext.lib.virginia.edu/helpsheets/regex.html">Using Regular Expressions by Stephen Ramsey</a></li>
 </ul>
 
-<p><b>Other indices</b></p>
-<p><a href="http://www.rfc-editor.org/"><b>RFC Editor (index)</b></a></p>
-<p><a href="http://jcp.org/jsr/overview/index.jsp"><b>JSR Index</b></a></p>
+<p><strong>Other indices</strong></p>
+<p><a href="http://www.rfc-editor.org/"><strong>RFC Editor (index)</strong></a></p>
+<p><a href="http://jcp.org/jsr/overview/index.jsp"><strong>JSR Index</strong></a></p>
 </section>
 
 </chapter></body></document>

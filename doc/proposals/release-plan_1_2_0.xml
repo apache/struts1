@@ -11,7 +11,7 @@
 
       <section name="Objective" href="objective">
           <p>
-              <font size="-2">$Id: release-plan_1_2_0.xml,v 1.4 2003/08/29 20:14:19 husted Exp $</font>
+              $Id: release-plan_1_2_0.xml,v 1.5 2003/09/09 17:49:21 sraeburn Exp $
           </p>
 
           <p>
@@ -70,7 +70,7 @@
               directory.
               Pursuant to a Majority Vote on the <em>struts-dev</em> Mailing List, the release may be moved to the
               public release directory.
-              The vote may also serve to reclassify the release to be of <b>Beta</b> or <b>General Availability</b> (GA)
+              The vote may also serve to reclassify the release to be of <strong>Beta</strong> or <strong>General Availability</strong> (GA)
               quality, as defined by the Apache HTTPD project.
               Subsequent votes may reclassify the release, either to promote it or to demote it, as need be.
           </p>
@@ -78,7 +78,7 @@
 
       <section name="Specific Release Criteria" href="specific">
           <p>
-              Prior to the <b>Struts 1.2.0 release</b>, these specific action items must be completed:
+              Prior to the <strong>Struts 1.2.0 release</strong>, these specific action items must be completed:
           </p>
 
           <ul>
@@ -90,20 +90,20 @@
 
       <section name="Standard Release Criteria" href="standard">
           <p>
-              Prior to <b>any release</b> by the Struts Committers, including this one, the following action items must
+              Prior to <strong>any release</strong> by the Struts Committers, including this one, the following action items must
               be completed:
           </p>
 
           <ul>
               <li>
-                  <b>Resolve showstoppers.</b>
+                  <strong>Resolve showstoppers.</strong>
                   Relevant
                   <a href="http://issues.apache.org/bugzilla/buglist.cgi?email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;version=1.1RC2&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;newqueryname=&amp;order=Bug+Number">
                   Bugzilla tickets</a> verified by a Struts Committer to have the Severity BLOCKER, CRITICAL, or
                   MAJOR must be "Resolved" with one of these Bugzilla resolutions: FIXED, INVALID, WONTFIX, WORKSFORME.
               </li>
               <li>
-                  <b>Apply patches.</b>
+                  <strong>Apply patches.</strong>
                   Relevant
                   <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=VERIFIED&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=PatchAvailable&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=Bug+Number">
                   Bugzilla reports</a> which include a working patch must be "Resolved" with any of the legal Bugzilla
@@ -116,7 +116,7 @@
                   </ul>
               </li>
               <li>
-                  <b>Test example applications.</b>
+                  <strong>Test example applications.</strong>
                   All example applications included with the release shall operate successfully under the
                   Reference Implementation containers for the Servlet/JSP specifications supported by the release.
                   In the case of a Struts 1.x.x release, these containers are:
@@ -132,7 +132,7 @@
                       <a href="http://jakarta.apache.org/tomcat">Tomcat website</a> at the time the test is conducted.
               </li>
               <li>
-                  <b>Update Release Notes.</b> The Release Notes for the distribution shall be updated to summarize any
+                  <strong>Update Release Notes.</strong> The Release Notes for the distribution shall be updated to summarize any
                   substantial changes and improvements since the prior release, including updates to bundled
                   documentation and example applications.
               </li>
@@ -141,26 +141,26 @@
 
       <section name="Minor Release Criteria" href="minor">
           <p>
-            Prior to an initial <b>Struts minor release</b> (#.#.0), the following action items must be completed:
+            Prior to an initial <strong>Struts minor release</strong> (#.#.0), the following action items must be completed:
           </p>
 
           <ul>
               <li>
-                  <b>Review pending issues.</b>
+                  <strong>Review pending issues.</strong>
                   All relevant
                   <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;resolution=REMIND&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=Bug+Number">
                   Bugzilla reports marked "Resolved" with the Resolutions LATER or REMIND</a> shall be reviewed to
                   ensure that pending issues have been addressed prior to the release.
               </li>
               <li>
-                  <b>Review pending enhancements.</b>
+                  <strong>Review pending enhancements.</strong>
                   All relevant
                   <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=VERIFIED&amp;bug_severity=Enhancement&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=Bug+Number">
                   Bugzilla reports marked "Enhancement"</a> shall be reviewed by the Release Manager to ensure that
                   all suitable enhancements have been made prior to the release.
               </li>
               <li>
-                  <b>Resolve new issues.</b>
+                  <strong>Resolve new issues.</strong>
   	              All relevant
 	              <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=VERIFIED&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=Bug+Number">
 	              Bugzilla tickets</a> MUST be marked as "Enhancement" or "Resolved" with any

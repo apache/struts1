@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.16 2003/02/15 21:02:33 husted Exp $</font></p>
+  <p>$Id: release-plan-1.1b3.xml,v 1.17 2003/09/09 17:49:21 sraeburn Exp $</p>
 
   <p>The objective of the <strong>Struts 1.1 Beta 3</strong> release is to
   create a milestone release against which a final series of bug fixes and
@@ -90,21 +90,21 @@
       Checked items have been resolved.
   </p>
 
-  <table>
+  <table class="noborder">
 
     <!-- Custom tags -->
     <tr>
       <td colspan="3"><strong>Custom Tags</strong></td>
     </tr>
     <tr>
-      <td nowrap="nowrap">[x]</td>
+      <td>[x]</td>
       <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=11021">11021</a>
       </td>
       <td>ActionForward or &lt;html:link&gt; tag does not support absolute URIs</td>
     </tr>
     <tr>
-        <td nowrap="nowrap">[x]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=12302">12302</a></td>
       <td>Sporadic error in html:form action attribute</td>
@@ -116,25 +116,25 @@
       <td>Add action attribute to &lt;html:link&gt;</td>
     </tr>
     <tr>
-        <td nowrap="nowrap">[x]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15044">15044</a></td>
       <td>Taglib - Index Attribute in html:Checkbox doesn't set correctly</td>
     </tr>
     <tr>
-        <td nowrap="nowrap">[x]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15196">15196</a></td>
       <td>Bug on the RequestUtils.computeParameters using a DynaValidatorForm as map of the parameter</td>
     </tr>
     <tr>
-        <td nowrap="nowrap">[x]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15451">15451</a></td>
       <td>Multiple mapped properties not possible / Direct maps and indexes not possible</td>
     </tr>
     <tr>
-        <td nowrap="nowrap">[x]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15601">15601</a></td>
       <td>tile examples to move to standard webapp location</td>

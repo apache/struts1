@@ -10,10 +10,10 @@
 <chapter name="5.2 Installation" href="installation">
 <section name="Installing Struts with your servlet container" href="Containers">
 
-<h4><a name="orion">Novell ExteNd Application Server 4.0</a></h4>
+<h4 id="orion">Novell ExteNd Application Server 4.0</h4>
 
-<b>Using the ExteNd Workbench to deploy a WAR to the Novell ExteNd
-application server:</b>
+<strong>Using the ExteNd Workbench to deploy a WAR to the Novell ExteNd
+application server:</strong>
 <ul>
   <li>Start the Novell ExteNd application server.</li>
   <li>Using the ExteNd Workbench, create a new project:
@@ -49,7 +49,7 @@ application server:</b>
   </li>
 </ul>
 
-<b>Deploying a WAR from a command line using SilverCmd:</b>
+<strong>Deploying a WAR from a command line using SilverCmd:</strong>
 <ul>
   <li>Start the SilverStream application server.</li>
   <li>Create an XML deployment plan for the <code>struts-example.war</code>
