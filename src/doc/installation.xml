@@ -31,7 +31,12 @@
       source distribution, you must download and install version 1.1 or later
       of the <a href="http://jakarta.apache.org/ant">Ant</a> build system.
       This package is also strongly recommended for use in developing your
-      own web applications based on Struts.</li>
+      own web applications based on Struts.
+      <ul>
+      <li>If you are using the release version of Ant version 1.1, you will
+          also need to download the "optional.jar" file that contains the
+          implementation of Ant's <code>&lt;style&gt;</code> command.</li>
+      </ul></li>
   <li><strong>Servlet API Classes</strong> - In order to compile Struts itself,
       or applications that use Struts, you will need a <code>servlet.jar</code>
       file containing the Servlet and JSP API classes.  Most servlet containers
