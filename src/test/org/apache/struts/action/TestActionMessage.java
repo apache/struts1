@@ -25,7 +25,7 @@ import junit.framework.TestSuite;
 /**
  * Unit tests for the <code>org.apache.struts.action.ActionMessage</code> class.
  *
- * @version $Revision: 1.8 $ $Date$
+ * @version $Revision$ $Date$
  */
 public class TestActionMessage extends TestCase {
     
