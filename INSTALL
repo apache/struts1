@@ -1,7 +1,7 @@
-$Id: INSTALL,v 1.4 2001/02/11 21:36:19 husted Exp $
+$Id: INSTALL,v 1.5 2001/02/13 16:01:38 husted Exp $
 
-				Struts
-				======
+                Struts
+                ======
 
 This document contains notes that have been accumulated on getting the Struts
 applications (documentation and example) running in a variety of servlet
@@ -32,43 +32,43 @@ Status of various containers -- as reported by volunteers on the Struts-User lis
 BLUESTONE UNIVERSAL BUSINESS SERVER
 -----------------------------------
 
-*	You need UBS version 7.2 to run war file applications.  The UBS 7.2.2
-	evaluation is located here:
+*   You need UBS version 7.2 to run war file applications.  The UBS 7.2.2
+    evaluation is located here:
 
-		http://www.bluestone.com/SaISAPI.dll/SaServletEngine.class/products/downloads.jsp
+        http://www.bluestone.com/SaISAPI.dll/SaServletEngine.class/products/downloads.jsp
 
-*	If you're using version 7.2.1, you need to download the WAR file patch,
-	located in the product enhancement section of Bluestone's website:
+*   If you're using version 7.2.1, you need to download the WAR file patch,
+    located in the product enhancement section of Bluestone's website:
 
-		http://www.bluestone.com/SaISAPI.dll/SaServletEngine.class/products/wfe.jsp
+        http://www.bluestone.com/SaISAPI.dll/SaServletEngine.class/products/wfe.jsp
 
-*	After installation of the correct version and/or patch of UBS 7.2, you
-	need to modify your apserver.txt file to point to the correct directory
-	for your war file applications.  Look for the section that says something
-	similar to the following:
+*   After installation of the correct version and/or patch of UBS 7.2, you
+    need to modify your apserver.txt file to point to the correct directory
+    for your war file applications.  Look for the section that says something
+    similar to the following:
 
-		[SaServletEngine.class]
-		session_affinity=1
-		type=1
-		program=/SaServletEngine.class
-		file_path=f:\webapps
-		host=localhost:20000
+        [SaServletEngine.class]
+        session_affinity=1
+        type=1
+        program=/SaServletEngine.class
+        file_path=f:\webapps
+        host=localhost:20000
 
-*	Use the directory specified by the "file_path" variable, or modify it
-	to point to your own custom webapp directory.  Copy the
-	"struts-documention.war" and "struts-example.war" files into that
-	webapp directory, and start the UBS (read documentation distributed
-	with UBS for information on how to start it if necessary).  Your webapps
-	are now accessible from the following URL's:
+*   Use the directory specified by the "file_path" variable, or modify it
+    to point to your own custom webapp directory.  Copy the
+    "struts-documention.war" and "struts-example.war" files into that
+    webapp directory, and start the UBS (read documentation distributed
+    with UBS for information on how to start it if necessary).  Your webapps
+    are now accessible from the following URL's:
 
-		http://localhost/<PLUGIN>/SaServletEngine.class/struts-example/
-		http://localhost/<PLUGIN>/SaServletEngine.class/struts-documentation/
+        http://localhost/<PLUGIN>/SaServletEngine.class/struts-example/
+        http://localhost/<PLUGIN>/SaServletEngine.class/struts-documentation/
 
 
-*	"<PLUGIN>" represents the plugin you are using for your specific
-	webserver.  For apache on Windows, it might be "cgi-bin/SaCGI.exe",
-	for IIS on Windows, it might be "scripts/SaCGI.exe" or "scripts/ISAPI.dll".
-	Consult the UBS documentation for more information.
+*   "<PLUGIN>" represents the plugin you are using for your specific
+    webserver.  For apache on Windows, it might be "cgi-bin/SaCGI.exe",
+    for IIS on Windows, it might be "scripts/SaCGI.exe" or "scripts/ISAPI.dll".
+    Consult the UBS documentation for more information.
 
 
 ORION APPLICATION SERVER
@@ -82,28 +82,28 @@ ORION APPLICATION SERVER
   new applications, by adding the following declarations, immediately
   following the <web-module> directive for the default web application:
 
-	<web-module id="strutsDoc"
+    <web-module id="strutsDoc"
          path="$STRUTS_HOME/webapps/struts-documentation.war"/>
 
-	<web-module id="strutsExample"
+    <web-module id="strutsExample"
          path="$STRUTS_HOME/webapps/struts-example.war"/>
 
 * Modify the file "$ORION_HOME/config/default-web-site.xml" (or the
   configuration file for any other Orion web site) to include the following
   declarations, after the declaration for the <default-web-app> if any:
 
-	<web-app application="default" name="strutsDoc"
+    <web-app application="default" name="strutsDoc"
                  root="/struts-documentation"/>
 
-	<web-app application="default" name="strutsExample"
+    <web-app application="default" name="strutsExample"
                  root="/struts-example"/>
 
 * After you start Orion, you should now be able to access these applications
   (assuming you haven't changed the port number from the default of 80) at:
 
-	http://localhost/struts-documentation
+    http://localhost/struts-documentation
 
-	http://localhost/struts-example
+    http://localhost/struts-example
 
 * Versions of Orion up to at least 1.0.3 have a bug related to
   ServletContext.getResource() calls that prevent the Struts example
@@ -111,8 +111,8 @@ ORION APPLICATION SERVER
   JSP error when you try to access the example application, with the
   following message:
 
-	javax.servlet.jsp.JspException:  Missing resources attribute
-	  org.apache.struts.action.MESSAGE
+    javax.servlet.jsp.JspException:  Missing resources attribute
+      org.apache.struts.action.MESSAGE
 
   followed by an error traceback.  There will also be an initialization
   error message in the "$ORION_HOME/log/global-application.log" log file.
@@ -136,10 +136,68 @@ ORION APPLICATION SERVER
   your "struts-config.xml" file can now be retrieved by remote clients at the
   following URL:
 
-	http://localhost/struts-example/struts-config.xml
+    http://localhost/struts-example/struts-config.xml
 
   Therefore, you should be sure you do not store sensitive information
   (such as database passwords) in this file.
+
+
+SILVERSTREAM APPLICATION SERVER 3.7.1
+-------------------------------------
+
+Start the SilverStream application server. 
+
+Create an XML deployment plan for the "struts-example.war" application.
+
+Call the file "struts-example-depl-plan.xml". You can use the following 
+contents for the file 
+
+----- cut here -----
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE warJarOptions PUBLIC
+      "-//SilverStream Software, Inc.//DTD J2EE WAR Deployment Plan//EN"
+      "deploy_war.dtd">
+    <warJarOptions>
+    <warJar>
+    <warJarName>struts-example.war</warJarName>
+    <isEnabled>true</isEnabled>
+    <urls><el>struts-example</el></urls>
+    </warJar>
+    </warJarOptions>
+
+----- cut here -----
+
+Create an XML deployment plan for the "struts-documentation.war" 
+application.
+
+Call the file "struts-documentation-depl-plan.xml". You can use the 
+following contents for the file:
+
+----- cut here -----
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE warJarOptions PUBLIC
+      "-//SilverStream Software, Inc.//DTD J2EE WAR Deployment Plan//EN"
+      "deploy_war.dtd">
+    <warJarOptions>
+    <warJar>
+    <warJarName>struts-example.war</warJarName>
+    <isEnabled>true</isEnabled>
+    <urls><el>struts-documentation</el></urls>
+    </warJar>
+    </warJarOptions>
+
+----- cut here -----
+
+Run the following "SilverCmd DeployWAR" commands to deploy the applications. 
+You can change 'localhost' to whatever server you are deploying to. You can 
+change 'Silvermaster' to whatever database you are deploying to.
+
+SilverCmd DeployWar localhost Silvermaster struts-example.war 
+  -f struts-example-depl-plan.xml 
+SilverCmd DeployWar localhost Silvermaster struts-documentation.war 
+  -f struts-documentation-depl-plan.xml 
 
 
 TOMCAT 3.1 (OR LATER) WITH APACHE
@@ -165,24 +223,24 @@ TOMCAT 3.1 (OR LATER) WITH APACHE
   $TOMCAT_HOME with the path to your Tomcat home directory:
 
         Alias /struts-documentation "$TOMCAT_HOME/webapps/struts-documentation"
-	<Directory "$TOMCAT_HOME/webapps/struts-documentation>
-	  Options Indexes FollowSymLinks
-	</Directory>
-	ApJServMount /struts-documentation/servlet /struts-documentation
-	<Location "/struts-documentation/WEB-INF/">
-	  AllowOverride None
-	  deny from all
-	</Location>
+    <Directory "$TOMCAT_HOME/webapps/struts-documentation>
+      Options Indexes FollowSymLinks
+    </Directory>
+    ApJServMount /struts-documentation/servlet /struts-documentation
+    <Location "/struts-documentation/WEB-INF/">
+      AllowOverride None
+      deny from all
+    </Location>
 
-	Alias /struts-example "$TOMCAT_HOME/webapps/struts-example"
-	<Directory "$TOMCAT_HOME/webapps/struts-example>
-	  Options Indexes FollowSymLinks
-	</Directory>
-	ApJServMount /struts-example/servlet /struts-example
-	<Location "/struts-example/WEB-INF/">
-	  AllowOverride None
-	  deny from all
-	</Location>
+    Alias /struts-example "$TOMCAT_HOME/webapps/struts-example"
+    <Directory "$TOMCAT_HOME/webapps/struts-example>
+      Options Indexes FollowSymLinks
+    </Directory>
+    ApJServMount /struts-example/servlet /struts-example
+    <Location "/struts-example/WEB-INF/">
+      AllowOverride None
+      deny from all
+    </Location>
 
 * On all versions of Tomcat, the generated file above does not
   know anything about extension mappings defined in a web.xml file,
@@ -191,30 +249,30 @@ TOMCAT 3.1 (OR LATER) WITH APACHE
   version of "tomcat-apache.conf", after the corresponding line
   for the .jsp extension:
 
-	AddHandler jserv-servlet .do
+    AddHandler jserv-servlet .do
 
 * Ensure that the saved version of "tomcat-apache.conf" is referenced
   in your Apache "httpd.conf" configuration file.  A typical use would
   have the following line at the bottom of "httpd.conf":
 
-	Include /usr/local/apache/conf/tomcat-apache.conf
+    Include /usr/local/apache/conf/tomcat-apache.conf
 
 * In order to recognize "index.jsp" as a default page for web
   applications, search in your "httpd.conf" for a "DirectoryIndex"
   directive.  If you have one, add "index.jsp" to the end of the
   list, so that it might look like this:
 
-	DirectoryIndex index.html index.jsp
+    DirectoryIndex index.html index.jsp
 
   If you do not have such an entry, add one like this:
 
-	DirectoryIndex index.jsp
+    DirectoryIndex index.jsp
 
 * Restart Apache to make it aware of the new applications.  You should
   now be able to access the applications from a browser like this:
 
-	http://localhost/struts-documentation
-	http://localhost/struts-example
+    http://localhost/struts-documentation
+    http://localhost/struts-example
 
 
 WEBLOGIC 5.1 (service pack 8)
@@ -232,7 +290,7 @@ WEBLOGIC 5.1 (service pack 8)
   struts-example application available, add the following line to
   weblogic.properties:
 
-	weblogic.httpd.webApp.strutsexample=c:/jakarta-struts/webapps/struts-example.war
+    weblogic.httpd.webApp.strutsexample=c:/jakarta-struts/webapps/struts-example.war
 
 * You do not need to include struts.jar or any of the application specific
   classes in the WebLogic classpath, since this will be done automatically
@@ -242,7 +300,7 @@ WEBLOGIC 5.1 (service pack 8)
   application. For example, to connect to the example application added in
   step 3:
 
-	http://localhost:7001/strutsexample
+    http://localhost:7001/strutsexample
 
 * This example application depends on the Struts specific resource file
   ApplicationResources.properties to be present on the classpath. However,
@@ -257,11 +315,11 @@ WEBLOGIC 5.1 (service pack 8)
   WebLogic created for this application. Again referring to the struts-example
   application, this would be:
 
-	c:\jakarta-struts\webapps\WEB-INF\_tmp_war_strutsexample
+    c:\jakarta-struts\webapps\WEB-INF\_tmp_war_strutsexample
 
 * Restart WebLogic. You will now be able to run the application:
 
-	http://localhost:7001/strutsexample
+    http://localhost:7001/strutsexample
 
 * The above steps should be followed for applications deployed as *.war
   files. For unpacked web applications, configuration involves adding both
@@ -271,19 +329,19 @@ WEBLOGIC 5.1 (service pack 8)
   format by modifying weblogic.properties (assuming the war was extracted to
   directory webapps/struts-example):
 
-	weblogic.httpd.webApp.strutsexample=c:/jakarta-struts/webapps/struts-example/
+    weblogic.httpd.webApp.strutsexample=c:/jakarta-struts/webapps/struts-example/
 
-	And starting WebLogic with the updated WebLogic classpath. For example:
+    And starting WebLogic with the updated WebLogic classpath. For example:
 
-	c:\jdk1.3\bin\java -ms16m -mx64m
-		-classpath c:\weblogic\lib\weblogic510sp8boot.jar;
-			c:\weblogic\classes\boot;
-			c:\xerces\xerces.jar -Dweblogic.class.path=c:\weblogic\lib\weblogic510sp8.jar;
-			c:\weblogic\license;
-			c:\weblogic\classes;
-			c:\weblogic\myserver\serverclasses;
-			c:\weblogic\lib\weblogicaux.jar;
-			c:\jakarta-struts\lib\struts.jar;
-			c:\jakarta-struts\webapps\struts-example\WEB-INF\classes
-				-Dweblogic.system.home=c:\weblogic-Djava.security.manager
-				-Djava.security.policy=c:\weblogic\weblogic.policyweblogic.Server
+    c:\jdk1.3\bin\java -ms16m -mx64m
+        -classpath c:\weblogic\lib\weblogic510sp8boot.jar;
+            c:\weblogic\classes\boot;
+            c:\xerces\xerces.jar -Dweblogic.class.path=c:\weblogic\lib\weblogic510sp8.jar;
+            c:\weblogic\license;
+            c:\weblogic\classes;
+            c:\weblogic\myserver\serverclasses;
+            c:\weblogic\lib\weblogicaux.jar;
+            c:\jakarta-struts\lib\struts.jar;
+            c:\jakarta-struts\webapps\struts-example\WEB-INF\classes
+                -Dweblogic.system.home=c:\weblogic-Djava.security.manager
+                -Djava.security.policy=c:\weblogic\weblogic.policyweblogic.Server
