@@ -14,7 +14,7 @@
 <jsp:useBean id="bean" scope="page" class="org.apache.struts.webapp.exercise.TestBean"/>
 <bean:cookie    id="cookie" name="JSESSIONID" value="JSESSIONID-IS-UNDEFINED"/>
 <bean:header    id="header" name="User-Agent" value="USER-AGENT-IS-UNDEFINED"/>
-<bean:parameter id="param"  name="param1"/>
+<bean:parameter id="param"  name="param1" value="PARAMETER-IS-UNDEFINED"/>
 <%
   pageContext.setAttribute("string", "String test value");
 %>
@@ -33,12 +33,17 @@
     <td>0</td>
     <td>contains</td>
     <td>
-      <logic:match cookie="JSESSIONID" value="0">
-        match
-      </logic:match>
-      <logic:notMatch cookie="JSESSIONID" value="0">
-        notMatch
-      </logic:notMatch>
+      <logic:present cookie="JSESSIONID">
+        <logic:match cookie="JSESSIONID" value="0">
+          match
+        </logic:match>
+        <logic:notMatch cookie="JSESSIONID" value="0">
+          notMatch
+        </logic:notMatch>
+      </logic:present>
+      <logic:notPresent cookie="JSESSIONID">
+          missing
+      </logic:notPresent>
     </td>
   </tr>
   <tr>
@@ -47,12 +52,17 @@
     <td>0</td>
     <td>ends with</td>
     <td>
-      <logic:match cookie="JSESSIONID" location="end" value="0">
-        match
-      </logic:match>
-      <logic:notMatch cookie="JSESSIONID" location="end" value="0">
-        notMatch
-      </logic:notMatch>
+      <logic:present cookie="JSESSIONID">
+        <logic:match cookie="JSESSIONID" location="end" value="0">
+          match
+        </logic:match>
+        <logic:notMatch cookie="JSESSIONID" location="end" value="0">
+          notMatch
+        </logic:notMatch>
+      </logic:present>
+      <logic:notPresent cookie="JSESSIONID">
+          missing
+      </logic:notPresent>
     </td>
   </tr>
   <tr>
@@ -61,12 +71,17 @@
     <td>0</td>
     <td>starts with</td>
     <td>
-      <logic:match cookie="JSESSIONID" location="start" value="0">
-        match
-      </logic:match>
-      <logic:notMatch cookie="JSESSIONID" location="start" value="0">
-        notMatch
-      </logic:notMatch>
+      <logic:present cookie="JSESSIONID">
+        <logic:match cookie="JSESSIONID" location="start" value="0">
+          match
+        </logic:match>
+        <logic:notMatch cookie="JSESSIONID" location="start" value="0">
+          notMatch
+        </logic:notMatch>
+      </logic:present>
+      <logic:notPresent cookie="JSESSIONID">
+          missing
+      </logic:notPresent>
     </td>
   </tr>
   <tr>
@@ -75,12 +90,17 @@
     <td>Mozilla</td>
     <td>contains</td>
     <td>
-      <logic:match header="User-Agent" value="Mozilla">
-        match
-      </logic:match>
-      <logic:notMatch header="User-Agent" value="Mozilla">
-        notMatch
-      </logic:notMatch>
+      <logic:present header="User-Agent">
+        <logic:match header="User-Agent" value="Mozilla">
+          match
+        </logic:match>
+        <logic:notMatch header="User-Agent" value="Mozilla">
+          notMatch
+        </logic:notMatch>
+      </logic:present>
+      <logic:notPresent header="User-Agent">
+          missing
+      </logic:notPresent>
     </td>
   </tr>
   <tr>
@@ -89,12 +109,17 @@
     <td>Mozilla</td>
     <td>ends with</td>
     <td>
-      <logic:match header="User-Agent" location="end" value="Mozilla">
-        match
-      </logic:match>
-      <logic:notMatch header="User-Agent" location="end" value="Mozilla">
-        notMatch
-      </logic:notMatch>
+      <logic:present header="User-Agent">
+        <logic:match header="User-Agent" location="end" value="Mozilla">
+          match
+        </logic:match>
+        <logic:notMatch header="User-Agent" location="end" value="Mozilla">
+          notMatch
+        </logic:notMatch>
+      </logic:present>
+      <logic:notPresent header="User-Agent">
+          missing
+      </logic:notPresent>
     </td>
   </tr>
   <tr>
@@ -103,12 +128,17 @@
     <td>Mozilla</td>
     <td>starts with</td>
     <td>
-      <logic:match header="user-agent" location="start" value="Mozilla">
-        match
-      </logic:match>
-      <logic:notMatch header="user-agent" location="start" value="Mozilla">
-        notMatch
-      </logic:notMatch>
+      <logic:present header="User-Agent">
+        <logic:match header="User-Agent" location="start" value="Mozilla">
+          match
+        </logic:match>
+        <logic:notMatch header="User-Agent" location="start" value="Mozilla">
+          notMatch
+        </logic:notMatch>
+      </logic:present>
+      <logic:notPresent header="User-Agent">
+          missing
+      </logic:notPresent>
     </td>
   </tr>
   <tr>
@@ -159,12 +189,17 @@
     <td>value1</td>
     <td>contains</td>
     <td>
-      <logic:match parameter="param1" value="value1">
-        match
-      </logic:match>
-      <logic:notMatch parameter="param1" value="value1">
-        notMatch
-      </logic:notMatch>
+      <logic:present parameter="param1">
+        <logic:match parameter="param1" value="value1">
+          match
+        </logic:match>
+        <logic:notMatch parameter="param1" value="value1">
+          notMatch
+        </logic:notMatch>
+      </logic:present>
+      <logic:notPresent parameter="param1">
+          missing
+      </logic:notPresent>
     </td>
   </tr>
   <tr>
@@ -173,12 +208,17 @@
     <td>value1</td>
     <td>ends with</td>
     <td>
-      <logic:match parameter="param1" location="end" value="value1">
-        match
-      </logic:match>
-      <logic:notMatch parameter="param1" location="end" value="value1">
-        notMatch
-      </logic:notMatch>
+      <logic:present parameter="param1">
+        <logic:match parameter="param1" location="end" value="value1">
+          match
+        </logic:match>
+        <logic:notMatch parameter="param1" location="end" value="value1">
+          notMatch
+        </logic:notMatch>
+      </logic:present>
+      <logic:notPresent parameter="param1">
+          missing
+      </logic:notPresent>
     </td>
   </tr>
   <tr>
@@ -187,12 +227,17 @@
     <td>value1</td>
     <td>starts with</td>
     <td>
-      <logic:match parameter="param1" location="start" value="value1">
-        match
-      </logic:match>
-      <logic:notMatch parameter="param1" location="start" value="value1">
-        notMatch
-      </logic:notMatch>
+      <logic:present parameter="param1">
+        <logic:match parameter="param1" location="start" value="value1">
+          match
+        </logic:match>
+        <logic:notMatch parameter="param1" location="start" value="value1">
+          notMatch
+        </logic:notMatch>
+      </logic:present>
+      <logic:notPresent parameter="param1">
+          missing
+      </logic:notPresent>
     </td>
   </tr>
   <tr>
