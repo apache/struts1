@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.6 2001/04/21 23:53:42 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/04/21 23:53:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.7 2001/04/29 03:51:01 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/04/29 03:51:01 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.RequestUtils;
  * ActionForwards collection associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/04/21 23:53:42 $
+ * @version $Revision: 1.7 $ $Date: 2001/04/29 03:51:01 $
  */
 
 public class ForwardTag extends TagSupport {
@@ -159,7 +159,8 @@ public class ForwardTag extends TagSupport {
 	    HttpServletResponse response =
 		(HttpServletResponse) pageContext.getResponse();
 	    try {
-                path = request.getContextPath() + path;
+                if (path.startsWith("/"))
+                    path = request.getContextPath() + path;
 		response.sendRedirect(response.encodeRedirectURL(path));
 	    } catch (Exception e) {
                 RequestUtils.saveException(pageContext, e);
