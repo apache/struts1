@@ -216,9 +216,9 @@ Anything goes =:0)
 </p>
 <p>
 Compared to other offerings, Struts endeavors to be a minimalist framework.
-We try leverage existing technologies whenever we can and then provide only the missing pieces you need to combine disparate technologies into a coherent application.
+We try leverage existing technologies whenever we can and provide only the missing pieces you need to combine disparate technologies into a coherent application.
 This is great when you want to select your own tools to use with Struts.
-But, if you prefer a more integrated infrastructure, then packages like Turbine or Expresso are perfectly good ways to go.
+But, if you prefer a more integrated infrastructure, then packages like Turbine or Expresso (which uses Struts) are perfectly good ways to go.
 </p>
 <p>See also</p>
 <ul>
@@ -233,8 +233,8 @@ But, if you prefer a more integrated infrastructure, then packages like Turbine 
 </section>
 
 <section href="xhtml" name="Are the Struts tags XHTML compliant?">
-<p>If you utilize a &lt;html:html xhtml="true> element on your page, the tags
-will render in a XHTML compatible manner (since Struts 1.1 beta 2). </p>
+<p>If you use an &lt;html:html xhtml="true&gt; or &lt;html:xhtml/&gt; element on your page, the tags
+will render as XHTML (since Struts 1.1). </p>
 </section>
 
 <section href="wml" name="Will the Struts tags support other markup languages such as WML">
@@ -311,16 +311,18 @@ appear to help these technologies work as well with Struts.
 <section href="ide" name="Is there a particularly good IDE to use with Struts">
 <p>
 Struts should work well with any development environment that you would like to use, as well as with any programmers editor. 
-The members of the Struts development team each use their own tools, which ranges from emacs and Textpad to IDEA by IntelliJ,
-    with NetBeans and Eclipse ranging in between.
+The members of the Struts development team each use their own tools such as 
+<a href="http://www.gnu.org/software/emacs/emacs.html">Emacs</a>, 
+<a href="http://www.intellij.com/idea/">IDEA</a>, 
+<a href="http://www.eclipse.org/">Eclipse</a>, 
+and <a href="http://www.netbeans.org/">NetBeans</a>.
 </p>
 <p>
-At this writing, in the free zone, NetBeans had the edge with JSP editing, but Eclipse has relatively more advanced refactoring features. 
+At this writing, in the free zone, NetBeans had the edge with JSP editing, but Eclipse has more advanced refactoring features. 
 Eclipse is also a general-purpose IDE and can be used with non-Java projects.
-In the non-free zone, IDEA by IntelliJ is highly regarded but costs money. (Of course, if *you* cost money, good tools are often a good investment.)
-    Many of the Struts Committers use IDEA, though others do not.
-    </p>
-    <p>
+In the non-free zone, IDEA is highly regarded but costs money. (Of course, if *you* cost money, good tools are often a good investment.)
+</p>
+<p>
 See the <a href="../faqs/index.html">Howto Guides</a> for more about configuring IDEs to work with Struts.
 </p>
 </section>
