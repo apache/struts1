@@ -66,6 +66,18 @@
 
   <section name="Learning About Struts" href="Docs">
 
+  <p>
+  The <b>official documentation</b> for the framework is provided both online 
+  and as a self-installing WAR in the distribution 
+  (<code>struts-documentation.war</code>). This includes the 
+  <a href="kickstart.html">Kickstart</a> and
+  <a href="newbie.html">Newbie</a> FAQs,   
+  <a href="userGuide/index.html">Users Guide</a>, 
+  <a href="api/index.html">Javadocs</a>, and everything else you find here.
+  You are invited to preview the documentation online, and then install the
+  application locally for closer study. 
+  </p>
+
   <blockquote>
   Note: Most of the links in this section refer to the <b>Nightly Build</b>. 
   When learning about Struts, <b>be sure to refer to the documentation for the 
@@ -86,10 +98,10 @@
 
   <p>
   A concise <a href="userGuide/index.html"><b>Users Guide</b></a> is also provided 
-  with the distribution. The User Guide introduces the Model-View-Controller 
+  with the distribution. The Users Guide introduces the Model-View-Controller 
   architecture, and how it relates to the major components of Struts. Several <b>Developer 
-  Guides</b> are provided with the User Guide, to help you get started with the Struts JSP 
-  tag extensions and utility packages. The User Guide also includes detailed installation 
+  Guides</b> supplement the Users Guide. These help you get started with the Struts JSP 
+  tag extensions and utility packages. The Users Guide also includes detailed installation 
   instructions and release notes for each version of the framework.
   </p>
 
@@ -249,10 +261,10 @@
   will have to do this for you, and it may never get done. (Sad but true.) If you 
   are submitting new material, it is important to decide exactly where you would 
   put this in relation to the rest of the documentation. Someone has to figure that 
-  out before it can be added, and that someone might as well be you.
+  out before it can added, and that someone might as well you.
   </p>
   <p>
-  New additions for the Resources page should be posted as an enhancement request to 
+  New additions for the Resources page should posted as an enhancement request to 
   <a href="#Bugs">Bugzilla</a>.
   </p>
 
