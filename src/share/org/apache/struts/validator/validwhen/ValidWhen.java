@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhen.java,v 1.6 2003/07/04 20:38:19 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/07/04 20:38:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhen.java,v 1.7 2003/08/23 17:18:39 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/08/23 17:18:39 $
  *
  * ====================================================================
  *
@@ -91,14 +91,21 @@ public class ValidWhen {
      * Checks if the field matches the boolean expression specified in 
      * <code>test</code> parameter.
      *
-     *@param  bean     The bean validation is being performed on.
-     *@param  va       The <code>ValidatorAction</code> that is currently being performed.
-     *@param  field    The <code>Field</code> object associated with the current
+     * @param bean The bean validation is being performed on.
+     * 
+     * @param va The <code>ValidatorAction</code> that is currently being 
+     *      performed.
+     * 
+     * @param field The <code>Field</code> object associated with the current
      *      field being validated.
-     *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+     * 
+     * @param errors The <code>ActionErrors</code> object to add errors to if any
      *      validation errors occur.
-     *@param  request  Current request object.
-     *@return          True if meets stated requirements, False otherwise
+     * 
+     * @param request Current request object.
+     * 
+     * @return <code>true</code> if meets stated requirements, 
+     *      <code>false</code> otherwise.
      */
     public static boolean validateValidWhen(
         Object bean,
@@ -116,10 +123,12 @@ public class ValidWhen {
         if (field.isIndexed()) {
             String key = field.getKey();
 
-            if ((key.indexOf("[") > -1) && (key.indexOf("]") > -1)) {
+            final int leftBracket = key.indexOf("[");
+            final int rightBracket = key.indexOf("]");
+
+            if ((leftBracket > -1) && (rightBracket > -1)) {
                 index =
-                    Integer.parseInt(
-                        key.substring(key.indexOf("[") + 1, key.indexOf("]")));
+                    Integer.parseInt(key.substring(leftBracket + 1, rightBracket));
             }
         }
         
@@ -148,12 +157,19 @@ public class ValidWhen {
             
         } catch (Exception ex) {
             ex.printStackTrace();
-            errors.add(field.getKey(), Resources.getActionError(request, va, field));
+            
+            errors.add(
+                field.getKey(),
+                Resources.getActionMessage(request, va, field));
+                
             return false;
         }
         
         if (!valid) {
-            errors.add(field.getKey(), Resources.getActionError(request, va, field));
+            errors.add(
+                field.getKey(),
+                Resources.getActionMessage(request, va, field));
+                
             return false;
         }
         
