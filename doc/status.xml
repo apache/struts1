@@ -10,7 +10,7 @@
 <chapter href="status" name="Development Roadmap">
 
 <section href="status" name="Development Roadmap">
-<p><font size="-2">$Id: status.xml,v 1.10 2002/11/07 08:47:33 husted Exp $</font></p>
+<p><font size="-2">$Id: status.xml,v 1.11 2002/11/11 21:34:40 husted Exp $</font></p>
 <p>
 This document outlines some of changes we expect to
 see in future releases of Struts.
@@ -112,7 +112,7 @@ Target features include:
 </section>
 
 <section>
-<p><font size="-2">Website updated from CVS: 2002 NOV 7 by husted.</font></p>
+<p><font size="-2">Website updated from CVS: 2002 NOV 11 by husted.</font></p>
 </section>
 
 </chapter></body></document>
