@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.16 2001/12/17 11:08:10 oalexeev Exp $
- * $Revision: 1.16 $
- * $Date: 2001/12/17 11:08:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.17 2002/01/17 18:20:16 oalexeev Exp $
+ * $Revision: 1.17 $
+ * $Date: 2002/01/17 18:20:16 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2001/12/17 11:08:10 $
+ * @version $Revision: 1.17 $ $Date: 2002/01/17 18:20:16 $
  */
 
 public class WriteTag extends TagSupport {
@@ -307,6 +307,24 @@ public class WriteTag extends TagSupport {
     }
 
     /**
+     * Retrieve format string from message bundle and return null if
+     * message not found or message string.
+     * 
+     * @param formatKey value to use as key to search message in bundle
+     * @exception JspException if a JSP exception has occurred
+     */
+    protected String retrieveFormatString( String formatKey ) throws JspException {
+        String result = RequestUtils.message( pageContext, this.bundle, 
+                                this.localeKey, formatKey );
+        if( ( result!=null ) &&
+              !( result.startsWith( "???" ) &&
+                 result.endsWith( "???" ) ) )
+                return result;
+        else
+                return null;
+    }
+
+    /**
      * Format value according to specified format string (as tag attribute or
      * as string from message resources) or to current user locale.
      * 
@@ -325,10 +343,10 @@ public class WriteTag extends TagSupport {
         } else {
 
             // Try to retrieve format string from resources by the key from formatKey.
-            if( formatKey!=null ) {
-                    formatStr = RequestUtils.message( pageContext, this.bundle,
-                                                this.localeKey, this.formatKey );
-                    formatStrFromResources = true;
+            if( ( formatStr==null ) && ( formatKey!=null ) ) {
+                    formatStr = retrieveFormatString( this.formatKey );
+                    if( formatStr!=null )
+                            formatStrFromResources = true;
             }
 
             // Prepare format object for numeric values.
@@ -340,13 +358,11 @@ public class WriteTag extends TagSupport {
                             ( value instanceof Integer ) ||
                             ( value instanceof Long )    ||
                             ( value instanceof BigInteger ) )
-                                formatStr = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, INT_FORMAT_KEY );
+                                formatStr = retrieveFormatString( INT_FORMAT_KEY );
                         else if( ( value instanceof Float ) ||
                                  ( value instanceof Double ) ||
                                  ( value instanceof BigDecimal ) )
-                                formatStr = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, FLOAT_FORMAT_KEY );
+                                formatStr = retrieveFormatString( FLOAT_FORMAT_KEY );
                         if( formatStr!=null ) 
                                 formatStrFromResources = true;
                 }
@@ -370,17 +386,13 @@ public class WriteTag extends TagSupport {
                 if( formatStr==null ) {
 
                         if (  value instanceof java.sql.Timestamp ) {
-                                formatStr = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, SQL_TIMESTAMP_FORMAT_KEY );
+                                formatStr = retrieveFormatString( SQL_TIMESTAMP_FORMAT_KEY );
                         } else if (  value instanceof java.sql.Date ) {
-                                formatStr = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, SQL_DATE_FORMAT_KEY );
+                                formatStr = retrieveFormatString( SQL_DATE_FORMAT_KEY );
                         } else if (  value instanceof java.sql.Time ) {
-                                formatStr = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, SQL_TIME_FORMAT_KEY );
+                                formatStr = retrieveFormatString( SQL_TIME_FORMAT_KEY );
                         } else if (  value instanceof java.util.Date ) {
-                                formatStr = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, DATE_FORMAT_KEY );
+                                formatStr = retrieveFormatString( DATE_FORMAT_KEY );
                         }
 
                         if( formatStr!=null ) 
