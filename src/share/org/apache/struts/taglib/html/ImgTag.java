@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.25 2002/11/24 22:01:53 dgraham Exp $
- * $Revision: 1.25 $
- * $Date: 2002/11/24 22:01:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.26 2002/11/24 22:04:06 dgraham Exp $
+ * $Revision: 1.26 $
+ * $Date: 2002/11/24 22:04:06 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.25 $
+ * @version $Revision: 1.26 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -586,18 +586,20 @@ public class ImgTag extends BaseHandlerTag {
      */
     protected String url(String url) throws JspException {
 
-        if (url == null)
+        if (url == null) {
             return (url);
+        }
 
         // Start with an unadorned URL as specified
         StringBuffer src = new StringBuffer(url);
 
         // Append a single-parameter name and value, if requested
         if ((paramId != null) && (paramName != null)) {
-            if (src.toString().indexOf('?') < 0)
+            if (src.toString().indexOf('?') < 0) {
                 src.append('?');
-            else
+            } else {
                 src.append('&');
+            }
             src.append(paramId);
             src.append('=');
             Object value = RequestUtils.lookup(pageContext, paramName, paramProperty, paramScope);
@@ -611,8 +613,10 @@ public class ImgTag extends BaseHandlerTag {
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-        if (name == null)
+
+        if (name == null) {
             return (src.toString());
+        }
 
         // Look up the map we will be using
         Object mapObject = RequestUtils.lookup(pageContext, name, property, scope);
@@ -631,9 +635,9 @@ public class ImgTag extends BaseHandlerTag {
             String key = (String) keys.next();
             Object value = map.get(key);
             if (value == null) {
-                if (question)
+                if (question) {
                     src.append('&');
-                else {
+                } else {
                     src.append('?');
                     question = true;
                 }
@@ -643,9 +647,9 @@ public class ImgTag extends BaseHandlerTag {
             } else if (value instanceof String[]) {
                 String values[] = (String[]) value;
                 for (int i = 0; i < values.length; i++) {
-                    if (question)
+                    if (question) {
                         src.append('&');
-                    else {
+                    } else {
                         src.append('?');
                         question = true;
                     }
@@ -654,9 +658,10 @@ public class ImgTag extends BaseHandlerTag {
                     src.append(RequestUtils.encodeURL(values[i]));
                 }
             } else {
-                if (question)
+
+                if (question) {
                     src.append('&');
-                else {
+                } else {
                     src.append('?');
                     question = true;
                 }
