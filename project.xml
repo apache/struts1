@@ -12,53 +12,21 @@
   <!-- <logo>/images/struts-blue.gif</logo>-->
   <logo>http://jakarta.apache.org/struts/images/struts.gif</logo>
   <inceptionYear>2000</inceptionYear>
-
   <package>org.apache.struts</package>
-
   <shortDescription>MVC Web Application Framework</shortDescription>
-
   <!-- Gump integration -->
   <gumpRepositoryId>jakarta</gumpRepositoryId>
-
-  <description>
-    The core of the Struts framework is a flexible control layer based on standard
-    technologies like Java Servlets, JavaBeans, ResourceBundles, 
-    and Extensible Markup Language (XML), as well as various Jakarta Commons packages.
-    Struts encourages application architectures based on the Model 2 approach, a variation
-    of the classic  Model-View-Controller (MVC) design paradigm.
-    
-    Struts provides its own Controller component and integrates with other technologies
-    to provide the Model and the View. For the Model, Struts can interact with any standard
-    data access technology, including Enterprise Java Beans, JDBC, and Object Relational Bridge.
-    For the View, Struts works well with JavaServer Pages, including JSTL and JSF, 
-    as well as Velocity Templates, XSLT, and other presentation systems.
-    
-    The Struts framework provides the invisible underpinnings every professional 
-    web application needs to survive. Struts helps you create an extensible 
-    development environment for your application, based on published standards
-    and proven design patterns.
-  </description>
-
+  <description>The core of the Struts framework is a flexible control layer based on standard technologies like Java Servlets, JavaBeans, ResourceBundles, and Extensible Markup Language (XML), as well as various Jakarta Commons packages. Struts encourages application architectures based on the Model 2 approach, a variation of the classic Model-View-Controller (MVC) design paradigm. Struts provides its own Controller component and integrates with other technologies to provide the Model and the View. For the Model, Struts can interact with any standard data access technology, including Enterprise Java Beans, JDBC, and Object Relational Bridge. For the View, Struts works well with JavaServer Pages, including JSTL and JSF, as well as Velocity Templates, XSLT, and other presentation systems. The Struts framework provides the invisible underpinnings every professional web application needs to survive. Struts helps you create an extensible development environment for your application, based on published standards and proven design patterns.</description>
   <url>http://jakarta.apache.org/</url>
-  <issueTrackingUrl>
-    http://issues.apache.org/bugzilla/
-  </issueTrackingUrl>
+  <issueTrackingUrl>http://issues.apache.org/bugzilla/</issueTrackingUrl>
   <siteAddress>jakarta.apache.org/struts</siteAddress>
-  <siteDirectory>
-    /www/jakarta.apache.org/struts
-  </siteDirectory>
-  <distributionDirectory>
-    /www/apache.mirrors.pair.com/jakarta/struts/
-  </distributionDirectory>
-
+  <siteDirectory>/www/jakarta.apache.org/struts</siteDirectory>
+  <distributionDirectory>/www/apache.mirrors.pair.com/jakarta/struts/</distributionDirectory>
   <repository>
-     <connection>scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:jakarta-struts</connection>
-     <developerConnection>scm:cvs:pserver:${cvs.developer.id}@${cvs.developer.host}:/home/cvs:jakarta-struts</developerConnection>
-    <url>
-      http://cvs.apache.org/viewcvs/jakarta-struts/
-    </url>
+    <connection>scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:jakarta-struts</connection>
+    <developerConnection>scm:cvs:pserver:${cvs.developer.id}@${cvs.developer.host}:/home/cvs:jakarta-struts</developerConnection>
+    <url>http://cvs.apache.org/viewcvs/jakarta-struts/</url>
   </repository>
-
   <versions>
     <version>
       <id>1.0.2</id>
@@ -71,141 +39,111 @@
       <tag>STRUTS_1_1</tag>
     </version>
   </versions>
-
   <mailingLists>
     <mailingList>
       <name>Struts User List</name>
-      <subscribe>
-        struts-user-subscribe@jakarta.apache.org
-      </subscribe>
-      <unsubscribe>
-        struts-user-unsubscribe@jakarta.apache.org
-      </unsubscribe>
-      <archive>
-        http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=42
-      </archive>
+      <subscribe>struts-user-subscribe@jakarta.apache.org</subscribe>
+      <unsubscribe>struts-user-unsubscribe@jakarta.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=42</archive>
     </mailingList>
     <mailingList>
       <name>Struts Developer List</name>
-      <subscribe>
-        struts-dev-subscribe@jakarta.apache.org
-      </subscribe>
-      <unsubscribe>
-        struts-dev-unsubscribe@jakarta.apache.org
-      </unsubscribe>
-      <archive>
-        http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=41
-      </archive>
+      <subscribe>struts-dev-subscribe@jakarta.apache.org</subscribe>
+      <unsubscribe>struts-dev-unsubscribe@jakarta.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=41</archive>
     </mailingList>
   </mailingLists>
-
   <developers>
-
-        <developer>
-            <id>craigmcc</id>
-            <name>Craig R. McClanahan</name>
-             <email>craigmcc at apache.org</email>
-             <organization></organization>
-        </developer>
-
-        <developer>
-            <id>husted</id>
-            <name>Ted Husted</name>
-             <email>husted at apache.org</email>
-             <organization></organization>
-        </developer>
-
-        <developer>
-            <id>rleland</id>
-            <name>Rob Leland</name>
-             <email>rleland at apache.org</email>
-             <organization></organization>
-        </developer>
-
-        <developer>
-            <id>cedric</id>
-            <name>Cedric Dumoulin</name>
-             <email>cedric.dumoulin at lifl.fr</email>
-              <organization></organization>
-        </developer>
-
-        <developer>
-            <id>martinc</id>
-            <name>Martin Cooper</name>
-             <email>martinc at apache.org</email>
-              <organization></organization>
-        </developer>
-
-        <developer>
-            <id>arron</id>
-            <name>Arron Bates</name>
-             <email>arron at apache.org</email>
-              <organization></organization>
-        </developer>
-
-        <developer>
-            <id>jholmes</id>
-            <name>James Holmes</name>
-             <email>jholmes at apache.org</email>
-              <organization></organization>
-        </developer>
-
-        <developer>
-            <id>dmkarr</id>
-            <name>David M. Karr</name>
-             <email>dmkarr at apache.org</email>
-              <organization></organization>
-        </developer>
-
-        <developer>
-            <id>ekbush</id>
-            <name>Eddie Bush</name>
-             <email>ekbush at apache.org</email>
-              <organization></organization>
-        </developer>
-
-        <developer>
-            <id>dgraham</id>
-            <name>David Graham</name>
-             <email>dgraham at apache.org</email>
-              <organization></organization>
-        </developer>
-
-        <developer>
-            <id>jmitchell</id>
-            <name>James Mitchell</name> 
-            <email>jmitchell at apache.org</email>
-             <organization></organization>
-        </developer>
-
-        <developer>
-            <id>turner</id>
-            <name>James Turner</name>
-            <email>turner at blackbear.com</email>
-             <organization></organization>
-        </developer>
-
-        <developer>
-            <id>sraeburn</id>
-            <name>Steve Raeburn</name>
-            <email>sraeburn at apache.org</email>
-             <organization></organization>
-        </developer>
-
-        <developer>
-            <id>mrdon</id>
-            <name>Don Brown</name>
-            <email>mrdon at apache.org</email>
-             <organization></organization>
-        </developer>
-
-        <developer>
-            <id>germuska</id>
-            <name>Joe Germuska</name>
-            <email>germuska at apache.org</email>
-             <organization></organization>
-        </developer>
-
+    <developer>
+      <id>craigmcc</id>
+      <name>Craig R. McClanahan</name>
+      <email>craigmcc at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>husted</id>
+      <name>Ted Husted</name>
+      <email>husted at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>rleland</id>
+      <name>Rob Leland</name>
+      <email>rleland at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>cedric</id>
+      <name>Cedric Dumoulin</name>
+      <email>cedric.dumoulin at lifl.fr</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>martinc</id>
+      <name>Martin Cooper</name>
+      <email>martinc at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>arron</id>
+      <name>Arron Bates</name>
+      <email>arron at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>jholmes</id>
+      <name>James Holmes</name>
+      <email>jholmes at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>dmkarr</id>
+      <name>David M. Karr</name>
+      <email>dmkarr at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>ekbush</id>
+      <name>Eddie Bush</name>
+      <email>ekbush at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>dgraham</id>
+      <name>David Graham</name>
+      <email>dgraham at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>jmitchell</id>
+      <name>James Mitchell</name>
+      <email>jmitchell at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>turner</id>
+      <name>James Turner</name>
+      <email>turner at blackbear.com</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>sraeburn</id>
+      <name>Steve Raeburn</name>
+      <email>sraeburn at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>mrdon</id>
+      <name>Don Brown</name>
+      <email>mrdon at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>germuska</id>
+      <name>Joe Germuska</name>
+      <email>germuska at apache.org</email>
+      <organization></organization>
+    </developer>
   </developers>
   <contributors>
     <contributor>
@@ -218,7 +156,6 @@
       </roles>
     </contributor>
   </contributors>
-
   <dependencies>
     <dependency>
       <id>commons-beanutils</id>
@@ -229,7 +166,6 @@
         <cactus.bundle>true</cactus.bundle>
       </properties>
     </dependency>
-
     <dependency>
       <id>commons-collections</id>
       <version>2.1</version>
@@ -239,7 +175,6 @@
         <cactus.bundle>true</cactus.bundle>
       </properties>
     </dependency>
-
     <dependency>
       <id>commons-digester</id>
       <version>1.5</version>
@@ -249,7 +184,6 @@
         <cactus.bundle>true</cactus.bundle>
       </properties>
     </dependency>
-
     <dependency>
       <id>commons-fileupload</id>
       <version>1.0</version>
@@ -259,7 +193,6 @@
         <cactus.bundle>true</cactus.bundle>
       </properties>
     </dependency>
-    
     <dependency>
       <id>commons-logging</id>
       <version>1.0.3</version>
@@ -269,33 +202,24 @@
         <cactus.bundle>true</cactus.bundle>
       </properties>
     </dependency>
-    
-    <!--
-    <dependency>
-      <id>commons-validator</id>
-      <version>SNAPSHOT</version>
-      <url>http://jakarta.apache.org/commons/validator/</url>
-    </dependency>
-    -->
-
     <dependency>
       <!-- 
-        Note that this version of commons-validator is not yet
-        served from the iBiblio repository.  You can download 
-        a distribution from http://www.apache.org/~rleland/ValidatorAlpha/1.1.1/
-        or build it from the CVS repository.  (With Maven, you can use 
-        the goal jar:install to build a jar and put it in your Maven repository.)
-        
-        If you download the binary, don't forget to rename to include the version number 
-        (from "commons-validator.jar" to "commons-validator-1.1.1.jar"
-        
-        If you build it from the CVS repository, you will probably end up with
-        version 1.1.2-dev.  You can tell Maven to use that version with Struts
-        by editing your "build.properties" file in the root of your local
-        copy of the Struts CVS distribution.  Include these two lines:
-        maven.jar.override=on
-        maven.jar.commons-validator=1.1.2-dev
-      -->
+              Note that this version of commons-validator is not yet
+              served from the iBiblio repository.  You can download 
+              a distribution from http://www.apache.org/~rleland/ValidatorAlpha/1.1.1/
+              or build it from the CVS repository.  (With Maven, you can use 
+              the goal jar:install to build a jar and put it in your Maven repository.)
+              
+              If you download the binary, don't forget to rename to include the version number 
+              (from "commons-validator.jar" to "commons-validator-1.1.1.jar"
+              
+              If you build it from the CVS repository, you will probably end up with
+              version 1.1.2-dev.  You can tell Maven to use that version with Struts
+              by editing your "build.properties" file in the root of your local
+              copy of the Struts CVS distribution.  Include these two lines:
+              maven.jar.override=on
+              maven.jar.commons-validator=1.1.2-dev
+            -->
       <id>commons-validator</id>
       <version>1.1.1</version>
       <url>http://jakarta.apache.org/commons/validator/</url>
@@ -303,8 +227,7 @@
         <war.bundle>true</war.bundle>
         <cactus.bundle>true</cactus.bundle>
       </properties>
-    </dependency>    
-    
+    </dependency>
     <dependency>
       <id>oro</id>
       <version>2.0.7</version>
@@ -314,39 +237,37 @@
         <cactus.bundle>true</cactus.bundle>
       </properties>
     </dependency>
-
     <dependency>
       <id>xml-apis</id>
       <version>2.0.2</version>
       <url>http://xml.apache.org/commons/</url>
-      <properties><war.bundle>true</war.bundle></properties>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
     </dependency>
-
     <dependency>
       <groupId>antlr</groupId>
       <artifactId>antlr</artifactId>
       <version>2.7.2</version>
-      <properties><war.bundle>true</war.bundle></properties>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
     </dependency>
-
     <dependency>
       <id>servletapi</id>
       <version>2.2</version>
     </dependency>
-    
     <!-- for unit tests -->
     <dependency>
       <id>junit</id>
       <version>3.8.1</version>
       <url>http://www.junit.org</url>
     </dependency>
-    
     <dependency>
       <id>commons-lang</id>
       <version>2.0</version>
       <url>http://jakarta.apache.org/commons/lang.html</url>
     </dependency>
-    
     <dependency>
       <groupId>cactus</groupId>
       <artifactId>cactus</artifactId>
@@ -359,31 +280,21 @@
       <version>1.4.1</version>
       <url>http://jakarta.apache.org/cactus</url>
     </dependency>
-
     <!-- for tld generation -->
     <dependency>
-        <groupId>xalan</groupId>
-        <artifactId>xalan</artifactId>
-        <version>2.5.1</version>
-        <url>http://xml.apache.org/xalan</url>
-    </dependency> 
-
+      <groupId>xalan</groupId>
+      <artifactId>xalan</artifactId>
+      <version>2.5.1</version>
+      <url>http://xml.apache.org/xalan</url>
+    </dependency>
   </dependencies>
-
   <build>
-
-    <nagEmailAddress>
-      struts-dev@jakarta.apache.org
-    </nagEmailAddress>
-
+    <nagEmailAddress>struts-dev@jakarta.apache.org</nagEmailAddress>
     <sourceDirectory>src/share</sourceDirectory>
-
-      <!-- Unit test cases -->
+    <!-- Unit test cases -->
     <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
-    <integrationUnitTestSourceDirectory/>
-
-    <aspectSourceDirectory/>
-
+    <integrationUnitTestSourceDirectory />
+    <aspectSourceDirectory />
     <unitTest>
       <includes>
         <include>org/apache/struts/action/TestDynaActionForm.java</include>
@@ -409,7 +320,6 @@
         </resource>
       </resources>
     </unitTest>
-
     <!-- J A R  R E S O U R C E S -->
     <!-- Resources that are packaged up inside the JAR file -->
     <resources>
@@ -420,26 +330,21 @@
         </includes>
       </resource>
     </resources>
-
     <!-- Integration unit test cases -->
-    <integrationUnitTest/>
-
-    <jars>
-    </jars>
+    <integrationUnitTest />
+    <jars></jars>
   </build>
-
   <reports>
     <!--
-     |
-     | These should all be completely self contained. You should be able
-     | to generate each of them individually without needing the final
-     | xdoc transformation.
-     |
-     | Each report plugin with it's POM and plugin.jelly logic should
-     | contain everything needed to produced the report.
-     |
-    -->
-
+         |
+         | These should all be completely self contained. You should be able
+         | to generate each of them individually without needing the final
+         | xdoc transformation.
+         |
+         | Each report plugin with it's POM and plugin.jelly logic should
+         | contain everything needed to produced the report.
+         |
+        -->
     <report>maven-jdepend-plugin</report>
     <report>maven-checkstyle-plugin</report>
     <report>maven-changes-plugin</report>
@@ -454,5 +359,4 @@
     <report>maven-simian-plugin</report>
     <!-- <report>maven-faq-plugin</report> -->
   </reports>
-
 </project>
