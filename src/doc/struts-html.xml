@@ -3608,10 +3608,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                The attribute name to use in determining which option
-                should be pre-selected when rendering this input field.
-                If not specified, the bean associated with the
-                form tag we are nested within is utilized.
+                The attribute name of the bean whose properties are consulted
+                to determine which option should be pre-selected when rendering
+                this input field.  If not specified, the bean associated with
+                the enclosing <code>&lt;html:form&gt;</code> tag is utilized.
             </info>
         </attribute>
 
