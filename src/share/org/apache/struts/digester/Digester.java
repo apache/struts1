@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.18 2001/04/15 22:02:27 craigmcc Exp $
- * $Revision: 1.18 $
- * $Date: 2001/04/15 22:02:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.19 2001/04/15 22:21:18 craigmcc Exp $
+ * $Revision: 1.19 $
+ * $Date: 2001/04/15 22:21:18 $
  *
  * ====================================================================
  * 
@@ -79,6 +79,7 @@ import org.apache.struts.util.ArrayStack;
 import org.xml.sax.AttributeList;
 import org.xml.sax.DocumentHandler;
 import org.xml.sax.EntityResolver;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.HandlerBase;
 import org.xml.sax.InputSource;
 import org.xml.sax.Locator;
@@ -102,7 +103,7 @@ import org.xml.sax.SAXParseException;
  * even from the same thread.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.18 $ $Date: 2001/04/15 22:02:27 $
+ * @version $Revision: 1.19 $ $Date: 2001/04/15 22:21:18 $
  */
 
 public class Digester extends HandlerBase {
@@ -147,6 +148,13 @@ public class Digester extends HandlerBase {
      * identifier that corresponds.
      */
     protected HashMap dtds = new HashMap();
+
+
+    /**
+     * The application-supplied error handler that is notified when parsing
+     * warnings, errors, or fatal errors occur.
+     */
+    protected ErrorHandler errorHandler = null;
 
 
     /**
@@ -209,7 +217,7 @@ public class Digester extends HandlerBase {
 
 
     /**
-     * Return the debugging detail level of this Context.
+     * Return the debugging detail level of this Digester.
      */
     public int getDebug() {
 
@@ -219,13 +227,35 @@ public class Digester extends HandlerBase {
 
 
     /**
-     * Set the debugging detail level of this Context.
+     * Set the debugging detail level of this Digester.
      *
      * @param debug The new debugging detail level
      */
     public void setDebug(int debug) {
 
 	this.debug = debug;
+
+    }
+
+
+    /**
+     * Return the error handler for this Digester.
+     */
+    public ErrorHandler getErrorHandler() {
+
+        return (this.errorHandler);
+
+    }
+
+
+    /**
+     * Set the error handler for this Digester.
+     *
+     * @param errorHandler The new error handler
+     */
+    public void setErrorHandler(ErrorHandler errorHandler) {
+
+        this.errorHandler = errorHandler;
 
     }
 
@@ -588,9 +618,10 @@ public class Digester extends HandlerBase {
 
 
     /**
-     * Receive notification of a recoverable parsing error.
+     * Forward notification of a parsing error to the application supplied
+     * error handler (if any).
      *
-     * @param exception The warning information
+     * @param exception The error information
      *
      * @exception SAXException if a parsing exception occurs
      */
@@ -599,14 +630,17 @@ public class Digester extends HandlerBase {
 	log("Parse Error at line " + exception.getLineNumber() +
 	    " column " + exception.getColumnNumber() + ": " +
 	    exception.getMessage(), exception);
+        if (errorHandler != null)
+            errorHandler.error(exception);
 
     }
 
 
     /**
-     * Receive notification of a fatal parsing error.
+     * Forward notification of a fatal parsing error to the application
+     * supplied error handler (if any).
      *
-     * @param exception The warning information
+     * @param exception The fatal error information
      *
      * @exception SAXException if a parsing exception occurs
      */
@@ -615,12 +649,15 @@ public class Digester extends HandlerBase {
 	log("Parse Fatal Error at line " + exception.getLineNumber() +
 	    " column " + exception.getColumnNumber() + ": " +
 	    exception.getMessage(), exception);
+        if (errorHandler != null)
+            errorHandler.fatalError(exception);
 
     }
 
 
     /**
-     * Receive notification of a parsing warning.
+     * Forward notification of a parse warning to the application supplied
+     * error handler (if any).
      *
      * @param exception The warning information
      *
@@ -631,6 +668,8 @@ public class Digester extends HandlerBase {
 	log("Parse Warning at line " + exception.getLineNumber() +
 	    " column " + exception.getColumnNumber() + ": " +
 	    exception.getMessage(), exception);
+        if (errorHandler != null)
+            errorHandler.warning(exception);
 
     }
 
