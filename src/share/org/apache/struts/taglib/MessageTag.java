@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MessageTag.java,v 1.2 2000/06/01 21:06:27 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/01 21:06:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MessageTag.java,v 1.3 2000/06/29 18:13:37 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/29 18:13:37 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/01 21:06:27 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/29 18:13:37 $
  */
 
 public final class MessageTag extends TagSupport {
@@ -148,6 +148,12 @@ public final class MessageTag extends TagSupport {
      * The message key of the message to be retrieved.
      */
     private String key = null;
+
+
+    /**
+     * The session scope key under which our Locale is stored.
+     */
+    private String localeKey = Action.LOCALE_KEY;
 
 
     /**
@@ -315,6 +321,28 @@ public final class MessageTag extends TagSupport {
     }
 
 
+    /**
+     * Return the locale key.
+     */
+    public String getLocale() {
+
+	return (this.localeKey);
+
+    }
+
+
+    /**
+     * Set the locale key.
+     *
+     * @param locale The new locale key
+     */
+    public void setLocale(String locale) {
+
+	this.localeKey = locale;
+
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -334,8 +362,7 @@ public final class MessageTag extends TagSupport {
 
 	// Calculate the Locale we will be using
 	Locale locale = (Locale)
-	    pageContext.getAttribute(Action.LOCALE_KEY,
-				     PageContext.SESSION_SCOPE);
+	    pageContext.getAttribute(localeKey, PageContext.SESSION_SCOPE);
 	if (locale == null)
 	    locale = defaultLocale;
 
