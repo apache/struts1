@@ -50,8 +50,13 @@
        <!-- Body -->
        <td valign="top">
           <H2>Revision Info</H2>
-	   <font size=-1>Update</font><BR>
+	   <font size=-1>Update 10/18/2001 (using Struts 10/18/2001 source)</font><BR>
 	   <ul>
+	      <li>The last change that added indexed properties broke all locales except for 
+	          the default locale.  The Field wasn't processed yet when the locale field 
+	          genration occurred and was returning a null key value.
+	      </li>
+              <li>Added a check so JavascriptValidatorTag won't generate indexed properties.</li>
               <li>Changed Javascript to validate for a type of 'select-one' instead of 'select'.  
                   Javascript returns 'select-one' for a field's type value.
               </li>
@@ -59,6 +64,9 @@
               <li>Removed code from Validator retrieving the value to be validated.  It wasn't being used and 
                   this way as long as you specify a unique name for a field a custom validator that isn't specifically 
                   tied to a field won't generate an error in the logs.
+              </li>
+              <li>The web apps were changed to use html:messages and logic:messagesPresent 
+                  for error messages.
               </li>
 	   </ul>
 	   <font size=-1>Update 9/25/2001 (using Struts 9/25/2001 source)</font><BR>
