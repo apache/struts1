@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.11 2003/07/26 00:40:29 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2003/07/26 00:40:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.12 2003/08/22 23:49:12 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/08/22 23:49:12 $
  *
  * ====================================================================
  *
@@ -129,7 +129,7 @@ public class FieldChecks implements Serializable {
         }
         
         if (GenericValidator.isBlankOrNull(value)) {
-            errors.add(field.getKey(), Resources.getActionError(request, va, field));
+            errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
             return false;
         } else {
             return true;
@@ -232,7 +232,7 @@ public class FieldChecks implements Serializable {
 			if (GenericValidator.isBlankOrNull(value)) {
 				errors.add(
 					field.getKey(),
-					Resources.getActionError(request, va, field));
+					Resources.getActionMessage(request, va, field));
 				
                 return false;
 
@@ -275,7 +275,7 @@ public class FieldChecks implements Serializable {
                     
                 errors.add(
                     field.getKey(),
-                    Resources.getActionError(request, va, field));
+                    Resources.getActionMessage(request, va, field));
 
                 return false;
             } else {
@@ -317,7 +317,7 @@ public class FieldChecks implements Serializable {
             result = GenericTypeValidator.formatByte(value);
 
             if (result == null) {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
             }
         }
 
@@ -353,7 +353,7 @@ public class FieldChecks implements Serializable {
             result = GenericTypeValidator.formatShort(value);
 
             if (result == null) {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
             }
         }
 
@@ -389,7 +389,7 @@ public class FieldChecks implements Serializable {
             result = GenericTypeValidator.formatInt(value);
 
             if (result == null) {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
             }
         }
 
@@ -425,7 +425,7 @@ public class FieldChecks implements Serializable {
             result = GenericTypeValidator.formatLong(value);
 
             if (result == null) {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
             }
         }
 
@@ -461,7 +461,7 @@ public class FieldChecks implements Serializable {
             result = GenericTypeValidator.formatFloat(value);
 
             if (result == null) {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
             }
         }
 
@@ -497,7 +497,7 @@ public class FieldChecks implements Serializable {
             result = GenericTypeValidator.formatDouble(value);
 
             if (result == null) {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
             }
         }
 
@@ -553,7 +553,7 @@ public class FieldChecks implements Serializable {
             }
 
             if (result == null) {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
             }
         }
 
@@ -613,12 +613,12 @@ public class FieldChecks implements Serializable {
                 int max = Integer.parseInt(field.getVarValue("max"));
 
                 if (!GenericValidator.isInRange(intValue, min, max)) {
-                    errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                    errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
 
                     return false;
                 }
             } catch (Exception e) {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
                 return false;
             }
         }
@@ -658,12 +658,12 @@ public class FieldChecks implements Serializable {
                 double max = Double.parseDouble(field.getVarValue("max"));
 
                 if (!GenericValidator.isInRange(doubleValue, min, max)) {
-                    errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                    errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
 
                     return false;
                 }
             } catch (Exception e) {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
                 return false;
             }
         }
@@ -703,12 +703,12 @@ public class FieldChecks implements Serializable {
                 float max = Float.parseFloat(field.getVarValue("max"));
 
                 if (!GenericValidator.isInRange(floatValue, min, max)) {
-                    errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                    errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
 
                     return false;
                 }
             } catch (Exception e) {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
                 return false;
             }
         }
@@ -746,7 +746,7 @@ public class FieldChecks implements Serializable {
             result = GenericTypeValidator.formatCreditCard(value);
 
             if (result == null) {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
             }
         }
 
@@ -779,7 +779,7 @@ public class FieldChecks implements Serializable {
         }
 
         if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isEmail(value)) {
-            errors.add(field.getKey(), Resources.getActionError(request, va, field));
+            errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
             return false;
         } else {
             return true;
@@ -817,12 +817,12 @@ public class FieldChecks implements Serializable {
                 int max = Integer.parseInt(field.getVarValue("maxlength"));
 
                 if (!GenericValidator.maxLength(value, max)) {
-                    errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                    errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
 
                     return false;
                 }
             } catch (Exception e) {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
                 return false;
             }
         }
@@ -861,12 +861,12 @@ public class FieldChecks implements Serializable {
                 int min = Integer.parseInt(field.getVarValue("minlength"));
 
                 if (!GenericValidator.minLength(value, min)) {
-                    errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                    errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
 
                     return false;
                 }
             } catch (Exception e) {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
                 return false;
             }
         }
