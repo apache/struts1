@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestIncludeTag.java,v 1.6 2003/09/30 00:15:47 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2003/09/30 00:15:47 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestIncludeTag.java,v 1.7 2003/10/11 23:18:17 jmitchell Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/10/11 23:18:17 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -63,8 +63,6 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.apache.cactus.JspTestCase;
-import org.apache.cactus.WebResponse;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Suite of unit tests for the
@@ -74,8 +72,6 @@ import org.apache.commons.lang.StringUtils;
  */
 public class TestIncludeTag extends JspTestCase {
 	
-    protected final static String TEST_VAL = "Test Value";
-
     /**
      * Defines the testcase name for JUnit.
      *
@@ -108,52 +104,38 @@ public class TestIncludeTag extends JspTestCase {
     private void runMyTest(String whichTest){
 		request.setAttribute("runTest", whichTest);
         try {
-			pageContext.forward("/test/org/apache/struts/taglib/bean/TestIncludeTag.jsp");
+			pageContext.forward(
+				request.getRequestURI() + "/org/apache/struts/taglib/bean/TestIncludeTag.jsp");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 			fail("There is a problem that is preventing the tests to continue!");
 		}
     }
-    
-	private void formatAndTest(String compare, String output) {
-		//fix for introduced carriage return / line feeds
-		output = StringUtils.replace(output,"\r","");
-		output = StringUtils.replace(output,"\n","");
-		output = output.trim();
-		//System.out.println("Testing [" + compare + "] == [" + output + "]");
-	    assertEquals(compare, output);
-	}
-
 
     /*
-     * Testing IncludeTag using forward="something"
+     * Testing IncludeTag using the forward attribute.
      */
     public void testIncludeTagForward(){ 
+//		System.out.println("[TestIncludeTag.java]========>request.getServerPort():" + request.getServerPort());
+//		System.out.println("[TestIncludeTag.java]========>request.getRequestURI():" + request.getRequestURI());
+//		System.out.println("[TestIncludeTag.java]========>request.getRequestURL():" + request.getRequestURL());
+//		System.out.println("[TestIncludeTag.java]========>request.getQueryString():" + request.getQueryString());
     	runMyTest("testIncludeTagForward");
-	}
-	public void endIncludeTagForward(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
 	}
 
     /*
-     * Testing IncludeTag
+     * Testing IncludeTag using the href attribute.
      */
     public void testIncludeTagHref(){ 
     	runMyTest("testIncludeTagHref");
 	}
-	public void endIncludeTagHref(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
 
     /*
-     * Testing IncludeTag using page="/something"
+     * Testing IncludeTag using the page attribute
      */
     public void testIncludeTagPage(){ 
     	runMyTest("testIncludeTagPage");
-	}
-	public void endIncludeTagPage(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
 	}
 
 
