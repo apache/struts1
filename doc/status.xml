@@ -10,7 +10,7 @@
 <chapter href="status" name="Development Roadmap">
 
 <section href="status" name="Development Roadmap">
-<p><font size="-2">$Id: status.xml,v 1.7 2002/10/29 11:21:39 husted Exp $</font></p>
+<p><font size="-2">$Id: status.xml,v 1.8 2002/11/04 03:15:51 jmitchell Exp $</font></p>
 <p>
 This document outlines some of changes we expect to
 see in future releases of Struts.
@@ -76,7 +76,7 @@ Features under discussion include:
 <p>
 More detail on work-in-progress may be found in
 <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;version=Unknown&amp;version=1.0+Beta+2&amp;version=1.0+Beta+1&amp;version=0.5+Final&amp;version=1.0.2+Final&amp;version=1.0.1+Final&amp;version=1.0+Final&amp;version=1.0+Beta+3&amp;version=1.1+Beta+2&amp;version=1.1+Beta+1&amp;version=Nightly+Build&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=Bug+Number">Bugzilla</a>.
-If any of these features are important to you, please don't hesitate to <a href="helping.html">help with the development effort</a>.
+If any of these features are important to you, please don't hesitate to <a href="./faqs/helping.html">help with the development effort</a>.
 </p>
 
 </section>
