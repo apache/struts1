@@ -41,6 +41,10 @@
             href="userGuide/index.html"
             />
         <item
+            name="Release Notes"
+            href="userGuide/release-notes.html"
+            />
+        <item
             name="Javadoc"
             href="api/index.html"
             />
