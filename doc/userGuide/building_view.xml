@@ -705,7 +705,7 @@ value="/WEB-INF/validator-rules.xml,
     Create your /index.jsp homepage file:
     
 <pre><code><![CDATA[
-<h1>This is my homepage!&lt;/h1>
+<h1>This is my homepage</h1>
 ]]></code></pre>
 
         </li>
