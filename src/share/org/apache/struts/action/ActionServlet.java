@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.3 2000/06/05 05:28:49 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/05 05:28:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.4 2000/06/13 02:40:29 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/13 02:40:29 $
  *
  * ====================================================================
  *
@@ -140,7 +140,7 @@ import org.xml.sax.SAXException;
  * <p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/05 05:28:49 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/13 02:40:29 $
  */
 
 public class ActionServlet
@@ -237,11 +237,9 @@ public class ActionServlet
     public void init() throws ServletException {
 
 	// Load our internationalized resource bundle
-	try {
-	    internal = new MessageResources(internalName);
-	} catch (MissingResourceException e) {
+	internal = MessageResources.getMessageResources(internalName);
+	if (internal == null)
 	    throw new UnavailableException("Cannot load internal resources");
-	}
 
 	// Process our servlet initialization parameters
 	String value;
@@ -263,17 +261,16 @@ public class ActionServlet
 
 	// Load the application resource bundle (if any)
 	if (applicationName != null) {
-	    try {
-		if (debug >= 1)
-		    log("Loading application resources from bundle " + applicationName);
-		application = new MessageResources(applicationName);
-		getServletContext().setAttribute(Action.MESSAGES_KEY,
-					       application);
-	    } catch (MissingResourceException e) {
+	    if (debug >= 1)
+		log("Loading application resources from bundle " + applicationName);
+	    application =
+		MessageResources.getMessageResources(applicationName);
+	    if (application == null)
 		throw new UnavailableException
 		    (internal.getMessage("applicationResources",
 					 applicationName));
-	    }
+	    getServletContext().setAttribute(Action.MESSAGES_KEY,
+					     application);
 	}
 
 	// Process our configuration resource
