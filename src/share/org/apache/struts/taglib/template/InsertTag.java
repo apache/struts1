@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.12 2002/10/14 18:16:18 rleland Exp $
- * $Revision: 1.12 $
- * $Date: 2002/10/14 18:16:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.13 2002/10/25 23:54:53 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/10/25 23:54:53 $
  *
  * ====================================================================
  *
@@ -78,7 +78,8 @@ import org.apache.struts.util.RequestUtils;
  * tags, which are accessed by &lt;template:get&gt; in the template.
  *
  * @author David Geary
- * @version $Revision: 1.12 $ $Date: 2002/10/14 18:16:18 $
+ * @version $Revision: 1.13 $ $Date: 2002/10/25 23:54:53 $
+ * @deprecated Use Tiles instead.
  */
 public class InsertTag extends TagSupport {
 
@@ -103,6 +104,7 @@ public class InsertTag extends TagSupport {
 
    /**
      * Set the template attribute. 
+     * @deprecated Use Tiles instead.
      */
    public void setTemplate(String template) {
 
@@ -112,6 +114,7 @@ public class InsertTag extends TagSupport {
 
    /**
      * Get the template attribute. 
+     * @deprecated Use Tiles instead.
      */
    public String getTemplate() {
 
@@ -121,6 +124,7 @@ public class InsertTag extends TagSupport {
 
    /**
      * Get the map attribute. 
+     * @deprecated Use Tiles instead.
      */
    public ContentMap getContentMap() {
 
@@ -132,6 +136,7 @@ public class InsertTag extends TagSupport {
      * Process the start tag by pushing this tag's map onto the
      * content map stack. 
      * See org.apache.struts.taglib.template.util.ContentMapStack.
+     * @deprecated Use Tiles instead.
      */
    public int doStartTag() throws JspException {
 
@@ -143,6 +148,7 @@ public class InsertTag extends TagSupport {
 
    /**
      * Process the end tag by including the template. 
+     * @deprecated Use Tiles instead.
      */
    public int doEndTag() throws JspException {
 
@@ -169,6 +175,7 @@ public class InsertTag extends TagSupport {
    /**
      * This method is a convenience for &lt;template:put&gt; tags for
      * putting content into the map.
+     * @deprecated Use Tiles instead.
      */
    public void put(String name, Content content) {
 
@@ -180,6 +187,7 @@ public class InsertTag extends TagSupport {
    /**
      * Reset member values for reuse. This method calls super.release(),
      * which invokes TagSupport.release(), which typically does nothing.
+     * @deprecated Use Tiles instead.
      */
    public void release() {
 
@@ -195,6 +203,7 @@ public class InsertTag extends TagSupport {
      * one present.
      *
      * @param exception Exception to be conditionally saved
+     * @deprecated Use Tiles instead.
      */
     private void saveException(Throwable exception) {
 

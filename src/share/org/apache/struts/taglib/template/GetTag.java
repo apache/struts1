@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.12 2002/03/12 05:55:08 martinc Exp $
- * $Revision: 1.12 $
- * $Date: 2002/03/12 05:55:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.13 2002/10/25 23:54:53 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/10/25 23:54:53 $
  *
  * ====================================================================
  *
@@ -77,7 +77,8 @@ import org.apache.struts.taglib.template.util.*;
  * it, depending upon the value of the content's direct attribute.
  *
  * @author David Geary
- * @version $Revision: 1.12 $ $Date: 2002/03/12 05:55:08 $
+ * @version $Revision: 1.13 $ $Date: 2002/10/25 23:54:53 $
+ * @deprecated Use Tiles instead.
  */
 public class GetTag extends TagSupport {
 
@@ -103,6 +104,7 @@ public class GetTag extends TagSupport {
    /**
     * Set the flush-before-include property
     * @param flush The new flush property
+    * @deprecated Use Tiles instead.
     */
    public void setFlush(boolean flush) {
 
@@ -113,6 +115,7 @@ public class GetTag extends TagSupport {
    /**
      * Set the name attribute
      * @param name The name of the content to get.
+     * @deprecated Use Tiles instead.
      */
    public void setName(String name) {
 
@@ -123,6 +126,7 @@ public class GetTag extends TagSupport {
    /**
      * Set the role attribute
      * @param name The role the user must be in to retrieve content.
+     * @deprecated Use Tiles instead.
      */
    public void setRole(String role) {
 
@@ -132,6 +136,7 @@ public class GetTag extends TagSupport {
 
    /**
     * Get the flush-before-include attribute.
+    * @deprecated Use Tiles instead.
     */
    public boolean getFlush() {
 
@@ -142,6 +147,7 @@ public class GetTag extends TagSupport {
 
    /**
      * Get the name attribute.
+     * @deprecated Use Tiles instead.
      */
    public String getName() { 
 
@@ -151,6 +157,7 @@ public class GetTag extends TagSupport {
 
    /**
      * Get the role attribute.
+     * @deprecated Use Tiles instead.
      */
    public String getRole() { 
 
@@ -163,6 +170,7 @@ public class GetTag extends TagSupport {
    /**
      * Print content named by setName() or include it, depending
      * on the content's direct attribute.
+     * @deprecated Use Tiles instead.
      */
    public int doStartTag() throws JspException {
 
@@ -206,6 +214,7 @@ public class GetTag extends TagSupport {
    /**
      * Reset member values for reuse. This method calls super.release(),
      * which invokes TagSupport.release(), which typically does nothing.
+     * @deprecated Use Tiles instead.
      */
    public void release() {
 
@@ -221,6 +230,7 @@ public class GetTag extends TagSupport {
      * one present.
      *
      * @param exception Exception to be conditionally saved
+     * @deprecated Use Tiles instead.
      */
     private void saveException(Throwable exception) {
 

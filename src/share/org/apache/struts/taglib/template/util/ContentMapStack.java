@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/util/Attic/ContentMapStack.java,v 1.2 2001/04/29 05:34:50 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/04/29 05:34:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/util/Attic/ContentMapStack.java,v 1.3 2002/10/25 23:54:53 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/25 23:54:53 $
  *
  * ====================================================================
  *
@@ -68,7 +68,8 @@ import java.util.Stack;
  * through static methods.
  *
  * @author David Geary
- * @version $Revision: 1.2 $ $Date: 2001/04/29 05:34:50 $
+ * @version $Revision: 1.3 $ $Date: 2002/10/25 23:54:53 $
+ * @deprecated Use Tiles instead.
  */
 public class ContentMapStack {
 
@@ -88,6 +89,7 @@ public class ContentMapStack {
      * page context.
      *
      * @param pc The page context associated with a custom tag.
+     * @deprecated Use Tiles instead.
      */
    public static Stack getStack(PageContext pc) {
 
@@ -107,6 +109,7 @@ public class ContentMapStack {
      * Peek at the map on top of the stack.
      * 
      * @param pc The page context associated with a custom tag.
+     * @deprecated Use Tiles instead.
      */
    public static ContentMap peek(PageContext pc) {
 
@@ -120,6 +123,7 @@ public class ContentMapStack {
      *
      * @param pc The page context associated with a custom tag.
      * @param map A content map that gets pushed onto the stack.
+     * @deprecated Use Tiles instead.
      */
    public static void push(PageContext pc, ContentMap map) {
 
@@ -131,6 +135,7 @@ public class ContentMapStack {
    /**
      * 
      * @param pc The page context associated with a custom tag.
+     * @deprecated Use Tiles instead.
      */
    public static ContentMap pop(PageContext pc) {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.9 2001/04/29 05:34:49 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2001/04/29 05:34:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.10 2002/10/25 23:54:53 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/10/25 23:54:53 $
  *
  * ====================================================================
  *
@@ -74,7 +74,8 @@ import org.apache.struts.taglib.template.util.Content;
  * Tag handler for &lt;template:put&gt;, which puts content into request scope.
  *
  * @author David Geary
- * @version $Revision: 1.9 $ $Date: 2001/04/29 05:34:49 $
+ * @version $Revision: 1.10 $ $Date: 2002/10/25 23:54:53 $
+ * @deprecated Use Tiles instead.
  */
 public class PutTag extends BodyTagSupport {
 
@@ -108,6 +109,7 @@ public class PutTag extends BodyTagSupport {
 
    /**
      * Set the content name.
+     * @deprecated Use Tiles instead.
      */
    public void setName(String name) { 
 
@@ -118,6 +120,7 @@ public class PutTag extends BodyTagSupport {
    /**
      * 
      * @param name The role the user must be in to store content.
+     * @deprecated Use Tiles instead.
      */
    public void setRole(String role) {
 
@@ -128,6 +131,7 @@ public class PutTag extends BodyTagSupport {
    /**
      * Set the content's URI (if it's to be included) or text (if it's to
      * be printed).
+     * @deprecated Use Tiles instead.
      */
    public void setContent(String content) {
 
@@ -139,6 +143,7 @@ public class PutTag extends BodyTagSupport {
    /**
      * Set direct to true, and content will be printed directly, instead
      * of included (direct == false).
+     * @deprecated Use Tiles instead.
      */
    public void setDirect(String direct) { 
 
@@ -148,6 +153,7 @@ public class PutTag extends BodyTagSupport {
 
    /**
      * Get the name attribute.
+     * @deprecated Use Tiles instead.
      */
    public String getName() { 
 
@@ -157,6 +163,7 @@ public class PutTag extends BodyTagSupport {
 
    /**
      * Get the role attribute.
+     * @deprecated Use Tiles instead.
      */
    public String getRole() { 
 
@@ -166,6 +173,7 @@ public class PutTag extends BodyTagSupport {
 
    /**
      * Get the content attribute.
+     * @deprecated Use Tiles instead.
      */
    public String getContent() { 
 
@@ -175,6 +183,7 @@ public class PutTag extends BodyTagSupport {
 
    /**
      * Returns the direct attribute associated with this tag.
+     * @deprecated Use Tiles instead.
      */
    public String getDirect() {
       if(hasBody()) return "true";
@@ -187,6 +196,7 @@ public class PutTag extends BodyTagSupport {
      *
      * @exception JspException if this tag is not enclosed by 
      * &lt;template:insert&gt;.
+     * @deprecated Use Tiles instead.
      */
    public int doEndTag() throws JspException {
 
@@ -212,6 +222,7 @@ public class PutTag extends BodyTagSupport {
    /**
      * Reset member values for reuse. This method calls super.release(),
      * which invokes TagSupport.release(), which typically does nothing.
+     * @deprecated Use Tiles instead.
      */
    public void release() {
 
@@ -223,6 +234,7 @@ public class PutTag extends BodyTagSupport {
 
    /**
      * Returns the content associated with this tag.
+     * @deprecated Use Tiles instead.
      */
    private String getActualContent() throws JspException {
 
@@ -248,6 +260,7 @@ public class PutTag extends BodyTagSupport {
 
    /**
      * Returns a boolean indicating whether this tag has a body.
+     * @deprecated Use Tiles instead.
      */
    private boolean hasBody() {
       if (bodyContent == null)
@@ -260,6 +273,7 @@ public class PutTag extends BodyTagSupport {
      * Convenience method for locating ancestor tags by class name. 
      *
      * @param className The name of the ancestor class.
+     * @deprecated Use Tiles instead.
      */
    private TagSupport getAncestor(String className) 
                                  throws JspException {

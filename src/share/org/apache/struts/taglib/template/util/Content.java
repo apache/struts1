@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/util/Attic/Content.java,v 1.4 2002/06/25 01:30:41 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/06/25 01:30:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/util/Attic/Content.java,v 1.5 2002/10/25 23:54:53 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/10/25 23:54:53 $
  *
  * ====================================================================
  *
@@ -76,7 +76,8 @@ package org.apache.struts.taglib.template.util;
  *  </p>
  *
  * @author David Geary
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
+ * @deprecated Use Tiles instead.
  */
 public class Content implements java.io.Serializable {
 
@@ -110,6 +111,7 @@ public class Content implements java.io.Serializable {
      *
      * @param content The content's URI
      * @param direct Is content printed directly (true) or included (false)?
+     * @deprecated Use Tiles instead.
      */
    public Content(String content, String direct) {
 
@@ -123,6 +125,7 @@ public class Content implements java.io.Serializable {
 
     /**
      * Return content.
+     * @deprecated Use Tiles instead.
      */
     public String getContent() {
 
@@ -133,6 +136,7 @@ public class Content implements java.io.Serializable {
     /**
      * Is content to be printed directly (isDirect() == true)
      * instead of included (isDirect() == false).
+     * @deprecated Use Tiles instead.
      */
     public boolean isDirect() {
 
@@ -143,6 +147,7 @@ public class Content implements java.io.Serializable {
 
    /**
      * Returns a string representation of the content.
+     * @deprecated Use Tiles instead.
      */
    public String toString() { 
 
