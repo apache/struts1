@@ -956,7 +956,12 @@
      <code>getAsText()</code> method will be called.</li>
      <li>Otherwise, the usual <code>toString()</code> conversions will be applied.</li>
      </ul>
-
+    <p>When a format string is provided, numeric values are formatted using the
+    <code>java.text.DecimalFormat</code> class; if the format string came from
+    a resource, the <code>applyLocalisedPattern()</code> method is used, and
+    <code>applyPattern()</code> is used otherwise. Dates are formatted using
+    the <code>SimpleDateFormat</code> class. For details of the specific format
+    patterns, please see the Javadocs for those classes.</p>
     <p>If a problem occurs while retrieving the specified bean property, a
     request time exception will be thrown.</p>
     </info>
