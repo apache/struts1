@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesRequestProcessor.java,v 1.1 2003/03/07 03:22:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesRequestProcessor.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:13 $
  *
  * ====================================================================
  *
@@ -65,8 +65,11 @@ package org.apache.struts.faces.application;
 import java.io.IOException;
 import javax.faces.FacesException;
 import javax.faces.FactoryFinder;
+import javax.faces.component.UICommand;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
-import javax.faces.event.FormEvent;
+import javax.faces.event.ActionEvent;
 import javax.faces.tree.Tree;
 import javax.faces.tree.TreeFactory;
 import javax.servlet.ServletException;
@@ -84,13 +87,13 @@ import org.apache.struts.faces.Constants;
 /**
  * <p>Concrete implementation of <code>RequestProcessor</code> that
  * implements the standard Struts request processing lifecycle on a
- * request that was received as a <code>FormEvent</code> by our
- * associated application handler.  It replaces the request processor
+ * request that was received as an <code>ActionEvent</code> by our
+ * associated <code>ActionListener</code>.  It replaces the request processor
  * instance normally configured by Struts, so it must support non-Faces
  * requests as well.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:44 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
  */
 
 public class FacesRequestProcessor extends RequestProcessor {
@@ -130,8 +133,7 @@ public class FacesRequestProcessor extends RequestProcessor {
         }
 
         // On a Faces request, select the new component tree
-        FacesContext context = (FacesContext)
-            request.getAttribute(FacesContext.FACES_CONTEXT_ATTR);
+        FacesContext context = FacesContext.getCurrentInstance();
         if ((context != null) && !uri.startsWith("/faces/")) {
             selectTree(context, uri);
         } else {
@@ -165,8 +167,7 @@ public class FacesRequestProcessor extends RequestProcessor {
         }
 
         // On a Faces request, select the new component tree
-        FacesContext context = (FacesContext)
-            request.getAttribute(FacesContext.FACES_CONTEXT_ATTR);
+        FacesContext context = FacesContext.getCurrentInstance();
         if ((context != null)  && !uri.startsWith("/faces/")) {
             ; // FIXME - JSF spec is probably broken w.r.t includes!
             selectTree(context, uri);
@@ -197,14 +198,33 @@ public class FacesRequestProcessor extends RequestProcessor {
         throws IOException {
 
         // Handle non-Faces requests in the usual way
-        FormEvent event = (FormEvent)
-            request.getAttribute(Constants.FORM_EVENT_KEY);
+        ActionEvent event = (ActionEvent)
+            request.getAttribute(Constants.ACTION_EVENT_KEY);
         if (event == null) {
+            if (log.isTraceEnabled()) {
+                log.trace("Performing standard processPath() processing");
+            }
             return (super.processPath(request, response));
         }
 
         // Calculate the path from the form name
-        return (event.getFormName());
+        UIComponent component = event.getComponent();
+        if (log.isTraceEnabled()) {
+            log.trace("Locating form parent for command component " +
+                      event.getComponent());
+        }
+        while (!(component instanceof UIForm)) {
+            component = component.getParent();
+            if (component == null) {
+                log.warn("command component was not nested in a form!");
+                return (null);
+            }
+        }
+        if (log.isDebugEnabled()) {
+            log.debug("Returning selected path of " +
+                      ((UIForm) component).getFormName());
+        }
+        return (((UIForm) component).getFormName());
 
     }
 
@@ -231,19 +251,32 @@ public class FacesRequestProcessor extends RequestProcessor {
         throws ServletException {
 
         // Are we processing a Faces request?
-        FormEvent event = (FormEvent)
-            request.getAttribute(Constants.FORM_EVENT_KEY);
+        ActionEvent event = (ActionEvent)
+            request.getAttribute(Constants.ACTION_EVENT_KEY);
 
         // Handle non-Faces requests in the usual way
         if (event == null) {
+            if (log.isTraceEnabled()) {
+                log.trace("Performing standard processPopulate() processing");
+            }
             super.processPopulate(request, response, form, mapping);
             return;
         }
 
-        // Faces requests require no processing for form bean population
+        // Faces Requests require no processing for form bean population
         // so we need only check for the cancellation command name
-        if ("cancel".equals(event.getCommandName())) {
-            request.setAttribute(Globals.CANCEL_KEY, Boolean.TRUE);
+        if (log.isTraceEnabled()) {
+            log.trace("Faces request, so no processPopulate() processing");
+        }
+        UIComponent source = event.getComponent();
+        if (source instanceof UICommand) {
+            UICommand command = (UICommand) source;
+            if ("cancel".equals(((UICommand) source).getCommandName())) {
+                if (log.isTraceEnabled()) {
+                    log.trace("Faces request with cancel button pressed");
+                }
+                request.setAttribute(Globals.CANCEL_KEY, Boolean.TRUE);
+            }
         }
 
     }

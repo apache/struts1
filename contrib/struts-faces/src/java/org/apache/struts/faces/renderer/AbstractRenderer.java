@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/AbstractRenderer.java,v 1.1 2003/03/07 03:22:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/AbstractRenderer.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:13 $
  *
  * ====================================================================
  *
@@ -63,15 +63,19 @@ package org.apache.struts.faces.renderer;
 
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import javax.faces.FacesException;
-import javax.faces.component.AttributeDescriptor;
+import java.util.Map;
+import javax.faces.FactoryFinder;
+import javax.faces.application.Application;
+import javax.faces.application.ApplicationFactory;
+import javax.faces.application.Message;
+import javax.faces.application.MessageImpl;
 import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.render.Renderer;
-import org.apache.struts.faces.util.SupportedComponent;
 
 
 /**
@@ -79,56 +83,11 @@ import org.apache.struts.faces.util.SupportedComponent;
  * <code>javax.faces.render.Renderer</code> for the
  * <em>Struts-Faces Integration Library</em>.</p>
  *
- * <p><strong>IMPLEMENTATION NOTE</strong> - The default implementation
- * assumes that a particular UIComponent class is supported if we have
- * declared support for that class's component type.</p>
- *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:44 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
  */
 
 public abstract class AbstractRenderer extends Renderer {
-
-
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * <p>The supported component descriptions for the component types
-     * supported by this Renderer, keyed by component type.</p>
-     */
-    private HashMap components = new HashMap();
-
-
-    // ------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>The renderer type implemented by this Renderer.</p>
-     */
-    private String rendererType = null;
-
-
-    /**
-     * <p>Return the renderer type for this Renderer.</p>
-     */
-    public String getRendererType() {
-
-        return (this.rendererType);
-
-    }
-
-
-    /**
-     * <p>Set the renderer type for this Renderer.</p>
-     *
-     * @param rendererType The new renderer type
-     */
-    public void setRendererType(String rendererType) {
-
-        this.rendererType = rendererType;
-
-    }
 
 
     // --------------------------------------------------------- Public Methods
@@ -156,54 +115,49 @@ public abstract class AbstractRenderer extends Renderer {
      */ 
     public String getClientId(FacesContext context, UIComponent component) {
 
-        // Has a client identifier been generated for this component already?
-	String result = null;
-	if (null != (result = (String) component.getAttribute("clientId"))) {
-	    return result;
-	}
+	String clientId = null;
 	NamingContainer closestContainer = null;
 	UIComponent containerComponent = component;
-	
-	// Search for an ancestor that is a naming container
-	while (null != (containerComponent = 
-			containerComponent.getParent())) {
-	    if (containerComponent instanceof NamingContainer) {
-		closestContainer = (NamingContainer) containerComponent;
-		break;
-	    }
-	}
-	
-	// If none is found, see if this is a naming container
-	if (null == closestContainer && component instanceof NamingContainer) {
-	    closestContainer = (NamingContainer) component;
-	}
-	
-	if (null != closestContainer) {
 
-	    // If there is no componentId, generate one and store it
-	    if (null == (result = component.getComponentId())) {
-		// Don't call setComponentId() because it checks for
-		// uniqueness.  No need.
-		component.setAttribute("componentId",
-				       result = closestContainer.generateClientId());
-	    }
+        // Search for an ancestor that is a naming container
+        while (null != (containerComponent = 
+                        containerComponent.getParent())) {
+            if (containerComponent instanceof NamingContainer) {
+                closestContainer = (NamingContainer) containerComponent;
+                break;
+            }
+        }
 
-	    // build the client side id
-	    containerComponent = (UIComponent) closestContainer;
-	    // If this is the root naming container, break
-	    if (null != containerComponent.getParent()) {
-		result = containerComponent.getClientId(context) +
-		    UIComponent.SEPARATOR_CHAR + result;
-	    }
+        // If none is found, see if this is a naming container
+        if (null == closestContainer && component instanceof NamingContainer) {
+            closestContainer = (NamingContainer) component;
+        }
 
-	}
-	
-        // Store the client identifier for future use
-	if (null == result) {
+        if (null != closestContainer) {
+
+            // If there is no componentId, generate one and store it
+            if (component.getComponentId() == null) {
+                // Don't call setComponentId() because it checks for
+                // uniqueness.  No need.
+                clientId = closestContainer.generateClientId();
+            } else {
+                clientId = component.getComponentId();
+            }
+
+            // build the client side id
+            containerComponent = (UIComponent) closestContainer;
+
+            // If this is the root naming container, break
+            if (null != containerComponent.getParent()) {
+                clientId = containerComponent.getClientId(context) +
+                    UIComponent.SEPARATOR_CHAR + clientId;
+            }
+        }
+
+        if (null == clientId) {
 	    throw new NullPointerException();
 	}
-	component.setAttribute("clientId", result);
-	return (result);
+	return (clientId);
 
     }
 
@@ -227,8 +181,44 @@ public abstract class AbstractRenderer extends Renderer {
     public void decode(FacesContext context, UIComponent component)
         throws IOException {
 
-        ; // Default implementation does nothing
+        // Enforce NPE requirements in the Javadocs
+        if ((context == null) || (component == null)) {
+            throw new NullPointerException();
+        }
 
+        // Only input components need to be decoded
+        if (!(component instanceof UIInput)) {
+            component.setValid(true);
+            return;
+        }
+        UIInput input = (UIInput) component;
+
+        // Save the old value for use in generating ValueChangedEvents
+        Object oldValue = input.currentValue(context);
+        if (oldValue instanceof String) {
+            try {
+                oldValue = getAsObject(context, component, (String) oldValue);
+            } catch (ConverterException e) {
+                ;
+            }
+        }
+        input.setPrevious(oldValue);
+
+        // Decode and convert (if needed) the new value
+        String clientId = component.getClientId(context);
+        Map map = context.getExternalContext().getRequestParameterMap();
+        String newString = (String) map.get(clientId);
+        Object newValue = null;
+        try {
+            newValue = getAsObject(context, component, newString);
+            input.setValue(newValue);
+            input.setValid(true);
+        } catch (ConverterException e) {
+            input.setValue(newValue);
+            input.setValid(false);
+            addConverterMessage(context, component, e.getMessage());
+        }
+        
     }
 
 
@@ -253,6 +243,9 @@ public abstract class AbstractRenderer extends Renderer {
     public void encodeBegin(FacesContext context, UIComponent component)
         throws IOException {
 
+        if ((context == null) || (component == null)) {
+            throw new NullPointerException();
+        }
         ; // Default implementation does nothing
 
     }
@@ -275,6 +268,9 @@ public abstract class AbstractRenderer extends Renderer {
     public void encodeChildren(FacesContext context, UIComponent component)
         throws IOException {
 
+        if ((context == null) || (component == null)) {
+            throw new NullPointerException();
+        }
         ; // Default implementation does nothing
 
     }
@@ -296,181 +292,10 @@ public abstract class AbstractRenderer extends Renderer {
     public void encodeEnd(FacesContext context, UIComponent component)
         throws IOException {
 
+        if ((context == null) || (component == null)) {
+            throw new NullPointerException();
+        }
         ; // Default implementation does nothing
-
-    }
-
-
-    /**
-     * <p>Return an <code>AttributeDescriptor</code> for the specified
-     * attribute name, as supported for the specified component type.</p>
-     *
-     * @param componentType Component type that is supported
-     * @param name Attribute naem for which to return a descriptor
-     *
-     * @exception IllegalArgumentException if the specified component type
-     *  is not supported
-     * @exception IllegalArgumentException if the specified attribute name
-     *  is not supported for the specified component type
-     * @exception NullPointerException if componentType or name is null
-     */
-    public AttributeDescriptor getAttributeDescriptor(String componentType,
-                                                      String name) {
-
-        if (componentType == null) {
-            // FIXME - i18n
-            throw new NullPointerException("No component type specified");
-        }
-        if (name == null) {
-            // FIXME - i18n
-            throw new NullPointerException("No attribute name specified");
-        }
-
-        SupportedComponent supported = (SupportedComponent)
-            components.get(componentType);
-        if (supported == null) {
-            // FIXME - i18n
-            throw new IllegalArgumentException("Component type '" +
-                                               componentType +
-                                               "' is not supported");
-        }
-        AttributeDescriptor descriptor =
-            supported.getAttributeDescriptor(name);
-        if (descriptor == null) {
-            // FIXME - i18n
-            throw new IllegalArgumentException("Attribute name '" +
-                                               name +
-                                               "' is not supported");
-        }
-        return (descriptor);
-
-    }
-
-
-    /**
-     * <p>Return an <code>AttributeDescriptor</code> for the specified
-     * attribute name, as supported for the specified <code>UIComponent</code>
-     * class.</p>
-     *
-     * @param component UIComponent whose implementation class is supported
-     * @param name Attribute naem for which to return a descriptor
-     *
-     * @exception IllegalArgumentException if the specified component class
-     *  is not supported
-     * @exception IllegalArgumentException if the specified attribute name
-     *  is not supported for the specified component class
-     * @exception NullPointerException if component or name is null
-     */
-    public AttributeDescriptor getAttributeDescriptor(UIComponent component,
-                                                      String name) {
-
-        if (component == null) {
-            // FIXME - i18n
-            throw new NullPointerException("No component specified");
-        }
-        return (getAttributeDescriptor(component.getComponentType(), name));
-
-    }
-
- 
-   /**
-     * <p>Return an Iterator over the names of the supported attributes
-     * for the specified component type.  If no attributes are supported,
-     * an empty Iterator is returned.</p>
-     *
-     * @param componentType Component type that is supported
-     *
-     * @exception IllegalArgumentException if the specified component type
-     *  is not supported
-     * @exception NullPointerException if componentType is null
-     */
-    public Iterator getAttributeNames(String componentType) {
-
-        if (componentType == null) {
-            // FIXME - i18n
-            throw new NullPointerException("No component type specified");
-        }
-
-        SupportedComponent supported = (SupportedComponent)
-            components.get(componentType);
-        if (supported == null) {
-            // FIXME - i18n
-            throw new IllegalArgumentException("Component type '" +
-                                               componentType +
-                                               "' is not supported");
-        }
-        return (supported.getAttributeNames());
-
-    }
-
-
-    /**
-     * <p>Return an Iterator over the names of the supported attributes
-     * for the specified UIComponent class.  If no attributes are supported,
-     * an empty Iterator is returned.</p>
-     *
-     * @param component UIComponent whose implementation class is supported
-     *
-     * @exception IllegalArgumentException if the specified component class
-     *  is not supported
-     * @exception NullPointerException if component is null
-     */
-    public Iterator getAttributeNames(UIComponent component) {
-
-        if (component == null) {
-            // FIXME - i18n
-            throw new NullPointerException("No component specified");
-        }
-        return (getAttributeNames(component.getComponentType()));
-
-    }
-
-
-    /**
-     * <p>Return <code>true</code> if this Renderer supports the specified
-     * component type.</p>
-     *
-     * @param componentType Component type to be checked
-     */
-    public boolean supportsComponentType(String componentType) {
-
-        if (componentType == null) {
-            // FIXME - i18n
-            throw new NullPointerException("No component type specified");
-        }
-        return (components.get(componentType) != null);
-
-    }
-
-
-    /**
-     * <p>Return <code>true</code> if this Renderer supports the specified
-     * component class.</p>
-     *
-     * @param component Component whose class is to be checked
-     */
-    public boolean supportsComponentType(UIComponent component) {
-
-        if (component == null) {
-            // FIXME - i18n
-            throw new NullPointerException("No component specified");
-        }
-        return (supportsComponentType(component.getComponentType()));
-
-    }
-
-
-    // -------------------------------------------------- Configuration Methods
-
-
-    /**
-     * <p>Add a new supported component for this Renderer.</p>
-     *
-     * @param component The supported component instance to be added
-     */
-    public void addSupportedComponent(SupportedComponent component) {
-
-        components.put(component.getComponentType(), component);
 
     }
 
@@ -479,6 +304,103 @@ public abstract class AbstractRenderer extends Renderer {
 
 
     // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * <p>Add an error message denoting a conversion failure.</p>
+     *
+     * @param context The <code>FacesContext</code> for this request
+     * @param component The <code>UIComponent</code> that experienced
+     *  the conversion failure
+     * @param text The text of the error message
+     */
+    protected void addConverterMessage(FacesContext context,
+                                       UIComponent component,
+                                       String text) {
+
+        MessageImpl message = new MessageImpl();
+        message.setSummary("Conversion Error on component '" +
+                           component.getClientId(context) +
+                           ": " + text);
+        context.addMessage(component, message);
+
+    }
+
+
+    /**
+     * <p>Return the <code>Application</code> instance for this webapp.</p>
+     */
+    protected Application getApplication() {
+
+        ApplicationFactory factory = (ApplicationFactory)
+            FactoryFinder.getFactory(FactoryFinder.APPLICATION_FACTORY);
+        return (factory.getApplication());
+
+    }
+
+
+    /**
+     * <p>Convert the String representation of this component's value
+     * to the corresponding Object representation.  The default
+     * implementation utilizes the <code>getAsObject()</code> method of any
+     * associated <code>Converter</code>.</p>
+     *
+     * @param context The <code>FacesContext</code> for this request
+     * @param component The <code>UIComponent</code> whose value is
+     *  being converted
+     * @param value The String representation to be converted
+     *
+     * @exception ConverterException if conversion fails
+     */
+    protected Object getAsObject(FacesContext context, UIComponent component,
+                                 String value) throws ConverterException {
+
+        // Is there a Converter associated with this component?
+        String converterId = component.getConverter();
+        if (converterId == null) {
+            return (value);
+        }
+
+        // Look up the Converter instance and use it
+        Converter converter = getApplication().getConverter(converterId);
+        return (converter.getAsObject(context, component, value));
+
+    }
+
+
+    /**
+     * <p>Convert the Object representation of this component's value
+     * to the corresponding String representation.  The default implementation
+     * utilizes the <code>getAsString()</code> method of any associated
+     * <code>Converter</code>.</p>
+     *
+     * @param context The <code>FacesContext</code> for this request
+     * @param component The <code>UIComponent</code> whose value is
+     *  being converted
+     * @param value The Object representation to be converted
+     *
+     * @exception ConverterException if conversion fails
+     */
+    protected String getAsString(FacesContext context, UIComponent component,
+                                 Object value) throws ConverterException {
+
+        // Is there a Converter associated with this component?
+        String converterId = component.getConverter();
+        if (converterId == null) {
+            if (value == null) {
+                return ("");
+            } else if (value instanceof String) {
+                return ((String) value);
+            } else {
+                return (value.toString());
+            }
+        }
+
+        // Look up the Converter instance and use it
+        Converter converter = getApplication().getConverter(converterId);
+        return (converter.getAsString(context, component, value));
+
+    }
 
 
 }

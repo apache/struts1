@@ -66,6 +66,16 @@
     </attribute>
 
     <attribute>
+      <name>rendered</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        Boolean attribute indicating whether this component should be
+        rendered or not.
+      </description>
+    </attribute>
+
+    <attribute>
       <name>target</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -101,14 +111,14 @@
     </attribute>
 
     <attribute>
-      <name>attribute</name>
+      <name>rendered</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
       <description>
-        <p>CSS style class to use when rendering this component.</p>
+        Boolean attribute indicating whether this component should be
+        rendered or not.
       </description>
     </attribute>
-
 
   </tag>
 
@@ -157,6 +167,16 @@
       <rtexprvalue>false</rtexprvalue>
       <description>
         Component id of this component.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>rendered</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        Boolean attribute indicating whether this component should be
+        rendered or not.
       </description>
     </attribute>
 
@@ -258,6 +278,16 @@
       <rtexprvalue>false</rtexprvalue>
       <description>
         <p>JavaScript event handler executed if this form is submitted.</p>
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>rendered</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        Boolean attribute indicating whether this component should be
+        rendered or not.
       </description>
     </attribute>
 
@@ -489,10 +519,10 @@
       based on our current locale.  The message key must be specified by
       exactly one of the following attributes:</p>
       <ul>
-      <li><strong>modelReference</strong> - Retrieve the value of the
-          specified model reference, convert it to a String, and use that
-          as the requested message key.</li>
       <li><strong>key</strong> - Message key is specified directly.</li>
+      <li><strong>valueRef</strong> - Retrieve the value of the
+          specified value reference, convert it to a String, and use that
+          as the requested message key.</li>
       </ul>
 
       <p>The <code>MessageResources</code> bundle to be used is specified
@@ -536,19 +566,18 @@
       <rtexprvalue>false</rtexprvalue>
       <description>
         <p>Literal value of the message key to look up.  Exactly one of
-        <code>value</code> and <code>modelReference</code> must be specified.
+        <code>key</code> and <code>valueRef</code> must be specified.
         </p>
       </description>
     </attribute>
 
     <attribute>
-      <name>modelReference</name>
+      <name>rendered</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
       <description>
-        <p>Model reference expression used to retrieve a dynamic value for
-        the message key to look up.  Exactly one of <code>value</code> and
-        <code>modelReference</code> must be specified.</p>
+        Boolean attribute indicating whether this component should be
+        rendered or not.
       </description>
     </attribute>
 
@@ -558,6 +587,17 @@
       <rtexprvalue>false</rtexprvalue>
       <description>
         <p>Name of the CSS style class used to render this component.</p>
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>valueRef</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Value reference expression used to retrieve a dynamic value for
+        the message key to look up.  Exactly one of <code>key</code> and
+        <code>valueRef</code> must be specified.</p>
       </description>
     </attribute>
 
@@ -595,6 +635,16 @@
       </description>
     </attribute>
 
+    <attribute>
+      <name>rendered</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        Boolean attribute indicating whether this component should be
+        rendered or not.
+      </description>
+    </attribute>
+
   </tag>
 
 
@@ -612,9 +662,9 @@
       described by the optional attributes described below.  The text to be
       rendered is specified in exactly one of the following attributes:</p>
       <ul>
-      <li><strong>modelReference</strong> - An expression language reference
-          to retrieve the text to be rendered.</li>
       <li><strong>value</strong> - The literal text value to be rendered.</li>
+      <li><strong>valueRef</strong> - An expression language reference
+          to retrieve the text to be rendered.</li>
       </ul>
 
       <p>Additional control over the rendering process is specified by the
@@ -647,12 +697,12 @@
     </attribute>
 
     <attribute>
-      <name>modelReference</name>
+      <name>rendered</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
       <description>
-        <p>Model reference expression for use in retrieving the text
-        to be rendered.</p>
+        Boolean attribute indicating whether this component should be
+        rendered or not.
       </description>
     </attribute>
 
@@ -671,6 +721,16 @@
       <rtexprvalue>false</rtexprvalue>
       <description>
         <p>Literal text to be rendered.</p>
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>valueRef</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Value reference expression for use in retrieving the text
+        to be rendered.</p>
       </description>
     </attribute>
 

@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+
+<!--
+ Copyright 2003 Sun Microsystems, Inc. All rights reserved.
+ SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+-->
+
+<!DOCTYPE faces-config PUBLIC
+  "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+  "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+
+
+<!-- ================== STRUTS-FACES CONFIGURATION FILE =================== -->
+
+
+<faces-config>
+
+
+  <!-- Custom Application ActionListener -->
+
+  <application>
+    <action-listener>
+      org.apache.struts.faces.application.ActionListenerImpl
+    </action-listener>
+  </application>
+
+
+  <!-- Custom Components -->
+
+  <component>
+    <component-type>StrutsForm</component-type>
+    <component-class>
+      org.apache.struts.faces.component.FormComponent
+    </component-class>
+  </component>
+
+
+  <!-- Custom Renderers -->
+  <render-kit>
+
+    <renderer>
+      <renderer-type>StrutsBase</renderer-type>
+      <renderer-class>
+        org.apache.struts.faces.renderer.BaseRenderer
+      </renderer-class>
+    </renderer>
+
+    <renderer>
+      <renderer-type>StrutsErrors</renderer-type>
+      <renderer-class>
+        org.apache.struts.faces.renderer.ErrorsRenderer
+      </renderer-class>
+    </renderer>
+
+    <renderer>
+      <renderer-type>StrutsForm</renderer-type>
+      <renderer-class>
+        org.apache.struts.faces.renderer.FormRenderer
+      </renderer-class>
+    </renderer>
+
+    <renderer>
+      <renderer-type>StrutsHtml</renderer-type>
+      <renderer-class>
+        org.apache.struts.faces.renderer.HtmlRenderer
+      </renderer-class>
+    </renderer>
+
+    <renderer>
+      <renderer-type>StrutsMessage</renderer-type>
+      <renderer-class>
+        org.apache.struts.faces.renderer.MessageRenderer
+      </renderer-class>
+    </renderer>
+
+    <renderer>
+      <renderer-type>StrutsStylesheet</renderer-type>
+      <renderer-class>
+        org.apache.struts.faces.renderer.StylesheetRenderer
+      </renderer-class>
+    </renderer>
+
+    <renderer>
+      <renderer-type>StrutsWrite</renderer-type>
+      <renderer-class>
+        org.apache.struts.faces.renderer.WriteRenderer
+      </renderer-class>
+    </renderer>
+
+  </render-kit>
+
+
+</faces-config>

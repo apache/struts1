@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/MessageRenderer.java,v 1.1 2003/03/07 03:22:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/MessageRenderer.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:13 $
  *
  * ====================================================================
  *
@@ -66,6 +66,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIOutput;
 import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -80,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:44 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
  */
 
 public class MessageRenderer extends WriteRenderer {
@@ -120,7 +121,7 @@ public class MessageRenderer extends WriteRenderer {
             bundle = Globals.MESSAGES_KEY;
         }
         MessageResources resources = (MessageResources)
-            context.getServletContext().getAttribute(bundle);
+            context.getExternalContext().getApplicationMap().get(bundle);
         if (resources == null) { // FIXME - i18n
             throw new IllegalArgumentException("MessageResources bundle " +
                                                bundle + " not found");
@@ -129,7 +130,7 @@ public class MessageRenderer extends WriteRenderer {
         // Look up the message key to be used
         Object value = component.getAttribute("key");
         if (value == null) {
-            value = component.currentValue(context);
+            value = ((UIOutput) component).currentValue(context);
         }
         if (value == null) { // FIXME - i18n
             throw new NullPointerException("Component " +
@@ -146,7 +147,7 @@ public class MessageRenderer extends WriteRenderer {
             if (!(kid instanceof UIParameter)) {
                 continue;
             }
-            list.add(kid.currentValue(context));
+            list.add(((UIParameter) kid).currentValue(context));
         }
         Object args[] = (Object[]) list.toArray(new Object[list.size()]);
 

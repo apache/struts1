@@ -9,18 +9,36 @@
   <property file="${user.home}/build.properties"/>
 
 
-  <!-- Dependency home defaults -->
-  <property name="jsf-ri.home"      value="/usr/local/jsf-ea3"/>
-  <property name="servlet.home"     value="/usr/local/tomcat-4.1/common/lib"/>
+  <!-- Dependency home directory defaults -->
+  <property name="jwsdp.home"       value="/usr/local/jwsdp-1.2"/>
+  <property name="jsf-ri.home"      value="${jwsdp.home}/jsf"/>
   <property name="struts.home"      value="../../dist"/>
 
 
-  <!-- Dependency JAR defaults -->
+  <!-- Dependency library defaults -->
+  <property name="commons-beanutils.jar"
+                                    value="${jwsdp.home}/jwsdp-shared/lib/commons-beanutils.jar"/>
+  <property name="commons-collections.jar"
+                                    value="${jwsdp.home}/jwsdp-shared/lib/commons-collections.jar"/>
+  <property name="commons-dbcp.jar"
+                                    value="${jwsdp.home}/common/lib/commons-dbcp.jar"/>
+  <property name="commons-digester.jar"
+                                    value="${jwsdp.home}/jwsdp-shared/lib/commons-digester.jar"/>
+  <property name="commons-fileupload.jar"
+                                    value="${struts.home}/lib/commons-fileupload.jar"/>
+  <property name="commons-lang.jar"
+                                    value="${struts.home}/lib/commons-lang.jar"/>
+  <property name="commons-logging.jar"
+                                    value="${jwsdp.home}/jwsdp-shared/lib/commons-logging.jar"/>
+  <property name="commons-pool.jar"
+                                    value="${jwsdp.home}/common/lib/commons-pool.jar"/>
+  <property name="commons-validator.jar"
+                                    value="${struts.home}/lib/commons-validator.jar"/>
   <property name="jsf-api.jar"      value="${jsf-ri.home}/lib/jsf-api.jar"/>
   <property name="jsf-ri.jar"       value="${jsf-ri.home}/lib/jsf-ri.jar"/>
+  <property name="jsp.jar"          value="${jwsdp.home}/common/lib/jsp-api.jar"/>
   <property name="jstl.jar"         value="${jsf-ri.home}/lib/jstl.jar"/>
-  <property name="jstl_el.jar"      value="${jsf-ri.home}/lib/jstl_el.jar"/>
-  <property name="servlet.jar"      value="${servlet.home}/servlet.jar"/>
+  <property name="servlet.jar"      value="${jwsdp.home}/common/lib/servlet-api.jar"/>
   <property name="standard.jar"     value="${jsf-ri.home}/lib/standard.jar"/>
   <property name="struts.jar"       value="${struts.home}/lib/struts.jar"/>
 
@@ -30,7 +48,7 @@
   <property name="dist.home"       value="${basedir}/dist"/>
   <property name="project.name"    value="Struts-Faces Integration Library"/>
   <property name="project.package" value="org.apache.struts.faces"/>
-  <property name="project.version" value="0.3"/>
+  <property name="project.version" value="0.4"/>
 
 
   <!-- Compile Defaults -->
@@ -41,10 +59,14 @@
 
   <!-- Construct Classpath -->
   <path id="classpath">
-    <fileset          dir="${struts.home}/lib">
-      <include       name="*.jar"/>
-    </fileset>
+    <pathelement location="${commons-beanutils.jar}"/>
+    <pathelement location="${commons-collections.jar}"/>
+    <pathelement location="${commons-dbcp.jar}"/>
+    <pathelement location="${commons-digester.jar}"/>
+    <pathelement location="${commons-logging.jar}"/>
+    <pathelement location="${commons-pool.jar}"/>
     <pathelement location="${jsf-api.jar}"/>
+    <pathelement location="${jsp.jar}"/>
     <pathelement location="${jstl.jar}"/>
     <pathelement location="${servlet.jar}"/>
     <pathelement location="${struts.jar}"/>
@@ -106,6 +128,8 @@
     <copy todir="${build.home}/conf" filtering="on">
       <fileset dir="src/conf" includes="*.MF"/>
     </copy>
+    <copy todir="${build.home}/classes/META-INF"
+           file="src/conf/faces-config.xml"/>
   </target>
 
 
@@ -116,34 +140,33 @@
    description="Compile integration library">
 
     <!-- Compile Java Sources -->
-    <javac  srcdir="src/java"
-           destdir="${build.home}/classes"
-             debug="${compile.debug}"
-       deprecation="${compile.deprecation}"
-          optimize="${compile.optimize}">
+    <javac      srcdir="src/java"
+               destdir="${build.home}/classes"
+                 debug="${compile.debug}"
+           deprecation="${compile.deprecation}"
+              optimize="${compile.optimize}">
       <classpath refid="classpath" />
     </javac>
 
     <!-- Copy non-Java Sources -->
-    <copy    todir="${build.home}/classes">
-      <fileset dir="src/java">
-        <exclude name="**/*.java"/>
+    <copy        todir="${build.home}/classes">
+      <fileset     dir="src/java">
+        <exclude  name="**/*.java"/>
       </fileset>
     </copy>
 
     <!-- Create Tag Library Descriptor -->
-    <style basedir="src/conf"
-           destdir="${build.home}/conf"
-         extension=".tld"
-             style="src/conf/struts-tld.xsl"
-          includes="struts-faces.xml"/>
-    <copy   tofile="${build.home}/classes/META-INF/taglib.tld"
-              file="${build.home}/conf/struts-faces.tld"/>
-
+    <style     basedir="src/conf"
+               destdir="${build.home}/conf"
+             extension=".tld"
+                 style="src/conf/struts-tld.xsl"
+              includes="struts-faces.xml"/>
+    <copy       tofile="${build.home}/classes/META-INF/struts-faces.tld"
+                  file="${build.home}/conf/struts-faces.tld"/>
 
     <!-- Copy license file -->
-    <copy   tofile="${build.home}/classes/META-INF/LICENSE.txt"
-              file="LICENSE.txt"/>
+    <copy       tofile="${build.home}/classes/META-INF/LICENSE.txt"
+                  file="LICENSE.txt"/>
 
   </target>
 
@@ -151,9 +174,9 @@
   <target name="library" depends="compile"
    description="Package integration library">
 
-    <jar jarfile="${build.home}/lib/struts-faces.jar"
-         basedir="${build.home}/classes"
-        manifest="${build.home}/conf/MANIFEST.MF"/>
+    <jar       jarfile="${build.home}/lib/struts-faces.jar"
+               basedir="${build.home}/classes"
+              manifest="${build.home}/conf/MANIFEST.MF"/>
 
   </target>
 
@@ -164,22 +187,22 @@
   <target name="docs" depends="prepare"
    description="Create generated documentation and JavaDocs">
 
-    <style basedir="src/conf"
-           destdir="${dist.home}/docs"
-         extension=".html"
-             style="src/conf/struts-doc.xsl"
-          includes="struts-faces.xml"/>
+    <style     basedir="src/conf"
+               destdir="${dist.home}/docs"
+             extension=".html"
+                 style="src/conf/struts-doc.xsl"
+              includes="struts-faces.xml"/>
 
     <javadoc
-        sourcepath="src/java"
-           destdir="${dist.home}/docs/api"
-            author="true"
-           private="true"
-           version="true"
-      packagenames="org.apache.struts.*"
-       windowtitle="${project.name} (Version ${project.version})"
-          doctitle="${project.name} (Version ${project.version})"
-            bottom="Copyright &#169; 2003 - Apache Software Foundation">
+            sourcepath="src/java"
+               destdir="${dist.home}/docs/api"
+                author="true"
+               private="true"
+               version="true"
+          packagenames="org.apache.struts.*"
+           windowtitle="${project.name} (Version ${project.version})"
+              doctitle="${project.name} (Version ${project.version})"
+                bottom="Copyright &#169; 2003 - Apache Software Foundation">
       <classpath refid="classpath"/>
     </javadoc>
 
@@ -190,66 +213,87 @@
 
 
   <target name="example.prepare" depends="library">
+
     <echo message="------------ ${project.name} Example Webapp -------------"/>
-    <mkdir dir="${build.home}/webapps"/>
-    <mkdir dir="${build.home}/webapps/example"/>
+    <mkdir         dir="${build.home}/webapps"/>
+    <mkdir         dir="${build.home}/webapps/example"/>
+
   </target>
 
 
   <target name="example.static" depends="example.prepare">
-    <copy    todir="${build.home}/webapps/example">
-      <fileset dir="web/example"/>
+
+    <!-- Copy static web resources -->
+    <copy        todir="${build.home}/webapps/example">
+      <fileset     dir="web/example"/>
     </copy>
 
     <!-- Copy required configuration files -->
-    <copy       todir="${build.home}/webapps/example/WEB-INF">
-      <fileset    dir="${build.home}/conf">
-        <include name="*.tld"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF">
+      <fileset     dir="${build.home}/conf">
+        <include  name="*.tld"/>
       </fileset>
     </copy>
-    <copy       todir="${build.home}/webapps/example/WEB-INF">
-      <fileset    dir="${struts.home}/lib">
-        <include name="*.tld"/>
-        <include name="valid*.xml"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF">
+      <fileset     dir="${struts.home}/lib">
+        <include  name="*.tld"/>
+        <include  name="valid*.xml"/>
       </fileset>
     </copy>
 
     <!-- Copy required library JAR files -->
-    <mkdir        dir="${build.home}/webapps/example/WEB-INF/lib"/>
-    <copy       todir="${build.home}/webapps/example/WEB-INF/lib">
-      <fileset    dir="${build.home}/lib">
-        <include name="struts-faces.jar"/>
-      </fileset>
-    </copy>
-    <copy       todir="${build.home}/webapps/example/WEB-INF/lib">
-      <fileset    dir="${struts.home}/lib">
-        <include name="commons-*.jar"/>
-        <include name="struts.jar"/>
-      </fileset>
-    </copy>
-    <copy       todir="${build.home}/webapps/example/WEB-INF/lib"
-                 file="${jsf-api.jar}"/>
-    <copy       todir="${build.home}/webapps/example/WEB-INF/lib"
-                 file="${jsf-ri.jar}"/>
-    <copy       todir="${build.home}/webapps/example/WEB-INF/lib"
-                 file="${jstl.jar}"/>
-    <copy       todir="${build.home}/webapps/example/WEB-INF/lib"
-                 file="${jstl_el.jar}"/>
-    <copy       todir="${build.home}/webapps/example/WEB-INF/lib"
-                 file="${standard.jar}"/>
+    <mkdir         dir="${build.home}/webapps/example/WEB-INF/lib"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${build.home}/lib/struts-faces.jar"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${commons-beanutils.jar}"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${commons-collections.jar}"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${commons-digester.jar}"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${commons-fileupload.jar}"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${commons-lang.jar}"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${commons-logging.jar}"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${commons-validator.jar}"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${struts.jar}"/>
 
   </target>
 
 
-  <target name="example.compile" depends="example.static">
-    <mkdir     dir="${build.home}/webapps/example/WEB-INF/classes"/>
+  <target name="example.libraries" depends="example.static"
+            if="build.standalone">
+
+    <!-- Copy libraries required for standalone use only -->
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${commons-dbcp.jar}"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${commons-pool.jar}"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${jsf-api.jar}"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${jsf-ri.jar}"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${jstl.jar}"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${standard.jar}"/>
+
+  </target>
+
+
+  <target name="example.compile" depends="example.libraries">
 
     <!-- Compile Java Sources -->
-    <javac  srcdir="src/example"
-           destdir="${build.home}/webapps/example/WEB-INF/classes"
-             debug="${compile.debug}"
-       deprecation="${compile.deprecation}"
-          optimize="${compile.optimize}">
+    <mkdir         dir="${build.home}/webapps/example/WEB-INF/classes"/>
+    <javac      srcdir="src/example"
+               destdir="${build.home}/webapps/example/WEB-INF/classes"
+                 debug="${compile.debug}"
+           deprecation="${compile.deprecation}"
+              optimize="${compile.optimize}">
       <classpath refid="classpath" />
     </javac>
 
@@ -296,7 +340,8 @@
 
     <mkdir     dir="${dist.home}"/>
     <copy    todir="${dist.home}">
-      <fileset dir="${basedir}" includes="*.txt build.*"/>
+      <fileset dir="${basedir}" includes="*.txt build.*"
+                                excludes="build.properties"/>
     </copy>
 
     <mkdir     dir="${dist.home}/conf"/>
@@ -326,7 +371,6 @@
       </fileset>
       <fileset dir="${build.home}/webapps/example">
         <exclude name="**/jsf-*.jar"/>   <!-- EA license so no redistrib -->
-        <exclude name="**/jstl_el.jar"/> <!-- EA license so no redistrib -->
       </fileset>
     </jar>
 

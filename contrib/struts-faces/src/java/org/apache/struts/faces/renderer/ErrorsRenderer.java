@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/ErrorsRenderer.java,v 1.1 2003/03/07 03:22:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/ErrorsRenderer.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:13 $
  *
  * ====================================================================
  *
@@ -66,10 +66,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Locale;
+import javax.faces.application.Message;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Message;
 import javax.faces.context.ResponseWriter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -84,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:44 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
  */
 
 public class ErrorsRenderer extends AbstractRenderer {
@@ -156,8 +156,9 @@ public class ErrorsRenderer extends AbstractRenderer {
         }
 
         // Render any Struts messages
-        ActionErrors errors = (ActionErrors) context.getServletRequest().
-            getAttribute(Globals.ERROR_KEY);
+        ActionErrors errors = (ActionErrors)
+            context.getExternalContext().getRequestMap().get
+            (Globals.ERROR_KEY);
         if (errors != null) {
             Iterator reports = errors.get();
             while (reports.hasNext()) {
@@ -211,7 +212,7 @@ public class ErrorsRenderer extends AbstractRenderer {
             bundle = Globals.MESSAGES_KEY;
         }
         return ((MessageResources)
-                context.getServletContext().getAttribute(bundle));
+                context.getExternalContext().getApplicationMap().get(bundle));
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/OutputBodyTag.java,v 1.1 2003/03/07 03:22:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/OutputBodyTag.java,v 1.2 2003/06/04 17:38:14 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:14 $
  *
  * ====================================================================
  *
@@ -64,7 +64,7 @@ package org.apache.struts.faces.taglib;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIOutput;
-import javax.faces.webapp.FacesBodyTag;
+import javax.faces.webapp.UIComponentBodyTag;
 import javax.servlet.jsp.JspException;
 
 
@@ -74,17 +74,26 @@ import javax.servlet.jsp.JspException;
  * renderer type.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:44 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:14 $
  */
 
-public class OutputBodyTag extends FacesBodyTag {
+public class OutputBodyTag extends UIComponentBodyTag {
 
 
-    public UIComponent createComponent() {
-        return (new UIOutput());
+    /**
+     * <p>Return the type of component to be created for this tag.</p>
+     */
+    public String getComponentType() {
+
+        return ("Output");
+
     }
 
 
+    /**
+     * <p>Return the <code>rendererType</code> to be used for rendering
+     * our component.</p>
+     */
     public String getRendererType() {
         return ("Text");
     }
@@ -98,7 +107,7 @@ public class OutputBodyTag extends FacesBodyTag {
         if (getBodyContent() != null) {
             String value = getBodyContent().getString().trim();
             if (value != null) {
-                getComponent().setValue(value);
+                ((UIOutput) getComponent()).setValue(value);
             }
         }
         return (getDoAfterBodyValue());

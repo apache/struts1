@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/WriteRenderer.java,v 1.1 2003/03/07 03:22:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/WriteRenderer.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:13 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.faces.renderer;
 
 import java.io.IOException;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import org.apache.commons.logging.Log;
@@ -76,7 +77,7 @@ import org.apache.struts.util.ResponseUtils;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:44 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
  */
 
 public class WriteRenderer extends AbstractRenderer {
@@ -137,7 +138,7 @@ public class WriteRenderer extends AbstractRenderer {
      */
     protected String getText(FacesContext context, UIComponent component) {
 
-        Object value = component.currentValue(context);
+        Object value = ((UIOutput) component).currentValue(context);
         if (value == null) {
             value = "";
         }

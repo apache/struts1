@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/HtmlRenderer.java,v 1.1 2003/03/07 03:22:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/HtmlRenderer.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:13 $
  *
  * ====================================================================
  *
@@ -67,7 +67,6 @@ import java.util.Locale;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -79,7 +78,7 @@ import org.apache.struts.Globals;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:44 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
  */
 
 public class HtmlRenderer extends AbstractRenderer {
@@ -177,21 +176,20 @@ public class HtmlRenderer extends AbstractRenderer {
         (FacesContext context, UIComponent component) {
 
         // If locale support not requested, just extract one from the request
-        HttpServletRequest request = (HttpServletRequest)
-            context.getServletRequest();
         if (!isLocale(component)) {
-            return (request.getLocale());
+            return (context.getExternalContext().getRequestLocale());
         }
 
         // Create a new session if necessary
-        HttpSession session = request.getSession(true);
+        HttpSession session = (HttpSession)
+            context.getExternalContext().getSession(true);
 
         // Return current locale or a new one that is created
         Locale current = (Locale) session.getAttribute(Globals.LOCALE_KEY);
         if (current != null) {
             return (current);
         }
-        current = request.getLocale();
+        current = context.getExternalContext().getRequestLocale();
         session.setAttribute(Globals.LOCALE_KEY, current);
         return (current);
 

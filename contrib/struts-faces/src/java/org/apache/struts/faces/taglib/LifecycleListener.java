@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/LifecycleListener.java,v 1.1 2003/03/07 03:22:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/LifecycleListener.java,v 1.2 2003/06/04 17:38:14 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:14 $
  *
  * ====================================================================
  *
@@ -62,17 +62,10 @@
 package org.apache.struts.faces.taglib;
 
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.IOException;
-import java.util.Properties;
 import javax.faces.FactoryFinder;
-import javax.faces.lifecycle.ApplicationHandler;
-import javax.faces.lifecycle.Lifecycle;
-import javax.faces.lifecycle.LifecycleFactory;
-import javax.faces.render.Renderer;
-import javax.faces.render.RenderKit;
-import javax.faces.render.RenderKitFactory;
+import javax.faces.application.Application;
+import javax.faces.application.ApplicationFactory;
+import javax.faces.el.PropertyResolver;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextAttributeEvent;
 import javax.servlet.ServletContextAttributeListener;
@@ -80,13 +73,14 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.Action;
+import org.apache.struts.Globals;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.faces.Constants;
-import org.apache.struts.faces.application.ApplicationHandlerImpl;
+import org.apache.struts.faces.application.ActionListenerImpl;
 import org.apache.struts.faces.application.FacesRequestProcessor;
+import org.apache.struts.faces.application.PropertyResolverImpl;
 
 
 /**
@@ -95,7 +89,7 @@ import org.apache.struts.faces.application.FacesRequestProcessor;
  * <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:44 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:14 $
  */
 
 public class LifecycleListener
@@ -103,12 +97,6 @@ public class LifecycleListener
 
 
     // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * <p>The {@link ApplicationHandler} to be used for request processing.</p>
-     */
-    protected ApplicationHandler handler = null;
 
 
     /**
@@ -142,12 +130,10 @@ public class LifecycleListener
 
         String name = event.getName();
         log.info("attributeAdded(" + name + "," + event.getValue() + ")");
-        if (name.equals(Action.ACTION_SERVLET_KEY)) {
+        if (name.equals(Globals.ACTION_SERVLET_KEY)) {
             servlet = (ActionServlet) event.getValue();
-            handler = createHandler(servlet);
-        } else if (name.startsWith(Action.APPLICATION_KEY)) {
-            createProcessor(servlet,
-                            (ModuleConfig) event.getValue());
+        } else if (name.startsWith(Globals.MODULE_KEY)) {
+            createProcessor(servlet, (ModuleConfig) event.getValue());
         }
 
     }
@@ -163,8 +149,7 @@ public class LifecycleListener
 
         String name = event.getName();
         log.info("attributeRemoved(" + name + ")");
-        if (name.equals(Action.ACTION_SERVLET_KEY)) {
-            handler = null;
+        if (name.equals(Globals.ACTION_SERVLET_KEY)) {
             servlet = null;
         }
 
@@ -181,7 +166,7 @@ public class LifecycleListener
 
         String name = event.getName();
         log.info("attributeReplaced(" + name + ")");
-        if (Action.ACTION_SERVLET_KEY.equals(name)) {
+        if (Globals.ACTION_SERVLET_KEY.equals(name)) {
             servlet = (ActionServlet) event.getValue();
         }
 
@@ -210,183 +195,12 @@ public class LifecycleListener
 
         log.info("contextInitialized()");
         servletContext = event.getServletContext();
-        configureComponents();
-        configureRenderers();
+        createPropertyResolver();
 
     }
 
 
     // -------------------------------------------------------- Private Methods
-
-
-    /**
-     * <p>Add our <code>UIComponent</code>s to the default
-     * <code>RenderKit</code>.</p>
-     */
-    private void configureComponents() {
-
-        if (log.isDebugEnabled()) {
-            log.debug("Configuring UIComponent instances");
-        }
-
-        // Acquire a reference to the default render kit
-        RenderKitFactory factory = (RenderKitFactory)
-            FactoryFinder.getFactory(FactoryFinder.RENDER_KIT_FACTORY);
-        RenderKit renderKit =
-            factory.getRenderKit(RenderKitFactory.DEFAULT_RENDER_KIT);
-
-        // Load the configuration properties
-        Properties props = new Properties();
-        InputStream is = null;
-        try {
-            is = this.getClass().getClassLoader().getResourceAsStream
-                ("org/apache/struts/faces/component/StrutsFacesComponents.properties");
-            if (is == null) {
-                return;
-            }
-            props.load(is);
-        } catch (IOException e) {
-            log.error("I/O error reading component configuration file", e);
-            return;
-        } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    ;
-                }
-                is = null;
-            }
-        }
-
-        // Register the specified UIComponent instances
-        if (log.isTraceEnabled()) {
-            log.trace("Processing component types list");
-        }
-        String list = props.getProperty("componentTypes");
-        while (list.length() > 0) {
-            String componentType = null;
-            int i = list.indexOf(',');
-            if (i < 0) {
-                componentType = list.trim();
-                list = "";
-            } else {
-                componentType = list.substring(0, i).trim();
-                list = list.substring(i + 1);
-            }
-            if (componentType.length() > 0) {
-                if (log.isTraceEnabled()) {
-                    log.trace("Registering componentType '" + componentType + "'");
-                }
-                try {
-                    String className = props.getProperty
-                        ("componentType." + componentType);
-                    Class clazz = Class.forName(className);
-                    renderKit.addComponentClass(clazz);
-                } catch (Exception e) {
-                    log.error("Cannot instantiate componentType '" +
-                              componentType + "'", e);
-                }
-            }
-        }
-
-    }
-
-
-    /**
-     * <p>Add our <code>Renderer</code>s to the default
-     * <code>RenderKit</code>.</p>
-     */
-    private void configureRenderers() {
-
-        if (log.isDebugEnabled()) {
-            log.debug("Configuring Renderer instances");
-        }
-
-        // Acquire a reference to the default render kit
-        RenderKitFactory factory = (RenderKitFactory)
-            FactoryFinder.getFactory(FactoryFinder.RENDER_KIT_FACTORY);
-        RenderKit renderKit =
-            factory.getRenderKit(RenderKitFactory.DEFAULT_RENDER_KIT);
-
-        // Load the configuration properties
-        Properties props = new Properties();
-        InputStream is = null;
-        try {
-            is = this.getClass().getClassLoader().getResourceAsStream
-                ("org/apache/struts/faces/renderer/StrutsFacesRenderers.properties");
-            if (is == null) {
-                return;
-            }
-            props.load(is);
-        } catch (IOException e) {
-            log.error("I/O error reading renderer configuration file", e);
-            return;
-        } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    ;
-                }
-                is = null;
-            }
-        }
-
-        // Register the specified Renderer instances
-        log.trace("Processing renderer types list");
-        String list = props.getProperty("rendererTypes");
-        while (list.length() > 0) {
-            String rendererType = null;
-            int i = list.indexOf(',');
-            if (i < 0) {
-                rendererType = list.trim();
-                list = "";
-            } else {
-                rendererType = list.substring(0, i).trim();
-                list = list.substring(i + 1);
-            }
-            if (rendererType.length() > 0) {
-                if (log.isTraceEnabled()) {
-                    log.trace("Registering rendererType '" + rendererType + "'");
-                }
-                try {
-                    String className = props.getProperty
-                        ("rendererType." + rendererType);
-                    Class clazz = Class.forName(className);
-                    renderKit.addRenderer(rendererType,
-                                          (Renderer) clazz.newInstance());
-                } catch (Exception e) {
-                    log.error("Cannot instantiate rendererType '" +
-                              rendererType + "'", e);
-                }
-            }
-        }
-
-    }
-
-
-    /**
-     * <p>Create and register an <code>ApplicationHandler</code> instance.</p>
-     *
-     * @param servlet ActionServlet instance we are associated with
-     */
-    private ApplicationHandler createHandler(ActionServlet servlet) {
-
-        if (log.isDebugEnabled()) {
-            log.debug("Configuring ApplicationHandler instance");
-        }
-        ApplicationHandler handler =
-            new ApplicationHandlerImpl(servlet);
-        LifecycleFactory factory = (LifecycleFactory)
-            FactoryFinder.getFactory(FactoryFinder.LIFECYCLE_FACTORY);
-        Lifecycle lifecycle =
-            factory.getLifecycle(LifecycleFactory.DEFAULT_LIFECYCLE);
-        lifecycle.setApplicationHandler(handler);
-        return (handler);
-
-    }
-
 
 
     /**
@@ -406,12 +220,29 @@ public class LifecycleListener
         try {
             processor.init(servlet, modConfig);
             servlet.getServletContext().setAttribute
-                (Action.REQUEST_PROCESSOR_KEY + modConfig.getPrefix(),
+                (Globals.REQUEST_PROCESSOR_KEY + modConfig.getPrefix(),
                  processor);
         } catch (Exception e) {
             log.error("createProcessor()", e);
         }
         return (processor);
+
+    }
+
+
+    /**
+     * <p>Create and register a <code>PropertyResolver</code> instance
+     * that supports <code>DynaBean</code>s.</p>
+     */
+    private PropertyResolver createPropertyResolver() {
+
+        ApplicationFactory factory = (ApplicationFactory)
+            FactoryFinder.getFactory(FactoryFinder.APPLICATION_FACTORY);
+        Application application = factory.getApplication();
+        PropertyResolver resolver =
+            new PropertyResolverImpl(application.getPropertyResolver());
+        application.setPropertyResolver(resolver);
+        return (resolver);
 
     }
 

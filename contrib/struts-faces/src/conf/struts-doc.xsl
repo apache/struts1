@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts Tag Library Documentation -->
-<!-- $Id: struts-doc.xsl,v 1.1 2003/03/07 03:22:42 craigmcc Exp $ -->
+<!-- $Id: struts-doc.xsl,v 1.2 2003/06/04 17:38:13 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -30,7 +30,7 @@
     <xsl:apply-templates select="taglib"/>
     <hr/>
     <div align="center"><font color="{$body-link}" size="-1"><em>
-    Copyright (c) 2002, Apache Software Foundation
+    Copyright (c) 2003, Apache Software Foundation
     </em></font></div>
     </body>
     </html>

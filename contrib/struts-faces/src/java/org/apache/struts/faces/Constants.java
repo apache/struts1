@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/Constants.java,v 1.1 2003/03/07 03:22:43 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:43 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/Constants.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:13 $
  *
  * ====================================================================
  *
@@ -67,7 +67,7 @@ package org.apache.struts.faces;
  * <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:43 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
  */
 
 public final class Constants {
@@ -86,11 +86,11 @@ public final class Constants {
 
 
     /**
-     * <p>Request attribute key under which the <code>FormEvent</code>
+     * <p>Request attribute key under which the <code>ActionEvent</code>
      * from JavaServer Faces is recorded.
      */
-    public static final String FORM_EVENT_KEY =
-        "org.apache.struts.faces.FORM_EVENT";
+    public static final String ACTION_EVENT_KEY =
+        "org.apache.struts.faces.ACTION_EVENT";
 
 
 }

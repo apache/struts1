@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/ErrorsTag.java,v 1.1 2003/03/07 03:22:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/ErrorsTag.java,v 1.2 2003/06/04 17:38:14 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:14 $
  *
  * ====================================================================
  *
@@ -63,9 +63,6 @@ package org.apache.struts.faces.taglib;
 
 
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIOutput;
-import javax.faces.webapp.FacesTag;
-import javax.servlet.jsp.JspException;
 
 
 /**
@@ -74,7 +71,7 @@ import javax.servlet.jsp.JspException;
  *
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:44 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:14 $
  */
 
 public class ErrorsTag extends AbstractFacesTag {
@@ -87,11 +84,11 @@ public class ErrorsTag extends AbstractFacesTag {
 
 
     /**
-     * <p>Create and return a new component to be associated with this tag.</p>
+     * <p>Return the type of component to be created for this tag.</p>
      */
-    public UIComponent createComponent() {
+    public String getComponentType() {
 
-        return (new UIOutput());
+        return ("Output");
 
     }
 

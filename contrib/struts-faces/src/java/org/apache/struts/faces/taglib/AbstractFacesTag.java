@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/AbstractFacesTag.java,v 1.1 2003/03/07 03:22:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/AbstractFacesTag.java,v 1.2 2003/06/04 17:38:14 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:14 $
  *
  * ====================================================================
  *
@@ -64,7 +64,7 @@ package org.apache.struts.faces.taglib;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIOutput;
-import javax.faces.webapp.FacesTag;
+import javax.faces.webapp.UIComponentTag;
 import javax.servlet.jsp.JspException;
 
 
@@ -74,10 +74,10 @@ import javax.servlet.jsp.JspException;
  *
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:44 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:14 $
  */
 
-public abstract class AbstractFacesTag extends FacesTag {
+public abstract class AbstractFacesTag extends UIComponentTag {
 
 
     // --------------------------------------------------------- Tag Attributes
@@ -114,13 +114,24 @@ public abstract class AbstractFacesTag extends FacesTag {
     }
 
 
+    /**
+     * <p>The symbolic reference to the value to be rendered.</p>
+     */
+    protected String valueRef = null;
+
+    public void setValueRef(String valueRef) {
+        this.valueRef = valueRef;
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
     /**
-     * <p>Create and return a new component to be associated with this tag.</p>
+     * <p>Return the component type of the component to be created for
+     * this tag.</p>
      */
-    public abstract UIComponent createComponent();
+    public abstract String getComponentType();
 
 
     /**
@@ -139,6 +150,7 @@ public abstract class AbstractFacesTag extends FacesTag {
         this.bundle = null;
         this.styleClass = null;
         this.value = null;
+        this.valueRef = null;
 
     }
 
@@ -162,9 +174,21 @@ public abstract class AbstractFacesTag extends FacesTag {
             (component.getAttribute("styleClass") == null)) {
             component.setAttribute("styleClass", styleClass);
         }
-        if ((value != null) &&
-            (component.getAttribute("value") == null)) {
-            component.setAttribute("value", value);
+        if (value != null) {
+            if ((component instanceof UIOutput) &&
+                (((UIOutput) component).getValue() == null)) {
+                ((UIOutput) component).setValue(value);
+            } else if (component.getAttribute("value") == null) {
+                component.setAttribute("value", value);
+            }
+        }
+        if (valueRef != null) {
+            if ((component instanceof UIOutput) &&
+                (((UIOutput) component).getValueRef() == null)) {
+                ((UIOutput) component).setValueRef(valueRef);
+            } else if (component.getAttribute("valueRef") == null) {
+                component.setAttribute("valueRef", valueRef);
+            }
         }
 
     }

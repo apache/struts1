@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/FormRenderer.java,v 1.1 2003/03/07 03:22:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/FormRenderer.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:13 $
  *
  * ====================================================================
  *
@@ -67,8 +67,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.logging.Log;
@@ -84,7 +82,7 @@ import org.apache.struts.faces.component.FormComponent;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:44 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
  */
 
 public class FormRenderer extends AbstractRenderer {
@@ -123,6 +121,7 @@ public class FormRenderer extends AbstractRenderer {
         if (log.isDebugEnabled()) {
             log.debug("decode(" + component.getComponentId() + ")");
         }
+        component.setValid(true);
 
     }
 
@@ -217,7 +216,8 @@ public class FormRenderer extends AbstractRenderer {
         writer.write(">\n");
 
         // Add a transaction token if necessary
-        HttpSession session = context.getHttpSession();
+        HttpSession session = (HttpSession)
+            context.getExternalContext().getSession(false);
         if (session != null) {
             String token = (String)
                 session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
@@ -325,15 +325,12 @@ public class FormRenderer extends AbstractRenderer {
      */
     protected String action(FacesContext context, UIComponent component) {
 
-        HttpServletRequest request = (HttpServletRequest)
-            context.getServletRequest();
-        HttpServletResponse response = (HttpServletResponse)
-            context.getServletResponse();
         String treeId = context.getTree().getTreeId();
-        StringBuffer sb = new StringBuffer(request.getContextPath());
+        StringBuffer sb = new StringBuffer
+            (context.getExternalContext().getRequestContextPath());
         sb.append("/faces");
         sb.append(treeId);
-        return (response.encodeURL(sb.toString()));
+        return (context.getExternalContext().encodeURL(sb.toString()));
 
     }
 

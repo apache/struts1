@@ -6,21 +6,107 @@
 # source code.  To use this file, make a copy of it in "build.properties" and
 # customize the values as required.
 #
-# $Id: build.properties.sample,v 1.1 2003/03/07 03:22:42 craigmcc Exp $
+# $Id: build.properties.sample,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
 
 
-# The absolute or relative pathname of the JavaServer Faces Reference
-# Implementation Release distribution
-jsf-ri.home=../jsf-ri/dist
+# ---------------------------- BUILD MODE -------------------------------------
+
+# Uncomment the following property setting to build web applications that will
+# include all of the required libraries, and therefore run on containers other
+# than the Java Web Services Developer Pack (JWSDP) 1.2 Release, which makes
+# many of these libraries available to web applications already
+
+# build.standalone=true
 
 
-# The absolute or relative pathname of the directory containing your
-# Servlet API classes JAR file (servlet.jar)
-servlet.home=/usr/local/jakarta-tomcat-4.1.18/commons/lib
+# ---------------------- DEPENDENCY HOME DIRECTORIES --------------------------
+
+# The absolute or relative pathname of the Java Web Services Developer Pack
+# (JWSDP) Version 1.2 installation directory
+jwsdp.home=/usr/local/jwsdp-1.2
+
+# The absolute or relative pathname of the JavaServer Faces EA4 Distribution
+# Directory
+jsf-ri.home=${jwsdp.home}/jsf
+
+# The absolute or relative pathname of the Struts 1.1 RC1 (or later)
+# Distribution Directory
+struts.home=/usr/local/struts-1.1
 
 
-# The absolute or relative pathname of the Struts 1.1 (Final Release)
-# distribution
-struts.home=/usr/local/jakarta-struts-1.1
+# ---------------------- DEPENDENCY LIBRARY PATHS -----------------------------
+
+# The absolute or relative pathname of the Commons Beanutils Library
+commons-beanutils.jar=${jwsdp.home}/jwsdp-shared/lib/commons-beanutils.jar
+
+# The absolute or relative pathname of the Commons Collections Library
+commons-collections.jar=${jwsdp.home}/jwsdp-shared/lib/commons-collections.jar
+
+# The absolute or relative pathname of the Commons DBCP Library
+commons-dbcp.jar=${jwsdp.home}/common/lib/commons-dbcp.jar
+
+# The absolute or relative pathname of the Commons Digester Library
+commons-digester.jar=${jwsdp.home}/jwsdp-shared/lib/commons-digester.jar
+
+# The absolute or relative pathname of the Commons FileUpload Library
+commons-fileupload.jar=${struts.home}/lib/commons-fileupload.jar
+
+# The absolute or relative pathname of the Commons Lang Library
+commons-lang.jar=${struts.home}/lib/commons-lang.jar
+
+# The absolute or relative pathname of the Commons Logging Library
+commons-logging.jar=${jwsdp.home}/jwsdp-shared/lib/commons-logging.jar
+
+# The absolute or relative pathname of the Commons Pool Library
+commons-pool.jar=${jwsdp.home}/common/lib/commons-pool.jar
+
+# The absolute or relative pathname of the Commons Validator Library
+commons-validator.jar=${struts.home}/lib/commons-validator.jar
+
+# The absolute or relative pathname of the JavaServer Faces API Classes
+jsf-api.jar=${jsf-ri.home}/lib/jsf-api.jar
+
+# The absolute or relative pathname of the JavaServer Faces RI Classes
+jsf-ri.jar=${jsf-ri.home}/lib/jsf-ri.jar
+
+# The absolute or relative pathname of the JSP 2.0 API Classes
+# (If you are compiling against a combined Servlet 2.3 / JSP 1.2 API
+# classes JAR file, this property can be omitted)
+jsp-api.jar=${jwsdp.home}/common/lib/jsp-api.jar
+
+# The absolute or relative pathname of the JSP Standard Tag Library
+# (JSTL) API Classes
+jstl.jar=${jsf-ri.home}/lib/jstl.jar
+
+# The absolute or relative pathname of the Servlet 2.4 API Classes
+# (or a combined Servlet 2.3 / JSP 1.2 API classes JAR file)
+servlet.jar=${jwsdp.home}/common/lib/servlet-api.jar
+
+# The absolute or relative pathname of the JSP Standard Tag Library
+# (JSTL) RI Classes
+standard.jar=${jsf-ri.home}/lib/standard.jar
+
+# The absolute or relative pathname of the Struts Runtime Library
+struts.jar=${struts.home}/lib/struts.jar
 
 
+# ------------------------------- TOMCAT INTEGRATION --------------------------
+
+# The build.xml file for this package includes commands that leverage the
+# manager webapp of Tomcat 4.1 or 5.0 to dynamically install, reload, or
+# remove the example web application.  In order for these targets to work,
+# you must copy the "catalina-ant.jar" file from the "server/lib" directory
+# of your Tomcat or JWSDP installation into the "lib" directory of your
+# Ant installation, and customize the following properties as needed.
+
+# The URL of the manager web application on your Tomcat or JWSDP installation
+url=http://localhost:8080/manager
+
+# The username and password of a Tomcat user that you have configured to
+# possess the "manager" role.  You can use the admin webapp to configure
+# such a user, if one does not exist already
+username=tomcat
+password=tomcat
+
+# The context path to which the example web application will be deployed
+example.path=/struts-faces

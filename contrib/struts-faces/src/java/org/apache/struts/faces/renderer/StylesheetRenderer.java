@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/StylesheetRenderer.java,v 1.1 2003/03/07 03:22:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/StylesheetRenderer.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:13 $
  *
  * ====================================================================
  *
@@ -66,7 +66,6 @@ import java.io.IOException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
@@ -77,7 +76,7 @@ import org.apache.struts.Globals;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:44 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
  */
 
 public class StylesheetRenderer extends AbstractRenderer {
@@ -115,10 +114,8 @@ public class StylesheetRenderer extends AbstractRenderer {
         }
 
         ResponseWriter writer = context.getResponseWriter();
-        HttpServletRequest request = (HttpServletRequest)
-            context.getServletRequest();
         writer.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"");
-        writer.write(request.getContextPath());
+        writer.write(context.getExternalContext().getRequestContextPath());
         writer.write((String) component.getAttribute("path"));
         writer.write("\">");
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/component/FormComponent.java,v 1.1 2003/03/07 03:22:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/component/FormComponent.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:38:13 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.util.RequestUtils;
  * creation of form beans in request or session scope.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:44 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
  */
 public class FormComponent extends UIForm {
 
@@ -111,7 +111,7 @@ public class FormComponent extends UIForm {
      */
     public String getAction() {
 
-        return ((String) getAttribute("value"));
+        return (getFormName());
 
     }
 
@@ -125,7 +125,7 @@ public class FormComponent extends UIForm {
      */
     public void setAction(String action) {
 
-        setAttribute("value", action);
+        setFormName(action);
 
     }
 
@@ -205,13 +205,12 @@ public class FormComponent extends UIForm {
         ActionForm instance = null;
         if ("request".equals(scope)) {
             instance = (ActionForm)
-                context.getServletRequest().getAttribute(attribute);
+                context.getExternalContext().getRequestMap().get(attribute);
         } else if ("session".equals(scope)) {
-            HttpSession session =
-                ((HttpServletRequest) context.getServletRequest()).
-                getSession(true);
+            HttpSession session = (HttpSession)
+                context.getExternalContext().getSession(true);
             instance = (ActionForm)
-                session.getAttribute(attribute);
+                context.getExternalContext().getSessionMap().get(attribute);
         }
         if (instance != null) {
             if (fbConfig.getDynamic()) {
@@ -282,13 +281,15 @@ public class FormComponent extends UIForm {
 
         // Configure and cache the form bean instance in the correct scope
         ActionServlet servlet = (ActionServlet)
-            context.getServletContext().getAttribute
+            context.getExternalContext().getApplicationMap().get
             (Globals.ACTION_SERVLET_KEY);
         instance.setServlet(servlet);
         if ("request".equals(scope)) {
-            context.getServletRequest().setAttribute(attribute, instance);
+            context.getExternalContext().getRequestMap().put
+                (attribute, instance);
         } else if ("session".equals(scope)) {
-            context.getHttpSession().setAttribute(attribute, instance);
+            context.getExternalContext().getSessionMap().put
+                (attribute, instance);
         }
 
     }
@@ -307,11 +308,12 @@ public class FormComponent extends UIForm {
 
         // Look up the application module configuration information we need
         ModuleConfig modConfig = (ModuleConfig)
-            context.getServletRequest().getAttribute(Globals.APPLICATION_KEY);
+            context.getExternalContext().getRequestMap().get
+            (Globals.MODULE_KEY);
         if (modConfig == null) {
             modConfig = (ModuleConfig)
-                context.getServletContext().getAttribute
-                (Globals.APPLICATION_KEY);
+                context.getExternalContext().getApplicationMap().get
+                (Globals.MODULE_KEY);
         }
         if (modConfig == null) {
             throw new IllegalArgumentException
