@@ -33,11 +33,6 @@
 
     <menu name="Struts">
         <item name="Welcome"                 href="../index.html"/>
-        <item name="Learning"                href="../learning.html"/>
-        <item name="Acquiring"               href="../acquiring.html"/>
-        <item name="Using"                   href="../using.html"/>
-        <item name="Who We Are"              href="../volunteers.html"/>
-        <item name="Roadmap"                 href="../status.html"/>
     </menu>
 
 </project>
