@@ -90,9 +90,9 @@ import org.xml.sax.SAXException;
  * <li>There can be <b>one</b> instance of this servlet class,
  *     which receives and processes all requests that change the state of
  *     a user's interaction with the application.  The servlet delegates the
- *     handling of a request to a @link(RequestProcessor) object. This component
+ *     handling of a request to a {@link RequestProcessor} object. This component
  *     represents the "controller" component of an MVC architecture.</li>
- * <li>The <code>RequestProcessor</code> selects and invokes an @link(Action) class to perform
+ * <li>The <code>RequestProcessor</code> selects and invokes an {@link Action} class to perform
  *     the requested business logic, or delegates the response to another resource.</li>
  * <li>The <code>Action</code> classes can manipulate the state of the application's
  *     interaction with the user, typically by creating or modifying JavaBeans
@@ -100,7 +100,7 @@ import org.xml.sax.SAXException;
  *     they need to be available). Such JavaBeans represent the "model"
  *     component of an MVC architecture.</li>
  * <li>Instead of producing the next page of the user interface directly,
- *     <code>Action</code> classes generally return an @link(ActionForward) to indicate
+ *     <code>Action</code> classes generally return an {@link ActionForward} to indicate
  *     which resource should handle the response. If the <code>Action</code>
  *     does not return null, the <code>RequestProcessor</code> forwards or
  *     redirects to the specified resource (by utilizing
