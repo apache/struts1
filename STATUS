@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.48 2002/08/01 00:31:33 jholmes Exp $
+$Id: STATUS,v 1.49 2002/08/01 00:33:59 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           11 open bugs to swat!!
+                           13 open bugs to swat!!
 
 
 Controller:
