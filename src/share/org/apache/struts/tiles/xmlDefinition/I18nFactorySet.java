@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.9 2003/07/27 04:59:44 rleland Exp $
- * $Revision: 1.9 $
- * $Date: 2003/07/27 04:59:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.10 2003/07/31 03:47:55 rleland Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/07/31 03:47:55 $
  *
  * ====================================================================
  *
@@ -82,6 +82,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.DefinitionsUtil;
 import org.apache.struts.tiles.FactoryNotFoundException;
+import org.apache.struts.taglib.tiles.ComponentConstants;
 import org.xml.sax.SAXException;
 
 /**
@@ -344,7 +345,7 @@ public class I18nFactorySet extends FactorySet {
         try {
             HttpSession session = ((HttpServletRequest) request).getSession(false);
             if (session != null) {
-                locale = (Locale) session.getAttribute(DefinitionsUtil.LOCALE_KEY);
+                locale = (Locale) session.getAttribute(ComponentConstants.LOCALE_KEY);
             }
 
         } catch (ClassCastException ex) {
