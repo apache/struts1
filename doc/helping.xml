@@ -17,8 +17,12 @@
     <li><a href="#release">So when is the next release coming out?</a></li>
     <li><a href="#release_help">How can I help the next release along?</a></li>
 </ul>
+<p>
+<font face="Arial, Helvetica, sans serif">"You can't always get what you want / but if you try real hard / you might just find /
+that you get what you need". </font><br/>
+[Rolling Stones]
+</p>
 </section>
-
 
 <section href="corp" name="What can my company do to help support Struts?">
 <p>Struts is an all volunteer product. Our customers are the volunteers who donate
@@ -216,6 +220,28 @@ volunteer. If Developers are supporting each other on the lists, the
 Committers have more time to spend on the next release. </li>
 </ul>
 </section>
+
+
+<section href="decisions" name="Who makes the final decisions regarding Struts">
+
+<p>The management of the Jakarta site, and the Struts product, is based on principles and
+practices used by creators of the Apache HTTPD server. Struts follows the
+<a href="http://jakarta.apache.org/site/guidelines.html">Project Guidelines</a> on the
+main Jakarta site.
+</p>
+<p>If you are new to this style of development, the Apache HTTPD Dev list is available in a
+<a href="dev-digest-subscribe@httpd.apache.org">digest form</a>. Even if you are not
+working on the HTTPD server yourself, it is interesting to watch how the HTTPD team
+works on the server.
+</p>
+<p>The Struts project has its own <a href="index.html#lists">Dev list</a>, where all of
+the decisions regarding Struts are made. Most development takes place via
+"<a href="http://jakarta.apache.org/site/proposal.html#decisions/voting/items">Lazy Consensus</a>".
+Committers post most changes to the product unilaterally, using their own best judgment,
+and only discuss or vote upon controversial matters. Another Committer can veto any change in an
+unreleased product with cause.</p>
+</section>
+
 
 <section href="more" name="Other FAQs">
 <ul>

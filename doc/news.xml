@@ -133,7 +133,7 @@ Demo : http://easystruts.sourceforge.net/editor.html (4Mo, be patient)
 </p>
 <p>  
 <a href="http://easystruts.sourceforge.net">http://easystruts.sourceforge.net</a><br/>
-<a href="http://sourceforge.net/projects/easystruts">http://easystruts.sourceforge.net</a>
+<a href="http://sourceforge.net/projects/easystruts">http://sourceforge.net/projects/easystruts</a>
 </p>
 <hr size="1" noshade=""/>
 
@@ -149,7 +149,7 @@ Re-Hello, I fix some bugs from Easy Struts 0.5. Here the changes:<br/>
   - [FIX] When element removed from Editor UI, elements wasn't removed in xml source.<br/>
   - [FIX] Synchronisation with Easy Struts wizards when editor is open.<br/>
   - [FIX] When editor is re-open (after closed), struts-config.xml was in read only mode.<br/>
-  - [FIX] Some editor bugs... I include some screenshots :http://easystruts.sourceforge.net/editor.htmlhttp://easystruts.sourceforge.net<br/>
+  - [FIX] Some editor bugs... I include some screenshots:<a href="http://easystruts.sourceforge.net/editor.html">http://easystruts.sourceforge.net</a><br/>
 </p>
 <hr size="1" noshade=""/>
 
@@ -163,7 +163,6 @@ Download Now:<br/>
 <a href="http://www.jamesholmes.com/struts/struts-console-2.1.zip">http://www.jamesholmes.com/struts/struts-console-2.1.zip</a><br/>
   -- OR --<br/>
 <a href="http://www.jamesholmes.com/struts/struts-console-2.1.tar.gz">http://www.jamesholmes.com/struts/struts-console-2.1.tar.gz</a><br/>
-http://www.jamesholmes.com/struts/struts-console-2.1.tar.gz
 </p>
 <p>
 Struts Console is FREE software.

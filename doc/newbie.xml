@@ -23,6 +23,8 @@ their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a
 
     <li>Do I have to have a separate ActionForm bean for every HTML form?</li>
 
+    <li>do ActionForms have to be true JavaBeans?</li>
+
     <li>Can I use other beans or hashmaps with ActionForms?</li>
 
     <li>How can I prepopulate a form?</li>
@@ -135,6 +137,16 @@ then become difficult to change.
 </section>
 
 
+<section href="JavaBeans" name="Do ActionForms have to be true JavaBeans?">
+<p>
+The utilities that Struts uses (Commons-BeanUtils since 1.1) require that ActionForm properties follow
+the JavaBean patterns for mutators and accessors (get*,set*,is*). Since Struts uses the Introspection API
+with the ActionForms, some containers may require that all the JavaBean patterns be followed, including
+declaring "<code>implements serializable</code>" for each subclass. The safest thing is to review the
+<a href="userGuide/preface.html#javabeans">JavaBean specification</a> and follow all the prescribed patterns.</p>
+</section>
+
+
 <section href="multiple" name="Can I use multiple HTML form elements with the same name?">
 <p>
 Yes. Define the element as an array and Struts will autopopulate it like any other.
@@ -227,6 +239,34 @@ does not need to be repeated in every instance. You can "say it once" in a JavaB
 </section>
 
 <section name="How do I access my database?">
+<p>
+The best thing is use the Action as a thin adaptor between the web/presentation-tier and your business classes
+(including those that access a database).
+</p>
+<p>
+So you first design a business API that uses plain Java classes. The best thing is to use objects that take
+ordinary Java types and return a JavaBean or collection of JavaBeans. The Action then calls these objects and
+passes the result back to the web/presentation tier.
+</p>
+<p>
+A common approach is to create an Action class for each of the business API methods/classes that you need to call.
+Ideally, all the database access code should be encapsulated in the business API classes, so Struts doesn't know
+what persistent layer you are using (or even if there is a persisentance layer). It just passes a key or search
+String and gets back a bean or collection of beans. This lets you use the same business API classes in other
+environments, and also to run unit tests against your business API outside of Struts or a HTTP environment.
+</p>
+<p>
+To get started, it's simplest to setup a 1:1 correspondence between the Actions and the entry-points to
+your business API. As you gain experience, you will find ways to combine your Actions, say by using the
+DispatchAction. It's even possible to use a single "framework" Action to call all of your business
+classes, as is done with Scaffold ProcessAction in the contrib folder. Using fewer Actions does require
+a deeper understanding of how Struts and MVC frameworks operate. Don't hestitate to err on the side
+of creating more Actions at first. The Struts configuration makes it easy to refactor your Actions
+later, since you can change the Action type without changing anything else in the application.
+</p>
+<p>
+For more, see
+</p>
 <p>
 <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24621.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24621.html</a><br/>
 <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24709.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24709.html</a><br/>

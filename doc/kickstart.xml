@@ -188,27 +188,50 @@ links.
 <p>Development of both products began about the same time. Leading up to the release of 1.0, it was thought better to continue to develop the taglibs alongside the controller. Now that 1.0 is out, the Java ServerPages Standard Taglib is in active development. Once work on the JSPTL stabilizes, the Struts taglibs will be revisited. Tags which are not linked directly to the framework may be hosted at Jakarta Taglibs instead.</p>
 </section>
 
+<section href="xhtml" name="Are the Struts tags XHTML compliant?">
+<p>If you utilize a &lt;html:html xhtml="true> element on your page, the tags
+will render in a XHTML compatible manner (since Struts 1.1 beta 2). </p>
+</section>
+
+<section href="wml" name="Will the Struts tags support other markup languages such as WML">
+<p>
+Struts itself is markup neutral. The original Struts taglibs are only one example of how
+presentation layer components can access the framework. The framework objects are exposed
+through the standard application, session, and request contexts, where any Java component in
+the application can make use of them.
+</p>
+
+<p>Markup extensions that use Struts are available for
+<a href="http://jakarta.apache.org/velocity">Velocity</a> and
+<a href="http://www.openroad.ca/opencode/">XLST</a>, among others.
+A new Struts tag for
+<a href="#jsf">Java Server Faces</a> is also in development.
+</p>
+
+<p>For more about using WAP/WML with Struts see the article
+<a href="http://www.sys-con.com/pbdj/archives2/0904/hamboeck/">
+WAP up your EAserver</a>.
+</p>
+</section>
+
 <section href="jsf" name="What about the JSTL and JavaServer Faces?">
 <p>
 The lead developer of Struts, Craig McClanahan, was a member of the
 expert group for the JavaServer Standard Tag Library (JSR 052) and
 now the specification lead for JavaServer Faces (JSR 127). Both
-technologies are complementary to Struts.
-</p>
+technologies are complementary to Struts.</p>
 <p>
 The mainstay of the Struts framework is the controller components, which
 can be used with any Java presentation technology. As new technologies
 become available, it is certain that new "glue" components will also
 appear to help these technologies work as well with Struts as the
-bundled JSP tags. This would apply to both the JSTL and JSF.
-</p>
+bundled JSP tags. This would apply to both the JSTL and JSF.</p>
 <p>
 At some point, we would not be surprised to see Faces become the
 preferred UI implementation technology once it is standardized and
 available. You can be assured that any future migration will be
 made as painless as possible, and maximize your investment in
-Struts.
-</p>
+Struts.</p>
 <p>
 The JSTL is available through the Jakarta Taglibs site: <br/>
 <a href="http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html">http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html</a>
@@ -218,6 +241,13 @@ The JavaServer Faces specification is still being finalized. Public release of
 the specification is scheduled for Summer 2002, and an implementation may be
 available in Fall of 2002. <a href="http://servlet.java.sun.com/javaone/sf2002/conf/sessions/display-1697.en.jsp">
 A presentation was given at JavaOne 2002</a> with some additional background.
+</p>
+<p>
+In September 2002, McClanahan announced that a
+<a href="../proposals/struts-faces.html">struts-faces taglib</a> is in
+development and might be released sometime in the Q4 2002. The taglib depends
+on unreleased JSF features, and so an early release of the taglib must follow
+release of a later implementation of JSF.
 </p>
 </section>
 
