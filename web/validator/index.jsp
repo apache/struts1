@@ -65,6 +65,10 @@
       <html:link page="/locale.do?language=fr&country=CA">French Canadian | Francais Canadien</html:link> - 
       <bean:message key="localeForm.frCA"/>
    </li>
+   <li>
+      <html:link page="/locale.do?language=ja">Japanese | Japonais</html:link> - 
+      <bean:message key="localeForm.ja"/>
+   </li>
 </ul>
 
 <p>&nbsp;</p>
