@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.3 2001/11/28 17:22:58 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2001/11/28 17:22:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.4 2002/02/26 03:38:57 dwinterfeldt Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/02/26 03:38:57 $
  *
  * ====================================================================
  *
@@ -72,6 +72,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogSource;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -128,7 +130,7 @@ import org.apache.struts.util.MessageResources;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2001/11/28 17:22:58 $
+ * @version $Revision: 1.4 $ $Date: 2002/02/26 03:38:57 $
  */
 
 public abstract class DispatchAction extends Action {
@@ -136,6 +138,10 @@ public abstract class DispatchAction extends Action {
 
     // ----------------------------------------------------- Instance Variables
 
+    /**
+     * Commons Logging instance.
+    */
+    private Log log = LogSource.getInstance(this.getClass().getName());
 
     /**
      * The Class instance of this <code>DispatchAction</code> class.
@@ -189,7 +195,7 @@ public abstract class DispatchAction extends Action {
             String message =
                 messages.getMessage("dispatch.method", mapping.getPath(),
                                     name);
-            servlet.log(message);
+            log.error(message, e);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                                message);
             return (null);
@@ -203,7 +209,7 @@ public abstract class DispatchAction extends Action {
             String message =
                 messages.getMessage("dispatch.return", mapping.getPath(),
                                     name);
-            servlet.log(message);
+            log.error(message, e);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                                message);
             return (null);
@@ -211,7 +217,7 @@ public abstract class DispatchAction extends Action {
             String message =
                 messages.getMessage("dispatch.error", mapping.getPath(),
                                     name);
-            servlet.log(message, e);
+            log.error(message, e);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                                message);
             return (null);
@@ -219,7 +225,7 @@ public abstract class DispatchAction extends Action {
             String message =
                 messages.getMessage("dispatch.error", mapping.getPath(),
                                     name);
-            servlet.log(message, e);
+            log.error(message, e);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                                message);
             return (null);
@@ -259,7 +265,7 @@ public abstract class DispatchAction extends Action {
         if (parameter == null) {
             String message =
                 messages.getMessage("dispatch.handler", mapping.getPath());
-            servlet.log(message);
+            log.error(message);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                                message);
             return (null);
@@ -271,7 +277,7 @@ public abstract class DispatchAction extends Action {
             String message =
                 messages.getMessage("dispatch.parameter", mapping.getPath(),
                                     parameter);
-            servlet.log(message);
+            log.error(message);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST,
                                message);
             return (null);

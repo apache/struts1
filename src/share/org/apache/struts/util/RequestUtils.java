@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.28 2002/01/17 00:15:05 craigmcc Exp $
- * $Revision: 1.28 $
- * $Date: 2002/01/17 00:15:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.29 2002/02/26 03:38:57 dwinterfeldt Exp $
+ * $Revision: 1.29 $
+ * $Date: 2002/02/26 03:38:57 $
  *
  * ====================================================================
  *
@@ -84,6 +84,8 @@ import javax.servlet.jsp.PageContext;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogSource;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
@@ -108,7 +110,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.28 $ $Date: 2002/01/17 00:15:05 $
+ * @version $Revision: 1.29 $ $Date: 2002/02/26 03:38:57 $
  */
 
 public class RequestUtils {
@@ -116,6 +118,10 @@ public class RequestUtils {
 
     // ------------------------------------------------------- Static Variables
 
+    /**
+     * Commons Logging instance.
+    */
+    private static Log LOG = LogSource.getInstance(RequestUtils.class.getName());
 
     /**
      * The default Locale for our server.
@@ -496,7 +502,7 @@ public class RequestUtils {
 
         // Look up any existing form bean instance
         if (appConfig.getControllerConfig().getDebug() >= 2) {
-            servlet.log(" Looking for ActionForm bean instance in scope '" +
+            LOG.info(" Looking for ActionForm bean instance in scope '" +
                         mapping.getScope() + "' under attribute key '" +
                         attribute + "'");
         }
@@ -543,7 +549,7 @@ public class RequestUtils {
                     DynaActionFormClass.createDynaActionFormClass(config);
                 instance = (ActionForm) dynaClass.newInstance();
             } catch (Throwable t) {
-                servlet.log(servlet.getInternal().getMessage
+                LOG.error(servlet.getInternal().getMessage
                             ("formBean", config.getName()), t);
                 return (null);
             }
@@ -553,7 +559,7 @@ public class RequestUtils {
                 Class clazz = Class.forName(config.getType());
                 instance = (ActionForm) clazz.newInstance();
             } catch (Throwable t) {
-                servlet.log(servlet.getInternal().getMessage
+                LOG.error(servlet.getInternal().getMessage
                             ("formBean", config.getType()), t);
                 return (null);
             }
@@ -928,18 +934,18 @@ public class RequestUtils {
                     Class.forName(multipartClass).newInstance();
             }
             catch (ClassNotFoundException cnfe) {
-                servlet.log("MultipartRequestHandler class \"" +
+                LOG.error("MultipartRequestHandler class \"" +
                     multipartClass + "\" in mapping class not found, " +
                     "defaulting to global multipart class");
             }
             catch (InstantiationException ie) {
-                servlet.log("InstantiaionException when instantiating " +
+                LOG.error("InstantiaionException when instantiating " +
                     "MultipartRequestHandler \"" + multipartClass + "\", " +
                     "defaulting to global multipart class, exception: " +
                     ie.getMessage());
             }
             catch (IllegalAccessException iae) {
-                servlet.log("IllegalAccessException when instantiating " +
+                LOG.error("IllegalAccessException when instantiating " +
                     "MultipartRequestHandler \"" + multipartClass + "\", " +
                     "defaulting to global multipart class, exception: " +
                     iae.getMessage());

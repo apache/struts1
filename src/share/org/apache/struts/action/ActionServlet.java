@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.92 2002/02/23 22:54:17 craigmcc Exp $
- * $Revision: 1.92 $
- * $Date: 2002/02/23 22:54:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.93 2002/02/26 03:38:56 dwinterfeldt Exp $
+ * $Revision: 1.93 $
+ * $Date: 2002/02/26 03:38:56 $
  *
  * ====================================================================
  *
@@ -86,6 +86,8 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.collections.FastHashMap;
 import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.Rule;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogSource;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ConfigRuleSet;
@@ -267,7 +269,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.92 $ $Date: 2002/02/23 22:54:17 $
+ * @version $Revision: 1.93 $ $Date: 2002/02/26 03:38:56 $
  */
 
 public class ActionServlet
@@ -276,7 +278,11 @@ public class ActionServlet
 
     // ----------------------------------------------------- Instance Variables
 
-
+    /**
+     * Commons Logging instance.
+    */
+    private Log log = LogSource.getInstance(this.getClass().getName());
+    
     /**
      * The context-relative path to our configuration resource for the
      * default sub-application.
@@ -377,8 +383,8 @@ public class ActionServlet
      */
     public void destroy() {
 
-        if (debug >= 1) {
-            log(internal.getMessage("finalizing"));
+        if (log.isDebugEnabled()) {
+            log.debug(internal.getMessage("finalizing"));
         }
 
         destroyApplications();
@@ -476,13 +482,16 @@ public class ActionServlet
      */
     public void addServletMapping(String servletName, String urlPattern) {
 
-        if (debug >= 1)
-            log("Process servletName=" + servletName +
-                ", urlPattern=" + urlPattern);
-        if (servletName == null)
+        if (log.isDebugEnabled()) {
+            log.debug("Process servletName=" + servletName +
+                      ", urlPattern=" + urlPattern);
+        }
+        if (servletName == null) {
             return;
-        if (servletName.equals(this.servletName))
+        }
+        if (servletName.equals(this.servletName)) {
             this.servletMapping = urlPattern;
+        }
 
     }
 
@@ -612,8 +621,9 @@ public class ActionServlet
      */
     public void log(String message, int level) {
 
-        if (debug >= level)
+        if (debug >= level) {
             log(message);
+        }
 
     }
 
@@ -679,12 +689,13 @@ public class ActionServlet
                 getServletContext().removeAttribute(key);
                 DataSource dataSource = findDataSource(key);
                 if (dataSource instanceof GenericDataSource) {
-                    if (debug >= 1)
-                        log(internal.getMessage("dataSource.destroy", key));
+                    if (log.isDebugEnabled()) {
+                        log.debug(internal.getMessage("dataSource.destroy", key));
+                    }
                     try {
                         ((GenericDataSource) dataSource).close();
                     } catch (SQLException e) {
-                        log(internal.getMessage("destroyDataSource", key), e);
+                        log.error(internal.getMessage("destroyDataSource", key), e);
                     }
                 }
             }
@@ -737,8 +748,8 @@ public class ActionServlet
     protected ApplicationConfig initApplicationConfig
         (String prefix, String path) throws ServletException {
 
-        if (debug >= 1) {
-            log("Initializing application path '" + prefix +
+        if (log.isDebugEnabled()) {
+            log.debug("Initializing application path '" + prefix +
                 "' configuration from '" + path + "'");
         }
 
@@ -756,7 +767,7 @@ public class ActionServlet
             getServletContext().setAttribute
                 (Action.APPLICATION_KEY + prefix, config);
         } catch (Throwable t) {
-            log(internal.getMessage("configParse", path), t);
+            log.error(internal.getMessage("configParse", path), t);
             throw new UnavailableException
                 (internal.getMessage("configParse", path));
         } finally {
@@ -797,8 +808,8 @@ public class ActionServlet
     protected void initApplicationDataSources
         (ApplicationConfig config) throws ServletException {
 
-        if (debug >= 1) {
-            log("Initializing application path '" + config.getPrefix() +
+        if (log.isDebugEnabled()) {
+            log.debug("Initializing application path '" + config.getPrefix() +
                 "' data sources");
         }
 
@@ -811,8 +822,8 @@ public class ActionServlet
 
         dataSources.setFast(false);
         for (int i = 0; i < dscs.length; i++) {
-            if (debug >= 1) {
-                log("Initializing application path '" + config.getPrefix() +
+            if (log.isDebugEnabled()) {
+                log.debug("Initializing application path '" + config.getPrefix() +
                     "' data source '" + dscs[i].getKey() + "'");
             }
             DataSource ds = null;
@@ -825,7 +836,7 @@ public class ActionServlet
                     ((GenericDataSource) ds).open();
                 }
             } catch (Throwable t) {
-                log(internal.getMessage
+                log.error(internal.getMessage
                     ("dataSource.init", dscs[i].getKey()), t);
                 throw new UnavailableException
                     (internal.getMessage("dataSource.init", dscs[i].getKey()));
@@ -854,8 +865,8 @@ public class ActionServlet
     protected void initApplicationPlugIns
         (ApplicationConfig config) throws ServletException {
 
-        if (debug >= 1) {
-            log("Initializing application path '" + config.getPrefix() +
+        if (log.isDebugEnabled()) {
+            log.debug("Initializing application path '" + config.getPrefix() +
                 "' plug ins");
         }
 
@@ -886,8 +897,8 @@ public class ActionServlet
                 (mrcs[i].getParameter() == null)) {
                 continue;
             }
-            if (debug >= 1) {
-                log("Initializing application path '" + config.getPrefix() +
+            if (log.isDebugEnabled()) {
+                log.debug("Initializing application path '" + config.getPrefix() +
                     "' message resources from '" +
                     mrcs[i].getParameter() + "'");
             }
@@ -903,7 +914,7 @@ public class ActionServlet
                 getServletContext().setAttribute
                     (mrcs[i].getKey() + config.getPrefix(), resources);
             } catch (Throwable t) {
-                log(internal.getMessage
+                log.error(internal.getMessage
                     ("applicationResources", mrcs[i].getParameter()), t);
                 throw new UnavailableException
                     (internal.getMessage
@@ -967,7 +978,7 @@ public class ActionServlet
         try {
             internal = MessageResources.getMessageResources(internalName);
         } catch (MissingResourceException e) {
-            log("Cannot load internal resources from '" + internalName + "'",
+            log.error("Cannot load internal resources from '" + internalName + "'",
                 e);
             throw new UnavailableException
                 ("Cannot load internal resources from '" + internalName + "'");
@@ -1043,24 +1054,26 @@ public class ActionServlet
         digester.addCallParam("web-app/servlet-mapping/url-pattern", 1);
 
         // Process the web application deployment descriptor
-        if (debug >= 1)
-            log("Scanning web.xml for controller servlet mapping");
+        if (log.isDebugEnabled()) {
+            log.debug("Scanning web.xml for controller servlet mapping");
+        }
         InputStream input= null;
         try {
             input =
                 getServletContext().getResourceAsStream("/WEB-INF/web.xml");
             digester.parse(input);
         } catch (Throwable e) {
-            log(internal.getMessage("configWebXml"), e);
+            log.error(internal.getMessage("configWebXml"), e);
         } finally {
             if (input != null)
                 input = null;
         }
 
         // Record a servlet context attribute (if appropriate)
-        if (debug >= 1)
-            log("Mapping for servlet '" + servletName + "' = '" +
+        if (log.isDebugEnabled()) {
+            log.debug("Mapping for servlet '" + servletName + "' = '" +
                 servletMapping + "'");
+        }
         if (servletMapping != null)
             getServletContext().setAttribute(Action.SERVLET_KEY,
                                              servletMapping);

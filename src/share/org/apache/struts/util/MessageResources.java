@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.11 2001/08/06 22:36:27 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2001/08/06 22:36:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.12 2002/02/26 03:38:57 dwinterfeldt Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/02/26 03:38:57 $
  *
  * ====================================================================
  * 
@@ -67,6 +67,8 @@ import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Locale;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogSource;
 
 
 /**
@@ -89,7 +91,7 @@ import java.util.Locale;
  * application server environments.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2001/08/06 22:36:27 $
+ * @version $Revision: 1.12 $ $Date: 2002/02/26 03:38:57 $
  */
 
 public abstract class MessageResources implements Serializable {
@@ -97,6 +99,10 @@ public abstract class MessageResources implements Serializable {
 
     // ------------------------------------------------------------- Properties
 
+    /**
+     * Commons Logging instance.
+    */
+    private Log log = LogSource.getInstance(this.getClass().getName());
 
     /**
      * The configuration parameter used to initialize this MessageResources.
@@ -559,11 +565,7 @@ public abstract class MessageResources implements Serializable {
      * @param message The message to be logged
      */
     public void log(String message) {
-
-        System.out.print("MessageResources: ");
-        System.out.println(message);
-        System.out.flush();
-
+        log.debug(message);
     }
 
 
@@ -575,11 +577,7 @@ public abstract class MessageResources implements Serializable {
      * @param throwable The exception to be logged
      */
     public void log(String message, Throwable throwable) {
-
-        System.out.print("MessageResources: ");
-        System.out.println(message);
-        throwable.printStackTrace(System.out);
-
+        log.debug(message, throwable);
     }
 
 

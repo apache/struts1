@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResourcesFactory.java,v 1.4 2001/02/12 00:32:13 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/12 00:32:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResourcesFactory.java,v 1.5 2002/02/26 03:38:57 dwinterfeldt Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/02/26 03:38:57 $
  *
  * ====================================================================
  * 
@@ -64,6 +64,8 @@ package org.apache.struts.util;
 
 
 import java.io.Serializable;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogSource;
 
 
 /**
@@ -81,7 +83,7 @@ import java.io.Serializable;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/02/12 00:32:13 $
+ * @version $Revision: 1.5 $ $Date: 2002/02/26 03:38:57 $
  */
 
 public abstract class MessageResourcesFactory implements Serializable {
@@ -119,6 +121,10 @@ public abstract class MessageResourcesFactory implements Serializable {
 
     // ------------------------------------------------------ Static Properties
 
+    /**
+     * Commons Logging instance.
+    */
+    private static Log LOG = LogSource.getInstance(MessageResourcesFactory.class.getName());
 
     /**
      * The Java class to be used for
@@ -163,8 +169,7 @@ public abstract class MessageResourcesFactory implements Serializable {
                 (MessageResourcesFactory) clazz.newInstance();
             return (factory);
         } catch (Throwable t) {
-            System.out.println("MessageResourcesFactory.createFactory");
-            t.printStackTrace(System.out);
+            LOG.error("MessageResourcesFactory.createFactory", t);
             return (null);
         }
 

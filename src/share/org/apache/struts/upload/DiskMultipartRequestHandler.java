@@ -10,6 +10,8 @@ import java.util.Enumeration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogSource;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionMapping;
@@ -23,6 +25,11 @@ import org.apache.struts.config.ApplicationConfig;
  */
 public class DiskMultipartRequestHandler implements MultipartRequestHandler {
 
+    /**
+     * Commons Logging instance.
+    */
+    private Log log = LogSource.getInstance(this.getClass().getName());
+    
     /**
      * The ActionServlet instance used for this class
      */
@@ -226,7 +233,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
                 tempDir = System.getProperty("java.io.tmpdir");
 
                 if (appConfig.getServlet().getDebug() > 1) {
-                    servlet.log("DiskMultipartRequestHandler.handleRequest(): " +
+                    log.debug("DiskMultipartRequestHandler.handleRequest(): " +
                     "defaulting to java.io.tmpdir directory \"" +
                     tempDir);
                 }

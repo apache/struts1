@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.7 2001/06/10 03:37:26 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/06/10 03:37:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.8 2002/02/26 03:38:57 dwinterfeldt Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/02/26 03:38:57 $
  *
  * ====================================================================
  *
@@ -72,6 +72,8 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.Properties;
 import javax.sql.DataSource;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogSource;
 
 
 /**
@@ -178,13 +180,18 @@ import javax.sql.DataSource;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.7 $ $Date: 2001/06/10 03:37:26 $
+ * @version $Revision: 1.8 $ $Date: 2002/02/26 03:38:57 $
  */
 
 public class GenericDataSource implements DataSource {
 
 
     // ----------------------------------------------------- Instance Constants
+
+    /**
+     * Commons Logging instance.
+    */
+    private Log log = LogSource.getInstance(this.getClass().getName());
 
 
     private static final String SQLEXCEPTION_GETCONNECTION =
@@ -449,23 +456,28 @@ public class GenericDataSource implements DataSource {
     public Connection getConnection() throws SQLException {
 
         int seconds = 0;
-        if (debug >= 2)
-            log("  getConnection()");
+        if (log.isInfoEnabled()) {
+            log.info("  getConnection()");
+        }
 
         // Validate the opened status of this data source
-        if (closed)
+        if (closed) {
             throw new SQLException("getConnection:  Data source is closed");
-        if (driver == null)
+        }
+        if (driver == null) {
             open();
+        }
 
         while (true) {
 
             // Have we timed out yet?
-            if (debug >= 3)
-                log("   Check for timeout, activeCount=" + activeCount +
+            if (log.isInfoEnabled()) {
+                log.info("   Check for timeout, activeCount=" + activeCount +
                     ", useCount=" + useCount);
-            if ((loginTimeout > 0) && (seconds >= loginTimeout))
+            }
+            if ((loginTimeout > 0) && (seconds >= loginTimeout)) {
                 break;
+            }
 
             // Return an existing connection from the pool if there is one
             synchronized (connections) {
@@ -474,16 +486,16 @@ public class GenericDataSource implements DataSource {
                     // Allocate the first available connection
                     GenericConnection connection =
                         (GenericConnection) connections.removeFirst();
-                    if (debug >= 3)
-                        log("   Found available connection");
+                    if (log.isInfoEnabled()) {
+                        log.info("   Found available connection");
+                    }
 
                     // Make sure this connection is not stale
                     connection.setClosed(false);
                     try {
                         ping(connection);
                     } catch (SQLException e) {
-                        if (debug >= 3)
-                            log("   Connection stale, releasing");
+                        log.warn("   Connection stale, releasing");
                         try {
                             connection.getConnection().close();
                         } catch (SQLException f) {
@@ -495,9 +507,11 @@ public class GenericDataSource implements DataSource {
 
                     // unclose the connection's wrapper and return it
                     useCount++;
-                    if (debug >= 3)
-                        log("   Return allocated connection, activeCount=" +
-                            activeCount + ", useCount=" + useCount);
+                    if (log.isInfoEnabled()) {
+                        log.info("   Return allocated connection, activeCount=" +
+                                 activeCount + ", useCount=" + useCount);
+                    }
+                    
                     return(connection);
 
                 }
@@ -513,16 +527,19 @@ public class GenericDataSource implements DataSource {
                         throw e;
                     }
                     useCount++;
-                    if (debug >= 3)
-                        log("   Return new connection, activeCount=" +
-                            activeCount + ", useCount=" + useCount);
+                    if (log.isInfoEnabled()) {
+                        log.info("   Return new connection, activeCount=" +
+                                 activeCount + ", useCount=" + useCount);
+                    }
+                    
                     return (connection);
                 }
             }
 
             // Wait for an existing connection to be returned
-            if (debug >= 3)
-                log("   Sleep until next test");
+            if (log.isInfoEnabled()) {
+                log.info("   Sleep until next test");
+            }
             try {
                 Thread.sleep(1000);
                 seconds++;
@@ -533,8 +550,9 @@ public class GenericDataSource implements DataSource {
         }
 
         // We have timed out awaiting an available connection
-        if (debug >= 3)
-            log("   Timeout awaiting connection");
+        if (log.isInfoEnabled()) {
+            log.info("   Timeout awaiting connection");
+        }
         throw new SQLException
             ("getConnection: Timeout awaiting connection");
 
@@ -576,6 +594,8 @@ public class GenericDataSource implements DataSource {
      * Return the log writer for this data source.
      *
      * @exception SQLException if a database access error occurs
+     *
+     * @deprecated Switched to Commons Logging.
      */
     public PrintWriter getLogWriter() throws SQLException {
 
@@ -604,6 +624,8 @@ public class GenericDataSource implements DataSource {
      * @param logWriter The new log writer
      *
      * @exception SQLException if a database access error occurs
+     *
+     * @deprecated Switched to Commons Logging.
      */
     public void setLogWriter(PrintWriter logWriter) throws SQLException {
 
@@ -624,8 +646,9 @@ public class GenericDataSource implements DataSource {
 
         if (closed)
             throw new SQLException("close:  Data Source already closed");
-        if (debug >= 1)
-            log(" close()");
+        if (log.isDebugEnabled()) {
+            log.debug(" close()");
+        }
 
         // Shut down all active connections
         while (activeCount > 0) {
@@ -651,8 +674,9 @@ public class GenericDataSource implements DataSource {
         // Have we already been opened?
         if (driver != null)
             return;
-        if (debug >= 1)
-            log(" open()");
+        if (log.isDebugEnabled()) {
+            log.debug(" open()");
+        }
 
         // Instantiate our database driver
         try {
@@ -726,14 +750,16 @@ public class GenericDataSource implements DataSource {
     protected synchronized Connection createConnection() throws SQLException {
 
         if (activeCount < maxCount) {
-            if (debug >= 3)
-                log("   createConnection()");
+            if (log.isInfoEnabled()) {
+                log.info("   createConnection()");
+            }
             Connection conn = driver.connect(url, properties);
             activeCount++;
             return (new GenericConnection(this, conn, autoCommit, readOnly));
         }
-        if (debug >= 3)
-            log("   createConnection() returning null");
+        
+        log.error("   createConnection() returning null");
+        
         return (null);
 
     }
@@ -743,6 +769,8 @@ public class GenericDataSource implements DataSource {
      * Log the specified message to our log writer, if we have one.
      *
      * @param message The message to be logged
+     *
+     * @deprecated Switched to Commons Logging.
      */
     protected void log(String message) {
 
@@ -762,6 +790,8 @@ public class GenericDataSource implements DataSource {
      *
      * @param message The message to be logged
      * @param throwable The exception to be logged
+     *
+     * @deprecated Switched to Commons Logging.
      */
     protected void log(String message, Throwable throwable) {
 
@@ -787,19 +817,21 @@ public class GenericDataSource implements DataSource {
 
         if (pingCommand != null) {
 
-            if (debug >= 4)
-                log("    ping(" + pingCommand + ")");
+            if (log.isDebugEnabled()) {
+                log.debug("    ping(" + pingCommand + ")");
+            }
 
             Statement stmt = conn.createStatement();
             try {
                 stmt.execute(pingCommand);
                 stmt.close();
             } catch (SQLException e) {
-                if (debug >= 5)
-                    log("     ping() failed:  " + e);
+                log.warn("ping failed:  " + e.getMessage(), e);
+
                 try {
-                    if (stmt != null)
+                    if (stmt != null) {
                         stmt.close();
+                    }
                 } catch (SQLException f) {
                     ;
                 }
@@ -810,8 +842,9 @@ public class GenericDataSource implements DataSource {
 
         if (pingQuery != null) {
 
-            if (debug >= 4)
-                log("    ping(" + pingQuery + ")");
+            if (log.isDebugEnabled()) {
+                log.debug("    ping(" + pingQuery + ")");
+            }
 
             ResultSet rs = null;
             Statement stmt = conn.createStatement();
@@ -823,8 +856,8 @@ public class GenericDataSource implements DataSource {
                 rs.close();
                 stmt.close();
             } catch (SQLException e) {
-                if (debug >= 5)
-                    log("     ping() failed: " + e);
+                log.warn("ping failed: " + e.getMessage(), e);
+                
                 try {
                     if (rs != null)
                         rs.close();
@@ -855,9 +888,10 @@ public class GenericDataSource implements DataSource {
      */
     void returnConnection(GenericConnection conn) {
 
-        if (debug >= 2)
-            log("  releaseConnection(), activeCount=" + activeCount +
+        if (log.isInfoEnabled()) {
+            log.info("  releaseConnection(), activeCount=" + activeCount +
                 ", useCount=" + (useCount - 1));
+        }
 
         synchronized (connections) {
             connections.addLast(conn);
