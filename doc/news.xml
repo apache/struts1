@@ -40,6 +40,30 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
  
 <section name="News" href="news">
 
+<h3><a name="20020711"></a>11 July 2002 - Scioworks Camino v2.0</h3>
+<p>
+Scioworks Camino is a visual tool for Struts application development.
+</p>
+<p>
+What's new in v2.0:
+</p>
+<ul>
+<li>Supports Struts 1.1 features - Manages multiple sub-apps on multiple Storyboards, declarative exception handling, dynamic FormBeans, etc.</li>
+<li>Enhanced Zoomable Storyboards - Manages each sub-app on its own Storyboard with cross sub-application connectivities. Supports zooming, snap-to-grid, auto-alignment and multiple segements paths.</li>
+<li>Built-in JSP source editor with syntax-highlighting - Automatic two-way synchronization between the editors and the Storyboards.</li>
+<li>Auto file synchronization - Detects external modifications of the JSPs.</li>
+<li>Inspector and Cross Referencing Tool - Allows quick viewing and modifying attributes of the elements and provide powerful cross-referencing facility.</li>
+<li>Enhanced Code Generator Wizard - Supports different generated code styles of FormBean and Action classes to suit your need.</li>
+<li>Enhanced JSP Parser - Revised and more forgiving on non-standard HTML syntax.</li>
+<li>Revised User Inteface</li>
+<li>Expanded XML Character Encoding Support - Allows customized setting.</li>
+<li>Supports both JVM 1.4 and JVM 1.3.</li>
+</ul>
+<p>
+Download: <a href="http://www.scioworks.com/">http://www.scioworks.com/</a>
+</p>
+<hr size="1" noshade=""/>
+
 <h3><a name="20020711"></a>11 July 2002 - Easy Struts v0.4 for Eclipse / JBuilder</h3>
 <p>
 Features:
