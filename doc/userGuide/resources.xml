@@ -9,6 +9,8 @@
 <chapter name="Struts Resources" href="resources"> 
 
 <section name="Contributor Taglibs" href="taglibs"> 
+<p><a href="http://husted.com/struts/resources/MonkeyStruts.htm"><b>MonkeyStruts</b></a> by Aaron Bates. An approach to nesting beans.</p>
+<p><a href="http://www.multimania.com/bist77/struts.php"><font size="2"><b>REGEXP.VALIDATOR.STRUTS</b></font></a> by Emmanuel Boudrant - A validation component that works with Struts 1.0, to manage form validation on server-side and client-side.</p>
 <p><a href="http://husted.com/struts/resources/struts-was.zip"><b>Struts-WAS.jar</b></a> by Christopher Assenza - Modified Struts 1.0 JAR for Websphere 3.5 or 4. Zipped for download. (For additional tips regarding Websphere 3.5 see <a href="http://jakarta.apache.org/struts/installation-was352-x.html">http://jakarta.apache.org/struts/installation-was352-x.html</a>.)</p>
 <p><a href="http://struts.application-servers.com/"><b>Struts Layout</b></a> by Improve - An extension library to      improve interfaces creation with Struts.</p>
 <p><a href="http://husted.com/struts/resources/indexed-tags.htm"><b>Indexed Tags</b></a> [Also available in the nightly build] by Dave Hays - Produce indexed names such as &lt;input type="text" name="parameter[0].value" value="Mac">. Link, Submit, and Select tags are included too.</p>
@@ -18,8 +20,10 @@
 </section>
 
 <section name="Contributor Extensions" href="extensions"> 
-<p><a href="resources/rrose.htm"><b>Struts .. in Rose</b></a> by Emmanuel.Boudrant - Use Struts with the Rational Rose UML model. </p>
-<p><a href="resources/multi-struts.htm"><b>Multi-Controller</b></a> by Sukachevin, Stoehr - Use more than once ActionServlet in your Struts application </p>
+<p><a href="resources/pow2acl.htm"><b> Pow2ACL</b></a> - Access Control List library. Track of application users roles and                          permissions. User can be authenticated: - directly using the                          package API; - using custom JSP tag
+libraries. </p>
+<p><a href="http://bist77.multimania.com/struts.php#rose"><b>Struts .. in Rose</b></a> by Emmanuel.Boudrant - Use Struts with the Rational Rose UML model. </p>
+<p><a href="http://husted.com/struts/resources/multi-struts.htm"><b>Multi-Controller</b></a> by Sukachevin, Stoehr - Use more than once ActionServlet in your Struts application </p>
 <p><a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg16093.html"><b>JavaScript with html:errors - new Struts validation</b></a> by Adam Grohs.  </p>
 <p><a href="http://www.scioworks.com/scioworks_camino.html"><b>Scioworks Camino</b></a> by Scioworks Pte Ltd. A visual tool for Struts. </p>
 <p><a href="http://www.ejcenter.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a Java Swing application that provides an easy to use interface for editing Struts' &quot;struts-config.xml&quot; configuration file.</p>
@@ -99,6 +103,7 @@
 <section name="Books" href="books"> 
 <ul>
 <li><a href="http://www.amazon.com/exec/obidos/ISBN=1861005512/hitchhikeguidetoA/"><b>Professional JSP Site Design</b></a> - Wrox book - Features Struts throughout.</li>
+<li><a href="http://www.amazon.com/exec/obidos/ISBN=0735710953/hitchhikeguidetoA/"><b>JSP and Tag Libraries for Web Development </b></a>- by Wellington L. S. Da Silva. Several chapters regarding Struts.</li>
 <li><a href="http://www.redbooks.ibm.com/redpieces/pdfs/sg246134.pdf"><b>Websphere Version 4 Application Development Handbook</b></a> <font size="1">(PDF)</font> - Chapter 7 covers designing with both the Struts and Websphere frameworks,</li>
 <li><a href="http://shannon.informatik.fh-wiesbaden.de/jsp/index.html"><b>Java Server Pages and J2EE Web-based Applications for Enterprises</b></a> - In German, with a Chapter regarding MVC and Struts.</li>
 <li><a href="http://www.amazon.com/exec/obidos/ISBN=0130648841/hitchhikeguidetoA/"><b>Core J2EE Patterns</b></a> - Many of these patterns are deployed in Struts.</li>
