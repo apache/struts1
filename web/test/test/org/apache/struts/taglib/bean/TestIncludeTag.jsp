@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 
 <logic:equal name="runTest" value="testIncludeTagForward">
 	<bean:include id="INCLUDE_TAG_KEY" forward="testIncludeTagForward"/>
@@ -9,7 +10,7 @@
 
 <logic:equal name="runTest" value="testIncludeTagHref">
 	<bean:define id="serverAddress">
-	http://<%=request.getServerName()%>:<%=request.getServerPort()%>/test/test/org/apache/struts/taglib/bean/resources/IncludeTagTest.jsp
+	http://<%=request.getServerName()%>:<%=request.getServerPort()%><html:rewrite page="/test/org/apache/struts/taglib/bean/resources/IncludeTagTest.jsp"/>
 	</bean:define>
 	<bean:include id="INCLUDE_TAG_KEY" href="<%=serverAddress%>"/>
 </logic:equal>
