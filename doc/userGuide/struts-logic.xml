@@ -14,7 +14,7 @@
   <jspversion>1.1</jspversion>
   <shortname>logic</shortname>
   <display-name>Struts Logic Tags</display-name>
-  <uri>http://jakarta.apache.org/struts/tags-logic-1.0</uri>
+  <uri>http://jakarta.apache.org/struts/tags-logic-1.1</uri>
   <info>
   <p>This tag library contains tags that are useful in managing conditional
   generation of output text, looping over object collections for
@@ -901,7 +901,7 @@
     <bodycontent>JSP</bodycontent>
     <since>Struts 1.1</since>
     <info>
-    <p>Evaluates the nested body content of this tag if 
+    <p>Evaluates the nested body content of this tag if
        an <code>ActionMessages</code>
        object, <code>ActionErrors</code> object, a String,
        or a String array is not in request scope.  If
@@ -958,7 +958,7 @@
     <bodycontent>JSP</bodycontent>
     <since>Struts 1.1</since>
     <info>
-    <p>Evaluates the nested body content of this tag if 
+    <p>Evaluates the nested body content of this tag if
        an <code>ActionMessages</code>
        object, <code>ActionErrors</code> object, a String,
        or a String array is in request scope.  If

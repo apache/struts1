@@ -15,7 +15,7 @@
   <jspversion>1.1</jspversion>
   <shortname>bean</shortname>
   <display-name>Struts Bean Tags</display-name>
-  <uri>http://jakarta.apache.org/struts/tags-bean-1.0</uri>
+  <uri>http://jakarta.apache.org/struts/tags-bean-1.1</uri>
   <info>
   <p>This tag library contains tags useful in accessing beans and their
   properties, as well as defining new beans (based on these accesses)
@@ -144,7 +144,7 @@
 
     <p>If a problem occurs while retrieving the specified bean property, a
     request time exception will be thrown.</p>
-    
+
     <p>The <code>&lt;bean:define&gt;</code> tag differs from
     <code>&lt;jsp:useBean&gt;</code> in several ways, including:</p>
     <ul>
@@ -789,7 +789,7 @@
       <p>A runtime expression that evaluates to an array, a Collection, or
       a Map.</p>
       </info>
-    </attribute>     
+    </attribute>
 
     <attribute>
       <name>id</name>
@@ -918,14 +918,14 @@
     <p>Retrieve the value of the specified bean property, and render it to the
     current JspWriter as a String by the ways:
      <ul>
-     <li>If <code>format</code> attribute exists then value will be formatted on base of format 
+     <li>If <code>format</code> attribute exists then value will be formatted on base of format
      string from <code>format</code> attribute and default system locale.</li>
      <li>If in resources exists format string for value data type (view <code>format</code>
      attribute description) then value will be formatted on base of format string
      from resources. Resources bundle and target locale can be specified with
      <code>bundle</code> and <code>locale</code> attributes. If nothing specified then
      default resource bundle and current user locale will be used.</li>
-     <li>If there is a PropertyEditor configured for the property value's class, the 
+     <li>If there is a PropertyEditor configured for the property value's class, the
      <code>getAsText()</code> method will be called.</li>
      <li>Otherwise, the usual <code>toString()</code> conversions will be applied.</li>
      </ul>
@@ -964,8 +964,8 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      <p>Specifies the format string to use to convert bean or property value 
-      to the <code>String</code>. If nothing specified, then default format 
+      <p>Specifies the format string to use to convert bean or property value
+      to the <code>String</code>. If nothing specified, then default format
       string for value data type will be searched in message resources by
       according key.</p>
 <!-- move to developers guide
@@ -976,7 +976,7 @@
        </tr>
        <tr>
            <td>org.apache.struts.taglib.bean.format.int</td>
-           <td>java.lang.Byte, java.lang.Short, java.lang.Integer, java.lang.Long, 
+           <td>java.lang.Byte, java.lang.Short, java.lang.Integer, java.lang.Long,
                java.math.BigInteger</td>
        </tr>
        <tr>
@@ -1008,7 +1008,7 @@
                 org.apache.struts.taglib.bean.format.sql.date=EEE, MMM d, ''yy
                 org.apache.struts.taglib.bean.format.sql.time=h:mm a
                 org.apache.struts.taglib.bean.format.date=hh 'o''clock' a, zzzz
-        </pre>                
+        </pre>
         <br />values for resource file entries are standart Java format strings for
         date, time and number values.</p>
 -->

@@ -15,7 +15,7 @@
   <jspversion>1.1</jspversion>
   <shortname>template</shortname>
   <display-name>Template Tags</display-name>
-  <uri>http://jakarta.apache.org/struts/tags-template-1.0</uri>
+  <uri>http://jakarta.apache.org/struts/tags-template-1.1</uri>
   <info>
   This tag library contains three tags: put, get, and insert. Put tags
   put content into request scope, which is retrieved by a get tag in
@@ -35,8 +35,8 @@
     <tagclass>org.apache.struts.taglib.template.InsertTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-    This tag's enclosed put tags put content (URIs or text) into request 
-    scope. That content is retrieved by get tags in a template (templates 
+    This tag's enclosed put tags put content (URIs or text) into request
+    scope. That content is retrieved by get tags in a template (templates
     are JSP pages). That template is included by this tag's end tag.
     </info>
 
