@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.18 2002/07/13 18:09:39 craigmcc Exp $
+$Id: STATUS,v 1.19 2002/07/13 23:49:15 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -70,6 +70,7 @@ Validator Framework:
 10349 Validator: date validation does not allow blank input?
 10432 DynaValidatorActionForm does not validate data
 10584 Not all validation files are read in Validation PlugIn
+10782 If two fields are required, and one has a mask, the mask is not checked if the other field is blank
 
 
 Web Site:
