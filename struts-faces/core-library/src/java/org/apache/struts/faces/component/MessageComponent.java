@@ -228,7 +228,7 @@ public class MessageComponent extends UIOutput {
     /**
      * <p>Set the CSS style class(es) to be rendered for this component.</p>
      *
-     * @param style The new CSS style class(es)
+     * @param styleClass The new CSS style class(es)
      */
     public void setStyleClass(String styleClass) {
 
