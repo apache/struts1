@@ -1807,7 +1807,7 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                <p>The application-relative path (beginning with a "/"
+                <p>The module-relative path (beginning with a "/"
                 character) to which this hyperlink will transfer control
                  if activated.  This hyperlink may be dynamically modified
                  by the inclusion of query parameters, as described in the
@@ -2545,7 +2545,7 @@
                 <required>false</required>
                 <rtexprvalue>true</rtexprvalue>
                 <info>
-                <p>The application-relative path of the image for this
+                <p>The module-relative path of the image for this
                 input tag.</p>
                 </info>
         </attribute>
@@ -2556,7 +2556,7 @@
                 <rtexprvalue>true</rtexprvalue>
                 <info>
                 <p>The key of the message resources string specifying the
-                application-relative path of the image for this input tag.</p>
+                module-relative path of the image for this input tag.</p>
                 </info>
         </attribute>
 
@@ -3015,7 +3015,7 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p>The application-relative path, starting with a slash, of
+                  <p>The module-relative path, starting with a slash, of
                   the image to be displayed by this tag.  The rendered
                   URL for this image will automatically prepend the context
                   path of this web application (in the same manner as the
@@ -3033,7 +3033,7 @@
                   <info>
                   <p>The message key, in the message resources bundle named by
                   the <code>bundle</code> attribute, of the String to be
-                  used as the application-relative path for this image.</p>
+                  used as the module-relative path for this image.</p>
                   </info>
                 </attribute>
 
@@ -3680,7 +3680,7 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p>The application-relative path (beginning with a "/"
+                  <p>The module-relative path (beginning with a "/"
                   character) to which this hyperlink will transfer control
                    if activated.  This hyperlink may be dynamically modified
                    by the inclusion of query parameters, as described in the
@@ -5640,7 +5640,7 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p>The application-relative path (beginning with a "/"
+                  <p>The module-relative path (beginning with a "/"
                   character) to which this hyperlink will transfer control
                    if activated.  This hyperlink may be dynamically modified
                    by the inclusion of query parameters, as described in the
