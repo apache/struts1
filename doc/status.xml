@@ -18,7 +18,7 @@
 <section href="status" name="Development Roadmap">
 
     <p>
-    <font size="-2">$Id: status.xml,v 1.19 2002/12/24 19:23:14 craigmcc Exp $</font>
+    <font size="-2">$Id: status.xml,v 1.20 2002/12/27 01:49:41 husted Exp $</font>
     </p>
 
     <p>
@@ -32,6 +32,24 @@
     <a href="http://jakarta.apache.org/site/decisions.html">a vote</a> of the
     <a href="volunteers.html#committers">Struts Committers</a>.
     </p>
+
+    </section>
+
+    <section href="bugzilla" name="Bugzilla Queries">
+
+        <p>
+            The Struts development teams uses the <a href="http://jakarta.apache.org/site/bugs.html">Apache Bug Database</a> (Bugzilla)
+            to manage problem reports and enhancement requests.
+            For your convenience, here are some common Bugzilla queries:
+        </p>
+
+        <ul>
+            <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;order=%27Importance%27">Open reports</a></li>
+            <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=%27Importance%27">Open problem reports</a></li>
+            <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_severity=Enhancement&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=%27Importance%27">Open enhancement requests</a></li>
+            <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=%27Importance%27">Reports to be handled "LATER"</a></li>
+        </ul>
+
 
     </section>
 
@@ -50,35 +68,9 @@
     </p>
 
     <p>
-    Remaining tasks:
+        A proposal for the release of
+        <a href="proposals/release-plan-1.1b3.html">Struts 1.1 beta 3</a> is pending.
     </p>
-
-    <ul>
-
-        <li>
-        Finishing touches on Struts-el
-        </li>
-
-        <li>
-        Refactor Tiles to be module aware
-        </li>
-
-        <li>
-        Commons-Resource integration
-        </li>
-
-        <li>
-        Other routine changes per
-        <a href="http://issues.apache.org/bugzilla/">Bugzilla</a> and the
-        <a href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=41">
-        Developer mailing list</a>.
-        </li>
-
-    </ul>
-
-    <p>A live query of the current outstanding bugs can be found
-       <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;order=%27Importance%27">here</a>.</p>
-
 </section>
 
 <section href="struts_1_2" name="Struts 1.2.x">
@@ -209,6 +201,10 @@
 <section href="proposals" name="Relevant Proposals">
 
     <ul>
+
+        <li>
+        <a href="proposals/release-plan-1.1b3.html">Release Plan 1.1-b3</a>
+        </li>
 
         <li>
         <a href="../proposals/struts-faces.html">struts-faces taglib</a>
