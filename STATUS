@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.15 2002/07/10 01:50:04 jholmes Exp $
+$Id: STATUS,v 1.16 2002/07/10 22:47:57 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -63,7 +63,6 @@ Validator Framework:
  7351 Validator JavaScript Primitive Validation Error
  7352 Struts 1.1 Beta 1 Release incorrectly reference contrib/validator
  7353 Validator JavaScript Select Error
- 7751 DynaValidatorActionForm throws NPE and class cast exception
  8446 Zero values are not validated as byte, integer, etc.
  9051 [PATCH] 0 should be a valid float
 10191 Validator range checking bug
