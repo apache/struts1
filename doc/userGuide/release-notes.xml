@@ -145,8 +145,7 @@
 
       </section>
       <section name="What Changed?" href="Changes">
-        <p>This section highlights some of the changes that have taken place since the last release. For a complete review of all changes, see the
-        <a href="../reports/changelog-report.html">changelog reports</a>. Subscribers to the
+        <p>This section highlights some of the changes that have taken place since the last release. Subscribers to the
         <a href="../using.html#Lists">struts-dev mailing list</a>, receive reports of all changes as they are made.</p>
         <p>
           <strong>General Changes</strong>
