@@ -16,7 +16,7 @@
 <section href="roadmap" name="Development Roadmap">
 
     <p class="version">
-    $Id: status.xml,v 1.43 2003/09/15 00:33:03 husted Exp $
+    $Id: status.xml,v 1.44 2003/09/15 12:18:48 husted Exp $
     </p>
 
     <p>
@@ -60,7 +60,10 @@
 
     <p>
         The platform requirements throughout the Struts 1.x series will remain the same (Servlet 2.2 / JSP 1.1).
-        The releases will focus on refactoring of existing functionality, with a
+        Though, later platforms may be supported as an option.
+    </p>
+    <p>
+        Releases in the 1.x series will focus on refactoring of existing functionality, with a
         continued emphasis on backward compatibility, as were seen in Struts 1.1.
         However, we expect there to releases to be incremental throughout the rest of the
         1.x series, so that improvements and fixes become available to production teams every few weeks.
@@ -153,6 +156,8 @@
                         of Responsiblity package)</li>
                     <li>Consider migration to an Action context (which also might be based no the Commons Chain
                         of Responsiblity package)</li>
+                    <li>Consider enhanced support for other platforms (2.3/1.2) if this can be accomplished by
+                    specifying an alternate Request Processor</li>
                 </ul>
             </li>
 
@@ -233,7 +238,7 @@
     <p>
     Struts 2.x (aka Struts "Next Generation") will include broader enhancements.
     We anticipate that the implementation will utilize the Servlet 2.4 / JSP 2.0
-    platform. Refactorings may include the use of Filters and so forth.
+    platform, but may optionally support earlier platforms.
     </p>
 
     <p>
@@ -241,6 +246,24 @@
     API as supporting technologies.
     However, the focus of the Struts framework will remain on the Controller aspect of a Model 2/MVC architecture.
     The core framework will continue to be both Model and View independent.
+    </p>
+
+    <p>
+    Development of Struts 2.x will include taking a completely fresh look at
+    the architecture.
+    The goal for 2.x will be to incorporate everything we've learned in the past
+    years of Struts usage, and create something even better.
+    Development will follow current best practices, like Test Driven Development,
+    and rely on technologies like Maven for project management.
+    </p>
+
+    <p>
+    Of course, it is anticipated that the Struts team will continue to support
+    the 1.x codebase for a long time with bugfixes and incremental enhancements.
+    (Mainly because many of us will still be using it on our production sites!)
+    Accordingly, it is anticipated that the development of the 2.x and 1.x
+    series will occur in tandem.
+    At some point, 2.x milestones may appear alongside new 1.x releases.
     </p>
 
     <p>
@@ -254,7 +277,7 @@
         </li>
 
         <li>
-        Refactoring for Filters and other new technologies
+        Enhanced support for using Struts in large team environments.
         </li>
 
         <li>
@@ -271,40 +294,14 @@
         </li>
 
         <li>
+        Enhanced support for scriptable Actions, using technologies like BSF or Jelly
+        </li>
 
-There will definitely be such gaps.  Two of them we can already fill
-(Tiles and the Validator Framework).  Others will involve frameworks for
-multi-request transactions, non-HTML markup languages (building on top of
-Faces for things like XUL or XForms or SVG is easy), non-JSP rendering
-technologies (pretty much anything that has a way to mark where
-dynamically created output goes can be adapted), libraries of prebuilt
-components above and beyond the built-in standard ones (such components
-work equally well in JSP and non-JSP environments), and all the
-non-human-UI things based on XML technologies.  To say nothing of the fact
-that we could start to provide useful design patterns and implementations
-for the business logic tier as well as the presentation tier (like what
-Ted has done with Scaffold).
-
-
+        <li>
+        Refactoring for new technologies available on the Servlet 2.4/ JSP 2.0 platform
         </li>
 
     </ul>
-
-    <p>
-    Development of Struts 2.x will include taking a completely fresh look at
-    the architecture.
-    The goal for 2.x will be to incorporate everything we've learned in the past
-    years of Struts usage, and create something even better.
-    </p>
-
-    <p>
-        Of course, it is anticipated that the Struts team will continue to support
-        the 1.x codebase for a long time with bugfixes and incremental enhancements.
-        (Mainly because many of us will still be using it on our production sites!)
-        Accordingly, it is anticipated that the development of the 2.x and 1.x
-        series will occur in tandem.
-        At some point, 2.x milestones may appear alongside new 1.x releases.
-    </p>
 
 </section>
 
@@ -346,6 +343,72 @@ Ted has done with Scaffold).
     </p>
 
 </section>
+
+    <section href="jsf" name="JavaServer Faces">
+
+        <p>
+            The <a href="http://java.sun.com/j2ee/javaserverfaces/">JavaServer Faces</a> specification has not been
+            finalized. However, Struts is already providing support for JSF through the Struts Faces taglib. Once JSF
+            is finalized and comes into broad use, it is expected that Struts developers will continue to offer
+            enhancements to make it even easier to use Struts with JSF.
+        </p>
+
+        <p>
+            Right now, there is only one open source project working on a JavaServer Faces implementation,
+            <a href="http://sf.net/projects/myfaces">MyFaces</a>. This work is being done under the
+            <a href="http://www.gnu.org/copyleft/lesser.html">LGPL</a>, which some
+            developers find unacceptable. (If you are interested in this project, we suggest you lobby the developers
+            to adopt a more liberal license, like the <a href="http://apache.org/LICENSE">ASL</a>.)
+        </p>
+
+        <p>
+           Thanks in large part to Apache's advocacy and influence, the <a href="http://jcp.org">Java Community
+           Process</a>, which is responsible for the JavaServer Faces specification, process has been modified so that
+           Apache Software Foundation projects, like Jakarta, can qualify for the certification scholarship (for
+           nonprofits) and access to the TCKs and certify that our application is compliant.
+        </p>
+
+        <p>
+            An certificated-complaint Apache implementation of JavaServer Faces would most definately be a Good Thing.
+            It would not be the reference implementation, but we could treat it like one, and strictly follow the
+            book, in the Apache Way. A strict, high-quality, open-source implementation would most likely become
+            a popular option among containers.
+        </p>
+
+        <p>
+            Work on such an implementation could be undertaken by Struts, either here at Jakarta or after our applying
+            for status as a top-level Apache project. Or, "Apache Faces" it could also be undertaken as a separate
+            project, with Struts simply using the technology as we now use technologies from the Commons today.
+        </p>
+
+        <p>
+            However, At this point, there is no "code on the table". Apache products leave decisions such as these to
+            the people who create and maintain the codebase. So, lacking a codebase, no binding decision
+            can be made. But, anyone wishing to pursue an "Apache Faces" implementation should be aware that the option
+            certainly exists.
+        </p>
+
+        <p>
+            Aside from offering a strict implementation of JavaServer Faces, there are many, many other JSF related
+            tools and technologies Apache Faces could provide. These include composite view and validation
+            frameworks (like Tiles and the Validator), frameworks for multi-request transactions, non-HTML markup
+            languages (building on top of Faces for things like XUL or XForms or SVG is easy), non-JSP rendering
+            technologies (pretty much anything that has a way to mark where dynamically created output goes can be
+            adapted), libraries of prebuilt components above and beyond the built-in standard ones (such components
+            work equally well in JSP and non-JSP environments), and all the non-human-UI things based on XML
+            technologies.
+        </p>
+
+        <p>
+            As always, the standard implementation is only the beginning.
+        </p>
+
+        <p>
+            For more about Struts and JavaServer faces, see our <a href="faqs/kickstart.html#jsf">FAQ</a>.
+            For more about JavaServer Faces generally, see also <a href="http://www.jamesholmes.com/JavaServerFaces/">
+            Java Server Faces Resources at JamesHomes.com</a>.
+        </p>
+    </section>
 
 <section href="Proposals" name="Relevant Proposals">
 
