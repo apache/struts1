@@ -5,3 +5,7 @@ m-target
 release
 cactus_client.log
 cactus_server.log
+..jbprojectbak
+struts.ipr
+struts.iws
+struts.jpx*
