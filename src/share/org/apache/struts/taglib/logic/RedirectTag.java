@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.5 2001/02/09 19:33:11 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/02/09 19:33:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.6 2001/02/12 21:49:58 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/02/12 21:49:58 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -64,7 +64,6 @@ package org.apache.struts.taglib.logic;
 
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
@@ -77,17 +76,17 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForwards;
-import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Generate a URL-encoded redirect to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/02/09 19:33:11 $
+ * @version $Revision: 1.6 $ $Date: 2001/02/12 21:49:58 $
  */
 
 public class RedirectTag extends TagSupport {
@@ -270,12 +269,12 @@ public class RedirectTag extends TagSupport {
         // Perform the redirection
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
-        String hyperlink = BeanUtils.filter(hyperlink());
+        String hyperlink = ResponseUtils.filter(hyperlink());
         try {
             response.sendRedirect(response.encodeRedirectURL(hyperlink));
         } catch (IOException e) {
-            throw new JspException
-                (messages.getMessage("common.io"));
+            RequestUtils.saveException(pageContext, e);
+            throw new JspException(e.getMessage());
         }
 
         // Skip the remainder of this apge
@@ -327,8 +326,7 @@ public class RedirectTag extends TagSupport {
         if (n != 1) {
             JspException e = new JspException
                 (messages.getMessage("redirect.destination"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
@@ -345,13 +343,19 @@ public class RedirectTag extends TagSupport {
 	    ActionForwards forwards = (ActionForwards)
 		pageContext.getAttribute(Action.FORWARDS_KEY,
 					 PageContext.APPLICATION_SCOPE);
-	    if (forwards == null)
-		throw new JspException
-		    (messages.getMessage("linkTag.forwards"));
+	    if (forwards == null) {
+                JspException e = new JspException
+		    (messages.getMessage("redirect.forwards"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
 	    ActionForward forward = forwards.findForward(this.forward);
-	    if (forward == null)
-		throw new JspException
-		    (messages.getMessage("linkTag.forward"));
+	    if (forward == null) {
+                JspException e = new JspException
+		    (messages.getMessage("redirect.forward", this.forward));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
 	    HttpServletRequest request =
 		(HttpServletRequest) pageContext.getRequest();
             href = RequestUtils.absoluteURL(request, forward.getPath());
@@ -372,105 +376,29 @@ public class RedirectTag extends TagSupport {
                 href += '&';
             href += paramId;
             href += '=';
-            Object bean = RequestUtils.lookup(pageContext,
-                                              paramName, paramScope);
-            if (bean != null) {
-                if (paramProperty == null)
-                    href += bean.toString();
-                else {
-                    try {
-                        Object value =
-                            PropertyUtils.getProperty(bean, paramProperty);
-                        if (value != null)
-                            href += value.toString();
-                    } catch (IllegalAccessException e) {
-                        pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                                 PageContext.REQUEST_SCOPE);
-                        throw new JspException
-                            (messages.getMessage("getter.access",
-                                                 paramProperty, paramName));
-                    } catch (InvocationTargetException e) {
-                        Throwable t = e.getTargetException();
-                        pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                                 PageContext.REQUEST_SCOPE);
-                        throw new JspException
-                            (messages.getMessage("getter.result",
-                                                 paramProperty, t.toString()));
-                    } catch (NoSuchMethodException e) {
-                        pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                                 PageContext.REQUEST_SCOPE);
-                        throw new JspException
-                            (messages.getMessage("getter.method",
-                                                 paramProperty, paramName));
-                    }
-                }
-            }
+            Object value =
+                RequestUtils.lookup(pageContext, paramName, paramProperty,
+                                    paramScope);
+            if (value != null)
+                href += value.toString();
         }
 
 	// Just return the "href" attribute if there is no bean to look up
-	if ((property != null) && (name == null)) {
-	    JspException e = new JspException
-		(messages.getMessage("getter.name"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw e;
-        }
 	if (name == null)
 	    return (href);
 
 	// Look up the map we will be using
-	Object bean = RequestUtils.lookup(pageContext, name, scope);
-        if (bean == null) {
-	    JspException e = new JspException
-		(messages.getMessage("getter.bean", name));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+        Object value =
+            RequestUtils.lookup(pageContext, name, property, scope);
+        if (value == null)
+            return (href);
+        if (!(value instanceof Map)) {
+            JspException e = new JspException
+                (messages.getMessage("redirect.map", property, name));
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
-	Map map = null;
-	if (property == null) {
-	    try {
-		map = (Map) bean;
-	    } catch (ClassCastException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("linkTag.type"));
-	    }
-	} else {
-	    try {
-		map = (Map) PropertyUtils.getProperty(bean, property);
-		if (map == null) {
-		    JspException e = new JspException
-			(messages.getMessage("getter.property", property));
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                             PageContext.REQUEST_SCOPE);
-                    throw e;
-                }
-	    } catch (IllegalAccessException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("getter.access", property, name));
-	    } catch (InvocationTargetException e) {
-		Throwable t = e.getTargetException();
-                pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("getter.result",
-					 property, t.toString()));
-	    } catch (ClassCastException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("linkTag.type"));
-	    } catch (NoSuchMethodException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("getter.method", property, name));
-	    }
-	}
+        Map map = (Map) value;
 
 	// Append the required query parameters
 	StringBuffer sb = new StringBuffer(href);
@@ -478,7 +406,7 @@ public class RedirectTag extends TagSupport {
 	Iterator keys = map.keySet().iterator();
 	while (keys.hasNext()) {
 	    String key = (String) keys.next();
-	    Object value = map.get(key);
+	    value = map.get(key);
             if (value == null) {
                 if (question)
                     sb.append('&');

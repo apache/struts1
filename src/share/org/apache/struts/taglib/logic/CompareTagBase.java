@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.5 2001/01/07 22:39:07 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/01/07 22:39:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.6 2001/02/12 21:49:54 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/02/12 21:49:54 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -68,7 +68,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
-import org.apache.struts.action.Action;
+import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
 
@@ -78,7 +78,7 @@ import org.apache.struts.util.RequestUtils;
  * define values for desired1 and desired2.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/01/07 22:39:07 $
+ * @version $Revision: 1.6 $ $Date: 2001/02/12 21:49:54 $
  */
 
 public abstract class CompareTagBase extends ConditionalTagBase {
@@ -103,6 +103,14 @@ public abstract class CompareTagBase extends ConditionalTagBase {
      * We will do a String comparison.
      */
     protected static final int STRING_COMPARE = 2;
+
+
+    /**
+     * The message resources for this package.
+     */
+    protected static MessageResources messages =
+     MessageResources.getMessageResources
+        ("org.apache.struts.taglib.logic.LocalStrings");
 
 
     // ------------------------------------------------------------ Properties
@@ -211,10 +219,9 @@ public abstract class CompareTagBase extends ConditionalTagBase {
             Object bean = RequestUtils.lookup(pageContext, name, scope);
             if (property != null) {
                 if (bean == null) {
-                    JspException e =new JspException
+                    JspException e = new JspException
                         (messages.getMessage("logic.bean", name));
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                             PageContext.REQUEST_SCOPE);
+                    RequestUtils.saveException(pageContext, e);
                     throw e;
                 }
                 try {
@@ -223,14 +230,12 @@ public abstract class CompareTagBase extends ConditionalTagBase {
                     Throwable t = e.getTargetException();
                     if (t == null)
                         t = e;
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                             PageContext.REQUEST_SCOPE);
+                    RequestUtils.saveException(pageContext, t);
                     throw new JspException
                         (messages.getMessage("logic.property", name, property,
                                              t.toString()));
                 } catch (Throwable t) {
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                             PageContext.REQUEST_SCOPE);
+                    RequestUtils.saveException(pageContext, t);
                     throw new JspException
                         (messages.getMessage("logic.property", name, property,
                                              t.toString()));
@@ -244,15 +249,13 @@ public abstract class CompareTagBase extends ConditionalTagBase {
         } else {
             JspException e = new JspException
                 (messages.getMessage("logic.selector"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
         if (variable == null) {
             JspException e = new JspException
                 (messages.getMessage("logic.variable", value));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
 

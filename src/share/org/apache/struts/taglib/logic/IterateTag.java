@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.6 2001/01/16 01:13:50 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/01/16 01:13:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.7 2001/02/12 21:49:56 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/02/12 21:49:56 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -63,19 +63,18 @@
 package org.apache.struts.taglib.logic;
 
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
-import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
+import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
@@ -84,11 +83,9 @@ import org.apache.struts.util.PropertyUtils;
  * can be any of the following:  an array of objects, an Iterator,
  * a Collection (which includes Lists, Sets and Vectors), or a Map
  * (which includes Hashtables) whose elements will be iterated over.
- * <p>
- * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/01/16 01:13:50 $
+ * @version $Revision: 1.7 $ $Date: 2001/02/12 21:49:56 $
  */
 
 public class IterateTag extends BodyTagSupport {
@@ -257,52 +254,18 @@ public class IterateTag extends BodyTagSupport {
      */
     public int doStartTag() throws JspException {
 
-	// Acquire the collection we are going to iterate over (if necessary)
+	// Acquire the collection we are going to iterate over
         Object collection = this.collection;
-	if (collection == null) {
-	    try {
-		Object bean = pageContext.findAttribute(name);
-		if (bean == null) {
-		    JspException e = new JspException
-			(messages.getMessage("iterate.bean", name));
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                             PageContext.REQUEST_SCOPE);
-                    throw e;
-                }
-		if (property == null)
-		    collection = bean;
-		else
-		    collection =
-                        PropertyUtils.getProperty(bean, property);
-		if (collection == null) {
-		    JspException e = new JspException
-			(messages.getMessage("iterate.property",
-                                             name, property));
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                             PageContext.REQUEST_SCOPE);
-                    throw e;
-                }
-	    } catch (IllegalAccessException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("iterate.access", name, property));
-	    } catch (InvocationTargetException e) {
-		Throwable t = e.getTargetException();
-                if (t == null)
-                    t = e;
-                pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("iterate.target",
-					 name, property, t.toString()));
-	    } catch (NoSuchMethodException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("iterate.method", name, property));
-	    }
-	}
+	if (collection == null)
+            collection =
+                RequestUtils.lookup(pageContext, name, property, scope);
+        if (collection == null) {
+            JspException e = new JspException
+                (messages.getMessage("iterate.collection"));
+            RequestUtils.saveException(pageContext, e);
+            throw e;
+        }
+            
 
 	// Construct an iterator for this collection
 	if (collection.getClass().isArray())
@@ -315,9 +278,8 @@ public class IterateTag extends BodyTagSupport {
 	    iterator = ((Map) collection).entrySet().iterator();
 	else {
 	    JspException e = new JspException
-	        (messages.getMessage("iterate.iterator", name, property));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+	        (messages.getMessage("iterate.iterator"));
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
@@ -387,16 +349,8 @@ public class IterateTag extends BodyTagSupport {
 
         // Render the output from this iteration to the output stream
         if (bodyContent != null) {
-	    try {
-		JspWriter out = getPreviousOut();
-		out.print(bodyContent.getString());
-                bodyContent.clearBody();
-	    } catch (IOException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("iterate.io", e.toString()));
-	    }
+            ResponseUtils.writePrevious(pageContext, bodyContent.getString());
+            bodyContent.clearBody();
         }
 
         // Decide whether to iterate or quit

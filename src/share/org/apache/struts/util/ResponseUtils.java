@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.1 2001/02/12 00:32:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/02/12 00:32:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.2 2001/02/12 21:50:02 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/02/12 21:50:02 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.tagext.BodyContent;
 import org.apache.struts.action.Action;
 
 
@@ -75,7 +76,7 @@ import org.apache.struts.action.Action;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/02/12 00:32:14 $
+ * @version $Revision: 1.2 $ $Date: 2001/02/12 21:50:02 $
  */
 
 public class ResponseUtils {
@@ -136,7 +137,10 @@ public class ResponseUtils {
 
     /**
      * Write the specified text as the response to the writer associated with
-     * this page.
+     * this page.  <strong>WARNING</strong> - If you are writing body content
+     * from the <code>doAfterBody()</code> method of a custom tag class that
+     * implements <code>BodyTag</code>, you should be calling
+     * <code>writePrevious()</code> instead.
      *
      * @param pageContext The PageContext object for this page
      * @param text The text to be written
@@ -147,6 +151,32 @@ public class ResponseUtils {
         throws JspException {
 
         JspWriter writer = pageContext.getOut();
+        try {
+            writer.print(text);
+        } catch (IOException e) {
+            RequestUtils.saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("write.io", e.toString()));
+        }
+
+    }
+
+
+    /**
+     * Write the specified text as the response to the writer associated with
+     * the page containing the tag within which we are currently nested.
+     *
+     * @param pageContext The PageContext object for this page
+     * @param text The text to be written
+     *
+     * @exception JspException if an input/output error occurs (already saved)
+     */
+    public static void writePrevious(PageContext pageContext, String text)
+        throws JspException {
+
+        JspWriter writer = pageContext.getOut();
+        while (writer instanceof BodyContent)
+            writer = ((BodyContent) writer).getEnclosingWriter();
         try {
             writer.print(text);
         } catch (IOException e) {

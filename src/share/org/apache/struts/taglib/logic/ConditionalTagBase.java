@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ConditionalTagBase.java,v 1.4 2000/12/29 20:36:55 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/12/29 20:36:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ConditionalTagBase.java,v 1.5 2001/02/12 21:49:54 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/02/12 21:49:54 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -72,7 +72,7 @@ import org.apache.struts.util.MessageResources;
  * Abstract base class for the various conditional evaluation tags.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/12/29 20:36:55 $
+ * @version $Revision: 1.5 $ $Date: 2001/02/12 21:49:54 $
  */
 
 public abstract class ConditionalTagBase extends TagSupport {
@@ -113,7 +113,7 @@ public abstract class ConditionalTagBase extends TagSupport {
      * The message resources for this package.
      */
     protected static MessageResources messages =
-        MessageResources.getMessageResources
+     MessageResources.getMessageResources
         ("org.apache.struts.taglib.logic.LocalStrings");
 
 

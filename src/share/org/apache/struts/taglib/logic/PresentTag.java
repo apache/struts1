@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.6 2001/01/07 22:39:07 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/01/07 22:39:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.7 2001/02/12 21:49:58 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/02/12 21:49:58 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -63,13 +63,11 @@
 package org.apache.struts.taglib.logic;
 
 
-import java.lang.reflect.InvocationTargetException;
 import java.security.Principal;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
-import org.apache.struts.action.Action;
 import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
 
@@ -79,7 +77,7 @@ import org.apache.struts.util.RequestUtils;
  * is present for this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/01/07 22:39:07 $
+ * @version $Revision: 1.7 $ $Date: 2001/02/12 21:49:58 $
  */
 
 public class PresentTag extends ConditionalTagBase {
@@ -135,38 +133,9 @@ public class PresentTag extends ConditionalTagBase {
                 getHeader(header);
             present = (value != null);
         } else if (name != null) {
-            Object bean = RequestUtils.lookup(pageContext, name, scope);
-            if (property != null) {
-                if (bean == null) {
-                    JspException e = new JspException
-                        (messages.getMessage("logic.bean", name));
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                             PageContext.REQUEST_SCOPE);
-                    throw e;
-                }
-                Object value = null;
-                try {
-                    value = PropertyUtils.getProperty(bean, property);
-                } catch (InvocationTargetException e) {
-                    Throwable t = e.getTargetException();
-                    if (t == null)
-                        t = e;
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                             PageContext.REQUEST_SCOPE);
-                    throw new JspException
-                        (messages.getMessage("logic.property", name, property,
-                                             t.toString()));
-                } catch (Throwable t) {
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                             PageContext.REQUEST_SCOPE);
-                    throw new JspException
-                        (messages.getMessage("logic.property", name, property,
-                                             t.toString()));
-                }
-                present = (value != null);
-            } else {
-                present = (bean != null);
-            }
+            Object value =
+                RequestUtils.lookup(pageContext, name, property, scope);
+            present = (value != null);
         } else if (parameter != null) {
             String value =
                 pageContext.getRequest().getParameter(parameter);
@@ -184,8 +153,7 @@ public class PresentTag extends ConditionalTagBase {
         } else {
             JspException e = new JspException
                 (messages.getMessage("logic.selector"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
 

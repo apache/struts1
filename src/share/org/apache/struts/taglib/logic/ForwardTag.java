@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.4 2000/10/30 06:02:22 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/10/30 06:02:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.5 2001/02/12 21:49:55 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/02/12 21:49:55 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -73,6 +73,7 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -80,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * ActionForwards collection associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/10/30 06:02:22 $
+ * @version $Revision: 1.5 $ $Date: 2001/02/12 21:49:55 $
  */
 
 public class ForwardTag extends TagSupport {
@@ -145,8 +146,7 @@ public class ForwardTag extends TagSupport {
 	if (forward == null) {
             JspException e = new JspException
 		(messages.getMessage("forward.lookup", name));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
@@ -158,8 +158,7 @@ public class ForwardTag extends TagSupport {
 	    try {
 		response.sendRedirect(response.encodeRedirectURL(path));
 	    } catch (Exception e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
+                RequestUtils.saveException(pageContext, e);
 		throw new JspException
 		    (messages.getMessage("forward.redirect",
 					 name, e.toString()));
@@ -168,8 +167,7 @@ public class ForwardTag extends TagSupport {
 	    try {
 		pageContext.forward(path);
 	    } catch (Exception e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
+                RequestUtils.saveException(pageContext, e);
 		throw new JspException
 		    (messages.getMessage("forward.forward",
 					 name, e.toString()));

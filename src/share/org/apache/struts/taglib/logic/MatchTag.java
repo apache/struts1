@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.6 2001/01/07 22:39:07 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/01/07 22:39:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.7 2001/02/12 21:49:57 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/02/12 21:49:57 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -63,12 +63,10 @@
 package org.apache.struts.taglib.logic;
 
 
-import java.lang.reflect.InvocationTargetException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
-import org.apache.struts.action.Action;
 import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
 
@@ -78,7 +76,7 @@ import org.apache.struts.util.RequestUtils;
  * is a substring of the specified variable.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/01/07 22:39:07 $
+ * @version $Revision: 1.7 $ $Date: 2001/02/12 21:49:57 $
  */
 
 public class MatchTag extends ConditionalTagBase {
@@ -181,53 +179,22 @@ public class MatchTag extends ConditionalTagBase {
                 ((HttpServletRequest) pageContext.getRequest()).
                 getHeader(header);
         } else if (name != null) {
-            Object bean = RequestUtils.lookup(pageContext, name, scope);
-            if (bean == null) {
-                JspException e = new JspException
-                    (messages.getMessage("logic.bean", name));
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-                throw e;
-            }
-            if (property != null) {
-                Object propertyValue = null;
-                try {
-                    propertyValue = PropertyUtils.getProperty(bean, property);
-                } catch (InvocationTargetException e) {
-                    Throwable t = e.getTargetException();
-                    if (t == null)
-                        t = e;
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                             PageContext.REQUEST_SCOPE);
-                    throw new JspException
-                        (messages.getMessage("logic.property", name, property,
-                                             t.toString()));
-                } catch (Throwable t) {
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                             PageContext.REQUEST_SCOPE);
-                    throw new JspException
-                        (messages.getMessage("logic.property", name, property,
-                                             t.toString()));
-                }
-                if (propertyValue != null)
-                    variable = propertyValue.toString();
-            } else {
-                variable = bean.toString();
-            }
+            Object value =
+                RequestUtils.lookup(pageContext, name, property, scope);
+            if (value != null)
+                variable = value.toString();
         } else if (parameter != null) {
             variable = pageContext.getRequest().getParameter(parameter);
         } else {
             JspException e = new JspException
                 (messages.getMessage("logic.selector"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
         if (variable == null) {
             JspException e = new JspException
                 (messages.getMessage("logic.variable", value));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
@@ -242,8 +209,7 @@ public class MatchTag extends ConditionalTagBase {
         } else {
             JspException e = new JspException
                 (messages.getMessage("logic.location", location));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
