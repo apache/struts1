@@ -1,8 +1,8 @@
 header {
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.g,v 1.5 2004/03/14 07:21:06 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 07:21:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.g,v 1.6 2004/06/24 23:51:52 husted Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/06/24 23:51:52 $
  *
  * Copyright 2003-2004 The Apache Software Foundation.
  * 
@@ -264,7 +264,7 @@ RPAREN : ')' ;
 
 THIS : "*this*" ;
 
-IDENTIFIER : ( 'a'..'z' | '.') ( 'a'..'z' | '0'..'9' | '.')+ ;
+IDENTIFIER : ( 'a'..'z' | '.' | '_') ( 'a'..'z' | '0'..'9' | '.' | '_')+ ;
 
 EQUALSIGN : '=' '=' ;
 
