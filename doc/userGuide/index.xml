@@ -16,14 +16,27 @@
       <section name="Table of Contents" href="toc">
 
         <ul>
-            <li><a href="introduction.html">1. Introduction</a>
+            <li><a href="technologies.html">0. Enabling Technologies</a>
+            <ul>
+              <li><a href="technologies.html#http">HTTP, HTML, and User Agents</a></li>
+              <li><a href="technologies.html#cycle">The HTTP Request/Response Cycle</a></li>
+              <li><a href="technologies.html#java">The Java Language and Application Frameworks</a></li>
+              <li><a href="technologies.html#javabeans">JavaBeans</a></li>
+              <li><a href="technologies.html#resources">Properties files and  ResourceBundles</a></li>
+              <li><a href="technologies.html#servlets">Java Servlets</a></li>
+              <li><a href="technologies.html#jsp">JavaServer Pages and JSP Tag Libraries</a></li>
+              <li><a href="technologies.html#xml">Extensible Markup Language</a></li>
+            </ul></li>
+ 
+           
+           <li><a href="introduction.html">1. Introduction</a>
                 <ul>
                 <li><a href="introduction.html#preface">1.1 Preface: Forward into the Past!</a></li>
                 <li><a href="introduction.html#mvc">1.2 The Model-View-Controller ('MVC') Design Pattern</a></li>
-                <li><a href="introduction.html#overview">1.3 Struts Framework Overview</a></li>
-                <li><a href="introduction.html#modelConcepts">1.4 The Model: System State and Business Logic JavaBeans</a></li>
-                <li><a href="introduction.html#presentationConcepts">1.5 The View: JSP Pages and Presentation Components</a></li>
-                <li><a href="introduction.html#controllerConcepts">1.6 The Controller: ActionServlet and ActionMapping</a></li>
+                <li><a href="introduction.html#overview">1.2.1 Struts Framework Overview</a></li>
+                <li><a href="introduction.html#modelConcepts">1.2.2 The Model: System State and Business Logic JavaBeans</a></li>
+                <li><a href="introduction.html#presentationConcepts">1.2.3 The View: JSP Pages and Presentation Components</a></li>
+                <li><a href="introduction.html#controllerConcepts">1.3 The Controller: ActionServlet and ActionMapping</a></li>
                 </ul></li>
             <li><a href="building_model.html">2. Building Model Components</a>
                 <ul>
