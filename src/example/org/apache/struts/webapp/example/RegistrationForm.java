@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/RegistrationForm.java,v 1.6 2003/01/11 03:08:23 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2003/01/11 03:08:23 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/RegistrationForm.java,v 1.7 2003/01/18 19:48:56 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/01/18 19:48:56 $
  *
  * ====================================================================
  *
@@ -66,7 +66,6 @@ package org.apache.struts.webapp.example;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.validator.ValidatorForm;
 
@@ -91,7 +90,7 @@ import org.apache.struts.validator.ValidatorForm;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2003/01/11 03:08:23 $
+ * @version $Revision: 1.7 $ $Date: 2003/01/18 19:48:56 $
  */
 
 public final class RegistrationForm extends ValidatorForm  {
