@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.12 2002/02/23 22:54:17 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.13 2002/03/04 05:38:23 martinc Exp $
 -->
 
 
@@ -304,7 +304,7 @@
      defined:
 
      type           Fully qualified Java class name of the ActionMapping
-                    implementation class to be used.  DEPRECATED.
+                    implementation class to be used.
 
                      WARNING:  For Struts 1.0, this value is ignored.  You
                      can set the default implementation class name with the

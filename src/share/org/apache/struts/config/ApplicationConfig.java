@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.10 2002/02/23 23:53:29 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2002/02/23 23:53:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.11 2002/03/04 05:38:23 martinc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/03/04 05:38:23 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.action.RequestProcessor;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2002/02/23 23:53:29 $
+ * @version $Revision: 1.11 $ $Date: 2002/03/04 05:38:23 $
  * @since Struts 1.1
  */
 
@@ -244,6 +244,22 @@ public class ApplicationConfig implements Serializable {
 
     public ActionServlet getServlet() {
         return (this.servlet);
+    }
+
+
+    /**
+     * The default class name to be used when creating action mapping
+     * instances.
+     */
+    protected String actionMappingClass =
+        "org.apache.struts.action.ActionMapping";
+
+    public String getActionMappingClass() {
+        return this.actionMappingClass;
+    }
+
+    public void setActionMappingClass(String actionMappingClass) {
+        this.actionMappingClass = actionMappingClass;
     }
 
 

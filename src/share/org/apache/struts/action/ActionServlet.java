@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.93 2002/02/26 03:38:56 dwinterfeldt Exp $
- * $Revision: 1.93 $
- * $Date: 2002/02/26 03:38:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.94 2002/03/04 05:38:23 martinc Exp $
+ * $Revision: 1.94 $
+ * $Date: 2002/03/04 05:38:23 $
  *
  * ====================================================================
  *
@@ -269,7 +269,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.93 $ $Date: 2002/02/26 03:38:56 $
+ * @version $Revision: 1.94 $ $Date: 2002/03/04 05:38:23 $
  */
 
 public class ActionServlet
@@ -756,9 +756,16 @@ public class ActionServlet
         // Parse the application configuration for this application
         ApplicationConfig config = null;
         InputStream input = null;
-        String value = null;
+        String mapping = null;
         try {
             config = new ApplicationConfig(prefix, this);
+
+            // Support for application-wide ActionMapping override
+            mapping = getServletConfig().getInitParameter("mapping");
+            if (mapping != null) {
+                config.setActionMappingClass(mapping);
+            }
+
             Digester digester = initConfigDigester();
             digester.push(config);
             input = getServletContext().getResourceAsStream(path);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.8 2002/02/27 06:20:59 martinc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/02/27 06:20:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.9 2002/03/04 05:38:23 martinc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/03/04 05:38:23 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@
 package org.apache.struts.config;
 
 
+import org.apache.commons.digester.AbstractObjectCreationFactory;
 import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.Rule;
 import org.apache.commons.digester.RuleSetBase;
@@ -74,7 +75,7 @@ import org.xml.sax.Attributes;
  * configuration file (<code>struts-config.xml</code>).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/02/27 06:20:59 $
+ * @version $Revision: 1.9 $ $Date: 2002/03/04 05:38:23 $
  * @since Struts 1.1
  */
 
@@ -112,11 +113,13 @@ public class ConfigRuleSet extends RuleSetBase {
             ("struts-config/data-sources/data-source/set-property",
              new AddDataSourcePropertyRule(digester));
 
-        digester.addObjectCreate
+        digester.addRule
+            ("struts-config/action-mappings",
+             new SetActionMappingClassRule(digester));
+
+        digester.addFactoryCreate
             ("struts-config/action-mappings/action",
-             //             "org.apache.struts.config.ActionConfig",
-             "org.apache.struts.action.ActionMapping",
-             "className");
+             new ActionMappingFactory());
         digester.addSetProperties
             ("struts-config/action-mappings/action");
         digester.addSetNext
@@ -291,3 +294,57 @@ final class AddDataSourcePropertyRule extends Rule {
 
 }
 
+
+/**
+ * Class that sets the name of the class to use when creating action mapping
+ * instances. The value is set on the object on the top of the stack, which
+ * must be a <code>org.apache.struts.config.ApplicationConfig</code>.
+ */
+final class SetActionMappingClassRule extends Rule {
+
+    public SetActionMappingClassRule(Digester digester) {
+        super(digester);
+    }
+
+    public void begin(Attributes attributes) throws Exception {
+        String className = attributes.getValue("type");
+        if (className != null) {
+            ApplicationConfig ac = (ApplicationConfig) digester.peek();
+            ac.setActionMappingClass(className);
+        }
+    }
+
+}
+
+
+/**
+ * An object creation factory which creates action mapping instances, taking
+ * into account the default class name, which may have been specified on the
+ * parent element and which is made available through the object on the top
+ * of the stack, which must be a
+ * <code>org.apache.struts.config.ApplicationConfig</code>.
+ */
+final class ActionMappingFactory extends AbstractObjectCreationFactory {
+
+    public Object createObject(Attributes attributes) {
+
+        // Identify the name of the class to instantiate
+        String className = attributes.getValue("className");
+        if (className == null) {
+            ApplicationConfig ac = (ApplicationConfig) digester.peek();
+            className = ac.getActionMappingClass();
+        }
+
+        // Instantiate the new object and return it
+        Object actionMapping = null;
+        try {
+            Class clazz = digester.getClassLoader().loadClass(className);
+            actionMapping = clazz.newInstance();
+        } catch (Exception e) {
+            digester.log("ActionMappingFactory.createObject: ", e);
+        }
+
+        return actionMapping;
+    }
+
+}
