@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.3 2000/10/30 03:20:28 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/30 03:20:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.4 2000/10/30 06:02:22 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/10/30 06:02:22 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.PropertyUtils;
  * is a substring of the specified variable.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/10/30 03:20:28 $
+ * @version $Revision: 1.4 $ $Date: 2000/10/30 06:02:22 $
  */
 
 public class MatchTag extends ConditionalTagBase {
@@ -91,7 +91,7 @@ public class MatchTag extends ConditionalTagBase {
      * The location where the match must exist (<code>start</code> or
      * <code>end</code>), or <code>null</code> for anywhere.
      */
-    public String location = null;
+    protected String location = null;
 
     public String getLocation() {
         return (this.location);
@@ -106,7 +106,7 @@ public class MatchTag extends ConditionalTagBase {
      * The value to which the variable specified by other attributes of this
      * tag will be matched.
      */
-    public String value = null;
+    protected String value = null;
 
     public String getValue() {
         return (this.value);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.5 2000/10/30 02:51:40 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/10/30 02:51:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.6 2000/10/30 06:02:14 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/10/30 06:02:14 $
  *
  * ====================================================================
  *
@@ -81,10 +81,10 @@ import org.apache.struts.util.PropertyUtils;
  * web application resource.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/10/30 02:51:40 $
+ * @version $Revision: 1.6 $ $Date: 2000/10/30 06:02:14 $
  */
 
-public final class ResourceTag extends TagSupport {
+public class ResourceTag extends TagSupport {
 
 
     // ------------------------------------------------------------- Properties
@@ -93,14 +93,14 @@ public final class ResourceTag extends TagSupport {
     /**
      * Buffer size to use when reading the input stream.
      */
-    private static final int BUFFER_SIZE = 256;
+    protected static final int BUFFER_SIZE = 256;
 
 
     /**
      * The name of the scripting variable that will be exposed as a page
      * scope attribute.
      */
-    private String id = null;
+    protected String id = null;
 
     public String getId() {
         return (this.id);
@@ -114,7 +114,7 @@ public final class ResourceTag extends TagSupport {
     /**
      * Return an InputStream to the specified resource if this is non-null.
      */
-    private String input = null;
+    protected String input = null;
 
     public String getInput() {
         return (this.input);
@@ -128,7 +128,7 @@ public final class ResourceTag extends TagSupport {
     /**
      * The message resources for this package.
      */
-    private static MessageResources messages =
+    protected static MessageResources messages =
         MessageResources.getMessageResources
         ("org.apache.struts.taglib.bean.LocalStrings");
 
@@ -136,7 +136,7 @@ public final class ResourceTag extends TagSupport {
     /**
      * The name of the resource whose contents are to be exposed.
      */
-    private String name = null;
+    protected String name = null;
 
     public String getName() {
         return (this.name);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.4 2000/10/30 02:51:39 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/10/30 02:51:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.5 2000/10/30 06:02:09 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/10/30 06:02:09 $
  *
  * ====================================================================
  *
@@ -82,10 +82,10 @@ import org.apache.struts.util.PropertyUtils;
  * cookie received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/10/30 02:51:39 $
+ * @version $Revision: 1.5 $ $Date: 2000/10/30 06:02:09 $
  */
 
-public final class CookieTag extends TagSupport {
+public class CookieTag extends TagSupport {
 
 
     // ------------------------------------------------------------- Properties
@@ -95,7 +95,7 @@ public final class CookieTag extends TagSupport {
      * The name of the scripting variable that will be exposed as a page
      * scope attribute.
      */
-    private String id = null;
+    protected String id = null;
 
     public String getId() {
         return (this.id);
@@ -109,7 +109,7 @@ public final class CookieTag extends TagSupport {
     /**
      * The message resources for this package.
      */
-    private static MessageResources messages =
+    protected static MessageResources messages =
         MessageResources.getMessageResources
         ("org.apache.struts.taglib.bean.LocalStrings");
 
@@ -117,7 +117,7 @@ public final class CookieTag extends TagSupport {
     /**
      * Return an array of Cookies if <code>multiple</code> is non-null.
      */
-    private String multiple = null;
+    protected String multiple = null;
 
     public String getMultiple() {
         return (this.multiple);
@@ -131,7 +131,7 @@ public final class CookieTag extends TagSupport {
     /**
      * The name of the cookie whose value is to be exposed.
      */
-    private String name = null;
+    protected String name = null;
 
     public String getName() {
         return (this.name);

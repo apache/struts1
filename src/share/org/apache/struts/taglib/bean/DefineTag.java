@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.5 2000/10/30 02:51:39 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/10/30 02:51:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.6 2000/10/30 06:02:10 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/10/30 06:02:10 $
  *
  * ====================================================================
  *
@@ -79,10 +79,10 @@ import org.apache.struts.util.PropertyUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/10/30 02:51:39 $
+ * @version $Revision: 1.6 $ $Date: 2000/10/30 06:02:10 $
  */
 
-public final class DefineTag extends TagSupport {
+public class DefineTag extends TagSupport {
 
 
     // ------------------------------------------------------------- Properties
@@ -92,7 +92,7 @@ public final class DefineTag extends TagSupport {
      * The name of the scripting variable that will be exposed as a page
      * scope attribute.
      */
-    private String id = null;
+    protected String id = null;
 
     public String getId() {
         return (this.id);
@@ -106,7 +106,7 @@ public final class DefineTag extends TagSupport {
     /**
      * The message resources for this package.
      */
-    private static MessageResources messages =
+    protected static MessageResources messages =
         MessageResources.getMessageResources
         ("org.apache.struts.taglib.bean.LocalStrings");
 
@@ -114,7 +114,7 @@ public final class DefineTag extends TagSupport {
     /**
      * The name of the bean owning the property to be exposed.
      */
-    private String name = null;
+    protected String name = null;
 
     public String getName() {
         return (this.name);
@@ -128,7 +128,7 @@ public final class DefineTag extends TagSupport {
     /**
      * The name of the property to be retrieved.
      */
-    private String property = null;
+    protected String property = null;
 
     public String getProperty() {
         return (this.property);
@@ -142,7 +142,7 @@ public final class DefineTag extends TagSupport {
     /**
      * The scope within which to search for the specified bean.
      */
-    private String scope = null;
+    protected String scope = null;
 
     public String getScope() {
         return (this.scope);
@@ -156,7 +156,7 @@ public final class DefineTag extends TagSupport {
     /**
      * The fully qualified Java class name of the value to be exposed.
      */
-    private String type = null;
+    protected String type = null;
 
     public String getType() {
         return (this.type);

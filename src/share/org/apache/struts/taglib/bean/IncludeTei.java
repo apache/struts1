@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/IncludeTei.java,v 1.1 2000/09/05 01:33:21 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/09/05 01:33:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/IncludeTei.java,v 1.2 2000/10/30 06:02:12 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/10/30 06:02:12 $
  *
  * ====================================================================
  *
@@ -73,10 +73,10 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/09/05 01:33:21 $
+ * @version $Revision: 1.2 $ $Date: 2000/10/30 06:02:12 $
  */
 
-public final class IncludeTei extends TagExtraInfo {
+public class IncludeTei extends TagExtraInfo {
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/NotPresentTag.java,v 1.1 2000/09/07 01:35:36 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/09/07 01:35:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/NotPresentTag.java,v 1.2 2000/10/30 06:02:22 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/10/30 06:02:22 $
  *
  * ====================================================================
  *
@@ -71,10 +71,10 @@ import javax.servlet.jsp.JspException;
  * is not present for this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/09/07 01:35:36 $
+ * @version $Revision: 1.2 $ $Date: 2000/10/30 06:02:22 $
  */
 
-public final class NotPresentTag extends PresentTag {
+public class NotPresentTag extends PresentTag {
 
 
     // ------------------------------------------------------ Protected Methods

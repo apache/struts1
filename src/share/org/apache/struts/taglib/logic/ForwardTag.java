@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.3 2000/10/30 03:20:28 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/30 03:20:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.4 2000/10/30 06:02:22 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/10/30 06:02:22 $
  *
  * ====================================================================
  *
@@ -80,10 +80,10 @@ import org.apache.struts.util.MessageResources;
  * ActionForwards collection associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/10/30 03:20:28 $
+ * @version $Revision: 1.4 $ $Date: 2000/10/30 06:02:22 $
  */
 
-public final class ForwardTag extends TagSupport {
+public class ForwardTag extends TagSupport {
 
 
     // ----------------------------------------------------------- Properties
@@ -92,7 +92,7 @@ public final class ForwardTag extends TagSupport {
     /**
      * The message resources for this package.
      */
-    private static MessageResources messages =
+    protected static MessageResources messages =
 	MessageResources.getMessageResources
 	("org.apache.struts.taglib.logic.LocalStrings");
 
@@ -101,7 +101,7 @@ public final class ForwardTag extends TagSupport {
      * The logical name of the <code>ActionForward</code> entry to be
      * looked up.
      */
-    private String name = null;
+    protected String name = null;
 
     public String getName() {
         return (this.name);

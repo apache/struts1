@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.3 2000/10/30 03:20:28 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/30 03:20:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.4 2000/10/30 06:02:22 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/10/30 06:02:22 $
  *
  * ====================================================================
  *
@@ -88,10 +88,10 @@ import org.apache.struts.util.PropertyUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/10/30 03:20:28 $
+ * @version $Revision: 1.4 $ $Date: 2000/10/30 06:02:22 $
  */
 
-public final class IterateTag extends BodyTagSupport {
+public class IterateTag extends BodyTagSupport {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -101,19 +101,19 @@ public final class IterateTag extends BodyTagSupport {
      * Iterator of the elements of this collection, while we are actually
      * running.
      */
-    private Iterator iterator = null;
+    protected Iterator iterator = null;
 
 
     /**
      * The number of elements we have already rendered.
      */
-    private int lengthCount = 0;
+    protected int lengthCount = 0;
 
 
     /**
      * The actual length value (calculated in the start tag).
      */
-    private int lengthValue = 0;
+    protected int lengthValue = 0;
 
 
     /**
@@ -128,7 +128,7 @@ public final class IterateTag extends BodyTagSupport {
     /**
      * The actual offset value (calculated in the start tag).
      */
-    private int offsetValue = 0;
+    protected int offsetValue = 0;
 
 
     // ------------------------------------------------------------- Properties
@@ -137,7 +137,7 @@ public final class IterateTag extends BodyTagSupport {
     /**
      * The collection over which we will be iterating.
      */
-    private Object collection = null;
+    protected Object collection = null;
 
     public Object getCollection() {
 	return (this.collection);
@@ -151,7 +151,7 @@ public final class IterateTag extends BodyTagSupport {
     /**
      * The name of the scripting variable to be exposed.
      */
-    private String id = null;
+    protected String id = null;
 
     public String getId() {
 	return (this.id);
@@ -165,7 +165,7 @@ public final class IterateTag extends BodyTagSupport {
     /**
      * The length value or attribute name (<=0 means no limit).
      */
-    private String length = null;
+    protected String length = null;
 
     public String getLength() {
 	return (this.length);
@@ -179,7 +179,7 @@ public final class IterateTag extends BodyTagSupport {
     /**
      * The name of the collection or owning bean.
      */
-    private String name = null;
+    protected String name = null;
 
     public String getName() {
         return (this.name);
@@ -193,7 +193,7 @@ public final class IterateTag extends BodyTagSupport {
     /**
      * The starting offset (zero relative).
      */
-    private String offset = null;
+    protected String offset = null;
 
     public String getOffset() {
 	return (this.offset);
@@ -207,7 +207,7 @@ public final class IterateTag extends BodyTagSupport {
     /**
      * The property name containing the collection.
      */
-    private String property = null;
+    protected String property = null;
 
     public String getProperty() {
 	return (this.property);
@@ -221,7 +221,7 @@ public final class IterateTag extends BodyTagSupport {
     /**
      * The Java class of each exposed element of the collection.
      */
-    private String type = null;
+    protected String type = null;
 
     public String getType() {
         return (this.type);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/PageTag.java,v 1.3 2000/10/30 02:51:39 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/30 02:51:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/PageTag.java,v 1.4 2000/10/30 06:02:12 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/10/30 06:02:12 $
  *
  * ====================================================================
  *
@@ -78,10 +78,10 @@ import org.apache.struts.util.PropertyUtils;
  * item as a scripting variable and a page scope bean.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/10/30 02:51:39 $
+ * @version $Revision: 1.4 $ $Date: 2000/10/30 06:02:12 $
  */
 
-public final class PageTag extends TagSupport {
+public class PageTag extends TagSupport {
 
 
     // ------------------------------------------------------------- Properties
@@ -91,7 +91,7 @@ public final class PageTag extends TagSupport {
      * The name of the scripting variable that will be exposed as a page
      * scope attribute.
      */
-    private String id = null;
+    protected String id = null;
 
     public String getId() {
         return (this.id);
@@ -105,7 +105,7 @@ public final class PageTag extends TagSupport {
     /**
      * The message resources for this package.
      */
-    private static MessageResources messages =
+    protected static MessageResources messages =
         MessageResources.getMessageResources
         ("org.apache.struts.taglib.bean.LocalStrings");
 
@@ -113,7 +113,7 @@ public final class PageTag extends TagSupport {
     /**
      * The name of the page context property to be retrieved.
      */
-    private String property = null;
+    protected String property = null;
 
     public String getProperty() {
         return (this.property);

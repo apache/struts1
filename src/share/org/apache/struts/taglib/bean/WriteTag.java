@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.5 2000/10/30 02:51:40 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/10/30 02:51:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.6 2000/10/30 06:02:15 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/10/30 06:02:15 $
  *
  * ====================================================================
  *
@@ -81,10 +81,10 @@ import org.apache.struts.util.PropertyUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/10/30 02:51:40 $
+ * @version $Revision: 1.6 $ $Date: 2000/10/30 06:02:15 $
  */
 
-public final class WriteTag extends TagSupport {
+public class WriteTag extends TagSupport {
 
 
     // ------------------------------------------------------------- Properties
@@ -94,7 +94,7 @@ public final class WriteTag extends TagSupport {
      * Filter the rendered output for characters that are sensitive in HTML
      * if this property is set to any non-null value.
      */
-    private String filter = null;
+    protected String filter = null;
 
     public String getFilter() {
         return (this.filter);
@@ -108,7 +108,7 @@ public final class WriteTag extends TagSupport {
     /**
      * The message resources for this package.
      */
-    private static MessageResources messages =
+    protected static MessageResources messages =
 	MessageResources.getMessageResources
 	("org.apache.struts.taglib.bean.LocalStrings");
 
@@ -116,7 +116,7 @@ public final class WriteTag extends TagSupport {
     /**
      * Name of the bean that contains the data we will be rendering.
      */
-    private String name = null;
+    protected String name = null;
 
     public String getName() {
         return (this.name);
@@ -130,7 +130,7 @@ public final class WriteTag extends TagSupport {
     /**
      * Name of the property to be accessed on the specified bean.
      */
-    private String property = null;
+    protected String property = null;
 
     public String getProperty() {
         return (this.property);
@@ -144,7 +144,7 @@ public final class WriteTag extends TagSupport {
     /**
      * The scope to be searched to retrieve the specified bean.
      */
-    private String scope = null;
+    protected String scope = null;
 
     public String getScope() {
         return (this.scope);

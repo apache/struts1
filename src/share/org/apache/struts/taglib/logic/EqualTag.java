@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EqualTag.java,v 1.1 2000/09/07 01:35:35 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/09/07 01:35:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EqualTag.java,v 1.2 2000/10/30 06:02:22 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/10/30 06:02:22 $
  *
  * ====================================================================
  *
@@ -71,10 +71,10 @@ import javax.servlet.jsp.JspException;
  * and value are equal.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/09/07 01:35:35 $
+ * @version $Revision: 1.2 $ $Date: 2000/10/30 06:02:22 $
  */
 
-public final class EqualTag extends CompareTagBase {
+public class EqualTag extends CompareTagBase {
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/GreaterEqualTag.java,v 1.1 2000/09/07 01:35:35 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/09/07 01:35:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/GreaterEqualTag.java,v 1.2 2000/10/30 06:02:22 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/10/30 06:02:22 $
  *
  * ====================================================================
  *
@@ -71,10 +71,10 @@ import javax.servlet.jsp.JspException;
  * is greater than or equal to the specified value.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/09/07 01:35:35 $
+ * @version $Revision: 1.2 $ $Date: 2000/10/30 06:02:22 $
  */
 
-public final class GreaterEqualTag extends CompareTagBase {
+public class GreaterEqualTag extends CompareTagBase {
 
 
     /**

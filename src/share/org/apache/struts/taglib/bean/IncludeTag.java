@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.5 2000/10/30 02:51:39 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.6 2000/10/30 06:02:12 craigmcc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -81,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/10/30 02:51:39 $
+ * @version $Revision: 1.6 $ $Date: 2000/10/30 06:02:12 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -93,14 +93,14 @@ public class IncludeTag extends TagSupport {
     /**
      * Buffer size to use when reading the input stream.
      */
-    private static final int BUFFER_SIZE = 256;
+    protected static final int BUFFER_SIZE = 256;
 
 
     /**
      * The name of the scripting variable that will be exposed as a page
      * scope attribute.
      */
-    private String id = null;
+    protected String id = null;
 
     public String getId() {
         return (this.id);
@@ -114,7 +114,7 @@ public class IncludeTag extends TagSupport {
     /**
      * The message resources for this package.
      */
-    private static MessageResources messages =
+    protected static MessageResources messages =
         MessageResources.getMessageResources
         ("org.apache.struts.taglib.bean.LocalStrings");
 
@@ -122,7 +122,7 @@ public class IncludeTag extends TagSupport {
     /**
      * The context-relative URI of the page or servlet to be included.
      */
-    private String name = null;
+    protected String name = null;
 
     public String getName() {
 	return (this.name);

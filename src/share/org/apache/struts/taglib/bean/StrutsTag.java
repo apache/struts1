@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.3 2000/10/30 02:51:40 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/30 02:51:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.4 2000/10/30 06:02:15 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/10/30 06:02:15 $
  *
  * ====================================================================
  *
@@ -81,10 +81,10 @@ import org.apache.struts.util.PropertyUtils;
  * internal configuraton object.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/10/30 02:51:40 $
+ * @version $Revision: 1.4 $ $Date: 2000/10/30 06:02:15 $
  */
 
-public final class StrutsTag extends TagSupport {
+public class StrutsTag extends TagSupport {
 
 
     // ------------------------------------------------------------- Properties
@@ -94,7 +94,7 @@ public final class StrutsTag extends TagSupport {
      * The name of the scripting variable that will be exposed as a page
      * scope attribute.
      */
-    private String id = null;
+    protected String id = null;
 
     public String getId() {
         return (this.id);
@@ -108,7 +108,7 @@ public final class StrutsTag extends TagSupport {
     /**
      * The message resources for this package.
      */
-    private static MessageResources messages =
+    protected static MessageResources messages =
         MessageResources.getMessageResources
         ("org.apache.struts.taglib.bean.LocalStrings");
 
@@ -116,7 +116,7 @@ public final class StrutsTag extends TagSupport {
     /**
      * The name of the <code>ActionFormBean</code> object to be exposed.
      */
-    private String formBean = null;
+    protected String formBean = null;
 
     public String getFormBean() {
         return (this.formBean);
@@ -130,7 +130,7 @@ public final class StrutsTag extends TagSupport {
     /**
      * The name of the <code>ActionForward</code> object to be exposed.
      */
-    private String forward = null;
+    protected String forward = null;
 
     public String getForward() {
         return (this.forward);
@@ -144,7 +144,7 @@ public final class StrutsTag extends TagSupport {
     /**
      * The name of the <code>ActionMapping</code> object to be exposed.
      */
-    private String mapping = null;
+    protected String mapping = null;
 
     public String getMapping() {
         return (this.mapping);

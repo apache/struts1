@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.3 2000/10/30 03:20:28 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/30 03:20:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.4 2000/10/30 06:02:23 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/10/30 06:02:23 $
  *
  * ====================================================================
  *
@@ -79,10 +79,10 @@ import org.apache.struts.util.MessageResources;
  * the remainder of the current page.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/10/30 03:20:28 $
+ * @version $Revision: 1.4 $ $Date: 2000/10/30 06:02:23 $
  */
 
-public final class RedirectTag extends TagSupport {
+public class RedirectTag extends TagSupport {
 
 
     // ------------------------------------------------------------- Properties
@@ -91,7 +91,7 @@ public final class RedirectTag extends TagSupport {
     /**
      * The relative or absolute URL to which the client should be redirected.
      */
-    private String href = null;
+    protected String href = null;
 
     public String getHref() {
         return (this.href);

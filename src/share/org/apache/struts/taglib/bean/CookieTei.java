@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTei.java,v 1.2 2000/08/30 02:15:05 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/08/30 02:15:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTei.java,v 1.3 2000/10/30 06:02:10 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/30 06:02:10 $
  *
  * ====================================================================
  *
@@ -74,10 +74,10 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/08/30 02:15:05 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/30 06:02:10 $
  */
 
-public final class CookieTei extends TagExtraInfo {
+public class CookieTei extends TagExtraInfo {
 
 
     /**

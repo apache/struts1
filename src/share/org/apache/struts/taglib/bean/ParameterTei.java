@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTei.java,v 1.2 2000/09/05 01:33:21 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/09/05 01:33:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTei.java,v 1.3 2000/10/30 06:02:13 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/30 06:02:13 $
  *
  * ====================================================================
  *
@@ -73,10 +73,10 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/09/05 01:33:21 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/30 06:02:13 $
  */
 
-public final class ParameterTei extends TagExtraInfo {
+public class ParameterTei extends TagExtraInfo {
 
 
     /**
