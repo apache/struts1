@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<document url="index.html">
+
+  <properties>
+    <title>Struts Flow</title>
+  </properties>
+
+  <body>
+
+    <section name="Struts Flow" href="overview">
+      <p>
+Struts Flow is a port of <a href="http://cocoon.apache.org">Cocoon's</a> <a href="http://cocoon.apache.org/2.1/userdocs/flow/index.html">Control Flow</a> to <a href="http://struts.apache.org">Struts</a> to allow
+complex workflow, like multi-form wizards, to be easily implemented using continuations-capable
+JavaScript.  It provides the ability to describe the order of Web pages that have to be sent to the client, at any given point in time in an application.  
+Struts Flow uses a low-impact integration method that allows an existing Struts application to use Struts Flow along side traditional Struts 
+components like Actions and ActionForms.
+
+        </p>
+        <p>
+        While the initial target of the extracted Control Flow is Struts, the Flow code is reusable from other 
+        non-Struts environments.  This means Control Flow could be used to drive non-Struts JSP applications, portlets, or even complex web services.
+        </p>
+    </section>  
+      <section name="Features" href="features">
+            <ul>
+              <li>Easily script complex workflows</li>
+              <li>Full access to Struts features</li>
+              <li>Can exist side-by-side existing Struts actions</li>
+              <li>Ability to run in non-Struts environments (uses Jakarta's Commons-Chain)</li>
+              <li>Includes Wizard library to help easily create complex wizards</li> 
+              <li>Includes Wizard example</li> 
+              <li>Includes Cocoon's number guessing game example</li> 
+            </ul>
+      </section>
+      <section name="What's New" href="new">
+        <section name="0.2 - September 10, 2004">
+            <ul>
+              <li>Added wizard library to make wizard creation easy</li>
+              <li>Added wizard example</li>
+              <li>Updated and improved documentation</li>
+              <li>Fixed a few bugs</li>
+            </ul>
+        </section>
+        <section name="0.1 - June 3, 2004">
+            <ul>
+              <li>Hooks into Struts' logging</li>
+              <li>Added continuation expiration system</li>
+              <li>Added support for JavaScript debugger</li>
+              <li>Improved Struts integration</li>
+              <li>Added full JavaDocs</li>
+              <li>Added many more configuration options</li>
+            </ul>
+        </section>
+        <section name="Initial Import - May 12, 2004">
+            <ul>
+              <li>Example working</li>
+              <li>Struts integration functioning</li>
+              <li>Needs better Struts form integration</li>
+              <li>Needs to hook into Struts' logging</li>
+            </ul>
+        </section>
+     </section>   
+      <section name="Reqirements" href="requirements">
+          <p>
+            Struts integration requres Struts 1.1 or greater.
+          </p>
+      </section>
+      <section name="Examples" href="examples">
+        
+        <p>The following examples show how Struts Flow can be used:
+        </p>
+        <ul>
+            <li><a href="guess-example.html">Number Guess Game Example</a></li>
+            <li><a href="wizard-example.html">Wizard Example</a></li>
+        </ul>
+      </section>
+  </body>
+</document>

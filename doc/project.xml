@@ -40,6 +40,10 @@
             name="BSF Scripting"
             href="bsf/index.html"
             />
+        <item
+            name="Struts Flow"
+            href="flow/index.html"
+            />
     </menu>        
  
     <menu name="Documentation">

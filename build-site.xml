@@ -86,7 +86,25 @@
             reloadstylesheet="true">
       <param name="project-path" expression="../userGuide/project.xml"/>
     </style>  
-
+    <!-- Create the Struts BSF site -->
+    <style   basedir="${doc.dir}/bsf"
+             destdir="${build.home}/documentation/bsf"
+           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
+            includes="*.xml"
+            excludes="project.xml"
+            reloadstylesheet="true">
+      <param name="project-path" expression="../bsf/project.xml"/>
+    </style>            
+    <!-- Create the Struts Flow site -->
+    <style   basedir="${doc.dir}/flow"
+             destdir="${build.home}/documentation/flow"
+           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
+            includes="*.xml"
+            excludes="project.xml"
+            reloadstylesheet="true">
+      <param name="project-path" expression="../flow/project.xml"/>
+    </style>            
+ 
     <!-- Copy the basic documentation files -->
     <copy      todir="${build.home}/documentation">
       <fileset   dir="${doc.dir}">
