@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.13 2003/07/08 23:55:35 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2003/07/08 23:55:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.14 2003/08/12 15:03:42 martinc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/08/12 15:03:42 $
  *
  * ====================================================================
  *
@@ -336,9 +336,9 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants {
             // This implementation is very simple.
             // It is possible to avoid creation of a new structure, but this need
             // imply writing all Map interface.
-            Enumeration enum = config.getInitParameterNames();
-            while (enum.hasMoreElements()) {
-                String key = (String) enum.nextElement();
+            Enumeration e = config.getInitParameterNames();
+            while (e.hasMoreElements()) {
+                String key = (String) e.nextElement();
                 put(key, config.getInitParameter(key));
             }
         }

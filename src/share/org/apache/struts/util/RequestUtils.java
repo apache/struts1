@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.134 2003/08/02 22:19:37 dgraham Exp $
- * $Revision: 1.134 $
- * $Date: 2003/08/02 22:19:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.135 2003/08/12 15:03:42 martinc Exp $
+ * $Revision: 1.135 $
+ * $Date: 2003/08/12 15:03:42 $
  *
  * ====================================================================
  *
@@ -106,7 +106,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.134 $ $Date: 2003/08/02 22:19:37 $
+ * @version $Revision: 1.135 $ $Date: 2003/08/12 15:03:42 $
  */
 public class RequestUtils {
 
@@ -957,20 +957,18 @@ public class RequestUtils {
             HttpServletRequest request,
             MultipartRequestHandler multipartHandler) {
         Map parameters = new HashMap();
-        Enumeration enum;
-
         Hashtable elements = multipartHandler.getAllElements();
-        enum = elements.keys();
-        while (enum.hasMoreElements()) {
-            String key = (String) enum.nextElement();
+        Enumeration e = elements.keys();
+        while (e.hasMoreElements()) {
+            String key = (String) e.nextElement();
             parameters.put(key, elements.get(key));
         }
 
         if (request instanceof MultipartRequestWrapper) {
             request = ((MultipartRequestWrapper)request).getRequest();
-            enum = request.getParameterNames();
-            while (enum.hasMoreElements()) {
-                String key = (String) enum.nextElement();
+            e = request.getParameterNames();
+            while (e.hasMoreElements()) {
+                String key = (String) e.nextElement();
                 parameters.put(key, request.getParameterValues(key));
             }
         } else {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ReloadableDefinitionsFactory.java,v 1.8 2003/07/09 00:14:01 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/07/09 00:14:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ReloadableDefinitionsFactory.java,v 1.9 2003/08/12 15:03:42 martinc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/08/12 15:03:42 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Cedric Dumoulin
  * @since Struts 1.1
- * @version $Revision: 1.8 $ $Date: 2003/07/09 00:14:01 $
+ * @version $Revision: 1.9 $ $Date: 2003/08/12 15:03:42 $
  */
 public class ReloadableDefinitionsFactory implements ComponentDefinitionsFactory {
 
@@ -315,9 +315,9 @@ public class ReloadableDefinitionsFactory implements ComponentDefinitionsFactory
             // This implementation is very simple.
             // It is possible to avoid creation of a new structure, but this would
             // imply writing all of the Map interface.
-            Enumeration enum = config.getInitParameterNames();
-            while (enum.hasMoreElements()) {
-                String key = (String) enum.nextElement();
+            Enumeration e = config.getInitParameterNames();
+            while (e.hasMoreElements()) {
+                String key = (String) e.nextElement();
                 put(key, config.getInitParameter(key));
             }
         }
