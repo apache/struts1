@@ -12,7 +12,7 @@
       <div align="center">
       <font size="2">Choose between binaries or sources distribution</font> </div>
 	  <br>
-	  <DIV align=center><FONT size=2>Latest build : 2002 02 20 </FONT></DIV>
+	  <DIV align=center><FONT size=2>Latest build : 2002 04 15 </FONT></DIV>
       <DIV align=center>
 		  
 		  

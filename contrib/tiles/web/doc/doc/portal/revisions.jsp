@@ -2,6 +2,30 @@
 <tr>
 <th bgcolor="aqua"><FONT size=4>History</FONT></th></tr>
   <TR>
+    <TD><FONT size=2><STRONG> 14 Apr. 2002</STRONG> </FONT></TD></TR>
+  <TR>
+    <TD>
+      <UL>
+        <LI><FONT size=2>tiles.XmlDefinition.XmlParser : Correct bug with new Digester release 
+		preventing config file lists to be correctly parsed</FONT></LI>
+        <LI><FONT size=2>tabsLayout.jsp : Correct some syntax errors(bug reported by David Marshall)</FONT></LI>
+        <LI><FONT size=2>taglib.tiles.UseAttribute : Add release of variable 'id' in release method 
+		(bug reported by Heath Chiavettone)</FONT></LI>
+        <LI><FONT size=2>tiles.XmlDefinition.XmlDefinition : Add inheritance for controllerClass and 
+		controllerUrl attributes (bug reported by Jim Crossley) </FONT></LI>
+        <LI><FONT size=2>tiles.XmlDefinition.I18nFactorySet : Add another loading method for config 
+		files in order to let Websphere 3.5.x run (patch from Stephen Houston)</FONT></LI>
+        <LI><FONT size=2>tiles.ComponentActionServlet : Add overload of processForward and
+		processInclude in order to catch properly forward in struts1.0.x struts-config (bug reported from 
+		struts user list)</FONT></LI>
+        <LI><FONT size=2></FONT></LI>
+        <LI><FONT size=2></FONT></LI>
+        <LI><FONT size=2></FONT></LI>
+		
+	  </UL>
+	</TD>
+  </TR> 
+  <TR>
     <TD><FONT size=2><STRONG> 22 Feb. 2002</STRONG> </FONT></TD></TR>
   <TR>
     <TD>
