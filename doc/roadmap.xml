@@ -85,6 +85,8 @@
         Popular third-party extensions that are in active use by the Struts Community may be considered
         as subprojects, such as those distributed through the
         <a href="http://sourceforge.net/projects/struts">Struts SourceForge</a> site.
+        (If you are the author of such an extension, and would like to donate it to Struts and the
+        Apache Software Foundation, please contact the dev@ list.)
     </p>
 
     <p>
@@ -125,135 +127,15 @@
         so that other developers can explore alternatives.
     </p>
 
+    <p>
+        More detail regarding Struts 1.x enhancements can be found on the
+        <a href="Milestones.html">Milestones</a> page.
+
+    </p>
+
     </section>
 
-    <section href="Struts_1_x_whiteboard" name="Struts 1.x Whiteboard">
-
-        <p>
-            These are some general ideas we have about what may happen in the Struts 1.x series.
-            This is a <strong>whiteboard</strong> and everything here is <strong>subject to change</strong>.
-        </p>
-
-        <ul>
-
-            <li>Struts 1.0.0 (complete) -
-            Major refactoring of Struts internals to provide support for modules and a new "config" object series.
-            Bundles Struts Tiles and Struts Validator into main distribution.
-            The initial release of Struts EL is provided as an optional package.
-            </li>
-
-            <li>Struts 1.2.4 (complete) -
-                Continued refactorings of the Struts 1.x product series.
-                <ul>
-                    <li>Removed deprecations created in the 1.0 to 1.1 timeframe, and prior</li>
-                    <li>Added support for wildcard mappings.</li>
-                    <li>Other minor enhancements, improvements, and refactorings</li>
-                </ul>
-            </li>
-
-            <li>Struts 1.2.6 (complete) -
-                Migrated repository to Subversion; update website.</li>
-
-            <li>Struts 1.2.x (pending) -
-                Minor enhancements, improvements, and refactorings only, as needed.
-                New features should be added to the 1.3.x series.</li>
-
-            <li>Struts 1.3.x (pending) -
-            Enhancements to product base, based on existing features or codebases.
-                <ul>
-                    <li>Divide distribution into subprojects
-                    <ul><li>core, apps, el, faces, site, taglibs</li>
-                        <li><a href="http://struts.sourceforge.net/struts-flow/index.html">flow</a>, <a href="http://struts.sf.net/struts-bsf/">scripting</a> (new)</li>
-                    </ul>
-                    </li>
-                    <li>Complete support for Maven builds (pending)</li>
-                    <li>Move core to "Struts Chain" Request Processor (now in Contrib)</li>
-                    <li>Move to Commons Resources (if available)</li>
-                    <li>Enhance all configs to extend one configuration element from another,
-                        as is done with Tiles Definitions</li>
-                </ul>
-            </li>
-
-            <li>Struts 1.4.x -
-            Enhancements to product base, based on undeveloped code.
-                <ul>
-                    <li>Consider adding support for an Action context
-                        (which also might be based on the Commons Chain of Responsibility package).</li>
-                    <li>Consider adding support for Porlets by specifying an alternate Request Processor catalog.</li>
-                </ul>
-            </li>
-
-            <li>Other potential enhancements for the 1.x.x series
-                <ul>
-                    <li>Consider <a href="http://struts.sf.net/struts-cocoon/">Cocoon Plugin</a></li>
-                    <li>Consider <a href="http://struts.sourceforge.net/struts-spring/index.html">Spring Plugin</a></li>
-                    <li>Consider adopting several popular extensions, including:
-                        <ul>
-                            <li><a href="http://struts.application-servers.com/">Layout</a></li>
-                            <li><a href="http://sslext.sourceforge.net/">SSL Ext</a></li>
-                            <li><a href="http://stxx.sourceforge.net">Stxx</a> (XLST)</li>
-                            <li><a href="http://strutstestcase.sourceforge.net/">TestCase</a></li>
-                            <li><a href="http://www.livinglogic.de/Struts/">Workflow</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-
-        </ul>
-
-  <!--
-    <p>
-    Features under discussion include:
-    </p>
-
-    <ul>
-
-        <li>
-        Proposing ActionError/ActionErrors as generic Commons "message" components
-        </li>
-
-        <li>
-        "Nested" or "hierarchical" and locale-sensitive modules
-        </li>
-
-        <li>
-        Extending one configuration element from another, as is done with Tiles
-        Definitions
-        </li>
-
-        <li>
-        Enhanced interoperability with JSTL and JSF
-        </li>
-
-        <li>
-        Making Tiles JSTL-aware and available to other presentation systems (XLST,
-        Velocity)
-        </li>
-
-        <li>
-        Encouraging the use of <a href="http://sourceforge.net/projects/xdoclet/">XDoclet</a> and other code generation technologies to streamline development.
-        </li>
-
-        <li>Moving to <a href="http://jakarta.apache.org/turbine/maven/index.html">
-        Maven</a> for project management
-        </li>
-
-        <li>Regardless of whether a move to Maven happens or not, we need to
-        refactor the source repositories and build scripts for less complexity
-        and easier maintenance.</li>
-
-    </ul>
-    <p>
-    More detail on work-in-progress may be found in
-    <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;version=Unknown&amp;version=1.0+Beta+2&amp;version=1.0+Beta+1&amp;version=0.5+Final&amp;version=1.0.2+Final&amp;version=1.0.1+Final&amp;version=1.0+Final&amp;version=1.0+Beta+3&amp;version=1.1+Beta+2&amp;version=1.1+Beta+1&amp;version=Nightly+Build&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=Bug+Number">Bugzilla</a>.
-    If any of these features are important to you, please don't hesitate to
-    <a href="./faqs/helping.html">help with the development effort</a>.
-    </p>
--->
-
-</section>
-
-<section href="Struts_2_0" name="Struts 2.0.x">
+    <section href="Struts_2_0" name="Struts 2.0.x">
 
     <p>
     Struts 2.x (aka Struts "Next Generation") will include broader enhancements.
@@ -326,9 +208,20 @@
     </ul>
 
     <p>
-        An early proposal for one possible implementation of Struts 2.x, "Struts Jericho",
-        is available in the <a href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/contrib/struts-jericho/?root=Apache-SVN">contrib folder</a>.
+      An early proposal for one possible implementation of Struts 2.x, "Struts Jericho",
+       is available through the <a href="http://wiki.apache.org/struts/StrutsJericho">wiki</a>.
     </p>
+
+     <p>
+        Another proposal for Struts 2.x, "Struts Shale",
+        is available through the <a href="http://wiki.apache.org/struts/StrutsShale">wiki.</a>.
+     </p>
+
+      <p>
+        No decision regarding either proposal has been made, and other proposals are welcome.
+        It is also quite possible that Struts 1.x will simply evolve into
+        Struts 2.x.
+       </p>
 
 </section>
 
