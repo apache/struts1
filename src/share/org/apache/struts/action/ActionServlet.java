@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.101 2002/03/29 18:40:43 rleland Exp $
- * $Revision: 1.101 $
- * $Date: 2002/03/29 18:40:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.102 2002/04/06 17:12:17 craigmcc Exp $
+ * $Revision: 1.102 $
+ * $Date: 2002/04/06 17:12:17 $
  *
  * ====================================================================
  *
@@ -270,7 +270,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.101 $ $Date: 2002/03/29 18:40:43 $
+ * @version $Revision: 1.102 $ $Date: 2002/04/06 17:12:17 $
  */
 
 public class ActionServlet
@@ -1309,6 +1309,7 @@ public class ActionServlet
             config.findMessageResourcesConfig(Action.MESSAGES_KEY);
         if (mrc == null) {
             mrc = new MessageResourcesConfig();
+            mrc.setKey(Action.MESSAGES_KEY);
             config.addMessageResourcesConfig(mrc);
         }
         value = getServletConfig().getInitParameter("application");
