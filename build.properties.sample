@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.48 2003/08/28 01:51:23 rleland Exp $
+# $Id: build.properties.sample,v 1.49 2003/09/29 02:49:18 rleland Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -50,13 +50,13 @@ commons-fileupload.jar=${commons-lib.home}/fileupload/dist/commons-fileupload-1.
 
 # The JAR file containing the Lang package (Version 1.0.1 or later)
 # from the Jakarta Commons project.
-commons-lang.jar=${commons-lib.home}/lang/dist/commons-lang-1.0.1.jar
+commons-lang.jar=${commons-lib.home}/lang/dist/commons-lang-2.0.jar
 
 # The JAR file containing the Logging package (Version 1.0.3 or later)
 # from the Jakarta Commons project.
 commons-logging.jar=${commons-lib.home}/logging/dist/commons-logging.jar
 
-# The JAR file containing the Validator package (Version 1.0.2 or later)
+# The JAR file containing the Validator package (Version 1.1.0 or later)
 # from the Jakarta Commons project.
 commons-validator.jar=${commons-lib.home}/validator/dist/commons-validator.jar
 
@@ -326,4 +326,4 @@ ant.jar=${apache.home}/apache-ant-1.5.3-1/lib/ant.jar
 
 tomcat.home.33 = ${apache.home}/jakarta-tomcat-3.3.1
 tomcat.home.40 = ${apache.home}/jakarta-tomcat-4.0.6
-tomcat.home.41 = ${apache.home}/jakarta-tomcat-4.1.24
+tomcat.home.41 = ${apache.home}/jakarta-tomcat-4.1.27

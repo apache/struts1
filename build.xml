@@ -24,7 +24,7 @@
 
         antlr.jar                     The path to the JAR file of the ANTLR
                                       package.
-                                      [Version 2.7.1 or later]
+                                      [Version 2.7.2 or later]
 
         commons-beanutils.jar         The path to the JAR file of the Jakarta
                                       Commons Beanutils package.
@@ -44,7 +44,7 @@
 
         commons-lang.jar              The path to the JAR file of the Jakarta
                                       Commons Lang package.
-                                      [Version 1.0.1 or later]
+                                      [Version 2.0 or later]
 
         commons-logging.jar           The path to the JAR file of the Jakarta
                                       Commons Logging package.
@@ -52,11 +52,11 @@
 
         commons-validator.jar         The path to the JAR file of the Jakarta
                                       Commons Validator package.
-                                      [Version 1.0.2 or later]
+                                      [Version 1.1.0 or later]
 
         jakarta-oro.jar               The path to the JAR file of the Jakarta
                                       ORO package.
-                                      [Version 2.0.6 or later]
+                                      [Version 2.0.7 or later]
 
         jdbc20ext.jar                 The path to the JAR file for the JDBC 2.0
                                       Optional Package APIs.
