@@ -1,17 +1,16 @@
 STATUS
 ======
-$Id: STATUS,v 1.51 2002/08/02 21:25:14 jholmes Exp $
+$Id: STATUS,v 1.52 2002/08/03 19:00:57 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           13 open bugs to swat!!
+                           12 open bugs to swat!!
 
 
 Controller:
 ----------
-11302 Application not loading because of ClassLoad error in ActionServlet
 
 
 Custom Tags:
