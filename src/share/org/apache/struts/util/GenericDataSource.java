@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.5.2.2 2001/06/10 03:36:50 craigmcc Exp $
- * $Revision: 1.5.2.2 $
- * $Date: 2001/06/10 03:36:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.5.2.3 2002/03/21 23:22:45 craigmcc Exp $
+ * $Revision: 1.5.2.3 $
+ * $Date: 2002/03/21 23:22:45 $
  *
  * ====================================================================
  *
@@ -178,7 +178,7 @@ import javax.sql.DataSource;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.5.2.2 $ $Date: 2001/06/10 03:36:50 $
+ * @version $Revision: 1.5.2.3 $ $Date: 2002/03/21 23:22:45 $
  */
 
 public class GenericDataSource implements DataSource {
@@ -455,8 +455,7 @@ public class GenericDataSource implements DataSource {
         // Validate the opened status of this data source
         if (closed)
             throw new SQLException("getConnection:  Data source is closed");
-        if (driver == null)
-            open();
+        open();
 
         while (true) {
 
@@ -646,7 +645,7 @@ public class GenericDataSource implements DataSource {
      *
      * @exception SQLException if a database access error occurs
      */
-    public void open() throws SQLException {
+    public synchronized void open() throws SQLException {
 
         // Have we already been opened?
         if (driver != null)
