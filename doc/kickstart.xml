@@ -28,6 +28,7 @@
 
     <li><a href="#turbine">Whats the difference between Struts and Turbine?</a></li>
     <li><a href="#taglibs">Why aren't the Struts tags maintained as part of the Jakarta Taglibs project?</a></li>
+    <li><a href="#jsf">What about the JSTL and JavaServer Faces?</a></li>
   
     <li><a href="#bugs">Where can I report bugs or make feature requests?</a></li>
     <li><a href="#contribute">How can I contribute to the development of Struts?</a></li>
@@ -119,6 +120,42 @@
 
 <section href="taglibs" name="Why aren't the Struts tags maintained as part of the Jakarta Taglibs project?">
 <p>Development of both products began about the same time. Leading up to the release of 1.0, it was thought better to continue to develop the taglibs alongside the controller. Now that 1.0 is out, the Java ServerPages Standard Taglib is in active development. Once work on the JSPTL stabilizes, the Struts taglibs will be revisited. Tags which are are not linked directly to the framework may be hosted at Jakarta Taglibs instead.</p>
+</section>
+
+<section href="jsf" name="What about the JSTL and JavaServer Faces?">
+<p>
+The lead developer of Struts, Craig McClanahan, is a member of the 
+expert group for the JavaServer Standard Tag Library (JSR 052) and for 
+JavaServer Faces (JSR 127). He reports that good progress is being 
+made on both fronts. 
+</p>
+<p>
+The mainstay of the Struts framework is the controller components, which 
+can be used with any Java presentation technology. As new technologies 
+become available, it is certain that new "glue" components will also 
+appear to help these technologies work as well with Struts as the 
+bundled JSP tags. This would apply to both the JSTL and JSF.
+</p>
+<p>
+It is possible that Faces will also provide some flow-control functionality. 
+But what shape that functionality will take is still unclear. No
+matter what happens, we strongly believe that there is a need for higher
+level application control than something like Faces would provide. At 
+least for the non-trivial applications most Struts developers write.
+</p>
+<p>
+At some point, we would not be surprised to see Faces become the
+preferred UI implementation technology once it is standardized and 
+available. You can be assured that any future migration will be 
+made as painless as possible, and maximize your investment in 
+Struts. 
+</p>
+<p>
+The JSTL has made several early releases, which are available 
+through the 
+<a href="http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html">
+Jakarta Taglibs</a> site.
+</p>
 </section>
 
 <section href="bugs" name="Where can I report bugs or make feature requests?">
