@@ -3195,6 +3195,18 @@
                </p>
             </info>
         </attribute>
+        <attribute>
+            <name>htmlComment</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+               <p>
+                  Wheather or not to enclose the javascript
+                  with html comments.
+                  Defaults to <code>true</code>.
+               </p>
+            </info>
+        </attribute>
 
     </tag>
 

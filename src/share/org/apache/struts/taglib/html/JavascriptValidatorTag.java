@@ -89,7 +89,7 @@ import org.apache.struts.config.ApplicationConfig;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.9 $ $Date: 2002/10/20 23:17:06 $
+ * @version $Revision: 1.10 $ $Date: 2002/10/24 06:20:33 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -111,12 +111,14 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
     /**
      * The name of the form that corresponds with the action name
-     * in struts-config.xml.
+     * in struts-config.xml. Specifying a form name places a
+     * &lt;script&gt; &lt;/script&gt; around the javascript.
      */
     protected String formName = null;
 
     /**
      * The current page number of a multi-part form.
+     * Only valid when the formName attribute is set.
      */
     protected int page = 0;
 
@@ -137,10 +139,20 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     protected String dynamicJavascript = "true";
 
     /**
-     * The src attribute for html script element (used to include an external script resource).
+     * The src attribute for html script element (used to include an external script
+     * resource). The src attribute is only recognized
+     * when the formName attribute is specified.
      */
     protected String src = null;
 
+    /**
+     * The JavaScript methods will enclosed with html comments if this is set to "true".
+     */
+    protected String htmlComment = "true";
+
+    private String htmlBeginComment = "\n<!-- Begin \n";
+
+    private String htmlEndComment = "//End --> \n";
     /**
      * Gets the key (form name) that will be used
      * to retrieve a set of validation rules to be
@@ -154,6 +166,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * Sets the key (form name) that will be used
      * to retrieve a set of validation rules to be
      * performed on the bean passed in for validation.
+     * Specifying a form name places a
+     * &lt;script&gt; &lt;/script&gt; tag around the javascript.
      */
     public void setFormName(String formName) {
         this.formName = formName;
@@ -163,6 +177,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * Gets the current page number of a multi-part form.
      * Only field validations with a matching page numer
      * will be generated that match the current page number.
+     * Only valid when the formName attribute is set.
      */
     public int getPage() {
         return page;
@@ -172,6 +187,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * Sets the current page number of a multi-part form.
      * Only field validations with a matching page numer
      * will be generated that match the current page number.
+     * Only valid when the formName attribute is set.
      */
     public void setPage(int page) {
         this.page = page;
@@ -234,6 +250,24 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     }
 
     /**
+      * Gets whether or not to delimit the
+      * JavaScript with html comments.  If this is set to 'true', which
+      * is the default, the htmlComment will be surround the JavaScript.
+      */
+     public String getHtmlComment() {
+         return htmlComment;
+     }
+
+     /**
+      * Sets whether or not to delimit the
+      * JavaScript with html comments.  If this is set to 'true', which
+      * is the default, the htmlComment will be surround the JavaScript.
+      */
+     public void setHtmlComment(String htmlComment) {
+         this.htmlComment = htmlComment;
+     }
+
+    /**
      * Gets the src attribute's value when defining
      * the html script element.
      */
@@ -243,7 +277,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
     /**
      * Sets the src attribute's value when defining
-     * the html script element.
+     * the html script element. The src attribute is only recognized
+     * when the formName attribute is specified.
      */
     public void setSrc(String src) {
         this.src = src;
@@ -259,8 +294,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         ApplicationConfig config = RequestUtils.getApplicationConfig(pageContext);
         ValidatorResources resources = (ValidatorResources)
-                             pageContext.getAttribute(ValidatorPlugIn.VALIDATOR_KEY +
-                             config.getPrefix(), PageContext.APPLICATION_SCOPE);
+                pageContext.getAttribute(ValidatorPlugIn.VALIDATOR_KEY +
+                config.getPrefix(), PageContext.APPLICATION_SCOPE);
         Locale locale = null;
         try {
             locale = (Locale) pageContext.getAttribute(Action.LOCALE_KEY, PageContext.SESSION_SCOPE);
@@ -273,135 +308,139 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         }
 
         Form form = null;
-        if ((form = resources.get(locale, formName)) != null && "true".equals(dynamicJavascript)) {
-            MessageResources messages = (MessageResources)
-                                 pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
+        form = resources.get(locale, formName);
+        if (form != null) {
+            if ("true".equals(dynamicJavascript)) {
+                MessageResources messages = (MessageResources)
+                        pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
 
-            List lActions = new ArrayList();
-            List lActionMethods = new ArrayList();
+                List lActions = new ArrayList();
+                List lActionMethods = new ArrayList();
 
-            // Get List of actions for this Form
-            for (Iterator i = form.getFields().iterator(); i.hasNext();) {
-                Field field = (Field) i.next();
+                // Get List of actions for this Form
+                for (Iterator i = form.getFields().iterator(); i.hasNext();) {
+                    Field field = (Field) i.next();
 
-                for (Iterator x = field.getDependencies().iterator(); x.hasNext();) {
-                    Object o = x.next();
+                    for (Iterator x = field.getDependencies().iterator(); x.hasNext();) {
+                        Object o = x.next();
 
-                    if (o != null && !lActionMethods.contains(o)) {
-                        lActionMethods.add(o);
-                    }
-                }
-
-            }
-
-            // Create list of ValidatorActions based on lActionMethods
-            for (Iterator i = lActionMethods.iterator(); i.hasNext();) {
-                ValidatorAction va = resources.getValidatorAction((String) i.next());
-
-                String javascript = va.getJavascript();
-                if (javascript != null && javascript.length() > 0) {
-                    lActions.add(va);
-                } else {
-                    i.remove();
-                }
-            }
-
-            Collections.sort(lActions, new Comparator() {
-                public int compare(Object o1, Object o2) {
-                    ValidatorAction va1 = (ValidatorAction) o1;
-                    ValidatorAction va2 = (ValidatorAction) o2;
-
-                    if ((va1.getDepends() == null || va1.getDepends().length() == 0) &&
-                                         (va2.getDepends() == null || va2.getDepends().length() == 0)) {
-                        return 0;
-                    } else if ((va1.getDepends() != null && va1.getDepends().length() > 0) &&
-                                         (va2.getDepends() == null || va2.getDepends().length() == 0)) {
-                        return 1;
-                    } else if ((va1.getDepends() == null || va1.getDepends().length() == 0) &&
-                                         (va2.getDepends() != null && va2.getDepends().length() > 0)) {
-                        return -1;
-                    } else {
-                        return va1.getDependencies().size() - va2.getDependencies().size();
-                    }
-                }
-            });
-
-            String methods = null;
-            for (Iterator i = lActions.iterator(); i.hasNext();) {
-                ValidatorAction va = (ValidatorAction) i.next();
-
-                if (methods == null) {
-                    methods = va.getMethod() + "(form)";
-                } else {
-                    methods += " && " + va.getMethod() + "(form)";
-                }
-            }
-
-            results.append(getJavascriptBegin(methods));
-
-            for (Iterator i = lActions.iterator(); i.hasNext();) {
-                ValidatorAction va = (ValidatorAction) i.next();
-                String jscriptVar = null;
-                String functionName = null;
-
-                if (va.getJsFunctionName() != null && va.getJsFunctionName().length() > 0) {
-                    functionName = va.getJsFunctionName();
-                } else {
-                    functionName = va.getName();
-                }
-
-                results.append("    function " + functionName + " () { \n");
-                for (Iterator x = form.getFields().iterator(); x.hasNext();) {
-                    Field field = (Field) x.next();
-
-                    // Skip indexed fields for now until there is
-                    // a good way to handle error messages (and the length of the list (could retrieve from scope?))
-                    if (!field.isIndexed() && field.getPage() == page && field.isDependency(va.getName())) {
-                        String message = Resources.getMessage(messages, locale, va, field);
-                        message = (message != null ? message : "");
-
-                        jscriptVar = getNextVar(jscriptVar);
-
-                        results.append("     this." + jscriptVar + " = new Array(\"" + field.getKey() + "\", \"" + message + "\", ");
-
-                        results.append("new Function (\"varName\", \"");
-
-                        Map hVars = field.getVars();
-                        // Loop through the field's variables.
-                        for (Iterator iVars = hVars.keySet().iterator(); iVars.hasNext();) {
-                            String varKey = (String) iVars.next();
-                            Var var = (Var) hVars.get(varKey);
-                            String varValue = var.getValue();
-                            String jsType = var.getJsType();
-
-                            if (Var.JSTYPE_INT.equalsIgnoreCase(jsType)) {
-                                results.append("this." + varKey + "=" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "; ");
-                            } else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(jsType)) {
-                                results.append("this." + varKey + "=/" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "/; ");
-                            } else if (Var.JSTYPE_STRING.equalsIgnoreCase(jsType)) {
-                                results.append("this." + varKey + "='" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "'; ");
-                                // So everyone using the latest format doesn't need to change their xml files immediately.
-                            } else if ("mask".equalsIgnoreCase(varKey)) {
-                                results.append("this." + varKey + "=/" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "/; ");
-                            } else {
-                                results.append("this." + varKey + "='" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "'; ");
-                            }
+                        if (o != null && !lActionMethods.contains(o)) {
+                            lActionMethods.add(o);
                         }
+                    }
 
-                        results.append(" return this[varName];\"));\n");
+                }
+
+                // Create list of ValidatorActions based on lActionMethods
+                for (Iterator i = lActionMethods.iterator(); i.hasNext();) {
+                    ValidatorAction va = resources.getValidatorAction((String) i.next());
+
+                    String javascript = va.getJavascript();
+                    if (javascript != null && javascript.length() > 0) {
+                        lActions.add(va);
+                    } else {
+                        i.remove();
                     }
                 }
-                results.append("    } \n\n");
-            }
-        } else if ("true".equals(staticJavascript)) {
-            results.append("<script language=\"Javascript1.1\" type=\"text/javascript\">");
-        }
 
+                Collections.sort(lActions, new Comparator() {
+                    public int compare(Object o1, Object o2) {
+                        ValidatorAction va1 = (ValidatorAction) o1;
+                        ValidatorAction va2 = (ValidatorAction) o2;
+
+                        if ((va1.getDepends() == null || va1.getDepends().length() == 0) &&
+                                (va2.getDepends() == null || va2.getDepends().length() == 0)) {
+                            return 0;
+                        } else if ((va1.getDepends() != null && va1.getDepends().length() > 0) &&
+                                (va2.getDepends() == null || va2.getDepends().length() == 0)) {
+                            return 1;
+                        } else if ((va1.getDepends() == null || va1.getDepends().length() == 0) &&
+                                (va2.getDepends() != null && va2.getDepends().length() > 0)) {
+                            return -1;
+                        } else {
+                            return va1.getDependencies().size() - va2.getDependencies().size();
+                        }
+                    }
+                });
+
+                String methods = null;
+                for (Iterator i = lActions.iterator(); i.hasNext();) {
+                    ValidatorAction va = (ValidatorAction) i.next();
+
+                    if (methods == null) {
+                        methods = va.getMethod() + "(form)";
+                    } else {
+                        methods += " && " + va.getMethod() + "(form)";
+                    }
+                }
+
+                results.append(getJavascriptBegin(methods));
+
+                for (Iterator i = lActions.iterator(); i.hasNext();) {
+                    ValidatorAction va = (ValidatorAction) i.next();
+                    String jscriptVar = null;
+                    String functionName = null;
+
+                    if (va.getJsFunctionName() != null && va.getJsFunctionName().length() > 0) {
+                        functionName = va.getJsFunctionName();
+                    } else {
+                        functionName = va.getName();
+                    }
+
+                    results.append("    function " + functionName + " () { \n");
+                    for (Iterator x = form.getFields().iterator(); x.hasNext();) {
+                        Field field = (Field) x.next();
+
+                        // Skip indexed fields for now until there is
+                        // a good way to handle error messages (and the length of the list (could retrieve from scope?))
+                        if (!field.isIndexed() && field.getPage() == page && field.isDependency(va.getName())) {
+                            String message = Resources.getMessage(messages, locale, va, field);
+                            message = (message != null ? message : "");
+
+                            jscriptVar = getNextVar(jscriptVar);
+
+                            results.append("     this." + jscriptVar + " = new Array(\"" + field.getKey() + "\", \"" + message + "\", ");
+
+                            results.append("new Function (\"varName\", \"");
+
+                            Map hVars = field.getVars();
+                            // Loop through the field's variables.
+                            for (Iterator iVars = hVars.keySet().iterator(); iVars.hasNext();) {
+                                String varKey = (String) iVars.next();
+                                Var var = (Var) hVars.get(varKey);
+                                String varValue = var.getValue();
+                                String jsType = var.getJsType();
+
+                                if (Var.JSTYPE_INT.equalsIgnoreCase(jsType)) {
+                                    results.append("this." + varKey + "=" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "; ");
+                                } else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(jsType)) {
+                                    results.append("this." + varKey + "=/" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "/; ");
+                                } else if (Var.JSTYPE_STRING.equalsIgnoreCase(jsType)) {
+                                    results.append("this." + varKey + "='" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "'; ");
+                                    // So everyone using the latest format doesn't need to change their xml files immediately.
+                                } else if ("mask".equalsIgnoreCase(varKey)) {
+                                    results.append("this." + varKey + "=/" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "/; ");
+                                } else {
+                                    results.append("this." + varKey + "='" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "'; ");
+                                }
+                            }
+
+                            results.append(" return this[varName];\"));\n");
+                        }
+                    }
+                    results.append("    } \n\n");
+                }
+            } else if ("true".equals(staticJavascript)) {
+                results.append("<script language=\"Javascript1.1\" type=\"text/javascript\">");
+                if ("true".equals(htmlComment))
+                  results.append(htmlBeginComment);
+            }
+        }
         if ("true".equals(staticJavascript)) {
             results.append(getJavascriptStaticMethods(resources));
         }
 
-        if ("true".equals(dynamicJavascript) || "true".equals(staticJavascript)) {
+        if (form != null && ("true".equals(dynamicJavascript) || "true".equals(staticJavascript))) {
             results.append(getJavascriptEnd());
         }
 
@@ -430,6 +469,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         methodName = null;
         staticJavascript = "true";
         dynamicJavascript = "true";
+        htmlComment = "true";
         src = null;
     }
 
@@ -446,7 +486,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             sb.append("> \n");
         }
 
-        sb.append("<!-- Begin \n");
+        if ("true".equals(htmlComment))
+           sb.append(htmlBeginComment);
         sb.append("\n     var bCancel = false; \n\n");
 
         if (methodName == null || methodName.length() == 0)
@@ -492,7 +533,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         StringBuffer sb = new StringBuffer();
 
         sb.append("\n");
-        sb.append("//  End -->\n");
+        if ("true".equals(htmlComment))
+           sb.append(htmlEndComment);
         sb.append("</script>\n\n");
 
         return sb.toString();
