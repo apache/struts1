@@ -121,7 +121,6 @@
         generated based on the same configuration rules.</p>
       </info>
       <assigned>
-        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>,
         <a href="mailto:dwinterfeldt@yahoo.com">Dave Winterfeldt</a>
       </assigned>
     </task>
@@ -156,9 +155,6 @@
         Enterprise JavaBeans (EJBs) for encapsulation of business logic and
         application data.</p>
       </info>
-      <assigned>
-        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>
-      </assigned>
       <assigned>
         <a href="mailto:mschachter@hp.com">Mike Schachter</a>
       </assigned>
@@ -205,15 +201,6 @@
       <info>
        <p>Create more detailed documentation of how the Digester package
        can be utilized by application developers.</p>
-      </info>
-    </task>
-
-    <task name="Refactor Dependencies">
-      <info>
-        <p>Refactor import dependencies, here and within the utilities package,
-        with the goal of being able to use the Digester package in standalone
-        applications without having to import the servlet API classes.</p>
-        [STRUTS-USER, Martin Cooper, 01/02/2001]
       </info>
     </task>
 
@@ -304,7 +291,6 @@
       </info>
       <assigned>
         <a href="mailto:news.ted@husted.com">Ted Husted</a>,
-        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>,
         <a href="mailto:dwinterfeldt@yahoo.com">Dave Winterfeldt</a>,
         <a href="mailto:spencer@newdestiny.net">Spencer Smith</a>
       </assigned>
