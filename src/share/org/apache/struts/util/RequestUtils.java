@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.71 2002/11/12 03:56:09 dgraham Exp $
- * $Revision: 1.71 $
- * $Date: 2002/11/12 03:56:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.72 2002/11/18 02:52:11 dgraham Exp $
+ * $Revision: 1.72 $
+ * $Date: 2002/11/18 02:52:11 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.71 $ $Date: 2002/11/12 03:56:09 $
+ * @version $Revision: 1.72 $ $Date: 2002/11/18 02:52:11 $
  */
 
 public class RequestUtils {
@@ -1077,31 +1077,45 @@ public class RequestUtils {
 
         MessageResources resources = null;
 
-        // Look up the requested MessageResources
+        // Look up the requested MessageResources in page scope
         if (bundle == null) {
             bundle = Globals.MESSAGES_KEY;
-            resources = (MessageResources) pageContext.getAttribute(bundle);
+            resources =
+                (MessageResources) pageContext.getAttribute(bundle, PageContext.PAGE_SCOPE);
         }
+
+        // Look up the requested MessageResources in request scope
+        if (resources == null) {
+            resources =
+                (MessageResources) pageContext.getAttribute(bundle, PageContext.REQUEST_SCOPE);
+        }
+
+        // Look up the requested MessageResources in application scope
         if (resources == null) {
             resources =
                 (MessageResources) pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
         }
+
+        // Not found in any scope
         if (resources == null) {
             JspException e = new JspException(messages.getMessage("message.bundle", bundle));
             saveException(pageContext, e);
             throw e;
         }
-
+        
         // Look up the requested Locale
-        if (locale == null)
+        if (locale == null) {
             locale = Globals.LOCALE_KEY;
+        }
+        
         Locale userLocale = (Locale) pageContext.getAttribute(locale, PageContext.SESSION_SCOPE);
-        if (userLocale == null)
+        
+        if (userLocale == null) {
             userLocale = defaultLocale;
-
+        }
+        
         // Return the requested message presence indicator
         return (resources.isPresent(userLocale, key));
-
     }
 
     /**
