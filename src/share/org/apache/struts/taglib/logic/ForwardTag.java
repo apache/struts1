@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.2 2000/10/12 23:00:32 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/10/12 23:00:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.3 2000/10/30 03:20:28 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/30 03:20:28 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * ActionForwards collection associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/10/12 23:00:32 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/30 03:20:28 $
  */
 
 public final class ForwardTag extends TagSupport {
@@ -142,9 +142,13 @@ public final class ForwardTag extends TagSupport {
 	      (Action.FORWARDS_KEY, PageContext.APPLICATION_SCOPE);
 	if (forwards != null)
 	    forward = forwards.findForward(name);
-	if (forward == null)
-	    throw new JspException
+	if (forward == null) {
+            JspException e = new JspException
 		(messages.getMessage("forward.lookup", name));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
 
 	// Forward or redirect to the corresponding actual path
 	String path = forward.getPath();
@@ -179,10 +183,11 @@ public final class ForwardTag extends TagSupport {
 
 
     /**
-     * Reset custom attributes to their default state.
+     * Release all allocated resources.
      */
-    public void releaseCustomAttributes() {
+    public void release() {
 
+        super.release();
         name = null;
 
     }

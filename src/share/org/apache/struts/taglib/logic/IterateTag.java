@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.2 2000/10/12 23:00:32 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/10/12 23:00:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.3 2000/10/30 03:20:28 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/30 03:20:28 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.PropertyUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/10/12 23:00:32 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/30 03:20:28 $
  */
 
 public final class IterateTag extends BodyTagSupport {
@@ -248,18 +248,26 @@ public final class IterateTag extends BodyTagSupport {
 	if (collection == null) {
 	    try {
 		Object bean = pageContext.findAttribute(name);
-		if (bean == null)
-		    throw new JspException
+		if (bean == null) {
+		    JspException e = new JspException
 			(messages.getMessage("iterate.bean", name));
+                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                             PageContext.REQUEST_SCOPE);
+                    throw e;
+                }
 		if (property == null)
 		    collection = bean;
 		else
 		    collection =
                         PropertyUtils.getProperty(bean, property);
-		if (collection == null)
-		    throw new JspException
+		if (collection == null) {
+		    JspException e = new JspException
 			(messages.getMessage("iterate.property",
                                              name, property));
+                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                             PageContext.REQUEST_SCOPE);
+                    throw e;
+                }
 	    } catch (IllegalAccessException e) {
                 pageContext.setAttribute(Action.EXCEPTION_KEY, e,
                                          PageContext.REQUEST_SCOPE);
@@ -291,9 +299,13 @@ public final class IterateTag extends BodyTagSupport {
 	    iterator = (Iterator) collection;
 	else if (collection instanceof Map)
 	    iterator = ((Map) collection).entrySet().iterator();
-	else
-	    throw new JspException
+	else {
+	    JspException e = new JspException
 	        (messages.getMessage("iterate.iterator", name, property));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
 
 	// Calculate the starting offset
 	if (offset == null)
@@ -401,23 +413,16 @@ public final class IterateTag extends BodyTagSupport {
 
 
     /**
-     * Release any acquired resources.
+     * Release all allocated resources.
      */
     public void release() {
 
 	super.release();
+
 	iterator = null;
 	lengthCount = 0;
 	lengthValue = 0;
 	offsetValue = 0;
-
-    }
-
-
-    /**
-     * Reset custom attributes to their default state.
-     */
-    public void releaseCustomAttributes() {
 
         id = null;
         collection = null;

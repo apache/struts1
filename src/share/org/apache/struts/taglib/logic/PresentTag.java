@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.2 2000/10/12 23:00:32 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/10/12 23:00:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.3 2000/10/30 03:20:28 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/30 03:20:28 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.PropertyUtils;
  * is present for this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/10/12 23:00:32 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/30 03:20:28 $
  */
 
 public class PresentTag extends ConditionalTagBase {
@@ -136,9 +136,13 @@ public class PresentTag extends ConditionalTagBase {
         } else if (name != null) {
             Object bean = BeanUtils.lookup(pageContext, name, null);
             if (property != null) {
-                if (bean == null)
-                    throw new JspException
+                if (bean == null) {
+                    JspException e = new JspException
                         (messages.getMessage("logic.bean", name));
+                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                             PageContext.REQUEST_SCOPE);
+                    throw e;
+                }
                 Object value = null;
                 try {
                     value = PropertyUtils.getProperty(bean, property);
@@ -166,9 +170,13 @@ public class PresentTag extends ConditionalTagBase {
             String value =
                 pageContext.getRequest().getParameter(parameter);
             present = (value != null);
-        } else
-            throw new JspException
+        } else {
+            JspException e = new JspException
                 (messages.getMessage("logic.selector"));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
 
         return (present == desired);
 

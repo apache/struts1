@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.2 2000/10/12 23:00:32 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/10/12 23:00:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.3 2000/10/30 03:20:28 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/30 03:20:28 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.PropertyUtils;
  * is a substring of the specified variable.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/10/12 23:00:32 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/30 03:20:28 $
  */
 
 public class MatchTag extends ConditionalTagBase {
@@ -121,11 +121,11 @@ public class MatchTag extends ConditionalTagBase {
 
 
     /**
-     * Reset custom attributes to their default state.
+     * Release all allocated resources.
      */
-    public void releaseCustomAttributes() {
+    public void release() {
 
-        super.releaseCustomAttributes();
+        super.release();
         location = null;
         value = null;
 
@@ -182,9 +182,13 @@ public class MatchTag extends ConditionalTagBase {
                 getHeader(header);
         } else if (name != null) {
             Object bean = BeanUtils.lookup(pageContext, name, null);
-            if (bean == null)
-                throw new JspException
+            if (bean == null) {
+                JspException e = new JspException
                     (messages.getMessage("logic.bean", name));
+                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                         PageContext.REQUEST_SCOPE);
+                throw e;
+            }
             if (property != null) {
                 Object propertyValue = null;
                 try {
@@ -213,12 +217,18 @@ public class MatchTag extends ConditionalTagBase {
         } else if (parameter != null) {
             variable = pageContext.getRequest().getParameter(parameter);
         } else {
-            throw new JspException
+            JspException e = new JspException
                 (messages.getMessage("logic.selector"));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
         }
         if (variable == null) {
-            throw new JspException
+            JspException e = new JspException
                 (messages.getMessage("logic.variable", value));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
         }
 
         // Perform the comparison requested by the location attribute
@@ -230,8 +240,11 @@ public class MatchTag extends ConditionalTagBase {
         } else if (location.equals("end")) {
             matched = variable.endsWith(value);
         } else {
-            throw new JspException
+            JspException e = new JspException
                 (messages.getMessage("logic.location", location));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
         }
 
         // Return the final result

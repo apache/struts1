@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.2 2000/10/12 23:00:32 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/10/12 23:00:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.3 2000/10/30 03:20:28 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/30 03:20:28 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * the remainder of the current page.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/10/12 23:00:32 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/30 03:20:28 $
  */
 
 public final class RedirectTag extends TagSupport {
@@ -152,10 +152,11 @@ public final class RedirectTag extends TagSupport {
 
 
     /**
-     * Reset custom attributes to their default state.
+     * Release all allocated resources.
      */
-    public void releaseCustomAttributes() {
+    public void release() {
 
+        super.release();
         href = null;
 
     }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.2 2000/10/12 23:00:31 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/10/12 23:00:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.3 2000/10/30 03:20:27 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/30 03:20:27 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.PropertyUtils;
  * define values for desired1 and desired2.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/10/12 23:00:31 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/30 03:20:27 $
  */
 
 public abstract class CompareTagBase extends ConditionalTagBase {
@@ -127,11 +127,11 @@ public abstract class CompareTagBase extends ConditionalTagBase {
 
 
     /**
-     * Reset custom attributes to their default state.
+     * Release all allocated resources.
      */
-    public void releaseCustomAttributes() {
+    public void release() {
 
-        super.releaseCustomAttributes();
+        super.release();
         value = null;
 
     }
@@ -210,9 +210,13 @@ public abstract class CompareTagBase extends ConditionalTagBase {
         } else if (name != null) {
             Object bean = BeanUtils.lookup(pageContext, name, null);
             if (property != null) {
-                if (bean == null)
-                    throw new JspException
+                if (bean == null) {
+                    JspException e =new JspException
                         (messages.getMessage("logic.bean", name));
+                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                             PageContext.REQUEST_SCOPE);
+                    throw e;
+                }
                 try {
                     variable = PropertyUtils.getProperty(bean, property);
                 } catch (InvocationTargetException e) {
@@ -237,12 +241,20 @@ public abstract class CompareTagBase extends ConditionalTagBase {
         } else if (parameter != null) {
             variable =
                 pageContext.getRequest().getParameter(parameter);
-        } else
-            throw new JspException
+        } else {
+            JspException e = new JspException
                 (messages.getMessage("logic.selector"));
-        if (variable == null)
-            throw new JspException
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
+        if (variable == null) {
+            JspException e = new JspException
                 (messages.getMessage("logic.variable", value));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
 
         // Perform the appropriate comparison
         int result = 0;
