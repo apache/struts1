@@ -19,6 +19,140 @@ is presented:</p>
 </ul>
 
 
+<a name="button"></a>
+<h1><i>button</i> - Render A Button Input Field</h1>
+
+<p>Renders an HTML <code>&lt;input&gt;</code> element of type
+<code>button</code>, populated from the specified value or the content
+of this tag body.  This tag is only valid when nested inside a
+<code>form</code> tag body.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the request parameter that will be included with this
+      submission, set to the specified value.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onBlur</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onChange</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus
+      and its value has changed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onDblClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse double click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onFocus</td>
+    <td>
+      JavaScript event handler executed when this element receives input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyDown</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyPress</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed and released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyUp</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseDown</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseMove</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and the pointer is moved.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOut</td>
+    <td>
+      JavaScript event handler executed when this element was under the
+      mouse pointer but the pointer was moved outside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOver</td>
+    <td>
+      JavaScript event handler executed when this element was not under
+      the mouse pointer but the pointer is moved inside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseUp</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">style</td>
+    <td>
+      CSS styles to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">styleClass</td>
+    <td>
+      CSS stylesheet class to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value of the label to be placed on this button.  This value will
+      also be submitted as the value of the specified request parameter.
+      [Body of this tag (if any), or "Click"]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
 <a name="checkbox"></a>
 <h1><i>checkbox</i> - Render A Checkbox Input Field</h1>
 
@@ -38,6 +172,107 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
       Name of this input field, and the name of the corresponding bean
       property if <code>value</code> is not specified.  The corresponding
       bean property (if any) must be of type <code>boolean</code>.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onBlur</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onChange</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus
+      and its value has changed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onDblClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse double click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onFocus</td>
+    <td>
+      JavaScript event handler executed when this element receives input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyDown</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyPress</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed and released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyUp</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseDown</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseMove</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and the pointer is moved.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOut</td>
+    <td>
+      JavaScript event handler executed when this element was under the
+      mouse pointer but the pointer was moved outside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOver</td>
+    <td>
+      JavaScript event handler executed when this element was not under
+      the mouse pointer but the pointer is moved inside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseUp</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">style</td>
+    <td>
+      CSS styles to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">styleClass</td>
+    <td>
+      CSS stylesheet class to be applied to this HTML element.
     </td>
   </tr>
   <tr>
@@ -179,10 +414,34 @@ the input fields with the current property values from the bean.</p>
     </td>
   </tr>
   <tr>
+    <td align="center">onReset</td>
+    <td>
+      JavaScript event handler executed if the form is reset.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onSubmit</td>
+    <td>
+      JavaScript event handler executed if the form is submitted.
+    </td>
+  </tr>
+  <tr>
     <td align="center">scope</td>
     <td>
       JSP scope within which the associated bean will be accessed
       or created (request, session).  [session]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">style</td>
+    <td>
+      CSS styles to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">styleClass</td>
+    <td>
+      CSS stylesheet class to be applied to this HTML element.
     </td>
   </tr>
   <tr>
@@ -647,9 +906,117 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
     </td>
   </tr>
   <tr>
+    <td align="center">onBlur</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onChange</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus
+      and its value has changed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onDblClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse double click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onFocus</td>
+    <td>
+      JavaScript event handler executed when this element receives input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyDown</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyPress</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed and released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyUp</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseDown</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseMove</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and the pointer is moved.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOut</td>
+    <td>
+      JavaScript event handler executed when this element was under the
+      mouse pointer but the pointer was moved outside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOver</td>
+    <td>
+      JavaScript event handler executed when this element was not under
+      the mouse pointer but the pointer is moved inside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseUp</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onSelect</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      some text is selected.
+    </td>
+  </tr>
+  <tr>
     <td align="center">size</td>
     <td>
       Number of character positions to allocate.  [Browser default]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">style</td>
+    <td>
+      CSS styles to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">styleClass</td>
+    <td>
+      CSS stylesheet class to be applied to this HTML element.
     </td>
   </tr>
   <tr>
@@ -719,6 +1086,107 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
     </td>
   </tr>
   <tr>
+    <td align="center">onBlur</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onChange</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus
+      and its value has changed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onDblClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse double click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onFocus</td>
+    <td>
+      JavaScript event handler executed when this element receives input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyDown</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyPress</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed and released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyUp</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseDown</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseMove</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and the pointer is moved.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOut</td>
+    <td>
+      JavaScript event handler executed when this element was under the
+      mouse pointer but the pointer was moved outside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOver</td>
+    <td>
+      JavaScript event handler executed when this element was not under
+      the mouse pointer but the pointer is moved inside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseUp</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">style</td>
+    <td>
+      CSS styles to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">styleClass</td>
+    <td>
+      CSS stylesheet class to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
     <td align="center">value</td>
     <td>
       Value that is matched against the underlying bean property value.
@@ -768,6 +1236,107 @@ cookies.</p>
     <th width="85%">Description</th>
   </tr>
   <tr>
+    <td align="center">onBlur</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onChange</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus
+      and its value has changed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onDblClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse double click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onFocus</td>
+    <td>
+      JavaScript event handler executed when this element receives input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyDown</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyPress</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed and released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyUp</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseDown</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseMove</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and the pointer is moved.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOut</td>
+    <td>
+      JavaScript event handler executed when this element was under the
+      mouse pointer but the pointer was moved outside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOver</td>
+    <td>
+      JavaScript event handler executed when this element was not under
+      the mouse pointer but the pointer is moved inside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseUp</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">style</td>
+    <td>
+      CSS styles to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">styleClass</td>
+    <td>
+      CSS stylesheet class to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
     <td align="center">value</td>
     <td>
       Value of the label to be placed on this button.
@@ -798,6 +1367,107 @@ tag body of this tag.  This tag is only valid when nested inside a
       Name of this input field, and the name of the corresponding bean
       property if <code>value</code> is not specified.  The corresponding
       bean property (if any) must be of type <code>String</code>.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onBlur</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onChange</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus
+      and its value has changed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onDblClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse double click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onFocus</td>
+    <td>
+      JavaScript event handler executed when this element receives input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyDown</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyPress</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed and released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyUp</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseDown</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseMove</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and the pointer is moved.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOut</td>
+    <td>
+      JavaScript event handler executed when this element was under the
+      mouse pointer but the pointer was moved outside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOver</td>
+    <td>
+      JavaScript event handler executed when this element was not under
+      the mouse pointer but the pointer is moved inside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseUp</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">style</td>
+    <td>
+      CSS styles to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">styleClass</td>
+    <td>
+      CSS stylesheet class to be applied to this HTML element.
     </td>
   </tr>
   <tr>
@@ -832,11 +1502,112 @@ tag body of this tag.  This tag is only valid when nested inside a
     </td>
   </tr>
   <tr>
+    <td align="center">onBlur</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onChange</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus
+      and its value has changed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onDblClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse double click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onFocus</td>
+    <td>
+      JavaScript event handler executed when this element receives input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyDown</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyPress</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed and released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyUp</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseDown</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseMove</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and the pointer is moved.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOut</td>
+    <td>
+      JavaScript event handler executed when this element was under the
+      mouse pointer but the pointer was moved outside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOver</td>
+    <td>
+      JavaScript event handler executed when this element was not under
+      the mouse pointer but the pointer is moved inside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseUp</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">style</td>
+    <td>
+      CSS styles to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">styleClass</td>
+    <td>
+      CSS stylesheet class to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
     <td align="center">value</td>
     <td>
       Value of the label to be placed on this button.  This value will
       also be submitted as the value of the specified request parameter.
-      [Body of this tag (if any), or "Reset"]
+      [Body of this tag (if any), or "Submit"]
     </td>
   </tr>
 </table>
@@ -872,9 +1643,117 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
     </td>
   </tr>
   <tr>
+    <td align="center">onBlur</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onChange</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus
+      and its value has changed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onDblClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse double click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onFocus</td>
+    <td>
+      JavaScript event handler executed when this element receives input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyDown</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyPress</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed and released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyUp</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseDown</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseMove</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and the pointer is moved.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOut</td>
+    <td>
+      JavaScript event handler executed when this element was under the
+      mouse pointer but the pointer was moved outside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOver</td>
+    <td>
+      JavaScript event handler executed when this element was not under
+      the mouse pointer but the pointer is moved inside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseUp</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onSelect</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      some text is selected.
+    </td>
+  </tr>
+  <tr>
     <td align="center">size</td>
     <td>
       Number of character positions to allocate.  [Browser default]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">style</td>
+    <td>
+      CSS styles to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">styleClass</td>
+    <td>
+      CSS stylesheet class to be applied to this HTML element.
     </td>
   </tr>
   <tr>
@@ -916,9 +1795,117 @@ specified attributes.  This tag is only valid when nested inside a
     </td>
   </tr>
   <tr>
+    <td align="center">onBlur</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onChange</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus
+      and its value has changed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onDblClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse double click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onFocus</td>
+    <td>
+      JavaScript event handler executed when this element receives input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyDown</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyPress</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed and released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyUp</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseDown</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseMove</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and the pointer is moved.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOut</td>
+    <td>
+      JavaScript event handler executed when this element was under the
+      mouse pointer but the pointer was moved outside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOver</td>
+    <td>
+      JavaScript event handler executed when this element was not under
+      the mouse pointer but the pointer is moved inside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseUp</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onSelect</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      some text is selected.
+    </td>
+  </tr>
+  <tr>
     <td align="center">rows</td>
     <td>
       Number of rows displayed in the textarea.  [Browser default]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">style</td>
+    <td>
+      CSS styles to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">styleClass</td>
+    <td>
+      CSS stylesheet class to be applied to this HTML element.
     </td>
   </tr>
   <tr>

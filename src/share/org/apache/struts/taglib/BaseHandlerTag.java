@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseHandlerTag.java,v 1.1 2000/06/15 01:27:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/15 01:27:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseHandlerTag.java,v 1.2 2000/06/15 03:18:53 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/15 03:18:53 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import org.apache.struts.util.MessageResources;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.1 $ $Date: 2000/06/15 01:27:34 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/15 03:18:53 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -330,7 +330,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
             styles.append("\"");
         }
         if (styleClass != null) {
-            styles.append(" styleClass=\"");
+            styles.append(" class=\"");
             styles.append(styleClass);
             styles.append("\"");
         }
