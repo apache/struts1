@@ -457,4 +457,82 @@ public class StrutsValidator implements Serializable {
        	  return true;
        }
     }
+
+    /**
+     * <p>Checks if the field's length is less than or equal to the maximum value.  A <code>Null</code> 
+     * will be considered an error.</p>
+     *
+     * @param 	bean 		The bean validation is being performed on.
+     * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
+     * @param 	field 		The <code>Field</code> object associated with the current field 
+     *				being validated.
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     *                          validation errors occur.
+     * @param 	request         Current request object.
+     * @param 	application     The application's <code>ServletContext</code>.
+    */
+    public static boolean validateMaxLength(Object bean, 
+			                    ValidatorAction va, Field field, 
+			                    ActionErrors errors, 
+                                            HttpServletRequest request, ServletContext application) {
+
+       String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       String sMaxLength = field.getVarValue("maxlength");
+
+       // NullPointerException could occur, but it will be treated as failing the validation
+       try {
+          int max = Integer.parseInt(sMaxLength);
+          
+          if (!GenericValidator.maxLength(value, max)) {
+             errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
+             
+             return false;
+          }
+       } catch (Exception e) {
+          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
+          return false;
+       }
+       
+       return true;
+    }
+
+
+    /**
+     * <p>Checks if the field's length is greater than or equal to the minimum value.  
+     * A <code>Null</code> will be considered an error.</p>
+     *
+     * @param 	bean 		The bean validation is being performed on.
+     * @param 	va 		The <code>ValidatorAction</code> that is currently being performed.
+     * @param 	field 		The <code>Field</code> object associated with the current field 
+     *				being validated.
+     * @param 	errors	 	The <code>ActionErrors</code> object to add errors to if any 
+     *                          validation errors occur.
+     * @param 	request         Current request object.
+     * @param 	application     The application's <code>ServletContext</code>.
+    */
+    public static boolean validateMinLength(Object bean, 
+			                    ValidatorAction va, Field field, 
+			                    ActionErrors errors, 
+                                            HttpServletRequest request, ServletContext application) {
+
+       String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       String sMinLength = field.getVarValue("minlength");
+
+       // NullPointerException could occur, but it will be treated as failing the validation
+       try {
+          int min = Integer.parseInt(sMinLength);
+          
+          if (!GenericValidator.minLength(value, min)) {
+             errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
+             
+             return false;
+          }
+       } catch (Exception e) {
+          errors.add(field.getKey(), ValidatorUtil.getActionError(application, request, va, field));
+          return false;
+       }
+       
+       return true;
+    }
+
 }

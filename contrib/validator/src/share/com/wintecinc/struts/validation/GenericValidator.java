@@ -471,4 +471,31 @@ public class GenericValidator implements Serializable {
        
        return bValid;
     }
+
+    /**
+     * <p>Checks if the value's length is less than or equal to the max.</p>
+     *
+     * @param 	value 		The value validation is being performed on.
+     * @param 	max		The maximum length.
+    */
+    public static boolean maxLength(String value, int max) {
+       if (value.length() <= max)
+          return true;
+       else
+          return false;
+    } 
+
+    /**
+     * <p>Checks if the value's length is greater than or equal to the min.</p>
+     *
+     * @param 	value 		The value validation is being performed on.
+     * @param 	min		The minimum length.
+    */
+    public static boolean minLength(String value, int min) {
+       if (value.length() >= min)
+          return true;
+       else
+          return false;
+    } 
+
 }
