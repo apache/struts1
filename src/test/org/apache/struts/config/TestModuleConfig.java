@@ -69,11 +69,11 @@ import org.apache.struts.Globals;
 /**
  * Unit tests for the <code>org.apache.struts.config</code> package.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/11/12 03:56:10 $
+ * @author Rob Leland
+ * @version $Revision: 1.1 $ $Date: 2002/12/22 05:55:30 $
  */
 
-public class TestApplicationConfig extends TestCase {
+public class TestModuleConfig extends TestCase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -82,7 +82,7 @@ public class TestApplicationConfig extends TestCase {
     /**
      * The ApplicationConfig we are testing.
      */
-    protected ApplicationConfig config = null;
+    protected ModuleConfig config = null;
 
 
     // ----------------------------------------------------------- Constructors
@@ -93,7 +93,7 @@ public class TestApplicationConfig extends TestCase {
      *
      * @param name Name of the test case
      */
-    public TestApplicationConfig(String name) {
+    public TestModuleConfig(String name) {
 
         super(name);
 
@@ -108,7 +108,9 @@ public class TestApplicationConfig extends TestCase {
      */
     public void setUp() {
 
-        config = new ApplicationConfig("");
+        ModuleConfigFactory factoryObject =
+            ModuleConfigFactory.createFactory();
+        config = factoryObject.createModuleConfig("");
 
     }
 
@@ -118,7 +120,7 @@ public class TestApplicationConfig extends TestCase {
      */
     public static Test suite() {
 
-        return (new TestSuite(TestApplicationConfig.class));
+        return (new TestSuite(TestModuleConfig.class));
 
     }
 
