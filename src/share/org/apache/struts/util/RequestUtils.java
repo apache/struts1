@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.87 2003/02/25 03:27:40 dgraham Exp $
- * $Revision: 1.87 $
- * $Date: 2003/02/25 03:27:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.88 2003/02/25 04:39:31 dgraham Exp $
+ * $Revision: 1.88 $
+ * $Date: 2003/02/25 04:39:31 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author James Turner
- * @version $Revision: 1.87 $ $Date: 2003/02/25 03:27:40 $
+ * @version $Revision: 1.88 $ $Date: 2003/02/25 04:39:31 $
  */
 
 public class RequestUtils {
@@ -874,8 +874,7 @@ public class RequestUtils {
      */
     public static Locale retrieveUserLocale(PageContext pageContext, String locale) {
         Locale userLocale = null;
-        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-        HttpSession session = request.getSession(false);
+        HttpSession session = pageContext.getSession();
 
         if (locale == null) {
             locale = Globals.LOCALE_KEY;
@@ -883,7 +882,7 @@ public class RequestUtils {
 
         // Only check session if sessions are enabled
         if (session != null) {
-            userLocale = (Locale) pageContext.getAttribute(locale, PageContext.SESSION_SCOPE);
+            userLocale = (Locale) session.getAttribute(locale);
         }
 
         if (userLocale == null) {
