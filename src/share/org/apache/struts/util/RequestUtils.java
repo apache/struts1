@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.113 2003/07/26 00:19:44 dgraham Exp $
- * $Revision: 1.113 $
- * $Date: 2003/07/26 00:19:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.114 2003/07/26 00:34:24 dgraham Exp $
+ * $Revision: 1.114 $
+ * $Date: 2003/07/26 00:34:24 $
  *
  * ====================================================================
  *
@@ -66,7 +66,6 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -116,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.113 $ $Date: 2003/07/26 00:19:44 $
+ * @version $Revision: 1.114 $ $Date: 2003/07/26 00:34:24 $
  */
 
 public class RequestUtils {
