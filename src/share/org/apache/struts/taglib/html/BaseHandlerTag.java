@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.20 2002/12/08 06:54:50 rleland Exp $
- * $Revision: 1.20 $
- * $Date: 2002/12/08 06:54:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.21 2003/01/05 00:50:08 turner Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/01/05 00:50:08 $
  *
  * ====================================================================
  *
@@ -65,11 +65,14 @@ import java.util.Locale;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+import javax.servlet.jsp.tagext.Tag;
 
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.logic.IterateTag;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
+import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Base class for tags that render form elements capable of including JavaScript
@@ -78,7 +81,8 @@ import org.apache.struts.util.RequestUtils;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.20 $ $Date: 2002/12/08 06:54:50 $
+ * @author James Turner
+ * @version $Revision: 1.21 $ $Date: 2003/01/05 00:50:08 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -570,6 +574,46 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
     }
 
+    private Class loopTagSupportClass = null;
+    private Method loopTagSupportGetStatus = null;
+    private Class loopTagStatusClass = null;
+    private Method loopTagStatusGetIndex = null;
+    private boolean triedJstlInit = false;
+    private boolean triedJstlSuccess = false;
+
+    private Integer getJstlLoopIndex () {
+	if (!triedJstlInit) {
+	    triedJstlInit = true;
+	    try {
+		loopTagSupportClass = 
+		    Class.forName("javax.servlet.jsp.jstl.core.LoopTagSupport");
+		loopTagSupportGetStatus = 
+		    loopTagSupportClass.getDeclaredMethod("getLoopStatus", null);
+		loopTagStatusClass =
+		    Class.forName("javax.servlet.jsp.jstl.core.LoopTagStatus");
+		loopTagStatusGetIndex = 
+		    loopTagStatusClass.getDeclaredMethod("getIndex", null);
+		triedJstlSuccess = true;
+	    }
+	    catch (ClassNotFoundException ex) {}
+	    catch (NoSuchMethodException ex) {}
+	}
+	if (triedJstlSuccess) {
+	    try {
+		Object loopTag = findAncestorWithClass(this, loopTagSupportClass);
+		if (loopTag == null)  return null;
+		Object status = loopTagSupportGetStatus.invoke(loopTag, null);
+		return (Integer) loopTagStatusGetIndex.invoke(status, null);
+	    } 
+	    catch (IllegalAccessException ex) {}
+	    catch (IllegalArgumentException ex) {}
+	    catch (InvocationTargetException ex) {}
+	    catch (NullPointerException ex) {}
+	    catch (ExceptionInInitializerError ex) {}
+	}
+	return null;
+    }
+
     /**
      *  Appends bean name with index in brackets for tags with
      *  'true' value in 'indexed' attribute.
@@ -577,9 +621,23 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      *  @exception JspException if 'indexed' tag used outside of iterate tag.
      */
     protected void prepareIndex(StringBuffer handlers, String name) throws JspException {
+	int index = 0;
+	boolean found = false;
+
         // look for outer iterate tag
         IterateTag iterateTag = (IterateTag) findAncestorWithClass(this, IterateTag.class);
-        if (iterateTag == null) {
+	// Look for JSTL loops
+	if (iterateTag == null) {
+	    Integer i = getJstlLoopIndex();
+	    if (i != null) {
+		index = i.intValue();
+		found = true;
+	    }
+	} else {
+	    index = iterateTag.getIndex();
+	    found = true;
+	}
+        if (!found) {
             // this tag should only be nested in iteratetag, if it's not, throw exception
             JspException e = new JspException(messages.getMessage("indexed.noEnclosingIterate"));
             RequestUtils.saveException(pageContext, e);
@@ -588,7 +646,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         if (name != null)
             handlers.append(name);
         handlers.append("[");
-        handlers.append(iterateTag.getIndex());
+        handlers.append(index);
         handlers.append("]");
         if (name != null)
             handlers.append(".");
