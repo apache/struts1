@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.33 2002/07/19 21:39:28 jholmes Exp $
+$Id: STATUS,v 1.34 2002/07/20 17:13:42 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           19 open bugs to swat!!
+                           18 open bugs to swat!!
 
 
 Controller:
@@ -42,7 +42,6 @@ Standard Actions:
 ----------------
 10322 Problems with LookupDispatchAction and other locales
 10953 sub-application loses message resource
-10979 DynaActionForm in session losts datas.
 
 
 Tiles Framework:
