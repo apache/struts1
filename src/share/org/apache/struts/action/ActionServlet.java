@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.74 2001/08/15 06:15:51 martinc Exp $
- * $Revision: 1.74 $
- * $Date: 2001/08/15 06:15:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.75 2001/10/04 02:54:04 craigmcc Exp $
+ * $Revision: 1.75 $
+ * $Date: 2001/10/04 02:54:04 $
  *
  * ====================================================================
  *
@@ -229,7 +229,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.74 $ $Date: 2001/08/15 06:15:51 $
+ * @version $Revision: 1.75 $ $Date: 2001/10/04 02:54:04 $
  */
 
 public class ActionServlet
@@ -1872,6 +1872,8 @@ public class ActionServlet
         ActionMapping mapping = findMapping(path);
         if (mapping == null)
             mapping = mappings.getUnknown(request);
+        if (mapping != null)
+            request.setAttribute(Action.MAPPING_KEY, mapping);
         return (mapping);
 
     }
@@ -1988,9 +1990,6 @@ public class ActionServlet
         if (mapping.getMultipartClass() != null)
             request.setAttribute(Action.MULTIPART_KEY,
                                 mapping.getMultipartClass());
-        //also pass the mapping through the request
-        request.setAttribute(Action.MAPPING_KEY,
-                             mapping);
         RequestUtils.populate(formInstance, mapping.getPrefix(),
                               mapping.getSuffix(), request);
 
