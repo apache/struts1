@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.175 2004/04/08 22:07:56 mrdon Exp $
- * $Revision: 1.175 $
- * $Date: 2004/04/08 22:07:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.176 2004/04/24 05:13:28 rleland Exp $
+ * $Revision: 1.176 $
+ * $Date: 2004/04/24 05:13:28 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -166,7 +166,7 @@ import org.xml.sax.SAXException;
  *     process the configuration file (strongly recommended)? [true]</li>
  * </ul>
  *
- * @version $Revision: 1.175 $ $Date: 2004/04/08 22:07:56 $
+ * @version $Revision: 1.176 $ $Date: 2004/04/24 05:13:28 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -300,6 +300,11 @@ public class ActionServlet extends HttpServlet {
 
             // :FIXME: Why is this dependent on the container's version of commons-logging?
             // Shouldn't this depend on the version packaged with Struts?
+            /*
+              Reason: LogFactory.release(classLoader); was added as
+              an attempt to investigate the OutOfMemory error reported on Bugzilla #14042.
+              It was committed for version 1.136 by craigmcc
+            */
         }
 
     }
@@ -823,6 +828,13 @@ public class ActionServlet extends HttpServlet {
                   // FIXME Whenever we fail silently, we must document a valid reason
                   // for doing so.  Why should we fail silently if a property can't be set on
                   // the plugin?
+                    /**
+                     * Between version 1.138-1.140 cedric made these changes.
+                     * The exceptions are caught to deal with containers applying strict security.
+                     * This was in response to bug #15736
+                     *
+                     * Recommend that we make the currentPlugInConfigObject part of the PlugIn Interface if we can, Rob
+                     */
                 }
                 plugIns[i].init(this, config);
 
