@@ -238,11 +238,13 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      <p>Specifies the fully qualified class name of the value to be exposed
-      as the <code>id</code> attribute.  If not specified, the default type
-      is <code>java.lang.String</code> (if you specify a <code>value</code>
-      attribute), or <code>java.lang.Object</code> otherwise.</p>
+        <p>Specifies the fully qualified class name of the value to be exposed
+        as the <code>id</code> attribute.</p>
       </info>
+      <default>
+        <code>java.lang.String</code> (if you specify a <code>value</code>
+        attribute) or <code>java.lang.Object</code> otherwise.
+      </default>
     </attribute>
 
     <attribute>
@@ -522,9 +524,9 @@
       <info>
       <p>The name of the application scope bean under which the
       <code>MessageResources</code> object containing our messages
-      is stored.  If not specified, the default name (the value of
-      the <code>Action.MESSAGES_KEY</code> constant string) is used.</p>
+      is stored.</p>
       </info>
+      <default>Action.MESSAGES_KEY</default>
     </attribute>
 
     <attribute>
@@ -545,10 +547,9 @@
       <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The name of the session scope bean under which our currently
-      selected <code>Locale</code> object is stored.  If not specified,
-      the default name (the value of the <code>Action.LOCALE_KEY</code>
-      constant string) is used.</p>
+      selected <code>Locale</code> object is stored.</p>
       </info>
+      <default>Action.LOCALE_KEY</default>
     </attribute>
 
     <attribute>
@@ -941,9 +942,9 @@
       <info>
       <p>The name of the application scope bean under which the
       <code>MessageResources</code> object containing our messages
-      is stored.  If not specified, the default name (the value of
-      the <code>Action.MESSAGES_KEY</code> constant string) is used.</p>
+      is stored.</p>
       </info>
+      <default>Action.MESSAGES_KEY</default>
     </attribute>
 
     <attribute>
@@ -953,10 +954,9 @@
       <info>
       <p>If this attribute is set to <code>true</code>, the rendered property
       value will be filtered for characters that are sensitive in HTML, and any
-      such characters will be replaced by their entity equivalents.  By
-      default, filtering is performed - to disable it, you must explicitly
-      set this attribute to <code>false</code>.</p>
+      such characters will be replaced by their entity equivalents.</p>
       </info>
+      <default>true</default>
     </attribute>
 
     <attribute>
@@ -1031,10 +1031,11 @@
       <info>
       <p>If this attribute is set to <code>true</code>, and the bean specified
       by the <code>name</code> and <code>scope</code> attributes does not
-      exist, simply return without writing anything.  The default value is
-      <code>false</code>, which will cause a runtime exception to be thrown,
+      exist, simply return without writing anything.  If this attribute is
+      set to <code>false</code>, a runtime exception to be thrown,
       consistent with the other tags in this tag library.</p>
       </info>
+      <default>false</default>
     </attribute>
 
     <attribute>
@@ -1042,11 +1043,10 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      <p>The name of the session scope bean under which our currently
-      selected <code>Locale</code> object is stored.  If not specified,
-      the default name (the value of the <code>Action.LOCALE_KEY</code>
-      constant string) is used.</p>
+        <p>The name of the session scope bean under which our currently
+        selected <code>Locale</code> object is stored.</p>
       </info>
+      <default>Action.LOCALE_KEY</default>
     </attribute>
 
     <attribute>

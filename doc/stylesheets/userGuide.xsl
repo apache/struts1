@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: userGuide.xsl,v 1.6 2002/08/03 17:45:47 craigmcc Exp $ -->
+<!-- $Id: userGuide.xsl,v 1.7 2002/08/03 18:20:03 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -254,11 +254,14 @@
                 <xsl:variable name="required">
                   <xsl:value-of select="required"/>
                 </xsl:variable>
+                <xsl:if test="default">
+                  [<xsl:value-of select="default"/>]
+                </xsl:if>
                 <xsl:if test="required='true'">
-                  [Required]
+                  (REQUIRED)
                 </xsl:if>
                 <xsl:if test="rtexprvalue='true'">
-                  [RT Expr]
+                  (RT EXPR)
                 </xsl:if>
               </td>
             </tr>
