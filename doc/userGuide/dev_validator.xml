@@ -91,21 +91,6 @@
     validator's name attribute.
     </p>
 
-<pre><code><![CDATA[
-<field
-    property="lastName"
-    depends="required,mask">
-    <msg
-        name="mask"
-        key="registrationForm.lastname.maskmsg"/>
-    <arg0 key="registrationForm.lastname.displayname"/>
-    <var>
-        <var-name>mask</var-name>
-        <var-value>^[a-zA-Z]*$</var-value>
-    </var>
-</field>
-]]></code></pre>
-
     <p>
     The arguments for error messages can be set with the arg0-arg3 elements.
     If the arg0-arg3 elements' name attribute isn't set, it will become the
