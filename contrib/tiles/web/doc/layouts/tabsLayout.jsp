@@ -41,7 +41,7 @@ These attribute must be passed to the tile.
 <table border="0"  cellspacing="0" cellpadding="0">
   <%-- Draw tabs --%>
 <tr>
-  <td width="10"">&nbsp;</td>
+  <td width="10">&nbsp;</td>
   <td>
     <table border="0"  cellspacing="0" cellpadding="5">
       <tr>
@@ -57,7 +57,7 @@ These attribute must be passed to the tile.
   index++;
 %>
   <td bgcolor="<%=color%>">
-  <a href="<%=href%>" /><%=tab.getValue()%></a>
+  <a href="<%=href%>" ><%=tab.getValue()%></a>
   </td>
   <td width="1" ></td>
   
