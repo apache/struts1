@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.46 2003/08/10 06:00:49 sraeburn Exp $
+# $Id: build.properties.sample,v 1.47 2003/08/23 03:01:24 rleland Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -105,6 +105,14 @@ checkstyle.jar = /Java/checkstyle-2.4/checkstyle-all-2.4.jar
 # The JAR file containing the PMD package version 1.01, if available. If
 # you do not have PMD installed, do not set this property.
 pmd.jar = /Java/pmd/lib/pmd-1.01.jar
+#############################Maven Variables #######################################
+# CVS Start Change Log date
+cvs.start=17 April 2003
+
+
+# If you are using ssh tunneling & have a .cvspass file setup
+cvs.developer.host=localhost
+cvs.developer.id=rleland
 
 # Properties related to Struts Contrib
 # -----------------------------------------

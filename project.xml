@@ -51,9 +51,8 @@ and proven design patterns.
   </distributionDirectory>
 
   <repository>
-    <connection>
-      scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:jakarta-struts
-    </connection>
+     <connection>scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:jakarta-struts</connection>
+     <developerConnection>scm:cvs:pserver:${cvs.developer.id}@${cvs.developer.host}:/home/cvs:jakarta-struts</developerConnection>
     <url>
       http://cvs.apache.org/viewcvs/jakarta-struts/
     </url>
@@ -214,11 +213,13 @@ and proven design patterns.
     <dependency>
       <id>commons-fileupload</id>
       <version>1.0</version>
+      <url>http://jakarta.apache.org/commons/fileupload.html</url>
     </dependency>
     
     <dependency>
       <id>commons-lang</id>
       <version>1.0.1</version>
+      <url>http://jakarta.apache.org/commons/lang.html</url>
     </dependency>
     
     <dependency>
@@ -242,6 +243,7 @@ and proven design patterns.
     <dependency>
       <id>xml-apis</id>
       <version>2.0.2</version>
+      <url>http://xml.apache.org/commons/</url>
     </dependency>
 
     <dependency>
@@ -255,20 +257,24 @@ and proven design patterns.
       <version>2.7.2</version>
     </dependency>
 
+	<!-- for unit tests -->
     <dependency>
       <id>junit</id>
       <version>3.8.1</version>
+      <url>http://www.junit.org</url>
     </dependency>
     
     <dependency>
       <groupId>cactus</groupId>
       <artifactId>cactus</artifactId>
       <version>12-1.4.1</version>
+      <url>http://jakarta.apache.org/cactus</url>
     </dependency>
     <dependency>
       <groupId>cactus</groupId>
       <artifactId>cactus-ant</artifactId>
       <version>1.4.1</version>
+      <url>http://jakarta.apache.org/cactus</url>
     </dependency>
   </dependencies>
 
