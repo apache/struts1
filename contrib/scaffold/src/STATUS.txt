@@ -20,6 +20,22 @@ so much duplicate code here
 // ------------------------------------------------------------ CHANGES
 
 
+09-OCT-2002
+-----------
++ Add BaseActionMapping
+
+
+
+07-OCT-2002
+-----------
++ Add RecreateSessionAction.
++ Add ImageBeanButton
+
+19-SEP-2002
+-----------
++ RemoveAttributeAction: Correct operation.
+
+
 11-SEP-2002
 -----------
 + Replace calls to BeanUtils.populate with copyProperties
