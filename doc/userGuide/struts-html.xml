@@ -2758,8 +2758,10 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p>An image for people with low resoution graphics cards.
-                     Is this even necessary any more?</p>
+                  <p><strong>DEPRECATED</strong> - This attribute is not defined
+                  in the HTML 4.01 spec and will be removed in a future version of Struts.
+                  An image for people with low resoution graphics cards.
+                  </p>
                   </info>
                 </attribute>
 
