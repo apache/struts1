@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsModulesImpl.java,v 1.2 2002/12/29 21:29:23 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/12/29 21:29:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsModulesImpl.java,v 1.3 2003/01/05 01:24:48 martinc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/01/05 01:24:48 $
  *
  * ====================================================================
  *
@@ -69,8 +69,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.RequestUtils;

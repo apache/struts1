@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ViewDefinitionsAction.java,v 1.2 2002/07/11 16:46:40 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/11 16:46:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ViewDefinitionsAction.java,v 1.3 2003/01/05 01:24:48 martinc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/01/05 01:24:48 $
  *
  * ====================================================================
  *
@@ -63,16 +63,12 @@
 package org.apache.struts.tiles.actions;
 
 import org.apache.struts.tiles.DefinitionsUtil;
-import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.DefinitionsFactory;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -88,7 +84,7 @@ import org.apache.struts.action.ActionMapping;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.2 $ $Date: 2002/07/11 16:46:40 $
+ * @version $Revision: 1.3 $ $Date: 2003/01/05 01:24:48 $
  */
 
 public final class ViewDefinitionsAction extends Action {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.17 2002/12/29 21:31:36 cedric Exp $
- * $Revision: 1.17 $
- * $Date: 2002/12/29 21:31:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.18 2003/01/05 01:24:48 martinc Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/01/05 01:24:48 $
  *
  * ====================================================================
  *
@@ -68,7 +68,6 @@ import javax.servlet.UnavailableException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.Globals;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
 import org.apache.struts.action.RequestProcessor;

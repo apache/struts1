@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.9 2002/12/27 10:49:34 cedric Exp $
- * $Revision: 1.9 $
- * $Date: 2002/12/27 10:49:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.10 2003/01/05 01:24:48 martinc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/01/05 01:24:48 $
  *
  * ====================================================================
  *
@@ -74,7 +74,6 @@ import java.util.Enumeration;
 
 import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
 import org.apache.struts.taglib.tiles.ComponentConstants;
-import org.apache.struts.util.RequestUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsImpl.java,v 1.1 2002/12/27 10:41:23 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/12/27 10:41:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsImpl.java,v 1.2 2003/01/05 01:24:48 martinc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/01/05 01:24:48 $
  *
  * ====================================================================
  *
@@ -61,17 +61,8 @@
 
 package org.apache.struts.tiles;
 
-import java.io.IOException;
-
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.config.ModuleConfig;
 

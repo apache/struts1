@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionNameAttribute.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionNameAttribute.java,v 1.2 2003/01/05 01:24:48 martinc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/01/05 01:24:48 $
  *
  * ====================================================================
  *
@@ -61,11 +61,6 @@
 
 
 package org.apache.struts.tiles;
-
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.JspException;
-import javax.servlet.ServletException;
-import java.io.IOException;
 
   /**
    * Component attribute.

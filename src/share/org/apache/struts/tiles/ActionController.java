@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ActionController.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ActionController.java,v 1.2 2003/01/05 01:24:48 martinc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/01/05 01:24:48 $
  *
  * ====================================================================
  *
@@ -63,7 +63,6 @@
 package org.apache.struts.tiles;
 
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionServlet;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;

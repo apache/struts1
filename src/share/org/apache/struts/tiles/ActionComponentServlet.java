@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.6 2002/12/17 00:57:36 cedric Exp $
- * $Revision: 1.6 $
- * $Date: 2002/12/17 00:57:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.7 2003/01/05 01:24:48 martinc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/01/05 01:24:48 $
  *
  * ====================================================================
  *
@@ -76,7 +76,6 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestWrapper;
-import org.apache.struts.util.RequestUtils;
 
 /**
  * Action Servlet to be used with Tiles and Struts 1.0.x.

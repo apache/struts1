@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinitionsFactory.java,v 1.2 2002/07/15 12:51:52 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/15 12:51:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinitionsFactory.java,v 1.3 2003/01/05 01:24:48 martinc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/01/05 01:24:48 $
  *
  * ====================================================================
  *
@@ -64,7 +64,6 @@ package org.apache.struts.tiles;
 
 import java.util.Map;
 import java.io.Serializable;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletContext;
 

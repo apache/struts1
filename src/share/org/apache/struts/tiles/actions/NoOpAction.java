@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/Attic/NoOpAction.java,v 1.6 2002/12/29 21:24:58 cedric Exp $
- * $Revision: 1.6 $
- * $Date: 2002/12/29 21:24:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/Attic/NoOpAction.java,v 1.7 2003/01/05 01:24:48 martinc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/01/05 01:24:48 $
  *
  * ====================================================================
  *
@@ -62,22 +62,12 @@
 
 package org.apache.struts.tiles.actions;
 
-import java.io.IOException;
-import java.util.Locale;
-import java.util.Vector;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
-import org.apache.struts.util.MessageResources;
-
-import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -85,7 +75,7 @@ import org.apache.struts.util.RequestUtils;
  * "success".
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.6 $ $Date: 2002/12/29 21:24:58 $
+ * @version $Revision: 1.7 $ $Date: 2003/01/05 01:24:48 $
  * @deprecated Use o.a.s.a.ForwardAction instead with the parameter attribute:
  * <code>
  *    &lt;action path="aPath"
