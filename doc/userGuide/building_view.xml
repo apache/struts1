@@ -478,7 +478,7 @@ public class UploadForm extends ActionForm {
               with the ability to dynamically modify the URLs specified by the "src" and
               "lowsrc" attributes in the same manner that &lt;html:link> can.
          </li>
-          <li>[bean] <a href="../struts-bean.html#parameter">parameter</a> retrieves the value of the
+          <li>[bean] <a href="../userGuide/struts-bean.html#parameter">parameter</a> retrieves the value of the
               specified request parameter, and defines the result as a page scope attribute of
               type String or String[].</li>
         </ul>
@@ -627,7 +627,7 @@ public class UploadForm extends ActionForm {
               can conditionally perform the include by nesting it within a tag
               like <a href="../struts-logic.html#equals">equals</a> by using it's
               parameter attribute.</li>
-          <li>The <a href="../struts-bean.html#include">bean:include</a> tag takes either a
+          <li>The <a href="../userGuide/struts-bean.html#include">bean:include</a> tag takes either a
              an argument "forward" representing a logical name mapped to the jsp to include,
              or the "id" argument, which represents a page context String variable to print
              out to the jsp page.</li>

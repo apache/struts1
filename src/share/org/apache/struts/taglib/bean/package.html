@@ -51,7 +51,7 @@ which will be included in the     response being created by your JSP page.</li>
  
 </ul>
   
-<p>See the <a href="../../../../../../struts-bean.html">Bean Tags Reference</a>
+<p>See the <a href="../../../../../../userGuide/struts-bean.html">Bean Tags Reference</a>
  for detailed information about the available tags in this tag library, and
 the valid attributes for each tag.<br>
 <img src="doc-files/beanUML.jpg" alt="Bean Tag UML" width="938" height="1200">
@@ -303,7 +303,7 @@ the new bean in session scope (rather than the default page scope).</p>
 <p>Struts offers a variety of bean creation tags that copy existing beans
 (or bean properties) from the environment within which this page is running,
 and the request that is currently being processed.  Not all of the attributes 
-for each tag are illustrated in the examples below - see the <a href="../../../../../../struts-bean.html">
+for each tag are illustrated in the examples below - see the <a href="../../../../../../userGuide/struts-bean.html">
 Bean Tags Reference</a>
  for more information.  Any bean created by these tags exists only in page 
 scope, for the remainder of the current page.</p>
@@ -394,7 +394,7 @@ are looked up in the application resources bundle that is initialized for
 you (as an application scope bean) by the Struts controller servlet, using
 the Locale must recently stored in the user's session.  These defaults can
 be overridden by setting values for the "bundle" and "locale" attributes,
-as described in the <a href="../../../../../../struts-bean.html#message">
+as described in the <a href="../../../../../../userGuide/struts-bean.html#message">
 Bean Tags Reference</a>
 . </p>
 <pre>    &lt;bean:message key="label.Cancel"/&gt;<br>    &lt;bean:message key="message.hello" arg0='&lt;%= user.getFullName() %&gt;'/&gt;<br></pre>
