@@ -99,16 +99,42 @@ which only just trails Tomcat:
 <pre>
   TOMCAT-USER:     2,454
 </pre>
-	
+    
 </section>
 
 <section name="Recent News" href="news">
 
-<!--
-<h3><a name=""></a></h3>
-<p><a href=""></a></p>
+<h3><a name="2002117"></a>17 Nov 2002 - Struts At ApacheCon 2002</h3>
+<p>
+If you're coming to Las Vegas this week for ApacheCon, there will be two
+sessions and a Birds of Feather meet specifically focused on Struts:
+</p>
+<ul>
+<li>
+  Session TU07 (Tuesday, 1:30-2:30) - What's New In Struts 1.1
+</li>
+<li>
+  Session WE06 (Wednesday, 10:00-11:00) - Building Web Applications
+  With Struts
+</li>
+<li>
+  BOF BOF03 (Tuesday, 8:00p-9:00p) - Struts After 1.1 -- Where Do We
+  Go From Here?
+</li>
+</ul>
+<p>
+The BOF is primarily an opportunity to gather input from folks on our
+initial thinking about the 1.2 and 2.0 roadmaps, and to answer any general
+questions that people have.
+</p>
+<p>
+The sessions and BOF will be lead by Craig McClanahan. Craig looks forward 
+to meeting any Struts users (and developers) attending the
+conference. You can find him at one of these sessions, or hanging around
+the Sun booths in the Exhibit Hall.
+</p>
 <hr size="1" noshade=""/>
--->
+
 
 <h3><a name="20021115.2"></a>15 Nov 2002 - Struts ImageButtonBeanManager v0.2d</h3>
 <p>
@@ -208,6 +234,58 @@ Klingon.
 <hr size="1" noshade=""/>
 
 
+<h3><a name="20021113"></a>13 Nov 2002 - Easy Struts 0.6.1 Eclipse plugin</h3>
+<p><a href=""></a>
+Easy Struts 0.6.1 was just released, all the wizard was refactored, a Struts view was
+added and Struts 1.1 modules are supported.
+</p>
+<p>
+Easy Struts Features :
+</p>
+<ul>
+<li>
+  Easy Struts plugin can be used with most popular J2EE plugin like
+  Sysdeo TomcatResin, Lomboz... (or simply a Java project).
+</li>
+<li>
+  Provide Struts configuration editor for Struts 1.0 and Struts 1.1 files.
+</li>
+<li>
+  Now use XSLT generation.
+</li>
+<li>
+  Provide a global tree view of any Java project with Easy Struts support.
+</li>
+<li>
+  Full support for Struts 1.1 modules (with 1 last nightly build).
+</li>
+<li>
+  Tool tips extracted from Struts DTD.
+</li>
+<li>
+  Input helper (chooser dialog and validation).
+</li>
+<li>
+  Compatible with IBM WSAD 5
+</li>
+</ul>
+<p>
+Install it from update manager: 
+</p>
+<p>
+<a href="http://easystruts.sourceforge.net/update.html">http://easystruts.sourceforge.net/update.html</a>
+</p>
+<p>
+  or
+</p>
+<p>
+Download it: 
+<a href="http://easystruts.sourceforge.net">http://easystruts.sourceforge.net</a>
+</p>
+<hr size="1" noshade=""/>
+
+    
+    
 <h3><a name="20021113"></a>13 Nov 2002 - Tiles and Validator Support in ObjectAssembler 2.5</h3>
 <p>
 ObjectAssembler 2.5 Pro is now available:
@@ -220,26 +298,26 @@ New Struts features in this release:
 </p>
 <ul>
 <li>
-	Full support for Tiles definitions
+    Full support for Tiles definitions
 </li>
 <li>
-	Full support for Validator 1.0 configurations
+    Full support for Validator 1.0 configurations
 </li>
 <li>
-	Jump from any element in our visual editor to its associated XML
+    Jump from any element in our visual editor to its associated XML
 </li>
 <li>
-	Two-way development. Changes made to XML are immediately reflected in
-	the visual editor and vice versa
+    Two-way development. Changes made to XML are immediately reflected in
+    the visual editor and vice versa
 </li>
 <li>
-	Two additional component types: Struts Exception and Validator
-	(allows the implementation of Validator rules). For each of these
-	components that are created, their use is automated in the Struts,
-	Tiles, and Validator configuration editor
+    Two additional component types: Struts Exception and Validator
+    (allows the implementation of Validator rules). For each of these
+    components that are created, their use is automated in the Struts,
+    Tiles, and Validator configuration editor
 </li> 
 <li>
-	Updated all Struts support to the latest 1.1 builds.
+    Updated all Struts support to the latest 1.1 builds.
 </li>
 </ul>
 <p>
@@ -638,7 +716,7 @@ For those who were waiting, thanks for your patience.
 
 
 <h3><a name="20020908"></a>2002 Sep 08 - French book</h3>
-<p>A new book about UML named "Mod�liser un site e-commerce en UML" from Pascal Roques will be available mid September.<br />
+<p>A new book about UML named "Mod?liser un site e-commerce en UML" from Pascal Roques will be available mid September.<br />
 Summary: <a href="http://www.dotnetguru.org/downloads/tabledesmatieres.pdf">http://www.dotnetguru.org/downloads/tabledesmatieres.pdf</a>
 </p>
 <p>
