@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.14 2003/07/11 04:22:15 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2003/07/11 04:22:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.15 2003/07/12 00:35:08 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/07/12 00:35:08 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.14 $ $Date: 2003/07/11 04:22:15 $
+ * @version $Revision: 1.15 $ $Date: 2003/07/12 00:35:08 $
  */
 public class HtmlTag extends TagSupport {
   
@@ -169,20 +169,22 @@ public class HtmlTag extends TagSupport {
     protected String renderHtmlStartElement() {
         StringBuffer sb = new StringBuffer("<html");
 
-        // Use the current Locale to set our language preferences
         String language = null;
+        String country = "";
+                
         if (this.locale) {
             // provided for 1.1 backward compatibility, remove after 1.2
             language = this.getCurrentLocale().getLanguage();
         } else {
-            language =
-                RequestUtils
-                    .retrieveUserLocale(pageContext, Globals.LOCALE_KEY)
-                    .getLanguage();
+            Locale currentLocale =
+                RequestUtils.retrieveUserLocale(pageContext, Globals.LOCALE_KEY);
+
+            language = currentLocale.getLanguage();
+            country = currentLocale.getCountry();
         }
 
-        // Does the locale have a language?
         boolean validLanguage = ((language != null) && (language.length() > 0));
+        boolean validCountry = country.length() > 0;
 
         if (this.xhtml) {
             this.pageContext.setAttribute(
@@ -196,12 +198,20 @@ public class HtmlTag extends TagSupport {
         if ((this.lang || this.locale || this.xhtml) && validLanguage) {
             sb.append(" lang=\"");
             sb.append(language);
+            if (validCountry) {
+                sb.append("-");
+                sb.append(country);
+            }
             sb.append("\"");
         }
 
         if (this.xhtml && validLanguage) {
             sb.append(" xml:lang=\"");
             sb.append(language);
+            if (validCountry) {
+                sb.append("-");
+                sb.append(country);
+            }
             sb.append("\"");
         }
 
