@@ -118,8 +118,9 @@ public class XmlParser
 	digester.addSetNext(       DEFINITION_TAG, "putDefinition", definitionHandlerClass);
     // put / putAttribute rules
 	digester.addObjectCreate(  PUT_TAG, putAttributeHandlerClass);
-	digester.addSetProperties( PUT_TAG);
 	digester.addSetNext(       PUT_TAG, "addAttribute", putAttributeHandlerClass);
+	digester.addSetProperties( PUT_TAG);
+	digester.addCallMethod(    PUT_TAG, "setBody", 0);
     // list rules
 	digester.addObjectCreate(  LIST_TAG, listHandlerClass);
 	digester.addSetProperties( LIST_TAG);
@@ -128,8 +129,9 @@ public class XmlParser
     // We use Attribute class to avoid rewriting a new class.
     // Name part can't be used in listElement attribute.
 	digester.addObjectCreate(  ADD_LIST_ELE_TAG, putAttributeHandlerClass);
-	digester.addSetProperties( ADD_LIST_ELE_TAG);
 	digester.addSetNext(       ADD_LIST_ELE_TAG, "add", putAttributeHandlerClass);
+	digester.addSetProperties( ADD_LIST_ELE_TAG);
+	digester.addCallMethod(    ADD_LIST_ELE_TAG, "setBody", 0);
   }
 
    /**
@@ -157,9 +159,14 @@ public class XmlParser
 	digester.addSetProperties( DEFINITION_TAG);
 	digester.addSetNext(       DEFINITION_TAG, "putDefinition", definitionHandlerClass);
     // put / putAttribute rules
+    // Rules for a same pattern are called in order, but rule.end() are called
+    // in reverse order.
+    // SetNext and CallMethod use rule.end() method. So, placing SetNext in
+    // first position ensure it will be called last (sic).
 	digester.addObjectCreate(  PUT_TAG, putAttributeHandlerClass);
-	digester.addSetProperties( PUT_TAG);
 	digester.addSetNext(       PUT_TAG, "addAttribute", putAttributeHandlerClass);
+	digester.addSetProperties( PUT_TAG);
+	digester.addCallMethod(    PUT_TAG, "setBody", 0);
     // list rules
 	digester.addObjectCreate(  LIST_TAG, listHandlerClass);
 	digester.addSetProperties( LIST_TAG);
@@ -168,8 +175,9 @@ public class XmlParser
     // We use Attribute class to avoid rewriting a new class.
     // Name part can't be used in listElement attribute.
 	digester.addObjectCreate(  ADD_LIST_ELE_TAG, putAttributeHandlerClass);
-	digester.addSetProperties( ADD_LIST_ELE_TAG);
 	digester.addSetNext(       ADD_LIST_ELE_TAG, "add", putAttributeHandlerClass);
+	digester.addSetProperties( ADD_LIST_ELE_TAG);
+	digester.addCallMethod(    ADD_LIST_ELE_TAG, "setBody", 0);
   }
 
    /**
@@ -291,7 +299,7 @@ public class XmlParser
       {
 	    XmlParser parser = new XmlParser();
       parser.setValidating(true);
-      parser.setDetailLevel(1);
+      parser.setDetailLevel(2);
       XmlDefinitionsSet definitions = new XmlDefinitionsSet();
         System.out.println( "  Parse file" );
       parser.parse( input, definitions);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/xmlDefinition/Attic/XmlAttribute.java,v 1.2 2001/09/10 12:57:26 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2001/09/10 12:57:26 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/xmlDefinition/Attic/XmlAttribute.java,v 1.3 2001/10/29 17:32:24 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/10/29 17:32:24 $
  * $Author: cedric $
  *
  */
@@ -154,6 +154,7 @@ public class XmlAttribute
    */
   public void setValue(Object aValue)
     {
+    realValue=null;
     value = aValue;
     }
 
@@ -164,7 +165,19 @@ public class XmlAttribute
    */
   public void setContent(Object aValue)
     {
-    value = aValue;
+    setValue(aValue);
+    }
+  /**
+    * Sets the value of the value property.
+   *
+   * @param aValue the new value of the value property
+   */
+  public void setBody(String body)
+    {
+    if( body.length() == 0 )
+      return;
+    //System.out.println("body set to'" + body + "'");
+    setValue(body);
     }
   /**
     * Sets the value of the value property.

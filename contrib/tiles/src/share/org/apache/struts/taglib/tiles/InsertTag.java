@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/InsertTag.java,v 1.2 2001/09/28 17:00:11 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2001/09/28 17:00:11 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/InsertTag.java,v 1.3 2001/10/29 17:32:24 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/10/29 17:32:24 $
  * $Author: cedric $
  *
  */
@@ -41,7 +41,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.2 $ $Date: 2001/09/28 17:00:11 $
+ * @version $Revision: 1.3 $ $Date: 2001/10/29 17:32:24 $
  */
 public class InsertTag extends TagSupport implements PutTagParent, ComponentConstants, PutListTagParent
 {
@@ -360,7 +360,10 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
 		public int doEndTag() throws JspException
 		{
     if( !processEndTag )
+      {
+      releaseInternal();
       return EVAL_PAGE;
+      }
 
     int res =  tagHandler.doEndTag();
       // Reset properties used by object, in order to be able to reuse object.
