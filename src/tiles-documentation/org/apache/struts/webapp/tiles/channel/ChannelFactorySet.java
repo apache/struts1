@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/channel/ChannelFactorySet.java,v 1.3 2003/07/08 23:42:59 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/08 23:42:59 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/channel/ChannelFactorySet.java,v 1.4 2003/07/08 23:49:46 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/07/08 23:49:46 $
  *
  * ====================================================================
  *
@@ -72,6 +72,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.DefinitionsUtil;
 import org.apache.struts.tiles.FactoryNotFoundException;
@@ -85,13 +87,19 @@ import org.xml.sax.SAXException;
  * Component Definitions factory.
  * This implementation of Component Definitions factory allows i18n
  * Component definitions factory allowing i18n definition.
- * A definition is retrieved by its name, and using locale setted in appropriate session context.
- * Definitions are defined in different files, one for each locale. A definition file is loaded using common name extended with locale code (ex : templateDefinitions_fr.xml). If no file is found under this name, use default file.
+ * A definition is retrieved by its name, and using locale setted in appropriate 
+ * session context.  Definitions are defined in different files, one for each locale. 
+ * A definition file is loaded using common name extended with locale code 
+ * (ex : templateDefinitions_fr.xml). If no file is found under this name, use default 
+ * file.
  */
 public class ChannelFactorySet extends FactorySet {
 
+    private static final Log log = LogFactory.getLog(ChannelFactorySet.class);
+
     /** 
      * Debug flag. 
+     * @deprecated This will be removed in a release after Struts 1.2.
      */
     public static final boolean debug = false;
 
@@ -296,12 +304,11 @@ public class ChannelFactorySet extends FactorySet {
             parseXmlKeyFile(servletContext, "_" + (String) key, null);
 
         if (lastXmlFile == null) {
-            if (DefinitionsUtil.userDebugLevel > DefinitionsUtil.NO_DEBUG) {
-                System.out.println(
-                    "Warning : No definition factory associated to key '"
-                        + key
-                        + "'. Use default factory instead.");
-            }
+            log.warn(
+                "No definition factory associated to key '"
+                    + key
+                    + "'. Use default factory instead.");
+
             factory = getDefaultFactory();
             loaded.put(key, factory);
             return factory;
@@ -316,9 +323,7 @@ public class ChannelFactorySet extends FactorySet {
         factory = new DefinitionsFactory(rootXmlConfig);
         loaded.put(key, factory);
 
-        if (DefinitionsUtil.userDebugLevel > DefinitionsUtil.NO_DEBUG) {
-            System.out.println(factory);
-        }
+        log.info(factory);
 
         // return last available found !
         return factory;
@@ -350,7 +355,7 @@ public class ChannelFactorySet extends FactorySet {
         String fullName = concatPostfix(filename, postfix);
         return parseXmlFile(servletContext, fullName, xmlDefinitions);
     }
-    
+
     /**
      * Parse specified xml file and add definition to specified definitions set.
      * This method is used to load several description files in one instances list.
@@ -368,32 +373,31 @@ public class ChannelFactorySet extends FactorySet {
         String filename,
         XmlDefinitionsSet xmlDefinitions)
         throws DefinitionsFactoryException {
-        try {
-            if (debug) {
-                System.out.println("Try to load '" + filename + "'.");
-            }
-            InputStream input = servletContext.getResourceAsStream(filename);
-            if (input == null)
-                return xmlDefinitions;
 
-            // Create parser
+        try {
+            log.debug("Trying to load '" + filename + "'.");
+
+            InputStream input = servletContext.getResourceAsStream(filename);
+            if (input == null) {
+                return xmlDefinitions;
+            }
+
             xmlParser = new XmlParser();
+
             // Check if definition set already exist.
-            if (xmlDefinitions == null) { // create it
+            if (xmlDefinitions == null) {
                 xmlDefinitions = new XmlDefinitionsSet();
             }
 
             xmlParser.parse(input, xmlDefinitions);
+
         } catch (SAXException ex) {
-            if (debug) {
-                System.out.println("Error while parsing file '" + filename + "'.");
-                ex.printStackTrace();
-            }
-            
+            log.debug("Error while parsing file '" + filename + "'.", ex);
+
             throw new DefinitionsFactoryException(
                 "Error while parsing file '" + filename + "'. " + ex.getMessage(),
                 ex);
-                
+
         } catch (IOException ex) {
             throw new DefinitionsFactoryException(
                 "IO Error while parsing file '" + filename + "'. " + ex.getMessage(),
