@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.26 2000/10/06 16:06:09 craigmcc Exp $
- * $Revision: 1.26 $
- * $Date: 2000/10/06 16:06:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.27 2000/10/07 20:57:42 craigmcc Exp $
+ * $Revision: 1.27 $
+ * $Date: 2000/10/07 20:57:42 $
  *
  * ====================================================================
  *
@@ -172,9 +172,7 @@ import org.xml.sax.SAXException;
  *     user session, identify and store an appropriate
  *     <code>java.util.Locale</code> object (under the standard key
  *     identified by <code>Action.LOCALE_KEY</code>) in the user's session
- *     if there is not a Locale object there already.
- *     The identified locale will be based on the HTTP headers included
- *     in this request.  [true]</li>
+ *     if there is not a Locale object there already.</li>
  * <li><strong>mapping</strong> - The Java class name of the ActionMapping
  *     implementation to use [org.apache.struts.action.ActionMapping].
  *     Two convenient classes you may wish to use are:
@@ -199,7 +197,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.26 $ $Date: 2000/10/06 16:06:09 $
+ * @version $Revision: 1.27 $ $Date: 2000/10/07 20:57:42 $
  */
 
 public class ActionServlet
@@ -1177,6 +1175,20 @@ public class ActionServlet
         if (session.getAttribute(Action.LOCALE_KEY) != null)
             return;             // Locale object is already present
 
+        // Use the Locale returned by the servlet container (if any)
+        Locale locale = null;
+        try {
+            locale = request.getLocale();
+        } catch (Throwable t) {
+            locale = null;      // Method not present in servlet 2.1
+        }
+        if (locale != null) {
+            if (debug >= 1)
+                log("Setting locale '" + locale + "'");
+            session.setAttribute(Action.LOCALE_KEY, locale);
+            return;
+        }
+
         // Calculate a Locale based on the HTTP headers with this request
         String value = request.getHeader("Accept-Language");
         if (value == null) {
@@ -1201,8 +1213,9 @@ public class ActionServlet
             language = value.substring(0, dash).trim();
             country = value.substring(dash + 1).trim();
         }
+        locale = new Locale(language, country);
 
-        Locale locale = new Locale(language, country);
+        // Store the calculated Locale in the user's session
         if (debug >= 1)
             log("Setting locale '" + locale + "' for header '" +
                 request.getHeader("Accept-Language") + "'");
