@@ -7,9 +7,9 @@
   <organization>
     <name>Apache Software Foundation</name>
     <url>http://jakarta.apache.org/</url>
+    <logo href="/doc/images/struts.jpg">Struts</logo>
   </organization>
   <inceptionYear>2000</inceptionYear>
-  <logo href="/doc//images/struts.jpg">Commons</logo>
 
   <package>org.apache.struts</package>
 
@@ -62,7 +62,7 @@ and proven design patterns.
   <versions>
     <version>
       <id>1.0.2</id>
-      <name>1.0.02</name>
+      <name>1.0.2</name>
       <tag>STRUTS_1_0_2</tag>
     </version>
     <version>
