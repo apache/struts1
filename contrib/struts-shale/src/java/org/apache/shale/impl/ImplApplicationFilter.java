@@ -31,6 +31,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import org.apache.shale.view.DefaultViewControllerMapper;
+
 /**
  * <p>A <code>Filter</code> implementation that invokes the required
  * <em>Application Controller</em> functionality on every request.  In
@@ -110,6 +112,9 @@ public class ImplApplicationFilter implements Filter {
         context = config.getServletContext();
         phaseListener = new ImplPhaseListener();
         getLifecycle().addPhaseListener(phaseListener);
+        // FIXME - make the mapper pluggable
+        context.setAttibute(ImplConstants.VIEW_MAPPER,
+          new DefaultViewControllerMapper());
 
     }
 
