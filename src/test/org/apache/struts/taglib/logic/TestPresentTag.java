@@ -55,7 +55,7 @@
 package org.apache.struts.taglib.logic;
 
 import javax.servlet.ServletException;
-import javax.servlet.jsp.JspException
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -68,6 +68,7 @@ import org.apache.struts.util.LabelValueBean;
  * <code>org.apache.struts.taglib.logic.PresentTag</code> class.
  *
  * @author David Winterfeldt
+ * @author James Mitchell
  */
 public class TestPresentTag extends JspTestCase {
     protected final static String COOKIE_KEY = "org.apache.struts.taglib.logic.COOKIE_KEY";
@@ -222,7 +223,7 @@ public class TestPresentTag extends JspTestCase {
 	
         assertEquals("Value not present (null)", false, pt.condition(true));
     }
-  
+   
 	/**
 	 * Verify that there is a LabelValueBean in application scope 
 	 * and test to see if it has a getValue() using the <code>PresentTag</code>.
