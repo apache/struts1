@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.4 2003/10/25 01:39:54 mrdon Exp $
- * $Revision: 1.4 $
- * $Date: 2003/10/25 01:39:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.5 2004/01/05 18:49:59 mrdon Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/05 18:49:59 $
  *
  * ====================================================================
  *
@@ -182,7 +182,7 @@ public class ActionConfigMatcher implements Serializable {
         }
         
         config.setName(convertParam(orig.getName(), vars));
-        if (path.charAt(0) != '/') {
+        if (path.length() == 0 || path.charAt(0) != '/') {
             path = "/" + path;
         }    
         config.setPath(path);
