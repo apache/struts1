@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/HtmlSettersAction.java,v 1.2 2002/03/11 06:13:13 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/03/11 06:13:13 $
+ * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/HtmlSettersAction.java,v 1.3 2003/12/21 22:54:14 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/12/21 22:54:14 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.action.ActionMapping;
  * or the main menu (if "Cancel" was pressed).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/03/11 06:13:13 $
+ * @version $Revision: 1.3 $ $Date: 2003/12/21 22:54:14 $
  */
 
 public class HtmlSettersAction extends Action {
@@ -88,7 +88,7 @@ public class HtmlSettersAction extends Action {
      * if "Cancel" was pressed.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request
+     * @param form The optional ActionForm bean for this request
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
      *
