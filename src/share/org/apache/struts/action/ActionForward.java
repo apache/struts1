@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.6 2002/06/24 18:53:01 husted Exp $
- * $Revision: 1.6 $
- * $Date: 2002/06/24 18:53:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.7 2002/07/02 01:52:15 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/07/02 01:52:15 $
  *
  * ====================================================================
  *
@@ -102,7 +102,7 @@ import org.apache.struts.config.ForwardConfig;
  * are using.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/06/24 18:53:01 $
+ * @version $Revision: 1.7 $ $Date: 2002/07/02 01:52:15 $
  */
 
 public class ActionForward extends ForwardConfig {
@@ -113,7 +113,7 @@ public class ActionForward extends ForwardConfig {
      */
     public ActionForward() {
 
-    this(null, false);
+        this(null, false);
 
     }
 
@@ -125,7 +125,7 @@ public class ActionForward extends ForwardConfig {
      */
     public ActionForward(String path) {
 
-    this(path, false);
+        this(path, false);
 
     }
 
@@ -138,10 +138,27 @@ public class ActionForward extends ForwardConfig {
      */
     public ActionForward(String path, boolean redirect) {
 
-    super();
-    setName(null);
-    setPath(path);
-    setRedirect(redirect);
+        super();
+        setName(null);
+        setPath(path);
+        setRedirect(redirect);
+
+    }
+
+
+    /**
+     * Construct a new instance with the specified path and redirect flag.
+     *
+     * @param name Name of this instance
+     * @param path Path for this instance
+     * @param redirect Redirect flag for this instance
+     */
+    public ActionForward(String name, String path, boolean redirect) {
+
+        super();
+        setName(name);
+        setPath(path);
+        setRedirect(redirect);
 
     }
 
