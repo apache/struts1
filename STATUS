@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.17 2002/07/12 01:55:38 jholmes Exp $
+$Id: STATUS,v 1.18 2002/07/13 18:09:39 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -51,7 +51,6 @@ Tiles Framework:
 
 Unknown:
 -------
-10380 DynaActionFormClass not serializable
 
 
 Utilities:
