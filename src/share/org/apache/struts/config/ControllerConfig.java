@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.15 2003/02/25 04:47:38 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/02/25 04:47:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.16 2003/07/04 21:33:29 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/07/04 21:33:29 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2003/02/25 04:47:38 $
+ * @version $Revision: 1.16 $ $Date: 2003/07/04 21:33:29 $
  * @since Struts 1.1
  */
 
@@ -123,26 +123,6 @@ public class ControllerConfig implements Serializable {
         }
         this.contentType = contentType;
     }
-
-
-    /**
-     * The debugging detail level that determines logging verbosity.
-     * @deprecated Configure the logging detail level in your underlying
-     *  logging implemenation
-     */
-    protected int debug = 0;
-
-    public int getDebug() {
-        return (this.debug);
-    }
-
-    public void setDebug(int debug) {
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
-        this.debug = debug;
-    }
-
 
     /**
      * <p>The replacement pattern used to determine a context-relative URL
