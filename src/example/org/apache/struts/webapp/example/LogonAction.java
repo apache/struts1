@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.7 2002/03/11 06:13:13 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/03/11 06:13:13 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.8 2002/06/23 03:00:58 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/06/23 03:00:58 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.commons.beanutils.PropertyUtils;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/03/11 06:13:13 $
+ * @version $Revision: 1.8 $ $Date: 2002/06/23 03:00:58 $
  */
 
 public final class LogonAction extends Action {
@@ -197,7 +197,7 @@ public final class LogonAction extends Action {
 
         // Force an ArithmeticException which can be handled explicitly
         if ("arithmetic".equals(username)) {
-            int a = 10 / 0;
+            throw new ArithmeticException();
         }
 
         // Force an application-specific exception which can be handled
