@@ -110,6 +110,13 @@
     <property name="pmd.rulesets"    value="rulesets/imports.xml,rulesets/unusedcode.xml,rulesets/basic.xml,rulesets/strings.xml"/>
     <property name="pmd.report"      value="pmdreport.html"/>
 
+    <!--
+        Location of other Struts subprojects
+
+        These default values assume that the checked out locations are the same
+        as the full repository paths, and that you are building the trunk.
+    -->
+    <property name="struts.el.home" value="../../el/trunk"/>
 
 <!-- ========== Initialization Properties ================================= -->
 
