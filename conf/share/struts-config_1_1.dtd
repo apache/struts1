@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.14 2002/03/12 04:52:45 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.15 2002/03/16 01:08:01 craigmcc Exp $
 -->
 
 
@@ -354,6 +354,9 @@
      path            The Application-relative path of the submitted request,
                      starting with a "/" character, and without the
                      filename extension if extension mapping is used.
+                     NOTE:  Do *not* include a period in your path name,
+                     because it will look like a filename extension and
+                     cause your Action to not be located.
 
      parameter       General purpose configuration parameter that can be used
                      to pass extra information to the Action selected by this
