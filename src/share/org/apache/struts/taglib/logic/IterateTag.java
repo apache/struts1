@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.9 2001/03/31 22:27:30 rleland Exp $
- * $Revision: 1.9 $
- * $Date: 2001/03/31 22:27:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.10 2001/04/18 22:05:02 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/04/18 22:05:02 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * or a Map (which includes Hashtables) whose elements will be iterated over.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/03/31 22:27:30 $
+ * @version $Revision: 1.10 $ $Date: 2001/04/18 22:05:02 $
  */
 
 public class IterateTag extends BodyTagSupport {
@@ -335,7 +335,10 @@ public class IterateTag extends BodyTagSupport {
 	// Store the first value and evaluate, or skip the body if none
 	if (iterator.hasNext()) {
 	    Object element = iterator.next();
-	    pageContext.setAttribute(id, element);
+            if (element == null)
+                pageContext.removeAttribute(id);
+            else
+                pageContext.setAttribute(id, element);
 	    lengthCount++;
 	    return (EVAL_BODY_TAG);
         } else
@@ -363,7 +366,10 @@ public class IterateTag extends BodyTagSupport {
 	    return (SKIP_BODY);
 	if (iterator.hasNext()) {
 	    Object element = iterator.next();
-	    pageContext.setAttribute(id, element);
+            if (element == null)
+                pageContext.removeAttribute(id);
+            else
+                pageContext.setAttribute(id, element);
 	    lengthCount++;
 	    return (EVAL_BODY_TAG);
 	} else

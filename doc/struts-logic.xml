@@ -432,6 +432,12 @@
     &lt;/logic:iterate&gt;
     </code>
 
+    <p>If the collection you are iterating over can contain <code>null</code>
+    values, the loop will still be performed but no page scope attribute
+    (named by the <code>id</code> attribute) will be created for that loop
+    iteration.  You can use the <code>&lt;logic:present&gt;</code> and
+    <code>&lt;logic:notPresent&gt;</code> tags to test for this case.</p>
+
     <p><strong>WARNING</strong> - Currently, this tag cannot deal with
     arrays of primitive data types.  Only arrays of Java objects (including
     Strings) are supported.</p>
@@ -453,7 +459,8 @@
       <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The name of a page scope JSP bean that will contain the current
-      element of the collection on each iteration.</p>
+      element of the collection on each iteration, if it is not
+      <code>null</code>.</p>
       </info>
     </attribute>
 
