@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.108 2002/06/30 03:38:29 craigmcc Exp $
- * $Revision: 1.108 $
- * $Date: 2002/06/30 03:38:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.109 2002/07/06 17:31:58 husted Exp $
+ * $Revision: 1.109 $
+ * $Date: 2002/07/06 17:31:58 $
  *
  * ====================================================================
  *
@@ -183,13 +183,13 @@ import org.apache.struts.util.ServletContextWriter;
  *     [/WEB-INF/struts-config.xml].</li>
  * <li><strong>config/foo</strong> - Context-relative path to the XML resource
  *     containing the configuration information for the sub-application that
- *     will be at prefix "/foo".  This can be repeated as many times as
- *     required for multiple sub-applications.</li>
+ *     will be at prefix "/foo". This can be repeated as many times as
+ *     required for multiple sub-applications. (Since Struts 1.1)</li>
  * <li><strong>convertHack</strong> - Set to <code>true</code> to force form
  *     bean population of bean properties that are of Java wrapper class types
  *     (such as java.lang.Integer) to set the property to <code>null</code>,
  *     instead of zero, in a manner equivalent to the behavior of Struts 1.0.
- *     [false]</li>
+ *     (Since Struts 1.1) [false] </li>
  * <li><strong>debug</strong> - The debugging detail level for this
  *     servlet, which controls how much information is logged. Accepts
  *     values 0 (off) and 1 (least serious) through 6 (most serious). [0]</li>
@@ -291,7 +291,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.108 $ $Date: 2002/06/30 03:38:29 $
+ * @version $Revision: 1.109 $ $Date: 2002/07/06 17:31:58 $
  */
 
 public class ActionServlet
