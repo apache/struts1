@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.134 2002/12/08 02:43:08 craigmcc Exp $
- * $Revision: 1.134 $
- * $Date: 2002/12/08 02:43:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.135 2002/12/08 05:27:07 rleland Exp $
+ * $Revision: 1.135 $
+ * $Date: 2002/12/08 05:27:07 $
  *
  * ====================================================================
  *
@@ -301,7 +301,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.134 $ $Date: 2002/12/08 02:43:08 $
+ * @version $Revision: 1.135 $ $Date: 2002/12/08 05:27:07 $
  */
 
 public class ActionServlet
@@ -426,7 +426,7 @@ public class ActionServlet
             log.debug(internal.getMessage("finalizing"));
         }
 
-        destroyApplications();
+        destroyModules();
         destroyDataSources();
         destroyInternal();
         getServletContext().removeAttribute(Globals.ACTION_SERVLET_KEY);
@@ -452,8 +452,8 @@ public class ActionServlet
         // Initialize modules as needed
         getServletContext().setAttribute(Globals.ACTION_SERVLET_KEY, this);
         ModuleConfig moduleConfig = initModuleConfig("", config);
-        initApplicationMessageResources(moduleConfig);
-        initApplicationDataSources(moduleConfig);
+        initModuleMessageResources(moduleConfig);
+        initModuleDataSources(moduleConfig);
         initModulePlugIns(moduleConfig);
         moduleConfig.freeze();
         Enumeration names = getServletConfig().getInitParameterNames();
@@ -465,8 +465,8 @@ public class ActionServlet
             String prefix = name.substring(6);
             moduleConfig = initModuleConfig
                 (prefix, getServletConfig().getInitParameter(name));
-            initApplicationMessageResources(moduleConfig);
-            initApplicationDataSources(moduleConfig);
+            initModuleMessageResources(moduleConfig);
+            initModuleDataSources(moduleConfig);
             initModulePlugIns(moduleConfig);
             moduleConfig.freeze();
         }
@@ -676,8 +676,18 @@ public class ActionServlet
      * Gracefully terminate use of any modules associated with this
      * application (if any).
      * @since Struts 1.1
+     * @deprecated replaced by destroyModules()
      */
     protected void destroyApplications() {
+        destroyModules();
+    }
+
+    /**
+     * Gracefully terminate use of any modules associated with this
+     * application (if any).
+     * @since Struts 1.1
+     */
+    protected void destroyModules() {
 
         ArrayList values = new ArrayList();
         Enumeration names = getServletContext().getAttributeNames();
@@ -840,7 +850,7 @@ public class ActionServlet
      * specified module.</p>
      *
      * @param prefix Module prefix for this module
-     * @param path Context-relative resource path for this application's
+     * @param path Context-relative resource path for this modules's
      *  configuration resource
      *
      * @exception ServletException if initialization cannot be performed
@@ -861,7 +871,7 @@ public class ActionServlet
      *
      * @param prefix Module prefix for this module
      * @param paths Comma-separated list of context-relative resource path(s)
-     *  for this application's configuration resource(s)
+     *  for this modules's configuration resource(s)
      *
      * @exception ServletException if initialization cannot be performed
      * @since Struts 1.1
@@ -874,7 +884,7 @@ public class ActionServlet
                 "' configuration from '" + paths + "'");
         }
 
-        // Parse the application configuration for this module
+        // Parse the configuration for this module
         ModuleConfig config = null;
         InputStream input = null;
         String mapping = null;
@@ -963,9 +973,21 @@ public class ActionServlet
      *
      * @exception ServletException if initialization cannot be performed
      * @since Struts 1.1
+     * @deprecated use initModuleDataSources(ModuleConfig)
      */
-    protected void initApplicationDataSources
-        (ModuleConfig config) throws ServletException {
+    protected void initApplicationDataSources(ModuleConfig config) throws ServletException  {
+       initModuleDataSources(config);
+    }
+
+    /**
+     * <p>Initialize the data sources for the specified module.</p>
+     *
+     * @param config ModuleConfig information for this module
+     *
+     * @exception ServletException if initialization cannot be performed
+     * @since Struts 1.1
+     */
+    protected void initModuleDataSources(ModuleConfig config) throws ServletException {
 
         if (log.isDebugEnabled()) {
             log.debug("Initializing module path '" + config.getPrefix() +
@@ -1073,9 +1095,21 @@ public class ActionServlet
      *
      * @exception ServletException if initialization cannot be performed
      * @since Struts 1.1
+     * @deprecated use initModuleMessageResources()
      */
-    protected void initApplicationMessageResources
-        (ModuleConfig config) throws ServletException {
+    protected void initApplicationMessageResources(ModuleConfig config) throws ServletException {
+       initModuleMessageResources(config);
+    }
+    /**
+     * <p>Initialize the application MessageResources for the specified
+     * module.</p>
+     *
+     * @param config ModuleConfig information for this module
+     *
+     * @exception ServletException if initialization cannot be performed
+     * @since Struts 1.1
+     */
+    protected void initModuleMessageResources(ModuleConfig config) throws ServletException {
 
         MessageResourcesConfig mrcs[] =
             config.findMessageResourcesConfigs();
