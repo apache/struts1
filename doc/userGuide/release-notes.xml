@@ -85,13 +85,13 @@
 
   <section name="What's New?" href="New">
 
-    <p>Following are highlights of the new features. In the next section, we 
+    <p>Following are highlights of the new features. In the next section, we
     provide links to the JavaDocs for the affected classes.</p>
 
     <p><strong>New Configuration DTD</strong></p>
-    <p> The Struts Configuration 1.0 DTD has been deprecated in favor of the 
-    <code><a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">struts-config_1_1.dtd</a></code>. 
-    In the Struts 1.1 release, existing Struts configuration files can be 
+    <p> The Struts Configuration 1.0 DTD has been deprecated in favor of the
+    <code><a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">struts-config_1_1.dtd</a></code>.
+    In the Struts 1.1 release, existing Struts configuration files can be
     loaded using either DTD version.
     </p>
 
@@ -109,7 +109,7 @@
     <p>The following Commons packages contain the replacements for the
     corresponding Struts 1.0 classes:</p>
     <ul>
-    <li><strong>BeanUtils Package</strong> 
+    <li><strong>BeanUtils Package</strong>
         [<a href="http://jakarta.apache.org/commons/beanutils.html"><code>org.apache.commons.beanutils</code></a>] -
         <code>org.apache.struts.utils.BeanUtils</code>,
         <code>org.apache.struts.utils.ConvertUtils</code>, and
@@ -124,45 +124,45 @@
         [<a href="http://jakarta.apache.org/commons/digester.html"><code>org.apache.commons.digester</code></a>] -
         <code>org.apache.struts.digester.*</code>.</li>
     </ul>
-    <p>The following Commons packages are also now used by various components 
+    <p>The following Commons packages are also now used by various components
     of the Struts framework:</p>
     <ul>
-    <li><strong>Database Connection Pool Package</strong> 
+    <li><strong>Database Connection Pool Package</strong>
     [<a href="http://jakarta.apache.org/commons/dbcp.html"><code>org.apache.commons.dbpc</code></a>]</li>
-    <li><strong>Logging Package</strong> 
+    <li><strong>Logging Package</strong>
     [<a href="http://jakarta.apache.org/commons/logging.html"><code>org.apache.commons.logging</code></a>]</li>
-    <li><strong>Pool Package</strong> 
+    <li><strong>Pool Package</strong>
     [<a href="http://jakarta.apache.org/commons/pool/index.html"><code>org.apache.commons.pool</code></a>]</li>
-    <li><strong>Services Package</strong> 
+    <li><strong>Services Package</strong>
     [<a href="http://cvs.apache.org/viewcvs/jakarta-commons-sandbox/services/"><code>org.apache.commons.services</code></a>]</li>
-    <li><strong>Validator Package</strong> 
+    <li><strong>Validator Package</strong>
     [<a href="http://cvs.apache.org/viewcvs/jakarta-commons/validator/"><code>org.apache.commons.validator</code></a>]</li>
     </ul>
 
 
     <p><strong>NOTE! XML Parser Prerequisite Updated</strong></p>
 
-    <p>Struts now depends on an XML parser that conforms to the JAXP/1.1 
-    (rather than JAXP/1.0) APIs. Parsers known to work include the JAXP/1.1 
+    <p>Struts now depends on an XML parser that conforms to the JAXP/1.1
+    (rather than JAXP/1.0) APIs. Parsers known to work include the JAXP/1.1
     reference implementation, and Xerces 1.3.1.</p>
 
-    <p><strong>SOURCE DEVELOPERS NOTE! Ant Prerequiste Updated</strong></p> 
-    <p>To build Struts from source Ant 4.0 or later is now required. This 
+    <p><strong>SOURCE DEVELOPERS NOTE! Ant Prerequiste Updated</strong></p>
+    <p>To build Struts from source Ant 4.0 or later is now required. This
     does not affect developers that use Struts from the binary distribution.</p>
 
     <p><strong>Struts Validator Integration</strong></p>
-    <p>The new Commons-Validator is now integrated with Struts and exposed 
+    <p>The new Commons-Validator is now integrated with Struts and exposed
     through the new Validator package.</p>
 
     <p><strong>Tiles - An advanced templating taglib</strong></p>
     <p>The Tiles JSP assembly framework has been integrated with Struts.</p>
 
     <p><strong>Nested - An very cool taglib extension</strong></p>
-    <p>The Nested taglib is bundled with Struts and enhances the functionality 
+    <p>The Nested taglib is bundled with Struts and enhances the functionality
      of the existing Struts tags.</p>
 
     <p><strong>New Example Applications</strong></p>
-    <p>New example applications for the Validator and Tiles are now part 
+    <p>New example applications for the Validator and Tiles are now part
     of the Struts distribution.</p>
 
     <p><strong>New Contrib directory for optional compoonents</strong></p>
@@ -175,18 +175,18 @@
     <li>Scaffold - Library of reusable classes for building web applications.</li>
     <li>Service Manager - Add custom services without subclassing controller.</li>
     </ul>
-    </p>  
+    </p>
 
-    <p>The source for these components is available in the Struts source 
-    distribution. Binary distributions may also be made available with the Struts 
-    download area. As optional components, these products have their own 
+    <p>The source for these components is available in the Struts source
+    distribution. Binary distributions may also be made available with the Struts
+    download area. As optional components, these products have their own
     release cycles.</p>
 
     <p><strong>Action Package Additions</strong></p>
     <p>The following new features have been added to the basic controller
     framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
-    <li>The ActionServlet now provides support for modular Struts applications and 
+    <li>The ActionServlet now provides support for modular Struts applications and
     sports several new extension points.</li>
     <li>The new <code>ActionMessages</code> class will support a superset of
         the capabilities of <code>ActionErrors</code>, and will be useful as
@@ -206,7 +206,7 @@
 
     <p><strong>Bean Taglib Package Additions</strong></p>
     <p>The following new features have been added to the
-    <em>struts-bean</em> custom tag library 
+    <em>struts-bean</em> custom tag library
     [<code>org.apache.struts.taglib.bean</code>]:</p>
     <ul>
     <li><code>&lt;bean:write></code>: Add format, locale and bundle attributes to to support formatting values according to current
@@ -232,7 +232,7 @@
     <p>The following new features have been added to the
     <em>struts-logic</em> custom tag library [<code>org.apache.struts.taglib.logic</code>]:</p>
     <ul>
-    <li><code>&lt;logic:empty&gt;</code> and 
+    <li><code>&lt;logic:empty&gt;</code> and
         <code>&lt;logic:notEmpty&gt;</code>: New tags that are similar to
         <code>&lt;logic:present&gt;</code> and
         <code>&lt;logic:notPresent&gt;</code> except for the treatment of
@@ -241,7 +241,7 @@
 
     <p><strong>Template Taglib Package Additions</strong></p>
     <p>The following new features have been added to the
-    <em>struts-template</em> custom tag library 
+    <em>struts-template</em> custom tag library
     [<code>org.apache.struts.taglib.template</code>]:</p>
     <ul>
     <li>None.</li>
@@ -277,12 +277,13 @@
     </ul>
     <p><strong>Added Config Package</strong></p>
     <ul>
-    <li>Various classes to support modular applications</li>
+    <li>Various classes to provide more flexibility in configuring the controller and to provide support for modular applications</li>
     </ul>
     <p><strong>Action Package Changes</strong></p>
     <p>The following changes and bug fixes have occurred in the basic
     controller framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
+    <li>ActionMapping: input property may now refer to an ActionForward rather than a module-relative path if inputForward is set to true on the module's ControllerConfig bean [org.apache.struts.config.ControllerConfig.
     <li>ActionServlet: Added convertNull parameter to simulate the Struts 1.0 behavior when populating forms. If set to true, the numeric Java wrapper class types (like java.lang.Integer) will default to null (rather than 0).</li>
     <li>ActionServlet: Added "config/$foo" parameter and deprecated several others in favor of components in the new config package. </li>
     <li>ActionForms and related classes: now use a StringBuffer when responding a toString request in order to conserve resources.</li>
@@ -315,11 +316,14 @@ multipart requests.</li>
     <p>The following changes and bug fixes have occurred in the utilities
     (package <code>org.apache.struts.util</code>):</p>
     <ul>
+    <li>GenericDataSource: Deprecated and modified to act as a thin wrapper around
+    [<code>org.apache.commons.dbpc.BasicDataSource</code>].
+    Replaced by direct use of BasicDataSource or other compatible component.</li>
     <li>RequestUtils class: Modify to use ActionServletWrapper rather than expose ActionServlet.</li>
     <li>Added error message for the getActionErrors and getActionMessages method.</li>
-    <li>getActionErrors and getActionMessages: Added methods to generate the correct corresponding 
+    <li>getActionErrors and getActionMessages: Added methods to generate the correct corresponding
     object based on the object retrieved from request scope based on the key passed in.</li>
-    <li>ActionErrors or ActionMessages: The logic for creating one of these objects has been moved 
+    <li>ActionErrors or ActionMessages: The logic for creating one of these objects has been moved
     to a utility method in RequestUtils.</li>
     <li>JspException message: Now generated in RequestUtils.</li>
     <li>ConvertUtils.convertCharacter(): Will now detect empty strings and return the default value.</li>
@@ -327,7 +331,7 @@ multipart requests.</li>
 
     <p><strong>Bean Taglib Package Changes</strong></p>
     <p>The following changes and bug fixes have occured in the
-    <em>struts-bean</em> custom tag library 
+    <em>struts-bean</em> custom tag library
     [<code>org.apache.struts.taglib.bean</code>]:</p>
     <ul>
     <li>&lt;html:errors&gt;: When the property tag is
@@ -335,7 +339,7 @@ multipart requests.</li>
     has no errors. Previously errors were always printed ! Future
     enhancements would include additional attributes to always turn
     off the header or footer. </li>
-    <li>Made the remaining helper methods "protected" rather than 
+    <li>Made the remaining helper methods "protected" rather than
     "private".</li>
     </ul>
 
@@ -383,7 +387,7 @@ multipart requests.</li>
     Application have occurred:</p>
     <ul>
     <li>None.</li>
-    </ul> 
+    </ul>
 
     <p><strong>Exercise Taglib Example Application Changes</strong></p>
     <p>The following changes and bug fixes to the Struts Excercise Taglib Example
@@ -391,7 +395,7 @@ multipart requests.</li>
     <ul>
     <li>Added test case for &lt;html:select> using &lt;html:options> based on a collection
     saved in the page context.</li>
-    </ul> 
+    </ul>
 
   </section>
 
@@ -403,20 +407,20 @@ multipart requests.</li>
 
     <p><strong>Previously deprecated classes and packages removed in Struts 1.1</strong></p>
     <ul>
-    <li>Removed: 
-      <code>org.apache.struts.utils.BeanUtils</code>, 
+    <li>Removed:
+      <code>org.apache.struts.utils.BeanUtils</code>,
       <code>org.apache.struts.utils.ConvertUtils</code>, and
-      <code>org.apache.struts.utils.PropertyUtils</code> - replaced by 
+      <code>org.apache.struts.utils.PropertyUtils</code> - replaced by
       <a href ="http://jakarta.apache.org/commons/beanutils.html"><code>org.apache.commons.beanutils</code></a>
     </li>
-    <li>Removed: 
+    <li>Removed:
      <code>org.apache.struts.util.ArrayStack</code>,
      <code>org.apache.struts.util.FastArrayList</code>,
      <code>org.apache.struts.util.FastHashMap</code>,
-     <code>org.apache.struts.util.FastTreeMap</code> - replaced by 
+     <code>org.apache.struts.util.FastTreeMap</code> - replaced by
      <a href ="http://jakarta.apache.org/commons/collections.html"><code>org.apache.commons.collections</code></a>
     </li>
-    <li>Removed: <code>org.apache.struts.digester.*</code> - replaced by 
+    <li>Removed: <code>org.apache.struts.digester.*</code> - replaced by
     <a href ="http://jakarta.apache.org/commons/digester.html"><code>org.apache.commons.digester</code></a>
     </li>
     <li>Removed: The <code>struts-config.dtd</code> - Replaced by <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd"><code>struts-config_1_1.dtd</code></a>.</li>
@@ -548,7 +552,7 @@ multipart requests.</li>
 
     <p>Next: <a href="installation.html">Installation</a></p>
 
-</section>  
+</section>
 
     </body>
 

@@ -9,12 +9,12 @@
     <author>Ed Burns</author>
     <title>The Struts User's Guide - Building Model Components</title>
   </properties>
-  
-  <body>  
+
+  <body>
   <chapter name="2. Building Model Components" href="building_model">
-  
+
       <section name="2.1 Overview" href="overview">
-        
+
         <p>
         Many requirements documents used for building web applications
         focus on the <i>View</i>.  However, you should ensure that the
@@ -30,9 +30,9 @@
         beans and JSP is useful first.
       </p>
     </section>
-    
+
     <section name="2.2 JavaBeans and Scope" href="javabeans">
-    
+
       <p>
         Within a web-based application, JavaBeans can be stored in (and accessed
         from) a number of different collections of "attributes".  Each collection
@@ -42,7 +42,7 @@
         Pages (JSP) Specification defines scope choices using the following terms
         (with the equivalent servlet API concept defined in parentheses):
       </p>
-        
+
       <ul>
         <li><b>page</b> - Beans that are visible within a single JSP page,
             for the lifetime of the current request.  (Local variables of
@@ -57,34 +57,34 @@
             servlets that are part of a web application.  (Servlet context
             attributes)</li>
       </ul>
-        
+
       <p>
         It is important to remember that JSP pages and servlets in the same
         web application share the same sets of bean collections.  For example,
         a bean stored as a request attribute in a servlet like this:
       </p>
-        
+
       <p><code>MyCart mycart = new MyCart(...);<br />
         request.setAttribute("cart", mycart);
       </code></p>
-      
+
       <p>
         is immediately visible to a JSP page which this servlet forwards to,
         using a standard action tag like this:
       </p>
-        
+
       <p><code>&lt;jsp:useBean id="cart" scope="request"<br />
         class="com.mycompany.MyApp.MyCart"/&gt;
       </code></p>
     </section>
-    
+
     <section name="2.3 ActionForm Beans" href="actionform">
-      
+
       <blockquote>
-        <b>Note:</b> While ActionForm beans often have properties that correspond 
-        to properties in your Model beans, the form beans themselves should 
-        be considered a Controller component. As such, they are able to 
-        transfer data between the Model and View layers. 
+        <b>Note:</b> While ActionForm beans often have properties that correspond
+        to properties in your Model beans, the form beans themselves should
+        be considered a Controller component. As such, they are able to
+        transfer data between the Model and View layers.
       </blockquote>
       <p>
         The Struts framework generally assumes that you have defined an
@@ -92,17 +92,17 @@
         <code>ActionForm</code> class) for the input forms in your
         application. <code>ActionForm</code> beans are sometimes just called
         "form beans". These may be finely-grained objects, so that there is one
-        bean for each form, or coarsely-grained so that one bean serves 
+        bean for each form, or coarsely-grained so that one bean serves
         several forms, or even an entire application.
        </p>
        <p>
-        If you declare such beans in your Struts 
+        If you declare such beans in your Struts
         configuration file (see "<a href="building_controller.html#config">
-        Building the Controller Components</a>"), the Struts  controller servlet 
-        will automatically perform the following services for you, before 
+        Building the Controller Components</a>"), the Struts  controller servlet
+        will automatically perform the following services for you, before
         invoking the appropriate <code>Action</code> method:
       </p>
-        
+
       <ul>
         <li>Check in the user's session for an instance of a bean of the
             appropriate class, under the appropriate key.</li>
@@ -114,17 +114,17 @@
             JSP action <code>&lt;jsp:setProperty&gt;</code> when you use the
             asterisk wildcard to select all properties.</li>
         <li>The updated <code>ActionForm</code> bean will be passed to the
-            <code>execute</code> method of an <code>Action</code> class 
-            [<code>org.apache.struts.Action</code>], so that the values can 
+            <code>execute</code> method of an <code>Action</code> class
+            [<code>org.apache.struts.Action</code>], so that the values can
             be made available to your system state and business logic beans.</li>
       </ul>
-        
+
       <p>
-        For more about coding <code>Actions</code> and <code>ActionForm</code> 
-        beans, see the "<a href="building_controller.html">Building 
-        Controller Components</a>" chapter. 
+        For more about coding <code>Actions</code> and <code>ActionForm</code>
+        beans, see the "<a href="building_controller.html">Building
+        Controller Components</a>" chapter.
       </p>
-        
+
       <p>
         You should note that a "form", in the sense discussed here, does not
         necessarily correspond to a single JSP page in the user interface.  It is
@@ -135,23 +135,23 @@
         properties for all of the fields, no matter which page the field is actually
         displayed on. Likewise, the various pages of the same form should all be
         submitted to the same Action Class. If you follow these suggestions, the
-        page designers can rearrange the fields among the various pages, often without 
+        page designers can rearrange the fields among the various pages, often without
         requiring changes to the processing logic.
       </p>
 
       <p>
-        Smaller applications may only need a single ActionForm to service all of 
-        its input forms. Others applications might use a single ActionForm for each 
-        major subsystem of the application. Some teams might prefer to have a 
-        separate ActionForm class for each distinct input form or workflow. How many 
-        or how few ActionForms to use is entirely up to you. The framework doesn't 
-        care. 
+        Smaller applications may only need a single ActionForm to service all of
+        its input forms. Others applications might use a single ActionForm for each
+        major subsystem of the application. Some teams might prefer to have a
+        separate ActionForm class for each distinct input form or workflow. How many
+        or how few ActionForms to use is entirely up to you. The framework doesn't
+        care.
       </p>
 
     </section>
-    
+
     <section name="2.4 System State Beans" href="system_state">
-      
+
       <p>
         The actual state of a system is normally represented as a set of one or
         more JavaBeans classes, whose properties define the current state.  A
@@ -163,7 +163,7 @@
         addresses), as well as the catalog of available items and their current
         inventory levels.
       </p>
-        
+
       <p>
         For small scale systems, or for state information that need not be kept
         for a long period of time, a set of system state beans may contain all the
@@ -175,9 +175,9 @@
         JavaBeans are also used for this purpose in large scale applications.
       </p>
     </section>
-    
+
     <section name="2.5 Business Logic Beans" href="business_logic">
-      
+
       <p>
         You should encapsulate the functional logic of your application as
         method calls on JavaBeans designed for this purpose.  These methods may
@@ -186,7 +186,7 @@
         case, you will usually need to pass the system state beans to be manipulated
         to these methods as arguments.
       </p>
-        
+
       <p>
         For maximum code re-use, business logic beans should be designed and
         implemented so that they do <b>not</b> know they are being executed in a
@@ -200,7 +200,7 @@
         can be made.  Such a business logic class can be reused in environments
         other than the web application for which they were initially constructed.
       </p>
-        
+
       <p>
         Depending on the complexity and scope of your application, business logic
         beans might be ordinary JavaBeans that interact with system state beans
@@ -209,37 +209,37 @@
         or stateless Enterprise JavaBeans (EJBs) instead.
       </p>
     </section>
-    
+
     <section name="2.6 Accessing Relational Databases" href="databases">
 
       <p>
-        Ideally, the business logic beans should encapsulate the data access 
-        details, including acquiring a database connection. However, some 
+        Ideally, the business logic beans should encapsulate the data access
+        details, including acquiring a database connection. However, some
         application designs expect that the caller able to provide a
-        with a database connection or datasource instance. When this is the 
-        case, the Struts datasource manager can make it easy for your Action 
-        to produce these resources on demand. 
-      </p>      
-      <p>
-        The Struts datasource manager is configured as an element in the 
-        Struts configuration file (struts-config.xml). The manager can 
-        used to deploy any connection pool that implements the         
-        <code>javax.sql.DataSource</code> interface and is configurable totally
-        from JavaBean properties. If your DBMS or container provides a 
-        connection pool that meets these requirements, then that component 
-        might your first choice. 
-       </p>
-       <p>
-        Otherwise, the Struts distribution includes a Generic DataSource pool  
-        [org.apache.struts.util.GenericDataSource]
-        that works well with the datasource manager. If another component 
-        is not specified, the Generic DataSource pool is used by default.
-        See <a  href="building_controller.html#config">The Struts  
-        Configuration File</a> section and the <a href="dev_utils">Utilities 
-        Developer Guide</a> for more detail. 
+        with a database connection or datasource instance. When this is the
+        case, the Struts datasource manager can make it easy for your Action
+        to produce these resources on demand.
       </p>
       <p>
-        After the datasource is defined, here is an example of using the 
+        The Struts datasource manager is configured as an element in the
+        Struts configuration file (struts-config.xml). The manager can
+        used to deploy any connection pool that implements the
+        <code>javax.sql.DataSource</code> interface and is configurable totally
+        from JavaBean properties. If your DBMS or container provides a
+        connection pool that meets these requirements, then that component
+        might your first choice.
+       </p>
+       <p>
+        The Jakarta Commons dbcp's BasicDataSource
+        [org.apache.commons.dbcp.BasicDataSource] also works well with the
+        datasource manager, if a native component is not available. The Struts
+        distribution includes a Generic DataSource class in its util
+        package, but this is now only a wraper around the BasicDataSource. The
+        GenericDataSource class is deprecated as of Struts 1.1 and replaced by
+        direct use of the BasicDataSource.
+      </p>
+      <p>
+        After the datasource is defined, here is an example of using the
         manger to establishing a connection from within an Action's <code>execute</code> method.
       </p>
 <pre>
@@ -247,7 +247,7 @@ public ActionForward
        execute(ActionMapping mapping,
                ActionForm form,
                HttpServletRequest request,
-               HttpServletResponse response) throws Exception 
+               HttpServletResponse response) throws Exception
 {
  javax.sql.DataSource dataSource;
  java.sql.Connection myConnection;
@@ -271,12 +271,11 @@ public ActionForward
  }
 }
 </pre>
-      
+
       <p>
-        Note that the Struts connection pool [<code>org.apache.struts.util.GenericDataSource</code>] 
-        has <b>not</b> been optimized for performance. Many Struts applications use other connection 
-        pools, especially with high-volume production systems. If your DBMS or container 
-        provides a connection pool of its own, that may be a better choice. 
+        Note that you can define as many datasource objects as your application requires and
+        refer to each using a logical name. This can be useful in proding better security or
+        scalability, or even to test datasource implementations against each other.
       </p>
 
       <p align="center">
