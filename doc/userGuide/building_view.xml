@@ -103,7 +103,7 @@
         </li>
         
         <li>
-        <a href="api/org/apache/struts/util/MessageResources.html">
+        <a href="../api/org/apache/struts/util/MessageResources.html">
         <b>MessageResources</b></a> - The Struts class 
         <code>org.apache.struts.util.MessageResources</code> lets you treat
         a set of resource bundles like a database, and allows you to request
@@ -317,48 +317,48 @@ value="<%= loginBean.getUsername() >"/>
     <ul>
         
         <li>
-        <a href="../struts-html.html#checkbox">checkboxes</a>
+        <a href="struts-html.html#checkbox">checkboxes</a>
         </li>
         
         <li>
-        <a href="../struts-html.html#hidden">hidden</a> fields
+        <a href="struts-html.html#hidden">hidden</a> fields
         </li>
         
         <li>
-        <a href="../struts-html.html#password">password</a> input fields
+        <a href="struts-html.html#password">password</a> input fields
         </li>
         
         <li>
-        <a href="../struts-html.html#radio">radio</a> buttons
+        <a href="struts-html.html#radio">radio</a> buttons
         </li>
         
         <li>
-        <a href="../struts-html.html#reset">reset</a> buttons
+        <a href="struts-html.html#reset">reset</a> buttons
         </li>
         
         <li>
-        <a href="../struts-html.html#select">select</a> lists with embedded 
+        <a href="struts-html.html#select">select</a> lists with embedded 
         option or options items
         </li>
         
         <li>
-        <a href="../struts-html.html#option">option</a>
+        <a href="struts-html.html#option">option</a>
         </li>
         
         <li>
-        <a href="../struts-html.html#options">options</a>
+        <a href="struts-html.html#options">options</a>
         </li>
         
         <li>
-        <a href="../struts-html.html#submit">submit</a> buttons
+        <a href="struts-html.html#submit">submit</a> buttons
         </li>
         
         <li>
-        <a href="../struts-html.html#text">text</a> input fields
+        <a href="struts-html.html#text">text</a> input fields
         </li>
         
         <li>
-        <a href="../struts-html.html#textarea">textareas</a>
+        <a href="struts-html.html#textarea">textareas</a>
         </li>
         
     </ul>
@@ -382,13 +382,13 @@ value="<%= loginBean.getUsername() >"/>
     <ul>
 
     <li>
-    [logic] <a href="../struts-logic.html#iterate">iterate</a> repeats its 
+    [logic] <a href="struts-logic.html#iterate">iterate</a> repeats its 
     tag body once for each element of a specified collection (which can be an 
     Enumeration, a Hashtable, a Vector, or an array of objects).
     </li>
     
     <li>
-    [logic] <a href="../struts-logic.html#present">present</a> depending on 
+    [logic] <a href="struts-logic.html#present">present</a> depending on 
     which  attribute is specified, this tag checks the current request, and 
     evaluates the nested body content of this tag only if the specified value 
     is present. 
@@ -400,27 +400,27 @@ value="<%= loginBean.getUsername() >"/>
     </li>
 
     <li>
-    [logic] <a href="../struts-logic.html#notPresent">notPresent</a> the 
+    [logic] <a href="struts-logic.html#notPresent">notPresent</a> the 
     companion tag to present, notPresent provides the same functionality when 
     the specified attribute is not present.
     </li>
     
     <li>
-    [html] <a href="../struts-html.html#link">link</a> generates a HTML 
+    [html] <a href="struts-html.html#link">link</a> generates a HTML 
     &lt;a&gt; element as an anchor definition or a hyperlink to the specified 
     URL, and automatically applies URL encoding to maintain session state in 
     the absence of cookie support.
     </li>
     
     <li>
-    [html] <a href="../struts-html.html#img">img</a> generates a HTML 
+    [html] <a href="struts-html.html#img">img</a> generates a HTML 
     &lt;img&gt; element with the ability to dynamically modify the URLs 
     specified by the "src" and "lowsrc" attributes in the same manner that 
     &lt;html:link> can.
     </li>
     
     <li>
-    [bean] <a href="../userGuide/struts-bean.html#parameter">parameter</a> 
+    [bean] <a href="struts-bean.html#parameter">parameter</a> 
     retrieves the value of the specified request parameter, and defines the 
     result as a page scope attribute of type String or String[].
     </li>
@@ -664,12 +664,12 @@ value="/WEB-INF/validator-rules.xml,
         handled transparently by the server.  
         Among other things, that means you can conditionally perform the 
         include by nesting it within a tag like 
-        <a href="../struts-logic.html#equals">equals</a> by using it's
+        <a href="struts-logic.html#equal">equal</a> by using it's
         parameter attribute.
         </li>
 
         <li>
-        The <a href="../userGuide/struts-bean.html#include">bean:include</a> 
+        The <a href="struts-bean.html#include">bean:include</a> 
         tag takes either a an argument "forward" representing a logical name 
         mapped to the jsp to include, or the "id" argument, which represents a 
         page context String variable to print out to the jsp page.

@@ -63,7 +63,7 @@ new demo is also available online</a>.
 <h3><a name="20011113"></a>13 Nov 2001 - Expresso version 4.0 released</h3>
 <p>
 Expresso version 4.0 is now available at 
-<a href="www.jcorporate.com">
+<a href="http://www.jcorporate.com/">
 <b>www.jcorporate.com</b></a>. For more
 information and to download the expresso4-00-complete.jar see
 <a href="http://www.jcorporate.com/product/expresso.html">
@@ -203,7 +203,6 @@ Struts Framework.  The binary distribution for Struts 1.0 is available
 <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0/">here</a>
 and the source distribution is available
 <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0/src/">here</a>. 
-A <a href="press.html">press release</a> is also available.
 </p>
 <hr noshade="" size="1"/>
 
@@ -228,7 +227,7 @@ and the source distribution of Struts 1.0-beta-3 is available
 <p><strong>Struts 1.0-b2</strong> is an update release in preparation for a
 final release of Struts 1.0 prior to JavaOne 2001.  The changes included are
 documented in the
-<a href="http://jakarta.apache.org/struts/release-notes-1.0-b2.html">Release
+<a href="../userGuide/release-notes-1.0-b2.html">Release
 Notes</a>.  Get your copy of this latest release
 <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0-b2/">here</a>.
 </p>

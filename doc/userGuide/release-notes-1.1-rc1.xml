@@ -573,10 +573,10 @@
     <p><strong>Classes deprecated between Struts 1.0 and Struts 1.1</strong></p>
     <p>action</p>
     <ul>
-      <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionException.html"> ActionException</a></li>
-      <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionFormBeans.html"> ActionFormBeans</a></li>
-      <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionForwards.html"> ActionForwards</a></li>
-      <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionMappings.html"> ActionMappings</a></li>
+      <li>ActionException</li>
+      <li>ActionFormBeans</li>
+      <li>ActionForwards</li>
+      <li>ActionMappings</li>
     </ul>
     <p><strong>Classes with members deprecated between Struts 1.0 and Struts 1.1</strong></p>
     <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/Action.html">action.Action</a></p>

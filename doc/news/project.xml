@@ -7,7 +7,6 @@
 
     <menu name="News and Status">
         <item href="index.html#status" name="Status"/>
-        <item href="index.html#community"   name="Community"/>
         <item href="index.html#news"   name="Recent News"/>
         <item href="news_2002_q3.html" name="2002 3rd Quarter News"/>
         <item href="news_2002_q2.html" name="2002 2nd Quarter News"/>

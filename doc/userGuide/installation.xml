@@ -132,7 +132,7 @@
   <section name="Install A Struts Binary Distribution" href="Installing">
 
     <p>First, download a binary distribution of Struts by following the
-    instructions <a href="index.html#Acquiring">here</a>.  Then, make sure
+    instructions <a href="../acquiring.html">here</a>.  Then, make sure
     you have downloaded and installed the
     <a href="#Prerequisites">prerequisite</a> software packages described
     above.</p>
@@ -164,7 +164,7 @@
         descriptor" files that describe the custom tags in the various Struts
         tag libraries. They should be copied into the <code>WEB-INF</code>
         directory of your web application. (Servlet 2.3 can omit this step
-        if the <a href="building_controller.html#dd_config_taglib_23">standard uri</a>
+        if the <a href="configuration.html#dd_config_taglib_23">standard uri</a>
         is referenced.)</li>
     <li><strong>webapps/struts-blank.war</strong> - This is a simple "web
         application archive" file containing a basic starting point for
@@ -218,7 +218,7 @@
         for a detailed example of the required syntax.</li>
     <li>Modify the <code>WEB-INF/web.xml</code> file of your web application
         to include the following tag library declarations (Servlet 2.3 can omit
-        this step if the <a href="building_controller.html#dd_config_taglib_23">standard uri</a>
+        this step if the <a href="configuration.html#dd_config_taglib_23">standard uri</a>
         is referenced):</li>
     </ul>
 
@@ -306,7 +306,7 @@ about how to configure additional security manager permissions.</p>
     required.</a></li>
   <li>Tomcat 3.2.1+ "standalone" - No additional steps required.</li>
   <li>Tomcat 4.0 - No additional steps required.</li>
-  <li>Weblogic - <a href="installation-wls.html">Additional steps required.</a></li>
+  <li>Weblogic 5.1 sp8 - <a href="installation-wls5.html">Additional steps required.</a></li>
   <li>WebLogic 6.0+ - No additional steps required.</li>
   <li>WebSphere - <a href="installation-was352.html">Additional steps required.</a></li>
   <li>WebSphere - <a href="installation-was352-x.html">Steps for the Example Application.</a></li></ul>
@@ -315,7 +315,7 @@ about how to configure additional security manager permissions.</p>
 <section name="Building Struts From Source" href="Building">
 
     <p>First, download a source distribution of Struts by following the
-    instructions <a href="index.html#Acquiring">here</a>.  Then, make sure
+    instructions <a href="../acquiring.html">here</a>.  Then, make sure
     you have downloaded and installed <b>all</b> of the
     <a href="#Prerequisites">prerequisite</a> software packages described
     above.</p>
@@ -382,7 +382,7 @@ about how to configure additional security manager permissions.</p>
     directory named <code>dist</code> (relative to where you
     are compiling from).  This directory contains an exact replica of the
     files included in a binary distribution of Struts, as described
-    in the <a href="Installing">preceding section</a>.</p>
+    in the <a href="#Installing">preceding section</a>.</p>
 
     <p>IMPORTANT NOTE: The <code>struts.jar</code>, as well as the JAR files
     from the Jakarta Commons project, must be in your classpath when

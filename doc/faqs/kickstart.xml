@@ -31,14 +31,15 @@ Here are answers to the usual getting-started questions. <b>For an in-depth, sea
     <li><a href="#jar">When do I need the struts.jar on my classpath?</a></li>
     <li><a href="#tests">Does Struts provide its own unit tests?</a></li>
   </ul><ul>
+    <li><a href="#requests">If the framework doesn't do what I want, can I request that a feature be added?</a></li>
     <li><a href="#help">Where can I get help with Struts?</a></li>
-    <li><a href="#consultants">Is commercial support available for Struts?</a></li>
-    <li><a href="#hosts">Are there ISPs that will host my Struts application?</a></li>
+    <li><a href="#support">Is commercial support available for Struts?</a></li>
+    <li><a href="#providers">Are there ISPs that will host my Struts application?</a></li>
     <li><a href="#powered">What Web sites are already Powered by Struts?</a></li>
   </ul><ul>
     <li><a href="#turbine">What's the difference between Struts and Turbine?  What's the difference between Struts and Expresso?</a></li>
     <li><a href="#taglibs">Why aren't the Struts tags maintained as part of the Jakarta Taglibs project?</a></li>
-    <li><a href="#xhmtl">Are the Struts tags XHTML compliant?</a></li>
+    <li><a href="#xhtml">Are the Struts tags XHTML compliant?</a></li>
     <li><a href="#jsf">What about the JSTL and JavaServer Faces?</a></li>
     <li><a href="#ide">Is there a particularly good IDE to use with Struts?</a></li>
  </ul><ul>
@@ -46,9 +47,7 @@ Here are answers to the usual getting-started questions. <b>For an in-depth, sea
     <li><a href="#newsgroup">Is there a Struts Newsgroup?</a></li>
     <li><a href="#mailbounce">Why didn't my posting show up on the user list?"</a></li>
     <li><a href="#unsubscribe">How do I unsubscribe from the mailing list?</a></li>
-  </ul><ul>
-    <li><a href="#more">Are there any other FAQs?</a></li>
-  </ul>
+  </ul>    
 </section>
 
 <section href="why" name="Why do we need Struts?">
@@ -59,13 +58,13 @@ Here are answers to the usual getting-started questions. <b>For an in-depth, sea
 <p>Java Servlets are designed to handle requests made by Web browsers. Java ServerPages are designed to create dynamic Web pages that can turn billboard sites into live applications. Struts uses a special Servlet as a switchboard to route requests from Web browsers to the appropriate ServerPage. This makes Web applications much easier to design, create, and maintain.</p>
 </section>
 
-<section href="javasoft" name="Is Struts compatible with other Java technologies?">
+<section href="compat" name="Is Struts compatible with other Java technologies?">
 <p>Yes. Struts is committed to supporting industry standards. Our lead developer is a member of <a href="http://java.sun.com/aboutJava/communityprocess/jsr/jsr_052_jsptaglib.html">JSR052</a>, Sun's Expert group for developing a standard library of custom JSP tags. A primary design criteria is that Struts must be compatible with Sun's J2EE platform for corporate enterprises. In fact, Struts really acts as an integrator of Java technologies, so that they can be used in the &quot;real world&quot;.</p>
 </section>
 
 <section href="who" name="Who wrote Struts?">
 <p>Struts was created by Craig R. McClanahan, and donated to the Apache Software Foundation in May 2000. Craig is the primary developer of both Struts and <a href="http://jakarta.apache.org/tomcat/index.html">Tomcat 4</a>, the basis for the official reference implementation for a servlet 2.3 and JSP 1.2 container. With stable releases of Struts and Tomcat 4 in circulation, Craig is now the Specification Lead for <a href="http://jcp.org/jsr/detail/127.jsp">JavaServer Faces (JSR-127)</a>, and is the Web Layer Architect for the Java2 Enterprise Edition (J2EE) platform as a whole.</p>
-<p>There are now many active committers to the Struts project, working cooperatively from around the globe. Other Java developers are invited to <a href="#contribute">contribute to the project</a>. Struts is an <a href="http://jakarta.apache.org/">Apache Jakarta</a>  project, with the common mission to &quot;provide commercial-quality server solutions based on the Java Platform that are developed in an open and cooperative fashion&quot;. All told, 17 individual developers and committers contributed to the Struts 1.0 codebase.</p>
+<p>There are now many active committers to the Struts project, working cooperatively from around the globe. Other Java developers are invited to <a href="helping.html#contribute">contribute to the project</a>. Struts is an <a href="http://jakarta.apache.org/">Apache Jakarta</a>  project, with the common mission to &quot;provide commercial-quality server solutions based on the Java Platform that are developed in an open and cooperative fashion&quot;. All told, 17 individual developers and committers contributed to the Struts 1.0 codebase.</p>
 </section>
 
 <section href="struts" name="Why is it called Struts?">
@@ -100,12 +99,12 @@ part of your own application. A blank Struts application (in the
 <code>webapps</code> directory, open <code>struts-blank.war</code>)
 is provided, which you can just copy to get a quick-start on your own brainchild.</p>
 <p>Since the full source code for Struts is available, we also provide
-<a href="http://jakarta.apache.org/struts/installation.html">complete instructions</a>
+<a href="../userGuide/installation.html">complete instructions</a>
 for compiling your own Struts JAR from scratch. (This is actually easier than it looks!)</p>
 <p>Your Struts application can usually be deployed using a standard WAR file. In most
 cases, you simply deposit the WAR file on your application server, and it is installed
 automatically. If not, step-by-step installation instructions for
-<a href="http://jakarta.apache.org/struts/installation.html#Containers">various servlet
+<a href="../userGuide/installation.html#Containers">various servlet
 containers</a> are available.</p>
 </section>
 
@@ -282,7 +281,7 @@ appear to help these technologies work as well with Struts.
     </p>
     <p>
         Struts originally came bundled with a set of custom JSP tags.
-        Today, several <a href="../resources/view.html">extensions</a> are available to help
+        Today, several <a href="../resources/views.html">extensions</a> are available to help
         you use Struts with other popular presentation technologies, like
         XSLT and Velocity. Likewise, extensions for JSTL and JSF are now available as well.
     </p>

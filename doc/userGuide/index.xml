@@ -61,11 +61,11 @@
                 <li><a href="introduction.html#history">1.1 Forward into the Past!</a></li>
                 <li><a href="introduction.html#mvc">1.2 The Model-View-Controller ('MVC') Design Pattern</a></li>
                     <ul>
-                    <li><a href="introduction.html#overview">1.2.1 Struts Framework Overview</a></li>
-                    <li><a href="introduction.html#modelConcepts">1.2.2 The Model: System State and Business Logic JavaBeans</a></li>
-                    <li><a href="introduction.html#presentationConcepts">1.2.3 The View: JSP Pages and Presentation Components</a></li>
+                    <li><a href="introduction.html#modelConcepts">1.2.1 The Model: System State and Business Logic JavaBeans</a></li>
+                    <li><a href="introduction.html#presentationConcepts">1.2.2 The View: JSP Pages and Presentation Components</a></li>
+                    <li><a href="introduction.html#controllerConcepts">1.2.3 The Controller: ActionServlet and ActionMapping</a></li>
                     </ul>
-                <li><a href="introduction.html#controllerConcepts">1.3 The Controller: ActionServlet and ActionMapping</a></li>
+                <li><a href="introduction.html#controllerConcepts">1.3 Struts Control Flow</a></li>
                 </ul></li>
             <li><a href="building_model.html">2. Building Model Components</a>
                 <ul>
@@ -74,7 +74,6 @@
                 <li><a href="building_model.html#actionform">2.3 ActionForm Beans</a></li>
                 <li><a href="building_model.html#system_state">2.4 System State Beans</a></li>
                 <li><a href="building_model.html#business_logic">2.5 Business Logic Beans</a></li>
-                <li><a href="building_model.html#databases">2.6 Accessing Relational Databases</a></li>
                 </ul></li>
             <li><a href="building_view.html">3. Building View Components</a>
                 <ul>
@@ -86,7 +85,7 @@
                     <li><a href="building_view.html#form_input">3.3.2 Input Field Types Supported</a></li>
                     <li><a href="building_view.html#presentation_tags">3.3.3 Other Useful Presentation Tags</a></li>
                     <li><a href="building_view.html#form_validation">3.3.4 Automatic Form Validation</a></li>
-                    <li><a href="building_view.html#struts_validator">3.3.5 Struts Validator</a></li>
+                    <li><a href="building_view.html#validator">3.3.5 Struts Validator</a></li>
                     </ul></li>
                 <li><a href="building_view.html#other_presentations">3.4 Other Presentation Techniques</a>
                     <ul>

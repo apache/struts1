@@ -55,7 +55,7 @@
     form?</a>
     </li>
 
-    <li><a href="#checkboxes">Why are my checkboxes not being set from ON to
+    <li><a href="#checkbox">Why are my checkboxes not being set from ON to
     OFF?</a>
     </li>
 
@@ -227,7 +227,7 @@ own configuration files, messages resources, and so forth. Each module is develo
 the default module. Applications that were developed as a single module can added to a multiple
 module application, and modules can promoted to a standalone application without change. For more
 about configuring your application to support multiple modules, see
-<a href="userGuide/building_controller.html#module_config">Building Controller Components</a> in the
+<a href="../userGuide/configuration.html#dd_config_modules">Configuring Applications</a> in the
 User Guide.
 </p>
 
@@ -299,7 +299,7 @@ The utilities that Struts uses (Commons-BeanUtils since 1.1) require that Action
 the JavaBean patterns for mutators and accessors (get*,set*,is*). Since Struts uses the Introspection API
 with the ActionForms, some containers may require that all the JavaBean patterns be followed, including
 declaring "<code>implements Serializable</code>" for each subclass. The safest thing is to review the
-<a href="userGuide/preface.html#javabeans">JavaBean specification</a> and follow all the prescribed patterns.</p>
+<a href="../userGuide/preface.html#javabeans">JavaBean specification</a> and follow all the prescribed patterns.</p>
 </section>
 
 
@@ -587,9 +587,8 @@ mailing list</a>, where there are more people still using these approaches.
     &lt;/logic:iterate&gt;
     </code></pre>
     <p>
-    <i>Map-Backed ActionForms</i> (since Struts 1.1)<br>
-    <a href="http://jakarta.apache.org/struts/userGuide/building_controller.html#map_action_form_classes">
-    http://jakarta.apache.org/struts/userGuide/building_controller.html#map_action_form_classes</a></br></p>
+    See also: <a href="../userGuide/building_controller.html#map_action_form_classes">Map-Backed ActionForms</a> (since Struts 1.1)
+    </p>
 </section>
 
 
@@ -637,7 +636,7 @@ Simply markup the client-side links using the standard <a/> tag.
 </p>
 </section>
 
-<section name="How can I authenticate my users?">
+<section href="authenticate" name="How can I authenticate my users?">
 <p>
 <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24504.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24504.html</a><br/>
 <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22949.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22949.html</a>
@@ -1076,8 +1075,8 @@ file.  A working knowledge of
 <a href="http://etext.lib.virginia.edu/helpsheets/regex.html">regular
 expressions</a> is necessary to use this feature effectively.  For more
 information, see
-<a href="http://jakarta.apache.org/struts/userGuide/dev_validator.html">
-http://jakarta.apache.org/struts/userGuide/dev_validator.html</a></p>
+<a href="../userGuide/dev_validator.html">
+User Guide</a></p>
 </section>
 
 <section href="avoidValidate"

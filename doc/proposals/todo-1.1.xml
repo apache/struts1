@@ -22,7 +22,7 @@
   list. If there is a feature here that you need, or already have, please 
   start a thread and show us the code!</p>
 
-  <p align="center"><a href="../kickstart.html#release"><b>So, when is the next release coming out?</b></a></p>
+  <p align="center"><a href="../faqs/helping.html#release"><b>So, when is the next release coming out?</b></a></p>
 
   <p>An external development that is likely to affect the development of
   Struts 1.1 will be the emerging Standard Tag Library, being produced under
@@ -41,7 +41,7 @@
   <section name="Pending Tasks"  href="pending">
   
   <ul>
-  <li><a href="proposal-workflow.html">Workflow</a></li>
+  <li><a href="workflow.html">Workflow</a></li>
   <li><a href="http://husted.com/struts/resources/logic-niallp.htm">If/Else/Switch tags</a></li>
   <li><a href="http://husted.com/struts/resources/codemaker.htm">Code generator</a></li>
   </ul>

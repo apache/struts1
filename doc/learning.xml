@@ -131,7 +131,7 @@
 <section name="Learning More About Struts" href="Docs">
 
     <p>
-    The Struts <a href="#Involved">Mailing Lists</a> are a treasure trove of 
+    The Struts <a href="using.html#Lists">Mailing Lists</a> are a treasure trove of 
     useful, interactive information. The user list tends to carry a high 
     volume, so always check the published documentation and the
     <a href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42">

@@ -75,10 +75,10 @@
 
   </section>
 
-  <section name="Install A Struts Binary Distribution" href="Installing">
+  <section name="Install A Struts Binary Distribution" href="#Installing">
 
     <p>First, download a binary distribution of Struts by following the
-    instructions <a href="index.html#Acquiring">here</a>.  Then, make sure
+    instructions <a href="../acquiring.html">here</a>.  Then, make sure
     you have downloaded and installed the
     <a href="#Prerequisites">prerequisite</a> software packages described
     above.</p>
@@ -208,7 +208,7 @@ each individual web app!  Doing so will cause problems with
 </ul>
 <h3>Status of various containers</h3>
 <ul>
-  <li>Bluestone Universal Business Server - <a href="installation-ubs.html">Additional 
+  <li>Bluestone Universal Business Server - <a href="installation-ubs72.html">Additional 
     steps required.</a></li>
   <li>Borland Application Server 4.5 -No additional 
     steps required.</li>
@@ -217,7 +217,7 @@ each individual web app!  Doing so will cause problems with
   <li>iPlanet Web Server - <a href="installation-ip.html">Additional steps required.</a></li>
   <li>iPortal Application Server - <a href="installation-ipas.html">Additional steps required.</a></li>
   <li>Jetty - <a href="installation-jetty.html">Additional steps required.</a></li>
-  <li>JRun - <a href="installation-jrun.html">Additional steps required.</a></li>
+  <li>JRun - <a href="installation-jr30.html">Additional steps required.</a></li>
   <li>Orion Application Server - <a href="installation-oas.html">Additional steps 
     required.</a></li>
   <li>Resin 1.2+ "standalone" - No additional steps required.</li>
@@ -227,7 +227,7 @@ each individual web app!  Doing so will cause problems with
     required.</a></li>
   <li>Tomcat 3.2.1+ "standalone" - No additional steps required.</li>
   <li>Tomcat 4.0 - No additional steps required.</li>
-  <li>Weblogic - <a href="installation-wls.html">Additional steps required.</a></li>
+  <li>Weblogic - <a href="installation-wls5.html">Additional steps required.</a></li>
   <li>WebLogic 6.0+ - No additional steps required.</li>
   <li>WebSphere - <a href="installation-was352.html">Additional steps required.</a></li>
   <li>WebSphere - <a href="installation-was352-x.html">Steps for the Example Application.</a></li></ul>
@@ -237,7 +237,7 @@ each individual web app!  Doing so will cause problems with
   <section name="Building Struts From Source" href="Building">
 
     <p>First, download a source distribution of Struts by following the
-    instructions <a href="index.html#Acquiring">here</a>.  Then, make sure
+    instructions <a href="../acquiring.html">here</a>.  Then, make sure
     you have downloaded and installed <b>all</b> of the
     <a href="#Prerequisites">prerequisite</a> software packages described
     above.</p>
@@ -286,7 +286,7 @@ each individual web app!  Doing so will cause problems with
     directory named <code>dist</code> (relative to where you
     are compiling from).  This directory contains an exact replica of the
     files included in a binary distribution of Struts, as described
-    in the <a href="Installing">preceding section</a>.</p>
+    in the <a href="#Installing">preceding section</a>.</p>
 
   </section>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: userGuide.xsl,v 1.12 2003/01/19 00:40:41 craigmcc Exp $ -->
+<!-- $Id: userGuide.xsl,v 1.13 2003/07/26 03:56:26 sraeburn Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -18,6 +18,8 @@
   <xsl:param    name="home-name"         select="'The Jakarta Project'" />
   <xsl:param    name="printer-logo"      select="'/images/printer.gif'"/>
   <xsl:param    name="printer-name"      select="'Print-Friendly Version'"/>
+  <xsl:param    name="powered-logo"      select="'/images/struts-power.gif'"/>
+  <xsl:param    name="powered-name"      select="'Powered by Struts'"/>
   <xsl:param    name="project-href"      select="'http://jakarta.apache.org/struts/'"/>
   <xsl:param    name="project-logo"      select="'/images/struts.gif'"/>
   <xsl:param    name="project-menu"      select="'menu'"/>
@@ -144,7 +146,14 @@
         <div align="center"><font color="{$body-link}" size="-1"><em>
         Copyright (c) 2000-2003, Apache Software Foundation
         </em></font></div>
-        <img src="../images/struts-power.gif" align="right" border="0"/>
+
+          <xsl:variable name="alt">
+            <xsl:value-of select="$powered-name"/>
+          </xsl:variable>
+          <xsl:variable name="src">
+            <xsl:value-of select="$relative-path"/><xsl:value-of select="$powered-logo"/>
+          </xsl:variable>
+          <img src="{$src}" alt="{$alt}" align="right" border="0"/>
       </td></tr>
 
     </table>

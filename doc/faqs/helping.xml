@@ -62,7 +62,7 @@ Our challenge to any team using Struts is to donate the time of one team member
 one afternoon a week (or more if you can spare the resources). 
 Have your team member browse 
 <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a> for any issues 
-without a <a href="#code">patch</a> or <a href="#tests">unit test</a>, 
+without a patch or unit test, 
 and add the patch or test.
 If the patch is written on company time, 
 and you want to give your company an author's credit, that's fine with us.
@@ -78,7 +78,7 @@ with the tests and fixes that get a release out the door.
 <p>
 If Struts does do what you want, help others become involved by turning your 
 war stories into FAQs and how-tos that we can make part of the 
-<a href="documentation">documentation</a>. 
+<a href="#documentation">documentation</a>. 
 The mailing list is very active and trundling through the archives is no 
 picnic. 
 We can always use people who can reduce the best threads to coherent articles 
@@ -118,14 +118,12 @@ How to Report Bugs Effectively</a> and report it to
 
 <p>
 Feature requests are also maintained in the Bugzilla database. 
-Some older requests are still listed the 
-<a href="../todo-1.1.html">wish list</a> page.
 </p>
 
 <p>
 <a href="http://jakarta.apache.org/site/source.html">Patches</a> are always
 welcome. 
-If you can't write a patch to fix your bug, a <a href="#tests">unit test</a>
+If you can't write a patch to fix your bug, a <a href="kickstart.html#tests">unit test</a>
 that demonstrates the problem is also welcome.
 (And, of course, unit tests that prove your patch work are equally welcome.)
 </p>
@@ -407,13 +405,13 @@ on the main Jakarta site.
 
 <p>If you are new to this style of development, 
 the Apache HTTPD Dev list is available in a 
-<a href="dev-digest-subscribe@httpd.apache.org">digest form</a>. 
+<a href="mailto:dev-digest-subscribe@httpd.apache.org">digest form</a>. 
 Even if you are not working on the HTTPD server yourself, 
 it is interesting to watch how the HTTPD team works on the server.
 </p>
 
 <p>
-The Struts project has its own <a href="using.html#Lists">Dev list</a>, 
+The Struts project has its own <a href="../using.html#Lists">Dev list</a>, 
 where all of the decisions regarding Struts are made. 
 Most development takes place via
 "<a href="http://jakarta.apache.org/site/proposal.html#decisions/voting/items">

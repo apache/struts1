@@ -30,7 +30,7 @@
   (package <code>org.apache.struts.action</code>):</p>
   <ul>
   <li>A new configuration file format, including the
-      <a href="dtds/struts-config_1_0.dtd">Document Type Definition (DTD)</a>
+      <a href="../../dtds/struts-config_1_0.dtd">Document Type Definition (DTD)</a>
       it is based on, is available for configuring the Struts controller
       servlet.  Support for the previous format is still present, but will
       be phased out by the 1.0 release.</li>
@@ -254,7 +254,7 @@
   <li>In conjunction with the new configuration file format mentioned above,
       the properties of <code>ActionMapping</code> have been substantially
       updated.  See the
-      <a href="api/org/apache/struts/action/ActionMapping.html">API
+      <a href="../../api/org/apache/struts/action/ActionMapping.html">API
       Documentation</a> for more information</li>
   <li>The <code>Action</code> interface has been converted to a base class
       instead, to reduce the impact of future enhancements.  Anyone who has

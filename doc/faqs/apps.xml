@@ -18,7 +18,7 @@ elsewhere and is referenced by "(more...)" links where possible.
 <section href="caveats" name="Caveats">
 <ol>
 <li>Requirements development and design are outside of the scope of this  document.</li>
-<li>For help installing Struts, see the <a href="installation.html">Getting Started</a> chapter.</li>
+<li>For help installing Struts, see the <a href="../userGuide/installation.html">Getting Started</a> chapter.</li>
 <li>There are many other ways to approach Struts development and there are many
     other features available besides the ones discussed below. This document
     outlines only one way to get started.</li>
@@ -103,7 +103,7 @@ needs:
 <li><code>&lt;plug-in&gt;</code> section to link in the Struts validator and other extensions<a href="../userGuide/building_controller.html#plugin_classes">
 (more...)</a> </li>
 </ol> <li>Create or update <code>web.xml</code> to reference
-   <code>ActionServlet</code>, taglibs used by Struts. <a href="../userGuide/building_controller.html#dd_config">
+   <code>ActionServlet</code>, taglibs used by Struts. <a href="../userGuide/configuration.html#dd_config">
 (more...)</a></li>
 <li>Parallel Tasks</li>
 <ol>

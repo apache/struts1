@@ -37,7 +37,7 @@ Several other Struts books are slated for release. Links are available on the St
 <hr size="1" noshade=""/>
 
 <h3><a name="20020831.4"></a>30 Aug 2002 - MockObjects 0.4 released</h3>
-<p>Unit testing is a hot topic among Struts developers. <a href="ttp://strutstestcase.sourceforge.net/">StrutsTestCase</a> provides a slick mock object for testing Struts Actions with JUnit (or Cactus). The MockObjects projects provides a base API for creating tests for the rest of the objects in your Java application. </p>
+<p>Unit testing is a hot topic among Struts developers. <a href="http://strutstestcase.sourceforge.net/">StrutsTestCase</a> provides a slick mock object for testing Struts Actions with JUnit (or Cactus). The MockObjects projects provides a base API for creating tests for the rest of the objects in your Java application. </p>
 <p><a href="">http://mockobjects.sourceforge.net</a></p>
 <p>
 Developers working with the MockObjects project include Struts committers Vincent Massol and Ted Husted.
