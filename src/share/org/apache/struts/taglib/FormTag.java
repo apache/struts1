@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.5 2000/06/26 16:44:58 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/06/26 16:44:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.6 2000/07/16 22:29:05 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/07/16 22:29:05 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/06/26 16:44:58 $
+ * @version $Revision: 1.6 $ $Date: 2000/07/16 22:29:05 $
  */
 
 public final class FormTag extends TagSupport {
@@ -465,7 +465,7 @@ public final class FormTag extends TagSupport {
 	    writer.print(results.toString());
 	} catch (IOException e) {
 	    throw new JspException
-		(messages.getMessage("formTag.io", e.toString()));
+		(messages.getMessage("common.io", e.toString()));
 	}
 
 	// Store this tag itself as a page attribute
@@ -479,7 +479,7 @@ public final class FormTag extends TagSupport {
 	if (bean == null) {
 	    if (type == null)
 	        throw new JspException
-		    (messages.getMessage("formTag.missing", name));
+		    (messages.getMessage("getter.bean", name));
 	    try {
 		Class clazz = Class.forName(type);
 		bean = clazz.newInstance();
@@ -496,7 +496,6 @@ public final class FormTag extends TagSupport {
 	return (EVAL_BODY_INCLUDE);
 
     }
-
 
 
     /**
@@ -531,7 +530,7 @@ public final class FormTag extends TagSupport {
 	    writer.print(results.toString());
 	} catch (IOException e) {
 	    throw new JspException
-	        (messages.getMessage("formTag.io", e.toString()));
+	        (messages.getMessage("common.io", e.toString()));
 	}
 
 	// Continue processing this page

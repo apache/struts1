@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.3 2000/07/09 03:36:49 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/07/09 03:36:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.4 2000/07/16 22:29:05 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/07/16 22:29:05 $
  *
  * ====================================================================
  *
@@ -67,7 +67,6 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Vector;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -84,7 +83,7 @@ import org.apache.struts.util.MessageResources;
  * <b>FIXME</b> - Should support Java2 collection classes as well!
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/07/09 03:36:49 $
+ * @version $Revision: 1.4 $ $Date: 2000/07/16 22:29:05 $
  */
 
 public final class EnumerateTag extends BodyTagSupport {
@@ -313,24 +312,21 @@ public final class EnumerateTag extends BodyTagSupport {
 		Object bean = pageContext.findAttribute(name);
 		if (bean == null)
 		    throw new JspException
-			(messages.getMessage("enumerate.noBean", name));
+			(messages.getMessage("getter.bean", name));
 		if (property == null)
 		    collection = bean;
 		else {
-		    String methodName = "get" + BeanUtils.capitalize(property);
-		    Class paramTypes[] = new Class[0];
-		    Method method =
-			bean.getClass().getMethod(methodName, paramTypes);
-		    collection = method.invoke(bean, new Object[0]);
+		    collection = BeanUtils.getPropertyValue(bean, property);
 		}
 		if (collection == null)
 		    throw new JspException
-			(messages.getMessage("enumerate.noProperty",
-					     name, property));
+			(messages.getMessage("getter.property", property));
+	    } catch (NoSuchMethodException e) {
+		throw new JspException
+		    (messages.getMessage("getter.method", property));
 	    } catch (Exception e) {
 		throw new JspException
-		    (messages.getMessage("enumerate.noProperty",
-					 name, property));
+		    (messages.getMessage("getter.result", property));
 	    }
 	}
 
@@ -350,7 +346,7 @@ public final class EnumerateTag extends BodyTagSupport {
 	    enumeration = ((Vector) collection).elements();
 	else
 	    throw new JspException
-	        (messages.getMessage("enumerate.noCollection",
+	        (messages.getMessage("enumerateTag.enumeration",
 	                             collection.toString()));
 
 	// Calculate the starting offset
@@ -445,7 +441,7 @@ public final class EnumerateTag extends BodyTagSupport {
 		out.print(bodyContent.getString());
 	    } catch (IOException e) {
 		throw new JspException
-		    (messages.getMessage("enumerate.io", e.toString()));
+		    (messages.getMessage("common.io", e.toString()));
 	    }
 	}
 

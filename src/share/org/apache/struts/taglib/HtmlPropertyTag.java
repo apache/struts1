@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/HtmlPropertyTag.java,v 1.1 2000/05/31 22:28:11 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/HtmlPropertyTag.java,v 1.2 2000/07/16 22:29:05 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/07/16 22:29:05 $
  *
  * ====================================================================
  * 
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * HTML-related characters do not cause difficulties.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:11 $
+ * @version $Revision: 1.2 $ $Date: 2000/07/16 22:29:05 $
  */
 
 public final class HtmlPropertyTag extends TagSupport {
@@ -182,7 +182,7 @@ public final class HtmlPropertyTag extends TagSupport {
 	Object bean = pageContext.findAttribute(name);
 	if (bean == null)
 	    throw new JspException
-		(messages.getMessage("htmlPropertyTag.bean", name));
+		(messages.getMessage("getter.bean", name));
 
 	// Acquire the requested property value
 	String methodName = "get" + BeanUtils.capitalize(property);
@@ -190,17 +190,16 @@ public final class HtmlPropertyTag extends TagSupport {
 	Method method = null;
 	Object value = null;
 	try {
-	    method = bean.getClass().getMethod(methodName, paramTypes);
-	    value = method.invoke(bean, new Object[0]);
+	    value = BeanUtils.getPropertyValue(bean, property);
 	    if (value == null)
 		value = "";
 	} catch (NoSuchMethodException e) {
 	    throw new JspException
-		(messages.getMessage("htmlPropertyTag.method", methodName));
+		(messages.getMessage("getter.method", property));
 	} catch (Exception e) {
 	    throw new JspException
-		(messages.getMessage("htmlPropertyTag.result",
-				     methodName, e.toString()));
+		(messages.getMessage("getter.result",
+				     property, e.toString()));
 	}
 
 	// Print this property value to our output writer, suitably encoded
@@ -209,7 +208,7 @@ public final class HtmlPropertyTag extends TagSupport {
 	    writer.print(BeanUtils.filter(value.toString()));
 	} catch (IOException e) {
 	    throw new JspException
-		(messages.getMessage("htmlPropertyTag.io", e.toString()));
+		(messages.getMessage("common.io", e.toString()));
 	}
 
 	// Continue processing this page

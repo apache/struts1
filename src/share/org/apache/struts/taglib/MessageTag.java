@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MessageTag.java,v 1.4 2000/06/29 21:36:10 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/06/29 21:36:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MessageTag.java,v 1.5 2000/07/16 22:29:06 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/07/16 22:29:06 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/06/29 21:36:10 $
+ * @version $Revision: 1.5 $ $Date: 2000/07/16 22:29:06 $
  */
 
 public final class MessageTag extends TagSupport {
@@ -358,7 +358,7 @@ public final class MessageTag extends TagSupport {
 	    pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
 	if (resources == null)
 	    throw new JspException
-		(messages.getMessage("getMessageTag.resources", bundle));
+		(messages.getMessage("messageTag.resources", bundle));
 
 	// Calculate the Locale we will be using
 	Locale locale = null;
@@ -383,7 +383,7 @@ public final class MessageTag extends TagSupport {
 	String message = resources.getMessage(locale, key, args);
 	if (message == null)
 	    throw new JspException
-		(messages.getMessage("getMessageTag.message", key));
+		(messages.getMessage("messageTag.message", key));
 
 	// Print the retrieved message to our output writer
 	JspWriter writer = pageContext.getOut();
@@ -391,7 +391,7 @@ public final class MessageTag extends TagSupport {
 	    writer.print(message);
 	} catch (IOException e) {
 	    throw new JspException
-		(messages.getMessage("getMessageTag.io", e.toString()));
+		(messages.getMessage("common.io", e.toString()));
 	}
 
 	// Continue processing this page

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.3 2000/07/15 23:20:55 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/07/15 23:20:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.4 2000/07/16 22:29:10 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/07/16 22:29:10 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Craig R. McClanahan
  * @author Ralph Schaer
- * @version $Revision: 1.3 $ $Date: 2000/07/15 23:20:55 $
+ * @version $Revision: 1.4 $ $Date: 2000/07/16 22:29:10 $
  */
 
 public final class BeanUtils {
@@ -319,6 +319,37 @@ public final class BeanUtils {
 
 
     /**
+     * Return the value of the specified array property of the specified
+     * bean, as a String array.
+     *
+     * @param bean Bean whose property is to be extracted
+     * @param name Name of the property to be extracted
+     *
+     * @exception Exception if any problem occurs while acquiring or
+     *  converting this property value.
+     */
+    public static String[] getArrayProperty(Object bean, String name)
+	throws Exception {
+
+	Object value = getPropertyValue(bean, name);
+	if (value == null) {
+	    return (null);
+	} else if (value.getClass().isArray()) {
+	    Object values[] = (Object[]) value;
+	    String results[] = new String[values.length];
+	    for (int i = 0; i < values.length; i++)
+		results[i] = values[i].toString();
+	    return (results);
+	} else {
+	    String results[] = new String[1];
+	    results[0] = value.toString();
+	    return (results);
+	}
+
+    }
+
+
+    /**
      * Return the PropertyDescriptor for the specified property of the
      * specified bean, if there is one;  Otherwise, return <code>null</code>.
      *
@@ -373,6 +404,63 @@ public final class BeanUtils {
 	    descriptors = new PropertyDescriptor[0];
 	descriptorsCache.put(beanClassName, descriptors);
 	return (descriptors);
+
+    }
+
+
+    /**
+     * Return the value of the specified property of the specified
+     * bean, with no type conversinos.
+     *
+     * @param bean Bean whose property is to be extracted
+     * @param name Name of the property to be extracted
+     *
+     * @exception Exception if any problem occurs while acquiring
+     *  this property value.
+     */
+    public static Object getPropertyValue(Object bean, String name)
+	throws Exception {
+
+	// Retrieve the property getter method for the specified property
+	PropertyDescriptor descriptor =
+	    getPropertyDescriptor(bean, name);
+	if (descriptor == null)
+	    throw new NoSuchMethodException("Unknown property '" +
+					    name + "'");
+	Method readMethod = descriptor.getReadMethod();
+	if (readMethod == null)
+	    throw new NoSuchMethodException("Property '" + name +
+					    "' has no getter method");
+
+	// Call the property getter and return the value
+	Object value = readMethod.invoke(bean, new Object[0]);
+	return (value);
+
+    }
+
+
+    /**
+     * Return the value of the specified scalar property of the specified
+     * bean, as a String.
+     *
+     * @param bean Bean whose property is to be extracted
+     * @param name Name of the property to be extracted
+     *
+     * @exception Exception if any problem occurs while acquiring or
+     *  converting this property value.
+     */
+    public static String getScalarProperty(Object bean, String name)
+	throws Exception {
+
+	Object value = getPropertyValue(bean, name);
+	if (value == null) {
+	    return (null);
+	} else if (value.getClass().isArray()) {
+	    Object values[] = (Object[]) value;
+	    return (values[0].toString());
+	} else {
+	    return (value.toString());
+	}
 
     }
 

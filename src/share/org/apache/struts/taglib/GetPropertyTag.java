@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/GetPropertyTag.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/GetPropertyTag.java,v 1.2 2000/07/16 22:29:05 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/07/16 22:29:05 $
  *
  * ====================================================================
  *
@@ -64,7 +64,6 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -77,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  * Expose the value of a bean property as a scripting variable.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:12 $
+ * @version $Revision: 1.2 $ $Date: 2000/07/16 22:29:05 $
  */
 
 public class GetPropertyTag extends TagSupport {
@@ -197,19 +196,17 @@ public class GetPropertyTag extends TagSupport {
 	    Object bean = pageContext.findAttribute(name);
 	    if (bean == null)
 	        throw new JspException
-	            (messages.getMessage("getProperty.noBean", name));
-	    String methodName = "get" + BeanUtils.capitalize(property);
-	    Class paramTypes[] = new Class[0];
-	    Method method = bean.getClass().getMethod(methodName, paramTypes);
-	    value = method.invoke(bean, new Object[0]);
+	            (messages.getMessage("getter.bean", name));
+	    value = BeanUtils.getPropertyValue(bean, property);
 	    if (value == null)
 		throw new JspException
-		    (messages.getMessage("getProperty.noProperty",
-		                         name, property));
+		    (messages.getMessage("getter.property", property));
+	} catch (NoSuchMethodException e) {
+	    throw new JspException
+		(messages.getMessage("getter.method", property));
 	} catch (Exception e) {
 	    throw new JspException
-	        (messages.getMessage("getProperty.noProperty",
-	                             name, property));
+	        (messages.getMessage("getter.result", property));
 	}
 
 	// Expose this as a scripting variable and continue

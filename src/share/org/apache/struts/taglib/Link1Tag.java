@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Link1Tag.java,v 1.2 2000/06/30 16:20:59 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/30 16:20:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Link1Tag.java,v 1.3 2000/07/16 22:29:05 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/07/16 22:29:05 $
  *
  * ====================================================================
  *
@@ -64,7 +64,6 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import javax.servlet.http.HttpServletResponse;
@@ -82,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * a Map, so that it works on JDK 1.1 platforms.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/30 16:20:59 $
+ * @version $Revision: 1.3 $ $Date: 2000/07/16 22:29:05 $
  */
 
 public class Link1Tag extends TagSupport {
@@ -243,7 +242,7 @@ public class Link1Tag extends TagSupport {
 	    writer.print(results.toString());
 	} catch (IOException e) {
 	    throw new JspException
-		(messages.getMessage("encodeUrl.io", e.toString()));
+		(messages.getMessage("common.io", e.toString()));
 	}
 
 	// Evaluate the body of this tag
@@ -267,7 +266,7 @@ public class Link1Tag extends TagSupport {
 	    writer.print("</a>");
 	} catch (IOException e) {
 	    throw new JspException
-	        (messages.getMessage("encodeUrl.io", e.toString()));
+	        (messages.getMessage("common.io", e.toString()));
 	}
 
 	return (EVAL_PAGE);
@@ -289,7 +288,7 @@ public class Link1Tag extends TagSupport {
 	// Just return the "href" attribute if there is no bean to look up
 	if ((property != null) && (name == null))
 	    throw new JspException
-		(messages.getMessage("linkTag.name"));
+		(messages.getMessage("getter.name"));
 	if (name == null)
 	    return (href);
 
@@ -297,7 +296,7 @@ public class Link1Tag extends TagSupport {
 	Object bean = pageContext.findAttribute(name);
 	if (bean == null)
 	    throw new JspException
-		(messages.getMessage("linkTag.bean", name));
+		(messages.getMessage("getter.bean", name));
 	Dictionary dictionary = null;
 	if (property == null) {
 	    try {
@@ -307,25 +306,22 @@ public class Link1Tag extends TagSupport {
 		    (messages.getMessage("linkTag.type1"));
 	    }
 	} else {
-	    String methodName = "get" + BeanUtils.capitalize(property);
-	    Class paramTypes[] = new Class[0];
-	    Method method = null;
 	    try {
-		method = bean.getClass().getMethod(methodName, paramTypes);
-		dictionary = (Dictionary) method.invoke(bean, new Object[0]);
-		if (bean == null)
+		dictionary =
+		    (Dictionary) BeanUtils.getPropertyValue(bean, property);
+		if (dictionary == null)
 		    throw new JspException
-			(messages.getMessage("linkTag.property", methodName));
+			(messages.getMessage("getter.property", property));
 	    } catch (ClassCastException e) {
 		throw new JspException
 		    (messages.getMessage("linkTag.type1"));
 	    } catch (NoSuchMethodException e) {
 		throw new JspException
-		    (messages.getMessage("linkTag.method", methodName));
+		    (messages.getMessage("getter.method", property));
 	    } catch (Exception e) {
 		throw new JspException
-		    (messages.getMessage("linkTag.result",
-					 methodName, e.toString()));
+		    (messages.getMessage("getter.result",
+					 property, e.toString()));
 	    }
 	}
 

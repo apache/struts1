@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/CancelTag.java,v 1.2 2000/06/24 03:16:11 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/24 03:16:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/CancelTag.java,v 1.3 2000/07/16 22:29:04 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/07/16 22:29:04 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "cancel".
  *
  * @author Jeff Hutchinson
- * @version $Revision: 1.2 $ $Date: 2000/06/24 03:16:11 $
+ * @version $Revision: 1.3 $ $Date: 2000/07/16 22:29:04 $
  */
 
 public final class CancelTag extends BaseHandlerTag {
@@ -193,7 +193,7 @@ public final class CancelTag extends BaseHandlerTag {
     }
     catch (IOException e) {
         throw new JspException
-        (messages.getMessage("baseFieldTag.io", e.toString()));
+        (messages.getMessage("common.io", e.toString()));
     }
 
     return (EVAL_PAGE);

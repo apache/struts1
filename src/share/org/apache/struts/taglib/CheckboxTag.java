@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/CheckboxTag.java,v 1.5 2000/06/24 03:16:11 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/06/24 03:16:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/CheckboxTag.java,v 1.6 2000/07/16 22:29:04 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/07/16 22:29:04 $
  *
  * ====================================================================
  *
@@ -63,7 +63,6 @@
 package org.apache.struts.taglib;
 
 
-import java.lang.reflect.Method;
 import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
@@ -76,7 +75,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "checkbox".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/06/24 03:16:11 $
+ * @version $Revision: 1.6 $ $Date: 2000/07/16 22:29:04 $
  */
 
 public final class CheckboxTag extends BaseHandlerTag {
@@ -182,22 +181,18 @@ public final class CheckboxTag extends BaseHandlerTag {
 	    Object bean = pageContext.findAttribute(Constants.BEAN_KEY);
 	    if (bean == null)
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.missing", property));
-	    String methodName = "get" + BeanUtils.capitalize(property);
-	    Class paramTypes[] = new Class[0];
-	    Method method = null;
+		    (messages.getMessage("getter.bean", Constants.BEAN_KEY));
 	    try {
-		method = bean.getClass().getMethod(methodName, paramTypes);
-		value = (String) method.invoke(bean, new Object[0]).toString();
+		value = BeanUtils.getScalarProperty(bean, property);
 		if (value == null)
 		    value = "";
 	    } catch (NoSuchMethodException e) {
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.method", methodName));
+		    (messages.getMessage("getter.method", property));
 	    } catch (Exception e) {
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.result",
-					 methodName, e.toString()));
+		    (messages.getMessage("getter.result",
+					 property, e.toString()));
 	    }
 	}
 	if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("yes")
@@ -213,7 +208,7 @@ public final class CheckboxTag extends BaseHandlerTag {
 	    writer.print(results.toString());
 	} catch (IOException e) {
 	    throw new JspException
-		(messages.getMessage("baseFieldTag.io", e.toString()));
+		(messages.getMessage("common.io", e.toString()));
 	}
 
 	// Continue processing this page
@@ -238,7 +233,7 @@ public final class CheckboxTag extends BaseHandlerTag {
 	    writer.println(bodyContent.getString().trim());
 	} catch (IOException e) {
 	    throw new JspException
-		(messages.getMessage("baseFieldTag.io", e.toString()));
+		(messages.getMessage("common.io", e.toString()));
 	}
 
 	// Continue evaluating this page

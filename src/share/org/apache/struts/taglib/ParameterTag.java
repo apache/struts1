@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ParameterTag.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ParameterTag.java,v 1.2 2000/07/16 22:29:06 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/07/16 22:29:06 $
  *
  * ====================================================================
  *
@@ -64,7 +64,6 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
@@ -78,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Display the value of the specified query parameter as read-only HTML text.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:12 $
+ * @version $Revision: 1.2 $ $Date: 2000/07/16 22:29:06 $
  */
 
 public class ParameterTag extends TagSupport {
@@ -149,7 +148,7 @@ public class ParameterTag extends TagSupport {
 	    writer.print(BeanUtils.filter(value));
 	} catch (IOException e) {
 	    throw new JspException
-		(messages.getMessage("baseFieldTag.io", e.toString()));
+		(messages.getMessage("common.io", e.toString()));
 	}
 
 	// Continue processing this page

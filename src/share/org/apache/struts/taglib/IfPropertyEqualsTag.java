@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfPropertyEqualsTag.java,v 1.1 2000/06/16 01:32:24 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/16 01:32:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfPropertyEqualsTag.java,v 1.2 2000/07/16 22:29:05 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/07/16 22:29:05 $
  *
  * ====================================================================
  *
@@ -64,7 +64,6 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import org.apache.struts.util.BeanUtils;
@@ -76,7 +75,7 @@ import org.apache.struts.util.MessageResources;
  * of the specified attribute (in any scope) has the specified value.
  *
  * @author Arun M. Thomas <arun@ipin.com>
- * @version $Revision: 1.1 $ $Date: 2000/06/16 01:32:24 $
+ * @version $Revision: 1.2 $ $Date: 2000/07/16 22:29:05 $
  */
 
 public class IfPropertyEqualsTag extends BaseAttributeTag {
@@ -164,24 +163,20 @@ public class IfPropertyEqualsTag extends BaseAttributeTag {
 
 	// Test the requested condition
 	boolean equals = false;
-	Object attribute = pageContext.getAttribute(name, getScopeId());
-	if (attribute != null) {
-	    String methodName = "get" + BeanUtils.capitalize(property);
-	    Class paramTypes[] = new Class[0];
-	    Method method = null;
-	    Object value = null;
+	Object bean = pageContext.getAttribute(name, getScopeId());
+	if (bean != null) {
+	    String value = null;
 	    try {
-		method = attribute.getClass().getMethod(methodName, paramTypes);
-		value = method.invoke(attribute, new Object[0]);
+		value = BeanUtils.getScalarProperty(bean, property);
 		if (value == null)
 		    value = "";
 	    } catch (NoSuchMethodException e) {
 		throw new JspException
-		  (messages.getMessage("htmlPropertyTag.method", methodName));
+		  (messages.getMessage("getter.method", property));
 	    } catch (Exception e) {
 		throw new JspException
-		  (messages.getMessage("htmlPropertyTag.result",
-				       methodName, e.toString()));
+		  (messages.getMessage("getter.result",
+				       property, e.toString()));
 	    }
 	    equals = this.value.equals(value);
 	}
@@ -193,7 +188,6 @@ public class IfPropertyEqualsTag extends BaseAttributeTag {
 	    return (SKIP_BODY);
 
     }
-
 
 
 }

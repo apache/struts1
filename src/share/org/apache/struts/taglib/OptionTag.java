@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/OptionTag.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/OptionTag.java,v 1.2 2000/07/16 22:29:06 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/07/16 22:29:06 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:12 $
+ * @version $Revision: 1.2 $ $Date: 2000/07/16 22:29:06 $
  */
 
 public final class OptionTag extends BodyTagSupport {
@@ -178,7 +178,7 @@ public final class OptionTag extends BodyTagSupport {
 	    writer.println(results.toString());
 	} catch (IOException e) {
 	    throw new JspException
-		(messages.getMessage("baseFieldTag.io", e.toString()));
+		(messages.getMessage("common.io", e.toString()));
 	}
 
 	// Continue evaluating this page

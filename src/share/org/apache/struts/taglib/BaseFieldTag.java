@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.5 2000/06/30 16:50:26 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/06/30 16:50:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.6 2000/07/16 22:29:04 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/07/16 22:29:04 $
  *
  * ====================================================================
  *
@@ -64,7 +64,6 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -77,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/06/30 16:50:26 $
+ * @version $Revision: 1.6 $ $Date: 2000/07/16 22:29:04 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -136,24 +135,19 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	    Object bean = pageContext.findAttribute(Constants.BEAN_KEY);
 	    if (bean == null)
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.missing", property));
-	    String methodName = "get" + BeanUtils.capitalize(property);
-	    Class paramTypes[] = new Class[0];
-	    Method method = null;
-	    Object value = null;
+		    (messages.getMessage("getter.bean", Constants.BEAN_KEY));
 	    try {
-		method = bean.getClass().getMethod(methodName, paramTypes);
-		value = method.invoke(bean, new Object[0]);
+		value = BeanUtils.getScalarProperty(bean, property);
 		if (value == null)
 		    value = "";
-		results.append(value);
+		results.append(BeanUtils.filter(value));
 	    } catch (NoSuchMethodException e) {
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.method", methodName));
+		    (messages.getMessage("getter.method", property));
 	    } catch (Exception e) {
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.result",
-					 methodName, e.toString()));
+		    (messages.getMessage("getter.result",
+					 property, e.toString()));
 	    }
 	}
 	results.append("\"");
@@ -167,14 +161,13 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	    writer.print(results.toString());
 	} catch (IOException e) {
 	    throw new JspException
-		(messages.getMessage("baseFieldTag.io", e.toString()));
+		(messages.getMessage("common.io", e.toString()));
 	}
 
 	// Continue processing this page
 	return (EVAL_BODY_TAG);
 
     }
-
 
 
 }

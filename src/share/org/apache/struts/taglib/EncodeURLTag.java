@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EncodeURLTag.java,v 1.1 2000/05/31 22:28:11 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EncodeURLTag.java,v 1.2 2000/07/16 22:29:04 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/07/16 22:29:04 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * HTML-related characters do not cause difficulties.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:11 $
+ * @version $Revision: 1.2 $ $Date: 2000/07/16 22:29:04 $
  */
 
 public final class EncodeURLTag extends TagSupport {
@@ -162,7 +162,7 @@ public final class EncodeURLTag extends TagSupport {
 	    writer.print(encoded);
 	} catch (IOException e) {
 	    throw new JspException
-		(messages.getMessage("encodeUrl.io", e.toString()));
+		(messages.getMessage("common.io", e.toString()));
 	}
 
 	// Continue processing this page

@@ -58,7 +58,6 @@
 package org.apache.struts.taglib;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -203,11 +202,14 @@ public final class OptionsTag extends TagSupport {
 	}
 	catch (IOException e) {
 	    throw new JspException
-		(messages.getMessage("baseFieldTag.io", e.toString()));
+		(messages.getMessage("common.io", e.toString()));
 	}
 	return EVAL_PAGE;
 
     }
+
+
+    // -------------------------------------------------------- Private Methods
 
 
     /**
@@ -229,24 +231,20 @@ public final class OptionsTag extends TagSupport {
 	Object bean = pageContext.findAttribute(beanName);
 	if (bean == null)
 	    throw new JspException
-	        (messages.getMessage("optionsTag.noBean", beanName));
+	        (messages.getMessage("getter.bean", beanName));
 
 	// Identify the collection itself
 	Object collection = bean;
 	if (property != null) {
-	    String methodName = "get" + BeanUtils.capitalize(property);
-	    Class paramTypes[] = new Class[0];
-	    Method method = null;
 	    try {
-		method = bean.getClass().getMethod(methodName, paramTypes);
-		collection = method.invoke(bean, new Object[0]);
+		collection = BeanUtils.getPropertyValue(bean, property);
 	    } catch (NoSuchMethodException e) {
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.method", methodName));
+		    (messages.getMessage("getter.method", property));
 	    } catch (Exception e) {
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.result",
-					 methodName, e.toString()));
+		    (messages.getMessage("getter.result",
+					 property, e.toString()));
 	    }
 	}
 
@@ -261,7 +259,7 @@ public final class OptionsTag extends TagSupport {
 	    return (((Map) collection).entrySet().iterator());
 	else
 	    throw new JspException
-	        (messages.getMessage("optionsTag.noCollection",
+	        (messages.getMessage("optionsTag.iterator",
 	                             collection.toString()));
 
     }

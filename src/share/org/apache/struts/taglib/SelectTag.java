@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.5 2000/06/24 03:16:12 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/06/24 03:16:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.6 2000/07/16 22:29:06 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/07/16 22:29:06 $
  *
  * ====================================================================
  *
@@ -64,7 +64,6 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
@@ -79,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/06/24 03:16:12 $
+ * @version $Revision: 1.6 $ $Date: 2000/07/16 22:29:06 $
  */
 
 public final class SelectTag extends BaseHandlerTag {
@@ -206,7 +205,7 @@ public final class SelectTag extends BaseHandlerTag {
 	    writer.println(results.toString());
 	} catch (IOException e) {
 	    throw new JspException
-		(messages.getMessage("formTag.io", e.toString()));
+		(messages.getMessage("common.io", e.toString()));
 	}
 
 	// Store this tag itself as a page attribute
@@ -219,23 +218,18 @@ public final class SelectTag extends BaseHandlerTag {
 	    Object bean = pageContext.findAttribute(Constants.BEAN_KEY);
 	    if (bean == null)
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.missing", property));
-	    String methodName = "get" + BeanUtils.capitalize(property);
-	    Class paramTypes[] = new Class[0];
-	    Method method = null;
-	    Object value = null;
+		    (messages.getMessage("getter.bean", Constants.BEAN_KEY));
 	    try {
-		method = bean.getClass().getMethod(methodName, paramTypes);
-		match = method.invoke(bean, new Object[0]).toString();
+		match = BeanUtils.getScalarProperty(bean, property);
 		if (match == null)
 		    match = "";
 	    } catch (NoSuchMethodException e) {
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.method", methodName));
+		    (messages.getMessage("getter.method", property));
 	    } catch (Exception e) {
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.result",
-					 methodName, e.toString()));
+		    (messages.getMessage("getter.result",
+					 property, e.toString()));
 	    }
 	}
 
@@ -268,7 +262,7 @@ public final class SelectTag extends BaseHandlerTag {
 	    writer.println(results.toString());
 	} catch (IOException e) {
 	    throw new JspException
-	        (messages.getMessage("formTag.io", e.toString()));
+	        (messages.getMessage("common.io", e.toString()));
 	}
 
 	// Continue processing this page
