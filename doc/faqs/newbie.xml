@@ -36,6 +36,8 @@ Here are answers to 24 common questions people ask when using Struts on their fi
 
     <li><a href="#actionforms">Why are my checkboxes not being set from ON to OFF?</a></li>
 
+    <li><a href="#reset"></a>Do I need to implement reset and set all my form properties to their initial values? </li>
+
     <li>How can I capture binary or formatted values, like dates or telephone numbers?</li>
 
     <li>Why do my option lists disappear when validation fails?</li>
@@ -43,6 +45,8 @@ Here are answers to 24 common questions people ask when using Struts on their fi
     <li><a href="#scriptlets">Can't I just create some of my JavaBeans in the JSP using a scriptlet?</a></li>
 
     <li><a href="#tags">Why do the Struts tags provide for so little formatting?</a></li>
+
+    <li><a href="#link">Why does the &lt;html:link> tag URL-encode javascript and mailto links?"</a></li>
 
     <li>When is the best time to validate input?</li>
 
@@ -167,6 +171,19 @@ And so forth
 </section>
 
 
+<section href="focus" name="Why doesn't the focus feature on the &lt;html:form> tag work in every circumstance?">
+<p>
+Unfortunately, there is some disagreement between the various browsers, and different versions of the same browser, as to how the focus can be set.
+The &lt;html:form> tag provides a quick and easy Javascript that will set the focus on a form
+for most versions of most browsers.
+If this feature doesn't work for you, then you should set the focus using your own Javascript.
+The focus feature is a convenient "value-add" -- not a core requirement of the tag.
+If you do come up with a Javascript that provides the final solution to this project,
+please post your patch to this <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=13454">Bugzilla ticket</a>.
+</p>
+</section>
+
+
 <section href="checkbox" name="Why are my checkboxes not being set from ON to OFF?">
 <p>
 A problem with a checkbox is that the browser will only include it in the request
@@ -190,6 +207,19 @@ behavior whenever a control is not "successful". Any blank element in a HTML
 form is not guaranteed to submitted. It is therefor very important to set the
 default values for an ActionForm correctly, and to implement the reset method
 when the ActionForm might kept in session scope.
+</p>
+</section>
+
+
+<section href="reset" name="Do I need to implement reset and set all my form properties to their initial values?">
+<p>
+No.
+You need to set checkbox properties to false if the ActionForm is being retained in session scope.
+This is because an unchecked box does not submit an attribute.
+Only checked boxes submit attributes.
+If the form is in session scope, and the checkbox was checked, there is no way to turn it back off without the reset method.
+Resetting the properties for other controls, or for a request scope form, is pointless.
+If the form is in request scope, everything already just started at the initial value.
 </p>
 </section>
 
@@ -223,7 +253,8 @@ mailing list</a>, where there are more people still using these approaches.
 
 <section href="tags" name="Why do the Struts tags provide for so little formatting?">
 <p>
-<i>The Struts tags seem to provide only the most rudimentary funcationality. Why is there not better support for date formatting and advanced string handling?</i>
+<i>The Struts tags seem to provide only the most rudimentary funcationality.
+Why is there not better support for date formatting and advanced string handling?</i>
 </p>
 <p>
 Three reasons:
@@ -236,8 +267,32 @@ Second, work started on Java Server Faces, and we didn't want to duplicate that 
 </p>
 <p>
 Third, in a Model 2 application, most of the formatting can be handled in the ActionForms (or in the business tier),
-so all the tag has to do is spit out a string. This leads to better reuse since the same "how to format" code
-does not need to be repeated in every instance. You can "say it once" in a JavaBean and be done with it.
+so all the tag has to do is spit out a string.
+This leads to better reuse since the same "how to format" code does not need to be repeated in every instance.
+You can "say it once" in a JavaBean and be done with it.
+</p>
+</section>
+
+<section href="layout" name="Why don't the Struts taglibs offer more layout options?">
+<p>
+Since the Struts tags are open source, you can extend them to provide whatever additional formatting you may need.
+If you are interested in a prewritten taglib that offers more layout options, see the
+<a href="http://struts.application-servers.com">struts-layout taglib</a>.
+</p>
+<p>
+In the same arena, there is a well regarded contributtor taglib that can help you create
+<a href="http://husted.com/struts/resources/struts-menu.zip">Menus for your Struts applications</a>.
+</p>
+</section>
+
+
+<section href="link" name="Why does the &lt;html:link> tag URL-encode javascript and mailto links?">
+<p>
+The &lt;html:link> tag is not intended for use with client-side references like those used to launch Javascripts or email clients.
+The purpose of link tag is to interject the context (or module) path into the URI so that your server-side links are not dependant on your context (or modoule) name.
+It also encodes the link, as needed, to maintain the client's session on the server.
+Neither feature applies to client-side links, so there is no reason to use the &lt;html:link> tag.
+Simply markup the client-side links using the standard <a/> tag.
 </p>
 </section>
 

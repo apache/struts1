@@ -36,7 +36,7 @@ Here are answers to the usual getting-started questions. <b>For an in-depth, sea
     <li><a href="#hosts">Are there ISPs that will host my Struts application?</a></li>
     <li><a href="#powered">What Web sites are already Powered by Struts?</a></li>
   </ul><ul>
-    <li><a href="#turbine">What's the difference between Struts and Turbine?</a></li>
+    <li><a href="#turbine">What's the difference between Struts and Turbine?  What's the difference between Struts and Expresso?</a></li>
     <li><a href="#taglibs">Why aren't the Struts tags maintained as part of the Jakarta Taglibs project?</a></li>
     <li><a href="#xhmtl">Are the Struts tags XHTML compliant?</a></li>
     <li><a href="#jsf">What about the JSTL and JavaServer Faces?</a></li>
@@ -136,6 +136,26 @@ classes.  In the test hierarchy, there are also some "mock object" classes
 (in the org.apache.struts.mock package) so that you can package up things
 that look like servlet API and Struts API objects to pass in as arguments
 to such tests.</p>
+<p>
+Another valuable tool is
+<a href="http://sourceforge.net/projects/strutstestcase/">Struts TestCase</a>
+which provides a useful harness for Action classes that can be used with JUnit or
+<a href="http://jakarta.apache.org/cactus">Cactus</a>.
+</p>
+</section>
+
+<section href="requests" name="If the framework doesn't do what I want, can I request that a feature be added?">
+<p>
+First, it's important to remember that Struts is an all-volunteer project.
+We don't charge anyone anything to use Struts.
+Committers and other developers work on Struts because they need to use it with their own applications.
+If others can use it too, that's "icing on the cake".
+If you submit a patch for a feature that a Committer finds useful, then that Committer may choose to volunteer his or her time to apply the patch.
+If you just submit an idea without a patch, it is much less likely to be added (since first someone else has to volunteer their time to write the patch).
+</p>
+<p>
+We are grateful for any patches, and we welcome new ideas, but the best way to see that something gets added to the framework is to do as much of the work as you can, rather than rely on the "kindness of strangers". Worst case, you can apply the patch to your copy of Struts and still use the feature in your own application. (Which is what open source is ~really~ all about.)
+</p>
 </section>
 
 <section href="help" name="Where can I get help with Struts?">
@@ -181,8 +201,26 @@ links.
 <p>For a listing of some Struts-powered Web sites available to the public, visit our <a href="resources/powered.html">Resources page</a>.</p>
 </section>
 
-<section href="turbine" name="What's the difference between Jakarta Struts and Jakarta Turbine?">
-<p>See</p>
+<section href="turbine" name="What's the difference between Struts and Turbine? What's the difference between Struts and Expresso?">
+<p>
+If you are starting fromn scratch, packages like
+<a href="http://jakarta.apache.org/turbine">Turbine</a> and
+<a href="http://jcorporate.com">Expresso</a>
+can be very helpful since they try to provide all of the basic services that your team is likely to need.
+Such services include things like data persistance and logging.
+</p>
+<p>
+If you are not starting from scratch, and need to hook up your web application to an existing infrastructure, then "plain vanilla" Struts can be a better choice.
+The core Struts framework does not presuppose that you are using a given set of data persistance, presentation, or logging tools.
+Anything goes =:0)
+</p>
+<p>
+Compared to other offerings, Struts endeavors to be a minimalist framework.
+We try leverage existing technologies whenever we can and then provide only the missing pieces you need to combine disparent technologies into a coherent application.
+This is great when you want to select your own tools to use with Struts.
+But, if you prefer a more integrated infrastructure, then packages like Turbine or Expresso are perfectly good ways to go.
+</p>
+<p>See also</p>
 <ul>
 <li>&lt; <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg03206.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg03206.html</a> &gt;</li>
 <li>&lt; <a href="http://www.mail-archive.com/general@jakarta.apache.org/msg00495.html">http://www.mail-archive.com/general@jakarta.apache.org/msg00495.html</a> &gt;</li>
