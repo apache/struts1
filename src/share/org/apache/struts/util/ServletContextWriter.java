@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ServletContextWriter.java,v 1.3 2004/01/10 21:03:36 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2004/01/10 21:03:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ServletContextWriter.java,v 1.4 2004/01/10 21:19:57 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/10 21:19:57 $
  *
  * ====================================================================
- * 
+ *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights 
+ * Copyright (c) 2000-2004 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -15,7 +15,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -23,20 +23,20 @@
  *    distribution.
  *
  * 3. The end-user documentation included with the redistribution, if
- *    any, must include the following acknowlegement:  
- *       "This product includes software developed by the 
+ *    any, must include the following acknowledgement:
+ *       "This product includes software developed by the
  *        Apache Software Foundation (http://www.apache.org/)."
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
  * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
- *    from this software without prior written permission. For written 
+ *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
  *
  * 5. Products derived from this software may not be called "Apache"
- *    nor may "Apache" appear in their names without prior written
- *    permission of the Apache Group.
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
  *
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -57,16 +57,13 @@
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */ 
-
+ */
 
 package org.apache.struts.util;
-
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import javax.servlet.ServletContext;
-
 
 /**
  * A PrintWriter implementation that uses the logging facilities of a
@@ -75,9 +72,8 @@ import javax.servlet.ServletContext;
  * is called, or until one of the <code>println()</code> methods is called.
  * Along the way, carriage return characters are skipped.
  *
- * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:36 $
+ * @version $Revision: 1.4 $ $Date: 2004/01/10 21:19:57 $
  */
-
 public class ServletContextWriter extends PrintWriter {
 
 
