@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/Attic/LinkSubscriptionRenderer.java,v 1.1 2003/03/07 03:22:42 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:42 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/Attic/LinkSubscriptionRenderer.java,v 1.2 2003/06/04 17:37:36 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:37:36 $
  *
  * ====================================================================
  *
@@ -64,10 +64,14 @@ package org.apache.struts.webapp.example;
 
 import java.io.IOException;
 import javax.faces.FacesException;
+import javax.faces.FactoryFinder;
+import javax.faces.application.Application;
+import javax.faces.application.ApplicationFactory;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.el.ValueBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
@@ -82,7 +86,7 @@ import org.apache.struts.util.ResponseUtils;
  * <code>linkSubscription</code> tag for the Struts Example application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:42 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:37:36 $
  */
 
 public class LinkSubscriptionRenderer extends AbstractRenderer {
@@ -119,17 +123,21 @@ public class LinkSubscriptionRenderer extends AbstractRenderer {
 
         ResponseWriter writer = context.getResponseWriter();
         HttpServletRequest request = (HttpServletRequest)
-            context.getServletRequest();
+            context.getExternalContext().getRequest();
         HttpServletResponse response = (HttpServletResponse)
-            context.getServletResponse();
+            context.getExternalContext().getResponse();
         String name = (String) component.getAttribute("name");
         String page = (String) component.getAttribute("page");
 
         // Generate the URL to be encoded
         StringBuffer url = new StringBuffer(request.getContextPath());
         url.append(page);
+        ApplicationFactory factory = (ApplicationFactory)
+            FactoryFinder.getFactory(FactoryFinder.APPLICATION_FACTORY);
+        Application application = factory.getApplication();
+        ValueBinding binding = application.getValueBinding(name);
         Subscription subscription = (Subscription)
-            context.getModelValue(name);
+            binding.getValue(context);
         if (subscription == null) {
             throw new FacesException
                 ("No subscription under attribute '" + name + "'");

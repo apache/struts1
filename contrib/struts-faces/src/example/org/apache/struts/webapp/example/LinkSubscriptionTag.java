@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LinkSubscriptionTag.java,v 1.1 2003/03/07 03:22:42 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:42 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/LinkSubscriptionTag.java,v 1.2 2003/06/04 17:37:36 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/06/04 17:37:36 $
  *
  * ====================================================================
  *
@@ -65,9 +65,7 @@ package org.apache.struts.webapp.example;
 
 import java.io.IOException;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIOutput;
-import javax.faces.webapp.FacesTag;
-import javax.servlet.jsp.JspException;
+import javax.faces.webapp.UIComponentTag;
 
 
 /**
@@ -75,10 +73,10 @@ import javax.servlet.jsp.JspException;
  * associated query parameters selecting a specified Subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/03/07 03:22:42 $
+ * @version $Revision: 1.2 $ $Date: 2003/06/04 17:37:36 $
  */
 
-public class LinkSubscriptionTag extends FacesTag {
+public class LinkSubscriptionTag extends UIComponentTag {
 
 
     // ------------------------------------------------------------- Attributes
@@ -108,11 +106,11 @@ public class LinkSubscriptionTag extends FacesTag {
 
 
     /**
-     * <p>Create a new component for this tag.</p>
+     * Return the component type for this tag.</p>
      */
-    public UIComponent createComponent() {
+    public String getComponentType() {
 
-        return (new UIOutput());
+        return ("Output");
 
     }
 
