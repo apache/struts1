@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.7 2002/10/09 05:09:35 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/10/09 05:09:35 $
+ * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.8 2002/10/12 19:21:18 martinc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/10/12 19:21:18 $
  *
  * ====================================================================
  *
@@ -63,7 +63,11 @@
 package org.apache.struts.webapp.exercise;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionForm;
@@ -76,7 +80,7 @@ import org.apache.struts.util.LabelValueBean;
  *
  * @author Craig R. McClanahan
  * @author Martin F N Cooper
- * @version $Revision: 1.7 $ $Date: 2002/10/09 05:09:35 $
+ * @version $Revision: 1.8 $ $Date: 2002/10/12 19:21:18 $
  */
 
 public class TestBean extends ActionForm {
@@ -422,6 +426,74 @@ public class TestBean extends ActionForm {
 
     public void setWithNulls(String withNulls) {
         this.withNulls = withNulls;
+    }
+
+
+    /**
+     * A List property.
+     */
+    private List listProperty = null;
+
+    public List getListProperty() {
+        if (listProperty == null) {
+            listProperty = new ArrayList();
+            listProperty.add("dummy");
+        }
+        return listProperty;
+    }
+
+    public void setListProperty(List listProperty) {
+        this.listProperty = listProperty;
+    }
+
+    /**
+     * An empty List property.
+     */
+    private List emptyListProperty = null;
+
+    public List getEmptyListProperty() {
+        if (emptyListProperty == null) {
+            emptyListProperty = new ArrayList();
+        }
+        return emptyListProperty;
+    }
+
+    public void setEmptyListProperty(List emptyListProperty) {
+        this.emptyListProperty = emptyListProperty;
+    }
+
+
+    /**
+     * A Map property.
+     */
+    private Map mapProperty = null;
+
+    public Map getMapProperty() {
+        if (mapProperty == null) {
+            mapProperty = new HashMap();
+            mapProperty.put("dummy", "dummy");
+        }
+        return mapProperty;
+    }
+
+    public void setMapProperty(Map mapProperty) {
+        this.mapProperty = mapProperty;
+    }
+
+    /**
+     * An empty Map property.
+     */
+    private Map emptyMapProperty = null;
+
+    public Map getEmptyMapProperty() {
+        if (emptyMapProperty == null) {
+            emptyMapProperty = new HashMap();
+        }
+        return emptyMapProperty;
+    }
+
+    public void setEmptyMapProperty(Map emptyMapProperty) {
+        this.emptyMapProperty = emptyMapProperty;
     }
 
 

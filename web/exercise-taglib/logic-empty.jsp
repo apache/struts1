@@ -55,7 +55,55 @@
     </td>
   </tr>
   <tr>
-    <td>non-string object</td>
+    <td>empty collection</td>
+    <td>empty</td>
+    <td>
+      <logic:empty name="bean" property="emptyListProperty">
+        empty
+      </logic:empty>
+      <logic:notEmpty name="bean" property="emptyListProperty">
+        notEmpty
+      </logic:notEmpty>
+    </td>
+  </tr>
+  <tr>
+    <td>non-empty collection</td>
+    <td>notEmpty</td>
+    <td>
+      <logic:empty name="bean" property="listProperty">
+        empty
+      </logic:empty>
+      <logic:notEmpty name="bean" property="listProperty">
+        notEmpty
+      </logic:notEmpty>
+    </td>
+  </tr>
+  <tr>
+    <td>empty map</td>
+    <td>empty</td>
+    <td>
+      <logic:empty name="bean" property="emptyMapProperty">
+        empty
+      </logic:empty>
+      <logic:notEmpty name="bean" property="emptyMapProperty">
+        notEmpty
+      </logic:notEmpty>
+    </td>
+  </tr>
+  <tr>
+    <td>non-empty map</td>
+    <td>notEmpty</td>
+    <td>
+      <logic:empty name="bean" property="mapProperty">
+        empty
+      </logic:empty>
+      <logic:notEmpty name="bean" property="mapProperty">
+        notEmpty
+      </logic:notEmpty>
+    </td>
+  </tr>
+  <tr>
+    <td>unsupported object</td>
     <td>notEmpty</td>
     <td>
       <logic:empty name="bean" property="intProperty">
