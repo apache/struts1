@@ -79,10 +79,19 @@ main menu.
   </tr>
 
   <tr>
-    <th align="right">Multiple Select From A Collection:</th>
+    <th align="right">Multiple Select From A Collection (Using &lt;html:options&gt;):</th>
     <td align="left">
       <html:select property="collectionSelect" size="10" multiple="true">
         <html:options collection="options" property="value" labelProperty="label"/>
+      </html:select>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">Multiple Select From A Collection (Using &lt;html:optionsCollection&gt;):</th>
+    <td align="left">
+      <html:select property="beanCollectionSelect" size="10" multiple="true">
+        <html:optionsCollection name="testbean" property="beanCollection"/>
       </html:select>
     </td>
   </tr>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.4 2001/10/15 05:50:10 martinc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/10/15 05:50:10 $
+ * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.5 2002/02/23 07:10:30 martinc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/02/23 07:10:30 $
  *
  * ====================================================================
  *
@@ -63,22 +63,73 @@
 package org.apache.struts.webapp.exercise;
 
 
+import java.util.Collection;
+import java.util.Vector;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.util.LabelValueBean;
 
 
 /**
  * General purpose test bean for Struts custom tag tests.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/10/15 05:50:10 $
+ * @author Martin F N Cooper
+ * @version $Revision: 1.5 $ $Date: 2002/02/23 07:10:30 $
  */
 
 public class TestBean extends ActionForm {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * A collection property where the elements of the collection are
+     * of type <code>LabelValueBean</code>.
+     */
+    private Collection beanCollection = null;
+
+    public Collection getBeanCollection() {
+        if (beanCollection == null) {
+            Vector entries = new Vector(10);
+
+            entries.add(new LabelValueBean("Label 0", "Value 0"));
+            entries.add(new LabelValueBean("Label 1", "Value 1"));
+            entries.add(new LabelValueBean("Label 2", "Value 2"));
+            entries.add(new LabelValueBean("Label 3", "Value 3"));
+            entries.add(new LabelValueBean("Label 4", "Value 4"));
+            entries.add(new LabelValueBean("Label 5", "Value 5"));
+            entries.add(new LabelValueBean("Label 6", "Value 6"));
+            entries.add(new LabelValueBean("Label 7", "Value 7"));
+            entries.add(new LabelValueBean("Label 8", "Value 8"));
+            entries.add(new LabelValueBean("Label 9", "Value 9"));
+
+            beanCollection = entries;
+        }
+
+        return (beanCollection);
+    }
+
+    public void setBeanCollection(Collection beanCollection) {
+        this.beanCollection = beanCollection;
+    }
+
+
+    /**
+     * A multiple-String SELECT element using a bean collection.
+     */
+    private String[] beanCollectionSelect = { "Value 1", "Value 3",
+                                              "Value 5" };
+
+    public String[] getBeanCollectionSelect() {
+        return (this.beanCollectionSelect);
+    }
+
+    public void setBeanCollectionSelect(String beanCollectionSelect[]) {
+        this.beanCollectionSelect = beanCollectionSelect;
+    }
 
 
     /**

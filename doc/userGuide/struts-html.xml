@@ -3430,7 +3430,7 @@
                 element.  This tag can be used multiple times within a single
                 <code>&lt;html:select&gt;</code> element, either in conjunction
                 with or instead of one or more <code>&lt;html:option&gt;</code>
-                elements.</p>
+                or <code>&lt;html:optionsCollection&gt;</code> elements.</p>
 
                 <p>This tag operates in one of two major modes, depending on
                 whether or not the <code>collection</code> attribute is
@@ -3570,6 +3570,426 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 CSS stylesheet class to be applied to this HTML element.
+            </info>
+        </attribute>
+    </tag>
+
+    <tag>
+
+        <name>optionsCollection</name>
+        <summary>
+            Render a Collection of Select Options
+        </summary>
+        <tagclass>org.apache.struts.taglib.html.OptionsCollectionTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>
+            <p>Renders a set of HTML <code>&lt;option&gt;</code> elements,
+            representing possible choices for a <code>&lt;select&gt;</code>
+            element.  This tag can be used multiple times within a single
+            <code>&lt;html:select&gt;</code> element, either in conjunction
+            with or instead of one or more <code>&lt;html:option&gt;</code>
+            or <code>&lt;html:options&gt;</code> elements.</p>
+
+            <p>This tag operates on a collection of beans, where each bean
+            has a <strong>label</strong> property and a <strong>value</strong>
+            property. The actual names of these properties can be configured
+            using the <code>label</code> and <code>value</code> attributes
+            of this tag.</p>
+
+            <p>This tag differs from the <code>&lt;html:options&gt;</code> tag
+            in that it makes more consistent use of the <code>name</code> and
+            <code>property</code> attributes, and allows the collection to be
+            more easily obtained from the enclosing form bean.</p>
+        </info>
+
+        <attribute>
+            <name>label</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The property of the bean within the collection which represents
+                the label to be rendered for each option. Defaults to "label".
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The attribute name of the bean whose properties are consulted
+                when rendering the current value of this input field. If not
+                specified, the bean associated with the form tag we are nested
+                within is utilized.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>property</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The property of the form bean, or the bean specified by the name
+                attribute, that will return the collection of objects to be
+                rendered for these options.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>style</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS styles to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS stylesheet class to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>value</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The property of the bean within the collection which represents
+                the value to be rendered for each option. Defaults to "value".
+            </info>
+        </attribute>
+    </tag>
+
+    <tag>
+
+        <name>password</name>
+        <summary>
+            Render A Password Input Field
+        </summary>
+        <tagclass>org.apache.struts.taglib.html.PasswordTag</tagclass>
+        <info>
+            Renders an HTML &lt;input&gt; element of type password, populated
+            from the specified value or the specified property of the bean
+            associated with our current form. This tag is only valid when
+            nested inside a form tag body.
+        </info>
+
+        <attribute>
+            <name>accesskey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The keyboard character used to move focus immediately to this
+                element.
+            </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
+        </attribute>
+
+        <attribute>
+            <name>indexed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Valid only inside of logic:iterate tag.
+                If yes then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor logic:iterate tag.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>maxlength</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Maximum number of input characters to accept. [No limit]
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The attribute name of the bean whose properties are consulted when
+                rendering the current value of this input field. If not specified,
+                the bean associated with the form tag we are nested within is utilized.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onblur</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element loses input
+                focus.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onchange</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element loses input
+                focus and its value has changed.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onclick</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element receives a
+                mouse click.
+            </info>
+        </attribute>
+
+
+        <attribute>
+            <name>ondblclick</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element receives a
+                mouse double click.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onfocus</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element receives input
+                focus.
+            </info>
+        </attribute>
+
+
+        <attribute>
+            <name>onkeydown</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element has focus and a
+                key is depressed.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onkeypress</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element has focus and a
+                key is depressed and released.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onkeyup</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element has focus and a
+                key is released.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onmousedown</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under the mouse
+                pointer and a mouse button is depressed.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onmousemove</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under the
+                mouse pointer and the pointer is moved.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onmouseout</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element was under the
+                mouse pointer but the pointer was moved outside the element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onmouseover</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element was not under
+                the mouse pointer but the pointer is moved inside the element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onmouseup</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under the
+                mouse pointer and a mouse button is released.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>property</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Name of the request parameter that will be included with this
+                submission, set to the specified value.
+            </info>
+        </attribute>
+
+        <attribute>
+          <name>readonly</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          read only.
+          </info>
+        </attribute>
+
+                <attribute>
+                        <name>redisplay</name>
+                        <required>false</required>
+                        <rtexprvalue>true</rtexprvalue>
+                        <info>
+                        Boolean flag indicating whether or not existing values
+                        will be redisplayed if they exist.  Even though the
+                        redisplayed value will be shown as asterisks on the
+                        visible HTML page, the cleartext of the actual password
+                        value will be visible though the "Show Page Source"
+                        menu option of the client browser.  You may wish to
+                        set this value to <code>false</code> on login pages.
+                        Defaults to <code>true</code> for consistency with
+                        all other form tags that redisplay their contents.
+                        </info>
+                </attribute>
+
+        <attribute>
+            <name>style</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS styles to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS stylesheet class to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>size</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Number of character positions to allocate. [Browser default]
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>tabindex</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The tab order (ascending positive integers) for this element.
+            </info>
+        </attribute>
+
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
+
+        <attribute>
+            <name>value</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Value of the label to be placed on this button. This value will
+                also be submitted as the value of the specified request parameter.
+                [Body of this tag (if any), or "Cancel"]
             </info>
         </attribute>
     </tag>
