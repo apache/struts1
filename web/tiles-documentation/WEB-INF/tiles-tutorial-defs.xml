@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
  <!DOCTYPE tiles-definitions PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration//EN"
-       "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
 
 <!--
      DTD for the Struts Application Configuration File, Version 1.1
@@ -11,7 +11,7 @@
      DOCTYPE element at the beginning (after the "xml" declaration):
 
      <!DOCTYPE struts-config PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/tiless-config_1_1.dtd">
 
 -->
