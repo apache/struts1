@@ -136,7 +136,8 @@ public class TilesPreProcessor implements Command
      *
      * @param context The <code>Context</code> for the current request
      *
-     * @return <code>true</code> so that processing completes
+     * @return <code>false</code> in most cases, but true if we determine
+     * that we're processing in "include" mode.
      */
     public boolean execute(Context context) throws Exception {
 
@@ -145,7 +146,7 @@ public class TilesPreProcessor implements Command
                                       context.get(getForwardConfigKey());
         if (forwardConfig == null || forwardConfig.getPath() == null)
         {
-            log.debug("No forwardConfig or no path, so stop processing.");
+            log.debug("No forwardConfig or no path, so pass to next command.");
             return (false);
         }
 
@@ -161,7 +162,7 @@ public class TilesPreProcessor implements Command
         catch (FactoryNotFoundException ex)
         {
             // this is not a serious error, so log at low priority
-            log.debug("Tiles DefinitionFactory not found, so stop processing.");
+            log.debug("Tiles DefinitionFactory not found, so pass to next command.");
             return false;
         }
 
@@ -231,7 +232,7 @@ public class TilesPreProcessor implements Command
 
 
         if (uri == null) {
-            log.debug("no uri computed, so stop processing");
+            log.debug("no uri computed, so pass to next command");
             return false;
         }
 
