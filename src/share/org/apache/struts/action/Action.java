@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.43 2002/07/09 23:57:05 husted Exp $
- * $Revision: 1.43 $
- * $Date: 2002/07/09 23:57:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.44 2002/07/16 16:52:18 craigmcc Exp $
+ * $Revision: 1.44 $
+ * $Date: 2002/07/16 16:52:18 $
  *
  * ====================================================================
  *
@@ -109,7 +109,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.43 $ $Date: 2002/07/09 23:57:05 $
+ * @version $Revision: 1.44 $ $Date: 2002/07/16 16:52:18 $
  */
 
 public class Action {
@@ -353,6 +353,9 @@ public class Action {
      * Process the specified HTTP request, and create the corresponding HTTP
      * response (or forward to another web component that will create it),
      * with provision for handling exceptions thrown by the business logic.
+     * Return an {@link ActionForward} instance describing where and how
+     * control should be forwarded, or <code>null</code> if the response
+     * has already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
      * @param form The optional ActionForm bean for this request (if any)
@@ -379,6 +382,9 @@ public class Action {
      * Process the specified HTTP request, and create the corresponding HTTP
      * response (or forward to another web component that will create it),
      * with provision for handling exceptions thrown by the business logic.
+     * Return an {@link ActionForward} instance describing where and how
+     * control should be forwarded, or <code>null</code> if the response
+     * has already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
      * @param form The optional ActionForm bean for this request (if any)
