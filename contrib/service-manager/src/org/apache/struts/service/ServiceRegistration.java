@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/Attic/ServiceRegistration.java,v 1.1 2001/07/14 22:41:57 oalexeev Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/14 22:41:57 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/Attic/ServiceRegistration.java,v 1.2 2001/07/21 20:58:32 oalexeev Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/07/21 20:58:32 $
  *
  * ====================================================================
  *
@@ -61,13 +61,14 @@
 
 package org.apache.struts.service;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /** 
  * @author Oleg V Alexeev
- * @version $Revision: 1.1 $ $Date: 2001/07/14 22:41:57 $
+ * @version $Revision: 1.2 $ $Date: 2001/07/21 20:58:32 $
  */
-public class ServiceRegistration {
+public class ServiceRegistration implements Serializable {
 
         protected HashMap subscriptions = new HashMap();
         
