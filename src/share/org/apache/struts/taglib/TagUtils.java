@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.24 2003/08/23 00:12:40 dgraham Exp $
- * $Revision: 1.24 $
- * $Date: 2003/08/23 00:12:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.25 2003/08/23 00:22:12 dgraham Exp $
+ * $Revision: 1.25 $
+ * $Date: 2003/08/23 00:22:12 $
  *
  * ====================================================================
  *
@@ -101,7 +101,7 @@ import org.apache.struts.util.RequestUtils;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.24 $
+ * @version $Revision: 1.25 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -629,6 +629,8 @@ public class TagUtils {
      * @param paramName Key for parameter value
      * @return ActionErrors from request scope
      * @exception JspException
+     * @deprecated Use getActionMessages() instead.  This will be removed
+     * after Struts 1.2.
      */
     public ActionErrors getActionErrors(PageContext pageContext, String paramName)
         throws JspException {
@@ -649,7 +651,9 @@ public class TagUtils {
             } else if (value instanceof String[]) {
                 String keys[] = (String[]) value;
                 for (int i = 0; i < keys.length; i++) {
-                    errors.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(keys[i]));
+                    errors.add(
+                        ActionMessages.GLOBAL_MESSAGE,
+                        new ActionMessage(keys[i]));
                 }
 
             } else if (value instanceof ActionErrors) {
@@ -766,7 +770,9 @@ public class TagUtils {
      * @return ActionErrors in page context.
      * @throws JspException
      */
-    public ActionMessages getActionMessages(PageContext pageContext, String paramName)
+    public ActionMessages getActionMessages(
+        PageContext pageContext,
+        String paramName)
         throws JspException {
 
         ActionMessages am = new ActionMessages();
@@ -777,20 +783,30 @@ public class TagUtils {
             if (value == null) {
                 ;
             } else if (value instanceof String) {
-                am.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage((String) value));
+                am.add(
+                    ActionMessages.GLOBAL_MESSAGE,
+                    new ActionMessage((String) value));
                 
             } else if (value instanceof String[]) {
                 String keys[] = (String[]) value;
                 for (int i = 0; i < keys.length; i++){
-                    am.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(keys[i]));
+                    am.add(
+                        ActionMessages.GLOBAL_MESSAGE,
+                        new ActionMessage(keys[i]));
                 }
-                    
+                 
+            } else if (value instanceof ActionErrors) {
+                ActionMessages m = (ActionMessages) value;
+                am.add(m);
+                
             } else if (value instanceof ActionMessages) {
                 am = (ActionMessages) value;
                 
             } else {
                 throw new JspException(
-                    messages.getMessage("actionMessages.errors", value.getClass().getName()));
+                    messages.getMessage(
+                        "actionMessages.errors",
+                        value.getClass().getName()));
             }
             
         } catch (JspException e) {

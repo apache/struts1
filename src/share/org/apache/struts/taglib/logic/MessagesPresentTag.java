@@ -70,7 +70,7 @@ import org.apache.struts.taglib.TagUtils;
  * class or for the property specified.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.9 $ $Date: 2003/07/30 23:55:50 $
+ * @version $Revision: 1.10 $ $Date: 2003/08/23 00:22:12 $
  * @since Struts 1.1
  */
 public class MessagesPresentTag extends ConditionalTagBase {
@@ -127,12 +127,7 @@ public class MessagesPresentTag extends ConditionalTagBase {
         }
 
         try {
-            // Definitely know it should be an error so use method to retrieve errors.
-            if (Globals.ERROR_KEY.equals(name)) {
-                am = TagUtils.getInstance().getActionErrors(pageContext, name);
-            } else {
-                am = TagUtils.getInstance().getActionMessages(pageContext, name);
-            }
+            am = TagUtils.getInstance().getActionMessages(pageContext, name);
             
         } catch (JspException e) {
             TagUtils.getInstance().saveException(pageContext, e);
