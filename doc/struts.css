@@ -134,6 +134,13 @@ th.attribute {
 
 thead {
 	border: 2px solid #CCCCCC;
+	background: #DDDDDD;
+	color: #333333;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+tr.evenRow {
+	background: #F6F6F6;
 }
 
 .center {

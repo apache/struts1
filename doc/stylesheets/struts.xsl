@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: struts.xsl,v 1.15 2003/09/17 18:54:25 sraeburn Exp $ -->
+<!-- $Id: struts.xsl,v 1.16 2003/09/29 17:03:02 sraeburn Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns="http://www.w3.org/1999/xhtml"
@@ -96,6 +96,12 @@
         </div>
 
         <div id="menu">
+        
+            <!-- to be removed after ApacheCon 2003 ends 20th of November 2003 -->
+            <a href="http://apachecon.com/2003/US/index.html">
+            <img src="http://jakarta.apache.org/images/logos/ac2003-150.gif" alt="ApacheCon 2003"/>
+            </a>   
+        
             <xsl:apply-templates select="$project"/>
 
             <!-- 
@@ -241,6 +247,15 @@
             </thead>
             <xsl:for-each select="tag">
               <tr>
+                <xsl:choose>
+                  <xsl:when test="position() mod 2 = 1">
+                     <xsl:attribute name="class">evenRow</xsl:attribute>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:attribute name="class">oddRow</xsl:attribute>
+                  </xsl:otherwise>
+                </xsl:choose>
+
                 <td align="center">
                   <xsl:variable name="name">
                     <xsl:value-of select="name"/>
@@ -291,11 +306,20 @@
       <p><a href="#top">Back to top</a></p>
 
   </xsl:template>
-
+	
 
   <!-- Create the table of documentation for a tag -->
-  <xsl:template match="attribute">
+  <xsl:template match="attribute">    
       <tr>
+        <xsl:choose>
+          <xsl:when test="position() mod 2 = 1">
+            <xsl:attribute name="class">evenRow</xsl:attribute>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:attribute name="class">oddRow</xsl:attribute>
+          </xsl:otherwise>
+        </xsl:choose>
+      
         <td align="center">
           <xsl:value-of select="name"/>
         </td>
