@@ -88,7 +88,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.17 $ $Date: 2002/11/20 05:56:08 $
+ * @version $Revision: 1.18 $ $Date: 2002/11/21 02:02:16 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -333,8 +333,17 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
                 // Create list of ValidatorActions based on lActionMethods
                 for (Iterator i = lActionMethods.iterator(); i.hasNext();) {
-                    ValidatorAction va = resources.getValidatorAction((String) i.next());
+                    String depends = (String) i.next();
+                    ValidatorAction va = resources.getValidatorAction(depends);
 
+                    // throw nicer NPE for easier debugging
+                    if (va == null) {
+                        throw new NullPointerException(
+                            "Depends string \""
+                                + depends
+                                + "\" was not found in validator-rules.xml.");
+                    }               
+                    
                     String javascript = va.getJavascript();
                     if (javascript != null && javascript.length() > 0) {
                         lActions.add(va);
