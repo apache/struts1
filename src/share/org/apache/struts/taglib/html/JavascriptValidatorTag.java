@@ -88,7 +88,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.16 $ $Date: 2002/11/16 06:05:21 $
+ * @version $Revision: 1.17 $ $Date: 2002/11/20 05:56:08 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -510,13 +510,20 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         src = null;
     }
 
+    /**
+     * Returns the opening script element and some initial javascript.
+     */
     protected String getJavascriptBegin(String methods) {
         StringBuffer sb = new StringBuffer();
         String name =
             formName.substring(0, 1).toUpperCase() + formName.substring(1, formName.length());
 
         sb.append(this.getStartElement());
-
+        
+        if (this.isXhtml()) {
+            sb.append("<![CDATA[\r\n");
+        }
+        
         if ("true".equals(htmlComment))
             sb.append(htmlBeginComment);
         sb.append("\n     var bCancel = false; \n\n");
@@ -566,12 +573,21 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         return sb.toString();
     }
 
+    /**
+     * Returns the closing script element.
+     */
     protected String getJavascriptEnd() {
         StringBuffer sb = new StringBuffer();
 
         sb.append("\n");
-        if ("true".equals(htmlComment))
+        if ("true".equals(htmlComment)){
             sb.append(htmlEndComment);
+        }
+        
+         if (this.isXhtml()) {
+            sb.append("]]>\r\n");
+        }
+        
         sb.append("</script>\n\n");
 
         return sb.toString();
@@ -632,10 +648,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         StringBuffer start = new StringBuffer("<script type=\"text/javascript\"");
 
         // there is no language attribute in xhtml
-        String xhtml =
-            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
-        
-        if (!("true".equalsIgnoreCase(xhtml))) {
+        if (!this.isXhtml()) {
             start.append(" language=\"Javascript1.1\"");
         }
 
@@ -645,6 +658,16 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         start.append("> \n");
         return start.toString();
+    }
+    
+    /**
+     * Returns true if this is an xhtml page.
+     */
+    private boolean isXhtml() {
+        String xhtml =
+            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
+
+        return ("true".equalsIgnoreCase(xhtml));
     }
 
 }
