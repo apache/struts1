@@ -6,11 +6,11 @@
     <title>Struts Framework</title>
 
     <menu name="Documentation">
-        <item name="Home"               href="index.html"/>
-        <item name="Installation"       href="installation.html"/>
-        <item name="Javadoc"            href="api/index.html"/>
-        <item name="Release Notes"      href="release.html"/>
-        <item name="TODO List"          href="todo.html"/>
+        <item name="Home"                href="index.html"/>
+        <item name="Installation"        href="installation.html"/>
+        <item name="Javadoc"             href="api/index.html"/>
+        <item name="Release Notes (1.0)" href="release.html"/>
+        <item name="TODO List (1.1)"     href="todo.html"/>
     </menu>
 
     <menu name="Java Developer Guides">

@@ -3,7 +3,7 @@
 
   <properties>
     <author>Craig R. McClanahan</author>
-    <title>The Struts Project TODO List</title>
+    <title>The Struts Project TODO List for Version 1.1</title>
   </properties>
 
   <body>
@@ -12,18 +12,18 @@
   <section name="Introduction" href="Intro">
 
   <p>Application frameworks, like the applications we build with them,
-  never seem to be completed.  The following items have been targeted
-  for completion in preparation for a version <strong>1.0</strong>
-  release of Struts, timed to coincide with the ApacheCon Europe 2000
-  conference in London, October 23-25, 2000.</p>
+  never seem to be completed.  The following major areas of improvement
+  are being considered for implementation in version <strong>1.1</strong>
+  of Struts, with work to begin as soon as version 1.0 is released.</p>
 
-  <p>Whether everything listed here makes it in to the final release
-  depends primarily on how many volunteers are interested in contributing
-  code and ideas to make it happen.  If you are interested in helping out
-  on specific tasks listed below, please let us know (via a message to the
-  STRUTS-DEV mailing list), and we will put your name in the "Volunteers"
-  column.  There is also no problem having more than one person collaborating
-  on a particular task, if you would like to do that.</p>
+  <p>An external development that is likely to affect the development of
+  Struts 1.1 will be the emerging Standard Tag Library, being produced under
+  the Java Community Process (see JSR #52 for more information), at
+  <a href="http://java.sun.com/jcp">http://java.sun.com/jcp</a>.  The existing
+  Struts tags will certainly be used as input to the standardization process,
+  but in the case where standard tags with similar functionality are adopted,
+  we should migrate Struts tags to maintain maximum compatibility with the
+  new standard library.</p>
 
   <p>The TODO list tasks are divided into functional areas that correspond
   to the major components of the Struts Framework.  References in square
@@ -39,58 +39,51 @@
       action and form bean classes, plus the supporting data structures.</p>
     </info>
 
-    <task name="Standard Actions">
+    <task name="ActionForms With Dynamic Properties">
       <info>
-        <p>Begin the collection of a set of generally useful standard
-        <code>Action</code> implementations, in a new Java package
-        [<code>org.apache.struts.actions</code>].  Useful actions to consider:
-        add/change/delete configured mappings, forwards, and beans; reload
-        the configuration file; file upload handling.</p>
+        <p>Create mechanisms to support ActionForm implementations where the
+        set of properties to be included is dynamically calculated, in addition
+        to the current support for properties that are accessed through the
+        Java Reflection APIs and are therefore fixed.</p>
       </info>
     </task>
 
-    <task name="Enhanced Validation">
+    <task name="Workflow Processing">
       <info>
-        <p>Replace the current <code>ValidatingActionForm.validate()</code>
-        method with one that takes useful contextual arguments (request?,
-        servlet?, mapping?) so that it can do more global sorts of validation
-        checks, as well as access external resources.</p>
-        <p><strong>NOTE:  Likely to break backwards compatibility.</strong></p>
+        <p>Create a mechanism by which business logic (now encoded in
+        <code>Action</code> classes) can be subdivided into individual work
+        <code>Tasks</code> that are combined according to configuration
+        information (including flow control and iteration support) in the
+        <code>struts-config.xml</code> file.  Support for workflow processing
+        would be provided by a set of standard <code>Actions</code>, and
+        will offer an alternative mechanism (not a replacement of Actions)
+        to organizing your business logic.</p>
       </info>
     </task>
 
-    <task name="Referer-Based Forwards">
+    <task name="Standard Validations">
       <info>
-        <p>Support a special type of <code>ActionForward</code> that uses the
-        HTTP <code>Referer</code> header to identify the page to be returned
-        to for the input form, without having to name it explicitly.  This
-        allows page developers to include the same form in multiple pages,
-        if desired.</p>
+        <p>Add the ability to configure standard validations on particular
+        properties to be enforced by the controller servlet automatically.
+        Where feasible, client-side JavaScript validations may also be
+        generated based on the same configuration rules.</p>
       </info>
     </task>
 
-    <task name="Extend Forward Mechanism">
+    <task name="PropertyEditor Support">
       <info>
-        <p>Extend the functionality of ActionForward to support ability to
-        forward across SSL-versus-not access to the same webapp.  This may
-        require dependence on container-specific features.</p>
+        <p>Add support for JavaBeans that include a <code>PropertyEditor</code>
+        class for conversion to and from the string representation used in an
+        HTML input field.  This support should operate in a manner consistent
+        with the way that standard JSP tags do in JSP 1.2.</p>
       </info>
     </task>
 
-    <task name="ActionForm Population">
+    <task name="EJB Design Patterns">
       <info>
-        <p>Consider migrating management of ActionForm population out of
-        ActionServlet (possibly into ActionMapping) and/or provide hooks
-	in the interface for application-level control.</p>
-      </info>
-    </task>
-
-    <task name="Developer Documentation">
-      <info>
-	<p>Create more detailed documentation of how the Struts controller
-	servlet framework is intended to be used, and how it might be
-	extended.  This documentation should be focused on the needs of
-	web application developers and architects.</p>
+        <p>Begin adding design patterns and support for easy integration with
+        Enterprise JavaBeans (EJBs) for encapsulation of business logic and
+        application data.</p>
       </info>
     </task>
 
@@ -116,6 +109,103 @@
       </info>
     </task>
 
+  </task-list>
+
+
+  <task-list name="Bean Tag Library [org.apache.struts.taglib.bean]"
+             href="BEAN">
+
+    <info>
+      <p>This tag library contains basic tags useful in manipulating JavaBeans
+      and their properties.  It includes support for getting and setting bean
+      properties using simple, nested, and subscripted accessor expressions.
+      </p>
+    </info>
+
+    <task name="XPath Support">
+      <info>
+        <p>Update all of the relevant tags to include property accessor support
+        using the syntax specified by the XPath standard (www.w3c.org).</p>
+      </info>
+    </task>
+
+    <task name="XML DOM Support">
+      <info>
+        <p>Update all of the relevant tags to get and set attributes from a
+        Java object that implements the XML Document Object Model, as well as
+        from the current tree of JavaBean objects.  How the underlying data
+        object is stored should be transparent to page writers using these
+        tags.</p>
+      </info>
+    </task>
+
+    <task name="JDBC RowSet Support">
+      <info>
+        <p>Update all of the relevant tags to get and set attributes from a
+        JDBC RowSet (or ResultSet) object, as well as from XML DOM objects and
+        the current tree of JavaBean objects.  How the underlying data object
+        is stored should be transparent to page writers using these tags.
+        </p>
+      </info>
+    </task>
+
+    <task name="Formatting Support">
+      <info>
+        <p>Add the ability to use formatting patterns (suitably localized) for
+        presenting numbers, dates, times, timestamps, and so on via formatted
+        patterns.</p>
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="HTML Forms Tag Library [org.apache.struts.taglib.form]"
+             href="HTML">
+
+    <info>
+    <p>This tag library contains tags useful in preparing web applications that
+    use HTML forms as their primary mechanism for user data entry, as well as
+    support for internationalized and localized applications.</p>
+    </info>
+
+    <task name="Client Side Validation">
+      <info>
+        <p>Add the ability to automatically generate optional JavaScript code
+        to perform client-side validations for things like required fields,
+        numeric fields, dates/times/timestamps, and so on.  The required
+        validation should mesh with validation enhancements provided in the
+        controller servlet itself.</p>
+      </info>
+    </task>
+
+    <task name="Generalized Form Handling">
+      <info>
+        <p>Consider how to support more generalized definitions of forms and
+        their fields, perhaps based on emerging XForms standards.  This will
+        most likely require a separate tag library.</p>
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="JDBC Tag Library [org.apache.struts.taglib.jdbc]"
+             href="JDBC">
+
+    <info>
+      <p>This tag library will provide mechanisms to acquire information from
+      a database that is useful in the presentation logic of an application
+      (such as populating the values shown in an HTML <code>select</code>
+      element).  They will interact with a data source object created and
+      initialized by the controller servlet.</p>
+    </info>
+
+    <task name="Create Tag Library">
+      <info>
+        <p>Create the initial tag library and documentation.</p>
+      </info>
+    </task>
 
   </task-list>
 
