@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.11 2004/05/17 17:38:09 germuska Exp $
- * $Revision: 1.11 $
- * $Date: 2004/05/17 17:38:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.12 2004/05/17 19:36:53 germuska Exp $
+ * $Revision: 1.12 $
+ * $Date: 2004/05/17 19:36:53 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -344,7 +344,7 @@ public class PutTag extends BodyTagSupport implements ComponentConstants {
             if (Boolean.valueOf(direct).booleanValue() == true) {
                 valueType = "string";
             } else {
-                valueType = "path";
+                valueType = "page";
             }
         }
 
