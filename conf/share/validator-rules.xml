@@ -2,9 +2,9 @@
           "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
           "http://jakarta.apache.org/commons/dtds/validator_1_0.dtd">
 <!--
-  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.40 2003/09/24 03:35:34 rleland Exp $
-  $Revision: 1.40 $
-  $Date: 2003/09/24 03:35:34 $
+  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.41 2003/09/26 16:53:42 rleland Exp $
+  $Revision: 1.41 $
+  $Date: 2003/09/26 16:53:42 $
 
    This file contains the default Struts Validator pluggable validator
    definitions.  It should be placed somewhere under /WEB-INF and
@@ -666,6 +666,9 @@
                for (x in oDate) {
                    var value = form[oDate[x][0]].value;
                    var datePattern = oDate[x][2]("datePatternStrict");
+                   // try loose pattern
+                   if (datePattern == null)
+                       datePattern = oDate[x][2]("datePattern");
                    if ((form[oDate[x][0]].type == 'text' ||
                         form[oDate[x][0]].type == 'textarea') &&
                        (value.length > 0) &&
