@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.22 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.22 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.23 2002/01/23 21:21:09 craigmcc Exp $
+ * $Revision: 1.23 $
+ * $Date: 2002/01/23 21:21:09 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@
 package org.apache.struts.action;
 
 
+import java.util.ArrayList;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.config.ForwardConfig;
@@ -82,7 +83,7 @@ import org.apache.struts.config.ForwardConfig;
  * are using.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.22 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.23 $ $Date: 2002/01/23 21:21:09 $
  */
 
 public class ActionMapping extends ActionConfig {
@@ -145,6 +146,23 @@ public class ActionMapping extends ActionConfig {
             config = getApplicationConfig().findForwardConfig(name);
         }
         return ((ActionForward) config);
+
+    }
+
+
+    /**
+     * <p>Return the logical names of all locally defined forwards for this
+     * mapping.  If there are no such forwards, a zero-length array
+     * is returned.
+     */
+    public String[] findForwards() {
+
+        ArrayList results = new ArrayList();
+        ForwardConfig fcs[] = findForwardConfigs();
+        for (int i = 0; i < fcs.length; i++) {
+            results.add(fcs[i].getName());
+        }
+        return ((String[]) results.toArray(new String[results.size()]));
 
     }
 
