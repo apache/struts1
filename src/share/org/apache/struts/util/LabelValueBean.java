@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.3 2003/07/02 02:20:28 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/02 02:20:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.4 2003/07/02 04:34:24 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/07/02 04:34:24 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import java.io.Serializable;
  *
  * @author  Craig R. McClanahan
  * @author  Martin F N Cooper
- * @version $Revision: 1.3 $ $Date: 2003/07/02 02:20:28 $
+ * @version $Revision: 1.4 $ $Date: 2003/07/02 04:34:24 $
  */
 public class LabelValueBean implements Serializable {
 
@@ -83,7 +83,7 @@ public class LabelValueBean implements Serializable {
      * Default constructor.
      */
     public LabelValueBean() {
-        this(null, null);
+        super();
     }
 
     /**
