@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.23 2003/08/28 17:09:28 rleland Exp $
+ * $Id: IncludeTag.java,v 1.24 2003/08/28 17:37:04 rleland Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -85,7 +85,7 @@ import org.apache.struts.taglib.TagUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.23 $ $Date: 2003/08/28 17:09:28 $
+ * @version $Revision: 1.24 $ $Date: 2003/08/28 17:37:04 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -241,7 +241,7 @@ public class IncludeTag extends TagSupport {
             conn.setDoOutput(false);
             // Add a session id cookie if appropriate
             HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-            setCookie(conn, urlString, request);
+            addCookie(conn, urlString, request);
             // Connect to the requested resource
             conn.connect();
         } catch (Exception e) {
@@ -284,7 +284,7 @@ public class IncludeTag extends TagSupport {
      * @param request
      * @ since Struts 1.2.0
      */
-    protected void setCookie(URLConnection conn, String urlString, HttpServletRequest request) {
+    protected void addCookie(URLConnection conn, String urlString, HttpServletRequest request) {
         if ((conn instanceof HttpURLConnection)
             && urlString.startsWith(request.getContextPath())
             && (request.getRequestedSessionId() != null)
