@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorActionForm.java,v 1.9 2003/07/10 04:01:47 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/07/10 04:01:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorActionForm.java,v 1.10 2003/07/23 00:47:05 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/07/23 00:47:05 $
  *
  * ====================================================================
  *
@@ -58,11 +58,9 @@
  * <http://www.apache.org/>.
  */
 
-
 package org.apache.struts.validator;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -75,7 +73,6 @@ import org.apache.commons.validator.ValidatorException;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 
-
 /**
  * <p>This class extends <strong>DynaValidatorForm</strong> and provides
  * basic field validation based on an XML file.  The key passed into the
@@ -87,7 +84,7 @@ import org.apache.struts.action.ActionMapping;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.9 $ $Date: 2003/07/10 04:01:47 $
+ * @version $Revision: 1.10 $ $Date: 2003/07/23 00:47:05 $
  * @since Struts 1.1
  */
 public class DynaValidatorActionForm extends DynaValidatorForm implements DynaBean, Serializable {
