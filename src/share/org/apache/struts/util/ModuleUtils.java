@@ -241,20 +241,19 @@ public class ModuleUtils {
 
         if (config != null) {
             request.setAttribute(Globals.MODULE_KEY, config);
+            MessageResourcesConfig[] mrConfig = config.findMessageResourcesConfigs();
+            for(int i = 0; i < mrConfig.length; i++) {
+                String key = mrConfig[i].getKey();
+                MessageResources resources =
+                    (MessageResources) context.getAttribute(key + prefix);
+                if (resources != null) {
+                    request.setAttribute(key, resources);
+                } else {
+                    request.removeAttribute(key);
+                }    
+            }
         } else {
             request.removeAttribute(Globals.MODULE_KEY);
-        }
-
-        MessageResourcesConfig[] mrConfig = config.findMessageResourcesConfigs();
-        for(int i = 0; i < mrConfig.length; i++) {
-          String key = mrConfig[i].getKey();
-          MessageResources resources =
-            (MessageResources) context.getAttribute(key + prefix);
-          if (resources != null) {
-              request.setAttribute(key, resources);
-          } else {
-              request.removeAttribute(key);
-          }
         }
     }
 }
