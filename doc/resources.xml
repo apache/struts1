@@ -34,8 +34,8 @@
 
  <ul>
     <li><a href="#enabling">Enabling Technologies</a></li>
-    <li><a href="#extensions2">Other Struts-Related Utilities</a></li>
-    <li><a href="#articles2">Other Struts-Related Articles</a></li>
+    <li><a href="#utilities">Other Struts-Related Utilities</a></li>
+    <li><a href="#related">Other Struts-Related Articles</a></li>
     <li><a href="#resources">Other Resource Pages</a></li>
  </ul>
 </section>
@@ -372,7 +372,7 @@ look desired.</p>
 </section>
 
 
-<section name="Other Struts-Related Articles" href="articles2">
+<section name="Other Struts-Related Articles" href="related">
 <p><b>Web DbForms by Joachim Peer</b><br/>
   - <a href="http://www.onjava.com/lpt/a//onjava/2001/07/18/dbforms.html">http://www.onjava.com/lpt/a//onjava/2001/07/18/dbforms.html</a></p>
 <p><b>Expresso Extends Struts through Integration Roadmap</b><br/>

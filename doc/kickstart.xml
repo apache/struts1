@@ -177,8 +177,8 @@ The JSTL is available through the Jakarta Taglibs site: <br/>
 <p>
 The JavaServer Faces specification is still being finalized. Public release of 
 the specification is scheduled for Summer 2002, and an implementation may be 
-available in Fall of 2002. A presentation was given at 
-JavaOne 2002 with some additional background.
+available in Fall of 2002. <a href="http://servlet.java.sun.com/javaone/sf2002/conf/sessions/display-1697.en.jsp">
+A presentation was given at JavaOne 2002</a> with some additional background.
 </p>
 </section>
 
