@@ -2633,16 +2633,6 @@
                 </info>
 
                 <attribute>
-                  <name>accesskey</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The keyboard character used to move focus immediately
-                  to this element.</p>
-                  </info>
-                </attribute>
-
-                <attribute>
                   <name>align</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
