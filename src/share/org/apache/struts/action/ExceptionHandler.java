@@ -112,7 +112,7 @@ public class ExceptionHandler {
 
         // Figure out the error
         if (ex instanceof AppException) {
-            error = new ActionError(ae.getKey());
+            error = ((AppException) ex).getError();
             property = ((AppException) ex).getProperty();
         } else {
             error = new ActionError(ae.getKey());
