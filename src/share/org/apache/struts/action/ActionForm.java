@@ -111,7 +111,7 @@ public abstract class ActionForm implements Serializable {
      * through the use of the <code>finish</code> and/or <code>rollback</code>
      * methods of <code>MultipartRequestHandler</code>.  This method will return
      * <code>null</code> if this form's enctype is not
-     * "multipart/request-data".</p>
+     * "multipart/form-data".</p>
      *
      * @see org.apache.struts.upload.MultipartRequestHandler
      */
