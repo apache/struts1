@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionsCollectionTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:50 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionsCollectionTag.java,v 1.4 2002/10/03 05:02:32 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/03 05:02:32 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -84,7 +84,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELOptionsCollectionTag extends OptionsCollectionTag {
 
@@ -169,11 +169,12 @@ public class ELOptionsCollectionTag extends OptionsCollectionTag {
             setStyleClass(null);
         }
 
-//         try {
-//             setStyleId((String) evalAttr("styleId", getStyleId(), String.class));
-//         } catch (NullAttributeException ex) {
-//             setStyleId(null);
-//         }
+        // Note that in contrast to other elements which have "style" and
+        // "styleClass" attributes, this tag does not have a "styleId"
+        // attribute.  This is because this produces the "id" attribute, which
+        // has to be unique document-wide, but this tag can generate more than
+        // one "option" element.  Thus, the base tag, "OptionsCollectionTag"
+        // does not support this attribute.
 
         try {
             setValue((String) evalAttr("value", getValue(), String.class));
