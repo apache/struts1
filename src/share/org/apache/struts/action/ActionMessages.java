@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.11 2003/08/19 23:26:28 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2003/08/19 23:26:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.12 2003/09/11 01:18:45 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/09/11 01:18:45 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import java.util.List;
  * @author Craig R. McClanahan
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.11 $ $Date: 2003/08/19 23:26:28 $
+ * @version $Revision: 1.12 $ $Date: 2003/09/11 01:18:45 $
  * @since Struts 1.1
  */
 public class ActionMessages implements Serializable {
@@ -108,9 +108,16 @@ public class ActionMessages implements Serializable {
      * The "property name" marker to use for global messages, as opposed to
      * those related to a specific property.
      */
-    public static final String GLOBAL_MESSAGE = "org.apache.struts.action.GLOBAL_MESSAGE";
+	public static final String GLOBAL_MESSAGE =
+		"org.apache.struts.action.GLOBAL_MESSAGE";
 
     // ----------------------------------------------------- Instance Variables
+
+    /**
+     * Have the messages been retrieved from this object?
+     * @since Struts 1.2
+     */
+    protected boolean accessed = false;
 
     /**
      * The accumulated set of <code>ActionMessage</code> objects (represented
@@ -207,9 +214,7 @@ public class ActionMessages implements Serializable {
      * Clear all messages recorded by this object.
      */
     public void clear() {
-
         messages.clear();
-
     }
     
     /**
@@ -227,7 +232,8 @@ public class ActionMessages implements Serializable {
      * no messages recorded, an empty enumeration is returned.
      */
     public Iterator get() {
-
+        this.accessed = true;
+        
         if (messages.isEmpty()) {
             return Collections.EMPTY_LIST.iterator();
         }
@@ -261,7 +267,8 @@ public class ActionMessages implements Serializable {
      * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
      */
     public Iterator get(String property) {
-
+        this.accessed = true;
+        
         ActionMessageItem item = (ActionMessageItem) messages.get(property);
 
         if (item == null) {
@@ -270,6 +277,17 @@ public class ActionMessages implements Serializable {
             return (item.getList().iterator());
         }
         
+    }
+
+    /**
+     * Returns <code>true</code> if the <code>get()</code> or 
+     * <code>get(String)</code> methods are called.  
+     * @return <code>true</code> if the messages have been accessed one or more
+     * times.
+     * @since Struts 1.2
+     */
+    public boolean isAccessed() {
+        return this.accessed;
     }
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.69 2003/09/10 02:28:38 dgraham Exp $
- * $Revision: 1.69 $
- * $Date: 2003/09/10 02:28:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.70 2003/09/11 01:18:45 dgraham Exp $
+ * $Revision: 1.70 $
+ * $Date: 2003/09/11 01:18:45 $
  *
  * ====================================================================
  *
@@ -109,7 +109,7 @@ import org.apache.struts.util.TokenProcessor;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.69 $ $Date: 2003/09/10 02:28:38 $
+ * @version $Revision: 1.70 $ $Date: 2003/09/11 01:18:45 $
  */
 public class Action {
 
@@ -471,6 +471,32 @@ public class Action {
 
         // Save the messages we need
         request.setAttribute(Globals.MESSAGE_KEY, messages);
+    }
+    
+    /**
+     * Save the specified messages keys into the appropriate session
+     * attribute for use by the &lt;html:messages&gt; tag (if
+     * messages="true" is set), if any messages are required.  Otherwise,
+     * ensure that the session attribute is not created.
+     *
+     * @param session The session to save the messages in.
+     * @param messages The messages to save. <code>null</code> or empty 
+     * messages removes any existing ActionMessages in the session.
+     * 
+     * @since Struts 1.2
+     */
+    protected void saveMessages(
+        HttpSession session,
+        ActionMessages messages) {
+
+        // Remove any messages attribute if none are required
+        if ((messages == null) || messages.isEmpty()) {
+            session.removeAttribute(Globals.MESSAGE_KEY);
+            return;
+        }
+
+        // Save the messages we need
+        session.setAttribute(Globals.MESSAGE_KEY, messages);
     }
 
     /**

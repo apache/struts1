@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.33 2003/08/23 00:29:39 dgraham Exp $
- * $Revision: 1.33 $
- * $Date: 2003/08/23 00:29:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.34 2003/09/11 01:18:45 dgraham Exp $
+ * $Revision: 1.34 $
+ * $Date: 2003/09/11 01:18:45 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.33 $ $Date: 2003/08/23 00:29:39 $
+ * @version $Revision: 1.34 $ $Date: 2003/09/11 01:18:45 $
  * @since Struts 1.1
  */
 public class RequestProcessor {
@@ -187,7 +187,6 @@ public class RequestProcessor {
 
     }
 
-
     /**
      * <p>Process an <code>HttpServletRequest</code> and create the
      * corresponding <code>HttpServletResponse</code>.</p>
@@ -210,6 +209,7 @@ public class RequestProcessor {
         if (path == null) {
             return;
         }
+        
         if (log.isDebugEnabled()) {
             log.debug("Processing a '" + request.getMethod() +
                       "' for path '" + path + "'");
@@ -226,6 +226,8 @@ public class RequestProcessor {
         if (!processPreprocess(request, response)) {
             return;
         }
+        
+        this.processCachedMessages(request, response);
 
         // Identify the mapping for this request
         ActionMapping mapping = processMapping(request, response, path);
@@ -249,6 +251,7 @@ public class RequestProcessor {
         if (!processForward(request, response, mapping)) {
             return;
         }
+        
         if (!processInclude(request, response, mapping)) {
             return;
         }
@@ -449,6 +452,37 @@ public class RequestProcessor {
         } catch (Exception e) {
             return (processException(request, response,
                                      e, form, mapping));
+        }
+
+    }
+    
+    /**
+     * Removes any ActionMessages object stored in the session under 
+     * <code>Globals.MESSAGE_KEY</code> if the messages' 
+     * <code>isAccessed()</code> method returns true.  This allows messages to
+     * be stored in the session, display one time, and get cleaned up here.
+     * @param request The servlet request we are processing.
+     * @param response The servlet response we are creating.
+     * @since Struts 1.2
+     */
+    protected void processCachedMessages(
+        HttpServletRequest request,
+        HttpServletResponse response) {
+
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return;
+        }
+
+        ActionMessages messages =
+            (ActionMessages) session.getAttribute(Globals.MESSAGE_KEY);
+
+        if (messages == null) {
+            return;
+        }
+
+        if (messages.isAccessed()) {
+            session.removeAttribute(Globals.MESSAGE_KEY);
         }
 
     }
@@ -776,18 +810,22 @@ public class RequestProcessor {
         if (log.isDebugEnabled()) {
             log.debug(" Populating bean properties from this request");
         }
+        
         form.setServlet(this.servlet);
         form.reset(mapping, request);
+        
         if (mapping.getMultipartClass() != null) {
             request.setAttribute(Globals.MULTIPART_KEY,
                                  mapping.getMultipartClass());
         }
+        
         RequestUtils.populate(form, mapping.getPrefix(), mapping.getSuffix(),
                               request);
 
         // Set the cancellation request attribute if appropriate
         if ((request.getParameter(Constants.CANCEL_PROPERTY) != null) ||
             (request.getParameter(Constants.CANCEL_PROPERTY_X) != null)) {
+                
             request.setAttribute(Globals.CANCEL_KEY, Boolean.TRUE);
         }
 
