@@ -27,6 +27,7 @@ import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ModuleConfig;
 
 import org.apache.commons.chain.Catalog;
+import org.apache.commons.chain.CatalogFactory;
 import org.apache.commons.chain.config.ConfigParser;
 import org.apache.commons.chain.impl.CatalogBase;
 import org.apache.commons.logging.Log;
@@ -35,12 +36,10 @@ import org.apache.commons.logging.LogFactory;
 
 
 /**
- * <p><strong>CatalogConfiguratorPlugIn</strong> looks up the current
- * <code>Catalog</code> stored under the <code>Constants.CATALOG_ATTR</code>
- * context attribute (creating an empty one if necessary), and adds new
- * chain definitions from one of the following two sources (only one of these
- * properties should be configured for a particular instance of this
- * PlugIn) based on the property that was configured:</p>
+ * <p><strong>CatalogConfiguratorPlugIn</strong> parses the configuration
+ * resource specified by the <code>path</code> or <code>resource</code>
+ * property to configure the default {@link Catalog} registered with the
+ * {@link CatalogFactory} for this application.</p>
  * <ul>
  * <li><strong>path</strong> - Context-relative path to a web application
  *     resource that contains chain definitions.</li>
@@ -109,31 +108,21 @@ public class CatalogConfiguratorPlugIn implements PlugIn {
      */
     public void destroy() {
 
-        ; // No action required
+        CatalogFactory.clear();
 
     }
 
 
     /**
-     * <p>Look up the <code>Catalog</code> we will be configuring (creating one
-     * if necessary), and add definitions from the specified resource specified
-     * by the <code>path</code> or <code>resource</code> properties configured
-     * on this {@link CatalogConfiguratorPlugIn} instance.</p>
+     * <p>Parse the configuration documents specified by the <code>path</code>
+     * or <code>resource</code> property to configure the default
+     * {@link Catalog} that is registered in the {@link CatalogFactory}
+     * instance for this application.</p>
      */
     public void init(ActionServlet servlet, ModuleConfig config)
         throws ServletException {
 
-        // Retrieve or create the Catalog instance we will be updating
-        Catalog catalog = (Catalog)
-            servlet.getServletContext().getAttribute(Constants.CATALOG_ATTR);
-        if (catalog == null) {
-            log.info("Creating new Catalog instance");
-            catalog = new CatalogBase();
-            servlet.getServletContext().setAttribute(Constants.CATALOG_ATTR,
-                                                     catalog);
-        }
-
-        // Add or replace chain definitions from the specified resource
+        // Parse the configuration file specified by path or resource
         try {
             ConfigParser parser = new ConfigParser();
             URL configResource = null;
@@ -152,7 +141,7 @@ public class CatalogConfiguratorPlugIn implements PlugIn {
                 }
                 configResource = loader.getResource(resource);
             }
-            parser.parse(catalog, configResource);
+            parser.parse(configResource);
         } catch (Exception e) {
             log.error("Exception loading resources", e);
             throw new ServletException(e);

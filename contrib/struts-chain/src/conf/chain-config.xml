@@ -28,7 +28,7 @@
 -->
 
 
-<chains>
+<catalog>
 
 
     <!-- ========== Servlet Complete Request Chain ========================= -->
@@ -236,4 +236,4 @@
     </chain>
 
 
-</chains>
+</catalog>

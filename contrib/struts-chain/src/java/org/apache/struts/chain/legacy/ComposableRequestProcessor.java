@@ -22,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.chain.Catalog;
+import org.apache.commons.chain.CatalogFactory;
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.commons.logging.Log;
@@ -37,12 +38,11 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * <p><strong>ComposableRequestProcessor</strong> uses the <em>Chain Of
  * Resposibility</em> design pattern (as implemented by the commons-chain
  * package in Jakarta Commons) to support external configuration of command
- * chains to be used.  It expects that an appropriate <code>Catalog</code>
- * will have been configured (typically using one or more invocations of
- * {@link CatalogConfiguratorPlugIn}) and stored in the context attribute
- * key <code>Constants.CATALOG_KEY</code>.  This processor will utilize
- * whatever chain is stored under id <code>servlet-standard</code> (currently
- * hardcoded; needs to be made configurable) to process this request.</p>
+ * chains to be used.  It expects that the default {@link Catalog} for
+ * this web application will contain a chain named
+ * <code>servlet-standard</code> that will be used to process this
+ * request.  FIXME - both of these hard coded assumptions need to
+ * be made configurable.</p>
  *
  * @version $Rev$ $Date$
  * @since Struts 1.1
@@ -55,10 +55,16 @@ public class ComposableRequestProcessor extends RequestProcessor {
 
 
     /**
-     * The catalog containing all of the available command chains for this
-     * module.
+     * <p>The {@link Catalog} containing all of the available command chains
+     * for this module.
      */
-    protected Catalog catalog;
+    protected Catalog catalog = null;
+
+
+    /**
+     * <p>The {@link Command} to be executed for each request.</p>
+     */
+    protected Command command = null;
 
 
     /**
@@ -77,7 +83,8 @@ public class ComposableRequestProcessor extends RequestProcessor {
     public void destroy() {
 
         super.destroy();
-        this.catalog = null;
+        catalog = null;
+        command = null;
 
     }
 
@@ -88,7 +95,7 @@ public class ComposableRequestProcessor extends RequestProcessor {
      * @param servlet The ActionServlet we are associated with
      * @param moduleConfig The ModuleConfig we are associated with.
      *
-     * @throws ServletException If an error occor during initialization
+     * @throws ServletException If an error occurs during initialization
      */
     public void init(ActionServlet servlet,
                      ModuleConfig moduleConfig)
@@ -97,11 +104,15 @@ public class ComposableRequestProcessor extends RequestProcessor {
         log.info("Initializing composable request processor for module prefix '"
                  + moduleConfig.getPrefix() + "'");
         super.init(servlet, moduleConfig);
-        this.catalog = (Catalog)
-            servlet.getServletContext().getAttribute(Constants.CATALOG_ATTR);
-        if (this.catalog == null) {
+        catalog = CatalogFactory.getInstance().getCatalog();
+        if (catalog == null) {
             // FIXME - i18n
             throw new ServletException("No Catalog has been configured");
+        }
+        command = catalog.getCommand("servlet-standard");
+        if (command == null) {
+            // FIXME - i18n
+            throw new ServletException("No Command has been configured");
         }
 
     }
@@ -135,7 +146,6 @@ public class ComposableRequestProcessor extends RequestProcessor {
                     this.moduleConfig);
 
         // Create and execute the command.
-        Command command = this.catalog.getCommand("servlet-standard");
         try {
             if (log.isDebugEnabled()) {
                 log.debug("Using processing chain for this request");
@@ -150,6 +160,7 @@ public class ComposableRequestProcessor extends RequestProcessor {
         context.release();
     }
     
+
     /**
      * If this is a multipart request, wrap it with a special wrapper.
      * Otherwise, return the request unchanged.

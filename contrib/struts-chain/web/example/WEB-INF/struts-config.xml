@@ -136,7 +136,8 @@
 
   <!-- ========== Controller Configuration ================================ -->
 
-  <controller pagePattern="$M$P" inputForward="true" />
+  <controller pagePattern="$M$P" inputForward="true"
+           processorClass="org.apache.struts.chain.legacy.ComposableRequestProcessor" />
     <!-- pagePattern: use this pattern when creating URIs to resources.
         $M=module, $P=path -->
     <!-- inputForward: The "input" parameter on "action" elements is the name of a
