@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.47 2002/09/22 05:46:51 martinc Exp $
- * $Revision: 1.47 $
- * $Date: 2002/09/22 05:46:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.48 2002/10/14 18:16:18 rleland Exp $
+ * $Revision: 1.48 $
+ * $Date: 2002/10/14 18:16:18 $
  *
  * ====================================================================
  *
@@ -79,6 +79,7 @@ import org.apache.struts.Globals;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -111,7 +112,7 @@ import org.apache.struts.util.MessageResources;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.47 $ $Date: 2002/09/22 05:46:51 $
+ * @version $Revision: 1.48 $ $Date: 2002/10/14 18:16:18 $
  */
 
 public class Action {
@@ -526,12 +527,7 @@ public class Action {
 
         // Identify the current application module
         ServletContext context = getServlet().getServletContext();
-        ApplicationConfig appConfig = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
-        if (appConfig == null) {
-            appConfig = (ApplicationConfig)
-                context.getAttribute(Action.APPLICATION_KEY);
-        }
+        ApplicationConfig appConfig = RequestUtils.getApplicationConfig(request,context);
 
         // Return the requested data source instance
         return ((DataSource) context.getAttribute
@@ -601,12 +597,7 @@ public class Action {
 
         // Identify the current application module
         ServletContext context = getServlet().getServletContext();
-        ApplicationConfig appConfig = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
-        if (appConfig == null) {
-            appConfig = (ApplicationConfig)
-                context.getAttribute(Action.APPLICATION_KEY);
-        }
+        ApplicationConfig appConfig = RequestUtils.getApplicationConfig(request,context);
 
         // Return the requested message resources instance
         return ((MessageResources) context.getAttribute

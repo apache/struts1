@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.59 2002/10/13 01:59:31 craigmcc Exp $
- * $Revision: 1.59 $
- * $Date: 2002/10/13 01:59:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.60 2002/10/14 18:16:19 rleland Exp $
+ * $Revision: 1.60 $
+ * $Date: 2002/10/14 18:16:19 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.59 $ $Date: 2002/10/13 01:59:31 $
+ * @version $Revision: 1.60 $ $Date: 2002/10/14 18:16:19 $
  */
 
 public class RequestUtils {
@@ -387,15 +387,8 @@ public class RequestUtils {
         }
 
         // Look up the application module configuration for this request
-        ApplicationConfig config = (ApplicationConfig)
-            pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
-        if (config == null) { // Backwards compatibility hack
-            config = (ApplicationConfig)
-                pageContext.getServletContext().getAttribute
-                (Action.APPLICATION_KEY);
-            pageContext.getRequest().setAttribute(Action.APPLICATION_KEY,
-                                                  config);
-        }
+        ApplicationConfig config = getApplicationConfig(pageContext);
+
 
         // Calculate the appropriate URL
         StringBuffer url = new StringBuffer();
@@ -1454,6 +1447,7 @@ public class RequestUtils {
      * Return the ApplicationConfig object is it exists, null otherwise.
      * @param pageContext The page context.
      * @return the ApplicationConfig object
+     * @since 1.1b3
      */
     public static ApplicationConfig getApplicationConfig(PageContext pageContext) {
        ApplicationConfig appConfig = (ApplicationConfig)
@@ -1462,6 +1456,23 @@ public class RequestUtils {
            appConfig = (ApplicationConfig)
                pageContext.getServletContext().getAttribute(Action.APPLICATION_KEY);
        }
+       return appConfig;
+    }
+
+    /**
+     * Return the ApplicationConfig object is it exists, null otherwise.
+     * @param request The servlet request we are processing
+     * @param context The ServletContext for this web application
+     * @return the ApplicationConfig object
+     * @since 1.1b3
+     */
+    public static ApplicationConfig getApplicationConfig(HttpServletRequest request,ServletContext context) {
+        ApplicationConfig appConfig = (ApplicationConfig)
+            request.getAttribute(Action.APPLICATION_KEY);
+        if (appConfig == null) {
+            appConfig = (ApplicationConfig)
+                context.getAttribute(Action.APPLICATION_KEY);
+        }
        return appConfig;
     }
 

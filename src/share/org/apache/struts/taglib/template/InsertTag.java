@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.11 2002/03/12 05:55:08 martinc Exp $
- * $Revision: 1.11 $
- * $Date: 2002/03/12 05:55:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.12 2002/10/14 18:16:18 rleland Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/10/14 18:16:18 $
  *
  * ====================================================================
  *
@@ -70,6 +70,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.taglib.template.util.*;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * This is the tag handler for &lt;template:insert&gt;, which includes 
@@ -77,7 +78,7 @@ import org.apache.struts.taglib.template.util.*;
  * tags, which are accessed by &lt;template:get&gt; in the template.
  *
  * @author David Geary
- * @version $Revision: 1.11 $ $Date: 2002/03/12 05:55:08 $
+ * @version $Revision: 1.12 $ $Date: 2002/10/14 18:16:18 $
  */
 public class InsertTag extends TagSupport {
 
@@ -146,8 +147,7 @@ public class InsertTag extends TagSupport {
    public int doEndTag() throws JspException {
 
       String prefix = "";
-      ApplicationConfig config = (ApplicationConfig)
-          pageContext.getServletContext().getAttribute(Action.APPLICATION_KEY);
+      ApplicationConfig config = RequestUtils.getApplicationConfig(pageContext);
       if (config != null) {
           prefix = config.getPrefix();
       }

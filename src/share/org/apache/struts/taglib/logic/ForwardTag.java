@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.9 2002/09/23 05:22:08 martinc Exp $
- * $Revision: 1.9 $
- * $Date: 2002/09/23 05:22:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.10 2002/10/14 18:16:18 rleland Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/10/14 18:16:18 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.RequestUtils;
  * configuration information associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/09/23 05:22:08 $
+ * @version $Revision: 1.10 $ $Date: 2002/10/14 18:16:18 $
  */
 
 public class ForwardTag extends TagSupport {
@@ -136,13 +136,7 @@ public class ForwardTag extends TagSupport {
 
 	// Look up the desired ActionForward entry
 	ActionForward forward = null;
-        ApplicationConfig config = (ApplicationConfig)
-            pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
-        if (config == null) { // Backwards compatibility hack
-            config = (ApplicationConfig)
-                pageContext.getServletContext().getAttribute
-                (Action.APPLICATION_KEY);
-        }
+        ApplicationConfig config = RequestUtils.getApplicationConfig(pageContext);
 	if (config != null)
 	    forward = (ActionForward) config.findForwardConfig(name);
 	if (forward == null) {
