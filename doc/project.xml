@@ -85,18 +85,18 @@
         	/>
     </menu>
 
-    <menu name="Release Candidate (1.1-rc2)">
+    <menu name="Stable Release (1.1)">
         <item 
         	name="Release Notes"
-            href="userGuide/release-notes-1.1-rc2.html"
+            href="userGuide/release-notes-1.1.html"
             />
         <item 
         	name="Release Plan"
-            href="proposals/release-plan-1.1rc2.html"
+            href="proposals/release-plan-1.1.html"
             />
     </menu>
 
-    <menu name="Stable Release (1.0.2)">
+    <menu name="Previous Release (1.0.2)">
         <item 
         	name="Welcome page"
             href="http://jakarta.apache.org/struts/doc-1.0.2/index.html"
