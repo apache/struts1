@@ -255,6 +255,10 @@
         <echo message="java.home = ${java.home}"/>
         <echo message="user.home = ${user.home}"/>
 
+        <tstamp>
+            <format property="year" pattern="yyyy"/>
+        </tstamp>
+
     </target>
 
 <!--
@@ -361,7 +365,7 @@
             version="true"
             windowtitle="Apache Struts API Documentation"
             doctitle="&lt;h1&gt;Apache Struts Framework (Version ${project.version})&lt;/h1&gt;"
-            bottom="Copyright &#169; 2000-2002 - Apache Software Foundation">
+            bottom="Copyright &#169; 2000-${year} - Apache Software Foundation">
             <classpath refid="compile.classpath"/>
         </javadoc>
     </target>

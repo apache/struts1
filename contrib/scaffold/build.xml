@@ -1,6 +1,6 @@
 <!--
 @author Ted Husted
-@version $Revision: 1.7 $ $Date: 2002/09/12 12:40:27 $
+@version $Revision: 1.8 $ $Date: 2003/01/07 05:42:55 $
 -->
 
 <project name="scaffold" default="compile.lib">
@@ -50,7 +50,9 @@
 
     <!-- Check timestamp on files -->
     <target name="prepare">
-        <tstamp/>
+        <tstamp>
+            <format property="year" pattern="yyyy"/>
+        </tstamp>
     </target>
 
    <!-- Copy any resource or configuration files -->
@@ -99,7 +101,7 @@
             version="true"
             windowtitle="${project.title} API Documentation"
             doctitle="&lt;h1&gt;${project.title} API Documentation (Version ${project.version})&lt;/h1&gt;"
-            bottom="Copyright &#169; 2001-2002 - Apache Software Foundation">
+            bottom="Copyright &#169; 2001-${year} - Apache Software Foundation">
             <classpath refid="${compile.classpath}"/>
         </javadoc>
     </target>

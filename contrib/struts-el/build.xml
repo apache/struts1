@@ -176,6 +176,10 @@
   <echo message="user.home = ${user.home}"/>
   <echo message="struts.jar = ${struts.jar}"/>
   <echo message="struts-el.jar = ${struts-el.jar}"/>
+
+  <tstamp>
+      <format property="year" pattern="yyyy"/>
+  </tstamp>
  </target>
 
  <!-- 
@@ -263,7 +267,7 @@
            version="true"
            windowtitle="Apache Struts-EL API Documentation"
            doctitle="&lt;h1&gt;Apache Struts-EL Framework (Version ${project.version})&lt;/h1&gt;"
-           bottom="Copyright &#169; 2000-2002 - Apache Software Foundation">
+           bottom="Copyright &#169; 2000-${year} - Apache Software Foundation">
            <classpath refid="compile.classpath"/>
   </javadoc>
  </target>
