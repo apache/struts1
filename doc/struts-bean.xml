@@ -895,10 +895,20 @@
     <bodycontent>empty</bodycontent>
     <info>
     <p>Retrieve the value of the specified bean property, and render it to the
-    current JspWriter as a String.  If there is a PropertyEditor configured
-    for the property value's class, the <code>getAsText()</code> method will
-    be called.  Otherwise, the usual <code>toString()</code> conversions
-    will be applied.</p>
+    current JspWriter as a String by the ways:
+     <ul>
+     <li>If <code>format</code> attribute exists then value will be formatted on base of format 
+     string from <code>format</code> attribute and default system locale.</li>
+     <li>If in resources exists format string for value data type (view <code>format</code>
+     attribute description) then value will be formatted on base of format string
+     from resources. Resources bundle and target locale can be specified with
+     <code>bundle</code> and <code>locale</code> attributes. If nothing specified then
+     default resource bundle and current user locale will be used.</li>
+     <li>If there is a PropertyEditor configured for the property value's class, the 
+     <code>getAsText()</code> method will be called.</li>
+     <li>Otherwise, the usual <code>toString()</code> conversions will be applied.</li>
+     </ul>
+     </p>
 
     <p>If a problem occurs while retrieving the specified bean property, a
     request time exception will be thrown.</p>
@@ -1002,7 +1012,6 @@
            <td>java.sql.Time</td>
        </tr>
       </table>
-      <p>If nothing found, then toString() method for target object will be called.</p>
       <p>Default format strings in resources can be written as - <br />
         <pre>
                 org.apache.struts.taglib.bean.format.int=######
