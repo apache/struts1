@@ -105,7 +105,7 @@
                 <li><a href="building_controller.html#overview">4.1 Overview</a></li>
                 <li><a href="building_controller.html#action_servlet">4.2 The ActionServlet</a></li>
                     <ul>
-                    <li><a href="building_controller.html#request_controller">4.2.1 Request Processor</a></li>
+                    <li><a href="building_controller.html#request_processor">4.2.1 Request Processor</a></li>
                     </ul>
                 
                 <li><a href="building_controller.html#action_form_classes">4.3 ActionForm Classes</a></li>
@@ -117,7 +117,7 @@
                 <li><a href="building_controller.html#exception_handler">4.5 Exception Handler</a></li>
                 <li><a href="building_controller.html#plugin_classes">4.6 Plugin Classes</a></li>
                 <li><a href="building_controller.html#actionmapping">4.7 The ActionMapping Implementation</a></li>
-                <li><a href="building_controller.html#config">4.8 Writing ActionMappings</a>\
+                <li><a href="building_controller.html#config">4.8 Writing ActionMappings</a>
                 	<ul>
                     <li><a href="building_controller.html#action_mapping_example">4.8.1 ActionMapping Example</a></li>
       				</ul>
