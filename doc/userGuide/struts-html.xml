@@ -2793,6 +2793,11 @@
                     <name>contextRelative</name>
                     <required>false</required>
                     <rtexprvalue>true</rtexprvalue>
+						  <info>
+						  <p>If set to "true", this "anchors" the image src at the
+						  application context rather than the module context when the
+						  'page' attribute is used to specify an image path.</p>
+						  </info>
                 </attribute>
 
                 <attribute>
