@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.6 2000/08/01 20:03:23 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/08/01 20:03:23 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.7 2000/09/23 22:53:53 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/09/23 22:53:53 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.struts.action.ActionBase;
+import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -84,10 +84,10 @@ import org.apache.struts.util.MessageResources;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/08/01 20:03:23 $
+ * @version $Revision: 1.7 $ $Date: 2000/09/23 22:53:53 $
  */
 
-public final class LogonAction extends ActionBase {
+public final class LogonAction extends Action {
 
 
     // --------------------------------------------------------- Public Methods
@@ -100,7 +100,6 @@ public final class LogonAction extends ActionBase {
      * control should be forwarded, or <code>null</code> if the response has
      * already been completed.
      *
-     * @param servlet The ActionServlet making this request
      * @param mapping The ActionMapping used to select this instance
      * @param actionForm The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
@@ -109,8 +108,7 @@ public final class LogonAction extends ActionBase {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      */
-    public ActionForward perform(ActionServlet servlet,
-				 ActionMapping mapping,
+    public ActionForward perform(ActionMapping mapping,
 				 ActionForm form,
 				 HttpServletRequest request,
 				 HttpServletResponse response)
@@ -118,7 +116,7 @@ public final class LogonAction extends ActionBase {
 
 	// Extract attributes we will need
 	Locale locale = getLocale(request);
-	MessageResources messages = getResources(servlet);
+	MessageResources messages = getResources();
 	User user = null;
 
 	// Validate the request parameters specified by the user
