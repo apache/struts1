@@ -923,8 +923,8 @@
 
                 <p>In order to use this tag successfully, you must have
                 defined an application scope <code>MessageResources</code>
-                bean under the default attribute name, with at least the
-                following message keys:</p>
+                bean under the default attribute name, with optional
+                definitions of the following message keys:</p>
                 <ul>
                 <li><strong>errors.header</strong> - Text that will be rendered
                 before the error messages list.  Typically, this message text
@@ -934,6 +934,10 @@
                 after the error messages list.  Typically, this message text
                 will begin with <code>&lt;/ul&gt;</code> to end the error
                 messages list.</li>
+                <li><strong>errors.prefix</strong> - Text that will be rendered
+                before each individual error in the list.</li>
+                <li><strong>errors.suffix</strong> - Text that will be rendered
+                after each individual error in the list.</li>
                 </ul>
                 </info>
 

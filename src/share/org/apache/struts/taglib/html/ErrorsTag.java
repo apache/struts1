@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.14 2002/03/17 05:07:35 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2002/03/17 05:07:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.15 2002/06/23 04:38:44 craigmcc Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/06/23 04:38:44 $
  *
  * ====================================================================
  *
@@ -92,14 +92,17 @@ import org.apache.struts.util.ResponseUtils;
  * messages exist for them in the application resources:
  * <ul>
  * <li><b>errors.header</b> - If present, the corresponding message will be
- *     rendered prior to the individual list of error messages.
+ *     rendered prior to the individual list of error messages.</li>
  * <li><b>errors.footer</b> - If present, the corresponding message will be
- *     rendered following the individual list of error messages.
- * <li><b>
+ *     rendered following the individual list of error messages.</li>
+ * <li><b>errors.prefix</b> - If present, the corresponding message will be
+ *     rendered before each individual error message.</li>
+ * <li><b>errors.suffix</b> - If present, the corresponding message will be
+ *     rendered after each individual error message.</li>
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2002/03/17 05:07:35 $
+ * @version $Revision: 1.15 $ $Date: 2002/06/23 04:38:44 $
  */
 
 public class ErrorsTag extends TagSupport {
@@ -206,6 +209,10 @@ public class ErrorsTag extends TagSupport {
             RequestUtils.present(pageContext, bundle, locale, "errors.header");
         boolean footerPresent =
             RequestUtils.present(pageContext, bundle, locale, "errors.footer");
+        boolean prefixPresent =
+            RequestUtils.present(pageContext, bundle, locale, "errors.prefix");
+        boolean suffixPresent =
+            RequestUtils.present(pageContext, bundle, locale, "errors.suffix");
 
         // Render the error messages appropriately
 	StringBuffer results = new StringBuffer();
@@ -228,12 +235,22 @@ public class ErrorsTag extends TagSupport {
                 }
                 headerDone = true;
             }
+            if (prefixPresent) {
+                message = RequestUtils.message(pageContext, bundle,
+                                               locale, "errors.prefix");
+                results.append(message);
+            }
             message = RequestUtils.message(pageContext, bundle,
                                            locale, report.getKey(),
                                            report.getValues());
             if (message != null) {
                 results.append(message);
                 results.append("\r\n");
+            }
+            if (suffixPresent) {
+                message = RequestUtils.message(pageContext, bundle,
+                                               locale, "errors.suffix");
+                results.append(message);
             }
         }
         if (headerDone && footerPresent) {
