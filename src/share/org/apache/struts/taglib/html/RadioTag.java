@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.19 2002/12/16 03:41:43 craigmcc Exp $
- * $Revision: 1.19 $
- * $Date: 2002/12/16 03:41:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.20 2003/03/22 18:39:10 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/03/22 18:39:10 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -64,7 +64,9 @@ package org.apache.struts.taglib.html;
 
 
 import java.lang.reflect.InvocationTargetException;
+
 import javax.servlet.jsp.JspException;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
@@ -76,7 +78,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.19 $ $Date: 2002/12/16 03:41:43 $
+ * @version $Revision: 1.20 $ $Date: 2003/03/22 18:39:10 $
  */
 
 public class RadioTag extends BaseHandlerTag {
@@ -221,51 +223,51 @@ public class RadioTag extends BaseHandlerTag {
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
-
+        
         // Acquire the current value of the appropriate field
         Object current = null;
         Object bean = RequestUtils.lookup(pageContext, name, null);
-        if (bean == null)
-            throw new JspException
-                (messages.getMessage("getter.bean", name));
+        if (bean == null) {
+            throw new JspException(messages.getMessage("getter.bean", name));
+        }
+        
         try {
-
             current = BeanUtils.getProperty(bean, property);
-            if (current == null)
+            if (current == null) {
                 current = "";
-
+            }
+        
             // @since Struts 1.1
             if (idName != null) {
                 Object idBean = RequestUtils.lookup(pageContext, idName, null);
-                if (idBean == null)
-                   throw new JspException
-                    (messages.getMessage("getter.bean", idName));
+                if (idBean == null) {
+                    throw new JspException(messages.getMessage("getter.bean", idName));
+                }
                 value = BeanUtils.getProperty(idBean, value);
-                if (value == null) value = "";
+                if (value == null) {
+                    value = "";
+                }
             }
-
-
-            } catch (IllegalAccessException e) {
-                throw new JspException
-                    (messages.getMessage("getter.access", property, name));
-            } catch (InvocationTargetException e) {
-                Throwable t = e.getTargetException();
-                throw new JspException
-                    (messages.getMessage("getter.result",
-                                         property, t.toString()));
+        
+        } catch (IllegalAccessException e) {
+            throw new JspException(messages.getMessage("getter.access", property, name));
+            
+        } catch (InvocationTargetException e) {
+            Throwable t = e.getTargetException();
+            throw new JspException(
+                messages.getMessage("getter.result", property, t.toString()));
+                
         } catch (NoSuchMethodException e) {
-            throw new JspException
-                (messages.getMessage("getter.method", property, name));
+            throw new JspException(messages.getMessage("getter.method", property, name));
         }
-
-
-
+        
         // Create an appropriate "input" element based on our parameters
         StringBuffer results = new StringBuffer("<input type=\"radio\"");
         results.append(" name=\"");
         // @since Struts 1.1
-        if( indexed )
-                prepareIndex( results, name );
+        if (indexed) {
+            prepareIndex(results, name);
+        }
         results.append(this.property);
         results.append("\"");
         if (accesskey != null) {
@@ -281,15 +283,16 @@ public class RadioTag extends BaseHandlerTag {
         results.append(" value=\"");
         results.append(this.value);
         results.append("\"");
-        if (value.equals(current.toString()))
+        if (value.equals(current.toString())) {
             results.append(" checked=\"checked\"");
+        }
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
         results.append(getElementClose());
-
+        
         // Print this field to our output writer
         ResponseUtils.write(pageContext, results.toString());
-
+        
         // Continue processing this page
         this.text = null;
         return (EVAL_BODY_TAG);
@@ -306,8 +309,9 @@ public class RadioTag extends BaseHandlerTag {
 
         if (bodyContent != null) {
             String value = bodyContent.getString().trim();
-            if (value.length() > 0)
+            if (value.length() > 0) {
                 text = value;
+            }
         }
         return (SKIP_BODY);
 
@@ -322,9 +326,10 @@ public class RadioTag extends BaseHandlerTag {
     public int doEndTag() throws JspException {
 
         // Render any description for this radio button
-        if (text != null)
+        if (text != null) {
             ResponseUtils.write(pageContext, text);
-
+        }
+        
         // Evaluate the remainder of this page
         return (EVAL_PAGE);
 
