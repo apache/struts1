@@ -25,6 +25,10 @@
      <section name="Version 1.2.6 [DEV]" href="STRUTS_1_2_6">
 
          <p>
+            2004-11-05 [56678] - Resolve #23924. Improve TagUtils.filter() performance.
+         </p>
+
+         <p>
             2004-11-03 [56532] - add LazyValidatorForm
          </p>
 
