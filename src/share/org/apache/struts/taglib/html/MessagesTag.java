@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.8 2003/01/30 06:22:01 dmkarr Exp $
- * $Revision: 1.8 $
- * $Date: 2003/01/30 06:22:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.9 2003/02/14 05:42:07 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/02/14 05:42:07 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -66,9 +66,12 @@ import java.util.Iterator;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
+import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -82,7 +85,7 @@ import org.apache.struts.util.ResponseUtils;
  * to the default <code>ErrorsTag</code>.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.8 $ $Date: 2003/01/30 06:22:01 $
+ * @version $Revision: 1.9 $ $Date: 2003/02/14 05:42:07 $
  * @since Struts 1.1
 */
 public class MessagesTag extends BodyTagSupport {
@@ -92,6 +95,12 @@ public class MessagesTag extends BodyTagSupport {
      */
     protected static MessageResources messageResources =
        MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
+
+    /**
+     * Commons Logging instance.
+     * @since Struts 1.1
+     */
+    protected static Log log = LogFactory.getLog(MessagesTag.class);
 
     /**
      * Iterator of the elements of this error collection, while we are actually
@@ -224,8 +233,9 @@ public class MessagesTag extends BodyTagSupport {
         // Were any messages specified?
         ActionMessages messages = null;
 
-        if (message != null && "true".equalsIgnoreCase(message))
-           name = Globals.MESSAGE_KEY;
+        if (message != null && "true".equalsIgnoreCase(message)) {
+            name = Globals.MESSAGE_KEY;
+        }
 
         try {
             messages = RequestUtils.getActionMessages(pageContext, name);
@@ -235,36 +245,45 @@ public class MessagesTag extends BodyTagSupport {
         }
 
         // Acquire the collection we are going to iterate over
-        if (property == null)
+        if (property == null) {
             iterator = messages.get();
-        else
-            iterator = messages.get(property);
-
-    // Store the first value and evaluate, or skip the body if none
-    if (iterator.hasNext()) {
-           ActionMessage report = (ActionMessage)iterator.next();
-           String msg = RequestUtils.message(pageContext, bundle,
-                                             locale, report.getKey(),
-                                             report.getValues());
-
-       pageContext.setAttribute(id, msg);
-
-           if (header != null && header.length() > 0) {
-              String headerMessage = RequestUtils.message(pageContext, bundle,
-                                                             locale, header);
-              if (headerMessage != null) {
-                 // Print the results to our output writer
-                 ResponseUtils.write(pageContext, headerMessage);
-              }
-           }
-
-           // Set the processed variable to true so the
-           // doEndTag() knows processing took place
-           processed = true;
-
-       return (EVAL_BODY_TAG);
         } else {
-           return (SKIP_BODY);
+            iterator = messages.get(property);
+        }
+
+        // Store the first value and evaluate, or skip the body if none
+        if (iterator.hasNext()) {
+            ActionMessage report = (ActionMessage) iterator.next();
+            String msg =
+                RequestUtils.message(
+                    pageContext,
+                    bundle,
+                    locale,
+                    report.getKey(),
+                    report.getValues());
+
+            // log missing key to ease debugging
+            if (msg == null && log.isDebugEnabled()) {
+                log.debug(messageResources.getMessage("messageTag.resources", report.getKey()));
+            }
+
+            pageContext.setAttribute(id, msg);
+
+            if (header != null && header.length() > 0) {
+                String headerMessage = RequestUtils.message(pageContext, bundle, locale, header);
+                if (headerMessage != null) {
+                    // Print the results to our output writer
+                    ResponseUtils.write(pageContext, headerMessage);
+                }
+            }
+
+            // Set the processed variable to true so the
+            // doEndTag() knows processing took place
+            processed = true;
+
+            return (EVAL_BODY_TAG);
+        } else {
+            return (SKIP_BODY);
         }
 
     }
