@@ -87,17 +87,18 @@
       directory. However, if you wish to build Struts from source, you will
       need to download and install the following packages:
       <ul>
-      <li><em>Beanutils</em> (Version 1.4.1 or later)</li>
-      <li><em>Collections</em> (Version 2.0 or later)</li>
+      <li><em>Beanutils</em> (Version 1.5 or later)</li>
+      <li><em>Collections</em> (Version 2.1 or later)</li>
       <li><em>DBCP</em> (Version 1.0 or later)</li>
       <li><em>Digester</em> (Version 1.3 or later)</li>
-      <li><em>Discovery</em> (Version 0.1 or later)</li>
-      <li><em>Lang</em> (Version 1.0 or later)</li>
+      <li><em>FileUpload</em> (No official release, obtain current
+                        <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-fileupload">Nightly Build</a>
+                        )</li>
+      <li><em>Lang</em> (Version 1.1 or later)</li>
       <li><em>Logging</em> (Version 1.02 or later)</li>
       <li><em>Pool</em> (Version 1.01 or later)</li>
-      <li><em>Validator</em> (No official release, obtain current
-                        <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-validator">Nightly Build</a>
-                        )</li>
+      <li><em>Services</em> (Version 1.0 or later)</li>
+      <li><em>Validator</em> (Version 1.01 or later) </li>
       </ul>
   </li>
 
@@ -109,14 +110,8 @@
       directory. However, if you wish to build Struts from source, you will
       need to download and install the following packages:
       <ul>
-      <li><em>FileUpload</em> (No official release, obtain current
-                        <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-fileupload">Nightly Build</a>
-                        )</li>
       <li><em>Resources</em> (No official release, obtain current
                         <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-resources">Nightly Build</a>
-                        )</li>
-      <li><em>Services</em> (No official release, obtain current
-                        <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-services">Nightly Build</a>
                         )</li>
      </ul>
   </li>http://jakarta.apache.org/builds/jakarta-commons/nightly/
