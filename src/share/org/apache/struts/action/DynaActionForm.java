@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.7 2002/12/23 20:52:37 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/12/23 20:52:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.8 2003/04/10 02:35:28 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/04/10 02:35:28 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -83,7 +83,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * of form beans with dynamic sets of properties, without requiring the
  * developer to create a Java class for each type of form bean.</p>
  *
- * <p><strong>USAGE NOTE</strong> - Since Struts 1.1-b3, the
+ * <p><strong>USAGE NOTE</strong> - Since Struts 1.1, the
  * <code>reset()</code> method no longer initializes property values to those
  * specified in <code>&lt;form-property&gt;</code> elements in the Struts
  * module configuration file.  If you wish to utilize that behavior, the
@@ -91,7 +91,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * the <code>initialize()</code> method inside it.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/12/23 20:52:37 $
+ * @version $Revision: 1.8 $ $Date: 2003/04/10 02:35:28 $
  * @since Struts 1.1
  */
 
@@ -124,7 +124,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      *
      * @param mapping The mapping used to select this instance
      *
-     * @since Struts 1.1-b3
+     * @since Struts 1.1
      */
     public void initialize(ActionMapping mapping) {
 
@@ -173,7 +173,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * called before the properties are repopulated by the controller servlet.
      * </p>
      * 
-     * <p>The default implementation (since Struts 1.1-b3) does nothing.
+     * <p>The default implementation (since Struts 1.1) does nothing.
      * Subclasses may override this method to reset bean properties to
      * default values, or the <code>initialize()</code> method may be used to
      * initialize property values to those provided in the form property
@@ -358,7 +358,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * <pre>
      *  ${dynabean.map.prop}</pre>
      */
-    public  Map   getMap() {
+    public Map getMap() {
 
         return (dynaValues);
 

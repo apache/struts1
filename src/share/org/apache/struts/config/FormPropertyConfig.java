@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.9 2002/12/24 18:49:52 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2002/12/24 18:49:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.10 2003/04/10 02:36:31 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/04/10 02:36:31 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -74,7 +74,7 @@ import org.apache.commons.beanutils.ConvertUtils;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/12/24 18:49:52 $
+ * @version $Revision: 1.10 $ $Date: 2003/04/10 02:36:31 $
  * @since Struts 1.1
  */
 
@@ -180,7 +180,7 @@ public class FormPropertyConfig implements Serializable {
      * type and there is no specified <code>initial</code> value.  This
      * value must be non-negative.</p>
      *
-     * @since Struts 1.1-b3
+     * @since Struts 1.1
      */
     protected int size = 0;
 
