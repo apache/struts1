@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.9 2003/07/26 05:48:03 dmkarr Exp $
- * $Revision: 1.9 $
- * $Date: 2003/07/26 05:48:03 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.10 2004/01/18 07:11:27 dmkarr Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/01/18 07:11:27 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -84,7 +84,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class ELImgTag extends ImgTag {
 
@@ -278,6 +278,11 @@ public class ELImgTag extends ImgTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String titleKeyExpr;
+    /**
+     * Instance variable mapped to "useLocalEncoding" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String useLocalEncodingExpr;
     /**
      * Instance variable mapped to "usemap" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -485,6 +490,11 @@ public class ELImgTag extends ImgTag {
      */
     public String getTitleKeyExpr() { return (titleKeyExpr); }
     /**
+     * Getter method for "useLocalEncoding" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getUseLocalEncodingExpr() { return (useLocalEncodingExpr); }
+    /**
      * Getter method for "usemap" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -691,6 +701,11 @@ public class ELImgTag extends ImgTag {
      */
     public void setTitleKeyExpr(String titleKeyExpr) { this.titleKeyExpr = titleKeyExpr; }
     /**
+     * Setter method for "useLocalEncoding" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setUseLocalEncodingExpr(String useLocalEncodingExpr) { this.useLocalEncodingExpr = useLocalEncodingExpr; }
+    /**
      * Setter method for "usemap" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -750,6 +765,7 @@ public class ELImgTag extends ImgTag {
         setStyleIdExpr(null);
         setTitleExpr(null);
         setTitleKeyExpr(null);
+        setUseLocalEncodingExpr(null);
         setUsemapExpr(null);
         setVspaceExpr(null);
         setWidthExpr(null);
@@ -773,6 +789,7 @@ public class ELImgTag extends ImgTag {
      */
     private void evaluateExpressions() throws JspException {
         String  string  = null;
+        Boolean bool    = null;
 
         if ((string = EvalHelper.evalString("accessKey", getAccesskeyExpr(),
                                             this, pageContext)) != null)
@@ -927,6 +944,10 @@ public class ELImgTag extends ImgTag {
         if ((string = EvalHelper.evalString("titleKey", getTitleKeyExpr(),
                                             this, pageContext)) != null)
             setTitleKey(string);
+
+        if ((bool = EvalHelper.evalBoolean("useLocalEncoding", getUseLocalEncodingExpr(),
+                                            this, pageContext)) != null)
+            setUseLocalEncoding(bool.booleanValue());
 
         if ((string = EvalHelper.evalString("usemap", getUsemapExpr(),
                                             this, pageContext)) != null)

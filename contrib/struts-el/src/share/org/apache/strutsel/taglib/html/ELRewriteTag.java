@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRewriteTag.java,v 1.7 2003/08/10 21:42:21 dmkarr Exp $
- * $Revision: 1.7 $
- * $Date: 2003/08/10 21:42:21 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRewriteTag.java,v 1.8 2004/01/18 07:11:27 dmkarr Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/18 07:11:27 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -74,7 +74,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ELRewriteTag extends RewriteTag {
 
@@ -143,6 +143,11 @@ public class ELRewriteTag extends RewriteTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String transactionExpr;
+    /**
+     * Instance variable mapped to "useLocalEncoding" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String useLocalEncodingExpr;
 
     /**
      * Getter method for "action" tag attribute.
@@ -209,6 +214,11 @@ public class ELRewriteTag extends RewriteTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public String getTransactionExpr() { return (transactionExpr); }
+    /**
+     * Getter method for "useLocalEncoding" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getUseLocalEncodingExpr() { return (useLocalEncodingExpr); }
 
     /**
      * Setter method for "action" tag attribute.
@@ -275,6 +285,11 @@ public class ELRewriteTag extends RewriteTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public void setTransactionExpr(String transactionExpr) { this.transactionExpr = transactionExpr; }
+    /**
+     * Setter method for "useLocalEncoding" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setUseLocalEncodingExpr(String useLocalEncodingExpr) { this.useLocalEncodingExpr = useLocalEncodingExpr; }
 
     /**
      * Resets attribute values for tag reuse.
@@ -295,6 +310,7 @@ public class ELRewriteTag extends RewriteTag {
         setPropertyExpr(null);
         setScopeExpr(null);
         setTransactionExpr(null);
+        setUseLocalEncodingExpr(null);
     }
 
     /**
@@ -368,5 +384,9 @@ public class ELRewriteTag extends RewriteTag {
         if ((bool = EvalHelper.evalBoolean("transaction", getTransactionExpr(),
                                            this, pageContext)) != null)
             setTransaction(bool.booleanValue());
+
+        if ((bool = EvalHelper.evalBoolean("useLocalEncoding", getUseLocalEncodingExpr(),
+                                           this, pageContext)) != null)
+            setUseLocalEncoding(bool.booleanValue());
     }
 }

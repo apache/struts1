@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTag.java,v 1.7 2003/07/26 05:48:02 dmkarr Exp $
- * $Revision: 1.7 $
- * $Date: 2003/07/26 05:48:02 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTag.java,v 1.8 2004/01/18 07:11:27 dmkarr Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/18 07:11:27 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -74,7 +74,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ELHiddenTag extends HiddenTag {
 
@@ -93,6 +93,11 @@ public class ELHiddenTag extends HiddenTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String altKeyExpr;
+    /**
+     * Instance variable mapped to "disabled" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String disabledExpr;
     /**
      * Instance variable mapped to "indexed" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -225,6 +230,11 @@ public class ELHiddenTag extends HiddenTag {
      */
     public String getAltKeyExpr() { return (altKeyExpr); }
     /**
+     * Getter method for "disabled" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getDisabledExpr() { return (disabledExpr); }
+    /**
      * Getter method for "indexed" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -356,6 +366,11 @@ public class ELHiddenTag extends HiddenTag {
      */
     public void setAltKeyExpr(String altKeyExpr) { this.altKeyExpr = altKeyExpr; }
     /**
+     * Setter method for "disabled" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setDisabledExpr(String disabledExpr) { this.disabledExpr = disabledExpr; }
+    /**
      * Setter method for "indexed" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -480,6 +495,7 @@ public class ELHiddenTag extends HiddenTag {
         setAccesskeyExpr(null);
         setAltExpr(null);
         setAltKeyExpr(null);
+        setDisabledExpr(null);
         setIndexedExpr(null);
         setNameExpr(null);
         setOnblurExpr(null);
@@ -536,6 +552,10 @@ public class ELHiddenTag extends HiddenTag {
         if ((string = EvalHelper.evalString("altKey", getAltKeyExpr(),
                                             this, pageContext)) != null)
             setAltKey(string);
+
+        if ((bool = EvalHelper.evalBoolean("disabled", getDisabledExpr(),
+                                           this, pageContext)) != null)
+            setDisabled(bool.booleanValue());
 
         if ((bool = EvalHelper.evalBoolean("indexed", getIndexedExpr(),
                                            this, pageContext)) != null)

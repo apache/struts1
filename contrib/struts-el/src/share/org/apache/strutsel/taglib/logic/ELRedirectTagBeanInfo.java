@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELRedirectTagBeanInfo.java,v 1.3 2003/03/09 05:51:14 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2003/03/09 05:51:14 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELRedirectTagBeanInfo.java,v 1.4 2004/01/18 07:11:27 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/18 07:11:27 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -85,6 +85,10 @@ public class ELRedirectTagBeanInfo extends SimpleBeanInfo
         ArrayList proplist = new ArrayList();
 
         try {
+            proplist.add(new PropertyDescriptor("action", ELRedirectTag.class,
+                                                null, "setActionExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("anchor", ELRedirectTag.class,
                                                 null, "setAnchorExpr"));
         } catch (IntrospectionException ex) {}
@@ -131,6 +135,10 @@ public class ELRedirectTagBeanInfo extends SimpleBeanInfo
         try {
             proplist.add(new PropertyDescriptor("transaction", ELRedirectTag.class,
                                                 null, "setTransactionExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("useLocalEncoding", ELRedirectTag.class,
+                                                null, "setUseLocalEncodingExpr"));
         } catch (IntrospectionException ex) {}
         
         PropertyDescriptor[] result =

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTagBeanInfo.java,v 1.4 2003/07/26 05:48:03 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2003/07/26 05:48:03 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTagBeanInfo.java,v 1.5 2004/01/18 07:11:27 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/18 07:11:27 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -228,6 +228,10 @@ public class ELImgTagBeanInfo extends SimpleBeanInfo
         try {
             proplist.add(new PropertyDescriptor("titleKey", ELImgTag.class,
                                                 null, "setTitleKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("useLocalEncoding", ELImgTag.class,
+                                                null, "setUseLocalEncodingExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("usemap", ELImgTag.class,

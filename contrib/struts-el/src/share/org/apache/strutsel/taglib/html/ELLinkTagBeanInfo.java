@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTagBeanInfo.java,v 1.4 2003/03/09 05:51:09 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2003/03/09 05:51:09 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTagBeanInfo.java,v 1.5 2004/01/18 07:11:27 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/18 07:11:27 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -227,6 +227,10 @@ public class ELLinkTagBeanInfo extends SimpleBeanInfo
         try {
             proplist.add(new PropertyDescriptor("transaction", ELLinkTag.class,
                                                 null, "setTransactionExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("useLocalEncoding", ELLinkTag.class,
+                                                null, "setUseLocalEncodingExpr"));
         } catch (IntrospectionException ex) {}
         
         PropertyDescriptor[] result =

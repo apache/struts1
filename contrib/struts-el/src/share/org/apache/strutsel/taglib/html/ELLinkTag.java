@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTag.java,v 1.8 2003/03/09 05:47:24 dmkarr Exp $
- * $Revision: 1.8 $
- * $Date: 2003/03/09 05:47:24 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTag.java,v 1.9 2004/01/18 07:11:27 dmkarr Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/01/18 07:11:27 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -74,7 +74,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class ELLinkTag extends LinkTag {
 
@@ -258,6 +258,11 @@ public class ELLinkTag extends LinkTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String transactionExpr;
+    /**
+     * Instance variable mapped to "useLocalEncoding" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String useLocalEncodingExpr;
 
     /**
      * Getter method for "accessKey" tag attribute.
@@ -439,6 +444,11 @@ public class ELLinkTag extends LinkTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public String getTransactionExpr() { return (transactionExpr); }
+    /**
+     * Getter method for "useLocalEncoding" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getUseLocalEncodingExpr() { return (useLocalEncodingExpr); }
 
     /**
      * Setter method for "accessKey" tag attribute.
@@ -620,6 +630,11 @@ public class ELLinkTag extends LinkTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public void setTransactionExpr(String transactionExpr) { this.transactionExpr = transactionExpr; }
+    /**
+     * Setter method for "useLocalEncoding" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setUseLocalEncodingExpr(String useLocalEncodingExpr) { this.useLocalEncodingExpr = useLocalEncodingExpr; }
 
     /**
      * Resets attribute values for tag reuse.
@@ -663,6 +678,7 @@ public class ELLinkTag extends LinkTag {
         setTitleExpr(null);
         setTitleKeyExpr(null);
         setTransactionExpr(null);
+        setUseLocalEncodingExpr(null);
     }
 
     /**
@@ -828,5 +844,9 @@ public class ELLinkTag extends LinkTag {
         if ((bool = EvalHelper.evalBoolean("transaction", getTransactionExpr(),
                                            this, pageContext)) != null)
             setTransaction(bool.booleanValue());
+
+        if ((bool = EvalHelper.evalBoolean("useLocalEncoding", getUseLocalEncodingExpr(),
+                                           this, pageContext)) != null)
+            setUseLocalEncoding(bool.booleanValue());
     }
 }

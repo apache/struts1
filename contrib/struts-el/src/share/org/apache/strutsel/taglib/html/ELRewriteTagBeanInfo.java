@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRewriteTagBeanInfo.java,v 1.4 2003/08/10 21:42:21 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2003/08/10 21:42:21 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRewriteTagBeanInfo.java,v 1.5 2004/01/18 07:11:27 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/18 07:11:27 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -135,6 +135,10 @@ public class ELRewriteTagBeanInfo extends SimpleBeanInfo
         try {
             proplist.add(new PropertyDescriptor("transaction", ELRewriteTag.class,
                                                 null, "setTransactionExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("useLocalEncoding", ELRewriteTag.class,
+                                                null, "setUseLocalEncodingExpr"));
         } catch (IntrospectionException ex) {}
         
         PropertyDescriptor[] result =

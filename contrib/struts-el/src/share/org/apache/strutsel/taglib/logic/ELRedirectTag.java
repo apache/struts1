@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELRedirectTag.java,v 1.6 2003/03/09 05:47:26 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2003/03/09 05:47:26 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELRedirectTag.java,v 1.7 2004/01/18 07:11:27 dmkarr Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/18 07:11:27 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -74,10 +74,15 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ELRedirectTag extends RedirectTag {
 
+    /**
+     * Instance variable mapped to "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String actionExpr;
     /**
      * Instance variable mapped to "anchor" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -138,7 +143,17 @@ public class ELRedirectTag extends RedirectTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String transactionExpr;
+    /**
+     * Instance variable mapped to "useLocalEncoding" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String useLocalEncodingExpr;
 
+    /**
+     * Getter method for "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getActionExpr() { return (actionExpr); }
     /**
      * Getter method for "anchor" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -199,7 +214,17 @@ public class ELRedirectTag extends RedirectTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public String getTransactionExpr() { return (transactionExpr); }
+    /**
+     * Getter method for "useLocalEncoding" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getUseLocalEncodingExpr() { return (useLocalEncodingExpr); }
 
+    /**
+     * Setter method for "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setActionExpr(String actionExpr) { this.actionExpr = actionExpr; }
     /**
      * Setter method for "anchor" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -260,6 +285,11 @@ public class ELRedirectTag extends RedirectTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public void setTransactionExpr(String transactionExpr) { this.transactionExpr = transactionExpr; }
+    /**
+     * Setter method for "useLocalEncoding" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setUseLocalEncodingExpr(String useLocalEncodingExpr) { this.useLocalEncodingExpr = useLocalEncodingExpr; }
 
     /**
      * Resets attribute values for tag reuse.
@@ -267,6 +297,7 @@ public class ELRedirectTag extends RedirectTag {
     public void release()
     {
         super.release();
+        setActionExpr(null);
         setAnchorExpr(null);
         setForwardExpr(null);
         setHrefExpr(null);
@@ -279,6 +310,7 @@ public class ELRedirectTag extends RedirectTag {
         setPropertyExpr(null);
         setScopeExpr(null);
         setTransactionExpr(null);
+        setUseLocalEncodingExpr(null);
     }
 
     /**
@@ -300,6 +332,10 @@ public class ELRedirectTag extends RedirectTag {
     private void evaluateExpressions() throws JspException {
         String  string  = null;
         Boolean bool    = null;
+
+        if ((string = EvalHelper.evalString("action", getActionExpr(),
+                                            this, pageContext)) != null)
+            setAction(string);
 
         if ((string = EvalHelper.evalString("anchor", getAnchorExpr(),
                                             this, pageContext)) != null)
@@ -348,5 +384,9 @@ public class ELRedirectTag extends RedirectTag {
         if ((bool = EvalHelper.evalBoolean("transaction", getTransactionExpr(),
                                            this, pageContext)) != null)
             setTransaction(bool.booleanValue());
+
+        if ((bool = EvalHelper.evalBoolean("useLocalEncoding", getUseLocalEncodingExpr(),
+                                           this, pageContext)) != null)
+            setUseLocalEncoding(bool.booleanValue());
     }
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTagBeanInfo.java,v 1.4 2003/07/26 05:48:02 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2003/07/26 05:48:02 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTagBeanInfo.java,v 1.5 2004/01/18 07:11:27 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/18 07:11:27 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -95,6 +95,10 @@ public class ELHiddenTagBeanInfo extends SimpleBeanInfo
         try {
             proplist.add(new PropertyDescriptor("altKey", ELHiddenTag.class,
                                                 null, "setAltKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("disabled", ELHiddenTag.class,
+                                                null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("indexed", ELHiddenTag.class,
