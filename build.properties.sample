@@ -6,7 +6,7 @@
 # to "build.properties" in the same directory that contains the Struts
 # "build.xml" file.
 #
-# $Id: build.properties.sample,v 1.12 2002/08/09 05:21:32 martinc Exp $
+# $Id: build.properties.sample,v 1.13 2002/10/03 02:34:52 dmkarr Exp $
 # -----------------------------------------------------------------------------
 
 # WARNING:  The relative paths below assume that the build.xml file is in the
@@ -107,3 +107,11 @@ junit.jar = f:/applis/jakarta-ant-1.4alpha/lib/junit.jar
 
 tomcat.home.32 = f:/applis/jakarta-tomcat-3.2.1
 tomcat.home.40 = f:/applis/jakarta-tomcat-4.0-b1
+
+# These links to the JSTL jar files are only required for building the
+# Struts-EL contrib library.  If they are not present, it will not build that
+# contrib library (although it doesn't prevent you from building it directly in
+# "contrib/struts-el".
+
+jstl.jar				= f:/applis/jakarta-taglibs/jstl-1.0/lib/jstl.jar
+jstl-standard.jar	= f:/applis/jakarta-taglibs/jstl-1.0/lib/standard.jar
