@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.10 2001/04/18 23:32:35 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2001/04/18 23:32:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.11 2001/08/06 22:36:27 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2001/08/06 22:36:27 $
  *
  * ====================================================================
  * 
@@ -89,7 +89,7 @@ import java.util.Locale;
  * application server environments.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2001/04/18 23:32:35 $
+ * @version $Revision: 1.11 $ $Date: 2001/08/06 22:36:27 $
  */
 
 public abstract class MessageResources implements Serializable {
@@ -317,7 +317,7 @@ public abstract class MessageResources implements Serializable {
 		    else
 			return ("???" + formatKey + "???");
 		}
-		format = new MessageFormat(formatString);
+		format = new MessageFormat(escape(formatString));
 		formats.put(formatKey, format);
 	    }
 
@@ -455,6 +455,29 @@ public abstract class MessageResources implements Serializable {
 
 
     // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Escape any single quote characters that are included in the specified
+     * message string.
+     *
+     * @param string The string to be escaped
+     */
+    protected String escape(String string) {
+
+        if ((string == null) || (string.indexOf('\'') < 0))
+            return (string);
+        int n = string.length();
+        StringBuffer sb = new StringBuffer(n);
+        for (int i = 0; i < n; i++) {
+            char ch = string.charAt(i);
+            if (ch == '\'')
+                sb.append('\'');
+            sb.append(ch);
+        }
+        return (sb.toString());
+
+    }
 
 
     /**
