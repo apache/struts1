@@ -89,6 +89,25 @@
         </attribute>
 
         <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -288,6 +307,25 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -324,6 +362,25 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
         </attribute>
 
         <attribute>
@@ -519,6 +576,25 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -569,6 +645,25 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
         </attribute>
 
         <attribute>
@@ -782,6 +877,25 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -917,6 +1031,25 @@
                 to limit the set of file options that is made available for selection.
                 If not specified, no content type list will be sent.
             </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
         </attribute>
 
         <attribute>
@@ -1148,6 +1281,25 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -1327,6 +1479,25 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
+
         <attribute>
             <name>type</name>
             <required>false</required>
@@ -1362,6 +1533,25 @@
         </info>
 
         <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
             <name>indexed</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -1395,6 +1585,25 @@
                 (if any) must be of type String.
             </info>
         </attribute>
+
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
 
         <attribute>
             <name>value</name>
@@ -1490,7 +1699,7 @@
                 <required>false</required>
                 <rtexprvalue>true</rtexprvalue>
                 <info>
-                <p>The alternate text for this image.</p>
+                <p>The alternate text for this element.</p>
                 </info>
         </attribute>
 
@@ -1500,7 +1709,7 @@
                 <rtexprvalue>true</rtexprvalue>
                 <info>
                 <p>The message resources key of the alternate text for this
-                image.</p>
+                element.</p>
                 </info>
         </attribute>
 
@@ -1707,6 +1916,25 @@
             <rtexprvalue>true</rtexprvalue>
           </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
+
           <attribute>
             <name>value</name>
             <required>false</required>
@@ -1839,27 +2067,24 @@
                   </info>
                 </attribute>
 
-                <attribute>
-                  <name>alt</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>And alternative text to be displayed in browsers that
-                     don't support graphics.  Also used often as type of
-                     context help over images.</p>
-                  </info>
-                </attribute>
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
 
-                <attribute>
-                  <name>altKey</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The message key, in the message resources bundle named by
-                  the <code>bundle</code> attribute, of the String to be
-                  displayed as the alternate text for this image.</p>
-                  </info>
-                </attribute>
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+        </attribute>
 
                 <attribute>
                   <name>border</name>
@@ -2145,6 +2370,25 @@
                 Identifier to be assigned to this HTML element.
             </info>
         </attribute>
+
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
 
                 <attribute>
                   <name>usemap</name>
@@ -2638,7 +2882,17 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p>The advisory title for this hyperlink.</p>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
                   </info>
                 </attribute>
 
@@ -2814,6 +3068,25 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
         </attribute>
 
         <attribute>
@@ -3014,6 +3287,25 @@
                 The tab order (ascending positive integers) for this element.
             </info>
         </attribute>
+
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
 
         <attribute>
             <name>value</name>
@@ -3307,6 +3599,25 @@
         </attribute>
 
         <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -3562,6 +3873,25 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -3597,6 +3927,25 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
         </attribute>
 
         <attribute>
@@ -3770,6 +4119,25 @@
         </attribute>
 
                 <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
                         <name>value</name>
                         <required>true</required>
                         <rtexprvalue>true</rtexprvalue>
@@ -3801,6 +4169,25 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
         </attribute>
 
         <attribute>
@@ -3980,6 +4367,25 @@
                 The tab order (ascending positive integers) for this element.
             </info>
         </attribute>
+
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
 
         <attribute>
             <name>value</name>
@@ -4221,6 +4627,25 @@
         </attribute>
 
         <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -4452,6 +4877,25 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -4482,6 +4926,25 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
         </attribute>
 
         <attribute>
@@ -4684,6 +5147,25 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -4713,6 +5195,25 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
         </attribute>
 
         <attribute>
@@ -4954,6 +5455,25 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -4986,6 +5506,25 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
         </attribute>
 
         <attribute>
@@ -5226,6 +5765,25 @@
                 The tab order (ascending positive integers) for this element.
             </info>
         </attribute>
+
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+                </attribute>
 
         <attribute>
             <name>value</name>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.14 2002/01/13 00:25:37 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2002/01/13 00:25:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.15 2002/01/13 03:38:38 craigmcc Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/01/13 03:38:38 $
  *
  * ====================================================================
  *
@@ -67,7 +67,6 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.util.Iterator;
-import java.util.Locale;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -96,7 +95,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -120,35 +119,6 @@ public class ImgTag extends BaseHandlerTag {
 
 
     /**
-     * The alternate text to display for the image.  This is used for
-     * text based browsers and/or as a "tool-tip" for the image.
-     */
-    protected String alt = null;
-
-    public String getAlt() {
-        return (this.alt);
-    }
-
-    public void setAlt(String alt) {
-        this.alt = alt;
-    }
-
-
-    /**
-     * The message lookup key used to look up internationalized messages.
-     */
-    protected String altKey = null;
-
-    public String getAltKey() {
-        return (this.altKey);
-    }
-
-    public void setAltKey(String altKey) {
-        this.altKey = altKey;
-    }
-
-
-    /**
      * The border size around the image.
      */
     protected String border = null;
@@ -160,27 +130,6 @@ public class ImgTag extends BaseHandlerTag {
     public void setBorder(String border) {
         this.border = border;
     }
-
-
-    /**
-     * The name of the servlet context attribute containing our message
-     * resources.
-     */
-    protected String bundle = Action.MESSAGES_KEY;
-
-    public String getBundle() {
-        return (this.bundle);
-    }
-
-    public void setBundle(String bundle) {
-        this.bundle = bundle;
-    }
-
-
-    /**
-     * The default Locale for our server.
-     */
-    protected static final Locale defaultLocale = Locale.getDefault();
 
 
     /**
@@ -236,21 +185,6 @@ public class ImgTag extends BaseHandlerTag {
 
     public void setIsmap(String ismap) {
         this.ismap = ismap;
-    }
-
-
-    /**
-     * The name of the attribute containing the Locale to be used for
-     * looking up internationalized messages.
-     */
-    protected String locale = Action.LOCALE_KEY;
-
-    public String getLocale() {
-        return (this.locale);
-    }
-
-    public void setLocale(String locale) {
-        this.locale = locale;
     }
 
 
@@ -518,12 +452,6 @@ public class ImgTag extends BaseHandlerTag {
             results.append(response.encodeURL(lowsrcurl));
             results.append("\"");
         }
-        tmp = alt();
-        if (tmp != null) {
-            results.append(" alt=\"");
-            results.append(tmp);
-            results.append("\"");
-        }
         if (imageName != null) {
             results.append(" name=\"");
             results.append(imageName);
@@ -588,15 +516,11 @@ public class ImgTag extends BaseHandlerTag {
     public void release() {
 
 	super.release();
-        alt = null;
-        altKey = null;
         border = null;
-        bundle = Action.MESSAGES_KEY;
         height = null;
         hspace = null;
         imageName = null;
         ismap = null;
-        locale = Action.LOCALE_KEY;
         lowsrc = null;
 	name = null;
         page = null;
@@ -617,50 +541,6 @@ public class ImgTag extends BaseHandlerTag {
 
 
     // ------------------------------------------------------ Protected Methods
-
-
-    /**
-     * Return the alternate text to be included on this generated element,
-     * or <code>null</code> if there is no such text.
-     *
-     * @exception JspException if an error occurs
-     */
-    protected String alt() throws JspException {
-
-        if (this.alt != null) {
-            if (this.altKey != null) {
-                JspException e = new JspException
-                    (messages.getMessage("imgTag.alt"));
-                RequestUtils.saveException(pageContext, e);
-                throw e;
-            } else {
-                return (this.alt);
-            }
-        } else if (this.altKey != null) {
-            MessageResources resources = (MessageResources)
-                pageContext.getAttribute(this.bundle,
-                                         PageContext.APPLICATION_SCOPE);
-            if (resources == null) {
-                JspException e = new JspException
-                    (messages.getMessage("imgTag.bundle", this.bundle));
-                throw e;
-            }
-            Locale locale = null;
-            try {
-                locale = (Locale)
-                    pageContext.getAttribute(this.locale,
-                                             PageContext.SESSION_SCOPE);
-            } catch (IllegalStateException e) {
-                locale = null; // Invalidated session
-            }
-            if (locale == null)
-                locale = defaultLocale;
-            return (resources.getMessage(locale, this.altKey));
-        } else {
-            return (null);
-        }
-
-    }
 
 
     /**
@@ -707,12 +587,12 @@ public class ImgTag extends BaseHandlerTag {
                 (HttpServletRequest) pageContext.getRequest();
             if (config == null) {
                 return (request.getContextPath() +
-                        RequestUtils.message(pageContext, bundle,
-                                             locale, this.pageKey));
+                        RequestUtils.message(pageContext, getBundle(),
+                                             getLocale(), this.pageKey));
             } else {
                 return (request.getContextPath() + config.getPrefix() +
-                        RequestUtils.message(pageContext, bundle,
-                                             locale, this.pageKey));
+                        RequestUtils.message(pageContext, getBundle(),
+                                             getLocale(), this.pageKey));
             }
         }
 
@@ -734,8 +614,8 @@ public class ImgTag extends BaseHandlerTag {
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-        return (RequestUtils.message(pageContext, bundle,
-                                     locale, this.srcKey));
+        return (RequestUtils.message(pageContext, getBundle(),
+                                     getLocale(), this.srcKey));
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.14 2002/01/13 00:25:37 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2002/01/13 00:25:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.15 2002/01/13 03:38:38 craigmcc Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/01/13 03:38:38 $
  *
  * ====================================================================
  *
@@ -65,7 +65,6 @@ package org.apache.struts.taglib.html;
 
 import java.lang.reflect.Method;
 import java.io.IOException;
-import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
@@ -82,19 +81,10 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "image".
  *
  * @author Oleg V Alexeev
- * @version $Revision: 1.14 $ $Date: 2002/01/13 00:25:37 $
+ * @version $Revision: 1.15 $ $Date: 2002/01/13 03:38:38 $
  */
 
 public class ImageTag extends SubmitTag {
-
-
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * The default Locale for our server.
-     */
-    protected static final Locale defaultLocale = Locale.getDefault();
 
 
     // ------------------------------------------------------------- Properties
@@ -115,34 +105,6 @@ public class ImageTag extends SubmitTag {
 
 
     /**
-     * The alternate text for this image.
-     */
-    protected String alt = null;
-
-    public String getAlt() {
-        return (this.alt);
-    }
-
-    public void setAlt(String alt) {
-        this.alt = alt;
-    }
-
-
-    /**
-     * The message resources key for the alternate text for this image.
-     */
-    protected String altKey = null;
-
-    public String getAltKey() {
-        return (this.altKey);
-    }
-
-    public void setAltKey(String altKey) {
-        this.altKey = altKey;
-    }
-
-
-    /**
      * The border size around the image.
      */
     protected String border = null;
@@ -153,34 +115,6 @@ public class ImageTag extends SubmitTag {
 
     public void setBorder(String border) {
         this.border = border;
-    }
-
-
-    /**
-     * The servlet context attribute key for our resources.
-     */
-    protected String bundle = Action.MESSAGES_KEY;
-
-    public String getBundle() {
-        return (this.bundle);
-    }
-
-    public void setBundle(String bundle) {
-        this.bundle = bundle;
-    }
-
-
-    /**
-     * The session attribute key for our locale.
-     */
-    protected String locale = Action.LOCALE_KEY;
-
-    public String getLocale() {
-        return (this.locale);
-    }
-
-    public void setLocale(String locale) {
-        this.locale = locale;
     }
 
 
@@ -295,12 +229,6 @@ public class ImageTag extends SubmitTag {
             results.append(response.encodeURL(tmp));
             results.append("\"");
         }
-        tmp = alt();
-        if (tmp != null) {
-            results.append(" alt=\"");
-            results.append(tmp);
-            results.append("\"");
-        }
         if (align != null) {
             results.append(" align=\"");
             results.append(align);
@@ -345,10 +273,6 @@ public class ImageTag extends SubmitTag {
     public void release() {
 
         super.release();
-        alt = null;
-        altKey = null;
-        bundle = Action.MESSAGES_KEY;
-        locale = Action.LOCALE_KEY;
         page = null;
         pageKey = null;
         property = "";
@@ -359,50 +283,6 @@ public class ImageTag extends SubmitTag {
 
 
     // ------------------------------------------------------ Protected Methods
-
-
-    /**
-     * Return the alternate text to be included on this generated element,
-     * or <code>null</code> if there is no such text.
-     *
-     * @exception JspException if an error occurs
-     */
-    protected String alt() throws JspException {
-
-        if (this.alt != null) {
-            if (this.altKey != null) {
-                JspException e = new JspException
-                    (messages.getMessage("imgTag.alt"));
-                RequestUtils.saveException(pageContext, e);
-                throw e;
-            } else {
-                return (this.alt);
-            }
-        } else if (this.altKey != null) {
-            MessageResources resources = (MessageResources)
-                pageContext.getAttribute(this.bundle,
-                                         PageContext.APPLICATION_SCOPE);
-            if (resources == null) {
-                JspException e = new JspException
-                    (messages.getMessage("imgTag.bundle", this.bundle));
-                throw e;
-            }
-            Locale locale = null;
-            try {
-                locale = (Locale)
-                    pageContext.getAttribute(this.locale,
-                                             PageContext.SESSION_SCOPE);
-            } catch (IllegalStateException e) {
-                locale = null; // Invalidated session
-            }
-            if (locale == null)
-                locale = defaultLocale;
-            return (resources.getMessage(locale, this.altKey));
-        } else {
-            return (null);
-        }
-
-    }
 
 
     /**
@@ -449,12 +329,12 @@ public class ImageTag extends SubmitTag {
                 (HttpServletRequest) pageContext.getRequest();
             if (config == null) {
                 return (request.getContextPath() +
-                        RequestUtils.message(pageContext, bundle,
-                                             locale, this.pageKey));
+                        RequestUtils.message(pageContext, getBundle(),
+                                             getLocale(), this.pageKey));
             } else {
                 return (request.getContextPath() + config.getPrefix() +
-                        RequestUtils.message(pageContext, bundle,
-                                             locale, this.pageKey));
+                        RequestUtils.message(pageContext, getBundle(),
+                                             getLocale(), this.pageKey));
             }
         }
 
@@ -476,8 +356,8 @@ public class ImageTag extends SubmitTag {
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-        return (RequestUtils.message(pageContext, bundle,
-                                     locale, this.srcKey));
+        return (RequestUtils.message(pageContext, getBundle(),
+                                     getLocale(), this.srcKey));
 
     }
 

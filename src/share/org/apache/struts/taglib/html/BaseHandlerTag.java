@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.12 2001/12/11 17:54:28 oalexeev Exp $
- * $Revision: 1.12 $
- * $Date: 2001/12/11 17:54:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.13 2002/01/13 03:38:38 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/01/13 03:38:38 $
  *
  * ====================================================================
  *
@@ -61,8 +61,11 @@
 
 package org.apache.struts.taglib.html;
 
+import java.util.Locale;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.taglib.logic.IterateTag;
@@ -74,13 +77,19 @@ import org.apache.struts.taglib.logic.IterateTag;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.12 $ $Date: 2001/12/11 17:54:28 $
+ * @version $Revision: 1.13 $ $Date: 2002/01/13 03:38:38 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
 
 
     // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The default Locale for our server.
+     */
+    protected static final Locale defaultLocale = Locale.getDefault();
 
 
     /**
@@ -172,8 +181,23 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
 // Other Common Attributes
 
+    /** The alternate text of this element. */
+    private String alt = null;
+
+    /** The message resources key of the alternate text. */
+    private String altKey = null;
+
+    /** The name of the message resources bundle for message lookups. */
+    private String bundle = null;
+
+    /** The name of the session attribute key for our locale. */
+    private String locale = Action.LOCALE_KEY;
+
     /** The advisory title of this element. */
     private String title = null;
+
+    /** The message resources key of the advisory title. */
+    private String titleKey = null;
 
 
     // ------------------------------------------------------------- Properties
@@ -415,6 +439,46 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
 // Other Common Elements
 
+    /** Returns the alternate text attribute. */
+    public String getAlt() {
+        return alt;
+    }
+
+    /** Sets the alternate text attribute. */
+    public void setAlt(String alt) {
+        this.alt = alt;
+    }
+
+    /** Returns the message resources key of the alternate text. */
+    public String getAltKey() {
+        return altKey;
+    }
+
+    /** Sets the message resources key of the alternate text. */
+    public void setAltKey(String altKey) {
+        this.altKey = altKey;
+    }
+
+    /** Returns the name of the message resources bundle to use. */
+    public String getBundle() {
+        return bundle;
+    }
+
+    /** Sets the name of the message resources bundle to use. */
+    public void setBundle(String bundle) {
+        this.bundle = bundle;
+    }
+
+    /** Returns the name of the session attribute for our locale. */
+    public String getLocale() {
+        return locale;
+    }
+
+    /** Sets the name of the session attribute for our locale. */
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
     /** Returns the advisory title attribute. */
     public String getTitle() {
         return title;
@@ -423,6 +487,16 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /** Sets the advisory title attribute. */
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    /** Returns the message resources key of the advisory title. */
+    public String getTitleKey() {
+        return titleKey;
+    }
+
+    /** Sets the message resources key of the advisory title. */
+    public void setTitleKey(String titleKey) {
+        this.titleKey = titleKey;
     }
 
 
@@ -436,7 +510,11 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
         super.release();
         accesskey = null;
-        tabindex = null;
+        alt = null;
+        altKey = null;
+        bundle = null;
+        indexed = false;
+        locale = Action.LOCALE_KEY;
         onclick = null;
         ondblclick = null;
         onmouseover = null;
@@ -456,13 +534,43 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         style = null;
         styleClass = null;
         styleId = null;
+        tabindex = null;
         title = null;
-        indexed = false;
+        titleKey = null;
 
     }
 
 
     // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Return the text specified by the literal value or the message resources
+     * key, if any; otherwise return <code>null</code>.
+     *
+     * @param literal Literal text value or <code>null</code>
+     * @param key Message resources key or <code>null</code>
+     *
+     * @exception JspException if both arguments are non-null
+     */
+    protected String message(String literal, String key) throws JspException {
+
+        if (literal != null) {
+            if (key != null) {
+                JspException e = new JspException
+                    (messages.getMessage("common.both"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            } else {
+                return (literal);
+            }
+        } else {
+            return (RequestUtils.message(pageContext, getBundle(),
+                                         getLocale(), key));
+        }
+
+    }
+
 
     /**
      *  Appends bean name with index in brackets for tags with
@@ -492,8 +600,10 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /**
      * Prepares the style attributes for inclusion in the component's HTML tag.
      * @return The prepared String for inclusion in the HTML tag.
+     * @exception JspException if invalid attributes are specified
      */
-    protected String prepareStyles() {
+    protected String prepareStyles() throws JspException {
+        String value = null;
         StringBuffer styles = new StringBuffer();
         if (style != null) {
             styles.append(" style=\"");
@@ -510,9 +620,16 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
             styles.append(getStyleId());
             styles.append("\"");
         }
-        if (title != null) {
+        value = message(title, titleKey);
+        if (value != null) {
             styles.append(" title=\"");
-            styles.append(getTitle());
+            styles.append(value);
+            styles.append("\"");
+        }
+        value = message(alt, altKey);
+        if (value != null) {
+            styles.append(" alt=\"");
+            styles.append(value);
             styles.append("\"");
         }
         return styles.toString();
@@ -655,8 +772,6 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         }
 
     }
-
-
 
 
 }
