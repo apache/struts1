@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.5 2002/11/12 03:56:10 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2002/11/12 03:56:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.6 2002/11/16 08:23:09 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/11/16 08:23:09 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.5 $ $Date: 2002/11/12 03:56:10 $
+ * @version $Revision: 1.6 $ $Date: 2002/11/16 08:23:09 $
  * @since Struts 1.1
 */
 public class Resources  {
@@ -292,11 +292,15 @@ public class Resources  {
     *
     * @param  key     The key that the validation rules are under
     *               (the form elements name attribute).
-    * @param  bean
+    *@param  bean     The bean validation is being performed on.
     * @param  application servlet context
     * @param  request     The current request object.
     * @param  errors      The object any errors will be stored in.
-    * @param  page
+    * @param  page        This in conjunction with  the page property
+    *                     of a <code>Field<code>  can control the processing
+    *                    of fields.  If the field's page is less than or equal
+    *                    to this page value, it will be processed.
+
    */
    public static Validator initValidator(String key, Object bean,
                                          ServletContext application, HttpServletRequest request,
