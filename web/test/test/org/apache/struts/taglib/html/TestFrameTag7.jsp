@@ -11,7 +11,7 @@
         <html:frame page="/path/to/non/existing/jsp.jsp"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>">
     </bean:define>
 </logic:equal>
 
@@ -22,7 +22,7 @@
         <html:frame page="/path/to/non/existing/jsp.jsp" anchor="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp#XXX")%>">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp#XXX")%>">
     </bean:define>
 </logic:equal>
 
@@ -33,7 +33,7 @@
         <html:frame page="/path/to/non/existing/jsp.jsp" frameborder="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" frameborder="XXX">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" frameborder="XXX">
     </bean:define>
 </logic:equal>
 
@@ -44,7 +44,7 @@
         <html:frame page="/path/to/non/existing/jsp.jsp" frameName="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" name="XXX">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" name="XXX">
     </bean:define>
 </logic:equal>
 
@@ -55,7 +55,7 @@
         <html:frame page="/path/to/non/existing/jsp.jsp" longdesc="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" longdesc="XXX">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" longdesc="XXX">
     </bean:define>
 </logic:equal>
 
@@ -65,7 +65,7 @@
         <html:frame page="/path/to/non/existing/jsp.jsp" marginheight="15"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" marginheight="15">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" marginheight="15">
     </bean:define>
 </logic:equal>
 
@@ -76,7 +76,7 @@
         <html:frame page="/path/to/non/existing/jsp.jsp" marginwidth="10"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" marginwidth="10">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" marginwidth="10">
     </bean:define>
 </logic:equal>
 
@@ -168,7 +168,7 @@
         <html:frame page="/path/to/non/existing/jsp.jsp" noresize="true"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" noresize="noresize">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" noresize="noresize">
     </bean:define>
 </logic:equal>
 
@@ -177,7 +177,7 @@
         <html:frame page="/path/to/non/existing/jsp.jsp" noresize="True"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" noresize="noresize">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" noresize="noresize">
     </bean:define>
 </logic:equal>
 
@@ -186,7 +186,7 @@
         <html:frame page="/path/to/non/existing/jsp.jsp" noresize="false"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>">
     </bean:define>
 </logic:equal>
 
@@ -195,7 +195,7 @@
         <html:frame page="/path/to/non/existing/jsp.jsp" noresize="False"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>">
     </bean:define>
 </logic:equal>
 
@@ -204,7 +204,7 @@
         <html:frame page="/path/to/non/existing/jsp.jsp" noresize="yes"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>">
     </bean:define>
 </logic:equal>
 
@@ -213,7 +213,7 @@
         <html:frame page="/path/to/non/existing/jsp.jsp" noresize="no"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>">
     </bean:define>
 </logic:equal>
 
@@ -226,5 +226,5 @@ if ((expected == null) || (expected == null)){
     Assert.fail("An invalid (or mispelled) test on this page was called.  Please verify that you've setup the tests (and spellings) correctly.");
 }
 	
-Assert.assertEquals(compareTo, expected);
+Assert.assertEquals(expected, compareTo);
 %>

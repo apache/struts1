@@ -10,7 +10,7 @@
         <html:img page="/some/image.gif" align="left"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" align="left">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" align="left">
     </bean:define>
 </logic:equal>
 
@@ -19,7 +19,7 @@
         <html:img page="/some/image.gif" align="right"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" align="right">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" align="right">
     </bean:define>
 </logic:equal>
 
@@ -28,7 +28,7 @@
         <html:img page="/some/image.gif" align="top"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" align="top">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" align="top">
     </bean:define>
 </logic:equal>
 
@@ -37,7 +37,7 @@
         <html:img page="/some/image.gif" align="middle"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" align="middle">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" align="middle">
     </bean:define>
 </logic:equal>
 
@@ -46,7 +46,7 @@
         <html:img page="/some/image.gif" align="bottom"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" align="bottom">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" align="bottom">
     </bean:define>
 </logic:equal>
 
@@ -55,7 +55,7 @@
         <html:img page="/some/image.gif" align="texttop"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" align="texttop">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" align="texttop">
     </bean:define>
 </logic:equal>
 
@@ -64,7 +64,7 @@
         <html:img page="/some/image.gif" align="absmiddle"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" align="absmiddle">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" align="absmiddle">
     </bean:define>
 </logic:equal>
 
@@ -73,7 +73,7 @@
         <html:img page="/some/image.gif" align="absbottom"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" align="absbottom">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" align="absbottom">
     </bean:define>
 </logic:equal>
 
@@ -82,7 +82,7 @@
         <html:img page="/some/image.gif" align="any value"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" align="any value">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" align="any value">
     </bean:define>
 </logic:equal>
 
@@ -91,7 +91,7 @@
         <html:img page="/some/image.gif" align="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" align="XXX">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" align="XXX">
     </bean:define>
 </logic:equal>
 
@@ -100,7 +100,7 @@
         <html:img page="/some/image.gif" alt="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" alt="XXX">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" alt="XXX">
     </bean:define>
 </logic:equal>
 
@@ -109,7 +109,7 @@
         <html:img page="/some/image.gif" altKey="default.bundle.message"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" alt="Testing Message">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" alt="Testing Message">
     </bean:define>
 </logic:equal>
 
@@ -118,7 +118,7 @@
         <html:img page="/some/image.gif" altKey="alternate.bundle.message" bundle="alternate"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" alt="Testing Message">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" alt="Testing Message">
     </bean:define>
 </logic:equal>
 
@@ -127,7 +127,7 @@
         <html:img page="/some/image.gif" altKey="default.bundle.message"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" alt="Message D'Essai">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" alt="Message D'Essai">
     </bean:define>
 </logic:equal>
 
@@ -136,7 +136,7 @@
         <html:img page="/some/image.gif" altKey="alternate.bundle.message" bundle="alternate"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" alt="Message D'Essai">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" alt="Message D'Essai">
     </bean:define>
 </logic:equal>
 
@@ -145,7 +145,7 @@
         <html:img page="/some/image.gif" border="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" border="XXX">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" border="XXX">
     </bean:define>
 </logic:equal>
 
@@ -154,7 +154,7 @@
         <html:img page="/some/image.gif" height="15"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" height="15">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" height="15">
     </bean:define>
 </logic:equal>
 
@@ -163,7 +163,7 @@
         <html:img page="/some/image.gif" height="155px"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" height="155px">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" height="155px">
     </bean:define>
 </logic:equal>
 
@@ -172,7 +172,7 @@
         <html:img page="/some/image.gif" hspace="15"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" hspace="15">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" hspace="15">
     </bean:define>
 </logic:equal>
 
@@ -181,7 +181,7 @@
         <html:img page="/some/image.gif" imageName="nameOfImage"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" name="nameOfImage">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" name="nameOfImage">
     </bean:define>
 </logic:equal>
 
@@ -190,7 +190,7 @@
         <html:img page="/some/image.gif" ismap="nameOfMap"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" ismap="nameOfMap">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" ismap="nameOfMap">
     </bean:define>
 </logic:equal>
 
@@ -199,7 +199,7 @@
         <html:img page="/some/image.gif" locale="secret locale" altKey="default.bundle.message"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/some/image.gif")%>" alt="Message D'Essai">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/some/image.gif")%>" alt="Message D'Essai">
     </bean:define>
 </logic:equal>
 
@@ -218,5 +218,5 @@ if (pageContext.getAttribute("TEST_RESULTS") != null){
 	compareTo=pageContext.getAttribute("EXPECTED_RESULTS").toString();
 }
 
-Assert.assertEquals(compareTo, expected);
+Assert.assertEquals(expected, compareTo);
 %>

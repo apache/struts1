@@ -10,7 +10,7 @@
 		<html:frame action="simpleAction" paramId="myParam" paramName="paramName"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<frame src="<%=response.encodeURL("/test/simpleAction.do")%>?myParam=paramValue">
+		<frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>?myParam=paramValue">
     </bean:define>
 </logic:equal>
 
@@ -20,7 +20,7 @@
 			paramName="testingParamProperty" paramProperty="string"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<frame src="<%=response.encodeURL("/test/simpleAction.do")%>?myParam=paramPropertyValue">
+		<frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>?myParam=paramPropertyValue">
     </bean:define>
 </logic:equal>
 
@@ -30,7 +30,7 @@
 		<html:frame action="simpleAction" paramId="myParam" paramName="paramName"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<frame src="<%=response.encodeURL("/test/simpleAction.do")%>?myParam=paramValue">
+		<frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>?myParam=paramValue">
     </bean:define>
 </logic:equal>
 
@@ -40,7 +40,7 @@
 			paramName="testingParamProperty" paramProperty="string"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<frame src="<%=response.encodeURL("/test/simpleAction.do")%>?myParam=paramPropertyValue">
+		<frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>?myParam=paramPropertyValue">
     </bean:define>
 </logic:equal>
 
@@ -50,7 +50,7 @@
 		<html:frame action="simpleAction" paramId="myParam" paramName="paramName"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<frame src="<%=response.encodeURL("/test/simpleAction.do")%>?myParam=paramValue">
+		<frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>?myParam=paramValue">
     </bean:define>
 </logic:equal>
 
@@ -60,7 +60,7 @@
 			paramName="testingParamProperty" paramProperty="string"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<frame src="<%=response.encodeURL("/test/simpleAction.do")%>?myParam=paramPropertyValue">
+		<frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>?myParam=paramPropertyValue">
     </bean:define>
 </logic:equal>
 
@@ -70,7 +70,7 @@
 		<html:frame action="simpleAction" paramId="myParam" paramName="paramName"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<frame src="<%=response.encodeURL("/test/simpleAction.do")%>?myParam=paramValue">
+		<frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>?myParam=paramValue">
     </bean:define>
 </logic:equal>
 
@@ -80,7 +80,7 @@
 			paramName="testingParamProperty" paramProperty="string"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<frame src="<%=response.encodeURL("/test/simpleAction.do")%>?myParam=paramPropertyValue">
+		<frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>?myParam=paramPropertyValue">
     </bean:define>
 </logic:equal>
 
@@ -96,7 +96,7 @@
         <html:frame action="simpleAction" scrolling="yes"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>" scrolling="yes">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>" scrolling="yes">
     </bean:define>
 </logic:equal>
 
@@ -106,7 +106,7 @@
         <html:frame action="simpleAction" scrolling="Yes"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>" scrolling="Yes">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>" scrolling="Yes">
     </bean:define>
 </logic:equal>
 
@@ -116,7 +116,7 @@
         <html:frame action="simpleAction" scrolling="YES"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>" scrolling="YES">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>" scrolling="YES">
     </bean:define>
 </logic:equal>
 
@@ -126,7 +126,7 @@
         <html:frame action="simpleAction" scrolling="no"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>" scrolling="no">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>" scrolling="no">
     </bean:define>
 </logic:equal>
 
@@ -136,7 +136,7 @@
         <html:frame action="simpleAction" scrolling="No"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>" scrolling="No">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>" scrolling="No">
     </bean:define>
 </logic:equal>
 
@@ -146,7 +146,7 @@
         <html:frame action="simpleAction" scrolling="NO"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>" scrolling="NO">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>" scrolling="NO">
     </bean:define>
 </logic:equal>
 
@@ -156,7 +156,7 @@
         <html:frame action="simpleAction" scrolling="auto"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>" scrolling="auto">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>" scrolling="auto">
     </bean:define>
 </logic:equal>
 
@@ -166,7 +166,7 @@
         <html:frame action="simpleAction" scrolling="Auto"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>" scrolling="Auto">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>" scrolling="Auto">
     </bean:define>
 </logic:equal>
 
@@ -176,7 +176,7 @@
         <html:frame action="simpleAction" scrolling="AUTO"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>" scrolling="AUTO">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>" scrolling="AUTO">
     </bean:define>
 </logic:equal>
 
@@ -186,7 +186,7 @@
         <html:frame action="simpleAction" scrolling="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>" scrolling="XXX">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>" scrolling="XXX">
     </bean:define>
 </logic:equal>
 
@@ -196,7 +196,7 @@
         <html:frame action="simpleAction" style="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>" style="XXX">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>" style="XXX">
     </bean:define>
 </logic:equal>
 
@@ -206,7 +206,7 @@
         <html:frame action="simpleAction" title="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>" title="XXX">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>" title="XXX">
     </bean:define>
 </logic:equal>
 
@@ -216,7 +216,7 @@
         <html:frame action="simpleAction" titleKey="default.bundle.message"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>" title="Testing Message">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>" title="Testing Message">
     </bean:define>
 </logic:equal>
 
@@ -226,7 +226,7 @@
         <html:frame action="simpleAction" transaction="true"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <frame src="<%=response.encodeURL("/test/simpleAction.do")%>?org.apache.struts.taglib.html.TOKEN=Some_Token_Here">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do")%>?org.apache.struts.taglib.html.TOKEN=Some_Token_Here">
     </bean:define>
 </logic:equal>
 
@@ -242,5 +242,5 @@ if ((expected == null) || (expected == null)){
     Assert.fail("An invalid (or mispelled) test on this page was called.  Please verify that you've setup the tests (and spellings) correctly.");
 }
 	
-Assert.assertEquals(compareTo, expected);
+Assert.assertEquals(expected, compareTo);
 %>

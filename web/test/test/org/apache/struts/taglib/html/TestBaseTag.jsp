@@ -16,7 +16,7 @@ String portString = (port == 80 ? "" : ":" + port);
 		<html:base/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<base href="http://<%=server%><%=portString%>/test/test/org/apache/struts/taglib/html/TestBaseTag.jsp">
+		<base href="http://<%=server%><%=portString%><%= request.getContextPath()  %>/test/org/apache/struts/taglib/html/TestBaseTag.jsp">
 	</bean:define>
 </logic:equal>
 
@@ -25,7 +25,7 @@ String portString = (port == 80 ? "" : ":" + port);
 		<html:base target="My-Other-Frame"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<base href="http://<%=server%><%=portString%>/test/test/org/apache/struts/taglib/html/TestBaseTag.jsp" target="My-Other-Frame">
+		<base href="http://<%=server%><%=portString%><%= request.getContextPath()  %>/test/org/apache/struts/taglib/html/TestBaseTag.jsp" target="My-Other-Frame">
 	</bean:define>
 </logic:equal>
 
@@ -34,7 +34,7 @@ String portString = (port == 80 ? "" : ":" + port);
 		<html:base server="www.my-server-name.com"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<base href="http://www.my-server-name.com<%=portString%>/test/test/org/apache/struts/taglib/html/TestBaseTag.jsp">
+		<base href="http://www.my-server-name.com<%=portString%><%= request.getContextPath()  %>/test/org/apache/struts/taglib/html/TestBaseTag.jsp">
 	</bean:define>
 </logic:equal>
 
@@ -43,7 +43,7 @@ String portString = (port == 80 ? "" : ":" + port);
 		<html:base server="www.my-server-name.com" target="My-Other-Frame"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<base href="http://www.my-server-name.com<%=portString%>/test/test/org/apache/struts/taglib/html/TestBaseTag.jsp" target="My-Other-Frame">
+		<base href="http://www.my-server-name.com<%=portString%><%= request.getContextPath()  %>/test/org/apache/struts/taglib/html/TestBaseTag.jsp" target="My-Other-Frame">
 	</bean:define>
 </logic:equal>
 
@@ -61,5 +61,5 @@ if (pageContext.getAttribute("TEST_RESULTS") != null){
 	compareTo=pageContext.getAttribute("EXPECTED_RESULTS").toString();
 }
 
-Assert.assertEquals(compareTo, expected);
+Assert.assertEquals(expected, compareTo);
 %>

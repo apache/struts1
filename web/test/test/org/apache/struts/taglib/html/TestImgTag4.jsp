@@ -10,7 +10,7 @@
         <html:img pageKey="default.testing.image" onclick="onclick"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" onclick="onclick">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" onclick="onclick">
     </bean:define>
 </logic:equal>
 
@@ -19,7 +19,7 @@
         <html:img pageKey="default.testing.image" ondblclick="ondblclick"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" ondblclick="ondblclick">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" ondblclick="ondblclick">
     </bean:define>
 </logic:equal>
 
@@ -28,7 +28,7 @@
         <html:img pageKey="default.testing.image" onkeydown="onkeydown"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" onkeydown="onkeydown">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" onkeydown="onkeydown">
     </bean:define>
 </logic:equal>
 
@@ -37,7 +37,7 @@
         <html:img pageKey="default.testing.image" onkeypress="onkeypress"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" onkeypress="onkeypress">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" onkeypress="onkeypress">
     </bean:define>
 </logic:equal>
 
@@ -46,7 +46,7 @@
         <html:img pageKey="default.testing.image" onkeyup="onkeyup"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" onkeyup="onkeyup">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" onkeyup="onkeyup">
     </bean:define>
 </logic:equal>
 
@@ -56,7 +56,7 @@
         <html:img pageKey="default.testing.image" onmousedown="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" onmousedown="XXX">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" onmousedown="XXX">
     </bean:define>
 </logic:equal>
 
@@ -66,7 +66,7 @@
         <html:img pageKey="default.testing.image" onmousemove="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" onmousemove="XXX">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" onmousemove="XXX">
     </bean:define>
 </logic:equal>
 
@@ -76,7 +76,7 @@
         <html:img pageKey="default.testing.image" onmouseout="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" onmouseout="XXX">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" onmouseout="XXX">
     </bean:define>
 </logic:equal>
 
@@ -86,7 +86,7 @@
         <html:img pageKey="default.testing.image" onmouseover="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" onmouseover="XXX">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" onmouseover="XXX">
     </bean:define>
 </logic:equal>
 
@@ -96,7 +96,7 @@
         <html:img pageKey="default.testing.image" onmouseup="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" onmouseup="XXX">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" onmouseup="XXX">
     </bean:define>
 </logic:equal>
 
@@ -106,7 +106,7 @@
         <html:img pageKey="default.testing.image" style="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" style="XXX">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" style="XXX">
     </bean:define>
 </logic:equal>
 
@@ -116,7 +116,7 @@
         <html:img pageKey="default.testing.image" styleClass="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" class="XXX">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" class="XXX">
     </bean:define>
 </logic:equal>
 
@@ -126,7 +126,7 @@
         <html:img pageKey="default.testing.image" styleId="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" id="XXX">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" id="XXX">
     </bean:define>
 </logic:equal>
 
@@ -136,7 +136,7 @@
         <html:img pageKey="default.testing.image" title="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" title="XXX">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" title="XXX">
     </bean:define>
 </logic:equal>
 
@@ -146,7 +146,7 @@
         <html:img pageKey="default.testing.image" titleKey="default.bundle.message"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" title="Testing Message">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" title="Testing Message">
     </bean:define>
 </logic:equal>
 
@@ -156,7 +156,7 @@
         <html:img pageKey="alternate.testing.image" titleKey="alternate.bundle.message" bundle="alternate"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/alternate/myimage.gif")%>" title="Testing Message">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/alternate/myimage.gif")%>" title="Testing Message">
     </bean:define>
 </logic:equal>
 
@@ -166,7 +166,7 @@
         <html:img pageKey="default.testing.image" titleKey="default.bundle.message"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/fr/default/myimage.gif")%>" title="Message D'Essai">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/fr/default/myimage.gif")%>" title="Message D'Essai">
     </bean:define>
 </logic:equal>
 
@@ -175,7 +175,7 @@
         <html:img pageKey="alternate.testing.image" titleKey="alternate.bundle.message" bundle="alternate"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/fr/alternate/myimage.gif")%>" title="Message D'Essai">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/fr/alternate/myimage.gif")%>" title="Message D'Essai">
     </bean:define>
 </logic:equal>
 
@@ -184,7 +184,7 @@
         <html:img pageKey="default.testing.image" usemap="XXX"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" usemap="XXX">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" usemap="XXX">
     </bean:define>
 </logic:equal>
 
@@ -193,7 +193,7 @@
         <html:img pageKey="default.testing.image" vspace="15"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" vspace="15">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" vspace="15">
     </bean:define>
 </logic:equal>
 
@@ -203,7 +203,7 @@
         <html:img pageKey="default.testing.image" width="15"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <img src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" width="15">
+        <img src="<%=response.encodeURL( request.getContextPath() + "/images/default/default/myimage.gif")%>" width="15">
     </bean:define>
 </logic:equal>
 
@@ -224,5 +224,5 @@ if (pageContext.getAttribute("TEST_RESULTS") != null){
 	compareTo=pageContext.getAttribute("EXPECTED_RESULTS").toString();
 }
 
-Assert.assertEquals(compareTo, expected);
+Assert.assertEquals(expected, compareTo);
 %>

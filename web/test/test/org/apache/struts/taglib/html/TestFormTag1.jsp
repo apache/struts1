@@ -11,7 +11,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="post" action="<%=response.encodeURL("/test/testFormTag.do")%>">
+		<form name="testFormBean" method="post" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -23,7 +23,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="post" action="<%=response.encodeURL("/test/testFormTag.do")%>" enctype="multipart/form-data">
+		<form name="testFormBean" method="post" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>" enctype="multipart/form-data">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -35,7 +35,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="post" action="<%=response.encodeURL("/test/testFormTag.do")%>">
+		<form name="testFormBean" method="post" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>">
 		</form>
 <script type="text/javascript" language="JavaScript">
   <!--
@@ -56,7 +56,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="post" action="<%=response.encodeURL("/test/testFormTag.do")%>">
+		<form name="testFormBean" method="post" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>">
 		</form>
 <script type="text/javascript" language="JavaScript">
   <!--
@@ -77,7 +77,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="post" action="<%=response.encodeURL("/test/testFormTag.do")%>">
+		<form name="testFormBean" method="post" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -88,7 +88,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="Post" action="<%=response.encodeURL("/test/testFormTag.do")%>">
+		<form name="testFormBean" method="Post" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -99,7 +99,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="get" action="<%=response.encodeURL("/test/testFormTag.do")%>">
+		<form name="testFormBean" method="get" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -110,7 +110,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="Get" action="<%=response.encodeURL("/test/testFormTag.do")%>">
+		<form name="testFormBean" method="Get" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -121,7 +121,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="GET" action="<%=response.encodeURL("/test/testFormTag.do")%>">
+		<form name="testFormBean" method="GET" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -132,7 +132,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="misc" action="<%=response.encodeURL("/test/testFormTag.do")%>">
+		<form name="testFormBean" method="misc" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -144,7 +144,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="misc" action="<%=response.encodeURL("/test/testFormTag.do")%>" onreset="script goes here">
+		<form name="testFormBean" method="misc" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>" onreset="script goes here">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -155,7 +155,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="misc" action="<%=response.encodeURL("/test/testFormTag.do")%>" onsubmit="script goes here">
+		<form name="testFormBean" method="misc" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>" onsubmit="script goes here">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -167,7 +167,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="misc" action="<%=response.encodeURL("/test/testFormTag.do")%>" style="style.goes.here">
+		<form name="testFormBean" method="misc" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>" style="style.goes.here">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -178,7 +178,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="misc" action="<%=response.encodeURL("/test/testFormTag.do")%>" class="style.goes.here">
+		<form name="testFormBean" method="misc" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>" class="style.goes.here">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -189,7 +189,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="misc" action="<%=response.encodeURL("/test/testFormTag.do")%>" id="id.goes.here">
+		<form name="testFormBean" method="misc" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>" id="id.goes.here">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -200,7 +200,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="misc" action="<%=response.encodeURL("/test/testFormTag.do")%>" target="_new">
+		<form name="testFormBean" method="misc" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>" target="_new">
 		</form>
 	</bean:define>
 </logic:equal>
@@ -214,5 +214,5 @@ if ((expected == null) || (expected == null)){
     Assert.fail("An invalid (or mispelled) test on this page was called.  Please verify that you've setup the tests (and spellings) correctly.");
 }
 	
-Assert.assertEquals(compareTo, expected);
+Assert.assertEquals(expected, compareTo);
 %>

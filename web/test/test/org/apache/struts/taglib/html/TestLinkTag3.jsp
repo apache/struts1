@@ -32,7 +32,7 @@
         <html:link action="simpleAction" anchor="XXX">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/simpleAction.do#XXX")%>">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do#XXX")%>">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -45,7 +45,7 @@
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?index=0")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?index=0")%>">Test Link</a>
 		
 	</bean:define>
 </logic:equal>
@@ -58,7 +58,7 @@
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?index=0")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?index=0")%>">Test Link</a>
 		
 	</bean:define>
 </logic:equal>
@@ -71,7 +71,7 @@
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?index=0")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?index=0")%>">Test Link</a>
 		
 	</bean:define>
 </logic:equal>
@@ -84,7 +84,7 @@
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?index=0")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?index=0")%>">Test Link</a>
 		
 	</bean:define>
 </logic:equal>
@@ -97,9 +97,9 @@
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?index=0")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?index=0")%>">Test Link</a>
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?index=1")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?index=1")%>">Test Link</a>
 	
 	</bean:define>
 </logic:equal>
@@ -112,9 +112,9 @@
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?index=0")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?index=0")%>">Test Link</a>
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?index=1")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?index=1")%>">Test Link</a>
 	
 	</bean:define>
 </logic:equal>
@@ -133,7 +133,7 @@
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?alternateId=0")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?alternateId=0")%>">Test Link</a>
 		
 	</bean:define>
 </logic:equal>
@@ -146,7 +146,7 @@
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?alternateId=0")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?alternateId=0")%>">Test Link</a>
 		
 	</bean:define>
 </logic:equal>
@@ -159,7 +159,7 @@
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?alternateId=0")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?alternateId=0")%>">Test Link</a>
 		
 	</bean:define>
 </logic:equal>
@@ -172,7 +172,7 @@
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?alternateId=0")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?alternateId=0")%>">Test Link</a>
 		
 	</bean:define>
 </logic:equal>
@@ -185,9 +185,9 @@
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?alternateId=0")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?alternateId=0")%>">Test Link</a>
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?alternateId=1")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?alternateId=1")%>">Test Link</a>
 	
 	</bean:define>
 </logic:equal>
@@ -200,9 +200,9 @@
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?alternateId=0")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?alternateId=0")%>">Test Link</a>
 	
-		<a href="<%=response.encodeURL("/test/simpleAction.do?alternateId=1")%>">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/simpleAction.do?alternateId=1")%>">Test Link</a>
 	
 	</bean:define>
 </logic:equal>
@@ -309,5 +309,5 @@ if ((expected == null) || (compareTo == null)){
     Assert.fail("An invalid (or mispelled) test on this page was called.  Please verify that you've setup the tests (and spellings) correctly.");
 }
 	
-Assert.assertEquals(compareTo, expected);
+Assert.assertEquals(expected, compareTo);
 %>

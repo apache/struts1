@@ -10,7 +10,7 @@
         <html:link forward="simpleForward" onblur="onblur">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" onblur="onblur">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" onblur="onblur">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -19,7 +19,7 @@
         <html:link forward="simpleForward" onclick="onclick">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" onclick="onclick">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" onclick="onclick">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -28,7 +28,7 @@
         <html:link forward="simpleForward" ondblclick="ondblclick">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" ondblclick="ondblclick">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" ondblclick="ondblclick">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -37,7 +37,7 @@
         <html:link forward="simpleForward" onfocus="onfocus">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" onfocus="onfocus">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" onfocus="onfocus">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -46,7 +46,7 @@
         <html:link forward="simpleForward" onkeydown="onkeydown">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" onkeydown="onkeydown">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" onkeydown="onkeydown">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -55,7 +55,7 @@
         <html:link forward="simpleForward" onkeypress="onkeypress">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" onkeypress="onkeypress">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" onkeypress="onkeypress">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -64,7 +64,7 @@
         <html:link forward="simpleForward" onkeyup="onkeyup">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" onkeyup="onkeyup">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" onkeyup="onkeyup">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -73,7 +73,7 @@
         <html:link forward="simpleForward" onmousedown="onmousedown">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" onmousedown="onmousedown">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" onmousedown="onmousedown">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -82,7 +82,7 @@
         <html:link forward="simpleForward" onmousemove="onmousemove">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" onmousemove="onmousemove">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" onmousemove="onmousemove">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -91,7 +91,7 @@
         <html:link forward="simpleForward" onmouseout="onmouseout">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" onmouseout="onmouseout">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" onmouseout="onmouseout">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -100,7 +100,7 @@
         <html:link forward="simpleForward" onmouseover="onmouseover">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" onmouseover="onmouseover">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" onmouseover="onmouseover">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -109,7 +109,7 @@
         <html:link forward="simpleForward" onmouseup="onmouseup">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" onmouseup="onmouseup">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" onmouseup="onmouseup">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -125,7 +125,7 @@
 		<html:link forward="simpleForward" paramId="myParam" paramName="paramName">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>?myParam=paramValue">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>?myParam=paramValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -135,7 +135,7 @@
 			paramName="testingParamProperty" paramProperty="string">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>?myParam=paramPropertyValue">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>?myParam=paramPropertyValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -145,7 +145,7 @@
 		<html:link forward="simpleForward" paramId="myParam" paramName="paramName">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>?myParam=paramValue">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>?myParam=paramValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -155,7 +155,7 @@
 			paramName="testingParamProperty" paramProperty="string">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>?myParam=paramPropertyValue">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>?myParam=paramPropertyValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -165,7 +165,7 @@
 		<html:link forward="simpleForward" paramId="myParam" paramName="paramName">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>?myParam=paramValue">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>?myParam=paramValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -175,7 +175,7 @@
 			paramName="testingParamProperty" paramProperty="string">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>?myParam=paramPropertyValue">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>?myParam=paramPropertyValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -185,7 +185,7 @@
 		<html:link forward="simpleForward" paramId="myParam" paramName="paramName">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>?myParam=paramValue">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>?myParam=paramValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -195,7 +195,7 @@
 			paramName="testingParamProperty" paramProperty="string">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>?myParam=paramPropertyValue">Test Link</a>
+		<a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>?myParam=paramPropertyValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -206,7 +206,7 @@
         <html:link forward="simpleForward" style="XXX">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" style="XXX">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" style="XXX">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -216,7 +216,7 @@
         <html:link forward="simpleForward" styleClass="XXX">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" class="XXX">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" class="XXX">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -226,7 +226,7 @@
         <html:link forward="simpleForward" styleId="XXX">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" id="XXX">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" id="XXX">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -236,7 +236,7 @@
         <html:link forward="simpleForward" tabindex="4">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" tabindex="4">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" tabindex="4">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -246,7 +246,7 @@
         <html:link forward="simpleForward" target="_new">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" target="_new">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" target="_new">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -256,7 +256,7 @@
         <html:link forward="simpleForward" title="XXX">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" title="XXX">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" title="XXX">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -266,7 +266,7 @@
         <html:link forward="simpleForward" titleKey="default.bundle.message">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>" title="Testing Message">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" title="Testing Message">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -276,7 +276,7 @@
         <html:link forward="simpleForward" transaction="true">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=response.encodeURL("/test/path/to/non/existing/jsp.jsp")%>?org.apache.struts.taglib.html.TOKEN=Some_Token_Here">Test Link</a>
+        <a href="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>?org.apache.struts.taglib.html.TOKEN=Some_Token_Here">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -292,5 +292,5 @@ if ((expected == null) || (compareTo == null)){
     Assert.fail("An invalid (or mispelled) test on this page was called.  Please verify that you've setup the tests (and spellings) correctly.");
 }
 	
-Assert.assertEquals(compareTo, expected);
+Assert.assertEquals(expected, compareTo);
 %>
