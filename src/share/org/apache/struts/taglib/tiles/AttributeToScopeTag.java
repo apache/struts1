@@ -1,7 +1,7 @@
 /*
-  *  $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/AttributeToScopeTag.java,v 1.5 2003/03/08 19:23:49 dgraham Exp $
-  *  $Revision: 1.5 $
-  *  $Date: 2003/03/08 19:23:49 $
+  *  $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/AttributeToScopeTag.java,v 1.6 2003/09/28 17:02:22 dgraham Exp $
+  *  $Revision: 1.6 $
+  *  $Date: 2003/09/28 17:02:22 $
   *
   *  ====================================================================
   *
@@ -62,12 +62,12 @@
 
 package  org.apache.struts.taglib.tiles;
 
-import  javax.servlet.jsp.JspException;
-import  javax.servlet.jsp.PageContext;
-import  javax.servlet.jsp.tagext.TagSupport;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.tagext.TagSupport;
 
-import  org.apache.struts.taglib.tiles.util.TagUtils;
-import  org.apache.struts.tiles.ComponentContext;
+import org.apache.struts.taglib.tiles.util.TagUtils;
+import org.apache.struts.tiles.ComponentContext;
 
 
 /**

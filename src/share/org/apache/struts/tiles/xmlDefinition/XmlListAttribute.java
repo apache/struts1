@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlListAttribute.java,v 1.2 2003/02/27 19:19:42 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/27 19:19:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlListAttribute.java,v 1.3 2003/09/28 17:02:22 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/09/28 17:02:22 $
  *
  * ====================================================================
  *
@@ -62,8 +62,8 @@
 
 package org.apache.struts.tiles.xmlDefinition;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**

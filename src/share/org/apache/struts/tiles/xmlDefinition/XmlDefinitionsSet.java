@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlDefinitionsSet.java,v 1.2 2003/02/27 19:19:42 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/27 19:19:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlDefinitionsSet.java,v 1.3 2003/09/28 17:02:22 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/09/28 17:02:22 $
  *
  * ====================================================================
  *
@@ -62,11 +62,11 @@
 
 package org.apache.struts.tiles.xmlDefinition;
 
-import org.apache.struts.tiles.NoSuchDefinitionException;
-
-import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+
+import org.apache.struts.tiles.NoSuchDefinitionException;
 
 /**
  * A set of definitions read from XML definitions file.

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlDefinition.java,v 1.3 2003/02/27 19:19:42 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2003/02/27 19:19:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlDefinition.java,v 1.4 2003/09/28 17:02:22 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/09/28 17:02:22 $
  *
  * ====================================================================
  *
@@ -62,12 +62,12 @@
 
 package org.apache.struts.tiles.xmlDefinition;
 
-import org.apache.struts.tiles.ComponentDefinition;
-import org.apache.struts.tiles.NoSuchDefinitionException;
+import java.util.Iterator;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import java.util.Iterator;
+import org.apache.struts.tiles.ComponentDefinition;
+import org.apache.struts.tiles.NoSuchDefinitionException;
 
 /**
   *A definition read from an XML definitions file.

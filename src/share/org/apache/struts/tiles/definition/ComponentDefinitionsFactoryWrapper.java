@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.8 2003/07/09 00:14:01 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/07/09 00:14:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.9 2003/09/28 17:02:22 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/09/28 17:02:22 $
  *
  * ====================================================================
  *
@@ -73,7 +73,6 @@ import org.apache.struts.tiles.DefinitionsFactory;
 import org.apache.struts.tiles.DefinitionsFactoryConfig;
 import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.NoSuchDefinitionException;
-import org.apache.struts.tiles.TilesUtil;
 import org.apache.struts.util.RequestUtils;
 
 /**

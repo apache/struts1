@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/DefinitionsFactory.java,v 1.3 2003/02/27 19:19:42 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2003/02/27 19:19:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/DefinitionsFactory.java,v 1.4 2003/09/28 17:02:22 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/09/28 17:02:22 $
  *
  * ====================================================================
  *
@@ -62,17 +62,17 @@
 
 package org.apache.struts.tiles.xmlDefinition;
 
-import org.apache.struts.tiles.ComponentDefinition;
-import org.apache.struts.tiles.DefinitionsFactoryException;
-import org.apache.struts.tiles.NoSuchDefinitionException;
-
-import java.util.Map;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.io.Serializable;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
+
+import org.apache.struts.tiles.ComponentDefinition;
+import org.apache.struts.tiles.DefinitionsFactoryException;
+import org.apache.struts.tiles.NoSuchDefinitionException;
 
 /**
  * A factory for definitions.
