@@ -14,8 +14,8 @@
             Work on this initiative has stalled.
             It is recommended that interested parties look to the
             <a href="http://jakarta.apache.org/commons/jelly/index.html">Commons Jelly</a> product.
-            A way to persist the workflow state between sessions is needed, but Jelly otherwise fills the needs
-            identified by this proosal.
+            A way to persist the workflow state between sessions is needed, but Jelly 
+            otherwise fills the needs identified by this proosal.
         </p>
 
     </section>
