@@ -11,39 +11,66 @@
 
 <section href="validator" name="Struts Validator">
 
+<p>
 [:TODO:]
-<p>Cover basic functionality as documented on David's web site.
+</p>
+
+<p>
+Cover basic functionality as documented on David's web site.
 <a href="http://home.earthlink.net/~dwinterfeldt/">Validation Framework for Struts </a> 
 </p>
 
-<p> Struts 1.1 has added additional functionality over the original validator
-contributed by David Winterfeldt</p>
+<p>
+Struts 1.1 has added additional functionality over the original validator
+contributed by David Winterfeldt.
+</p>
+
 <ul>
-<li> Conditionally required fields</li>
-<li> intRange() &amp; floatRange() methods in both JavaScript and Java</li>
+<li>
+  Conditionally required fields
+</li>
+<li>
+  intRange() &amp; floatRange() methods in both JavaScript and Java
+</li>
 </ul>
-<p> There have also been changes in the validator behavior and deprecation of functionality
+<p>
+There have also been changes in the validator behavior and deprecation of functionality
 </p>
 <ul>
-<li> The validator xml files now validate against the DTD stored in the commons-validator.jar. </li>
-<li> The default valiator-rules.xml now ignores blank fields for all the basic validation types.
-If you require a field to be present then to your applications validator.xml 
-field definition add "required" to the depends attribute.</li>
-<li> The Javascript Tag has new attributes defined. </li>
-<li> Deprecation of range() methods in both JavaScript and Java</li>
-<li> Deprecation of StrutsVlaidator &amp; StrutsValidatorUtil</li>
+<li>
+  The validator xml files now validate against the DTD stored in the commons-validator.jar. 
+</li>
+<li>
+  The default valiator-rules.xml now ignores blank fields for all the basic validation types.
+  If you require a field to be present then to your applications validator.xml 
+  field definition add "required" to the depends attribute.
+</li>
+<li>
+  The Javascript Tag has new attributes defined.
+</li>
+<li>
+  Deprecation of range() methods in both JavaScript and Java
+</li>
+<li>
+  Deprecation of StrutsVlaidator &amp; StrutsValidatorUtil
+</li>
 </ul>
 
 <p>
 The most fundamental change is the ability to conditionally
 require validator fields based on the value of other fields.
 It allows you to define logic like "only validate this field if field X is non-
-null and field Y equals "male".</p>
+null and field Y equals "male".
+</p>
+
 <p>
 The syntax looks like this:
 </p>
+
 <p>
-If you have this in your struts-config.xml </p>
+If you have this in your struts-config.xml
+</p>
+
 <ol>
 <pre><![CDATA[
 <form-bean name="dependentlistForm"
@@ -57,11 +84,15 @@ If you have this in your struts-config.xml </p>
 </form-bean>
 ]]></pre>
 </ol>
+
 <p>
 Where dependent is a bean that has properties lastName, firstName, dob, 
-coverageType </p>
+coverageType
+</p>
+
 <p>
-You can define a validation:</p>
+You can define a validation:
+</p>
 
 <pre><![CDATA[
   <form name="dependentlistForm">
@@ -140,18 +171,16 @@ field-indexed is true, it means that lastName must be a property of the same
 indexed field as firstName.  Same thing for dob, except that we validate for 
 date if not blank.
 </p>
+
 <p>
 The coverageType is only required if the lastName for the same indexed bean is 
 not null, and also if the non-indexed field insureDependents is true.
 </p>
+
 <p>
 You can have an arbitrary number of fields by using the [n] syntax, the only 
 restriction is that they must all be AND or OR, you can't mix.
 </p>
-
-
-
-
 </section>
 
 <section href="tiles" name="Validator API Guide">
@@ -163,14 +192,14 @@ A concise
 
 </section>
 
-<!-- 
-  <author>Ted Husted</author> 
 <section href="resources" name="Validator Resources">
-<p><b><u>Validating Input</u></b> by David Winterfeldt and Ted Husted. 
-Sample chapter from <u>Java Web Development with Struts</u>; available as a 
-<u>free download</u> (PDF).
+<p>
+<a href="http://www.manning.com/getpage.html?project=husted&amp;filename=chapters.html">
+<b>Validating user input</b></a> by Daid Winterfeldt and Ted Husted.
+Sample chapter from 
+<a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/">Struts in Action</a>; 
+available as a free download (PDF).
 </p>
-</section>
--->
 
+</section>
 </chapter></body></document>
