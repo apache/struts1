@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.7 2001/02/12 00:32:12 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/02/12 00:32:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.8 2001/05/20 01:18:27 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/05/20 01:18:27 $
  *
  * ====================================================================
  *
@@ -74,13 +74,16 @@ import java.lang.reflect.Array;
  * Object or Object array of a non-String and non-primitive type, it will be
  * converted to a scalar String or array of Strings, as appropriate.
  *
+ * @deprecated At some point after Struts 1.0 final, will be replaced by
+ *  an equivalent class in the Jakarta Commons Beanutils package.
+ *
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.7 $ $Date: 2001/02/12 00:32:12 $
+ * @version $Revision: 1.8 $ $Date: 2001/05/20 01:18:27 $
  */
 
-public final class ConvertUtils {
+public class ConvertUtils {
 
 
     // ------------------------------------------------------ Static Properties

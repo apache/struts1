@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.27 2001/04/16 15:33:16 craigmcc Exp $
- * $Revision: 1.27 $
- * $Date: 2001/04/16 15:33:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.28 2001/05/20 01:18:27 craigmcc Exp $
+ * $Revision: 1.28 $
+ * $Date: 2001/05/20 01:18:27 $
  *
  * ====================================================================
  *
@@ -73,6 +73,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -80,13 +82,16 @@ import java.util.Map;
 /**
  * Utility methods for populating JavaBeans properties via reflection.
  *
+ * @deprecated At some point after Struts 1.0 final, will be replaced by
+ *  an equivalent class in the Jakarta Commons Beanutils package.
+ *
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.27 $ $Date: 2001/04/16 15:33:16 $
+ * @version $Revision: 1.28 $ $Date: 2001/05/20 01:18:27 $
  */
 
-public final class BeanUtils {
+public class BeanUtils {
 
 
     // ------------------------------------------------------ Private Variables
@@ -107,22 +112,6 @@ public final class BeanUtils {
 
 
     // --------------------------------------------------------- Public Classes
-
-
-    /**
-     * Return the input string with the first character capitalized.
-     *
-     * @param name The string to be modified and returned
-     */
-    public static String capitalize(String name) {
-
-        if ((name == null) || (name.length() < 1))
-            return (name);
-        char chars[] = name.toCharArray();
-        chars[0] = Character.toUpperCase(chars[0]);
-        return new String(chars);
-
-    }
 
 
     /**
@@ -153,17 +142,36 @@ public final class BeanUtils {
 
 
     /**
-     * Filter the specified string for characters that are senstive to
-     * HTML interpreters, returning the string with these characters replaced
-     * by the corresponding character entities.
+     * Return the entire set of properties for which the specified bean
+     * provides a read method.  This map can be fed back to a call to
+     * <code>BeanUtils.populate()</code> to reconsitute the same set of
+     * properties, modulo differences for read-only and write-only
+     * properties.
      *
-     * @param value The string to be filtered and returned
+     * @param bean Bean whose properties are to be extracted
      *
-     * @deprecated Use ResponseUtils.filter() instead
+     * @exception IllegalAccessException if the caller does not have
+     *  access to the property accessor method
+     * @exception InvocationTargetException if the property accessor method
+     *  throws an exception
+     * @exception NoSuchMethodException if an accessor method for this
+     *  propety cannot be found
      */
-    public static String filter(String value) {
+    public static Map describe(Object bean)
+        throws IllegalAccessException, InvocationTargetException,
+               NoSuchMethodException {
 
-        return (ResponseUtils.filter(value));
+        if (bean == null)
+            return (Collections.EMPTY_MAP);
+        PropertyDescriptor descriptors[] =
+            PropertyUtils.getPropertyDescriptors(bean);
+        Map description = new HashMap(descriptors.length);
+        for (int i = 0; i < descriptors.length; i++) {
+            String name = descriptors[i].getName();
+            if (descriptors[i].getReadMethod() != null)
+                description.put(name, getProperty(bean, name));
+        }
+        return (description);
 
     }
 
@@ -238,7 +246,7 @@ public final class BeanUtils {
      * @exception NoSuchMethodException if an accessor method for this
      *  propety cannot be found
      */
-    public static Object getIndexedProperty(Object bean, String name)
+    public static String getIndexedProperty(Object bean, String name)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
@@ -250,7 +258,8 @@ public final class BeanUtils {
 
     /**
      * Return the value of the specified indexed property of the specified
-     * bean, as a String.
+     * bean, as a String.  The index is specified as a method parameter and
+     * must *not* be included in the property name expression
      *
      * @param bean Bean whose property is to be extracted
      * @param name Simple property name of the property value to be extracted
@@ -263,7 +272,7 @@ public final class BeanUtils {
      * @exception NoSuchMethodException if an accessor method for this
      *  propety cannot be found
      */
-    public static Object getIndexedProperty(Object bean,
+    public static String getIndexedProperty(Object bean,
 					    String name, int index)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
@@ -272,8 +281,7 @@ public final class BeanUtils {
         sb.append(PropertyUtils.INDEXED_DELIM);
         sb.append(index);
         sb.append(PropertyUtils.INDEXED_DELIM2);
-        Object value = PropertyUtils.getIndexedProperty(bean,
-                                                        sb.toString());
+        Object value = PropertyUtils.getIndexedProperty(bean, sb.toString());
         return (ConvertUtils.convert(value));
 
     }
@@ -325,56 +333,6 @@ public final class BeanUtils {
 	       NoSuchMethodException {
 
         return (getNestedProperty(bean, name));
-
-    }
-
-
-    /**
-     * Return the value of the specified property of the specified
-     * bean, with no type conversinos.
-     *
-     * @param bean Bean whose property is to be extracted
-     * @param name Name of the property to be extracted
-     *
-     * @exception IllegalAccessException if the caller does not have
-     *  access to the property accessor method
-     * @exception InvocationTargetException if the property accessor method
-     *  throws an exception
-     * @exception NoSuchMethodException if an accessor method for this
-     *  propety cannot be found
-     *
-     * @deprecated Use <code>PropertyUtils.getProperty()</code> instead.
-     */
-    public static Object getPropertyValue(Object bean, String name)
-        throws IllegalAccessException, InvocationTargetException,
-               NoSuchMethodException {
-
-        return (PropertyUtils.getProperty(bean, name));
-
-    }
-
-
-    /**
-     * Return the value of the specified scalar property of the specified
-     * bean, as a String.
-     *
-     * @param bean Bean whose property is to be extracted
-     * @param name Name of the property to be extracted
-     *
-     * @exception IllegalAccessException if the caller does not have
-     *  access to the property accessor method
-     * @exception InvocationTargetException if the property accessor method
-     *  throws an exception
-     * @exception NoSuchMethodException if an accessor method for this
-     *  propety cannot be found
-     *
-     * @deprecated Use getSimpleProperty(Object,String) instead
-     */
-    public static String getScalarProperty(Object bean, String name)
-        throws IllegalAccessException, InvocationTargetException,
-               NoSuchMethodException {
-
-        return (getSimpleProperty(bean, name));
 
     }
 
@@ -438,9 +396,11 @@ public final class BeanUtils {
         if ((bean == null) || (properties == null))
             return;
 
+        /*
         if (debug >= 1)
             System.out.println("BeanUtils.populate(" + bean + ", " +
                                properties + ")");
+        */
 
         // Loop through the property name/value pairs to be set
         Iterator names = properties.keySet().iterator();
@@ -491,8 +451,10 @@ public final class BeanUtils {
             if (setter == null)
                 setter = descriptor.getWriteMethod();
             if (setter == null) {
+                /*
                 if (debug >= 1)
                     System.out.println("    No setter method, skipping");
+                */
                 continue;
             }
             Class parameterTypes[] = setter.getParameterTypes();
@@ -545,10 +507,12 @@ public final class BeanUtils {
             try {
                 PropertyUtils.setProperty(bean, name, parameters[0]);
             } catch (NoSuchMethodException e) {
+                /*
                 if (debug >= 1) {
                     System.out.println("    CANNOT HAPPEN: " + e);
                     e.printStackTrace(System.out);
                 }
+                */
             }
 
         }

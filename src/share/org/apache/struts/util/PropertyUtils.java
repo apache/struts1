@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.13 2001/02/12 00:32:14 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2001/02/12 00:32:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.14 2001/05/20 01:18:28 craigmcc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2001/05/20 01:18:28 $
  *
  * ====================================================================
  *
@@ -72,6 +72,9 @@ import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -114,13 +117,16 @@ import java.lang.reflect.Modifier;
  *     forms combining nested and indexed references are also supported.</li>
  * </ul>
  *
+ * @deprecated At some point after Struts 1.0 final, will be replaced by
+ *  an equivalent class in the Jakarta Commons Beanutils package.
+ *
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.13 $ $Date: 2001/02/12 00:32:14 $
+ * @version $Revision: 1.14 $ $Date: 2001/05/20 01:18:28 $
  */
 
-public final class PropertyUtils {
+public class PropertyUtils {
 
 
     // ----------------------------------------------------- Manifest Constants
@@ -191,6 +197,8 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if the <code>dest</code> or
+     *  <code>orig</code> argument is null
      * @exception InvocationTargetException if the property accessor method
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
@@ -199,6 +207,12 @@ public final class PropertyUtils {
     public static void copyProperties(Object dest, Object orig)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
+
+        if (dest == null)
+            throw new IllegalArgumentException
+                ("No destination bean specified");
+        if (orig == null)
+            throw new IllegalArgumentException("No origin bean specified");
 
 	PropertyDescriptor origDescriptors[] = getPropertyDescriptors(orig);
 	for (int i = 0; i < origDescriptors.length; i++) {
@@ -217,6 +231,41 @@ public final class PropertyUtils {
 
 
     /**
+     * Return the entire set of properties for which the specified bean
+     * provides a read method.  This map contains the unconverted property
+     * values for all properties for which a read method is provided
+     * (i.e. where the <code>getReadMethod()</code> returns non-null).
+     *
+     * @param bean Bean whose properties are to be extracted
+     *
+     * @exception IllegalAccessException if the caller does not have
+     *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> is null
+     * @exception InvocationTargetException if the property accessor method
+     *  throws an exception
+     * @exception NoSuchMethodException if an accessor method for this
+     *  propety cannot be found
+     */
+    public static Map describe(Object bean)
+        throws IllegalAccessException, InvocationTargetException,
+               NoSuchMethodException {
+
+        if (bean == null)
+            throw new IllegalArgumentException("No bean specified");
+        PropertyDescriptor descriptors[] =
+            PropertyUtils.getPropertyDescriptors(bean);
+        Map description = new HashMap(descriptors.length);
+        for (int i = 0; i < descriptors.length; i++) {
+            String name = descriptors[i].getName();
+            if (descriptors[i].getReadMethod() != null)
+                description.put(name, getProperty(bean, name));
+        }
+        return (description);
+
+    }
+
+
+    /**
      * Return the value of the specified indexed property of the specified
      * bean, with no type conversions.  The zero-relative index of the
      * required value must be included (in square brackets) as a suffix to
@@ -229,6 +278,8 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> or
+     *  <code>name</code> is null
      * @exception InvocationTargetException if the property accessor method
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
@@ -237,6 +288,11 @@ public final class PropertyUtils {
     public static Object getIndexedProperty(Object bean, String name)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
+
+        if (bean == null)
+            throw new IllegalArgumentException("No bean specified");
+        if (name == null)
+            throw new IllegalArgumentException("No name specified");
 
 	// Identify the index of the requested individual property
         int delim = name.indexOf(INDEXED_DELIM);
@@ -270,6 +326,8 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> or
+     *  <code>name</code> is null
      * @exception InvocationTargetException if the property accessor method
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
@@ -279,6 +337,11 @@ public final class PropertyUtils {
 					    String name, int index)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
+
+        if (bean == null)
+            throw new IllegalArgumentException("No bean specified");
+        if (name == null)
+            throw new IllegalArgumentException("No name specified");
 
 	// Retrieve the property descriptor for the specified property
 	PropertyDescriptor descriptor =
@@ -323,6 +386,8 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> or
+     *  <code>name</code> is null
      * @exception IllegalArgumentException if a nested reference to a
      *  property returns null
      * @exception InvocationTargetException if the property accessor method
@@ -333,6 +398,11 @@ public final class PropertyUtils {
     public static Object getNestedProperty(Object bean, String name)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
+
+        if (bean == null)
+            throw new IllegalArgumentException("No bean specified");
+        if (name == null)
+            throw new IllegalArgumentException("No name specified");
 
 	while (true) {
 	    int delim = name.indexOf(NESTED_DELIM);
@@ -369,6 +439,8 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> or
+     *  <code>name</code> is null
      * @exception InvocationTargetException if the property accessor method
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
@@ -397,6 +469,8 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> or
+     *  <code>name</code> is null
      * @exception IllegalArgumentException if a nested reference to a
      *  property returns null
      * @exception InvocationTargetException if the property accessor method
@@ -408,6 +482,11 @@ public final class PropertyUtils {
 							   String name)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
+
+        if (bean == null)
+            throw new IllegalArgumentException("No bean specified");
+        if (name == null)
+            throw new IllegalArgumentException("No name specified");
 
 	// Resolve nested references
 	while (true) {
@@ -451,16 +530,19 @@ public final class PropertyUtils {
      * and caching them the first time a particular bean class is encountered.
      *
      * @param bean Bean for which property descriptors are requested
+     *
+     * @exception IllegalArgumentException if <code>bean</code> is null
      */
     public static PropertyDescriptor[] getPropertyDescriptors(Object bean) {
 
 	if (bean == null)
-	    return (new PropertyDescriptor[0]);
+            throw new IllegalArgumentException("No bean specified");
 
 	// Look up any cached descriptors for this bean class
 	String beanClassName = bean.getClass().getName();
-	PropertyDescriptor descriptors[] =
-	    (PropertyDescriptor[]) descriptorsCache.get(beanClassName);
+	PropertyDescriptor descriptors[] = null;
+        descriptors =
+            (PropertyDescriptor[]) descriptorsCache.get(beanClassName);
 	if (descriptors != null)
 	    return (descriptors);
 
@@ -474,7 +556,7 @@ public final class PropertyUtils {
 	descriptors = beanInfo.getPropertyDescriptors();
 	if (descriptors == null)
 	    descriptors = new PropertyDescriptor[0];
-	descriptorsCache.put(beanClassName, descriptors);
+        descriptorsCache.put(beanClassName, descriptors);
 	return (descriptors);
 
     }
@@ -498,6 +580,8 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> or
+     *  <code>name</code> is null
      * @exception IllegalArgumentException if a nested reference to a
      *  property returns null
      * @exception InvocationTargetException if the property accessor method
@@ -508,6 +592,11 @@ public final class PropertyUtils {
     public static Class getPropertyEditorClass(Object bean, String name)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
+
+        if (bean == null)
+            throw new IllegalArgumentException("No bean specified");
+        if (name == null)
+            throw new IllegalArgumentException("No name specified");
 
 	PropertyDescriptor descriptor =
 	    getPropertyDescriptor(bean, name);
@@ -534,6 +623,8 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> or
+     *  <code>name</code> is null
      * @exception IllegalArgumentException if a nested reference to a
      *  property returns null
      * @exception InvocationTargetException if the property accessor method
@@ -544,6 +635,11 @@ public final class PropertyUtils {
     public static Class getPropertyType(Object bean, String name)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
+
+        if (bean == null)
+            throw new IllegalArgumentException("No bean specified");
+        if (name == null)
+            throw new IllegalArgumentException("No name specified");
 
 	PropertyDescriptor descriptor =
 	    getPropertyDescriptor(bean, name);
@@ -559,6 +655,19 @@ public final class PropertyUtils {
 
 
     /**
+     * Return an accessible property getter method for this property,
+     * if there is one; otherwise return <code>null</code>.
+     *
+     * @param descriptor Property descriptor to return a getter for
+     */
+    public static Method getReadMethod(PropertyDescriptor descriptor) {
+
+        return (getAccessibleMethod(descriptor.getReadMethod()));
+
+    }
+
+
+    /**
      * Return the value of the specified simple property of the specified
      * bean, with no type conversions.
      *
@@ -567,6 +676,10 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> or
+     *  <code>name</code> is null
+     * @exception IllegalArgumentException if the property name
+     *  is nested or indexed
      * @exception InvocationTargetException if the property accessor method
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
@@ -575,6 +688,19 @@ public final class PropertyUtils {
     public static Object getSimpleProperty(Object bean, String name)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
+
+        if (bean == null)
+            throw new IllegalArgumentException("No bean specified");
+        if (name == null)
+            throw new IllegalArgumentException("No name specified");
+
+        // Validate the syntax of the property name
+        if (name.indexOf(NESTED_DELIM) >= 0)
+            throw new IllegalArgumentException
+                ("Nested property names are not allowed");
+        else if (name.indexOf(INDEXED_DELIM) >= 0)
+            throw new IllegalArgumentException
+                ("Indexed property names are not allowed");
 
 	// Retrieve the property getter method for the specified property
 	PropertyDescriptor descriptor =
@@ -595,6 +721,19 @@ public final class PropertyUtils {
 
 
     /**
+     * Return an accessible property setter method for this property,
+     * if there is one; otherwise return <code>null</code>.
+     *
+     * @param descriptor Property descriptor to return a setter for
+     */
+    public static Method getWriteMethod(PropertyDescriptor descriptor) {
+
+        return (getAccessibleMethod(descriptor.getWriteMethod()));
+
+    }
+
+
+    /**
      * Set the value of the specified indexed property of the specified
      * bean, with no type conversions.  The zero-relative index of the
      * required value must be included (in square brackets) as a suffix to
@@ -609,6 +748,8 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> or
+     *  <code>name</code> is null
      * @exception InvocationTargetException if the property accessor method
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
@@ -619,9 +760,10 @@ public final class PropertyUtils {
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
-        if (debug >= 1)
-            System.out.println("setIndexedProperty('" + bean + ", " +
-                               name + ", " + value + ")");
+        if (bean == null)
+            throw new IllegalArgumentException("No bean specified");
+        if (name == null)
+            throw new IllegalArgumentException("No name specified");
 
 	// Identify the index of the requested individual property
 	int delim = name.indexOf(INDEXED_DELIM);
@@ -656,6 +798,8 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> or
+     *  <code>name</code> is null
      * @exception InvocationTargetException if the property accessor method
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
@@ -666,9 +810,10 @@ public final class PropertyUtils {
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
-        if (debug >= 1)
-            System.out.println("setIndexedProperty('" + bean + ", " +
-                               name + ", " + index + ", " + value + ")");
+        if (bean == null)
+            throw new IllegalArgumentException("No bean specified");
+        if (name == null)
+            throw new IllegalArgumentException("No name specified");
 
 	// Retrieve the property descriptor for the specified property
 	PropertyDescriptor descriptor =
@@ -718,6 +863,8 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> or
+     *  <code>name</code> is null
      * @exception IllegalArgumentException if a nested reference to a
      *  property returns null
      * @exception InvocationTargetException if the property accessor method
@@ -730,9 +877,10 @@ public final class PropertyUtils {
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
-        if (debug >= 1)
-            System.out.println("setNestedProperty('" + bean + ", " +
-                               name + ", " + value + ")");
+        if (bean == null)
+            throw new IllegalArgumentException("No bean specified");
+        if (name == null)
+            throw new IllegalArgumentException("No name specified");
 
 	while (true) {
 	    int delim = name.indexOf(NESTED_DELIM);
@@ -770,6 +918,8 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> or
+     *  <code>name</code> is null
      * @exception InvocationTargetException if the property accessor method
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
@@ -794,6 +944,10 @@ public final class PropertyUtils {
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
+     * @exception IllegalArgumentException if <code>bean</code> or
+     *  <code>name</code> is null
+     * @exception IllegalArgumentException if the property name is
+     *  nested or indexed
      * @exception InvocationTargetException if the property accessor method
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
@@ -804,9 +958,18 @@ public final class PropertyUtils {
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
-        if (debug >= 1)
-            System.out.println("setSimpleProperty('" + bean + ", " +
-                               name + ", " + value + ")");
+        if (bean == null)
+            throw new IllegalArgumentException("No bean specified");
+        if (name == null)
+            throw new IllegalArgumentException("No name specified");
+
+        // Validate the syntax of the property name
+        if (name.indexOf(NESTED_DELIM) >= 0)
+            throw new IllegalArgumentException
+                ("Nested property names are not allowed");
+        else if (name.indexOf(INDEXED_DELIM) >= 0)
+            throw new IllegalArgumentException
+                ("Indexed property names are not allowed");
 
 	// Retrieve the property setter method for the specified property
 	PropertyDescriptor descriptor =
@@ -855,9 +1018,16 @@ public final class PropertyUtils {
             return (method);
         }
 
-        // Check the implemented interfaces
+        // Check the implemented interfaces and subinterfaces
         String methodName = method.getName();
         Class[] parameterTypes = method.getParameterTypes();
+        method =
+            getAccessibleMethodFromInterfaceNest(clazz,
+                                                 method.getName(),
+                                                 method.getParameterTypes());
+        return (method);
+
+        /*
         Class[] interfaces = clazz.getInterfaces();
         for (int i = 0; i < interfaces.length; i++) {
             // Is this interface public?
@@ -877,32 +1047,56 @@ public final class PropertyUtils {
 
         // We are out of luck
         return (null);
+        */
 
     }
 
 
     /**
-     * Return an accessible property getter method for this property,
-     * if there is one; otherwise return <code>null</code>.
+     * Return an accessible method (that is, one that can be invoked via
+     * reflection) that implements the specified method, by scanning through
+     * all implemented interfaces and subinterfaces.  If no such Method
+     * can be found, return <code>null</code>.
      *
-     * @param descriptor Property descriptor to return a getter for
+     * @param clazz Parent class for the interfaces to be checked
+     * @param methodName Method name of the method we wish to call
+     * @param parameterTypes The parameter type signatures
      */
-    private static Method getReadMethod(PropertyDescriptor descriptor) {
+    private static Method getAccessibleMethodFromInterfaceNest
+        (Class clazz, String methodName, Class parameterTypes[]) {
 
-        return (getAccessibleMethod(descriptor.getReadMethod()));
+        Method method = null;
 
-    }
+        // Check the implemented interfaces of the parent class
+        Class interfaces[] = clazz.getInterfaces();
+        for (int i = 0; i < interfaces.length; i++) {
 
+            // Is this interface public?
+            if (!Modifier.isPublic(interfaces[i].getModifiers()))
+                continue;
 
-    /**
-     * Return an accessible property setter method for this property,
-     * if there is one; otherwise return <code>null</code>.
-     *
-     * @param descriptor Property descriptor to return a setter for
-     */
-    private static Method getWriteMethod(PropertyDescriptor descriptor) {
+            // Does the method exist on this interface?
+            try {
+                method = interfaces[i].getDeclaredMethod(methodName,
+                                                         parameterTypes);
+            } catch (NoSuchMethodException e) {
+                ;
+            }
+            if (method != null)
+                break;
 
-        return (getAccessibleMethod(descriptor.getWriteMethod()));
+            // Recursively check our parent interfaces
+            method =
+                getAccessibleMethodFromInterfaceNest(interfaces[i],
+                                                     methodName,
+                                                     parameterTypes);
+            if (method != null)
+                break;
+
+        }
+
+        // Return whatever we have found
+        return (method);
 
     }
 
