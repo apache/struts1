@@ -1,0 +1,3 @@
+struts.lib=../../dist/lib/struts.jar
+jdbc20ext.jar=../jdbc2_0-stdext.jar
+servlet.jar=../jakarta-servletapi/lib/servlet.jar

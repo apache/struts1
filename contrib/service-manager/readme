@@ -1,0 +1,41 @@
+ServiceManager for Struts framework.
+v.0.1
+==================
+You must do the following to have the build script work.
+
+1. Edit the build.properties file.
+2. Replace in web.xml struts standart servlet class
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+   to the ServicesServlet - with support of ServiceManager.
+    <servlet-class>org.apache.struts.action.ServicesServlet</servlet-class>
+3. Add the following to the lib directory.
+     Struts - struts.jar (http://jakarta.apache.org/struts/)
+     JDBC 2.0 Optonal Package - jdbc2_0-stdext.jar (http://java.sun.com/products/jdbc/download.html#spec)
+
+Overview
+---------
+v.0.1
+ServiceManager is a way to make Struts framework pluggable. Main reason to perform this hack
+was simple - lets extend Struts framework without needs to extend ActionServlet class.
+With ServiceManager each developer can write new service with some additional functions
+for Struts framework and plug it into the ServiceManager.
+ServiceManager uses single struts-config.xml file to read configuration information
+and lets to services add its own rules to the digester to support additional config
+sections in struts-config.xml. Another words - ServiceManager uses 'live' Digester! 
+Such trick allow to store all needed config info for all services in application in 
+one file - struts-config.xml. 
+ServiceManger implementation contains one service as sample of services using. This 
+service (FactoryService) contains code from my early struts-based package - BeanFactory.
+FactoryService intended to support automatic beans generation for any action in application. It
+uses different factories to generate beans by different ways. Package contains two
+factories - JDBCFactory and RowSetFactory. 
+JDBCFactory is really simple and transparent approach to read data from relation data source.
+It uses struts-config.xml to register all needed info about queries and parameters for it.
+RowSetFactory is experimantal hack to support using of CachedRowSet early access
+implementation and forget massive data beans creations - write query, place tags
+into jsp and view data from database at pages.
+
+Oleg V Alexeev
+____________________
+   gonza@penza.net
+
