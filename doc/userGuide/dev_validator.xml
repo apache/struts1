@@ -357,15 +357,24 @@
 
 <pre><code><![CDATA[
 <validator name="required"
-     classname="org.apache.struts.validator.validator.FieldChecks"
-     method="validateRequired"
-     msg="errors.required"/>
+        classname="org.apache.struts.validator.FieldChecks"
+        method="validateRequired"
+        methodParams="java.lang.Object,
+                 org.apache.commons.validator.ValidatorAction,
+                 org.apache.commons.validator.Field,
+                 org.apache.struts.action.ActionErrors,
+                 javax.servlet.http.HttpServletRequest"
+        msg="errors.required">
 
 <validator name="mask"
-     classname="org.apache.struts.validator.validator.FieldChecks"
-     method="validateMask"
-     depends="required"
-     msg="errors.invalid"/>
+        classname="org.apache.struts.validator.FieldChecks"
+        method="validateMask"
+        methodParams="java.lang.Object,
+                 org.apache.commons.validator.ValidatorAction,
+                 org.apache.commons.validator.Field,
+                 org.apache.struts.action.ActionErrors,
+                 javax.servlet.http.HttpServletRequest"
+        msg="errors.invalid">
 ]]></code></pre>
 
     <p>
@@ -373,17 +382,11 @@
     </p>
 
     <p>
-    The ValidatorAction method needs to have the following signature.
+    The <code>methodParams</code> attribute takes a comma separated list
+    of class names. The <code>method</code> attribute needs to have a signature
+    complying with the above list. The list can be comprised of any combination
+    of the following:
     </p>
-
-<pre><code><![CDATA[
-(java.lang.Object,
- org.apache.commons.validator.ValidatorAction,
- org.apache.commons.validator.Field,
- org.apache.struts.action.ActionErrors,
- javax.servlet.http.HttpServletRequest,
- javax.servlet.ServletContext)
-]]></code></pre>
 
     <ul>
 
@@ -415,6 +418,16 @@
         <li>
         <code>javax.servlet.ServletContext</code>
         - The application's ServletContext.
+        </li>
+
+        <li>
+        <code>org.apache.commons.validator.Validator</code>
+        - The current org.apache.commons.validator.Validator instance.
+        </li>
+
+        <li>
+        <code>java.util.Locale</code>
+        - The Locale of the current user.
         </li>
 
     </ul>
