@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTag.java,v 1.5 2003/02/19 03:52:49 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2003/02/19 03:52:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTag.java,v 1.6 2003/03/09 05:47:23 dmkarr Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/03/09 05:47:23 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,7 +63,6 @@ package org.apache.strutsel.taglib.html;
 import org.apache.struts.taglib.html.HiddenTag;
 import javax.servlet.jsp.JspException;
 import org.apache.strutsel.taglib.utils.EvalHelper;
-import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
  * Custom tag for input fields of type "hidden".
@@ -75,7 +74,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ELHiddenTag extends HiddenTag {
 
@@ -245,87 +244,49 @@ public class ELHiddenTag extends HiddenTag {
     }
 
     /**
-     * Evaluates and returns a single attribute value, given the attribute
-     * name, attribute value, and attribute type.  It uses the
-     * <code>EvalHelper</code> class to interface to
-     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
-     * it passes to this the name of the current tag, the <code>this</code>
-     * pointer, and the current pageContext.
-     *
-     * @param attrName attribute name being evaluated
-     * @param attrValue String value of attribute to be evaluated using EL
-     * @param attrType Required resulting type of attribute value
-     * @exception NullAttributeException if either the <code>attrValue</code>
-     * was null, or the resulting evaluated value was null.
-     * @return Resulting attribute value
-     */
-    private Object   evalAttr(String   attrName,
-                              String   attrValue,
-                              Class    attrType)
-        throws JspException, NullAttributeException
-    {
-        return (EvalHelper.eval("hidden", attrName, attrValue, attrType,
-                                this, pageContext));
-    }
-    
-    /**
      * Processes all attribute values which use the JSTL expression evaluation
-     * engine to determine their values.  If any evaluation fails with a
-     * <code>NullAttributeException</code> it will just use <code>null</code>
-     * as the value.
+     * engine to determine their values.
      *
      * @exception JspException if a JSP exception has occurred
      */
     private void evaluateExpressions() throws JspException {
-        try {
-            setAlt((String) evalAttr("alt", getAltExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        String  string  = null;
+        Boolean bool    = null;
 
-        try {
-            setAltKey((String) evalAttr("altKey", getAltKeyExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("alt", getAltExpr(),
+                                            this, pageContext)) != null)
+            setAlt(string);
 
-        try {
-            setIndexed(((Boolean) evalAttr("indexed", getIndexedExpr(),
-                                           Boolean.class)).
-                       booleanValue());
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("altKey", getAltKeyExpr(),
+                                            this, pageContext)) != null)
+            setAltKey(string);
 
-        try {
-            setName((String) evalAttr("name", getNameExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((bool = EvalHelper.evalBoolean("indexed", getIndexedExpr(),
+                                           this, pageContext)) != null)
+            setIndexed(bool.booleanValue());
 
-        try {
-            setProperty((String) evalAttr("property", getPropertyExpr(),
-                                          String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("name", getNameExpr(),
+                                            this, pageContext)) != null)
+            setName(string);
 
-        try {
-            setTitle((String) evalAttr("title", getTitleExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("property", getPropertyExpr(),
+                                            this, pageContext)) != null)
+            setProperty(string);
 
-        try {
-            setTitleKey((String) evalAttr("titleKey", getTitleKeyExpr(),
-                                          String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("title", getTitleExpr(),
+                                            this, pageContext)) != null)
+            setTitle(string);
 
-        try {
-            setValue((String) evalAttr("value", getValueExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("titleKey", getTitleKeyExpr(),
+                                            this, pageContext)) != null)
+            setTitleKey(string);
 
-        try {
-            setWrite(((Boolean) evalAttr("write", getWriteExpr(),
-                                         Boolean.class)).
-                     booleanValue());
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("value", getValueExpr(),
+                                            this, pageContext)) != null)
+            setValue(string);
+
+        if ((bool = EvalHelper.evalBoolean("write", getWriteExpr(),
+                                           this, pageContext)) != null)
+            setWrite(bool.booleanValue());
     }
 }

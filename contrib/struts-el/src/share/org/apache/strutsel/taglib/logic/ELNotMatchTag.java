@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELNotMatchTag.java,v 1.5 2003/02/26 06:12:26 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2003/02/26 06:12:26 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELNotMatchTag.java,v 1.6 2003/03/09 05:47:26 dmkarr Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/03/09 05:47:26 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,7 +63,6 @@ package org.apache.strutsel.taglib.logic;
 import org.apache.struts.taglib.logic.NotMatchTag;
 import javax.servlet.jsp.JspException;
 import org.apache.strutsel.taglib.utils.EvalHelper;
-import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
  * Evalute the nested body content of this tag if the specified value
@@ -76,7 +75,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ELNotMatchTag extends NotMatchTag {
 
@@ -273,82 +272,48 @@ public class ELNotMatchTag extends NotMatchTag {
     }
 
     /**
-     * Evaluates and returns a single attribute value, given the attribute
-     * name, attribute value, and attribute type.  It uses
-     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
-     * it passes to this the name of the current tag, the <code>this</code>
-     * pointer, and the current pageContext.
-     *
-     * @param attrName attribute name being evaluated
-     * @param attrValue String value of attribute to be evaluated using EL
-     * @param attrType Required resulting type of attribute value
-     * @return Resulting attribute value
-     */
-    private Object   evalAttr(String   attrName,
-                              String   attrValue,
-                              Class    attrType)
-        throws JspException, NullAttributeException
-    {
-        return (EvalHelper.eval("notMatch", attrName, attrValue,
-                                attrType, this, pageContext));
-    }
-    
-    /**
      * Processes all attribute values which use the JSTL expression evaluation
-     * engine to determine their values.  If any evaluation fails with a
-     * <code>NullAttributeException</code> it will just use <code>null</code>
-     * as the value.
+     * engine to determine their values.
      *
      * @exception JspException if a JSP exception has occurred
      */
     private void evaluateExpressions() throws JspException {
+        String  string  = null;
 
-        try {
-            setCookie((String) evalAttr("cookie", getCookieExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("cookie", getCookieExpr(),
+                                            this, pageContext)) != null)
+            setCookie(string);
 
-        try {
-            setExpr((String) evalAttr("expr", getExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("expr", getExpr(),
+                                            this, pageContext)) != null)
+            setExpr(string);
 
-        try {
-            setHeader((String) evalAttr("header", getHeaderExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("header", getHeaderExpr(),
+                                            this, pageContext)) != null)
+            setHeader(string);
 
-        try {
-            setLocation((String) evalAttr("location", getLocationExpr(),
-                                          String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("location", getLocationExpr(),
+                                            this, pageContext)) != null)
+            setLocation(string);
 
-        try {
-            setName((String) evalAttr("name", getNameExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("name", getNameExpr(),
+                                            this, pageContext)) != null)
+            setName(string);
 
-        try {
-            setParameter((String) evalAttr("parameter", getParameterExpr(),
-                                           String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("parameter", getParameterExpr(),
+                                            this, pageContext)) != null)
+            setParameter(string);
 
-        try {
-            setProperty((String) evalAttr("property", getPropertyExpr(),
-                                          String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("property", getPropertyExpr(),
+                                            this, pageContext)) != null)
+            setProperty(string);
 
-        try {
-            setScope((String) evalAttr("scope", getScopeExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("scope", getScopeExpr(),
+                                            this, pageContext)) != null)
+            setScope(string);
 
-        try {
-            setValue((String) evalAttr("value", getValueExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("value", getValueExpr(),
+                                            this, pageContext)) != null)
+            setValue(string);
     }
 }

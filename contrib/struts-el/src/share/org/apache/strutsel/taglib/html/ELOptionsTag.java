@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionsTag.java,v 1.6 2003/02/19 03:53:49 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2003/02/19 03:53:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionsTag.java,v 1.7 2003/03/09 05:47:24 dmkarr Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/03/09 05:47:24 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,7 +63,6 @@ package org.apache.strutsel.taglib.html;
 import org.apache.struts.taglib.html.OptionsTag;
 import javax.servlet.jsp.JspException;
 import org.apache.strutsel.taglib.utils.EvalHelper;
-import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
  * Tag for creating multiple &lt;select&gt; options from a collection.  The
@@ -80,7 +79,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ELOptionsTag extends OptionsTag {
 
@@ -234,85 +233,46 @@ public class ELOptionsTag extends OptionsTag {
     }
 
     /**
-     * Evaluates and returns a single attribute value, given the attribute
-     * name, attribute value, and attribute type.  It uses the
-     * <code>EvalHelper</code> class to interface to
-     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
-     * it passes to this the name of the current tag, the <code>this</code>
-     * pointer, and the current pageContext.
-     *
-     * @param attrName attribute name being evaluated
-     * @param attrValue String value of attribute to be evaluated using EL
-     * @param attrType Required resulting type of attribute value
-     * @exception NullAttributeException if either the <code>attrValue</code>
-     * was null, or the resulting evaluated value was null.
-     * @return Resulting attribute value
-     */
-    private Object   evalAttr(String   attrName,
-                              String   attrValue,
-                              Class    attrType)
-        throws JspException, NullAttributeException
-    {
-        return (EvalHelper.eval("options", attrName, attrValue,
-                                attrType, this, pageContext));
-    }
-    
-    /**
      * Processes all attribute values which use the JSTL expression evaluation
-     * engine to determine their values.  If any evaluation fails with a
-     * <code>NullAttributeException</code> it will just use <code>null</code>
-     * as the value.
+     * engine to determine their values.
      *
      * @exception JspException if a JSP exception has occurred
      */
     private void evaluateExpressions() throws JspException {
-        try {
-            setCollection((String) evalAttr("collection", getCollectionExpr(), 
-                                            String.class));
-        } catch (NullAttributeException ex) {
-        }
+        String  string  = null;
+        Boolean bool    = null;
 
-        try {
-            setFilter(((Boolean) evalAttr("filter", getFilterExpr(),
-                                          Boolean.class)).
-                      booleanValue());
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("collection", getCollectionExpr(),
+                                            this, pageContext)) != null)
+            setCollection(string);
 
-        try {
-            setLabelName((String) evalAttr("labelName", getLabelNameExpr(),
-                                           String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((bool = EvalHelper.evalBoolean("filter", getFilterExpr(),
+                                           this, pageContext)) != null)
+            setFilter(bool.booleanValue());
 
-        try {
-            setLabelProperty((String) evalAttr("labelProperty",
-                                               getLabelPropertyExpr(), 
-                                               String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("labelName", getLabelNameExpr(),
+                                            this, pageContext)) != null)
+            setLabelName(string);
 
-        try {
-            setName((String) evalAttr("name", getNameExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("labelProperty", getLabelPropertyExpr(),
+                                            this, pageContext)) != null)
+            setLabelProperty(string);
 
-        try {
-            setProperty((String) evalAttr("property", getPropertyExpr(),
-                                          String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("name", getNameExpr(),
+                                            this, pageContext)) != null)
+            setName(string);
 
-        try {
-            setStyle((String) evalAttr("style", getStyleExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("property", getPropertyExpr(),
+                                            this, pageContext)) != null)
+            setProperty(string);
 
-        try {
-            setStyleClass((String) evalAttr("styleClass", getStyleClassExpr(),
-                                            String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("style", getStyleExpr(),
+                                            this, pageContext)) != null)
+            setStyle(string);
+
+        if ((string = EvalHelper.evalString("styleClass", getStyleClassExpr(),
+                                            this, pageContext)) != null)
+            setStyleClass(string);
 
         // Note that in contrast to other elements which have "style" and
         // "styleClass" attributes, this tag does not have a "styleId"

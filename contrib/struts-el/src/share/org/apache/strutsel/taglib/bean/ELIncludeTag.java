@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELIncludeTag.java,v 1.2 2003/02/19 03:49:50 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/19 03:49:50 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/bean/ELIncludeTag.java,v 1.3 2003/03/09 05:47:21 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/03/09 05:47:21 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,7 +63,6 @@ package org.apache.strutsel.taglib.bean;
 import org.apache.struts.taglib.bean.IncludeTag;
 import javax.servlet.jsp.JspException;
 import org.apache.strutsel.taglib.utils.EvalHelper;
-import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
  * Generate a URL-encoded include to the specified URI.
@@ -75,7 +74,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ELIncludeTag extends IncludeTag {
 
@@ -213,75 +212,41 @@ public class ELIncludeTag extends IncludeTag {
     }
 
     /**
-     * Evaluates and returns a single attribute value, given the attribute
-     * name, attribute value, and attribute type.  It uses the
-     * <code>EvalHelper</code> class to interface to
-     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
-     * it passes to this the name of the current tag, the <code>this</code>
-     * pointer, and the current pageContext.
-     *
-     * @param attrName attribute name being evaluated
-     * @param attrValue String value of attribute to be evaluated using EL
-     * @param attrType Required resulting type of attribute value
-     * @exception NullAttributeException if either the <code>attrValue</code>
-     * was null, or the resulting evaluated value was null.
-     * @return Resulting attribute value
-     */
-    private Object   evalAttr(String   attrName,
-                              String   attrValue,
-                              Class    attrType)
-        throws JspException, NullAttributeException
-    {
-        return (EvalHelper.eval("include", attrName, attrValue, attrType,
-                                this, pageContext));
-    }
-    
-    /**
      * Processes all attribute values which use the JSTL expression evaluation
-     * engine to determine their values.  If any evaluation fails with a
-     * <code>NullAttributeException</code> it will just use <code>null</code>
-     * as the value.
+     * engine to determine their values.
      *
      * @exception JspException if a JSP exception has occurred
      */
     private void evaluateExpressions() throws JspException {
-        try {
-            setAnchor((String) evalAttr("anchor", getAnchorExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        String  string  = null;
+        Boolean bool    = null;
 
-        try {
-            setForward((String) evalAttr("forward", getForwardExpr(),
-                                         String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("anchor", getAnchorExpr(),
+                                            this, pageContext)) != null)
+            setAnchor(string);
 
-        try {
-            setHref((String) evalAttr("href", getHrefExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("forward", getForwardExpr(),
+                                            this, pageContext)) != null)
+            setForward(string);
 
-        try {
-            setId((String) evalAttr("id", getIdExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("href", getHrefExpr(),
+                                            this, pageContext)) != null)
+            setHref(string);
 
-        try {
-            setName((String) evalAttr("name", getNameExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("id", getIdExpr(),
+                                            this, pageContext)) != null)
+            setId(string);
 
-        try {
-            setPage((String) evalAttr("page", getPageExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("name", getNameExpr(),
+                                            this, pageContext)) != null)
+            setName(string);
 
-        try {
-            setTransaction(((Boolean) evalAttr("transaction",
-                                               getTransactionExpr(),
-                                               Boolean.class)).
-                           booleanValue());
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("page", getPageExpr(),
+                                            this, pageContext)) != null)
+            setPage(string);
+
+        if ((bool = EvalHelper.evalBoolean("transaction", getTransactionExpr(),
+                                           this, pageContext)) != null)
+            setTransaction(bool.booleanValue());
     }
 }

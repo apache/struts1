@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionTag.java,v 1.6 2003/02/19 03:53:49 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2003/02/19 03:53:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionTag.java,v 1.7 2003/03/09 05:47:24 dmkarr Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/03/09 05:47:24 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,7 +63,6 @@ package org.apache.strutsel.taglib.html;
 import org.apache.struts.taglib.html.OptionTag;
 import javax.servlet.jsp.JspException;
 import org.apache.strutsel.taglib.utils.EvalHelper;
-import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
  * Tag for select options.  The body of this tag is presented to the user
@@ -77,7 +76,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ELOptionTag extends OptionTag {
 
@@ -231,80 +230,45 @@ public class ELOptionTag extends OptionTag {
     }
 
     /**
-     * Evaluates and returns a single attribute value, given the attribute
-     * name, attribute value, and attribute type.  It uses the
-     * <code>EvalHelper</code> class to interface to
-     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
-     * it passes to this the name of the current tag, the <code>this</code>
-     * pointer, and the current pageContext.
-     *
-     * @param attrName attribute name being evaluated
-     * @param attrValue String value of attribute to be evaluated using EL
-     * @param attrType Required resulting type of attribute value
-     * @exception NullAttributeException if either the <code>attrValue</code>
-     * was null, or the resulting evaluated value was null.
-     * @return Resulting attribute value
-     */
-    private Object   evalAttr(String   attrName,
-                              String   attrValue,
-                              Class    attrType)
-        throws JspException, NullAttributeException
-    {
-        return (EvalHelper.eval("option", attrName, attrValue, attrType,
-                                this, pageContext));
-    }
-    
-    /**
      * Processes all attribute values which use the JSTL expression evaluation
-     * engine to determine their values.  If any evaluation fails with a
-     * <code>NullAttributeException</code> it will just use <code>null</code>
-     * as the value.
+     * engine to determine their values.
      *
      * @exception JspException if a JSP exception has occurred
      */
     private void evaluateExpressions() throws JspException {
-        try {
-            setBundle((String) evalAttr("bundle", getBundleExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        String  string  = null;
+        Boolean bool    = null;
 
-        try {
-            setDisabled(((Boolean) evalAttr("disabled", getDisabledExpr(),
-                                            Boolean.class)).
-                        booleanValue());
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("bundle", getBundleExpr(),
+                                            this, pageContext)) != null)
+            setBundle(string);
 
-        try {
-            setKey((String) evalAttr("key", getKeyExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((bool = EvalHelper.evalBoolean("disabled", getDisabledExpr(),
+                                           this, pageContext)) != null)
+            setDisabled(bool.booleanValue());
 
-        try {
-            setLocale((String) evalAttr("locale", getLocaleExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("key", getKeyExpr(),
+                                            this, pageContext)) != null)
+            setKey(string);
 
-        try {
-            setStyle((String) evalAttr("style", getStyleExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("locale", getLocaleExpr(),
+                                            this, pageContext)) != null)
+            setLocale(string);
 
-        try {
-            setStyleClass((String) evalAttr("styleClass", getStyleClassExpr(),
-                                            String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("style", getStyleExpr(),
+                                            this, pageContext)) != null)
+            setStyle(string);
 
-        try {
-            setStyleId((String) evalAttr("styleId", getStyleIdExpr(),
-                                         String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("styleClass", getStyleClassExpr(),
+                                            this, pageContext)) != null)
+            setStyleClass(string);
 
-        try {
-            setValue((String) evalAttr("value", getValueExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("styleId", getStyleIdExpr(),
+                                            this, pageContext)) != null)
+            setStyleId(string);
+
+        if ((string = EvalHelper.evalString("value", getValueExpr(),
+                                            this, pageContext)) != null)
+            setValue(string);
     }
 }

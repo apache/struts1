@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.6 2003/02/26 06:12:25 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2003/02/26 06:12:25 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.7 2003/03/09 05:47:23 dmkarr Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/03/09 05:47:23 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,7 +63,6 @@ package org.apache.strutsel.taglib.html;
 import org.apache.struts.taglib.html.FormTag;
 import javax.servlet.jsp.JspException;
 import org.apache.strutsel.taglib.utils.EvalHelper;
-import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
  * Custom tag that represents an input form, associated with a bean whose
@@ -76,7 +75,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ELFormTag extends FormTag {
 
@@ -322,113 +321,72 @@ public class ELFormTag extends FormTag {
      */
     public int doStartTag() throws JspException {
         evaluateExpressions();
-        return (super.doStartTag());
+        return(super.doStartTag());
     }
 
     /**
-     * Evaluates and returns a single attribute value, given the attribute
-     * name, attribute value, and attribute type.  It uses
-     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
-     * it passes to this the name of the current tag, the <code>this</code>
-     * pointer, and the current pageContext.
-     *
-     * @param attrName attribute name being evaluated
-     * @param attrValue String value of attribute to be evaluated using EL
-     * @param attrType Required resulting type of attribute value
-     * @return Resulting attribute value
-     */
-    private Object   evalAttr(String   attrName,
-                              String   attrValue,
-                              Class    attrType)
-        throws JspException, NullAttributeException
-    {
-        return (EvalHelper.eval("form", attrName, attrValue,
-                                attrType, this, pageContext));
-    }
-    
-    /**
      * Processes all attribute values which use the JSTL expression evaluation
-     * engine to determine their values.  If any evaluation fails with a
-     * <code>NullAttributeException</code> it will just use <code>null</code>
-     * as the value.
+     * engine to determine their values.
      *
      * @exception JspException if a JSP exception has occurred
      */
     private void evaluateExpressions() throws JspException {
-        try {
-            setAction((String) evalAttr("action", getActionExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        String  string  = null;
 
-        try {
-            setEnctype((String) evalAttr("enctype", getEnctypeExpr(),
-                                         String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("action", getActionExpr(),
+                                            this, pageContext)) != null)
+            setAction(string);
 
-        try {
-            setFocus((String) evalAttr("focus", getFocusExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("enctype", getEnctypeExpr(),
+                                            this, pageContext)) != null)
+            setEnctype(string);
 
-        try {
-            setFocusIndex((String) evalAttr("focusIndex", getFocusIndexExpr(),
-                                            String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("focus", getFocusExpr(),
+                                            this, pageContext)) != null)
+            setFocus(string);
 
-        try {
-            setMethod((String) evalAttr("method", getMethodExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("focusIndex", getFocusIndexExpr(),
+                                            this, pageContext)) != null)
+            setFocusIndex(string);
 
-        try {
-            setName((String) evalAttr("name", getNameExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("method", getMethodExpr(),
+                                            this, pageContext)) != null)
+            setMethod(string);
 
-        try {
-            setOnreset((String) evalAttr("onreset", getOnresetExpr(),
-                                         String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("name", getNameExpr(),
+                                            this, pageContext)) != null)
+            setName(string);
 
-        try {
-            setOnsubmit((String) evalAttr("onsubmit", getOnsubmitExpr(),
-                                          String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("onreset", getOnresetExpr(),
+                                            this, pageContext)) != null)
+            setOnreset(string);
 
-        try {
-            setScope((String) evalAttr("scope", getScopeExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("onsubmit", getOnsubmitExpr(),
+                                            this, pageContext)) != null)
+            setOnsubmit(string);
 
-        try {
-            setStyle((String) evalAttr("style", getStyleExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("scope", getScopeExpr(),
+                                            this, pageContext)) != null)
+            setScope(string);
 
-        try {
-            setStyleClass((String) evalAttr("styleClass", getStyleClassExpr(),
-                                            String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("style", getStyleExpr(),
+                                            this, pageContext)) != null)
+            setStyle(string);
 
-        try {
-            setStyleId((String) evalAttr("styleId", getStyleIdExpr(),
-                                         String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("styleClass", getStyleClassExpr(),
+                                            this, pageContext)) != null)
+            setStyleClass(string);
 
-        try {
-            setTarget((String) evalAttr("target", getTargetExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("styleId", getStyleIdExpr(),
+                                            this, pageContext)) != null)
+            setStyleId(string);
 
-        try {
-            setType((String) evalAttr("type", getTypeExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("target", getTargetExpr(),
+                                            this, pageContext)) != null)
+            setTarget(string);
+
+        if ((string = EvalHelper.evalString("type", getTypeExpr(),
+                                            this, pageContext)) != null)
+            setType(string);
     }
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTag.java,v 1.6 2003/02/19 03:53:49 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2003/02/19 03:53:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTag.java,v 1.7 2003/03/09 05:47:24 dmkarr Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/03/09 05:47:24 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,7 +63,6 @@ package org.apache.strutsel.taglib.html;
 import org.apache.struts.taglib.html.JavascriptValidatorTag;
 import javax.servlet.jsp.JspException;
 import org.apache.strutsel.taglib.utils.EvalHelper;
-import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
  * Custom tag that generates JavaScript for client side validation based
@@ -77,7 +76,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
 
@@ -231,84 +230,45 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
     }
     
     /**
-     * Evaluates and returns a single attribute value, given the attribute
-     * name, attribute value, and attribute type.  It uses the
-     * <code>EvalHelper</code> class to interface to
-     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
-     * it passes to this the name of the current tag, the <code>this</code>
-     * pointer, and the current pageContext.
-     *
-     * @param attrName attribute name being evaluated
-     * @param attrValue String value of attribute to be evaluated using EL
-     * @param attrType Required resulting type of attribute value
-     * @exception NullAttributeException if either the <code>attrValue</code>
-     * was null, or the resulting evaluated value was null.
-     * @return Resulting attribute value
-     */
-    private Object   evalAttr(String   attrName,
-                              String   attrValue,
-                              Class    attrType)
-        throws JspException, NullAttributeException
-    {
-        return (EvalHelper.eval("javascript", attrName, attrValue, attrType,
-                                this, pageContext));
-    }
-    
-    /**
      * Processes all attribute values which use the JSTL expression evaluation
-     * engine to determine their values.  If any evaluation fails with a
-     * <code>NullAttributeException</code> it will just use <code>null</code>
-     * as the value.
+     * engine to determine their values.
      *
      * @exception JspException if a JSP exception has occurred
      */
     private void evaluateExpressions() throws JspException {
-        try {
-            setCdata((String) evalAttr("cdata", getCdataExpr(),
-                                       String.class));
-        } catch (NullAttributeException ex) {
-        }
+        String  string  = null;
+        Integer integer = null;
 
-        try {
-            setDynamicJavascript((String) evalAttr("dynamicJavascript",
-                                                   getDynamicJavascriptExpr(), 
-                                                   String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("cdata", getCdataExpr(),
+                                            this, pageContext)) != null)
+            setCdata(string);
 
-        try {
-            setFormName((String) evalAttr("formName", getFormNameExpr(),
-                                          String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("dynamicJavascript", getDynamicJavascriptExpr(),
+                                            this, pageContext)) != null)
+            setDynamicJavascript(string);
 
-        try {
-            setMethod((String) evalAttr("method", getMethodExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("formName", getFormNameExpr(),
+                                            this, pageContext)) != null)
+            setFormName(string);
 
-        try {
-            setPage(((Integer) evalAttr("page", getPageExpr(), Integer.class)).
-                    intValue());
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("method", getMethodExpr(),
+                                            this, pageContext)) != null)
+            setMethod(string);
 
-        try {
-            setSrc((String) evalAttr("src", getSrcExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((integer = EvalHelper.evalInteger("page", getPageExpr(),
+                                              this, pageContext)) != null)
+            setPage(integer.intValue());
 
-        try {
-            setStaticJavascript((String) evalAttr("staticJavascript",
-                                                  getStaticJavascriptExpr(), 
-                                                  String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("src", getSrcExpr(),
+                                            this, pageContext)) != null)
+            setSrc(string);
 
-        try {
-            setHtmlComment((String) evalAttr("htmlComment", getHtmlCommentExpr(),
-                                             String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("staticJavascript", getStaticJavascriptExpr(),
+                                            this, pageContext)) != null)
+            setStaticJavascript(string);
+
+        if ((string = EvalHelper.evalString("htmlComment", getHtmlCommentExpr(),
+                                            this, pageContext)) != null)
+            setHtmlComment(string);
     }
 }

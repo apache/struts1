@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.7 2003/02/26 06:12:25 dmkarr Exp $
- * $Revision: 1.7 $
- * $Date: 2003/02/26 06:12:25 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.8 2003/03/09 05:47:23 dmkarr Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/03/09 05:47:23 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,7 +63,6 @@ package org.apache.strutsel.taglib.html;
 import org.apache.struts.taglib.html.ImgTag;
 import javax.servlet.jsp.JspException;
 import org.apache.strutsel.taglib.utils.EvalHelper;
-import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
  * Generate an IMG tag to the specified image URI.
@@ -85,7 +84,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ELImgTag extends ImgTag {
 
@@ -767,261 +766,178 @@ public class ELImgTag extends ImgTag {
     }
     
     /**
-     * Evaluates and returns a single attribute value, given the attribute
-     * name, attribute value, and attribute type.  It uses
-     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
-     * it passes to this the name of the current tag, the <code>this</code>
-     * pointer, and the current pageContext.
-     *
-     * @param attrName attribute name being evaluated
-     * @param attrValue String value of attribute to be evaluated using EL
-     * @param attrType Required resulting type of attribute value
-     * @return Resulting attribute value
-     */
-    private Object   evalAttr(String   attrName,
-                              String   attrValue,
-                              Class    attrType)
-        throws JspException, NullAttributeException
-    {
-        return (EvalHelper.eval("img", attrName, attrValue,
-                                attrType, this, pageContext));
-    }
-    
-    /**
      * Processes all attribute values which use the JSTL expression evaluation
-     * engine to determine their values.  If any evaluation fails with a
-     * <code>NullAttributeException</code> it will just use <code>null</code>
-     * as the value.
+     * engine to determine their values.
      *
      * @exception JspException if a JSP exception has occurred
      */
     private void evaluateExpressions() throws JspException {
-        try {
-            setAccesskey((String) evalAttr("accessKey", getAccesskeyExpr(),
-                                           String.class));
-        } catch (NullAttributeException ex) {
-        }
+        String  string  = null;
 
-        try {
-            setAlign((String) evalAttr("align", getAlignExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("accessKey", getAccesskeyExpr(),
+                                            this, pageContext)) != null)
+            setAccesskey(string);
 
-        try {
-            setAlt((String) evalAttr("alt", getAltExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("align", getAlignExpr(),
+                                            this, pageContext)) != null)
+            setAlign(string);
 
-        try {
-            setAltKey((String) evalAttr("altKey", getAltKeyExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("alt", getAltExpr(),
+                                            this, pageContext)) != null)
+            setAlt(string);
 
-        try {
-            setBorder((String) evalAttr("border", getBorderExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("altKey", getAltKeyExpr(),
+                                            this, pageContext)) != null)
+            setAltKey(string);
 
-        try {
-            setBundle((String) evalAttr("bundle", getBundleExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("border", getBorderExpr(),
+                                            this, pageContext)) != null)
+            setBorder(string);
 
-        try {
-            setHeight((String) evalAttr("height", getHeightExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("bundle", getBundleExpr(),
+                                            this, pageContext)) != null)
+            setBundle(string);
 
-        try {
-            setHspace((String) evalAttr("hspace", getHspaceExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("height", getHeightExpr(),
+                                            this, pageContext)) != null)
+            setHeight(string);
 
-        try {
-            setImageName((String) evalAttr("imageName", getImageNameExpr(),
-                                           String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("hspace", getHspaceExpr(),
+                                            this, pageContext)) != null)
+            setHspace(string);
 
-        try {
-            setIsmap((String) evalAttr("ismap", getIsmapExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("imageName", getImageNameExpr(),
+                                            this, pageContext)) != null)
+            setImageName(string);
 
-        try {
-            setLocale((String) evalAttr("locale", getLocaleExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("ismap", getIsmapExpr(),
+                                            this, pageContext)) != null)
+            setIsmap(string);
+
+        if ((string = EvalHelper.evalString("locale", getLocaleExpr(),
+                                            this, pageContext)) != null)
+            setLocale(string);
 
         //  The "lowsrc" attribute is deprecated.  This needs to be removed
         //  when the "lowsrc" attribute is finally removed.
-        try {
-            setLowsrc((String) evalAttr("lowsrc", getLowsrcExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("lowsrc", getLowsrcExpr(),
+                                            this, pageContext)) != null)
+            setLowsrc(string);
 
-        try {
-            setName((String) evalAttr("name", getNameExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("name", getNameExpr(),
+                                            this, pageContext)) != null)
+            setName(string);
 
-        try {
-            setOnclick((String) evalAttr("onclick", getOnclickExpr(),
-                                         String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("onclick", getOnclickExpr(),
+                                            this, pageContext)) != null)
+            setOnclick(string);
 
-        try {
-            setOndblclick((String) evalAttr("ondblclick", getOndblclickExpr(),
-                                            String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("ondblclick", getOndblclickExpr(),
+                                            this, pageContext)) != null)
+            setOndblclick(string);
 
-        try {
-            setOnkeydown((String) evalAttr("onkeydown", getOnkeydownExpr(),
-                                           String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("onkeydown", getOnkeydownExpr(),
+                                            this, pageContext)) != null)
+            setOnkeydown(string);
 
-        try {
-            setOnkeypress((String) evalAttr("onkeypress", getOnkeypressExpr(),
-                                            String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("onkeypress", getOnkeypressExpr(),
+                                            this, pageContext)) != null)
+            setOnkeypress(string);
 
-        try {
-            setOnkeyup((String) evalAttr("onkeyup", getOnkeyupExpr(),
-                                         String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("onkeyup", getOnkeyupExpr(),
+                                            this, pageContext)) != null)
+            setOnkeyup(string);
 
-        try {
-            setOnmousedown((String) evalAttr("onmousedown", getOnmousedownExpr(),
-                                             String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("onmousedown", getOnmousedownExpr(),
+                                            this, pageContext)) != null)
+            setOnmousedown(string);
 
-        try {
-            setOnmousemove((String) evalAttr("onmousemove", getOnmousemoveExpr(), 
-                                             String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("onmousemove", getOnmousemoveExpr(),
+                                            this, pageContext)) != null)
+            setOnmousemove(string);
 
-        try {
-            setOnmouseout((String) evalAttr("onmouseout", getOnmouseoutExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("onmouseout", getOnmouseoutExpr(),
+                                            this, pageContext)) != null)
+            setOnmouseout(string);
 
-        try {
-            setOnmouseover((String) evalAttr("onmouseover", getOnmouseoverExpr(), 
-                                             String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("onmouseover", getOnmouseoverExpr(),
+                                            this, pageContext)) != null)
+            setOnmouseover(string);
 
-        try {
-            setOnmouseup((String) evalAttr("onmouseup", getOnmouseupExpr(),
-                                           String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("onmouseup", getOnmouseupExpr(),
+                                            this, pageContext)) != null)
+            setOnmouseup(string);
 
-        try {
-            setPage((String) evalAttr("page", getPageExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("page", getPageExpr(),
+                                            this, pageContext)) != null)
+            setPage(string);
 
-        try {
-            setPageKey((String) evalAttr("pageKey", getPageKeyExpr(),
-                                         String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("pageKey", getPageKeyExpr(),
+                                            this, pageContext)) != null)
+            setPageKey(string);
 
-        try {
-            setParamId((String) evalAttr("paramId", getParamIdExpr(),
-                                         String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("paramId", getParamIdExpr(),
+                                            this, pageContext)) != null)
+            setParamId(string);
 
-        try {
-            setParamName((String) evalAttr("paramName", getParamNameExpr(),
-                                           String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("paramName", getParamNameExpr(),
+                                            this, pageContext)) != null)
+            setParamName(string);
 
-        try {
-            setParamProperty((String) evalAttr("paramProperty",
-                                               getParamPropertyExpr(),
-                                               String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("paramProperty", getParamPropertyExpr(),
+                                            this, pageContext)) != null)
+            setParamProperty(string);
 
-        try {
-            setParamScope((String) evalAttr("paramScope", getParamScopeExpr(),
-                                            String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("paramScope", getParamScopeExpr(),
+                                            this, pageContext)) != null)
+            setParamScope(string);
 
-        try {
-            setProperty((String) evalAttr("property", getPropertyExpr(),
-                                          String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("property", getPropertyExpr(),
+                                            this, pageContext)) != null)
+            setProperty(string);
 
-        try {
-            setScope((String) evalAttr("scope", getScopeExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("scope", getScopeExpr(),
+                                            this, pageContext)) != null)
+            setScope(string);
 
-        try {
-            setSrc((String) evalAttr("src", getSrcExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("src", getSrcExpr(),
+                                            this, pageContext)) != null)
+            setSrc(string);
 
-        try {
-            setSrcKey((String) evalAttr("srcKey", getSrcKeyExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("srcKey", getSrcKeyExpr(),
+                                            this, pageContext)) != null)
+            setSrcKey(string);
 
-        try {
-            setStyle((String) evalAttr("style", getStyleExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("style", getStyleExpr(),
+                                            this, pageContext)) != null)
+            setStyle(string);
 
-        try {
-            setStyleClass((String) evalAttr("styleClass", getStyleClassExpr(),
-                                            String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("styleClass", getStyleClassExpr(),
+                                            this, pageContext)) != null)
+            setStyleClass(string);
 
-        try {
-            setStyleId((String) evalAttr("styleId", getStyleIdExpr(),
-                                         String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("styleId", getStyleIdExpr(),
+                                            this, pageContext)) != null)
+            setStyleId(string);
 
-        try {
-            setTitle((String) evalAttr("title", getTitleExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("title", getTitleExpr(),
+                                            this, pageContext)) != null)
+            setTitle(string);
 
-        try {
-            setTitleKey((String) evalAttr("titleKey", getTitleKeyExpr(),
-                                          String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("titleKey", getTitleKeyExpr(),
+                                            this, pageContext)) != null)
+            setTitleKey(string);
 
-        try {
-            setUsemap((String) evalAttr("usemap", getUsemapExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("usemap", getUsemapExpr(),
+                                            this, pageContext)) != null)
+            setUsemap(string);
 
-        try {
-            setVspace((String) evalAttr("vspace", getVspaceExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("vspace", getVspaceExpr(),
+                                            this, pageContext)) != null)
+            setVspace(string);
 
-        try {
-            setWidth((String) evalAttr("width", getWidthExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("width", getWidthExpr(),
+                                            this, pageContext)) != null)
+            setWidth(string);
     }
 }

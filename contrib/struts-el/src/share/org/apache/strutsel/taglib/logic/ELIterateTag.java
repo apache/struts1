@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTag.java,v 1.5 2003/02/26 06:12:25 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2003/02/26 06:12:25 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTag.java,v 1.6 2003/03/09 05:47:26 dmkarr Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/03/09 05:47:26 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,7 +63,6 @@ package org.apache.strutsel.taglib.logic;
 import org.apache.struts.taglib.logic.IterateTag;
 import javax.servlet.jsp.JspException;
 import org.apache.strutsel.taglib.utils.EvalHelper;
-import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
  * Custom tag that iterates the elements of a collection, which can be
@@ -79,7 +78,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ELIterateTag extends IterateTag {
 
@@ -245,86 +244,53 @@ public class ELIterateTag extends IterateTag {
      */
     public int doStartTag() throws JspException {
         evaluateExpressions();
-        return (super.doStartTag());
+        return(super.doStartTag());
     }
 
     /**
-     * Evaluates and returns a single attribute value, given the attribute
-     * name, attribute value, and attribute type.  It uses
-     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
-     * it passes to this the name of the current tag, the <code>this</code>
-     * pointer, and the current pageContext.
-     *
-     * @param attrName attribute name being evaluated
-     * @param attrValue String value of attribute to be evaluated using EL
-     * @param attrType Required resulting type of attribute value
-     * @return Resulting attribute value
-     */
-    private Object   evalAttr(String   attrName,
-                              String   attrValue,
-                              Class    attrType)
-        throws JspException, NullAttributeException
-    {
-        return (EvalHelper.eval("iterate", attrName, attrValue,
-                                attrType, this, pageContext));
-    }
-    
-    /**
      * Processes all attribute values which use the JSTL expression evaluation
-     * engine to determine their values.  If any evaluation fails with a
-     * <code>NullAttributeException</code> it will just use <code>null</code>
-     * as the value.
+     * engine to determine their values.
      *
      * @exception JspException if a JSP exception has occurred
      */
     private void evaluateExpressions() throws JspException {
+        String string   = null;
+        Object object   = null;
 
-        try {
-            setCollection(evalAttr("collection", getCollectionExpr(), 
-                                   Object.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((object = EvalHelper.eval("collection", getCollectionExpr(),
+                                      this, pageContext)) != null)
+            setCollection(object);
 
-        try {
-            setId((String) evalAttr("id", getIdExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("id", getIdExpr(),
+                                            this, pageContext)) != null)
+            setId(string);
 
-        try {
-            setIndexId((String) evalAttr("indexId", getIndexIdExpr(),
-                                         String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("indexId", getIndexIdExpr(),
+                                            this, pageContext)) != null)
+            setIndexId(string);
 
-        try {
-            setLength((String) evalAttr("length", getLengthExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("length", getLengthExpr(),
+                                            this, pageContext)) != null)
+            setLength(string);
 
-        try {
-            setName((String) evalAttr("name", getNameExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("name", getNameExpr(),
+                                            this, pageContext)) != null)
+            setName(string);
 
-        try {
-            setOffset((String) evalAttr("offset", getOffsetExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("offset", getOffsetExpr(),
+                                            this, pageContext)) != null)
+            setOffset(string);
 
-        try {
-            setProperty((String) evalAttr("property", getPropertyExpr(),
-                                          String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("property", getPropertyExpr(),
+                                            this, pageContext)) != null)
+            setProperty(string);
 
-        try {
-            setScope((String) evalAttr("scope", getScopeExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("scope", getScopeExpr(),
+                                            this, pageContext)) != null)
+            setScope(string);
 
-        try {
-            setType((String) evalAttr("type", getTypeExpr(), String.class));
-        } catch (NullAttributeException ex) {
-        }
+        if ((string = EvalHelper.evalString("type", getTypeExpr(),
+                                            this, pageContext)) != null)
+            setType(string);
     }
 }
