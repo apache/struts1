@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.19 2004/06/09 00:25:15 niallp Exp $
- * $Revision: 1.19 $
- * $Date: 2004/06/09 00:25:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.20 2004/07/31 04:38:36 niallp Exp $
+ * $Revision: 1.20 $
+ * $Date: 2004/07/31 04:38:36 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -42,7 +42,7 @@ import org.apache.struts.util.RequestUtils;
  * implementation of dynamic action form beans. Application developers
  * never need to consult this documentation.</p>
  *
- * @version $Revision: 1.19 $ $Date: 2004/06/09 00:25:15 $
+ * @version $Revision: 1.20 $ $Date: 2004/07/31 04:38:36 $
  * @since Struts 1.1
  */
 
@@ -53,7 +53,7 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * <p>Construct a new <code>DynaActionFormClass</code? for the specified
+     * <p>Construct a new <code>DynaActionFormClass</code> for the specified
      * form bean configuration.  This constructor is private;
      * <code>DynaActionFormClass</code> instances will be created as needed via
      * calls to the static <code>createDynaActionFormClass()</code> method.</p>
