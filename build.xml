@@ -6,55 +6,43 @@
         This script will delegate some of it's tasks to the other build*.xml
         scripts (build-webapps.xml, build-tests.xml, ...
 
+        -projecthelp:
 
-        Primary Targets:
+        Main targets:
 
-        * compile.libary - Compile core struts library directory components
+        all               Clean and build library and web applications
+        clean             Clean build and distribution directories
+        compile.javadoc   Generate JavaDoc API docs
+        compile.library   Compile Struts library files
+        compile.webapps   Compile Struts web applications
+        compile.website   Compile main website
+        deploy.catalina   Deploy Struts web.apps in Catalina (Tomcat 4.0)
+        deploy.tomcat     Deploy Struts web.apps in Tomcat 3.x
+        dist              Construct binary distribution
+        install.catalina  Dynamically install struts-example on Catalina (Tomcat 4.1)
+        list.catalina     Dynamically list installed apps on Catalina (Tomcat 4.1)
+        release           Construct release distribution
+        reload.catalina   Dynamically reload struts-example on Catalina (Tomcat 4.1)
+        remove.catalina   Dynamically install struts-example on Catalina (Tomcat 4.1)
+        test.junit        Run non-Cactus JUnit tests
+        test.tomcat.32    Run Cactus-based unit tests on Tomcat 3.2
+        test.tomcat.40    Run Cactus-based unit tests on Tomcat 4.0
+        test.tomcat.41    Run unit tests on Tomcat 4.1
+        test.tomcat.all   Run Cactus-based unit tests on all servlet engines
 
-        * clean.website - Compile Website documenation
+        Subtargets:
 
-        * dist - Construct complete binary distribution
-
-        * dist.webapps - Construct distributable web applications
-
-        * release - Construct complete release distributions
-
-        * deploy.catalina - Deploy these applications on Catalina
-
-        * deploy.tomcat - Deploy these applications on Tomcat
-
-
-
-        Unit Tests:
-
-        * test.tomcat.all - Run Cactus-based unit tests on all servlet engines
-
-        * test.junit - Run non-Cactus JUnit tests
-
-
-
-        Utility Targets:
-
-        * static - Prepare static directories for web applications
-
-        * compile.webapps - Compile code for web applications
-
-        * compile.javadoc - Create Javadoc documentation
-
-        * dist.libary - Construct library distributables
-
-        * install.catalina - Dynamic installation commands on Catalina (Tomcat 4.1.x required)
-
-        * clean - Clean up build and distribution directories
-
-        * all - All-in-one build target
-
-        * test.tomcat.32 - Run Cactus-based unit tests on Tomcat 3.2
-
-        * test.tomcat.40 - Run Cactus-based unit tests on Tomcat 4.0
-
-        * test.tomcat.41 - Run unit tests on Tomcat 4.1
-
+        clean.website
+        dist.library
+        dist.source
+        dist.webapps
+        init
+        prepare.dist
+        prepare.library
+        skip.tomcat.32
+        skip.tomcat.40
+        skip.tomcat.41
+        static.webapps
 -->
 
 
