@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.1 2002/06/25 03:16:30 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:16:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.2 2002/07/24 09:38:44 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/24 09:38:44 $
  *
  * ====================================================================
  *
@@ -197,13 +197,13 @@ public final class UseAttributeTag extends TagSupport {
 
     ComponentContext compContext = (ComponentContext)pageContext.getAttribute( ComponentConstants.COMPONENT_CONTEXT, pageContext.REQUEST_SCOPE);
     if( compContext == null )
-      throw new JspException ( "Error - tag.useAttribute : component context is not defined. Check tag syntax" );
+      throw new JspException ( "Error - tag useAttribute : no tiles context found." );
 
     Object value = compContext.getAttribute(attributeName);
         // Check if value exist and if we must send a runtime exception
     if( value == null )
       if(!isErrorIgnored)
-        throw new JspException ( "Error - tag.useAttribute : attribute '"+ attributeName + "' not found in context. Check tag syntax" );
+        throw new JspException ( "Error - tag useAttribute : attribute '"+ attributeName + "' not found in context. Check tag syntax" );
        else
         return SKIP_BODY;
 
