@@ -42,6 +42,7 @@ import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.faces.Constants;
 import org.apache.struts.faces.component.FormComponent;
+import org.apache.struts.faces.util.HttpServletRequestWrapper;
 
 
 
@@ -53,7 +54,7 @@ import org.apache.struts.faces.component.FormComponent;
  * instance normally configured by Struts, so it must support non-Faces
  * requests as well.</p>
  *
- * @version $Revision: 1.9 $ $Date: 2004/06/09 02:28:28 $
+ * @version $Revision: 1.10 $ $Date: 2004/06/29 14:57:18 $
  */
 
 public class FacesRequestProcessor extends RequestProcessor {
@@ -126,7 +127,8 @@ public class FacesRequestProcessor extends RequestProcessor {
             }
             FacesContextFactory fcf = (FacesContextFactory)
                 FactoryFinder.getFactory(FactoryFinder.FACES_CONTEXT_FACTORY);
-            context = fcf.getFacesContext(servlet.getServletContext(), request,
+            HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(request, uri);
+            context = fcf.getFacesContext(servlet.getServletContext(), wrapper,
                                           response, lifecycle); 
         }
 
