@@ -230,15 +230,6 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * <p>The <code>RequestProcessor</code> instance we will use to process
-     * all incoming requests.</p>
-     *
-     * @since Struts 1.1
-     */
-    protected RequestProcessor processor = null;
-
-
-    /**
      * <p>The set of public identifiers, and corresponding resource names, for
      * the versions of the configuration file DTDs that we know about.  There
      * <strong>MUST</strong> be an even number of Strings in this list!</p>
