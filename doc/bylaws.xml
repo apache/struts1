@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<document url="./bylaws.xml">
+
+  <properties>
+    <title>Project Management Committee Bylaws</title>
+  </properties>
+
+<body>
+
+  <section name="Project Management Committee Bylaws">
+<p>
+Struts is a Project of the <a href="http://apache.org/foundation">
+Apache Software Foundation</a> (ASF), formed by a resolution of the
+<a href="http://apache.org/foundation/board/">ASF Board of
+Directors</a>. As an ASF Project, Struts is subject to the
+<a href="http://apache.org/foundation/bylaws.html">ASF Bylaws</a>
+and the direction of the ASF Board.
+</p>
+
+<p>
+The Project is administered by the Vice President of Struts.
+The Vice President is appointed by the ASF Board. The Vice
+President is assisted by the Project Management Committee (PMC)
+and also serves as the PMC chair. The PMC may nominate new
+members. Nominees may then be approved with a 3/4 majority vote
+of the PMC. Membership can be revoked by a unanimous vote of all
+the active PMC members other than the member in question. The
+list of active PMC members can be found on our
+<a href="volunteers.html">Volunteers page</a>.
+</p>
+
+<p>
+<b>Duties</b><br />The PMC is responsible for the day-to-day
+management of the Struts Project. The PMC oversees all changes
+made to the codebase. The PMC must ensure that all code under a
+Apache Struts CVS is the lawful property of the Foundation and that it
+may be distributed under the <a href="http://apache.org/licenses/">
+Apache Software License</a>. All releases of a Struts subproject
+must be sanctioned by the Project Management Committee.
+</p>
+
+<p>
+<b>Subprojects</b><br />
+Subprojects are the Project's unit of release. Each subproject should
+represent an implementation of the Struts core or a releated component.
+Each subproject should focus on creating, maintaining, and releasing a
+single softare product or "deliverable".
+</p>
+
+<p>
+All PMC Members have voting rights in all subprojects. Members not familiar
+with a subproject codebase may abstain from any given vote. All Committers
+have write access to all subprojects. Subprojects are units of release, not
+units of work.
+</p>
+
+<p>
+<b>Creation of subprojects</b><br /> PMC members may propose the creation
+of new subprojects. Proposals are to contain the scope of the project,
+identify the initial source from which the project is to be populated,
+identify the mailing list(s) if any which are to be created, and
+identify the initial set of committers. Creation of a new subproject
+requires approval by a 3/4 majority vote of the PMC.
+</p>
+
+</section>
+
+</body>
+</document>
