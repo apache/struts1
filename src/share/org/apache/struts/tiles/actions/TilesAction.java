@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/TilesAction.java,v 1.6 2003/07/10 03:01:27 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/07/10 03:01:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/TilesAction.java,v 1.7 2003/07/10 03:03:02 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/07/10 03:03:02 $
  *
  * ====================================================================
  *
@@ -61,8 +61,6 @@
 
 package org.apache.struts.tiles.actions;
 
-import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -81,14 +79,14 @@ import org.apache.struts.tiles.ComponentContext;
  * This class extends Struts Action. Subclasses should override
  * execute(ComponentContext ...) method instead of Struts
  * execute(ActionMapping ...) method.
- * @version $Revision: 1.6 $ $Date: 2003/07/10 03:01:27 $
+ * @version $Revision: 1.7 $ $Date: 2003/07/10 03:03:02 $
  */
 public abstract class TilesAction extends Action {
 
     /**
      * Original Struts Action's method.
      * Retrieve current Tile context and call TilesAction execute method.
-     * Do not overload this method !
+     * Do not overload this method!
      *
      * @param mapping The ActionMapping used to select this instance.
      * @param form The optional ActionForm bean for this request (if any).
@@ -142,34 +140,6 @@ public abstract class TilesAction extends Action {
         HttpServletRequest request,
         HttpServletResponse response)
         throws Exception {
-            
-        return perform(context, mapping, form, request, response);
-    }
-
-    /**
-     * Process the specified HTTP request and create the corresponding HTTP
-     * response (or forward to another web component that will create it).
-     * Return an <code>ActionForward</code> instance describing where and how
-     * control should be forwarded, or <code>null</code> if the response has
-     * already been completed.
-     *
-     * @param context The current Tile context, containing Tile attributes.
-     * @param mapping The ActionMapping used to select this instance.
-     * @param form The optional ActionForm bean for this request (if any).
-     * @param request The HTTP request we are processing.
-     * @param response The HTTP response we are creating.
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
-     * @deprecated Use the <code>execute()</code> method instead
-     */
-    public ActionForward perform(
-        ComponentContext context,
-        ActionMapping mapping,
-        ActionForm form,
-        HttpServletRequest request,
-        HttpServletResponse response)
-        throws IOException, ServletException {
             
         return null;
     }
