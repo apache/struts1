@@ -40,6 +40,27 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
  
 <section name="News" href="news">
 
+<h3><a name="20020717"></a>17 July 2002 - StrutsTestCase v1.8 Released</h3>
+<p>
+StrutsTestCase v1.8 improves support for Struts 1.1,
+provides several requested enhancements, and fixes many
+reported defects.
+</p>
+<p>
+The project home page can be found here:
+</p>
+<p>
+<a href="http://strutstestcase.sourceforge.net">http://strutstestcase.sourceforge.net</a>
+</p>
+<p>
+Notes for this release can be found here:
+</p>
+<p>
+<a href="http://sourceforge.net/project/shownotes.php?release_id=99980">http://sourceforge.net/project/shownotes.php?release_id=99980</a>
+</p>
+<hr size="1" noshade=""/>
+
+
 <h3><a name="20020711"></a>11 July 2002 - Scioworks Camino v2.0</h3>
 <p>
 Scioworks Camino is a visual tool for Struts application development.
