@@ -40,7 +40,7 @@
       <struts:message key="prompt.mailHostname"/>
     </th>
     <td align="left">
-      <struts:text property="host" size="50"/>
+      <struts:textarea property="host" cols="50" rows="1"/>
     </td>
   </tr>
 
@@ -67,7 +67,6 @@
       <struts:message key="prompt.mailServerType"/>
     </th>
     <td align="left">
-<%--
       <struts:select property="type">
         <struts:option value="pop3">
           <struts:message key="option.pop3"/>
@@ -76,13 +75,14 @@
           <struts:message key="option.imap"/>
         </struts:option>
       </struts:select>
---%>
+<%--
       <struts:radio property="type" value="imap">
         <struts:message key="option.imap"/>
       </struts:radio>
       <struts:radio property="type" value="pop3">
         <struts:message key="option.pop3"/>
       </struts:radio>
+--%>
     </td>
   </tr>
 

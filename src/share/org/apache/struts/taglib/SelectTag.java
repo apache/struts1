@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.3 2000/06/16 04:41:08 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/16 04:41:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.4 2000/06/16 22:18:14 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/16 22:18:14 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/16 04:41:08 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/16 22:18:14 $
  */
 
 public final class SelectTag extends BaseHandlerTag {
@@ -247,7 +247,10 @@ public final class SelectTag extends BaseHandlerTag {
 	pageContext.removeAttribute(Constants.SELECT_KEY);
 
 	// Render a tag representing the end of our current form
-	StringBuffer results = new StringBuffer("</select>");
+	StringBuffer results = new StringBuffer();
+	if (bodyContent != null)
+	    results.append(bodyContent.getString());
+	results.append("</select>");
 
 	// Print this value to our output writer
 	JspWriter writer = pageContext.getOut();
