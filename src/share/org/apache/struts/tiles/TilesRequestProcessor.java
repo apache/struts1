@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.8 2002/10/18 15:27:42 jholmes Exp $
- * $Revision: 1.8 $
- * $Date: 2002/10/18 15:27:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.9 2002/11/05 14:08:29 cedric Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/11/05 14:08:29 $
  *
  * ====================================================================
  *
@@ -81,6 +81,13 @@ import org.apache.commons.logging.LogFactory;
  * or include. When such call is done, Tiles processor check if the specified uri
  * is a definition name. If true, the definition is retrieved and included. If
  * false, the original uri is included or a forward is performed.
+ * <p>
+ * Actually, catching is done by overloading following methods:
+ * <ul>
+ * <li>{@link #processForwardConfig(HttpServletRequest,HttpServletResponse,ForwardConfig)}</li>
+ * <li>{@link #internalModuleRelativeForward(String, HttpServletRequest , HttpServletResponse)}</li>
+ * <li>{@link #internalModuleRelativeInclude(String, HttpServletRequest , HttpServletResponse)}</li>
+ * </ul>
  * </p>
  * @author Cedric Dumoulin
  * @since Tiles 1.1.1
@@ -89,10 +96,11 @@ public class TilesRequestProcessor extends RequestProcessor
 {
     /** Definitions factory */
   private DefinitionsFactory definitionsFactory;
+
      /**
       * Commons Logging instance.
       */
-     protected static Log log = LogFactory.getLog(RequestProcessor.class);
+     protected static Log log = LogFactory.getLog(TilesRequestProcessor.class);
 
     /**
      * Initialize this request processor instance.
@@ -146,7 +154,7 @@ public class TilesRequestProcessor extends RequestProcessor
      * @return True if the method has process uri as a definition name, false otherwise.
      */
   protected boolean processTilesDefinition(String definitionName, boolean contextRelative, HttpServletRequest request, HttpServletResponse response)
- 	  throws IOException, ServletException
+    throws IOException, ServletException
     {
     //System.out.println("doForward(" + uri + ")");
       // Do we do a forward (original behavior) or an include ?
@@ -252,7 +260,7 @@ public class TilesRequestProcessor extends RequestProcessor
      * @param response Current page response
      */
   protected void doForward(String uri, HttpServletRequest request, HttpServletResponse response)
- 	  throws IOException, ServletException
+    throws IOException, ServletException
     {
     if(response.isCommitted())
       doInclude(uri, request, response);
@@ -347,5 +355,13 @@ public class TilesRequestProcessor extends RequestProcessor
 
     super.internalModuleRelativeInclude(uri, request, response);
     }
+
+    /**
+     * Get associated definition factory.
+     */
+  public DefinitionsFactory getDefinitionsFactory()
+  {
+    return definitionsFactory;
+  }
 
 }
