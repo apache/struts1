@@ -4969,6 +4969,36 @@
         </attribute>
 
         <attribute>
+            <name>onmousemove</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under the
+                mouse pointer and the pointer is moved.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onmouseout</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element was under the
+                mouse pointer but the pointer was moved outside the element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onmouseover</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element was not under
+                the mouse pointer but the pointer is moved inside the element.
+            </info>
+        </attribute>
+
+        <attribute>
             <name>style</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
