@@ -110,6 +110,7 @@ public class ModuleException extends Exception {
 	 * @param values Array of replacement values
 	 */
 	public ModuleException(String key, Object[] values) {
+		super(key);
 		error = new ActionError(key, values);
         message = new ActionMessage(key, values);
 	}
