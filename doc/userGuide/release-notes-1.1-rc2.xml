@@ -25,7 +25,275 @@
 
 <section name="RC/Beta Fixes" href="beta.Changes">
 
-    <p>...</p>
+    <p>
+        In RC2, the <b>Commons-DBPC and Commons-Pool dependencies have been removed</b>.
+        These are replaced with a dependency on the Struts-Legacy JAR,
+        containing the GenericDataSource and GenericConnection classes from Struts 1.0.2.
+        These are distribute for J2SE 1.3 but may be recompiled for J2SE 1.4.
+        Other DataSource implementations may be plugged in (recommended).
+    </p>
+
+    <p>
+        RC2 is dependant the <b>FileUpload RC1</b>.
+        The final release of Struts 1.1 cannot happen until this dependency is replaced by the final relesae of File Upload.
+        All other dependencies are in their final release.
+    </p>
+
+    <p>
+        Other changes since RC1 have been routine fixes and refactorings.
+    </p>
+
+    <p>
+        <b>OTHER CHANGES:</b>
+    </p>
+
+    <p>
+        <b>Action package:</b>
+        Deprecated processActionForward() because ActionForward is a subclass of ForwardConfig so there's no reason we can't use processForwardConfig() instead.
+        Updated to use processForwardConfig instead of deprecated processActionForward.
+        Deprecated the rest of the Action constants in favor of Globals.
+        Refactored some of initModuleConfig into a separate method and cleaned up
+        Improved exception handling in ActionServlet and RequestProcessor; generally, we limited the scope of try/catch blocks and caught specific exceptions rather than Throwable.
+    </p>
+
+    <p>
+        <b>Documentation:</b>
+        Document to the html tag's locale attribute about creating session if needed.
+        Added note to validator section regarding the converNull servlet parameter and required validations of java.lang.Integer fields.
+        Moved sites and consultants page to Struts Wiki.
+        Other minor tweaks.
+    </p>
+
+    <p>
+        <b>EL package:</b>
+        Fixed mapping of "onkeypress" attribute.
+        Separated "expr" attribute into "expr" and "exprValue", being the original attribute value and the evaluated value.
+        Fixed probably long-standing bug in notMatch tag that made it behave identically to the "match" tag (instead of the reverse).
+
+    </p>
+
+    <p>
+        <b>Example applicattions:</b>
+        Added Multi-config files for the example app.
+    </p>
+
+
+    <p>
+        <b>Legacy package:</b>
+        Added package under contrib to host old GenericDataSource and GenericConnection classes.
+
+    </p>
+    <p>
+        <b>Taglibs packages:</b>
+        Fixed several import statements.
+        Refactored converting a scope name into its integer constant into a new method RequestUtils.getScope(String), and changed the DefineTag, EmptyTag, and TagUtils classes to use the new method.
+    </p>
+
+    <p>
+        <i>faces taglib.</i> Added early release to contrib area.
+    </p>
+
+    <p>
+       <i>html taglib.</i>
+       Reset the 'processed' flag at the beginning of each usage of the tag. Use a local copy of the 'name' attribute to avoid modifying the attribute value itself.
+       Fixed references to static members.
+       For FrameTag and HiddenTag, conform TLD with implementations.
+       In ErrorsTag, render a platform-independent line ending instead of hard coded "\r\n".
+       In JavaScriptValidatorTag, make the line-end generation platform independent so that Cactus tests
+       In FormTag, Refactored code into smaller reusable methods.
+       In RewriteTag, encode the ampersand character in XHTML mode only, otherwise write the ampersand as is so the url will work in JavaScripts.
+       Refactored form bean initialization out of doStartTag() into its own method.
+       Refactored doStartTag() if statement to avoid having long nested if logic.
+       In ErrorTag, formatting fixes and deprecated unused defaultLocale variable.
+       Refactored doStartTag() and doEndTag() into smaller methods.
+       Moved xhtml check to RequestUtils instead of duplicating the logic in many different classes.
+       Added lookupProperty() method to BaseHandlerTag because both RadioTag and TextareaTag used the same code.
+       Refactored TextareaTag into smaller methods.
+       In JavaScriptValidatorTag, replaced duplicated code with call to RequestUtils.retrieveUserLocale() and simplified an if statement.
+    </p>
+
+    <p>
+        <i>logic taglib.</i>
+        Set 'iterator' to null in doEndTag() so that we release the iterator reference as early as possible. We cannot do the same for 'collection' since it is a tag attribute, and needs to remain unchanged to comply with the JSP spec.
+        Don't create empty cookies array if null, just don't run the loop at all.
+        In ForwardTag, remove unnecessary test for null.
+
+    </p>
+
+   <p>
+       <i>nested tablibs.</i>
+       Improved support for Tomcat 4.1.18.
+       Replace EVAL_BODY_AGAIN with EVAL_BODY_TAG so that the code compiles against the JSP 1.1 API.
+       Changed the nested:define's tei class to reference a new custom tei class for the nested tags.
+   </p>
+
+    <p>
+        <i>tiles taglib.</i>
+        Fixed references to static members.
+        Deprecated outdated Tiles TextTag.
+        For InsertTag, only include page if it's != null.
+        For InserTag, Remove page check before including for more investigation.
+    </p>
+
+    <p>
+        <b>Test packages:</b>
+        Added several new tests for the bean, html, and logic taglibs to the suite setup at the tail-end of RC1.
+        Note: We cannot resolve request.getServerPort() in the Cactus 1.4.x environment, so for now, our tests will only run on Cactus 1.3
+    </p>
+
+    <p>
+        <b>Tiles package:</b>
+        Deprecated TilesUtil.applicationClass() in favor of RequestUtils.applicationClass()
+    </p>
+
+    <p>
+        <b>Util package:</b>
+        retrieveUserLocale now uses the request.getLocale() method for finding the user's preferred locale.
+        If user has not specified this with Accept-Language header, the server default locale is used.
+        Change encodeURL to not use reflection on every call.
+        In RequestUtils, simplified separator logic in computeURL().
+    </p>
+
+    <p>
+        <b>Validator package:</b>
+        Deprecate logging methods and indicate that common-logging should be used.
+        Logic simplification and minor formatting fixes to Resources class.
+
+    </p>
+
+    <p>
+        <b>build files:</b>
+    </p>
+
+    <ul>
+        <li>
+            (build.properties.sample) Add an entry for http-unit.
+        </li>
+        <li>
+            Remove dependency on Commons Resources for Struts 1.1 release (this will happen later).
+        </li>
+        <li>
+            Make it possible to build Struts against the Servlet 2.4 and JSP 2.0 APIs, where the JSP classes have been pulled out into their own JAR file (jsp.jar). On an earlier platform, you can leave the "jsp.jar" property unset and thing will continue to operate as they have before.
+        </li>
+
+    </ul>
+
+
+    <p>
+        <b>Bugzilla Problem Report fixes:</b>
+    </p>
+
+    <ul>
+        <li>
+            Fixed #17312 - retrieveUserLocale throws exception without sessions.
+        </li>
+        <li>
+           Fixed #17254 - If body text is empty and there's no resource key to lookup, display nothing in the option.
+        </li>
+        <li>
+           Fixed #17371- The tag now uses RequestUtils.retrieveUserLocale for looking up the appropriate locale. Using that method protects us from needlessly creating a session.
+        </li>
+        <li>
+           Fixed #17375 - Problem in ELErrorsTag because the "name" attribute of ErrorsTag has a non-null default value.
+        </li>
+        <li>
+          Fixed #17622 - validator-rules.xml issues.
+        </li>
+        <li>
+          Fixed #17299 - Set page variable from dyna map before validating.
+        </li>
+        <li>
+          Fixed #17838 - Help debug specific user errors by showing quotes around the key that is in error (missing or mispelled).
+        </li>
+        <li>
+          Fixed #17833 - validateShort and isAllDigits for negative numbers.
+        </li>
+        <li>
+          Fixed #17328 - Synchronized loadLocale.
+        </li>
+        <li>
+          Fixed #18018 - Changed field-* variables to camel case and no "-".
+        </li>
+        <li>
+          Fixed #16548 - validateMinLength and validateMaxLength are now independent of the required check.
+        </li>
+        <li>
+         Fixed #17389 - Splice in the I18nFactorySet.calculatePostixes from the attachment, rebuild, and ran the unit tests successfully.
+        </li>
+        <li>
+         Fixed #17273 - Removed extra return statement (RequestUtils).
+        </li>
+        <li>
+         Fixed #17592 - Tag should support a "naked" collection that is not a property of a bean.
+        </li>
+        <li>
+         Fixed #17592 - Made "property" attribute of "optionsCollection" tag be not required, to match same change made for #17592 in base tag.
+        </li>
+        <li>
+         Fixed #17562 - Change the InsertTag to let it use PageContext.include() instead of RequestDispatcher.include(). We are no back to the same mechanism used in the 1.1b3 release.
+        </li>
+        <li>
+         Fixed #18186 - Use temp variable instead of overwriting tag attribute variable.
+        </li>
+        <li>
+         Fixed #18394 - Changed error to info log if DefinitionsFactory is not supplied.
+        </li>
+        <li>
+         Fixed #18538 - Changed shortname to "tiles".
+        </li>
+        <li>
+         Fixed #18591 - Braces placement in message().
+        </li>
+        <li>
+         Fixed #18018 - Don't output requiredif field* javascript variables because they're not used and break other validations.
+        </li>
+        <li>
+         Fixed #18794 -Check ServletContext for ModuleConfig instead of request.
+        </li>
+        <li>
+         Fixed #18864 - Changed Class-Path to conform to jar spec.  The previous patch fixing a bug in  WebLogic caused warnings in Resin.
+        </li>
+        <li>
+         Fixed #18991 - Allow messages object passed to add(ActionMessages) to be null.
+        </li>
+        <li>
+         Fixed #19040 -  Added null checks back to ActionServlet.
+        </li>
+        <li>
+         Fixed #19157 - Implement Serializable in NestedReference.
+        </li>
+        <li>
+         Fixed #18869 - Added display-name to web.xml files.
+        </li>
+        <li>
+        Fixed #19223 - Synchronized token methods for PR.  Post 1.1 these methods should be moved to some kind of TokenProcessor class for reusability by other components such as the RequestProcessor (#16743).
+        </li>
+        <li>
+         Fixed #19236 -  Added "action" attribute to "html-el:frame" tag.
+        </li>
+        <li>
+         Fixed #11932 - Factored common code out of message() and present() into a new private method retrieveMessageResources.
+        </li>
+        <li>
+         Fixed #11922 - Moved Action's token methods to this new class to fix synchronization issues and allow Action to be more focused.
+        </li>
+        <li>
+         Fixed #19594 - Fixed minlength javascript for PR.  Also, removed
+  password field checking from validateMask.
+        </li>
+        <li>
+        Fixed #19773 - EmptyTag and added test to exercise-taglib webapp.
+        </li>
+        <li>
+        Fixed #19835 - Add check against -1 to maxSize.
+        </li>
+        <li>
+        Fixed #20034 - Call releaseInternal() in release() so if error occurs between begin/end of tag next user/request will not be working with old parameters.
+        </li>
+        <li>
+        Fixed #20455 - validateRequiredIf() fails on Strings of whitespace.
+        </li>
+    </ul>
 
 
 </section>
@@ -192,10 +460,10 @@
 
     <p>
     <ul>
-    <li>Scaffold - An extension of the Commons Scaffold toolkit of reusable 
+    <li>Scaffold - An extension of the Commons Scaffold toolkit of reusable
     classes for building web applications.</li>
-    <li>Struts-el - The optional Struts-el taglib makes it easy to use Struts 
-    with JSTL (container with servlet 2.3 support required). </li>    
+    <li>Struts-el - The optional Struts-el taglib makes it easy to use Struts
+    with JSTL (container with servlet 2.3 support required). </li>
     </ul>
     </p>
 
@@ -285,7 +553,7 @@
     application (and corresponding contents on the Struts web site):</p>
     <ul>
     <li>Version Differences: New section in Release Notes to link to the JavaDocs for all Struts classes and members added or changed between versions.</li>
-    <li>FAQ/HowTos: New documentation category organizes our FAQs and example-driven howTos. 
+    <li>FAQ/HowTos: New documentation category organizes our FAQs and example-driven howTos.
     New HowTos include "Building Applications", "Using SSL", and using Struts with Eclipse or NetBeans.</li>
     <li>User Guide Preface: New section to overview the enabling technologies behind Struts.</li>
     <li>Developer Guides: Added "cover page" to guides. These then link to the Package Descriptions and the API guides.</li>
