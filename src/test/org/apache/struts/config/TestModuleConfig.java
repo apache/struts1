@@ -152,18 +152,6 @@ public class TestModuleConfig extends TestCase {
         parseConfig(publicId,entityURL, strutsConfig);
 
         // Perform assertion tests on the parsed information
-
-        DataSourceConfig dsc =
-            config.findDataSourceConfig(Globals.DATA_SOURCE_KEY);
-        assertNotNull("Found our data source configuration", dsc);
-        assertEquals("Data source driverClass",
-                     "org.postgresql.Driver",
-                     (String) dsc.getProperties().get("driverClass"));
-
-        assertEquals("Data source description",
-                     "Example Data Source Configuration",
-                     (String) dsc.getProperties().get("description"));
-
         FormBeanConfig fbcs[] = config.findFormBeanConfigs();
         assertNotNull("Found our form bean configurations", fbcs);
         assertEquals("Found three form bean configurations",

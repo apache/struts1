@@ -105,17 +105,6 @@ public interface ModuleConfig {
     void addActionConfig(ActionConfig config);
 
     /**
-     * Add a new <code>DataSourceConfig</code> instance to the set associated
-     * with this module.
-     *
-     * @param config The new configuration instance to be added
-     *
-     * @exception java.lang.IllegalStateException if this module configuration
-     *  has been frozen
-     */
-    void addDataSourceConfig(DataSourceConfig config);
-
-    /**
      * Add a new <code>ExceptionConfig</code> instance to the set associated
      * with this module.
      *
@@ -193,20 +182,6 @@ public interface ModuleConfig {
      * none, a zero-length array is returned.
      */
     ActionConfig[] findActionConfigs();
-
-    /**
-     * Return the data source configuration for the specified key, if any;
-     * otherwise return <code>null</code>.
-     *
-     * @param key Key of the data source configuration to return
-     */
-    DataSourceConfig findDataSourceConfig(String key);
-
-    /**
-     * Return the data source configurations for this module.  If there
-     * are none, a zero-length array is returned.
-     */
-    DataSourceConfig[] findDataSourceConfigs();
 
     /**
      * Return the exception configuration for the specified type, if any;
@@ -296,16 +271,6 @@ public interface ModuleConfig {
      *  has been frozen
      */
     void removeExceptionConfig(ExceptionConfig config);
-
-    /**
-     * Remove the specified data source configuration instance.
-     *
-     * @param config DataSourceConfig instance to be removed
-     *
-     * @exception java.lang.IllegalStateException if this module configuration
-     *  has been frozen
-     */
-    void removeDataSourceConfig(DataSourceConfig config);
 
     /**
      * Remove the specified form bean configuration instance.

@@ -56,21 +56,6 @@ public class ConfigRuleSet extends RuleSetBase {
      */
     public void addRuleInstances(Digester digester) {
 
-        digester.addObjectCreate
-            ("struts-config/data-sources/data-source",
-             "org.apache.struts.config.DataSourceConfig",
-             "className");
-        digester.addSetProperties
-            ("struts-config/data-sources/data-source");
-        digester.addSetNext
-            ("struts-config/data-sources/data-source",
-             "addDataSourceConfig",
-             "org.apache.struts.config.DataSourceConfig");
-
-        digester.addRule
-            ("struts-config/data-sources/data-source/set-property",
-             new AddDataSourcePropertyRule());
-
         digester.addRule
             ("struts-config/action-mappings",
              new SetActionMappingClassRule());
@@ -228,27 +213,6 @@ public class ConfigRuleSet extends RuleSetBase {
             ("struts-config/plug-in/set-property",
              new PlugInSetPropertyRule());
 
-    }
-
-}
-
-
-/**
- * Class that calls <code>addProperty()</code> for the top object
- * on the stack, which must be a
- * <code>org.apache.struts.config.DataSourceConfig</code>.
- */
-
-final class AddDataSourcePropertyRule extends Rule {
-
-    public AddDataSourcePropertyRule() {
-        super();
-    }
-
-    public void begin(String namespace, String name, Attributes attributes) throws Exception {
-        DataSourceConfig dsc = (DataSourceConfig) digester.peek();
-        dsc.addProperty(attributes.getValue("property"),
-                        attributes.getValue("value"));
     }
 
 }

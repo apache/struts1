@@ -22,7 +22,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
@@ -170,20 +169,6 @@ public class ConfigHelper implements ConfigHelperInterface {
     
 
     // ------------------------------------------------ Application Context
-
-    /**
-     * The <strong>default</strong>
-     * configured data source (which must implement
-     * <code>javax.sql.DataSource</code>),
-     * if one is configured for this application.
-     */
-    public DataSource getDataSource() {
-
-        if (this.application == null)
-            return null;
-        return (DataSource) this.application.getAttribute(Globals.DATA_SOURCE_KEY);
-
-    }
 
     public ActionMessages getActionMessages() {
 

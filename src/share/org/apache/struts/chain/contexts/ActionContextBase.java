@@ -20,8 +20,6 @@ package org.apache.struts.chain.contexts;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.chain.Context;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.MessageResources;
@@ -60,8 +58,6 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
 
     public static final String EXCEPTION_KEY = Constants.EXCEPTION_KEY;
     
-    public static final String DEFAULT_DATA_SOURCE_KEY = "dataSource";
-
     public static final String ERROR_ACTION_MESSAGES_KEY = "errors";
 
     public static final String MESSAGE_ACTION_MESSAGES_KEY = "messages";
@@ -337,18 +333,6 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
 
     public Locale getLocale() {
         return (Locale) this.get(LOCALE_KEY);
-    }
-
-    // -------------------------------
-    // DataSource Processing
-    // -------------------------------
-
-    public DataSource getDataSource() {
-        return (DataSource) this.get(DEFAULT_DATA_SOURCE_KEY);
-    }
-
-    public DataSource getDataSource(String key) {
-        return (DataSource) this.get(key);
     }
 
 }

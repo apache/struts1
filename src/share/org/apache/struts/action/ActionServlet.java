@@ -35,7 +35,6 @@ import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
@@ -60,7 +59,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.config.ConfigRuleSet;
-import org.apache.struts.config.DataSourceConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.MessageResourcesConfig;
 import org.apache.struts.config.ModuleConfig;
@@ -212,14 +210,6 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * <p>The JDBC data sources that has been configured for this module,
-     * if any, keyed by the servlet context attribute under which they are
-     * stored.</p>
-     */
-    protected FastHashMap dataSources = new FastHashMap();
-
-
-    /**
      * <p>The resources object for our internal resources.</p>
      */
     protected MessageResources internal = null;
@@ -350,7 +340,6 @@ public class ActionServlet extends HttpServlet {
             // Initialize modules as needed
             ModuleConfig moduleConfig = initModuleConfig("", config);
             initModuleMessageResources(moduleConfig);
-            initModuleDataSources(moduleConfig);
             initModulePlugIns(moduleConfig);
             moduleConfig.freeze();
     
@@ -364,7 +353,6 @@ public class ActionServlet extends HttpServlet {
                 moduleConfig = initModuleConfig
                     (prefix, getServletConfig().getInitParameter(name));
                 initModuleMessageResources(moduleConfig);
-                initModuleDataSources(moduleConfig);
                 initModulePlugIns(moduleConfig);
                 moduleConfig.freeze();
             }
@@ -785,58 +773,6 @@ public class ActionServlet extends HttpServlet {
         String msg = internal.getMessage("configParse", path);
         log.error(msg, e);
         throw new UnavailableException(msg);
-    }
-
-
-    /**
-     * <p>Initialize the data sources for the specified module.</p>
-     *
-     * @param config ModuleConfig information for this module
-     *
-     * @exception ServletException if initialization cannot be performed
-     * @since Struts 1.1
-     */
-    protected void initModuleDataSources(ModuleConfig config) throws ServletException {
-
-        // :FIXME: Document UnavailableException?
-
-        if (log.isDebugEnabled()) {
-            log.debug("Initializing module path '" + config.getPrefix() +
-                "' data sources");
-        }
-
-        ServletContextWriter scw =
-            new ServletContextWriter(getServletContext());
-        DataSourceConfig dscs[] = config.findDataSourceConfigs();
-        if (dscs == null) {
-            dscs = new DataSourceConfig[0];
-        }
-
-        dataSources.setFast(false);
-        for (int i = 0; i < dscs.length; i++) {
-            if (log.isDebugEnabled()) {
-                log.debug("Initializing module path '" + config.getPrefix() +
-                    "' data source '" + dscs[i].getKey() + "'");
-            }
-            DataSource ds = null;
-            try {
-                ds = (DataSource)
-                    RequestUtils.applicationInstance(dscs[i].getType());
-                BeanUtils.populate(ds, dscs[i].getProperties());
-                ds.setLogWriter(scw);
-
-            } catch (Exception e) {
-                log.error(internal.getMessage("dataSource.init", dscs[i].getKey()), e);
-                throw new UnavailableException
-                    (internal.getMessage("dataSource.init", dscs[i].getKey()));
-            }
-            getServletContext().setAttribute
-                (dscs[i].getKey() + config.getPrefix(), ds);
-            dataSources.put(dscs[i].getKey(), ds);
-        }
-
-        dataSources.setFast(true);
-
     }
 
 

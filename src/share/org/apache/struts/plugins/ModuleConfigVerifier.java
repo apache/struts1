@@ -132,9 +132,6 @@ public class ModuleConfigVerifier implements PlugIn {
         if (!verifyControllerConfig()) {
             ok = false;
         }
-        if (!verifyDataSourceConfigs()) {
-            ok = false;
-        }
         if (!verifyExceptionConfigs()) {
             ok = false;
         }

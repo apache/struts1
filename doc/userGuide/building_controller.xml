@@ -1350,8 +1350,8 @@ throws Exception;
     controller in the request -- and you want to!  
     The controller puts the application configuration in the request,
     which makes available all of your module-specific configuration data 
-    (including which message resources you are using, request-processor, 
-    datasources, and so forth).
+    (including which message resources you are using, request-processor,
+    and so forth).
     </p>
     
     <p>

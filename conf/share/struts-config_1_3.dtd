@@ -82,52 +82,8 @@
      hierarchy, and contains nested elements for all of the other
      configuration settings.
 -->
-<!ELEMENT struts-config (display-name?, description?, data-sources?, form-beans?, global-exceptions?, global-forwards?, action-mappings?, controller?, message-resources*, plug-in*)>
+<!ELEMENT struts-config (display-name?, description?, form-beans?, global-exceptions?, global-forwards?, action-mappings?, controller?, message-resources*, plug-in*)>
 <!ATTLIST struts-config  id             ID              #IMPLIED>
-
-
-<!-- The "data-sources" element describes a set of DataSource objects [JDBC 2.0
-     Standard Extension]. The individual DataSource objects are configured through
-     nested <data-source> elements.
--->
-<!ELEMENT data-sources (data-source*)>
-<!ATTLIST data-sources   id             ID              #IMPLIED>
-
-
-<!-- The "data-source" element describes a DataSource object [JDBC 2.0 Standard
-     Extension] that will be instantiated, configured, and made available as a
-     servlet context attribute (or "application-scope bean"). Any object can be
-     specified so long as it implements [javax.sql.DataSource] and can be
-     configured entirely from JavaBean properties. The following attributes
-     are required:
-
-     className       The configuration bean for this DataSource object. If
-                     specified, the object must be a subclass of the default
-                     configuration bean.
-                     ["org.apache.struts.config.DataSourceConfig"]
-
-     key             Servlet context attribute key under which this data source
-                     will be stored.  Default is the value specified by string
-                     constant defined by Globals.DATA_SOURCE_KEY. The application
-                     module prefix (if any) is appended to the key
-                     (${key}$prefix}).
-                     [org.apache.struts.Globals.DATA_SOURCE_KEY]
-
-                     NOTE: The application module prefix includes the leading
-                     slash, so the default datasource for a module named "foo" is
-                     stored under "org.apache.struts.action.DATA_SOURCE/foo".
-
-     type          Fully qualified Java class name for this data source object.
-                     The class must implement DataSource [javax.sql.DataSource],
-                     and the object must be configurable entirely from JavaBean
-                     properties.
--->
-<!ELEMENT data-source (set-property*)>
-<!ATTLIST data-source    id             ID              #IMPLIED>
-<!ATTLIST data-source    className      %ClassName;     #IMPLIED>
-<!ATTLIST data-source    key            %AttributeName; #IMPLIED>
-<!ATTLIST data-source    type           %ClassName;     #REQUIRED>
-
 
 <!-- The "form-beans" element describes the set of form bean descriptors for this
      module. The following attributes are defined:
@@ -679,7 +635,7 @@ The "form-bean" element describes a particular form bean, which is a
      the surrounding element is instantiated, the accessor for the indicated
      property is called and passed the indicated value. The "set-property"
      element is especially useful when a custom subclass is used with
-     <data-source>, <forward>, <action>, or <plug-in> elements. The subclass
+     <forward>, <action>, or <plug-in> elements. The subclass
      can be passed whatever other properties may be required to configure the
      object without changing how the struts-config is parsed.
 

@@ -26,7 +26,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 
 import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
@@ -287,42 +286,6 @@ public class Action {
      */
     protected String generateToken(HttpServletRequest request) {
         return token.generateToken(request);
-    }
-
-
-    /**
-     * <p>Return the default data source for the current module.</p>
-     *
-     * @param request The servlet request we are processing
-     *
-     * @since Struts 1.1
-     */
-    protected DataSource getDataSource(HttpServletRequest request) {
-
-        return (getDataSource(request, Globals.DATA_SOURCE_KEY));
-
-    }
-
-
-
-    /**
-     * <p>Return the specified data source for the current module.</p>
-     *
-     * @param request The servlet request we are processing
-     * @param key The key specified in the
-     *  <code>&lt;message-resources&gt;</code> element for the
-     *  requested bundle
-     *
-     * @since Struts 1.1
-     */
-    protected DataSource getDataSource(HttpServletRequest request, String key) {
-
-        // Identify the current module
-        ServletContext context = getServlet().getServletContext();
-        ModuleConfig moduleConfig =
-            ModuleUtils.getInstance().getModuleConfig(request, context);
-
-        return (DataSource) context.getAttribute(key + moduleConfig.getPrefix());
     }
 
 

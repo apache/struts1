@@ -50,10 +50,6 @@
             &lt;plug-in&gt;
         </li>
 
-        <li>
-            &lt;data-sources&gt;
-        </li>
-
     </ul>
 
  </section>
@@ -318,77 +314,6 @@
            value="/WEB-INF/tiles-defs.xml"/>
 </plug-in>
 ]]></code></pre>
-
-</section>
-
-<section name="5.2.4 Data Source Configuration" href="data-source_config">
-
-    <p>
-    Besides the objects related to defining ActionMappings, the Struts
-    configuration may contain elements that create other useful objects.
-    </p>
-
-    <p>
-    The <code>&lt;data-sources></code> section can be used to specify
-    a collection of DataSources [javax.sql.DataSource] for the use of your
-    application.
-    Typically, a DataSource represents a connection pool to a database
-    or other persistent store.
-    As a convenience, the Struts DataSource manager can be used to
-    instantiate whatever standard pool your application may need.
-    Of course, if your persistence layer provides for its own connections,
-    then you do not need to specify a <code>data-sources</code> element.
-    </p>
-
-    <p>
-    Since DataSource implementations vary in what properties need to be
-    set, unlike other Struts configuration elements, the
-    <code>&lt;data-source&gt;</code> element does not pre-define a slate of
-    properties.
-    Instead, the generic <code>&lt;set-property&gt;</code> feature is used to set
-    whatever properties your implementation may require.
-    Typically, these settings would include:
-    </p>
-
-    <ul>
-
-    <li>
-    A driver class name
-    </li>
-
-    <li>
-    A url to access the driver
-    </li>
-
-    <li>
-    A description
-    </li>
-
-    </ul>
-
-    <p>
-    And other sundry properties.
-    </p>
-
-<pre><code><![CDATA[
-<data-source type="org.apache.commons.dbcp.BasicDataSource">
-<!-- ... set-property elements ... -->
-</data-source>
-]]></code></pre>
-
-    <p>
-    Since Struts 1.2.0, the GenericDataSource has been removed, and it is
-    recommended that you use the Commons BasicDataSource or other DataSource
-    implementations instead. In practice, if you need to use the DataSource
-    manager, you should use whatever DataSource implementation works best
-    with your container or database.
-    </p>
-
-    <p>
-    For examples of specifying a <code>&lt;data-sources&gt;</code> element and using the
-    DataSource with an Action, see the
-    <a href="../faqs/database.html">Accessing a Database HowTo</a>.
-    </p>
 
 </section>
 

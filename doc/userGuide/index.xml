@@ -110,7 +110,6 @@
                     <li><a href="configuration.html#controller_config">5.2.1 Controller Configuration</a></li>
                     <li><a href="configuration.html#resources_config">5.2.2 Message Resources Configuration</a></li>
                     <li><a href="configuration.html#plugin_config">5.2.3 PlugIn Configuration</a></li>
-                    <li><a href="configuration.html#data-source_config">5.2.4 Data Source Configuration</a></li>
                     </ul>
                 </li>    
                 <li><a href="configuration.html#dd_config_modules">5.3 Configuring your application for modules</a>

@@ -20,8 +20,6 @@
 package org.apache.struts.config;
 
 
-import javax.sql.DataSource;
-
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionForward;
@@ -61,8 +59,6 @@ public interface ConfigHelperInterface {
 
 
 // ------------------------------------------------ Application Context
-
-    public DataSource getDataSource();
 
     /**
      * The <code>org.apache.struts.action.ActionFormBeans</code> collection

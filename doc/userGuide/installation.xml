@@ -73,11 +73,6 @@
       <a href="http://jakarta.apache.org/builds/jakarta-servletapi">here</a>.
       </li>
 
-  <li><strong>JDBC 2.0 Optional Package Classes</strong> - Struts supports
-      an optional implementation of <code>javax.sql.DataSource</code>, so it
-      requires the API classes to be compiled.  They can be downloaded from
-      <a href="http://java.sun.com/products/jdbc/download.html">http://java.sun.com/products/jdbc/download.html</a>.</li>
-
   <li>
       <strong>Other Packages</strong> - Struts utilizes several
       packages from other open source projects, especially the <a href="http://jakarta.apache.org/commons/">Jakarta

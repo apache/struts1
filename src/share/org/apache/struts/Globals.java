@@ -73,17 +73,6 @@ public class Globals implements Serializable {
     public static final String MODULE_PREFIXES_KEY =
         "org.apache.struts.globals.MODULE_PREFIXES";
 
-
-    /**
-     * The context attributes key under which our <strong>default</strong>
-     * configured data source (which must implement
-     * <code>javax.sql.DataSource</code>) is stored,
-     * if one is configured for this module.
-     */
-    public static final String DATA_SOURCE_KEY =
-      "org.apache.struts.action.DATA_SOURCE";
-
-
     /**
      * The request attributes key under which your action should store an
      * <code>org.apache.struts.action.ActionErrors</code> object, if you

@@ -26,7 +26,6 @@ import java.util.HashMap;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ActionConfigMatcher;
 import org.apache.struts.config.ControllerConfig;
-import org.apache.struts.config.DataSourceConfig;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
@@ -64,7 +63,6 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         this.actionForwardClass = "org.apache.struts.action.ActionForward";
         this.configured = false;
         this.controllerConfig = null;
-        this.dataSources = new HashMap();
         this.exceptions = new HashMap();
         this.formBeans = new HashMap();
         this.forwards = new HashMap();
@@ -181,24 +179,6 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         config.setModuleConfig(this);
         actionConfigs.put(config.getPath(), config);
         actionConfigList.add(config);
-
-    }
-
-    /**
-     * Add a new <code>DataSourceConfig</code> instance to the set associated
-     * with this module.
-     *
-     * @param config The new configuration instance to be added
-     *
-     * @exception java.lang.IllegalStateException if this module configuration
-     *  has been frozen
-     */
-    public void addDataSourceConfig(DataSourceConfig config) {
-
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
-        dataSources.put(config.getKey(), config);
 
     }
 
@@ -339,29 +319,6 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
     }
 
     /**
-     * Return the data source configuration for the specified key, if any;
-     * otherwise return <code>null</code>.
-     *
-     * @param key Key of the data source configuration to return
-     */
-    public DataSourceConfig findDataSourceConfig(String key) {
-
-        return ((DataSourceConfig) dataSources.get(key));
-
-    }
-
-    /**
-     * Return the data source configurations for this module.  If there
-     * are none, a zero-length array is returned.
-     */
-    public DataSourceConfig[] findDataSourceConfigs() {
-
-        DataSourceConfig results[] = new DataSourceConfig[dataSources.size()];
-        return ((DataSourceConfig[]) dataSources.values().toArray(results));
-
-    }
-
-    /**
      * Return the exception configuration for the specified type, if any;
      * otherwise return <code>null</code>.
      *
@@ -483,11 +440,6 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
 
         getControllerConfig().freeze();
 
-        DataSourceConfig[] dsconfigs = findDataSourceConfigs();
-        for (int i = 0; i < dsconfigs.length; i++) {
-            dsconfigs[i].freeze();
-        }
-
         ExceptionConfig[] econfigs = findExceptionConfigs();
         for (int i = 0; i < econfigs.length; i++) {
             econfigs[i].freeze();
@@ -547,23 +499,6 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
             throw new IllegalStateException("Configuration is frozen");
         }
         exceptions.remove(config.getType());
-
-    }
-
-    /**
-     * Remove the specified data source configuration instance.
-     *
-     * @param config DataSourceConfig instance to be removed
-     *
-     * @exception IllegalStateException if this module configuration
-     *  has been frozen
-     */
-    public void removeDataSourceConfig(DataSourceConfig config) {
-
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
-        dataSources.remove(config.getKey());
 
     }
 
@@ -633,12 +568,6 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      * listed in the order in which they are added.
      */
     protected List actionConfigList = null; 
-    
-    /**
-     * The set of JDBC data source configurations for this
-     * module, if any, keyed by the <code>key</code> property.
-     */
-    protected HashMap dataSources = null;
     
     /**
      * The set of exception handling configurations for this

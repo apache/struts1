@@ -20,8 +20,6 @@ package org.apache.struts.chain.contexts;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.chain.Context;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.MessageResources;
@@ -449,32 +447,4 @@ public interface ActionContext extends Context {
      *  to select the server's default Locale
      */
     void setLocale(Locale locale);
-
-    // -------------------------------
-    // DataSource Processing
-    // -------------------------------
-
-
-
-    /**
-     * <p>Return the default data source for the current module.</p>
-     *
-     * @param request The servlet request we are processing
-     *
-     */
-    DataSource getDataSource();
-
-
-
-    /**
-     * <p>Return the specified data source for the current module.</p>
-     *
-     * @param request The servlet request we are processing
-     * @param key The key specified in the
-     *  <code>&lt;message-resources&gt;</code> element for the
-     *  requested bundle
-     *
-     */
-    DataSource getDataSource(String key);
-
 }
