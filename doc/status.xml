@@ -10,7 +10,7 @@
 <chapter href="status" name="Development Roadmap">
 
 <section href="status" name="Development Roadmap">
-<p><font size="-2">$Id: status.xml,v 1.8 2002/11/04 03:15:51 jmitchell Exp $</font></p>
+<p><font size="-2">$Id: status.xml,v 1.9 2002/11/06 21:05:28 husted Exp $</font></p>
 <p>
 This document outlines some of changes we expect to
 see in future releases of Struts.
@@ -66,11 +66,15 @@ incremental releases (in contrast to Stuts 1.1).
 Features under discussion include:
 </p>
 <ul>
+<li>Proposing ActionError/ActionErrors as generic Commons "message" components</li>
 <li>"Nested" or "hierarchical" and locale-sensitive modules</li>
 <li>Extending one configuration element from another, as is done with Tiles Definitions</li>
 <li>Enhanced interoperability with JSTL and JSF</li>
 <li>Making Tiles JSTL-aware and available to other presentation systems (XLST, Velocity)</li>
 <li>Adoption of XLST technology (e.g. stxx)</li>
+<li>Better support for unit testing within the framework (e.g.
+<a href="http://sourceforge.net/projects/strutstestcase/">Struts TestCase</a>)
+or perhaps even a distinct unit testing framework.</li>
 <li>Moving to <a href="http://jakarta.apache.org/turbine/maven/index.html">Maven</a> for project management</li>
 </ul>
 <p>
