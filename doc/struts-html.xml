@@ -2527,6 +2527,15 @@
                 </attribute>
 
                 <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this hyperlink.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
                   <name>transaction</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>

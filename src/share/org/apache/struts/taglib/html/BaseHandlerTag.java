@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.3.2.2 2001/06/10 03:51:40 craigmcc Exp $
- * $Revision: 1.3.2.2 $
- * $Date: 2001/06/10 03:51:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.3.2.3 2001/06/13 03:44:29 craigmcc Exp $
+ * $Revision: 1.3.2.3 $
+ * $Date: 2001/06/13 03:44:29 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import org.apache.struts.util.MessageResources;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.3.2.2 $ $Date: 2001/06/10 03:51:40 $
+ * @version $Revision: 1.3.2.3 $ $Date: 2001/06/13 03:44:29 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -161,6 +161,12 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
     /** Identifier associated with component.  */
     private String styleId = null;
+
+// Other Common Attributes
+
+    /** The advisory title of this element. */
+    private String title = null;
+
 
     // ------------------------------------------------------------- Properties
 
@@ -387,6 +393,19 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return styleId;
     }
 
+// Other Common Elements
+
+    /** Returns the advisory title attribute. */
+    public String getTitle() {
+        return title;
+    }
+
+    /** Sets the advisory title attribute. */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -417,6 +436,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 	style = null;
 	styleClass = null;
         styleId = null;
+        title = null;
 
     }
 
@@ -443,6 +463,11 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         if (styleId != null) {
             styles.append(" id=\"");
             styles.append(styleId);
+            styles.append("\"");
+        }
+        if (title != null) {
+            styles.append(" title=\"");
+            styles.append(title);
             styles.append("\"");
         }
         return styles.toString();
