@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.124 2003/07/26 18:51:37 dgraham Exp $
- * $Revision: 1.124 $
- * $Date: 2003/07/26 18:51:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.125 2003/07/26 18:58:36 dgraham Exp $
+ * $Revision: 1.125 $
+ * $Date: 2003/07/26 18:58:36 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.124 $ $Date: 2003/07/26 18:51:37 $
+ * @version $Revision: 1.125 $ $Date: 2003/07/26 18:58:36 $
  */
 
 public class RequestUtils {
@@ -845,6 +845,8 @@ public class RequestUtils {
      * @return message string
      * @exception JspException if a lookup error occurs (will have been
      *  saved in the request already)
+     * @deprecated Use TagUtils.message() instead.  This will be removed after
+     * Struts 1.2.
      */
     public static String message(
         PageContext pageContext,
@@ -854,71 +856,12 @@ public class RequestUtils {
         Object args[])
         throws JspException {
 
-        MessageResources resources =
-            retrieveMessageResources(pageContext, bundle, false);
-
-        Locale userLocale = retrieveUserLocale(pageContext, locale);
-        
-        if (args == null) {
-            return (resources.getMessage(userLocale, key));
-        } else {
-            return (resources.getMessage(userLocale, key, args));
-        }
-
-    }
-
-    /**
-     * Returns the appropriate MessageResources object for the current module and 
-     * the given bundle.
-     * 
-     * @param pageContext Search the context's scopes for the resources.
-     * @param bundle The bundle name to look for.  If this is <code>null</code>, the 
-     * default bundle name is used.
-     * @return MessageResources The bundle's resources stored in some scope. 
-     * @throws JspException if the MessageResources object could not be found.
-     */
-    private static MessageResources retrieveMessageResources(
-        PageContext pageContext,
-        String bundle,
-        boolean checkPageScope)
-        throws JspException {
-            
-        MessageResources resources = null;
-
-        if (bundle == null) {
-            bundle = Globals.MESSAGES_KEY;
-        }
-
-        if (checkPageScope) {
-            resources =
-                (MessageResources) pageContext.getAttribute(
-                    bundle,
-                    PageContext.PAGE_SCOPE);
-        }
-
-        if (resources == null) {
-            resources =
-                (MessageResources) pageContext.getAttribute(
-                    bundle,
-                    PageContext.REQUEST_SCOPE);
-        }
-
-        if (resources == null) {
-            ModuleConfig config = getModuleConfig(pageContext);
-            resources =
-                (MessageResources) pageContext.getAttribute(
-                    bundle + config.getPrefix(),
-                    PageContext.APPLICATION_SCOPE);
-        }
-
-        if (resources == null) {
-            JspException e =
-                new JspException(messages.getMessage("message.bundle", bundle));
-            saveException(pageContext, e);
-            throw e;
-        }
-
-        return resources;
+        return TagUtils.getInstance().message(
+            pageContext,
+            bundle,
+            locale,
+            key,
+            args);
     }
 
     /**
@@ -1209,6 +1152,8 @@ public class RequestUtils {
      * @return true if a message string for message key exists
      * @exception JspException if a lookup error occurs (will have been
      *  saved in the request already)
+     * @deprecated Use TagUtils.present() instead.  This will be removed after
+     * Struts 1.2.
      */
     public static boolean present(
         PageContext pageContext,
@@ -1217,12 +1162,7 @@ public class RequestUtils {
         String key)
         throws JspException {
 
-        MessageResources resources =
-            retrieveMessageResources(pageContext, bundle, true);
-
-        Locale userLocale = retrieveUserLocale(pageContext, locale);
-
-        return (resources.isPresent(userLocale, key));
+        return TagUtils.getInstance().present(pageContext, bundle, locale, key);
     }
 
     /**

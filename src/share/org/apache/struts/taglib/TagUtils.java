@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.10 2003/07/26 18:51:37 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2003/07/26 18:51:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.11 2003/07/26 18:58:37 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/07/26 18:58:37 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.taglib.html.Constants;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -572,6 +572,122 @@ public class TagUtils {
                 messages.getMessage("lookup.method", property, name));
         }
 
+    }
+    
+    /**
+     * Look up and return a message string, based on the specified parameters.
+     *
+     * @param pageContext The PageContext associated with this request
+     * @param bundle Name of the servlet context attribute for our
+     *  message resources bundle
+     * @param locale Name of the session attribute for our user's Locale
+     * @param key Message key to be looked up and returned
+     * @param args Replacement parameters for this message
+     * @return message string
+     * @exception JspException if a lookup error occurs (will have been
+     *  saved in the request already)
+     */
+    public String message(
+        PageContext pageContext,
+        String bundle,
+        String locale,
+        String key,
+        Object args[])
+        throws JspException {
+
+        MessageResources resources =
+            retrieveMessageResources(pageContext, bundle, false);
+
+        Locale userLocale = getUserLocale(pageContext, locale);
+        
+        if (args == null) {
+            return (resources.getMessage(userLocale, key));
+        } else {
+            return (resources.getMessage(userLocale, key, args));
+        }
+
+    }
+    
+    /**
+     * Return true if a message string for the specified message key
+     * is present for the specified Locale.
+     *
+     * @param pageContext The PageContext associated with this request
+     * @param bundle Name of the servlet context attribute for our
+     *  message resources bundle
+     * @param locale Name of the session attribute for our user's Locale
+     * @param key Message key to be looked up and returned
+     * @return true if a message string for message key exists
+     * @exception JspException if a lookup error occurs (will have been
+     *  saved in the request already)
+     */
+    public boolean present(
+        PageContext pageContext,
+        String bundle,
+        String locale,
+        String key)
+        throws JspException {
+
+        MessageResources resources =
+            retrieveMessageResources(pageContext, bundle, true);
+
+        Locale userLocale = getUserLocale(pageContext, locale);
+
+        return (resources.isPresent(userLocale, key));
+    }
+    
+    /**
+     * Returns the appropriate MessageResources object for the current module and 
+     * the given bundle.
+     * 
+     * @param pageContext Search the context's scopes for the resources.
+     * @param bundle The bundle name to look for.  If this is <code>null</code>, the 
+     * default bundle name is used.
+     * @return MessageResources The bundle's resources stored in some scope. 
+     * @throws JspException if the MessageResources object could not be found.
+     */
+    private MessageResources retrieveMessageResources(
+        PageContext pageContext,
+        String bundle,
+        boolean checkPageScope)
+        throws JspException {
+            
+        MessageResources resources = null;
+
+        if (bundle == null) {
+            bundle = Globals.MESSAGES_KEY;
+        }
+
+        if (checkPageScope) {
+            resources =
+                (MessageResources) pageContext.getAttribute(
+                    bundle,
+                    PageContext.PAGE_SCOPE);
+        }
+
+        if (resources == null) {
+            resources =
+                (MessageResources) pageContext.getAttribute(
+                    bundle,
+                    PageContext.REQUEST_SCOPE);
+        }
+
+        if (resources == null) {
+            ModuleConfig config = getModuleConfig(pageContext);
+            resources =
+                (MessageResources) pageContext.getAttribute(
+                    bundle + config.getPrefix(),
+                    PageContext.APPLICATION_SCOPE);
+        }
+
+        if (resources == null) {
+            JspException e =
+                new JspException(messages.getMessage("message.bundle", bundle));
+            saveException(pageContext, e);
+            throw e;
+        }
+
+        return resources;
     }
 
     /**

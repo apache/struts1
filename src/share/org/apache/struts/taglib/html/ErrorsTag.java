@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.23 2003/07/26 01:00:01 dgraham Exp $
- * $Revision: 1.23 $
- * $Date: 2003/07/26 01:00:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.24 2003/07/26 18:58:36 dgraham Exp $
+ * $Revision: 1.24 $
+ * $Date: 2003/07/26 18:58:36 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.23 $ $Date: 2003/07/26 01:00:01 $
+ * @version $Revision: 1.24 $ $Date: 2003/07/26 18:58:36 $
  */
 public class ErrorsTag extends TagSupport {
 
@@ -196,16 +196,16 @@ public class ErrorsTag extends TagSupport {
         }
 
         boolean headerPresent =
-            RequestUtils.present(pageContext, bundle, locale, "errors.header");
+            TagUtils.getInstance().present(pageContext, bundle, locale, "errors.header");
 
         boolean footerPresent =
-            RequestUtils.present(pageContext, bundle, locale, "errors.footer");
+        TagUtils.getInstance().present(pageContext, bundle, locale, "errors.footer");
 
         boolean prefixPresent =
-            RequestUtils.present(pageContext, bundle, locale, "errors.prefix");
+        TagUtils.getInstance().present(pageContext, bundle, locale, "errors.prefix");
 
         boolean suffixPresent =
-            RequestUtils.present(pageContext, bundle, locale, "errors.suffix");
+        TagUtils.getInstance().present(pageContext, bundle, locale, "errors.suffix");
 
         // Render the error messages appropriately
         StringBuffer results = new StringBuffer();
