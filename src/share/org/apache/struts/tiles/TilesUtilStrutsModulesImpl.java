@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsModulesImpl.java,v 1.1 2002/12/27 10:41:23 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/12/27 10:41:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsModulesImpl.java,v 1.2 2002/12/29 21:29:23 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/29 21:29:23 $
  *
  * ====================================================================
  *
@@ -103,7 +103,8 @@ public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
                            HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
         throws IOException, ServletException
     {
-    request.getRequestDispatcher(uri).include(request, response);
+      // forward uri
+    request.getRequestDispatcher(uri).forward(request, response);
     }
 
     /**
@@ -118,8 +119,9 @@ public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
     public void doInclude(String uri,
                            HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
         throws IOException, ServletException
-    {        // modify uri
-    request.getRequestDispatcher(uri).forward(request, response);
+    {
+      // include to uri
+    request.getRequestDispatcher(uri).include(request, response);
     }
 
     /**
@@ -141,6 +143,7 @@ public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
        */
     public DefinitionsFactory getDefinitionsFactory(ServletContext servletContext, ModuleConfig moduleConfig)
     {
+    //System.out.println("Get tiles factory for module '" + moduleConfig.getPrefix() + "'");
     return (DefinitionsFactory) servletContext.getAttribute( DEFINITIONS_FACTORY + moduleConfig.getPrefix());
     }
 
@@ -203,12 +206,12 @@ public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
      */
   protected ModuleConfig getModuleConfig( HttpServletRequest request, ServletContext servletContext)
   {
-  ModuleConfig moduleConfig = RequestUtils.getModuleConfig(request, servletContext);
+  ModuleConfig moduleConfig = RequestUtils.getRequestModuleConfig(request);
   if (moduleConfig == null)
-    {
+    { // not set, do it
       // ModuleConfig not found in current request. Select it.
     RequestUtils.selectModule(request, servletContext);
-    moduleConfig = RequestUtils.getModuleConfig(request, servletContext);
+    moduleConfig = RequestUtils.getRequestModuleConfig(request);
     }
 
   return moduleConfig;
