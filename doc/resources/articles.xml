@@ -10,6 +10,7 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Articles">
+<p><a href="http://www.ajug.org/meetings/download/struts.pdf"><b>Jakarta Struts 1.1: Ready for Prime Time</b></a> by Chuck Cavaness.</p>
 <p><a href="http://www.scioworks.net/devnews/articles/struts_adoption_issues/index.html"><b>Issues In Struts Adoption</b></a> by Harry Rusli and John Yu.</p>
 <p><a href="http://www.e-promag.com/eparchive/index.cfm?fuseaction=viewarticle&amp;ContentID=1742"><b>Struts: A Standard Architecture for Web Applications</b></a> by Don Denoncourt.</p>
 <p><a href="http://www.mooreds.com/jaas.html"><b>Using JAAS for Authorization and Authentication</b></a> by Dan Moore.</p>
