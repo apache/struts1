@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.30 2004/01/10 21:03:38 dgraham Exp $
- * $Revision: 1.30 $
- * $Date: 2004/01/10 21:03:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.31 2004/01/19 22:20:40 germuska Exp $
+ * $Revision: 1.31 $
+ * $Date: 2004/01/19 22:20:40 $
  *
  * ====================================================================
  *
@@ -85,52 +85,11 @@ import org.apache.struts.config.ForwardConfig;
  * for the fact that it is part of the public API that existing applications
  * are using.</p>
  *
- * @version $Revision: 1.30 $ $Date: 2004/01/10 21:03:38 $
+ * @version $Revision: 1.31 $ $Date: 2004/01/19 22:20:40 $
  */
 
 public class ActionMapping extends ActionConfig {
 
-
-    /**
-     * <p>Find and return the <code>ExceptionConfig</code> instance defining
-     * how <code>Exceptions</code> of the specified type should be handled.
-     * This is performed by checking local and then global configurations for
-     * the specified exception's class, and then looking up the superclass chain
-     * (again checking local and then global configurations). If no handler
-     * configuration can be found, return <code>null</code>.</p>
-     *
-     * @param type Exception class for which to find a handler
-     * @since Struts 1.1
-     */
-    public ExceptionConfig findException(Class type) {
-
-        // Check through the entire superclass hierarchy as needed
-        ExceptionConfig config = null;
-        while (true) {
-
-            // Check for a locally defined handler
-            String name = type.getName();
-            config = findExceptionConfig(name);
-            if (config != null) {
-                return (config);
-            }
-
-            // Check for a globally defined handler
-            config = getModuleConfig().findExceptionConfig(name);
-            if (config != null) {
-                return (config);
-            }
-
-            // Loop again for our superclass (if any)
-            type = type.getSuperclass();
-            if (type == null) {
-                break;
-            }
-
-        }
-        return (null); // No handler has been configured
-
-    }
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.16 2004/01/13 12:48:45 husted Exp $
- * $Revision: 1.16 $
- * $Date: 2004/01/13 12:48:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.17 2004/01/19 22:20:40 germuska Exp $
+ * $Revision: 1.17 $
+ * $Date: 2004/01/19 22:20:40 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import java.util.HashMap;
  * <code>&lt;action&gt;</code> element from a Struts
  * module configuration file.</p>
  *
- * @version $Revision: 1.16 $ $Date: 2004/01/13 12:48:45 $
+ * @version $Revision: 1.17 $ $Date: 2004/01/19 22:20:40 $
  * @since Struts 1.1
  */
 public class ActionConfig implements Serializable {
@@ -122,7 +122,7 @@ public class ActionConfig implements Serializable {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
-        
+
         this.moduleConfig = moduleConfig;
     }
 
@@ -634,6 +634,51 @@ public class ActionConfig implements Serializable {
         return ((ExceptionConfig[]) exceptions.values().toArray(results));
 
     }
+
+    /**
+     * <p>Find and return the <code>ExceptionConfig</code> instance defining
+     * how <code>Exceptions</code> of the specified type should be handled.
+     * This is performed by checking local and then global configurations for
+     * the specified exception's class, and then looking up the superclass chain
+     * (again checking local and then global configurations). If no handler
+     * configuration can be found, return <code>null</code>.</p>
+     *
+     * <p>Introduced in <code>ActionMapping</code> in Struts 1.1, but pushed
+     * up to <code>ActionConfig</code> in Struts 1.2.0.</p>
+     *
+     * @param type Exception class for which to find a handler
+     * @since Struts 1.2.0
+     */
+    public ExceptionConfig findException(Class type) {
+
+        // Check through the entire superclass hierarchy as needed
+        ExceptionConfig config = null;
+        while (true) {
+
+            // Check for a locally defined handler
+            String name = type.getName();
+            config = findExceptionConfig(name);
+            if (config != null) {
+                return (config);
+            }
+
+            // Check for a globally defined handler
+            config = getModuleConfig().findExceptionConfig(name);
+            if (config != null) {
+                return (config);
+            }
+
+            // Loop again for our superclass (if any)
+            type = type.getSuperclass();
+            if (type == null) {
+                break;
+            }
+
+        }
+        return (null); // No handler has been configured
+
+    }
+
 
 
     /**
