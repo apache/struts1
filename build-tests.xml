@@ -148,7 +148,9 @@
 
         <war warfile="${out.test.dir}/test.war"
              webxml="${conf.test.dir}/web.xml">
-
+	    
+	    <fileset dir="${web.dir}/test"/>
+ 
             <classes dir="${out.test.dir}/classes"/>
 
             <!-- We need to copy the Cactus, JUnit and Struts jars in the war.
@@ -186,7 +188,13 @@
 
             <!-- Suite of tests -->
             <test name="org.apache.struts.action.TestActionServlet"/>
-
+            
+            <!-- Logic Taglib Tests -->
+            <batchtest fork="yes">
+              <fileset dir="${out.test.dir}/classes">
+                <include name="org/apache/struts/taglib/logic/Test*.class" />
+              </fileset>
+            </batchtest>
         </junit>
 
     </target>
@@ -202,6 +210,9 @@
         <mkdir dir="${out.tomcat.32.dir}/webapps"/>
         <mkdir dir="${out.tomcat.32.dir}/conf"/>
 
+	<!-- Delete old directory so new war is unzipped -->
+        <delete dir="${out.tomcat.32.dir}/webapps/test"/>
+        
         <!-- Copy war file -->
         <copy file="${out.test.dir}/test.war" todir="${out.tomcat.32.dir}/webapps"/>
     
@@ -274,6 +285,9 @@
 
         <mkdir dir="${out.tomcat.40.dir}/webapps"/>
         <mkdir dir="${out.tomcat.40.dir}/conf"/>
+
+	<!-- Delete old directory so new war is unzipped -->
+        <delete dir="${out.tomcat.40.dir}/webapps/test"/>
 
         <!-- Copy war file -->
         <copy file="${out.test.dir}/test.war" todir="${out.tomcat.40.dir}/webapps"/>
