@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.1 2002/12/12 06:02:25 martinc Exp $</font></p>
+  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.2 2002/12/17 05:46:14 martinc Exp $</font></p>
 
   <p>The objective of the <strong>Struts 1.1 Beta 3</strong> release is to
   create a milestone release against which a final series of bug fixes and
@@ -33,7 +33,7 @@
   <p>Therefore, the following release plan is proposed for Struts 1.1 Beta 3:
   </p>
   <ul>
-  <li><em>Code Freeze / Tag Date</em> - Saturday, December 14, 2002</li>
+  <li><em>Code Freeze / Tag Date</em> - Saturday, December 21, 2002</li>
   <li><em>Release Manager</em> - Martin Cooper</li>
   <li><em>Release Announcement</em> - To the following mailing lists:
       <ul>
@@ -113,10 +113,6 @@
       <td width="75">15196</td>
       <td>Bug on the RequestUtils.computeParameters using a DynaValidatorForm as map of the parameter</td>
     </tr>
-    <tr>
-      <td width="75">15298</td>
-      <td>html:form and context-root of '/' causes page action to have // prepended to action</td>
-    </tr>
 
     <!-- Controller -->
     <tr>
@@ -146,6 +142,10 @@
     <tr>
       <td width="75">10537</td>
 	  <td>[:TODO:] sections</td>
+    </tr>
+    <tr>
+      <td width="75">15167</td>
+	  <td>Updated Action documentation</td>
     </tr>
 
     <!-- File Upload -->
