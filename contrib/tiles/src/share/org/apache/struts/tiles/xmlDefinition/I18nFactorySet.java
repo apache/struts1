@@ -46,7 +46,7 @@ public class I18nFactorySet extends FactorySet
   public static final String INSTANCES_CONFIG_PARAMETER_NAME = "instances-config";
 
     /** Default name */
-  public static final String DEFAULT_DEFINITIONS_FILE_NAME = "/WEB-INF/componentDefinitions.xml";
+  //public static final String DEFAULT_DEFINITIONS_FILE_NAME = "/WEB-INF/componentDefinitions.xml";
     /** Config file parameter name */
   public static final String DEFINITIONS_CONFIG_PARAMETER_NAME = "definitions-config";
     /** Config file parameter name */
@@ -231,10 +231,11 @@ public class I18nFactorySet extends FactorySet
     XmlDefinitionsSet rootXmlConfig = parseXmlFiles( servletContext, "", null );
     if( rootXmlConfig == null )
       throw new FileNotFoundException();
-    if(debug)
-      System.out.println( rootXmlConfig );
 
     rootXmlConfig.resolveInheritances();
+
+    if(debug)
+      System.out.println( rootXmlConfig );
 
     DefinitionsFactory factory = new DefinitionsFactory( rootXmlConfig );
     if( DefinitionsUtil.userDebugLevel > DefinitionsUtil.NO_DEBUG )

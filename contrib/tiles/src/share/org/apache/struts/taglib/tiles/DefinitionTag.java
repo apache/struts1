@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/DefinitionTag.java,v 1.1 2001/08/01 14:36:40 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2001/08/01 14:36:40 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/DefinitionTag.java,v 1.2 2001/12/27 17:35:37 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/12/27 17:35:37 $
  * $Author: cedric $
  *
  */
@@ -17,14 +17,14 @@ import javax.servlet.jsp.tagext.TagSupport;
 import javax.servlet.jsp.JspException;
 
 /**
- * This is the tag handler for &lt;template:definition&gt;, which defines
- * a template / component. Definition is put in requested context, and can be
- * used in &lt;template:insert&gt.
- * 
+ * This is the tag handler for &lt;tiles:definition&gt;, which defines
+ * a tiles (or template / component). Definition is put in requested context, and can be
+ * used in &lt;tiles:insert&gt.
+ *
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2001/08/01 14:36:40 $
+ * @version $Revision: 1.2 $ $Date: 2001/12/27 17:35:37 $
  */
-public class DefinitionTag extends TagSupport implements PutTagParent, PutListTagParent
+public class DefinitionTag extends DefinitionTagSupport implements PutTagParent, PutListTagParent
 {
 
     /* JSP Tag attributes */
@@ -32,23 +32,11 @@ public class DefinitionTag extends TagSupport implements PutTagParent, PutListTa
 		 * Definition identifier.
 		 */
 		private String id;
-		
-		/**
-		 * Template page defined for this definition.
-		 */
-		private String template;
 
 		/**
 		 * Scope into which definition will be saved.
 		 */
 		private String scope;
-
-		/**
-		 * Role associated to definition.
-     * Role is not checked by this tag. Role checking is left to 'user'
-     * of this class (ex : insert tag).
-		 */
-		private String role;
 
     /**
      * Extends attribute value.
@@ -69,7 +57,7 @@ public class DefinitionTag extends TagSupport implements PutTagParent, PutListTa
 		{
     super.release();
     id = null;
-    template = null;
+    page = null;
     scope = null;
     role = null;
     extendsDefinition = null;
@@ -86,7 +74,7 @@ public class DefinitionTag extends TagSupport implements PutTagParent, PutListTa
 
    /**
      * This method is a convenience for others tags for
-     * putting content into the template definition.
+     * putting content into the tile definition.
      * Content is already typed by caller.
      */
    public void putAttribute(String name, Object content)
@@ -155,93 +143,49 @@ public class DefinitionTag extends TagSupport implements PutTagParent, PutListTa
 
 		/**
 		 * Access method for the id property.
-		 * 
+		 *
 		 * @return   the current value of the id property
-		 * @roseuid 
+		 * @roseuid
 		 */
-		public String getId() 
+		public String getId()
 		{
     return id;
     }
-		
+
 		/**
 		 * Sets the value of the id property.
-		 * 
+		 *
 		 * @param aId the new value of the id property
 		 */
 		public void setId(String id)
 		{
     this.id = id;
 		}
-		
+
 		/**
 		 * Access method for the scope property.
-		 * 
+		 *
 		 * @return   the current value of the scope property
 		 */
-		public String getScope() 
+		public String getScope()
 		{
 		return scope;
     }
-		
+
 		/**
 		 * Sets the value of the scope property.
-		 * 
+		 *
 		 * @param aScope the new value of the scope property
 		 */
 		public void setScope(String aScope)
 		{
     scope = aScope;
     }
-		
-		/**
-		 * Access method for the template property.
-		 * 
-		 * @return   the current value of the template property
-		 * @roseuid 
-		 */
-		public String getTemplate() 
-		{
-    return template;
-    }
-		
-		/**
-		 * Sets the value of the template property.
-     * Same as setPage()
-		 * 
-		 * @param aTemplate the new value of the template property
-		 * @roseuid 
-		 */
-		public void setTemplate(String template)
-		{
-    this.template = template;
-    }
-
-		/**
-		 * Sets the value of the page property.
-		 * 
-		 * @param aTemplate the new value of the template property
-		 * @roseuid 
-		 */
-		public void setPage(String page)
-		{
-    this.template = page;
-    }
 
   /**
-   * Access method for the role property.
-   * @return   the current value of the template property
-   */
-  public String getRole()
-    {
-    return role;
-    }
-
-  /**
-   * @return void
-   * Sets the value of the role property.
+   * Sets the value of the extends property.
    *
-   * @param template the new value of the path property
+   * @param definitionName Name of parent definition.
    */
   public void setExtends(String definitionName)
     {
@@ -249,26 +193,16 @@ public class DefinitionTag extends TagSupport implements PutTagParent, PutListTa
     }
 
   /**
-   * Access method for the role property.
-   * @return   the current value of the template property
+   * Access method for the extends property.
+   * @return   the current value of the extends property
    */
   public String getExtends()
     {
     return extendsDefinition;
     }
 
-  /**
-   * Sets the value of the role property.
-   *
-   * @param template the new value of the path property
-   */
-  public void setRole(String role)
-    {
-    this.role = role;
-    }
-
    /**
-     * Process the start tag by creating a new template definition.
+     * Process the start tag by creating a new definition.
      */
    public int doStartTag() throws JspException
    {
@@ -283,8 +217,8 @@ public class DefinitionTag extends TagSupport implements PutTagParent, PutListTa
       definition = new ComponentDefinition();
 
       // Set definitions attributes
-   if( template != null )
-     definition.setTemplate(template);
+   if( page != null )
+     definition.setTemplate(page);
    if( role != null )
      definition.setRole(role);
 

@@ -178,6 +178,15 @@ public class XmlParser
 	digester.addSetNext(       ADD_LIST_ELE_TAG, "add", putAttributeHandlerClass);
 	digester.addSetProperties( ADD_LIST_ELE_TAG);
 	digester.addCallMethod(    ADD_LIST_ELE_TAG, "setBody", 0);
+    // list elements rules
+    // We use Attribute class to avoid rewriting a new class.
+    // Name part can't be used in listElement attribute.
+  //String ADD_WILDCARD = LIST_TAG + "/addItem";
+  // non String ADD_WILDCARD = LIST_TAG + "/addx*";
+  String ADD_WILDCARD = "*/item";
+	digester.addObjectCreate(  ADD_WILDCARD, putAttributeHandlerClass, "classtype");
+	digester.addSetNext(       ADD_WILDCARD, "add", "java.lang.Object");
+	digester.addSetProperties( ADD_WILDCARD);
   }
 
    /**
@@ -268,7 +277,8 @@ public class XmlParser
      */
   public static void main(String[] args)
   {
-  String filename = "E:/programs/jakarta-tomcat/webapps/wtiles-struts/WEB-INF/tilesDefinitions.xml";
+  String filename = "E:/programs/jakarta-tomcat/webapps/wtiles-struts/WEB-INF/tiles-examples-defs.xml";
+  //String filename = "E:/programs/jakarta-tomcat/webapps/wtiles-struts/WEB-INF/tilesDefinitions.xml";
   //String filename = "E:/programs/jakarta-tomcat/webapps/wtiles-channel/WEB-INF/componentDefinitions.xml";
   //String filename2 = "E:/programs/jakarta-tomcat/webapps/wtiles-tutorial/WEB-INF/componentDefinitions.xml";
 
@@ -299,7 +309,7 @@ public class XmlParser
       {
 	    XmlParser parser = new XmlParser();
       parser.setValidating(true);
-      parser.setDetailLevel(2);
+      parser.setDetailLevel(0);
       XmlDefinitionsSet definitions = new XmlDefinitionsSet();
         System.out.println( "  Parse file" );
       parser.parse( input, definitions);

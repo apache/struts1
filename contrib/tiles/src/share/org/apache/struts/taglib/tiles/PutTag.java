@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/PutTag.java,v 1.1 2001/08/01 14:36:41 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2001/08/01 14:36:41 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/PutTag.java,v 1.2 2001/12/27 17:35:37 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/12/27 17:35:37 $
  * $Author: cedric $
  *
  */

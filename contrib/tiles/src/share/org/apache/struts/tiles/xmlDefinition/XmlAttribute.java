@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/xmlDefinition/Attic/XmlAttribute.java,v 1.4 2001/11/02 16:50:04 cedric Exp $
- * $Revision: 1.4 $
- * $Date: 2001/11/02 16:50:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/xmlDefinition/Attic/XmlAttribute.java,v 1.5 2001/12/27 17:35:38 cedric Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/12/27 17:35:38 $
  * $Author: cedric $
  *
  */

@@ -53,6 +53,8 @@ public class DefinitionsFactory
     * Constructor.
     * Create a factory initialized with definitions from XmlDefinitionsSet.
     * @param xmlDefinitions resolved definition from XmlDefinitionSet.
+    * @throws DefinitionsFactoryException If an error occurs while creating a definition.
+    * @throws NoSuchDefinitionException If an error occurs while resolving inheritance
     */
    public DefinitionsFactory(XmlDefinitionsSet xmlDefinitions)
     throws NoSuchDefinitionException
@@ -67,7 +69,7 @@ public class DefinitionsFactory
     while( i.hasNext() )
       {
       XmlDefinition xmlDefinition = (XmlDefinition)i.next();
-      putDefinition( new ComponentDefinition( xmlDefinition) );
+        putDefinition( new ComponentDefinition( xmlDefinition) );
       }  // end loop
    }
     /**

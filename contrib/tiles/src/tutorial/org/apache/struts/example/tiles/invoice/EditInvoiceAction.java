@@ -28,7 +28,7 @@ import org.apache.struts.util.RequestUtils;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/08/01 14:36:43 $
+ * @version $Revision: 1.2 $ $Date: 2001/12/27 17:35:38 $
  */
 
 public final class EditInvoiceAction extends Action {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/InsertTag.java,v 1.4 2001/11/02 16:50:04 cedric Exp $
- * $Revision: 1.4 $
- * $Date: 2001/11/02 16:50:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/InsertTag.java,v 1.5 2001/12/27 17:35:37 cedric Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/12/27 17:35:37 $
  * $Author: cedric $
  *
  */
@@ -10,6 +10,7 @@ package org.apache.struts.taglib.tiles;
 
 import org.apache.struts.tiles.ComponentContext;
 import org.apache.struts.tiles.ComponentDefinition;
+import org.apache.struts.tiles.Controller;
 import org.apache.struts.tiles.DefinitionsUtil;
 import org.apache.struts.tiles.NoSuchDefinitionException;
 import org.apache.struts.tiles.FactoryNotFoundException;
@@ -33,6 +34,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * This is the tag handler for &lt;template:insert&gt;, which includes
@@ -41,20 +43,19 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.4 $ $Date: 2001/11/02 16:50:04 $
+ * @version $Revision: 1.5 $ $Date: 2001/12/27 17:35:37 $
  */
-public class InsertTag extends TagSupport implements PutTagParent, ComponentConstants, PutListTagParent
+public class InsertTag extends DefinitionTagSupport implements PutTagParent, ComponentConstants, PutListTagParent
 {
     /** debug flag */
-  public final static boolean debug = true;
+  public final static boolean debug = false;
 
     /* JSP Tag attributes */
     /** Flush attribute value */
   protected boolean flush = true;
-    /** Name of entity to include */
-  protected String name = null;
-  /** Name of page, component or template to include */
-  private String page = null;
+
+    /** Name to insert */
+  private String name = null;
     /** Name of attribute from which to read page name to include */
   private String attribute = null;
     /** Name of bean used as entity to include */
@@ -63,8 +64,7 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
   private String beanProperty = null;
     /** Scope of bean, if any */
   private String beanScope = null;
-    /** Role attribute */
-  protected String role = null;
+
     /**
      * Is errors ignored ? This is the property for attribute 'ignore'.
      * Default value is false, which throw an exception.
@@ -130,25 +130,19 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
       this.pageContext = pc;
       super.setPageContext(pc);
       }
+
+    /**
+     * Set property.
+     */
+  public void setName(String value){
+    this.name = value;
+  }
+
     /**
      * Set property
      */
   public void setComponent(String name){
     this.page = name;
-  }
-
-    /**
-     * Set property
-     */
-  public void setTemplate(String name){
-    this.page = name;
-  }
-
-    /**
-     * Set name property
-     */
-  public void setName(String name){
-    this.name = name;
   }
 
     /**
@@ -164,13 +158,6 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
      */
   public void setDefinition(String name){
     this.definitionName = name;
-  }
-
-  /**
-   * Set property
-   */
-  public void setPage(String page){
-    this.page = page;
   }
 
     /**
@@ -215,14 +202,6 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
   public void setFlush(String flush){
        this.flush = (Boolean.valueOf(flush).booleanValue());
   }
-
-    /**
-     * Set role attribute
-     * @param name The role the user must be in to store content.
-     */
-   public void setRole(String role) {
-      this.role = role;
-   }
 
     /**
      * Set ignore attribute
@@ -311,6 +290,28 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
       cachedCurrentContext = (ComponentContext)pageContext.getAttribute( ComponentConstants.COMPONENT_CONTEXT, pageContext.REQUEST_SCOPE);
       }
     return cachedCurrentContext;
+    }
+
+    /**
+     * Get instanciated Controller.
+     * Return controller denoted by controllerType, or null if controllerType
+     * is null.
+     * @throws JspException If controller can't be created.
+     */
+  private Controller getController() throws JspException
+    {
+    if( controllerType == null )
+      {
+      return null;
+      }
+    try
+      {
+      return ComponentDefinition.createController( controllerName, controllerType );
+      }
+     catch( InstantiationException ex )
+      {
+      throw new JspException( ex.getMessage() );
+      }
     }
 
 		/**
@@ -459,11 +460,11 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
 
 		/**
 		 * Process
-		 * @roseuid 3AB4CE540211
+		 * @throws JspException If failed to create controller
 		 */
-		public TagHandler processUrl(String url)
+		public TagHandler processUrl(String url) throws JspException
 		{
-    return new InsertHandler(url, role );
+    return new InsertHandler(url, role, getController() );
 		}
 
 		/**
@@ -474,7 +475,7 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
 		 * @throws JspException- NoSuchDefinitionException No Definition  found for name.
 		 * @throws JspException- FactoryNotFoundException Can't find Definitions factory.
 		 * @throws JspException- DefinedComponentFactoryException General error in factory.
-		 * @roseuid 3AB4CEFB01CB
+     * @throws JspException InstantiationException Can't create requested controller
 		 */
 		protected TagHandler processDefinitionName(String name)
       throws JspException
@@ -516,19 +517,35 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
      * Then, create appropriate tag handler.
 		 * @param definition Definition to process.
 		 * @return Appropriate TagHandler.
+     * @throws JspException InstantiationException Can't create requested controller
 		 */
 		protected TagHandler processDefinition(ComponentDefinition definition)
+      throws JspException
 		{
       // Declare local variable in order to not change Tag attribute values.
     String role = this.role;
     String page = this.page;
-     // Overload definition with tag's template and role.
-     if(role == null )
-      role = definition.getRole();
-    if( page == null )
-      page = definition.getTemplate();
-      // Can check if page is set
-    return new InsertHandler( definition.getAttributes(), page, role );
+    Controller controller = null;
+
+    try
+      {
+      controller = definition.getOrCreateController();
+
+       // Overload definition with tag's template and role.
+      if(role == null )
+        role = definition.getRole();
+      if( page == null )
+        page = definition.getTemplate();
+      if( controllerName != null )
+        controller = ComponentDefinition.createController( controllerName, controllerType );
+
+        // Can check if page is set
+      return new InsertHandler( definition.getAttributes(), page, role, controller );
+      }
+     catch( InstantiationException ex )
+      {
+      throw new JspException( ex.getMessage() );
+      }
 		}
 
 		/**
@@ -586,9 +603,10 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
 		 * Try to process name as a definition, or as an URL if not found.
 		 * @param name Name to process.
 		 * @return appropriate TagHandler
-		 * @roseuid 3AB4D8DC002D
+     * @throws JspException InstantiationException Can't create requested controller
 		 */
 		public TagHandler processAsDefinitionOrURL( String name )
+      throws JspException
 		{
     try
       {
@@ -625,7 +643,7 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
       return processDefinitionName( (String)value.getValue() );
       }
      //else if( value instanceof PathAttribute )
-    return new InsertHandler( (String)value.getValue(), role );
+    return new InsertHandler( (String)value.getValue(), role, getController() );
 		}
 
   /////////////////////////////////////////////////////////////////////////////
@@ -662,15 +680,17 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
     protected ComponentContext currentContext;
     protected ComponentContext subCompContext;
     protected String role;
+    protected Controller controller;
 
       /**
        * Constructor.
        * Create insert handler using Component definition.
        */
-    public InsertHandler( Map attributes, String page, String role  )
+    public InsertHandler( Map attributes, String page, String role, Controller controller  )
       {
       this.page = page;
       this.role = role;
+      this.controller = controller;
       subCompContext = new ComponentContext( attributes );
       }
 
@@ -678,10 +698,11 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
        * Constructor.
        * Create insert handler to insert page at specified location.
        */
-    public InsertHandler( String page, String role )
+    public InsertHandler( String page, String role, Controller controller )
       {
       this.page = page;
       this.role = role;
+      this.controller = controller;
       subCompContext = new ComponentContext();
       }
 
@@ -727,6 +748,9 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
 
          // set new context for included component.
         pageContext.setAttribute( ComponentConstants.COMPONENT_CONTEXT, subCompContext, pageContext.REQUEST_SCOPE);
+        // Call controller if any
+        if( controller != null )
+          controller.perform(subCompContext, (HttpServletRequest)pageContext.getRequest(), (HttpServletResponse)pageContext.getResponse(), pageContext.getServletContext());
         // include requested component.
         if( flush )
           pageContext.getOut().flush();

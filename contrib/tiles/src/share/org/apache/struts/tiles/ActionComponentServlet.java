@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.3 2001/09/28 17:05:23 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2001/09/28 17:05:23 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.4 2001/12/27 17:35:37 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/12/27 17:35:37 $
  * $Author: cedric $
  *
  */
@@ -189,33 +189,41 @@ public class ActionComponentServlet extends ActionServlet
 
     /**
      * Process forward.
-     *
-     * 'forward' contains screen name. This later is used to find appropriate mapping.
-     * Then, request is forwarded to this mapping.
+     * Forward to requested uri.
+     * Uri can be a valid uri, or a definition name. If definition name, search
+     * definition and use definition path.
+     * @param uri Uri or Definition name to forward
+     * @param request Current page request
+     * @param response Current page response
      */
   protected void processForward(String uri, HttpServletRequest request, HttpServletResponse response)
  	  throws IOException, ServletException
     {
       // Do we do a forward (original behavior) or an include ?
     boolean doInclude = false;
+      // Controller associated to a definition, if any
+    Controller controller = null;
+    ComponentContext tileContext = null;
 
      try
         {
-
           // Get current tile context if any.
           // If context exist, we will do an include
-        ComponentContext tileContext = ComponentContext.getContext( request );
+        tileContext = ComponentContext.getContext( request );
         doInclude = (tileContext!=null );
         ComponentDefinition definition;
 
-          // Process tiles definition names only if a definition factory exist.
+          // Process tiles definition names only if a definition factory exist,
+          // and definition found.
         if( definitionsFactory != null )
           { // Get definition of tiles/component corresponding to uri.
           definition = definitionsFactory.getDefinition(uri, request, getServletContext());
           if( definition != null )
             { // We have a definition.
               // We use it to complete missing attribute in context.
+              // We also get uri, controller.
             uri = definition.getPath();
+            controller = definition.getOrCreateController();
             if( tileContext == null )
               {
               tileContext = new ComponentContext( definition.getAttributes() );
@@ -225,13 +233,17 @@ public class ActionComponentServlet extends ActionServlet
               tileContext.addMissing( definition.getAttributes() );
             } // end if
           } // end if
-          // Check if there is a definition set in jsp context.
+
+          // Process definition set in Action, if any.
         definition = DefinitionsUtil.getActionDefinition(request);
         if( definition != null )
           { // We have a definition.
             // We use it to complete missing attribute in context.
-            // We also overload uri.
-          uri = definition.getPath();
+            // We also overload uri and controller if set in definition.
+          if(definition.getPath()!=null)
+            uri = definition.getPath();
+          if(definition.getOrCreateController()!=null)
+            controller = definition.getOrCreateController();
           if( tileContext == null )
             {
             tileContext = new ComponentContext( definition.getAttributes() );
@@ -242,12 +254,22 @@ public class ActionComponentServlet extends ActionServlet
           } // end if
 
         }
+       catch( java.lang.InstantiationException ex )
+        {
+        throw new ServletException( "Can't create associated controller", ex );
+        }
        catch( DefinitionsFactoryException ex )
         {
         throw new ServletException( ex );
         }
 
-      // Do dispatching
+      // Execute controller associated to definition, if any.
+    if(controller !=null)
+      {
+      controller.perform( tileContext, request, response, getServletContext());
+      } // end if
+
+      // Do dispatching : search dispatcher, then dispatch
 	  RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
     if (rd == null)
       { // error
@@ -256,23 +278,13 @@ public class ActionComponentServlet extends ActionServlet
       return;
       } // end if
 
-      // If request comes from a previous component, do an include.
-      // This allows to insert an action in a components.
+      // If request comes from a previous Tile, do an include.
+      // This allows to insert an action in a Tile.
     if( doInclude )
       rd.include(request, response);
      else
       rd.forward(request, response);   // original behavior
 
-/*
-   try
-     { // original behavior
-     rd.forward(request, response);
-     }
-    catch( IllegalStateException ex )
-     { // Response already committed : do include
-     rd.include( request, response);
-     }
-*/
    }
 
 

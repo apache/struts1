@@ -31,7 +31,7 @@ import org.apache.struts.tiles.ComponentContext;
  * @expects path={uri} on command line or as parameter property to ActionMapping.
  * @expects an input page or error forwarding if exception digesting RSS
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2001/11/02 16:50:05 $
+ * @version $Revision: 1.3 $ $Date: 2001/12/27 17:35:38 $
  */
 public final class Channels extends Action {
 
@@ -153,9 +153,9 @@ public final class Channels extends Action {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/tutorial/org/apache/struts/example/tiles/rssChannel/Attic/Channels.java,v 1.2 2001/11/02 16:50:05 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2001/11/02 16:50:05 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/tutorial/org/apache/struts/example/tiles/rssChannel/Attic/Channels.java,v 1.3 2001/12/27 17:35:38 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/12/27 17:35:38 $
  *
  * ====================================================================
  *

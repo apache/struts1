@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/UntyppedAttribute.java,v 1.1 2001/08/01 14:36:42 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2001/08/01 14:36:42 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/UntyppedAttribute.java,v 1.2 2001/12/27 17:35:38 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/12/27 17:35:38 $
  * $Author: cedric $
  *
  */

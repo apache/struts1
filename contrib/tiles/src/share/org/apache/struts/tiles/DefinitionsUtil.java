@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/DefinitionsUtil.java,v 1.2 2001/09/10 12:51:31 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2001/09/10 12:51:31 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/DefinitionsUtil.java,v 1.3 2001/12/27 17:35:38 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/12/27 17:35:38 $
  * $Author: cedric $
  *
  */
@@ -22,7 +22,7 @@ import java.util.Enumeration;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-//import org.apache.struts.tiles.xmlDefinition.XmlConfigInstancesFactory;
+import org.apache.struts.tiles.definition.ReloadableDefinitionsFactory;
 import org.apache.struts.tiles.xmlDefinition.I18nFactorySet;
 import org.apache.struts.taglib.tiles.ComponentConstants;
 
@@ -109,41 +109,13 @@ public class DefinitionsUtil implements ComponentConstants
    * @param properties Map of name/property passed to newly created factory.
    * @return newly created factory.
    * @throw DefinitionsFactoryException If an error occur while initializing factory
+   * @deprecated Use createDefinitionsFactory(ServletContext servletContext, Map properties)
    */
   public static ComponentDefinitionsFactory createDefinitionsFactory(ServletContext servletContext, Map properties, String classname)
     throws DefinitionsFactoryException
   {
-  if( classname == null )
-    return createDefinitionsFactory( servletContext, properties );
-
-    // Try to create from classname
-  try
-    {
-    Class factoryClass = Class.forName(classname);
-    ComponentDefinitionsFactory factory = (ComponentDefinitionsFactory)factoryClass.newInstance();
-    factory.initFactory( servletContext, properties);
-    DefinitionsUtil.setDefinitionsFactory(factory, servletContext  );
-    return factory;
-    }
-   catch( ClassCastException ex )
-    { // Bad classname
-    throw new DefinitionsFactoryException( "Error - createDefinitionsFactory : Factory class '"
-                                           + classname +" must implements 'ComponentDefinitionsFactory'.", ex );
-    }
-   catch( ClassNotFoundException ex )
-    { // Bad classname
-    throw new DefinitionsFactoryException( "Error - createDefinitionsFactory : Bad class name '"
-                                           + classname +"'.", ex );
-    }
-   catch( InstantiationException ex )
-    { // Bad constructor or error
-    throw new DefinitionsFactoryException( ex );
-    }
-   catch( IllegalAccessException ex )
-    { //
-    throw new DefinitionsFactoryException( ex );
-    }
-
+  properties.put( ReloadableDefinitionsFactory.DEFINITIONS_FACTORY_CLASSNAME, classname );
+  return createDefinitionsFactory(servletContext, properties);
   }
 
    /**
@@ -157,9 +129,9 @@ public class DefinitionsUtil implements ComponentConstants
   public static ComponentDefinitionsFactory createDefinitionsFactory(ServletContext servletContext, Map properties)
     throws DefinitionsFactoryException
   {
-    ComponentDefinitionsFactory factory = new I18nFactorySet(servletContext, properties); ;
-    DefinitionsUtil.setDefinitionsFactory(factory, servletContext  );
-    return factory;
+  ComponentDefinitionsFactory factory = new ReloadableDefinitionsFactory(servletContext, properties); ;
+  DefinitionsUtil.setDefinitionsFactory(factory, servletContext  );
+  return factory;
   }
 
    /**
@@ -173,47 +145,18 @@ public class DefinitionsUtil implements ComponentConstants
   public static ComponentDefinitionsFactory createDefinitionsFactory(ServletContext servletContext, ServletConfig servletConfig)
     throws DefinitionsFactoryException
   {
-    initUserDebugLevel( servletConfig );
-    String classname = servletConfig.getInitParameter(DEFINITIONS_FACTORY_CLASSNAME);
-    Map properties = new ServletPropertiesMap( servletConfig );
-
-    return createDefinitionsFactory( servletContext, properties, classname);
+  initUserDebugLevel(servletConfig);
+  ComponentDefinitionsFactory factory = new ReloadableDefinitionsFactory(servletContext, servletConfig); ;
+  DefinitionsUtil.setDefinitionsFactory(factory, servletContext  );
+  return factory;
   }
-
-   /**
-   * Create Definition factory.
-   * @deprecated Use createDefinitionFactory instead.
-   */
-  public static ComponentDefinitionsFactory initDefinitionsFactory(ServletContext servletContext, ServletConfig servletConfig)
-    throws DefinitionsFactoryException
-  {
-  return createDefinitionsFactory( servletContext, servletConfig);
-  }
-
-   /**
-   * Create Definition factory.
-   * @param definitionName Name of definition to include.
-   * @param pageContext Current page context.
-   */
-/*  public static void includeDefinition(String definitionName, PageContext pageContext)
-    throws DefinitionsFactoryException
-  {
-    // Search definition
-  ComponentDefinition definition = getDefinition( definitionName, pageContext);
-
-  ComponentContext context = new ComponentContext(definition);
-  pageContext.getRequest().setAttribute( ComponentConstants.COMPONENT_CONTEXT, context);
-
-  pageContext.include( definition.getPath() );
-  }
-*/
 
   /**
    * Set definition factory in appropriate servlet context.
    * @param factory Factory to store.
    * @param servletContext Servlet context that will hold factory.
    */
-  static public void setDefinitionsFactory(ComponentDefinitionsFactory factory, ServletContext servletContext)
+  static protected void setDefinitionsFactory(ComponentDefinitionsFactory factory, ServletContext servletContext)
   {
   servletContext.setAttribute(DEFINITIONS_FACTORY, factory);
   }
@@ -224,7 +167,7 @@ public class DefinitionsUtil implements ComponentConstants
    * @param factory Factory to store.
    * @param pageContext Page context containing servlet context.
    */
-  static public void setDefinitionsFactory(ComponentDefinitionsFactory factory, PageContext pageContext)
+  static protected void setDefinitionsFactory(ComponentDefinitionsFactory factory, PageContext pageContext)
   {
   setDefinitionsFactory( factory, pageContext.getServletContext() );
   }
@@ -293,17 +236,6 @@ public class DefinitionsUtil implements ComponentConstants
   }
 
   /**
-   * Get ComponentContext defined for current Tile.
-   * @return ComponentContext ComponentContext or null.
-   *
-   */
- static  public ComponentContext getComponentContextOld(ServletRequest request)
-  {
-  return ComponentContext.getContext(request);
-  }
-
-
-  /**
    * Get Definition stored in jsp context by an action.
    * @return ComponentDefinition or null if not found.
    */
@@ -331,26 +263,3 @@ public class DefinitionsUtil implements ComponentConstants
   }
 }
 
-  /**
-   * Inner class.
-   * Wrapper for ServletContext init parameters.
-   * Object of this class is an hashmap containing parameters and values
-   * defined in the servlet config file (web.xml).
-   */
- class ServletPropertiesMap extends HashMap {
-    /**
-     * Constructor.
-     */
-  ServletPropertiesMap( ServletConfig config )
-    {
-      // This implementation is very simple.
-      // It is possible to avoid creation of a new structure, but this need
-      // imply writing all Map interface.
-    Enumeration enum = config.getInitParameterNames();
-    while( enum.hasMoreElements() )
-      {
-      String key = (String)enum.nextElement();
-      put( key, config.getInitParameter( key ) );
-      }
-    }
-}  // end inner class

@@ -2,28 +2,22 @@ package org.apache.struts.example.tiles;
 
 import org.apache.struts.tiles.DefinitionsUtil;
 import org.apache.struts.tiles.DefinitionsFactoryException;
-import org.apache.struts.taglib.tiles.ComponentConstants;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 
-import java.util.Enumeration;
 
 /**
- * <strong>InitServlet</strong> initializes webshop application.
- *
+ * Example of servlet initializing Tiles.
+ * This servlet can be declared in web.xml, as well as all initialization
+ * parameters available with the specified factory.
+ * This servlet is intended to be used in application using Tiles without Struts.
  * @author Cedric Dumoulin
  */
 
 public class InitServlet extends HttpServlet
 {
-
-  public static final String DEFAULT_INSTANCES_FILE_NAME = "/WEB-INF/templateInstances.xml";
-
-  public InitServlet()
-    {
-    }
 
     /**
      * Initialize this servlet
@@ -34,11 +28,12 @@ public class InitServlet extends HttpServlet
     {
       log(  "Start initialization");
       System.out.println( "Start initialization" );
+    super.init();
 
        // init component instances
     try
       {
-      DefinitionsUtil.initDefinitionsFactory(  getServletContext(), getServletConfig() );
+      DefinitionsUtil.createDefinitionsFactory(  getServletContext(), getServletConfig() );
       log(  "initialized");
       }
      catch( DefinitionsFactoryException ex )

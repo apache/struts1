@@ -1,4 +1,3 @@
-//Source file: D:\\tmp\\generated\\s1\\struts\\component\\xmlDefinition\\XmlDefinition.java
 
 package org.apache.struts.tiles.xmlDefinition;
 
@@ -8,16 +7,17 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
 import java.util.Iterator;
 
 /**
-A definition red from an XML definitions file.
-*/
+  *A definition red from an XML definitions file.
+  */
 public class XmlDefinition extends ComponentDefinition
 {
-    /** Debug flag */
-  static public final boolean debug = false;
   /**
    * Extends attribute value.
    */
   private String inherit;
+
+    /** Debug flag */
+  static public final boolean debug = false;
 
   /**
    * Use for resolving inheritance.
