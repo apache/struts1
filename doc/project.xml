@@ -109,6 +109,10 @@
             href="roadmap.html"
             />
         <item
+            name="Milestones"
+            href="milestones.html"
+            />
+        <item
             name="Source Repository"
             href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/?root=Apache-SVN"
             />

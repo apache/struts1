@@ -30,6 +30,11 @@
     <a href="volunteers.html#pmc">Struts PMC</a>.
     </p>
 
+    <p>
+    An outline of the enhancements proposed here can be found on the
+    <a href="Milestones.html">Milestones</a> page.
+    </p>
+
     </section>
 
     <section href="Bugzilla" name="Bugzilla Queries">
@@ -105,7 +110,7 @@
     </p>
 
     <p>
-        Future release milestones are provided for enhancements
+        Future release <a href="milestomes.html">milestones</a> are provided for enhancements
         which are being actively planned or developed
         but may not be ready for the very next release.
         If a report has not been tagged for a specific milestone by a working developer,
@@ -196,7 +201,7 @@
         </p>
 
         <p>
-            The Commons Chaain WebContext we now pass around Struts Chain could be called the
+            The Commons Chain WebContext we now pass around Struts Chain could be called the
             "StrutsContext" to differentiate it from the ActionContext and ViewContext.
         </p>
 
