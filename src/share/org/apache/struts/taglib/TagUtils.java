@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.34 2004/04/24 06:37:00 rleland Exp $
- * $Revision: 1.34 $
- * $Date: 2004/04/24 06:37:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.35 2004/04/28 23:12:12 husted Exp $
+ * $Revision: 1.35 $
+ * $Date: 2004/04/28 23:12:12 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -55,7 +55,7 @@ import org.apache.struts.util.RequestUtils;
 /**
  * Provides helper methods for JSP tags.
  *
- * @version $Revision: 1.34 $
+ * @version $Revision: 1.35 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -1011,6 +1011,11 @@ public class TagUtils {
             saveException(pageContext, e);
             throw new JspException(
                     messages.getMessage("lookup.access", property, name));
+
+        } catch (IllegalArgumentException e) {
+            saveException(pageContext, e);
+            throw new JspException(
+                    messages.getMessage("lookup.argument", property, name));
 
         } catch (InvocationTargetException e) {
             Throwable t = e.getTargetException();
