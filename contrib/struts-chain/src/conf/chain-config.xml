@@ -1,0 +1,111 @@
+<?xml version="1.0" ?>
+
+<!--
+    This file contains definitions of the standard Chain Of Responsibility
+    chains that emulate Struts 1.x processing functionality.
+
+    $Id: chain-config.xml,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
+-->
+
+
+<chains>
+
+
+    <!-- ========== Servlet Complete Request Chain ========================= -->
+
+    <chain     name="servlet-complete">
+
+      <!-- Identify the ModuleConfig for this request -->
+      <command
+          className="org.apache.struts.chain.servlet.SelectModule"/>
+
+
+      <!-- Establish the default request processor chain -->
+      <command
+          className="org.apache.commons.chain.generic.CopyCommand"
+              toKey="requestProcessorChain"
+              value="servlet-standard"/>
+
+
+      <!-- Look up optional preprocess command -->
+      <!-- NOTE:  Can override request processor chain name if desired -->
+      <command
+          className="org.apache.commons.chain.generic.LookupCommand"
+         catalogKey="catalog"
+               name="servlet-complete-preprocess"
+           optional="true"/>
+
+
+      <!-- Delegate to the appropriate request processor chain -->
+      <command
+          className="org.apache.commons.chain.generic.LookupCommand"
+         catalogKey="catalog"
+            nameKey="requestProcessorChain"
+           optional="false"/>
+
+    </chain>
+
+
+   <!-- ========== Servlet Standard Request Processor Chain ================ -->
+
+   <chain      name="servlet-standard">
+
+
+      <!-- Look up optional preprocess command -->
+      <command
+          className="org.apache.commons.chain.generic.LookupCommand"
+         catalogKey="catalog"
+               name="servlet-standard-preprocess"
+           optional="true"/>
+
+
+      <!-- Identify the Locale for this request -->
+      <command
+          className="org.apache.struts.chain.servlet.SelectLocale"/>
+
+
+      <!-- Identify the ActionConfig for this request -->
+      <command
+          className="org.apache.struts.chain.servlet.SelectAction"/>
+
+
+      <!-- Create (if needed) the ActionForm for this request -->
+      <command
+          className="org.apache.struts.chain.CreateActionForm"/>
+
+
+      <!-- Populate the ActionForm for this request -->
+      <command
+          className="org.apache.struts.chain.servlet.PopulateActionForm"/>
+
+
+      <!-- Validate the ActionForm for this request -->
+      <chain
+          className="org.apache.struts.chain.servlet.ValidateActionForm">
+
+        <!-- Nested chain executed on validation failure only -->
+        <command
+          className="org.apache.struts.chain.servlet.PerformForward"/>
+
+      </chain>
+
+
+      <!-- Create (if needed) the Action for this request -->
+      <command
+          className="org.apache.struts.chain.CreateAction"/>
+
+
+      <!-- Execute the Action for this request -->
+      <command
+          className="org.apache.struts.chain.servlet.ExecuteAction"/>
+
+
+      <!-- Follow the returned ActionForward (if any) -->
+      <command
+          className="org.apache.struts.chain.servlet.PerformForward"/>
+
+
+   </chain>
+
+
+</chains>
