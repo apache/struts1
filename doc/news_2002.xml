@@ -39,6 +39,166 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
  
 <section name="News">
 
+<h3><a name="20020607.1"></a>06 Jun 2002 - O'Reilly Chapter 7</h3>
+<p>
+Chapter 7 of the upcoming Struts book by Chuck Cavaness is now available 
+on The ServerSide for community review. 
+</p>
+<p>
+<a href="http://www.theserverside.com/resources/strutsreview.jsp">http://www.theserverside.com/resources/strutsreview.jsp</a>
+</p>
+<p>
+Chapter 7 - Struts View Components - Chapter 7 introduces the components that make up the view 
+portion of the Struts framework.
+The framework uses the view components to render dynamic content for the client. Based
+primarily on JavaServer Pages, the components provide support for internationalized
+applications, as well extensive support for user input acceptance, validation, and error handling,
+all of which make it easier for the developer to focus on business requirements. This chapter
+concludes the three-part discussion of how the Struts framework implements the MVC pattern.
+</p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020607"></a>07 Jun 2002 - Introduction to Struts Presentation</h3>
+<p>
+A general introduction to Struts by Dave Hay. Appropriate for team meetings. Use as-is or a basis for your own.
+</p>
+<p>
+<a href="http://www.husted.com/struts/resources/struts-intro.ppt">www.husted.com/struts/resources/struts-intro.ppt</a>
+</p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020606"></a>06 Jun 2002 - Wanted: Struts Newsletter Editors</h3>
+<p>Our parent project, Apache-Jakarta, is organizing a joint newsletter</p>
+<p><a href="http://www.mail-archive.com/general%40jakarta.apache.org/msg05603.html">
+www.mail-archive.com/general%40jakarta.apache.org/msg05603.html
+</a></p>
+<p>Keeping the News and Status page updated from week to week is all the Struts 
+committers can handle right now. Other volunteers to help create a monthly highlight 
+of what's happening on the lists would be welcome.</p>
+<p>Followup thread:</p>
+<p><a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg32915.html">
+www.mail-archive.com/struts-user@jakarta.apache.org/msg32915.html</a></p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020605"></a>05 Jun 2002 - Struts Console version 1.12</h3>
+<p>
+Struts Console version 1.12 is now available.
+</p>
+<p>
+<a href="http://www.jamesholmes.com/struts/">http://www.jamesholmes.com/struts/</a>
+</p>
+<p>Download Now:<br/>
+<a href="http://www.jamesholmes.com/struts/struts-console-1.12.zip">www.jamesholmes.com/struts/struts-console-1.12.zip</a><br/>
+  -- OR -- <br/>
+<a href="http://www.jamesholmes.com/struts/struts-console-1.12.tar.gz">www.jamesholmes.com/struts/struts-console-1.12.tar.gz</a>
+</p>
+<p>
+Struts Console is FREE software.
+</p>
+<p>
+This release fixes a few bugs and adds significant new
+functionality with the addition of new options for
+output in the stanadalone version.  Now you can select
+the format for how your XML file will be saved.  To
+access this new functionality go to the "Options" menu
+in the standalone version of the software.
+</p>
+<p>
+Changes with Struts Console v1.12
+</p>
+<ul>
+<li>Fixed bug in standalone version where files
+were being added to the recent files menu even if
+they were never successfully opened.
+</li>
+<li>
+Fixed bug where adding new Exceptions or Forwards
+to Actions would misplace the nodes in the tree
+view.
+</li>
+<li>
+Added new options for how XML output is generated
+in standalone version of app.
+</li>
+<li>
+Updated Message Resources screen to also show the
+Messages key.
+</li>
+</ul>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020607"></a>07 Jun 2002 - Easy Struts on SourceForge</h3>
+<p>
+The Eclipse &amp; JBuilder plugins for Struts are now available under the EasyStruts project 
+at sourceforge.net. 
+</p>
+<p>
+<a href="http://easystruts.sourceforge.net/index.html">EasyStruts on Sourceforge</a>
+</p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020604"></a>04 Jun 2002 - FL Child Support Payments: Powered by Struts</h3>
+<p>
+"My boss gave me the OK to give the Struts User Group access to the
+Struts-based application I'm working on.
+</p>
+<p>
+"I recently finished a beta release of a Child Support Payment (CSE-PAY)
+system for the state of Florida.  The system is a Struts-based webapp where
+I use several Struts features -- as much Struts as I could figure for my
+first Struts project.
+</p>
+<p>
+"You can access the system at:
+</p>
+<p>
+<a href="http://test.myfloridacounty.com/cse-pay/">test.myfloridacounty.com/cse-pay/</a>
+</p>
+<p>
+Login to the web server with:
+</p>
+<p>
+User:  myflc<br/>
+Pass:  myflc
+</p>
+<p>
+"Once logged in you're welcome to experiment with the system as much as you
+like, i.e. sign up a phony user, credit card (e.g. Visa 4111111111111111),
+add casses, make payments, etc...
+</p>
+<p>
+"I have not got the OK to release all the source as a bundle, yet.  But, I
+can release snippets on a case-by-case basis -- that is, I can send the code
+that implements some behavior you're interested in.  Hopefully I can release
+the complete source, soon."
+</p>
+<p>
+For more, see the <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg32645.html">mail archive</a>.
+</p>
+<p>
+<a href=""></a>
+</p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020603"></a>03 Jun 2002 - strutsGuessingGame1.0</h3>
+<p>
+Here is a little number guessing game written using struts like the one that comes with the Tomcat distribution.
+</p>
+<p>
+Includes necessary sources, ANT build script, and Struts Jar files.
+</p>
+<p>
+Until I find a better home for it, grab it from<br/>
+<a href="http://geocities.yahoo.com/dominique_plante/sdstuff/strutsGuessingGame1.0.zip">http://geocities.yahoo.com/dominique_plante/sdstuff/strutsGuessingGame1.0.zip</a>
+</p>
+<p>
+Any and all suggestions welcome.</p>
+<p>
+Dominique &lt;dplante at pacbell.net>
+</p>
+<hr size="1" noshade=""/>
+
+
 <h3><a name="20020527.2"></a>27 May 2002 - Struts Tips</h3>
 <p>
 Struts Tips is a twice-weekly column featuring practical cut-and-paste
@@ -71,7 +231,7 @@ authentication, workflow, etc.) for Struts actions in an application.
 <hr size="1" noshade=""/>
 
 
-<h3><a name="20020527"></a>27 May 2002 - Eclipse Struts Wizard v1.0</h3>
+<h3><a name="20020527"></a>27 May 2002 - Eclipse Struts Wizard v2.0</h3>
 <p>
 Same user interface as our JBuilder Wizard but:
 </p>
@@ -194,7 +354,7 @@ on, and a link to get you there.
 <hr size="1" noshade=""/>
 
 
-<h3><a name="20020522.1"></a>10 May 2002 - O'Reilly Chapters 5 and 6</h3>
+<p><a name="20020522.1"></a>10 May 2002 - O'Reilly Chapters 5 and 6</p>
 <p>
 Chapters 5 and 6 of the upcoming Struts book by Chuck Cavaness are now 
 available on The ServerSide for community review. 

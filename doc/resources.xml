@@ -24,9 +24,10 @@
  <ul>
     <li><a href="#1st"><b>Read Me First - A path for newbies</b></a></li>
     <li><a href="#tutorials">Tutorials</a></li>
-    <li><a href="#articles">Articles</a></li>
+    <li><a href="#articles">Articles and Presentations</a></li>
     <li><a href="#books">Books</a></li>
     <li><a href="#seminars">Seminars</a></li>
+    <li><a href="#sigs">Struts Special Interest Groups</a></li>
     <li><a href="#archives">Mailing List Archives</a></li>
  </ul>
 
@@ -40,6 +41,7 @@
     <li><a href="#enabling">Enabling Technologies</a></li>
     <li><a href="#utilities">Other Struts-Related Utilities</a></li>
     <li><a href="#related">Other Struts-Related Articles</a></li>
+    <li><a href="#related">Other Development Books</a></li>
     <li><a href="#resources">Other Resource Pages</a></li>
  </ul>
 </section>
@@ -223,6 +225,7 @@
 
 
 <section href="articles" name="Articles">
+<p><a href="http://www.husted.com/struts/resources/struts-intro.ppt"><b>Introduction to Struts</b></a> by Dave Hay. A general introduction to Struts, appropriate for team meetings. Use as-is or a basis for your own.</p>
 <p><a href="http://www.mycgiserver.com/~eboudrant/#uml11"><b>Struts1.1 UML Class diagrams</b></a> by Emmanuel Boudrant.</p>
 <p><a href="http://stealthis.athensgroup.com/presentations/Model_Layer_Framework/Struts_Whitepaper.pdf"><b>Using Struts</b></a> (PDF) by Larry Maturo</p>
 <p><a href="http://www.javaworld.com/javaworld/jw-02-2002/jw-0215-ssl.html"><b>Mix protocols transparently in Web applications</b></a> by Steve Ditlinger.</p>
@@ -274,6 +277,16 @@
 <p><a href="http://www.basebean.com/"><b> Fast Track to MVC Frameworks</b></a> </p>
 <p><a href="http://bravepoint.com/scripts/wsisa.dll/WService=training/training_course.html?courseid=354"><b>BravePoint - Advanced JSP Architecture for J2EE</b></a> </p>
 <p><a href="http://www.avantsoft.com/jsp.html"><b>AvantSoft Inc. - JSP, Servlets and Struts</b></a></p>
+</section>
+
+
+<section href="sigs" name="Special Interest Groups">
+<p><a href="http://www.open-tools.org/index.jsp"><b>Atlanta Struts Users Group</b></a> - The Atlanta Struts Users 
+Group (ASUG) is a free, informal, all-volunteer, technically-savvy group of Atlanta Struts enthusiasts, 
+professionals and zealots who keep each other informed about issues and innovations in the Struts Framework. 
+We meet in real space the first Tuesday of the month from 7:00 to 9:00pm to see presentations from members 
+and vendors. The rest of the time, members communicate virtually via the ASUG mailing list. Come to the 
+meetings and contribute! </p>
 </section>
 
 
@@ -346,23 +359,27 @@
 <section name="Java / Struts ISPs" href="hosts">
 <p><b>Provided as a reference only. No endorsements given or implied. To be listed, post a documentation enhancement request in Bugzilla.</b></p>
 <p><a href="http://www.aoindustries.com/servlet/com.aoindustries.website.HomePage"><b>AO Industries</b></a></p>
+<p><a href="http://www.cqhost.com/"><b>CQhost</b></a></p>
+<p><a href="http://www.digitalspace.net/">DigitalSpace</a></p>
+<p><a href="http://www.eryxma.com/"><b>Eryxma</b></a></p>
 <p><a href="http://www.hostjsp.com"><b>host<font size="-1">JSP</font>.com</b></a></p>
 <p><a href="http://www.imagineis.com"><b>Imagine Internet Services</b></a></p>
 <p><a href="http://www.indaco.net"><b>Indaco Informatica</b></a></p>
 <p><a href="http://www.infinitehost.com/"><b>Infinite Host</b></a></p>
 <p><a href="http://www.irdesign.com/services/hosting/website_hosting.html"><b>irdesign.com</b></a></p>
+<p><a href="http://www.kattare.com/">Kattare Internet</a></p>
 <p><a href="http://www.kgbinternet.com/"><b>KGB Internet Solutions</b></a></p>    <p><a href="http://www.mmaweb.net/"><b>mma</b></a></p>
-<p><a href="http://www.servlets.net/index.html"><b>servlets.com</b></a></p>
+<p><a href="http://www.rackspace.com/"><b>Rackspace</b></a> (hosts JGuru)</p>
 <p><a href="http://www.webappcabaret.com"><b>Web App Cabaret</b></a></p>
+<p><b>For more,</b> see also <a href="http://www.webhostingratings.com/">Web Hosting Ratings</a> and <a href="http://www.servlets.com/isps/servlet/ISPViewAll">Servlet.com's ISP list</a></p>
 </section>
 
 
 <section name="Powered by Struts" href="powered">
-<p><b><font color="red">As of 2002-July-31, pages linked here must indicate that they are "powered by Struts" 
+<p><b><font color="red">As of 2002-Jul-31, pages linked here must indicate that they are "powered by Struts" 
 or otherwise credit the Apache Software Foundation pursuant to item 3 of the <a href="http://apache.org/LICENSE">
 Apache Software License</a> ("This product includes software developed by the Apache Software Foundation 
 (http://www.apache.org/)."</font></b></p>
-
 <p><a href="http://www.application-servers.com/"><b>Application-Servers.com</b></a> - French site.</p>
 <p><a href="http://amalregistry.webhop.org/"><b>Alaskan Malamute Registry</b></a></p>
 <p><a href="http://www.clickstarttutoring.com/index.jsp"><b>Clickstart Tutoring</b></a> - One on one in home tutoring.</p>
@@ -382,8 +399,7 @@ Apache Software License</a> ("This product includes software developed by the Ap
 <p><a href="http://www.pizzahut.com.au/"><b>Pizza Hut Online / Sydney Metro</b></a> - For pickup or delivery in the Syndey Metro area.</p>
 <p><!-- href="http://www.penza.ru/povolgie"--><b>Povoglie</b> [403] - Goverment regional press services news center in Russia, middle Volga.</p>
 <p><a href="http://www.readymindsjobs.com"><b>ReadyMinds Jobs</b></a> - Online job posting and placement system using Struts and Tiles on JBoss and Tomcat.</p>
-<p><a href="http://www.reviewalert.com"><b>Review Alert</b></a> - Free service that allows you to be notified when new reviews are posted on
-Amazon.com for dvds, music cds, books on any topic.</p>
+<p><a href="http://www.reviewalert.com"><b>Review Alert</b></a> - Free service that allows you to be notified when new reviews are posted on Amazon.com for dvds, music cds, books on any topic.</p>
 <p><a href="http://www.ipayment.co.za"><b>South African Revenue Services</b></a> - Directive and certificate service.</p>
 <p><a href="http://www.citlocate.com/cit-framework/citExampleWelcome.jsp"><b>SpatialFX</b></a></p>
 <p><a href="http://www.redgalleon.com/"><b>Red Galleon</b></a> - Offer aggregator.</p>
@@ -400,7 +416,7 @@ Amazon.com for dvds, music cds, books on any topic.</p>
 <p><b>Provided as a reference only. No endorsements given or implied.
 To be listed, post a documentation enhancement request in Bugzilla.</b></p>
 
-<p><b><font color="red">As of 2002-June-30, pages linked here must specifically
+<p><b><font color="red">As of 2002-Jul-15, pages linked here must specifically
 mention Struts consulting. Listings that do not reference Struts will be
 removed.</font></b></p>
 
@@ -495,6 +511,29 @@ look desired.</p>
 </section>
 
 
+<section name="Other Development Books" href="related.books"> 
+<p><b>Java Development</b></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0130819336/hitchhikeguidetoA/">Core Java 2, Volume 1 Fundamentals</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0130819344/hitchhikeguidetoA/">Core Java 2, Volume 2 Advanced Features</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0521777682/hitchhikeguidetoA/">Elements of Java Style</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=193011043X/hitchhikeguidetoA/">Bitter Java</a></p>
+
+<p><b>Java Web Development</b></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0130648841/hitchhikeguidetoA/">Core J2EE Patterns</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0130882488/hitchhikeguidetoA/">Core JSP</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=193011009X/hitchhikeguidetoA/">JSP Tag Libraries</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1884777996/hitchhikeguidetoA/"><b>Web Development with JavaServer Pages 2nd Edition</b></a></p>
+
+<p><b>Software Engineering</b></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1565927249/hitchhikeguidetoA/">Cathedral and the Bazaar</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1556154844/hitchhikeguidetoA/">Code Complete</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0201633612/hitchhikeguidetoA/">Design Patterns: Elements of Reusable Object-Orientated Software</a>  <font size="1"><b>(<i>read me first</i>)</b></font> </p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0672316498/hitchhikeguidetoA/">The Inmates Are Running the Asylum: Why High Tech Products Drive Us Crazy and How To Restore The Sanity</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0201835959/hitchhikeguidetoA/">Mythical Man Month: Essays on Software Engineering</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1884777597/hitchhikeguidetoA/">Practical Software Requirements</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0201485672/hitchhikeguidetoA/">Refactoring: Improving the Design of Existing Code</a></p>
+</section>
+
 <section name="Other Resource Pages" href="resources"> 
 <p><a href="http://www.multitask.com.au/default.html?page=mtSOS"><b>Struts SOS</b> (fee-based)</a></p>
 <p><a href="http://www.ingrid.org/jajakarta/struts/"><b>Japanese Translation of Struts documentation</b></a> as well as the other Jakarta projects).</p>
@@ -505,7 +544,6 @@ look desired.</p>
 <p><a href="http://java.sun.com/docs/books/tutorial/"><b>Javasoft Tutorials</b></a></p>
 <p><a href="http://archives.java.sun.com"><b>Javasoft Mailing Lists</b></a></p>
 </section>
-
 
   <p>Next: <a href="volunteers.html">Who We Are</a></p>
 
