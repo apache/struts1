@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CancelTag.java,v 1.17 2004/09/23 00:34:14 niallp Exp $
- * $Revision: 1.17 $
- * $Date$
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -27,7 +25,7 @@ import javax.servlet.jsp.JspException;
 /**
  * Tag for input fields of type "cancel".
  *
- * @version $Revision: 1.17 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class CancelTag extends SubmitTag {

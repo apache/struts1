@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.77 2004/09/07 02:52:18 niallp Exp $
- * $Revision: 1.77 $
- * $Date: 2004/09/07 02:52:18 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -66,7 +64,7 @@ import org.apache.struts.util.TokenProcessor;
  * argument, which can be used to clean up any allocated resources in use
  * by this Action.</p>
  *
- * @version $Revision: 1.77 $ $Date: 2004/09/07 02:52:18 $
+ * @version $Rev$ $Date$
  */
 public class Action {
 

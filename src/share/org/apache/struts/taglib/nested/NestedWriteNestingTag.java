@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTag.java,v 1.10 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.10 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -32,7 +30,7 @@ import org.apache.struts.taglib.TagUtils;
  * underlying nested property their tag properties are referencing.
  *
  * @since Struts 1.1
- * @version $Revision: 1.10 $
+ * @version $Rev$
  */
 public class NestedWriteNestingTag extends BodyTagSupport {
 

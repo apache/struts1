@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.42 2004/09/23 00:34:14 niallp Exp $
- * $Revision: 1.42 $
- * $Date: 2004/09/23 00:34:14 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -42,7 +40,7 @@ import org.apache.struts.util.ModuleUtils;
  *       <strong>lowsrc</strong> settable from properties (for i18n)</li>
  * </ul>
  *
- * @version $Revision: 1.42 $
+ * @version $Rev$
  */
 
 public class ImgTag extends BaseHandlerTag {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/User.java,v 1.6 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -26,7 +24,7 @@ package org.apache.struts.webapp.example;
  * <p>A <strong>User</strong> which is stored, along with his or her
  * associated {@link Subscription}s, in a {@link UserDatabase}.</p>
  *
- * @version $Revision: 1.6 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

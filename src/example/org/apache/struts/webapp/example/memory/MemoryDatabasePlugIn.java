@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.12 2004/03/11 03:26:02 husted Exp $
- * $Revision: 1.12 $
- * $Date: 2004/03/11 03:26:02 $
+ * $Id$ 
  *
  * Copyright 2000-2004 Apache Software Foundation
  *
@@ -47,7 +45,7 @@ import org.apache.struts.webapp.example.Constants;
  * <strong>NOT</strong> assume that files written here will survive a restart
  * of your servlet container.</p>
  *
- * @version $Revision: 1.12 $ $Date: 2004/03/11 03:26:02 $
+ * @version $Rev$ $Date$
  */
 
 public final class MemoryDatabasePlugIn implements PlugIn {

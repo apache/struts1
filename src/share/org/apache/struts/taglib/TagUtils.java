@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.35 2004/04/28 23:12:12 husted Exp $
- * $Revision: 1.35 $
- * $Date: 2004/04/28 23:12:12 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -55,7 +53,7 @@ import org.apache.struts.util.RequestUtils;
 /**
  * Provides helper methods for JSP tags.
  *
- * @version $Revision: 1.35 $
+ * @version $Rev$
  * @since Struts 1.2
  */
 public class TagUtils {

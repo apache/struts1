@@ -45,7 +45,7 @@ import org.apache.struts.config.ModuleConfigFactory;
  * tests included in this class are simple validations that the basic
  * environment was set up correctly.</p>
  *
- * @version $Revision: 1.16 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class TestMockBase extends TestCase {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedNameSupport.java,v 1.7 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -26,7 +24,7 @@ package org.apache.struts.taglib.nested;
  * property, and the name is an addition.
  *
  * @since Struts 1.1
- * @version $Revision: 1.7 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Rev$ $Date$
  */
 public interface NestedNameSupport extends NestedPropertySupport {
   

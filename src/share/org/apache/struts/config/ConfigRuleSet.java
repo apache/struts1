@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.19 2004/04/14 23:46:15 husted Exp $
- * $Revision: 1.19 $
- * $Date: 2004/04/14 23:46:15 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -34,7 +32,7 @@ import org.xml.sax.Attributes;
  * <p>The set of Digester rules required to parse a Struts
  * configuration file (<code>struts-config.xml</code>).</p>
  *
- * @version $Revision: 1.19 $ $Date: 2004/04/14 23:46:15 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

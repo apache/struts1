@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.25 2004/03/14 06:23:45 sraeburn Exp $
- * $Revision: 1.25 $
- * $Date: 2004/03/14 06:23:45 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -89,7 +87,7 @@ import org.apache.struts.util.MessageResources;
  * You can also override the <code>getMethodName</code> method to override the action's
  * default handler selection.</p>
  *
- * @version $Revision: 1.25 $ $Date: 2004/03/14 06:23:45 $
+ * @version $Rev$ $Date$
  */
 public abstract class DispatchAction extends Action {
 

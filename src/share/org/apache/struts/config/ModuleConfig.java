@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfig.java,v 1.8 2004/04/14 23:46:15 husted Exp $
- * $Revision: 1.8 $
- * $Date: 2004/04/14 23:46:15 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -28,7 +26,7 @@ package org.apache.struts.config;
  * string) is selected, which is elegantly backwards compatible with the
  * previous Struts behavior that only supported one module.</p>
  *
- * @version $Revision: 1.8 $ $Date: 2004/04/14 23:46:15 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public interface ModuleConfig {

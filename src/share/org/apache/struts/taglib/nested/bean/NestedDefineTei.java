@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/bean/NestedDefineTei.java,v 1.4 2004/03/14 06:23:53 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 06:23:53 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -32,7 +30,7 @@ import org.apache.struts.taglib.logic.IterateTei;
  *
  *
  * @since Struts 1.1
- * @version $Revision: 1.4 $
+ * @version $Rev$
  */
 
 public class NestedDefineTei extends IterateTei {

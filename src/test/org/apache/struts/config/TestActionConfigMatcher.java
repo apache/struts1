@@ -33,7 +33,7 @@ import org.apache.struts.mock.TestMockBase;
 /**
  * <p>Unit tests for <code>org.apache.struts.util.ActionConfigMatcher</code>.</p>
  *
- * @version $Revision: 1.8 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class TestActionConfigMatcher extends TestMockBase {

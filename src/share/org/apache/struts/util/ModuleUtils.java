@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ModuleUtils.java,v 1.9 2004/07/22 13:29:44 husted Exp $
- * $Revision: 1.9 $
- * $Date: 2004/07/22 13:29:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -33,7 +31,7 @@ import org.apache.struts.config.MessageResourcesConfig;
 /**
  * General purpose utility methods related to module processing.
  * 
- * @version $Revision: 1.9 $
+ * @version $Rev$
  * @since Struts 1.2
  */
 public class ModuleUtils {

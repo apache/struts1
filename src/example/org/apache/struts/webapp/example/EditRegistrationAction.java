@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditRegistrationAction.java,v 1.19 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.19 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -40,7 +38,7 @@ import org.apache.struts.action.ActionMapping;
  * <code>RegistrationForm</code> from the profile of the currently logged on
  * User (if any).
  *
- * @version $Revision: 1.19 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Rev$ $Date$
  */
 public final class EditRegistrationAction extends Action {
 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.11 2004/04/01 17:56:47 mrdon Exp $
- * $Revision: 1.11 $
- * $Date: 2004/04/01 17:56:47 $
+ * $Id$ 
  *
  * Copyright 2003,2004 The Apache Software Foundation.
  * 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/IncludeTag.java,v 1.30 2004/03/14 06:23:45 sraeburn Exp $
- * $Revision: 1.30 $
- * $Date: 2004/03/14 06:23:45 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -44,7 +42,7 @@ import org.apache.struts.taglib.TagUtils;
  * <strong>FIXME</strong>:  In a servlet 2.3 environment, we can use a
  * wrapped response passed to RequestDispatcher.include().
  *
- * @version $Revision: 1.30 $ $Date: 2004/03/14 06:23:45 $
+ * @version $Rev$ $Date$
  */
 
 public class IncludeTag extends TagSupport {

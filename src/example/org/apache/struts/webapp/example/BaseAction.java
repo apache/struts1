@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/BaseAction.java,v 1.2 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.2 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -31,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Base Action for MailReader application.
  *
- * @version $Revision: 1.2 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Rev$ $Date$
  */
 public class BaseAction extends Action {
 

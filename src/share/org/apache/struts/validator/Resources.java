@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.28 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.28 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -42,7 +40,7 @@ import org.apache.struts.util.RequestUtils;
  * This class helps provides some useful methods for retrieving objects
  * from different scopes of the application.
  *
- * @version $Revision: 1.28 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public class Resources {

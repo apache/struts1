@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedReference.java,v 1.6 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -26,7 +24,7 @@ import java.io.Serializable;
  * will hold the details of a bean name and nested property.
  *
  * @since Struts 1.1
- * @version $Revision: 1.6 $
+ * @version $Rev$
  */
 public class NestedReference implements Serializable {
 

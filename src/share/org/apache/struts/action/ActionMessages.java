@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.19 2004/04/25 02:58:43 husted Exp $
- * $Revision: 1.19 $
- * $Date: 2004/04/25 02:58:43 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -42,7 +40,7 @@ import java.util.List;
  * Therefore, no synchronization is required for access to internal
  * collections.</p>
  *
- * @version $Revision: 1.19 $ $Date: 2004/04/25 02:58:43 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public class ActionMessages implements Serializable {

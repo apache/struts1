@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.11 2004/03/14 06:23:49 sraeburn Exp $
- * $Revision: 1.11 $
- * $Date: 2004/03/14 06:23:49 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -32,7 +30,7 @@ import org.apache.struts.tiles.UntypedAttribute;
  * a tiles (or template / component). Definition is put in requested context and can be
  * used in &lt;tiles:insert&gt.
  *
- * @version $Revision: 1.11 $ $Date: 2004/03/14 06:23:49 $
+ * @version $Rev$ $Date$
  */
 public class DefinitionTag
     extends DefinitionTagSupport

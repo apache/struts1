@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.33 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.33 $
- * $Date$
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -52,7 +50,7 @@ import org.apache.struts.util.MessageResources;
  *     rendered after each individual error message.</li>
  * </ul>
  *
- * @version $Revision: 1.33 $ $Date$
+ * @version $Rev$ $Date$
  */
 public class ErrorsTag extends TagSupport {
 

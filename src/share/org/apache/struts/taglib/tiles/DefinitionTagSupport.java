@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTagSupport.java,v 1.6 2004/04/24 06:37:00 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2004/04/24 06:37:00 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedTagSupport.java,v 1.6 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -26,6 +24,6 @@ package org.apache.struts.taglib.nested;
  * This interface is empty and is for identification only.
  *
  * @since Struts 1.1
- * @version $Revision: 1.6 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Rev$ $Date$
  */
 public interface NestedTagSupport {}

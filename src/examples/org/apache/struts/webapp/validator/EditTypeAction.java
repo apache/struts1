@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/validator/EditTypeAction.java,v 1.4 2004/03/14 06:23:49 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 06:23:49 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/exercise/ImageAction.java,v 1.2 2004/03/14 06:23:52 sraeburn Exp $
- * $Revision: 1.2 $
- * $Date: 2004/03/14 06:23:52 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -37,7 +35,7 @@ import java.io.OutputStream;
  * Read image from resource given as ActionMapping parameter
  * and copy to output stream.
  *
- * @version $Revision: 1.2 $ $Date: 2004/03/14 06:23:52 $
+ * @version $Rev$ $Date$
  */
 
 public class ImageAction extends Action {

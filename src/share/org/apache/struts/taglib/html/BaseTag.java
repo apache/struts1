@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.22 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.22 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -41,7 +39,7 @@ import org.apache.struts.util.RequestUtils;
  * CSS stylesheets  and other resources in a manner independent of the URL
  * used to call the ActionServlet.
  *
- * @version $Revision: 1.22 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Rev$ $Date$
  */
 
 public class BaseTag extends TagSupport {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ServletContextWriter.java,v 1.5 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -31,7 +29,7 @@ import javax.servlet.ServletContext;
  * is called, or until one of the <code>println()</code> methods is called.
  * Along the way, carriage return characters are skipped.
  *
- * @version $Revision: 1.5 $ $Date: 2004/03/14 06:23:51 $
+ * @version $Rev$ $Date$
  */
 public class ServletContextWriter extends PrintWriter {
 

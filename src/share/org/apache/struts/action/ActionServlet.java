@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.178 2004/09/03 02:48:50 niallp Exp $
- * $Revision: 1.178 $
- * $Date: 2004/09/03 02:48:50 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -166,7 +164,7 @@ import org.xml.sax.SAXException;
  *     process the configuration file (strongly recommended)? [true]</li>
  * </ul>
  *
- * @version $Revision: 1.178 $ $Date: 2004/09/03 02:48:50 $
+ * @version $Rev$ $Date$
  */
 public class ActionServlet extends HttpServlet {
 

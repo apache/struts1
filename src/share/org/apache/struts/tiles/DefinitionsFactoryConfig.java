@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.12 2004/03/14 06:23:43 sraeburn Exp $
- * $Revision: 1.12 $
- * $Date: 2004/03/14 06:23:43 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -34,7 +32,7 @@ import org.apache.commons.beanutils.BeanUtils;
  * definition factory.
  *
  * @since Struts 1.1
- * @version $Revision: 1.12 $ $Date: 2004/03/14 06:23:43 $
+ * @version $Rev$ $Date$
  */
 public class DefinitionsFactoryConfig implements Serializable {
 

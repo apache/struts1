@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.10 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.10 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -33,7 +31,7 @@ import java.util.Comparator;
  * Note: this class has a natural ordering that is inconsistent with equals.
  * </p>
  * 
- * @version $Revision: 1.10 $ $Date: 2004/03/14 06:23:51 $
+ * @version $Rev$ $Date$
  */
 public class LabelValueBean implements Comparable, Serializable {
 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.22 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.22 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -42,7 +40,7 @@ import org.apache.struts.action.ActionMessages;
  * updates the user registration information entered by the user.  If a new
  * registration is created, the user is also implicitly logged on.
  *
- * @version $Revision: 1.22 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Rev$ $Date$
  */
 
 public final class SaveRegistrationAction extends Action {

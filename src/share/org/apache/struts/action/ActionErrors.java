@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.17 2004/09/02 02:13:42 niallp Exp $
- * $Revision: 1.17 $
- * $Date: 2004/09/02 02:13:42 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -40,7 +38,7 @@ import java.io.Serializable;
  * Therefore, no synchronization is required for access to internal
  * collections.</p>
  *
- * @version $Revision: 1.17 $ $Date: 2004/09/02 02:13:42 $
+ * @version $Rev$ $Date$
  */
 public class ActionErrors extends ActionMessages implements Serializable {
 

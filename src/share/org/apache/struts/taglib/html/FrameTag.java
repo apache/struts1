@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FrameTag.java,v 1.14 2004/09/23 00:34:14 niallp Exp $
- * $Revision: 1.14 $
- * $Date: 2004/09/23 00:34:14 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -41,7 +39,7 @@ import org.apache.struts.taglib.TagUtils;
  * currently no rewriting is supported.  The attribute is set directly from
  * the property value.
  *
- * @version $Revision: 1.14 $ $Date: 2004/09/23 00:34:14 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public class FrameTag extends LinkTag {

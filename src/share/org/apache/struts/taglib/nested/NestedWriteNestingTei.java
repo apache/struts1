@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTei.java,v 1.4 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -29,7 +27,7 @@ import javax.servlet.jsp.tagext.*;
  * is supplied).
  *
  * @since Struts 1.2
- * @version $Revision: 1.4 $
+ * @version $Rev$
  */
 public class NestedWriteNestingTei extends TagExtraInfo {
 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/NoForward.java,v 1.5 2004/03/14 06:23:49 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 06:23:49 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -45,7 +43,7 @@ import org.apache.struts.tiles.ComponentContext;
  *    <forward  name="success"        path="test.action.noforward"/>
  *  </action>
  * </pre>
- * @version $Revision: 1.5 $ $Date: 2004/03/14 06:23:49 $
+ * @version $Rev$ $Date$
  */
 
 public final class NoForward extends Action {

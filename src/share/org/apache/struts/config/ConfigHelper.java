@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.17 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.17 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -60,7 +58,7 @@ import org.apache.struts.util.RequestUtils;
  * ActionServlet when the resources are created.
  *
  * @since Struts 1.1
- * @version $Revision: 1.17 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Rev$ $Date$
  */
 public class ConfigHelper implements ConfigHelperInterface {
 

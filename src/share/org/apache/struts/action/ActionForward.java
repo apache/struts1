@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.16 2004/09/03 02:47:00 niallp Exp $
- * $Revision: 1.16 $
- * $Date: 2004/09/03 02:47:00 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -60,7 +58,7 @@ import org.apache.struts.config.ForwardConfig;
  * for the fact that it is part of the public API that existing applications
  * are using.</p>
  *
- * @version $Revision: 1.16 $ $Date: 2004/09/03 02:47:00 $
+ * @version $Rev$ $Date$
  */
 
 public class ActionForward extends ForwardConfig {

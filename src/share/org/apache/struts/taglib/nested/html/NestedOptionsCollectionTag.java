@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedOptionsCollectionTag.java,v 1.7 2004/03/14 06:23:50 sraeburn Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/14 06:23:50 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -29,7 +27,7 @@ import org.apache.struts.taglib.nested.NestedPropertyHelper;
 /**
  * NestedOptionsCollectionTag.
  * @since Struts 1.1
- * @version $Revision: 1.7 $
+ * @version $Rev$
  */
 public class NestedOptionsCollectionTag extends OptionsCollectionTag
                                               implements NestedNameSupport {

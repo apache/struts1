@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.15 2004/07/31 05:52:43 niallp Exp $
- * $Revision: 1.15 $
- * $Date: 2004/07/31 05:52:43 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -38,7 +36,7 @@ import org.apache.struts.validator.BeanValidatorForm;
  * <code>&lt;form-bean&gt;</code> element in a Struts
  * configuration file.<p>
  *
- * @version $Revision: 1.15 $ $Date: 2004/07/31 05:52:43 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

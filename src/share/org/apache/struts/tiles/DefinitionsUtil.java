@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.16 2004/03/14 06:23:43 sraeburn Exp $
- * $Revision: 1.16 $
- * $Date: 2004/03/14 06:23:43 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

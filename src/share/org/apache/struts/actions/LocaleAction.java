@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LocaleAction.java,v 1.4 2004/03/14 06:23:45 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 06:23:45 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 

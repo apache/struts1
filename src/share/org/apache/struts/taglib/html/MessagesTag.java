@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.27 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.27 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -38,7 +36,7 @@ import org.apache.struts.util.MessageResources;
  * retrieved from <code>Globals.MESSAGE_KEY</code>. This is an alternative
  * to the default <code>ErrorsTag</code>.
  *
- * @version $Revision: 1.27 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public class MessagesTag extends BodyTagSupport {

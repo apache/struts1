@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/MessageResourcesConfig.java,v 1.11 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.11 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -31,7 +29,7 @@ import org.apache.struts.Globals;
  * <code>&lt;message-resources&gt;</code> element in a Struts
  * configuration file.</p>
  *
- * @version $Revision: 1.11 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

@@ -26,7 +26,7 @@ import org.apache.struts.action.Action;
 /**
  * <p>General purpose Action for unit tests.</p>
  *
- * @version $Revision: 1.4 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class MockAction extends Action {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/DataSourceConfig.java,v 1.11 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.11 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -38,7 +36,7 @@ import org.apache.struts.Globals;
  * are recognized by the default data source implementation, but some or all
  * of them may be ignored by custom data source implementations.</p>
  *
- * @version $Revision: 1.11 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

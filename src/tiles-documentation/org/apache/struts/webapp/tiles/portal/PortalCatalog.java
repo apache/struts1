@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/PortalCatalog.java,v 1.5 2004/03/14 06:23:52 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 06:23:52 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

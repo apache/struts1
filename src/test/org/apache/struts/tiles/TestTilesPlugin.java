@@ -37,7 +37,7 @@ import org.apache.struts.util.RequestUtils;
 /**
  * <p>Unit tests for <code>org.apache.struts.tiles.*</code>.</p>
  *
- * @version $Revision: 1.7 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class TestTilesPlugin extends TestMockBase {

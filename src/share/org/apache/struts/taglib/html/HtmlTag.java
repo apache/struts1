@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.20 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.20 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -36,7 +34,7 @@ import org.apache.struts.util.MessageResources;
  * Renders an HTML <html> element with appropriate language attributes if
  * there is a current Locale available in the user's session.
  *
- * @version $Revision: 1.20 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Rev$ $Date$
  */
 public class HtmlTag extends TagSupport {
   

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ImageButtonBean.java,v 1.5 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -33,7 +31,7 @@ import java.io.Serializable;
  * and provide a simple means of detecting whether or not the corresponding
  * image was selected.
  *
- * @version $Revision: 1.5 $ $Date: 2004/03/14 06:23:51 $
+ * @version $Rev$ $Date$
  */
 public class ImageButtonBean implements Serializable {
 

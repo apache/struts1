@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/XhtmlTag.java,v 1.8 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Id$ 
  *
  * Copyright 2003,2004 The Apache Software Foundation.
  * 

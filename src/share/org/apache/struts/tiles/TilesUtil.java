@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtil.java,v 1.13 2004/08/10 02:36:15 niallp Exp $
- * $Revision: 1.13 $
- * $Date: 2004/08/10 02:36:15 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

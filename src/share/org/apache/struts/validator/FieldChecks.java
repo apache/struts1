@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.20 2004/09/03 20:11:19 niallp Exp $
- * $Revision: 1.20 $
- * $Date: 2004/09/03 20:11:19 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 

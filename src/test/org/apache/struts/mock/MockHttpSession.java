@@ -42,7 +42,7 @@ import javax.servlet.http.HttpSessionContext;
  * <p><strong>WARNING</strong> - Because unit tests operate in a single
  * threaded environment, no synchronization is performed.</p>
  *
- * @version $Revision: 1.4 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class MockHttpSession implements HttpSession {

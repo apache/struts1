@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.22 2004/09/23 00:34:14 niallp Exp $
- * $Revision: 1.22 $
- * $Date$
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -28,7 +26,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Tag for input fields of type "submit".
  *
- * @version $Revision: 1.22 $ $Date$
+ * @version $Rev$ $Date$
  */
 public class SubmitTag extends BaseHandlerTag {
 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsCollectionTag.java,v 1.17 2004/05/17 19:42:09 germuska Exp $
- * $Revision: 1.17 $
- * $Date: 2004/05/17 19:42:09 $
+ * $Id$ 
  *
  * Copyright 2002-2004 The Apache Software Foundation.
  * 
@@ -47,7 +45,7 @@ import org.apache.struts.util.MessageResources;
  * <p>
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
- * @version $Revision: 1.17 $ $Date: 2004/05/17 19:42:09 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public class OptionsCollectionTag extends TagSupport {

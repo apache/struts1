@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FileTag.java,v 1.4 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Id$ 
  *
  * Copyright 1999,2004 The Apache Software Foundation.
  * 
@@ -25,7 +23,7 @@ package org.apache.struts.taglib.html;
 /**
  * Custom tag for input fields of type "file".
  *
- * @version $Revision: 1.4 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Rev$ $Date$
  */
 
 public class FileTag extends BaseFieldTag {

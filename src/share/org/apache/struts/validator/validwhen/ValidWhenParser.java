@@ -1,9 +1,7 @@
 // $ANTLR 2.7.2: "ValidWhenParser.g" -> "ValidWhenParser.java"$
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.g,v 1.7 2004/09/03 18:06:58 niallp Exp $
- * $Revision: 1.7 $
- * $Date$
+ * $Id$ 
  *
  * Copyright 2003-2004 The Apache Software Foundation.
  * 

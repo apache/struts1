@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.19 2004/03/14 06:23:45 sraeburn Exp $
- * $Revision: 1.19 $
- * $Date: 2004/03/14 06:23:45 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -34,7 +32,7 @@ import org.apache.struts.util.MessageResources;
  * Define a scripting variable that exposes the requested Struts
  * internal configuraton object.
  *
- * @version $Revision: 1.19 $ $Date: 2004/03/14 06:23:45 $
+ * @version $Rev$ $Date$
  */
 
 public class StrutsTag extends TagSupport {

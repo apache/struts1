@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/examples/CustomFormBean.java,v 1.2 2004/03/14 06:23:50 sraeburn Exp $
- * $Revision: 1.2 $
- * $Date: 2004/03/14 06:23:50 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -26,7 +24,7 @@ import org.apache.struts.config.FormBeanConfig;
 /**
  * Custom FormBeanConfig to demonstrate usage.
  *
- * @version $Revision: 1.2 $ $Date: 2004/03/14 06:23:50 $
+ * @version $Rev$ $Date$
  */
 
 public final class CustomFormBean extends FormBeanConfig {

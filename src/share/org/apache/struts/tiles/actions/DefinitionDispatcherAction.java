@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.12 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.12 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -66,7 +64,7 @@ import org.apache.struts.tiles.TilesUtil;
  * appropriate definition.
  * <p> The value for error should denote a valid jsp path or definition name.
  *
- * @version $Revision: 1.12 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Rev$ $Date$
  */
 public class DefinitionDispatcherAction extends Action {
     

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/CheckLogonTag.java,v 1.11 2004/03/13 05:23:39 husted Exp $
- * $Revision: 1.11 $
- * $Date: 2004/03/13 05:23:39 $
+ * $Id$ 
  *
  * Copyright 2000-2004 Apache Software Foundation
  *
@@ -33,7 +31,7 @@ import org.apache.struts.config.ModuleConfig;
  * Check for a valid User logged on in the current session.  If there is no
  * such user, forward control to the logon page.
  *
- * @version $Revision: 1.11 $ $Date: 2004/03/13 05:23:39 $
+ * @version $Rev$ $Date$
  */
 public final class CheckLogonTag extends TagSupport {
 

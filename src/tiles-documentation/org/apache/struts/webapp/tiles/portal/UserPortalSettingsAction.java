@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserPortalSettingsAction.java,v 1.7 2004/03/14 06:23:52 sraeburn Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/14 06:23:52 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -42,7 +40,7 @@ import org.apache.struts.tiles.actions.TilesAction;
  * <li></li>
  * </ul>
  *
- * @version $Revision: 1.7 $ $Date: 2004/03/14 06:23:52 $
+ * @version $Rev$ $Date$
  */
 public final class UserPortalSettingsAction extends TilesAction {
 

@@ -32,7 +32,7 @@ import org.apache.struts.Globals;
 /**
  * Unit tests for the <code>org.apache.struts.config</code> package.
  *
- * @version $Revision: 1.9 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class TestModuleConfig extends TestCase {

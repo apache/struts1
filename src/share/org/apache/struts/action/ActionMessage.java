@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.12 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.12 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -29,7 +27,7 @@ import java.io.Serializable;
  * message resources database) plus up to four placeholder objects that can
  * be used for parametric replacement in the message text.</p>
  *
- * @version $Revision: 1.12 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public class ActionMessage implements Serializable {

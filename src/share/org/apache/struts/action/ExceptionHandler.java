@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.26 2004/05/18 20:00:10 germuska Exp $
- * $Revision: 1.26 $
- * $Date: 2004/05/18 20:00:10 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MessagesNotPresentTag.java,v 1.5 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -29,7 +27,7 @@ import javax.servlet.jsp.JspException;
  * Evalute the nested body content of this tag if the specified value
  * is not present for this request.
  *
- * @version $Revision: 1.5 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.12 2004/05/17 19:36:53 germuska Exp $
- * $Revision: 1.12 $
- * $Date: 2004/05/17 19:36:53 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

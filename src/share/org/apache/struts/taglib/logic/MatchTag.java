@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.14 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.14 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -32,7 +30,7 @@ import org.apache.struts.taglib.TagUtils;
  * Evalute the nested body content of this tag if the specified value
  * is a substring of the specified variable.
  *
- * @version $Revision: 1.14 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Rev$ $Date$
  */
 
 public class MatchTag extends ConditionalTagBase {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.26 2004/03/14 06:23:49 sraeburn Exp $
- * $Revision: 1.26 $
- * $Date: 2004/03/14 06:23:49 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -52,7 +50,7 @@ import org.apache.struts.tiles.TilesUtil;
  * a template. The tag's body content consists of &lt;tiles:put&gt;
  * tags, which are accessed by &lt;tiles:get&gt; in the template.
  *
- * @version $Revision: 1.26 $ $Date: 2004/03/14 06:23:49 $
+ * @version $Rev$ $Date$
  */
 public class InsertTag
 	extends DefinitionTagSupport

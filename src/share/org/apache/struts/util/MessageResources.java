@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.23 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.23 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -47,7 +45,7 @@ import org.apache.commons.logging.LogFactory;
  * must be Serializable so that instances may be used in distributable
  * application server environments.
  *
- * @version $Revision: 1.23 $ $Date: 2004/03/14 06:23:51 $
+ * @version $Rev$ $Date$
  */
 public abstract class MessageResources implements Serializable {
 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/channel/SelectChannelAction.java,v 1.6 2004/06/24 01:26:42 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2004/06/24 01:26:42 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

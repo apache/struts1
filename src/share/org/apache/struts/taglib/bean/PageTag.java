@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/PageTag.java,v 1.11 2004/03/14 06:23:45 sraeburn Exp $
- * $Revision: 1.11 $
- * $Date: 2004/03/14 06:23:45 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -32,7 +30,7 @@ import org.apache.struts.taglib.TagUtils;
  * Define a scripting variable that exposes the requested page context
  * item as a scripting variable and a page scope bean.
  *
- * @version $Revision: 1.11 $ $Date: 2004/03/14 06:23:45 $
+ * @version $Rev$ $Date$
  */
 
 public class PageTag extends TagSupport {

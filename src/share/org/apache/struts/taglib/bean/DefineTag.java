@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.27 2004/04/24 06:37:00 rleland Exp $
- * $Revision: 1.27 $
- * $Date: 2004/04/24 06:37:00 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -36,7 +34,7 @@ import org.apache.commons.logging.LogFactory;
  * Define a scripting variable based on the value(s) of the specified
  * bean property.
  *
- * @version $Revision: 1.27 $ $Date: 2004/04/24 06:37:00 $
+ * @version $Rev$ $Date$
  */
 
 public class DefineTag extends BodyTagSupport {

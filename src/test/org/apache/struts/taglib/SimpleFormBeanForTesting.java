@@ -30,7 +30,7 @@ import org.apache.struts.validator.ValidatorForm;
  * Simple Form bean for the Cactus test cases.
  * Feel free to add whatever you need to help with testing.
  *
- * @version $Revision: 1.5 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public final class SimpleFormBeanForTesting extends ValidatorForm  {

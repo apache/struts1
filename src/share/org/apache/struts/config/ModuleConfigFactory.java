@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfigFactory.java,v 1.8 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -27,7 +25,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * A factory interface for creating {@link ModuleConfig}s.
  *
- * @version $Revision: 1.8 $ $Date: 2004/03/14 06:23:47 $ 
+ * @version $Rev$ $Date$ 
  *
  * @see ModuleConfig
  */

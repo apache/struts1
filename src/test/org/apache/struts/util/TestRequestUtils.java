@@ -45,7 +45,7 @@ import org.apache.struts.taglib.html.Constants;
 /**
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
- * @version $Revision: 1.26 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class TestRequestUtils extends TestMockBase {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/ApplicationMapping.java,v 1.5 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -37,7 +35,7 @@ import org.apache.struts.action.ActionMapping;
  *     completed.
  * </ul>
  *
- * @version $Revision: 1.5 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Rev$ $Date$
  */
 
 public final class ApplicationMapping extends ActionMapping {

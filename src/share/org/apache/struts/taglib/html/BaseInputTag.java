@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseInputTag.java,v 1.7 2004/09/23 00:34:14 niallp Exp $
- * $Revision: 1.7 $
- * $Date$
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -26,7 +24,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Abstract base class for the various input tags.
  *
- * @version $Revision: 1.7 $ $Date$
+ * @version $Rev$ $Date$
  */
 public abstract class BaseInputTag extends BaseHandlerTag {
 

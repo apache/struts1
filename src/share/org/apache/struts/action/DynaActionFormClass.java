@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.20 2004/07/31 04:38:36 niallp Exp $
- * $Revision: 1.20 $
- * $Date: 2004/07/31 04:38:36 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -42,7 +40,7 @@ import org.apache.struts.util.RequestUtils;
  * implementation of dynamic action form beans. Application developers
  * never need to consult this documentation.</p>
  *
- * @version $Revision: 1.20 $ $Date: 2004/07/31 04:38:36 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/TokenProcessor.java,v 1.7 2004/07/07 21:12:43 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2004/07/07 21:12:43 $
+ * $Id$ 
  *
  * Copyright 2003-2004 The Apache Software Foundation.
  * 

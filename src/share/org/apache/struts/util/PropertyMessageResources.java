@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.12 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.12 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -45,7 +43,7 @@ import org.apache.commons.logging.LogFactory;
  * more than once, but improves response time on subsequent requests for
  * the same locale + key combination.
  *
- * @version $Revision: 1.12 $ $Date: 2004/03/14 06:23:51 $
+ * @version $Rev$ $Date$
  */
 public class PropertyMessageResources extends MessageResources {
 

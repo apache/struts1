@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.20 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.20 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -30,7 +28,7 @@ import org.apache.struts.taglib.TagUtils;
 /**
  * Generate a URL-encoded URI as a string.
  *
- * @version $Revision: 1.20 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Rev$ $Date$
  */
 public class RewriteTag extends LinkTag {
 

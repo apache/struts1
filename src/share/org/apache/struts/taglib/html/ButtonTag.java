@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.19 2004/09/23 00:34:14 niallp Exp $
- * $Revision: 1.19 $
- * $Date: 2004/09/23 00:34:14 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -23,7 +21,7 @@ package org.apache.struts.taglib.html;
 /**
  * Renders an HTML BUTTON tag within the Struts framework.
  *
- * @version $Revision: 1.19 $ $Date: 2004/09/23 00:34:14 $
+ * @version $Rev$ $Date$
  */
 public class ButtonTag extends SubmitTag {
 

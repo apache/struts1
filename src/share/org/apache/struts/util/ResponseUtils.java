@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.11 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.11 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -29,7 +27,7 @@ import org.apache.struts.taglib.TagUtils;
  * General purpose utility methods related to generating a servlet response
  * in the Struts controller framework.
  *
- * @version $Revision: 1.11 $ $Date: 2004/03/14 06:23:51 $
+ * @version $Rev$ $Date$
  * @deprecated Use the corresponding TagUtils methods instead.  
  * This class will be removed after Struts 1.2.
  */

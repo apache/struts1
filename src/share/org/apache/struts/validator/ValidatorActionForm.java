@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorActionForm.java,v 1.10 2004/04/02 14:30:57 germuska Exp $
- * $Revision: 1.10 $
- * $Date: 2004/04/02 14:30:57 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -36,7 +34,7 @@ import org.apache.struts.action.ActionMapping;
  * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
  * for validation rules.</li></ul>
  *
- * @version $Revision: 1.10 $ $Date: 2004/04/02 14:30:57 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

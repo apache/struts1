@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.11 2004/03/14 06:23:53 sraeburn Exp $
- * $Revision: 1.11 $
- * $Date: 2004/03/14 06:23:53 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -52,7 +50,7 @@ import org.apache.struts.tiles.actions.TilesAction;
  *   <li>channels : List of Digester Channel beans</li>
  * </ul>
  *
- * @version $Revision: 1.11 $ $Date: 2004/03/14 06:23:53 $
+ * @version $Rev$ $Date$
  */
 public final class RssChannelsAction extends TilesAction {
 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/WildcardHelper.java,v 1.5 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Id$ 
  *
  * Copyright 2003-2004 The Apache Software Foundation.
  * 
@@ -27,7 +25,7 @@ import java.util.Map;
  * isolation taken from Apache Cocoon.
  *
  * @since Struts 1.2
- * @version CVS $Id: WildcardHelper.java,v 1.5 2004/03/14 06:23:51 sraeburn Exp $
+ * @version $Rev$ $Date$
  */
 public class WildcardHelper {
 

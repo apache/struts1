@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.13 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.13 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -31,7 +29,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * not return an object with public getters and setters that
  * could be exploited by automatic population of properties.</p>
  *
- * @version $Revision: 1.13 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Rev$ $Date$
  * @since Struts 1.0.1
  */
 public class ActionServletWrapper {

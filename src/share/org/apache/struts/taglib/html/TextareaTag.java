@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.20 2004/09/23 00:34:14 niallp Exp $
- * $Revision: 1.20 $
- * $Date$
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -27,7 +25,7 @@ import org.apache.struts.taglib.TagUtils;
 /**
  * Custom tag for input fields of type "textarea".
  *
- * @version $Revision: 1.20 $ $Date$
+ * @version $Rev$ $Date$
  */
 public class TextareaTag extends BaseInputTag {
 

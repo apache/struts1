@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/validator/TypeForm.java,v 1.4 2004/03/25 05:12:59 rleland Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/25 05:12:59 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  *

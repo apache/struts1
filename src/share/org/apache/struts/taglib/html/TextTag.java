@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextTag.java,v 1.5 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -25,7 +23,7 @@ package org.apache.struts.taglib.html;
 /**
  * Custom tag for input fields of type "text".
  *
- * @version $Revision: 1.5 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Rev$ $Date$
  */
 
 public class TextTag extends BaseFieldTag {

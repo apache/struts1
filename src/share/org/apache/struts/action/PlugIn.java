@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.15 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.15 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -43,7 +41,7 @@ import org.apache.struts.config.ModuleConfig;
  *
  * <p>This interface can be applied to any class, including an Action subclass</p>
  *
- * @version $Revision: 1.15 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

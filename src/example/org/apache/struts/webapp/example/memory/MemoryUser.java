@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryUser.java,v 1.6 2004/03/14 06:23:50 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 06:23:50 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -31,7 +29,7 @@ import org.apache.struts.webapp.example.UserDatabase;
  * <p>Concrete implementation of {@link User} for an in-memory
  * database backed by an XML data file.</p>
  *
- * @version $Revision: 1.6 $ $Date: 2004/03/14 06:23:50 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.16 2004/03/14 06:23:45 sraeburn Exp $
- * $Revision: 1.16 $
- * $Date: 2004/03/14 06:23:45 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -34,7 +32,7 @@ import org.apache.struts.taglib.TagUtils;
  * Define a scripting variable based on the contents of the specified
  * web application resource.
  *
- * @version $Revision: 1.16 $ $Date: 2004/03/14 06:23:45 $
+ * @version $Rev$ $Date$
  */
 public class ResourceTag extends TagSupport {
 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResourcesFactory.java,v 1.11 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.11 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -41,7 +39,7 @@ import org.apache.commons.logging.LogFactory;
  *     instance.</li>
  * </ul>
  *
- * @version $Revision: 1.11 $ $Date: 2004/03/14 06:23:51 $
+ * @version $Rev$ $Date$
  */
 
 public abstract class MessageResourcesFactory implements Serializable {

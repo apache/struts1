@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.11 2004/03/14 06:23:49 sraeburn Exp $
- * $Revision: 1.11 $
- * $Date: 2004/03/14 06:23:49 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -25,7 +23,7 @@ import java.io.Serializable;
 /**
  * Global manifest constants for the entire Struts Framework.
  *
- * @version $Revision: 1.11 $ $Date: 2004/03/14 06:23:49 $
+ * @version $Rev$ $Date$
  */
 public class Globals implements Serializable {
 

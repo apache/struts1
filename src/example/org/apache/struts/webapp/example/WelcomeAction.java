@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/WelcomeAction.java,v 1.1 2004/03/09 04:36:49 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2004/03/09 04:36:49 $
+ * $Id$ 
  *
  * Copyright 2000-2004 Apache Software Foundation
  *
@@ -42,7 +40,7 @@ import org.apache.struts.action.ActionForward;
  * the request attribute "ERROR".
  * </p>
  *
- * @version $Revision: 1.1 $ $Date: 2004/03/09 04:36:49 $
+ * @version $Rev$ $Date$
  */
 public final class WelcomeAction extends BaseAction {
 

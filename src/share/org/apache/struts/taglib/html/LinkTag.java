@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.39 2004/09/23 00:34:14 niallp Exp $
- * $Revision: 1.39 $
- * $Date: 2004/09/23 00:34:14 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -33,7 +31,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Generate a URL-encoded hyperlink to the specified URI.
  *
- * @version $Revision: 1.39 $ $Date: 2004/09/23 00:34:14 $
+ * @version $Rev$ $Date$
  */
 public class LinkTag extends BaseHandlerTag {
 

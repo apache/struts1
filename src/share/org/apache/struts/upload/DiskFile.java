@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskFile.java,v 1.7 2004/03/14 06:23:48 sraeburn Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/14 06:23:48 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ForwardingActionForward.java,v 1.8 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -26,7 +24,7 @@ package org.apache.struts.action;
  * <p>A subclass of <code>ActionForward</code> that defaults the
  * <code>redirect</code> attribute to <code>false</code>.</p>
  *
- * @version $Revision: 1.8 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Rev$ $Date$
  */
 
 public class ForwardingActionForward extends ActionForward {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/dynPortal/RetrievePortalAction.java,v 1.8 2004/06/24 01:26:41 jmitchell Exp $
- * $Revision: 1.8 $
- * $Date: 2004/06/24 01:26:41 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

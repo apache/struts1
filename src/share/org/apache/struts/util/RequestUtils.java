@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.151 2004/07/31 05:52:43 niallp Exp $
- * $Revision: 1.151 $
- * $Date: 2004/07/31 05:52:43 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -61,7 +59,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * <p>General purpose utility methods related to processing a servlet request
  * in the Struts controller framework.</p>
  *
- * @version $Revision: 1.151 $ $Date: 2004/07/31 05:52:43 $
+ * @version $Rev$ $Date$
  */
 public class RequestUtils {
 

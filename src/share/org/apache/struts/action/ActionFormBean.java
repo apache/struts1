@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionFormBean.java,v 1.12 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.12 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -38,7 +36,7 @@ import org.apache.struts.config.FormBeanConfig;
  * for the fact that it is part of the public API that existing applications
  * are using.</p>
  *
- * @version $Revision: 1.12 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Rev$ $Date$
  */
 public class ActionFormBean extends FormBeanConfig {
 

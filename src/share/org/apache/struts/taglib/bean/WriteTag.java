@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.36 2004/03/14 06:23:45 sraeburn Exp $
- * $Revision: 1.36 $
- * $Date: 2004/03/14 06:23:45 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -39,7 +37,7 @@ import org.apache.struts.util.MessageResources;
  * it to a String representation (if necessary), and writes it to the current
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
- * @version $Revision: 1.36 $ $Date: 2004/03/14 06:23:45 $
+ * @version $Rev$ $Date$
  */
 public class WriteTag extends TagSupport {
 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MessagesPresentTag.java,v 1.14 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.14 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -34,7 +32,7 @@ import org.apache.struts.taglib.TagUtils;
  * request scope under the specified key and there is at least one message in the
  * class or for the property specified.
  *
- * @version $Revision: 1.14 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public class MessagesPresentTag extends ConditionalTagBase {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.21 2004/04/24 06:36:59 rleland Exp $
- * $Revision: 1.21 $
- * $Date: 2004/04/24 06:36:59 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -57,7 +55,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * Some containers require that an object meet all JavaBean requirements
  * in order to use the introspection API upon which ActionForms rely.</p>
  *
- * @version $Revision: 1.21 $ $Date: 2004/04/24 06:36:59 $
+ * @version $Rev$ $Date$
  */
 
 public abstract class ActionForm implements Serializable {

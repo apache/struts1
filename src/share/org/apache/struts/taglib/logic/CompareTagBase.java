@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.14 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.14 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -35,7 +33,7 @@ import org.apache.struts.taglib.TagUtils;
  * Abstract base class for comparison tags.  Concrete subclasses need only
  * define values for desired1 and desired2.
  *
- * @version $Revision: 1.14 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Rev$ $Date$
  */
 
 public abstract class CompareTagBase extends ConditionalTagBase {

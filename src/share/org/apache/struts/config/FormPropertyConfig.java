@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.16 2004/06/09 00:54:24 niallp Exp $
- * $Revision: 1.16 $
- * $Date: 2004/06/09 00:54:24 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -34,7 +32,7 @@ import org.apache.commons.logging.LogFactory;
  * <code>&lt;form-property&gt;</code> element in a Struts
  * configuration file.<p>
  *
- * @version $Revision: 1.16 $ $Date: 2004/06/09 00:54:24 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

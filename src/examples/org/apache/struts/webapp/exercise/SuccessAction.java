@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/exercise/SuccessAction.java,v 1.3 2004/06/24 01:27:31 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2004/06/24 01:27:31 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -33,7 +31,7 @@ import org.apache.struts.action.ActionMapping;
 /**
  * Dispatch control to the "success" forward.
  *
- * @version $Revision: 1.3 $ $Date: 2004/06/24 01:27:31 $
+ * @version $Rev$ $Date$
  */
 
 public class SuccessAction extends Action {

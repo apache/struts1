@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyTag.java,v 1.13 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.13 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -36,7 +34,7 @@ import org.apache.struts.taglib.TagUtils;
  * nesting list.
  *
  * @since Struts 1.1
- * @version $Revision: 1.13 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Rev$ $Date$
  */
 public class NestedPropertyTag extends BodyTagSupport implements NestedNameSupport {
 

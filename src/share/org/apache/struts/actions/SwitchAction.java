@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.15 2004/03/14 06:23:45 sraeburn Exp $
- * $Revision: 1.15 $
- * $Date: 2004/03/14 06:23:45 $
+ * $Id$ 
  *
  * Copyright 2002-2004 The Apache Software Foundation.
  * 
@@ -51,7 +49,7 @@ import org.apache.struts.util.ModuleUtils;
  *     module.</li>
  * </ul>
  *
- * @version $Revision: 1.15 $ $Date: 2004/03/14 06:23:45 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public class SwitchAction extends Action {

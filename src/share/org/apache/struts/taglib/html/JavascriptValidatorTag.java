@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.52 2004/08/07 04:17:52 martinc Exp $
- * $Revision: 1.52 $
- * $Date: 2004/08/07 04:17:52 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -54,7 +52,7 @@ import java.util.StringTokenizer;
  * on the validation rules loaded by the <code>ValidatorPlugIn</code>
  * defined in the struts-config.xml file.
  *
- * @version $Revision: 1.52 $ $Date: 2004/08/07 04:17:52 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {

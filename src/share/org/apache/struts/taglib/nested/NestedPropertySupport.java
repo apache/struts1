@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertySupport.java,v 1.6 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -24,7 +22,7 @@ package org.apache.struts.taglib.nested;
  * know to set the tag's <i>property</i> property.
  *
  * @since Struts 1.1
- * @version $Revision: 1.6 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Rev$ $Date$
  */
 public interface NestedPropertySupport extends NestedTagSupport {
   

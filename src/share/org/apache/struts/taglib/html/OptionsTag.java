@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsTag.java,v 1.29 2004/05/17 19:42:09 germuska Exp $
- * $Revision: 1.29 $
- * $Date: 2004/05/17 19:42:09 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

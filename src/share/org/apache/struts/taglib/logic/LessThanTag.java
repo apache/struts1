@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/LessThanTag.java,v 1.6 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -29,7 +27,7 @@ import javax.servlet.jsp.JspException;
  * Evaluate the nested body content of this tag if the specified variable
  * is less than the specified value.
  *
- * @version $Revision: 1.6 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Rev$ $Date$
  */
 
 public class LessThanTag extends CompareTagBase {

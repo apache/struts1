@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/upload/UploadAction.java,v 1.3 2004/03/14 06:23:52 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 06:23:52 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -45,7 +43,7 @@ import org.apache.struts.upload.FormFile;
  * page to display them
  *
  * @author Mike Schachter
- * @version $Revision: 1.3 $ $Date: 2004/03/14 06:23:52 $
+ * @version $Rev$ $Date$
  */
 
 

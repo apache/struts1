@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhen.java,v 1.12 2004/03/14 06:23:53 sraeburn Exp $
- * $Revision: 1.12 $
- * $Date: 2004/03/14 06:23:53 $
+ * $Id$ 
  *
  * Copyright 2003,2004 The Apache Software Foundation.
  * 

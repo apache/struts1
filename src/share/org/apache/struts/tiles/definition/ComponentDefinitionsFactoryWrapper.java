@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.14 2004/08/31 20:41:29 jmitchell Exp $
- * $Revision: 1.14 $
- * $Date: 2004/08/31 20:41:29 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

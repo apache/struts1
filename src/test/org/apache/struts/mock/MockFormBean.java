@@ -28,7 +28,7 @@ import org.apache.struts.action.ActionForm;
 /**
  * <p>General purpose form bean for unit tests.</p>
  *
- * @version $Revision: 1.4 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class MockFormBean extends ActionForm {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.12 2004/03/14 06:23:53 sraeburn Exp $
- * $Revision: 1.12 $
- * $Date: 2004/03/14 06:23:53 $
+ * $Id$ 
  *
  * Copyright 2003,2004 The Apache Software Foundation.
  * 
@@ -43,7 +41,7 @@ import org.xml.sax.SAXException;
  * using the Commons Digester and place the root object
  * of that graph into the Application context.</p>
  *
- * @version $Revision: 1.12 $
+ * @version $Rev$
  * @see org.apache.struts.action.PlugIn
  * @since Struts 1.2
  */

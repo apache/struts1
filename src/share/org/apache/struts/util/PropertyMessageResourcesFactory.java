@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResourcesFactory.java,v 1.5 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -28,7 +26,7 @@ package org.apache.struts.util;
  * name of the resources entries from which our keys and values will be
  * loaded.
  *
- * @version $Revision: 1.5 $ $Date: 2004/03/14 06:23:51 $
+ * @version $Rev$ $Date$
  */
 
 public class PropertyMessageResourcesFactory extends MessageResourcesFactory {

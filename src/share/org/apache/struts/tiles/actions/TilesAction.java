@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/TilesAction.java,v 1.9 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.9 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -38,7 +36,7 @@ import org.apache.struts.tiles.ComponentContext;
  * This class extends Struts Action. Subclasses should override
  * execute(ComponentContext ...) method instead of Struts
  * execute(ActionMapping ...) method.
- * @version $Revision: 1.9 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Rev$ $Date$
  */
 public abstract class TilesAction extends Action {
 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/MappingDispatchAction.java,v 1.9 2004/03/14 06:23:45 sraeburn Exp $
- * $Revision: 1.9 $
- * $Date: 2004/03/14 06:23:45 $
+ * $Id$ 
  *
  * Copyright 2003,2004 The Apache Software Foundation.
  * 
@@ -119,7 +117,7 @@ import org.apache.struts.action.ActionMapping;
  * is not required to enable selection of the handler method. 
  * </p>
  *
- * @version $Revision: 1.9 $ $Date: 2004/03/14 06:23:45 $
+ * @version $Rev$ $Date$
  * @since Struts 1.2
  */
 public class MappingDispatchAction extends DispatchAction {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.18 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.18 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -30,7 +28,7 @@ import java.util.HashMap;
  * <code>&lt;action&gt;</code> element from a Struts
  * module configuration file.</p>
  *
- * @version $Revision: 1.18 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public class ActionConfig implements Serializable {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.16 2004/04/02 14:30:57 germuska Exp $
- * $Revision: 1.16 $
- * $Date: 2004/04/02 14:30:57 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -46,7 +44,7 @@ import org.apache.struts.action.DynaActionForm;
  * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
  * for validation rules.</li></ul>
  *
- * @version $Revision: 1.16 $ $Date: 2004/04/02 14:30:57 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  * @see org.apache.struts.action.ActionForm
  */

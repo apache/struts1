@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.18 2004/09/23 00:34:14 niallp Exp $
- * $Revision: 1.18 $
- * $Date$
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -25,7 +23,7 @@ import javax.servlet.jsp.JspException;
 /**
  * Tag for input fields of type "reset".
  *
- * @version $Revision: 1.18 $ $Date$
+ * @version $Rev$ $Date$
  */
 public class ResetTag extends SubmitTag {
 

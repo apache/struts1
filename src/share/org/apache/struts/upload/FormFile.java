@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/FormFile.java,v 1.6 2004/03/14 06:23:48 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 06:23:48 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

@@ -28,7 +28,7 @@ import java.util.Iterator;
  * <p>General purpose <code>Enumeration</code> wrapper around an
  * <code>Iterator</code> specified to our controller.</p>
  *
- * @version $Revision: 1.4 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class MockEnumeration implements Enumeration {

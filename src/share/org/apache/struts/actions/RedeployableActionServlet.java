@@ -30,7 +30,7 @@ import org.apache.struts.tiles.TilesRequestProcessor;
  * For background discussion see
  * http://issues.apache.org/bugzilla/show_bug.cgi?id=26322
  * </p>
- * @version $Revision: 1.1 $ $Date: 2004/06/24 23:38:16 $
+ * @version $Rev$ $Date$
  * @since 1.2.1
  */
 public class RedeployableActionServlet extends ActionServlet {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.26 2004/09/23 00:34:14 niallp Exp $
- * $Revision: 1.26 $
- * $Date$
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -37,7 +35,7 @@ import org.apache.struts.util.MessageResources;
  * "checked" if the value listed for the "value" attribute is present in the
  * values returned by the property getter.
  *
- * @version $Revision: 1.26 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class MultiboxTag extends BaseHandlerTag {

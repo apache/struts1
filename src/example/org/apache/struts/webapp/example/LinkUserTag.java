@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LinkUserTag.java,v 1.10 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.10 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -39,7 +37,7 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded hyperlink to the specified URI, with
  * associated query parameters selecting a specified User.
  *
- * @version $Revision: 1.10 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Rev$ $Date$
  */
 
 public class LinkUserTag extends TagSupport {

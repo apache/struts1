@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ExceptionConfig.java,v 1.9 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.9 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -30,7 +28,7 @@ import java.io.Serializable;
  * <code>&lt;exception&gt;</code> element from a Struts
  * configuration file.</p>
  *
- * @version $Revision: 1.9 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

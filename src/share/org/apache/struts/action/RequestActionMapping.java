@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestActionMapping.java,v 1.9 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.9 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Id$ 
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -26,7 +24,7 @@ package org.apache.struts.action;
  * <p>Subclass of <code>ActionMapping</code> that defaults the form bean
  * scope to <code>request</code>.</p>
  *
- * @version $Revision: 1.9 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Rev$ $Date$
  */
 
 public class RequestActionMapping extends ActionMapping {

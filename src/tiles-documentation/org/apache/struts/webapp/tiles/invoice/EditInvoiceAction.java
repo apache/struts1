@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/invoice/EditInvoiceAction.java,v 1.7 2004/06/24 01:12:48 jmitchell Exp $
- * $Revision: 1.7 $
- * $Date: 2004/06/24 01:12:48 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -33,7 +31,7 @@ import org.apache.struts.action.ActionMapping;
  * Implementation of <strong>Action</strong> that populates an instance of
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
- * @version $Revision: 1.7 $ $Date: 2004/06/24 01:12:48 $
+ * @version $Rev$ $Date$
  */
 
 public final class EditInvoiceAction extends Action {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/ForwardAction.java,v 1.11 2004/03/14 06:23:45 sraeburn Exp $
- * $Revision: 1.11 $
- * $Date: 2004/03/14 06:23:45 $
+ * $Id$ 
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -53,7 +51,7 @@ import org.apache.struts.util.MessageResources;
  * <p>which will forward control to the context-relative URI specified by the
  * <code>parameter</code> attribute.</p>
  *
- * @version $Revision: 1.11 $ $Date: 2004/03/14 06:23:45 $
+ * @version $Rev$ $Date$
  */
 public class ForwardAction extends Action {
 

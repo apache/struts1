@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/UserDatabase.java,v 1.6 2004/03/12 02:43:29 husted Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/12 02:43:29 $
+ * $Id$ 
  *
  * Copyright 2000-2004 Apache Software Foundation
  *
@@ -27,7 +25,7 @@ package org.apache.struts.webapp.example;
  * whose characteristics are not specified here.  One or more implementations
  * will be created to perform the actual I/O that is required.</p>
  *
- * @version $Revision: 1.6 $ $Date: 2004/03/12 02:43:29 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public interface UserDatabase {

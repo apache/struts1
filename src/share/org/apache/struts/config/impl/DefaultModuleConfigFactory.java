@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/DefaultModuleConfigFactory.java,v 1.7 2004/03/14 06:23:53 sraeburn Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/14 06:23:53 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -31,7 +29,7 @@ import org.apache.struts.config.ModuleConfigFactory;
  * @see ModuleConfig
  * @see ModuleConfigFactory
  *
- * @version $Id: DefaultModuleConfigFactory.java,v 1.7 2004/03/14 06:23:53 sraeburn Exp $
+ * @version $Rev$ $Date$
  */
 public class DefaultModuleConfigFactory extends ModuleConfigFactory implements Serializable{
     // --------------------------------------------------------- Public Methods

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Constants.java,v 1.7 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -25,7 +23,7 @@ package org.apache.struts.webapp.example;
 /**
  * Manifest constants for the example application.
  *
- * @version $Revision: 1.7 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Rev$ $Date$
  */
 
 public final class Constants {

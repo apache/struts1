@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/channel/ChannelFactorySet.java,v 1.7 2004/06/24 01:07:23 jmitchell Exp $
- * $Revision: 1.7 $
- * $Date: 2004/06/24 01:07:23 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

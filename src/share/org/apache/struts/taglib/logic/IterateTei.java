@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTei.java,v 1.9 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.9 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -27,7 +25,7 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * Implementation of <code>TagExtraInfo</code> for the <b>iterate</b>
  * tag, identifying the scripting object(s) to be made visible.
  *
- * @version $Revision: 1.9 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Rev$ $Date$
  */
 public class IterateTei extends TagExtraInfo {
 

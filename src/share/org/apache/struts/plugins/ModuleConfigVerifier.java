@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/ModuleConfigVerifier.java,v 1.8 2004/03/14 06:23:53 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:53 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -44,7 +42,7 @@ import org.apache.struts.util.RequestUtils;
  * <p>Under all circumstances, errors that are detected will be logged via
  * calls to <code>ServletContext.log</code>.</p>
  *
- * @version $Revision: 1.8 $ $Date: 2004/03/14 06:23:53 $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

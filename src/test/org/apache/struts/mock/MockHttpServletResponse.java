@@ -43,7 +43,7 @@ import javax.servlet.http.HttpServletResponse;
  * <p><strong>WARNING</strong> - Because unit tests operate in a single
  * threaded environment, no synchronization is performed.</p>
  *
- * @version $Revision: 1.5 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class MockHttpServletResponse implements HttpServletResponse {
