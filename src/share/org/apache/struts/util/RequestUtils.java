@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.65 2002/10/29 21:04:38 ekbush Exp $
- * $Revision: 1.65 $
- * $Date: 2002/10/29 21:04:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.66 2002/10/30 02:29:15 rleland Exp $
+ * $Revision: 1.66 $
+ * $Date: 2002/10/30 02:29:15 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.65 $ $Date: 2002/10/29 21:04:38 $
+ * @version $Revision: 1.66 $ $Date: 2002/10/30 02:29:15 $
  */
 
 public class RequestUtils {
@@ -1487,7 +1487,7 @@ public class RequestUtils {
      * @return the ApplicationConfig object
      * @since 1.1b3
      */
-    public static ApplicationConfig getApplicationConfig(PageContext pageContext) {
+    public static ApplicationConfig getModuleConfig(PageContext pageContext) {
        ApplicationConfig appConfig = (ApplicationConfig)
            pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
        if (appConfig == null) { // Backwards compatibility hack
@@ -1504,7 +1504,7 @@ public class RequestUtils {
      * @return the ApplicationConfig object
      * @since 1.1b3
      */
-    public static ApplicationConfig getApplicationConfig(HttpServletRequest request,ServletContext context) {
+    public static ApplicationConfig getModuleConfig(HttpServletRequest request,ServletContext context) {
         ApplicationConfig appConfig = (ApplicationConfig)
             request.getAttribute(Action.APPLICATION_KEY);
         if (appConfig == null) {
