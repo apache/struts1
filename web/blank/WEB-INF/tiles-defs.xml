@@ -19,7 +19,7 @@
         <put name="footer" value="/common/footer.jsp" />
         <put name="body"   value=".portal.body" />
     </definition>
-	
+
     <definition name=".mainMenu" path="/common/layouts/vboxLayout.jsp" >
         <putList name="list" >
             <add value=".menu.links" />
@@ -28,12 +28,15 @@
             <add value=".menu.old.documents" />
       </putList>
     </definition>
-	
+
     <definition name="aPage" extends=".mainLayout">
         <put name="title"  value="Another Title" />
         <put name="body"   value=".aPage.body" />
     </definition>
-	
+
     end samples -->
+
+    <definition name="${YOUR_DEFINITION_HERE}">
+    </definition>
 
 </tiles-definitions>
