@@ -7,7 +7,7 @@
 <form-validation>
 
 <!--
-     This is a blank Validator form file with a commented examples.
+     This is a minimal Validator form file with a couple of examples.
 -->
 
     <global>
@@ -23,28 +23,27 @@
 
     <formset>
 
-        <!-- An example form
+        <!-- An example form -->
         <form name="logonForm">
             <field
                 property="username"
                 depends="required">
                     <arg key="logonForm.username"/>
-             </field>
-         <field
-            property="password"
-            depends="required,mask">
-            <arg key="logonForm.password"/>
-            <var>
-                <var-name>mask</var-name>
-                <var-value>^[0-9a-zA-Z]*$</var-value>
-            </var>
-         </field>
+            </field>
+            <field
+                property="password"
+                depends="required,mask">
+                    <arg key="logonForm.password"/>
+                    <var>
+                        <var-name>mask</var-name>
+                        <var-value>^[0-9a-zA-Z]*$</var-value>
+                    </var>
+            </field>
         </form>
-        end example form -->
 
     </formset>
 
-    <!-- An example formset for another locale
+    <!-- An example formset for another locale -->
     <formset language="fr">
 
         <constant>
@@ -52,7 +51,24 @@
             <constant-value>^[0-9a-zA-Z]*$</constant-value>
         </constant>
 
+        <!-- An example form -->
+        <form name="logonForm">
+            <field
+                property="username"
+                depends="required">
+                    <arg key="logonForm.username"/>
+            </field>
+            <field
+                property="password"
+                depends="required,mask">
+                    <arg key="logonForm.password"/>
+                    <var>
+                        <var-name>mask</var-name>
+                        <var-value>^[0-9a-zA-Z]*$</var-value>
+                    </var>
+            </field>
+        </form>
+
    </formset>
-   -->
 
 </form-validation>
