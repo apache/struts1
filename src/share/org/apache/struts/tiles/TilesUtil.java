@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtil.java,v 1.2 2002/11/16 06:04:28 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/16 06:04:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtil.java,v 1.3 2002/12/17 00:57:36 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/12/17 00:57:36 $
  *
  * ====================================================================
  *
@@ -74,6 +74,7 @@ import org.apache.commons.logging.LogFactory;
 
   /**
    * Class containing utilities for Tiles.
+   *
    */
 public class TilesUtil
 {
@@ -219,5 +220,16 @@ public class TilesUtil
     }
   }
 
-
+    /**
+     * Return the <code>Class</code> object for the specified fully qualified
+     * class name, from the underlying class loader.
+     *
+     * @param className Fully qualified class name to be loaded
+     * @return Class object
+     * @exception ClassNotFoundException if the class cannot be found
+     */
+  public static Class applicationClass(String className) throws ClassNotFoundException
+  {
+  return tilesUtilImpl.applicationClass(className);
+  }
 }

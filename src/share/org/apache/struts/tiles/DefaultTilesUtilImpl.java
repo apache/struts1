@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/DefaultTilesUtilImpl.java,v 1.3 2002/11/21 03:42:21 martinc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/21 03:42:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/DefaultTilesUtilImpl.java,v 1.4 2002/12/17 00:57:36 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/12/17 00:57:36 $
  *
  * ====================================================================
  *
@@ -62,6 +62,7 @@
 package org.apache.struts.tiles;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -72,14 +73,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
-import org.apache.struts.util.RequestUtils;
 
   /**
    * Default implementation of TilesUtil.
    * This class conatains default implementation of utilities. This implementation
    * is intended to be used without Struts
    */
-public class DefaultTilesUtilImpl implements TilesUtilInterface
+public class DefaultTilesUtilImpl implements TilesUtilInterface, Serializable
 {
      /** Commons Logging instance.*/
   protected Log log = LogFactory.getLog(DefaultTilesUtilImpl.class);
@@ -176,7 +176,7 @@ public class DefaultTilesUtilImpl implements TilesUtilInterface
   {
   try
     {
-    Class factoryClass = RequestUtils.applicationClass(classname);
+    Class factoryClass = applicationClass(classname);
     Object factory = factoryClass.newInstance();
 
       // Backward compatibility : if factory classes implements old interface,
@@ -215,6 +215,19 @@ public class DefaultTilesUtilImpl implements TilesUtilInterface
  protected void makeDefinitionsFactoryAccessible(DefinitionsFactory factory, ServletContext servletContext)
   {
   servletContext.setAttribute(DEFINITIONS_FACTORY, factory);
+  }
+
+    /**
+     * Return the <code>Class</code> object for the specified fully qualified
+     * class name, from the underlying class loader.
+     *
+     * @param className Fully qualified class name to be loaded
+     * @return Class object
+     * @exception ClassNotFoundException if the class cannot be found
+     */
+  public Class applicationClass(String className) throws ClassNotFoundException
+  {
+  return Class.forName(className);
   }
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.5 2002/11/21 03:42:21 martinc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/11/21 03:42:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.6 2002/12/17 00:57:36 cedric Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/12/17 00:57:36 $
  *
  * ====================================================================
  *
@@ -92,51 +92,52 @@ import org.apache.struts.util.RequestUtils;
  * Compliant to ActionServlet from struts 2001/06/25 00:02:27
  */
 public class ActionComponentServlet extends ActionServlet {
-    /** Definitions factory */
+      /** Definitions factory */
     private DefinitionsFactory definitionsFactory;
 
     /**
      * Init method.
      * This method is call on any servlet.
      */
-    public void init() throws ServletException {
-        super.init();
-        initComponentDefinitionsMapping();
-    }
+  public void init() throws ServletException
+  {
+  super.init();
+  initComponentDefinitionsMapping();
+  }
 
     /**
      * Read component instance mapping configuration file.
      * This is where we read files properties.
      */
-    public void initComponentDefinitionsMapping() throws ServletException // IOException,
+  public void initComponentDefinitionsMapping() throws ServletException // IOException,
+  {
+    // Check struts version by checkin PlugIn classes existance.
+  try
     {
-        // Check struts version by checkin PlugIn classes existance.
-        try {
-            Class plugInClass = RequestUtils.applicationClass(
-                    "org.apache.struts.action.PlugIn");
-            // Class exist ==> struts 1.1 or greater
-            log(
-                "Warning - ActionComponentServlet class: This class is to be used with Struts1.0.x only. "
-                    + "Please modify web.xml to use regular ActionServlet class instead in conjugaison "
-                    + "with appropriate plugin declared in struts-config.xml.");
-            //return;
-            // Let create factory for backward compatibility
-        } catch (ClassNotFoundException ex) { // Not found ==> struts 1.0.x
-        }
-
-        try {
-            // create definition factory
-            definitionsFactory =
-                DefinitionsUtil.createDefinitionsFactory(
-                    getServletContext(),
-                    getServletConfig(),
-                    true);
-        } catch (DefinitionsFactoryException ex) {
-            log("Fail to load Tiles definition factory from ActionComponentServlet", ex);
-            throw new ServletException(ex.getMessage(), ex);
-        }
-        log("Tiles definition factory loaded from ActionComponentServlet");
+    Class plugInClass = TilesUtil.applicationClass( "org.apache.struts.action.PlugIn");
+      // Class exist ==> struts 1.1 or greater
+    log( "Warning - ActionComponentServlet class: This class is to be used with Struts1.0.x only. "
+            + "Please modify web.xml to use regular ActionServlet class instead in conjugaison "
+            + "with appropriate plugin declared in struts-config.xml.");
+    //return;
+    // Let create factory for backward compatibility
     }
+   catch( ClassNotFoundException ex )
+    { // Not found ==> struts 1.0.x
+    }
+
+  try
+    {
+         // create definition factory
+    definitionsFactory = DefinitionsUtil.createDefinitionsFactory(getServletContext(), getServletConfig(), true);
+    }
+   catch( DefinitionsFactoryException ex )
+    {
+    log( "Fail to load Tiles definition factory from ActionComponentServlet", ex);
+    throw new ServletException( ex.getMessage(), ex );
+    }
+  log("Tiles definition factory loaded from ActionComponentServlet");
+  }
 
     /**
      * Overload struts1.0 counterpart in order to catch forward calls.
@@ -157,26 +158,30 @@ public class ActionComponentServlet extends ActionServlet {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      */
-    protected void processActionForward(
-        ActionForward forward,
-        ActionMapping mapping,
-        ActionForm formInstance,
-        HttpServletRequest request,
-        HttpServletResponse response)
-        throws IOException, ServletException {
+  protected void processActionForward( ActionForward forward,
+                                       ActionMapping mapping,
+                                       ActionForm formInstance,
+                                       HttpServletRequest request,
+                                       HttpServletResponse response)
+        throws IOException, ServletException
+  {
 
-        if (forward != null) {
-            String path = forward.getPath();
-            if (forward.getRedirect()) {
-                if (path.startsWith("/"))
-                    path = request.getContextPath() + path;
-                response.sendRedirect(response.encodeRedirectURL(path));
-            } else {
-                doForward(path, request, response);
-            }
-        }
-
+  if (forward != null)
+    {
+    String path = forward.getPath();
+    if (forward.getRedirect())
+      {
+      if (path.startsWith("/"))
+          path = request.getContextPath() + path;
+      response.sendRedirect(response.encodeRedirectURL(path));
+      }
+     else
+      {
+      doForward(path, request, response);
+      }
     }
+
+  }
 
     /**
      * Overload struts1.0 counterpart in order to catch forward calls.
@@ -199,10 +204,8 @@ public class ActionComponentServlet extends ActionServlet {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      */
-    protected boolean processValidate(
-        ActionMapping mapping,
-        ActionForm formInstance,
-        HttpServletRequest request,
+    protected boolean processValidate(ActionMapping mapping,
+        ActionForm formInstance, HttpServletRequest request,
         HttpServletResponse response)
         throws IOException, ServletException {
 
@@ -224,8 +227,10 @@ public class ActionComponentServlet extends ActionServlet {
             return (true);
 
         // Call the validate() method of our ActionForm bean
+        // Use struts1.0 compatible method, as this class is mainly for struts1.0
+        // backward compatibility.
         ActionErrors errors = formInstance.validate(mapping, request);
-        if ((errors == null) || errors.isEmpty()) {
+        if ((errors == null) || errors.empty()) { //
             if (debug >= 1)
                 log("  No errors detected, accepting input");
             return (true);
@@ -280,10 +285,9 @@ public class ActionComponentServlet extends ActionServlet {
      * @exception ServletException if the included resource throws an
      *  exception
      */
-    protected boolean processForward(
-        ActionMapping mapping,
-        HttpServletRequest request,
-        HttpServletResponse response)
+    protected boolean processForward(ActionMapping mapping,
+                                     HttpServletRequest request,
+                                     HttpServletResponse response)
         throws IOException, ServletException {
 
         // Are we going to process this request?
@@ -316,10 +320,9 @@ public class ActionComponentServlet extends ActionServlet {
      * @exception ServletException if the included resource throws an
      *  exception
      */
-    protected boolean processInclude(
-        ActionMapping mapping,
-        HttpServletRequest request,
-        HttpServletResponse response)
+    protected boolean processInclude(ActionMapping mapping,
+                                     HttpServletRequest request,
+                                     HttpServletResponse response)
         throws IOException, ServletException {
 
         // Are we going to process this request?
@@ -341,12 +344,12 @@ public class ActionComponentServlet extends ActionServlet {
      * @param response Current page response
      * @deprecated use doForward instead
      */
-    protected void processForward(
-        String uri,
-        HttpServletRequest request,
-        HttpServletResponse response)
-        throws IOException, ServletException {
-        doForward(uri, request, response);
+    protected void processForward( String uri,
+                                   HttpServletRequest request,
+                                   HttpServletResponse response)
+        throws IOException, ServletException
+    {
+    doForward(uri, request, response);
     }
 
     /**
@@ -358,86 +361,100 @@ public class ActionComponentServlet extends ActionServlet {
      * @param request Current page request
      * @param response Current page response
      */
-    protected void doForward(String uri, HttpServletRequest request, HttpServletResponse response)
-        throws IOException, ServletException {
-        // Do we do a forward (original behavior) or an include ?
-        boolean doInclude = false;
-        // Controller associated to a definition, if any
-        Controller controller = null;
-        ComponentContext tileContext = null;
+  protected void doForward(String uri, HttpServletRequest request, HttpServletResponse response)
+ 	  throws IOException, ServletException
+    {
+      // Do we do a forward (original behavior) or an include ?
+    boolean doInclude = false;
+      // Controller associated to a definition, if any
+    Controller controller = null;
+    ComponentContext tileContext = null;
 
-        try {
-            // Get current tile context if any.
-            // If context exist, we will do an include
-            tileContext = ComponentContext.getContext(request);
-            doInclude = (tileContext != null);
-            ComponentDefinition definition;
+     try
+        {
+          // Get current tile context if any.
+          // If context exist, we will do an include
+        tileContext = ComponentContext.getContext( request );
+        doInclude = (tileContext!=null );
+        ComponentDefinition definition;
 
-            // Process tiles definition names only if a definition factory exist,
-            // and definition found.
-            if (definitionsFactory != null) {
-                // Get definition of tiles/component corresponding to uri.
-                definition = definitionsFactory.getDefinition(uri, request, getServletContext());
-                if (definition != null) { // We have a definition.
-                    // We use it to complete missing attribute in context.
-                    // We also get uri, controller.
-                    uri = definition.getPath();
-                    controller = definition.getOrCreateController();
-                    if (tileContext == null) {
-                        tileContext = new ComponentContext(definition.getAttributes());
-                        ComponentContext.setContext(tileContext, request);
-                    } else
-                        tileContext.addMissing(definition.getAttributes());
-                } // end if
+          // Process tiles definition names only if a definition factory exist,
+          // and definition found.
+        if( definitionsFactory != null )
+          { // Get definition of tiles/component corresponding to uri.
+          definition = definitionsFactory.getDefinition(uri, request, getServletContext());
+          if( definition != null )
+            { // We have a definition.
+              // We use it to complete missing attribute in context.
+              // We also get uri, controller.
+            uri = definition.getPath();
+            controller = definition.getOrCreateController();
+            if( tileContext == null )
+              {
+              tileContext = new ComponentContext( definition.getAttributes() );
+              ComponentContext.setContext( tileContext, request);
+              }
+             else
+              tileContext.addMissing( definition.getAttributes() );
             } // end if
+          } // end if
 
-            // Process definition set in Action, if any.
-            definition = DefinitionsUtil.getActionDefinition(request);
-            if (definition != null) { // We have a definition.
-                // We use it to complete missing attribute in context.
-                // We also overload uri and controller if set in definition.
-                if (definition.getPath() != null)
-                    uri = definition.getPath();
-                if (definition.getOrCreateController() != null)
-                    controller = definition.getOrCreateController();
-                if (tileContext == null) {
-                    tileContext = new ComponentContext(definition.getAttributes());
-                    ComponentContext.setContext(tileContext, request);
-                } else
-                    tileContext.addMissing(definition.getAttributes());
-            } // end if
+          // Process definition set in Action, if any.
+        definition = DefinitionsUtil.getActionDefinition(request);
+        if( definition != null )
+          { // We have a definition.
+            // We use it to complete missing attribute in context.
+            // We also overload uri and controller if set in definition.
+          if(definition.getPath()!=null)
+            uri = definition.getPath();
+          if(definition.getOrCreateController()!=null)
+            controller = definition.getOrCreateController();
+          if( tileContext == null )
+            {
+            tileContext = new ComponentContext( definition.getAttributes() );
+            ComponentContext.setContext( tileContext, request);
+            }
+          else
+            tileContext.addMissing( definition.getAttributes() );
+          } // end if
 
-        } catch (java.lang.InstantiationException ex) {
-            throw new ServletException("Can't create associated controller", ex);
-        } catch (DefinitionsFactoryException ex) {
-            throw new ServletException(ex);
+        }
+       catch( java.lang.InstantiationException ex )
+        {
+        throw new ServletException( "Can't create associated controller", ex );
+        }
+       catch( DefinitionsFactoryException ex )
+        {
+        throw new ServletException( ex );
         }
 
-        // Execute controller associated to definition, if any.
-        if (controller != null) {
-            controller.perform(tileContext, request, response, getServletContext());
-        } // end if
+      // Execute controller associated to definition, if any.
+    if(controller !=null)
+      {
+      controller.perform( tileContext, request, response, getServletContext());
+      } // end if
 
-        // Do dispatching : search dispatcher, then dispatch
-        RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
-        if (rd == null) { // error
-            response.sendError(
-                HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                internal.getMessage("requestDispatcher", uri));
-            return;
-        } // end if
+      // Do dispatching : search dispatcher, then dispatch
+	  RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
+    if (rd == null)
+      { // error
+      response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                               internal.getMessage("requestDispatcher", uri));
+      return;
+      } // end if
 
-        // Unwrap the multipart request, if there is one.
-        if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper) request).getRequest();
-        }
-
-        // If request comes from a previous Tile, do an include.
-        // This allows to insert an action in a Tile.
-        if (doInclude)
-            rd.include(request, response);
-        else
-            rd.forward(request, response); // original behavior
+    // Unwrap the multipart request, if there is one.
+    if (request instanceof MultipartRequestWrapper) {
+        request = ((MultipartRequestWrapper) request).getRequest();
     }
+
+      // If request comes from a previous Tile, do an include.
+      // This allows to insert an action in a Tile.
+    if( doInclude )
+      rd.include(request, response);
+     else
+      rd.forward(request, response);   // original behavior
+   }
+
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.7 2002/11/21 03:42:21 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/11/21 03:42:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.8 2002/12/17 00:57:36 cedric Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/12/17 00:57:36 $
  *
  * ====================================================================
  *
@@ -114,6 +114,7 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants
     /**
      * Set user debug level. This property control level of errors output.
      * @deprecated Use commons-logging package instead.
+     * @param level
      */
   public static void setUserDebugLevel( int level )
     {
@@ -252,7 +253,8 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants
   /**
    * Create Definition factory from provided classname.
    * Factory class must extends TilesDefinitionsFactory.
-   * @deprecated No direct replacement. Use createDefinitionFactory.
+   * @deprecated No direct replacement. Use createDefinitionFactory
+   * {@link createDefinitionsFactory(ServletContext, DefinitionsFactoryConfig)}.
    * @param classname Class name of the factory to create.
    * @return newly created factory.
    * @throws DefinitionsFactoryException If an error occur while initializing factory
@@ -262,7 +264,7 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants
   {
   try
     {
-    Class factoryClass = RequestUtils.applicationClass(classname);
+    Class factoryClass = applicationClass(classname);
     Object factory = factoryClass.newInstance();
       // Backward compatibility : if factory classes implements old interface,
       // provide appropriate wrapper

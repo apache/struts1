@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.14 2002/11/28 07:13:39 rleland Exp $
- * $Revision: 1.14 $
- * $Date: 2002/11/28 07:13:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.15 2002/12/17 00:57:36 cedric Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/12/17 00:57:36 $
  *
  * ====================================================================
  *
@@ -120,7 +120,7 @@ public class TilesPlugin implements PlugIn {
     public boolean isModuleAware() {
         return moduleAware;
     }
-    
+
     /**
      * Set the module aware flag.
      * true: user want a single factory instance
@@ -158,7 +158,11 @@ public class TilesPlugin implements PlugIn {
             // Set the module name in the config. This name will be used to compute
             // the name under which the factory is stored.
             factoryConfig.setFactoryName(config.getPrefix());
-        } else { // We want one single shared instance. Check if it already exists in servlet context.
+        } else {
+
+              // Use appropriate TilesUtil implementation
+            TilesUtil.setTilesUtil(new TilesUtilStrutsSingleFactory());
+              // We want one single shared instance. Check if it already exists in servlet context.
             definitionFactory = TilesUtil.getDefaultDefinitionsFactory(servlet.getServletContext());
             if (definitionFactory != null) {
                 if (log.isInfoEnabled())

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinition.java,v 1.4 2002/11/21 03:42:21 martinc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/21 03:42:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinition.java,v 1.5 2002/12/17 00:57:36 cedric Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/12/17 00:57:36 $
  *
  * ====================================================================
  *
@@ -67,7 +67,6 @@ import java.util.Map;
 import java.util.HashMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.util.RequestUtils;
 
 /**
  * Definition of a template / component attributes.
@@ -572,7 +571,7 @@ public class ComponentDefinition implements Serializable
    {
     try
      {
-     Class requestedClass = RequestUtils.applicationClass(classname);
+     Class requestedClass = TilesUtil.applicationClass(classname);
      Object instance = requestedClass.newInstance();
      /*
      if( instance instanceof org.apache.struts.action.Action )

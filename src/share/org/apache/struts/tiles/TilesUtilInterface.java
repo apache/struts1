@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/TilesUtilInterface.java,v 1.2 2002/11/16 06:04:28 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/16 06:04:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/TilesUtilInterface.java,v 1.3 2002/12/17 00:57:36 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/12/17 00:57:36 $
  *
  * ====================================================================
  *
@@ -131,5 +131,16 @@ public interface TilesUtilInterface
      */
   public DefinitionsFactory createDefinitionsFactory(ServletContext servletContext, DefinitionsFactoryConfig factoryConfig)
     throws DefinitionsFactoryException;
+
+    /**
+     * Return the <code>Class</code> object for the specified fully qualified
+     * class name, from the underlying class loader.
+     *
+     * @param className Fully qualified class name to be loaded
+     * @return Class object
+     * @exception ClassNotFoundException if the class cannot be found
+     */
+  public Class applicationClass(String className)
+    throws ClassNotFoundException;
 
 }
