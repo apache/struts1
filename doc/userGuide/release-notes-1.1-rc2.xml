@@ -12,12 +12,12 @@
   <body>
 
   <chapter name="6.1 Release Notes" href="release_notes">
-  <section name="Beta Notes" href="beta">
+  <section name="Release Candidate Notes" href="beta">
 
-    <p>This section contains the release notes for
-    <strong>nightly build</strong> of the Struts Framework,
+    <p>This section contains the release notes for the
+    <strong>Version 1.1 Release Candidate 2</strong> build of the Struts Framework,
     for changes that have taken place since
-    <a href="release-notes-1.1-rc1.html">Version 1.1 release candidate 1</a>
+    <a href="release-notes-1.1-rc1.html">Version 1.1 Release Candidate 1</a>
     was issued. For a complete list of changes since the last
     production release, see the <a href="#Introduction">Introduction</a> </p>
 
@@ -26,16 +26,17 @@
 <section name="RC/Beta Fixes" href="beta.Changes">
 
     <p>
-        In RC2, the <b>Commons-DBPC and Commons-Pool dependencies have been removed</b>.
+        In RC2, the <b>Commons-DBCP and Commons-Pool dependencies have been removed</b>.
         These are replaced with a dependency on the Struts-Legacy JAR,
         containing the GenericDataSource and GenericConnection classes from Struts 1.0.2.
-        These are distribute for J2SE 1.3 but may be recompiled for J2SE 1.4.
+        These are distributed for J2SE 1.3 but may be recompiled for J2SE 1.4.
         Other DataSource implementations may be plugged in (recommended).
     </p>
 
     <p>
-        RC2 is dependant the <b>FileUpload RC1</b>.
-        The final release of Struts 1.1 cannot happen until this dependency is replaced by the final relesae of File Upload.
+        RC2 is dependent upon <b>Commons FileUpload RC1</b>.
+        The final release of Struts 1.1 cannot happen until this dependency is
+        updated to a final release of FileUpload.
         All other dependencies are in their final release.
     </p>
 
@@ -52,13 +53,13 @@
         Deprecated processActionForward() because ActionForward is a subclass of ForwardConfig so there's no reason we can't use processForwardConfig() instead.
         Updated to use processForwardConfig instead of deprecated processActionForward.
         Deprecated the rest of the Action constants in favor of Globals.
-        Refactored some of initModuleConfig into a separate method and cleaned up
+        Refactored some of initModuleConfig into a separate method and cleaned up.
         Improved exception handling in ActionServlet and RequestProcessor; generally, we limited the scope of try/catch blocks and caught specific exceptions rather than Throwable.
     </p>
 
     <p>
         <b>Documentation:</b>
-        Document to the html tag's locale attribute about creating session if needed.
+        Document the &lt;html:html&gt; tag's locale attribute behaviour of creating a session if needed.
         Added note to validator section regarding the converNull servlet parameter and required validations of java.lang.Integer fields.
         Moved sites and consultants page to Struts Wiki.
         Other minor tweaks.
@@ -99,17 +100,17 @@
        Fixed references to static members.
        For FrameTag and HiddenTag, conform TLD with implementations.
        In ErrorsTag, render a platform-independent line ending instead of hard coded "\r\n".
-       In JavaScriptValidatorTag, make the line-end generation platform independent so that Cactus tests
-       In FormTag, Refactored code into smaller reusable methods.
-       In RewriteTag, encode the ampersand character in XHTML mode only, otherwise write the ampersand as is so the url will work in JavaScripts.
+       In JavaScriptValidatorTag, make the line-end generation platform independent so that Cactus tests work properly.
+       In FormTag, refactored code into smaller reusable methods.
+       In RewriteTag, encode the ampersand character in XHTML mode only, otherwise write the ampersand as is so the URL will work in JavaScript scripts.
        Refactored form bean initialization out of doStartTag() into its own method.
-       Refactored doStartTag() if statement to avoid having long nested if logic.
-       In ErrorTag, formatting fixes and deprecated unused defaultLocale variable.
+       Refactored doStartTag() 'if' statement to avoid having long nested 'if' logic.
+       In ErrorTag, fixed formatting and deprecated unused defaultLocale variable.
        Refactored doStartTag() and doEndTag() into smaller methods.
        Moved xhtml check to RequestUtils instead of duplicating the logic in many different classes.
        Added lookupProperty() method to BaseHandlerTag because both RadioTag and TextareaTag used the same code.
        Refactored TextareaTag into smaller methods.
-       In JavaScriptValidatorTag, replaced duplicated code with call to RequestUtils.retrieveUserLocale() and simplified an if statement.
+       In JavaScriptValidatorTag, replaced duplicated code with call to RequestUtils.retrieveUserLocale() and simplified an 'if' statement.
     </p>
 
     <p>
@@ -124,15 +125,15 @@
        <i>nested tablibs.</i>
        Improved support for Tomcat 4.1.18.
        Replace EVAL_BODY_AGAIN with EVAL_BODY_TAG so that the code compiles against the JSP 1.1 API.
-       Changed the nested:define's tei class to reference a new custom tei class for the nested tags.
+       Changed the &lt;nested:define&gt; tag's tei class to reference a new custom tei class for the nested tags.
    </p>
 
     <p>
         <i>tiles taglib.</i>
         Fixed references to static members.
         Deprecated outdated Tiles TextTag.
-        For InsertTag, only include page if it's != null.
-        For InserTag, Remove page check before including for more investigation.
+        For InsertTag, only include page if it's non-null.
+        For InserTag, remove page check before including for more investigation.
     </p>
 
     <p>
@@ -150,13 +151,13 @@
         <b>Util package:</b>
         retrieveUserLocale now uses the request.getLocale() method for finding the user's preferred locale.
         If user has not specified this with Accept-Language header, the server default locale is used.
-        Change encodeURL to not use reflection on every call.
+        Change encodeURL() to not use reflection on every call.
         In RequestUtils, simplified separator logic in computeURL().
     </p>
 
     <p>
         <b>Validator package:</b>
-        Deprecate logging methods and indicate that common-logging should be used.
+        Deprecate logging methods and indicate that commons-logging should be used.
         Logic simplification and minor formatting fixes to Resources class.
 
     </p>
@@ -170,7 +171,7 @@
             (build.properties.sample) Add an entry for http-unit.
         </li>
         <li>
-            Remove dependency on Commons Resources for Struts 1.1 release (this will happen later).
+            Remove dependency on Commons Resources for Struts 1.1 release. (This migration will happen later).
         </li>
         <li>
             Make it possible to build Struts against the Servlet 2.4 and JSP 2.0 APIs, where the JSP classes have been pulled out into their own JAR file (jsp.jar). On an earlier platform, you can leave the "jsp.jar" property unset and thing will continue to operate as they have before.
@@ -301,7 +302,7 @@
   <section name="Introduction" href="Introduction">
 
     <p>The remainder of this document contains the release notes for
-    <strong>nightly build</strong> of the Struts Framework,
+    <strong>1.1 Release Candidate 2</strong> build of the Struts Framework,
     and covers changes that have taken place since
     <a href="release-notes-1.0.2.html">Version 1.0.2</a>
     was released.  The following sections cover
@@ -318,7 +319,7 @@
     <ul>
     <li><code>INSTALL</code> - Brief installation instructions.  See
         the <code>Struts Documentation Application</code>, or online at
-        <a href="http://jakarta.apache.org/struts/">http://jakarta.apache.org/struts/</a>
+        <a href="http://jakarta.apache.org/struts/">http://jakarta.apache.org/struts/</a>,
         for more information.</li>
     <li><code>LICENSE</code> - The Apache Software Foundation license that
         defines the terms under which you can use Struts (and other software
@@ -332,7 +333,8 @@
             Project</a> that Struts relies on.  You are welcome to use these
             classes in your own applications.  These JAR files should be
             copied into the <code>/WEB-INF/lib</code> directory of
-            your web application.</li>
+            your web application.</li> See below for the version of each
+            Commons library that is included.
         <li><code>struts.jar</code> - JAR file that contains the compiled
             Java classes of Struts.  You must
             place this file in the <code>/WEB-INF/lib</code> directory of
@@ -350,12 +352,12 @@
             applications by your servlet container.</li>
         <li><code>struts-config_1_1.dtd</code> - The document type descriptor
             (DTD) for the Struts 1.1 configuration file (which is typically named
-            <code>/WEB-INF/struts-config.xml</code>.  Your configuration file
+            <code>/WEB-INF/struts-config.xml</code>).  Your configuration file
             will be validated against an internal copy of this DTD -- this
             copy is available for reference purposes only.</li>
         <li><code>struts-config_1_0.dtd</code> - The document type descriptor
             (DTD) for the Struts 1.0 configuration file (which is typically named
-            <code>/WEB-INF/struts-config.xml</code>.  Your configuration file
+            <code>/WEB-INF/struts-config.xml</code>).  Your configuration file
             will be validated against an internal copy of this DTD -- this
             copy is available for reference purposes only.</li>
         <li><code>web-app_2_2.dtd</code> - The document type descriptor (DTD)
@@ -367,6 +369,18 @@
         </ul></li>
     <li><code>webapps/</code> - Web Application Archive (WAR) files for the
         web applications that are included with Struts.</li>
+    </ul>
+
+    <p>The following Jakarta Commons libraries are included with this release
+    of Struts:</p>
+    <ul>
+    <li>Commons BeanUtils 1.6.1</li>
+    <li>Commons Collections 2.1</li>
+    <li>Commons Digester 1.5</li>
+    <li>Commons FileUpload 1.0 RC1</li>
+    <li>Commons Lang 1.0.1</li>
+    <li>Commons Logging 1.0.3</li>
+    <li>Commons Validator 1.0.2</li>
     </ul>
 
   </section>
@@ -388,12 +402,12 @@
     general Java development (and not just useful for building Struts-based
     web applications), and have been migrated into the
     <a href="http://jakarta.apache.org/commons/">Jakarta Commons Project</a>.
-    As a result, the current development version of Struts has been modified
+    As a result, this release of Struts has been modified
     to rely on the Commons packages containing these classes, rather than the
     Struts internal versions.  In nearly every case, this involved changing
-    only the <code>import</code> statements at the top of your classes.  Any
-    applications that utilize these classes will need to be modified in the
-    same way.  </p>
+    only the <code>import</code> statements at the top of the classes.  Any
+    of your applications that utilize these classes will need to be modified in
+    the same way.  </p>
     <p>The following Commons packages contain the replacements for the
     corresponding Struts 1.0 classes:</p>
     <ul>
@@ -415,16 +429,12 @@
     <p>The following Commons packages are also now used by various components
     of the Struts framework:</p>
     <ul>
-    <li><strong>Database Connection Pool Package</strong>
-    [<a href="http://jakarta.apache.org/commons/dbcp.html"><code>org.apache.commons.dbpc</code></a>]</li>
     <li><strong>FileUpload Package</strong>
-    [<a href="http://cvs.apache.org/viewcvs/jakarta-commons-sandbox/fileupload/"><code>org.apache.commons.fileupload</code></a>]</li>
+    [<a href="http://jakarta.apache.org/commons/fileupload/"><code>org.apache.commons.fileupload</code></a>]</li>
     <li><strong>Logging Package</strong>
     [<a href="http://jakarta.apache.org/commons/logging.html"><code>org.apache.commons.logging</code></a>]</li>
-    <li><strong>Pool Package</strong>
-    [<a href="http://jakarta.apache.org/commons/pool/index.html"><code>org.apache.commons.pool</code></a>]</li>
     <li><strong>Validator Package</strong>
-    [<a href="http://cvs.apache.org/viewcvs/jakarta-commons/validator/"><code>org.apache.commons.validator</code></a>]</li>
+    [<a href="http://jakarta.apache.org/commons/validator/"><code>org.apache.commons.validator</code></a>]</li>
     </ul>
 
 
@@ -439,7 +449,7 @@
     does not affect developers that use Struts from the binary distribution.</p>
 
     <p><strong>Struts Validator Integration</strong></p>
-    <p>The new Commons-Validator is now integrated with Struts and exposed
+    <p>The new Commons Validator is now integrated with Struts and exposed
     through the new Validator package.</p>
 
     <p><strong>Tiles - An advanced templating taglib</strong></p>
@@ -462,13 +472,13 @@
     <ul>
     <li>Scaffold - An extension of the Commons Scaffold toolkit of reusable
     classes for building web applications.</li>
-    <li>Struts-el - The optional Struts-el taglib makes it easy to use Struts
-    with JSTL (container with servlet 2.3 support required). </li>
+    <li>Struts-EL - The optional Struts-EL taglib makes it easy to use Struts
+    with JSTL. (Container with Servlet 2.3 support required.)</li>
     </ul>
     </p>
 
     <p>The source for these components is available in the Struts source
-    distribution. Binary distributions may also be made available with the Struts
+    distribution. Binary distributions may also be made available in the Struts
     download area. As optional components, these products have their own
     release cycles.</p>
 
@@ -488,7 +498,8 @@
     [<code>org.apache.struts.upload</code>]:</p>
     <ul>
     <li><code>CommonsMultipartRequestHandler:</code> New class that implements
-        file upload using the Jakarta Commons FileUpload package.</li>
+        file upload using the Jakarta Commons FileUpload package. This is now
+        the default file upload implementation for Struts.</li>
     </ul>
 
     <p><strong>Util Package Additions</strong></p>
@@ -496,9 +507,9 @@
     [<code>org.apache.struts.util</code>]:</p>
     <ul>
     <li><code>LocalStrings:</code> Correct message regarding replaceable parameter so that it does not append an extraneous character.</li>
-    <li><code>LabelValueBean:</code> New class that defines a collection of name/value pairs that can be used with the &lt;html:options&gt; tag, and elsewhere.</li>
+    <li><code>LabelValueBean:</code> New class that defines a collection of name/value pairs that can be used with the &lt;html:options&gt; and &lt;html:optionsCollection&gt; tags, and elsewhere.</li>
     <li><code>MessageResources:</code> Escape any single quote characters that are included in the specified message string.</li>
-    <li><code>computeParameters:</code> Allow a transaction token to be the only parameter in .</li>
+    <li><code>computeParameters:</code> Allow a transaction token to be the only parameter.</li>
     <li><code>RequestUtils:</code> Change to encode ampersands when building a query string.</li>
     </ul>
 
@@ -561,7 +572,7 @@
     <li>Site Menu: Removed separate links to taglib documentation, since these are now in the Developer Guide.</li>
     <li>Newbie FAQ: The questions most likely to be asked by new developers using Struts. Still under development.</li>
     <li>Kickstart FAQ: The questions most likely to be asked when selecting Struts.</li>
-    <li>1.0 JavaDoc: Added archival copy to web site for future reference.</li>
+    <li>1.0.2 JavaDoc: Added archival copy to web site for future reference.</li>
     <li>The UserGuide "Building" pages: General revisions to reflect new features and current practices.</li>
     <li>Installation: Updated instructions for SilverStream and Resin. Add installation notes for Jetty. Added RexIP to list of nominal containers.</li>
     <li>JavaDocs: New <code>@since Struts 1.1</code> tag to indicate new packages, classes, and members added after the Struts 1.0.x version</li>
@@ -591,7 +602,7 @@
     <li>ActionMapping: input property may now refer to an ActionForward rather than a module-relative path if inputForward is set to true on the module's ControllerConfig bean [org.apache.struts.config.ControllerConfig.</li>
     <li>ActionServlet: Added convertNull parameter to simulate the Struts 1.0 behavior when populating forms. If set to true, the numeric Java wrapper class types (like java.lang.Integer) will default to null (rather than 0).</li>
     <li>ActionServlet: Added "config/$foo" parameter and deprecated several others in favor of components in the new config package. </li>
-    <li>ActionForms and related classes: now use a StringBuffer when responding a toString request in order to conserve resources.</li>
+    <li>ActionForms and related classes: Now use a StringBuffer when responding to a toString request in order to conserve resources.</li>
     <li>LookupDispatchAction: Added standard Action to help select between internationalized buttons.</li>
     <li>ActionForm class: Modified to use ActionServletWrapper rather than expose ActionServlet.</li>
     <li>ActionServletWrapper class: Added for use by ActionForm to prevent the Public String properties of ActionServlet from being changed via a query string.</li>
@@ -701,9 +712,9 @@
     <p>The following changes and bug fixes to the Struts Exercise Taglib Example
     Application have occurred:</p>
     <ul>
-    <li>Added test case for &lt;html:link> using "action" attribute. </li>
-    <li>Added test case for &lt;html:select> using &lt;html:options> based on a collection
-    saved in the page context.</li>
+    <li>Added test case for &lt;html:link&gt; using "action" attribute. </li>
+    <li>Added test cases for &lt;html:select&gt; using &lt;html:options&gt; and
+        &lt;html:optionsCollection&gt; based on a collection saved in the page context.</li>
     </ul>
 
   </section>
@@ -745,7 +756,7 @@
     <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/taglib/nested/bean/package-summary.html">taglib.nested.bean</a></li>
     <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/taglib/nested/html/package-summary.html">taglib.nested.html</a></li>
     <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/taglib/nested/logic/package-summary.html">taglib.nested.logic</a></li>
-    <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/validator/package-frame.html">validator</a></li>
+    <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/validator/package-summary.html">validator</a></li>
     </ul>
 
     <p><strong>Classes added in Struts 1.1</strong></p>
@@ -774,6 +785,7 @@
       <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/taglib/logic/EmptyTag.html"> EmptyTag</a></li>
       <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/taglib/logic/MessagesNotPresentTag.html"> MessagesNotPresentTag</a></li>
       <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/taglib/logic/MessagesPresentTag.html"> MessagesPresentTag</a></li>
+      <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/taglib/logic/NotEmptyTag.html"> NotEmptyTag</a></li>
     </ul>
     <p>upload</p>
     <ul>
