@@ -52,16 +52,16 @@
  * <http://www.apache.org/>.
  *
  */
-
 package org.apache.struts.action;
-
-import junit.framework.Test;import junit.framework.TestCase;import junit.framework.TestSuite;
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 /**
  * Unit tests for the <code>org.apache.struts.action.ActionMessage</code> class.
  *
  * @author Dominique Plante
- * @version $Revision: 1.2 $ $Date: 2002/11/16 04:58:47 $
+ * @version $Revision: 1.3 $ $Date: 2003/02/07 00:29:21 $
  */
 
 public class TestActionMessage extends TestCase
