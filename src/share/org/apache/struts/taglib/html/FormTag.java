@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.9 2001/04/18 23:51:30 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2001/04/18 23:51:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.10 2001/04/19 22:58:40 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/04/19 22:58:40 $
  *
  * ====================================================================
  *
@@ -72,10 +72,12 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionFormBeans;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMappings;
+import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
 
@@ -85,7 +87,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/04/18 23:51:30 $
+ * @version $Revision: 1.10 $ $Date: 2001/04/19 22:58:40 $
  */
 
 public class FormTag extends TagSupport {
@@ -156,6 +158,14 @@ public class FormTag extends TagSupport {
      * is stored.
      */
     protected String scope = "session";
+
+
+    /**
+     * The ActionServlet instance we are associated with (so that we can
+     * initialize the <code>servlet</code> property on any form bean that
+     * we create).
+     */
+    protected ActionServlet servlet = null;
 
 
     /**
@@ -516,6 +526,8 @@ public class FormTag extends TagSupport {
 	    try {
 		Class clazz = Class.forName(type);
 		bean = clazz.newInstance();
+                if (bean instanceof ActionForm)
+                    ((ActionForm) bean).setServlet(servlet);
 	    } catch (Exception e) {
 		throw new JspException
 		    (messages.getMessage("formTag.create", type,
@@ -588,6 +600,7 @@ public class FormTag extends TagSupport {
 	onreset = null;
 	onsubmit = null;
 	scope = "session";
+        servlet = null;
 	style = null;
 	styleClass = null;
 	target = null;
@@ -735,6 +748,7 @@ public class FormTag extends TagSupport {
         // Calculate the required values
         name = mapping.getName();
         scope = mapping.getScope();
+        servlet = mappings.getServlet();
         type = formBean.getType();
 
     }
