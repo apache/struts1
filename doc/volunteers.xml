@@ -35,6 +35,7 @@
                <li>David Graham</li>
                <li>David Winterfeldt</li>
                <li>Dominique Plante</li>
+               <li>Don Brown</li>
                <li>Don Clasen</li>
                <li>Florent Carpentier</li>
                <li>Greg Ludington</li>  
@@ -203,6 +204,11 @@
                <strong>Steve Raeburn</strong>
 
                (sraeburn at apache.org)</li>
+               
+               <li>
+               <strong>Don Brown</strong>
+
+               (mrdon at apache.org)</li>
             </ul>
          </section>
 
@@ -237,7 +243,7 @@
          <section name="More About Us" href="about">
             <h4 id="craigmcc">Craig R. McClanahan -- Committer</h4>
 
-            <p>I've been involved with servlet and JSP technology since around 1998. It started out that I needed a way to build some web applications for several projects, and liked Java a lot better than the alternatives. I also liked theprice tag of open source software, and started using Apache JServ -- later , getting involved in the project (like many people, I was whining about the twelve months it took to get from version 0.9 to version 1.0, and my son said "Dad, you know Java -- go help them finish it!" -- so I did :-).</p>
+            <p>I've been involved with servlet and JSP technology since around 1998. It started out that I needed a way to build some web applications for several projects, and liked Java a lot better than the alternatives. I also liked the price tag of open source software, and started using Apache JServ -- later, getting involved in the project (like many people, I was whining about the twelve months it took to get from version 0.9 to version 1.0, and my son said "Dad, you know Java -- go help them finish it!" -- so I did :-).</p>
 
             <p>For quite a while, I was participating a lot the JSP-INTEREST and SERVLET-INTEREST 
             <a href="http://archives.java.sun.com">mailing lists</a>
