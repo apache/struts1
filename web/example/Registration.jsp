@@ -181,5 +181,6 @@
          staticJavascript="false"/>
 <script language="Javascript1.1" src="staticJavascript.jsp"></script>
 
+<jsp:include page="footer.jsp" />
 </body>
 </html:html>

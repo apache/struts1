@@ -1,29 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="/tags/struts-bean" prefix="bean" %>
 <%@ taglib uri="/tags/struts-html" prefix="html" %>
-<%@ taglib uri="/tags/struts-logic" prefix="logic" %>
 
-<html:html locale="true">
+<html>
 <head>
 <title><bean:message key="index.title"/></title>
-<html:base/>
+<link rel="stylesheet" type="text/css" href="base.css" />
 </head>
-<body bgcolor="white">
-
-<logic:notPresent name="database" scope="application">
-  <font color="red">
-    ERROR:  User database not loaded -- check servlet container logs
-    for error messages.
-  </font>
-  <hr>
-</logic:notPresent>
-
-<logic:notPresent name="org.apache.struts.action.MESSAGE" scope="application">
-  <font color="red">
-    ERROR:  Application resources not loaded -- check servlet container
-    logs for error messages.
-  </font>
-</logic:notPresent>
 
 <h3><bean:message key="index.heading"/></h3>
 <ul>
@@ -31,13 +14,9 @@
 <li><html:link action="/logon"><bean:message key="index.logon"/></html:link></li>
 </ul>
 
-<p>&nbsp;</p>
-<html:link action="/tour">
-<font size="-1"><bean:message key="index.tour"/></font>
-</html:link>
-<p>&nbsp;</p>
+<p><html:link action="/tour"><bean:message key="index.tour"/></html:link></p>
 
-<html:img page="/struts-power.gif" alt="Powered by Struts"/>
+<p><html:img bundle="alternate" pageKey="struts.logo.path" altKey="struts.logo.alt"/></p>
 
 </body>
-</html:html>
+</html>
