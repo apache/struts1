@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.26 2003/05/17 01:56:51 dgraham Exp $
- * $Revision: 1.26 $
- * $Date: 2003/05/17 01:56:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.27 2003/05/18 22:26:08 rleland Exp $
+ * $Revision: 1.27 $
+ * $Date: 2003/05/18 22:26:08 $
  *
  * ====================================================================
  *
@@ -93,7 +93,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.26 $ $Date: 2003/05/17 01:56:51 $
+ * @version $Revision: 1.27 $ $Date: 2003/05/18 22:26:08 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -320,7 +320,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             locale = defaultLocale;
         }
 
-        Form form = resources.get(locale, formName);;
+        Form form = resources.get(locale, formName);
         if (form != null) {
             if ("true".equals(dynamicJavascript)) {
                 MessageResources messages =
