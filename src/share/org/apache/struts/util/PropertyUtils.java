@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.8 2001/01/06 04:00:57 mschachter Exp $
- * $Revision: 1.8 $
- * $Date: 2001/01/06 04:00:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.9 2001/01/07 21:40:49 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/01/07 21:40:49 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import java.lang.reflect.Method;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.8 $ $Date: 2001/01/06 04:00:57 $
+ * @version $Revision: 1.9 $ $Date: 2001/01/07 21:40:49 $
  */
 
 public final class PropertyUtils {
@@ -199,8 +199,7 @@ public final class PropertyUtils {
 	}
 
     }
-    
-    
+
 
     /**
      * Return the value of the specified indexed property of the specified
@@ -578,18 +577,8 @@ public final class PropertyUtils {
 	return (value);
 
     }
-    
-    /**
-     * @see #setIndexedProperty(Object, String, Object)
-     */
-    public static void setIndexedProperty(Object bean, String name,
-					  Object value)
-	throws IllegalAccessException, InvocationTargetException,
-	       NoSuchMethodException {
-        
-                   setIndexedProperty(bean, name, value, false);
-    }
-    
+
+
     /**
      * Set the value of the specified indexed property of the specified
      * bean, with no type conversions.  The zero-relative index of the
@@ -602,9 +591,6 @@ public final class PropertyUtils {
      *  to be modified
      * @param value Value to which the specified property element
      *  should be set
-     * @param convert Whether or not to convert <code>value</code> to it's
-     *                one of the types allowed by BeanUtils.convert() if
-     *                the write method is expecting it
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
@@ -614,7 +600,7 @@ public final class PropertyUtils {
      *  propety cannot be found
      */
     public static void setIndexedProperty(Object bean, String name,
-					  Object value, boolean convert)
+					  Object value)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
@@ -635,21 +621,10 @@ public final class PropertyUtils {
 	name = name.substring(0, delim);
 
 	// Set the specified indexed property value
-	setIndexedProperty(bean, name, index, value, convert);
+	setIndexedProperty(bean, name, index, value);
 
     }
-    
-    
-    /**
-     * @see #setIndexedProperty(Object,String,int,Object,boolean)
-     */
-    public static void setIndexedProperty(Object bean, String name,
-					  int index, Object value)
-	throws IllegalAccessException, InvocationTargetException,
-	       NoSuchMethodException {
-                   
-                   setIndexedProperty(bean, name, index, value, false);
-    }
+
 
     /**
      * Set the value of the specified indexed property of the specified
@@ -658,11 +633,8 @@ public final class PropertyUtils {
      * @param bean Bean whose property is to be set
      * @param name Simple property name of the property value to be set
      * @param index Index of the property value to be set
-     * @param value Value to which the indexed property element is to be set, 
-     *              can be an array
-     * @param convert Whether or not to convert <code>value</code> to it's
-     *                one of the types allowed by BeanUtils.convert() if
-     *                the write method is expecting it
+     * @param value Value to which the indexed property element is to be set
+     *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
      * @exception InvocationTargetException if the property accessor method
@@ -671,7 +643,7 @@ public final class PropertyUtils {
      *  propety cannot be found
      */
     public static void setIndexedProperty(Object bean, String name,
-					  int index, Object value, boolean convert)
+					  int index, Object value)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
@@ -684,27 +656,12 @@ public final class PropertyUtils {
 
 	// Call the indexed setter method if there is one
 	if (descriptor instanceof IndexedPropertyDescriptor) {
-	    Method writeMethod = 
-                ((IndexedPropertyDescriptor) descriptor).getIndexedWriteMethod();
+	    Method writeMethod = ((IndexedPropertyDescriptor) descriptor).
+		getIndexedWriteMethod();
 	    if (writeMethod != null) {
 		Object subscript[] = new Object[2];
 		subscript[0] = new Integer(index);
-                
-                if ((convert) && 
-                ((value instanceof String) || (value instanceof String[]))) {
-                
-                    Class clazz = 
-                        ((IndexedPropertyDescriptor) descriptor).getIndexedPropertyType();
-                    if (value instanceof String[]) {
-                        subscript[1] = BeanUtils.convert((String[]) value, clazz);
-                    }
-                    else {
-                        subscript[1] = BeanUtils.convert((String) value, clazz);
-                    }
-                }
-                else {
-                    subscript[1] = value;
-                }
+		subscript[1] = value;
 		writeMethod.invoke(bean, subscript);
                 return;
 	    }
@@ -727,16 +684,6 @@ public final class PropertyUtils {
 
     }
 
-    /**
-     * @see #setNestedProperty(Object,String,Object,boolean)
-     */
-    public static void setNestedProperty(Object bean,
-					 String name, Object value)
-	throws IllegalAccessException, InvocationTargetException,
-	       NoSuchMethodException {
-        
-         setNestedProperty(bean, name, value, false);
-    }
 
     /**
      * Set the value of the (possibly nested) property of the specified
@@ -745,9 +692,6 @@ public final class PropertyUtils {
      * @param bean Bean whose property is to be modified
      * @param name Possibly nested name of the property to be modified
      * @param value Value to which the property is to be set
-     * @param convert Whether or not to convert <code>value</code> to it's
-     *                one of the types allowed by BeanUtils.convert() if
-     *                the write method is expecting it
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
@@ -759,7 +703,7 @@ public final class PropertyUtils {
      *  propety cannot be found
      */
     public static void setNestedProperty(Object bean,
-					 String name, Object value, boolean convert)
+					 String name, Object value)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
@@ -780,20 +724,12 @@ public final class PropertyUtils {
 	}
 
 	if (name.indexOf(INDEXED_DELIM) >= 0)
-	    setIndexedProperty(bean, name, value, convert);
+	    setIndexedProperty(bean, name, value);
 	else
-	    setSimpleProperty(bean, name, value, convert);
+	    setSimpleProperty(bean, name, value);
 
     }
 
-    /**
-     * @see #setProperty(Object,String,Object,boolean)
-     */
-    public static void setProperty(Object bean, String name, Object value) 
-        throws IllegalAccessException, InvocationTargetException,
-	       NoSuchMethodException {
-        setProperty(bean, name, value, false);
-    }
 
     /**
      * Set the value of the specified property of the specified bean,
@@ -804,9 +740,6 @@ public final class PropertyUtils {
      * @param name Possibly indexed and/or nested name of the property
      *  to be modified
      * @param value Value to which this property is to be set
-     * @param convert Whether or not to convert <code>value</code> to it's
-     *                one of the types allowed by BeanUtils.convert() if
-     *                the write method is expecting it
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
@@ -815,40 +748,22 @@ public final class PropertyUtils {
      * @exception NoSuchMethodException if an accessor method for this
      *  propety cannot be found
      */
-    public static void setProperty(Object bean,
-                                   String name,
-                                   Object value,
-                                   boolean convert)
+    public static void setProperty(Object bean, String name, Object value)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
-	setNestedProperty(bean, name, value, convert);
+	setNestedProperty(bean, name, value);
 
     }
 
 
-    /**
-     * @see #setSimpleProperty(Object,String,Object,boolean)
-     */
-    public static void setSimpleProperty(Object bean,
-					 String name, Object value)
-	throws IllegalAccessException, InvocationTargetException,
-	       NoSuchMethodException {
-
-	setSimpleProperty(bean, name, value, false);
-    }
-    
     /**
      * Set the value of the specified simple property of the specified bean,
      * with no type conversions.
      *
      * @param bean Bean whose property is to be modified
      * @param name Name of the property to be modified
-     * @param value Value to which the property should be set.  It can be an
-     *              array
-     * @param convert Whether or not to convert <code>value</code> to it's
-     *                one of the types allowed by BeanUtils.convert() if
-     *                the write method is expecting it
+     * @param value Value to which the property should be set
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
@@ -856,18 +771,15 @@ public final class PropertyUtils {
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
      *  propety cannot be found
-     */ 
+     */
     public static void setSimpleProperty(Object bean,
-                                         String name,
-                                         Object value,
-                                         boolean convert)
-    throws IllegalAccessException, InvocationTargetException,
+					 String name, Object value)
+	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
-                                             
+
 	// Retrieve the property setter method for the specified property
 	PropertyDescriptor descriptor =
 	    getPropertyDescriptor(bean, name);
-        
 	if (descriptor == null)
 	    throw new NoSuchMethodException("Unknown property '" +
 					    name + "'");
@@ -878,23 +790,10 @@ public final class PropertyUtils {
 
 	// Call the property setter method
 	Object values[] = new Object[1];
-        
-        if ((convert) && 
-                ((value instanceof String[])) || (value instanceof String)) {
-                    
-            Class clazz = descriptor.getPropertyType();
-            
-            if (value instanceof String[]) {
-                values[0] = BeanUtils.convert((String[]) value, clazz);
-            }
-            else {
-                values[0] = BeanUtils.convert((String) value, clazz);
-            }            
-        }      
-        else {
-            values[0] = value;
-        }
+	values[0] = value;
 	writeMethod.invoke(bean, values);
+
     }
+
 
 }
