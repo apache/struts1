@@ -489,8 +489,6 @@ public ActionForward perform(ActionMapping mapping,
               application as a servlet context attribute]</li>
           <li><strong>validate</strong> - Are we using the new configuration file
               format?  [true]</li>  
-          <li><strong>validating</strong> - Should we use a validating XML parse to
-              process the configuration file (strongly recommended)? [true]</li>  
         </ul>
       </section>
       

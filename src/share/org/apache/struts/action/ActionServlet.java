@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.103 2002/06/15 23:23:00 craigmcc Exp $
- * $Revision: 1.103 $
- * $Date: 2002/06/15 23:23:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.104 2002/06/23 01:04:18 craigmcc Exp $
+ * $Revision: 1.104 $
+ * $Date: 2002/06/23 01:04:18 $
  *
  * ====================================================================
  *
@@ -265,13 +265,11 @@ import org.apache.struts.util.ServletContextWriter;
  *     application as a servlet context attribute]
  *     <em>DEPRECATED - Configure this using the "tempDir" attribute of
  *     the &lt;controller&gt; element.</em></li>
- * <li><strong>validating</strong> - Should we use a validating XML parse to
- *     process the configuration file (strongly recommended)? [true]</li>
  * </ul>
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.103 $ $Date: 2002/06/15 23:23:00 $
+ * @version $Revision: 1.104 $ $Date: 2002/06/23 01:04:18 $
  */
 
 public class ActionServlet
@@ -369,13 +367,6 @@ public class ActionServlet
      * deployment descriptor.
      */
     protected String servletName = null;
-
-
-    /**
-     * Should we use a validating XML parser to read the configuration file?
-     */
-    protected boolean validating = true;
-
 
 
     // ---------------------------------------------------- HttpServlet Methods
@@ -1004,7 +995,7 @@ public class ActionServlet
         configDigester = new Digester();
         configDigester.setDebug(detail);
         configDigester.setNamespaceAware(true);
-        configDigester.setValidating(validating);
+        configDigester.setValidating(true);
         configDigester.setUseContextClassLoader(true);
         configDigester.addRuleSet(new ConfigRuleSet());
         for (int i = 0; i < registrations.length; i += 2) {
@@ -1073,14 +1064,6 @@ public class ActionServlet
             detail = Integer.parseInt(value);
         } catch (Throwable t) {
             detail = 0;
-        }
-        value = getServletConfig().getInitParameter("validating");
-        if (value != null) {
-            if (value.equalsIgnoreCase("true") ||
-                value.equalsIgnoreCase("yes"))
-                validating = true;
-            else
-                validating = false;
         }
 
     }
