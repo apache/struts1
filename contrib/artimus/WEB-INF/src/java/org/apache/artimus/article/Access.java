@@ -21,13 +21,13 @@ import org.apache.artimus.article.sql.Statements;
 
 import org.apache.scaffold.search.LuceneUtils;
 import org.apache.artimus.search.Engine;
-import com.lucene.document.Document;
-import com.lucene.document.Field;
-import com.lucene.index.IndexWriter;
-import com.lucene.index.Term;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.Term;
 
-// import com.lucene.search.Hits;
-// import com.lucene.search.Query;
+// import org.apache.lucene.search.Hits;
+// import org.apache.lucene.search.Query;
 
 
 /**
@@ -41,8 +41,8 @@ import com.lucene.index.Term;
  * This class could be based on an interface if another
  * (non-SQL) type of access was needed.
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:12 $
- */
+ * @version $Revision: 1.2 $ $Date: 2002/01/01 13:45:43 $
+**/
 public final class Access {
 
 
@@ -54,7 +54,7 @@ public final class Access {
      * thereby encapsulating the implementation.
      * <p>
      * @exception ModelException if SQL error occurs
-     */
+    **/
     public static final void createTable()
             throws ModelException {
         try {
@@ -379,4 +379,4 @@ public final class Access {
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */
+**/
