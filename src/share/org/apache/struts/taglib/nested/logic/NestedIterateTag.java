@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTag.java,v 1.2 2002/01/22 03:30:51 arron Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/22 03:30:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTag.java,v 1.3 2002/03/13 13:13:28 arron Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/03/13 13:13:28 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -61,6 +61,7 @@ package org.apache.struts.taglib.nested.logic;
 
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
+import javax.servlet.http.HttpSession;
 import org.apache.struts.taglib.nested.*;
 import org.apache.struts.taglib.html.FormTag;
 import org.apache.struts.taglib.logic.IterateTag;
@@ -72,7 +73,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.2 $ $Date: 2002/01/22 03:30:51 $
+ * @version $Revision: 1.3 $ $Date: 2002/03/13 13:13:28 $
  */
 public class NestedIterateTag extends IterateTag implements NestedParentSupport, NestedNameSupport {
   
@@ -108,8 +109,18 @@ public class NestedIterateTag extends IterateTag implements NestedParentSupport,
     NestedPropertyHelper.setNestedProperties(this);
     isNesting = false;
     
-    /* do the tag */
-    return super.doStartTag();
+    
+    /* get the original result */
+    int temp = super.doStartTag();
+    
+    /* set the include reference */
+    HttpSession session = (HttpSession)pageContext.getSession();
+    currentReference = new NestedReference(getName(), getNestedProperty());
+    originalReference = NestedPropertyHelper.setIncludeReference(session,
+            currentReference);
+    
+    /* return the result */
+    return temp;
   }
   
   /** this is overridden so that properties being set by the JSP page aren't
@@ -128,7 +139,38 @@ public class NestedIterateTag extends IterateTag implements NestedParentSupport,
     }
   }
   
+  
+  /**
+   * This is only overriden as the include reference will need it's index
+   * updated.
+   *
+   * @return int JSP continuation directive.
+   */
+  public int doAfterBody() throws JspException {
+    /* store original result */
+    int temp = super.doAfterBody();
+    
+    if (temp != SKIP_BODY) {
+      /* set the new reference */
+      currentReference.setNestedProperty(getNestedProperty());
+    } else {
+      /* all done. clean up */
+      currentReference = null;
+      
+      HttpSession session = (HttpSession)pageContext.getSession();
+      NestedPropertyHelper.setIncludeReference(session, originalReference);
+      originalReference = null;    
+    }
+    
+    /* return super result */
+    return temp;
+  }
+  
   /* hold original property */
   private String originalProperty = null;
   private boolean isNesting = false;
+  
+  /* includes nested references */
+  private NestedReference originalReference;
+  private NestedReference currentReference;
 }

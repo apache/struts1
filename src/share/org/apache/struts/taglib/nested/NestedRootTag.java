@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedRootTag.java,v 1.2 2002/01/22 03:30:50 arron Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/22 03:30:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedRootTag.java,v 1.3 2002/03/13 13:13:28 arron Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/03/13 13:13:28 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -61,6 +61,7 @@ package org.apache.struts.taglib.nested;
 
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
+import javax.servlet.http.HttpSession;
 import org.apache.struts.util.*;
 
 /**
@@ -80,7 +81,7 @@ import org.apache.struts.util.*;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.2 $ $Date: 2002/01/22 03:30:50 $
+ * @version $Revision: 1.3 $ $Date: 2002/03/13 13:13:28 $
  */
 public class NestedRootTag extends BodyTagSupport implements NestedParentSupport, NestedNameSupport {
   
@@ -113,7 +114,7 @@ public class NestedRootTag extends BodyTagSupport implements NestedParentSupport
    * @return String value of the nestedProperty property
    */
   public String getNestedProperty() {
-    return "";
+    return this.nestedProperty;
   }
   
   /**
@@ -123,6 +124,20 @@ public class NestedRootTag extends BodyTagSupport implements NestedParentSupport
    * @return int JSP continuation directive.
    */
   public int doStartTag() throws JspException {
+    
+    /* set the nested reference for possible inclusions etc */
+    HttpSession session = (HttpSession)pageContext.getSession();
+    reference = (NestedReference)
+              session.getAttribute(NestedPropertyHelper.NESTED_INCLUDES_KEY);
+
+    if (name == null) {
+      this.name = reference.getBeanName();
+      this.nestedProperty = reference.getNestedProperty();
+    } else {
+      NestedReference newRef = new NestedReference(this.name, "");
+      session.setAttribute(NestedPropertyHelper.NESTED_INCLUDES_KEY, newRef);
+    }
+    
     return (EVAL_BODY_TAG);
   }
   
@@ -147,6 +162,10 @@ public class NestedRootTag extends BodyTagSupport implements NestedParentSupport
    * @return int JSP continuation directive.
    */
   public int doEndTag() throws JspException {
+    /* reset the reference */
+    HttpSession session = (HttpSession)pageContext.getSession();
+    NestedPropertyHelper.setIncludeReference(session, reference);
+    
     return (EVAL_PAGE);
   }
   
@@ -159,5 +178,9 @@ public class NestedRootTag extends BodyTagSupport implements NestedParentSupport
     this.name = null;
   }
   
+  /* usual member variables */
   private String name = null;
+  private String nestedProperty = "";
+  
+  private NestedReference reference;
 }

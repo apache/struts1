@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.5 2002/02/12 07:01:57 arron Exp $
- * $Revision: 1.5 $
- * $Date: 2002/02/12 07:01:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.6 2002/03/13 13:13:28 arron Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/03/13 13:13:28 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,6 +62,7 @@ package org.apache.struts.taglib.nested;
 import java.util.StringTokenizer;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
+import javax.servlet.http.HttpSession;
 import org.apache.struts.taglib.nested.html.*;
 import org.apache.struts.taglib.nested.logic.*;
 import org.apache.struts.taglib.html.FormTag;
@@ -76,9 +77,34 @@ import org.apache.struts.taglib.html.FormTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.5 $ $Date: 2002/02/12 07:01:57 $
+ * @version $Revision: 1.6 $ $Date: 2002/03/13 13:13:28 $
  */ 
 public class NestedPropertyHelper {
+  
+  /* key that the tags can rely on to set the details against */
+  public static final String NESTED_INCLUDES_KEY = "<nested-includes-key/>";
+  
+  /** Sets the passed reference to the session object, and returns any reference
+   * that was already there
+   * @param session User's session object
+   * @param reference New reference to put into the session
+   */
+  public static final NestedReference setIncludeReference(HttpSession session,
+          NestedReference reference) {
+    /* get the old one if any */
+    NestedReference nr = (NestedReference)
+            session.getAttribute(NESTED_INCLUDES_KEY);
+    if (reference != null) {
+      /* put in the new one */
+      session.setAttribute(NESTED_INCLUDES_KEY, reference);
+    } else {
+      /* null target, just remove it */
+      session.removeAttribute(NESTED_INCLUDES_KEY);
+    }
+    /* return the old */
+    return nr;
+  }
+  
   
   
   /** 
@@ -128,8 +154,7 @@ public class NestedPropertyHelper {
   public static String getNestedProperty(String property, Tag parentTag) {
     
     /* if we're just under a root tag no work required */
-    if ((parentTag instanceof NestedRootTag)
-        || (parentTag instanceof FormTag)) {
+    if (parentTag instanceof FormTag) {
       /* don't forget to take care of the relative properties */
       if (property.indexOf('/') == -1) {
         return property;
@@ -151,6 +176,10 @@ public class NestedPropertyHelper {
       property = getRelativeProperty(property,nestedParent.getNestedProperty());
     }
     
+    /* Some properties may be at the start of their hierarchy */
+    if (property.startsWith(".")) {
+      return property.substring(1, property.length());
+    }
     return property;
   }
   

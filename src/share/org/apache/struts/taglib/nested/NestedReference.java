@@ -1,6 +1,6 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.3 2002/03/13 13:13:28 arron Exp $
- * $Revision: 1.3 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedReference.java,v 1.1 2002/03/13 13:13:28 arron Exp $
+ * $Revision: 1.1 $
  * $Date: 2002/03/13 13:13:28 $
  * ====================================================================
  *
@@ -57,68 +57,60 @@
  * <http://www.apache.org/>.
  *
  */
-package org.apache.struts.taglib.nested.html;
 
-import org.apache.struts.taglib.nested.*;
-import javax.servlet.jsp.*;
-import javax.servlet.jsp.tagext.*;
-import javax.servlet.http.HttpSession;
-import org.apache.struts.taglib.html.FormTag;
+package org.apache.struts.taglib.nested;
 
 /**
- * NestedFormTag.
+ * So that a nested hierarchy can penetrate a dynamic JSP include, this class
+ * will hold the details of a bean name and nested property.
+ *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.3 $ $Date: 2002/03/13 13:13:28 $
+ * @version $Revision: 1.1 $
  */
-public class NestedFormTag extends FormTag implements NestedParentSupport {
-
+public class NestedReference {
+  
+  
   /**
-   * The only added property to the class. For use in proper nesting.
-   * @return String value of the property and the current index.
+   * Constructor takes the all the relevant details to init the object.
+   * @param name String name of the bean that the include is to reference
+   * @param property String nested property value that the include will be
+   *                 continuing on with.
+   */
+  public NestedReference(String name, String property) {
+    this.beanName = name;
+    this.property = property;
+  }
+  
+  /** Getter for the bean name
+   * @return String value that will be the bean's reference
+   */
+  public String getBeanName() {
+    return beanName;
+  }
+  
+  /** Setter for the bean name
+   * @param newName String value to set the bean reference.
+   */
+  public void setBeanName(String newName) {
+    this.beanName = newName;
+  }
+  
+  /** Getter for the nested property
+   * @return String value that is the nested property for the current nesting
    */
   public String getNestedProperty() {
-    return "";
+    return this.property;
   }
   
-  public String getProperty() {
-    return "";
-  }
-  
-  public void setProperty(String newProperty) {}
-  
-
-  /**
-   * Overriding to allow the chance to set the details of the system, so that
-   * dynamic includes can be possible
-   * @return int JSP continuation directive.
+  /** Setter for the nested property
+   * @param newProperty String value of the new current nesting level
    */
-  public int doStartTag() throws JspException {
-    /* store original result */
-    int temp = super.doStartTag();
-    
-    /* set the details */
-    HttpSession session = (HttpSession)pageContext.getSession();
-    NestedReference nr = new NestedReference(getName(), getNestedProperty());
-    NestedPropertyHelper.setIncludeReference(session, nr);
-    
-    /* continue */
-    return temp;
+  public void setNestedProperty(String newProperty) {
+    this.property = newProperty;
   }
   
-  /**
-   * This is only overriden to clean up the include reference
-   * @return int JSP continuation directive.
-   */
-  public int doAfterBody() throws JspException {
-    /* store original result */
-    int temp = super.doAfterBody();
-
-    /* all done. clean up */
-    HttpSession session = (HttpSession)pageContext.getSession();
-    NestedPropertyHelper.setIncludeReference(session, null);
-    
-    /* return super result */
-    return temp;
-  }
+  /* Usual member variables */
+  private String beanName;
+  private String property;
 }

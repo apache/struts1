@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyTag.java,v 1.2 2002/01/22 03:30:50 arron Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/22 03:30:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyTag.java,v 1.3 2002/03/13 13:13:28 arron Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/03/13 13:13:28 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -61,6 +61,7 @@ package org.apache.struts.taglib.nested;
 
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
+import javax.servlet.http.HttpSession;
 import org.apache.struts.util.*;
 
 /**
@@ -75,7 +76,7 @@ import org.apache.struts.util.*;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.2 $ $Date: 2002/01/22 03:30:50 $
+ * @version $Revision: 1.3 $ $Date: 2002/03/13 13:13:28 $
  */
 public class NestedPropertyTag extends BodyTagSupport implements NestedParentSupport, NestedNameSupport {
   
@@ -134,6 +135,13 @@ public class NestedPropertyTag extends BodyTagSupport implements NestedParentSup
     isNesting = true;
     NestedPropertyHelper.setNestedProperties(this);
     isNesting = false;
+    
+    /* make the current reference */
+    NestedReference nr = new NestedReference(getName(), getNestedProperty());
+    /* replace and store old session */
+    HttpSession session = (HttpSession)pageContext.getSession();
+    originalReference = NestedPropertyHelper.setIncludeReference(session,nr);
+    
     return (EVAL_BODY_TAG);
   }
   
@@ -160,6 +168,12 @@ public class NestedPropertyTag extends BodyTagSupport implements NestedParentSup
    * @return int JSP continuation directive.
    */
   public int doEndTag() throws JspException {
+    
+    /* set the reference back */
+    HttpSession session = (HttpSession)pageContext.getSession();
+    NestedPropertyHelper.setIncludeReference(session, originalReference);
+    originalReference = null;
+    
     return (EVAL_PAGE);
   }
   
@@ -180,4 +194,7 @@ public class NestedPropertyTag extends BodyTagSupport implements NestedParentSup
   /* hold original property */
   private String originalProperty = null;
   private boolean isNesting = false;
+  
+  /* includes nested references */
+  private NestedReference originalReference;
 }
