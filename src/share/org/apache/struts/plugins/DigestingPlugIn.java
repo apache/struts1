@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.3 2003/08/07 04:02:42 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/08/07 04:02:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.4 2003/08/10 10:20:50 sraeburn Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/08/10 10:20:50 $
  *
  * ====================================================================
  *
@@ -86,8 +86,8 @@ import org.xml.sax.SAXException;
  * 
  * @author Joe Germuska
  * @author David Graham
- * @version $Revision: 1.3 $
- * @see PlugIn
+ * @version $Revision: 1.4 $
+ * @see org.apache.struts.PlugIn
  * @since Struts 1.2
  */
 public class DigestingPlugIn implements PlugIn {
@@ -231,7 +231,7 @@ public class DigestingPlugIn implements PlugIn {
      * @return a configured Digester
      * @throws FileNotFoundException
      * @throws MalformedURLException
-     * @see getConfigURL(String, String)
+     * @see #getConfigURL(String, String)
      */
     protected Digester digesterFromXml(String path, String source)
         throws IOException {
@@ -350,7 +350,7 @@ public class DigestingPlugIn implements PlugIn {
 
     /**
      * @param configPath the path to configuration information for this PlugIn.
-     * @see configSource
+     * @see #configSource
      */
     public void setConfigPath(String configPath) {
         this.configPath = configPath;
@@ -358,7 +358,7 @@ public class DigestingPlugIn implements PlugIn {
 
     /**
      * @return the configPath property
-     * @see configSource
+     * @see #configSource
      */
     public String getConfigPath() {
         return configPath;
@@ -381,7 +381,7 @@ public class DigestingPlugIn implements PlugIn {
      * </li>
      * </ul>
      * @param configSource the source (lookup method) for the config file.
-     * @see configPath
+     * @see #configPath
      */
     public void setConfigSource(String configSource) {
         this.configSource = configSource;
@@ -390,7 +390,7 @@ public class DigestingPlugIn implements PlugIn {
     /**
      * @return the string describing which access method should be used to 
      * resolve configPath.
-     * @see configPath
+     * @see #configPath
      */
     public String getConfigSource() {
         return configSource;
@@ -440,8 +440,8 @@ public class DigestingPlugIn implements PlugIn {
     /**
      * <p>The path to a Digester XML configuration file, relative to the
      * <code>digesterSource</code> property. (Optional)</p>
-     * @see digesterSource
-     * @see getConfigURL(String, String)
+     * @see #digesterSource
+     * @see #getConfigURL(String, String)
      */
     public void setDigesterPath(String digesterPath) {
         this.digesterPath = digesterPath;
@@ -449,8 +449,8 @@ public class DigestingPlugIn implements PlugIn {
 
     /**
      * @return the configured path to a Digester XML config file, or null.
-     * @see digesterSource
-     * @see getConfigURL(String, String)
+     * @see #digesterSource
+     * @see #getConfigURL(String, String)
      */
     public String getDigesterPath() {
         return digesterPath;
@@ -461,7 +461,7 @@ public class DigestingPlugIn implements PlugIn {
      * (Optional)
      * </p>
      * @param digesterSource
-     * @see getConfigURL(String, String)
+     * @see #getConfigURL(String, String)
      */
     public void setDigesterSource(String digesterSource) {
         this.digesterSource = digesterSource;
@@ -470,7 +470,7 @@ public class DigestingPlugIn implements PlugIn {
     /**
      * @return the configured lookup mechanism for resolving 
      * <code>digesterPath</code>.
-     * @see getConfigURL(String, String)
+     * @see #getConfigURL(String, String)
      */
     public String getDigesterSource() {
         return this.digesterSource;
