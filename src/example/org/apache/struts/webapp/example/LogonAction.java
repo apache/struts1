@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.18 2003/09/04 16:03:42 husted Exp $
- * $Revision: 1.18 $
- * $Date: 2003/09/04 16:03:42 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.19 2003/12/21 22:53:19 husted Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/12/21 22:53:19 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.ModuleException;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2003/09/04 16:03:42 $
+ * @version $Revision: 1.19 $ $Date: 2003/12/21 22:53:19 $
  */
 public final class LogonAction extends Action {
 
@@ -93,20 +93,7 @@ public final class LogonAction extends Action {
 
     // --------------------------------------------------------- Public Methods
 
-    /**
-     * Process the specified HTTP request, and create the corresponding HTTP
-     * response (or forward to another web component that will create it).
-     * Return an <code>ActionForward</code> instance describing where and how
-     * control should be forwarded, or <code>null</code> if the response has
-     * already been completed.
-     *
-     * @param mapping The ActionMapping used to select this instance
-     * @param form The optional ActionForm bean for this request (if any)
-     * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
-     *
-     * @exception Exception if business logic throws an exception
-     */
+        // See superclass for Javadoc
     public ActionForward execute(
         ActionMapping mapping,
         ActionForm form,
