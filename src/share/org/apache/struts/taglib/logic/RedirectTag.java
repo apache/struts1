@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.19 2003/08/28 05:57:58 rleland Exp $
- * $Revision: 1.19 $
- * $Date: 2003/08/28 05:57:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.20 2004/01/01 19:27:19 husted Exp $
+ * $Revision: 1.20 $
+ * $Date: 2004/01/01 19:27:19 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.taglib.TagUtils;
  * Generate a URL-encoded redirect to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2003/08/28 05:57:58 $
+ * @version $Revision: 1.20 $ $Date: 2004/01/01 19:27:19 $
  */
 public class RedirectTag extends TagSupport {
 
@@ -246,6 +246,20 @@ public class RedirectTag extends TagSupport {
         this.transaction = transaction;
     }
 
+	/**
+	 * Use character encoding from ServletResponse#getCharacterEncoding
+	 * to get bytes of the url string for urlencoding?
+	 */
+	protected boolean useLocalEncoding = false;
+    
+	public boolean isUseLocalEncoding() {
+	   return useLocalEncoding;
+	}
+
+	public void setUseLocalEncoding(boolean b) {
+	   useLocalEncoding = b;
+	}
+
     // --------------------------------------------------------- Public Methods
 
     /**
@@ -293,7 +307,7 @@ public class RedirectTag extends TagSupport {
         String url = null;
         try {
             url =
-                TagUtils.getInstance().computeURL(
+                TagUtils.getInstance().computeURLWithCharEncoding(
                     pageContext,
                     forward,
                     href,
@@ -301,7 +315,8 @@ public class RedirectTag extends TagSupport {
                     null,
                     params,
                     anchor,
-                    true);
+                    true,
+                    useLocalEncoding);
 
         } catch (MalformedURLException e) {
             TagUtils.getInstance().saveException(pageContext, e);

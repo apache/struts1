@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.32 2003/08/02 20:35:28 dgraham Exp $
- * $Revision: 1.32 $
- * $Date: 2003/08/02 20:35:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.33 2004/01/01 19:27:19 husted Exp $
+ * $Revision: 1.33 $
+ * $Date: 2004/01/01 19:27:19 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.32 $
+ * @version $Revision: 1.33 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -381,7 +381,17 @@ public class ImgTag extends BaseHandlerTag {
         this.width = width;
     }
 
-    // --------------------------------------------------------- Public Methods
+	protected boolean useLocalEncoding = false;
+    
+    public boolean isUseLocalEncoding() {
+	   return useLocalEncoding;
+    }
+
+    public void setUseLocalEncoding(boolean b) {
+	   useLocalEncoding = b;
+    }
+   
+   // --------------------------------------------------------- Public Methods
 
     /**
      * Render the beginning of the IMG tag.
@@ -600,6 +610,11 @@ public class ImgTag extends BaseHandlerTag {
             return (url);
         }
 
+		String charEncoding = "UTF-8";
+		if(useLocalEncoding){
+			charEncoding = pageContext.getResponse().getCharacterEncoding();
+		}
+		
         // Start with an unadorned URL as specified
         StringBuffer src = new StringBuffer(url);
 
@@ -614,7 +629,7 @@ public class ImgTag extends BaseHandlerTag {
             src.append('=');
             Object value = TagUtils.getInstance().lookup(pageContext, paramName, paramProperty, paramScope);
             if (value != null)
-                src.append(TagUtils.getInstance().encodeURL(value.toString()));
+                src.append(TagUtils.getInstance().encodeURL(value.toString(), charEncoding));
         }
 
         // Just return the URL if there is no bean to look up
@@ -665,7 +680,7 @@ public class ImgTag extends BaseHandlerTag {
                     }
                     src.append(key);
                     src.append('=');
-                    src.append(TagUtils.getInstance().encodeURL(values[i]));
+                    src.append(TagUtils.getInstance().encodeURL(values[i], charEncoding));
                 }
             } else {
 
@@ -677,7 +692,7 @@ public class ImgTag extends BaseHandlerTag {
                 }
                 src.append(key);
                 src.append('=');
-                src.append(TagUtils.getInstance().encodeURL(value.toString()));
+                src.append(TagUtils.getInstance().encodeURL(value.toString(), charEncoding));
             }
         }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.26 2003/09/09 03:44:42 rleland Exp $
- * $Revision: 1.26 $
- * $Date: 2003/09/09 03:44:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.27 2004/01/01 19:27:19 husted Exp $
+ * $Revision: 1.27 $
+ * $Date: 2004/01/01 19:27:19 $
  *
  * ====================================================================
  *
@@ -101,7 +101,7 @@ import org.apache.struts.util.RequestUtils;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.26 $
+ * @version $Revision: 1.27 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -310,6 +310,28 @@ public class TagUtils {
 
     }
 
+	public String computeURL(
+			PageContext pageContext,
+			String forward,
+			String href,
+			String page,
+			String action,
+			Map params,
+			String anchor,
+			boolean redirect)
+			throws MalformedURLException {
+			return this.computeURLWithCharEncoding(
+								pageContext,
+								forward,
+								href,
+								page,
+								action,
+								params,
+								anchor,
+								redirect,
+								false);
+	}
+	
     /**
      * Compute a hyperlink URL based on the <code>forward</code>,
      * <code>href</code>, <code>action</code> or <code>page</code> parameter
@@ -335,7 +357,7 @@ public class TagUtils {
      * @exception java.net.MalformedURLException if a URL cannot be created
      *  for the specified parameters
      */
-    public String computeURL(
+    public String computeURLWithCharEncoding(
             PageContext pageContext,
             String forward,
             String href,
@@ -343,10 +365,11 @@ public class TagUtils {
             String action,
             Map params,
             String anchor,
-            boolean redirect)
+            boolean redirect,
+	        boolean useLocalEncoding)
             throws MalformedURLException {
 
-        return computeURL(
+        return computeURLWithCharEncoding(
                 pageContext,
                 forward,
                 href,
@@ -355,9 +378,35 @@ public class TagUtils {
                 params,
                 anchor,
                 redirect,
-                true);
+                true,
+                useLocalEncoding);
     }
 
+	public String computeURL(
+			PageContext pageContext,
+			String forward,
+			String href,
+			String page,
+			String action,
+			Map params,
+			String anchor,
+			boolean redirect,
+			boolean encodeSeparator)
+			throws MalformedURLException {
+				return computeURLWithCharEncoding(
+				pageContext,
+				forward,
+				href,
+				page,
+				action,
+				params,
+				anchor,
+				redirect,
+				encodeSeparator,
+				false
+				);
+	}
+	
     /**
      * Compute a hyperlink URL based on the <code>forward</code>,
      * <code>href</code>, <code>action</code> or <code>page</code> parameter
@@ -382,11 +431,14 @@ public class TagUtils {
      * @param encodeSeparator This is only checked if redirect is set to false (never
      * encoded for a redirect).  If true, query string parameter separators are encoded
      * as &gt;amp;, else &amp; is used.
+     * @param useLocalEncoding If set to true, urlencoding is done on the bytes of 
+     * character encoding from ServletResponse#getCharacterEncoding. Use UTF-8
+     * otherwise.
      * @return URL with session identifier
      * @exception java.net.MalformedURLException if a URL cannot be created
      *  for the specified parameters
      */
-    public String computeURL(
+    public String computeURLWithCharEncoding(
             PageContext pageContext,
             String forward,
             String href,
@@ -395,8 +447,13 @@ public class TagUtils {
             Map params,
             String anchor,
             boolean redirect,
-            boolean encodeSeparator)
+            boolean encodeSeparator,
+            boolean useLocalEncoding)
             throws MalformedURLException {
+       String charEncoding = "UTF-8";
+       if(useLocalEncoding){
+       	charEncoding = pageContext.getResponse().getCharacterEncoding();
+       }
 
         // TODO All the computeURL() methods need refactoring!
 
@@ -456,7 +513,7 @@ public class TagUtils {
                 url.setLength(hash);
             }
             url.append('#');
-            url.append(this.encodeURL(anchor));
+            url.append(this.encodeURL(anchor, charEncoding));
         }
 
         // Add dynamic parameters if requested
@@ -496,7 +553,7 @@ public class TagUtils {
                     } else {
                         url.append(separator);
                     }
-                    url.append(this.encodeURL(key));
+                    url.append(this.encodeURL(key, charEncoding));
                     url.append('='); // Interpret null as "no value"
                 } else if (value instanceof String) {
                     if (!question) {
@@ -505,9 +562,9 @@ public class TagUtils {
                     } else {
                         url.append(separator);
                     }
-                    url.append(this.encodeURL(key));
+                    url.append(this.encodeURL(key, charEncoding));
                     url.append('=');
-                    url.append(this.encodeURL((String) value));
+                    url.append(this.encodeURL((String) value, charEncoding));
                 } else if (value instanceof String[]) {
                     String values[] = (String[]) value;
                     for (int i = 0; i < values.length; i++) {
@@ -517,9 +574,9 @@ public class TagUtils {
                         } else {
                             url.append(separator);
                         }
-                        url.append(this.encodeURL(key));
+                        url.append(this.encodeURL(key, charEncoding));
                         url.append('=');
-                        url.append(this.encodeURL(values[i]));
+                        url.append(this.encodeURL(values[i], charEncoding));
                     }
                 } else /* Convert other objects to a string */ {
                     if (!question) {
@@ -528,16 +585,16 @@ public class TagUtils {
                     } else {
                         url.append(separator);
                     }
-                    url.append(this.encodeURL(key));
+                    url.append(this.encodeURL(key, charEncoding));
                     url.append('=');
-                    url.append(this.encodeURL(value.toString()));
+                    url.append(this.encodeURL(value.toString(), charEncoding));
                 }
             }
 
             // Re-add the saved anchor (if any)
             if (anchor != null) {
                 url.append('#');
-                url.append(this.encodeURL(anchor));
+                url.append(this.encodeURL(anchor, charEncoding));
             }
 
         }
@@ -556,19 +613,35 @@ public class TagUtils {
 
     }
 
+
+	/**
+	 * URLencodes a string assuming the character encoding is UTF-8.
+	 * 
+	 * @param url
+	 * @return String The encoded url in UTF-8
+	 */
+	public String encodeURL(String url) {
+		return encodeURL(url, "UTF-8");
+	}
+	
     /**
      * Use the new URLEncoder.encode() method from Java 1.4 if available, else
      * use the old deprecated version.  This method uses reflection to find the 
      * appropriate method; if the reflection operations throw exceptions, this 
      * will return the url encoded with the old URLEncoder.encode() method.
+     * @param enc The character encoding the urlencode is performed on.  
      * @return String The encoded url.
      */
-    public String encodeURL(String url) {
+    public String encodeURL(String url, String enc) {
         try {
+        	
+			if(enc==null || enc.length()==0){
+				enc = "UTF-8";
+			}
 
             // encode url with new 1.4 method and UTF-8 encoding
             if (encode != null) {
-                return (String) encode.invoke(null, new Object[]{url, "UTF-8"});
+                return (String) encode.invoke(null, new Object[]{url,  enc});
             }
 
         } catch (IllegalAccessException e) {

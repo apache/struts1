@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.25 2003/11/27 05:38:54 husted Exp $
+ * $Id: IncludeTag.java,v 1.26 2004/01/01 19:27:19 husted Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -85,7 +85,7 @@ import org.apache.struts.taglib.TagUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.25 $ $Date: 2003/11/27 05:38:54 $
+ * @version $Revision: 1.26 $ $Date: 2004/01/01 19:27:19 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -192,6 +192,16 @@ public class IncludeTag extends TagSupport {
     public void setTransaction(boolean transaction) {
         this.transaction = transaction;
     }
+    
+    protected boolean useLocalEncoding = false;
+    
+	public boolean isUseLocalEncoding() {
+		return useLocalEncoding;
+	}
+
+	public void setUseLocalEncoding(boolean b) {
+		useLocalEncoding = b;
+	}
 
     // --------------------------------------------------------- Public Methods
 
@@ -220,7 +230,7 @@ public class IncludeTag extends TagSupport {
         URL url = null;
         try {
             urlString =
-                TagUtils.getInstance().computeURL(pageContext, forward, href, page, null,params, anchor, false);
+                TagUtils.getInstance().computeURLWithCharEncoding(pageContext, forward, href, page, null,params, anchor, false, useLocalEncoding);
             if (urlString.indexOf(':') < 0) {
                 HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
                 url = new URL(RequestUtils.requestURL(request), urlString);
@@ -306,6 +316,6 @@ public class IncludeTag extends TagSupport {
         id = null;
         page = null;
         transaction = false;
-    }
+    }    
 
 }

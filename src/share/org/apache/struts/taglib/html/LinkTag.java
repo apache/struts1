@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.31 2003/07/31 00:19:04 dgraham Exp $
- * $Revision: 1.31 $
- * $Date: 2003/07/31 00:19:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.32 2004/01/01 19:27:19 husted Exp $
+ * $Revision: 1.32 $
+ * $Date: 2004/01/01 19:27:19 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Craig R. McClanahan
  * @author James Turner
- * @version $Revision: 1.31 $ $Date: 2003/07/31 00:19:04 $
+ * @version $Revision: 1.32 $ $Date: 2004/01/01 19:27:19 $
  */
 public class LinkTag extends BaseHandlerTag {
 
@@ -324,6 +324,16 @@ public class LinkTag extends BaseHandlerTag {
         this.indexId = indexId;
     }
 
+	protected boolean useLocalEncoding = false;
+    
+	public boolean isUseLocalEncoding() {
+	   return useLocalEncoding;
+	}
+
+	public void setUseLocalEncoding(boolean b) {
+	   useLocalEncoding = b;
+	}
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -488,8 +498,8 @@ public class LinkTag extends BaseHandlerTag {
 
         String url = null;
         try {
-            url = TagUtils.getInstance().computeURL(pageContext, forward, href,
-                                          page, action, params, anchor, false);
+            url = TagUtils.getInstance().computeURLWithCharEncoding(pageContext, forward, href,
+                                          page, action, params, anchor, false, useLocalEncoding);
         } catch (MalformedURLException e) {
             TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.139 2003/12/20 22:42:52 husted Exp $
- * $Revision: 1.139 $
- * $Date: 2003/12/20 22:42:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.140 2004/01/01 19:27:20 husted Exp $
+ * $Revision: 1.140 $
+ * $Date: 2004/01/01 19:27:20 $
  *
  * ====================================================================
  *
@@ -106,7 +106,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.139 $ $Date: 2003/12/20 22:42:52 $
+ * @version $Revision: 1.140 $ $Date: 2004/01/01 19:27:20 $
  */
 public class RequestUtils {
 
@@ -1162,9 +1162,8 @@ public class RequestUtils {
             throws MalformedURLException {
         // :TODO: Remove after Struts 1.2
 
-        return computeURL(pageContext, forward, href, page, null, params,
-                          anchor, redirect);
-
+        return (TagUtils.getInstance().computeURLWithCharEncoding(
+                pageContext, forward, href, page, null, params, anchor, redirect, false));
     }
 
 
