@@ -1,0 +1,300 @@
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+	   
+<!-- Tiles definitions   -->
+
+<tiles-definitions>
+
+  <!-- =======================================================  -->
+  <!-- Master layout  									-->
+  <!-- =======================================================  -->
+
+  <!-- Master layout and default tiles used by all pages -->
+  <definition name="examples.masterPage" path="/layouts/classicLayout.jsp">
+	  <put name="title"  value="Tiles 1.1 Examples" />
+	  <put name="header" value="/examples/tiles/header.jsp" />
+	  <put name="menu"   value="examples.menu.bar" />
+	  <put name="footer" value="/examples/tiles/footer.jsp" />
+	  <put name="body"   value="/examples/tiles/body.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Menu bar and submenus definitions  									-->
+  <!-- =======================================================  -->
+
+  <!-- Menu bar definition -->
+  <!-- Some definition come from other definition files (ex : doc.menu.*) -->
+<definition name="examples.menu.bar" path="/layouts/vboxLayout.jsp" >
+  <putList name="list" >
+    <add value="examples.userMenu" />
+    <add value="examples.menu.links" />
+    <add value="doc.menu.links" />
+    <add value="examples.menu.settings" />
+    <add value="doc.menu.taglib.references" />
+    <add value="doc.menu.printer.friendly" />
+    <add value="examples.menu.admin" />
+  </putList>
+
+</definition>
+
+  <!-- User menu definition -->
+  <!-- This menu is customizable by user. Definition only contains default items -->
+<definition name="examples.userMenu" path="/layouts/menu.jsp" 
+            controllerClass="org.apache.struts.example.tiles.portal.UserMenuAction"  >
+  <put name="storeUnderName" value="examples.user.myMenu"/>
+  <put name="title" value="My Menu" />
+    <putList name="items" >
+      <item value="customize"    link="/examples/myMenuSettings.jsp"  classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    </putList>
+</definition>
+
+  <!-- Examples main menu definition -->
+<definition name="examples.menu.links" path="/layouts/menu.jsp" >
+  <put name="title" value="Examples" />
+  <putList name="items" >
+    <item value="Examples Home"    
+			link="/examples/index.jsp"             
+          	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    <item value="Portal"    
+			link="/examples/portal.jsp"             
+          	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    <item value="my Portal"    
+			link="/examples/myPortal.jsp"             
+          	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    <item value="my Portal Settings"           
+			link="/examples/myPortalSettings.jsp" 
+       		classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    <item value="my Menu Settings"    
+			link="/examples/myMenuSettings.jsp"       
+       		classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    <item value="Tabs (choosen pages)"   
+			link="/examples/tabs.jsp"       
+          	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    <item value="Tabs (Summaries)"   
+			link="/examples/summariesTabs.jsp"       
+          	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    <item value="Rss Channels"   
+			link="/examples/rssChannels.jsp"       
+          	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+  </putList>
+</definition>
+
+  <!-- Preferences menu definition -->
+<definition name="examples.menu.settings" path="/layouts/menu.jsp" >
+  <put name="title" value="Preferences" />
+    <putList name="items" >
+    <item value="my Portal Settings"           
+			link="/examples/myPortalSettings.jsp" 
+       		classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    <item value="my Menu Settings"    
+			link="/examples/myMenuSettings.jsp"       
+       		classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    </putList>
+</definition>
+
+  <!-- admin menu definition -->
+<definition name="examples.menu.admin" path="/layouts/menu.jsp" >
+  <put name="title" value="Admin" />
+  <putList name="items" >
+    <item value="Reload"     link="/admin/tiles/reload.do"      classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+  </putList>
+</definition>
+
+  <!-- =======================================================  -->
+  <!-- Index portal page definitions  									-->
+  <!-- =======================================================  -->
+
+    <!-- Index page -->
+  <definition name="examples.index.page" extends="examples.masterPage">
+	  <put name="title"  value="Tiles 1.1 Example Summaries" />
+	  <put name="body"   value="examples.index.portal.body" />
+  </definition>
+
+    <!-- Portal Body declaration-->
+  <definition name="examples.index.portal.body" path="/layouts/columnsLayout.jsp" >
+	  <put name="numCols" value="2" />
+	  <putList name="list0" >
+	    <add value="/examples/tiles/portalSummary.jsp" />
+	    <add value="/examples/tiles/myPortalSummary.jsp" />
+	    <add value="/examples/tiles/rssChannelsSummary.jsp" />
+	    <add value="/examples/tiles/adminSummary.jsp" />
+	    <add value="/examples/tiles/componentsSummary.jsp" />
+	  </putList>
+	  <putList name="list1" >
+	    <add value="/examples/tiles/menuSummary.jsp" />
+	    <add value="/examples/tiles/myMenuSummary.jsp" />
+	    <add value="/examples/tiles/tabsSummary.jsp" />
+	    <add value="/examples/tiles/i18nSummary.jsp" />
+	    <add value="/examples/tiles/multiChannelsSummary.jsp" />
+	  </putList>
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Portal page definitions  									-->
+  <!-- =======================================================  -->
+
+    <!-- Portal page -->
+  <definition name="examples.portal.page" extends="examples.masterPage">
+	  <put name="title"  value="Tiles 1.1 Portal" />
+	  <put name="body"   value="examples.portal.body" />
+  </definition>
+
+    <!-- Portal Body declaration-->
+  <definition name="examples.portal.body" path="/layouts/columnsLayout.jsp"
+              controllerUrl="/portal/myPortal.do" >
+	  <put name="numCols" value="2" />
+	  <putList name="list0" >
+	    <add value="/examples/tiles/portal/login.jsp" />
+	    <add value="/examples/tiles/portal/messages.jsp" />
+	    <add value="/examples/tiles/portal/newsFeed.jsp" />
+	  </putList>
+	  <putList name="list1" >
+	    <add value="/examples/tiles/portal/advert3.jsp" />
+	    <add value="/examples/tiles/portal/stocks.jsp" />
+	    <add value="/examples/tiles/portal/whatsNew.jsp" />
+	    <add value="/examples/tiles/portal/advert2.jsp" />
+	  </putList>
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Portal settings page definitions  									-->
+  <!-- =======================================================  -->
+
+    <!-- Portal settings page -->
+  <definition name="examples.portal.settings.page" extends="examples.masterPage">
+	  <put name="title"  value="Tiles 1.1 Portal Settings" />
+	  <put name="body"   value="examples.portal.settings.body" />
+  </definition>
+
+    <!-- Portal settings Body declaration-->
+	<!-- Extends portal body to provide the same default set of tiles -->
+  <definition name="examples.portal.settings.body" path="/examples/tiles/myPortalSettings.jsp" 
+              extends="examples.portal.body" 
+			  controllerUrl="/examples/controller/myPortalSettings.do" >
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Menu settings page definitions  									-->
+  <!-- =======================================================  -->
+
+    <!-- Portal settings page -->
+  <definition name="examples.userMenu.settings.page" extends="examples.masterPage">
+	  <put name="title"  value="Tiles 1.1 My Menu Settings" />
+	  <put name="body"   value="examples.userMenu.settings.body" />
+  </definition>
+
+    <!-- Portal settings Body declaration-->
+	<!-- Extends user menu body to provide the same default parameters -->
+  <definition name="examples.userMenu.settings.body" path="/examples/tiles/myMenuSettings.jsp" 
+              extends="examples.userMenu" 
+			  controllerUrl="/examples/controller/myMenuSettings.do" >
+	  <putList name="defaultChoice" >
+	    <add value="examples.userMenu" />
+	    <add value="portal.menu.links" />
+	    <add value="portal.menu.preferences" />
+	    <add value="doc.menu.taglib.references" />
+	    <add value="doc.menu.printer.friendly" />
+	    <add value="doc.menu.old.documents" />
+	  </putList>
+		
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Tabs test page and definitions  									-->
+  <!-- =======================================================  -->
+
+    <!-- tabs page -->
+  <definition name="examples.tabs.page" extends="examples.masterPage">
+	  <put name="title"  value="Tiles 1.1 Tabs layout example" />
+	  <put name="body"   value="examples.tabs.body" />
+  </definition>
+
+	  <!-- body using tabs -->
+  <definition name="examples.tabs.body" path="/layouts/tabsLayout.jsp" >
+	<put name="selectedIndex"  value="0" />
+	<put name="parameterName"  value="selected" />
+    <putList name="tabList" >
+      <item value="Doc Home"           
+	  		link="/index.jsp"             
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Quick overview" 
+	  		link="/doc/quickOverview.jsp" 
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Tutorial"       
+	  		link="/doc/tutorial.jsp"       
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Examples Home"       
+	  		link="/examples/index.jsp"       
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Tutorial Home"       
+	  		link="/tutorial/index.jsp"       
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+     <item value="Login" 
+	  		link="/examples/tiles/portal/login.jsp" 
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Messages" 
+	  		link="/examples/tiles/portal/messages.jsp" 
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="NewsFeed" 
+	  		link="/examples/tiles/portal/newsFeed.jsp" 
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Stocks" 
+	  		link="/examples/tiles/portal/stocks.jsp" 
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="WhatsNew" 
+	  		link="/examples/tiles/portal/whatsNew.jsp" 
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    </putList>
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Summaries in tabs  									-->
+  <!-- =======================================================  -->
+
+    <!-- tabs page -->
+  <definition name="examples.tabs.summaries.page" extends="examples.masterPage">
+	  <put name="title"  value="Tiles 1.1 Summaries in Tabs" />
+	  <put name="body"   value="examples.tabs.summaries.body" />
+  </definition>
+
+	  <!-- body using tabs -->
+  <definition name="examples.tabs.summaries.body" path="/layouts/tabsLayout.jsp" >
+	<put name="selectedIndex"  value="0" />
+	<put name="parameterName"  value="selected" />
+    <putList name="tabList" >
+      <item value="Portal" 
+			link="/examples/tiles/portalSummary.jsp" 
+	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="my Portal" 
+			link="/examples/tiles/myPortalSummary.jsp" 
+	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Menu" 
+			link="/examples/tiles/menuSummary.jsp" 
+	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="my Menu" 
+			link="/examples/tiles/myMenuSummary.jsp" 
+	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Tabs" 
+			link="/examples/tiles/tabsSummary.jsp" 
+	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Rss Channels" 
+			link="/examples/tiles/rssChannelsSummary.jsp" 
+	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Admin" 
+			link="/examples/tiles/adminSummary.jsp" 
+	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="i18n" 
+			link="/examples/tiles/i18nSummary.jsp" 
+	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Multi Channels" 
+			link="/examples/tiles/multiChannelsSummary.jsp" 
+	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Components" 
+			link="/examples/tiles/componentsSummary.jsp" 
+	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    </putList>
+  </definition>
+
+
+</tiles-definitions>
