@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.6 2002/10/20 19:03:44 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2002/10/20 19:03:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.7 2002/10/20 19:11:15 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/10/20 19:11:15 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import java.util.List;
  * @author Craig R. McClanahan
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.6 $ $Date: 2002/10/20 19:03:44 $
+ * @version $Revision: 1.7 $ $Date: 2002/10/20 19:11:15 $
  * @since Struts 1.1
  */
 
@@ -126,9 +126,10 @@ public class ActionMessages implements Serializable {
 
 	/**
 	 * Create an <code>ActionMessages</code> object initialized with the given 
-	 * messages .
+	 * messages.
 	 * 
 	 * @param messages The messages to be initially added to this object.
+	 * @since Struts 1.1
 	 */
 	public ActionMessages(ActionMessages messages) {
 		super();
@@ -168,8 +169,9 @@ public class ActionMessages implements Serializable {
 	 * <code>ActionMessages</code> object it is added to the end of the list for that
 	 * property.  If a message's property is not in the current list it is added to the end 
 	 * of the properties.
-	 * @param messages The <code>ActionMessages</code> object to be added.
 	 * 
+	 * @param messages The <code>ActionMessages</code> object to be added.
+	 * @since Struts 1.1
 	 */
 	public void add(ActionMessages messages) {
 		// loop over properties
@@ -208,6 +210,7 @@ public class ActionMessages implements Serializable {
 	/**
 	 * Return <code>true</code> if there are no messages recorded
 	 * in this collection, or <code>false</code> otherwise.
+	 * @since Struts 1.1
 	 */
 	public boolean isEmpty(){
 		return (messages.isEmpty());	
