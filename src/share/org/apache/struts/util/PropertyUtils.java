@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.9 2001/01/07 21:40:49 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2001/01/07 21:40:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.10 2001/01/09 01:45:10 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/01/09 01:45:10 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import java.lang.reflect.Method;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.9 $ $Date: 2001/01/07 21:40:49 $
+ * @version $Revision: 1.10 $ $Date: 2001/01/09 01:45:10 $
  */
 
 public final class PropertyUtils {
@@ -396,11 +396,11 @@ public final class PropertyUtils {
 
 	// Resolve nested references
 	while (true) {
-	    int period = name.indexOf(".");
+	    int period = name.indexOf(NESTED_DELIM);
 	    if (period < 0)
 		break;
 	    String next = name.substring(0, period);
-	    if (next.indexOf("[") >= 0)
+	    if (next.indexOf(INDEXED_DELIM) >= 0)
 		bean = getIndexedProperty(bean, next);
 	    else
 		bean = getSimpleProperty(bean, next);
@@ -412,7 +412,7 @@ public final class PropertyUtils {
 	}
 
 	// Remove any subscript from the final name value
-	int left = name.indexOf("[");
+	int left = name.indexOf(INDEXED_DELIM);
 	if (left >= 0)
 	    name = name.substring(0, left);
 
