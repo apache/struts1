@@ -79,6 +79,16 @@
     </description>
 
     <attribute>
+      <name>binding</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Value binding expression to bind this component to
+        a backing bean property.</p>
+      </description>
+    </attribute>
+
+    <attribute>
       <name>id</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -135,6 +145,16 @@
           after each individual error in the list.</li>
       </ul>
     </description>
+
+    <attribute>
+      <name>binding</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Value binding expression to bind this component to
+        a backing bean property.</p>
+      </description>
+    </attribute>
 
     <attribute>
       <name>bundle</name>
@@ -194,6 +214,16 @@
         attribute of the corresponding <code>&lt;action&gt;</code>
         element in the <code>struts-config.xml</code> configuration
         file for this application module.</p>
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>binding</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Value binding expression to bind this component to
+        a backing bean property.</p>
       </description>
     </attribute>
 
@@ -334,6 +364,16 @@
     </description>
 
     <attribute>
+      <name>binding</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Value binding expression to bind this component to
+        a backing bean property.</p>
+      </description>
+    </attribute>
+
+    <attribute>
       <name>id</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -350,6 +390,16 @@
         <p>Set to <code>true</code> in order to record a <code>Locale</code>
         based on the current request's <code>Accept-Language</code> header
         (if any), if none has currently been set.</p>
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>rendered</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        Boolean attribute indicating whether this component should be
+        rendered or not.
       </description>
     </attribute>
 
@@ -563,6 +613,16 @@
     </description>
 
     <attribute>
+      <name>binding</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Value binding expression to bind this component to
+        a backing bean property.</p>
+      </description>
+    </attribute>
+
+    <attribute>
       <name>bundle</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -604,6 +664,15 @@
     </attribute>
 
     <attribute>
+      <name>style</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>CSS styles used to render this component.</p>
+      </description>
+    </attribute>
+
+    <attribute>
       <name>styleClass</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -638,6 +707,16 @@
       relative reference to a <code>text/css</code> stylesheet at
       the specified context-relative path.</p>
     </description>
+
+    <attribute>
+      <name>binding</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Value binding expression to bind this component to
+        a backing bean property.</p>
+      </description>
+    </attribute>
 
     <attribute>
       <name>id</name>
@@ -685,11 +764,31 @@
     </description>
 
     <attribute>
+      <name>binding</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Value binding expression to bind this component to
+        a backing bean property.</p>
+      </description>
+    </attribute>
+
+    <attribute>
       <name>id</name>
       <required>true</required>
       <rtexprvalue>false</rtexprvalue>
       <description>
         <p>Component identifier of the component corresponding to this tag.</p>
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>rendered</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        Boolean attribute indicating whether this component should be
+        rendered or not.
       </description>
     </attribute>
 
@@ -726,6 +825,16 @@
     </description>
 
     <attribute>
+      <name>binding</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Value binding expression to bind this component to
+        a backing bean property.</p>
+      </description>
+    </attribute>
+
+    <attribute>
       <name>filter</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -751,6 +860,15 @@
       <description>
         Boolean attribute indicating whether this component should be
         rendered or not.
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>style</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>CSS styles used to render this component.</p>
       </description>
     </attribute>
 

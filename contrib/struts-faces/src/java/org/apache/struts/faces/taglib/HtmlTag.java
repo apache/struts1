@@ -27,7 +27,7 @@ import org.apache.struts.Globals;
  * <p>Render an HTML <code>&lt;html&gt;</code> element for
  * the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.9 $ $Date: 2004/06/24 01:16:44 $
+ * @version $Revision: 1.10 $ $Date: 2004/07/08 01:11:28 $
  */
 
 public class HtmlTag extends AbstractFacesTag {
@@ -64,7 +64,7 @@ public class HtmlTag extends AbstractFacesTag {
      */
     public String getComponentType() {
 
-        return ("javax.faces.Output");
+        return ("org.apache.struts.faces.Html");
 
     }
 

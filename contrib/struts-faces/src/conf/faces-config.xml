@@ -49,10 +49,190 @@
   <!-- Custom Components -->
 
   <component>
+
+    <component-type>org.apache.struts.faces.Base</component-type>
+    <component-class>
+      org.apache.struts.faces.component.BaseComponent
+    </component-class>
+
+    <property>
+      <description>
+        Target frame for this base reference.
+      </description>
+      <display-name>Target Frame</display-name>
+      <property-name>target</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+  </component>
+
+
+  <component>
+
+    <component-type>org.apache.struts.faces.Errors</component-type>
+    <component-class>
+      org.apache.struts.faces.component.ErrorsComponent
+    </component-class>
+
+    <property>
+      <description>
+        Application scope attribute key for the MessageResources
+        instance to use for lookup.  If not specified, the default
+        MessageResources for the current module will be used.
+      </description>
+      <display-name>MessageResources Key</display-name>
+      <property-name>bundle</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+  </component>
+
+
+  <component>
+
     <component-type>org.apache.struts.faces.Form</component-type>
     <component-class>
       org.apache.struts.faces.component.FormComponent
     </component-class>
+
+  </component>
+
+
+  <component>
+
+    <component-type>org.apache.struts.faces.Html</component-type>
+    <component-class>
+      org.apache.struts.faces.component.HtmlComponent
+    </component-class>
+
+    <property>
+      <description>
+        Flag indicating whether a Locale should be stored in the
+        user's session, based on the Accept-Language header, if
+        one is not already present.
+      </description>
+      <display-name>Locale Flag</display-name>
+      <property-name>locale</property-name>
+      <property-class>boolean</property-class>
+    </property>
+
+    <property>
+      <description>
+        Flag indicating whether XHTML-compatible output should
+        be rendered.
+      </description>
+      <display-name>XHTML Flag</display-name>
+      <property-name>xhtml</property-name>
+      <property-class>boolean</property-class>
+    </property>
+
+  </component>
+
+
+  <component>
+
+    <component-type>org.apache.struts.faces.Message</component-type>
+    <component-class>
+      org.apache.struts.faces.component.MessageComponent
+    </component-class>
+
+    <property>
+      <description>
+        Application scope attribute key for the MessageResources
+        instance to use for lookup.  If not specified, the default
+        MessageResources for the current module will be used.
+      </description>
+      <display-name>MessageResources Key</display-name>
+      <property-name>bundle</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+    <property>
+      <description>
+        Message key to use for message lookup
+      </description>
+      <display-name>Message Key</display-name>
+      <property-name>key</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+    <property>
+      <description>
+        CSS style(s) to render for this component.
+      </description>
+      <display-name>CSS Style(s)</display-name>
+      <property-name>style</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+    <property>
+      <description>
+        CSS style class(es) to render for this component.
+      </description>
+      <display-name>CSS Style Class(es)</display-name>
+      <property-name>styleClass</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+  </component>
+
+
+  <component>
+
+    <component-type>org.apache.struts.faces.Stylesheet</component-type>
+    <component-class>
+      org.apache.struts.faces.component.StylesheetComponent
+    </component-class>
+
+    <property>
+      <description>
+        Context-relative path (starting with a "/" character)
+        of the stylesheet to which this link should point.
+      </description>
+      <display-name>Stylesheet Path</display-name>
+      <property-name>path</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+  </component>
+
+
+  <component>
+
+    <component-type>org.apache.struts.faces.Write</component-type>
+    <component-class>
+      org.apache.struts.faces.component.WriteComponent
+    </component-class>
+
+    <property>
+      <description>
+        Flag indicating that the rendered output should be filtered
+        for characters that are sensitive in HTML.  Default value is
+        "true".
+      </description>
+      <display-name>Filtered Flag</display-name>
+      <property-name>filter</property-name>
+      <property-class>boolean</property-class>
+    </property>
+
+    <property>
+      <description>
+        CSS style(s) to render for this component.
+      </description>
+      <display-name>CSS Style(s)</display-name>
+      <property-name>style</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
+    <property>
+      <description>
+        CSS style class(es) to render for this component.
+      </description>
+      <display-name>CSS Style Class(es)</display-name>
+      <property-name>styleClass</property-name>
+      <property-class>java.lang.String</property-class>
+    </property>
+
   </component>
 
 
@@ -71,7 +251,7 @@
   <render-kit>
 
     <renderer>
-      <component-family>javax.faces.Output</component-family>
+      <component-family>org.apache.struts.faces.Base</component-family>
       <renderer-type>org.apache.struts.faces.Base</renderer-type>
       <renderer-class>
         org.apache.struts.faces.renderer.BaseRenderer
@@ -79,7 +259,7 @@
     </renderer>
 
     <renderer>
-      <component-family>javax.faces.Output</component-family>
+      <component-family>org.apache.struts.faces.Errors</component-family>
       <renderer-type>org.apache.struts.faces.Errors</renderer-type>
       <renderer-class>
         org.apache.struts.faces.renderer.ErrorsRenderer
@@ -87,7 +267,7 @@
     </renderer>
 
     <renderer>
-      <component-family>javax.faces.Form</component-family>
+      <component-family>org.apache.struts.faces.Form</component-family>
       <renderer-type>org.apache.struts.faces.Form</renderer-type>
       <renderer-class>
         org.apache.struts.faces.renderer.FormRenderer
@@ -95,7 +275,7 @@
     </renderer>
 
     <renderer>
-      <component-family>javax.faces.Output</component-family>
+      <component-family>org.apache.struts.faces.Html</component-family>
       <renderer-type>org.apache.struts.faces.Html</renderer-type>
       <renderer-class>
         org.apache.struts.faces.renderer.HtmlRenderer
@@ -103,7 +283,7 @@
     </renderer>
 
     <renderer>
-      <component-family>javax.faces.Output</component-family>
+      <component-family>org.apache.struts.faces.Message</component-family>
       <renderer-type>org.apache.struts.faces.Message</renderer-type>
       <renderer-class>
         org.apache.struts.faces.renderer.MessageRenderer
@@ -111,7 +291,7 @@
     </renderer>
 
     <renderer>
-      <component-family>javax.faces.Output</component-family>
+      <component-family>org.apache.struts.faces.Stylesheet</component-family>
       <renderer-type>org.apache.struts.faces.Stylesheet</renderer-type>
       <renderer-class>
         org.apache.struts.faces.renderer.StylesheetRenderer
@@ -119,7 +299,7 @@
     </renderer>
 
     <renderer>
-      <component-family>javax.faces.Output</component-family>
+      <component-family>org.apache.struts.faces.Write</component-family>
       <renderer-type>org.apache.struts.faces.Write</renderer-type>
       <renderer-class>
         org.apache.struts.faces.renderer.WriteRenderer

@@ -40,7 +40,7 @@ import org.apache.struts.util.RequestUtils;
  * <code>javax.faces.component.UIForm</code> that supports automatic
  * creation of form beans in request or session scope.</p>
  *
- * @version $Revision: 1.10 $ $Date: 2004/06/24 01:16:44 $
+ * @version $Revision: 1.11 $ $Date: 2004/07/08 01:11:28 $
  */
 public class FormComponent extends UIForm {
 
@@ -87,6 +87,16 @@ public class FormComponent extends UIForm {
     public void setAction(String action) {
 
         this.action = action;
+
+    }
+
+
+    /**
+     * <p>Return the component family to which this component belongs.</p>
+     */
+    public String getFamily() {
+
+        return "org.apache.struts.faces.Form";
 
     }
 

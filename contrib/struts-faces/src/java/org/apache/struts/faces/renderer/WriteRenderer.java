@@ -31,7 +31,7 @@ import org.apache.struts.util.ResponseUtils;
  * <p><code>Renderer</code> implementation for the <code>write</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.5 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.6 $ $Date: 2004/07/08 01:11:28 $
  */
 
 public class WriteRenderer extends AbstractRenderer {
@@ -67,11 +67,18 @@ public class WriteRenderer extends AbstractRenderer {
         }
 
         ResponseWriter writer = context.getResponseWriter();
+        String style =
+            (String) component.getAttributes().get("style");
         String styleClass =
             (String) component.getAttributes().get("styleClass");
-        if (styleClass != null) {
+        if ((style != null) || (styleClass != null)) {
             writer.startElement("span", component);
-            writer.writeAttribute("class", styleClass, "styleClass");
+            if (style != null) {
+                writer.writeAttribute("style", style, "style");
+            }
+            if (styleClass != null) {
+                writer.writeAttribute("class", styleClass, "styleClass");
+            }
             writer.writeText("", null);
         }
         String text = getText(context, component);
@@ -80,7 +87,7 @@ public class WriteRenderer extends AbstractRenderer {
                       "," + text + ")");
         }
         writer.write(text);
-        if (styleClass != null) {
+        if ((style != null) || (styleClass != null)) {
             writer.endElement("span");
         }
 

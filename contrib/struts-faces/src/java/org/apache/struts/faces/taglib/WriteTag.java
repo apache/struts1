@@ -26,7 +26,7 @@ import javax.faces.component.UIComponent;
  * <em>Struts-Faces Integration Library</em>.</p>
  *
  *
- * @version $Revision: 1.7 $ $Date: 2004/06/09 02:28:28 $
+ * @version $Revision: 1.8 $ $Date: 2004/07/08 01:11:28 $
  */
 
 public class WriteTag extends AbstractFacesTag {
@@ -54,7 +54,7 @@ public class WriteTag extends AbstractFacesTag {
      */
     public String getComponentType() {
 
-        return ("javax.faces.Output");
+        return ("org.apache.struts.faces.Write");
 
     }
 

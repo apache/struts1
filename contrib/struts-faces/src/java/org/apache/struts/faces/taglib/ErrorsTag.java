@@ -24,7 +24,7 @@ package org.apache.struts.faces.taglib;
  * the <em>Struts-Faces Integration Library</em>.</p>
  *
  *
- * @version $Revision: 1.7 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.8 $ $Date: 2004/07/08 01:11:28 $
  */
 
 public class ErrorsTag extends AbstractFacesTag {
@@ -41,7 +41,7 @@ public class ErrorsTag extends AbstractFacesTag {
      */
     public String getComponentType() {
 
-        return ("javax.faces.Output");
+        return ("org.apache.struts.faces.Errors");
 
     }
 

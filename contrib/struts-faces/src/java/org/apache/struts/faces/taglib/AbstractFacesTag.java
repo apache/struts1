@@ -27,7 +27,7 @@ import javax.faces.webapp.UIComponentTag;
  * <em>Struts-Faces Integration Library</em>.</p>
  *
  *
- * @version $Revision: 1.8 $ $Date: 2004/06/09 02:28:28 $
+ * @version $Revision: 1.9 $ $Date: 2004/07/08 01:11:28 $
  */
 
 public abstract class AbstractFacesTag extends UIComponentTag {
@@ -48,7 +48,17 @@ public abstract class AbstractFacesTag extends UIComponentTag {
 
 
     /**
-     * <p>The CSS style class used to render this component.</p>
+     * <p>The CSS style(s) used to render this component.</p>
+     */
+    protected String style = null;
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+
+    /**
+     * <p>The CSS style class(es) used to render this component.</p>
      */
     protected String styleClass = null;
 
@@ -91,6 +101,7 @@ public abstract class AbstractFacesTag extends UIComponentTag {
 
         super.release();
         this.bundle = null;
+        this.style = null;
         this.styleClass = null;
         this.value = null;
 
@@ -109,6 +120,7 @@ public abstract class AbstractFacesTag extends UIComponentTag {
 
         super.setProperties(component);
         setStringAttribute(component, "bundle", bundle);
+        setStringAttribute(component, "style", style);
         setStringAttribute(component, "styleClass", styleClass);
         setStringAttribute(component, "value", value);
 
