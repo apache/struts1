@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/SubmitTag.java,v 1.3 2000/11/18 20:04:49 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/11/18 20:04:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/SubmitTag.java,v 1.4 2000/12/19 19:23:02 mschachter Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/12/19 19:23:02 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "submit".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/11/18 20:04:49 $
+ * @version $Revision: 1.4 $ $Date: 2000/12/19 19:23:02 $
  */
 
 public class SubmitTag extends BaseHandlerTag {
@@ -123,7 +123,7 @@ public class SubmitTag extends BaseHandlerTag {
      * @param property The property name
      */
     public void setProperty(String property) {
-
+       
 	this.property = property;
 
     }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
+
+
+<struts-config>
+
+
+
+
+
+  <form-beans>
+
+    
+    <form-bean      name="uploadForm"
+                    type="org.apache.struts.example.upload.UploadForm"/>
+
+  </form-beans>
+
+
+  <action-mappings>
+
+    <!-- Upload Action -->
+    <action    path="/upload"
+               type="org.apache.struts.example.upload.UploadAction"
+               name="uploadForm">
+		<forward name="display" path="/display.jsp" />
+    </action>
+    
+    
+  </action-mappings>
+
+</struts-config>

@@ -81,6 +81,18 @@
     </copy>
   </target>
 
+  <!-- BUILD: Create directories and copy files for upload example -->
+  <target name="prepare.upload">
+    <mkdir  dir="${build.home}"/>
+    <mkdir  dir="${build.home}/upload"/>
+    <mkdir  dir="${build.home}/upload/WEB-INF"/>
+    <mkdir  dir="${build.home}/upload/WEB-INF/lib"/>
+    <mkdir  dir="${build.home}/upload/WEB-INF/classes"/>
+    <copy todir="${build.home}/upload">
+        <fileset dir="web/upload" />
+    </copy>
+  </target>
+
   <!-- DIST:  Create directories and copy files for distribution -->
   <target name="prepare.dist">
     <mkdir   dir="${dist.home}"/>
@@ -183,6 +195,23 @@
     </copy>
   </target>
 
+  <!-- BUILD: Compile upload example application components -->
+  <target name="compile.upload"
+          depends="dist.library,prepare.upload">
+
+      <javac srcdir="web/upload"
+             destdir="${build.home}/upload/WEB-INF/classes"
+             classpath="${build.home}/library/classes:${servlet.jar}"
+             debug="true" optimize="false" deprecation="false"/>
+      <copy todir="${build.home}/upload">
+        <fileset dir="web/upload" />
+      </copy>
+      <copy file="${dist.home}/lib/${app.name}.jar"
+            tofile="${build.home}/upload/WEB-INF/lib/${app.name}.jar"/>
+      <copy file="${dist.home}/lib/${app.name}-form.tld"
+            todir="${build.home}/upload/WEB-INF" />
+  </target>
+
   <!-- BUILD:  Compile test application components -->
   <target name="compile.test"
        depends="dist.library,prepare.test">
@@ -248,6 +277,12 @@
           basedir="${build.home}/template" includes="**"/>
   </target>
 
+  <!-- DIST:  Construct upload example distributables -->
+  <target name="dist.upload" depends="dist.library,compile.upload">
+    <jar jarfile="${dist.home}/webapps/${app.name}-upload.war"
+         basedir="${build.home}/upload" includes="**"/>
+  </target>
+
 
   <!-- DIST:  Construct test distributables -->
   <target name="dist.test" depends="dist.library,compile.test">
@@ -274,10 +309,10 @@
 
   <!-- DIST:  Construct complete release distribution -->
   <target name="dist"
-       depends="dist.library,dist.documentation,dist.example,dist.template,dist.test,dist.source"/>
+       depends="dist.library,dist.documentation,dist.example,dist.template,dist.upload,dist.test,dist.source"/>
 
   <!-- DEPLOY:  Deploy these applications on Catalina -->
-  <target name="deploy.catalina" depends="compile.documentation,compile.example,compile.template,compile.test">
+  <target name="deploy.catalina" depends="compile.documentation,compile.example,compile.template,compile.upload,compile.test">
     <mkdir   dir="${catalina.home}/webapps/struts-documentation"/>
     <copy  todir="${catalina.home}/webapps/struts-documentation">
       <fileset dir="${build.home}/documentation"/>
@@ -297,7 +332,7 @@
   </target>
 
   <!-- DEPLOY:  Deploy these applications on Tomcat -->
-  <target name="deploy.tomcat" depends="compile.documentation,compile.example,compile.template,compile.test">
+  <target name="deploy.tomcat" depends="compile.documentation,compile.example,compile.template,compile.upload,compile.test">
     <mkdir   dir="${tomcat.home}/webapps/struts-documentation"/>
     <copy  todir="${tomcat.home}/webapps/struts-documentation">
       <fileset dir="${build.home}/documentation"/>
@@ -329,6 +364,7 @@
     <echo message="  compile.javadoc        Builds Javadoc API docs for Struts"/>
     <echo message="  compile.library        Builds the main packages"/>
     <echo message="  compile.template       Builds the template example webapp"/>
+    <echo message="  compile.upload         Builds the upload example webapp"/>
     <echo message="  compile.test           Builds the tests webapp"/>
     <echo message="  deploy.catalina        Deploys build to Catalina build directory"/>
     <echo message="  deploy.tomcat          Depoys build to Tomcat build directory"/>
