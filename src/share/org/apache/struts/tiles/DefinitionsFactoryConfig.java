@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.8 2003/07/04 20:53:42 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/07/04 20:53:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.9 2003/07/09 00:05:17 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/07/09 00:05:17 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.commons.beanutils.BeanUtils;
  *
  * @author Cedric Dumoulin
  * @since Struts 1.1
- * @version $Revision: 1.8 $ $Date: 2003/07/04 20:53:42 $
+ * @version $Revision: 1.9 $ $Date: 2003/07/09 00:05:17 $
  */
 public class DefinitionsFactoryConfig implements Serializable {
 
@@ -89,24 +89,11 @@ public class DefinitionsFactoryConfig implements Serializable {
         "org.apache.struts.tiles.xmlDefinition.I18nFactorySet";
 
     /**
-     * Debug level value. 0=no debug info >0 = debug info.
-     * @deprecated Use commons-logging mechanism.
-     */
-    protected int debugLevel = 0;
-
-    /**
-     * Debug level value used when parsing configuration file.
-     * 0=no debug info; >0 = debug info.
-     * @deprecated Use commons-logging mechanism.
-     */
-    protected int parserDebugLevel = 0;
-
-    /**
      * Specifies whether the parser will validate configuration files.
      * Default value is true.
      */
     protected boolean parserValidate = true;
-    
+
     /** 
      * Definition configuration file specified by user. 
      */
@@ -129,30 +116,32 @@ public class DefinitionsFactoryConfig implements Serializable {
 
     /** 
      * Alternate name for parser debug details properties in configuration file. 
+     * @deprecated This will be removed in a release after Struts 1.2.
      */
     public static final String PARSER_DETAILS_PARAMETER_NAME =
         "definitions-parser-details";
-        
+
     /**
      * Alternate name for parser validate properties in configuration file. 
      */
     public static final String PARSER_VALIDATE_PARAMETER_NAME =
         "definitions-parser-validate";
-        
+
     /** 
      * Alternate name for factory classname properties in configuration file. 
      */
     public static final String FACTORY_CLASSNAME_PARAMETER_NAME =
         "definitions-factory-class";
-        
+
     /** 
      * Alternate name for definition files properties in configuration file. 
      */
     public static final String DEFINITIONS_CONFIG_PARAMETER_NAME =
         "definitions-config";
-        
+
     /** 
      * Alternate name for definition debug details properties in configuration file. 
+     * @deprecated This will be removed in a release after Struts 1.2.
      */
     public static final String TILES_DETAILS_PARAMETER_NAME = "definitions-debug";
 
@@ -210,42 +199,6 @@ public class DefinitionsFactoryConfig implements Serializable {
      */
     public void setFactoryClassname(String aFactoryClassname) {
         factoryClassname = aFactoryClassname;
-    }
-
-    /**
-     * Get debug level.
-     * @return Debug level.
-     * @deprecated Use commons-logging mechanism.
-     */
-    public int getDebugLevel() {
-        return debugLevel;
-    }
-
-    /**
-     * Set debug level.
-     * @param aDebugLevel Debug level.
-     * @deprecated Use commons-logging mechanism.
-     */
-    public void setDebugLevel(int aDebugLevel) {
-        debugLevel = aDebugLevel;
-    }
-
-    /**
-     * Get the debug level for the parser.
-     * @return Debug level.
-     * @deprecated Use commons-logging mechanism.
-     */
-    public int getParserDebugLevel() {
-        return parserDebugLevel;
-    }
-
-    /**
-     * Set the debug level for the parser.
-     * @param aParserDebugLevel Debug level.
-     * @deprecated Use commons-logging mechanism.
-     */
-    public void setParserDebugLevel(int aParserDebugLevel) {
-        parserDebugLevel = aParserDebugLevel;
     }
 
     /**
@@ -368,16 +321,16 @@ public class DefinitionsFactoryConfig implements Serializable {
 
             if (DEFINITIONS_CONFIG_PARAMETER_NAME.equals(entry.getKey())) {
                 toAdd.put("definitionConfigFiles", entry.getValue());
-                
+
             } else if (FACTORY_CLASSNAME_PARAMETER_NAME.equals(entry.getKey())) {
                 toAdd.put("factoryClassname", entry.getValue());
-                
+
             } else if (PARSER_DETAILS_PARAMETER_NAME.equals(entry.getKey())) {
                 toAdd.put("parserDebugLevel", entry.getValue());
-                
+
             } else if (PARSER_VALIDATE_PARAMETER_NAME.equals(entry.getKey())) {
                 toAdd.put("parserValidate", entry.getValue());
-                
+
             } else if (TILES_DETAILS_PARAMETER_NAME.equals(entry.getKey())) {
                 toAdd.put("debugLevel", entry.getValue());
             }

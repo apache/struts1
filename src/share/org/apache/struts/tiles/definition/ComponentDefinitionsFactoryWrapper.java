@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.6 2003/07/08 23:59:10 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/07/08 23:59:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.7 2003/07/09 00:05:17 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/07/09 00:05:17 $
  *
  * ====================================================================
  *
@@ -248,20 +248,12 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory {
             config.getDefinitionConfigFiles());
 
         map.put(
-            DefinitionsFactoryConfig.TILES_DETAILS_PARAMETER_NAME,
-            Integer.toString(config.getDebugLevel()));
-
-        map.put(
-            DefinitionsFactoryConfig.PARSER_DETAILS_PARAMETER_NAME,
-            Integer.toString(config.getParserDebugLevel()));
-
-        map.put(
             DefinitionsFactoryConfig.PARSER_VALIDATE_PARAMETER_NAME,
             new Boolean(config.getParserValidate()).toString());
 
         if (!"org.apache.struts.tiles.xmlDefinition.I18nFactorySet"
             .equals(config.getFactoryClassname())) {
-                
+
             map.put(
                 DefinitionsFactoryConfig.FACTORY_CLASSNAME_PARAMETER_NAME,
                 config.getFactoryClassname());
@@ -269,5 +261,5 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory {
 
         return map;
     }
-    
+
 }
