@@ -99,10 +99,12 @@ public final class LocaleAction extends Action {
            log.error(e.getMessage(), e);
         }
 
-        if ((language != null && language.length() > 0) &&
-            (country != null && country.length() > 0)) {
+        boolean isLanguage = (language != null && language.length() > 0);
+        boolean isCountry = (country != null && country.length() > 0);
+
+        if ((isLanguage) && (isCountry)) {
            locale = new java.util.Locale(language, country);
-        } else if (language != null && language.length() > 0) {
+        } else if (isLanguage) {
            locale = new java.util.Locale(language, "");
     }
 
