@@ -40,6 +40,35 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
  
 <section name="News" href="news">
 
+<h3><a name="20020711"></a>11 July 2002 - Easy Struts v0.4 for Eclipse / JBuilder</h3>
+<p>
+Features:
+</p>
+<ul>
+<li>Provide a full support for JBuilder IDE.</li>
+<li>Provide a full support for Eclipse IDE.</li>
+</ul>
+<p>
+Changes
+</p>
+<ul>
+<li>Support now for JBuilder IDE (without Resources Wizard).</li>
+<li>Add runtime facility for JBuilder, no need removeStrutsJar opentool</li>
+<li>Add confirm dialog before changing project classpath</li>
+<li>Fix driver class validation in datasource wizard</li>
+<li>Fix many bug and add improvements</li>
+<li>New icons</li>
+</ul>
+<p>
+Project page : 
+</p>
+<ul>
+<li><a href="http://easystruts.sourceforge.net/">http://easystruts.sourceforge.net/</a></li>
+<li><a href="http://sourceforge.net/projects/easystruts">http://sourceforge.net/projects/easystruts</a></li>
+</ul>
+<hr size="1" noshade=""/>
+
+
 <h3><a name="20020710"></a>10 July 2002 - Using Struts in Oracle JDeveloper 9i Tutorial</h3>
 <p>
 <a href="http://otn.oracle.com/products/jdev/howtos/jsp/StrutsHowTo.html">
@@ -336,7 +365,7 @@ The tool is available at: <a href="http://rivernorth.sourceforge.net">rivernorth
 <p>
 This project is actively seeking feedback and contributors.
 </p>
-
+<hr size="1" noshade=""/>
 
 <h3><a name="20020611"></a>11 June 2002 - JavaPro Articles on Struts</h3>
 <p>
