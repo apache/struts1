@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/action/TestDynaActionFormClass.java,v 1.11 2004/06/09 00:26:49 niallp Exp $
- * $Revision: 1.11 $
- * $Date: 2004/06/09 00:26:49 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/action/TestDynaActionFormClass.java,v 1.12 2004/07/01 00:45:04 husted Exp $
+ * $Revision: 1.12 $
+ * $Date: 2004/07/01 00:45:04 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -138,7 +138,7 @@ public class TestDynaActionFormClass extends TestCase
 
     public void tearDown() {
 
-        dynaClass.clear();
+        DynaActionFormClass.clear();
         dynaClass = null;
         beanConfig = null;
         DynaActionFormClass.clear();
