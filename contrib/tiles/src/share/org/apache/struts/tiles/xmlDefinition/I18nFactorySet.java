@@ -197,7 +197,7 @@ public class I18nFactorySet extends FactorySet
     this.filenames = new ArrayList(tokenizer.countTokens());
     while( tokenizer.hasMoreTokens() )
       {
-      this.filenames.add(tokenizer.nextToken());
+      this.filenames.add(tokenizer.nextToken().trim());
       }
 
     loaded = new HashMap();

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/PutTag.java,v 1.2 2001/12/27 17:35:37 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2001/12/27 17:35:37 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/PutTag.java,v 1.3 2002/02/18 14:50:03 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/02/18 14:50:03 $
  * $Author: cedric $
  *
  */
@@ -260,7 +260,7 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
     {
         // Compute real value from attributes set.
     realValue = value;
-    
+
         // Does value comes from a bean ?
       if( value == null && beanName != null )
         {
@@ -297,7 +297,7 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
          else if( valueType.equalsIgnoreCase( "instance" ) )
           {
           realValue = new DefinitionNameAttribute( strValue );
-          }  
+          }
          else if( valueType.equalsIgnoreCase( "definition" ) )
           {
           realValue = new DefinitionNameAttribute( strValue );
@@ -371,7 +371,11 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
         // If nothing is set, value must come from body
     if( value == null && beanName == null )
         {  // body
-        value = bodyContent.getString();
+          // Test body content in case of empty body.
+        if( bodyContent != null )
+          value = bodyContent.getString();
+         else
+          value = "";
         }
     callParent();
 

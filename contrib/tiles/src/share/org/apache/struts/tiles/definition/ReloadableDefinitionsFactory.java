@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/definition/Attic/ReloadableDefinitionsFactory.java,v 1.1 2001/12/27 17:41:35 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2001/12/27 17:41:35 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/definition/Attic/ReloadableDefinitionsFactory.java,v 1.2 2002/02/18 14:50:04 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/02/18 14:50:04 $
  * $Author: cedric $
  *
  */
@@ -137,6 +137,8 @@ public class ReloadableDefinitionsFactory implements ComponentDefinitionsFactory
     throws DefinitionsFactoryException
   {
     String classname = (String)properties.get(DEFINITIONS_FACTORY_CLASSNAME);
+    if(classname!=null)
+      return createFactoryFromClassname( servletContext, properties, classname);
 
     return new I18nFactorySet( servletContext, properties );
   }

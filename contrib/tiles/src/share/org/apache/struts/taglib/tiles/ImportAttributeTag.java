@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/ImportAttributeTag.java,v 1.3 2001/12/27 17:35:37 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2001/12/27 17:35:37 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/ImportAttributeTag.java,v 1.4 2002/02/18 14:50:03 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/02/18 14:50:03 $
  * $Author: cedric $
  *
  */

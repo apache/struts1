@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/DefinitionsUtil.java,v 1.3 2001/12/27 17:35:38 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2001/12/27 17:35:38 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/DefinitionsUtil.java,v 1.4 2002/02/18 14:50:04 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/02/18 14:50:04 $
  * $Author: cedric $
  *
  */
@@ -145,10 +145,25 @@ public class DefinitionsUtil implements ComponentConstants
   public static ComponentDefinitionsFactory createDefinitionsFactory(ServletContext servletContext, ServletConfig servletConfig)
     throws DefinitionsFactoryException
   {
-  initUserDebugLevel(servletConfig);
-  ComponentDefinitionsFactory factory = new ReloadableDefinitionsFactory(servletContext, servletConfig); ;
-  DefinitionsUtil.setDefinitionsFactory(factory, servletContext  );
-  return factory;
+    // Check if already exist in context
+  ComponentDefinitionsFactory factory = getDefinitionsFactory( servletContext);
+  if( factory != null )
+    return factory;
+    // Doesn' exist, create it and save it in context
+    // Ensure that only one is created by synchronizing section. This imply a
+    // second checking.
+    // Todo : check that servletContext is unique for this servlet !
+  synchronized (servletContext) {
+      // Check if someone has created it while we had wait for synchonized section
+    factory = getDefinitionsFactory( servletContext);
+    if( factory != null )
+      return factory;
+      // Now really create it
+    initUserDebugLevel(servletConfig);
+    factory = new ReloadableDefinitionsFactory(servletContext, servletConfig); ;
+    setDefinitionsFactory(factory, servletContext  );
+    return factory;
+    } // synchronized
   }
 
   /**
@@ -159,17 +174,6 @@ public class DefinitionsUtil implements ComponentConstants
   static protected void setDefinitionsFactory(ComponentDefinitionsFactory factory, ServletContext servletContext)
   {
   servletContext.setAttribute(DEFINITIONS_FACTORY, factory);
-  }
-
-  /**
-   * Set definition factory in appropriate servlet context.
-   * Convenient method.
-   * @param factory Factory to store.
-   * @param pageContext Page context containing servlet context.
-   */
-  static protected void setDefinitionsFactory(ComponentDefinitionsFactory factory, PageContext pageContext)
-  {
-  setDefinitionsFactory( factory, pageContext.getServletContext() );
   }
 
   /**
@@ -229,6 +233,7 @@ public class DefinitionsUtil implements ComponentConstants
   /**
    * Get instances factory from appropriate servlet context.
    * @return Definitions factory or null if not found.
+   * @deprecated since 020207, use getDefinitionsFactory(pageContext.getServletContext()) instead
    */
  static  public ComponentDefinitionsFactory getDefinitionsFactory(PageContext pageContext)
   {

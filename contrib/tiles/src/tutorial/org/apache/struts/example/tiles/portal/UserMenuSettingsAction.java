@@ -79,12 +79,11 @@ public class UserMenuSettingsAction extends TilesAction
     if(debug)
       System.out.println("Enter action UserMenuSettingsAction");
 
-    HttpSession session = request.getSession();
     MenuSettingsForm actionForm = (MenuSettingsForm)form;
 
         // Load user menu settings and available list of choices
-    MenuSettings settings = UserMenuAction.loadUserSettings( context, session );
-    List choices = UserMenuAction.loadMenuChoices( context, request, getServlet().getServletContext() );
+    MenuSettings settings = UserMenuAction.getUserSettings( request, context );
+    List catalog = UserMenuAction.getCatalog( context, request, getServlet().getServletContext() );
 
       // Check if form is submitted
       // If true, read, check and store new values submitted by user.
@@ -94,7 +93,7 @@ public class UserMenuSettingsAction extends TilesAction
         System.out.println("form submitted");
 
       settings.reset();
-      settings.addItems( checkSelected(actionForm.getSelected(), choices) );
+      settings.addItems( getItems(actionForm.getSelected(), catalog) );
       if(debug)
         System.out.println( "settings : " +settings.toString() );
       actionForm.reset();
@@ -103,21 +102,21 @@ public class UserMenuSettingsAction extends TilesAction
 
       // Prepare data for view tile
     context.putAttribute( "userItems", settings.getItems() );
-    context.putAttribute( "choiceItems", choices );
+    context.putAttribute( "catalog", catalog );
 
     if(debug)
       System.out.println("Exit action UserMenuSettingsAction");
-	  return null; //(mapping.findForward("editPortal"));
+	  return null;
     }
 
       /**
        * Check selected items, and return apppropriate list of items.
-       * For each item in selected list, check if it exist in available choice.
+       * For each item in selected list, check if it exist in catalog.
        * Also check for double.
        * @param selectedKey Key of selected items (generally, link url)
-       * @param choices List of avalaible items choice to compare against.
+       * @param catalog List of avalaible items to compare against.
        */
-  static protected List checkSelected( String[] selectedKey, List choices )
+  static protected List getItems( String[] selectedKey, List catalog )
     {
     List selectedList = java.util.Arrays.asList( selectedKey );
     List result = new ArrayList(selectedList.size());
@@ -126,7 +125,7 @@ public class UserMenuSettingsAction extends TilesAction
     Iterator iter = selectedList.iterator();
     while( iter.hasNext() )
       {
-      MenuItem item = getItemByKey( iter.next(), choices);
+      MenuItem item = getItem( iter.next(), catalog);
       if( item != null )
         result.add(item );
       } // end loop
@@ -135,12 +134,12 @@ public class UserMenuSettingsAction extends TilesAction
       /**
        * Get item by its key in list of choices
        * @param key Key of selected items (generally, link url)
-       * @param choices List of avalaible items choice to compare against.
+       * @param catalog List of avalaible items to compare against.
        * @return corresponding item or null if not found.
        */
-  static protected MenuItem getItemByKey( Object key, List choices )
+  static protected MenuItem getItem( Object key, List catalog )
     {
-    Iterator iter = choices.iterator();
+    Iterator iter = catalog.iterator();
     while( iter.hasNext() )
       {
       MenuItem item = (MenuItem)iter.next();

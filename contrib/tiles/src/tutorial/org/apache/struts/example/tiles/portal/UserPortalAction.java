@@ -32,23 +32,23 @@ import org.apache.struts.util.RequestUtils;
  * attributes used as default.
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2001/12/27 17:37:46 $
+ * @version $Revision: 1.2 $ $Date: 2002/02/18 14:50:04 $
  */
 
 public final class UserPortalAction extends TilesAction {
 
-      /** Name used to store settings in session context */
-    public static String DEFAULT_CONTEXT_ID = "portal.USER_PORTAL_SETTINGS";
-      /** Tile parameter name */
-    public static String PARAM_NUMCOLS = "numCols";
-      /** Tile parameter name */
-    public static String PARAM_LIST = "list";
-      /** Tile parameter name */
-    public static String PARAM_LIST_LABELS = "listLabels";
-      /** Tile parameter name */
-    public static String PARAM_ID = "userContextId";
-      /** Tile parameter name */
-    public static String PORTAL_CHOICES_ID = "tiles.portal.PortalChoices";
+      /** Default name used to store settings in session context */
+    public static String DEFAULT_USER_SETTINGS_NAME = "tiles.examples.portal.USER_PORTAL_SETTINGS";
+      /** Tile attribute containing number of columns in portal */
+    public static String NUMCOLS_ATTRIBUTE = "numCols";
+      /** Tile attribute containing list prefix name */
+    public static String LIST_ATTRIBUTE = "list";
+      /** Tile attribute containing list of labels prefix name */
+    public static String LIST_LABELS_ATTRIBUTE = "labels";
+      /** Tile attribute containing name used to store user settings in session context */
+    public static String USER_SETTINGS_NAME_ATTRIBUTE = "userSettingsName";
+      /** Name used to store portal catalog in application scope */
+    public static String PORTAL_CATALOG_NAME = "tiles.examples.portal.PortalCatalog";
 
     // --------------------------------------------------------- Public Methods
 
@@ -77,11 +77,9 @@ public final class UserPortalAction extends TilesAction {
                           throws IOException, ServletException
     {
     //System.out.println("Enter action UserPortalAction");
-      // Get current session.
-	  HttpSession session = request.getSession();
 
       // Get user portal list from user context
-    PortalSettings settings = getSettings( context, session );
+    PortalSettings settings = getSettings( request, context);
       // Set parameters for tiles
     context.putAttribute( "numCols", Integer.toString(settings.getNumCols()) );
     for( int i=0; i<settings.getNumCols(); i++ )
@@ -89,19 +87,21 @@ public final class UserPortalAction extends TilesAction {
 
     //System.out.println( "settings=" + settings );
     //System.out.println("Exit action UserPortalAction");
-	  return null; //(mapping.findForward("success"));
+	  return null;
     }
 
     /**
      * Retrieve user setting from session.
      * If settings are not found, initialized them.
      */
-  public static PortalSettings getSettings( ComponentContext context, HttpSession session )
+  public static PortalSettings getSettings( HttpServletRequest request, ComponentContext context )
   {
+      // Get current session.
+	  HttpSession session = request.getSession();
       // Retrieve user context id used to store settings
-    String userSettingsId = (String)context.getAttribute( PARAM_ID );
+    String userSettingsId = (String)context.getAttribute( USER_SETTINGS_NAME_ATTRIBUTE );
     if( userSettingsId == null )
-      userSettingsId = DEFAULT_CONTEXT_ID;
+      userSettingsId = DEFAULT_USER_SETTINGS_NAME;
 
       // Get user portal list from user context
     PortalSettings settings = (PortalSettings)session.getAttribute( userSettingsId );
@@ -109,12 +109,11 @@ public final class UserPortalAction extends TilesAction {
     if( settings == null )
       { // List doesn't exist, create it and initialize it from Tiles parameters
       settings = new PortalSettings();
-      settings.setNumCols( (String)context.getAttribute( PARAM_NUMCOLS ) );
+      settings.setNumCols( (String)context.getAttribute( NUMCOLS_ATTRIBUTE ) );
       for( int i=0; i<settings.getNumCols(); i++ )
         {
-        List col = (List)context.getAttribute( ((String)PARAM_LIST+i) );
-        //List labels = (List)context.getAttribute( ((String)PARAM_LIST_LABELS+i) );
-        settings.setListAt( i, col );
+        List tiles = (List)context.getAttribute( ((String)LIST_ATTRIBUTE+i) );
+        settings.setListAt( i, tiles );
         } // end loop
 
         // Save user settings in session
@@ -128,23 +127,23 @@ public final class UserPortalAction extends TilesAction {
        * Retrieve portal choices object.
        * Create it from default values if needed.
        */
-    static public PortalChoices getPortalChoices( ComponentContext context, ServletContext servletContext)
+    static public PortalCatalog getPortalCatalog( ComponentContext context, ServletContext servletContext)
       {
-      PortalChoices choices = (PortalChoices)servletContext.getAttribute( PORTAL_CHOICES_ID );
-      if( choices == null )
-        { // Initialize choices
-        choices = new PortalChoices();
-        int numCols = Integer.parseInt( (String)context.getAttribute( PARAM_NUMCOLS ) );
+      PortalCatalog catalog = (PortalCatalog)servletContext.getAttribute( PORTAL_CATALOG_NAME );
+      if( catalog == null )
+        { // Initialize catalog
+        catalog = new PortalCatalog();
+        int numCols = Integer.parseInt( (String)context.getAttribute( NUMCOLS_ATTRIBUTE ) );
         for( int i=0; i<numCols; i++ )
           {
-          List col = (List)context.getAttribute( ((String)PARAM_LIST+i) );
-          List labels = (List)context.getAttribute( ((String)PARAM_LIST_LABELS+i) );
-          choices.addChoices( col, labels );
+          List tiles = (List)context.getAttribute( ((String)LIST_ATTRIBUTE+i) );
+          List labels = (List)context.getAttribute( ((String)LIST_LABELS_ATTRIBUTE+i) );
+          catalog.addTiles( tiles, labels );
           } // end loop
-        servletContext.setAttribute( PORTAL_CHOICES_ID, choices );
+        servletContext.setAttribute( PORTAL_CATALOG_NAME, catalog );
         } // end if
 
-      return choices;
+      return catalog;
       }
 
 }

@@ -35,7 +35,7 @@ import org.apache.struts.util.RequestUtils;
  * If menu settings are not defined for user, defined them based on tiles
  * attributes used as default.
  *
- * This implementation extends Struts Action, and also define Tiles Controller.
+ * This implementation extends Struts Action, and also define Tiles Controller interface.
  * This allows to use it as well as a controller type or a controller url. If used
  * as controller type, Struts Action functionality are not availables.
  *
@@ -55,7 +55,7 @@ import org.apache.struts.util.RequestUtils;
  * </ul>
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2001/12/27 17:37:46 $
+ * @version $Revision: 1.2 $ $Date: 2002/02/18 14:50:04 $
  */
 
 public final class UserMenuAction extends TilesAction implements Controller {
@@ -63,18 +63,19 @@ public final class UserMenuAction extends TilesAction implements Controller {
       /** debug flag */
     public static boolean debug = false;
 
-      /** Tile attribute name. Value of this tile's attribute is the name used to store settings in user context */
-    public static String STORE_UNDER_ATTRIBUTE = "storeUnderName";
+      /** Tile attribute containing name used to store user settings in session context */
+    public static String USER_SETTINGS_NAME_ATTRIBUTE = "userSettingsName";
       /** Default name used to store settings in session context */
-    public static String DEFAULT_STORE_UNDER_NAME = "menu.DEFAULT_STORE_UNDER_NAME";
+    public static String DEFAULT_USER_SETTINGS_NAME = "tiles.examples.portal.USER_MENU_SETTINGS";
 
-      /** Name under which item choices are stored in application context */
-    public static final String CHOICES_ITEMS_NAME = "menu.AvailableItems";
+      /** Default name used to store menu catalog in application scope */
+    public static String DEFAULT_MENU_CATALOG_NAME = "tiles.examples.portal.MenuCatalog";
+      /** Tile attribute containing name used to store menu catalog in application scope */
+    public static String MENU_CATALOG_NAME_ATTRIBUTE = "catalogName";
+      /** Tile attribute containing name of the settings definition used to initialize catalog */
+    public static final String CATALOG_SETTING_ATTRIBUTE = "catalogSettings";
 
-      /** Tile attribute name. List of menu or items used as choices */
-    public static final String CHOICES_ITEMS_ATTRIBUTE = "defaultChoice";
-
-      /** Tile attribute name. User items are stored under this name in tile's context  */
+      /** Tile attribute containing items to render   */
     public static String USER_ITEMS_ATTRIBUTE = "items";
 
     /**
@@ -119,11 +120,9 @@ public final class UserMenuAction extends TilesAction implements Controller {
     {
     if(debug)
       System.out.println("Enter action UserMenuAction");
-      // Get current session.
-	  HttpSession session = request.getSession();
 
       // Load user settings from user context
-    MenuSettings settings = loadUserSettings( context, session );
+    MenuSettings settings = getUserSettings( request, context);
       // Set parameters for rendering page
     context.putAttribute( USER_ITEMS_ATTRIBUTE, settings.getItems() );
 
@@ -141,13 +140,16 @@ public final class UserMenuAction extends TilesAction implements Controller {
      * in Tile's context.
      * If settings are not found, initialized them.
      */
-  public static MenuSettings loadUserSettings( ComponentContext context, HttpSession session )
+  public static MenuSettings getUserSettings( HttpServletRequest request, ComponentContext context )
     throws ServletException
   {
+      // Get current session.
+	  HttpSession session = request.getSession();
+
       // Retrieve attribute name used to store settings.
-    String userSettingsName = (String)context.getAttribute( STORE_UNDER_ATTRIBUTE );
+    String userSettingsName = (String)context.getAttribute( USER_SETTINGS_NAME_ATTRIBUTE );
     if( userSettingsName == null )
-      userSettingsName = DEFAULT_STORE_UNDER_NAME;
+      userSettingsName = DEFAULT_USER_SETTINGS_NAME;
 
       // Get user list from user context
     MenuSettings settings = (MenuSettings)session.getAttribute( userSettingsName );
@@ -172,30 +174,38 @@ public final class UserMenuAction extends TilesAction implements Controller {
   }
 
       /**
-       * Load list of menu entries available as choices to user.
-       * Look in servlet context, or create it from list of object provided
+       * Get catalog of available menu entries.
+       * This implementation create catalog list from the provided menu bar entries.
+       *
        * as Tiles attribute.
        * Create it from default values if needed.
        */
-    static public List loadMenuChoices( ComponentContext context, HttpServletRequest request, ServletContext servletContext)
+    static public List getCatalog( ComponentContext context, HttpServletRequest request, ServletContext servletContext)
       throws ServletException
       {
-        // Get list of choices from context
-      List choices = (List)servletContext.getAttribute( CHOICES_ITEMS_NAME );
+        // Retrieve name used to store catalog in application context.
+        // If not found, use default name
+      String catalogName = (String)context.getAttribute( MENU_CATALOG_NAME_ATTRIBUTE );
+      if(catalogName == null)
+        catalogName = DEFAULT_MENU_CATALOG_NAME;
+
+        // Get catalog from context
+      List catalog = (List)servletContext.getAttribute( catalogName );
         // If not found, initialize it from provided default menu
-      if( choices == null )
+      if( catalog == null )
         {
-        Object dflt = context.getAttribute( CHOICES_ITEMS_ATTRIBUTE );
-        if( dflt == null )
-          throw new ServletException( "Can't find default menu item choices under name '" + CHOICES_ITEMS_ATTRIBUTE + "'" );
-        choices = new ArrayList();
-        extractItems(choices, dflt, request, servletContext);
-        if( choices.size() == 0 )
-          throw new ServletException( "Can't initialize menu items choices" );
+        Object menuBar = context.getAttribute( CATALOG_SETTING_ATTRIBUTE );
+        if( menuBar == null )
+          throw new ServletException( "Attribute '" + CATALOG_SETTING_ATTRIBUTE + "' must be set. It define entries used in catalog" );
+        catalog = new ArrayList();
+        extractItems(catalog, menuBar, request, servletContext);
+        if( catalog.size() == 0 )
+          throw new ServletException( "Can't initialize menu items catalog" );
+
           // save it for future use
-        servletContext.setAttribute( CHOICES_ITEMS_NAME, choices );
+        servletContext.setAttribute( catalogName, catalog );
         } // end if
-        return choices;
+        return catalog;
       }
       /**
        * Extract menu items from passed object. Items are stored in parameter 'result'.

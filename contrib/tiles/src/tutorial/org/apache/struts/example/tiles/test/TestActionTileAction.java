@@ -29,7 +29,8 @@ import org.apache.struts.util.RequestUtils;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/09/10 13:05:03 $
+ * @author Cedric Dumoulin
+ * @version $Revision: 1.2 $ $Date: 2002/02/18 14:50:05 $
  */
 
 public final class TestActionTileAction extends Action {
@@ -79,6 +80,7 @@ public final class TestActionTileAction extends Action {
         {
           // Read definition from factory, but we can create it here.
         ComponentDefinition definition = DefinitionsUtil.getDefinition( param, request, getServlet().getServletContext() );
+        //definition.putAttribute( "attributeName", "aValue" );
         DefinitionsUtil.setActionDefinition( request, definition);
         }
        catch( FactoryNotFoundException ex )

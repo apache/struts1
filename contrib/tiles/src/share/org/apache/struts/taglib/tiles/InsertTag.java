@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/InsertTag.java,v 1.5 2001/12/27 17:35:37 cedric Exp $
- * $Revision: 1.5 $
- * $Date: 2001/12/27 17:35:37 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/InsertTag.java,v 1.6 2002/02/18 14:50:03 cedric Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/02/18 14:50:03 $
  * $Author: cedric $
  *
  */
@@ -43,7 +43,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.5 $ $Date: 2001/12/27 17:35:37 $
+ * @version $Revision: 1.6 $ $Date: 2002/02/18 14:50:03 $
  */
 public class InsertTag extends DefinitionTagSupport implements PutTagParent, ComponentConstants, PutListTagParent
 {

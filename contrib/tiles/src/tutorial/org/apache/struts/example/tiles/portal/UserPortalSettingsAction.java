@@ -38,7 +38,7 @@ import org.apache.struts.util.RequestUtils;
  * </ul>
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2001/12/27 17:37:46 $
+ * @version $Revision: 1.2 $ $Date: 2002/02/18 14:50:04 $
  */
 
 public final class UserPortalSettingsAction extends TilesAction {
@@ -71,12 +71,11 @@ public final class UserPortalSettingsAction extends TilesAction {
                           throws IOException, ServletException
   {
   //System.out.println("Enter action UserPortalSettingsAction");
-	HttpSession session = request.getSession();
   PortalSettingsForm prefsForm = (PortalSettingsForm)form;
 
       // Get user portal settings from user context
-  PortalSettings settings = UserPortalAction.getSettings( context, session );
-  PortalChoices choices = UserPortalAction.getPortalChoices( context, getServlet().getServletContext() );
+  PortalSettings settings = UserPortalAction.getSettings( request, context);
+  PortalCatalog catalog = UserPortalAction.getPortalCatalog( context, getServlet().getServletContext() );
 
   if( prefsForm.isSubmitted() )
     {  // read arrays
@@ -85,7 +84,7 @@ public final class UserPortalSettingsAction extends TilesAction {
       // Set settings cols according to user choice
     for( int i=0;i<prefsForm.getNumCol(); i++)
       {
-      settings.setListAt( i, choices.checkKeys( prefsForm.getNewCol(i)) );
+      settings.setListAt( i, catalog.getTiles( prefsForm.getNewCol(i)) );
       } // end loop
 
     //System.out.println( "settings : " +settings.toString() );
@@ -97,11 +96,11 @@ public final class UserPortalSettingsAction extends TilesAction {
     for( int i=0;i<settings.getNumCols(); i++ )
       {
       prefsForm.addCol(settings.getListAt(i) );
-      prefsForm.addColLabels(choices.getChoiceLabelsForKeys( settings.getListAt(i)) );
+      prefsForm.addColLabels(catalog.getTileLabels( settings.getListAt(i)) );
       } // end loop
 
-    prefsForm.setChoices(choices.getChoices() );
-    prefsForm.setChoiceLabels(choices.getChoiceLabels() );
+    prefsForm.setChoices(catalog.getTiles() );
+    prefsForm.setChoiceLabels(catalog.getTilesLabels() );
 
     //System.out.println("Exit action UserPortalSettingsAction");
 	  return null; //(mapping.findForward("editPortal"));
