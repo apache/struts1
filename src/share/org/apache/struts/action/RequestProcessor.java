@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.39 2003/11/15 23:43:01 dgraham Exp $
- * $Revision: 1.39 $
- * $Date: 2003/11/15 23:43:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.40 2003/12/18 04:30:08 husted Exp $
+ * $Revision: 1.40 $
+ * $Date: 2003/12/18 04:30:08 $
  *
  * ====================================================================
  *
@@ -87,14 +87,14 @@ import org.apache.struts.util.RequestUtils;
 
 /**
  * <p><strong>RequestProcessor</strong> contains the processing logic that
- * the Struts controller servlet performs as it receives each servlet request
- * from the container.  You can customize the request processing behavior by
+ * the @link(ActionServlet) performs as it receives each servlet request
+ * from the container. You can customize the request processing behavior by
  * subclassing this class and overriding the method(s) whose behavior you are
  * interested in changing.</p>
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.39 $ $Date: 2003/11/15 23:43:01 $
+ * @version $Revision: 1.40 $ $Date: 2003/12/18 04:30:08 $
  * @since Struts 1.1
  */
 public class RequestProcessor {
@@ -104,16 +104,16 @@ public class RequestProcessor {
 
 
     /**
-     * The request attribute under which the path information is stored for
-     * processing during a RequestDispatcher.include() call.
+     * <p>The request attribute under which the path information is stored for
+     * processing during a <code>RequestDispatcher.include</code> call.</p>
      */
     public static final String INCLUDE_PATH_INFO =
         "javax.servlet.include.path_info";
 
 
     /**
-     * The request attribute under which the servlet path information is stored
-     * for processing during a RequestDispatcher.include() call.
+     * <p>The request attribute under which the servlet path information is stored
+     * for processing during a <code>RequestDispatcher.include</code> call.</p>
      */
     public static final String INCLUDE_SERVLET_PATH =
         "javax.servlet.include.servlet_path";
@@ -123,33 +123,36 @@ public class RequestProcessor {
 
 
     /**
-     * The set of Action instances that have been created and initialized,
-     * keyed by the fully qualified Java class name of the Action class.
+     * <p>The set of <code>Action</code> instances that have been created and
+     * initialized, keyed by the fully qualified Java class name of the
+     * <code>Action</code> class.</p>
      */
     protected HashMap actions = new HashMap();
 
+
     /**
-     * The ModuleConfiguration we are associated with.
+     * <p>The <code>ModuleConfiguration</code> with which we are associated.</p>
      */
     protected ModuleConfig moduleConfig = null;
 
 
     /**
-     * Commons Logging instance.
+     * <p>Commons Logging instance.</p>
      */
     protected static Log log = LogFactory.getLog(RequestProcessor.class);
 
 
     /**
-     * The controller servlet we are associated with.
+     * <p>The controller servlet we are associated with.</p>
      */
     protected ActionServlet servlet = null;
+
 
     // --------------------------------------------------------- Public Methods
 
 
     /**
-     * Clean up in preparation for a shutdown of this application.
+     * <p>Clean up in preparation for a shutdown of this application.</p>
      */
     public void destroy() {
 
@@ -167,7 +170,7 @@ public class RequestProcessor {
 
 
     /**
-     * Initialize this request processor instance.
+     * <p>Initialize this request processor instance.</p>
      *
      * @param servlet The ActionServlet we are associated with
      * @param moduleConfig The ModuleConfig we are associated with.
@@ -184,6 +187,7 @@ public class RequestProcessor {
         this.servlet = servlet;
         this.moduleConfig = moduleConfig;
     }
+
 
     /**
      * <p>Process an <code>HttpServletRequest</code> and create the
@@ -275,8 +279,8 @@ public class RequestProcessor {
 
 
     /**
-     * Return an <code>Action</code> instance that will be used to process
-     * the current request, creating a new one if necessary.
+     * <p>Return an <code>Action</code> instance that will be used to process
+     * the current request, creating a new one if necessary.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -314,8 +318,8 @@ public class RequestProcessor {
             
             try {
                 instance = (Action) RequestUtils.applicationInstance(className);
-                // TODO Maybe we should propagate this exception instead of returning
-                // null.
+                // :TODO: Maybe we should propagate this exception
+                // instead of returning null.
             } catch (Exception e) {
                 log.error(
                     getInternal().getMessage("actionCreate", mapping.getPath()),
@@ -338,9 +342,10 @@ public class RequestProcessor {
 
 
     /**
-     * Retrieve and return the <code>ActionForm</code> bean associated with
-     * this mapping, creating and stashing one if necessary.  If there is no
-     * form bean associated with this mapping, return <code>null</code>.
+     * <p>Retrieve and return the <code>ActionForm</code> associated with
+     * this mapping, creating and retaining one if necessary. If there is no
+     * <code>ActionForm</code> associated with this mapping, return
+     * <code>null</code>.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -350,7 +355,7 @@ public class RequestProcessor {
                                            HttpServletResponse response,
                                            ActionMapping mapping) {
 
-        // Create (if necessary a form bean to use
+        // Create (if necessary) a form bean to use
         ActionForm instance = RequestUtils.createActionForm
             (request, mapping, moduleConfig, servlet);
         if (instance == null) {
@@ -375,8 +380,9 @@ public class RequestProcessor {
 
 
     /**
-     * Forward or redirect to the specified destination, by the specified
-     * mechanism.  This method uses a ForwardConfig object instead an ActionForward.
+     * <p>Forward or redirect to the specified destination, by the specified
+     * mechanism.  This method uses a <code>ForwardConfig</code> object instead
+     * an <code>ActionForward</code>.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -423,10 +429,14 @@ public class RequestProcessor {
     }
 
 
+    // :FIXME: if Action.execute throws Exception, and Action.process has been removed,
+    // should the process* methods still throw IOException, ServletException?
+
     /**
-     * Ask the specified <code>Action</code> instance to handle this
+     * <P>Ask the specified <code>Action</code> instance to handle this
      * request.  Return the <code>ActionForward</code> instance (if any)
      * returned by the called <code>Action</code> for further processing.
+     * </P>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -455,10 +465,10 @@ public class RequestProcessor {
     }
     
     /**
-     * Removes any ActionMessages object stored in the session under 
+     * <p>Removes any <code>ActionMessages</code> object stored in the session under
      * <code>Globals.MESSAGE_KEY</code> if the messages' 
-     * <code>isAccessed()</code> method returns true.  This allows messages to
-     * be stored in the session, display one time, and get cleaned up here.
+     * <code>isAccessed</code> method returns true.  This allows messages to
+     * be stored in the session, display one time, and be released up here.</p>
      * @param request The servlet request we are processing.
      * @param response The servlet response we are creating.
      * @since Struts 1.2
@@ -487,11 +497,11 @@ public class RequestProcessor {
 
 
     /**
-     * Set the default content type (with optional character encoding) for
+     * <p>Set the default content type (with optional character encoding) for
      * all responses if requested.  <strong>NOTE</strong> - This header will
      * be overridden automatically if a
-     * <code>RequestDispatcher.forward()</code> call is
-     * ultimately invoked.
+     * <code>RequestDispatcher.forward</code> call is
+     * ultimately invoked.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -508,9 +518,9 @@ public class RequestProcessor {
 
 
     /**
-     * Ask our exception handler to handle the exception.  Return the
+     * <p>Ask our exception handler to handle the exception.  Return the
      * <code>ActionForward</code> instance (if any) returned by the
-     * called <code>ExceptionHandler</code>.
+     * called <code>ExceptionHandler</code>.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are processing
@@ -556,9 +566,9 @@ public class RequestProcessor {
 
 
     /**
-     * Process a forward requested by this mapping (if any).  Return
+     * <p>Process a forward requested by this mapping (if any). Return
      * <code>true</code> if standard processing should continue, or
-     * <code>false</code> if we have already handled this request.
+     * <code>false</code> if we have already handled this request.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -582,9 +592,9 @@ public class RequestProcessor {
 
 
     /**
-     * Process an include requested by this mapping (if any).  Return
+     * <p>Process an include requested by this mapping (if any).  Return
      * <code>true</code> if standard processing should continue, or
-     * <code>false</code> if we have already handled this request.
+     * <code>false</code> if we have already handled this request.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -608,9 +618,9 @@ public class RequestProcessor {
 
 
     /**
-     * Automatically select a Locale for the current user, if requested.
+     * <p>Automatically select a <code>Locale</code> for the current user, if requested.
      * <strong>NOTE</strong> - configuring Locale selection will trigger
-     * the creation of a new <code>HttpSession</code> if necessary.
+     * the creation of a new <code>HttpSession</code> if necessary.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -642,9 +652,9 @@ public class RequestProcessor {
 
 
     /**
-     * Select the mapping used to process the selection path for this request.
+     * <p>Select the mapping used to process the selection path for this request.
      * If no mapping can be identified, create an error response and return
-     * <code>null</code>.
+     * <code>null</code>.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -687,8 +697,8 @@ public class RequestProcessor {
 
 
     /**
-     * If this is a multipart request, wrap it with a special wrapper.
-     * Otherwise, return the request unchanged.
+     * <p>If this is a multipart request, wrap it with a special wrapper.
+     * Otherwise, return the request unchanged.</p>
      *
      * @param request The HttpServletRequest we are processing
      */
@@ -710,10 +720,10 @@ public class RequestProcessor {
 
 
     /**
-     * Set the no-cache headers for all responses, if requested.
+     * <p>Set the no-cache headers for all responses, if requested.
      * <strong>NOTE</strong> - This header will be overridden
-     * automatically if a <code>RequestDispatcher.forward()</code> call is
-     * ultimately invoked.
+     * automatically if a <code>RequestDispatcher.forward</code> call is
+     * ultimately invoked.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -731,10 +741,10 @@ public class RequestProcessor {
 
 
     /**
-     * Identify and return the path component (from the request URI) that
-     * we will use to select an ActionMapping to dispatch with.  If no such
-     * path can be identified, create an error response and return
-     * <code>null</code>.
+     * <p>Identify and return the path component (from the request URI) that
+     * we will use to select an <code>ActionMapping</code> with which to dispatch.
+     * If no such path can be identified, create an error response and return
+     * <code>null</code>.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -784,7 +794,7 @@ public class RequestProcessor {
 
 
     /**
-     * Populate the properties of the specified ActionForm instance from
+     * <p>Populate the properties of the specified <code>ActionForm</code> instance from
      * the request parameters included with this request.  In addition,
      * request attribute <code>Globals.CANCEL_KEY</code> will be set if
      * the request was submitted with a button created by
@@ -834,10 +844,10 @@ public class RequestProcessor {
 
 
     /**
-     * General-purpose preprocessing hook that can be overridden as required
+     * <p>General-purpose preprocessing hook that can be overridden as required
      * by subclasses.  Return <code>true</code> if you want standard processing
      * to continue, or <code>false</code> if the response has already been
-     * completed.  The default implementation does nothing.
+     * completed.  The default implementation does nothing.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -851,10 +861,10 @@ public class RequestProcessor {
 
 
     /**
-     * If this action is protected by security roles, make sure that the
+     * <p>If this action is protected by security roles, make sure that the
      * current user possesses at least one of them.  Return <code>true</code>
      * to continue normal processing, or <code>false</code> if an appropriate
-     * response has been created and processing should terminate.
+     * response has been created and processing should terminate.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -903,7 +913,7 @@ public class RequestProcessor {
     /**
      * <p>If this request was not cancelled, and the request's
      * {@link ActionMapping} has not disabled validation, call the
-     * <code>validate()</code> method of the specified {@link ActionForm},
+     * <code>validate</code> method of the specified {@link ActionForm},
      * and forward back to the input form if there were any errors.
      * Return <code>true</code> if we should continue processing,
      * or <code>false</code> if we have already forwarded control back
@@ -989,12 +999,13 @@ public class RequestProcessor {
 
     }
 
+
     /**
-     * Do a module relative forward to specified uri using request dispatcher.
-     * Uri is relative to the current module. The real uri is compute by prefixing
-     * the module name.
-     * This method is used internally and is not part of the public API. It is
-     * advised to not use it in subclasses.
+     * <p>Do a module relative forward to specified URI using request dispatcher.
+     * URI is relative to the current module. The real URI is compute by prefixing
+     * the module name.</p>
+     * <p>This method is used internally and is not part of the public API. It is
+     * advised to not use it in subclasses. </p>
      * @param uri Module-relative URI to forward to
      * @param request Current page request
      * @param response Current page response
@@ -1017,12 +1028,14 @@ public class RequestProcessor {
         doForward(uri, request, response);
     }
 
+
     /**
-     * Do a module relative include to specified uri using request dispatcher.
-     * Uri is relative to the current module. The real uri is compute by prefixing
-     * the module name.
-     * This method is used internally and is not part of the public API. It is
-     * advised to not use it in subclasses.
+     * <p>Do a module relative include to specified URI using request dispatcher.
+     * URI is relative to the current module. The real URI is compute by prefixing
+     * the module name.</p>
+     * <p>This method is used internally and is not part of the public API. It is
+     * advised to not use it in subclasses.</p>
+     *
      * @param uri Module-relative URI to include
      * @param request Current page request
      * @param response Current page response
@@ -1045,9 +1058,11 @@ public class RequestProcessor {
         doInclude(uri, request, response);
     }
 
+
     /**
-     * Do a forward to specified uri using request dispatcher.
-     * This method is used by all internal method needing to do a forward.
+     * <p>Do a forward to specified URI using a <code>RequestDispatcher</code>.
+     * This method is used by all internal method needing to do a forward.</p>
+     *
      * @param uri Context-relative URI to forward to
      * @param request Current page request
      * @param response Current page response
@@ -1076,8 +1091,9 @@ public class RequestProcessor {
 
 
     /**
-     * Do an include of specified uri using request dispatcher.
-     * This method is used by all internal method needing to do an include
+     * <p>Do an include of specified URI using a <code>RequestDispatcher</code>.
+     * This method is used by all internal method needing to do an include.</p>
+     *
      * @param uri Context-relative URI to include
      * @param request Current page request
      * @param response Current page response
@@ -1109,8 +1125,8 @@ public class RequestProcessor {
 
 
     /**
-     * Return the <code>MessageResources</code> instance containing our
-     * internal message strings.
+     * <p>Return the <code>MessageResources</code> instance containing our
+     * internal message strings.</p>
      */
     protected MessageResources getInternal() {
 
@@ -1120,7 +1136,7 @@ public class RequestProcessor {
 
 
     /**
-     * Return the ServletContext for the web application we are running in.
+     * <p>Return the <code>ServletContext</code> for the web application in which we are running.
      */
     protected ServletContext getServletContext() {
 
@@ -1128,9 +1144,10 @@ public class RequestProcessor {
 
     }
 
+
     /**
-     * Log the specified message to the servlet context log for this
-     * web application.
+     * <p>Log the specified message to the servlet context log for this
+     * web application.</p>
      *
      * @param message The message to be logged
      * @deprecated Use commons-logging instead.  This will be removed in a release
@@ -1142,8 +1159,8 @@ public class RequestProcessor {
 
 
     /**
-     * Log the specified message and exception to the servlet context log
-     * for this web application.
+     * <p>Log the specified message and exception to the servlet context log
+     * for this web application.</p>
      *
      * @param message The message to be logged
      * @param exception The exception to be logged
