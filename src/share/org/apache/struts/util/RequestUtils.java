@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.93 2003/03/11 03:08:59 dgraham Exp $
- * $Revision: 1.93 $
- * $Date: 2003/03/11 03:08:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.94 2003/03/18 04:13:06 dgraham Exp $
+ * $Revision: 1.94 $
+ * $Date: 2003/03/18 04:13:06 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.93 $ $Date: 2003/03/11 03:08:59 $
+ * @version $Revision: 1.94 $ $Date: 2003/03/18 04:13:06 $
  */
 
 public class RequestUtils {
@@ -742,7 +742,6 @@ public class RequestUtils {
                         }
                         return (instance);
                     }
-                    return (instance);
                 } catch (Throwable t) {
                     log.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
                     return (null);
