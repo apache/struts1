@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: userGuide.xsl,v 1.5 2001/01/22 04:48:58 husted Exp $ -->
+<!-- $Id: userGuide.xsl,v 1.6 2001/01/23 04:25:37 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -85,14 +85,19 @@
 
   <!-- Process an entire chapter (assumes one chapter per page) -->
   <xsl:template match="chapter">
-
     <xsl:element name="a">
-      <xsl:attribute name="name"><xsl:value-of select="@href" /></xsl:attribute>
+      <xsl:attribute name="name">
+        <xsl:value-of select="@href" />
+      </xsl:attribute>
     </xsl:element>
-    <!-- <h2><xsl:value-of select="@name" /></h2> -->
-
+    <table border="0" cellspacing="5" cellpadding="5" width="100%">
+      <tr><td bgcolor="{$banner-bg}">
+        <font color="{$banner-fg}" face="arial,helvetica,sanserif" size="+1">
+          <strong><xsl:value-of select="@name"/></strong>
+        </font>
+      </td></tr>
+    </table>
     <xsl:apply-templates select="section" />
-
   </xsl:template>
 
 
