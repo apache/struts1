@@ -1,4 +1,4 @@
-$Id: TODO,v 1.3 2000/08/26 19:53:21 craigmcc Exp $
+$Id: TODO,v 1.4 2000/09/06 22:34:52 craigmcc Exp $
 
 
 			    Struts TODO List
@@ -70,6 +70,9 @@ MVC Framework [org.apache.struts.action]:
   ServletResponse, for use in non-HTTP environments.  STRUTS-DEV
   (08/23/2000) Frank Nguyen, and follow-ups.
 
+- Support a special type of ActionForward that uses the HTTP "Referer" header
+  to identify the page to return to, so you can <%@ include %> the same form
+  onto multiple pages.  STRUTS-USER (09/06/2000) Hans Gerwitz.
 
 XML Digester [org.apache.struts.digester]:
 -----------------------------------------
