@@ -117,7 +117,7 @@
     <module name="TabCharacter"/>
 
     <!-- enforce License Header using a RegExp file to allow some variations
-         like the years in copyrights or values of CVS variables. -->
+         like the years in copyrights or values of SVN variables. -->
     <module name="RegexpHeader">
        <property name="headerFile" value="LICENSE.CheckStyle"/>
     </module>
