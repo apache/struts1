@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.15 2004/04/24 06:37:00 rleland Exp $
- * $Revision: 1.15 $
- * $Date: 2004/04/24 06:37:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.16 2004/06/09 00:54:24 niallp Exp $
+ * $Revision: 1.16 $
+ * $Date: 2004/06/09 00:54:24 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -34,7 +34,7 @@ import org.apache.commons.logging.LogFactory;
  * <code>&lt;form-property&gt;</code> element in a Struts
  * configuration file.<p>
  *
- * @version $Revision: 1.15 $ $Date: 2004/04/24 06:37:00 $
+ * @version $Revision: 1.16 $ $Date: 2004/06/09 00:54:24 $
  * @since Struts 1.1
  */
 
@@ -288,13 +288,19 @@ public class FormPropertyConfig implements Serializable {
                 } else {
                     initialValue =
                         Array.newInstance(clazz.getComponentType(), size);
-                    for (int i = 0; i < size; i++) {
-                        try {
-                            Array.set(initialValue, i,
+                    if (!(clazz.getComponentType().isPrimitive())) {
+                        for (int i = 0; i < size; i++) {
+                            try {
+                                Array.set(initialValue, i,
                                       clazz.getComponentType().newInstance());
-                        } catch (Throwable t) {
-                            log.error("Unable to create instance of "+clazz.getName()+" there is probably no zero-arg constructor");
-                            //FIXME: Should we just dump the entire application/module ?
+                            } catch (Throwable t) {
+                                log.error("Unable to create instance of " + clazz.getName() +
+                                                                        " for property=" + name+
+                                                                        ", type=" + type +
+                                                                        ", initial=" + initial +
+                                                                        ", size=" + size + ".");
+                                //FIXME: Should we just dump the entire application/module ?
+                            }
                         }
                     }
                 }
