@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.4 2002/07/19 10:02:12 cedric Exp $
- * $Revision: 1.4 $
- * $Date: 2002/07/19 10:02:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.5 2002/08/15 09:28:50 cedric Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/08/15 09:28:50 $
  *
  * ====================================================================
  *
@@ -99,7 +99,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
 public class TilesRequestProcessor extends RequestProcessor
 {
     /** Debug flag */
-  public static final boolean debug = true;
+  public static final boolean debug = false;
     /** Definitions factory */
   private DefinitionsFactory definitionsFactory;
 
