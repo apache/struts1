@@ -58,11 +58,11 @@
     <menu name="Download">
         <item 
         	name="Binaries"                
-        	href="http://jakarta.apache.org/site/binindex.html"
+        	href="http://jakarta.apache.org/site/binindex.cgi"
         	/>
         <item 
         	name="Source Code"             
-        	href="http://jakarta.apache.org/site/sourceindex.html"
+        	href="http://jakarta.apache.org/site/binindex.cgi"
         	/>
         <item 
         	name="CVS Repository"          
