@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.31 2002/10/18 15:27:41 jholmes Exp $
+     $Id: struts-config_1_1.dtd,v 1.32 2002/10/29 05:41:46 craigmcc Exp $
 -->
 
 
@@ -487,15 +487,15 @@ The "form-bean" element describes a particular form bean, which is a
                      - "$x" - (Where "x" is any character not defined above)
                      Silently swallowed, reserved for future use
                      If not specified, the default forwardPattern is "$A$P",
-                     which is consistent with the previous behavior of forwards.
-                     Since Struts 1.1.
-                     ["$A$P"]
+                     which is consistent with the previous behavior of
+                     forwards.  Since Struts 1.1.  ["$A$P"]
 
-     inputForward    Set to "true" if you want the "input" attribute of <action>
-                     elements to be the name of a local or global ActionForward,
-                     which will then be used to calculate the ultimate URL. Set
-                     to "false" (the default) to treat the "input" parameter of
-                     <action> elements as a module-relative path to the resource
+     inputForward    Set to "true" if you want the "input" attribute of
+                     <action> elements to be the name of a local or global
+                     ActionForward, which will then be used to calculate the
+                     ultimate URL. Set to "false" (the default) to treat the
+                     "input" parameter of <action> elements as a
+                     module-relative path to the resource
                      to be used as the input form. Since Struts 1.1.
                      [false]
 
@@ -509,13 +509,13 @@ The "form-bean" element describes a particular form bean, which is a
                      megabytes, or gigabytes, respectively.
                      ["250M"]
 
-     multipartClass  The fully qualified Java class name of the multipart request
-                     handler class to be used with this module.
+     multipartClass  The fully qualified Java class name of the multipart
+                     request handler class to be used with this module.
                      ["org.apache.struts.upload.CommonsMultipartRequestHandler"]
 
-     nocache         Set to "true" if you want the controller to add HTTP headers
-                     for defeating caching to every response from this module.
-                     [false]
+     nocache         Set to "true" if you want the controller to add HTTP
+                     headers for defeating caching to every response from
+                     this module.  [false]
 
      pagePattern     Replacement pattern defining how the "page" attribute of
                      custom tags using it is mapped to a context-relative URL
