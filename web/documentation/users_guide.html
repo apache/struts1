@@ -6,7 +6,7 @@
 
 <div align="center">
 <h1>Struts User's Guide</h2>
-<h3>$Id: users_guide.html,v 1.2 2000/06/05 05:28:50 craigmcc Exp $</h3>
+<h3>$Id: users_guide.html,v 1.3 2000/06/13 02:05:18 craigmcc Exp $</h3>
 </div>
 
 
@@ -634,7 +634,13 @@ creating user interfaces:</p>
     value.</li>
 <li><a href="tags.html#ifParameterNotEquals">ifParameterNotEquals</a>
     evaluates its tag body only if a specified request parameter does not
-    have a specified value.</li>
+    have a specified value, or is not present.</li>
+<li><a href="tags.html#ifParameterNotNull">ifParameterNotNull</a>
+    evaluates its tag body only if a specified request parameter is included
+    in this request, and has a length greater than zero.</li>
+<li><a href="tags.html#ifParameterNull">ifParameterNull</a> evaluates its
+    tag body only if a specified request parameter is not included in this
+    request, or if it is included with zero length.</li>
 <li><a href="tags.html#link">link</a> generates a hyperlink, and automatically
     applies URL encoding to maintain session state in the absence of
     cookie support.</li>

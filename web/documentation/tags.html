@@ -361,6 +361,54 @@ omitted).  Otherwise, the body of this tag is skipped.</p>
 <a href="#Top">Top</a>
 
 
+<a name="ifParameterNotNull"></a>
+<h1><i>ifParameterNotNull</i> - Conditionally Evaluate Tag Body</h1>
+
+<p>Evaluates and processes the body of this tag if the specified parameter
+was included in this request with a length greater than zero.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the request parameter whose value must be
+      present for conditional evaluation of the tag body
+      to take place.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="ifParameterNull"></a>
+<h1><i>ifParameterNull</i> - Conditionally Evaluate Tag Body</h1>
+
+<p>Evaluates and processes the body of this tag if the specified parameter
+was not included in this request, or is present with a length of zero.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the request parameter whose value must not be
+      present for conditional evaluation of the tag body
+      to take place.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
 <a name="link"></a>
 <h1><i>link</i> - Render HTML Hyperlink</h1>
 
@@ -605,6 +653,30 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
       Value that is matched against the underlying bean property value.
       If the property has the same value, this radio button will be
       rendered as <code>checked</code>.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="redirect"></a>
+<h1><i>link</i> - Render HTML Hyperlink</h1>
+
+<p>Perform a response.sendRedirect() call to the specified URL, and
+skip evaluation of the remainder of this page.  URL rewriting will be
+applied automatically to maintain session state in the absence of
+cookies.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">href</td>
+    <td>
+      URL to which the user will be redirected.
     </td>
   </tr>
 </table>
