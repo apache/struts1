@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.45 2000/12/27 04:50:16 craigmcc Exp $
- * $Revision: 1.45 $
- * $Date: 2000/12/27 04:50:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.46 2000/12/29 20:06:22 craigmcc Exp $
+ * $Revision: 1.46 $
+ * $Date: 2000/12/29 20:06:22 $
  *
  * ====================================================================
  *
@@ -212,7 +212,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.45 $ $Date: 2000/12/27 04:50:16 $
+ * @version $Revision: 1.46 $ $Date: 2000/12/29 20:06:22 $
  */
 
 public class ActionServlet
@@ -1560,9 +1560,7 @@ public class ActionServlet
         // Validate that we need to create a Locale
         if (!locale)
             return;             // Service not requested
-        HttpSession session = request.getSession(false);
-        if (session == null)
-            return;             // Not in a session
+        HttpSession session = request.getSession();
         if (session.getAttribute(Action.LOCALE_KEY) != null)
             return;             // Locale object is already present
 
