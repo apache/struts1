@@ -5,13 +5,12 @@
     <author>Robert Leland</author>
     <author>Ted Husted</author>
     <author>Martin Cooper</author>
-    <title>Struts Release Notes (since 1.1)</title>
+    <title>Struts Release Notes (since 1.1 through 1.2.1)</title>
   </properties>
   <body>
       <section name="Introduction" href="Introduction">
         <p>This section contains release notes for changes that have taken place since
-        <a href="release-notes-1.1.html">Version 1.1</a> was released. The release notes
-        through the Struts 1.2.1 release are also <a href="release-notes-1.2.1.html">available.</a></p></p>
+        <a href="release-notes-1.1.html">Version 1.1</a> was released through the Struts 1.2.1 release.
       </section>
       <section name="What's Included?" href="Included">
         <p>The binary distribution of this release includes the following files relevant to Struts:</p>
