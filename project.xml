@@ -179,6 +179,18 @@
              <organization></organization>
         </developer>
 
+        <developer>
+            <name>Don Brown</name>
+            <email>mrdon at apache.org</email>
+             <organization></organization>
+        </developer>
+
+        <developer>
+            <name>Joe Germuska</name>
+            <email>germuska at apache.org</email>
+             <organization></organization>
+        </developer>
+
   </developers>
   <contributors>
     <contributor>
@@ -197,35 +209,50 @@
       <id>commons-beanutils</id>
       <version>1.6.1</version>
       <url>http://jakarta.apache.org/commons/beanutils.html</url>
-      <properties><war.bundle>true</war.bundle></properties>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
     </dependency>
 
     <dependency>
       <id>commons-collections</id>
       <version>2.1</version>
       <url>http://jakarta.apache.org/commons/collections.html</url>
-      <properties><war.bundle>true</war.bundle></properties>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
     </dependency>
 
     <dependency>
       <id>commons-digester</id>
       <version>1.5</version>
       <url>http://jakarta.apache.org/commons/digester.html</url>
-      <properties><war.bundle>true</war.bundle></properties>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
     </dependency>
 
     <dependency>
       <id>commons-fileupload</id>
       <version>1.0</version>
       <url>http://jakarta.apache.org/commons/fileupload.html</url>
-      <properties><war.bundle>true</war.bundle></properties>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
     </dependency>
     
     <dependency>
       <id>commons-logging</id>
       <version>1.0.3</version>
       <url>http://jakarta.apache.org/commons/logging.html</url>
-      <properties><war.bundle>true</war.bundle></properties>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
     </dependency>
     
     <!--
@@ -240,14 +267,20 @@
       <id>commons-validator</id>
       <version>1.1.1-dev</version>
       <url>http://jakarta.apache.org/commons/validator.html</url>
-      <properties><war.bundle>true</war.bundle></properties>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
     </dependency>    
     
     <dependency>
       <id>oro</id>
       <version>2.0.7</version>
       <url>http://jakarta.apache.org/oro/</url>
-      <properties><war.bundle>true</war.bundle></properties>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
     </dependency>
 
     <dependency>

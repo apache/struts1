@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.50 2003/10/13 10:51:23 jmitchell Exp $
+# $Id: build.properties.sample,v 1.51 2003/12/26 22:14:17 germuska Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -327,3 +327,5 @@ ant.jar=${apache.home}/apache-ant-1.5.3-1/lib/ant.jar
 tomcat.home.33 = ${apache.home}/jakarta-tomcat-3.3.1
 tomcat.home.40 = ${apache.home}/jakarta-tomcat-4.0.6
 tomcat.home.41 = ${apache.home}/jakarta-tomcat-4.1.27
+# use value of tomcat.home.41 to set equivalent property for Maven-Cactus plug-in
+cactus.home.tomcat4x=${tomcat.home.41}
