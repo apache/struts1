@@ -15,6 +15,7 @@
 
     <menu name="New Tag Library Reference">
         <item name="Bean/Property Tags" href="struts-bean.html"/>
+        <item name="Form Tags"          href="struts-form.html"/>
         <item name="Logic Tags"         href="struts-logic.html"/>
         <item name="Template Tags"      href="struts-template.html"/>
     </menu>

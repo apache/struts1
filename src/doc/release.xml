@@ -74,24 +74,47 @@
   <em>struts-bean</em> custom tag library (package
   <code>org.apache.struts.taglib.bean</code>):</p>
   <ul>
-  <li>A new custom tag, <code>&lt;struts-bean:page&gt;</code>, is available
+  <li>A new custom tag, <code>&lt;bean:page&gt;</code>, is available
       to expose key items from the page context associated with the current
       page as scripting variables, and as page-scope beans.  For example,
       you can use the following sequence to render the server information
       string returned by our servlet context:
       <pre>
-      &lt;struts-bean:page id="app" property="application"/&gt;
-      &lt;struts-bean:write name="app" property="serverInfo"/&gt;
+      &lt;bean:page id="app" property="application"/&gt;
+      &lt;bean:write name="app" property="serverInfo"/&gt;
       </pre></li>
-  <li>A new custom tag, <code>&lt;struts-bean:struts&gt;</code>, is available
+  <li>A new custom tag, <code>&lt;bean:struts&gt;</code>, is available
       to expose internal Struts configuration objects (form bean, forward,
       and mapping definitions) as scripting variables and page-scope beans.
       For example, you can use the following sequence to render the actual
       context-relative path of an <code>ActionForward</code> object:
       <pre>
-      &lt;struts-bean:struts id="link" forward="success"/&gt;
-      &lt;struts-bean:write name="link" property="path"/&gt;
+      &lt;bean:struts id="link" forward="success"/&gt;
+      &lt;bean:write name="link" property="path"/&gt;
       </pre></li>
+  </ul>
+
+  <p>The following major new features have been added to the
+  <em>struts-bean</em> custom tag library (package
+  <code>org.apache.struts.taglib.bean</code>):</p>
+  <ul>
+  <li>All of the tags in this library that accept a <code>name</code>
+      attribute referring to a JSP bean now also accept an optional
+      <code>scope</code> attribute to define the scope in which to search
+      for that bean.  If not specified, all scopes are searched.</li>
+  </ul>
+
+  <p>The <em>struts-form</em> custom tag library has been created (package
+  <code>org.apache.struts.taglib.form</code>), based on the old tags that
+  were related to HTML form presentation.  The following differences from
+  the old tags are notable:</p>
+  <ul>
+  <li>You must now reference the "struts-form.tld" TLD to access these
+      tags.</li>
+  <li>All attribute names matching JavaScript event handlers are now all
+      lower case (onClick --&gt; onclick) to conform to XHTML.</li>
+  <li>The <code>options1</code> tag has been eliminated since Struts is now
+      based on Java2.</li>
   </ul>
 
   <p>The following major new features have been added to the

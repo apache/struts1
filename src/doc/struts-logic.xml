@@ -129,6 +129,16 @@
     </attribute>
 
     <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
       <name>value</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
@@ -242,6 +252,16 @@
     </attribute>
 
     <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
       <name>value</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
@@ -321,6 +341,16 @@
       <p>The variable to be compared is the property (of the bean specified
       by the <code>name</code> attribute) specified by this attribute.
       The property reference can be simple, nested, or indexed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
       </info>
     </attribute>
 
@@ -436,6 +466,16 @@
     </attribute>
 
     <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
       <name>type</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -522,6 +562,16 @@
     </attribute>
 
     <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
       <name>value</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
@@ -601,6 +651,16 @@
       <p>The variable to be compared is the property (of the bean specified
       by the <code>name</code> attribute) specified by this attribute.
       The property reference can be simple, nested, and/or indexed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
       </info>
     </attribute>
 
@@ -700,97 +760,12 @@
     </attribute>
 
     <attribute>
-      <name>value</name>
-      <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The constant value which is checked for existence as a substring
-      of the specified variable.</p>
-      </info>
-    </attribute>
-
-  </tag>
-
-
-  <tag>
-
-    <name>notMatch</name>
-    <summary>
-    Evaluate the nested body content of this tag if the specified value
-    is not an appropriate substring of the requested variable.
-    </summary>
-    <tagclass>org.apache.struts.taglib.logic.NotMatchTag</tagclass>
-    <bodycontent>JSP</bodycontent>
-    <info>
-    <p>Matches the variable specified by one of the selector attributes
-    (as a String) against the specified constant value.  If the value is
-    not a substring (appropriately limited by the <code>location</code>
-    attribute), the nested body content of this tag is evaluated.</p>
-    </info>
-
-    <attribute>
-      <name>cookie</name>
+      <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      <p>The variable to be matched is the value of the cookie whose
-      name is specified by this attribute.</p>
-      </info>
-    </attribute>
-
-    <attribute>
-      <name>header</name>
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the value of the header whose
-      name is specified by this attribute.  The name match is performed
-      in a case insensitive manner.</p>
-      </info>
-    </attribute>
-
-    <attribute>
-      <name>location</name>
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>If not specified, a match between the variable and the value may
-      occur at any position within the variable string.  If specified, the
-      match must occur at the specified location (either <code>start</code>
-      or <code>end</code>) of the variable string.</p>
-      </info>
-    </attribute>
-
-    <attribute>
-      <name>name</name>
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the JSP bean specified by this
-      attribute, if <code>property</code> is not specified, or the value
-      of the specified property of this bean, if <code>property</code>
-      is specified.</p>
-      </info>
-    </attribute>
-
-    <attribute>
-      <name>parameter</name>
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the first, or only, value of the
-      request parameter specified by this attribute.</p>
-      </info>
-    </attribute>
-
-    <attribute>
-      <name>property</name>
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the property (of the bean specified
-      by the <code>name</code> attribute) specified by this attribute.
-      The property reference can be simple, nested, and/or indexed.</p>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
       </info>
     </attribute>
 
@@ -878,6 +853,16 @@
     </attribute>
 
     <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
       <name>value</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
@@ -889,6 +874,111 @@
 
   </tag>
     
+
+  <tag>
+
+    <name>notMatch</name>
+    <summary>
+    Evaluate the nested body content of this tag if the specified value
+    is not an appropriate substring of the requested variable.
+    </summary>
+    <tagclass>org.apache.struts.taglib.logic.NotMatchTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+    <p>Matches the variable specified by one of the selector attributes
+    (as a String) against the specified constant value.  If the value is
+    not a substring (appropriately limited by the <code>location</code>
+    attribute), the nested body content of this tag is evaluated.</p>
+    </info>
+
+    <attribute>
+      <name>cookie</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The variable to be matched is the value of the cookie whose
+      name is specified by this attribute.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>header</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The variable to be matched is the value of the header whose
+      name is specified by this attribute.  The name match is performed
+      in a case insensitive manner.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>location</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>If not specified, a match between the variable and the value may
+      occur at any position within the variable string.  If specified, the
+      match must occur at the specified location (either <code>start</code>
+      or <code>end</code>) of the variable string.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The variable to be matched is the JSP bean specified by this
+      attribute, if <code>property</code> is not specified, or the value
+      of the specified property of this bean, if <code>property</code>
+      is specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>parameter</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The variable to be matched is the first, or only, value of the
+      request parameter specified by this attribute.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The variable to be matched is the property (of the bean specified
+      by the <code>name</code> attribute) specified by this attribute.
+      The property reference can be simple, nested, and/or indexed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>value</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The constant value which is checked for existence as a substring
+      of the specified variable.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
 
   <tag>
 
@@ -958,6 +1048,16 @@
       by a property getter method on the JSP bean (in any scope) that is
       specified by the <code>name</code> attribute.  Property references
       can be simple, nested, and/or indexed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
       </info>
     </attribute>
 
@@ -1032,6 +1132,16 @@
       by a property getter method on the JSP bean (in any scope) that is
       specified by the <code>name</code> attribute.  Property references
       can be simple, nested, and/or indexed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
       </info>
     </attribute>
 
