@@ -30,6 +30,7 @@ import org.apache.struts.chain.Constants;
 import org.apache.struts.chain.util.ClassUtils;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.FormBeanConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -38,7 +39,7 @@ import org.apache.commons.logging.LogFactory;
  * <p>Create (if necessary) and cache a form bean for this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2004/03/08 02:50:53 $
+ * @version $Revision: 1.5 $ $Date: 2004/04/09 15:17:43 $
  */
 
 public class CreateActionForm implements Command {
@@ -50,6 +51,7 @@ public class CreateActionForm implements Command {
     private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
     private String actionFormKey = Constants.ACTION_FORM_KEY;
     private String actionServletKey = Constants.ACTION_SERVLET_KEY;
+    private String moduleConfigKey = Constants.MODULE_CONFIG_KEY;
 
     private static final Log log =
         LogFactory.getLog(CreateActionForm.class);
@@ -131,6 +133,31 @@ public class CreateActionForm implements Command {
     public void setActionServletKey(String actionServletKey) {
 
         this.actionServletKey = actionServletKey;
+
+    }
+    
+    /**
+     * <p>Return the context attribute key under which the
+     * <code>ModuleConfig</code> for the currently selected application
+     * module is stored.</p>
+     */
+    public String getModuleConfigKey() {
+
+        return (this.moduleConfigKey);
+
+    }
+
+
+    /**
+     * <p>Set the context attribute key under which the
+     * <code>ModuleConfig</code> for the currently selected application
+     * module is stored.</p>
+     *
+     * @param moduleConfigKey The new context attribute key
+     */
+    public void setModuleConfigKey(String moduleConfigKey) {
+
+        this.moduleConfigKey = moduleConfigKey;
 
     }
 
@@ -221,8 +248,10 @@ public class CreateActionForm implements Command {
         log.trace("Make a new instance of: " + formBeanConfig);
         // Create a new form bean instance
         if (formBeanConfig.getDynamic()) {
+            ModuleConfig moduleConfig = (ModuleConfig)
+                wcontext.get(getModuleConfigKey());
             DynaActionFormClass dynaClass =
-                DynaActionFormClass.createDynaActionFormClass(formBeanConfig);
+                DynaActionFormClass.createDynaActionFormClass(formBeanConfig, moduleConfig);
             instance = (ActionForm) dynaClass.newInstance();
             ((DynaActionForm) instance).initialize
                 ((ActionMapping) actionConfig);
