@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.20 2001/08/05 18:25:30 martinc Exp $
- * $Revision: 1.20 $
- * $Date: 2001/08/05 18:25:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.21 2001/08/05 19:00:29 martinc Exp $
+ * $Revision: 1.21 $
+ * $Date: 2001/08/05 19:00:29 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.20 $ $Date: 2001/08/05 18:25:30 $
+ * @version $Revision: 1.21 $ $Date: 2001/08/05 19:00:29 $
  */
 
 public class RequestUtils {
@@ -181,7 +181,7 @@ public class RequestUtils {
         throws JspException {
 
         // Short circuit if no parameters are specified
-        if ((paramId == null) && (name == null))
+        if ((paramId == null) && (name == null) && !transaction)
             return (null);
 
         // Locate the Map containing our multi-value parameters map
