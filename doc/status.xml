@@ -18,7 +18,7 @@
 <section href="status" name="Development Roadmap">
 
     <p>
-    <font size="-2">$Id: status.xml,v 1.30 2003/06/06 13:15:56 husted Exp $</font>
+    <font size="-2">$Id: status.xml,v 1.31 2003/06/07 18:42:06 husted Exp $</font>
     </p>
 
     <p>
@@ -248,6 +248,102 @@
     </ul>
 
 </section>
+
+    <section href="releases" name="Release Guidelines">
+
+        <p>
+            A <a href="http://jakarta.apache.org/commons/versioning.html">point release</a>
+            should be made before and after any product change that is not a "fully-compatible change"
+            (see link). This includes moving a dependency from an internal package to an external product,
+            including products distributed through the Jakarta Commons.
+            We should place any fully-compatible changes in the hands of the community
+            before starting on a change that is only "interface" or "external-interface" compatible.
+        </p>
+        <p>
+            A fully-compatible point release does not always need a "preview" beta or milestone release.
+            If appropriate, a Release Candidate can be cut, uploaded to the Release Manager's home directory
+            on cvs.apache.org (~/public_html), and voted to be released to the general public from there.
+        </p>
+
+        <p>
+            Any release should follow the same general process used by the Jakarta Commons
+            and the Apache HTTP Server project.
+        </p>
+
+        <ul>
+            <li>
+                 <a href="http://jakarta.apache.org/commons/releases/">Releasing Common Components</a>
+            </li>
+            <li>
+                <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?SigningReleases">Signing a release version</a>
+                <ul>
+                <li>
+                    <small>The MD5 tool is installed on daedalus, and you can create the digests for Struts releases there.</small>
+                </li>
+                </ul>
+            </li>
+            <li>
+                <a href="http://httpd.apache.org/dev/release.html">Apache HTTD Server Release Guidelines</a>
+            </li>
+        </ul>
+
+        <p>
+            Additional remarks:
+        </p>
+
+        <ul>
+            <li>
+                The release process can seem daunting when you review it for the first time.
+                But, essentially, it breaks down into three phases of just a few steps each:
+                <ul>
+                    <li>Building - Bugzilla, dependencies, release notes, JAR manifest, licenses, copyrights, and build (using the release target).</li>
+                    <li>Testing - JUnit, Cactus, web apps (for all "supported" containers). </li>
+                    <li>Distributing - Checksum, sign, mirror, release, update Struts site, update Jakarta site, announce.</li>
+                </ul>
+            </li>
+            <li>
+                Our dependencies on external JARs (including Commons JARs) should
+                be in line with our own release status.
+                Our nightly build can be dependant on another nightly build.
+                Our beta can be dependant on another beta,
+                but should avoid a dependance on a nightly build.
+                Our release candidate can have a dependance on another RC,
+                but should not have a dependance on a beta (and certainly <b>not</b> a nightly build).
+                Our final release can only have dependencies on other final releases.
+            </li>
+            <li>
+                Use your own discretion as to detail needed by the Release Notes.
+                A high-level description of the changes is more important than providing uninterpreted detail.
+                At a minimum, new features and deprecations should be summarized,
+                since these are commonly asked questions.
+                Ideally, the release notes should be maintained continuously for the nightly build
+                so that we do not need to quickly assembled them on the eve of a Release.
+            </li>
+            <li>
+                Test building the distribution under prior version of J2SE, if possible,
+                to ensure that we are still backwardly-compatible.
+                But, our Release distribution should be built using the <b>latest release of J2SE</b>,
+                to take advantage of all available compiler enhancements.
+            </li>
+            <li>
+                Before building the final release, run the JUnit and Cactus tests using the same
+                configuration used that will be used to build the Release distribution.
+            </li>
+            <li>
+                There is a "release" target in the buildfile that will zip and tar the releases.
+                Before uploading the release, extract the sample web applications and deploy the WARs under
+                each of the "supported" containers.
+                Play test each application under each container to be sure they operate nominally.
+            </li>
+            <li>
+                By the way, the nightly builds are being created on a machine of Craig McClanahan's.
+                If there are problems with a nightly build that seem infrastructure related,
+                Craig is the one to contact.
+            </li>
+        </ul>
+
+    </section>
+
 
 <section href="guidelines" name="Coding Conventions and Guidelines">
 
