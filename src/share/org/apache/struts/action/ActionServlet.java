@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.146 2003/04/17 04:56:24 dgraham Exp $
- * $Revision: 1.146 $
- * $Date: 2003/04/17 04:56:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.147 2003/04/17 05:33:12 dgraham Exp $
+ * $Revision: 1.147 $
+ * $Date: 2003/04/17 05:33:12 $
  *
  * ====================================================================
  *
@@ -308,7 +308,8 @@ import org.xml.sax.SAXException;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.146 $ $Date: 2003/04/17 04:56:24 $
+ * @author David Graham
+ * @version $Revision: 1.147 $ $Date: 2003/04/17 05:33:12 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -442,6 +443,9 @@ public class ActionServlet extends HttpServlet {
         } catch (Throwable t) {
             ; // Servlet container doesn't have the latest version
             ; // of commons-logging-api.jar installed
+            
+            // FIXME Why is this dependent on the container's version of commons-logging?
+            // Shouldn't this depend on the version packaged with Struts?
         }
 
     }
@@ -715,12 +719,14 @@ public class ActionServlet extends HttpServlet {
             Object value = getServletContext().getAttribute(name);
             if (value instanceof ModuleConfig) {
                 ModuleConfig config = (ModuleConfig) value;
-                try {
-                    getRequestProcessor(config).destroy();
-                    getServletContext().removeAttribute(name);
-                } catch (Throwable t) {
-                    ;
-                }
+                    try {
+                        getRequestProcessor(config).destroy();
+                    } catch (ServletException e) {
+                        log.error(e);
+                    }
+                    
+                getServletContext().removeAttribute(name);
+
                 PlugIn plugIns[] =
                     (PlugIn[]) getServletContext().getAttribute(
                         Globals.PLUG_INS_KEY + config.getPrefix());
@@ -840,29 +846,35 @@ public class ActionServlet extends HttpServlet {
      *  instance
      * @since Struts 1.1
      */
-    protected synchronized RequestProcessor
-        getRequestProcessor(ModuleConfig config) throws ServletException {
-
+    protected synchronized RequestProcessor getRequestProcessor(ModuleConfig config)
+        throws ServletException {    
+            
         String key = Globals.REQUEST_PROCESSOR_KEY + config.getPrefix();
         RequestProcessor processor = (RequestProcessor)
             getServletContext().getAttribute(key);
+            
         if (processor == null) {
             try {
-                processor = (RequestProcessor)
-                    RequestUtils.applicationInstance
-                    (config.getControllerConfig().getProcessorClass());
-                processor.init(this, config);
-                getServletContext().setAttribute(key, processor);
-            } catch (Throwable t) {
-                throw new UnavailableException
-                    ("Cannot initialize RequestProcessor of class " +
-                     config.getControllerConfig().getProcessorClass()
-                     + ": " + t);
+                processor =
+                    (RequestProcessor) RequestUtils.applicationInstance(
+                        config.getControllerConfig().getProcessorClass());
+                        
+            } catch (Exception e) {
+                throw new UnavailableException(
+                    "Cannot initialize RequestProcessor of class "
+                        + config.getControllerConfig().getProcessorClass()
+                        + ": "
+                        + e);
             }
+
+            processor.init(this, config);
+            getServletContext().setAttribute(key, processor);
+
         }
         return (processor);
 
     }
+    
     /**
      * <p>Initialize the application configuration information for the
      * specified module.</p>
@@ -1071,9 +1083,9 @@ public class ActionServlet extends HttpServlet {
                     ((GenericDataSource) ds).open();
                 }
                 ds.setLogWriter(scw);
-            } catch (Throwable t) {
-                log.error(internal.getMessage
-                    ("dataSource.init", dscs[i].getKey()), t);
+                
+            } catch (Exception e) {
+                log.error(internal.getMessage("dataSource.init", dscs[i].getKey()), e);
                 throw new UnavailableException
                     (internal.getMessage("dataSource.init", dscs[i].getKey()));
             }
@@ -1132,16 +1144,25 @@ public class ActionServlet extends HttpServlet {
                   // The property is set only if the plugin declares it.
                   // This plugin config object is needed by Tiles
                 try {
-                  PropertyUtils.setProperty(plugIns[i], "currentPlugInConfigObject", plugInConfigs[i]);
+                    PropertyUtils.setProperty(
+                        plugIns[i],
+                        "currentPlugInConfigObject",
+                        plugInConfigs[i]);
                 } catch (Exception e) {
-                  // silently fail
+                  // FIXME Whenever we fail silently, we must document a valid reason
+                  // for doing so.  Why should we fail silently if a property can't be set on
+                  // the plugin?
                 }
                 plugIns[i].init(this, (ModuleConfig) config);
+                
             } catch (ServletException e) {
-                // Lets propagate
                 throw e;
             } catch (Exception e) {
-                String errMsg = internal.getMessage("plugIn.init", plugInConfigs[i].getClassName());
+                String errMsg =
+                    internal.getMessage(
+                        "plugIn.init",
+                        plugInConfigs[i].getClassName());
+                        
                 log(errMsg, e);
                 throw new UnavailableException(errMsg);
             }
@@ -1173,38 +1194,35 @@ public class ActionServlet extends HttpServlet {
      * @exception ServletException if initialization cannot be performed
      * @since Struts 1.1
      */
-    protected void initModuleMessageResources(ModuleConfig config) throws ServletException {
+    protected void initModuleMessageResources(ModuleConfig config)
+        throws ServletException {
 
-        MessageResourcesConfig mrcs[] =
-            config.findMessageResourcesConfigs();
+        MessageResourcesConfig mrcs[] = config.findMessageResourcesConfigs();
         for (int i = 0; i < mrcs.length; i++) {
-            if ((mrcs[i].getFactory() == null) ||
-                (mrcs[i].getParameter() == null)) {
+            if ((mrcs[i].getFactory() == null)
+                || (mrcs[i].getParameter() == null)) {
                 continue;
             }
             if (log.isDebugEnabled()) {
-                log.debug("Initializing module path '" + config.getPrefix() +
-                    "' message resources from '" +
-                    mrcs[i].getParameter() + "'");
+                log.debug(
+                    "Initializing module path '"
+                        + config.getPrefix()
+                        + "' message resources from '"
+                        + mrcs[i].getParameter()
+                        + "'");
             }
 
-            try {
-                String factory = mrcs[i].getFactory();
-                MessageResourcesFactory.setFactoryClass(factory);
-                MessageResourcesFactory factoryObject =
-                    MessageResourcesFactory.createFactory();
-                MessageResources resources =
-                    factoryObject.createResources(mrcs[i].getParameter());
-                resources.setReturnNull(mrcs[i].getNull());
-                getServletContext().setAttribute
-                    (mrcs[i].getKey() + config.getPrefix(), resources);
-            } catch (Throwable t) {
-                log.error(internal.getMessage
-                    ("applicationResources", mrcs[i].getParameter()), t);
-                throw new UnavailableException
-                    (internal.getMessage
-                     ("applicationResources", mrcs[i].getParameter()));
-            }
+            String factory = mrcs[i].getFactory();
+            MessageResourcesFactory.setFactoryClass(factory);
+            MessageResourcesFactory factoryObject =
+                MessageResourcesFactory.createFactory();
+                
+            MessageResources resources =
+                factoryObject.createResources(mrcs[i].getParameter());
+            resources.setReturnNull(mrcs[i].getNull());
+            getServletContext().setAttribute(
+                mrcs[i].getKey() + config.getPrefix(),
+                resources);
         }
 
     }
@@ -1329,27 +1347,31 @@ public class ActionServlet extends HttpServlet {
         if (value != null) {
             config = value;
         }
-        try {
-            value = getServletConfig().getInitParameter("debug");
-            debug = Integer.parseInt(value);
-        } catch (Throwable t) {
-            debug = 0;
+        
+        value = getServletConfig().getInitParameter("debug");
+        if (value != null) {
+            try {
+                debug = Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                // FIXME Why should we catch this?  If the programmer has specified an
+                // invalid integer we should probably let this RuntimeException bubble up.
+                debug = 0;
+            }
         }
 
         // Backwards compatibility hack for form beans of Java wrapper classes
         // Set to true for strict Struts 1.0 compatibility
         value = getServletConfig().getInitParameter("convertNull");
-        if (value != null) {
-            if ("true".equalsIgnoreCase(value) ||
-                "yes".equalsIgnoreCase(value) ||
-                "on".equalsIgnoreCase(value) ||
-                "y".equalsIgnoreCase(value) ||
-                "1".equalsIgnoreCase(value)) {
-                convertNull = true;
-            } else {
-                convertNull = false;
-            }
+        if ("true".equalsIgnoreCase(value)
+            || "yes".equalsIgnoreCase(value)
+            || "on".equalsIgnoreCase(value)
+            || "y".equalsIgnoreCase(value)
+            || "1".equalsIgnoreCase(value)) {
+            convertNull = true;
+        } else {
+            convertNull = false;
         }
+        
         if (convertNull) {
             ConvertUtils.deregister();
             ConvertUtils.register(new BigDecimalConverter(null), BigDecimal.class);
@@ -1372,7 +1394,6 @@ public class ActionServlet extends HttpServlet {
      * is being accessed.  This will be used in the <code>&html:form&gt;</code>
      * tag to generate correct destination URLs for form submissions.
      * @throws ServletException if error happens while scanning web.xml
-     * FIXME throws ServletException Never thrown by this base method
      */
     protected void initServlet() throws ServletException {
 
@@ -1403,19 +1424,28 @@ public class ActionServlet extends HttpServlet {
         if (log.isDebugEnabled()) {
             log.debug("Scanning web.xml for controller servlet mapping");
         }
-        InputStream input= null;
+
+        InputStream input =
+            getServletContext().getResourceAsStream("/WEB-INF/web.xml");
+
         try {
-            input =
-                getServletContext().getResourceAsStream("/WEB-INF/web.xml");
             digester.parse(input);
-        } catch (Throwable e) {
+
+        } catch (IOException e) {
             log.error(internal.getMessage("configWebXml"), e);
+            throw new ServletException(e);
+            
+        } catch (SAXException e) {
+            log.error(internal.getMessage("configWebXml"), e);
+            throw new ServletException(e);
+            
         } finally {
             if (input != null) {
                 try {
                     input.close();
                 } catch (IOException e) {
-                    ;
+                    log.error(internal.getMessage("configWebXml"), e);
+                    throw new ServletException(e);
                 }
             }
         }
@@ -1482,15 +1512,13 @@ public class ActionServlet extends HttpServlet {
             cc.setContentType(value);
         }
         
-        value = getServletConfig().getInitParameter("locale");
-        if (value != null) {
-            if (value.equalsIgnoreCase("true") ||
-                value.equalsIgnoreCase("yes")) {
-                cc.setLocale(true);
-            } else {
-                cc.setLocale(false);
-            }
+        value = getServletConfig().getInitParameter("locale");        
+        if ("true".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value)) {
+            cc.setLocale(true);
+        } else {
+            cc.setLocale(false);
         }
+        
         
         value = getServletConfig().getInitParameter("maxFileSize");
         if (value != null) {
