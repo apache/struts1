@@ -161,6 +161,9 @@
           <strong>Build Changes</strong>
         </p>
         <ul>
+         <li>2004-04-14 - project.properties: Adjust properties to use alternate repo for nightly builds.</li>
+        </ul>
+        <ul>
           <li>2003-08-09 - build.xml: Adjust loading order of properties files to go from most local (current directory) to most global (${user.home}/build.properties).</li>
           <li>2003-08-08 - maven.xml,project.xml - Maven build files.</li>
         </ul>
@@ -190,6 +193,9 @@
         <p>
         <strong>Action Package Changes</strong> [
         <code>org.apache.struts.action</code>]</p>
+        <ul>
+          <li>2004-04-01 - ActionConfigMatcher - Added support for multiple wildcard replacements.</li>
+        </ul>
         <ul>
            <li>2004-03-16 - ActionForward -  Add "copy constructor".</li>
         </ul>
@@ -240,11 +246,15 @@
         <strong>Config Package</strong> [
         <code>org.apache.struts.config</code>]</p>
         <ul>
-            <li>2004-02-17 - Undeprecate and Restore the functionality for the 'type' attribute on form-beans and global-forwards elements in the config file.</li>
-            <li>2004-02-13 - Add module property to ForwardConfig to support direct cross-linking between modules. </li>
+         <li>2004-04-14 - ModuleConfig.java: Local, as well as global, ActionForwards now observe pluggable classes. </li>
+         <li>2004-04-08 - ModuleConfigImpl: Added a list to store ActionConfigs to ensure when enumerated, they are in the order in which they were added.</li>
         </ul>
         <ul>
-            <li>2004-01-10 - Changed WildcardHelper methods from statics to instance methods to allow subclasses to override and customize behavior. Changed WildcardHelper.match() to accept a generic Map parameter rather than HashMap.</li>
+          <li>2004-02-17 - Undeprecate and Restore the functionality for the 'type' attribute on form-beans and global-forwards elements in the config file.</li>
+          <li>2004-02-13 - Add module property to ForwardConfig to support direct cross-linking between modules. </li>
+        </ul>
+        <ul>
+          <li>2004-01-10 - Changed WildcardHelper methods from statics to instance methods to allow subclasses to override and customize behavior. Changed WildcardHelper.match() to accept a generic Map parameter rather than HashMap.</li>
         </ul>
         <ul>
           <li>2003-08-08 - ConfigHelper,ConfigHelperInterface: Removed references to ActionMappings, ActionFormBeans, and ActionForwards.</li>
@@ -326,7 +336,7 @@
         <strong>HTML Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.html</code>]:</p>
         <ul>
-            <li>2003-03-08 - JavascriptValidatorTag - Allow multiple forms to be on the same page by generating a unique variable name based on form name. </li>
+            <li>2004-03-08 - JavascriptValidatorTag - Allow multiple forms to be on the same page by generating a unique variable name based on form name. </li>
         </ul>
         <ul>
           <li>2004-02-14 - Substitute "-" for "/" in JavaScript function name when form is subclass of ValidatorActionForm.</li>
@@ -420,9 +430,11 @@
         <p>
         <strong>Upload Package Changes</strong> [
         <code>org.apache.struts.upload</code>]:</p>
-
         <ul>
-            <li>2004-03-22 - Allow MultipartPost with latin1 characters over Linux.</li>
+          <li>2004-04-08 - CommonsMultipartRequestHandler: Made CommonsFormFile serializable since it gets put into the session</li>
+        </ul>
+        <ul>
+          <li>2004-03-22 - Allow MultipartPost with latin1 characters over Linux.</li>
         </ul>
         <ul>
           <li>2004-01-21 - Add support for an "EncodingFilter" to handle multibyte file names.</li>
@@ -436,6 +448,9 @@
         <p>
         <strong>Utility Package Changes</strong> [
         <code>org.apache.struts.util</code>]:</p>
+        <ul>
+          <li>2004-04-08 - RequestUtils: Fixed inappropriate serialization of ModuleConfig when a DynaActionForm was put in the session.</li>
+        </ul>
         <ul>
           <li>2003-09-22 - LabelValueBean: Implement Comparable interface.</li>
         </ul>
@@ -456,6 +471,11 @@
         <p>
         <strong>Validator Package Changes</strong> [
         <code>org.apache.struts.validator</code>]</p>
+        <ul>
+         <li>2004-04-16 - FieldChecks: Add optional variables to configure various aspects of URL validation.</li>
+         <li>2004-04-03 - ValidatorPlugIn: Modify Validator PlugIn to validate XML file and errros now throw an exception to loudly flag an error. Remove deprecated classes, now in Commons Validator.</li>
+         <li>2004-04-02 - Add a getValidationKey method to make it eaiser for subclasses to use different rules for finding the Validator form. </li>
+        </ul>
         <ul>
             <li>2004-02-20 - Changed FieldCheck so that it examines all indexed fields and does not stop on the first failure.</li>
         </ul>
@@ -487,6 +507,10 @@
         <p>
         <strong>Documentation Application Changes</strong> [
         <code>struts-documentation.war</code>]:</p>
+        <ul>
+          <li>2004-03-28 - Added Trifork server to Installing Struts on Various Containers section.</li>
+          <li>2004-03-24 - Document new exception-throwing behavior in html:javascript when dynamicJavascript is true but no form can be identified.</li>
+        </ul>
         <ul>
           <li>2003-11-27 - resource: Move resource area to
           <a href="http://struts.sf.net/">Struts SourceForge site</a>.</li>
@@ -536,8 +560,11 @@
           <li>2003-08-16 - Changed ActionError to ActionMessage.</li>
         </ul>
         <p>
-          <strong>Validator Example Modle Changes</strong>
+          <strong>Validator Example module Changes</strong>
         </p>
+        <ul>
+          <li>2004-03-25 - Modify example to test proper behaviour is a property is named 'name'.</li>
+        </ul>
         <ul>
           <li>2004-01-09 - Enable inputForward.</li>
           <li>2004-01-08 - Convert to Validator Example application to module under the "examples" application.</li>
