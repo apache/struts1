@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document url="./books.xml">
+<properties>
+<author>Mike Schachter</author>
+<author>Ted Husted</author>
+<author>James Holmes</author>
+<title>Resources - Books - Jakarta Struts</title>
+</properties>
+<body> 
+<chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
+
+<section name="Books">
+<p><a href="http://www.theserverside.com/resources/strutsreview.jsp"><b>Jakarta Struts Book Review Project</b></a> by Chuck Cavaness</p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1558608621/hitchhikeguidetoA/"><b>The Struts Framework: Practical Guide for Programmers</b></a> by Sue Spielman - Not yet published.</p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/"><b>Java Web Development with Struts</b></a> by Ted Husted - Not yet published</p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0471213020/hitchhikeguidetoA/"><b>Mastering Jakarta Struts</b></a> by James Goodwill - Not yet published.</p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0971661901/hitchhikeguidetoA/"><b>Struts Fast Track: J2EE / JSP Framework</b></a> by Victor Cekvenich - Practical Application with Database Access and Struts Extensions.</p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1861005512/hitchhikeguidetoA/"><b>Professional JSP Site Design</b></a> - Wrox book by Husted, Kunnumpurath, Lavandowska, Panduranga, et al - Features Struts in chapters 2 (The Struts Framework), 6 (Navigation), 8 (Data Access Patterns), 12 (Content Management), 13 (Searching), and 14 (Portals).</p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0735710953/hitchhikeguidetoA/"><b>JSP and Tag Libraries for Web Development </b></a>- by Wellington L. S. Da Silva. Several chapters regarding Struts.</p>
+<p><a href="http://www.redbooks.ibm.com/redpieces/pdfs/sg246134.pdf"><b>Websphere Version 4 Application Development Handbook</b></a> <font size="1">(PDF)</font> - Chapter 7 covers designing with both the Struts and Websphere frameworks.</p>
+<p><a href="http://shannon.informatik.fh-wiesbaden.de/jsp/index.html"><b>Java Server Pages and J2EE Web-based Applications for Enterprises</b></a> - In German, with a Chapter regarding MVC and Struts.</p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0130648841/hitchhikeguidetoA/"><b>Core J2EE Patterns</b></a> - Many of these patterns are deployed in Struts.</p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1861004958/hitchhikeguidetoA/"><b>Professional JSP 2nd Edition</b></a> - Wrox book - long chapter on Struts.</p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0130307041/hitchhikeguidetoA/"><b>Advanced JavaServer Pages</b></a> by David Geary - Features template tag library from Struts 1.0.</p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0201633612/hitchhikeguidetoA/"><b>Design Patterns: Elements of Reusable Object-Orientated Software</b></a> by Gama, Helm, Johnson, and Vlissides - Inspired the core patterns used by Struts.</p>
+</section>
+
+</chapter></body></document>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document url="./articles.xml">
+<properties>
+<author>Mike Schachter</author>
+<author>Ted Husted</author>
+<author>James Holmes</author>
+<title>Resources - Articles - Jakarta Struts</title>
+</properties>
+<body> 
+<chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
+
+<section name="Articles">
+<p><a href="http://www.fawcette.com/javapro/mags/2002_05/magazine/columns/weblication/default.asp"><b>Applying the MVC Design Pattern Using Struts</b></a> by Peter Varhol</p>
+<p><a href="http://www.fawcette.com/javapro/2002_04/magazine/features/tholloway/"><b>Struts: a Solid Web-App Framework</b></a> by Tim Holloway</p>
+<p><a href="http://www.husted.com/struts/resources/struts-intro.ppt"><b>Introduction to Struts</b></a> by Dave Hay. A general introduction to Struts, appropriate for team meetings. Use as-is or a basis for your own.</p>
+<p><a href="http://www.mycgiserver.com/~eboudrant/#uml11"><b>Struts1.1 UML Class diagrams</b></a> by Emmanuel Boudrant.</p>
+<p><a href="http://stealthis.athensgroup.com/presentations/Model_Layer_Framework/Struts_Whitepaper.pdf"><b>Using Struts</b></a> (PDF) by Larry Maturo</p>
+<p><a href="http://www.javaworld.com/javaworld/jw-02-2002/jw-0215-ssl.html"><b>Mix protocols transparently in Web applications</b></a> by Steve Ditlinger.</p>
+<p><a href="http://www.theserverside.com/events/videos/CraigMcClanahan/dsl/interview.html"><b>About Struts Interview With Craig McClanahan</b></a> - The Server Side.</p>
+<p><a href="http://www.javaworld.com/javaworld/jw-02-2002/jw-0201-strutsxslt.html"><b>Boost Struts with XSLT and XML</b></a> By Julien Mercay and Gilbert Bouzeid.</p>
+<p><a href="http://www.sysdeo.com/docs/struts1.pdf"><b>Struts, vous avez dit Struts?</b></a> (in French) by Arnaud Buisine </p>
+<p><a href="http://www.xenonsoft.demon.co.uk/products/java.html"><b>Best Practice with Expresso Framework 4.0</b></a> (and Struts) - 2nd edition - by Peter Pilgrim.</p>
+<p><a href="http://dcb.sun.com/practices/devnotebook/struts.jsp"><b>Getting to Know Struts</b></a>                      by Jerry Ackerman and David Dick.</p>
+<p><a href="http://www.javaworld.com/javaworld/jw-01-2002/jw-0104-tilestrut.html"><b>UI design with Tiles and Struts</b></a> by By Prakash Malani.</p>
+<p><a href="http://www.informit.com/content/index.asp?product_id={0917F29F-56D8-4B25-9C67-211EC945BBAB}"><b>The Struts Framework's Action Mappings Configuration File</b></a> by Wellington L.S. da Silva</p>
+<p><a href="http://husted.com/struts/resources/web_dev_products.htm"><b>Web Development Products Spreadsheet</b> </a>by Dan Cancro.</p>
+<p><a href="http://www.javadude.com/articles/layering.html"><b>Layering Applications</b></a> by Scott Stanchfield.</p>
+<p><a href="http://www.sys-con.com/java/article.cfm?id=1175"><b>MVC and Struts</b></a> by Steven Sweeting, Clive Jones, and Aaron Rustad.</p>
+<p><a href="http://www.onjava.com/pub/a/onjava/2001/09/11/jsp_servlets.html"><b>Introduction to Jakarta Struts Framework</b></a> by Sue Spielman.<br/>- <a href="http://www.onjava.com/pub/a/onjava/2001/10/31/struts2.html"><b>Learning Jakarta Struts, Part 2</b></a></p>
+<p><a href="http://husted.com/struts/resources/performant.htm"><b>Is Struts Performant?</b></a> by Ted Husted -- An analysis of framework components, and how they contribute to overall efficiency.</p>
+<p><a href="http://husted.com/struts/resources/strutsforeveryone.zip"><b>Struts for Everyone</b></a> by Jonathan Asbell -- Word document zipped for download. Early release: still in working draft form.</p>
+<p><a href="http://husted.com/struts/resources/1291-authentication.zip"><b>Approaches to User Authentication and Access Control in Web Applications</b></a> by Craig McClanahan. Slides from the JavaOne BOF (June 2001 #1291). Star Office Format. Zipped for download.</p>
+<p><b>Support your application development with Struts</b> <font color="#FF0000">[<a href="http://www.sys-con.com/java/archives/0603/mcclanahan/">404</a>]</font> by McClanahan, McCay, and Bergenholtz.</p>
+<p><a href="http://http://www.zdnetindia.com/techzone/coding/stories/22419.html"><b>JSP Insider 4: An Introduction to Struts</b></a> - by Casey Kochmer.</p>
+<p><a href="http://www.computer-programmer.org/articles/struts/"><b>Introduction to MVC and the Jakarta Struts Framework</b></a> by <a href="mailto:craiger@tataryn.net">Craig Tataryn</a>.</p>
+<p><a href="http://www-106.ibm.com/developerworks/library/j-struts/?n-j-2151"><b>Struts, an open-source MVC implementation</b></a>  by <a href="mailto:malcolm@nuearth.com">Malcom Davis</a>.</p>
+<p><a href="http://www.javaworld.com/javaworld/jw-12-2000/jw-1201-struts.html"><b>Strut Your Stuff With JSP Tags</b></a>, by <a href="mailto:Thor.Kristmundsson@javaworld.com">Thor Kristmundsson</a>.</p>
+<p><a href="http://informit.com/books/authors/author_template/index.asp?authorid={A08A00B0-71BB-42DB-9B29-08879A9A7ABE}&amp;t={94AE5B48-1D7D-462A-A4A6-83CE19EC0705}&amp;n={4641FAF9-E21F-4902-8F6E-0C8FAF114C62}"><b>Using the Struts Framework to Develop a Message Board</b></a> by Maneesh Sahu (article requires registration with informit.com).</p>
+<p><a href="http://www.javaworld.com/javaworld/jw-09-2000/jw-0915-jspweb_p.html"><b>JSP templates</b></a> by <a href="mailto:david.geary@javaworld.com">David Geary</a>.</p>
+</section>
+
+</chapter></body></document>

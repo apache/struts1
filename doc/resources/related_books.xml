@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document url="./related_books.xml">
+<properties>
+<author>Mike Schachter</author>
+<author>Ted Husted</author>
+<author>James Holmes</author>
+<title>Resources - Other Development Books - Jakarta Struts</title>
+</properties>
+<body> 
+<chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
+
+<section name="Other Development Books"> 
+<p><b>Java Development</b></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0130819336/hitchhikeguidetoA/">Core Java 2, Volume 1 Fundamentals</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0130819344/hitchhikeguidetoA/">Core Java 2, Volume 2 Advanced Features</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0521777682/hitchhikeguidetoA/">Elements of Java Style</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=193011043X/hitchhikeguidetoA/">Bitter Java</a></p>
+
+<p><b>Java Web Development</b></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0130648841/hitchhikeguidetoA/">Core J2EE Patterns</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0130882488/hitchhikeguidetoA/">Core JSP</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=193011009X/hitchhikeguidetoA/">JSP Tag Libraries</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1884777996/hitchhikeguidetoA/">Web Development with JavaServer Pages 2nd Edition</a></p>
+
+<p><b>Software Development</b></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=158880173X/hitchhikeguidetoA/">Open Source Development with CVS</a></p>
+
+<p><b>Software Engineering</b></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1565927249/hitchhikeguidetoA/">Cathedral and the Bazaar</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1556154844/hitchhikeguidetoA/">Code Complete</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0201633612/hitchhikeguidetoA/">Design Patterns: Elements of Reusable Object-Orientated Software</a>  <font size="1"><b>(<i>read me first</i>)</b></font> </p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0672316498/hitchhikeguidetoA/">The Inmates Are Running the Asylum: Why High Tech Products Drive Us Crazy and How To Restore The Sanity</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0201835959/hitchhikeguidetoA/">Mythical Man Month: Essays on Software Engineering</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1884777597/hitchhikeguidetoA/">Practical Software Requirements</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0201485672/hitchhikeguidetoA/">Refactoring: Improving the Design of Existing Code</a></p>
+</section>
+
+</chapter></body></document>
