@@ -424,6 +424,20 @@ public class I18nFactorySet extends FactorySet
     try
       {
 	    InputStream input = servletContext.getResourceAsStream(filename);
+        // Try to load using real path.
+        // This allow to load config file under websphere 3.5.x
+        // Patch proposed Houston, Stephen (LIT) on 5 Apr 2002
+      if (null == input)
+      {
+        try
+         {
+         input = new java.io.FileInputStream(servletContext.getRealPath(filename));
+         }
+         catch (Exception e)
+         {
+         }
+     }
+        // If still nothing found, this mean no config file is associated
 	    if(input == null )
         {
         //if(debug)
