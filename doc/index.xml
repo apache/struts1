@@ -126,11 +126,21 @@
             <a href="resources/books.html">
             <img 
                 border="0" 
-                src="images/books/1930110502.jpg" 
+                src="images/books/1861007817.jpg"
                 width="49" 
                 height="60" />
             </a>
         </td>
+
+          <td width="16%">
+              <a href="resources/books.html">
+              <img
+                  border="0"
+                  src="images/books/1930110502.jpg"
+                  width="49"
+                  height="60" />
+              </a>
+          </td>
 
       </tr>
     </table>
