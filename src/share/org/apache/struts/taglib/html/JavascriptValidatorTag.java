@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.44 2004/01/13 12:48:47 husted Exp $
- * $Revision: 1.44 $
- * $Date: 2004/01/13 12:48:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.45 2004/02/04 17:12:01 germuska Exp $
+ * $Revision: 1.45 $
+ * $Date: 2004/02/04 17:12:01 $
  *
  * ====================================================================
  *
@@ -87,17 +87,18 @@ import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.validator.Resources;
 import org.apache.struts.validator.ValidatorPlugIn;
+import java.util.StringTokenizer;
 
 /**
  * Custom tag that generates JavaScript for client side validation based
  * on the validation rules loaded by the <code>ValidatorPlugIn</code>
  * defined in the struts-config.xml file.
  *
- * @version $Revision: 1.44 $ $Date: 2004/01/13 12:48:47 $
+ * @version $Revision: 1.45 $ $Date: 2004/02/04 17:12:01 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
-    
+
     /**
      * A Comparator to use when sorting ValidatorAction objects.
      */
@@ -175,9 +176,9 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * the method name of the main JavaScript method that the form calls to perform validations.
      */
     protected String methodName = null;
-    
+
     /**
-     * Include language attribute in the &lt;script&gt; element.  This property is 
+     * Include language attribute in the &lt;script&gt; element.  This property is
      * ignored in XHTML mode.
      * @since Struts 1.2
      */
@@ -204,12 +205,12 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * The JavaScript methods will enclosed with html comments if this is set to "true".
      */
     protected String htmlComment = "true";
-    
+
     /**
      * Hide JavaScript methods in a CDATA section for XHTML when "true".
      */
     protected String cdata = "true";
-    
+
     /**
      * Gets the key (form name) that will be used
      * to retrieve a set of validation rules to be
@@ -351,7 +352,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         JspWriter writer = pageContext.getOut();
         try {
             writer.print(this.renderJavascript());
-            
+
         } catch (IOException e) {
             throw new JspException(e.getMessage());
         }
@@ -361,45 +362,51 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     }
 
     /**
-     * Returns fully rendered JavaScript. 
+     * Returns fully rendered JavaScript.
      * @since Struts 1.2
      */
-    protected String renderJavascript() {
+    protected String renderJavascript() throws JspException {
         StringBuffer results = new StringBuffer();
-        
+
         ModuleConfig config = TagUtils.getInstance().getModuleConfig(pageContext);
         ValidatorResources resources =
             (ValidatorResources) pageContext.getAttribute(
                 ValidatorPlugIn.VALIDATOR_KEY + config.getPrefix(),
                 PageContext.APPLICATION_SCOPE);
-        
+
         Locale locale = TagUtils.getInstance().getUserLocale(this.pageContext, null);
 
         Form form = resources.getForm(locale, formName);
-        if (form != null) {
-            if ("true".equalsIgnoreCase(dynamicJavascript)) {
-                results.append(
-                    this.createDynamicJavascript(config, resources, locale, form));
-                
-            } else if ("true".equalsIgnoreCase(staticJavascript)) {
-                results.append(this.renderStartElement());
-                if ("true".equalsIgnoreCase(htmlComment)) {
-                    results.append(HTML_BEGIN_COMMENT);
-                }
+
+        if (form == null)
+        {
+            throw new JspException("No form found under name "
+                                   + formName
+                                   + ", locale "
+                                   + locale);
+        }
+
+        if ("true".equalsIgnoreCase(dynamicJavascript)) {
+            results.append(
+                this.createDynamicJavascript(config, resources, locale, form));
+
+        } else if ("true".equalsIgnoreCase(staticJavascript)) {
+            results.append(this.renderStartElement());
+            if ("true".equalsIgnoreCase(htmlComment)) {
+                results.append(HTML_BEGIN_COMMENT);
             }
         }
-        
+
         if ("true".equalsIgnoreCase(staticJavascript)) {
             results.append(getJavascriptStaticMethods(resources));
         }
-        
-        if (form != null
-            && ("true".equalsIgnoreCase(dynamicJavascript)
+
+        if (("true".equalsIgnoreCase(dynamicJavascript)
                 || "true".equalsIgnoreCase(staticJavascript))) {
-                    
+
             results.append(getJavascriptEnd());
         }
-        
+
         return results.toString();
     }
 
@@ -417,7 +424,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         Form form) {
 
         StringBuffer results = new StringBuffer();
-        
+
         MessageResources messages =
             (MessageResources) pageContext.getAttribute(
                 bundle + config.getPrefix(),
@@ -444,7 +451,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             for (Iterator x = form.getFields().iterator(); x.hasNext();) {
                 Field field = (Field) x.next();
 
-                // Skip indexed fields for now until there is a good way to handle 
+                // Skip indexed fields for now until there is a good way to handle
                 // error messages (and the length of the list (could retrieve from scope?))
                 if (field.isIndexed()
                     || field.getPage() != page
@@ -464,7 +471,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                         + " = new Array(\""
                         + field.getKey()
                         + "\", \""
-                        + message
+                        + escapeQuotes(message)
                         + "\", ");
 
                 results.append("new Function (\"varName\", \"");
@@ -530,9 +537,31 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         return results.toString();
     }
 
+    private String escapeQuotes(String in)
+    {
+        if (in == null || in.indexOf("\"") == -1)
+        {
+            return in;
+        }
+        StringBuffer buffer = new StringBuffer();
+        StringTokenizer tokenizer = new StringTokenizer(in, "\"", true);
+
+        while (tokenizer.hasMoreTokens())
+        {
+            String token = tokenizer.nextToken();
+            if (token.equals("\""))
+            {
+                buffer.append("\\");
+            }
+            buffer.append(token);
+        }
+
+        return buffer.toString();
+    }
+
     /**
      * Determines if validations should stop on an error.
-     * @param config The <code>ModuleConfig</code> used to lookup the 
+     * @param config The <code>ModuleConfig</code> used to lookup the
      * stopOnError setting.
      * @return <code>true</code> if validations should stop on errors.
      */
@@ -541,13 +570,13 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             pageContext.getAttribute(
                 ValidatorPlugIn.STOP_ON_ERROR_KEY + '.' + config.getPrefix(),
                 PageContext.APPLICATION_SCOPE);
-                
+
         boolean stopOnError = true;
-        
+
         if (stopOnErrorObj instanceof Boolean) {
             stopOnError = ((Boolean) stopOnErrorObj).booleanValue();
         }
-        
+
         return stopOnError;
     }
 
@@ -572,7 +601,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 methods += methodOperator + va.getMethod() + "(form)";
             }
         }
-        
+
         return methods;
     }
 
@@ -585,7 +614,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     private List createActionList(ValidatorResources resources, Form form) {
 
         List actionMethods = new ArrayList();
-        
+
         Iterator iterator = form.getFields().iterator();
         while (iterator.hasNext()) {
             Field field = (Field) iterator.next();
@@ -621,9 +650,9 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 iterator.remove();
             }
         }
-        
+
         Collections.sort(actions, actionComparator);
-        
+
         return actions;
     }
 
@@ -653,11 +682,11 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 + formName.substring(1, formName.length());
 
         sb.append(this.renderStartElement());
-        
+
         if (this.isXhtml() && "true".equalsIgnoreCase(this.cdata)) {
             sb.append("<![CDATA[\r\n");
         }
-        
+
         if (!this.isXhtml() && "true".equals(htmlComment)) {
             sb.append(HTML_BEGIN_COMMENT);
         }
@@ -722,18 +751,18 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         if (!this.isXhtml() && "true".equals(htmlComment)){
             sb.append(HTML_END_COMMENT);
         }
-        
+
         if (this.isXhtml() && "true".equalsIgnoreCase(this.cdata)) {
             sb.append("]]>\r\n");
         }
-        
+
         sb.append("</script>\n\n");
 
         return sb.toString();
     }
 
     /**
-     * Constructs the beginning &lt;script&gt; element depending on XHTML 
+     * Constructs the beginning &lt;script&gt; element depending on XHTML
      * status.
      * @since Struts 1.2
      */
@@ -752,7 +781,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         start.append("> \n");
         return start.toString();
     }
-    
+
     /**
      * Returns true if this is an xhtml page.
      */
@@ -777,7 +806,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     }
 
     /**
-     * Gets whether or not the &lt;script&gt; element will include the 
+     * Gets whether or not the &lt;script&gt; element will include the
      * language attribute.
      * @return true if language attribute will be included.
      * @since Struts 1.2
@@ -787,7 +816,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     }
 
     /**
-     * Sets whether or not the &lt;script&gt; element will include the 
+     * Sets whether or not the &lt;script&gt; element will include the
      * language attribute.
      * @since Struts 1.2
      */
