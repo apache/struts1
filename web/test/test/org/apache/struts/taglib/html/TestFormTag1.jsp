@@ -41,7 +41,7 @@
   <!--
   var focusControl = document.forms["testFormBean"].elements["string"];
 
-  if (focusControl.type != "hidden") {
+  if (focusControl.type != "hidden" && !focusControl.disabled) {
      focusControl.focus();
   }
   // -->
@@ -62,7 +62,7 @@
   <!--
   var focusControl = document.forms["testFormBean"].elements["stringIndexed"];
 
-  if (focusControl.type != "hidden") {
+  if (focusControl.type != "hidden" && !focusControl.disabled) {
      focusControl[2].focus();
   }
   // -->
