@@ -1,5 +1,5 @@
 The Struts-Faces Integration Library (Version 0.4) README File
-$Id: README.txt,v 1.7 2004/03/08 00:40:48 craigmcc Exp $
+$Id: README.txt,v 1.8 2004/06/08 19:44:06 jholmes Exp $
 
 
 ============
@@ -12,7 +12,7 @@ in place of the Struts custom tag libraries.  As a proof of concept, it also
 includes the canonical "struts-example" example web application, converted
 to use JavaServer Faces tags, as well as tags from the JSP Standard Tag
 Library (JSTL), version 1.0 or later.  It also includes a very basic Tiles
-based applicaton, modified in a simiar manner.
+based applicaton, modified in a similar manner.
 
 Note that this software is based on the Beta release of
 JavaServer Faces technology, and is itself very new.  Therefore, it is
