@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/LinkTag.java,v 1.2 2000/11/18 20:04:44 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/11/18 20:04:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/LinkTag.java,v 1.3 2000/11/18 22:10:56 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/11/18 22:10:56 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/11/18 20:04:44 $
+ * @version $Revision: 1.3 $ $Date: 2000/11/18 22:10:56 $
  */
 
 public class LinkTag extends TagSupport {
@@ -144,6 +144,21 @@ public class LinkTag extends TagSupport {
 
 
     /**
+     * The context-relative page URL (beginning with a slash) to which
+     * this hyperlink will be rendered.
+     */
+    protected String page = null;
+
+    public String getPage() {
+        return (this.page);
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
+
+
+    /**
      * The JSP bean property name for query parameters.
      */
     protected String property = null;
@@ -194,21 +209,6 @@ public class LinkTag extends TagSupport {
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
-
-	// Validate our attributes
-	if ((forward == null) && (href == null)) {
-	    JspException e = new JspException
-		(messages.getMessage("linkTag.destination"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw e;
-        } else if ((forward != null) && (href != null)) {
-	    JspException e = new JspException
-		(messages.getMessage("linkTag.destination"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw e;
-        }
 
 	// Generate the hyperlink start element
 	HttpServletResponse response =
@@ -272,6 +272,7 @@ public class LinkTag extends TagSupport {
 	forward = null;
 	href = null;
 	name = null;
+        page = null;
 	property = null;
         scope = null;
 	target = null;
@@ -290,6 +291,23 @@ public class LinkTag extends TagSupport {
      */
     protected String hyperlink() throws JspException {
 
+        // Validate the number of href specifiers that were specified
+        int n = 0;
+        if (forward != null)
+            n++;
+        if (href != null)
+            n++;
+        if (page != null)
+            n++;
+        if (n != 1) {
+            JspException e = new JspException
+                (messages.getMessage("linkTag.destination"));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
+
+        // Start with an unadorned "href"
 	String href = this.href;
 
 	// If "forward" was specified, compute the "href" to forward to
@@ -308,6 +326,13 @@ public class LinkTag extends TagSupport {
 		(HttpServletRequest) pageContext.getRequest();
 	    href = request.getContextPath() + forward.getPath();
 	}
+
+        // If "page" was specified, compute the "href" to forward to
+        if (page != null) {
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            href = request.getContextPath() + page;
+        }
 
 	// Just return the "href" attribute if there is no bean to look up
 	if ((property != null) && (name == null)) {
