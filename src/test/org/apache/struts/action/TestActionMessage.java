@@ -1,7 +1,13 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/action/TestActionMessage.java,v 1.4 2003/11/15 21:22:33 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/11/15 21:22:33 $
+ *
+ * ====================================================================
+ * 
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 2002-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +58,9 @@
  * <http://www.apache.org/>.
  *
  */
+
 package org.apache.struts.action;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -61,69 +69,71 @@ import junit.framework.TestSuite;
  * Unit tests for the <code>org.apache.struts.action.ActionMessage</code> class.
  *
  * @author Dominique Plante
- * @version $Revision: 1.3 $ $Date: 2003/02/07 00:29:21 $
+ * @version $Revision: 1.4 $ $Date: 2003/11/15 21:22:33 $
  */
-
-public class TestActionMessage extends TestCase
-{
-	protected ActionMessage amWithNoValue = null;
-	protected ActionMessage amWithOneValue = null;
+public class TestActionMessage extends TestCase {
+    
+    protected ActionMessage amWithNoValue = null;
+    
+    protected ActionMessage amWithOneValue = null;
+    
     /**
      * Defines the testcase name for JUnit.
      *
      * @param theName the testcase's name.
      */
-	public TestActionMessage(String theName)	
-	{
-		super(theName);
-	}
+    public TestActionMessage(String theName) {
+        super(theName);
+    }
 
     /**
      * Start the tests.
      *
      * @param theArgs the arguments. Not used
      */
-    public static void main(String[] theArgs)
-    {
-        junit.awtui.TestRunner.main(new String[] {TestActionMessage.class.getName()});
+    public static void main(String[] theArgs) {
+        junit.awtui.TestRunner.main(
+            new String[] { TestActionMessage.class.getName()});
     }
 
     /**
      * @return a test suite (<code>TestSuite</code>) that includes all methods
      *         starting with "test"
      */
-    public static Test suite()
-    {
+    public static Test suite() {
         // All methods starting with "test" will be executed in the test suite.
         return new TestSuite(TestActionMessage.class);
     }
 
-	public void setUp()
-	{
-		amWithNoValue = new ActionMessage("amWithNoValue");
-		amWithOneValue = new ActionMessage("amWithOneValue", new String("stringValue"));
-	}
+    public void setUp() {
+        amWithNoValue = new ActionMessage("amWithNoValue");
+        amWithOneValue =
+            new ActionMessage("amWithOneValue", new String("stringValue"));
+    }
 
-	public void tearDown()
-	{
-		amWithNoValue = null;
-	}
-	public void testActionMessageWithNoValue()
-	{
-		assertTrue("testActionMessageWithNoValue value is not null",
-                   amWithNoValue.getValues() == null);
-		assertTrue("testActionMessageWithNoValue key is not amWithNoValue",
-					amWithNoValue.getKey() == "amWithNoValue");
-	}
+    public void tearDown() {
+        amWithNoValue = null;
+    }
+    
+    public void testActionMessageWithNoValue() {
+        assertTrue(
+            "testActionMessageWithNoValue value is not null",
+            amWithNoValue.getValues() == null);
+        assertTrue(
+            "testActionMessageWithNoValue key is not amWithNoValue",
+            amWithNoValue.getKey() == "amWithNoValue");
+    }
 
-	public void testActionMessageWithAStringValue()
-	{
-		Object [] values = amWithOneValue.getValues();
-		assertTrue("testActionMessageWithAStringValue value is not null",
-                   values != null);
-		assertTrue("testActionMessageWithAStringValue value[0] is not the string stringValue",
-                   values[0].equals("stringValue"));
-		assertTrue("testActionMessageWithAStringValue key is not amWithOneValue",
-					amWithOneValue.getKey() == "amWithOneValue");
-	}
+    public void testActionMessageWithAStringValue() {
+        Object[] values = amWithOneValue.getValues();
+        assertTrue(
+            "testActionMessageWithAStringValue value is not null",
+            values != null);
+        assertTrue(
+            "testActionMessageWithAStringValue value[0] is not the string stringValue",
+            values[0].equals("stringValue"));
+        assertTrue(
+            "testActionMessageWithAStringValue key is not amWithOneValue",
+            amWithOneValue.getKey() == "amWithOneValue");
+    }
 }
