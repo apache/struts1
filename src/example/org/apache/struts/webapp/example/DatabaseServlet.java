@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Attic/DatabaseServlet.java,v 1.2 2001/04/14 12:53:07 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2001/04/14 12:53:07 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Attic/DatabaseServlet.java,v 1.3 2001/04/29 01:14:37 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/04/29 01:14:37 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.util.MessageResources;
  * Demonstration Application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/04/14 12:53:07 $
+ * @version $Revision: 1.3 $ $Date: 2001/04/29 01:14:37 $
  */
 
 public final class DatabaseServlet
@@ -131,12 +131,9 @@ public final class DatabaseServlet
 	if (debug >= 1)
 	    log("Finalizing database servlet");
 
-	// Unload our database to persistent storage if possible
-	try {
-	    unload();
-	} catch (Exception e) {
-	    log("Database unload exception", e);
-	}
+        // NOTE:  We do not attempt to unload the database because there
+        // is no portable way to do so.  Real applications will have used
+        // a real database, with no need to unload it
 
 	// Remove the database from our application attributes
 	getServletContext().removeAttribute(Constants.DATABASE_KEY);
@@ -183,35 +180,6 @@ public final class DatabaseServlet
 	    throw new UnavailableException
 		("Cannot load database from '" + pathname + "'");
 	}
-
-    }
-
-
-    /**
-     * Process an HTTP "GET" request.  For the purposes of this servlet,
-     * processing means flushing the current content of the database to
-     * persistent storage.
-     *
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are creating
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
-     */
-    public void doGet(HttpServletRequest request,
-		      HttpServletResponse response)
-	throws IOException, ServletException {
-
-	// Unload our database to persistent storage
-	if (debug >= 1)
-	    log("Flushing database to persistent storage");
-	try {
-	    unload();
-	} catch (Exception e) {
-	    log("Database flush exception", e);
-	}
-
-	response.sendError(HttpServletResponse.SC_NO_CONTENT);
 
     }
 
@@ -282,76 +250,6 @@ public final class DatabaseServlet
 	// Parse the input stream to initialize our database
 	digester.parse(bis);
 	bis.close();
-
-    }
-
-
-    /**
-     * Unload our database to its persistent storage version, if possible.
-     * If we are running directly out of a WAR file, saving cannot occur.
-     *
-     * @exception Exception if any problem occurs while unloading
-     */
-    private synchronized void unload() throws Exception {
-
-        // Calculate the file pathname to our storage file (if any)
-        String pathname =
-            getServletContext().getRealPath(this.pathname);
-        if (pathname == null) {
-            log("Cannot unload database to resource path " + this.pathname);
-            return;
-        }
-
-	// Create a writer for our database
-	if (debug >= 1)
-	    log("Unloading database to '" + pathname + "'");
-	FileWriter fw = new FileWriter(pathname);
-	BufferedWriter bw = new BufferedWriter(fw);
-	PrintWriter writer = new PrintWriter(bw);
-	writer.println("<database>");
-
-	// Render the contents of our database
-	Enumeration users = database.elements();
-	while (users.hasMoreElements()) {
-	    User user = (User) users.nextElement();
-	    writer.print("  <user");
-            if (user.getUsername() != null)
-                writer.print(" username=\"" + user.getUsername() + "\"");
-            if (user.getPassword() != null)
-                writer.print(" password=\"" + user.getPassword() + "\"");
-            if (user.getFullName() != null)
-                writer.print(" fullName=\"" + user.getFullName() + "\"");
-            if (user.getFromAddress() != null)
-                writer.print(" fromAddress=\"" + user.getFromAddress() + "\"");
-            if (user.getReplyToAddress() != null)
-                writer.print(" replyToAddress=\"" + user.getReplyToAddress() + "\"");
-            writer.println(">");
-	    Subscription subscriptions[] = user.getSubscriptions();
-	    for (int i = 0; i < subscriptions.length; i++) {
-		writer.print("    <subscription");
-                writer.print(" autoConnect=\"" +
-                             subscriptions[i].getAutoConnect() + "\"");
-                if (subscriptions[i].getHost() != null)
-                    writer.print(" host=\"" + subscriptions[i].getHost() +
-                                 "\"");
-                if (subscriptions[i].getType() != null)
-                    writer.print(" type=\"" + subscriptions[i].getType() +
-                                 "\"");
-                if (subscriptions[i].getUsername() != null)
-                    writer.print(" username=\"" +
-                                 subscriptions[i].getUsername() + "\"");
-                if (subscriptions[i].getPassword() != null)
-                    writer.print(" password=\"" +
-                                 subscriptions[i].getPassword() + "\"");
-                writer.println("/>");
-	    }
-	    writer.println("  </user>");
-	}
-
-	// Finish up and close our writer
-	writer.println("</database>");
-	writer.flush();
-	writer.close();
 
     }
 
