@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.30 2002/03/01 06:24:00 martinc Exp $
- * $Revision: 1.30 $
- * $Date: 2002/03/01 06:24:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.31 2002/03/06 19:39:08 mschachter Exp $
+ * $Revision: 1.31 $
+ * $Date: 2002/03/06 19:39:08 $
  *
  * ====================================================================
  *
@@ -110,7 +110,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.30 $ $Date: 2002/03/01 06:24:00 $
+ * @version $Revision: 1.31 $ $Date: 2002/03/06 19:39:08 $
  */
 
 public class RequestUtils {
@@ -840,8 +840,7 @@ public class RequestUtils {
             }
 
             // Obtain a MultipartRequestHandler
-            MultipartRequestHandler multipartHandler =
-                getMultipartHandler(request, servlet);
+            MultipartRequestHandler multipartHandler = getMultipartHandler(request, servlet);
 
             // Set the multipart request handler for our ActionForm.
             // If the bean isn't an ActionForm, an exception would have been
@@ -849,17 +848,21 @@ public class RequestUtils {
             // in fact an ActionForm.
             ((ActionForm) bean).setMultipartRequestHandler(multipartHandler);
 
-            if (multipartHandler != null) {
+            if (multipartHandler != null)
+            {
                 isMultipart = true;
-
                 // Set servlet and mapping info
                 servlet.setServletFor(multipartHandler);
-                multipartHandler.setMapping((ActionMapping)
-                    request.getAttribute(Action.MAPPING_KEY));
-
+                multipartHandler.setMapping((ActionMapping) request.getAttribute(Action.MAPPING_KEY));
                 // Initialize multipart request class handler
                 multipartHandler.handleRequest(request);
-
+                //stop here if the maximum length has been exceeded
+                Boolean maxLengthExceeded = (Boolean)
+                                            request.getAttribute(MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED);
+                if ((maxLengthExceeded != null) && (maxLengthExceeded.booleanValue()))
+                {
+                    return;
+                }
                 //retrive form values and put into properties
                 multipartElements = multipartHandler.getAllElements();
                 names = multipartElements.keys();

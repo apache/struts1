@@ -66,64 +66,80 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      * If the request argument is an instance of MultipartRequestWrapper,
      * the request wrapper will be populated as well.
      */
-    public void handleRequest(HttpServletRequest request) throws ServletException {
-        
-        ApplicationConfig appConfig = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
+    public void handleRequest(HttpServletRequest request) throws ServletException
+    {
+        ApplicationConfig appConfig = (ApplicationConfig) request.getAttribute(Action.APPLICATION_KEY);
         retrieveTempDir(appConfig);
-        
-        MultipartIterator iterator =
-            new MultipartIterator(request,
-                                  appConfig.getControllerConfig().getBufferSize(),
-                                  getMaxSize(appConfig.getControllerConfig().getMaxFileSize()),
-                                  tempDir);
-        MultipartElement element;
+        try
+        {
+            MultipartIterator iterator = new MultipartIterator(request, appConfig.getControllerConfig().getBufferSize(),
+                                                               getMaxSize(appConfig.getControllerConfig().getMaxFileSize()),
+                                                               tempDir);
+            MultipartElement element;
 
-        textElements = new Hashtable();
-        fileElements = new Hashtable();
-        allElements = new Hashtable();
+            textElements = new Hashtable();
+            fileElements = new Hashtable();
+            allElements = new Hashtable();
 
-        try {
-            while ((element = iterator.getNextElement()) != null) {
-                if (!element.isFile()) {
-                    
-                    if (request instanceof MultipartRequestWrapper) {
-                        ((MultipartRequestWrapper) request).setParameter(element.getName(),
-                                                                         element.getValue());
-                    }
-                    String[] textValues = (String[]) textElements.get(element.getName());
-                    
-                    if (textValues != null) {
-                        String[] textValues2 = new String[textValues.length + 1];
-                        System.arraycopy(textValues, 0, textValues2, 0, textValues.length);
-                        textValues2[textValues.length] = element.getValue();
-                        textValues = textValues2;
-                    }
-                    else {
-                        textValues = new String[1];
-                        textValues[0] = element.getValue();
-                    }
-                    textElements.put(element.getName(), textValues);
-                    allElements.put(element.getName(), textValues);
+            while ((element = iterator.getNextElement()) != null)
+            {
+                if (!element.isFile())
+                {
+                    createTextElement(request, element);
                 }
-                else {
-                    
-                     File tempFile = element.getFile();
-                     if (tempFile.exists()) {
-                         DiskFile theFile = new DiskFile(tempFile.getAbsolutePath());
-                         theFile.setContentType(element.getContentType());
-                         theFile.setFileName(element.getFileName());
-                         theFile.setFileSize((int) tempFile.length());
-                         fileElements.put(element.getName(), theFile);
-                         allElements.put(element.getName(), theFile);
-                     }             
+                else
+                {
+                    createDiskFile(element);
                 }
             }
+            //take care of maximum length being exceeded
+            if (iterator.isMaxLengthExceeded())
+            {
+                request.setAttribute(MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED, Boolean.TRUE);
+            }
         }
-        catch (UnsupportedEncodingException uee) {
-            throw new ServletException("Encoding \"ISO-8859-1\" not supported");
+        catch (IOException ioe)
+        {
+            throw new ServletException(ioe);
         }
+    }
 
+    protected void createTextElement(HttpServletRequest request, MultipartElement element)
+    {
+        if (request instanceof MultipartRequestWrapper)
+        {
+            ((MultipartRequestWrapper) request).setParameter(element.getName(), element.getValue());
+        }
+        String[] textValues = (String[]) textElements.get(element.getName());
+
+        if (textValues != null)
+        {
+            String[] textValues2 = new String[textValues.length + 1];
+            System.arraycopy(textValues, 0, textValues2, 0, textValues.length);
+            textValues2[textValues.length] = element.getValue();
+            textValues = textValues2;
+        }
+        else
+        {
+            textValues = new String[1];
+            textValues[0] = element.getValue();
+        }
+        textElements.put(element.getName(), textValues);
+        allElements.put(element.getName(), textValues);
+    }
+
+    protected void createDiskFile(MultipartElement element)
+    {
+        File tempFile = element.getFile();
+        if (tempFile.exists())
+        {
+            DiskFile theFile = new DiskFile(tempFile.getAbsolutePath());
+            theFile.setContentType(element.getContentType());
+            theFile.setFileName(element.getFileName());
+            theFile.setFileSize((int) tempFile.length());
+            fileElements.put(element.getName(), theFile);
+            allElements.put(element.getName(), theFile);
+        }
     }
 
     public Hashtable getAllElements() {

@@ -7,28 +7,23 @@
 
 <struts-config>
 
-
-
+  <!-- This is where you set the maximum file size for your file uploads. -1 is an unlimited size. If you
+       don't specify this here, it defaults to -1. -->
+  <controller maxFileSize="2M" />
 
   <form-beans>
-
-
     <form-bean      name="uploadForm"
                     type="org.apache.struts.webapp.upload.UploadForm"/>
-
   </form-beans>
 
-
   <action-mappings>
-
     <!-- Upload Action -->
     <action    path="/upload"
                type="org.apache.struts.webapp.upload.UploadAction"
-               name="uploadForm">
+               name="uploadForm"
+               input="/upload.jsp">
         <forward name="display" path="/display.jsp" />
    </action>
 
-
   </action-mappings>
-
 </struts-config>
