@@ -1,7 +1,7 @@
 -COMPONENT OVERVIEW-
 
 Configuration registry
-* At initialiation, each request adapter (servlet, filter, et cetera), adds its configuration to a single registry at a global location under a unique key.
+* At initialization, each request adapter (servlet, filter, et cetera), adds its configuration to a single registry at a global location under a unique key.
 
 Command Context
 * Extends CoR Context to encapsulate framework members needed to process request and render response
@@ -37,7 +37,7 @@ Processor
     * Invalid
   * MappingHandler
     * Command | Script
-      * Invoke buiness logic
+      * Invoke business logic
       * Affect context state
       * Identify resource to render response
     * Location

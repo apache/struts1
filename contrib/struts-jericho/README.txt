@@ -8,7 +8,7 @@ This proposal is called "Jericho" since it tries to tear-down the walls within t
 
 * Providing working base implementations for all core components.
 
-* Encapsulating alll path references within "Location" objects (fka ActionForwards)and referring only to Locations from all other objects.
+* Encapsulating all path references within "Location" objects (aka ActionForwards)and referring only to Locations from all other objects.
 
 * Providing additional extension points from core components so that the "Inversion of Control" pattern is fully realized. (e.g., a populate method for the FormHandler.)
 
@@ -16,13 +16,13 @@ This proposal is called "Jericho" since it tries to tear-down the walls within t
 
 * Retain optional access to servlet/portlet objects so that applications can be free to do whatever they need to do.
 
--Backward Compatability-
+-Backward Compatibility-
 
-Jericho is a revolution and backward compatability with prior versions of Struts is not the prime consideration. However, care is being taken to create a clear migration path, where practible, so that Jericho is available to the widest community possible.
+Jericho is a revolution and backward compatibility with prior versions of Struts is not the prime consideration. However, care is being taken to create a clear migration path, where practical, so that Jericho is available to the widest community possible.
 
 -Taglibs/Tools-
 
-JSP taglibs and other presention tools will be packaged separately from the core controller classes. Tags and tools can access the framework through a StrutsContext object passed through the request, rather than searching through the servlet or portlet contexts.
+JSP taglibs and other presentation tools will be packaged separately from the core controller classes. Tags and tools can access the framework through a StrutsContext object passed through the request, rather than searching through the servlet or portlet contexts.
 
 -ActionForms/Actions, et al-
 
@@ -50,7 +50,7 @@ Core components will implement signatures that reference a StrutsContext. Implem
 
 * Utilize protocols in resource paths. An mapped path would look like "mapping://foo" or a tiles forward would be "tiles://tilesdef"  This would make it easy to plug in handlers to support different presentation engines.  If no protocol is specified, the path is handled as usual.
 
-* Combine form-bean and validator-form configurations. A single element would allow everything Struts knowns about a form to be configured in one place.
+* Combine form-bean and validator-form configurations. A single element would allow everything Struts knows about a form to be configured in one place.
 
 * Integrate Tiles definitions into core configuration.
 
@@ -58,7 +58,7 @@ Core components will implement signatures that reference a StrutsContext. Implem
 
 * Utilize JodaBeans <http://www.joda.org/> as a foundation class for core components.
 
-* Load all configuration defaults form a core.properties file so that less is hardcoded, including a PlugIn class to bootstrap loading the core configuraiton.
+* Load all configuration defaults form a core.properties file so that less is hardcoded, including a PlugIn class to bootstrap loading the core configuration.
 
 * Ensure that all framework objects in 2.0 have consistent factory-based mechanisms to instantiate instances. <http://nagoya.apache.org/bugzilla/show_bug.cgi?id=15604>
 
