@@ -62,7 +62,7 @@ Have your team member browse
 <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a> for any issues
 without a patch or unit test,
 and add the patch or test.
-Please note that Struts does not use @author tags in our JavaDocs.
+Please note that Struts does not use @author tags in our JavaDocs and documentation.
 If your patch includes an @author tag, we would have to ask that it be removed.
 </p>
 
