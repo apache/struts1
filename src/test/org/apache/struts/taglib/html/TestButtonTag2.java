@@ -54,7 +54,10 @@
  */
 package org.apache.struts.taglib.html;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.StringTokenizer;
 
 import javax.servlet.jsp.PageContext;
 import junit.framework.Test;
@@ -62,6 +65,7 @@ import junit.framework.TestSuite;
 
 import org.apache.cactus.JspTestCase;
 import org.apache.struts.Globals;
+import org.apache.struts.taglib.SimpleBeanForTesting;
 
 /**
  * Suite of unit tests for the
@@ -158,6 +162,51 @@ public class TestButtonTag2 extends JspTestCase {
     	runMyTest("testButtonPropertyBodyContentMessageKey_fr", "fr");
 	}
 
+    public void testButtonPropertyIndexedArray(){ 
+    	ArrayList lst = new ArrayList();
+    	lst.add("Test Message");
+    	pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
+    	runMyTest("testButtonPropertyIndexedArray", "");
+	}
+
+    public void testButtonPropertyIndexedArrayProperty(){ 
+    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+    	ArrayList lst = new ArrayList();
+    	lst.add("Test Message");
+    	sbft.setList(lst);
+    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+    	runMyTest("testButtonPropertyIndexedArrayProperty", "");
+	}
+
+    public void testButtonPropertyIndexedMap(){ 
+    	HashMap map = new HashMap();
+    	map.put("tst1", "Test Message");
+    	pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
+    	runMyTest("testButtonPropertyIndexedMap", "");
+	}
+
+    public void testButtonPropertyIndexedMapProperty(){ 
+    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+    	HashMap map = new HashMap();
+    	map.put("tst1", "Test Message");
+    	sbft.setMap(map);
+    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+    	runMyTest("testButtonPropertyIndexedMapProperty", "");
+	}
+
+    public void testButtonPropertyIndexedEnumeration(){ 
+    	StringTokenizer st = new StringTokenizer("Test Message");
+    	pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
+    	runMyTest("testButtonPropertyIndexedEnumeration", "");
+	}
+
+    public void testButtonPropertyIndexedEnumerationProperty(){ 
+    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+    	StringTokenizer st = new StringTokenizer("Test Message");
+    	sbft.setEnumeration(st);
+    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+    	runMyTest("testButtonPropertyIndexedEnumerationProperty", "");
+	}
 
 
 

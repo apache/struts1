@@ -112,6 +112,89 @@
 </logic:equal>
 
 
+<logic:equal name="runTest" value="testButtonPropertyIndexedArray">
+	<bean:define id="TEST_RESULTS" toScope="page">
+	  <logic:iterate id="indivItem" name="lst">
+		<html:button property="propertyName" indexed="true"/>
+	  </logic:iterate>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+	
+		<input type="button" name="propertyName[0]" value="Click">
+		
+	</bean:define>
+</logic:equal>
+
+<logic:equal name="runTest" value="testButtonPropertyIndexedArrayProperty">
+	<bean:define id="TEST_RESULTS" toScope="page">
+	  <logic:iterate id="indivItem" name="lst" property="list">
+		<html:button property="propertyName" indexed="true"/>
+	  </logic:iterate>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+	
+		<input type="button" name="propertyName[0]" value="Click">
+		
+	</bean:define>
+</logic:equal>
+
+<logic:equal name="runTest" value="testButtonPropertyIndexedMap">
+	<bean:define id="TEST_RESULTS" toScope="page">
+	  <logic:iterate id="indivItem" name="lst">
+		<html:button property="propertyName" indexed="true"/>
+	  </logic:iterate>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+	
+		<input type="button" name="propertyName[0]" value="Click">
+		
+	</bean:define>
+</logic:equal>
+
+<logic:equal name="runTest" value="testButtonPropertyIndexedMapProperty">
+	<bean:define id="TEST_RESULTS" toScope="page">
+	  <logic:iterate id="indivItem" name="lst" property="map">
+		<html:button property="propertyName" indexed="true"/>
+	  </logic:iterate>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+	
+		<input type="button" name="propertyName[0]" value="Click">
+		
+	</bean:define>
+</logic:equal>
+
+<logic:equal name="runTest" value="testButtonPropertyIndexedEnumeration">
+	<bean:define id="TEST_RESULTS" toScope="page">
+	<logic:iterate id="indivItem" name="lst">
+		<html:button property="propertyName" indexed="true"/>
+	</logic:iterate>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+	
+		<input type="button" name="propertyName[0]" value="Click">
+	
+		<input type="button" name="propertyName[1]" value="Click">
+	
+	</bean:define>
+</logic:equal>
+
+<logic:equal name="runTest" value="testButtonPropertyIndexedEnumerationProperty">
+	<bean:define id="TEST_RESULTS" toScope="page">
+	<logic:iterate id="indivItem" name="lst" property="enumeration">
+		<html:button property="propertyName" indexed="true"/>
+	</logic:iterate>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+	
+		<input type="button" name="propertyName[0]" value="Click">
+	
+		<input type="button" name="propertyName[1]" value="Click">
+	
+	</bean:define>
+</logic:equal>
+
+
 
 
 <% 
