@@ -104,16 +104,16 @@
         <code>com.mycompany.mypackage</code>, so it is stored in a directory
         (relative to your source directory) named
         <code>com/mycompany/mypackage</code>.  To create a resource bundle called
-        <code>com.mycompany.mypackage.MyResources</code>, you would create the
+        <code>com.mycompany.mypackage.MyApplication</code>, you would create the
         following files in the <code>com/mycompany/mypackage</code> directory:
       </p>
     
       <ul>
-        <li><b>MyResources.properties</b> - Contains the messages in the default
+        <li><b>MyApplication.properties</b> - Contains the messages in the default
             language for your server.  If your default language is English, you
             might have an entry like this:
             <code>prompt.hello=Hello</code></li>
-        <li><b>MyResources_xx.properties</b> - Contains the same messages in the
+        <li><b>MyApplication_xx.properties</b> - Contains the same messages in the
             language whose ISO language code is "xx" (See the 
             <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/ResourceBundle.html">ResourceBundle Javadoc</a> 
             page for a link to the current list).  For a French version
@@ -127,7 +127,7 @@
         deployment descriptor, one of the things you will need to define in
         an initialization parameter is the base name of the resource bundle
         for the application.  In the case described above, it would be
-        <code>com.mycompany.mypackage.MyResources</code>. 
+        <code>com.mycompany.mypackage.MyApplication</code>. 
       </p>
 <pre>
 &lt;servlet>
@@ -295,7 +295,7 @@
               tags from the struts-bean library, and "html" as the prefix that identifies
               tags from the struts-html library.  Any desired prefix can be used.</li>
           <li>This page uses several occurrences of the
-              message tag to look up internationalized
+              <b>message</b> tag to look up internationalized
               message strings from a <code>MessageResources</code> object containing
               all the resources for this application.  For this page to work, the
               following message keys must be defined in these resources:
@@ -312,37 +312,43 @@
               implement giving the user an option to switch languages -- simply change
               the stored <code>Locale</code> object, and all messages are switched
               automatically.</li>
-          <li>The errors tag displays any error
+          <li>The <b>errors</b> tag displays any error
               messages that have been stored by a business logic component, or nothing
               if no errors have been stored.  This tag will be described further
               below.</li>
-          <li>The form tag renders an HTML
+          <li>The <b>form</b> tag renders an HTML
               <code>&lt;form&gt;</code> element, based on the specified attributes.
-              It also associates all of the fields within this form with a session
-              scoped FormBean that is stored under the key <code>logonForm</code>.
-              The Struts developer provides the Java implementation of this form
+              It also associates all of the fields within this form with a 
+              <code>ActionForm</code> bean [<code>org.apache.struts.action.ActionForm</code>].
+              The tag looks up the <code>/logon</code> action mapping in the Struts 
+              configuration. 
+              The <code>logon</code> mapping tells the tag that the form bean is stored 
+              in the session context under the key <code>logonForm</code>.
+              The Struts developer provides the Java implementation of the ActionForm
               bean, subclassing the Struts class <code>ActionForm</code>
-              (see <a href="building_controller">Building Controller</a> components).
+              (see <a href="building_controller.html#action_form_classes">Building 
+              Controller</a> components).
               This bean is used to provide initial values for all of the input
               fields that have names matching the property names of the bean.
               If an appropriate bean is not found, a new one will be created
-              automatically, using the specified Java class name.
-              <li>The form bean can also be specified in the Struts configuration file, 
-              in which case the Name and Type can be omitted 
-              here. See "<a href="building_controller.html#config">The Struts  
-              Configuration File</a>" for details.)</li>
+              automatically, using the Java class name specified through the action 
+              mapping.</li>
+          <li>The form bean can also be specified in the tag by providing 
+              <code>name</code> and <code>type</code> attributes. But most often, 
+              everything is specified in the 
+              <a href="building_controller.html#config">Struts  Configuration File</a>.
               </li>
-          <li>The text tag renders an HTML
+          <li>The <b>text</b> tag renders an HTML
               <code>&lt;input&gt;</code> element of type "text".  In this case,
               the number of character positions to occupy on the browser's screen
-              has been specified as well.  When this page is executed, the current
+              has been specified as well. When this page is executed, the current
               value of the <code>username</code> property of the corresponding bean
               (that is, the value returned by <code>getUsername</code>).</li>
-          <li>The password tag is used similarly.
+          <li>The <b>password</b> tag is used similarly.
               The difference is that the browser will echo asterisk characters,
               instead of the input value, as the user types their password.</li>.
-          <li>The submit and
-              reset tags generate the corresponding
+          <li>The <b>submit</b> and
+              <b>reset</b> tags generate the corresponding
               buttons at the bottom of the form.  The text labels for each button
               are created using message tags,
               as with the prompts, so that these values are internationalized.</li>
@@ -530,6 +536,10 @@ public class UploadForm extends ActionForm {
         </p>
       </section>
     
+    <section name="3.3.5 The Struts Validator" href="validator">   
+    <p>[:TODO:]</p>
+    </section>
+
     <section name="3.4 Other Presentation Techniques" href="other_presentations">
     
       <p>

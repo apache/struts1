@@ -242,6 +242,8 @@ user locale, format string from attribute or format string from string resources
     <p>The following new features have been added to the Struts Documentation
     application (and corresponding contents on the Struts web site):</p>
     <ul>
+    <li>Added "cover page" to Develper Guides. These then link to the Package Descriptions and the API guides. 
+    Removed separate links to taglib documentation, since these are now in the Developer Guide.</li>
     <li>Move Tag Library documentation into User's Guide.</li>
     <li>Added Kickstart FAQ.</li>
     <li>Added Reference copy of 1.0 JavaDoc.</li>

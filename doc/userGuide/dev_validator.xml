@@ -3,10 +3,10 @@
 <properties>
 <author>Ted Husted</author> 
 <author>David Winterfeldt</author> 
-<title>The Struts User's Guide - Validator Developer Guide</title>
+<title>The Struts User's Guide - Validator Guide</title>
 </properties>
 <body> 
-<chapter name="Struts Validator Developer Guide"> 
+<chapter name="Struts Validator Guide"> 
 
 <section href="validator" name="Struts Validator">
 <p>

@@ -39,7 +39,54 @@
     </section>
     
     <section name="4.2 ActionForm Classes" href="action_form_classes">
-    <p>[:TODO:]</p>
+
+     <p>[:TODO: introduction paragraph ]</p>
+
+     <p>
+        When you code your <code>ActionForm</code> beans, keep the following
+        principles in mind:
+      </p>
+      
+      <ul>
+        <li>The <code>ActionForm</code> class itself requires no specific
+            methods to be implemented.  It is used to identify the role these
+            particular beans play in the overall architecture.  Typically, an
+            <code>ActionForm</code> bean will have only property getter and
+            property setter methods, with no business logic.</li>           
+            <li>The ActionForm object also offers a standard validation mechanism. 
+            If you override a "stub" method, and provide error messages in the 
+            standard application resource, Struts will automatically validate the 
+            input from the form (using your method). See "<a 
+            href="./building_view.html#form_validation">Action Form Validation</a>" 
+            for details. Of course, you can also ignore the ActionForm validation 
+            and provide your own in the Action object.</li>            
+        <li>Define a property (with associated <code>getXxx</code> and
+            <code>setXxx</code> methods) for each field that is present
+            in the form.  The field name and property name must match according
+            to the usual JavaBeans conventions.  For example, an input field named
+            <code>username</code> will cause the <code>setUsername</code> method
+            to be called.</li>
+        <li>Buttons and other controls on your form can also be defined as properties. 
+            This can help determine which button or control was selected when the 
+            form was submitted. Remember, the ActionForm is meant to represent your 
+            data-entry form, not just the data beans.</li>
+        <li>Think of your ActionForm beans as a firewall between HTTP and the Action. 
+            Use the validate method to ensure all required properties are present, and 
+            that they contain reasonable values. An ActionForm that fails validation 
+            will not even be presented to the Action for handling.</li>
+        <li>You may also place a bean instance on your form, and use nested property 
+            references. For example, you might have a "customer" bean on your Action 
+            Form, and then refer to the property "customer.name" in your JSP view. 
+            This would correspond to the methods <code>customer.getName()</code> and 
+            <code>customer.setName(string Name)</code> on your customer bean. See the 
+            Tag Library Developer Guides for more about nested syntax.</li>
+        <li><i>Caution:</i> If you nest an existing bean instance on your form, think 
+            about the properties it exposes. Any public property on an ActionForm that 
+            accepts a single String value can be set with a query string. It may be 
+            useful to place such beans inside a thin "wrapper" that exposes only the 
+            properties required. This wrapper can also provide a filter to be 
+            sure runtime properties are not set to inappropriate values.</li> 
+      </ul>    
     </section>
 
     <section name="4.2.1 DynaActionForm Classes" href="dyna_action_form_classes">
@@ -185,7 +232,11 @@ public ActionForward execute(ActionMapping mapping,
     <p>[:TODO:]</p>
     </section>
 
-    <section name="4.4.x Exception Handler" href="exception_handler">
+    <section name="4.4.1 Request Processor" href="request_processor">
+    <p>[:TODO:]</p>
+    </section>
+
+    <section name="4.4.2 Exception Handler" href="exception_handler">
     <p>[:TODO:]</p>
     </section>
 
@@ -218,7 +269,7 @@ public ActionForward execute(ActionMapping mapping,
          a <b>type</b> property. </li>
 
       </ul>
-               
+
     </section>
     
     <section name="4.6 The Struts Configuration File" href="config">
@@ -435,7 +486,9 @@ public ActionForward execute(ActionMapping mapping,
           Add an entry defining the action servlet itself, along with the appropriate
           initialization parameters.  Such an entry might look like this:
         </p>
-
+        <p>
+           [:TODO: Conform with MailReader example application]
+        </p>
 <pre>
 &lt;servlet&gt;
   &lt;servlet-name&gt;action&lt;/servlet-name&gt;
@@ -578,7 +631,7 @@ public ActionForward execute(ActionMapping mapping,
 <pre>
   &lt;servlet-mapping&gt;
      &lt;servlet-name&gt;action&lt;/servlet-name&gt;
-     &lt;url-pattern&gt;/execute/*&lt;/url-pattern&gt;
+     &lt;url-pattern&gt;/do/*&lt;/url-pattern&gt;
    &lt;/servlet-mapping&gt;
 </pre>
         
@@ -658,14 +711,14 @@ http://www.mycompany.com/myapplication/logon.do
         </p>
         
         <p>
-          Below is how you would define all taglibs for use within your application,
-          in reality you would only specify the taglib's that your application will use:
+          Below is how you would define all taglibs for use within your application.
+          In practice, you would only specify the taglibs that your application uses:
         </p>
 
 <pre>
 &lt;taglib&gt;
   &lt;taglib-uri&gt;
-    /WEB-INF/struts-bean.tld
+    /tags/struts-bean
   &lt;/taglib-uri&gt;
   &lt;taglib-location&gt;
     /WEB-INF/struts-bean.tld
@@ -673,7 +726,7 @@ http://www.mycompany.com/myapplication/logon.do
 &lt;/taglib&gt;
 &lt;taglib&gt;
   &lt;taglib-uri&gt;
-    /WEB-INF/struts-html.tld
+    /tags/struts-html
   &lt;/taglib-uri&gt;
   &lt;taglib-location&gt;
     /WEB-INF/struts-html.tld
@@ -681,7 +734,7 @@ http://www.mycompany.com/myapplication/logon.do
 &lt;/taglib&gt;
 &lt;taglib&gt;
   &lt;taglib-uri&gt;
-    /WEB-INF/struts-logic.tld
+    /tags/struts-logic
   &lt;/taglib-uri&gt;
   &lt;taglib-location&gt;
     /WEB-INF/struts-logic.tld
@@ -689,10 +742,10 @@ http://www.mycompany.com/myapplication/logon.do
 &lt;/taglib&gt;
 &lt;taglib&gt;
   &lt;taglib-uri&gt;
-    /WEB-INF/struts-template.tld
+    /tags/struts-tiles
   &lt;/taglib-uri&gt;
   &lt;taglib-location&gt;
-    /WEB-INF/struts-template.tld
+    /WEB-INF/struts-tiles.tld
   &lt;/taglib-location&gt;
 &lt;/taglib&gt;
 </pre>

@@ -57,6 +57,7 @@
                     <li><a href="building_view.html#form_input">3.3.2 Input Field Types Supported</a></li>
                     <li><a href="building_view.html#presentation_tags">3.3.3 Other Useful Presentation Tags</a></li>
                     <li><a href="building_view.html#form_validation">3.3.4 Automatic Form Validation</a></li>
+                    <li><a href="building_view.html#struts_validator">3.3.5 Struts Validator</a></li>
                     </ul></li>
                 <li><a href="building_view.html#other_presentations">3.4 Other Presentation Techniques</a>
                     <ul>
@@ -70,8 +71,15 @@
             <li><a href="building_controller.html">4. Building Controller Components</a>
                 <ul>
                 <li><a href="building_controller.html#overview">4.1 Overview</a></li>
-                <li><a href="building_controller.html#action_classes">4.2 Action Classes</a></li>
-                <li><a href="building_controller.html#actionmapping">4.3 The ActionMapping Implementation</a></li>
+                <li><a href="building_controller.html#action_form_classes">4.2 ActionForm Classes</a></li>
+                <li><a href="building_controller.html#dyna_action_form_classes">4.2.1 DynaActionForm Classes</a></li>
+                <li><a href="building_controller.html#map_action_form_classes">4.2.2 Map-backed ActionForm Classes</a></li>
+                <li><a href="building_controller.html#action_classes">4.3 Action Classes</a></li>
+                <li><a href="building_controller.html#plugin_classes">4.3.x Plugin Classes</a></li>
+                <li><a href="building_controller.html#action_servlet">4.4 The ActionServlet</a></li>
+                <li><a href="building_controller.html#request_controller">4.4.1 Request Processor</a></li>
+                <li><a href="building_controller.html#exception_handler">4.4.2 Exception Handler</a></li>
+                <li><a href="building_controller.html#actionmapping">4.5 The ActionMapping Implementation</a></li>
                 <li><a href="building_controller.html#config">4.4 The Struts Configuration File</a></li>
                 <li><a href="building_controller.html#dd_config">4.5 The Web Application Deployment Descriptor</a>
                     <ul>
