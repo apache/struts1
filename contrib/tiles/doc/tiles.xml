@@ -17,7 +17,7 @@
   <jspversion>1.1</jspversion>
   <shortname>Tiles Tag Library</shortname>
   <display-name>Tiles Tag Library</display-name>
-  <!--<uri>http://jakarta.apache.org/struts/tiles-1.0</uri>-->
+  <uri>http://jakarta.apache.org/struts/tags-tiles-1.1</uri>
   <info>  
     This tag library provides tiles tags. 
 	<br></br>
@@ -246,9 +246,8 @@
 	Create a tile/component/template definition as a bean. 
 	Newly created bean will be saved under specified "id", in the requested "scope".
 	Definition tag has same syntax as <code>insert</code> tag. 	
-	<br></br>The new definition can extends a definition described in factory (XML file), 
-	and overload any previously defined parameters.
-	<br></br>Definition can be used later with <code>&lt;insert beanName="idName" &gt;</code>
+	The new definition can extends a definition described in factory (XML file), and overload 
+	any previously defined parameters.
 	</info>
         <tagclass>org.apache.struts.taglib.tiles.DefinitionTag</tagclass>
 	    <bodycontent>JSP</bodycontent>

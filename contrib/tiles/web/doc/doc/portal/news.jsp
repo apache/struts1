@@ -3,11 +3,23 @@
 <th bgcolor="aqua"><font size="+1"><strong>News</strong></font></th></tr>
 <tr>
 <td>
-      <FONT size=2>Updated 22 May 2002</FONT></P>
+      <p><FONT size=2>13 Jun. 2002</FONT></P>
+      <P><STRONG><EM><FONT color=#ff0000>Vote for Tiles and Struts</FONT></EM></STRONG>
+	  <br><FONT color=#000000 size=2>
+	  <a href="http://www.sys-con.com/java/readerschoice2002/nominationform.cfm"  target="_blank"/>Vote JDJ Readers' Choice Award</a> 
+	    <ul>
+		  <li>6)  Best Java Component : Tiles,</li>
+		  <li>26) Best Java e-Business Framework : Struts,</li>
+		  <li>16) Best Java Training Program : J2EE / JSP Framework by baseBeans
+Struts Fast Track</li>
+		</ul>  
+	  </FONT></P>
+	  
+	  <p><FONT size=2>22 May 2002</FONT></P>
       <P><STRONG><EM><FONT color=#ff0000>Tiles Advanced Features Documentation (draft version)</FONT></EM></STRONG>
 	  <br><FONT color=#000000 size=2>
 	  <a href="http://www.lifl.fr/~dumoulin/tiles/tilesAdvancedFeatures.pdf" />tilesAdvancedFeatures.pdf</a>
-	  </FONT><FONT color=#ff0000><EM><STRONG></STRONG></EM></FONT></P>
+	  </FONT></P>
 	  
       <P><STRONG><EM><FONT color=#ff0000>Tiles-blank Applications</FONT></EM></STRONG>
 	  <br><FONT color=#000000 size=2>
@@ -17,7 +29,7 @@
 		  <li><code>tiles-blank-struts1.1.war</code> - Tiles with Struts1.1</li>
 		  <li><code>tiles-blank-struts1.0.war</code> - Tiles with latest stable Struts1.0.x</li>
 		</ul>
-	  </FONT><FONT color=#ff0000><EM><STRONG></STRONG></EM></FONT></P>
+	  </FONT></P>
 
       <P><FONT color=#ff0000><EM><STRONG>Article on Tiles and Struts</STRONG></EM></FONT>
 	  <br><FONT color=#000000 size=2>

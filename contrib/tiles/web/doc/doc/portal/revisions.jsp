@@ -2,6 +2,17 @@
 <tr>
 <th bgcolor="aqua"><FONT size=4>History</FONT></th></tr>
   <TR>
+    <TD><FONT size=2><STRONG> 13 Jun. 2002</STRONG> </FONT></TD></TR>
+  <TR>
+    <TD>
+      <UL>
+        <LI><FONT size=2>Tiles configuration file now accept nested list as attribute</FONT></LI>
+        <LI><FONT size=2>Add <uri> tag to DTD (submitted by Loren Halvorson)</FONT></LI>
+		configuration file</FONT></LI>
+	  </UL>
+	</TD>
+  </TR> 
+  <TR>
     <TD><FONT size=2><STRONG> 23 May 2002</STRONG> </FONT></TD></TR>
   <TR>
     <TD>
@@ -12,9 +23,6 @@
 		 can be removed in examples</FONT></LI>
         <LI><FONT size=2>tiles.XmlDefinition.I18nFactorySet : Enable serialization (bug reported 
 		by Dan Sykes)</FONT></LI>
-        <LI><FONT size=2></FONT></LI>
-        <LI><FONT size=2></FONT></LI>
-        <LI><FONT size=2></FONT></LI>	
 	  </UL>
 	</TD>
   </TR> 

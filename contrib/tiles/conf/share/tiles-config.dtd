@@ -9,7 +9,7 @@
        "-//Apache Software Foundation//DTD Tiles Configuration//EN"
        "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
 
-     $Id: tiles-config.dtd,v 1.4 2001/12/27 17:44:12 cedric Exp $
+     $Id: tiles-config.dtd,v 1.5 2002/06/13 16:53:56 cedric Exp $
 -->
 <!ELEMENT component-definitions (definition+)>
 <!ELEMENT tiles-definitions (definition+)>
@@ -32,7 +32,7 @@
 	content CDATA #IMPLIED
 	direct (true | false) #IMPLIED
 >
-<!ELEMENT putList ( (add* | item* | bean*)+) >
+<!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
 <!ATTLIST putList
 	name CDATA #REQUIRED
 >

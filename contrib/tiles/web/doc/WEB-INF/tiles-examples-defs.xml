@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
  <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration//EN"
        "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
@@ -22,6 +24,23 @@
   <!-- =======================================================  -->
   <!-- Menu bar and submenus definitions  									-->
   <!-- =======================================================  -->
+
+  <!-- Test nested list -->
+<definition name="test.nested.list" path="/layouts/vboxLayout.jsp" >
+  <putList name="list" >
+    <item value="item1" link="/examples/tabs.jsp"/>
+    <item value="item2" link="/examples/tabs.jsp"/>
+    <item value="item3" link="/examples/tabs.jsp"/>
+    <putList name="list" >
+      <item value="nested.item1" link="/examples/tabs.jsp"/>
+      <putList name="list" >
+        <item value="nested.nested.item1" link="/examples/tabs.jsp"/>
+        <item value="nested.nested.item2" link="/examples/tabs.jsp"/>
+      </putList>
+      <item value="nested.item2" link="/examples/tabs.jsp"/>
+    </putList>
+  </putList>
+</definition>
 
   <!-- Menu bar definition -->
   <!-- Some definition come from other definition files (ex : doc.menu.*) -->
@@ -251,35 +270,25 @@
 	<put name="parameterName"  value="selected" />
     <putList name="tabList" >
       <item value="Doc Home"
-	  		link="/index.jsp"
-			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+	  		link="/index.jsp" />
       <item value="Quick overview"
-	  		link="/doc/quickOverview.jsp"
-			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+	  		link="/doc/quickOverview.jsp" />
       <item value="Tutorial"
-	  		link="/doc/tutorial.jsp"
-			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+	  		link="/doc/tutorial.jsp" />
       <item value="Examples Home"
-	  		link="/examples/index.jsp"
-			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+	  		link="/examples/index.jsp" />
       <item value="Tutorial Home"
-	  		link="/tutorial/index.jsp"
-			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-     <item value="Login"
-	  		link="/examples/tiles/portal/login.jsp"
-			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+	  		link="/tutorial/index.jsp" />
+      <item value="Login"
+	  		link="/examples/tiles/portal/login.jsp" />
       <item value="Messages"
-	  		link="/examples/tiles/portal/messages.jsp"
-			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+	  		link="/examples/tiles/portal/messages.jsp" />
       <item value="NewsFeed"
-	  		link="/examples/tiles/portal/newsFeed.jsp"
-			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+	  		link="/examples/tiles/portal/newsFeed.jsp" />
       <item value="Stocks"
-	  		link="/examples/tiles/portal/stocks.jsp"
-			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+	  		link="/examples/tiles/portal/stocks.jsp" />
       <item value="WhatsNew"
-	  		link="/examples/tiles/portal/whatsNew.jsp"
-			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+	  		link="/examples/tiles/portal/whatsNew.jsp" />
     </putList>
   </definition>
 

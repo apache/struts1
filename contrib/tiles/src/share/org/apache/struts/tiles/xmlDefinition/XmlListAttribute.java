@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/xmlDefinition/Attic/XmlListAttribute.java,v 1.3 2002/04/15 08:22:44 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/04/15 08:22:44 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/xmlDefinition/Attic/XmlListAttribute.java,v 1.4 2002/06/13 16:53:56 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/13 16:53:56 $
  * $Author: cedric $
  *
  */
@@ -79,5 +79,7 @@ public class XmlListAttribute extends XmlAttribute
     {
     list.add( value );
     }
+
+
 
 }
