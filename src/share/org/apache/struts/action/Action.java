@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.64 2003/07/04 21:27:24 dgraham Exp $
- * $Revision: 1.64 $
- * $Date: 2003/07/04 21:27:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.65 2003/07/26 00:30:43 dgraham Exp $
+ * $Revision: 1.65 $
+ * $Date: 2003/07/26 00:30:43 $
  *
  * ====================================================================
  *
@@ -108,7 +108,7 @@ import org.apache.struts.util.TokenProcessor;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.64 $ $Date: 2003/07/04 21:27:24 $
+ * @version $Revision: 1.65 $ $Date: 2003/07/26 00:30:43 $
  */
 public class Action {
 
@@ -125,6 +125,8 @@ public class Action {
 
     /**
      * The system default Locale.
+     * @deprecated Use Locale.getDefault() directly.  This will be removed after
+     * Struts 1.2.
      */
     protected static Locale defaultLocale = Locale.getDefault();
 
@@ -293,14 +295,7 @@ public class Action {
      * @param request The request we are processing
      */
     protected Locale getLocale(HttpServletRequest request) {
-
-        HttpSession session = request.getSession();
-        Locale locale = (Locale) session.getAttribute(Globals.LOCALE_KEY);
-        if (locale == null) {
-            locale = defaultLocale;
-        }
-        return (locale);
-
+        return RequestUtils.getUserLocale(request, null);
     }
 
     /**
@@ -395,10 +390,7 @@ public class Action {
      * @param request The servlet request we are processing
      * @param reset Should we reset the token after checking it?
      */
-    protected boolean isTokenValid(
-        HttpServletRequest request,
-        boolean reset) {
-
+    protected boolean isTokenValid(HttpServletRequest request, boolean reset) {
         return token.isTokenValid(request, reset);
     }
 
@@ -424,8 +416,7 @@ public class Action {
      * @param request The servlet request we are processing
      * @param errors Error messages object
      */
-    protected void saveErrors(HttpServletRequest request,
-                  ActionErrors errors) {
+    protected void saveErrors(HttpServletRequest request, ActionErrors errors) {
 
         // Remove any error messages attribute if none are required
         if ((errors == null) || errors.isEmpty()) {
@@ -449,8 +440,9 @@ public class Action {
      * @param messages  Messages object
      * @since Struts 1.1
      */
-    protected void saveMessages(HttpServletRequest request,
-                    ActionMessages messages) {
+    protected void saveMessages(
+        HttpServletRequest request,
+        ActionMessages messages) {
 
         // Remove any messages attribute if none are required
         if ((messages == null) || messages.isEmpty()) {
@@ -476,7 +468,7 @@ public class Action {
 
 
     /**
-     * Set the user's currently selected Locale.
+     * Set the user's currently selected Locale into their HttpSession.
      *
      * @param request The request we are processing
      * @param locale The user's selected Locale to be set, or null
@@ -486,7 +478,7 @@ public class Action {
 
         HttpSession session = request.getSession();
         if (locale == null) {
-            locale = defaultLocale;
+            locale = Locale.getDefault();
         }
         session.setAttribute(Globals.LOCALE_KEY, locale);
 
