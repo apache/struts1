@@ -65,7 +65,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts.action.Action;
+import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -213,7 +213,7 @@ public abstract class LookupDispatchAction extends DispatchAction {
                 // This is the first time this Locale is used
                 // Build the reverse lookup Map.
                 MessageResources resources = (MessageResources)
-                    request.getAttribute(Action.MESSAGES_KEY);
+                    request.getAttribute(Globals.MESSAGES_KEY);
                 keyMethodMap = getKeyMethodMap();
                 Iterator iter = keyMethodMap.keySet().iterator();
                 while (iter.hasNext()) {

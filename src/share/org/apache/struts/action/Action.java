@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.52 2002/11/08 05:39:24 rleland Exp $
- * $Revision: 1.52 $
- * $Date: 2002/11/08 05:39:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.53 2002/11/12 03:56:08 dgraham Exp $
+ * $Revision: 1.53 $
+ * $Date: 2002/11/12 03:56:08 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -75,6 +76,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
 import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.html.Constants;
@@ -112,7 +114,7 @@ import org.apache.struts.util.RequestUtils;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.52 $ $Date: 2002/11/08 05:39:24 $
+ * @version $Revision: 1.53 $ $Date: 2002/11/12 03:56:08 $
  */
 
 public class Action {
@@ -273,6 +275,7 @@ public class Action {
      * will be suffixed with the actual module prefix (including the
      * leading "/" character) to form the actual attributes key.</p>
      * @since Struts 1.1
+     * @deprecated  Replaced by {@link org.apache.struts.Globals#PLUG_INS_KEY}
      */
     public static final String PLUG_INS_KEY = Globals.PLUG_INS_KEY;
 
@@ -550,7 +553,7 @@ public class Action {
     protected Locale getLocale(HttpServletRequest request) {
 
         HttpSession session = request.getSession();
-        Locale locale = (Locale) session.getAttribute(LOCALE_KEY);
+        Locale locale = (Locale) session.getAttribute(Globals.LOCALE_KEY);
         if (locale == null)
             locale = defaultLocale;
         return (locale);
@@ -568,7 +571,7 @@ public class Action {
     protected MessageResources getResources() {
 
         return ((MessageResources)
-                servlet.getServletContext().getAttribute(Action.MESSAGES_KEY));
+                servlet.getServletContext().getAttribute(Globals.MESSAGES_KEY));
 
     }
 
@@ -581,7 +584,7 @@ public class Action {
      */
     protected MessageResources getResources(HttpServletRequest request) {
 
-        return ((MessageResources) request.getAttribute(Action.MESSAGES_KEY));
+        return ((MessageResources) request.getAttribute(Globals.MESSAGES_KEY));
 
     }
 
@@ -791,7 +794,7 @@ public class Action {
         HttpSession session = request.getSession();
         if (locale == null)
             locale = defaultLocale;
-        session.setAttribute(LOCALE_KEY, locale);
+        session.setAttribute(Globals.LOCALE_KEY, locale);
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ComponentConstants.java,v 1.2 2002/10/27 00:29:53 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2002/10/27 00:29:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ComponentConstants.java,v 1.3 2002/11/12 03:56:09 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/12 03:56:09 $
  *
  * ====================================================================
  *
@@ -59,24 +59,21 @@
  *
  */
 
-
 package org.apache.struts.taglib.tiles;
 
-import org.apache.struts.taglib.tiles.*;
-import javax.servlet.jsp.PageContext;
+import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
 
-  /**
-   * Constant used by Tiles/Components.
-   */
+/**
+ * Constant used by Tiles/Components.
+ */
 public interface ComponentConstants {
 
-    /** Name used to store Tile/Component context */
-  public static final String COMPONENT_CONTEXT = "org.apache.struts.taglib.tiles.CompContext";
+    /** Name used to store Tile/Component context. */
+    public static final String COMPONENT_CONTEXT = "org.apache.struts.taglib.tiles.CompContext";
 
-  public static final int    COMPONENT_SCOPE = 8;
-  public static final String LOCALE_KEY = Action.LOCALE_KEY;
-  public static final String EXCEPTION_KEY = Action.EXCEPTION_KEY;
+    public static final int COMPONENT_SCOPE = 8;
+    public static final String LOCALE_KEY = Globals.LOCALE_KEY;
+    public static final String EXCEPTION_KEY = Globals.EXCEPTION_KEY;
 
 }
-

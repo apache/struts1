@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.5 2002/10/28 05:15:48 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2002/10/28 05:15:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.6 2002/11/12 03:56:09 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/11/12 03:56:09 $
  *
  * ====================================================================
  *
@@ -61,33 +61,31 @@
 
 package org.apache.struts.taglib.tiles;
 
-import org.apache.struts.tiles.ComponentContext;
-import org.apache.struts.tiles.ComponentDefinition;
-import org.apache.struts.tiles.Controller;
-import org.apache.struts.tiles.DefinitionsUtil;
-import org.apache.struts.tiles.NoSuchDefinitionException;
-import org.apache.struts.tiles.FactoryNotFoundException;
-import org.apache.struts.tiles.DefinitionsFactoryException;
-
-import org.apache.struts.tiles.AttributeDefinition;
-import org.apache.struts.tiles.DirectStringAttribute;
-import org.apache.struts.tiles.DefinitionAttribute;
-import org.apache.struts.tiles.DefinitionNameAttribute;
-
-import org.apache.struts.taglib.tiles.util.TagUtils;
-
-import org.apache.struts.action.Action;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import java.util.Map;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.Globals;
+import org.apache.struts.taglib.tiles.util.TagUtils;
+import org.apache.struts.tiles.AttributeDefinition;
+import org.apache.struts.tiles.ComponentContext;
+import org.apache.struts.tiles.ComponentDefinition;
+import org.apache.struts.tiles.Controller;
+import org.apache.struts.tiles.DefinitionAttribute;
+import org.apache.struts.tiles.DefinitionNameAttribute;
+import org.apache.struts.tiles.DefinitionsFactoryException;
+import org.apache.struts.tiles.DefinitionsUtil;
+import org.apache.struts.tiles.DirectStringAttribute;
+import org.apache.struts.tiles.FactoryNotFoundException;
+import org.apache.struts.tiles.NoSuchDefinitionException;
 
 /**
  * This is the tag handler for &lt;template:insert&gt;, which includes
@@ -96,7 +94,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.5 $ $Date: 2002/10/28 05:15:48 $
+ * @version $Revision: 1.6 $ $Date: 2002/11/12 03:56:09 $
  */
 public class InsertTag
 	extends DefinitionTagSupport
@@ -555,29 +553,29 @@ public class InsertTag
 	 */
 	protected TagHandler processDefinitionName(String name) throws JspException {
 
-		try {
-			ComponentDefinition definition = DefinitionsUtil.getDefinition(name, pageContext);
-			if (definition == null) { // is it possible ?
-				throw new NoSuchDefinitionException();
-			}
-			return processDefinition(definition);
+        try {
+            ComponentDefinition definition = DefinitionsUtil.getDefinition(name, pageContext);
+            if (definition == null) { // is it possible ?
+                throw new NoSuchDefinitionException();
+            }
+            return processDefinition(definition);
 
-		} catch (NoSuchDefinitionException ex) {
-			throw new JspException(
-				"Error -  Tag Insert : Can't get definition '"
-					+ definitionName
-					+ "'. Check if this name exist in definitions factory.");
-		} catch (FactoryNotFoundException ex) { // factory not found.
-			throw new JspException(ex.getMessage());
-		} // end catch
-		catch (DefinitionsFactoryException ex) {
-			if (log.isDebugEnabled())
-				ex.printStackTrace();
-			// Save exception to be able to show it later
-			pageContext.setAttribute(Action.EXCEPTION_KEY, ex, PageContext.REQUEST_SCOPE);
-			throw new JspException(ex.getMessage());
-		} // end catch
-	}
+        } catch (NoSuchDefinitionException ex) {
+            throw new JspException(
+                "Error -  Tag Insert : Can't get definition '"
+                    + definitionName
+                    + "'. Check if this name exist in definitions factory.");
+        } catch (FactoryNotFoundException ex) { // factory not found.
+            throw new JspException(ex.getMessage());
+        } // end catch
+        catch (DefinitionsFactoryException ex) {
+            if (log.isDebugEnabled())
+                ex.printStackTrace();
+            // Save exception to be able to show it later
+            pageContext.setAttribute(Globals.EXCEPTION_KEY, ex, PageContext.REQUEST_SCOPE);
+            throw new JspException(ex.getMessage());
+        } // end catch
+    }
 
 	/**
 	 * End of Process tag attribute "definition"

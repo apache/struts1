@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.13 2002/10/25 23:54:53 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2002/10/25 23:54:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.14 2002/11/12 03:56:09 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/11/12 03:56:09 $
  *
  * ====================================================================
  *
@@ -61,15 +61,17 @@
 package org.apache.struts.taglib.template;
 
 import java.io.IOException;
-import java.util.Hashtable;
-import java.util.Stack;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.action.Action;
-import org.apache.struts.taglib.template.util.*;
+
+import org.apache.struts.Globals;
+import org.apache.struts.taglib.template.util.Content;
+import org.apache.struts.taglib.template.util.ContentMap;
+import org.apache.struts.taglib.template.util.ContentMapStack;
 
 /**
  * This is the tag handler for &lt;template:get&gt;, which gets 
@@ -77,7 +79,7 @@ import org.apache.struts.taglib.template.util.*;
  * it, depending upon the value of the content's direct attribute.
  *
  * @author David Geary
- * @version $Revision: 1.13 $ $Date: 2002/10/25 23:54:53 $
+ * @version $Revision: 1.14 $ $Date: 2002/11/12 03:56:09 $
  * @deprecated Use Tiles instead.
  */
 public class GetTag extends TagSupport {
@@ -217,29 +219,26 @@ public class GetTag extends TagSupport {
      * @deprecated Use Tiles instead.
      */
    public void release() {
-
       super.release();
       name = role = null;
       flush = false;
-
    }
 
 
-    /**
-     * Save the specified exception in request scope if there is not already
-     * one present.
-     *
-     * @param exception Exception to be conditionally saved
-     * @deprecated Use Tiles instead.
-     */
+   /**
+    * Save the specified exception in request scope if there is not already
+    * one present.
+    *
+    * @param exception Exception to be conditionally saved
+    * @deprecated Use Tiles instead.
+    */
     private void saveException(Throwable exception) {
 
-        if (pageContext.getAttribute(Action.EXCEPTION_KEY,
-                                     PageContext.REQUEST_SCOPE) != null)
+        if (pageContext.getAttribute(Globals.EXCEPTION_KEY, PageContext.REQUEST_SCOPE) != null) {
             return;
-        pageContext.setAttribute(Action.EXCEPTION_KEY, exception,
-                                 PageContext.REQUEST_SCOPE);
+        }
 
+        pageContext.setAttribute(Globals.EXCEPTION_KEY, exception, PageContext.REQUEST_SCOPE);
     }
 
 

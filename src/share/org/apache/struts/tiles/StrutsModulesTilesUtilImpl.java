@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/StrutsModulesTilesUtilImpl.java,v 1.3 2002/11/09 16:30:02 rleland Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/09 16:30:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/StrutsModulesTilesUtilImpl.java,v 1.4 2002/11/12 03:56:08 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/11/12 03:56:08 $
  *
  * ====================================================================
  *
@@ -61,36 +61,38 @@
 
 package org.apache.struts.tiles;
 
-import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
-import org.apache.struts.tiles.TilesRequestProcessor;
-
-import org.apache.struts.util.RequestUtils;
-import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.action.Action;
-
-import javax.servlet.*;
-import javax.servlet.http.*;
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.Globals;
+import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.util.RequestUtils;
 
-  /**
-   * Implementation of TilesUtil for Struts multi modules.
-   * Methods in this implementation are aware of the Struts module context.
-   * <br>
-   * <ul>
-   * <li>The method getFactory(...) return the factory for the current struts
-   * module.</li>
-   * <li>Methods doForward() and doInclude() use their counterparts in the
-   * current RequestProcessor.</li>
-   * <li>The method createFactory(...) creates a factory for the current module and
-   * stores it under appropriate property name.</li>
-   * </ul>
-   */
-public class StrutsModulesTilesUtilImpl extends DefaultTilesUtilImpl implements TilesUtilInterface
-{
-     /** Commons Logging instance.*/
-  protected Log log = LogFactory.getLog(StrutsModulesTilesUtilImpl.class);
+/**
+ * Implementation of TilesUtil for Struts multi modules.
+ * Methods in this implementation are aware of the Struts module context.
+ * <br>
+ * <ul>
+ * <li>The method getFactory(...) return the factory for the current struts
+ * module.</li>
+ * <li>Methods doForward() and doInclude() use their counterparts in the
+ * current RequestProcessor.</li>
+ * <li>The method createFactory(...) creates a factory for the current module and
+ * stores it under appropriate property name.</li>
+ * </ul>
+ */
+public class StrutsModulesTilesUtilImpl
+    extends DefaultTilesUtilImpl
+    implements TilesUtilInterface {
+    /** Commons Logging instance.*/
+    protected Log log = LogFactory.getLog(StrutsModulesTilesUtilImpl.class);
 
     /**
      * Do a forward using request dispatcher.
@@ -101,12 +103,14 @@ public class StrutsModulesTilesUtilImpl extends DefaultTilesUtilImpl implements 
      * @param response Current page response
      * @param servletContext Current servlet context
      */
-  public void doForward(String uri, HttpServletRequest request, HttpServletResponse response,
-                        ServletContext servletContext)
-    throws IOException, ServletException
-  {
-  request.getRequestDispatcher( uri ).include(request, response);
-  }
+    public void doForward(
+        String uri,
+        HttpServletRequest request,
+        HttpServletResponse response,
+        ServletContext servletContext)
+        throws IOException, ServletException {
+        request.getRequestDispatcher(uri).include(request, response);
+    }
 
     /**
      * Do an include using request dispatcher.
@@ -117,23 +121,27 @@ public class StrutsModulesTilesUtilImpl extends DefaultTilesUtilImpl implements 
      * @param response Current page response
      * @param servletContext Current servlet context
      */
-  public void doInclude(String uri, HttpServletRequest request, HttpServletResponse response,
-                        ServletContext servletContext)
-    throws IOException, ServletException
-  {
-    // modify uri
-  request.getRequestDispatcher( uri ).forward(request, response);
-  }
+    public void doInclude(
+        String uri,
+        HttpServletRequest request,
+        HttpServletResponse response,
+        ServletContext servletContext)
+        throws IOException, ServletException {
+        // modify uri
+        request.getRequestDispatcher(uri).forward(request, response);
+    }
 
     /**
      * Get definition factory from appropriate servlet context.
      * @return Definitions factory or null if not found.
      */
-  public DefinitionsFactory getDefinitionsFactory(ServletRequest request, ServletContext servletContext)
-  {
-  ModuleConfig moduleConfig = getModuleConfig( (HttpServletRequest)request, servletContext);
-  return (DefinitionsFactory)servletContext.getAttribute(DEFINITIONS_FACTORY+moduleConfig.getPrefix() );
-  }
+    public DefinitionsFactory getDefinitionsFactory(
+        ServletRequest request,
+        ServletContext servletContext) {
+        ModuleConfig moduleConfig = getModuleConfig((HttpServletRequest) request, servletContext);
+        return (DefinitionsFactory) servletContext.getAttribute(
+            DEFINITIONS_FACTORY + moduleConfig.getPrefix());
+    }
 
     /**
      * Create Definition factory from specified configuration object.
@@ -148,55 +156,60 @@ public class StrutsModulesTilesUtilImpl extends DefaultTilesUtilImpl implements 
      * @return newly created factory of type ConfigurableDefinitionsFactory.
      * @throws DefinitionsFactoryException If an error occur while initializing factory
      */
-  public DefinitionsFactory createDefinitionsFactory(ServletContext servletContext, DefinitionsFactoryConfig factoryConfig)
-    throws DefinitionsFactoryException
-  {
-      // Create configurable factory
-    DefinitionsFactory factory = createDefinitionFactoryInstance(factoryConfig.getFactoryClassname());
-    factory.init( factoryConfig, servletContext );
-      // Make factory accessible from jsp tags (push it in appropriate context)
-    makeDefinitionsFactoryAccessible(factory, servletContext );
-    return factory;
-  }
-
-  /**
-   * Make definition factory accessible to Tags.
-   * Factory is stored in servlet context.
-   * @param factory Factory to make accessible
-   * @param servletContext Current servlet context
-   */
- protected void makeDefinitionsFactoryAccessible(DefinitionsFactory factory, ServletContext servletContext)
-  {
-  String prefix = factory.getConfig().getFactoryName();
-  servletContext.setAttribute(DEFINITIONS_FACTORY+prefix, factory);
-  }
-
-  /**
-   * Get Tiles request processor associated to the current module.
-   */
- protected TilesRequestProcessor getRequestProcessor(HttpServletRequest request, ServletContext servletContext)
-  {
-  ModuleConfig moduleConfig = getModuleConfig( request, servletContext);
-  return (TilesRequestProcessor)servletContext.getAttribute(Action.REQUEST_PROCESSOR_KEY+moduleConfig.getPrefix() );
-  }
-
-  /**
-   * Get the current ModuleConfig.
-   * <br>
-   * Lookup in the request, and do selectModule if not found. The side effect
-   * is that the Application object is set in the request if it was not present.
-   */
- protected ModuleConfig getModuleConfig(HttpServletRequest request, ServletContext servletContext)
-  {
-  ModuleConfig moduleConfig = RequestUtils.getModuleConfig( request, servletContext);
-  if(moduleConfig==null)
-    {
-      // ModuleConfig not found in current request. Select it.
-    RequestUtils.selectModule(request, servletContext);
-    moduleConfig = RequestUtils.getModuleConfig( request, servletContext);
+    public DefinitionsFactory createDefinitionsFactory(
+        ServletContext servletContext,
+        DefinitionsFactoryConfig factoryConfig)
+        throws DefinitionsFactoryException {
+        // Create configurable factory
+        DefinitionsFactory factory =
+            createDefinitionFactoryInstance(factoryConfig.getFactoryClassname());
+        factory.init(factoryConfig, servletContext);
+        // Make factory accessible from jsp tags (push it in appropriate context)
+        makeDefinitionsFactoryAccessible(factory, servletContext);
+        return factory;
     }
 
-  return moduleConfig;
-  }
+    /**
+     * Make definition factory accessible to Tags.
+     * Factory is stored in servlet context.
+     * @param factory Factory to make accessible
+     * @param servletContext Current servlet context
+     */
+    protected void makeDefinitionsFactoryAccessible(
+        DefinitionsFactory factory,
+        ServletContext servletContext) {
+        String prefix = factory.getConfig().getFactoryName();
+        servletContext.setAttribute(DEFINITIONS_FACTORY + prefix, factory);
+    }
+
+    /**
+     * Get Tiles request processor associated to the current module.
+     */
+    protected TilesRequestProcessor getRequestProcessor(
+        HttpServletRequest request,
+        ServletContext servletContext) {
+        ModuleConfig moduleConfig = getModuleConfig(request, servletContext);
+        return (TilesRequestProcessor) servletContext.getAttribute(
+            Globals.REQUEST_PROCESSOR_KEY + moduleConfig.getPrefix());
+    }
+
+    /**
+     * Get the current ModuleConfig.
+     * <br>
+     * Lookup in the request, and do selectModule if not found. The side effect
+     * is that the Application object is set in the request if it was not present.
+     */
+    protected ModuleConfig getModuleConfig(
+        HttpServletRequest request,
+        ServletContext servletContext) {
+        ModuleConfig moduleConfig = RequestUtils.getModuleConfig(request, servletContext);
+        if (moduleConfig == null) {
+            // ModuleConfig not found in current request. Select it.
+            RequestUtils.selectModule(request, servletContext);
+            moduleConfig = RequestUtils.getModuleConfig(request, servletContext);
+        }
+
+        return moduleConfig;
+    }
 
 }

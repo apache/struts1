@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.15 2002/11/09 07:11:21 rleland Exp $
- * $Revision: 1.15 $
- * $Date: 2002/11/09 07:11:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.16 2002/11/12 03:56:09 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2002/11/12 03:56:09 $
  *
  * ====================================================================
  *
@@ -61,16 +61,18 @@
 package org.apache.struts.taglib.template;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.action.Action;
+
+import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.template.util.Content;
 import org.apache.struts.taglib.template.util.ContentMap;
 import org.apache.struts.taglib.template.util.ContentMapStack;
-import org.apache.struts.taglib.template.util.Content;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * This is the tag handler for &lt;template:insert&gt;, which includes 
@@ -78,125 +80,117 @@ import org.apache.struts.taglib.template.util.Content;
  * tags, which are accessed by &lt;template:get&gt; in the template.
  *
  * @author David Geary
- * @version $Revision: 1.15 $ $Date: 2002/11/09 07:11:21 $
+ * @version $Revision: 1.16 $ $Date: 2002/11/12 03:56:09 $
  * @deprecated Use Tiles instead.
  */
 public class InsertTag extends TagSupport {
 
+    // ----------------------------------------------------- Instance Variables
 
-// ----------------------------------------------------- Instance Variables
+    /**
+      * Each insert tag has a map of content. 
+      */
+    private ContentMap map;
 
+    /**
+      * The application-relative URI of the template. 
+      */
+    private String template;
 
-   /**
-     * Each insert tag has a map of content. 
-     */
-   private ContentMap map;
+    // --------------------------------------------------------- Public Methods
 
+    /**
+      * Set the template attribute. 
+      * @deprecated Use Tiles instead.
+      */
+    public void setTemplate(String template) {
 
-   /**
-     * The application-relative URI of the template. 
-     */
-   private String template;
+        this.template = template;
 
+    }
 
-// --------------------------------------------------------- Public Methods
+    /**
+      * Get the template attribute. 
+      * @deprecated Use Tiles instead.
+      */
+    public String getTemplate() {
 
+        return template;
 
-   /**
-     * Set the template attribute. 
-     * @deprecated Use Tiles instead.
-     */
-   public void setTemplate(String template) {
+    }
 
-      this.template = template;
+    /**
+      * Get the map attribute. 
+      * @deprecated Use Tiles instead.
+      */
+    public ContentMap getContentMap() {
 
-   }
+        return map;
 
-   /**
-     * Get the template attribute. 
-     * @deprecated Use Tiles instead.
-     */
-   public String getTemplate() {
+    }
 
-      return template;
+    /**
+      * Process the start tag by pushing this tag's map onto the
+      * content map stack. 
+      * See org.apache.struts.taglib.template.util.ContentMapStack.
+      * @deprecated Use Tiles instead.
+      */
+    public int doStartTag() throws JspException {
 
-   }
+        map = new ContentMap();
+        ContentMapStack.push(pageContext, map);
+        return EVAL_BODY_INCLUDE;
 
-   /**
-     * Get the map attribute. 
-     * @deprecated Use Tiles instead.
-     */
-   public ContentMap getContentMap() {
+    }
 
-      return map;
+    /**
+      * Process the end tag by including the template. 
+      * @deprecated Use Tiles instead.
+      */
+    public int doEndTag() throws JspException {
 
-   }
+        String prefix = "";
+        ModuleConfig config = RequestUtils.getModuleConfig(pageContext);
+        if (config != null) {
+            prefix = config.getPrefix();
+        }
+        try {
+            pageContext.include(prefix + template);
+        } catch (IOException ex) {
+            saveException(ex);
+            throw new JspException(ex.getMessage());
+        } catch (ServletException ex) {
+            saveException(ex);
+            throw new JspException(ex.getMessage());
+        }
+        ContentMapStack.pop(pageContext);
+        return EVAL_PAGE;
 
-   /**
-     * Process the start tag by pushing this tag's map onto the
-     * content map stack. 
-     * See org.apache.struts.taglib.template.util.ContentMapStack.
-     * @deprecated Use Tiles instead.
-     */
-   public int doStartTag() throws JspException {
+    }
 
-      map = new ContentMap();
-      ContentMapStack.push(pageContext, map);
-      return EVAL_BODY_INCLUDE;
+    /**
+      * This method is a convenience for &lt;template:put&gt; tags for
+      * putting content into the map.
+      * @deprecated Use Tiles instead.
+      */
+    public void put(String name, Content content) {
 
-   }
+        map.put(name, content);
 
-   /**
-     * Process the end tag by including the template. 
-     * @deprecated Use Tiles instead.
-     */
-   public int doEndTag() throws JspException {
+    }
 
-      String prefix = "";
-      ModuleConfig config = RequestUtils.getModuleConfig(pageContext);
-      if (config != null) {
-          prefix = config.getPrefix();
-      }
-      try {
-         pageContext.include(prefix + template);
-      } catch (IOException ex) {
-        saveException(ex);
-        throw new JspException(ex.getMessage());
-      } catch(ServletException ex) {
-         saveException(ex);
-         throw new JspException(ex.getMessage());
-      }
-      ContentMapStack.pop(pageContext);
-      return EVAL_PAGE;
+    /**
+      * Reset member values for reuse. This method calls super.release(),
+      * which invokes TagSupport.release(), which typically does nothing.
+      * @deprecated Use Tiles instead.
+      */
+    public void release() {
 
-   }
+        super.release();
+        template = null;
+        map = null;
 
-
-   /**
-     * This method is a convenience for &lt;template:put&gt; tags for
-     * putting content into the map.
-     * @deprecated Use Tiles instead.
-     */
-   public void put(String name, Content content) {
-
-      map.put(name, content);   
-
-   }
-
-
-   /**
-     * Reset member values for reuse. This method calls super.release(),
-     * which invokes TagSupport.release(), which typically does nothing.
-     * @deprecated Use Tiles instead.
-     */
-   public void release() {
-
-      super.release();
-      template = null;
-      map = null;
-
-   }
-
+    }
 
     /**
      * Save the specified exception in request scope if there is not already
@@ -207,13 +201,11 @@ public class InsertTag extends TagSupport {
      */
     private void saveException(Throwable exception) {
 
-        if (pageContext.getAttribute(Action.EXCEPTION_KEY,
-                                     PageContext.REQUEST_SCOPE) != null)
+        if (pageContext.getAttribute(Globals.EXCEPTION_KEY, PageContext.REQUEST_SCOPE) != null) {
             return;
-        pageContext.setAttribute(Action.EXCEPTION_KEY, exception,
-                                 PageContext.REQUEST_SCOPE);
-
+        }
+        
+        pageContext.setAttribute(Globals.EXCEPTION_KEY, exception, PageContext.REQUEST_SCOPE);
     }
-
 
 }

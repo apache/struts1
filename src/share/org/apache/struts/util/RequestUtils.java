@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.70 2002/11/09 16:30:02 rleland Exp $
- * $Revision: 1.70 $
- * $Date: 2002/11/09 16:30:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.71 2002/11/12 03:56:09 dgraham Exp $
+ * $Revision: 1.71 $
+ * $Date: 2002/11/12 03:56:09 $
  *
  * ====================================================================
  *
@@ -59,9 +59,7 @@
  *
  */
 
-
 package org.apache.struts.util;
-
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
@@ -74,6 +72,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -81,11 +80,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
@@ -103,8 +104,6 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestHandler;
-import org.apache.struts.Globals;
-
 
 /**
  * General purpose utility methods related to processing a servlet request
@@ -112,45 +111,35 @@ import org.apache.struts.Globals;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.70 $ $Date: 2002/11/09 16:30:02 $
+ * @version $Revision: 1.71 $ $Date: 2002/11/12 03:56:09 $
  */
 
 public class RequestUtils {
 
-
     // ------------------------------------------------------- Static Variables
-
 
     /**
      * Commons Logging instance.
      */
     protected static Log LOG = LogFactory.getLog(RequestUtils.class);
 
-
     /**
      * The default Locale for our server.
      */
     private static final Locale defaultLocale = Locale.getDefault();
 
-
     /**
      * The message resources for this package.
      */
     private static MessageResources messages =
-    MessageResources.getMessageResources
-    ("org.apache.struts.util.LocalStrings");
-
-
+        MessageResources.getMessageResources("org.apache.struts.util.LocalStrings");
 
     /**
      * The context attribute under which we store our prefixes list.
      */
-    private static final String PREFIXES_KEY =
-        "org.apache.struts.util.PREFIXES";
-
+    private static final String PREFIXES_KEY = "org.apache.struts.util.PREFIXES";
 
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Create and return an absolute URL for the specified context-relative
@@ -169,7 +158,6 @@ public class RequestUtils {
 
     }
 
-
     /**
      * Return the <code>Class</code> object for the specified fully qualified
      * class name, from this web application's class loader.
@@ -178,12 +166,10 @@ public class RequestUtils {
      * @return Class object
      * @exception ClassNotFoundException if the class cannot be found
      */
-    public static Class applicationClass(String className)
-        throws ClassNotFoundException {
+    public static Class applicationClass(String className) throws ClassNotFoundException {
 
         // Look up the class loader to be used
-        ClassLoader classLoader =
-            Thread.currentThread().getContextClassLoader();
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         if (classLoader == null) {
             classLoader = RequestUtils.class.getClassLoader();
         }
@@ -192,7 +178,6 @@ public class RequestUtils {
         return (classLoader.loadClass(className));
 
     }
-
 
     /**
      * Return a new instance of the specified fully qualified class name,
@@ -212,13 +197,11 @@ public class RequestUtils {
      *  zero-arguments constructor
      */
     public static Object applicationInstance(String className)
-        throws ClassNotFoundException, IllegalAccessException,
-               InstantiationException {
+        throws ClassNotFoundException, IllegalAccessException, InstantiationException {
 
         return (applicationClass(className).newInstance());
 
     }
-
 
     /**
      * Compute a set of query parameters that will be dynamically added to
@@ -230,7 +213,7 @@ public class RequestUtils {
      * identified, return <code>null</code>.
      *
      * @param pageContext PageContext we are operating in
-
+    
      * @param paramId Single-value request parameter name (if any)
      * @param paramName Bean containing single-value parameter value
      * @param paramProperty Property (of bean named by <code>paramName</code>
@@ -250,12 +233,16 @@ public class RequestUtils {
      * @exception JspException if a class cast exception occurs on a
      *  looked-up bean or property
      */
-    public static Map computeParameters(PageContext pageContext,
-                                        String paramId, String paramName,
-                                        String paramProperty,
-                                        String paramScope, String name,
-                                        String property, String scope,
-                                        boolean transaction)
+    public static Map computeParameters(
+        PageContext pageContext,
+        String paramId,
+        String paramName,
+        String paramProperty,
+        String paramScope,
+        String name,
+        String property,
+        String scope,
+        boolean transaction)
         throws JspException {
 
         // Short circuit if no parameters are specified
@@ -266,13 +253,10 @@ public class RequestUtils {
         Map map = null;
         try {
             if (name != null)
-                map = (Map) lookup(pageContext, name,
-                                   property, scope);
+                map = (Map) lookup(pageContext, name, property, scope);
         } catch (ClassCastException e) {
             saveException(pageContext, e);
-            throw new JspException
-                (messages.getMessage("parameters.multi", name,
-                                     property, scope));
+            throw new JspException(messages.getMessage("parameters.multi", name, property, scope));
         } catch (JspException e) {
             saveException(pageContext, e);
             throw e;
@@ -290,8 +274,7 @@ public class RequestUtils {
 
             Object paramValue = null;
             try {
-                paramValue = lookup(pageContext, paramName,
-                                    paramProperty, paramScope);
+                paramValue = lookup(pageContext, paramName, paramProperty, paramScope);
             } catch (JspException e) {
                 saveException(pageContext, e);
                 throw e;
@@ -316,8 +299,7 @@ public class RequestUtils {
                 } else /* if (mapValue instanceof String[]) */ {
                     String oldValues[] = (String[]) mapValue;
                     String newValues[] = new String[oldValues.length + 1];
-                    System.arraycopy(oldValues, 0, newValues, 0,
-                                     oldValues.length);
+                    System.arraycopy(oldValues, 0, newValues, 0, oldValues.length);
                     newValues[oldValues.length] = paramString;
                     results.put(paramId, newValues);
                 }
@@ -331,8 +313,7 @@ public class RequestUtils {
             HttpSession session = pageContext.getSession();
             String token = null;
             if (session != null)
-                token = (String)
-                    session.getAttribute(Action.TRANSACTION_TOKEN_KEY);
+                token = (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
             if (token != null)
                 results.put(Constants.TOKEN_KEY, token);
         }
@@ -341,7 +322,6 @@ public class RequestUtils {
         return (results);
 
     }
-
 
     /**
      * Compute a hyperlink URL based on the <code>forward</code>,
@@ -365,10 +345,14 @@ public class RequestUtils {
      * @exception MalformedURLException if a URL cannot be created
      *  for the specified parameters
      */
-    public static String computeURL(PageContext pageContext, String forward,
-                                    String href, String page,
-                                    Map params, String anchor,
-                                    boolean redirect)
+    public static String computeURL(
+        PageContext pageContext,
+        String forward,
+        String href,
+        String page,
+        Map params,
+        String anchor,
+        boolean redirect)
         throws MalformedURLException {
 
         // Validate that exactly one specifier was included
@@ -383,30 +367,25 @@ public class RequestUtils {
             n++;
         }
         if (n != 1) {
-            throw new MalformedURLException
-                (messages.getMessage("computeURL.specifier"));
+            throw new MalformedURLException(messages.getMessage("computeURL.specifier"));
         }
 
         // Look up the module configuration for this request
-        ModuleConfig config = (ModuleConfig)
-            pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
+        ModuleConfig config =
+            (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
         if (config == null) { // Backwards compatibility hack
-            config = (ModuleConfig)
-                pageContext.getServletContext().getAttribute
-                (Globals.MODULE_KEY);
-            pageContext.getRequest().setAttribute(Globals.MODULE_KEY,
-                                                  config);
+            config =
+                (ModuleConfig) pageContext.getServletContext().getAttribute(Globals.MODULE_KEY);
+            pageContext.getRequest().setAttribute(Globals.MODULE_KEY, config);
         }
 
         // Calculate the appropriate URL
         StringBuffer url = new StringBuffer();
-        HttpServletRequest request =
-            (HttpServletRequest) pageContext.getRequest();
+        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         if (forward != null) {
             ForwardConfig fc = config.findForwardConfig(forward);
             if (fc == null) {
-                throw new MalformedURLException
-                    (messages.getMessage("computeURL.forward", forward));
+                throw new MalformedURLException(messages.getMessage("computeURL.forward", forward));
             }
             if (fc.getRedirect()) {
                 redirect = true;
@@ -516,8 +495,7 @@ public class RequestUtils {
 
         // Perform URL rewriting to include our session ID (if any)
         if (pageContext.getSession() != null) {
-            HttpServletResponse response =
-                (HttpServletResponse) pageContext.getResponse();
+            HttpServletResponse response = (HttpServletResponse) pageContext.getResponse();
             if (redirect) {
                 return (response.encodeRedirectURL(url.toString()));
             } else {
@@ -528,7 +506,6 @@ public class RequestUtils {
         }
 
     }
-
 
     /**
      * Create (if necessary) and return an ActionForm instance appropriate
@@ -541,10 +518,11 @@ public class RequestUtils {
      * @param servlet The action servlet
      * @return ActionForm instance associated with this request
      */
-    public static ActionForm createActionForm(HttpServletRequest request,
-                                              ActionMapping mapping,
-                                              ModuleConfig moduleConfig,
-                                              ActionServlet servlet) {
+    public static ActionForm createActionForm(
+        HttpServletRequest request,
+        ActionMapping mapping,
+        ModuleConfig moduleConfig,
+        ActionServlet servlet) {
 
         // Is there a form bean associated with this mapping?
         String attribute = mapping.getAttribute();
@@ -561,9 +539,12 @@ public class RequestUtils {
 
         // Look up any existing form bean instance
         if (LOG.isDebugEnabled()) {
-            LOG.debug(" Looking for ActionForm bean instance in scope '" +
-                      mapping.getScope() + "' under attribute key '" +
-                      attribute + "'");
+            LOG.debug(
+                " Looking for ActionForm bean instance in scope '"
+                    + mapping.getScope()
+                    + "' under attribute key '"
+                    + attribute
+                    + "'");
         }
         ActionForm instance = null;
         HttpSession session = null;
@@ -577,13 +558,14 @@ public class RequestUtils {
         // Can we recycle the existing form bean instance (if there is one)?
         if (instance != null) {
             if (config.getDynamic()) {
-                String className =
-                    ((DynaBean) instance).getDynaClass().getName();
+                String className = ((DynaBean) instance).getDynaClass().getName();
                 if (className.equals(config.getName())) {
                     if (LOG.isDebugEnabled()) {
-                        LOG.debug
-                            (" Recycling existing DynaActionForm instance " +
-                            "of type '" + className + "'");
+                        LOG.debug(
+                            " Recycling existing DynaActionForm instance "
+                                + "of type '"
+                                + className
+                                + "'");
                         LOG.trace(" --> " + instance);
                     }
                     return (instance);
@@ -593,18 +575,18 @@ public class RequestUtils {
                     Class configClass = applicationClass(config.getType());
                     if (configClass.isAssignableFrom(instance.getClass())) {
                         if (LOG.isDebugEnabled()) {
-                            LOG.debug
-                                (" Recycling existing ActionForm instance " +
-                                 "of class '" + instance.getClass().getName()
-                                 + "'");
+                            LOG.debug(
+                                " Recycling existing ActionForm instance "
+                                    + "of class '"
+                                    + instance.getClass().getName()
+                                    + "'");
                             LOG.trace(" --> " + instance);
                         }
                         return (instance);
                     }
                     return (instance);
                 } catch (Throwable t) {
-                    LOG.error(servlet.getInternal().getMessage
-                              ("formBean", config.getType()), t);
+                    LOG.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
                     return (null);
                 }
             }
@@ -617,28 +599,30 @@ public class RequestUtils {
                     DynaActionFormClass.createDynaActionFormClass(config);
                 instance = (ActionForm) dynaClass.newInstance();
                 if (LOG.isDebugEnabled()) {
-                    LOG.debug
-                        (" Creating new DynaActionForm instance " +
-                            "of type '" + config.getType() + "'");
+                    LOG.debug(
+                        " Creating new DynaActionForm instance "
+                            + "of type '"
+                            + config.getType()
+                            + "'");
                     LOG.trace(" --> " + instance);
                 }
             } catch (Throwable t) {
-                LOG.error(servlet.getInternal().getMessage
-                            ("formBean", config.getType()), t);
+                LOG.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
                 return (null);
             }
         } else {
             try {
                 instance = (ActionForm) applicationInstance(config.getType());
                 if (LOG.isDebugEnabled()) {
-                    LOG.debug
-                        (" Creating new ActionForm instance " +
-                            "of type '" + config.getType() + "'");
+                    LOG.debug(
+                        " Creating new ActionForm instance "
+                            + "of type '"
+                            + config.getType()
+                            + "'");
                     LOG.trace(" --> " + instance);
                 }
             } catch (Throwable t) {
-                LOG.error(servlet.getInternal().getMessage
-                          ("formBean", config.getType()), t);
+                LOG.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
                 return (null);
             }
         }
@@ -646,7 +630,6 @@ public class RequestUtils {
         return (instance);
 
     }
-
 
     /**
      * Locate and return the specified bean, from an optionally specified
@@ -662,8 +645,8 @@ public class RequestUtils {
      * @exception JspException if an invalid scope name
      *  is requested
      */
-    public static Object lookup(PageContext pageContext, String name,
-                                String scope) throws JspException {
+    public static Object lookup(PageContext pageContext, String name, String scope)
+        throws JspException {
 
         Object bean = null;
         if (scope == null)
@@ -675,11 +658,9 @@ public class RequestUtils {
         else if (scope.equalsIgnoreCase("session"))
             bean = pageContext.getAttribute(name, PageContext.SESSION_SCOPE);
         else if (scope.equalsIgnoreCase("application"))
-            bean =
-                pageContext.getAttribute(name, PageContext.APPLICATION_SCOPE);
+            bean = pageContext.getAttribute(name, PageContext.APPLICATION_SCOPE);
         else {
-            JspException e = new JspException
-                (messages.getMessage("lookup.scope", scope));
+            JspException e = new JspException(messages.getMessage("lookup.scope", scope));
             saveException(pageContext, e);
             throw e;
         }
@@ -687,7 +668,6 @@ public class RequestUtils {
         return (bean);
 
     }
-
 
     /**
      * Locate and return the specified property of the specified bean, from
@@ -710,8 +690,11 @@ public class RequestUtils {
      *  IllegalAccessException, IllegalArgumentException,
      *  InvocationTargetException, or NoSuchMethodException
      */
-    public static Object lookup(PageContext pageContext, String name,
-                                String property, String scope)
+    public static Object lookup(
+        PageContext pageContext,
+        String name,
+        String property,
+        String scope)
         throws JspException {
 
         // Look up the requested bean, and return if requested
@@ -719,11 +702,9 @@ public class RequestUtils {
         if (bean == null) {
             JspException e = null;
             if (scope == null) {
-                e = new JspException
-                    (messages.getMessage("lookup.bean.any", name));
+                e = new JspException(messages.getMessage("lookup.bean.any", name));
             } else {
-                e = new JspException
-                    (messages.getMessage("lookup.bean", name, scope));
+                e = new JspException(messages.getMessage("lookup.bean", name, scope));
             }
             saveException(pageContext, e);
             throw e;
@@ -736,23 +717,19 @@ public class RequestUtils {
             return (PropertyUtils.getProperty(bean, property));
         } catch (IllegalAccessException e) {
             saveException(pageContext, e);
-            throw new JspException
-                (messages.getMessage("lookup.access", property, name));
+            throw new JspException(messages.getMessage("lookup.access", property, name));
         } catch (InvocationTargetException e) {
             Throwable t = e.getTargetException();
             if (t == null)
                 t = e;
             saveException(pageContext, t);
-            throw new JspException
-                (messages.getMessage("lookup.target", property, name));
+            throw new JspException(messages.getMessage("lookup.target", property, name));
         } catch (NoSuchMethodException e) {
             saveException(pageContext, e);
-            throw new JspException
-                (messages.getMessage("lookup.method", property, name));
+            throw new JspException(messages.getMessage("lookup.method", property, name));
         }
 
     }
-
 
     /**
      * Look up and return current user locale, based on the specified parameters.
@@ -761,11 +738,10 @@ public class RequestUtils {
      * @param locale Name of the session attribute for our user's Locale
      * @return current user locale
      */
-    public static Locale retrieveUserLocale( PageContext pageContext, String locale ) {
+    public static Locale retrieveUserLocale(PageContext pageContext, String locale) {
         if (locale == null)
-            locale = Action.LOCALE_KEY;
-        Locale userLocale = (Locale)
-            pageContext.getAttribute(locale, PageContext.SESSION_SCOPE);
+            locale = Globals.LOCALE_KEY;
+        Locale userLocale = (Locale) pageContext.getAttribute(locale, PageContext.SESSION_SCOPE);
         if (userLocale == null)
             userLocale = defaultLocale;
         return userLocale;
@@ -784,14 +760,12 @@ public class RequestUtils {
      * @exception JspException if a lookup error occurs (will have been
      *  saved in the request already)
      */
-    public static String message(PageContext pageContext, String bundle,
-                                 String locale, String key)
+    public static String message(PageContext pageContext, String bundle, String locale, String key)
         throws JspException {
 
         return (message(pageContext, bundle, locale, key, null));
 
     }
-
 
     /**
      * Look up and return a message string, based on the specified parameters.
@@ -806,36 +780,37 @@ public class RequestUtils {
      * @exception JspException if a lookup error occurs (will have been
      *  saved in the request already)
      */
-    public static String message(PageContext pageContext, String bundle,
-                                 String locale, String key, Object args[])
+    public static String message(
+        PageContext pageContext,
+        String bundle,
+        String locale,
+        String key,
+        Object args[])
         throws JspException {
 
         MessageResources resources = null;
 
         // Look up the requested MessageResources
         if (bundle == null) {
-            bundle = Action.MESSAGES_KEY;
-            resources = (MessageResources)
-                pageContext.getAttribute(bundle, PageContext.REQUEST_SCOPE);
-
+            bundle = Globals.MESSAGES_KEY;
+            resources =
+                (MessageResources) pageContext.getAttribute(bundle, PageContext.REQUEST_SCOPE);
 
         }
         if (resources == null) {
-            resources = (MessageResources)
-                pageContext.getAttribute(bundle,
-                                         PageContext.APPLICATION_SCOPE);
+            resources =
+                (MessageResources) pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
         }
         if (resources == null) {
-            JspException e = new JspException
-                (messages.getMessage("message.bundle", bundle));
+            JspException e = new JspException(messages.getMessage("message.bundle", bundle));
             saveException(pageContext, e);
             throw e;
         }
 
         // Look up the requested Locale
         if (locale == null)
-            locale = Action.LOCALE_KEY;
-        Locale userLocale = retrieveUserLocale( pageContext, locale );
+            locale = Globals.LOCALE_KEY;
+        Locale userLocale = retrieveUserLocale(pageContext, locale);
 
         // Return the requested message
         if (args == null) {
@@ -845,7 +820,6 @@ public class RequestUtils {
         }
 
     }
-
 
     /**
      * Populate the properties of the specified JavaBean from the specified
@@ -861,14 +835,11 @@ public class RequestUtils {
      * @exception ServletException if an exception is thrown while setting
      *            property values
      */
-    public static void populate(Object bean,
-                                HttpServletRequest request)
-        throws ServletException {
+    public static void populate(Object bean, HttpServletRequest request) throws ServletException {
 
         populate(bean, null, null, request);
 
     }
-
 
     /**
      * Populate the properties of the specified JavaBean from the specified
@@ -895,8 +866,11 @@ public class RequestUtils {
      * @exception ServletException if an exception is thrown while setting
      *            property values
      */
-    public static void populate(Object bean, String prefix, String suffix,
-                                HttpServletRequest request)
+    public static void populate(
+        Object bean,
+        String prefix,
+        String suffix,
+        HttpServletRequest request)
         throws ServletException {
 
         // Build a list of relevant request parameters from this request
@@ -910,19 +884,22 @@ public class RequestUtils {
         String method = request.getMethod();
         boolean isMultipart = false;
 
-        if ((contentType != null) &&
-            (contentType.startsWith("multipart/form-data")) &&
-            (method.equalsIgnoreCase("POST"))) {
+        if ((contentType != null)
+            && (contentType.startsWith("multipart/form-data"))
+            && (method.equalsIgnoreCase("POST"))) {
 
             // Get the ActionServletWrapper from the form bean
             ActionServletWrapper servlet;
             if (bean instanceof ActionForm) {
                 servlet = ((ActionForm) bean).getServletWrapper();
             } else {
-                throw new ServletException("bean that's supposed to be " +
-                   "populated from a multipart request is not of type " +
-                   "\"org.apache.struts.action.ActionForm\", but type " +
-                   "\"" + bean.getClass().getName() + "\"");
+                throw new ServletException(
+                    "bean that's supposed to be "
+                        + "populated from a multipart request is not of type "
+                        + "\"org.apache.struts.action.ActionForm\", but type "
+                        + "\""
+                        + bean.getClass().getName()
+                        + "\"");
             }
 
             // Obtain a MultipartRequestHandler
@@ -932,28 +909,28 @@ public class RequestUtils {
             // If the bean isn't an ActionForm, an exception would have been
             // thrown earlier, so it's safe to assume that our bean is
             // in fact an ActionForm.
-            ((ActionForm) bean).setMultipartRequestHandler(multipartHandler);
+             ((ActionForm) bean).setMultipartRequestHandler(multipartHandler);
 
-            if (multipartHandler != null)
-            {
+            if (multipartHandler != null) {
                 isMultipart = true;
                 // Set servlet and mapping info
                 servlet.setServletFor(multipartHandler);
-                multipartHandler.setMapping((ActionMapping) request.getAttribute(Action.MAPPING_KEY));
+                multipartHandler.setMapping(
+                    (ActionMapping) request.getAttribute(Globals.MAPPING_KEY));
                 // Initialize multipart request class handler
                 multipartHandler.handleRequest(request);
                 //stop here if the maximum length has been exceeded
-                Boolean maxLengthExceeded = (Boolean)
-                                            request.getAttribute(MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED);
-                if ((maxLengthExceeded != null) && (maxLengthExceeded.booleanValue()))
-                {
+                Boolean maxLengthExceeded =
+                    (Boolean) request.getAttribute(
+                        MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED);
+                if ((maxLengthExceeded != null) && (maxLengthExceeded.booleanValue())) {
                     return;
                 }
                 //retrive form values and put into properties
                 multipartElements = multipartHandler.getAllElements();
                 names = multipartElements.keys();
             }
-            request.removeAttribute(Action.MAPPING_KEY);
+            request.removeAttribute(Globals.MAPPING_KEY);
         }
 
         if (!isMultipart) {
@@ -971,13 +948,11 @@ public class RequestUtils {
             if (suffix != null) {
                 if (!stripped.endsWith(suffix))
                     continue;
-                stripped =
-                    stripped.substring(0, stripped.length() - suffix.length());
+                stripped = stripped.substring(0, stripped.length() - suffix.length());
             }
             if (isMultipart) {
                 properties.put(stripped, multipartElements.get(name));
-            }
-            else {
+            } else {
                 properties.put(stripped, request.getParameterValues(name));
             }
         }
@@ -990,7 +965,6 @@ public class RequestUtils {
         }
 
     }
-
 
     /**
      * Try to locate a multipart request handler for this request. First, look
@@ -1005,69 +979,73 @@ public class RequestUtils {
      * @exception ServletException if any exception is thrown while attempting
      *                             to locate the multipart handler.
      */
-    private static MultipartRequestHandler getMultipartHandler(
-            HttpServletRequest request)
+    private static MultipartRequestHandler getMultipartHandler(HttpServletRequest request)
         throws ServletException {
 
         MultipartRequestHandler multipartHandler = null;
-        String multipartClass = (String)
-            request.getAttribute(Action.MULTIPART_KEY);
-        request.removeAttribute(Action.MULTIPART_KEY);
+        String multipartClass = (String) request.getAttribute(Globals.MULTIPART_KEY);
+        request.removeAttribute(Globals.MULTIPART_KEY);
 
         // Try to initialize the mapping specific request handler
         if (multipartClass != null) {
             try {
-                multipartHandler = (MultipartRequestHandler)
-                    applicationInstance(multipartClass);
-            }
-            catch (ClassNotFoundException cnfe) {
-                LOG.error("MultipartRequestHandler class \"" +
-                    multipartClass + "\" in mapping class not found, " +
-                    "defaulting to global multipart class");
-            }
-            catch (InstantiationException ie) {
-                LOG.error("InstantiaionException when instantiating " +
-                    "MultipartRequestHandler \"" + multipartClass + "\", " +
-                    "defaulting to global multipart class, exception: " +
-                    ie.getMessage());
-            }
-            catch (IllegalAccessException iae) {
-                LOG.error("IllegalAccessException when instantiating " +
-                    "MultipartRequestHandler \"" + multipartClass + "\", " +
-                    "defaulting to global multipart class, exception: " +
-                    iae.getMessage());
+                multipartHandler = (MultipartRequestHandler) applicationInstance(multipartClass);
+            } catch (ClassNotFoundException cnfe) {
+                LOG.error(
+                    "MultipartRequestHandler class \""
+                        + multipartClass
+                        + "\" in mapping class not found, "
+                        + "defaulting to global multipart class");
+            } catch (InstantiationException ie) {
+                LOG.error(
+                    "InstantiaionException when instantiating "
+                        + "MultipartRequestHandler \""
+                        + multipartClass
+                        + "\", "
+                        + "defaulting to global multipart class, exception: "
+                        + ie.getMessage());
+            } catch (IllegalAccessException iae) {
+                LOG.error(
+                    "IllegalAccessException when instantiating "
+                        + "MultipartRequestHandler \""
+                        + multipartClass
+                        + "\", "
+                        + "defaulting to global multipart class, exception: "
+                        + iae.getMessage());
             }
 
             if (multipartHandler != null)
                 return multipartHandler;
         }
 
-        ModuleConfig moduleConfig = (ModuleConfig)
-            request.getAttribute(Globals.MODULE_KEY);
+        ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
         multipartClass = moduleConfig.getControllerConfig().getMultipartClass();
 
         // Try to initialize the global request handler
         if (multipartClass != null) {
             try {
-                multipartHandler = (MultipartRequestHandler)
-                    applicationInstance(multipartClass);
-            }
-            catch (ClassNotFoundException cnfe) {
-                throw new ServletException("Cannot find multipart class \"" +
-                    multipartClass + "\"" +
-                    ", exception: " + cnfe.getMessage());
-            }
-            catch (InstantiationException ie) {
+                multipartHandler = (MultipartRequestHandler) applicationInstance(multipartClass);
+            } catch (ClassNotFoundException cnfe) {
                 throw new ServletException(
-                    "InstantiaionException when instantiating " +
-                    "multipart class \"" + multipartClass +
-                    "\", exception: " + ie.getMessage());
-            }
-            catch (IllegalAccessException iae) {
+                    "Cannot find multipart class \""
+                        + multipartClass
+                        + "\""
+                        + ", exception: "
+                        + cnfe.getMessage());
+            } catch (InstantiationException ie) {
                 throw new ServletException(
-                    "IllegalAccessException when instantiating " +
-                    "multipart class \"" + multipartClass +
-                    "\", exception: " + iae.getMessage());
+                    "InstantiaionException when instantiating "
+                        + "multipart class \""
+                        + multipartClass
+                        + "\", exception: "
+                        + ie.getMessage());
+            } catch (IllegalAccessException iae) {
+                throw new ServletException(
+                    "IllegalAccessException when instantiating "
+                        + "multipart class \""
+                        + multipartClass
+                        + "\", exception: "
+                        + iae.getMessage());
             }
 
             if (multipartHandler != null)
@@ -1076,7 +1054,6 @@ public class RequestUtils {
 
         return multipartHandler;
     }
-
 
     /**
      * Return true if a message string for the specified message key
@@ -1091,35 +1068,34 @@ public class RequestUtils {
      * @exception JspException if a lookup error occurs (will have been
      *  saved in the request already)
      */
-    public static boolean present(PageContext pageContext, String bundle,
-                                  String locale, String key)
+    public static boolean present(
+        PageContext pageContext,
+        String bundle,
+        String locale,
+        String key)
         throws JspException {
 
         MessageResources resources = null;
 
         // Look up the requested MessageResources
         if (bundle == null) {
-            bundle = Action.MESSAGES_KEY;
-            resources = (MessageResources)
-                pageContext.getAttribute(bundle);
+            bundle = Globals.MESSAGES_KEY;
+            resources = (MessageResources) pageContext.getAttribute(bundle);
         }
         if (resources == null) {
-            resources = (MessageResources)
-                pageContext.getAttribute(bundle,
-                                         PageContext.APPLICATION_SCOPE);
+            resources =
+                (MessageResources) pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
         }
         if (resources == null) {
-            JspException e = new JspException
-                (messages.getMessage("message.bundle", bundle));
+            JspException e = new JspException(messages.getMessage("message.bundle", bundle));
             saveException(pageContext, e);
             throw e;
         }
 
         // Look up the requested Locale
         if (locale == null)
-            locale = Action.LOCALE_KEY;
-        Locale userLocale = (Locale)
-            pageContext.getAttribute(locale, PageContext.SESSION_SCOPE);
+            locale = Globals.LOCALE_KEY;
+        Locale userLocale = (Locale) pageContext.getAttribute(locale, PageContext.SESSION_SCOPE);
         if (userLocale == null)
             userLocale = defaultLocale;
 
@@ -1127,7 +1103,6 @@ public class RequestUtils {
         return (resources.isPresent(userLocale, key));
 
     }
-
 
     /**
      * Compute the printable representation of a URL, leaving off the
@@ -1156,7 +1131,6 @@ public class RequestUtils {
 
     }
 
-
     /**
      * Return the context-relative URL that corresponds to the specified
      * {@link ActionConfig}, relative to the module associated
@@ -1169,17 +1143,17 @@ public class RequestUtils {
      *
      * @since Struts 1.1b2
      */
-    public static String actionURL(HttpServletRequest request,
-                                   ActionConfig action,
-                                   String pattern) {
+    public static String actionURL(
+        HttpServletRequest request,
+        ActionConfig action,
+        String pattern) {
 
         StringBuffer sb = new StringBuffer();
         if (pattern.endsWith("/*")) {
             sb.append(pattern.substring(0, pattern.length() - 2));
             sb.append(action.getPath());
         } else if (pattern.startsWith("*.")) {
-            ModuleConfig appConfig = (ModuleConfig)
-                request.getAttribute(Globals.MODULE_KEY);
+            ModuleConfig appConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
             sb.append(appConfig.getPrefix());
             sb.append(action.getPath());
             sb.append(pattern.substring(1));
@@ -1202,15 +1176,14 @@ public class RequestUtils {
      * @return context-relative URL
      * @since Struts 1.1b2
      */
-    public static String forwardURL(HttpServletRequest request,
-                                    ForwardConfig forward) {
+    public static String forwardURL(HttpServletRequest request, ForwardConfig forward) {
 
         String path = forward.getPath();
 
         // Handle a ForwardConfig marked as context relative
         StringBuffer sb = new StringBuffer();
         if (forward.getContextRelative()) {
-            if ( !path.startsWith("/") ) {
+            if (!path.startsWith("/")) {
                 sb.append("/");
             }
             sb.append(path);
@@ -1218,10 +1191,8 @@ public class RequestUtils {
         }
 
         // Calculate a context relative path for this ForwardConfig
-        ModuleConfig appConfig = (ModuleConfig)
-            request.getAttribute(Globals.MODULE_KEY);
-        String forwardPattern =
-            appConfig.getControllerConfig().getForwardPattern();
+        ModuleConfig appConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+        String forwardPattern = appConfig.getControllerConfig().getForwardPattern();
         if (forwardPattern == null) {
             // Performance optimization for previous default behavior
             sb.append(appConfig.getPrefix());
@@ -1236,21 +1207,21 @@ public class RequestUtils {
                 char ch = forwardPattern.charAt(i);
                 if (dollar) {
                     switch (ch) {
-                    case 'M':
-                        sb.append(appConfig.getPrefix());
-                        break;
-                    case 'P':
-                        // add '/' if needed
-                        if (!path.startsWith("/")) {
-                            sb.append("/");
-                        }
-                        sb.append(path);
-                        break;
-                    case '$':
-                        sb.append('$');
-                        break;
-                    default:
-                        ; // Silently swallow
+                        case 'M' :
+                            sb.append(appConfig.getPrefix());
+                            break;
+                        case 'P' :
+                            // add '/' if needed
+                            if (!path.startsWith("/")) {
+                                sb.append("/");
+                            }
+                            sb.append(path);
+                            break;
+                        case '$' :
+                            sb.append('$');
+                            break;
+                        default :
+                            ; // Silently swallow
                     }
                     dollar = false;
                     continue;
@@ -1264,7 +1235,6 @@ public class RequestUtils {
         return (sb.toString());
 
     }
-
 
     /**
      * Return the context-relative URL that corresponds to the specified
@@ -1278,14 +1248,11 @@ public class RequestUtils {
      * @return context-relative URL
      * @since Struts 1.1b2
      */
-    public static String pageURL(HttpServletRequest request,
-                                 String page) {
+    public static String pageURL(HttpServletRequest request, String page) {
 
         StringBuffer sb = new StringBuffer();
-        ModuleConfig appConfig = (ModuleConfig)
-            request.getAttribute(Globals.MODULE_KEY);
-        String pagePattern =
-            appConfig.getControllerConfig().getPagePattern();
+        ModuleConfig appConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+        String pagePattern = appConfig.getControllerConfig().getPagePattern();
         if (pagePattern == null) {
             sb.append(appConfig.getPrefix());
             sb.append(page);
@@ -1295,17 +1262,17 @@ public class RequestUtils {
                 char ch = pagePattern.charAt(i);
                 if (dollar) {
                     switch (ch) {
-                    case 'M':
-                        sb.append(appConfig.getPrefix());
-                        break;
-                    case 'P':
-                        sb.append(page);
-                        break;
-                    case '$':
-                        sb.append('$');
-                        break;
-                    default:
-                        ; // Silently swallow
+                        case 'M' :
+                            sb.append(appConfig.getPrefix());
+                            break;
+                        case 'P' :
+                            sb.append(page);
+                            break;
+                        case '$' :
+                            sb.append('$');
+                            break;
+                        default :
+                            ; // Silently swallow
                     }
                     dollar = false;
                     continue;
@@ -1320,7 +1287,6 @@ public class RequestUtils {
 
     }
 
-
     /**
      * Return the URL representing the current request.  This is equivalent
      * to <code>HttpServletRequest.getRequestURL()</code> in Servlet 2.3.
@@ -1329,8 +1295,7 @@ public class RequestUtils {
      * @return URL representing the current request
      * @exception MalformedURLException if a URL cannot be created
      */
-    public static URL requestURL(HttpServletRequest request)
-        throws MalformedURLException {
+    public static URL requestURL(HttpServletRequest request) throws MalformedURLException {
 
         StringBuffer url = new StringBuffer();
         String scheme = request.getScheme();
@@ -1340,8 +1305,7 @@ public class RequestUtils {
         url.append(scheme);
         url.append("://");
         url.append(request.getServerName());
-        if ((scheme.equals("http") && (port != 80)) ||
-            (scheme.equals("https") && (port != 443))) {
+        if ((scheme.equals("http") && (port != 80)) || (scheme.equals("https") && (port != 443))) {
             url.append(':');
             url.append(port);
         }
@@ -1349,7 +1313,6 @@ public class RequestUtils {
         return (new URL(url.toString()));
 
     }
-
 
     /**
      * Return the URL representing the scheme, server, and port number of
@@ -1361,8 +1324,7 @@ public class RequestUtils {
      *     the current request
      * @exception MalformedURLException if a URL cannot be created
      */
-    public static URL serverURL(HttpServletRequest request)
-        throws MalformedURLException {
+    public static URL serverURL(HttpServletRequest request) throws MalformedURLException {
 
         StringBuffer url = new StringBuffer();
         String scheme = request.getScheme();
@@ -1372,8 +1334,7 @@ public class RequestUtils {
         url.append(scheme);
         url.append("://");
         url.append(request.getServerName());
-        if ((scheme.equals("http") && (port != 80)) ||
-            (scheme.equals("https") && (port != 443))) {
+        if ((scheme.equals("http") && (port != 80)) || (scheme.equals("https") && (port != 443))) {
             url.append(':');
             url.append(port);
         }
@@ -1381,21 +1342,17 @@ public class RequestUtils {
 
     }
 
-
     /**
      * Save the specified exception as a request attribute for later use.
      *
      * @param pageContext The PageContext for the current page
      * @param exception The exception to be saved
      */
-    public static void saveException(PageContext pageContext,
-                                     Throwable exception) {
+    public static void saveException(PageContext pageContext, Throwable exception) {
 
-        pageContext.setAttribute(Action.EXCEPTION_KEY, exception,
-                                 PageContext.REQUEST_SCOPE);
+        pageContext.setAttribute(Globals.EXCEPTION_KEY, exception, PageContext.REQUEST_SCOPE);
 
     }
-
 
     /**
      * Select the module to which the specified request belongs, and
@@ -1406,10 +1363,11 @@ public class RequestUtils {
      * @param context The ServletContext for this web application
      * @deprecated use {@link #selectModule(String,HttpServletRequest,ServletContext)}
      */
-    public static void selectApplication(String prefix,
-                                         HttpServletRequest request,
-                                         ServletContext context) {
-        selectModule(prefix,request,context);
+    public static void selectApplication(
+        String prefix,
+        HttpServletRequest request,
+        ServletContext context) {
+        selectModule(prefix, request, context);
     }
 
     /**
@@ -1421,28 +1379,27 @@ public class RequestUtils {
      * @param context The ServletContext for this web application
      * @since struts 1.1b3
      */
-    public static void selectModule(String prefix,
-                                         HttpServletRequest request,
-                                         ServletContext context) {
+    public static void selectModule(
+        String prefix,
+        HttpServletRequest request,
+        ServletContext context) {
 
         // Expose the resources for this module
-        ModuleConfig config = (ModuleConfig)
-            context.getAttribute(Globals.MODULE_KEY + prefix);
+        ModuleConfig config = (ModuleConfig) context.getAttribute(Globals.MODULE_KEY + prefix);
         if (config != null) {
             request.setAttribute(Globals.MODULE_KEY, config);
         } else {
             request.removeAttribute(Globals.MODULE_KEY);
         }
-        MessageResources resources = (MessageResources)
-            context.getAttribute(Action.MESSAGES_KEY + prefix);
+        MessageResources resources =
+            (MessageResources) context.getAttribute(Globals.MESSAGES_KEY + prefix);
         if (resources != null) {
-            request.setAttribute(Action.MESSAGES_KEY, resources);
+            request.setAttribute(Globals.MESSAGES_KEY, resources);
         } else {
-            request.removeAttribute(Action.MESSAGES_KEY);
+            request.removeAttribute(Globals.MESSAGES_KEY);
         }
 
     }
-
 
     /**
      * Select the module to which the specified request belongs, and
@@ -1452,8 +1409,7 @@ public class RequestUtils {
      * @param context The ServletContext for this web application
      * @deprecated use {@link #selectModule(HttpServletRequest,ServletContext)}
      */
-    public static void selectApplication(HttpServletRequest request,
-                                         ServletContext context) {
+    public static void selectApplication(HttpServletRequest request, ServletContext context) {
         selectModule(request, context);
     }
 
@@ -1464,10 +1420,9 @@ public class RequestUtils {
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
      */
-    public static void selectModule(HttpServletRequest request,
-                                         ServletContext context) {
-          // Compute module name
-        String prefix = getModuleName( request, context);
+    public static void selectModule(HttpServletRequest request, ServletContext context) {
+        // Compute module name
+        String prefix = getModuleName(request, context);
         // Expose the resources for this module
         selectModule(prefix, request, context);
 
@@ -1478,29 +1433,24 @@ public class RequestUtils {
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
      */
-    public static String getModuleName(HttpServletRequest request,
-                                         ServletContext context) {
+    public static String getModuleName(HttpServletRequest request, ServletContext context) {
 
-       // Acquire the path used to compute the module
-        String matchPath = (String)
-            request.getAttribute(RequestProcessor.INCLUDE_SERVLET_PATH);
+        // Acquire the path used to compute the module
+        String matchPath = (String) request.getAttribute(RequestProcessor.INCLUDE_SERVLET_PATH);
 
         if (matchPath == null) {
             matchPath = request.getServletPath();
         }
 
-        if (LOG.isDebugEnabled())
-            {
-                LOG.debug("Get module name for path " + matchPath);
-            }
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Get module name for path " + matchPath);
+        }
 
-        String prefix = "";  // Initialize prefix before we try lookup
-        String prefixes[] =
-            getApplicationPrefixes(context); // Get all other possible prefixes
-        int lastSlash = 0;  // Initialize before loop
+        String prefix = ""; // Initialize prefix before we try lookup
+        String prefixes[] = getApplicationPrefixes(context); // Get all other possible prefixes
+        int lastSlash = 0; // Initialize before loop
 
-        while (prefix.equals("") &&
-               ((lastSlash = matchPath.lastIndexOf("/")) > 0)) {
+        while (prefix.equals("") && ((lastSlash = matchPath.lastIndexOf("/")) > 0)) {
 
             // We may be in a non-default module.  Try to get it's prefix.
             matchPath = matchPath.substring(0, lastSlash);
@@ -1514,14 +1464,11 @@ public class RequestUtils {
             }
         }
 
-        if (LOG.isDebugEnabled())
-            {
-                LOG.debug("Module name found: " +
-                          (prefix.equals("") ? "default" : prefix));
-            }
-    return prefix;
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Module name found: " + (prefix.equals("") ? "default" : prefix));
+        }
+        return prefix;
     }
-
 
     /**
      * Return the ModuleConfig object is it exists, null otherwise.
@@ -1530,13 +1477,13 @@ public class RequestUtils {
      * @since 1.1b3
      */
     public static ModuleConfig getModuleConfig(PageContext pageContext) {
-       ModuleConfig moduleConfig = (ModuleConfig)
-           pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
-       if (moduleConfig == null) { // Backwards compatibility hack
-           moduleConfig = (ModuleConfig)
-               pageContext.getServletContext().getAttribute(Globals.MODULE_KEY);
-       }
-       return moduleConfig;
+        ModuleConfig moduleConfig =
+            (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
+        if (moduleConfig == null) { // Backwards compatibility hack
+            moduleConfig =
+                (ModuleConfig) pageContext.getServletContext().getAttribute(Globals.MODULE_KEY);
+        }
+        return moduleConfig;
     }
 
     /**
@@ -1546,14 +1493,14 @@ public class RequestUtils {
      * @return the ModuleConfig object
      * @since 1.1b3
      */
-    public static ModuleConfig getModuleConfig(HttpServletRequest request,ServletContext context) {
-        ModuleConfig moduleConfig = (ModuleConfig)
-            request.getAttribute(Globals.MODULE_KEY);
+    public static ModuleConfig getModuleConfig(
+        HttpServletRequest request,
+        ServletContext context) {
+        ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
         if (moduleConfig == null) {
-            moduleConfig = (ModuleConfig)
-                context.getAttribute(Globals.MODULE_KEY);
+            moduleConfig = (ModuleConfig) context.getAttribute(Globals.MODULE_KEY);
         }
-       return moduleConfig;
+        return moduleConfig;
     }
 
     /**
@@ -1589,7 +1536,6 @@ public class RequestUtils {
 
     }
 
-
     /**
      * Retrieves the value from request scope and if it isn't already an <code>ActionMessages</code>
      * some classes are converted to one.
@@ -1600,7 +1546,7 @@ public class RequestUtils {
      * @throws JspException if
      */
     public static ActionMessages getActionMessages(PageContext pageContext, String paramName)
-       throws JspException {
+        throws JspException {
 
         ActionMessages am = new ActionMessages();
 
@@ -1608,27 +1554,24 @@ public class RequestUtils {
 
         try {
             if (value == null) {
-               ;
+                ;
             } else if (value instanceof String) {
-               am.add(ActionMessages.GLOBAL_MESSAGE,
-                                 new ActionMessage((String) value));
+                am.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage((String) value));
             } else if (value instanceof String[]) {
-               String keys[] = (String[]) value;
-               for (int i = 0; i < keys.length; i++)
-                  am.add(ActionMessages.GLOBAL_MESSAGE,
-                               new ActionMessage(keys[i]));
+                String keys[] = (String[]) value;
+                for (int i = 0; i < keys.length; i++)
+                    am.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(keys[i]));
             } else if (value instanceof ErrorMessages) {
                 String keys[] = ((ErrorMessages) value).getErrors();
                 if (keys == null)
                     keys = new String[0];
                 for (int i = 0; i < keys.length; i++)
-                    am.add(ActionErrors.GLOBAL_ERROR,
-                                 new ActionError(keys[i]));
+                    am.add(ActionErrors.GLOBAL_ERROR, new ActionError(keys[i]));
             } else if (value instanceof ActionMessages) {
                 am = (ActionMessages) value;
             } else {
-               throw new JspException
-                  (messages.getMessage("actionMessages.errors", value.getClass().getName()));
+                throw new JspException(
+                    messages.getMessage("actionMessages.errors", value.getClass().getName()));
             }
         } catch (JspException e) {
             throw e;
@@ -1649,40 +1592,37 @@ public class RequestUtils {
      * @exception JspException
      */
     public static ActionErrors getActionErrors(PageContext pageContext, String paramName)
-       throws JspException {
+        throws JspException {
 
         ActionErrors errors = new ActionErrors();
 
         Object value = pageContext.findAttribute(paramName);
 
         try {
-        if (value == null) {
-        ;
-        } else if (value instanceof String) {
-        errors.add(ActionErrors.GLOBAL_ERROR,
-                           new ActionError((String) value));
-        } else if (value instanceof String[]) {
+            if (value == null) {
+                ;
+            } else if (value instanceof String) {
+                errors.add(ActionErrors.GLOBAL_ERROR, new ActionError((String) value));
+            } else if (value instanceof String[]) {
                 String keys[] = (String[]) value;
                 for (int i = 0; i < keys.length; i++)
-                    errors.add(ActionErrors.GLOBAL_ERROR,
-                               new ActionError(keys[i]));
+                    errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(keys[i]));
             } else if (value instanceof ErrorMessages) {
-        String keys[] = ((ErrorMessages) value).getErrors();
+                String keys[] = ((ErrorMessages) value).getErrors();
                 if (keys == null)
                     keys = new String[0];
                 for (int i = 0; i < keys.length; i++)
-                    errors.add(ActionErrors.GLOBAL_ERROR,
-                               new ActionError(keys[i]));
+                    errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(keys[i]));
             } else if (value instanceof ActionErrors) {
                 errors = (ActionErrors) value;
             } else {
-               throw new JspException
-                  (messages.getMessage("actionErrors.errors", value.getClass().getName()));
+                throw new JspException(
+                    messages.getMessage("actionErrors.errors", value.getClass().getName()));
             }
         } catch (JspException e) {
             throw e;
         } catch (Exception e) {
-            LOG.debug(e,e);
+            LOG.debug(e, e);
         }
 
         return errors;

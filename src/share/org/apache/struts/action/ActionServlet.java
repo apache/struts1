@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.128 2002/11/09 16:30:02 rleland Exp $
- * $Revision: 1.128 $
- * $Date: 2002/11/09 16:30:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.129 2002/11/12 03:56:08 dgraham Exp $
+ * $Revision: 1.129 $
+ * $Date: 2002/11/12 03:56:08 $
  *
  * ====================================================================
  *
@@ -63,20 +63,22 @@
 package org.apache.struts.action;
 
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.MissingResourceException;
+
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.BooleanConverter;
@@ -92,6 +94,7 @@ import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.RuleSet;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.Globals;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ConfigRuleSet;
@@ -100,15 +103,14 @@ import org.apache.struts.config.DataSourceConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.MessageResourcesConfig;
-import org.apache.struts.config.PlugInConfig;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.config.PlugInConfig;
 import org.apache.struts.config.impl.ModuleConfigImpl;
 import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ServletContextWriter;
-import org.apache.struts.Globals;
 import org.xml.sax.InputSource;
 
 
@@ -245,7 +247,7 @@ import org.xml.sax.InputSource;
  * <li><strong>locale</strong> - If set to <code>true</code>, and there is a
  *     user session, identify and store an appropriate
  *     <code>java.util.Locale</code> object (under the standard key
- *     identified by <code>Action.LOCALE_KEY</code>) in the user's session
+ *     identified by <code>Globals.LOCALE_KEY</code>) in the user's session
  *     if there is not a Locale object there already. [true]
  *     <em>DEPRECATED - Configure this using the "locale" attribute of
  *     the &lt;controller&gt; element.</em></li>
@@ -297,7 +299,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.128 $ $Date: 2002/11/09 16:30:02 $
+ * @version $Revision: 1.129 $ $Date: 2002/11/12 03:56:08 $
  */
 
 public class ActionServlet
@@ -425,7 +427,7 @@ public class ActionServlet
         destroyApplications();
         destroyDataSources();
         destroyInternal();
-        getServletContext().removeAttribute(Action.ACTION_SERVLET_KEY);
+        getServletContext().removeAttribute(Globals.ACTION_SERVLET_KEY);
 
         // FIXME - destroy ApplicationConfig and message resource instances
 
@@ -446,7 +448,7 @@ public class ActionServlet
         initServlet();
 
         // Initialize application modules as needed
-        getServletContext().setAttribute(Action.ACTION_SERVLET_KEY, this);
+        getServletContext().setAttribute(Globals.ACTION_SERVLET_KEY, this);
         ModuleConfig moduleConfig = initModuleConfig("", config);
         initApplicationMessageResources(moduleConfig);
         initApplicationDataSources(moduleConfig);
@@ -542,12 +544,11 @@ public class ActionServlet
      * @deprecated Look up data sources directly in servlet context attributes
      */
     public DataSource findDataSource(String key) {
-
-        if (key == null)
-            return ((DataSource) dataSources.get(Action.DATA_SOURCE_KEY));
-        else
+        if (key == null) {
+            return ((DataSource) dataSources.get(Globals.DATA_SOURCE_KEY));
+        } else {
             return ((DataSource) dataSources.get(key));
-
+        }
     }
 
 
@@ -644,7 +645,7 @@ public class ActionServlet
     public MessageResources getResources() {
 
         return ((MessageResources) getServletContext().getAttribute
-                (Action.MESSAGES_KEY));
+                (Globals.MESSAGES_KEY));
 
     }
 
@@ -675,12 +676,13 @@ public class ActionServlet
      * @since Struts 1.1
      */
     protected void destroyApplications() {
-
+        
         ArrayList values = new ArrayList();
         Enumeration names = getServletContext().getAttributeNames();
         while (names.hasMoreElements()) {
             values.add(names.nextElement());
         }
+        
         Iterator keys = values.iterator();
         while (keys.hasNext()) {
             String name = (String) keys.next();
@@ -692,9 +694,9 @@ public class ActionServlet
                 } catch (Throwable t) {
                     ;
                 }
-                PlugIn plugIns[] = (PlugIn[])
-                    getServletContext().getAttribute
-                    (Action.PLUG_INS_KEY + config.getPrefix());
+                PlugIn plugIns[] =
+                    (PlugIn[]) getServletContext().getAttribute(
+                        Globals.PLUG_INS_KEY + config.getPrefix());
                 if (plugIns != null) {
                     for (int i = 0; i < plugIns.length; i++) {
                         int j = plugIns.length - (i + 1);
@@ -811,7 +813,7 @@ public class ActionServlet
     protected synchronized RequestProcessor
         getRequestProcessor(ModuleConfig config) throws ServletException {
 
-        String key = Action.REQUEST_PROCESSOR_KEY + config.getPrefix();
+        String key = Globals.REQUEST_PROCESSOR_KEY + config.getPrefix();
         RequestProcessor processor = (RequestProcessor)
             getServletContext().getAttribute(key);
         if (processor == null) {
@@ -1018,44 +1020,37 @@ public class ActionServlet
         (ModuleConfig config) throws ServletException {
 
         if (log.isDebugEnabled()) {
-            log.debug("Initializing module path '" + config.getPrefix() +
-                "' plug ins");
+            log.debug("Initializing module path '" + config.getPrefix() + "' plug ins");
         }
 
         PlugInConfig plugInConfigs[] = config.findPlugInConfigs();
         PlugIn plugIns[] = new PlugIn[plugInConfigs.length];
 
-        getServletContext().setAttribute
-            (Action.PLUG_INS_KEY + config.getPrefix(), plugIns);
+        getServletContext().setAttribute(Globals.PLUG_INS_KEY + config.getPrefix(), plugIns);
         for (int i = 0; i < plugIns.length; i++) {
             try {
-                plugIns[i] = (PlugIn)
-                    RequestUtils.applicationInstance
-                    (plugInConfigs[i].getClassName());
-                BeanUtils.populate(plugIns[i],
-                                   plugInConfigs[i].getProperties());
+                plugIns[i] =
+                    (PlugIn) RequestUtils.applicationInstance(plugInConfigs[i].getClassName());
+                BeanUtils.populate(plugIns[i], plugInConfigs[i].getProperties());
                 if (plugIns[i] instanceof PlugInPatch) {
-                    ((PlugInPatch)plugIns[i]).init(this, (ModuleConfig)config);
-                }
-                else  {
+                    ((PlugInPatch) plugIns[i]).init(this, (ModuleConfig) config);
+                } else {
                     /* Since Struts 1.1 only has one implementation for
                        ModuleConfig casting is safe here. Used only for
                        transition purposes !
                     */
-                    ApplicationConfig ac = new ApplicationConfig((ModuleConfigImpl)config);
+                    ApplicationConfig ac = new ApplicationConfig((ModuleConfigImpl) config);
                     plugIns[i].init(this, ac);
                 }
             } catch (ServletException e) {
-              // Lets propagate
+                // Lets propagate
                 throw e;
             } catch (Exception e) {
-                String errMsg = internal.getMessage("plugIn.init",
-                                         plugInConfigs[i].getClassName());
-                log(errMsg,e);
+                String errMsg = internal.getMessage("plugIn.init", plugInConfigs[i].getClassName());
+                log(errMsg, e);
                 throw new UnavailableException(errMsg);
             }
         }
-
 
     }
 
@@ -1328,9 +1323,10 @@ public class ActionServlet
             log.debug("Mapping for servlet '" + servletName + "' = '" +
                 servletMapping + "'");
         }
-        if (servletMapping != null)
-            getServletContext().setAttribute(Action.SERVLET_KEY,
-                                             servletMapping);
+        
+        if (servletMapping != null) {
+            getServletContext().setAttribute(Globals.SERVLET_KEY, servletMapping);
+        }
 
     }
 
@@ -1507,10 +1503,10 @@ public class ActionServlet
         String value = null;
 
         MessageResourcesConfig mrc =
-            config.findMessageResourcesConfig(Action.MESSAGES_KEY);
+            config.findMessageResourcesConfig(Globals.MESSAGES_KEY);
         if (mrc == null) {
             mrc = new MessageResourcesConfig();
-            mrc.setKey(Action.MESSAGES_KEY);
+            mrc.setKey(Globals.MESSAGES_KEY);
             config.addMessageResourcesConfig(mrc);
         }
         value = getServletConfig().getInitParameter("application");

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelperInterface.java,v 1.3 2002/09/22 06:13:56 martinc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/09/22 06:13:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelperInterface.java,v 1.4 2002/11/12 03:56:09 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/11/12 03:56:09 $
  *
  * ====================================================================
  *
@@ -110,7 +110,7 @@ import org.apache.struts.action.ActionMessages;
  * @since 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.3 $ $Date: 2002/09/22 06:13:56 $
+ * @version $Revision: 1.4 $ $Date: 2002/11/12 03:56:09 $
  */
 public interface ConfigHelperInterface {
 
@@ -172,7 +172,7 @@ public interface ConfigHelperInterface {
      * If a default locale object is not in the user's session,
      * the system default locale is returned.
      * If used, the user locale is typically set during login
-     * processing under the key <code>Action.LOCALE_KEY</code>.
+     * processing under the key <code>Globals.LOCALE_KEY</code>.
      */
     public Locale getLocale();
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.21 2002/11/08 04:59:49 rleland Exp $
- * $Revision: 1.21 $
- * $Date: 2002/11/08 04:59:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.22 2002/11/12 03:56:09 dgraham Exp $
+ * $Revision: 1.22 $
+ * $Date: 2002/11/12 03:56:09 $
  *
  * ====================================================================
  *
@@ -67,20 +67,23 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.Globals;
 import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.config.ForwardConfig;
-import org.apache.struts.upload.MultipartRequestWrapper;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.html.Constants;
+import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
@@ -94,7 +97,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.21 $ $Date: 2002/11/08 04:59:49 $
+ * @version $Revision: 1.22 $ $Date: 2002/11/12 03:56:09 $
  * @since Struts 1.1
  */
 
@@ -607,7 +610,7 @@ public class RequestProcessor {
 
         // Has a Locale already been selected?
         HttpSession session = request.getSession();
-        if (session.getAttribute(Action.LOCALE_KEY) != null) {
+        if (session.getAttribute(Globals.LOCALE_KEY) != null) {
             return;
         }
 
@@ -617,7 +620,7 @@ public class RequestProcessor {
             if (log.isDebugEnabled()) {
                 log.debug(" Setting user locale '" + locale + "'");
             }
-            session.setAttribute(Action.LOCALE_KEY, locale);
+            session.setAttribute(Globals.LOCALE_KEY, locale);
         }
 
     }
@@ -643,7 +646,7 @@ public class RequestProcessor {
         ActionMapping mapping = (ActionMapping)
             moduleConfig.findActionConfig(path);
         if (mapping != null) {
-            request.setAttribute(Action.MAPPING_KEY, mapping);
+            request.setAttribute(Globals.MAPPING_KEY, mapping);
             return (mapping);
         }
 
@@ -652,7 +655,7 @@ public class RequestProcessor {
         for (int i = 0; i < configs.length; i++) {
             if (configs[i].getUnknown()) {
                 mapping = (ActionMapping) configs[i];
-                request.setAttribute(Action.MAPPING_KEY, mapping);
+                request.setAttribute(Globals.MAPPING_KEY, mapping);
                 return (mapping);
             }
         }
@@ -789,7 +792,7 @@ public class RequestProcessor {
         form.setServlet(this.servlet);
         form.reset(mapping, request);
         if (mapping.getMultipartClass() != null) {
-            request.setAttribute(Action.MULTIPART_KEY,
+            request.setAttribute(Globals.MULTIPART_KEY,
                                  mapping.getMultipartClass());
         }
         RequestUtils.populate(form, mapping.getPrefix(), mapping.getSuffix(),
@@ -938,7 +941,7 @@ public class RequestProcessor {
         if (log.isDebugEnabled()) {
             log.debug(" Validation failed, returning to '" + input + "'");
         }
-        request.setAttribute(Action.ERROR_KEY, errors);
+        request.setAttribute(Globals.ERROR_KEY, errors);
 
         if (moduleConfig.getControllerConfig().getInputForward()) {
             ForwardConfig forward = mapping.findForward(input);

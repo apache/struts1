@@ -56,12 +56,15 @@
 package org.apache.struts.webapp.validator;
 
 import java.util.Locale;
-import javax.servlet.http.HttpSession;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -126,7 +129,7 @@ public final class LocaleAction extends Action {
            locale = new java.util.Locale(language, "");
     }
 
-        session.setAttribute(Action.LOCALE_KEY, locale);
+        session.setAttribute(Globals.LOCALE_KEY, locale);
 
     return mapping.findForward("success");
     }

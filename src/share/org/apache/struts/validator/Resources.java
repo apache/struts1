@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.4 2002/11/09 07:11:21 rleland Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/09 07:11:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.5 2002/11/12 03:56:10 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/11/12 03:56:10 $
  *
  * ====================================================================
  *
@@ -62,22 +62,21 @@
 package org.apache.struts.validator;
 
 import java.util.Locale;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.util.MessageResources;
-import org.apache.struts.validator.ValidatorPlugIn;
-import org.apache.struts.Globals;
 
 import org.apache.commons.validator.Arg;
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
+import org.apache.struts.Globals;
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.util.MessageResources;
 
 
 /**
@@ -86,7 +85,7 @@ import org.apache.commons.validator.ValidatorResources;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.4 $ $Date: 2002/11/09 07:11:21 $
+ * @version $Revision: 1.5 $ $Date: 2002/11/12 03:56:10 $
  * @since Struts 1.1
 */
 public class Resources  {
@@ -139,7 +138,7 @@ public class Resources  {
     *  resources for the current application module.
    */
    public static MessageResources getMessageResources(ServletContext application) {
-      return (MessageResources)application.getAttribute(Action.MESSAGES_KEY);
+      return (MessageResources)application.getAttribute(Globals.MESSAGES_KEY);
    }
 
    /**
@@ -147,7 +146,7 @@ public class Resources  {
     * @param request the servlet request
    */
    public static MessageResources getMessageResources(HttpServletRequest request) {
-      return (MessageResources)request.getAttribute(Action.MESSAGES_KEY);
+      return (MessageResources)request.getAttribute(Globals.MESSAGES_KEY);
    }
 
    /**
@@ -157,7 +156,7 @@ public class Resources  {
    public static Locale getLocale(HttpServletRequest request) {
       Locale locale = null;
       try {
-          locale = (Locale) request.getSession().getAttribute(Action.LOCALE_KEY);
+          locale = (Locale) request.getSession().getAttribute(Globals.LOCALE_KEY);
       } catch (IllegalStateException e) {   // Invalidated session
           locale = null;
       }

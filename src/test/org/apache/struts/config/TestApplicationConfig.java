@@ -57,20 +57,20 @@ package org.apache.struts.config;
 
 
 import java.io.InputStream;
-import java.util.Map;
-import java.net.URL;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
 import org.apache.commons.digester.Digester;
-import org.apache.struts.action.Action;
+import org.apache.struts.Globals;
 
 
 /**
  * Unit tests for the <code>org.apache.struts.config</code> package.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/06/16 00:37:12 $
+ * @version $Revision: 1.3 $ $Date: 2002/11/12 03:56:10 $
  */
 
 public class TestApplicationConfig extends TestCase {
@@ -168,7 +168,7 @@ public class TestApplicationConfig extends TestCase {
         // Perform assertion tests on the parsed information
 
         DataSourceConfig dsc =
-            config.findDataSourceConfig(Action.DATA_SOURCE_KEY);
+            config.findDataSourceConfig(Globals.DATA_SOURCE_KEY);
         assertNotNull("Found our data source configuration", dsc);
         assertEquals("Data source driverClass",
                      "org.postgresql.Driver",

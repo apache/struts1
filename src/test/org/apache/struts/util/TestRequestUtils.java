@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.12 2002/10/18 15:27:43 jholmes Exp $
- * $Revision: 1.12 $
- * $Date: 2002/10/18 15:27:43 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.13 2002/11/12 03:56:09 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/11/12 03:56:09 $
  *
  * ====================================================================
  *
@@ -64,27 +64,30 @@ package org.apache.struts.util;
 
 
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.servlet.jsp.JspException;
-import junit.framework.*;
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
+import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ApplicationConfig;
-import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.mock.MockFormBean;
 import org.apache.struts.mock.TestMockBase;
+import org.apache.struts.taglib.html.Constants;
 
 
 /**
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2002/10/18 15:27:43 $
+ * @version $Revision: 1.13 $ $Date: 2002/11/12 03:56:09 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -222,7 +225,7 @@ public class TestRequestUtils extends TestMockBase {
     // No parameters but add transaction token
     public void testComputeParameters0b() {
 
-        session.setAttribute(Action.TRANSACTION_TOKEN_KEY, "token");
+        session.setAttribute(Globals.TRANSACTION_TOKEN_KEY, "token");
         Map map = null;
         try {
             map = RequestUtils.computeParameters
@@ -442,7 +445,7 @@ public class TestRequestUtils extends TestMockBase {
     public void testComputeParameters3a() {
 
         request.setAttribute("attr", new MockFormBean("bar3"));
-        session.setAttribute(Action.TRANSACTION_TOKEN_KEY, "token");
+        session.setAttribute(Globals.TRANSACTION_TOKEN_KEY, "token");
 
         Map map = null;
         try {

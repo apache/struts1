@@ -57,7 +57,10 @@
 package org.apache.struts.taglib.logic;
 
 import java.util.Iterator;
+
 import javax.servlet.jsp.JspException;
+
+import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.RequestUtils;
@@ -70,21 +73,21 @@ import org.apache.struts.util.RequestUtils;
  * class or for the property specified.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.4 $ $Date: 2002/09/23 05:22:08 $
+ * @version $Revision: 1.5 $ $Date: 2002/11/12 03:56:10 $
  * @since Struts 1.1
  */
 
 public class MessagesPresentTag extends ConditionalTagBase {
 
     /**
-     * If this is set to 'true', then the <code>Action.MESSAGE_KEY</code> will
+     * If this is set to 'true', then the <code>Globals.MESSAGE_KEY</code> will
      * be used to retrieve the messages from scope.
     */
     protected String message = null;
 
 
     public MessagesPresentTag() {
-        name = Action.ERROR_KEY;
+        name = Globals.ERROR_KEY;
     }
 
     public String getMessage() {
@@ -124,7 +127,7 @@ public class MessagesPresentTag extends ConditionalTagBase {
         ActionMessages am = null;
 
         if (message != null && "true".equalsIgnoreCase(message))
-           name = Action.MESSAGE_KEY;
+           name = Globals.MESSAGE_KEY;
 
         // Evaluate the presence of the specified value
         boolean bMessages = false;
@@ -132,11 +135,12 @@ public class MessagesPresentTag extends ConditionalTagBase {
         try {
             // Definitely know it should be an error so
             // use method to retrieve errors.
-            if (Action.ERROR_KEY.equals(name))
-               am = RequestUtils.getActionErrors(pageContext, name);
-            else
-               am = RequestUtils.getActionMessages(pageContext, name);
-        } catch(JspException e) {
+            if (Globals.ERROR_KEY.equals(name)) {
+                am = RequestUtils.getActionErrors(pageContext, name);
+            } else {
+                am = RequestUtils.getActionMessages(pageContext, name);
+            }
+        } catch (JspException e) {
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
@@ -159,12 +163,9 @@ public class MessagesPresentTag extends ConditionalTagBase {
      * Release all allocated resources.
      */
     public void release() {
-
         super.release();
-        name = Action.ERROR_KEY;
+        name = Globals.ERROR_KEY;
         message = null;
-
     }
-
 
 }

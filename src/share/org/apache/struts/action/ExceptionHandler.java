@@ -57,12 +57,8 @@ package org.apache.struts.action;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
+
+import org.apache.struts.Globals;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.util.AppException;
 
@@ -124,7 +120,7 @@ public class ExceptionHandler {
         }
 
         // Store the exception
-        request.setAttribute(Action.EXCEPTION_KEY, ex);
+        request.setAttribute(Globals.EXCEPTION_KEY, ex);
         storeException(request, property, error, forward, ae.getScope());
 
         return forward;
@@ -136,7 +132,7 @@ public class ExceptionHandler {
      * implementation is to set an attribute of the request or session, as
      * defined by the scope provided (the scope from the exception mapping).  An
      * <b>ActionErrors</b> instance is created, the error is added to the collection
-     * and the collection is set under the Action.ERROR_KEY.
+     * and the collection is set under the Globals.ERROR_KEY.
      *
      * @param request - The request we are handling
      * @param property  - The property name to use for this error
@@ -154,9 +150,9 @@ public class ExceptionHandler {
         errors.add(property, error);
 
         if ("request".equals(scope)){
-            request.setAttribute(Action.ERROR_KEY, errors);
+            request.setAttribute(Globals.ERROR_KEY, errors);
         } else {
-            request.getSession().setAttribute(Action.ERROR_KEY, errors);
+            request.getSession().setAttribute(Globals.ERROR_KEY, errors);
         }
     }
 

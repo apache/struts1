@@ -123,7 +123,7 @@ public final class MultiRegistrationAction extends Action {
 
     ActionErrors errors = info.validate(mapping, request);
 
-    if (errors != null && errors.empty()) {
+    if (errors != null && errors.isEmpty()) {
        if (info.getPage() == 1)
           return mapping.findForward("input2");
        if (info.getPage() == 2)

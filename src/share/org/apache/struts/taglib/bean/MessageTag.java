@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.7 2002/09/22 06:32:46 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/09/22 06:32:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.8 2002/11/12 03:56:08 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/11/12 03:56:08 $
  *
  * ====================================================================
  *
@@ -64,8 +64,11 @@ package org.apache.struts.taglib.bean;
 
 
 import java.util.Locale;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
+
+import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
@@ -79,7 +82,7 @@ import org.apache.struts.util.ResponseUtils;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/09/22 06:32:46 $
+ * @version $Revision: 1.8 $ $Date: 2002/11/12 03:56:08 $
  */
 
 public class MessageTag extends TagSupport {
@@ -237,7 +240,7 @@ public class MessageTag extends TagSupport {
     /**
      * The session scope key under which our Locale is stored.
      */
-    protected String localeKey = Action.LOCALE_KEY;
+    protected String localeKey = Globals.LOCALE_KEY;
 
     public String getLocale() {
 	return (this.localeKey);
@@ -318,12 +321,12 @@ public class MessageTag extends TagSupport {
 	arg2 = null;
 	arg3 = null;
 	arg4 = null;
-	bundle = Action.MESSAGES_KEY;
+	bundle = Globals.MESSAGES_KEY;
 	key = null;
 	name = null;
 	property = null;
 	scope = null;
-	localeKey = Action.LOCALE_KEY;
+	localeKey = Globals.LOCALE_KEY;
 
     }
 

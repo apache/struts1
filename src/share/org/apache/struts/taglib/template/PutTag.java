@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.10 2002/10/25 23:54:53 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2002/10/25 23:54:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.11 2002/11/12 03:56:09 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/11/12 03:56:09 $
  *
  * ====================================================================
  *
@@ -60,21 +60,20 @@
  */
 package org.apache.struts.taglib.template;
 
-import java.util.Hashtable;
-import java.util.Stack;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.action.Action;
+
+import org.apache.struts.Globals;
 import org.apache.struts.taglib.template.util.Content;
 
 /**
  * Tag handler for &lt;template:put&gt;, which puts content into request scope.
  *
  * @author David Geary
- * @version $Revision: 1.10 $ $Date: 2002/10/25 23:54:53 $
+ * @version $Revision: 1.11 $ $Date: 2002/11/12 03:56:09 $
  * @deprecated Use Tiles instead.
  */
 public class PutTag extends BodyTagSupport {
@@ -283,7 +282,7 @@ public class PutTag extends BodyTagSupport {
          klass = Class.forName(className);
       }
       catch(ClassNotFoundException ex) {
-         pageContext.setAttribute(Action.EXCEPTION_KEY, ex,
+         pageContext.setAttribute(Globals.EXCEPTION_KEY, ex,
                                   PageContext.REQUEST_SCOPE);
          throw new JspException(ex.getMessage());
       }
