@@ -96,44 +96,36 @@
                     <li><a href="building_view.html#includes">3.4.3 Page Composition With Tiles</a></li>
                     <li><a href="building_view.html#image_rendering">3.4.4 Image Rendering Components</a></li>
                     <li><a href="building_view.html#text_rendering">3.4.5 Rendering Text</a></li>
-                    <li><a href="building_view.html#struts-el">3.4.6 The
-Struts-EL Tag Library</a></li>
+                    <li><a href="building_view.html#struts-el">3.4.6 The Struts-EL Tag Library</a></li>
                     </ul></li>
                 </ul></li>
+                
             <li><a href="building_controller.html">4. Building Controller Components</a>
                 <ul>
                 <li><a href="building_controller.html#overview">4.1 Overview</a></li>
-                <li><a href="building_controller.html#action_form_classes">4.2 ActionForm Classes</a></li>
+                <li><a href="building_controller.html#action_servlet">4.2 The ActionServlet</a></li>
                     <ul>
-                    <li><a href="building_controller.html#dyna_action_form_classes">4.2.1 DynaActionForm Classes</a></li>
-                    <li><a href="building_controller.html#map_action_form_classes">4.2.2 Map-backed ActionForm Classes</a></li>
+                    <li><a href="building_controller.html#request_controller">4.2.1 Request Processor</a></li>
                     </ul>
-                <li><a href="building_controller.html#action_classes">4.3 Action Classes</a></li>
-                <li><a href="building_controller.html#action_servlet">4.4 The ActionServlet</a></li>
+                
+                <li><a href="building_controller.html#action_form_classes">4.3 ActionForm Classes</a></li>
                     <ul>
-                    <li><a href="building_controller.html#request_controller">4.4.1 Request Processor</a></li>
-                    <li><a href="building_controller.html#exception_handler">4.4.2 Exception Handler</a></li>
-                    <li><a href="building_controller.html#plugin_classes">4.4.3 Plugin Classes</a></li>
+                    <li><a href="building_controller.html#dyna_action_form_classes">4.3.1 DynaActionForm Classes</a></li>
+                    <li><a href="building_controller.html#map_action_form_classes">4.3.2 Map-backed ActionForm Classes</a></li>
                     </ul>
-                <li><a href="building_controller.html#actionmapping">4.5 The ActionMapping Implementation</a></li>
-                <li><a href="building_controller.html#config">4.6 The Struts Configuration File</a>
-                    <ul>
-                    <li><a href="building_controller.html#action_mapping_example">4.6.1 ActionMapping Example</a></li>
-                    <li><a href="building_controller.html#controller_config">4.6.2 Controller Configuration</a></li>
-                    <li><a href="building_controller.html#resources_config">4.6.3 Message Resources Configuration</a></li>
-                    <li><a href="building_controller.html#plugin_config">4.6.4 PlugIn Configuration</a></li>
-                    <li><a href="building_controller.html#other_config">4.6.5 Other Configuration Objects</a></li>
-                    </ul></li>
-                <li><a href="building_controller.html#dd_config">4.7 The Web Application Deployment Descriptor</a>
-                    <ul>
-                    <li><a href="building_controller.html#dd_config_servlet">4.7.1 Configure the Action Servlet Instance</a></li>
-                    <li><a href="building_controller.html#dd_config_mapping">4.7.2 Configure the Action Servlet Mapping</a></li>
-                    <li><a href="building_controller.html#dd_config_taglib">4.7.3 Configure the Struts Tag Library</a></li>
-                    <li><a href="building_controller.html#dd_config_modules">4.7.4 Configuring your application for modules</a></li>
-                    </ul></li>
-                <li><a href="building_controller.html#config_add">4.8 Add Struts Components To Your Application</a></li>
-                <li><a href="building_controller.html#logging">4.9 Using The Commons Logging Interface</a></li>
+                <li><a href="building_controller.html#action_classes">4.4 Action Classes</a></li>
+                <li><a href="building_controller.html#exception_handler">4.5 Exception Handler</a></li>
+                <li><a href="building_controller.html#plugin_classes">4.6 Plugin Classes</a></li>
+                <li><a href="building_controller.html#actionmapping">4.7 The ActionMapping Implementation</a></li>
+                <li><a href="building_controller.html#config">4.8 Writing ActionMappings</a>\
+                	<ul>
+                    <li><a href="building_controller.html#action_mapping_example">4.8.1 ActionMapping Example</a></li>
+      				</ul>
+      		    </li>
+                <li><a href="building_controller.html#module_config-use_actions">4.9 Using ActionMappings for Pages</a></li>
+                <li><a href="building_controller.html#logging">4.10 Using The Commons Logging Interface</a></li>                
                 </ul></li>
+
              <li><a href="building_apps.html">5. Building Applications</a>
                     <ul>
                     <li><a href="building_apps.html#caveats">5.1 Caveats</a></li>
@@ -168,6 +160,33 @@ Struts-EL Tag Library</a></li>
                 <li><a href="installation-wls5.html">Weblogic 5.1 sp8</a></li>
                 </ul>
                 </ul>
+                
+             <li>7. Configuring Applications</li>
+             	<ul>
+             	<li><a href="">7.1 </a></li>
+                <li>
+                	<a href="configuration.html#config">7.2 The Struts Configuration File</a>
+                    <ul>
+                    <li><a href="configuration.html#plugin_config">7.2.1 Controller Configurationn</a></li>
+                    <li><a href="configuration.html#resources_config">7.2.2 Message Resources Configuration</a></li>
+                    <li><a href="configuration.html#PlugIn_config">7.2.3 PlugIn Configuration</a></li>
+                    <li><a href="configuration.html#data-source_config">7.2.4 Data Source Configuration</a></li>
+                    <li><a href="configuration.html#dd_config_modules">7.2.5 Configuring your application for modules</a></li>
+                    <li><a href="configuration.html#module_config-switching">7.2.6 Switching Modules</a></li>
+                    </ul>
+                </li>
+                <li>
+                	<a href="configuration.html#dd_config">7.3 The Web Application Deployment Descriptor</a>
+                    <ul>
+                    <li><a href="configuration.html#dd_config_servlet">7.3.1 Configure the Action Servlet Instance</a></li>
+                    <li><a href="configuration.html#dd_config_mapping">7.3.2 Configure the Action Servlet Mapping</a></li>
+                    <li><a href="configuration.html#dd_config_taglib">7.3.3 Configure the Struts Tag Library</a></li>
+                    <li><a href="configuration.html#dd_config_taglib">7.3.3.1 Configure the Struts Tag Library (Servlet 2.3)</a></li>
+                    </ul>
+                </li>
+                <li><a href="configuration.html#config_add">7.4 Add Struts Components To Your Application</a></li>
+                </ul>             
+                
         </ul>
 
       </section>
