@@ -55,6 +55,7 @@
 
 <section href="guis" name="Code Generators and GUIs">
 <p><a href="http://www.synthis.com/products/adalon/overview.jsp"><b>Adalon</b></a> - Adalon is a next generation functional design tool that fills the gaps left by today's market leading software design products. </p>
+<p><a href="http://www.mycgiserver.com/~eboudrant/#wizard"><b>Struts Wizard for JBuilder and Eclipse</b></a> by Emmanuel Boudrant.</p>
 <p><a href="http://www.solanasoft.com"><b>JForms:</b></a> a visual tool for Struts-based Web forms.</p>
 <p><a href="http://husted.com/struts/resources/StrutsGen.htm"><b>Struts Gen</b></a> by Cyberzombie - A rudimentary wrapper tool for value objects.</p>
 <p><a href="http://xsltgenerator.sourceforge.net/"><b>Struts XSLT Code Generator</b></a> by Shengmeng Liu - An XSLT based code generator for Struts, completely based on the XSLT transformation and a set of stylesheet files. Ideally, users can customize the stylesheet for each type of Struts files  to have templates of their own without having to access the source code and recompile it.</p>
@@ -86,7 +87,6 @@
 
 <section href="extensions" name="Contributor Extensions">
 <p><a href="http://www.asqdotcom.be/struts/"><b>Struts Action Plug-in Extension 1.0 (for Struts 1.1b)</b></a> by Gerrie Kimpen. Provides a clean and transparent way to plug-in common controller logic (such as authentication, workflow, etc.) for all Struts actions in an application</p>
-<p><a href="http://www.mycgiserver.com/~eboudrant/#wizard"><b>Struts Wizard for JBuilder</b></a> by Emmanuel Boudrant.</p>
 <p><a href="http://struts.ditlinger.com/"><b>SSL Ext</b></a> by eBuilt, Inc.<b> </b>- Switch between using the http &amp; https protocols on a page by page basis. See README.txt.</p>
 <p><a href="http://sourceforge.net/projects/htmltable/"><b>HTMLTable framework for Struts framework</b></a> by Yuriy Zubarev - Incorporate look and feel and behaviour (in terms of columns order) of tables in XML configuration file with capabilities of properties inheritance. </p>
 <p><a href="http://netmeme.org/simper/"><b>Simper</b></a>  by Bryan Field-Elliot - A simple persistence mechanism - wraps up table rows as &quot;Dynabeans&quot; (see <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-beanutils/">Jakarta Commons BeanUtils, nightly build</a>), automatically detects changes, and writes the changes back to the database upon completion of each web request; supports creating, deleting rows, querying; basic relations (1-1 and 1-m). </p>
@@ -188,6 +188,7 @@
   </ul></li>
   <li><a href="http://jakarta.apache.org/struts/userGuide/index.html">Struts UserGuide</a></li>
   <li><a href="http://jakarta.apache.org/struts/api/index.html"><b>Struts JavaDocs</b> </a> -- <i>a good read, really!</i></li>
+  <li><a href="http://husted.com/struts/catalog"><b>The Struts Catalog</b> </a> -- Recommended design patterns and strategies</li>
 </ul>
 </ul>
 

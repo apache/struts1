@@ -39,6 +39,26 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
  
 <section name="News">
 
+<h3><a name="20020527.2"></a>27 May 2002 - Struts Tips</h3>
+<p>
+Struts Tips is a twice-weekly column featuring practical cut-and-paste
+advice for Struts developers. 
+</p>
+<p>
+The columns first run on the MVC-Programmers list and will later be available through Husted dot Com and JGuru. 
+</p>
+<p>
+MVC-Programmer List<br/>
+- <a href="http://www.basebeans.com:8081/mailman/listinfo/mvc-programmers">www.basebeans.com:8081/mailman/listinfo/mvc-programmers</a>
+</p>
+<p>
+Struts Tips archives<br/>
+- <a href="http://jguru.com/faq/subtopic.jsp?topicID=893704">jguru.com/faq/subtopic.jsp?topicID=893704</a><br/>
+- <a href="http://www.husted.com/struts/tips">www.husted.com/struts/tips</a>
+</p>
+<hr size="1" noshade=""/>
+
+
 <h3><a name="20020527.1"></a>27 May 2002 - Struts Action Plug-in Extension 1.0</h3>
 <p>
 The Action Plug-In Extension is, in concept, very similar to the Servlet Filter mechanism. It 
