@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.67 2002/11/05 14:07:09 cedric Exp $
- * $Revision: 1.67 $
- * $Date: 2002/11/05 14:07:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.68 2002/11/08 04:59:49 rleland Exp $
+ * $Revision: 1.68 $
+ * $Date: 2002/11/08 04:59:49 $
  *
  * ====================================================================
  *
@@ -101,6 +101,7 @@ import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestHandler;
 
@@ -111,7 +112,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.67 $ $Date: 2002/11/05 14:07:09 $
+ * @version $Revision: 1.68 $ $Date: 2002/11/08 04:59:49 $
  */
 
 public class RequestUtils {
@@ -536,13 +537,13 @@ public class RequestUtils {
      *
      * @param request The servlet request we are processing
      * @param mapping The action mapping for this request
-     * @param appConfig The application configuration for this module
+     * @param moduleConfig The application configuration for this module
      * @param servlet The action servlet
      * @return ActionForm instance associated with this request
      */
     public static ActionForm createActionForm(HttpServletRequest request,
                                               ActionMapping mapping,
-                                              ApplicationConfig appConfig,
+                                              ModuleConfig moduleConfig,
                                               ActionServlet servlet) {
 
         // Is there a form bean associated with this mapping?
@@ -553,7 +554,7 @@ public class RequestUtils {
 
         // Look up the form bean configuration information to use
         String name = mapping.getName();
-        FormBeanConfig config = appConfig.findFormBeanConfig(name);
+        FormBeanConfig config = moduleConfig.findFormBeanConfig(name);
         if (config == null) {
             return (null);
         }

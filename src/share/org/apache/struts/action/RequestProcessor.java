@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.20 2002/11/05 14:10:07 cedric Exp $
- * $Revision: 1.20 $
- * $Date: 2002/11/05 14:10:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.21 2002/11/08 04:59:49 rleland Exp $
+ * $Revision: 1.21 $
+ * $Date: 2002/11/08 04:59:49 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.upload.MultipartRequestWrapper;
@@ -94,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.20 $ $Date: 2002/11/05 14:10:07 $
+ * @version $Revision: 1.21 $ $Date: 2002/11/08 04:59:49 $
  * @since Struts 1.1
  */
 
@@ -131,9 +131,15 @@ public class RequestProcessor {
 
 
     /**
-     * The ApplicationConfiguration we are associated with.
+     * The ModuleConfiguration we are associated with.
+     * @deprecated use moduleConfig instead.
      */
-    protected ApplicationConfig appConfig = null;
+    protected ModuleConfig appConfig = null;
+
+    /**
+     * The ModuleConfiguration we are associated with.
+     */
+    protected ModuleConfig moduleConfig = null;
 
 
     /**
@@ -173,18 +179,19 @@ public class RequestProcessor {
      * Initialize this request processor instance.
      *
      * @param servlet The ActionServlet we are associated with
-     * @param appConfig The ApplicationConfig we are associated with.
+     * @param moduleConfig The ModuleConfig we are associated with.
      * @throws ServletException If an error occor during initialization
      */
     public void init(ActionServlet servlet,
-                     ApplicationConfig appConfig)
+                     ModuleConfig moduleConfig)
            throws ServletException {
 
         synchronized (actions) {
             actions.clear();
         }
         this.servlet = servlet;
-        this.appConfig = appConfig;
+        this.appConfig = moduleConfig;
+        this.moduleConfig = moduleConfig;
 
     }
 
@@ -347,7 +354,7 @@ public class RequestProcessor {
 
         // Create (if necessary a form bean to use
         ActionForm instance = RequestUtils.createActionForm
-            (request, mapping, appConfig, servlet);
+            (request, mapping, moduleConfig, servlet);
         if (instance == null) {
             return (null);
         }
@@ -375,7 +382,7 @@ public class RequestProcessor {
      * mechanism.
      *
      * This method takes the old ActionForward object as parameter. User should
-     * use {@link processForwardConfig} when possible.
+     * use {@link #processForwardConfig(HttpServletRequest, HttpServletResponse,ForwardConfig)} when possible.
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
      * @param forward The ActionForward controlling where we go next
@@ -474,7 +481,7 @@ public class RequestProcessor {
     protected void processContent(HttpServletRequest request,
                                   HttpServletResponse response) {
 
-        String contentType = appConfig.getControllerConfig().getContentType();
+        String contentType = moduleConfig.getControllerConfig().getContentType();
         if (contentType != null) {
             response.setContentType(contentType);
         }
@@ -594,7 +601,7 @@ public class RequestProcessor {
                                  HttpServletResponse response) {
 
         // Are we configured to select the Locale automatically?
-        if (!appConfig.getControllerConfig().getLocale()) {
+        if (!moduleConfig.getControllerConfig().getLocale()) {
             return;
         }
 
@@ -634,14 +641,14 @@ public class RequestProcessor {
 
         // Is there a directly defined mapping for this path?
         ActionMapping mapping = (ActionMapping)
-            appConfig.findActionConfig(path);
+            moduleConfig.findActionConfig(path);
         if (mapping != null) {
             request.setAttribute(Action.MAPPING_KEY, mapping);
             return (mapping);
         }
 
         // Locate the mapping for unknown paths (if any)
-        ActionConfig configs[] = appConfig.findActionConfigs();
+        ActionConfig configs[] = moduleConfig.findActionConfigs();
         for (int i = 0; i < configs.length; i++) {
             if (configs[i].getUnknown()) {
                 mapping = (ActionMapping) configs[i];
@@ -694,7 +701,7 @@ public class RequestProcessor {
     protected void processNoCache(HttpServletRequest request,
                                   HttpServletResponse response) {
 
-        if (appConfig.getControllerConfig().getNocache()) {
+        if (moduleConfig.getControllerConfig().getNocache()) {
             response.setHeader("Pragma", "No-cache");
             response.setHeader("Cache-Control", "no-cache");
             response.setDateHeader("Expires", 1);
@@ -734,7 +741,7 @@ public class RequestProcessor {
         if (path == null) {
             path = request.getServletPath();
         }
-        String prefix = appConfig.getPrefix();
+        String prefix = moduleConfig.getPrefix();
         if (!path.startsWith(prefix)) {
             log.error(getInternal().getMessage("processPath",
                                          request.getRequestURI()));
@@ -900,7 +907,7 @@ public class RequestProcessor {
             log.debug(" Validating input form properties");
         }
         ActionErrors errors = form.validate(mapping, request);
-        if ((errors == null) || errors.empty()) {
+        if ((errors == null) || errors.isEmpty()) {
             if (log.isTraceEnabled()) {
                 log.trace("  No errors detected, accepting input");
             }
@@ -932,8 +939,8 @@ public class RequestProcessor {
             log.debug(" Validation failed, returning to '" + input + "'");
         }
         request.setAttribute(Action.ERROR_KEY, errors);
-        String uri = null;
-        if (appConfig.getControllerConfig().getInputForward()) {
+
+        if (moduleConfig.getControllerConfig().getInputForward()) {
             ForwardConfig forward = mapping.findForward(input);
             processForwardConfig( request, response, forward);
         } else {
@@ -960,7 +967,7 @@ public class RequestProcessor {
         throws IOException, ServletException
     {
     // Construct a request dispatcher for the specified path
-    uri = appConfig.getPrefix() + uri;
+    uri = moduleConfig.getPrefix() + uri;
 
     // Delegate the processing of this request
     // FIXME - exception handling?
@@ -986,7 +993,7 @@ public class RequestProcessor {
         throws IOException, ServletException
     {
     // Construct a request dispatcher for the specified path
-    uri = appConfig.getPrefix() + uri;
+    uri = moduleConfig.getPrefix() + uri;
 
     // Delegate the processing of this request
     // FIXME - exception handling?

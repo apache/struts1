@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.9 2002/11/05 14:08:29 cedric Exp $
- * $Revision: 1.9 $
- * $Date: 2002/11/05 14:08:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.10 2002/11/08 04:59:49 rleland Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/11/08 04:59:49 $
  *
  * ====================================================================
  *
@@ -129,14 +129,14 @@ public class TilesRequestProcessor extends RequestProcessor
         if(log.isErrorEnabled())
           {
             log.error( "Definition Factory not found for module '"
-                + appConfig.getPrefix() + "'. "
+                + moduleConfig.getPrefix() + "'. "
                 + "Have you declared the appropriate plugin in struts-config.xml ?" );
           }
       return;
       }
     if(log.isInfoEnabled())
       {
-            log.info("Tiles definition factory found for request processor '" + appConfig.getPrefix() + "'.");
+            log.info("Tiles definition factory found for request processor '" + moduleConfig.getPrefix() + "'.");
       }
     }
 
