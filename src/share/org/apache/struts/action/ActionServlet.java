@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.104 2002/06/23 01:04:18 craigmcc Exp $
- * $Revision: 1.104 $
- * $Date: 2002/06/23 01:04:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.105 2002/06/23 03:59:34 jholmes Exp $
+ * $Revision: 1.105 $
+ * $Date: 2002/06/23 03:59:34 $
  *
  * ====================================================================
  *
@@ -188,9 +188,11 @@ import org.apache.struts.util.ServletContextWriter;
  *     <em>DEPRECATED - Configure this using the "contentType" attribute
  *     of the &lt;controller&gt; element.</em></li>
  * <li><strong>debug</strong> - The debugging detail level for this
- *     servlet, which controls how much information is logged.  [0]
+ *     servlet, which controls how much information is logged. Accepts
+ *     values 0 (off) and 1 (least serious) through 6 (most serious). [0]</li>
  * <li><strong>detail</strong> - The debugging detail level for the Digester
- *     we utilize to process the application configuration files.</li>
+ *     we utilize to process the application configuration files. Accepts
+ *     values 0 (off) and 1 (least serious) through 6 (most serious). [0]</li>
  * <li><strong>factory</strong> - The Java class name of the
  *     <code>MessageResourcesFactory</code> used to create the application
  *     <code>MessageResources</code> object.
@@ -269,7 +271,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.104 $ $Date: 2002/06/23 01:04:18 $
+ * @version $Revision: 1.105 $ $Date: 2002/06/23 03:59:34 $
  */
 
 public class ActionServlet
