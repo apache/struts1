@@ -1953,6 +1953,16 @@
         </attribute>
 
         <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
+        </attribute>
+
+        <attribute>
             <name>indexed</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
