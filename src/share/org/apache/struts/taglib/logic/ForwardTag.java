@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.14 2003/05/01 17:13:47 rleland Exp $
- * $Revision: 1.14 $
- * $Date: 2003/05/01 17:13:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.15 2003/07/13 23:33:27 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/07/13 23:33:27 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,41 +59,35 @@
  *
  */
 
-
 package org.apache.struts.taglib.logic;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
+
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
-
 
 /**
  * Perform a forward or redirect to a page that is looked up in the
  * configuration information associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2003/05/01 17:13:47 $
+ * @version $Revision: 1.15 $ $Date: 2003/07/13 23:33:27 $
  */
-
 public class ForwardTag extends TagSupport {
 
-
     // ----------------------------------------------------------- Properties
-
 
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-	MessageResources.getMessageResources
-	("org.apache.struts.taglib.logic.LocalStrings");
-
+        MessageResources.getMessageResources(
+            "org.apache.struts.taglib.logic.LocalStrings");
 
     /**
      * The logical name of the <code>ActionForward</code> entry to be
@@ -109,9 +103,7 @@ public class ForwardTag extends TagSupport {
         this.name = name;
     }
 
-
     // ------------------------------------------------------- Public Methods
-
 
     /**
      * Defer processing until the end of this tag is encountered.
@@ -120,10 +112,9 @@ public class ForwardTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-	return (SKIP_BODY);
+        return (SKIP_BODY);
 
     }
-
 
     /**
      * Look up the ActionForward associated with the specified name,
@@ -133,54 +124,60 @@ public class ForwardTag extends TagSupport {
      */
     public int doEndTag() throws JspException {
 
-	// Look up the desired ActionForward entry
-	ActionForward forward = null;
+        // Look up the desired ActionForward entry
+        ActionForward forward = null;
         ModuleConfig config = RequestUtils.getModuleConfig(pageContext);
-	if (config != null)
-	    forward = (ActionForward) config.findForwardConfig(name);
-	if (forward == null) {
-            JspException e = new JspException
-		(messages.getMessage("forward.lookup", name));
+        
+        if (config != null){
+            forward = (ActionForward) config.findForwardConfig(name);
+        }
+            
+        if (forward == null) {
+            JspException e =
+                new JspException(messages.getMessage("forward.lookup", name));
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
-	// Forward or redirect to the corresponding actual path
-	String path = forward.getPath();
-    path = config.getPrefix() + path;
+        // Forward or redirect to the corresponding actual path
+        String path = forward.getPath();
+        path = config.getPrefix() + path;
 
-
-	if (forward.getRedirect()) {
+        if (forward.getRedirect()) {
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
-	    HttpServletResponse response =
-		(HttpServletResponse) pageContext.getResponse();
-	    try {
-                if (path.startsWith("/"))
+                
+            HttpServletResponse response =
+                (HttpServletResponse) pageContext.getResponse();
+                
+            try {
+                if (path.startsWith("/")) {
                     path = request.getContextPath() + path;
-		response.sendRedirect(response.encodeRedirectURL(path));
-	    } catch (Exception e) {
+                }
+                response.sendRedirect(response.encodeRedirectURL(path));
+                
+            } catch (Exception e) {
                 RequestUtils.saveException(pageContext, e);
-		throw new JspException
-		    (messages.getMessage("forward.redirect",
-					 name, e.toString()));
-	    }
-	} else {
-	    try {
-		pageContext.forward(path);
-	    } catch (Exception e) {
+                throw new JspException(
+                    messages.getMessage("forward.redirect", name, e.toString()));
+            }
+            
+        } else {
+            
+            try {
+                pageContext.forward(path);
+                
+            } catch (Exception e) {
                 RequestUtils.saveException(pageContext, e);
-		throw new JspException
-		    (messages.getMessage("forward.forward",
-					 name, e.toString()));
-	    }
-	}
+                throw new JspException(
+                    messages.getMessage("forward.forward", name, e.toString()));
+            }
+        }
 
-	// Skip the remainder of this page
-	return (SKIP_PAGE);
+        // Skip the remainder of this page
+        return (SKIP_PAGE);
 
     }
-
 
     /**
      * Release all allocated resources.
@@ -191,6 +188,5 @@ public class ForwardTag extends TagSupport {
         name = null;
 
     }
-
 
 }

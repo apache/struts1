@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.14 2002/09/23 05:22:08 martinc Exp $
- * $Revision: 1.14 $
- * $Date: 2002/09/23 05:22:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.15 2003/07/13 23:33:27 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/07/13 23:33:27 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,32 +59,28 @@
  *
  */
 
-
 package org.apache.struts.taglib.logic;
-
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
+
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
-
 
 /**
  * Generate a URL-encoded redirect to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2002/09/23 05:22:08 $
+ * @version $Revision: 1.15 $ $Date: 2003/07/13 23:33:27 $
  */
-
 public class RedirectTag extends TagSupport {
 
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * The anchor to be added to the end of the generated hyperlink.
@@ -99,20 +95,18 @@ public class RedirectTag extends TagSupport {
         this.anchor = anchor;
     }
 
-
     /**
      * The logical forward name from which to retrieve the redirect URI.
      */
     protected String forward = null;
 
     public String getForward() {
-    return (this.forward);
+        return (this.forward);
     }
 
     public void setForward(String forward) {
-    this.forward = forward;
+        this.forward = forward;
     }
-
 
     /**
      * The redirect URI.
@@ -120,21 +114,19 @@ public class RedirectTag extends TagSupport {
     protected String href = null;
 
     public String getHref() {
-    return (this.href);
+        return (this.href);
     }
 
     public void setHref(String href) {
-    this.href = href;
+        this.href = href;
     }
-
 
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-     MessageResources.getMessageResources
-        ("org.apache.struts.taglib.logic.LocalStrings");
-
+        MessageResources.getMessageResources(
+            "org.apache.struts.taglib.logic.LocalStrings");
 
     /**
      * The JSP bean name for query parameters.
@@ -142,13 +134,12 @@ public class RedirectTag extends TagSupport {
     protected String name = null;
 
     public String getName() {
-    return (this.name);
+        return (this.name);
     }
 
     public void setName(String name) {
-    this.name = name;
+        this.name = name;
     }
-
 
     /**
      * The module-relative page URL (beginning with a slash) to which
@@ -164,7 +155,6 @@ public class RedirectTag extends TagSupport {
         this.page = page;
     }
 
-
     /**
      * The single-parameter request parameter name to generate.
      */
@@ -177,7 +167,6 @@ public class RedirectTag extends TagSupport {
     public void setParamId(String paramId) {
         this.paramId = paramId;
     }
-
 
     /**
      * The single-parameter JSP bean name.
@@ -192,7 +181,6 @@ public class RedirectTag extends TagSupport {
         this.paramName = paramName;
     }
 
-
     /**
      * The single-parameter JSP bean property.
      */
@@ -205,7 +193,6 @@ public class RedirectTag extends TagSupport {
     public void setParamProperty(String paramProperty) {
         this.paramProperty = paramProperty;
     }
-
 
     /**
      * The single-parameter JSP bean scope.
@@ -220,20 +207,18 @@ public class RedirectTag extends TagSupport {
         this.paramScope = paramScope;
     }
 
-
     /**
      * The JSP bean property name for query parameters.
      */
     protected String property = null;
 
     public String getProperty() {
-    return (this.property);
+        return (this.property);
     }
 
     public void setProperty(String property) {
-    this.property = property;
+        this.property = property;
     }
-
 
     /**
      * The scope of the bean specified by the name property, if any.
@@ -248,7 +233,6 @@ public class RedirectTag extends TagSupport {
         this.scope = scope;
     }
 
-
     /**
      * Include our transaction control token?
      */
@@ -262,9 +246,7 @@ public class RedirectTag extends TagSupport {
         this.transaction = transaction;
     }
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Defer generation until the end of this tag is encountered.
@@ -277,7 +259,6 @@ public class RedirectTag extends TagSupport {
 
     }
 
-
     /**
      * Render the redirect and skip the remainder of this page.
      *
@@ -286,24 +267,43 @@ public class RedirectTag extends TagSupport {
     public int doEndTag() throws JspException {
 
         // Calculate the redirect URL
-        Map params = RequestUtils.computeParameters
-            (pageContext, paramId, paramName, paramProperty, paramScope,
-             name, property, scope, transaction);
+        Map params =
+            RequestUtils.computeParameters(
+                pageContext,
+                paramId,
+                paramName,
+                paramProperty,
+                paramScope,
+                name,
+                property,
+                scope,
+                transaction);
+                
         String url = null;
         try {
-            url = RequestUtils.computeURL(pageContext, forward, href,
-                                          page, params, anchor, true);
+            url =
+                RequestUtils.computeURL(
+                    pageContext,
+                    forward,
+                    href,
+                    page,
+                    params,
+                    anchor,
+                    true);
+                    
         } catch (MalformedURLException e) {
             RequestUtils.saveException(pageContext, e);
-            throw new JspException
-                (messages.getMessage("redirect.url", e.toString()));
+            throw new JspException(
+                messages.getMessage("redirect.url", e.toString()));
         }
 
         // Perform the redirection
-    HttpServletResponse response =
-      (HttpServletResponse) pageContext.getResponse();
+        HttpServletResponse response =
+            (HttpServletResponse) pageContext.getResponse();
+            
         try {
             response.sendRedirect(url);
+            
         } catch (IOException e) {
             RequestUtils.saveException(pageContext, e);
             throw new JspException(e.getMessage());
@@ -314,26 +314,24 @@ public class RedirectTag extends TagSupport {
 
     }
 
-
     /**
      * Release any acquired resources.
      */
     public void release() {
 
-    super.release();
+        super.release();
         anchor = null;
-    forward = null;
-    href = null;
-    name = null;
+        forward = null;
+        href = null;
+        name = null;
         page = null;
-    paramId = null;
-    paramName = null;
-    paramProperty = null;
-    paramScope = null;
-    property = null;
+        paramId = null;
+        paramName = null;
+        paramProperty = null;
+        paramScope = null;
+        property = null;
         scope = null;
 
     }
-
 
 }
