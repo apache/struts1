@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.7 2001/09/05 16:03:57 oalexeev Exp $
- * $Revision: 1.7 $
- * $Date: 2001/09/05 16:03:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.8 2001/09/17 19:59:30 husted Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/09/17 19:59:30 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "radio".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/09/05 16:03:57 $
+ * @version $Revision: 1.8 $ $Date: 2001/09/17 19:59:30 $
  */
 
 public class RadioTag extends BaseHandlerTag {
@@ -177,6 +177,7 @@ public class RadioTag extends BaseHandlerTag {
 
     /**
      * Generate the required input tag.
+     * [Indexed property since 1.1]
      *
      * @exception JspException if a JSP exception has occurred
      */
@@ -208,6 +209,7 @@ public class RadioTag extends BaseHandlerTag {
         // Create an appropriate "input" element based on our parameters
         StringBuffer results = new StringBuffer("<input type=\"radio\"");
         results.append(" name=\"");
+        // @since 1.1
         if( indexed )
                 prepareIndex( results, name );
         results.append(this.property);

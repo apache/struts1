@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.8 2001/07/24 11:42:15 oalexeev Exp $
- * $Revision: 1.8 $
- * $Date: 2001/07/24 11:42:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.9 2001/09/17 19:59:30 husted Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/09/17 19:59:30 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.8 $ $Date: 2001/07/24 11:42:15 $
+ * @version $Revision: 1.9 $ $Date: 2001/09/17 19:59:30 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -100,7 +100,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
 //  Indexing ability for Iterate
 
-    /** Whether to created indexed names for fields */
+    /** Whether to created indexed names for fields [since 1.1] */
     protected boolean indexed = false;
 
 //  Mouse Events
@@ -201,8 +201,8 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return (this.tabindex);
     }
 
-//  Indexing ability for Iterate
-    
+//  Indexing ability for Iterate [since 1.1]
+
     /** Sets the indexed value. */
     public void setIndexed(boolean indexed) {
         this.indexed = indexed;
@@ -470,7 +470,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      *  @param handlers The StringBuffer that output will be appended to.
      *  @exception JspException if 'indexed' tag used outside of iterate tag.
      */
-    protected void prepareIndex( StringBuffer handlers, String name ) 
+    protected void prepareIndex( StringBuffer handlers, String name )
         throws JspException {
         // look for outer iterate tag
         IterateTag iterateTag = (IterateTag) findAncestorWithClass(this, IterateTag.class);

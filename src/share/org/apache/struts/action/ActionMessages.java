@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.2 2001/07/16 05:14:09 dwinterfeldt Exp $
- * $Revision: 1.2 $
- * $Date: 2001/07/16 05:14:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.3 2001/09/17 19:58:57 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/09/17 19:58:57 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import java.util.List;
 
 
 /**
- * <p>A class that encapsulates messages.  Messages can be either global 
+ * <p>A class that encapsulates messages.  Messages can be either global
  * or they are specific to a particular bean property.</p>
  *
  * <p>Each individual message is described by an <code>ActionMessage</code>
@@ -86,10 +86,11 @@ import java.util.List;
  * Therefore, no synchronization is required for access to internal
  * collections.</p>
  *
+ * @since 1.1
  * @author David Geary
  * @author Craig R. McClanahan
  * @author David Winterfeldt
- * @revision $Revision: 1.2 $ $Date: 2001/07/16 05:14:09 $
+ * @revision $Revision: 1.3 $ $Date: 2001/09/17 19:58:57 $
  */
 
 public class ActionMessages implements Serializable {
@@ -114,9 +115,9 @@ public class ActionMessages implements Serializable {
      * as an ArrayList) for each property, keyed by property name.
      */
     protected HashMap messages = new HashMap();
-    
+
     /**
-     * The current number of the property/key being added.  This is used 
+     * The current number of the property/key being added.  This is used
      * to maintain the order messages are added.
     */
     protected int iCount = 0;
@@ -126,27 +127,27 @@ public class ActionMessages implements Serializable {
 
 
     /**
-     * Add a message to the set of messages for the specified property.  An 
-     * order of the property/key is maintained based on the initial addition 
+     * Add a message to the set of messages for the specified property.  An
+     * order of the property/key is maintained based on the initial addition
      * of the property/key.
      *
-     * @param property 	Property name (or ActionMessages.GLOBAL_MESSAGE)
-     * @param message 	The message to be added
+     * @param property  Property name (or ActionMessages.GLOBAL_MESSAGE)
+     * @param message   The message to be added
      */
     public void add(String property, ActionMessage message) {
 
         ActionMessageItem ami = (ActionMessageItem) messages.get(property);
         List list = null;
-        
+
         if (ami == null) {
            list = new ArrayList();
            ami = new ActionMessageItem(list, iCount++);
-            
+
            messages.put(property, ami);
         } else {
            list = ami.getList();
         }
-        
+
         list.add(message);
 
     }
@@ -182,28 +183,28 @@ public class ActionMessages implements Serializable {
 
         if (messages.size() == 0)
             return (Collections.EMPTY_LIST.iterator());
-        
+
         ArrayList results = new ArrayList();
         ArrayList actionItems = new ArrayList();
-        
+
         for (Iterator i =  messages.values().iterator(); i.hasNext(); )
            actionItems.add(i.next());
 
-        // Sort ActionMessageItems based on the initial order the 
+        // Sort ActionMessageItems based on the initial order the
         // property/key was added to ActionMessages.
         Collections.sort(actionItems, new Comparator() {
            public int compare(Object o1, Object o2) {
               return ((ActionMessageItem) o1).getOrder() - ((ActionMessageItem) o2).getOrder();
            }
         });
-        
+
         for (Iterator i =  actionItems.iterator(); i.hasNext(); ) {
            ActionMessageItem ami = (ActionMessageItem)i.next();
-           
+
            for (Iterator messages =  ami.getList().iterator(); messages.hasNext(); )
               results.add(messages.next());
         }
-        
+
         return (results.iterator());
 
     }
@@ -278,7 +279,7 @@ public class ActionMessages implements Serializable {
     }
 
     /**
-     * This class is used to store a set of messages associated with a 
+     * This class is used to store a set of messages associated with a
      * property/key and the position it was initially added to list.
     */
     protected class ActionMessageItem implements Serializable {
@@ -292,28 +293,28 @@ public class ActionMessages implements Serializable {
         * The position in the list of messages.
        */
        protected int iOrder = 0;
-       
+
        public ActionMessageItem(List list, int iOrder) {
-       	  this.list = list;
-       	  this.iOrder = iOrder;	
+          this.list = list;
+          this.iOrder = iOrder;
        }
-       
+
        public List getList() {
-       	  return list;
-       }	
-       
+          return list;
+       }
+
        public void setList(List list) {
-       	  this.list = list;
+          this.list = list;
        }
-       
+
        public int getOrder() {
-       	  return iOrder;
+          return iOrder;
        }
-       
+
        public void setOrder(int iOrder) {
-          this.iOrder = iOrder;	
+          this.iOrder = iOrder;
        }
-       
+
     }
 
 }

@@ -1,7 +1,13 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.2 2001/09/17 19:59:30 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/09/17 19:59:30 $
+ *
+ * ====================================================================
+ *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -73,12 +79,14 @@ import org.apache.struts.util.ResponseUtils;
 
 /**
  * Custom tag that iterates the elements of a message collection.
- * It defaults to retrieving the messages from <code>Action.ERROR_KEY</code>, 
- * but if the message attribute is set to true then the messages will be 
- * retrieved from <code>Action.MESSAGE_KEY</code>. This is an alternative 
+ * It defaults to retrieving the messages from <code>Action.ERROR_KEY</code>,
+ * but if the message attribute is set to true then the messages will be
+ * retrieved from <code>Action.MESSAGE_KEY</code>. This is an alternative
  * to the default <code>ErrorsTag</code>.
  *
+ * @since 1.1
  * @author David Winterfeldt
+ * @version $Revision: 1.2 $ $Date: 2001/09/17 19:59:30 $
 */
 public class MessagesTag extends BodyTagSupport {
 
@@ -103,7 +111,7 @@ public class MessagesTag extends BodyTagSupport {
      * The name of the scripting variable to be exposed.
     */
     protected String id = null;
-    
+
     /**
      * The servlet context attribute key for our resources.
     */
@@ -136,18 +144,18 @@ public class MessagesTag extends BodyTagSupport {
     protected String footer = null;
 
     /**
-     * If this is set to 'true', then the <code>Action.MESSAGE_KEY</code> will 
+     * If this is set to 'true', then the <code>Action.MESSAGE_KEY</code> will
      * be used to retrieve the messages from scope.
     */
     protected String message = null;
 
 
     public String getId() {
-	return (this.id);
+    return (this.id);
     }
 
     public void setId(String id) {
-	this.id = id;
+    this.id = id;
     }
 
     public String getBundle() {
@@ -168,11 +176,11 @@ public class MessagesTag extends BodyTagSupport {
     }
 
     public String getName() {
-	return (this.name);
+    return (this.name);
     }
 
     public void setName(String name) {
-	this.name = name;
+    this.name = name;
     }
 
 
@@ -208,7 +216,7 @@ public class MessagesTag extends BodyTagSupport {
         this.message = message;
     }
 
-   
+
     /**
      * Construct an iterator for the specified collection, and begin
      * looping through the body once per element.
@@ -216,27 +224,27 @@ public class MessagesTag extends BodyTagSupport {
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
-	// Were any messages specified?
-	ActionMessages messages = new ActionMessages();
-	
-	if (message != null && "true".equalsIgnoreCase(message))
-	   name = Action.MESSAGE_KEY;
+    // Were any messages specified?
+    ActionMessages messages = new ActionMessages();
 
-	try {
-	    Object value = pageContext.getAttribute
+    if (message != null && "true".equalsIgnoreCase(message))
+       name = Action.MESSAGE_KEY;
+
+    try {
+        Object value = pageContext.getAttribute
                 (name, PageContext.REQUEST_SCOPE);
-	    if (value == null) {
-		;
-	    } else if (value instanceof String) {
-		messages.add(ActionMessages.GLOBAL_MESSAGE,
+        if (value == null) {
+        ;
+        } else if (value instanceof String) {
+        messages.add(ActionMessages.GLOBAL_MESSAGE,
                              new ActionMessage((String) value));
-	    } else if (value instanceof String[]) {
+        } else if (value instanceof String[]) {
                 String keys[] = (String[]) value;
                 for (int i = 0; i < keys.length; i++)
                     messages.add(ActionMessages.GLOBAL_MESSAGE,
                                new ActionMessage(keys[i]));
             } else if (value instanceof ErrorMessages) {
-		String keys[] = ((ErrorMessages) value).getErrors();
+        String keys[] = ((ErrorMessages) value).getErrors();
                 if (keys == null)
                     keys = new String[0];
                 for (int i = 0; i < keys.length; i++)
@@ -250,25 +258,25 @@ public class MessagesTag extends BodyTagSupport {
                                                  value.getClass().getName()));
                 RequestUtils.saveException(pageContext, e);
                 throw e;
-	    }
+        }
         } catch (Exception e) {
             ;
-	}
-           
+    }
+
         // Acquire the collection we are going to iterate over
         if (property == null)
             iterator = messages.get();
         else
             iterator = messages.get(property);
 
-	// Store the first value and evaluate, or skip the body if none
-	if (iterator.hasNext()) {
+    // Store the first value and evaluate, or skip the body if none
+    if (iterator.hasNext()) {
            ActionMessage report = (ActionMessage)iterator.next();
            String msg = RequestUtils.message(pageContext, bundle,
                                              locale, report.getKey(),
                                              report.getValues());
-           
-	   pageContext.setAttribute(id, msg);
+
+       pageContext.setAttribute(id, msg);
 
            if (header != null && header.length() > 0) {
               String headerMessage = RequestUtils.message(pageContext, bundle,
@@ -278,12 +286,12 @@ public class MessagesTag extends BodyTagSupport {
                  ResponseUtils.write(pageContext, headerMessage);
               }
            }
-           
-           // Set the processed variable to true so the 
+
+           // Set the processed variable to true so the
            // doEndTag() knows processing took place
            processed = true;
-           
-	   return (EVAL_BODY_TAG);
+
+       return (EVAL_BODY_TAG);
         } else {
            return (SKIP_BODY);
         }
@@ -305,18 +313,18 @@ public class MessagesTag extends BodyTagSupport {
         }
 
         // Decide whether to iterate or quit
-	if (iterator.hasNext()) {
+    if (iterator.hasNext()) {
            ActionMessage report = (ActionMessage)iterator.next();
            String msg = RequestUtils.message(pageContext, bundle,
                                              locale, report.getKey(),
                                              report.getValues());
-	   
-	   pageContext.setAttribute(id, msg);
 
-	   return (EVAL_BODY_TAG);
-	} else {
-	   return (SKIP_BODY);
-	}
+       pageContext.setAttribute(id, msg);
+
+       return (EVAL_BODY_TAG);
+    } else {
+       return (SKIP_BODY);
+    }
 
     }
 

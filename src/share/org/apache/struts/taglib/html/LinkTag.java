@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.17 2001/07/24 11:42:15 oalexeev Exp $
- * $Revision: 1.17 $
- * $Date: 2001/07/24 11:42:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.18 2001/09/17 19:59:30 husted Exp $
+ * $Revision: 1.18 $
+ * $Date: 2001/09/17 19:59:30 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2001/07/24 11:42:15 $
+ * @version $Revision: 1.18 $ $Date: 2001/09/17 19:59:30 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -329,6 +329,7 @@ public class LinkTag extends BaseHandlerTag {
 
     /**
      * Render the beginning of the hyperlink.
+     * Indexed property since 1.1
      *
      * @exception JspException if a JSP exception has occurred
      */
@@ -348,7 +349,8 @@ public class LinkTag extends BaseHandlerTag {
             (pageContext, paramId, paramName, paramProperty, paramScope,
              name, property, scope, transaction);
 
-        //if "indexed=true", add "index=x" parameter to query string 
+        // if "indexed=true", add "index=x" parameter to query string
+        // since 1.1
         if( indexed ) {
            // look for outer iterate tag
            IterateTag iterateTag = (IterateTag) findAncestorWithClass(this, IterateTag.class);
@@ -369,7 +371,7 @@ public class LinkTag extends BaseHandlerTag {
               params.put("index", Integer.toString(iterateTag.getIndex()));
            }
         }
-        
+
         String url = null;
         try {
             url = RequestUtils.computeURL(pageContext, forward, href,

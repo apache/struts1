@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.1 2001/07/12 05:18:31 dwinterfeldt Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/12 05:18:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.2 2001/09/17 19:58:57 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/09/17 19:58:57 $
  *
  * ====================================================================
  *
@@ -73,9 +73,10 @@ import java.io.Serializable;
  * message resources database) plus up to four placeholder objects that can
  * be used for parametric replacement in the message text.
  *
+ * @since 1.1
  * @author Craig R. McClanahan
  * @author David Winterfeldt
- * @version $Revision: 1.1 $ $Date: 2001/07/12 05:18:31 $
+ * @version $Revision: 1.2 $ $Date: 2001/09/17 19:58:57 $
  */
 
 public class ActionMessage implements Serializable {

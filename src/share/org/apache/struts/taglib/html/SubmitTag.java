@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.4 2001/07/24 11:42:15 oalexeev Exp $
- * $Revision: 1.4 $
- * $Date: 2001/07/24 11:42:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.5 2001/09/17 19:59:30 husted Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/09/17 19:59:30 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  * Tag for input fields of type "submit".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/07/24 11:42:15 $
+ * @version $Revision: 1.5 $ $Date: 2001/09/17 19:59:30 $
  */
 
 public class SubmitTag extends BaseHandlerTag {
@@ -130,7 +130,7 @@ public class SubmitTag extends BaseHandlerTag {
      * @param property The property name
      */
     public void setProperty(String property) {
-       
+
         this.property = property;
 
     }
@@ -195,6 +195,7 @@ public class SubmitTag extends BaseHandlerTag {
 
     /**
      * Process the end of this tag.
+     * Indexed property since 1.1
      *
      * @exception JspException if a JSP exception has occurred
      */
@@ -211,7 +212,8 @@ public class SubmitTag extends BaseHandlerTag {
         StringBuffer results = new StringBuffer();
         results.append("<input type=\"submit\" name=\"");
         results.append(property);
-        if( indexed ) 
+        // since 1.1
+        if( indexed )
                 prepareIndex( results, null );
         results.append("\"");
         if (accesskey != null) {

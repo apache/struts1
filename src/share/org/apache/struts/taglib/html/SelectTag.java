@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.7 2001/07/24 11:42:15 oalexeev Exp $
- * $Revision: 1.7 $
- * $Date: 2001/07/24 11:42:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.8 2001/09/17 19:59:30 husted Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/09/17 19:59:30 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.ResponseUtils;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/07/24 11:42:15 $
+ * @version $Revision: 1.8 $ $Date: 2001/09/17 19:59:30 $
  */
 
 public class SelectTag extends BaseHandlerTag {
@@ -235,6 +235,7 @@ public class SelectTag extends BaseHandlerTag {
 
     /**
      * Render the beginning of this form.
+     * Indexed property since 1.1
      *
      * @exception JspException if a JSP exception has occurred
      */
@@ -243,6 +244,7 @@ public class SelectTag extends BaseHandlerTag {
         // Create an appropriate "form" element based on our parameters
         StringBuffer results = new StringBuffer("<select");
         results.append(" name=\"");
+        // since 1.1
         if( indexed )
                 prepareIndex( results, name );
         results.append(property);
@@ -282,7 +284,7 @@ public class SelectTag extends BaseHandlerTag {
         } else {
             Object bean = pageContext.findAttribute(name);
             if (bean == null) {
-                JspException e = new JspException                    
+                JspException e = new JspException
                     (messages.getMessage("getter.bean", name));
                 RequestUtils.saveException(pageContext, e);
                 throw e;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.8 2001/07/24 11:42:15 oalexeev Exp $
- * $Revision: 1.8 $
- * $Date: 2001/07/24 11:42:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.9 2001/09/17 19:59:30 husted Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/09/17 19:59:30 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.ResponseUtils;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2001/07/24 11:42:15 $
+ * @version $Revision: 1.9 $ $Date: 2001/09/17 19:59:30 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -145,6 +145,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
 
     /**
      * Generate the required input tag.
+     * Indexed property since 1.1
      *
      * @exception JspException if a JSP exception has occurred
      */
@@ -154,6 +155,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
         StringBuffer results = new StringBuffer("<input type=\"");
         results.append(type);
         results.append("\" name=\"");
+        // since 1.1
         if( indexed )
                 prepareIndex( results, name );
         results.append(property);
