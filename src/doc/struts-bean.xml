@@ -114,8 +114,27 @@
     <p>If a problem occurs while retrieving the specified bean property, a
     request time exception will be thrown.</p>
     
-    <p>Define differs from "jsp:useBean" in that it allows you to easily 
-    create a new page-scope bean using the property of an existing bean.</p>
+    <p>The <code>&lt;bean:define&gt;</code> tag differs from
+    <code>&lt;jsp:useBean&gt;</code> in several ways, including:</p>
+    <ul>
+    <li>Unconditionally creates (or replaces) a bean under the
+        specified identifier.</li>
+    <li>Creates beans in page scope only.</li>
+    <li>Can create a bean with the value returned by a property getter
+        of a different bean (including properties referenced with a
+        nested and/or indexed property name).</li>
+    <li>Can create a bean whose contents is a literal string (or the result
+        of a runtime expression) specified by the <code>value</code>
+        attribute.</li>
+    <li>Does not support nested content (such as
+        <code>&lt;jsp:setProperty&gt;</code> tags) that are only executed
+        if a bean was actually created.</li>
+    </ul>
+
+    <p>See the Bean Developer's Guide section on
+    <a href="api/org/apache/struts/taglib/bean/package-summary.html#doc.Creation">
+    bean creation</a> for more information about these differences, as well
+    as alternative approaches to introducing beans into a JSP page.</p>
     </info>
 
     <attribute>
