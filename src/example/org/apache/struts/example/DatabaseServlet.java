@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/DatabaseServlet.java,v 1.4 2000/10/15 03:34:51 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/10/15 03:34:51 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/DatabaseServlet.java,v 1.5 2001/02/02 18:27:10 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/02/02 18:27:10 $
  *
  * ====================================================================
  *
@@ -65,11 +65,11 @@ package org.apache.struts.example;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.MissingResourceException;
@@ -90,7 +90,7 @@ import org.apache.struts.util.MessageResources;
  * Demonstration Application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/10/15 03:34:51 $
+ * @version $Revision: 1.5 $ $Date: 2001/02/02 18:27:10 $
  */
 
 public final class DatabaseServlet
@@ -114,9 +114,9 @@ public final class DatabaseServlet
 
 
     /**
-     * The pathname of our persistent database storage file.
+     * The resource path of our persistent database storage file.
      */
-    private String pathname = null;
+    private String pathname = "/WEB-INF/database.xml";
 
 
     // ---------------------------------------------------- HttpServlet Methods
@@ -131,7 +131,7 @@ public final class DatabaseServlet
 	if (debug >= 1)
 	    log("Finalizing database servlet");
 
-	// Unload our database to persistent storage
+	// Unload our database to persistent storage if possible
 	try {
 	    unload();
 	} catch (Exception e) {
@@ -151,8 +151,8 @@ public final class DatabaseServlet
      * <ul>
      * <li><strong>debug</strong> - The debugging detail level for this
      *     servlet, which controls how much information is logged.  [0]
-     * <li><strong>pathname</strong> - Pathname to our persistent storage
-     *     [getRealPath("/") + "/WEB-INF/database.xml"]
+     * <li><strong>pathname</strong> - Resource pathname to our persistent
+     *     storage ["/WEB-INF/database.xml"]
      * </ul>
      *
      * @exception ServletException if we cannot configure ourselves correctly
@@ -169,6 +169,9 @@ public final class DatabaseServlet
 	}
 	if (debug >= 1)
 	    log("Initializing database servlet");
+        value = getServletConfig().getInitParameter("pathname");
+        if (value != null)
+            pathname = value;
 
 	// Load our database from persistent storage
 	try {
@@ -254,15 +257,13 @@ public final class DatabaseServlet
 
 	// Acquire an input stream to our database file
 	if (debug >= 1)
-	    log("Loading database from '" + pathname() + "'");
-	FileInputStream fis = null;
-	try {
-	    fis = new FileInputStream(pathname());
-	} catch (FileNotFoundException e) {
-	    log("No persistent database to be loaded");
-	    return;
-	}
-	BufferedInputStream bis = new BufferedInputStream(fis);
+	    log("Loading database from '" + pathname + "'");
+        InputStream is = getServletContext().getResourceAsStream(pathname);
+        if (is == null) {
+            log("No such resource available - loading empty database");
+            return;
+        }
+	BufferedInputStream bis = new BufferedInputStream(is);
 
 	// Construct a digester to use for parsing
 	Digester digester = new Digester();
@@ -286,30 +287,25 @@ public final class DatabaseServlet
 
 
     /**
-     * Return the pathname of our persistent storage file.
-     */
-    private String pathname() {
-
-	if (this.pathname != null)
-	    return (this.pathname);
-	else
-	    return (getServletContext().getRealPath("/") +
-	            "/WEB-INF/database.xml");
-
-    }
-
-
-    /**
-     * Unload our database to its persistent storage version.
+     * Unload our database to its persistent storage version, if possible.
+     * If we are running directly out of a WAR file, saving cannot occur.
      *
      * @exception Exception if any problem occurs while unloading
      */
     private synchronized void unload() throws Exception {
 
+        // Calculate the file pathname to our storage file (if any)
+        String pathname =
+            getServletContext().getRealPath(this.pathname);
+        if (pathname != null) {
+            log("Cannot unload database to resource path " + this.pathname);
+            return;
+        }
+
 	// Create a writer for our database
 	if (debug >= 1)
-	    log("Unloading database to '" + pathname() + "'");
-	FileWriter fw = new FileWriter(pathname());
+	    log("Unloading database to '" + pathname + "'");
+	FileWriter fw = new FileWriter(pathname);
 	BufferedWriter bw = new BufferedWriter(fw);
 	PrintWriter writer = new PrintWriter(bw);
 	writer.println("<database>");
