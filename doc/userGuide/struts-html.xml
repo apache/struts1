@@ -2288,6 +2288,8 @@
                 <p>If you would like to obtain the coordinates of the mouse
                 click that submitted this request, see the information below
                 on the <code>property</code> attribute.</p>
+                
+                <p>This tag is only valid when nested inside a form tag body.</p>
 
                 </info>
 
@@ -6281,7 +6283,8 @@
         </summary>
         <tagclass>org.apache.struts.taglib.html.TextTag</tagclass>
         <info>
-            Render an input button of type text.
+            Render an input button of type text.  This tag is only valid when nested
+                inside a form tag body.
         </info>
 
         <attribute>
@@ -6594,7 +6597,8 @@
         </summary>
         <tagclass>org.apache.struts.taglib.html.TextareaTag</tagclass>
         <info>
-            Render a textarea element.
+            Render a textarea element.  This tag is only valid when nested
+                inside a form tag body.
         </info>
 
         <attribute>
