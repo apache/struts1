@@ -10,11 +10,21 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources">
 
 <section name="Consultants">
+<p>
+	We no longer maintain a list of consultants at the Struts site. However,
+	<a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsProjectPages">Struts Wiki</a> may 
+	be used to list Struts consultants.
+</p>
+
+<!--
 <p><b>Provided as a reference only. No endorsements given or implied.
 To be listed, post a documentation enhancement request in Bugzilla.</b></p>
 <p><b><font color="red">Pages linked here must specifically
 mention Struts consulting and be links to corporations. Listings that do not reference Struts will be
 removed.</font></b></p>
+-->
+
+<!--
 <p><a href="http://www.accessdc.com/">AccessData</a> - <a href="mailto:cassenza@Accessdc.com">Chris Assenza</a>.</p>
 <p><a href="http://www.aragost.com">aragost (Switzerland)</a> - <a href="mailto:klaus@aragost.com">Klaus Bucka-Lassen</a>.</p>
 <p><a href="http://www.athensgroup.com/">Athens Group</a> - <a href="mailto:flawlor@athensgroup.com">Frank Lawlor</a>.</p>
@@ -67,6 +77,7 @@ removed.</font></b></p>
 <p><a href="http://www.upco.co.uk">Upco [UK]</a> - <a href="mailto:Jon.Ridgway@upco.co.uk">Jon Ridgeway</a>.</p>
 <p><a href="http://www.viadee.de/">viadee <font size="1">UNTERNEHMENSBERATUNG GmbH</font> [DE]</a> - <a href="mailto:friedrich.budde@viadee.de">Frido Budde</a>.</p>
 <p><a href="http://www.tritus.ca/">Tritus Consultant Group</a> - <a href="adam@tritus.ca">Adam Sherman</a>.</p>
+-->
 </section>
 
 </chapter></body></document>

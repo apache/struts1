@@ -10,35 +10,29 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Powered by Struts">
+<p>
+	We no longer maintain a list of sites powered by Struts. However,
+	<a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsProjectPages">Struts Wiki</a> may 
+	be used to list Struts sites.
+</p>
+
+<!--
 <p><b><font color="red">Pages linked here must indicate that they are "powered by Struts" 
 or otherwise credit the Apache Software Foundation pursuant to item 3 of the <a href="http://apache.org/LICENSE">
 Apache Software License</a> ("This product includes software developed by the Apache Software Foundation 
 (http://www.apache.org/)."</font></b></p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://www.application-servers.com/"><b>Application-Servers.com</b></a> - French site.</p>
+-->
+
+<!--
 <p><a href="http://amalregistry.webhop.org/"><b>Alaskan Malamute Registry</b></a></p>
 <p><a href="http://www.basebeans.com/"><b>baseBeans Engineering</b></a></p>
 <p><a href="https://secure.benefit-systems.com/benefit/bsi/"><b>Benefit Systems, Inc.</b></a></p>
 <p><a href="http://www.bug-track.com/"><b>Bug-Track.com</b></a></p>
-<!-- HTTP [500]  6/25/02 --><p><a href="http://www.clickstarttutoring.com/index.jsp"><b>Clickstart Tutoring</b></a> - One on one in home tutoring.</p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://dbforms.org/"><b>dbForms</b></a> - RAD framework for database applications.</p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://www.e-involve.com/"><b>E-Involve</b></a></p>
 <p><a href="http://adminweb.enitel.no/login.jsp"><b>Enitel</b></a> - French site.</p>
 <p><a href="http://www.fixafest.nu"><b>FixAFest.nu</b></a> - Party planning site (in Swedish Only).</p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://get2hawaii.com/"><b>Get To Hawaii</b></a> - B2B Travel Service Provider</p>
-<!-- SITE SHUTDOWN  6/25/02 --><p><a href="http://www.hallmarkstories.com/"><b>Hallmark Stories</b></a> - "Tell the story behind your photos".</p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://www.iknowbase.com/"><b>iKnowBase</b></a> - The Knowledge Engine.</p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://ironmax.com/"><b>IronMax</b></a> - B2B site; see Equipment Information Products.</p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://www.ipipi.com/index.jsp"><b>IPIPI</b></a> - e-Mail to SMS delivery service.</p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://www.jcorporate.com"><b>Jcorporate.com</b></a> - open source and shared source commercial applications.</p>
 <p><a href="http://www.juliannegiffin.com/"><b>JulianneGiffin.com</b></a></p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://www.militaryhire.com"><b>MilitaryHire</b></a> - Job and resume site for veterans</p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://www.newdawnart.com/"><b>New Dawn Art</b></a> - Social and spiritual art on the Internet.</p>
-<!-- HTTP [404]  6/25/02 --><p><a href="http://www.webappcabaret.com/normad"><b>Normad</b></a> - Web Timesheet Management System.</p>
 <p><a href="https://www.organox.com.br/"><b>Organonx</b></a></p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://www.pizzahut.com.au/"><b>Pizza Hut Online / Sydney Metro</b></a> - For pickup or delivery in the Sydney Metro area.</p>
 <p><a href="http://www.raibledesigns.com/"><b>Raible Designs</b></a></p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://www.readymindsjobs.com/"><b>ReadyMinds Jobs</b></a> - Online job posting and placement system using Struts and Tiles on JBoss and Tomcat.</p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://www.reviewalert.com/"><b>Review Alert</b></a> - Free service that allows you to be notified when new reviews are posted on Amazon.com for dvds, music cds, books on any topic.</p>
 <p><a href="http://www.rollerweblogger.org/"><b>Roller Website</b></a></p>
 <p><a href="http://www.ipayment.co.za/"><b>South African Revenue Services</b></a> - Directive and certificate service.</p>
 <p><a href="http://www.citlocate.com/cit-framework/citExampleWelcome.jsp"><b>SpatialFX</b></a></p>
@@ -47,8 +41,8 @@ Apache Software License</a> ("This product includes software developed by the Ap
 <p><a href="http://www.webappcabaret.com/teatimej/"><b>TeaTimeJ</b></a> - Website and Java hosting.</p>
 <p><a href="http://www.webappwriter.com/"><b>webAppWriter</b></a> - write and deploy a J2EE app in 15 minutes.</p>
 <p><a href="http://www.windsurfpassion.com/"><b>WindSurfPassion</b></a> - Dedicated to windsurfing.</p>
-<!-- MISSING CREDIT  6/25/02 --><p><a href="http://wxxi.org/"><b>WXXI Spring MarketPlace 2001</b></a> - Online auction for Public Television station.</p>
 <p><a href="http://www.yos.biz/"><b>Yos Solutions</b></a> - Struts consulting, coaching and workshops. (German)</p>
+-->
 </section>
 
 </chapter></body></document>
