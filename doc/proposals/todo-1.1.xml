@@ -42,7 +42,6 @@
   
   <ul>
   <li><a href="proposal-workflow.html">Workflow</a></li>
-  <li><a href="http://husted.com/struts/resources/struts-security.htm">Role Based Actions</a></li>
   <li><a href="http://husted.com/struts/resources/logic-niallp.htm">If/Else/Switch tags</a></li>
   <li><a href="http://husted.com/struts/resources/codemaker.htm">Code generator</a></li>
   </ul>
@@ -139,22 +138,6 @@
       action and form bean classes, plus the supporting data structures.</p>
     </info>
 
-    <task name="Remove Deprecations">
-      <info>
-        <p>Clean out all 1.0 deprecated classes and files, framework-wide.</p>
-      </info>
-    </task>
-
-
-    <task name="ActionForms With Dynamic Properties">
-      <info>
-        <p>Create mechanisms to support ActionForm implementations where the
-        set of properties to be included is dynamically calculated, in addition
-        to the current support for properties that are accessed through the
-        Java Reflection APIs and are therefore fixed.</p>
-      </info>
-    </task>
-
     <task name="Workflow Processing">
       <info>
         <p>Create a mechanism by which business logic (now encoded in
@@ -220,23 +203,6 @@
         [STRUTS-DEV, Matthias Kerkhoff, 11/18/2000]
         </p>
       </info>
-    </task>
-
-    <task name="Role-Based Action Execution">
-      <info>
-        <p>Add the ability to require the current user to be in a particular
-        security role before they can execute a particular action.
-        </p>
-        <p>
-        <a href="http://husted.com/struts/resources/struts-security.htm"><b>A proposed extension is available.</b></a>
-        </p>
-        <p>
-        [STRUTS-DEV, James W., 01/23/2001]
-        </p>
-      </info>
-      <assigned>
-        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>
-      </assigned>
     </task>
 
   </task-list>
