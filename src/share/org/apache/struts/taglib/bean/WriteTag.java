@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.15 2001/12/12 16:11:00 oalexeev Exp $
- * $Revision: 1.15 $
- * $Date: 2001/12/12 16:11:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.16 2001/12/17 11:08:10 oalexeev Exp $
+ * $Revision: 1.16 $
+ * $Date: 2001/12/17 11:08:10 $
  *
  * ====================================================================
  *
@@ -89,31 +89,38 @@ import org.apache.struts.util.ResponseUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2001/12/12 16:11:00 $
+ * @version $Revision: 1.16 $ $Date: 2001/12/17 11:08:10 $
  */
 
 public class WriteTag extends TagSupport {
 
     /**
-     * The key to search default format string for timestamp
-     * in resources.
+     * The key to search default format string for 
+     * java.sql.Timestamp in resources.
      */    
-    public static final String TIMESTAMP_FORMAT_KEY = 
-      "org.apache.struts.taglib.bean.format.timestamp";
+    public static final String SQL_TIMESTAMP_FORMAT_KEY = 
+      "org.apache.struts.taglib.bean.format.sql.timestamp";
 
     /**
-     * The key to search default format string for date
-     * in resources.
+     * The key to search default format string for 
+     * java.sql.Date in resources.
+     */
+    public static final String SQL_DATE_FORMAT_KEY = 
+      "org.apache.struts.taglib.bean.format.sql.date";
+
+    /**
+     * The key to search default format string for 
+     * java.sql.Time in resources.
+     */
+    public static final String SQL_TIME_FORMAT_KEY = 
+      "org.apache.struts.taglib.bean.format.sql.time";
+
+    /**
+     * The key to search default format string for 
+     * java.util.Date in resources.
      */
     public static final String DATE_FORMAT_KEY = 
       "org.apache.struts.taglib.bean.format.date";
-
-    /**
-     * The key to search default format string for time
-     * in resources.
-     */
-    public static final String TIME_FORMAT_KEY = 
-      "org.apache.struts.taglib.bean.format.time";
 
     /**
      * The key to search default format string for int
@@ -224,6 +231,19 @@ public class WriteTag extends TagSupport {
     }
 
     /**
+     * The key to search format string in applciation resources
+     */
+    protected String formatKey = null;
+
+    public String getFormatKey() {
+        return (this.formatKey);
+    }
+
+    public void setFormatKey(String formatKey) {
+        this.formatKey = formatKey;
+    }
+
+    /**
      * The session scope key under which our Locale is stored.
      */
     protected String localeKey = Action.LOCALE_KEY;
@@ -297,11 +317,23 @@ public class WriteTag extends TagSupport {
         Format format = null;
         Object value = valueToFormat;
         Locale locale = RequestUtils.retrieveUserLocale( pageContext, this.localeKey );
+        boolean formatStrFromResources = false;
 
+        // Return String object as is.
         if ( value instanceof java.lang.String ) {
                 return (String)value;
-        } else if ( value instanceof Number ) {
-                boolean formatStrFromResources = false;
+        } else {
+
+            // Try to retrieve format string from resources by the key from formatKey.
+            if( formatKey!=null ) {
+                    formatStr = RequestUtils.message( pageContext, this.bundle,
+                                                this.localeKey, this.formatKey );
+                    formatStrFromResources = true;
+            }
+
+            // Prepare format object for numeric values.
+            if ( value instanceof Number ) {
+
                 if( formatStr==null ) {
                         if( ( value instanceof Byte )    ||
                             ( value instanceof Short )   ||
@@ -318,6 +350,7 @@ public class WriteTag extends TagSupport {
                         if( formatStr!=null ) 
                                 formatStrFromResources = true;
                 }
+
                 if( formatStr!=null ) {
                         try {
                                 format = NumberFormat.getNumberInstance( locale );
@@ -331,24 +364,40 @@ public class WriteTag extends TagSupport {
                                 throw e;
                         }
                 }
-        } else if (  value instanceof java.util.Date ) {
+
+            } else if (  value instanceof java.util.Date ) {
+
                 if( formatStr==null ) {
+
                         if (  value instanceof java.sql.Timestamp ) {
                                 formatStr = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, TIMESTAMP_FORMAT_KEY );
+                                              this.localeKey, SQL_TIMESTAMP_FORMAT_KEY );
                         } else if (  value instanceof java.sql.Date ) {
                                 formatStr = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, DATE_FORMAT_KEY );
+                                              this.localeKey, SQL_DATE_FORMAT_KEY );
                         } else if (  value instanceof java.sql.Time ) {
                                 formatStr = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, TIME_FORMAT_KEY );
+                                              this.localeKey, SQL_TIME_FORMAT_KEY );
+                        } else if (  value instanceof java.util.Date ) {
+                                formatStr = RequestUtils.message(pageContext, this.bundle,
+                                              this.localeKey, DATE_FORMAT_KEY );
                         }
+
+                        if( formatStr!=null ) 
+                                formatStrFromResources = true;
+
                 }
                 
-                if( formatStr!=null )
-                        format = new SimpleDateFormat( formatStr, locale );
+                if( formatStr!=null ) {
+                        if( formatStrFromResources ) {
+                                format = new SimpleDateFormat( formatStr, locale );
+                        } else {
+                                format = new SimpleDateFormat( formatStr );
+                        }
+                }
 
-        } 
+            } 
+        }
 
         if( format!=null )
                 return format.format( value );
