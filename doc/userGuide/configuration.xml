@@ -78,8 +78,8 @@
     moved to this section of <code>struts-config.xml</code> in order to allow
     different modules in the same web application to be configured differently.
     For full details on available parameters see the
-    <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
-    struts-config_1_1.dtd</a> or the list below.
+    <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+    struts-config_1_2.dtd</a> or the list below.
     </p>
 
     
@@ -662,7 +662,6 @@
         <strong>WARNING</strong> - If you define
         an object of the same name in more than one configuration file,
         the last one loaded quietly wins.
-
         </li>
 
         <li>
@@ -698,181 +697,6 @@
         </li>
 
     </ul>
-
-
-     <p>
-     The following parameters may still be used with the Struts 1.1 release
-     but are <strong>deprecated</strong>.
-     </p>
-
-     <ul>
-
-        <li>
-        <strong>application</strong> - Java class name of the application
-        resources bundle base class.
-        [NONE]
-        <em>DEPRECATED - Configure this using the "parameter" attribute
-        of the &lt;message-resources&gt; element.</em>
-        </li>
-
-        <li><strong>bufferSize</strong> - The size of the input buffer used
-        when processing file uploads.
-        [4096]
-        <em>DEPRECATED - Configure this using the "bufferSize" attribute
-        of the &lt;controller&gt; element.</em>
-        </li>
-
-        <li>
-        <strong>content</strong> - Default content type and character encoding
-        to be set on each response; may be overridden by a forwarded-to
-        servlet or JSP page.
-        [text/html]
-        <em>DEPRECATED - Configure this using the "contentType" attribute
-        of the &lt;controller&gt; element.</em>
-        </li>
-
-        <li>
-        <strong>debug</strong> - The debugging detail level that controls
-        how much information is logged for this servlet.
-        Accepts values 0 (off) and from 1 (least serious) through 6
-        (most serious). [0]
-        <em>DEPRECATED - Configure the logging detail level in your
-        underlying logging implementation.</em>
-        </li>
-
-        <li>
-        <strong>factory</strong> - The Java class name of the
-        <code>MessageResourcesFactory</code> used to create the application
-        <code>MessageResources</code> object.
-        [org.apache.struts.util.PropertyMessageResourcesFactory]
-        <em>DEPRECATED - Configure this using the "factory" attribute
-        of the &lt;message-resources&gt; element.</em>
-        </li>
-
-        <li>
-        <strong>formBean</strong> - The Java class name of the ActionFormBean
-        implementation to use
-        [org.apache.struts.action.ActionFormBean].
-        <em>DEPRECATED - Configure this using the "className" attribute
-        of each &lt;form-bean&gt; element.</em>
-        </li>
-
-        <li>
-        <strong>forward</strong> - The Java class name of the ActionForward
-        implementation to use
-        [org.apache.struts.action.ActionForward].
-        Two convenient classes you may wish to use are:
-        <ul>
-
-            <li>
-            <em>org.apache.struts.action.ForwardingActionForward</em> -
-            Subclass of <code>org.apache.struts.action.ActionForward</code>
-            that defaults the <code>redirect</code> property to
-            <code>false</code> (same as the ActionForward default value).
-            </li>
-
-            <li>
-            <em>org.apache.struts.action.RedirectingActionForward</em> -
-            Subclass of <code>org.apache.struts.action.ActionForward</code>
-            that defaults the <code>redirect</code> property to
-            <code>true</code>.
-            </li>
-
-        </ul>
-        <em>DEPRECATED - Configure this using the "className" attribute of
-        each &lt;forward&gt; element.</em>
-        </li>
-
-        <li>
-        <strong>locale</strong> - If set to <code>true</code>, and there is a
-        user session, identify and store an appropriate
-        <code>java.util.Locale</code> object (under the standard key
-        identified by <code>Globals.LOCALE_KEY</code>) in the user's session
-        if there is not a Locale object there already.
-        [true]
-        <em>DEPRECATED - Configure this using the "locale" attribute of
-        the &lt;controller&gt; element.</em>
-        </li>
-
-        <li>
-        <strong>mapping</strong> - The Java class name of the ActionMapping
-        implementation to use
-        [org.apache.struts.action.ActionMapping].
-        Two convenient classes you may wish to use are:
-
-        <ul>
-
-            <li>
-            <em>org.apache.struts.action.RequestActionMapping</em> - Subclass
-            of <code>org.apache.struts.action.ActionMapping</code> that
-            defaults the <code>scope</code> property to "request".
-            </li>
-
-            <li>
-            <em>org.apache.struts.action.SessionActionMapping</em> - Subclass
-            of <code>org.apache.struts.action.ActionMapping</code> that
-            defaults the <code>scope</code> property to "session".
-            (Same as the ActionMapping default value).
-            </li>
-
-        </ul>
-
-        <em>DEPRECATED - Configure this using the "className" attribute of
-        each &lt;action&gt; element, or globally for a module by using the
-        "type" attribute of the &lt;action-mappings&gt; element.</em>
-        </li>
-
-        <li>
-        <strong>maxFileSize</strong> - The maximum size (in bytes) of a file
-        to be accepted as a file upload.
-        Can be expressed as a number followed by a "K" "M", or "G", which are
-        interpreted to mean kilobytes, megabytes, or gigabytes, respectively.
-        [250M]
-        <em>DEPRECATED - Configure this using the "maxFileSize" attribute of
-        the &lt;controller&gt; element.</em>
-        </li>
-
-        <li>
-        <strong>multipartClass</strong> - The fully qualified name of the
-        MultipartRequestHandler implementation class to be used for processing
-        file uploads.
-        If set to <code>none</code>, disables Struts multipart request
-        handling.
-        [org.apache.struts.upload.CommonsMultipartRequestHandler]
-        <em>DEPRECATED - Configure this using the "multipartClass" attribute
-        of the &lt;controller&gt; element.</em>
-        </li>
-
-        <li>
-        <strong>nocache</strong> - If set to <code>true</code>, add HTTP
-        headers to every response intended to defeat browser caching of
-        any response we generate or forward to.
-        [false]
-        <em>DEPRECATED - Configure this using the "nocache" attribute of
-        the &lt;controller&gt; element.</em>
-        </li>
-
-        <li>
-        <strong>null</strong> - If set to <code>true</code>, set our
-        application resources to return <code>null</code> if an unknown
-        message key is used.
-        Otherwise, an error message including the offending message key will
-        be returned.
-        [true]
-        <em>DEPRECATED - Configure this using the "null" attribute of
-        the &lt;message-resources&gt; element.</em>
-        </li>
-
-        <li>
-        <strong>tempDir</strong> - The temporary working directory to use when
-        processing file uploads.
-        [The working directory provided to this web application as a servlet
-        context attribute]
-        <em>DEPRECATED - Configure this using the "tempDir" attribute of
-        the &lt;controller&gt; element.</em>
-        </li>
-
-     </ul>
 
      <p>
        <strong>WARNING</strong> - Struts will not

@@ -38,8 +38,8 @@
     
         <li>
         Write an <code>ActionForm</code> class to mediate between the Model
-        and the View, as described in <a href="building_model.html">Building
-        Model Components</a>.
+        and the View. (See also <a href="../faqs/actionForm.html">Building
+        an ActionForm</a>).
         </li>
 
         <li>
@@ -110,11 +110,12 @@
     </ul>
     
     <p>
-    The Struts controller delegates most of this grunt work to Action classes.
+    The Struts controller delegates most of this grunt work to the
+    <a href="#request_processor">Request Processor</a> and Action classes.
     </p>
     
     <p>
-    In addition to being the controller for your application, the
+    In addition to being the front controller for your application, the
     ActionServlet instance also is responsible for initialization and
     clean-up of resources.  
     When the controller initializes, it first loads the application config 
@@ -354,10 +355,9 @@
     If you override a "stub" method, and provide error messages in the
     standard application resource, Struts will automatically validate the
     input from the form (using your method). 
-    See "<a href="./building_view.html#form_validation">
-    Action Form Validation</a>" for details. 
-    Of course, you can also ignore the ActionForm validation and provide your 
-    own in the Action object.
+    See "<a href="./building_view.html#form_validation">Automatic Form
+    Validation</a>" for details. Of course, you can also ignore the
+    ActionForm validation and provide your own in the Action object.
     </li>
 
     <li>

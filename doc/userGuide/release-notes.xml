@@ -11,7 +11,7 @@
     <section name="Introduction" href="Introduction">
       <p>This section contains release notes for
       <strong>nightly build</strong> of the Struts Framework, for changes that have taken place since
-      <a href="release-notes-1.1.html">Version 1.1</a>was released.</p>
+      <a href="release-notes-1.1.html">Version 1.1</a> was released.</p>
     </section>
     <section name="What's Included?" href="Included">
       <p>The binary distribution of this release includes the following files relevant to Struts:</p>
@@ -63,23 +63,7 @@
         <li>
         <code>webapps/</code>&#160;- Web Application Archive (WAR) files for the web applications that are included with Struts.</li>
       </ul>
-      <p>The following libraries are included with this release of Struts:</p>
-      <ul>
-        <li>ANTLR 2.7.2</li>
-        <li>Commons BeanUtils 1.6.1</li>
-        <li>Commons Collections 2.1</li>
-        <li>Commons Digester 1.5</li>
-        <li>Commons FileUpload 1.0</li>
-        <li>Commons Lang 2.0</li>
-        <li>Commons Logging 1.0.3</li>
-        <li>Jakarta ORO 2.0.7</li>
-      </ul>
-      <p>All of the forgoing libraries are a stable release and are distributed under an Apache-style license.</p>
-      <p>The following libraries are
-      <strong>not</strong> at stable release stage, and are distributed only as part of Struts own unstable development build.</p>
-      <ul>
-        <li>Commons Validator 1.1.1-dev</li>
-      </ul>
+      <p>For the version requirements of each library, see the<a href="installation.html">Installation chapter</a>.</p>
     </section>
     <section name="What's new?" href="New">
       <p>This section highlights new features added and critical changes made since the last release. Other interesting changes are listed in the

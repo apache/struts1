@@ -81,14 +81,10 @@
     </menu>
 
     <menu name="Development">
-        <item name="CVS Access"  href="reports/cvs-usage.html"/>
         <item
             name="CVS Repository"
             href="http://cvs.apache.org/viewcvs/jakarta-struts/"
             />
-        <item name="CVS Changelog"  href="reports/changelog-report.html"/>
-        <item name="File Activity"  href="reports/file-activity-report.html"/>
-        <item name="Build Dependencies"  href="reports/dependencies.html"/>
         <item
             name="Release Guidelines"
             href="releases.html"

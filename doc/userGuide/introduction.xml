@@ -151,10 +151,10 @@
 
       <p>
         The <em>View</em> portion of a Struts-based application is most often 
-        constructed using JavaServer Pages (JSP) technology.  JSP pages can
+        constructed using JavaServer Pages (JSP) technology. JSP pages can
         contain static HTML (or XML) text called "template text", plus the
         ability to insert dynamic content based on the interpretation (at page
-        request time) of special action tags.  The JSP environment includes a
+        request time) of special action tags. The JSP environment includes a
         set of standard action tags, such as <code>&lt;jsp:useBean&gt;</code>
         whose purpose is described in the <a href="http://java.sun.com/products/jsp/download.html">JavaServer Pages Specification</a>.  
         In addition to the built-in actions, there is a standard facility to 
@@ -163,9 +163,10 @@
           
       <p>
         Struts includes a set of custom tag libraries that facilitate
-        creating user interfaces that are fully internationalized, and that
-        interact gracefully with <code>ActionForm</code> beans that are part
-        of the <em>Model</em> portion of the system.  
+        creating user interfaces that are fully internationalized and
+        interact gracefully with <code>ActionForm</code> beans.
+        ActionForms capture and validate whatever input is required by
+        the application.
       </p>
 
       <p>
@@ -188,22 +189,23 @@
         Controller is a servlet of class <code>ActionServlet</code>. This servlet
         is configured by defining a set of <code>ActionMappings</code>. 
         An ActionMapping defines a <code>path</code> that is matched against the 
-        request URI of the incoming request, and usually specifies the
+        request URI of the incoming request and usually specifies the
         fully qualified class name of an Action class. All Actions
         are subclassed from <code>org.apache.struts.action.Action</code>. Actions 
-        encapsulate the business logic, interpret the outcome, and ultimately dispatch
-        control to the appropriate View component to create the response.
+        encapsulate calls to business logic classes, interpret the outcome, and
+        ultimately dispatch control to the appropriate View component to create the
+        response.
       </p>
         
       <p>
         Struts also supports the ability to use <code>ActionMapping</code>
         classes that have additional properties beyond the standard ones required
         to operate the framework. This allows you to store additional information
-        specific to your application, but still utilize the remaining features of
+        specific to your application and still utilize the remaining features of
         the framework. In addition, Struts lets you define logical "names" to which
         control should be forwarded so that an action method can ask for the
-        "Main Menu" page (for example), without knowing what the actual name of the
-        corresponding JSP page is.  These features greatly assist you in separating
+        "Main Menu" page (for example), without knowing the location of the
+        corresponding JSP page. These features greatly assist you in separating
         the control logic (what to do) with the view logic (how it's rendered).
       </p>
 

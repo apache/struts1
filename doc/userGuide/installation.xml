@@ -84,32 +84,30 @@
       <a href="http://java.sun.com/products/jdbc/download.html">http://java.sun.com/products/jdbc/download.html</a>.</li>
 
   <li>
-      <strong>Jakarta Commons Packages</strong> - Struts utilizes several
-      packages from the <a href="http://jakarta.apache.org/commons/">Jakarta
+      <strong>Other Packages</strong> - Struts utilizes several
+      packages from other open source projects, especially the <a href="http://jakarta.apache.org/commons/">Jakarta
       Commons Project</a>.
       These are the packages which must be available if you wish to
       build Struts from source:
       <ul>
-      <li><em>Beanutils</em> (Version 1.6.1 or later)</li>
-      <li><em>Collections</em> (Version 2.1 or later)</li>
-      <li><em>Digester</em> (Version 1.5 or later)</li>
-      <li><em>FileUpload</em> (Version 1.0 or later)</li>
-      <li><em>Lang</em> (Version 1.0.1 or later)</li>
-      <li><em>Logging</em> (Version 1.0.3 or later when it is available)</li>
-      <li><em>Struts-Legacy</em> (Version 1.0 or later)</li>
-      <li><em>Validator</em> (Version 1.0.2 or later) </li>
+      <li><em>ANTLR</em> (Version 2.7.2 or later)</li>
+      <li><em>Commons Beanutils</em> (Version 1.6.1 or later)</li>
+      <li><em>Commons Collections</em> (Version 2.1 or later)</li>
+      <li><em>Commons Digester</em> (Version 1.5 or later)</li>
+      <li><em>Commons FileUpload</em> (Version 1.0 or later)</li>
+      <li><em>Commons Lang</em> (Version 2.0 or later)</li>
+      <li><em>Commons Logging</em> (Version 1.0.3 or later when it is available)</li>
+      <li><em>Commons Validator</em> (Version 1.1.1-dev) </li>
+      <li><em>Jakarta ORO</em> (Version 2.0.7 or later)</li>
       </ul>
+      ANTLR is a public domain library; all other libraries are distributed under the
+      Apache Software License.
       For your convenience, the requisite JARs are provided as a single
       download under the <code>lib</code> sub-directory with each release
-      and beta distribution.
-      Please note that the minimum requirements may change between releases
-      and betas, and some JARs may need to be updated to use the latest
-      Nightly Build.
+      distribution.
+      Please note that the minimum requirements may change between releases,
+      and some JARs may need to be updated to use the latest Nightly Build.
   </li>
-
-  <li><strong>Jakarta ORO</strong> -
-  <a href="http://jakarta.apache.org/oro/index.html">Apache Jakarta ORO</a>
-  version 2.0.6 (or later) is  required to build Struts from source.</li>
 
   <li><strong>Xalan XSLT Processor</strong> - If you are building Struts from
       the source distribution, you will need a version of Xalan to perform
@@ -148,10 +146,6 @@
         from the Jakarta Commons project that are utilized within Struts
         itself.  When you assemble a Struts-based application, you will need
         to copy these files to the <code>WEB-INF/lib</code> directory.</li>
-    <li><strong>lib/jdbc2_0-stdext.jar</strong> - The JDBC 2.0 Optional Package
-        API classes.  You will need to copy this file to your
-        <code>WEB-INF/lib</code> directory if you are utilizing the data
-        sources support provided by Struts.</li>
     <li><strong>lib/struts.jar</strong> - This JAR file contains all of the
         Java classes included in Struts.  It should be copied into the
         <code>WEB-INF/lib</code> directory of your web application.
