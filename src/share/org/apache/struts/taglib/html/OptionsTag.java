@@ -348,6 +348,9 @@ public class OptionsTag extends TagSupport {
 	if (property != null) {
 	    try {
 		collection = PropertyUtils.getProperty(bean, property);
+                if (collection == null)
+                    throw new JspException
+                        (messages.getMessage("getter.property", property));
 	    } catch (IllegalAccessException e) {
 		throw new JspException
 		    (messages.getMessage("getter.access", property, name));
