@@ -1,0 +1,195 @@
+package org.apache.struts.upload;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.FileOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.Hashtable;
+import java.util.Enumeration;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts.action.ActionServlet;
+import org.apache.struts.action.ActionMapping;
+
+/**
+ * This is a MultipartRequestHandler that writes file data directly to
+ * to temporary files on disk
+ *
+ * @author Mike Schachter
+ */
+public class DiskMultipartRequestHandler implements MultipartRequestHandler {
+    
+    /**
+     * The ActionServlet instance used for this class
+     */
+    protected ActionServlet servlet;
+    
+    /**
+     * The ActionMapping instance used for this class
+     */
+    protected ActionMapping mapping;
+    
+    /**
+     * A Hashtable representing the form files uploaded
+     */
+    protected Hashtable fileElements;
+    
+    /**
+     * A Hashtable representing the form text input names and values
+     */
+    protected Hashtable textElements;
+    
+    /**
+     * A Hashtable representing all elemnents 
+     */
+    protected Hashtable allElements;
+    
+    
+    public void handleRequest(HttpServletRequest request) throws ServletException {
+        MultipartIterator iterator = new MultipartIterator(request);
+        MultipartElement element;
+        
+        textElements = new Hashtable();
+        fileElements = new Hashtable();
+        allElements = new Hashtable();
+        
+        while ((element = iterator.getNextElement()) != null) {
+            if (element.getContentType() == null) {
+                String textData;
+                try {
+                    textData = new String(element.getData(), "ISO-8859-1");
+                }
+                catch (UnsupportedEncodingException uee) {
+                    textData = new String(element.getData());
+                }
+                
+                textElements.put(element.getName(), textData);
+                allElements.put(element.getName(), textData);
+            }
+            else {
+                try {
+                    DiskFile theFile = writeFile(element);
+                    fileElements.put(element.getName(), theFile);
+                    allElements.put(element.getName(), theFile);
+                }
+                catch (IOException ioe) {
+                    throw new ServletException("DiskMultipartRequestHandler." +
+                                               "handleRequest(), IOException: " +
+                                               ioe.getMessage());
+                }
+            }             
+        }
+    }
+    
+    
+    protected DiskFile writeFile(MultipartElement element) throws IOException {
+        DiskFile theFile = null;
+
+        //get a handle to some temporary file and open
+        //a stream to it
+        String tempDir = servlet.getTempDir();
+        if (tempDir == null) {
+            tempDir = System.getProperty("java.io.tmpdir");
+        }
+        
+        File tempDirectory = new File(tempDir);
+        if ((!tempDirectory.exists()) && (!tempDirectory.isDirectory())) {
+            tempDir = System.getProperty("java.io.tmpdir");
+            tempDirectory = new File(tempDir);
+
+            if (servlet.getDebug() > 1) {
+                servlet.log("DiskMultipartRequestHandler.handleRequest(): tempDir " +
+                "\"" + tempDirectory + "\" doesn't exist or isn't a " +
+                "directory, defaulting to java.io.tmpdir directory \"" +
+                tempDir);
+            }
+        }
+
+        File tempFile = File.createTempFile("strts", null, tempDirectory);
+        FileOutputStream fos = new FileOutputStream(tempFile);
+
+        //int bufferSize = servlet.getBufferSize();
+        int bufferSize = -1;
+        if (bufferSize > 0) {
+            //buffer the write if servlet.getBufferSize() > 0
+            ByteArrayInputStream byteArray = new ByteArrayInputStream(element.getData());
+            byte[] bufferBytes = new byte[bufferSize];
+            int bytesWritten = 0;
+            int bytesRead = 0;
+            int offset = 0;
+
+            while ((bytesRead = byteArray.read(bufferBytes,
+                                               offset, bufferSize)) != -1) {
+                fos.write(bufferBytes, offset, bytesRead);
+                bytesWritten += bytesRead;
+                offset += bytesRead;
+            }
+            byteArray.close();
+        }
+        else {
+            //write in one big chunk
+            fos.write(element.getData());
+        }
+
+        theFile = new DiskFile(tempFile.getAbsolutePath());
+        theFile.setContentType(element.getContentType());
+        theFile.setFileName(element.getFileName());
+        theFile.setFileSize(element.getData().length);
+        
+        fos.close();
+        
+        return theFile;
+    }
+    
+    public Hashtable getAllElements() {
+        return allElements;
+    }
+    
+    public Hashtable getTextElements() {
+        return new Hashtable();
+    }
+    
+    public Hashtable getFileElements() {
+        return new Hashtable();
+    }
+    
+    /**
+     * Delete all the files uploaded
+     */
+    public void rollback() {
+        Enumeration names = fileElements.keys();
+        
+        while (names.hasMoreElements()) {
+            String name = (String) names.nextElement();
+            DiskFile theFile = (DiskFile) fileElements.get(name);
+            theFile.destroy();
+        }
+    }
+    
+    /**
+     * Calls on {@link #rollback() rollback()} to delete
+     * temporary files
+     */
+    public void finish() {
+        rollback();
+    }
+    
+    public void setServlet(ActionServlet servlet) {
+        this.servlet = servlet;
+    }
+    
+    public void setMapping(ActionMapping mapping) {
+        this.mapping = mapping;
+    }
+    
+    public ActionServlet getServlet() {
+        return servlet;
+    }
+    
+    public ActionMapping getMapping() {
+        return mapping;
+    }
+    
+}
