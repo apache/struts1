@@ -571,6 +571,9 @@ public class TagUtils {
             return (url.toString());
         }
 
+    }
+
+
 	/**
 	 * URLencodes a string assuming the character encoding is UTF-8.
 	 *
