@@ -35,6 +35,19 @@ Whatever changes you make to properties should be reflected when the page
 is redisplayed.  Press "Save" to update, or "Cancel" to return to the
 main menu.
 
+<%--
+     Ensure that the form bean exists before the form tag is processed. This
+     is a simple (if not entirely clean) way of ensuring that the initial
+     values assigned during bean instantiation will be available within the
+     form, since reset() will not be called when the form bean already exists.
+
+     The right way to fix this is to modify this webapp so that it does not
+     refer directly to JSP pages, but goes through Action classes, and to
+     either modify the TestBean class, adding an initialize() method, or to
+     have an Action class set the initial values.
+--%>
+<jsp:useBean id="testbean" scope="session" class="org.apache.struts.webapp.exercise.TestBean"/>
+
 <html:form action="html-select.do">
 <table border="0" width="100%">
 
