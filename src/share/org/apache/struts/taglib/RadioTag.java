@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/RadioTag.java,v 1.10 2000/08/14 04:42:51 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2000/08/14 04:42:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/RadioTag.java,v 1.11 2001/05/20 01:19:06 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2001/05/20 01:19:06 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "radio".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2000/08/14 04:42:51 $
+ * @version $Revision: 1.11 $ $Date: 2001/05/20 01:19:06 $
  */
 
 public final class RadioTag extends BaseHandlerTag {
@@ -183,7 +183,7 @@ public final class RadioTag extends BaseHandlerTag {
 	    throw new JspException
 	        (messages.getMessage("getter.bean", name));
 	try {
-	    current = BeanUtils.getScalarProperty(bean, property);
+	    current = BeanUtils.getSimpleProperty(bean, property);
 	    if (current == null)
 	        current = "";
 	    } catch (IllegalAccessException e) {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Link1Tag.java,v 1.8 2000/08/14 04:42:51 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/08/14 04:42:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Link1Tag.java,v 1.9 2001/05/20 01:19:03 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/05/20 01:19:03 $
  *
  * ====================================================================
  *
@@ -78,6 +78,8 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.PropertyUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
@@ -86,7 +88,7 @@ import org.apache.struts.util.MessageResources;
  * a Map, so that it works on JDK 1.1 platforms.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/08/14 04:42:51 $
+ * @version $Revision: 1.9 $ $Date: 2001/05/20 01:19:03 $
  */
 
 public class Link1Tag extends TagSupport {
@@ -268,7 +270,7 @@ public class Link1Tag extends TagSupport {
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
 	StringBuffer results = new StringBuffer("<a href=\"");
-	results.append(response.encodeURL(BeanUtils.filter(hyperlink())));
+	results.append(response.encodeURL(ResponseUtils.filter(hyperlink())));
 	results.append("\"");
 	if (target != null) {
 	    results.append(" target=\"");
@@ -383,7 +385,7 @@ public class Link1Tag extends TagSupport {
 	} else {
 	    try {
 		dictionary =
-		    (Dictionary) BeanUtils.getPropertyValue(bean, property);
+		    (Dictionary) PropertyUtils.getProperty(bean, property);
 		if (dictionary == null)
 		    throw new JspException
 			(messages.getMessage("getter.property", property));

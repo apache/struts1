@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/HtmlPropertyTag.java,v 1.4 2000/08/14 04:42:51 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/08/14 04:42:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/HtmlPropertyTag.java,v 1.5 2001/05/20 01:19:02 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/05/20 01:19:02 $
  *
  * ====================================================================
  * 
@@ -71,6 +71,8 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.PropertyUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
@@ -79,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * HTML-related characters do not cause difficulties.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/08/14 04:42:51 $
+ * @version $Revision: 1.5 $ $Date: 2001/05/20 01:19:02 $
  */
 
 public final class HtmlPropertyTag extends TagSupport {
@@ -188,7 +190,7 @@ public final class HtmlPropertyTag extends TagSupport {
 	Class paramTypes[] = new Class[0];
 	Object value = null;
 	try {
-	    value = BeanUtils.getPropertyValue(bean, property);
+	    value = PropertyUtils.getProperty(bean, property);
 	    if (value == null)
 		value = "";
 	    } catch (IllegalAccessException e) {
@@ -207,7 +209,7 @@ public final class HtmlPropertyTag extends TagSupport {
 	// Print this property value to our output writer, suitably encoded
 	JspWriter writer = pageContext.getOut();
 	try {
-	    writer.print(BeanUtils.filter(value.toString()));
+	    writer.print(ResponseUtils.filter(value.toString()));
 	} catch (IOException e) {
 	    throw new JspException
 		(messages.getMessage("common.io", e.toString()));

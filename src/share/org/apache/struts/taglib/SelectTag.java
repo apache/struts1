@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.11 2000/08/14 04:42:52 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2000/08/14 04:42:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.12 2001/05/20 01:19:06 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2001/05/20 01:19:06 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2000/08/14 04:42:52 $
+ * @version $Revision: 1.12 $ $Date: 2001/05/20 01:19:06 $
  */
 
 public final class SelectTag extends BaseHandlerTag {
@@ -273,7 +273,7 @@ public final class SelectTag extends BaseHandlerTag {
 		throw new JspException
 		    (messages.getMessage("getter.bean", name));
 	    try {
-		match = BeanUtils.getScalarProperty(bean, property);
+		match = BeanUtils.getSimpleProperty(bean, property);
 		if (match == null)
 		    match = "";
 	    } catch (IllegalAccessException e) {

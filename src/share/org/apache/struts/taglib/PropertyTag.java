@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/PropertyTag.java,v 1.8 2000/08/14 04:42:51 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/08/14 04:42:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/PropertyTag.java,v 1.9 2001/05/20 01:19:05 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/05/20 01:19:05 $
  *
  * ====================================================================
  *
@@ -71,13 +71,14 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Display the value of the specified bean property as read-only HTML text.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/08/14 04:42:51 $
+ * @version $Revision: 1.9 $ $Date: 2001/05/20 01:19:05 $
  */
 
 public class PropertyTag extends BaseInputTag {
@@ -113,17 +114,17 @@ public class PropertyTag extends BaseInputTag {
 	// Create an appropriate HTML element based on our parameters
 	StringBuffer results = new StringBuffer();
 	if (value != null) {
-	    results.append(BeanUtils.filter(value));
+	    results.append(ResponseUtils.filter(value));
 	} else {
 	    Object bean = pageContext.findAttribute(name);
 	    if (bean == null)
 		throw new JspException
 		    (messages.getMessage("getter.bean", name));
 	    try {
-		String value = BeanUtils.getScalarProperty(bean, property);
+		String value = BeanUtils.getSimpleProperty(bean, property);
 		if (value == null)
 		    value = "";
-		results.append(BeanUtils.filter(value));
+		results.append(ResponseUtils.filter(value));
 	    } catch (IllegalAccessException e) {
 		throw new JspException
 		    (messages.getMessage("getter.access", property, name));

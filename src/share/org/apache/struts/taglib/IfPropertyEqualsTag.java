@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfPropertyEqualsTag.java,v 1.4 2000/08/14 04:42:51 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/08/14 04:42:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfPropertyEqualsTag.java,v 1.5 2001/05/20 01:19:02 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/05/20 01:19:02 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  * of the specified attribute (in any scope) has the specified value.
  *
  * @author Arun M. Thomas <arun@ipin.com>
- * @version $Revision: 1.4 $ $Date: 2000/08/14 04:42:51 $
+ * @version $Revision: 1.5 $ $Date: 2001/05/20 01:19:02 $
  */
 
 public class IfPropertyEqualsTag extends BaseAttributeTag {
@@ -168,7 +168,7 @@ public class IfPropertyEqualsTag extends BaseAttributeTag {
 	if (bean != null) {
 	    String value = null;
 	    try {
-		value = BeanUtils.getScalarProperty(bean, property);
+		value = BeanUtils.getSimpleProperty(bean, property);
 		if (value == null)
 		    value = "";
 	    } catch (IllegalAccessException e) {

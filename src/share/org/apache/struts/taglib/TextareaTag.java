@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/TextareaTag.java,v 1.14 2000/10/13 16:14:06 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2000/10/13 16:14:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/TextareaTag.java,v 1.15 2001/05/20 01:19:07 craigmcc Exp $
+ * $Revision: 1.15 $
+ * $Date: 2001/05/20 01:19:07 $
  *
  * ====================================================================
  *
@@ -71,13 +71,14 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Custom tag for input fields of type "textarea".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2000/10/13 16:14:06 $
+ * @version $Revision: 1.15 $ $Date: 2001/05/20 01:19:07 $
  */
 
 public class TextareaTag extends BaseInputTag {
@@ -139,17 +140,17 @@ public class TextareaTag extends BaseInputTag {
         results.append(prepareStyles());
 	results.append(">");
 	if (value != null) {
-	    results.append(BeanUtils.filter(value));
+	    results.append(ResponseUtils.filter(value));
 	} else {
 	    Object bean = pageContext.findAttribute(name);
 	    if (bean == null)
 		throw new JspException
 		    (messages.getMessage("getter.bean", name));
 	    try {
-		String value = BeanUtils.getScalarProperty(bean, property);
+		String value = BeanUtils.getSimpleProperty(bean, property);
 		if (value == null)
 		    value = "";
-		results.append(BeanUtils.filter((String) value));
+		results.append(ResponseUtils.filter((String) value));
 	    } catch (IllegalAccessException e) {
 		throw new JspException
 		    (messages.getMessage("getter.access", property, name));

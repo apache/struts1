@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.9 2000/08/27 05:21:19 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/08/27 05:21:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.10 2001/05/20 01:19:01 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/05/20 01:19:01 $
  *
  * ====================================================================
  *
@@ -74,6 +74,7 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.PropertyUtils;
 
 
 /**
@@ -84,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * <b>FIXME</b> - Should support Java2 collection classes as well!
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2000/08/27 05:21:19 $
+ * @version $Revision: 1.10 $ $Date: 2001/05/20 01:19:01 $
  */
 
 public final class EnumerateTag extends BodyTagSupport {
@@ -318,7 +319,7 @@ public final class EnumerateTag extends BodyTagSupport {
 		if (property == null)
 		    collection = bean;
 		else {
-		    collection = BeanUtils.getPropertyValue(bean, property);
+		    collection = PropertyUtils.getProperty(bean, property);
 		}
 		if (collection == null)
 		    throw new JspException

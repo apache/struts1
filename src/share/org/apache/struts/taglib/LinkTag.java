@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.11 2000/08/14 04:42:51 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2000/08/14 04:42:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.12 2001/05/20 01:19:04 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2001/05/20 01:19:04 $
  *
  * ====================================================================
  *
@@ -79,13 +79,15 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.PropertyUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2000/08/14 04:42:51 $
+ * @version $Revision: 1.12 $ $Date: 2001/05/20 01:19:04 $
  */
 
 public class LinkTag extends TagSupport {
@@ -267,7 +269,7 @@ public class LinkTag extends TagSupport {
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
 	StringBuffer results = new StringBuffer("<a href=\"");
-	results.append(response.encodeURL(BeanUtils.filter(hyperlink())));
+	results.append(response.encodeURL(ResponseUtils.filter(hyperlink())));
 	results.append("\"");
 	if (target != null) {
 	    results.append(" target=\"");
@@ -381,7 +383,7 @@ public class LinkTag extends TagSupport {
 	    }
 	} else {
 	    try {
-		map = (Map) BeanUtils.getPropertyValue(bean, property);
+		map = (Map) PropertyUtils.getProperty(bean, property);
 		if (map == null)
 		    throw new JspException
 			(messages.getMessage("getter.property", property));

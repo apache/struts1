@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IterateTag.java,v 1.10 2000/08/27 05:21:19 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2000/08/27 05:21:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IterateTag.java,v 1.11 2001/05/20 01:19:03 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2001/05/20 01:19:03 $
  *
  * ====================================================================
  *
@@ -75,6 +75,7 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.PropertyUtils;
 
 
 /**
@@ -87,7 +88,7 @@ import org.apache.struts.util.MessageResources;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2000/08/27 05:21:19 $
+ * @version $Revision: 1.11 $ $Date: 2001/05/20 01:19:03 $
  */
 
 public final class IterateTag extends BodyTagSupport {
@@ -321,7 +322,7 @@ public final class IterateTag extends BodyTagSupport {
 		if (property == null)
 		    collection = bean;
 		else
-		    collection = BeanUtils.getPropertyValue(bean, property);
+		    collection = PropertyUtils.getProperty(bean, property);
 		if (collection == null)
 		    throw new JspException
 			(messages.getMessage("getter.property", property));
