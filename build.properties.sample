@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.40 2003/06/07 21:53:28 husted Exp $
+# $Id: build.properties.sample,v 1.41 2003/06/19 11:16:41 jmitchell Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -82,7 +82,12 @@ servlet.jar=${apache.home}/jakarta-servletapi/lib/servlet.jar
 
 # The JAR file containing the Struts Legacy package (Version 1.0 or later)
 # from the Struts contrib area.
-struts-legacy.jar=../contrib/struts-legacy/dist/struts-legacy.jar
+struts-legacy.jar=contrib/struts-legacy/dist/struts-legacy.jar
+
+# Specify the jdk.version you are using.  This is used to determine which src
+# to build for struts.legacy (See contrib/struts-legacy for further details)
+# The default is 1.3
+jdk.version=1.3
 
 # The directory containing your binary distribution of Tomcat 3.3, from CVS
 # module "jakarta-tomcat" (and branch "TOMCAT_32") at jakarta.apache.org.
