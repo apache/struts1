@@ -144,7 +144,7 @@
     <p>Although JavaBeans were first created for visual elements, these object design patterns have been found to
     be useful as the basis for any reusable component, like those used by the Struts framework.</p>
 
-    <p>For more about JavaBeans, see</p>
+    <p>For more about JavaBeans, see:</p>
 
     <ul>
     <li><a href="http://java.sun.com/products/javabeans/docs/"><strong>The
@@ -159,23 +159,69 @@
         </li>
     </ul>
 
-      <section name="0.5.1 Reflection" href="reflection">
+    </section>
 
-      <p>[:TODO:]</p>
+    <section name="0.5.1 Reflection and Introspection" href="reflection">
 
-      </section>
+    <p>
+    Reflection is the process of determining which member fields and methods are available on an object. 
+    Introspection is a specialized form of reflection used  by the JavaBean API. 
+    Using Introspection, we can determine which methods of a JavaBean are intended to be accessed by other objects. 
+    (The getters and the  setters, for example.)
+    </p>
 
-      <section name="0.5.2 Maps" href="Maps">
+    <p>
+    The Struts framework uses Introspection to convert HTTP parameters into JavaBean properties and to populate HTML fields from JavaBean properties. 
+    This technique makes it easy to "roundtrip" properties between HTML forms and JavaBeans.
+    </p>
 
-      <p>[:TODO:]</p>
+    <p>
+    For more about Reflection and Introspection, see
+    </p>
 
-      </section>
+    <ul>
+    <li>
+    <a href="http://java.sun.com/docs/books/tutorial/reflect/">The Reflection Trail</a>
+    </li>
+    <li>
+    <a href="http://java.sun.com/products/javabeans/docs/spec.html">Chapter 8 of the JavaBeans API Specification</a>
+    </li>
+    </ul>
 
-      <section name="0.5.3 DynaBeans" href="dynabeans">
+    </section>
 
-      <p>[:TODO:]</p>
+    <section name="0.5.2 Maps" href="Maps">
 
-      </section>
+    <p>
+    JavaBeans store data as properties and may act on that data through other methods. 
+    JavaBeans are flexible and powerful objects but are not the only object that programmers use to store data. 
+    Other popular object is the Map [<code>java.util.Map</code>]. 
+    A Map is a simple collection of name and value pairs. 
+    Maps are often used "behind the scenes" as a flexible way to store dynamic data.      
+    </p>
+
+    </section>
+
+    <section name="0.5.3 DynaBeans" href="dynabeans">
+
+    <p>
+    DynaBeans combine the extensibility of JavaBeans with the flexbility of a Map. 
+    Defining even the simplest JavaBean requires defining a new class and coding a field and two methods for each property. 
+    The properties of a DynaBean can be configured via an XML descriptor. 
+    The virtual properties of a DynaBean can't be called by standard Java methods, but can be used to roundtrip properties to HTML forms. 
+    In many cases, Struts DynaForms can be configured entirely through XML. 
+    This means you can avoid creating a formal subclass just to store a few simple properties.
+    </p>
+
+    <p>
+    For more about DynaBeans, see
+    </p>
+
+    <ul>
+    <li>
+    [:TODO:]
+    </li>
+    </ul>
 
     </section>
 
