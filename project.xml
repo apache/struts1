@@ -3,12 +3,13 @@
   <pomVersion>3</pomVersion>
   <name>struts</name>
   <id>Struts</id>
-  <currentVersion>1.2-dev</currentVersion>
+  <currentVersion>1.2.0</currentVersion>
   <organization>
     <name>Apache Software Foundation</name>
     <url>http://jakarta.apache.org/</url>
-    <logo href="/doc/images/struts.jpg">Struts</logo>
+    <logo>http://jakarta.apache.org/images/jakarta-logo-blue.gif</logo>
   </organization>
+  <logo>/images/struts-blue-1.gif</logo>
   <inceptionYear>2000</inceptionYear>
 
   <package>org.apache.struts</package>
