@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.171 2003/12/18 02:59:33 husted Exp $
- * $Revision: 1.171 $
- * $Date: 2003/12/18 02:59:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.172 2003/12/18 03:38:42 husted Exp $
+ * $Revision: 1.172 $
+ * $Date: 2003/12/18 03:38:42 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 /**
- * <p><strong>ActionServlet</strong> represents the "controller" in the
+ * <p><strong>ActionServlet</strong> provides the "controller" in the
  * Model-View-Controller (MVC) design pattern for web applications that is
  * commonly known as "Model 2".  This nomenclature originated with a
  * description in the JavaServerPages Specification, version 0.92, and has
@@ -123,33 +123,36 @@ import org.xml.sax.SAXException;
  *
  * <p>Generally, a "Model 2" application is architected as follows:</p>
  * <ul>
- * <li>The user interface will generally be created with JSP pages, which
- *     will not themselves contain any business logic.  These pages represent
+ * <li>The user interface will generally be created with server pages, which
+ *     will not themselves contain any business logic. These pages represent
  *     the "view" component of an MVC architecture.</li>
  * <li>Forms and hyperlinks in the user interface that require business logic
- *     to be executed will be submitted to a request URI that is mapped to the
- *     controller servlet.</li>
- * <li>There will be <b>one</b> instance of this servlet class,
+ *     to be executed will be submitted to a request URI that is mapped to this
+ *     servlet.</li>
+ * <li>There can be <b>one</b> instance of this servlet class,
  *     which receives and processes all requests that change the state of
- *     a user's interaction with the application.  This component represents
- *     the "controller" component of an MVC architecture.</li>
- * <li>The controller servlet will select and invoke an action class to perform
- *     the requested business logic.</li>
- * <li>The action classes will manipulate the state of the application's
+ *     a user's interaction with the application.  The servlet delegates the
+ *     handling of a request to a @link(RequestProcessor) object. This component
+ *     represents the "controller" component of an MVC architecture.</li>
+ * <li>The <code>RequestProcessor</code> selects and invokes an @link(Action) class to perform
+ *     the requested business logic, or delegates the response to another resource.</li>
+ * <li>The <code>Action</code> classes can manipulate the state of the application's
  *     interaction with the user, typically by creating or modifying JavaBeans
  *     that are stored as request or session attributes (depending on how long
- *     they need to be available).  Such JavaBeans represent the "model"
+ *     they need to be available). Such JavaBeans represent the "model"
  *     component of an MVC architecture.</li>
  * <li>Instead of producing the next page of the user interface directly,
- *     action classes will generally use the
- *     <code>RequestDispatcher.forward</code> facility of the servlet API
- *     to pass control to an appropriate JSP page to produce the next page
- *     of the user interface.</li>
+ *     <code>Action</code> classes generally return an @link(ActionForward) to indicate
+ *     which resource should handle the response. If the <code>Action</code>
+ *     does not return null, the <code>RequestProcessor</code> forwards or
+ *     redirects to the specified resource (by utilizing
+ *     <code>RequestDispatcher.forward</code> or <code>Response.sendRedirect</code>)
+ *     so as to produce the next page of the user interface.</li>
  * </ul>
  *
- * <p>The standard version of <code>ActionServlet</code> implements the
- *    following logic for each incoming HTTP request.  You can override
- *    some or all of this functionality by subclassing this servlet and
+ * <p>The standard version of <code>RequestsProcessor</code> implements the
+ *    following logic for each incoming HTTP request. You can override
+ *    some or all of this functionality by subclassing this object and
  *    implementing your own version of the processing.</p>
  * <ul>
  * <li>Identify, from the incoming request URI, the substring that will be
@@ -157,11 +160,11 @@ import org.xml.sax.SAXException;
  * <li>Use this substring to map to the Java class name of the corresponding
  *     action class (an implementation of the <code>Action</code> interface).
  *     </li>
- * <li>If this is the first request for a particular action class, instantiate
- *     an instance of that class and cache it for future use.</li>
+ * <li>If this is the first request for a particular <code>Action</code> class,
+ *     instantiate an instance of that class and cache it for future use.</li>
  * <li>Optionally populate the properties of an <code>ActionForm</code> bean
  *     associated with this mapping.</li>
- * <li>Call the <code>execute</code> method of this action class, passing
+ * <li>Call the <code>execute</code> method of this <code>Action</code> class, passing
  *     on a reference to the mapping that was used, the relevant form-bean
  *     (if any), and the request and the response that were passed to the
  *     controller by the servlet container (thereby providing access to any
@@ -208,7 +211,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.171 $ $Date: 2003/12/18 02:59:33 $
+ * @version $Revision: 1.172 $ $Date: 2003/12/18 03:38:42 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -339,7 +342,7 @@ public class ActionServlet extends HttpServlet {
         } catch (Throwable t) {
             ; // Servlet container doesn't have the latest version
             ; // of commons-logging-api.jar installed
-            
+
             // :FIXME: Why is this dependent on the container's version of commons-logging?
             // Shouldn't this depend on the version packaged with Struts?
         }
@@ -368,7 +371,7 @@ public class ActionServlet extends HttpServlet {
         initModuleDataSources(moduleConfig);
         initModulePlugIns(moduleConfig);
         moduleConfig.freeze();
-        
+
         Enumeration names = getServletConfig().getInitParameterNames();
         while (names.hasMoreElements()) {
             String name = (String) names.nextElement();
@@ -383,12 +386,12 @@ public class ActionServlet extends HttpServlet {
             initModulePlugIns(moduleConfig);
             moduleConfig.freeze();
         }
-        
+
         this.initModulePrefixes(this.getServletContext());
-        
+
         this.destroyConfigDigester();
     }
-    
+
     /**
      * <p>Saves a String[] of module prefixes in the ServletContext under
      * Globals.MODULE_PREFIXES_KEY.  <strong>NOTE</strong> -
@@ -399,20 +402,20 @@ public class ActionServlet extends HttpServlet {
      */
     protected void initModulePrefixes(ServletContext context) {
         ArrayList prefixList = new ArrayList();
-        
+
         Enumeration names = context.getAttributeNames();
         while (names.hasMoreElements()) {
             String name = (String) names.nextElement();
             if (!name.startsWith(Globals.MODULE_KEY)) {
                 continue;
             }
-            
+
             String prefix = name.substring(Globals.MODULE_KEY.length());
             if (prefix.length() > 0) {
                 prefixList.add(prefix);
             }
         }
-        
+
         String[] prefixes = (String[]) prefixList.toArray(new String[prefixList.size()]);
         context.setAttribute(Globals.MODULE_PREFIXES_KEY, prefixes);
     }
@@ -513,11 +516,11 @@ public class ActionServlet extends HttpServlet {
         while (keys.hasNext()) {
             String name = (String) keys.next();
             Object value = getServletContext().getAttribute(name);
-            
+
             if (!(value instanceof ModuleConfig)) {
                 continue;
             }
-            
+
             ModuleConfig config = (ModuleConfig) value;
 
             if (this.getProcessorForModule(config) != null) {
@@ -529,17 +532,17 @@ public class ActionServlet extends HttpServlet {
             PlugIn plugIns[] =
                 (PlugIn[]) getServletContext().getAttribute(
                     Globals.PLUG_INS_KEY + config.getPrefix());
-                    
+
             if (plugIns != null) {
                 for (int i = 0; i < plugIns.length; i++) {
                     int j = plugIns.length - (i + 1);
                     plugIns[j].destroy();
                 }
-                
+
                 getServletContext().removeAttribute(
                     Globals.PLUG_INS_KEY + config.getPrefix());
             }
-            
+
         }
 
     }
@@ -604,13 +607,13 @@ public class ActionServlet extends HttpServlet {
         // :FIXME: Document UnavailableException?
 
         RequestProcessor processor = this.getProcessorForModule(config);
-            
+
         if (processor == null) {
             try {
                 processor =
                     (RequestProcessor) RequestUtils.applicationInstance(
                         config.getControllerConfig().getProcessorClass());
-                        
+
             } catch (Exception e) {
                 throw new UnavailableException(
                     "Cannot initialize RequestProcessor of class "
@@ -620,12 +623,12 @@ public class ActionServlet extends HttpServlet {
             }
 
             processor.init(this, config);
-            
+
             String key = Globals.REQUEST_PROCESSOR_KEY + config.getPrefix();
             getServletContext().setAttribute(key, processor);
 
         }
-        
+
         return (processor);
 
     }
@@ -703,10 +706,10 @@ public class ActionServlet extends HttpServlet {
             if (path.length() < 1) {
                 break;
             }
-            
+
             this.parseModuleConfigFile(digester, path);
         }
-        
+
         getServletContext().setAttribute(
             Globals.MODULE_KEY + config.getPrefix(),
             config);
@@ -743,7 +746,7 @@ public class ActionServlet extends HttpServlet {
             input = getServletContext().getResourceAsStream(path);
             is.setByteStream(input);
             digester.parse(is);
-            
+
         } catch (MalformedURLException e) {
             handleConfigException(path, e);
         } catch (IOException e) {
@@ -813,7 +816,7 @@ public class ActionServlet extends HttpServlet {
                     RequestUtils.applicationInstance(dscs[i].getType());
                 BeanUtils.populate(ds, dscs[i].getProperties());
                 ds.setLogWriter(scw);
-                
+
             } catch (Exception e) {
                 log.error(internal.getMessage("dataSource.init", dscs[i].getKey()), e);
                 throw new UnavailableException
@@ -823,7 +826,7 @@ public class ActionServlet extends HttpServlet {
                 (dscs[i].getKey() + config.getPrefix(), ds);
             dataSources.put(dscs[i].getKey(), ds);
         }
-        
+
         dataSources.setFast(true);
 
     }
@@ -867,7 +870,7 @@ public class ActionServlet extends HttpServlet {
                   // the plugin?
                 }
                 plugIns[i].init(this, config);
-                
+
             } catch (ServletException e) {
                 throw e;
             } catch (Exception e) {
@@ -875,7 +878,7 @@ public class ActionServlet extends HttpServlet {
                     internal.getMessage(
                         "plugIn.init",
                         plugInConfigs[i].getClassName());
-                        
+
                 log(errMsg, e);
                 throw new UnavailableException(errMsg);
             }
@@ -915,7 +918,7 @@ public class ActionServlet extends HttpServlet {
             MessageResourcesFactory.setFactoryClass(factory);
             MessageResourcesFactory factoryObject =
                 MessageResourcesFactory.createFactory();
-                
+
             MessageResources resources =
                 factoryObject.createResources(mrcs[i].getParameter());
             resources.setReturnNull(mrcs[i].getNull());
@@ -952,7 +955,7 @@ public class ActionServlet extends HttpServlet {
         configDigester.setValidating(this.isValidating());
         configDigester.setUseContextClassLoader(true);
         configDigester.addRuleSet(new ConfigRuleSet());
-        
+
         for (int i = 0; i < registrations.length; i += 2) {
             URL url = this.getClass().getResource(registrations[i+1]);
             if (url != null) {
@@ -974,12 +977,12 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException
      */
     private void addRuleSets() throws ServletException {
-        
+
         String rulesets = getServletConfig().getInitParameter("rulesets");
         if (rulesets == null) {
             rulesets = "";
         }
-        
+
         rulesets = rulesets.trim();
         String ruleset = null;
         while (rulesets.length() > 0) {
@@ -991,11 +994,11 @@ public class ActionServlet extends HttpServlet {
                 ruleset = rulesets.substring(0, comma).trim();
                 rulesets = rulesets.substring(comma + 1).trim();
             }
-            
+
             if (log.isDebugEnabled()) {
                 log.debug("Configuring custom Digester Ruleset of type " + ruleset);
             }
-            
+
             try {
                 RuleSet instance = (RuleSet) RequestUtils.applicationInstance(ruleset);
                 this.configDigester.addRuleSet(instance);
@@ -1013,18 +1016,18 @@ public class ActionServlet extends HttpServlet {
      * @return true if the module Digester should validate.
      */
     private boolean isValidating() {
-        
+
         boolean validating = true;
         String value = getServletConfig().getInitParameter("validating");
-        
+
         if ("false".equalsIgnoreCase(value)
             || "no".equalsIgnoreCase(value)
             || "n".equalsIgnoreCase(value)
             || "0".equalsIgnoreCase(value)) {
-        
+
             validating = false;
         }
-        
+
         return validating;
     }
 
@@ -1072,10 +1075,10 @@ public class ActionServlet extends HttpServlet {
             || "on".equalsIgnoreCase(value)
             || "y".equalsIgnoreCase(value)
             || "1".equalsIgnoreCase(value)) {
-                
+
             convertNull = true;
         }
-        
+
         if (convertNull) {
             ConvertUtils.deregister();
             ConvertUtils.register(new BigDecimalConverter(null), BigDecimal.class);
@@ -1132,7 +1135,7 @@ public class ActionServlet extends HttpServlet {
 
         InputStream input =
             getServletContext().getResourceAsStream("/WEB-INF/web.xml");
-            
+
         if (input == null) {
             log.error(internal.getMessage("configWebXml"));
             throw new ServletException(internal.getMessage("configWebXml"));
@@ -1144,11 +1147,11 @@ public class ActionServlet extends HttpServlet {
         } catch (IOException e) {
             log.error(internal.getMessage("configWebXml"), e);
             throw new ServletException(e);
-            
+
         } catch (SAXException e) {
             log.error(internal.getMessage("configWebXml"), e);
             throw new ServletException(e);
-            
+
         } finally {
             try {
                 input.close();
