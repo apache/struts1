@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.7 2002/12/08 06:54:51 rleland Exp $
- * $Revision: 1.7 $
- * $Date: 2002/12/08 06:54:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.8 2002/12/12 21:23:29 ekbush Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/12/12 21:23:29 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.7 $ $Date: 2002/12/08 06:54:51 $
+ * @version $Revision: 1.8 $ $Date: 2002/12/12 21:23:29 $
  */
 public class InsertTag
 	extends DefinitionTagSupport
@@ -858,8 +858,7 @@ public class InsertTag
 					msg = ex.getMessage();
 
 				if (log.isDebugEnabled()) { // show full trace
-					log.debug(msg);
-					ex.printStackTrace();
+					log.debug(msg, ex);
 					pageContext.getOut().println(msg);
 					ex.printStackTrace(new PrintWriter(pageContext.getOut(), true));
 				} else { // show only message
@@ -916,7 +915,7 @@ public class InsertTag
 				pageContext.getOut().print(value);
 			} catch (IOException ex) {
 				if (log.isDebugEnabled())
-					log.debug("Can't write string '" + value + "' : " + ex.getMessage());
+					log.debug("Can't write string '" + value + "' : ", ex);
 				pageContext.setAttribute(
 					ComponentConstants.EXCEPTION_KEY,
 					ex,
