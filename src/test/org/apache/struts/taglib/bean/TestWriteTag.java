@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestWriteTag.java,v 1.6 2003/05/13 18:21:13 turner Exp $
- * $Revision: 1.6 $
- * $Date: 2003/05/13 18:21:13 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestWriteTag.java,v 1.7 2003/07/31 00:34:15 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/07/31 00:34:15 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -69,6 +69,7 @@ import org.apache.cactus.JspTestCase;
 import org.apache.cactus.WebResponse;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.SimpleBeanForTesting;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.ResponseUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -238,7 +239,7 @@ public class TestWriteTag extends JspTestCase {
 		runMyTest("testWriteTagNameFilter", "");
 	}
 	public void endWriteTagNameFilter(WebResponse response){
-		formatAndTest(ResponseUtils.filter("<testing&'\">"), response.getText());
+		formatAndTest(TagUtils.getInstance().filter("<testing&'\">"), response.getText());
 	}
 	
 

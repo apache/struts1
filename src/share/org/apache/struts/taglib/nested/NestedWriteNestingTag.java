@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTag.java,v 1.5 2003/07/31 00:25:39 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/07/31 00:25:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTag.java,v 1.6 2003/07/31 00:34:15 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/07/31 00:34:15 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -64,7 +64,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 import org.apache.struts.taglib.TagUtils;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * NestedWriteNestingTag.
@@ -74,7 +73,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class NestedWriteNestingTag extends BodyTagSupport {
 
@@ -123,7 +122,7 @@ public class NestedWriteNestingTag extends BodyTagSupport {
 
     /* write output, filtering if required */
     if (this.filter) {
-      TagUtils.getInstance().write(pageContext, ResponseUtils.filter(nesting));
+      TagUtils.getInstance().write(pageContext, TagUtils.getInstance().filter(nesting));
     } else {
       TagUtils.getInstance().write(pageContext, nesting);
     }

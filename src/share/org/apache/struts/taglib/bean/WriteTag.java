@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.28 2003/07/31 00:25:39 dgraham Exp $
- * $Revision: 1.28 $
- * $Date: 2003/07/31 00:25:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.29 2003/07/31 00:34:15 dgraham Exp $
+ * $Revision: 1.29 $
+ * $Date: 2003/07/31 00:34:15 $
  *
  * ====================================================================
  *
@@ -74,7 +74,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * Tag that retrieves the specified property of the specified bean, converts
@@ -82,7 +81,7 @@ import org.apache.struts.util.ResponseUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.28 $ $Date: 2003/07/31 00:25:39 $
+ * @version $Revision: 1.29 $ $Date: 2003/07/31 00:34:15 $
  */
 public class WriteTag extends TagSupport {
 
@@ -278,7 +277,7 @@ public class WriteTag extends TagSupport {
 
         // Print this property value to our output writer, suitably filtered
         if (filter) {
-            TagUtils.getInstance().write(pageContext, ResponseUtils.filter(output));
+            TagUtils.getInstance().write(pageContext, TagUtils.getInstance().filter(output));
         } else {
             TagUtils.getInstance().write(pageContext, output);
         }

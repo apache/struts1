@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LinkUserTag.java,v 1.6 2003/01/18 19:48:56 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2003/01/18 19:48:56 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LinkUserTag.java,v 1.7 2003/07/31 00:34:15 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/07/31 00:34:15 $
  *
  * ====================================================================
  *
@@ -64,14 +64,16 @@ package org.apache.struts.webapp.example;
 
 
 import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
+
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.taglib.TagUtils;
+import org.apache.struts.util.MessageResources;
 
 
 /**
@@ -79,7 +81,7 @@ import org.apache.struts.config.ModuleConfig;
  * associated query parameters selecting a specified User.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2003/01/18 19:48:56 $
+ * @version $Revision: 1.7 $ $Date: 2003/07/31 00:34:15 $
  */
 
 public class LinkUserTag extends TagSupport {
@@ -187,7 +189,7 @@ public class LinkUserTag extends TagSupport {
 	else
 	    url.append("&");
 	url.append("username=");
-	url.append(ResponseUtils.filter(user.getUsername()));
+	url.append(TagUtils.getInstance().filter(user.getUsername()));
 
 	// Generate the hyperlink start element
 	HttpServletResponse response =

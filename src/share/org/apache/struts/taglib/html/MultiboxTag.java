@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.20 2003/07/31 00:19:04 dgraham Exp $
- * $Revision: 1.20 $
- * $Date: 2003/07/31 00:19:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.21 2003/07/31 00:34:15 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/07/31 00:34:15 $
  *
  * ====================================================================
  *
@@ -70,7 +70,6 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * Tag for input fields of type "checkbox".  This differs from CheckboxTag
@@ -81,7 +80,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.20 $ $Date: 2003/07/31 00:19:04 $
+ * @version $Revision: 1.21 $ $Date: 2003/07/31 00:34:15 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {
@@ -228,7 +227,7 @@ public class MultiboxTag extends BaseHandlerTag {
             pageContext.setAttribute(Globals.EXCEPTION_KEY, e, PageContext.REQUEST_SCOPE);
             throw e;
         }
-        results.append(ResponseUtils.filter(value));
+        results.append(TagUtils.getInstance().filter(value));
         results.append("\"");
         Object bean = TagUtils.getInstance().lookup(pageContext, name, null);
         String values[] = null;

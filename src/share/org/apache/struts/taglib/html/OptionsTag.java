@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsTag.java,v 1.24 2003/07/31 00:19:04 dgraham Exp $
- * $Revision: 1.24 $
- * $Date: 2003/07/31 00:19:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsTag.java,v 1.25 2003/07/31 00:34:15 dgraham Exp $
+ * $Revision: 1.25 $
+ * $Date: 2003/07/31 00:34:15 $
  * 
  * ====================================================================
  *
@@ -75,7 +75,6 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.collections.IteratorUtils;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * Tag for creating multiple &lt;select&gt; options from a collection.  The
@@ -373,12 +372,15 @@ public class OptionsTag extends TagSupport {
             sb.append(styleClass);
             sb.append("\"");
         }
+        
         sb.append(">");
+        
         if (filter) {
-            sb.append(ResponseUtils.filter(label));
+            sb.append(TagUtils.getInstance().filter(label));
         } else {
             sb.append(label);
         }
+        
         sb.append("</option>\r\n");
 
     }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.15 2003/07/31 00:25:39 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/07/31 00:25:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.16 2003/07/31 00:34:15 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/07/31 00:34:15 $
  *
  * ====================================================================
  *
@@ -64,14 +64,13 @@ package org.apache.struts.taglib.html;
 import javax.servlet.jsp.JspException;
 
 import org.apache.struts.taglib.TagUtils;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * Custom tag for input fields of type "textarea".
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.15 $ $Date: 2003/07/31 00:25:39 $
+ * @version $Revision: 1.16 $ $Date: 2003/07/31 00:34:15 $
  */
 public class TextareaTag extends BaseInputTag {
 
@@ -166,7 +165,7 @@ public class TextareaTag extends BaseInputTag {
             data = this.lookupProperty(this.name, this.property);
         }
         
-        return (data == null) ? "" : ResponseUtils.filter(data);
+        return (data == null) ? "" : TagUtils.getInstance().filter(data);
     }
 
     /**
