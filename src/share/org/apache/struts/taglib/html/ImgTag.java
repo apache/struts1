@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.18 2002/09/23 05:13:43 martinc Exp $
- * $Revision: 1.18 $
- * $Date: 2002/09/23 05:13:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.19 2002/10/21 22:30:22 jholmes Exp $
+ * $Revision: 1.19 $
+ * $Date: 2002/10/21 22:30:22 $
  *
  * ====================================================================
  *
@@ -91,7 +91,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.18 $
+ * @version $Revision: 1.19 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -493,13 +493,13 @@ public class ImgTag extends BaseHandlerTag {
         }
         results.append(prepareStyles());
         results.append(prepareEventHandlers());
-    results.append(">");
+        results.append(" />");
 
-    // Print this element to our output writer
+        // Print this element to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
         // Evaluate the reaminder of this page
-    return (EVAL_PAGE);
+        return (EVAL_PAGE);
 
     }
 
@@ -509,23 +509,24 @@ public class ImgTag extends BaseHandlerTag {
      */
     public void release() {
 
-    super.release();
+        super.release();
+
         border = null;
         height = null;
         hspace = null;
         imageName = null;
         ismap = null;
         lowsrc = null;
-    name = null;
+        name = null;
         page = null;
         pageKey = null;
         paramId = null;
         paramName = null;
         paramProperty = null;
         paramScope = null;
-    property = null;
+        property = null;
         scope = null;
-    src = null;
+        src = null;
         srcKey = null;
         usemap = null;
         vspace = null;
@@ -628,7 +629,7 @@ public class ImgTag extends BaseHandlerTag {
             return (url);
 
         // Start with an unadorned URL as specified
-    StringBuffer  src = new StringBuffer(url);
+        StringBuffer  src = new StringBuffer(url);
 
 
         // Append a single-parameter name and value, if requested
@@ -713,6 +714,5 @@ public class ImgTag extends BaseHandlerTag {
     return (src.toString());
 
     }
-
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.14 2002/09/23 05:13:43 martinc Exp $
- * $Revision: 1.14 $
- * $Date: 2002/09/23 05:13:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.15 2002/10/21 22:30:22 jholmes Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/10/21 22:30:22 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.14 $ $Date: 2002/09/23 05:13:43 $
+ * @version $Revision: 1.15 $ $Date: 2002/10/21 22:30:22 $
  */
 
 public class RadioTag extends BaseHandlerTag {
@@ -284,7 +284,7 @@ public class RadioTag extends BaseHandlerTag {
             results.append(" checked=\"checked\"");
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
-        results.append(">");
+        results.append(" />");
 
         // Print this field to our output writer
         ResponseUtils.write(pageContext, results.toString());
