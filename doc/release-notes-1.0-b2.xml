@@ -107,6 +107,12 @@
     deprecated, and have been replaced (and considerably enhanced) in
     the various individual tag libraries.</p>
 
+    <p>The build procedure for compiling the Struts source distribution
+    has been revised, and now depends on having <strong>Ant 1.2</strong>
+    (or later) installed, with the <code>$ANT_HOME/bin</code> directory
+    on your path.  Further information can be found in the
+    <a href="installation.html">Installation</a> documentation.</p>
+
     <p>The following new features have been added to the basic controller
     framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
@@ -117,6 +123,23 @@
         processing provided by the controller is still performed first, if you
         have configured it, so the included resource can benefit from this
         processing if it wishes to.</li>
+    <li>The <code>initDataSources()</code> method can now throw a
+        <code>ServletException</code> to report that an initialization error
+        has occurred.  Previously, such errors were logged but otherwise
+        ignored.</li>
+    <li>It is now possible to integrate business logic that is already
+        encapsulated as a servlet or JSP page, via use of two new standard
+        actions:  <code>org.apache.struts.actions.ForwardAction</code> and
+        <code>org.apache.struts.actions.IncludeAction</code>  These actions
+        let you take advantage of the standard processing perfomed by the
+        controller servlet (including form bean population and calling the
+        <code>validate()</code> method), but not have to write Java code to
+        perform (or wrap) the required business logic.</li>
+    <li>A wrapper class has been added around the standard
+        <code>HttpServletRequest</code> for handling multipart requests as
+        identically as possible to standard requests, including processing
+        request parameters, populating form beans, transaction tokens, and
+        checking for cancellations.</li>
     </ul>
 
     <p>The following new features have been added to the
@@ -137,6 +160,17 @@
         with a value of <code>true</code>.</li>
     <li>The <code>&lt;html:options&gt;</code> tag now supports Enumeration
         for the <code>collection</code> property.</li>
+    <li>The <code>&lt;html:form&gt;</code> tag now creates attributes for
+        the tag itself, and the form bean, in request scope instead of
+        page scope.  Among other benefits, this allows you to nest the
+        fields of a form inside a separate page that is accessed via a
+        template or a <code>&lt;jsp:include&gt;</code> tag.</li>
+    <li>The <code>styleId</code> attribute has been added to all of the
+        tags where the corresponding <code>id</code> tag is relevant, to
+        identify a specific tag for the purposes of stylesheet references.</li>
+    <li>The <code>&lt;html:file&gt;</code> tag now supports the
+        <code>size</code> attribute to set the size of the file list
+        field.</li>
     </ul>
 
     <p>The following new features have been added to the
@@ -145,6 +179,9 @@
     <ul>
     <li>The <code>&lt;logic:iterate&gt;</code> tag now supports Enumeration
         for the <code>collection</code> property.</li>
+    <li>The <code>&lt;logic:iterate&gt;</code> tag now exposes the current
+        iteration index to nested tags, through a call to the
+        <code>getIndex()</code> method.</li>
     </ul>
 
     <p>The following new features have been added to the
@@ -153,6 +190,10 @@
     <ul>
     <li>Attribute getter methods have been added to all of the custom
         tag implementation classes to facilitate reuse.</li>
+    <li>The <code>&lt;template:get&gt;</code> tag now has an optional
+        "flush" attribute that causes the response to be commited prior
+        to performing the include, if set to "true".  This allows working
+        around problems on broken servlet containers.</li>
     </ul>
 
     <p>The following new features have been added to the Struts Documentation
@@ -167,6 +208,23 @@
 
 
   <section name="Changes and Bug Fixes" href="Changes">
+
+    <p>The following changes and bug fixes have occurred in the basic
+    controller framework (package <code>org.apache.struts.action</code>):</p>
+    <ul>
+    <li><code>DiskMultipartRequestHandler</code> now tries to retrieve the
+    temporary directory provided by the servlet container before all other
+    possible temporary directories.</li>
+    </ul>
+
+    <p>The following changes and bug fixes have occurred in the utilities
+    (package <code>org.apache.struts.util</code>):</p>
+    <ul>
+    <li>The <code>computeURL()</code> method now returns a
+        <code>MalformedURLException</code> if a URL cannot be created.
+        Previously, this case returned <code>null</code> with no error
+        message, making some problems difficult to track down.</li>
+    </ul>
 
     <p>The following changes and bug fixes have occured in the
     <em>struts-html</em> custom tag library (package
@@ -193,6 +251,21 @@
         number if it is the default port for the current request scheme (80
         for http, or 443 for https).  Among other things, this corrects
         session management behavior on the standard port numbers.</li>
+    <li>The <code>focus</code> attribute of the <code>&lt;html:form&gt;</code>
+        tag now works when the corresponding input field is a radio button,
+        or is otherwise indexed.</li>
+    <li>The <code>disabled</code> and <code>readonly</code> attributes have
+        been added to all HTML-rendering tags where they are relevant.</li>
+    </ul>
+
+    <p>The following changes and bug fixes have occurred in the
+    <em>struts-logic</em> custom tag library (package
+    <code>org.apache.struts.taglib.logic</code>):</p>
+    <ul>
+    <li>Hyperlink processing in the <code>&lt;logic:forward&gt;</code>
+        tag is now identical to that performed by the Struts Controller
+        Servlet when it processes an <code>ActionForward</code> that is
+        returned by an <code>Action</code>.</li>
     </ul>
 
     <p>The following changes and bug fixes to the Struts Documentation
@@ -206,7 +279,7 @@
         <code>id</code> attribute with the same value in the same page.</li>
     </ul>
 
-    <p>The following changes and bug fixes to the Struts Example Applications
+    <p>The following changes and bug fixes to the Struts Example Application
     have occurred:</p>
     <ul>
     <li>The Java source code of these applications is now included in the
@@ -215,7 +288,23 @@
         have been eliminated.</li>
     <li>Calls to the deprecated <code>BeanUtils.filter()</code> have been
         replaced by calls to <code>ResponseUtils.filter()</code>.</li>
+    <li>Removed any attempt to save the pseudo-database at application
+        shutdown, because there is no portable mechanism to accomplish
+        this task.</li>
     </ul>
+
+    <p>The following changes and bug fixes to the Struts Template Example
+    Application have occurred:</p>
+    <ul>
+    <li>Refactored the example pages to eliminate the creation of redundant
+        <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, and
+        <code>&lt;body&gt;</code> tags.</li>
+    <li>If <code>&lt;template:get&gt;</code> or
+        <code>&lt;template:insert&gt;</code> throws an exception, do not
+        overwrite any "real" exception that has already been saved.</li>
+    <li>The text of the various pages in the example has been updated so
+        that they are not identical.</li>
+    </ul> 
 
   </section>
 
