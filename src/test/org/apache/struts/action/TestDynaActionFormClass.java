@@ -152,7 +152,6 @@ public class TestDynaActionFormClass extends TestCase
 
         // Construct a FormBeanConfig to be used
         beanConfig = new FormBeanConfig();
-        beanConfig.setDynamic(false); // setType() will change it
         beanConfig.setName("dynaForm");
         beanConfig.setType("org.apache.struts.action.DynaActionForm");
 

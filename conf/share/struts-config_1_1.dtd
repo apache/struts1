@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.25 2002/07/07 22:02:17 husted Exp $
+     $Id: struts-config_1_1.dtd,v 1.26 2002/07/10 20:36:23 craigmcc Exp $
 -->
 
 
@@ -222,7 +222,8 @@ The "form-bean" element describes a particular form bean, which is a
                      conventional ActionForm subclass, then this attribute can be
                      omitted.
                      [true] if type is "org.apache.struts.action.DynaActionForm"
-                     [false] otherwise
+                     [false] otherwise  DEPRECATED - THIS IS NOW DETERMINED
+                     DYNAMICALLY BASED ON THE SPECIFIED IMPLEMENTATION CLASS.
 
      name            The unique identifier for this form bean. Referenced by the
                      <action> element to specify which form bean to use with its

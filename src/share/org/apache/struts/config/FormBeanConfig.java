@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.6 2002/07/09 23:57:37 husted Exp $
- * $Revision: 1.6 $
- * $Date: 2002/07/09 23:57:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.7 2002/07/10 20:36:23 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/07/10 20:36:23 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.config;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import org.apache.struts.action.DynaActionForm;
 
 
 /**
@@ -73,7 +74,7 @@ import java.util.HashMap;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/07/09 23:57:37 $
+ * @version $Revision: 1.7 $ $Date: 2002/07/10 20:36:23 $
  * @since Struts 1.1
  */
 
@@ -109,11 +110,15 @@ public class FormBeanConfig implements Serializable {
         return (this.dynamic);
     }
 
+    /**
+     * @deprecated The value to be returned by <code>getDynamic()</code>
+     * is now computed automatically in <code>setType()</code>
+     */
     public void setDynamic(boolean dynamic) {
         if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
+            throw new IllegalStateException("Configuration is frozen"); 
         }
-        this.dynamic = dynamic;
+        ; // No action required
     }
 
 
@@ -152,8 +157,16 @@ public class FormBeanConfig implements Serializable {
             throw new IllegalStateException("Configuration is frozen");
         }
         this.type = type;
-        if ("org.apache.struts.action.DynaActionForm".equals(type)) {
-            this.dynamic = true;
+        Class dynaBeanClass = DynaActionForm.class;
+        Class formBeanClass = formBeanClass();
+        if (formBeanClass != null) {
+            if (dynaBeanClass.isAssignableFrom(formBeanClass)) {
+                this.dynamic = true;
+            } else {
+                this.dynamic = false;
+            }
+        } else {
+            this.dynamic = false;
         }
     }
 
@@ -253,6 +266,31 @@ public class FormBeanConfig implements Serializable {
         sb.append(this.type);
         sb.append("]");
         return (sb.toString());
+
+    }
+
+
+    // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Return the <code>Class</code> instance for the form bean implementation
+     * configured by this <code>FormBeanConfig</code> instance.  This method
+     * uses the same algorithm as <code>RequestUtils.applicationClass()</code>
+     * but is reproduced to avoid a runtime dependence.
+     */
+    protected Class formBeanClass() {
+
+        ClassLoader classLoader =
+            Thread.currentThread().getContextClassLoader();
+        if (classLoader == null) {
+            this.getClass().getClassLoader();
+        }
+        try {
+            return (classLoader.loadClass(getType()));
+        } catch (Exception e) {
+            return (null);
+        }
 
     }
 

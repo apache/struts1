@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionFormBean.java,v 1.6 2002/07/02 04:23:13 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/07/02 04:23:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionFormBean.java,v 1.7 2002/07/10 20:36:23 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/07/10 20:36:23 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.struts.config.FormBeanConfig;
  * properties.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/07/02 04:23:13 $
+ * @version $Revision: 1.7 $ $Date: 2002/07/10 20:36:23 $
  *
  * Since Struts 1.1 <code>ActionFormBean</code> extends <code>FormBeanConfig</code>.
  *
@@ -101,14 +101,12 @@ public class ActionFormBean extends FormBeanConfig {
      *
      * @param name Form bean name
      * @param type Fully qualified class name
-     * @param dynamic Is this a DynaActionForm bean?
      */
-    public ActionFormBean(String name, String type, boolean dynamic) {
+    public ActionFormBean(String name, String type) {
 
         super();
         setName(name);
         setType(type);
-        setDynamic(dynamic);
 
     }
 

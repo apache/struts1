@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.3 2002/07/07 23:45:21 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/07/07 23:45:21 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.4 2002/07/10 20:36:23 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/07/10 20:36:23 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * environment was set up correctly.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/07/07 23:45:21 $
+ * @version $Revision: 1.4 $ $Date: 2002/07/10 20:36:23 $
  */
 
 public class TestMockBase extends TestCase {
@@ -175,8 +175,7 @@ public class TestMockBase extends TestCase {
         // Form Bean "static" is a standard ActionForm subclass
         formBean = new ActionFormBean
             ("static",
-             "org.apache.struts.mock.MockFormBean",
-             false);
+             "org.apache.struts.mock.MockFormBean");
         appConfig.addFormBeanConfig(formBean);
 
         // Action "/static" uses the "static" form bean in request scope
@@ -191,8 +190,7 @@ public class TestMockBase extends TestCase {
         // Form Bean "dynamic" is a DynaActionForm with the same properties
         formBean = new ActionFormBean
             ("dynamic",
-             "org.apache.struts.action.DynaActionForm",
-             true);
+             "org.apache.struts.action.DynaActionForm");
         formBean.addFormPropertyConfig
             (new FormPropertyConfig("booleanProperty", "boolean", "false"));
         formBean.addFormPropertyConfig
@@ -241,8 +239,7 @@ public class TestMockBase extends TestCase {
         // Form Bean "static" is a standard ActionForm subclass (same as default)
         formBean = new ActionFormBean
             ("static",
-             "org.apache.struts.mock.MockFormBean",
-             false);
+             "org.apache.struts.mock.MockFormBean");
         appConfig2.addFormBeanConfig(formBean);
 
         // Action "/static" uses the "static" form bean in request scope (same as default)
@@ -257,8 +254,7 @@ public class TestMockBase extends TestCase {
         // Form Bean "dynamic2" is a DynaActionForm with the same properties
         formBean = new ActionFormBean
             ("dynamic2",
-             "org.apache.struts.action.DynaActionForm",
-             true);
+             "org.apache.struts.action.DynaActionForm");
         formBean.addFormPropertyConfig
             (new FormPropertyConfig("booleanProperty", "boolean", "false"));
         formBean.addFormPropertyConfig
