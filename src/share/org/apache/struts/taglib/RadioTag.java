@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/RadioTag.java,v 1.2 2000/06/12 16:00:53 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/12 16:00:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/RadioTag.java,v 1.3 2000/06/15 01:27:35 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/15 01:27:35 $
  *
  * ====================================================================
  *
@@ -68,7 +68,6 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.tagext.BodyTagSupport;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -77,10 +76,10 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "radio".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/12 16:00:53 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/15 01:27:35 $
  */
 
-public final class RadioTag extends BodyTagSupport {
+public final class RadioTag extends BaseHandlerTag {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -195,6 +194,8 @@ public final class RadioTag extends BodyTagSupport {
 	results.append("\"");
 	if (value.equals(current))
 	    results.append(" checked");
+	results.append(prepareEventHandlers());
+	results.append(prepareStyles());
 	results.append(">");
 
 	// Print this field to our output writer

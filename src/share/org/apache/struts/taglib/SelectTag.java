@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.2 2000/06/15 01:27:36 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/15 01:27:36 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -80,10 +79,10 @@ import org.apache.struts.util.MessageResources;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:12 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/15 01:27:36 $
  */
 
-public final class SelectTag extends TagSupport {
+public final class SelectTag extends BaseHandlerTag {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -187,6 +186,8 @@ public final class SelectTag extends TagSupport {
 	results.append(" name=\"");
 	results.append(name);
 	results.append("\"");
+	results.append(prepareEventHandlers());
+	results.append(prepareStyles());
 	results.append(">");
 
 	// Print this field to our output writer
@@ -229,7 +230,7 @@ public final class SelectTag extends TagSupport {
 	}
 
 	// Continue processing this page
-	return (EVAL_BODY_INCLUDE);
+	return (EVAL_BODY_TAG);
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/PropertyTag.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/PropertyTag.java,v 1.2 2000/06/15 01:27:35 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/15 01:27:35 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Display the value of the specified bean property as read-only HTML text.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:12 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/15 01:27:35 $
  */
 
 public class PropertyTag extends BaseInputTag {
@@ -132,7 +132,7 @@ public class PropertyTag extends BaseInputTag {
 	}
 
 	// Continue processing this page
-	return (EVAL_BODY_INCLUDE);
+	return (EVAL_BODY_TAG);
 
     }
 

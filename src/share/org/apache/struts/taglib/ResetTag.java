@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ResetTag.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ResetTag.java,v 1.2 2000/06/15 01:27:35 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/15 01:27:35 $
  *
  * ====================================================================
  *
@@ -68,7 +68,6 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.tagext.BodyTagSupport;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -77,10 +76,10 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "reset".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:12 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/15 01:27:35 $
  */
 
-public final class ResetTag extends BodyTagSupport {
+public final class ResetTag extends BaseHandlerTag {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -190,7 +189,10 @@ public final class ResetTag extends BodyTagSupport {
 	results.append(name);
 	results.append("\" value=\"");
 	results.append(label);
-	results.append("\">");
+	results.append("\"");
+	results.append(prepareEventHandlers());
+	results.append(prepareStyles());
+	results.append(">");
 
 	// Render this element to our writer
 	JspWriter writer = pageContext.getOut();

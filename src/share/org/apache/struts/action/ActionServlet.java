@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.4 2000/06/13 02:40:29 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/06/13 02:40:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.5 2000/06/15 01:27:30 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/06/15 01:27:30 $
  *
  * ====================================================================
  *
@@ -140,7 +140,7 @@ import org.xml.sax.SAXException;
  * <p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/06/13 02:40:29 $
+ * @version $Revision: 1.5 $ $Date: 2000/06/15 01:27:30 $
  */
 
 public class ActionServlet
@@ -239,7 +239,8 @@ public class ActionServlet
 	// Load our internationalized resource bundle
 	internal = MessageResources.getMessageResources(internalName);
 	if (internal == null)
-	    throw new UnavailableException("Cannot load internal resources");
+	    throw new UnavailableException("Cannot load internal resources from '"
+	                                   + internalName + "'");
 
 	// Process our servlet initialization parameters
 	String value;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SubmitTag.java,v 1.2 2000/06/15 01:27:36 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/15 01:27:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ButtonTag.java,v 1.1 2000/06/15 01:27:34 craigmcc Exp $
+ * $Revision: 1.1 $
+ * $Date: 2000/06/15 01:27:34 $
  *
  * ====================================================================
  *
@@ -63,40 +63,29 @@
 package org.apache.struts.taglib;
 
 
-import java.lang.reflect.Method;
 import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
 import org.apache.struts.util.BeanUtils;
-import org.apache.struts.util.MessageResources;
 
 
 /**
- * Tag for input fields of type "submit".
+ * Renders an HTML BUTTON tag within the Struts framework.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/15 01:27:36 $
+ * @author Don Clasen
+ * @version $Revision: 1.1 $ $Date: 2000/06/15 01:27:34 $
  */
 
-public final class SubmitTag extends BaseHandlerTag {
+public final class ButtonTag extends BaseHandlerTag {
 
 
     // ----------------------------------------------------- Instance Variables
 
-
     /**
-     * The message resources for this package.
+     * The name of the generated button.
      */
-    protected static MessageResources messages =
-	MessageResources.getMessageResources
-	("org.apache.struts.taglib.LocalStrings");
-
-
-    /**
-     * The name of the generated input field.
-     */
-    private String name = "submit";
+    private String name = null;
 
 
     /**
@@ -109,24 +98,18 @@ public final class SubmitTag extends BaseHandlerTag {
 
 
     /**
-     * Return the field name.
+     * Return the component name.
      */
     public String getName() {
-
-	return (this.name);
-
+        return (name);
     }
 
-
     /**
-     * Set the field name.
-     *
-     * @param name The field name
+     * Set the component name.
+     * @param name The component name
      */
     public void setName(String name) {
-
-	this.name = name;
-
+        this.name = name;
     }
 
 
@@ -134,76 +117,68 @@ public final class SubmitTag extends BaseHandlerTag {
      * Return the label value.
      */
     public String getValue() {
-
-	return (this.value);
-
+        return (value);
     }
 
 
     /**
      * Set the label value.
-     *
      * @param value The label value
      */
     public void setValue(String value) {
-
-	this.value = value;
-
+        this.value = value;
     }
-
 
     // --------------------------------------------------------- Public Methods
 
-
     /**
      * Process the start of this tag.
-     *
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
-
-	// Do nothing until doEndTag() is called
-	return (EVAL_BODY_TAG);
-
+        // Do nothing until doEndTag() is called
+        return (EVAL_BODY_TAG);
     }
-
-
 
     /**
      * Process the end of this tag.
-     *
      * @exception JspException if a JSP exception has occurred
      */
     public int doEndTag() throws JspException {
 
-	// Acquire the label value we will be generating
-	String label = value;
-	if ((label == null) && (bodyContent != null))
-	    label = bodyContent.getString().trim();
-	if ((label == null) || (label.length() < 1))
-	    label = "Submit";
+    // Acquire the label value we will be generating
+    String label = value;
+    if ((label == null) && (bodyContent != null))
+        label = bodyContent.getString().trim();
+    if ((label == null) || (label.trim().length() < 1))
+        label = "Click";
 
-	// Generate an HTML element
-	StringBuffer results = new StringBuffer();
-	results.append("<input type=\"submit\" name=\"");
-	results.append(name);
-	results.append("\" value=\"");
-	results.append(label);
-	results.append("\"");
-	results.append(prepareEventHandlers());
-	results.append(prepareStyles());
-	results.append(">");
+    // Generate an HTML element
+    StringBuffer results = new StringBuffer();
+    results.append("<input type=\"button\"");
+    if (name != null) {
+        results.append(" name=\"");
+        results.append(name);
+        results.append("\"");
+    }
+    results.append(" value=\"");
+    results.append(label);
+    results.append("\"");
+    results.append(prepareEventHandlers());
+    results.append(prepareStyles());
+    results.append(">");
 
-	// Render this element to our writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.print(results.toString());
-	} catch (IOException e) {
-	    throw new JspException
-		(messages.getMessage("baseFieldTag.io", e.toString()));
-	}
+    // Render this element to our writer
+    JspWriter writer = pageContext.getOut();
+    try {
+        writer.print(results.toString());
+    }
+    catch (IOException e) {
+        throw new JspException
+        (messages.getMessage("baseFieldTag.io", e.toString()));
+    }
 
-	return (EVAL_PAGE);
+    return (EVAL_PAGE);
 
     }
 

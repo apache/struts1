@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.2 2000/06/15 01:27:34 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/15 01:27:34 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:12 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/15 01:27:34 $
  */
 
 public final class FormTag extends TagSupport {
@@ -111,6 +111,18 @@ public final class FormTag extends TagSupport {
      * The attribute key under which our associated bean is stored.
      */
     private String name = null;
+
+
+    /**
+     * The onReset event script.
+     */
+    private String onReset = null;
+
+
+    /**
+     * The onSubmit event script.
+     */
+    private String onSubmit = null;
 
 
     /**
@@ -196,6 +208,50 @@ public final class FormTag extends TagSupport {
 
 
     /**
+     * Return the onReset event script.
+     */
+    public String getOnReset() {
+
+	return (this.onReset);
+
+    }
+
+
+    /**
+     * Set the onReset event script.
+     *
+     * @param onReset The new event script
+     */
+    public void setOnReset(String onReset) {
+
+	this.onReset = onReset;
+
+    }
+
+
+    /**
+     * Return the onSubmit event script.
+     */
+    public String getOnSubmit() {
+
+	return (this.onSubmit);
+
+    }
+
+
+    /**
+     * Set the onSubmit event script.
+     *
+     * @param onSubmit The new event script
+     */
+    public void setOnSubmit(String onSubmit) {
+
+	this.onSubmit = onSubmit;
+
+    }
+
+
+    /**
      * Return the attribute scope of our bean.
      */
     public String getScope() {
@@ -259,6 +315,16 @@ public final class FormTag extends TagSupport {
 	if (action != null) {
 	    results.append(" action=\"");
 	    results.append(response.encodeURL(BeanUtils.filter(action)));
+	    results.append("\"");
+	}
+	if (onReset != null) {
+	    results.append(" onreset=\"");
+	    results.append(onReset);
+	    results.append("\"");
+        }
+        if (onSubmit != null) {
+	    results.append(" onsubmit=\"");
+	    results.append(onSubmit);
 	    results.append("\"");
 	}
 	results.append(">");

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseInputTag.java,v 1.1 2000/05/31 22:28:11 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseInputTag.java,v 1.2 2000/06/15 01:27:34 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/15 01:27:34 $
  *
  * ====================================================================
  *
@@ -74,10 +74,10 @@ import org.apache.struts.util.MessageResources;
  * Abstract base class for the various input tags.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:11 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/15 01:27:34 $
  */
 
-public class BaseInputTag extends TagSupport {
+public abstract class BaseInputTag extends BaseHandlerTag {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -329,7 +329,7 @@ public class BaseInputTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-	return (EVAL_BODY_INCLUDE);
+	return (EVAL_BODY_TAG);
 
     }
 
