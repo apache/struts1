@@ -329,21 +329,30 @@ public ActionForward perform(ActionMapping mapping,
         of struts-config.xml:
       </p>
 
-<pre>
-&lt;struts-config>
-  &lt;data-sources>
-    &lt;data-source
-      autoCommit="false"
-     description="Example Data Source Description"
-     driverClass="org.postgresql.Driver"
-        maxCount="4"
-        minCount="2"
-        password="mypassword"
-             url="jdbc:postgresql://localhost/mydatabase"
-            user="myusername"/>
-  &lt;/data-sources>
-&lt;/struts-config>
-</pre>
+    <pre>
+    &lt;struts-config>
+      &lt;data-sources>
+        &lt;data-source>
+          &lt;set-property property="autoCommit"
+                           value="false"/>
+          &lt;set-property property="description"
+                           value="Example Data Source Configuration"/>
+          &lt;set-property property="driverClass"
+                           value="org.postgresql.Driver"/>
+          &lt;set-property property="maxCount"
+                           value="4"/>
+          &lt;set-property property="minCount"
+                           value="2"/>
+          &lt;set-property property="password"
+                           value="mypassword"/>
+          &lt;set-property property="url"
+                           value="jdbc:postgresql://localhost/mydatabase"/>
+          &lt;set-property property="user"
+                           value="myusername"/>
+        &lt;/data-source>
+      &lt;/data-sources>
+    &lt;/struts-config>
+    </pre>
 
       <p>
         For information on how to retrieve the data source, see the 
