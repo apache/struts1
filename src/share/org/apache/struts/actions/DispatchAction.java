@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.9 2002/08/03 20:54:54 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2002/08/03 20:54:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.10 2002/08/04 00:33:04 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/08/04 00:33:04 $
  *
  * ====================================================================
  *
@@ -128,7 +128,7 @@ import org.apache.struts.util.MessageResources;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.9 $ $Date: 2002/08/03 20:54:54 $
+ * @version $Revision: 1.10 $ $Date: 2002/08/04 00:33:04 $
  */
 
 public abstract class DispatchAction extends Action {
@@ -174,6 +174,79 @@ public abstract class DispatchAction extends Action {
         ActionMapping.class, ActionForm.class,
         HttpServletRequest.class, HttpServletResponse.class };
 
+
+
+    // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Process the specified HTTP request, and create the corresponding HTTP
+     * response (or forward to another web component that will create it).
+     * Return an <code>ActionForward</code> instance describing where and how
+     * control should be forwarded, or <code>null</code> if the response has
+     * already been completed.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param request The HTTP request we are processing
+     * @param response The HTTP response we are creating
+     *
+     * @exception Exception if an exception occurs
+     */
+    public ActionForward execute(ActionMapping mapping,
+                                 ActionForm form,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response)
+        throws Exception {
+
+        // Identify the request parameter containing the method name
+        String parameter = mapping.getParameter();
+        if (parameter == null) {
+            String message =
+                messages.getMessage("dispatch.handler", mapping.getPath());
+            log.error(message);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                               message);
+            return (null);
+        }
+
+        // Identify the method name to be dispatched to
+        String name = request.getParameter(parameter);
+        if (name == null) {
+            name = "unspecified";
+        }
+
+        // Invoke the named method, and return the result
+        return dispatchMethod(mapping,form,request,response,name);
+
+    }
+
+
+    /**
+     * Method which is dispatched to when there is no value for specified
+     * request parameter included in the request.  Subclasses of
+     * <code>DispatchAction</code> should override this method if they wish
+     * to provide default behavior different than producing an HTTP
+     * "Bad Request" error.
+     *
+     */
+    public ActionForward unspecified(ActionMapping mapping,
+                                     ActionForm form,
+                                     HttpServletRequest request,
+                                     HttpServletResponse response)
+        throws Exception {
+
+        String message =
+            messages.getMessage("dispatch.parameter", mapping.getPath(),
+                                mapping.getParameter());
+        log.error(message);
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST, message);
+        return (null);
+
+    }
+
+
+    // ----------------------------------------------------- Protected Methods
 
 
     /**
@@ -241,61 +314,6 @@ public abstract class DispatchAction extends Action {
         // Return the returned ActionForward instance
         return (forward);
     }
-
-
-// --------------------------------------------------------- Public Methods
-
-
-    /**
-     * Process the specified HTTP request, and create the corresponding HTTP
-     * response (or forward to another web component that will create it).
-     * Return an <code>ActionForward</code> instance describing where and how
-     * control should be forwarded, or <code>null</code> if the response has
-     * already been completed.
-     *
-     * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
-     * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
-     *
-     * @exception Exception if an exception occurs
-     */
-    public ActionForward execute(ActionMapping mapping,
-                                 ActionForm form,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response)
-        throws Exception {
-
-        // Identify the request parameter containing the method name
-        String parameter = mapping.getParameter();
-        if (parameter == null) {
-            String message =
-                messages.getMessage("dispatch.handler", mapping.getPath());
-            log.error(message);
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                               message);
-            return (null);
-        }
-
-        // Identify the method name to be dispatched to
-        String name = request.getParameter(parameter);
-        if (name == null) {
-            String message =
-                messages.getMessage("dispatch.parameter", mapping.getPath(),
-                                    parameter);
-            log.error(message);
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-                               message);
-            return (null);
-        }
-
-        // Invoke the named method, and return the result
-        return dispatchMethod(mapping,form,request,response,name);
-
-    }
-
-
-    // ----------------------------------------------------- Protected Methods
 
 
     /**
