@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.2 2002/04/02 04:08:32 dwinterfeldt Exp $
- * $Revision: 1.2 $
- * $Date: 2002/04/02 04:08:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.3 2002/06/25 18:27:52 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/06/25 18:27:52 $
  *
  * ====================================================================
  *
@@ -57,8 +57,8 @@
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
- 
- 
+
+
 package org.apache.struts.util;
 
 import java.util.Locale;
@@ -79,12 +79,12 @@ import org.apache.struts.validator.ValidatorPlugIn;
 
 
 /**
- * <p>This class helps provides some useful methods for retrieving objects 
+ * <p>This class helps provides some useful methods for retrieving objects
  * from different scopes of the application.</p>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.2 $ $Date: 2002/04/02 04:08:32 $
- * @since 1.1
+ * @version $Revision: 1.3 $ $Date: 2002/06/25 18:27:52 $
+ * @since Struts 1.1
 */
 public class StrutsValidatorUtil  {
 
@@ -102,7 +102,7 @@ public class StrutsValidatorUtil  {
     * Resources key the <code>ActionErrors</code> is stored under.
    */
    public static String ACTION_ERRORS_KEY = "org.apache.struts.action.ActionErrors";
-   
+
    private static Locale defaultLocale = Locale.getDefault();
 
    /**
@@ -137,29 +137,29 @@ public class StrutsValidatorUtil  {
       Locale locale = null;
       try {
           locale = (Locale) request.getSession().getAttribute(Action.LOCALE_KEY);
-      } catch (IllegalStateException e) {	// Invalidated session
+      } catch (IllegalStateException e) {   // Invalidated session
           locale = null;
       }
       if (locale == null) {
          locale = defaultLocale;
       }
-          
+
       return locale;
    }
-   
+
    /**
     * Gets the <code>Locale</code> sensitive value based on the key passed in.
    */
    public static String getMessage(MessageResources messages, Locale locale, String key) {
-      String message = null;                       
-      
+      String message = null;
+
       if (messages != null) {
          message = messages.getMessage(locale, key);
       }
       if (message == null) {
          message = "";
       }
-      
+
       return message;
    }
 
@@ -168,53 +168,53 @@ public class StrutsValidatorUtil  {
    */
    public static String getMessage(HttpServletRequest request, String key) {
       MessageResources messages = getMessageResources(request);
-      
+
       return getMessage(messages, getLocale(request), key);
    }
 
    /**
-    * Gets the locale sensitive message based on the <code>ValidatorAction</code> message and the 
+    * Gets the locale sensitive message based on the <code>ValidatorAction</code> message and the
     * <code>Field</code>'s arg objects.
    */
-   public static String getMessage(MessageResources messages, Locale locale, 
+   public static String getMessage(MessageResources messages, Locale locale,
                                    ValidatorAction va, Field field) {
 
       String arg[] = getArgs(va.getName(), messages, locale, field);
       String msg = (field.getMsg(va.getName()) != null ? field.getMsg(va.getName()) : va.getMsg());
-      
+
       return messages.getMessage(locale, msg, arg[0], arg[1], arg[2], arg[3]);
    }
 
    /**
-    * Gets the <code>ActionError</code> based on the <code>ValidatorAction</code> message and the 
+    * Gets the <code>ActionError</code> based on the <code>ValidatorAction</code> message and the
     * <code>Field</code>'s arg objects.
    */
-   public static ActionError getActionError(HttpServletRequest request, 
+   public static ActionError getActionError(HttpServletRequest request,
                                             ValidatorAction va, Field field) {
 
       String arg[] = getArgs(va.getName(), getMessageResources(request), getLocale(request), field);
       String msg = (field.getMsg(va.getName()) != null ? field.getMsg(va.getName()) : va.getMsg());
-      
+
       return new ActionError(msg, arg[0], arg[1], arg[2], arg[3]);
    }
 
    /**
-    * Gets the message arguments based on the current <code>ValidatorAction</code> 
+    * Gets the message arguments based on the current <code>ValidatorAction</code>
     * and <code>Field</code>.
    */
-   public static String[] getArgs(String actionName, MessageResources messages, 
+   public static String[] getArgs(String actionName, MessageResources messages,
                                   Locale locale, Field field) {
-      
+
       Arg arg0 = field.getArg0(actionName);
       Arg arg1 = field.getArg1(actionName);
       Arg arg2 = field.getArg2(actionName);
       Arg arg3 = field.getArg3(actionName);
-      
+
       String sArg0 = null;
       String sArg1 = null;
       String sArg2 = null;
       String sArg3 = null;
-      
+
       if (arg0 != null) {
          if (arg0.getResource()) {
             sArg0 = getMessage(messages, locale, arg0.getKey());
@@ -222,7 +222,7 @@ public class StrutsValidatorUtil  {
             sArg0 = arg0.getKey();
          }
       }
-      
+
       if (arg1 != null) {
          if (arg1.getResource()) {
             sArg1 = getMessage(messages, locale, arg1.getKey());
@@ -230,7 +230,7 @@ public class StrutsValidatorUtil  {
             sArg1 = arg1.getKey();
          }
       }
-      
+
       if (arg2 != null) {
          if (arg2.getResource()) {
             sArg2 = getMessage(messages, locale, arg2.getKey());
@@ -238,19 +238,19 @@ public class StrutsValidatorUtil  {
             sArg2 = arg2.getKey();
          }
       }
-      
+
       if (arg3 != null) {
          if (arg3.getResource()) {
             sArg3 = getMessage(messages, locale, arg3.getKey());
          } else {
             sArg3 = arg3.getKey();
          }
-      }   	
-   	 
+      }
+
       return new String[] { sArg0, sArg1, sArg2, sArg3 };
-      
+
    }
-   
+
    /**
     * Writes a message based on the <code>Writer</code> defined in <code>MessageResources</code>.
     *
@@ -259,7 +259,7 @@ public class StrutsValidatorUtil  {
    */
    public static void log(ServletContext application, String message) {
       MessageResources messages = getMessageResources(application);
-      
+
       if (messages != null) {
          messages.log(message);
       }
@@ -273,7 +273,7 @@ public class StrutsValidatorUtil  {
    */
    public static void log(ServletContext application, String message, Throwable t) {
       MessageResources messages = getMessageResources(application);
-      
+
       if (messages != null) {
          messages.log(message, t);
       }
@@ -282,30 +282,30 @@ public class StrutsValidatorUtil  {
    /**
     * Initialize the <code>Validator</code> to perform validation.
     *
-    * @param 	key		The key that the validation rules are under 
-    *				(the form elements name attribute).
-    * @param 	request		The current request object.
-    * @param 	errors		The object any errors will be stored in.
+    * @param    key     The key that the validation rules are under
+    *               (the form elements name attribute).
+    * @param    request     The current request object.
+    * @param    errors      The object any errors will be stored in.
    */
    public static Validator initValidator(String key, Object bean,
-                                         ServletContext application, HttpServletRequest request, 
+                                         ServletContext application, HttpServletRequest request,
                                          ActionErrors errors, int page) {
 
       ValidatorResources resources = StrutsValidatorUtil.getValidatorResources(application);
       Locale locale = StrutsValidatorUtil.getLocale(request);
-      
+
       Validator validator = new Validator(resources, key);
       validator.setUseContextClassLoader(true);
-      
+
       validator.setPage(page);
-      
+
       validator.addResource(SERVLET_CONTEXT_KEY, application);
       validator.addResource(HTTP_SERVLET_REQUEST_KEY, request);
       validator.addResource(Validator.LOCALE_KEY, locale);
       validator.addResource(ACTION_ERRORS_KEY, errors);
       validator.addResource(Validator.BEAN_KEY, bean);
-       
-      return validator;    	
+
+      return validator;
    }
-   
+
 }

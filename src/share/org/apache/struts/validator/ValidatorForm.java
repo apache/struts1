@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorForm.java,v 1.3 2002/06/24 16:56:56 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2002/06/24 16:56:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorForm.java,v 1.4 2002/06/25 18:28:28 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/25 18:28:28 $
  *
  * ====================================================================
  *
@@ -89,9 +89,9 @@ import org.apache.struts.util.StrutsValidatorUtil;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.3 $ $Date: 2002/06/24 16:56:56 $
- * @since Struts 1.1
+ * @version $Revision: 1.4 $ $Date: 2002/06/25 18:28:28 $
  * @see org.apache.struts.action.ActionForm
+ * @since Struts 1.1
 */
 public class ValidatorForm extends ActionForm implements Serializable {
 
