@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.2 2001/01/07 22:39:07 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/07 22:39:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.3 2001/01/08 21:36:07 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/01/08 21:36:07 $
  *
  * ====================================================================
  *
@@ -78,6 +78,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
 
 
@@ -85,7 +86,7 @@ import org.apache.struts.util.RequestUtils;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/01/07 22:39:07 $
+ * @version $Revision: 1.3 $ $Date: 2001/01/08 21:36:07 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -462,7 +463,7 @@ public class LinkTag extends BaseHandlerTag {
                 else {
                     try {
                         Object value =
-                            BeanUtils.getPropertyValue(bean, paramProperty);
+                            PropertyUtils.getProperty(bean, paramProperty);
                         if (value != null)
                             href += value.toString();
                     } catch (IllegalAccessException e) {
@@ -521,7 +522,7 @@ public class LinkTag extends BaseHandlerTag {
 	    }
 	} else {
 	    try {
-		map = (Map) BeanUtils.getPropertyValue(bean, property);
+		map = (Map) PropertyUtils.getProperty(bean, property);
 		if (map == null) {
 		    JspException e = new JspException
 			(messages.getMessage("getter.property", property));

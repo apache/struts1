@@ -65,7 +65,7 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
-
+import org.apache.struts.util.PropertyUtils;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -195,12 +195,12 @@ public class OptionsTag extends TagSupport {
                 Object value = null;
                 Object label = null;;
                 try {
-                    value = BeanUtils.getPropertyValue(bean, property);
+                    value = PropertyUtils.getProperty(bean, property);
                     if (value == null)
                         value = "";
                     if (labelProperty != null)
                         label =
-                            BeanUtils.getPropertyValue(bean, labelProperty);
+                            PropertyUtils.getProperty(bean, labelProperty);
                     else
                         label = value;
                     if (label == null)
@@ -325,7 +325,7 @@ public class OptionsTag extends TagSupport {
 	Object collection = bean;
 	if (property != null) {
 	    try {
-		collection = BeanUtils.getPropertyValue(bean, property);
+		collection = PropertyUtils.getProperty(bean, property);
 	    } catch (IllegalAccessException e) {
 		throw new JspException
 		    (messages.getMessage("getter.access", property, name));
