@@ -3,8 +3,9 @@
   <!-- Initialization properties -->
   <property name="app.name"       value="struts"/>
   <property name="build.home"     value="../build/${app.name}"/>
-  <property name="deploy.home"    value="../build/catalina/webapps/struts"/>
+  <property name="catalina.build"  value="../build/catalina"/>
   <property name="dist.home"      value="../dist/${app.name}"/>
+  <property name="tomcat.build"    value="../build/tomcat"/>
   <property name="upload.dest"    value="craigmcc@jakarta.apache.org:/www/jakarta.apache.org/builds/struts/nightly"/>
   <property name="upload.home"    value="../upload/${app.name}"/>
 
@@ -133,13 +134,27 @@
   <target name="dist"
        depends="dist.library,dist.documentation,dist.example,dist.source"/>
 
-  <!-- DEPLOY:  Deploy this application on Tomcat -->
-  <target name="deploy" depends="compile.example">
-    <mkdir dir="${deploy.home}"/>
-    <copydir src="${build.home}/example" dest="${deploy.home}"/>
+  <!-- DEPLOY:  Deploy these applications on Catalina -->
+  <target name="deploy.catalina" depends="compile.documentation,compile.example">
+    <mkdir   dir="${catalina.build}/webapps/struts-documentation"/>
+    <copydir src="${build.home}/documentation"
+            dest="${catalina.build}/webapps/struts-documentation"/>
+    <mkdir   dir="${catalina.build}/webapps/struts-example"/>
+    <copydir src="${build.home}/example"
+            dest="${catalina.build}/webapps/struts-example"/>
   </target>
 
-  <!-- DEPLOY:  Package up the distribution in various formats -->
+  <!-- DEPLOY:  Deploy these applications on Tomcat -->
+  <target name="deploy.tomcat" depends="compile.documentation,compile.example">
+    <mkdir   dir="${tomcat.build}/webapps/struts-documentation"/>
+    <copydir src="${build.home}/documentation"
+            dest="${tomcat.build}/webapps/struts-documentation"/>
+    <mkdir   dir="${tomcat.build}/webapps/struts-example"/>
+    <copydir src="${build.home}/example"
+            dest="${tomcat.build}/webapps/struts-example"/>
+  </target>
+
+  <!-- UPLOAD:  Package up the distribution in various formats -->
   <target name="package" depends="dist">
     <!-- Create the uploads directory -->
     <deltree dir="${upload.home}"/>
@@ -156,7 +171,7 @@
          basedir="${dist.home}/.." includes="${app.name}/**"/>
   </target>
 
-  <!-- DEPLOY:  Upload distribution files to Jakarta web site -->
+  <!-- UPLOAD:  Upload distribution files to Jakarta web site -->
   <target name="upload" depends="package">
     <exec     dir="${upload.home}"
           command="scp ${app.name}-${DSTAMP}.* ${upload.dest}"/>
