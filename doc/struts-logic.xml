@@ -427,7 +427,7 @@
     <p>So, if you wish to iterate over the values of a Hashtable, you would
     implement code like the following:</p>
     <code>
-    &lt;logic:iterate id="element" name="myhashtable"/&gt;<br/>
+    &lt;logic:iterate id="element" name="myhashtable"&gt;<br/>
       Next element is &lt;bean:write name="element" property="value"/&gt;<br/>
     &lt;/logic:iterate&gt;
     </code>
