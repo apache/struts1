@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.99 2002/03/23 01:14:04 craigmcc Exp $
- * $Revision: 1.99 $
- * $Date: 2002/03/23 01:14:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.100 2002/03/23 01:20:20 craigmcc Exp $
+ * $Revision: 1.100 $
+ * $Date: 2002/03/23 01:20:20 $
  *
  * ====================================================================
  *
@@ -270,7 +270,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.99 $ $Date: 2002/03/23 01:14:04 $
+ * @version $Revision: 1.100 $ $Date: 2002/03/23 01:20:20 $
  */
 
 public class ActionServlet
@@ -924,6 +924,8 @@ public class ActionServlet
                 plugIns[i] = (PlugIn)
                     RequestUtils.applicationInstance
                     (plugInConfigs[i].getClassName());;
+                BeanUtils.populate(plugIns[i],
+                                   plugInConfigs[i].getProperties());
                 plugIns[i].init(this, config);
             } catch (Exception e) {
                 throw new UnavailableException
