@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.38 2003/10/10 22:03:33 mrdon Exp $
- * $Revision: 1.38 $
- * $Date: 2003/10/10 22:03:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.39 2003/11/15 23:43:01 dgraham Exp $
+ * $Revision: 1.39 $
+ * $Date: 2003/11/15 23:43:01 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.38 $ $Date: 2003/10/10 22:03:33 $
+ * @version $Revision: 1.39 $ $Date: 2003/11/15 23:43:01 $
  * @since Struts 1.1
  */
 public class RequestProcessor {
@@ -678,12 +678,11 @@ public class RequestProcessor {
         }
 
         // No mapping can be found to process this request
-        log.error(getInternal().getMessage("processInvalid", path));
-        response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-                           getInternal().getMessage
-                           ("processInvalid", path));
-        return (null);
-
+        String msg = getInternal().getMessage("processInvalid", path);
+        log.error(msg);
+        response.sendError(HttpServletResponse.SC_NOT_FOUND, msg);
+        
+        return null;
     }
 
 
@@ -764,13 +763,15 @@ public class RequestProcessor {
         }
         String prefix = moduleConfig.getPrefix();
         if (!path.startsWith(prefix)) {
-            log.error(getInternal().getMessage("processPath",
-                                         request.getRequestURI()));
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-                               getInternal().getMessage
-                               ("processPath", request.getRequestURI()));
-            return (null);
+            String msg =
+                getInternal().getMessage("processPath", request.getRequestURI());
+            
+            log.error(msg);
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, msg);
+
+            return null;
         }
+        
         path = path.substring(prefix.length());
         int slash = path.lastIndexOf("/");
         int period = path.lastIndexOf(".");
