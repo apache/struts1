@@ -3,7 +3,7 @@
 
 <properties>
     <title>Downloading - The Apache Struts Web Application Framework</title>
-    <author>Martin Cooper</author>
+    <author email="martinc@apache.org">Martin Cooper</author>
 </properties>
 
 <body>
@@ -52,10 +52,10 @@
 
         </section>
 
-        <section name="Struts 1.2.2" href="struts122">
+        <section name="Struts 1.2.4" href="struts124">
 
         <p>
-        Struts 1.2.2 is the latest production release of Struts. It is available
+        Struts 1.2.4 is the latest production release of Struts. It is available
         in a binary distribution, a source distribution, and a minimal library
         distribution.
         </p>
@@ -65,14 +65,14 @@
         <li>Binaries:
             <ul>
                 <li>
-                <a href="[preferred]/struts/binaries/jakarta-struts-1.2.2.zip">jakarta-struts-1.2.2.zip</a> 
-                [<a href="http://www.apache.org/dist/struts/binaries/jakarta-struts-1.2.2.zip.asc">PGP</a>]
-                [<a href="http://www.apache.org/dist/struts/binaries/jakarta-struts-1.2.2.zip.md5">MD5</a>]
+                <a href="[preferred]/struts/binaries/jakarta-struts-1.2.4.zip">jakarta-struts-1.2.4.zip</a> 
+                [<a href="http://www.apache.org/dist/struts/binaries/jakarta-struts-1.2.4.zip.asc">PGP</a>]
+                [<a href="http://www.apache.org/dist/struts/binaries/jakarta-struts-1.2.4.zip.md5">MD5</a>]
                 </li>
                 <li>
-                <a href="[preferred]/struts/binaries/jakarta-struts-1.2.2.tar.gz">jakarta-struts-1.2.2.tar.gz</a> 
-                [<a href="http://www.apache.org/dist/struts/binaries/jakarta-struts-1.2.2.tar.gz.asc">PGP</a>]
-                [<a href="http://www.apache.org/dist/struts/binaries/jakarta-struts-1.2.2.tar.gz.md5">MD5</a>]
+                <a href="[preferred]/struts/binaries/jakarta-struts-1.2.4.tar.gz">jakarta-struts-1.2.4.tar.gz</a> 
+                [<a href="http://www.apache.org/dist/struts/binaries/jakarta-struts-1.2.4.tar.gz.asc">PGP</a>]
+                [<a href="http://www.apache.org/dist/struts/binaries/jakarta-struts-1.2.4.tar.gz.md5">MD5</a>]
                 </li>
             </ul>
         </li>
@@ -80,14 +80,14 @@
         <li>Source:
             <ul>
                 <li>
-                <a href="[preferred]/struts/source/jakarta-struts-1.2.2-src.zip">jakarta-struts-1.2.2-src.zip</a> 
-                [<a href="http://www.apache.org/dist/struts/source/jakarta-struts-1.2.2-src.zip.asc">PGP</a>]
-                [<a href="http://www.apache.org/dist/struts/source/jakarta-struts-1.2.2-src.zip.md5">MD5</a>]
+                <a href="[preferred]/struts/source/jakarta-struts-1.2.4-src.zip">jakarta-struts-1.2.4-src.zip</a> 
+                [<a href="http://www.apache.org/dist/struts/source/jakarta-struts-1.2.4-src.zip.asc">PGP</a>]
+                [<a href="http://www.apache.org/dist/struts/source/jakarta-struts-1.2.4-src.zip.md5">MD5</a>]
                 </li>
                 <li>
-                <a href="[preferred]/struts/source/jakarta-struts-1.2.2-src.tar.gz">jakarta-struts-1.2.2-src.tar.gz</a> 
-                [<a href="http://www.apache.org/dist/struts/source/jakarta-struts-1.2.2-src.tar.gz.asc">PGP</a>]
-                [<a href="http://www.apache.org/dist/struts/source/jakarta-struts-1.2.2-src.tar.gz.md5">MD5</a>]
+                <a href="[preferred]/struts/source/jakarta-struts-1.2.4-src.tar.gz">jakarta-struts-1.2.4-src.tar.gz</a> 
+                [<a href="http://www.apache.org/dist/struts/source/jakarta-struts-1.2.4-src.tar.gz.asc">PGP</a>]
+                [<a href="http://www.apache.org/dist/struts/source/jakarta-struts-1.2.4-src.tar.gz.md5">MD5</a>]
                 </li>
             </ul>
         </li>
@@ -95,14 +95,14 @@
         <li>Library:
             <ul>
                 <li>
-                <a href="[preferred]/struts/library/jakarta-struts-1.2.2-lib.zip">jakarta-struts-1.2.2-lib.zip</a> 
-                [<a href="http://www.apache.org/dist/struts/library/jakarta-struts-1.2.2-lib.zip.asc">PGP</a>]
-                [<a href="http://www.apache.org/dist/struts/library/jakarta-struts-1.2.2-lib.zip.md5">MD5</a>]
+                <a href="[preferred]/struts/library/jakarta-struts-1.2.4-lib.zip">jakarta-struts-1.2.4-lib.zip</a> 
+                [<a href="http://www.apache.org/dist/struts/library/jakarta-struts-1.2.4-lib.zip.asc">PGP</a>]
+                [<a href="http://www.apache.org/dist/struts/library/jakarta-struts-1.2.4-lib.zip.md5">MD5</a>]
                 </li>
                 <li>
-                <a href="[preferred]/struts/library/jakarta-struts-1.2.2-lib.tar.gz">jakarta-struts-1.2.2-lib.tar.gz</a> 
-                [<a href="http://www.apache.org/dist/struts/library/jakarta-struts-1.2.2-lib.tar.gz.asc">PGP</a>]
-                [<a href="http://www.apache.org/dist/struts/library/jakarta-struts-1.2.2-lib.tar.gz.md5">MD5</a>]
+                <a href="[preferred]/struts/library/jakarta-struts-1.2.4-lib.tar.gz">jakarta-struts-1.2.4-lib.tar.gz</a> 
+                [<a href="http://www.apache.org/dist/struts/library/jakarta-struts-1.2.4-lib.tar.gz.asc">PGP</a>]
+                [<a href="http://www.apache.org/dist/struts/library/jakarta-struts-1.2.4-lib.tar.gz.md5">MD5</a>]
                 </li>
             </ul>
         </li>

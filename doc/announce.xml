@@ -3,7 +3,7 @@
 
   <properties>
     <author email="husted@apache.org">Ted Husted</author>
-    <author email="mcooper@apache.org">Martin Cooper</author>
+    <author email="martinc@apache.org">Martin Cooper</author>
     <title>Announcements</title>
   </properties>
 
@@ -11,9 +11,26 @@
 
 <section name="Announcements">
 
-    <h4 id="a20040831">31 Augusy 2004- Struts 1.2.2 (General Availability)</h4>
+    <h4 id="a20040919">19 Sep 2003 - Struts 1.2.4 (General Availability)</h4>
     <p>
-        The Apache Struts team is proud to announce the next release of Struts 1.1. 
+        The Struts team is pleased to announce the release of Struts 1.2.4 for
+        General Availability. This release includes significant new
+        functionality, as well as numerous fixes for bugs which were reported
+        against the previous release, and supersedes the earlier 1.1 version
+        as the latest official release of Struts from The Apache Software
+        Foundation.
+    </p>
+    <p>
+        The binary, source and library distributions are available from the
+        <a href="http://struts.apache.org/download.cgi">Struts download page</a>.
+        The <a href="http://struts.apache.org/userGuide/release-notes.html">Release Notes</a>
+        are available on the Struts web site.
+    </p>
+    <hr/>
+
+    <h4 id="a20040831">31 Aug 2004 - Struts 1.2.2 (General Availability)</h4>
+    <p>
+        The Apache Struts team is proud to announce the release of Struts 1.2.2. 
         This release includes many new enhancements and features as well as numerous
         bug fixes since the last generally available release (1.1).
         This release supersedes the earlier 1.1 version as the latest official release 
@@ -41,7 +58,7 @@
         Please note that Struts now uses "Tomcat-style" releases. If the feedback on this release were positive, Struts 1.2.1 may be promoted directly to "GA", without creating yet-another distribution. If a serious problem were found and fixed, then we will issue Struts 1.2.2 and try again.
     </p>
 
-    <h4 id="a20040711">11 July 2004- Struts 1.2.1 (Beta) Available</h4>
+    <h4 id="a20040711">11 Jul 2004 - Struts 1.2.1 (Beta) Available</h4>
     <p>
         The Struts team announces the release of Struts 1.2.1, currently ranked at Beta quality.
     </p>
