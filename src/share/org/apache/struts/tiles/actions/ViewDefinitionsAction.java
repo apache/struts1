@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ViewDefinitionsAction.java,v 1.5 2003/05/15 15:56:31 cedric Exp $
- * $Revision: 1.5 $
- * $Date: 2003/05/15 15:56:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ViewDefinitionsAction.java,v 1.6 2003/05/16 10:06:45 cedric Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/05/16 10:06:45 $
  *
  * ====================================================================
  *
@@ -62,7 +62,7 @@
 
 package org.apache.struts.tiles.actions;
 
-import org.apache.struts.tiles.DefinitionsUtil;
+import org.apache.struts.tiles.TilesUtil;
 import org.apache.struts.tiles.DefinitionsFactory;
 
 import java.io.PrintWriter;
@@ -111,7 +111,7 @@ public class ViewDefinitionsAction extends Action {
 
         try {
           ServletContext context = getServlet().getServletContext();
-            DefinitionsFactory factory = DefinitionsUtil.getDefinitionsFactory(context );
+            DefinitionsFactory factory = TilesUtil.getDefinitionsFactory(request, context );
             writer.println( factory.toString() );
         } catch (Exception e) {
             writer.println("FAIL - " + e.toString());

@@ -64,6 +64,11 @@
       <forward  name="success"        path="test.action.noforward"/>
   </action>
 
+    <!-- The standard administrative actions available with Struts -->
+    <!-- These would be either omitted or protected by security -->
+    <!-- in a real application deployment -->
+     <action    path="/admin/viewdef"
+               type="org.apache.struts.tiles.actions.ViewDefinitionsAction"/>
   </action-mappings>
 
   
