@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.14 2002/07/20 17:41:17 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2002/07/20 17:41:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.15 2002/10/13 01:30:00 craigmcc Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/10/13 01:30:00 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.14 $ $Date: 2002/07/20 17:41:17 $
+ * @version $Revision: 1.15 $ $Date: 2002/10/13 01:30:00 $
  * @deprecated Use a <code>BasicDataSource</code> directly, or indirectly
  *  acquire a data source provided by your container
  */
@@ -301,7 +301,9 @@ public class GenericDataSource implements DataSource {
      */
     public int getLoginTimeout() throws SQLException {
 
-        return (createDataSource().getLoginTimeout());
+        // return (createDataSource().getLoginTimeout());
+        log.warn("BasicDataSource does not support getLoginTimeout, returning 0");
+        return (0);
 
     }
 
@@ -328,7 +330,8 @@ public class GenericDataSource implements DataSource {
      */
     public void setLoginTimeout(int loginTimeout) throws SQLException {
 
-        createDataSource().setLoginTimeout(loginTimeout);
+        // createDataSource().setLoginTimeout(loginTimeout);
+        log.warn("BasicDataSource does not support setLoginTimeout, ignoring");
 
     }
 
