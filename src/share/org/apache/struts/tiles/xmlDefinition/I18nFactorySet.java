@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.2 2002/06/26 20:58:19 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2002/06/26 20:58:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.3 2002/07/11 16:48:25 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/07/11 16:48:25 $
  *
  * ====================================================================
  *
@@ -567,6 +567,22 @@ public class I18nFactorySet extends FactorySet
     return name + postfix + ext;
     }
 
+    /**
+     *
+     */
+  public String toString()
+    {
+    StringBuffer buff = new StringBuffer( "I18nFactorySet : \n" );
+    buff.append( "--- default factory ---\n" );
+    buff.append( defaultFactory.toString() );
+    buff.append( "\n--- others factories ---\n" );
+    Iterator i = factories.values().iterator();
+    while( i.hasNext() )
+      {
+      buff.append( i.next().toString() ).append("---------- \n");
+      }
+    return buff.toString();
+    }
 
 
 }
