@@ -57,7 +57,7 @@
             <!-- Validator Initialization Servlet Configuration -->			<BR>
             &lt;servlet&gt;                                                                     <BR>
             &nbsp;&nbsp;  &lt;servlet-name&gt;validator&lt;/servlet-name&gt;                                      <BR>
-            &nbsp;&nbsp;  &lt;servlet-class&gt;com.wintecinc.struts.action.ValidatorServlet&lt;/servlet-class&gt;    <BR>
+            &nbsp;&nbsp;  &lt;servlet-class&gt;org.apache.struts.validator.action.ValidatorServlet&lt;/servlet-class&gt;    <BR>
             &nbsp;&nbsp;  &lt;init-param&gt;                                                                <BR>
             &nbsp;&nbsp;&nbsp;&nbsp;    &lt;param-name&gt;config&lt;/param-name&gt;                                            <BR>
             &nbsp;&nbsp;&nbsp;&nbsp;    &lt;param-value&gt;/WEB-INF/validation.xml&lt;/param-value&gt;                                              <BR>
@@ -83,7 +83,7 @@
           <p>Copy the validators that you want to use from the validation.xml file in /web/example/WEB-INF 
              or make your own.
           </p>
-          <p>Then extend com.wintecinc.struts.action.ValidatorForm instead of 
+          <p>Then extend org.apache.struts.validator.action.ValidatorForm instead of 
              org.apache.struts.action.ActionForm.  
           </p>
        </td>

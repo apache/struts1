@@ -76,7 +76,7 @@
           <H3><a name="setup">Setup</a></H3>
           <p>In Struts once you have defined the ValidatorServlet in the web.xml so it can 
              load your ValidatorResources you just have to extend 
-             com.wintecinc.struts.action.ValidatorForm instead of 
+             org.apache.struts.validator.action.ValidatorForm instead of 
              org.apache.struts.action.ActionForm.  Then when the validate method is called 
              the action's name attribute from the struts-config.xml is used to load the 
              validations for the current form.  So the form element's name attribute in 
@@ -226,12 +226,12 @@
 
           <p>Example Validator Configuration from validation.xml.<br>
           &nbsp;&nbsp;&nbsp;&lt;validator name="required"<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classname="com.wintecinc.struts.validation.Validator"<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classname="org.apache.struts.validator.util.StrutsValidatorUtil"<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;method="validateRequired"<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg="errors.required"/&gt;<br>
           <br>
           &nbsp;&nbsp;&nbsp;&lt;validator name="mask"<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classname="com.wintecinc.struts.validation.Validator"<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classname="org.apache.struts.validator.util.StrutsValidatorUtil"<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;method="validateMask"<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;depends="required"<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg="errors.invalid"/&gt;<br>
@@ -239,16 +239,16 @@
 
           <H3><a name="creatingValidators">Creating Pluggable Validators</a></H3>
           <p>The ValidatorAction method needs to have the following signature.  See the 
-             com.wintecinc.struts.validation.StrutsValidator class for examples.<br>
+             org.apache.struts.validator.util.StrutsValidator class for examples.<br>
           <br>
           &nbsp;&nbsp;&nbsp;(java.lang.Object, <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;com.wintecinc.struts.validation.ValidatorAction, com.wintecinc.struts.validation.Field, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;org.apache.commons.validator.ValidatorAction, org.apache.commons.validator.Field, <br>
           &nbsp;&nbsp;&nbsp;&nbsp;org.apache.struts.action.ActionErrors, , <br>
           &nbsp;&nbsp;&nbsp;&nbsp;javax.servlet.http.HttpServletRequest, javax.servlet.ServletContext)<br>
           <table>
           <tr><td><b>java.lang.Object</b></td><td>Bean validation is being performed on.</td></tr>
-          <tr><td><b>com.wintecinc.struts.validation.ValidatorAction</b></td><td>The current ValidatorAction being performed.</td></tr>
-          <tr><td><b>com.wintecinc.struts.validation.Field</b></td><td>Field object being validated.</td></tr>
+          <tr><td><b>org.apache.commons.validator.ValidatorAction</b></td><td>The current ValidatorAction being performed.</td></tr>
+          <tr><td><b>org.apache.commons.validator.Field</b></td><td>Field object being validated.</td></tr>
           <tr><td><b>org.apache.struts.action.ActionErrors</b></td><td>The errors objects to add an ActionError to if the validation fails.</td></tr>
           <tr><td><b>javax.servlet.http.HttpServletRequest</b></td><td>Current request object.</td></tr>
           <tr><td><b>javax.servlet.ServletContext</b></td><td>The application's ServletContext.</td></tr>
@@ -322,7 +322,7 @@
              &nbsp;&nbsp;&nbsp; &lt;global> <br>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;validator name="capLetter"<br>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  classname="com.mysite.Validator"<br>
-             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; methodParams="java.lang.Object,com.wintecinc.struts.validation.Field,java.util.List"<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; methodParams="java.lang.Object,org.apache.commons.validator.Field,java.util.List"<br>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; method="isCapLetter"<br>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; msg="Letter is not in upper case."/><br>
              &nbsp;&nbsp;&nbsp; &lt;/global> <br>

@@ -71,28 +71,17 @@
              &nbsp;&nbsp;&nbsp; Note: The 7/2/2001 release is the last release build with Struts 1.0.
 	  </p>
 	  <p>Feedback on bugs and suggestions are welcome.<BR>
-	     &nbsp;&nbsp;&nbsp;<a href="mailto:dwinterfeldt@yahoo.com">dwinterfeldt@yahoo.com</a>
+	     &nbsp;&nbsp;&nbsp;<a href="mailto:dwinterfeldt@apache.com">dwinterfeldt@yahoo.com</a>
 	  </p>
 	  <BR>
 	  <p>
-	     <font size=-1>Update 10/18/2001 (using Struts 10/18/2001 source)</font><BR>
+	     <font size=-1>Update 1/13/2002</font><BR>
 	     <ul>
-	        <li>The last change that added indexed properties broke all locales except for 
-	            the default locale.  The Field wasn't processed yet when the locale field 
-	            genration occurred and was returning a null key value.
-	        </li>
-                <li>Added a check so JavascriptValidatorTag won't generate indexed properties.</li>
-                <li>Changed Javascript to validate for a type of 'select-one' instead of 'select'.  
-                    Javascript returns 'select-one' for a field's type value.
-                </li>
-                <li>Added min and max functions.</li>
-                <li>Removed code from Validator retrieving the value to be validated.  It wasn't being used and 
-                    this way as long as you specify a unique name for a field a custom validator that isn't specifically 
-                    tied to a field won't generate an error in the logs.
-                </li>
-                <li>The web apps were changed to use html:messages and logic:messagesPresent 
-                    for error messages.
-                </li>
+	        <li>Upgraded to use Commons Validator (http://jakarta.apache.org/commons).</li>
+                <li>Packages changed to fall under org.apache.struts.validator.</li>
+                <li>Documentation updated</li>
+                <li>Custom JSP Tags except for JavascriptValidatorTag have been removed.</li>
+                <li>GenericAction class and JDBC example have been removed.</li>
 	     </ul>
 	  </p>
 
