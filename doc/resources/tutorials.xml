@@ -10,9 +10,10 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Tutorials">
-<p><a href="http://javaboutique.internet.com/tutorials/Swing/">Struts meets Swing</a> by Keld H. Hansen - Learn how to add a Swing client to your Struts application.</p>
-<p><a href="http://www.projectrefinery.com/struts.html">Introduction to Struts</a> by Roger W. Barnes - PowerPoint Presentation reviewing the basics of the Struts was architecture.</p>    
-<p><a href="http://www.projectrefinery.com/struts.html">Struts Cross-Reference</a> by Roger W. Barnes - (PDF) Shows how the struts-config of the Struts MailReader example relates to its Java classes and JavaServer Pages.</p>
+<p><a href="http://developer.java.sun.com/developer/Quizzes/misc.html"><b>The Struts Quiz</b></a> by Ted Husted - Part of an ongoing series at java.sun.com.</p>
+<p><a href="http://javaboutique.internet.com/tutorials/Swing/"><b>Struts meets Swing</b></a> by Keld H. Hansen - Learn how to add a Swing client to your Struts application.</p>
+<p><a href="http://www.projectrefinery.com/struts.html"><b>Introduction to Struts</b></a> by Roger W. Barnes - PowerPoint Presentation reviewing the basics of the Struts was architecture.</p>
+<p><a href="http://www.projectrefinery.com/struts.html"><b>Struts Cross-Reference</b></a> by Roger W. Barnes - (PDF) Shows how the struts-config of the Struts MailReader example relates to its Java classes and JavaServer Pages.</p>
 <p><a href="http://www.fawcette.com/javapro/2002_07/online/kjones/"><b>Create Better Web Apps with Struts</b></a> by Kevin Jones.</p>
 <p><a href="http://javaboutique.internet.com/tutorials/Struts/"><b>Stepping through Jakarta Struts</b></a> by Keld H. Hansen.</p>
 <p><a href="http://javaboutique.internet.com/tutorials/Struts2/"><b>Coding your second Jakarta Struts Application</b></a> by Keld H. Hansen.</p>

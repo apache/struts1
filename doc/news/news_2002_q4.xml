@@ -788,6 +788,86 @@ StrutsCX takes further the idea of the Model 2X by Julien Mercay and Gilbert Bou
 </p>
 <hr size="1" noshade=""/>
 
+    <h3><a name="20021002"></a>02 Oct 2002  - Struts-EL contrib library (Struts &amp; JSTL)</h3>
+    <p>
+        The Struts-EL contrib library is now available in the nightly build, as of build 20021002.
+    </p>
+    <p>
+        The Struts-EL tag library is an extension of the Struts tag library (at
+        least
+        the "bean", "html", and "logic" portions).  Each JSP custom tag in this
+        library is a subclass of an associated tag in the Struts tag library.  The
+        basic difference is that this tag library does not use "rtexprvalues", it
+        uses
+        the expression evaluation engine in the JSP Standard Tag Library (version
+        1.0)
+        to evaluate attribute values.
+    </p>
+    <p>
+        All of the tags in this library are "ported" from the Struts tag library,
+        with
+        the same attributes (except for one each added to "logic:match" and
+        "logic:notMatch") and functionality.  However, some of the Struts tags were
+        not
+        ported to this library.  This is the case for several tags whose
+        functionality
+        is completely covered by the JSTL tag library ("bean:write", for instance,
+        being covered by "c:out" in the JSTL).
+    </p>
+    <p>
+        In order to fully understand the correct utilization of this library, you
+        must
+        understand the use and operation of the Struts tag library, and the use and
+        operation of the JavaServer Pages Standard Tag Library (hereafter called the
+        "JSTL"), along with the expression language (sometimes called the "EL") used
+        for evaluating attribute values.  At this point in time, there is only very
+        little documentation for the Struts-EL library.  There is a "README.txt"
+        file
+        at the root of the distribution which provides some basic information.  At
+        some
+        future time, the documentation for Struts-EL may be generated just like the
+        Struts documentation.  However, as this library is really just a pure
+        combination of the Struts tag library with the JSTL EL engine, there isn't a
+        great deal more additional information that would be useful.
+    </p>
+    <p>
+        Note that the use of JSTL 1.0 requires the use of a JSP 1.2-compliant web
+        container.  As a result, Struts-EL also requires a JSP 1.2-compliant web
+        container.
+    </p>
+    <p>
+        The Struts-EL distribution is provided as part of the Struts distribution,
+        as a
+        "contrib" library.  Just like the normal Struts distribution, there is a
+        "strutsel-exercise-taglib" web application, which is a simple application
+        used
+        for demonstrating many of the tags and their features.  This version of the
+        application covers a few more tags than the example in the base library, and
+        also provides a "Source" feature, to view the source online.
+    </p>
+    <p>
+        If you want a quick example of what you can do with Struts-EL, imagine what
+        you
+        normally have to do if you're using LabelValueBean in your Action code to
+        populate a symbolic value and a message resource key, and displaying that
+        resulting string in your JSP page.
+    </p>
+    <p>
+        You would normally have a pair of lines like this in your JSP page
+        (hopefully
+        I've got my syntax correct, as I'm entering this cold):
+    </p>
+    <p>
+          &lt;bean:define id="foo" name="labelValueBean" property="label"/>
+          &lt;bean:message key='&lt;%= foo.toString() %>'/>
+    </p>
+    <p>
+        Using Struts-EL, it would look like this:
+    </p>
+    <p>
+          &lt;bean-el:message key="${labelValueBean.label}"/>
+    </p>
+    <hr size="1" noshade=""/>
 
 <h3><a name="20020910"></a>2002 Sep 10 - ApplicationResources.properties from Database</h3>
 <p>

@@ -112,6 +112,92 @@ which only just trails Tomcat:
 <hr size="1" noshade=""/>
 -->
 
+    <h3><a name="20030217"></a>17 Feb 2003 - Struts talk .. &amp; labs live online w/ 4 Authors</h3>
+    <p>
+        Ted &amp; James have now both graciously agreed to join the WebEx labs.
+    </p>
+    <p>
+        Try to see them in person! <br />
+        (I just did DC 2 weeks ago).
+    </p>
+    <p>
+        This in addition to doing real labs for multi row master detail processing to DB, etc.
+        I just added extra sessions.
+        You can find out more and how to sign up at
+        <a href="http://www.mail-archive.com/mvc-programmers%40basebeans.net/msg00006.html">http://www.mail-archive.com/mvc-programmers%40basebeans.net/msg00006.html</a>
+    </p>
+    <p>
+        But if you can't ... you can see their presentation and hear them live from your home or work,
+        shortly after their live shows.
+    </p>
+    <p>
+        The qualifier is that this is not intro to Struts
+        and that you please do the hands on labs after each of the 5 sessions.
+    </p>
+    <p>
+        Vic Cekvenich <br />
+        - Best Training by readers of JDJ<br />
+        - Project recovery
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030216"></a>16 Feb 2003 - Struts talks at Lone Star</h3>
+    <p>
+        The Lone Star Software Symposium in Austin TX February 21-23 features Struts presentations by
+        Ted Husted as well as XDoclet presentations by Erik Hatcher.
+        Erik is the originator of the popular LookupDispatchAction
+        and has pioneered using XDoclet to create Struts ActionForms and other components.
+    </p>
+    <p>
+        For details about the symposium, visit <a href="http://www.nofluffjuststuff.com">http://www.nofluffjuststuff.com</a>.
+    </p>
+    <p>
+        Ted's "Building applications ... with Struts!" talk is Friday at 1:15pm:
+    </p>
+    <p>
+        "What is this web presentation tier framework that has gained such widespread popularity?
+        Struts, a Jakarta Model-View-Controller framework,
+        allows clean separation between business logic and its presentation.
+        This session will introduce Struts to those new to it or want a refresher on the basics.
+        An example application will be built during the presentation demonstrating the primary features discussed."
+    </p>
+    <p>
+        Sunday morning, Ted will be hosting a "More About Struts" talk:
+    </p>
+    <p>
+        "Simple sites are simple to build in Struts. But most of our projects are complex, not simple.
+        This session delves beyond the basics, into areas such as the Struts Validator, Struts TestCase,
+        the Scaffold toolkit, and how to design the business-logic end of your application."
+    </p>
+    <p>
+        Erik's XDoclet presentations are not Struts-specific,
+        but would be interest to any Struts practitioner.
+        (You can bet that Ted will be sitting in!)
+        Erik's "Introduction to XDoclet" and "eXtreme XDoclet" talks are on Sunday Feb 23.
+        Erik is also presenting talks on Lucene and Ant at the symposium.
+    </p>
+    <p>
+        For more about the Lone Star Symposium, and others in this series,
+        visit <a href="http://www.nofluffjuststuff.com/">http://www.nofluffjuststuff.com/</a>.
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030215"></a>15 Feb 2003 - Struts quiz online at java.sun.com</h3>
+    <p>
+        As part of an ongoing series, a Struts Quiz is available at the java.sun.com website
+        <a href="http://developer.java.sun.com/developer/Quizzes/misc.html">http://developer.java.sun.com/developer/Quizzes/misc.html</a>.
+    </p>
+    <p>
+        The quiz was written by Ted Husted, Struts Committer and lead author of Struts in Action.
+        The SIA quiz joins other recent Java quizzes on the topics of Ant and JMX.
+        The Struts questions are designed to point out some useful but underutilized aspects of the framework.
+    </p>
+    <p>
+        So, pop over and have a bit of fun testing your Struts knowledge,
+        and maybe even learn something at the same time. =:0)
+    </p>
+    <hr size="1" noshade=""/>
+
     <h3><a name="20030211"></a>11 Feb 2003 - Scioworks Camino 3.0</h3>
     <p>
         Announcing Scioworks Camino 3.0, visual modelling tool for Jakarta Struts (v1.0 to v1.1-b3).
