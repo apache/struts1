@@ -277,13 +277,15 @@
     </ul>
     <p><strong>Added Config Package</strong></p>
     <ul>
-    <li>Various classes to provide more flexibility in configuring the controller and to provide support for modular applications</li>
+    <li>ControllerConfig: Added inputForward property to indicate that ActionMapping.input is a forward rather than a URI.</li>
+    <li>ControllerConfig: Added forwardPattern and inputPattern to help manage page directories in application modules.</li>
+    <li>Added package to provide more flexibility in configuring the controller and to provide support for modular applications</li>
     </ul>
     <p><strong>Action Package Changes</strong></p>
     <p>The following changes and bug fixes have occurred in the basic
     controller framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
-    <li>ActionMapping: input property may now refer to an ActionForward rather than a module-relative path if inputForward is set to true on the module's ControllerConfig bean [org.apache.struts.config.ControllerConfig.
+    <li>ActionMapping: input property may now refer to an ActionForward rather than a module-relative path if inputForward is set to true on the module's ControllerConfig bean [org.apache.struts.config.ControllerConfig.</li>
     <li>ActionServlet: Added convertNull parameter to simulate the Struts 1.0 behavior when populating forms. If set to true, the numeric Java wrapper class types (like java.lang.Integer) will default to null (rather than 0).</li>
     <li>ActionServlet: Added "config/$foo" parameter and deprecated several others in favor of components in the new config package. </li>
     <li>ActionForms and related classes: now use a StringBuffer when responding a toString request in order to conserve resources.</li>
@@ -316,6 +318,7 @@ multipart requests.</li>
     <p>The following changes and bug fixes have occurred in the utilities
     (package <code>org.apache.struts.util</code>):</p>
     <ul>
+    <li>RequestUtils: Added support for forwardPattnern, pagePattern, and inputForward propertys on ControllerConfig.</li>
     <li>GenericDataSource: Deprecated and modified to act as a thin wrapper around
     [<code>org.apache.commons.dbpc.BasicDataSource</code>].
     Replaced by direct use of BasicDataSource or other compatible component.</li>
