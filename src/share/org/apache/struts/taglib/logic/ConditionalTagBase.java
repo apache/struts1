@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ConditionalTagBase.java,v 1.2 2000/10/30 03:20:27 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/10/30 03:20:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ConditionalTagBase.java,v 1.3 2000/11/03 18:40:06 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/11/03 18:40:06 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.struts.util.MessageResources;
  * Abstract base class for the various conditional evaluation tags.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/10/30 03:20:27 $
+ * @version $Revision: 1.3 $ $Date: 2000/11/03 18:40:06 $
  */
 
 public abstract class ConditionalTagBase extends TagSupport {
@@ -161,6 +161,21 @@ public abstract class ConditionalTagBase extends TagSupport {
     }
 
 
+    /**
+     * The scope to search for the bean named by the name property, or
+     * "any scope" if null.
+     */
+    protected String scope = null;
+
+    public String getScope() {
+        return (this.scope);
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -203,6 +218,7 @@ public abstract class ConditionalTagBase extends TagSupport {
         name = null;
         parameter = null;
         property = null;
+        scope = null;
 
     }
 

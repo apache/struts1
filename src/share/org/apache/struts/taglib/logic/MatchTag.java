@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.4 2000/10/30 06:02:22 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/10/30 06:02:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.5 2000/11/03 18:40:07 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/11/03 18:40:07 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.PropertyUtils;
  * is a substring of the specified variable.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/10/30 06:02:22 $
+ * @version $Revision: 1.5 $ $Date: 2000/11/03 18:40:07 $
  */
 
 public class MatchTag extends ConditionalTagBase {
@@ -181,7 +181,7 @@ public class MatchTag extends ConditionalTagBase {
                 ((HttpServletRequest) pageContext.getRequest()).
                 getHeader(header);
         } else if (name != null) {
-            Object bean = BeanUtils.lookup(pageContext, name, null);
+            Object bean = BeanUtils.lookup(pageContext, name, scope);
             if (bean == null) {
                 JspException e = new JspException
                     (messages.getMessage("logic.bean", name));
