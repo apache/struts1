@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.14 2003/02/20 06:18:24 martinc Exp $
- * $Revision: 1.14 $
- * $Date: 2003/02/20 06:18:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.15 2003/02/25 04:47:38 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/02/25 04:47:38 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2003/02/20 06:18:24 $
+ * @version $Revision: 1.15 $ $Date: 2003/02/25 04:47:38 $
  * @since Struts 1.1
  */
 
@@ -183,7 +183,7 @@ public class ControllerConfig implements Serializable {
      * value treats them as a module-relative path (consistent
      * with the hard coded behavior of earlier versions of Struts.</p>
      *
-     * @since Struts 1.1b2
+     * @since Struts 1.1
      */
     protected boolean inputForward = false;
 
