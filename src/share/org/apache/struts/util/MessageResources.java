@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.6 2000/12/26 20:07:00 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/12/26 20:07:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.7 2001/01/10 22:06:55 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/01/10 22:06:55 $
  *
  * ====================================================================
  * 
@@ -90,7 +90,7 @@ import java.util.Locale;
  * application server environments.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/12/26 20:07:00 $
+ * @version $Revision: 1.7 $ $Date: 2001/01/10 22:06:55 $
  */
 
 public abstract class MessageResources implements Serializable {
@@ -129,7 +129,7 @@ public abstract class MessageResources implements Serializable {
      * The set of previously created MessageFormat objects, keyed by the
      * key computed in <code>messageKey()</code>.
      */
-    private HashMap formats = new HashMap();
+    protected HashMap formats = new HashMap();
 
 
     /**
