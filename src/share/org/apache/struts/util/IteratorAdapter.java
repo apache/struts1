@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/IteratorAdapter.java,v 1.2 2002/05/22 20:08:03 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2002/05/22 20:08:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/IteratorAdapter.java,v 1.3 2003/02/01 05:05:12 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/01 05:05:12 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -70,9 +70,10 @@ import java.util.NoSuchElementException;
  * throw an UnsupportedOperationException. Added for use by TagLib so
  * Enumeration can be supported
  *
+ * @deprecated Use commons-collections' IteratorUtils.asIterator(Enumeration).
  * @author Sean M. Kelley
  * @author Rob Leland
- * @version $Revision: 1.2 $ $Date: 2002/05/22 20:08:03 $
+ * @version $Revision: 1.3 $ $Date: 2003/02/01 05:05:12 $
  */
 
 public class IteratorAdapter implements Iterator {
