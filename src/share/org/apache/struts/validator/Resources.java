@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.10 2003/05/20 01:47:32 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2003/05/20 01:47:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.11 2003/05/22 01:11:16 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/05/22 01:11:16 $
  *
  * ====================================================================
  *
@@ -77,12 +77,12 @@ import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 
 /**
- * <p>This class helps provides some useful methods for retrieving objects
- * from different scopes of the application.</p>
+ * This class helps provides some useful methods for retrieving objects
+ * from different scopes of the application.
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.10 $ $Date: 2003/05/20 01:47:32 $
+ * @version $Revision: 1.11 $ $Date: 2003/05/22 01:11:16 $
  * @since Struts 1.1
  */
 public class Resources  {
@@ -154,25 +154,22 @@ public class Resources  {
     * Get the <code>Locale</code> of the current user.
     * @param request servlet request
     */
-   public static Locale getLocale(HttpServletRequest request) {
-      Locale locale = null;
-      try {
-          locale = (Locale) request.getSession().getAttribute(Globals.LOCALE_KEY);
-      } catch (IllegalStateException e) {   // Invalidated session
-          locale = null;
-      }
-      if (locale == null) {
-         locale = Locale.getDefault();
-      }
-
-      return locale;
-   }
+    public static Locale getLocale(HttpServletRequest request) {
+        Locale locale = null;
+        try {
+            locale = (Locale) request.getSession().getAttribute(Globals.LOCALE_KEY);
+        } catch (IllegalStateException e) {
+            // Invalidated session
+        }
+    
+        return (locale == null) ? Locale.getDefault() : locale;
+    }
 
    /**
     * Gets the <code>Locale</code> sensitive value based on the key passed in.
-    * @param messages  The Message resources
-    * @param locale    The locale
-    * @param key key used to lookup the message
+    * @param messages The Message resources
+    * @param locale The locale.
+    * @param key Key used to lookup the message
     */
    public static String getMessage(MessageResources messages, Locale locale, String key) {
       String message = null;
