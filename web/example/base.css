@@ -1,6 +1,6 @@
 /**
  * Base stylesheet
- * @version $Revision: 1.1 $ $Date: 2004/03/07 02:20:37 $
+ * @version $Revision: 1.2 $ $Date: 2004/03/07 20:22:52 $
  */
 
 body {
@@ -19,3 +19,11 @@ h3 { font-family: Arial,Helvetica,sans-serif; }
 h4 { font-family: Arial,Helvetica,sans-serif; }
 h5 { font-family: Arial,Helvetica,sans-serif; }
 h6 { font-family: Arial,Helvetica,sans-serif; }
+
+font.hint {
+  font-style:italic;
+  font-size:80%;
+  font-family:Arial,Helvetica,sans-serif;
+  font-weight:bold;
+  text-align:left;
+}
