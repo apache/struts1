@@ -262,7 +262,7 @@
            version="true"
            windowtitle="Apache Struts-EL API Documentation"
            doctitle="&lt;h1&gt;Apache Struts-EL Framework (Version ${project.version})&lt;/h1&gt;"
-           bottom="Copyright &#169; 2000-${year} - Apache Software Foundation">
+           bottom="Copyright &#169; 2000-${year} - The Apache Software Foundation">
            <classpath refid="compile.classpath"/>
   </javadoc>
  </target>

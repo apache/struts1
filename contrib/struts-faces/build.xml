@@ -201,7 +201,7 @@
           packagenames="org.apache.struts.*"
            windowtitle="${project.name} (Version ${project.version})"
               doctitle="${project.name} (Version ${project.version})"
-                bottom="Copyright &#169; 2003 - Apache Software Foundation">
+                bottom="Copyright &#169; 2003-2004 - The Apache Software Foundation">
       <classpath refid="classpath"/>
     </javadoc>
 

@@ -353,7 +353,7 @@
             version="true"
             windowtitle="Apache Struts API Documentation"
             doctitle="&lt;h1&gt;Apache Struts Framework (Version ${project.version})&lt;/h1&gt;"
-            bottom="Copyright &#169; 2000-${year} - Apache Software Foundation">
+            bottom="Copyright &#169; 2000-${year} - The Apache Software Foundation">
             <classpath refid="compile.classpath"/>
         </javadoc>
     </target>

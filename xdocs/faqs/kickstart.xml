@@ -63,7 +63,7 @@ Here are answers to the usual getting-started questions. <strong>For an in-depth
 </section>
 
 <section href="who" name="Who wrote Struts?">
-<p>Struts was created by Craig R. McClanahan, and donated to the Apache Software Foundation in May 2000. Craig is the primary developer of both Struts and <a href="http://jakarta.apache.org/tomcat/index.html">Tomcat 4</a>, the basis for the official reference implementation for a servlet 2.3 and JSP 1.2 container. With stable releases of Struts and Tomcat 4 in circulation, Craig is now the Specification Lead for <a href="http://jcp.org/jsr/detail/127.jsp">JavaServer Faces (JSR-127)</a>, and is the Web Layer Architect for the Java2 Enterprise Edition (J2EE) platform as a whole.</p>
+<p>Struts was created by Craig R. McClanahan, and donated to The Apache Software Foundation in May 2000. Craig is the primary developer of both Struts and <a href="http://jakarta.apache.org/tomcat/index.html">Tomcat 4</a>, the basis for the official reference implementation for a servlet 2.3 and JSP 1.2 container. With stable releases of Struts and Tomcat 4 in circulation, Craig is now the Specification Lead for <a href="http://jcp.org/jsr/detail/127.jsp">JavaServer Faces (JSR-127)</a>, and is the Web Layer Architect for the Java2 Enterprise Edition (J2EE) platform as a whole.</p>
 <p>There are now many active committers to the Struts project, working cooperatively from around the globe. Other Java developers are invited to <a href="helping.html#contribute">contribute to the project</a>. Struts is an <a href="http://jakarta.apache.org/">Apache Jakarta</a>  project, with the common mission to &quot;provide commercial-quality server solutions based on the Java Platform that are developed in an open and cooperative fashion&quot;. All told, 17 individual developers and committers contributed to the Struts 1.0 codebase.</p>
 </section>
 
@@ -72,7 +72,7 @@ Here are answers to the usual getting-started questions. <strong>For an in-depth
 </section>
 
 <section href="license" name="How is Struts licensed?">
-<p>Struts is copyrighted software available under a &quot;free-to-use-license&quot; by the Apache Software Foundation. The license appears at the head of every source code file. A reference copy of the license is available <a href="http://www.apache.org/LICENSE-1.1">here</a>.</p>
+<p>Struts is copyrighted software available under a &quot;free-to-use-license&quot; by The Apache Software Foundation. The license appears at the head of every source code file. A reference copy of the license is available <a href="http://www.apache.org/LICENSE-1.1">here</a>.</p>
 </section>
 
 <section href="usage" name="Can Struts be used in a commercial product?">

@@ -1,5 +1,5 @@
 <!-- 
-@version $Revision: 1.3 $ $Date: 2004/01/18 13:43:07 $
+@version $Revision: 1.4 $ $Date: 2004/02/29 22:55:45 $
 -->
 <project name="artimus" basedir="." default="project">
 <property name="project.title" value="Artimus"/>
@@ -67,7 +67,7 @@
             version="true"
             windowtitle="Artimus API Documentation"
             doctitle="&lt;h1&gt;${project.title} Documentation (Version ${project.version})&lt;/h1&gt;"
-            bottom="Copyright &#169; 2001 - Apache Software Foundation"/>
+            bottom="Copyright &#169; 2001 - The Apache Software Foundation"/>
     </target>
 
     <!-- Build binary distribution -->
