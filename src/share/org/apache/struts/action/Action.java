@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.15 2001/01/07 04:37:05 craigmcc Exp $
- * $Revision: 1.15 $
- * $Date: 2001/01/07 04:37:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.16 2001/01/11 00:16:56 craigmcc Exp $
+ * $Revision: 1.16 $
+ * $Date: 2001/01/11 00:16:56 $
  *
  * ====================================================================
  *
@@ -74,7 +74,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.struts.taglib.html.Constants;
-import org.apache.struts.util.ErrorMessages;
 import org.apache.struts.util.MessageResources;
 
 
@@ -107,7 +106,7 @@ import org.apache.struts.util.MessageResources;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2001/01/07 04:37:05 $
+ * @version $Revision: 1.16 $ $Date: 2001/01/11 00:16:56 $
  */
 
 public class Action {
