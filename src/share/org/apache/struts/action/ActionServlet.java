@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.151 2003/07/02 03:03:55 dgraham Exp $
- * $Revision: 1.151 $
- * $Date: 2003/07/02 03:03:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.152 2003/07/02 03:13:16 dgraham Exp $
+ * $Revision: 1.152 $
+ * $Date: 2003/07/02 03:13:16 $
  *
  * ====================================================================
  *
@@ -83,8 +83,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.beanutils.converters.BigDecimalConverter;
 import org.apache.commons.beanutils.converters.BigIntegerConverter;
 import org.apache.commons.beanutils.converters.BooleanConverter;
@@ -102,7 +102,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ConfigRuleSet;
 import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.DataSourceConfig;
@@ -110,9 +109,8 @@ import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.MessageResourcesConfig;
 import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.config.PlugInConfig;
 import org.apache.struts.config.ModuleConfigFactory;
-import org.apache.struts.config.impl.ModuleConfigImpl;
+import org.apache.struts.config.PlugInConfig;
 import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
@@ -304,7 +302,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.151 $ $Date: 2003/07/02 03:03:55 $
+ * @version $Revision: 1.152 $ $Date: 2003/07/02 03:13:16 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -752,25 +750,6 @@ public class ActionServlet extends HttpServlet {
 
     }
 
-
-    /**
-     * Return the module configuration object for the currently selected
-     * module.
-     *
-     * @param request The servlet request we are processing
-     * @since Struts 1.1
-     * @deprecated use {@link #getModuleConfig(HttpServletRequest)}
-     */
-    protected ApplicationConfig getApplicationConfig
-        (HttpServletRequest request) {
-        /* FIXME for Struts 1.2
-           Since Struts 1.1 only has one implementation for
-           ModuleConfig casting is safe here. Used only for
-           transition purposes !
-        */
-        return new ApplicationConfig((ModuleConfigImpl)getModuleConfig(request));
-    }
-
     /**
      * Return the module configuration object for the currently selected
      * module.
@@ -831,28 +810,7 @@ public class ActionServlet extends HttpServlet {
         return (processor);
 
     }
-    
-    /**
-     * <p>Initialize the application configuration information for the
-     * specified module.</p>
-     *
-     * @param prefix Module prefix for this module
-     * @param path Context-relative resource path for this modules's
-     *  configuration resource
-     *
-     * @exception ServletException if initialization cannot be performed
-     * @deprecated use {@link #initModuleConfig(String,String)}
-     * @since Struts 1.1
-     */
-    protected ApplicationConfig initApplicationConfig
-        (String prefix, String path) throws ServletException {
-        /* FIXME for Struts 1.2
-           Since Struts 1.1 only has one implementation for
-           ModuleConfig casting is safe here. Used only for
-           transition purposes !
-        */
-        return new ApplicationConfig((ModuleConfigImpl)initModuleConfig(prefix,path));
-    }
+
     /**
      * <p>Initialize the application configuration information for the
      * specified module.</p>
