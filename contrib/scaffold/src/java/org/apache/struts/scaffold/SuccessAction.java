@@ -11,7 +11,7 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
+
 
 import org.apache.commons.scaffold.lang.Tokens;
 
@@ -22,7 +22,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * and for creating blank forms for new input.
  *
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/08/14 18:30:08 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 08:14:29 $
  */
 public final class SuccessAction extends Action {
 
@@ -30,7 +30,7 @@ public final class SuccessAction extends Action {
      * Forward to "success" [Tokens.SUCCESS].
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      * @exception IOException if an input/output error occurs
@@ -50,9 +50,9 @@ public final class SuccessAction extends Action {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/SuccessAction.java,v 1.1 2002/08/14 18:30:08 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2002/08/14 18:30:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/SuccessAction.java,v 1.2 2002/12/08 08:14:29 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/08 08:14:29 $
  *
  * ====================================================================
  *

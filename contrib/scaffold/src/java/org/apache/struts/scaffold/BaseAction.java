@@ -4,7 +4,6 @@ package org.apache.struts.scaffold;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.ServletException;
@@ -31,7 +30,7 @@ import org.apache.commons.scaffold.text.ConvertUtils;
  * :TODO: Remove deprecations after formal 1.0 Scaffod release.
  *
  * @author Ted Husted
- * @version $Revision: 1.7 $ $Date: 2002/11/23 19:09:19 $
+ * @version $Revision: 1.8 $ $Date: 2002/12/08 08:14:29 $
  */
 public class BaseAction extends Action {
 

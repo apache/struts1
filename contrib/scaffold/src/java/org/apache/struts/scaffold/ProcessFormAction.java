@@ -1,7 +1,6 @@
 package org.apache.struts.scaffold;
 
 
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -34,7 +33,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  *
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.6 $ $Date: 2002/10/31 14:32:07 $
+ * @version $Revision: 1.7 $ $Date: 2002/12/08 08:14:29 $
  */
 public class ProcessFormAction extends ProcessAction {
 

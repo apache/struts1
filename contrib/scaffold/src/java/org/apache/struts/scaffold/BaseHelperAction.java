@@ -3,9 +3,7 @@ package org.apache.struts.scaffold;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import org.apache.commons.scaffold.lang.Log;
@@ -24,7 +22,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * which will be instantiated in the helpers array in the order given.
  *
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/08/14 18:30:09 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 08:14:29 $
  */
 public class BaseHelperAction extends BaseAction {
 
@@ -74,8 +72,7 @@ public class BaseHelperAction extends BaseAction {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      * <p>
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if error occurs
      */
     public void executeLogic(
             ActionMapping mapping,

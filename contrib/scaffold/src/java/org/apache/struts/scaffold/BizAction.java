@@ -1,21 +1,14 @@
 package org.apache.struts.scaffold;
 
 
-import java.io.IOException;
-import java.io.PrintWriter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -25,8 +18,6 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-
-import org.apache.struts.util.MessageResources;
 
 import org.apache.commons.scaffold.lang.Log;
 import org.apache.commons.scaffold.lang.ParameterException;
@@ -47,7 +38,7 @@ import org.apache.commons.scaffold.util.ResultListBase;
  * @author  Synthis Corporation.
  * @author OK State DEQ
  * @author Nationwide Insurance Company
- * @version $Revision: 1.1 $ $Date: 2002/11/24 15:53:05 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 08:14:29 $
  */
 public class BizAction extends BaseHelperAction {
 
@@ -140,7 +131,6 @@ public class BizAction extends BaseHelperAction {
      * If data is a Collection, only the first element is stored.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param form The ActionForm
      * @param request The HTTP request we are processing
      * @param bizResponse The BizResponse we are handling
      */
@@ -189,7 +179,6 @@ public class BizAction extends BaseHelperAction {
      * By default, this is the <code>form-bean</code>'s name.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param form The ActionForm
      * @param request The HTTP request we are processing
      * @param bizResponse The BizResponse we are handling
      */
@@ -333,7 +322,7 @@ public class BizAction extends BaseHelperAction {
      * superclass method.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request
+     * @param form The optional ActionForm bean for this request
      * @param request The HTTP request we are processing
      * @param response The resonse we are creating
      * @return The ActionForward representing FAILURE
@@ -371,7 +360,7 @@ public class BizAction extends BaseHelperAction {
      * default behaviour will branch to findFailure().
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request
+     * @param form The optional ActionForm bean for this request
      * @param request The HTTP request we are processing
      * @param response The resonse we are creating
      */
@@ -540,9 +529,8 @@ public class BizAction extends BaseHelperAction {
      * @param form The ActionForm
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
-     * @param helper The object instantiated from type given as parameter.
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @param helpers The object instantiated from type given as parameter.
+     * @exception Exception if a error occurs
      */
     protected void executeLogic(
             ActionMapping mapping,

@@ -5,12 +5,7 @@ import java.util.Map;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionFormBeans;
 import org.apache.struts.action.ActionMapping;
 // import org.apache.struts.validator.ValidatorForm; // Struts 1.1
 import com.wintecinc.struts.action.ValidatorForm; // Struts 1.0.x
@@ -32,7 +27,7 @@ import org.apache.commons.scaffold.util.MessagesImpl;
  * :FIXME: This implementation can only be used with the default module.
  *
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/11/24 15:53:05 $
+ * @version $Revision: 1.3 $ $Date: 2002/12/08 08:14:29 $
  */
 public class BizFormImpl extends BaseForm implements BizForm {
     

@@ -1,16 +1,10 @@
 package org.apache.struts.scaffold;
 
 
-import java.util.Map;
-import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionMapping;
 // import org.apache.struts.validator.ValidatorForm; // Struts 1.1
 import com.wintecinc.struts.action.ValidatorForm; // Struts 1.0.x
 
@@ -33,7 +27,7 @@ import org.apache.commons.scaffold.util.MessagesImpl;
  * 
  * @author Ted Husted
  * @author Nationwide Insurance Company
- * @version $Revision: 1.1 $ $Date: 2002/11/24 15:53:05 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 08:14:29 $
  */
 public interface BizForm {
 	
@@ -83,10 +77,7 @@ public interface BizForm {
      * Override this approach to implement another method (e.g cookies).
      * Also revise UpdateProfile action-mapping to store changes.
      *
-     * @param mapping The ActionMapping used to select this instance
-     * @param form The ActionForm
      * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
      */
     public void resetUserProfile(HttpServletRequest request);
     

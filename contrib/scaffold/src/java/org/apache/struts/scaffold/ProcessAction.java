@@ -2,30 +2,23 @@ package org.apache.struts.scaffold;
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.PropertyUtils;
 
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import org.apache.struts.util.MessageResources;
 
 import org.apache.commons.scaffold.lang.Log;
 import org.apache.commons.scaffold.lang.Tokens;
@@ -42,7 +35,7 @@ import org.apache.commons.scaffold.util.ResultListBase;
  * @author Ted Husted
  * @author  Synthis Corporation.
  * @author OK State DEQ
- * @version $Revision: 1.7 $ $Date: 2002/11/24 15:53:05 $
+ * @version $Revision: 1.8 $ $Date: 2002/12/08 08:14:29 $
  * @deprecated Use BizAction instead
  */
 public class ProcessAction extends BaseHelperAction {

@@ -8,7 +8,7 @@ import java.util.Map;
  * Enhanced base ActionForm for Struts 1.1 and later.
  *
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/08/14 18:30:08 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 08:14:29 $
  */
 public class BaseMapForm extends BaseForm {
 
@@ -35,7 +35,7 @@ public class BaseMapForm extends BaseForm {
     /**
      * Get the properties map.
      *
-     * @returns The map being used for our properties
+     * @return The map being used for our properties
      */
     public Map getMap() throws Exception {
         return this.map;
@@ -52,7 +52,7 @@ public class BaseMapForm extends BaseForm {
      * In a Struts 1.1 application, this will set an element to the
      * map. See also <code>getValue()</code>.
      * <p>
-     * @exception Passes through any Exception thrown by underlying
+     * @exception Exception Passes through any Exception thrown by underlying
      * hashmap.
      * @param key - key with which the specified value is to be associated.
      * @param value - value to be associated with the specified key.*/
@@ -69,7 +69,7 @@ public class BaseMapForm extends BaseForm {
      * property from the Map, e.g., property="value(username)"
      * <p>
      * @param key - key whose associated value is to be returned.
-     * @exception Passes through any Exception thrown by underlying
+     * @exception Exception Passes through any Exception thrown by underlying
      * hashmap.
      */
     public Object getValue(String key) throws Exception {

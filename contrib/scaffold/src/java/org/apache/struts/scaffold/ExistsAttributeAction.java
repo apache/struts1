@@ -1,19 +1,14 @@
 package org.apache.struts.scaffold;
 
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
 
 import org.apache.commons.scaffold.lang.Tokens;
 
@@ -22,7 +17,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * The name of the attribute is passed via the parameter property.
  *
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/08/16 22:29:24 $
+ * @version $Revision: 1.3 $ $Date: 2002/12/08 08:14:29 $
  */
 public final class ExistsAttributeAction extends BaseAction {
 
@@ -41,7 +36,7 @@ public final class ExistsAttributeAction extends BaseAction {
      * If both parameters are not given, an error is set.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request
+     * @param form The optional ActionForm bean for this request
      * @param request The HTTP request we are processing
      * @param response The response we are creating
      * @todo Add support for multiple attributes

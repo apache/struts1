@@ -1,17 +1,12 @@
 package org.apache.struts.scaffold;
 
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
 
 import org.apache.commons.scaffold.lang.Tokens;
 
@@ -28,7 +23,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * cross-compatibility with Struts 1.1 and 1.0
  *
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/08/14 18:30:08 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 08:14:29 $
  */
 public final class ContinueAction extends BaseAction {
 
@@ -54,9 +49,9 @@ public final class ContinueAction extends BaseAction {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/ContinueAction.java,v 1.1 2002/08/14 18:30:08 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2002/08/14 18:30:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/ContinueAction.java,v 1.2 2002/12/08 08:14:29 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/08 08:14:29 $
  *
  * ====================================================================
  *
