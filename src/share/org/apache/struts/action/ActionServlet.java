@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.37 2000/11/28 18:35:52 craigmcc Exp $
- * $Revision: 1.37 $
- * $Date: 2000/11/28 18:35:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.38 2000/11/28 21:47:02 craigmcc Exp $
+ * $Revision: 1.38 $
+ * $Date: 2000/11/28 21:47:02 $
  *
  * ====================================================================
  *
@@ -203,7 +203,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.37 $ $Date: 2000/11/28 18:35:52 $
+ * @version $Revision: 1.38 $ $Date: 2000/11/28 21:47:02 $
  */
 
 public class ActionServlet
@@ -1461,7 +1461,7 @@ public class ActionServlet
 	    if (forward.getRedirect()) {
 	        if (path.startsWith("/"))
                     path = request.getContextPath() + path;
-		response.sendRedirect(path);
+		response.sendRedirect(response.encodeRedirectURL(path));
 	    } else {
 		RequestDispatcher rd =
 		    getServletContext().getRequestDispatcher(path);
