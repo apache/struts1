@@ -228,7 +228,8 @@
     a password twice for confirmation, to make sure that the values match.)
     In addition, there are fields in a form that may only be required if
     other fields have certain values.  The new <code>validwhen</code>
-    validation rule is designed to handle these cases.</p>
+    validation rule, which will be included into the Struts release
+    immediately after the 1.1 release, is designed to handle these cases.</p>
     <p>
     The <code>validwhen</code> rule takes a single <code>var</code> field,
     called <code>test</code>.  The value of this var is a boolean expression
@@ -593,10 +594,11 @@ public static boolean validateTwoFields(
     The most fundamental change is the ability to conditionally require
     validator fields based on the value of other fields. 
     It allows you to define logic like "only validate this field if field X is
-    non-null and field Y equals 'male'".  The recommended way to do this is
-    with the <code>validwhen</code> rule, described above.  The 
+    non-null and field Y equals 'male'".  The recommended way to do this will
+    be with the <code>validwhen</code> rule, described above, and available
+    in the first release after 1.1.  The 
     <code>requiredif</code> validation rule, which was added in Struts 1.1, 
-    has been deprecated in favor of this rule, and will be removed in a 
+    will be deprecated in favor of this rule, and will be removed in a 
     future release.  However, if you are using <code>requiredif</code>, here
     is a brief tutorial.
     </p>

@@ -710,7 +710,8 @@ XHTML specification</a></p>
          name="Can you give me a simple example of using the requiredif Validator rule?">
      <p>First off, there's an even newer Validator rule called <code>validwhen</code>,
      which is almost certainly what you want to use, since it is much easier and
-     more powerful.  The example shown below could be coded with validwhen as:</p>
+     more powerful.  It will be available in the first release after 1.1 ships.
+     The example shown below could be coded with validwhen as:</p>
      <pre>
 &lt;form name="medicalStatusForm"&gt;
 
