@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.3 2001/04/18 01:31:15 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/04/18 01:31:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.3.2.2 2001/06/10 03:51:41 craigmcc Exp $
+ * $Revision: 1.3.2.2 $
+ * $Date: 2001/06/10 03:51:41 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "radio".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/04/18 01:31:15 $
+ * @version $Revision: 1.3.2.2 $ $Date: 2001/06/10 03:51:41 $
  */
 
 public class RadioTag extends BaseHandlerTag {
@@ -224,7 +224,7 @@ public class RadioTag extends BaseHandlerTag {
 	results.append(this.value);
 	results.append("\"");
 	if (value.equals(current))
-	    results.append(" checked");
+	    results.append(" checked=\"checked\"");
 	results.append(prepareEventHandlers());
 	results.append(prepareStyles());
 	results.append(">");

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.6 2001/05/05 00:54:33 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/05/05 00:54:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.6.2.3 2001/10/05 05:05:48 martinc Exp $
+ * $Revision: 1.6.2.3 $
+ * $Date: 2001/10/05 05:05:48 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.ResponseUtils;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/05/05 00:54:33 $
+ * @version $Revision: 1.6.2.3 $ $Date: 2001/10/05 05:05:48 $
  */
 
 public class OptionTag extends BodyTagSupport {
@@ -173,6 +173,34 @@ public class OptionTag extends BodyTagSupport {
 
 
     /**
+     * The style associated with this tag.
+     */
+    private String style = null;
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+
+    /**
+     * The named style class associated with this tag.
+     */
+    private String styleClass = null;
+
+    public String getStyleClass() {
+        return styleClass;
+    }
+
+    public void setStyleClass(String styleClass) {
+        this.styleClass = styleClass;
+    }
+
+
+    /**
      * The server value for this option, also used to match against the
      * current property value to determine whether this option should be
      * marked as selected.
@@ -248,9 +276,19 @@ public class OptionTag extends BodyTagSupport {
 	results.append(value);
 	results.append("\"");
         if (disabled)
-            results.append(" disabled");
+            results.append(" disabled=\"disabled\"");
         if (selectTag.isMatched(value))
-	    results.append(" selected");
+	    results.append(" selected=\"selected\"");
+        if (style != null) {
+            results.append(" style=\"");
+            results.append(style);
+            results.append("\"");
+        }
+        if (styleClass != null) {
+            results.append(" class=\"");
+            results.append(styleClass);
+            results.append("\"");
+        }
 	results.append(">");
         String text = text();
 	if (text == null)
@@ -278,6 +316,8 @@ public class OptionTag extends BodyTagSupport {
         disabled = false;
         key = null;
         locale = Action.LOCALE_KEY;
+	style = null;
+	styleClass = null;
         text = null;
 	value = null;
 

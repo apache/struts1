@@ -17,6 +17,14 @@
 
   <action-mappings>
 
+    <action    path="/html-link"
+               type="org.apache.struts.webapp.exercise.HtmlSettersAction"
+               name="testbean"
+              scope="session"
+           validate="false">
+      <forward name="input"                path="/html-link.jsp"/>
+    </action>
+
     <action    path="/html-multibox"
                type="org.apache.struts.webapp.exercise.HtmlSettersAction"
                name="testbean"

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTei.java,v 1.4.2.1 2001/10/04 03:25:32 craigmcc Exp $
- * $Revision: 1.4.2.1 $
- * $Date: 2001/10/04 03:25:32 $
+ * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/OptionBean.java,v 1.1.2.1 2001/10/15 05:56:22 martinc Exp $
+ * $Revision: 1.1.2.1 $
+ * $Date: 2001/10/15 05:56:22 $
  *
  * ====================================================================
  *
@@ -60,42 +60,60 @@
  */
 
 
-package org.apache.struts.taglib.bean;
-
-
-import javax.servlet.jsp.tagext.TagData;
-import javax.servlet.jsp.tagext.TagExtraInfo;
-import javax.servlet.jsp.tagext.VariableInfo;
+package org.apache.struts.webapp.exercise;
 
 
 /**
- * Implementation of <code>TagExtraInfo</code> for the <b>parameter</b>
- * tag, identifying the scripting object(s) to be made visible.
+ * A simple bean for use in testing the <code>&lt;html:options&gt;</code> tag
+ * in conjunction with the <code>collection</code> attribute.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.4.2.1 $ $Date: 2001/10/04 03:25:32 $
+ * @author  Martin F N Cooper
+ * @version $Revision: 1.1.2.1 $ $Date: 2001/10/15 05:56:22 $
  */
 
-public class ParameterTei extends TagExtraInfo {
+public class OptionBean {
+
+
+    // ----------------------------------------------------------- Constructors
 
 
     /**
-     * Return information about the scripting variables to be created.
+     * Construct an instance with the supplied property values.
      */
-    public VariableInfo[] getVariableInfo(TagData data) {
+    public OptionBean(String label, String value) {
+        this.label = label;
+        this.value = value;
+    }
 
-        String className = null;
-        if (data.getAttribute("multiple") == null)
-            className = "java.lang.String";
-        else
-            className = "java.lang.String[]";
-	return new VariableInfo[] {
-	  new VariableInfo(data.getAttributeString("id"),
-                           className,
-	                   true,
-	                   VariableInfo.AT_BEGIN)
-	};
 
+    // ------------------------------------------------------------- Properties
+
+
+    /**
+     * The property which supplies the option label visible to the end user.
+     */
+    private String label;
+
+    public String getLabel() {
+        return this.label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+
+    /**
+     * The property which supplies the value returned to the server.
+     */
+    private String value;
+
+    public String getValue() {
+        return this.value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
 

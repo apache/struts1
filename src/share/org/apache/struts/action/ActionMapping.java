@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.17 2001/03/23 22:21:34 craigmcc Exp $
- * $Revision: 1.17 $
- * $Date: 2001/03/23 22:21:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.17.2.2 2001/11/04 07:43:50 martinc Exp $
+ * $Revision: 1.17.2.2 $
+ * $Date: 2001/11/04 07:43:50 $
  *
  * ====================================================================
  *
@@ -135,7 +135,7 @@ import java.io.Serializable;
  *     selected by this <code>ActionMapping</code>.
  * <li><strong>path</strong> - Request URI path used to select this mapping.
  *     If extension mapping is used for the controller servlet, the extension
- *     will be stripped before comparisions against this value are made.
+ *     will be stripped before comparisons against this value are made.
  * <li><strong>prefix</strong> - Prefix used to match request parameter
  *     names to form bean property names, if any.  Replaces the old
  *     <code>formPrefix</code> property.
@@ -161,7 +161,7 @@ import java.io.Serializable;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2001/03/23 22:21:34 $
+ * @version $Revision: 1.17.2.2 $ $Date: 2001/11/04 07:43:50 $
  */
 
 public class ActionMapping implements Serializable {
@@ -863,7 +863,14 @@ public class ActionMapping implements Serializable {
             return (forward);
 
         // Second, check the globally defined forwards
-        return (getMappings().getServlet().findForward(name));
+        ActionMappings mappings = getMappings();
+        if (mappings == null)
+            return (null);
+        ActionServlet servlet = mappings.getServlet();
+        if (servlet == null)
+            return (null);
+        else
+            return (servlet.findForward(name));
 
     }
 

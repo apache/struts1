@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts Documentation -->
-<!-- $Id: struts.xsl,v 1.1 2001/03/18 17:48:59 vmassol Exp $ -->
+<!-- $Id: struts.xsl,v 1.1.2.3 2002/02/09 06:55:36 martinc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -69,7 +69,7 @@
 
       <tr><td colspan="2">
         <div align="center"><font color="{$body-link}" size="-1"><em>
-        Copyright (c) 2000-2001, Apache Software Foundation
+        Copyright (c) 2000-2002, Apache Software Foundation
         </em></font></div>
         <img src="images/struts-power.gif" align="right" border="0"/>
       </td></tr>
@@ -80,12 +80,17 @@
 
   </xsl:template>
 
+  <!-- Process the project element for the navigation bar -->
+  <xsl:template match="project">
+    <xsl:apply-templates/>
+  </xsl:template>
+
   <!-- Process a menu for the navigation bar -->
   <xsl:template match="menu">
     <table border="0" cellspacing="5">
       <tr>
         <th colspan="2" align="left">
-          <font color="{body-link}"><strong>
+          <font color="{$body-link}"><strong>
             <xsl:value-of select="@name"/>
           </strong></font>
         </th>
@@ -109,6 +114,13 @@
       </td>
     </tr>
   </xsl:template>
+
+
+  <!-- Process a document body -->
+  <xsl:template match="body">
+    <xsl:apply-templates/>
+  </xsl:template>
+
 
   <!-- Process a documentation section -->
   <xsl:template match="section">

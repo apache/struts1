@@ -110,9 +110,7 @@ stores the database contents as a XML file, which is parsed by the Struts
 digester and loaded as a set of nested hashtables. The outer table is the list
 of user objects, each of which has its own inner hashtable of subscriptions.
 When you register, a user object is stored in this hashtable ... and when you
-login, the user object is stored within the session context. When the
-application is shut down, the database servlet unloads the database by writing a
-fresh database.xml file.</p>
+login, the user object is stored within the session context.</p>
 <blockquote>
   <p><i>If you want to follow along (and you should!), the package source can be found under the src/example folder in your
   jakarta-struts folder.</i></p>
@@ -233,19 +231,19 @@ LogonAction object where it can pass control to get information from the user.</
 <p>Before passing the request to LogonAction, the ActionServlet looks for the
 LogonForm bean. If it finds it, the ActionServlet updates the bean by matching
 properties named in the HTTP request with properties named in the form bean. If
-it doesn't find the bean, ActionServlet creates it, so ActionLogon can assume
+it doesn't find the bean, ActionServlet creates it, so LogonAction can assume
 that it already exists.</p>
 <p>When called by the ActionServlet, LogonAction retrieves the username and
 password from the LogonForm bean. (If just created, the bean will return default
 values.)</p>
-<p>In the example, LoginAction then checks with the DatabaseServlet to see if
+<p>In the example, LogonAction then checks with the DatabaseServlet to see if
 the logon matches a registered user. If the logon doesn't match, LogonAction
 adds a message key to an error list. At the end of the routine, if the error
 list is not empty, LogonAction adds a User bean to the session context, and forwards
 control to its input form (login.jsp).</p>
 <blockquote>
 <p><i>Note that direct access to the DatabaseServlet should really be handled by a
-business-logic bean, and NOT by LoginAction. To quote the example's author
+business-logic bean, and NOT by LogonAction. To quote the example's author
 &quot;This should be considered a bug in the example.&quot;&nbsp;</i></p>
 </blockquote>
 <p>If there are no errors, LogonAction places a user bean into the
@@ -598,10 +596,6 @@ link them together with a user ID. The Example application implements a differen
 folders.&nbsp;</p>
 <p>In addition to the usual getters and setters, the user object also has two methods for working with subscription objects. findSubscription takes a hostname and returns the subscription object for that host. getSubscriptions returns an array of all the
 subscriptions for the user (ready-made for the iterate tag!). Besides the fields needed to manage the SubscriptionForm data, the object also maintains a runtime link to its user object.</p>
-<blockquote>
-  <p><i>When the application shuts down, the database servlets stores the user objects and their subscriptions in XML. When the application is initialized again, the database servlet (courtesy of the Struts Digester) loads the objects back into memory,
-  restoring the runtime links. Of course a production system would want a more permanent storage solution, so all the changes won't be lost if the application ever terminates abnormally.&nbsp;</i></p>
-</blockquote>
 <p>To create a new subscription, EditSubscriptionAction.java simply creates a new subscription object, and sets its user to the object found in the request, and then forwards control to its input form, subscription.jsp.&nbsp;</p>
 <h3><font face="Arial"><a name="subcription.jsp">subscription.jsp</a></font></h3>
 Saving the best for last, subscription.jsp demonstrates use of some interesting Struts custom form tags,&nbsp; html:options and html:checkbox.&nbsp;

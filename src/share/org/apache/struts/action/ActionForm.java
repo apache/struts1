@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.7 2001/05/11 17:10:58 mschachter Exp $
- * $Revision: 1.7 $
- * $Date: 2001/05/11 17:10:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.7.2.3 2002/02/06 04:42:10 martinc Exp $
+ * $Revision: 1.7.2.3 $
+ * $Date: 2002/02/06 04:42:10 $
  *
  * ====================================================================
- * 
+ *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -15,7 +15,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -23,15 +23,15 @@
  *    distribution.
  *
  * 3. The end-user documentation included with the redistribution, if
- *    any, must include the following acknowlegement:  
- *       "This product includes software developed by the 
+ *    any, must include the following acknowlegement:
+ *       "This product includes software developed by the
  *        Apache Software Foundation (http://www.apache.org/)."
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
  * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
- *    from this software without prior written permission. For written 
+ *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
  *
  * 5. Products derived from this software may not be called "Apache"
@@ -57,7 +57,7 @@
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */ 
+ */
 
 
 package org.apache.struts.action;
@@ -94,7 +94,8 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/05/11 17:10:58 $
+ * @author Ted Husted
+ * @version $Revision: 1.7.2.3 $ $Date: 2002/02/06 04:42:10 $
  */
 
 public abstract class ActionForm implements Serializable {
@@ -106,14 +107,14 @@ public abstract class ActionForm implements Serializable {
     /**
      * The controller servlet instance to which we are attached.
      */
-    protected ActionServlet servlet = null;
-    
-    
+    protected transient ActionServlet servlet = null;
+
+
     /**
      * The MultipartRequestHandler for this form, can be
      * <code>null</code>
      */
-    protected MultipartRequestHandler multipartRequestHandler;
+    protected transient MultipartRequestHandler multipartRequestHandler;
 
 
     // ------------------------------------------------------------- Properties
@@ -122,13 +123,23 @@ public abstract class ActionForm implements Serializable {
     /**
      * Return the controller servlet instance to which we are attached.
      */
-    public ActionServlet getServlet() {
+    protected ActionServlet getServlet() {
 
         return (this.servlet);
 
     }
-    
-    
+
+
+    /**
+     * Return the controller servlet instance to which we are attached.
+     */
+    public ActionServletWrapper getServletWrapper() {
+
+        return new ActionServletWrapper(getServlet());
+
+    }
+
+
     /**
      * Return the MultipartRequestHandler for this form
      * The reasoning behind this is to give form bean developers
@@ -157,7 +168,7 @@ public abstract class ActionForm implements Serializable {
 
     }
 
-    
+
     public void setMultipartRequestHandler(MultipartRequestHandler multipartRequestHandler) {
         this.multipartRequestHandler = multipartRequestHandler;
     }

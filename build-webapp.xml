@@ -115,7 +115,7 @@
 <property name="webapp.src"            value="src/${webapp.name}" />
 
 <!-- The version number of this particular web application -->
-<property name="webapp.version"        value="1.0" />
+<property name="webapp.version"        value="1.0.2" />
 
 <!-- The name of the web application archive file to be produced -->
 <property name="webapp.war"            value="${webapp.name}.war" />

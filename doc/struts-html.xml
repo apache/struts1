@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<document url="./struts-form.xml">
+<document url="./struts-html.xml">
 
 <properties>
   <author>Mike Schachter</author>
@@ -15,6 +15,7 @@
   <jspversion>1.1</jspversion>
   <shortname>html</shortname>
   <display-name>Page Construction Tags</display-name>
+  <uri>http://jakarta.apache.org/struts/tags-html-1.0.2</uri>
   <info>
   <p>
         This taglib contains tags used to create struts
@@ -858,6 +859,16 @@
                 associated with our current form. This tag is only valid when
                 nested inside a form tag body.
             </p>
+            <p>
+                As with the corresponding HTML &lt;input&gt; element, the
+                enclosing form element must specify "POST" for the <code>method</code>
+                attribute, and "multipart/form-data" for the <code>enctype</code>
+                attribute. For example:
+    <pre>
+    &lt;html:form method="POST" enctype="multipart/form-data"&gt;
+        &lt;html:file property="theFile" /&gt;
+    &lt;/html:form&gt;</pre>
+            </p>
         </info>
 
         <attribute>
@@ -1416,6 +1427,15 @@
         </attribute>
 
         <attribute>
+                <name>align</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alignment option for this image.</p>
+                </info>
+        </attribute>
+
+        <attribute>
                 <name>alt</name>
                 <required>false</required>
                 <rtexprvalue>true</rtexprvalue>
@@ -1707,7 +1727,8 @@
                 to be the names of query parameters to be appended to the
                 <code>src</code> URL.  The value associated with each key
                 must be either a String or a String array representing the
-                parameter value(s).  If a String array is specified, more than
+                parameter value(s), or an object whose toString() method
+                will be called.  If a String array is specified, more than
                 one value for the same query parameter name will be
                 created.</p>
 
@@ -2172,7 +2193,8 @@
                 <p>As the <code>Map</code> is processed, the keys are assumed
                 to be the names of query parameters to be appended to the
                 hyperlink.  The value associated with each key must be either
-                a String or a String array representing the parameter value(s).
+                a String or a String array representing the parameter value(s),
+                or an object whose toString() method will be called.
                 If a String array is specified, more than one value for the
                 same query parameter name will be created.</p>
 
@@ -2525,6 +2547,15 @@
                 </attribute>
 
                 <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this hyperlink.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
                   <name>transaction</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -2866,6 +2897,23 @@
                 </attribute>
 
         <attribute>
+            <name>style</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS styles to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS stylesheet class to be applied to this HTML element.
+            </info>
+        </attribute>
+        <attribute>
                     <name>value</name>
                     <required>true</required>
                     <rtexprvalue>true</rtexprvalue>
@@ -3014,6 +3062,24 @@
                 Property of the form bean, or the bean specified by the name
                 attribute, that will return the collection of values to returned
                 to the server for these options.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>style</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS styles to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS stylesheet class to be applied to this HTML element.
             </info>
         </attribute>
     </tag>
@@ -3469,6 +3535,15 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Identifier to be assigned to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>tabindex</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The tab order (ascending positive integers) for this element.
             </info>
         </attribute>
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.10 2001/04/29 00:38:04 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2001/04/29 00:38:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.10.2.1 2001/08/07 18:00:02 craigmcc Exp $
+ * $Revision: 1.10.2.1 $
+ * $Date: 2001/08/07 18:00:02 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.10.2.1 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -757,7 +757,7 @@ public class ImgTag extends BaseHandlerTag {
             Object value = RequestUtils.lookup(pageContext, paramName,
                                               paramProperty, paramScope);
             if (value != null)
-                src.append(value.toString());
+                src.append(URLEncoder.encode(value.toString()));
         }
 
 	// Just return the URL if there is no bean to look up

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.14 2001/05/12 22:35:43 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2001/05/12 22:35:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.14.2.7 2001/11/21 13:30:38 husted Exp $
+ * $Revision: 1.14.2.7 $
+ * $Date: 2001/11/21 13:30:38 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForwards;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
+import org.apache.struts.action.ActionServletWrapper;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
@@ -95,7 +95,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2001/05/12 22:35:43 $
+ * @version $Revision: 1.14.2.7 $ $Date: 2001/11/21 13:30:38 $
  */
 
 public class RequestUtils {
@@ -114,8 +114,8 @@ public class RequestUtils {
      * The message resources for this package.
      */
     private static MessageResources messages =
-	MessageResources.getMessageResources
-	("org.apache.struts.util.LocalStrings");
+    MessageResources.getMessageResources
+    ("org.apache.struts.util.LocalStrings");
 
 
 
@@ -135,7 +135,7 @@ public class RequestUtils {
     public static URL absoluteURL(HttpServletRequest request, String path)
         throws MalformedURLException {
 
-        return (new URL(serverURL(request), path));
+        return (new URL(serverURL(request), request.getContextPath() + path));
 
     }
 
@@ -179,7 +179,7 @@ public class RequestUtils {
         throws JspException {
 
         // Short circuit if no parameters are specified
-        if ((paramId == null) && (name == null))
+        if ((paramId == null) && (name == null) && !transaction)
             return (null);
 
         // Locate the Map containing our multi-value parameters map
@@ -339,7 +339,7 @@ public class RequestUtils {
             url.append('#');
             url.append(URLEncoder.encode(anchor));
         }
-        
+
         // Add dynamic parameters if requested
         if ((params != null) && (params.size() > 0)) {
 
@@ -364,7 +364,7 @@ public class RequestUtils {
                         url.append('?');
                         question = true;
                     } else
-                        url.append('&');
+                        url.append("&amp;");
                     url.append(URLEncoder.encode(key));
                     url.append('='); // Interpret null as "no value"
                 } else if (value instanceof String) {
@@ -372,22 +372,31 @@ public class RequestUtils {
                         url.append('?');
                         question = true;
                     } else
-                        url.append('&');
+                        url.append("&amp;");
                     url.append(URLEncoder.encode(key));
                     url.append('=');
                     url.append(URLEncoder.encode((String) value));
-                } else /* if (value instanceof String[]) */ {
+                } else if (value instanceof String[]) {
                     String values[] = (String[]) value;
                     for (int i = 0; i < values.length; i++) {
                         if (!question) {
                             url.append('?');
                             question = true;
                         } else
-                            url.append('&');
+                            url.append("&amp;");
                         url.append(URLEncoder.encode(key));
                         url.append('=');
                         url.append(URLEncoder.encode(values[i]));
                     }
+                } else /* Convert other objects to a string */ {
+                    if (!question) {
+                        url.append('?');
+                        question = true;
+                    } else
+                        url.append("&amp;");
+                    url.append(URLEncoder.encode(key));
+                    url.append('=');
+                    url.append(URLEncoder.encode(value.toString()));
                 }
             }
 
@@ -480,14 +489,14 @@ public class RequestUtils {
 
         // Look up the requested bean, and return if requested
         Object bean = lookup(pageContext, name, scope);
-        if (property == null)
-            return (bean);
         if (bean == null) {
             JspException e = new JspException
                 (messages.getMessage("lookup.bean", name, scope));
             saveException(pageContext, e);
             throw e;
         }
+        if (property == null)
+            return (bean);
 
         // Locate and return the specified property
         try {
@@ -648,11 +657,11 @@ public class RequestUtils {
             //initialize a MultipartRequestHandler
             MultipartRequestHandler multipart = null;
 
-            //get an instance of ActionServlet
-            ActionServlet servlet;
+            //get an instance of ActionServletWrapper
+            ActionServletWrapper servlet;
 
             if (bean instanceof ActionForm) {
-                servlet = ((ActionForm) bean).getServlet();
+                servlet = ((ActionForm) bean).getServletWrapper();
             } else {
                 throw new ServletException("bean that's supposed to be " +
                                            "populated from a multipart request is not of type " +
@@ -717,7 +726,7 @@ public class RequestUtils {
             ((ActionForm) bean).setMultipartRequestHandler(multipart);
 
             //set servlet and mapping info
-            multipart.setServlet(servlet);
+            servlet.setServletFor(multipart);
             multipart.setMapping((ActionMapping)
                                  request.getAttribute(Action.MAPPING_KEY));
             request.removeAttribute(Action.MAPPING_KEY);

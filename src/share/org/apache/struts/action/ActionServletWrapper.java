@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTei.java,v 1.4.2.1 2001/10/04 03:25:32 craigmcc Exp $
- * $Revision: 1.4.2.1 $
- * $Date: 2001/10/04 03:25:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.1.2.1 2001/11/21 13:29:31 husted Exp $
+ * $Revision: 1.1.2.1 $
+ * $Date: 2001/11/21 13:29:31 $
  *
  * ====================================================================
  *
@@ -60,43 +60,81 @@
  */
 
 
-package org.apache.struts.taglib.bean;
+package org.apache.struts.action;
 
-
-import javax.servlet.jsp.tagext.TagData;
-import javax.servlet.jsp.tagext.TagExtraInfo;
-import javax.servlet.jsp.tagext.VariableInfo;
+import org.apache.struts.upload.MultipartRequestHandler;
+import org.apache.struts.upload.MultipartRequestWrapper;
 
 
 /**
- * Implementation of <code>TagExtraInfo</code> for the <b>parameter</b>
- * tag, identifying the scripting object(s) to be made visible.
- *
+ * Provide a wrapper around an ActionServlet to expose only
+ * those methods needed by other objects. When used with an
+ * ActionForm, subclasses must be careful that they do
+ * not return an object with public getters and setters that
+ * could be exploited by automatic population of properties.
  * @author Craig R. McClanahan
- * @version $Revision: 1.4.2.1 $ $Date: 2001/10/04 03:25:32 $
+ * @author Ted Husted
+ * @version $Revision: 1.1.2.1 $ $Date: 2001/11/21 13:29:31 $
  */
-
-public class ParameterTei extends TagExtraInfo {
+public class ActionServletWrapper {
 
 
     /**
-     * Return information about the scripting variables to be created.
+     * The controller servlet instance to which we are attached.
      */
-    public VariableInfo[] getVariableInfo(TagData data) {
+    protected transient ActionServlet servlet = null;
 
-        String className = null;
-        if (data.getAttribute("multiple") == null)
-            className = "java.lang.String";
-        else
-            className = "java.lang.String[]";
-	return new VariableInfo[] {
-	  new VariableInfo(data.getAttributeString("id"),
-                           className,
-	                   true,
-	                   VariableInfo.AT_BEGIN)
-	};
+
+
+    /**
+     * Log the specified message if the current debugging detail level for
+     * this servlet has been set to an equal or higher value.  Otherwise,
+     * ignore this message.
+     *
+     * @param message Message to be logged
+     * @param level Debugging detail level of this message
+     */
+    public void log(String message, int level) {
+
+           servlet.log(message,level);
 
     }
 
+
+    public void log(String message) {
+
+            servlet.log(message);
+
+    }
+
+    /**
+     * Get the class name of the MultipartRequestHandler implementation
+     *
+     * @return A qualified classname of the MultipartRequestHandler implementation
+     */
+     public String getMultipartClass() {
+        return servlet.multipartClass;
+    }
+
+
+    /**
+     * Set servlet to a MultipartRequestHandler.
+     * :FIXME: Should this be based on an "setServlet"
+     * interface or introspection for a setServlet method?
+     * Or, is it safer to just add the types we want as we want them?
+     */
+     public void setServletFor(MultipartRequestHandler object) {
+        object.setServlet(this.servlet);
+    }
+
+
+    /**
+     * Create object and set servlet property
+     *
+     */
+     public ActionServletWrapper (ActionServlet servlet) {
+        super();
+        this.servlet = servlet;
+    }
 
 }
