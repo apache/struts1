@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.96 2003/04/03 01:29:03 dgraham Exp $
- * $Revision: 1.96 $
- * $Date: 2003/04/03 01:29:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.97 2003/04/22 02:28:52 dgraham Exp $
+ * $Revision: 1.97 $
+ * $Date: 2003/04/22 02:28:52 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.96 $ $Date: 2003/04/03 01:29:03 $
+ * @version $Revision: 1.97 $ $Date: 2003/04/22 02:28:52 $
  */
 
 public class RequestUtils {
@@ -1398,9 +1398,9 @@ public class RequestUtils {
     }
 
     /**
-     * <p>Return the context-relative URL that corresponds to the specified
-     * {@link ForwardConfig}, calculated based on the properties of the
-     * {@link ForwardConfig} instance as follows:</p>
+     * Return the context-relative URL that corresponds to the specified
+     * ForwardConfig. The URL is calculated based on the properties of the
+     * {@link ForwardConfig} instance as follows:
      * <ul>
      * <li>If the <code>contextRelative</code> property is set, it is
      *     assumed that the <code>path</code> property contains a path

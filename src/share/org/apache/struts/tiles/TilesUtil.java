@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtil.java,v 1.7 2003/04/17 03:51:12 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/04/17 03:51:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtil.java,v 1.8 2003/04/22 02:28:52 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/04/22 02:28:52 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.commons.logging.LogFactory;
    * Class containing utility methods for Tiles.
    * Methods of this class are static and thereby accessible from anywhere.
    * The underlying implementation can be changed with
-   * {@link void setTilesUtil(TilesUtilImpl tilesUtil)}.
+   * {@link #setTilesUtil(TilesUtilImpl)}.
    * <br>
    * Real implementation classes should derive from the {@link TilesUtilImpl} class.
    * <br>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.13 2003/02/28 05:14:01 arron Exp $
- * $Revision: 1.13 $
- * $Date: 2003/02/28 05:14:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.14 2003/04/22 02:28:52 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/04/22 02:28:52 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -84,7 +84,7 @@ import org.apache.struts.taglib.html.FormTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.13 $ $Date: 2003/02/28 05:14:01 $
+ * @version $Revision: 1.14 $ $Date: 2003/04/22 02:28:52 $
  */ 
 public class NestedPropertyHelper {
 
@@ -145,8 +145,9 @@ public class NestedPropertyHelper {
   }
 
   /**
-   * Get the adjusted property. ie: apply the provided property, to the property
-   * already stored in the request object.
+   * Get the adjusted property. 
+   * Apply the provided property, to the property already stored 
+   * in the request object.
    * @param request to pull the reference from
    * @param property to retrieve the evaluated nested property with
    * @return String of the final nested property reference.
