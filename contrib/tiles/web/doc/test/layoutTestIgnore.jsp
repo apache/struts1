@@ -13,6 +13,7 @@
 <td><template:insert attribute="header" ignore="true"/></td>
 </tr>
 <tr>
-<td><template:insert attribute="body" ignore="true"/></td>
+<td><template:insert attribute="body" ignore="true"/>
+</td>
 </tr>
 </table>

@@ -19,6 +19,15 @@
       <param-value>1</param-value>
     </init-param>
     <init-param>
+      <param-name>definitions-parser-details</param-name>
+      <param-value>0</param-value>
+    </init-param>
+    <init-param>
+      <param-name>definitions-parser-validate</param-name>
+      <param-value>true</param-value>
+    </init-param>
+
+    <init-param>
       <param-name>config</param-name>
       <param-value>/WEB-INF/struts-config.xml</param-value>
     </init-param>

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+
 <!--
      DTD for the Struts Application Configuration File, Version 1.1
 
@@ -13,7 +18,7 @@
 
 <!-- html definition Mappings  -->
 
-<component-definitions>
+<tiles-definitions>
 
   <!-- Definition description  -->
   <definition name="myFirstDefinition" path="/tutorial/layout/classicLayout.jsp">
@@ -191,4 +196,4 @@
 
   
 
-</component-definitions>
+</tiles-definitions>

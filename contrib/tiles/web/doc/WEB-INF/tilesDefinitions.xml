@@ -1,8 +1,10 @@
-
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
 
 <!-- Tiles / Components / templates definition   -->
 
-<component-definitions>
+<tiles-definitions>
 
   <!-- Doc index page description  -->
   <definition name="doc.mainLayout" path="/layout/classicLayout.jsp">
@@ -151,4 +153,4 @@
 </definition>
 
 
-</component-definitions>
+</tiles-definitions>

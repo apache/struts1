@@ -26,9 +26,9 @@
 							<CODE>lib</CODE>directory.  However, if you wish to build Tiles from source, you will
       need to download and install the following packages:
 								<UL>
-									<LI><EM>Beanutils</EM> (Version 1.0 or later)
+									<LI><EM>Beanutils</EM> (Version 1.1 or later)
 									<LI><EM>Collections</EM> (Version 1.0 or later)
-									<LI><EM>Digester</EM> (Version 1.0 or later)</LI>
+									<LI><EM>Digester</EM> (Version 1.1 or later)</LI>
 								</UL>
 								<LI><STRONG>Servlet Container</STRONG>- You must download and install a       servlet container that is compatible with the Servlet API Specification,       version 2.2 or later, and the JavaServer Pages (JSP) Specification,       version 1.1 or later.  One popular choice is to download Apache's<A href="http://jakarta.apache.org/tomcat"> Tomcat </A>&nbsp;(version 3.1 or later required, 
                 version 3.2 or later recommended).
@@ -157,6 +157,15 @@ build.properties</P></BLOCKQUOTE>
 							<CODE>tiles.jar </CODE>file (copied earlier) 
                 on the CLASSPATH that is submitted to the compiler.</LI>
 							</UL></BLOCKQUOTE>
+							
+<P>Note to Struts1.0 users :<BR></P>
+  <ul>
+    <li>Use <CODE>tilesForStruts1.0.jar </CODE>instead of tiles.jar
+    </li>
+	<li>Don't use both jar files in the same time</li>
+	<li><CODE>tilesForStruts1.0.jar </CODE> is located in <CODE>lib/struts1.0 </CODE></li>
+  </ul>
+
 						</TD>
 					</TR>
 				</TABLE>

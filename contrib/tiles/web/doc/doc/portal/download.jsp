@@ -15,8 +15,8 @@
                    You can also 
       download it, and additional resources, from</font> <font size="2">following web sites :</font> </div>
                <div align="center">
-                  <font size="2">Latest build : 2001&nbsp;09&nbsp;09 (with struts 2001 
-      07&nbsp;15 - 1.1dev)</font> </div>
+                  <font size="2">Latest build : 2001&nbsp;09&nbsp;27 (with struts 2001 
+      09&nbsp;27 - 1.1dev)</font> </div>
                <div align="center">
                   <table border="2">
                      <tr>
