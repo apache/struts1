@@ -1433,6 +1433,7 @@
                 If the focus field is a field array, such as a radio button group, you can 
                 specify the index in the array to receive focus.
             </info>
+            <since>Struts 1.1</since>
         </attribute>
 
         <attribute>
