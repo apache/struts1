@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.9 2001/04/29 05:34:49 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2001/04/29 05:34:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.10 2001/04/29 05:59:58 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/04/29 05:59:58 $
  *
  * ====================================================================
  *
@@ -75,11 +75,17 @@ import org.apache.struts.taglib.template.util.*;
  * it, depending upon the value of the content's direct attribute.
  *
  * @author David Geary
- * @version $Revision: 1.9 $ $Date: 2001/04/29 05:34:49 $
+ * @version $Revision: 1.10 $ $Date: 2001/04/29 05:59:58 $
  */
 public class GetTag extends TagSupport {
 
 // ----------------------------------------------------- Instance Variables
+
+
+   /**
+    * Should we flush before including this text?
+    */
+    private boolean flush = false;
 
 
    /**
@@ -91,6 +97,16 @@ public class GetTag extends TagSupport {
      * The role that the user must be in to retrieve content.
      */
    private String role;
+
+   /**
+    * Set the flush-before-include property
+    * @param flush The new flush property
+    */
+   public void setFlush(boolean flush) {
+
+      this.flush = flush;
+
+   }
 
    /**
      * Set the name attribute
@@ -111,6 +127,16 @@ public class GetTag extends TagSupport {
       this.role = role;
 
    }
+
+   /**
+    * Get the flush-before-include attribute.
+    */
+   public boolean getFlush() {
+
+      return flush;
+
+   }
+
 
    /**
      * Get the name attribute.
@@ -158,6 +184,8 @@ public class GetTag extends TagSupport {
          }
          else {
             try {
+               if (flush)
+                  pageContext.getOut().flush();
                pageContext.include(content.toString());
             }
             catch(Exception ex) { 
@@ -179,6 +207,7 @@ public class GetTag extends TagSupport {
 
       super.release();
       name = role = null;
+      flush = false;
 
    }
 

@@ -120,6 +120,19 @@
     </info>
 
     <attribute>
+      <name>flush</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      If set to <code>true</code>, flush the response buffer prior to
+      including the content specified by the <code>name</code> attribute.
+      By default, the response is not flushed.  <strong>NOTE</strong> -
+      this attribute exists only to work around problems on some containers;
+      flushing should never be required.
+      </info>
+    </attribute>
+
+    <attribute>
       <name>name</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
