@@ -50,7 +50,7 @@
 
 * Struts 2.x will be based on Servlet 2.4/JSP 2.0 (revolution).
 
-* The Apache Struts repository will be rationalized to accomodate subprojects and Maven once a stable Struts 1.2.x release is available. Subprojects will be the unit of release. Each subproject will be a distinct Maven "artifact".
+* The Apache Struts repository will be rationalized to accomodate subprojects and Maven once a stable Struts 1.2.x release is available. Subprojects will be the unit of release. Each subproject will be a distinct Maven "artifact". Pending this step, the website and repository remain under jakarta.apache.org.
 
 * For more see <http://jakarta.apache.org/struts/status.html>.
 
@@ -110,5 +110,5 @@
     * Niall Pemberton (niallp at apache.org) [NEW]
 
 
-$Id: STATUS.txt,v 1.8 2004/05/25 13:04:10 husted Exp $
+$Id: STATUS.txt,v 1.9 2004/05/25 15:29:08 husted Exp $
 ###
