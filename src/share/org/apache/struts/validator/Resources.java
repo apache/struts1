@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.13 2003/07/02 03:19:43 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2003/07/02 03:19:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.14 2003/07/02 03:29:27 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/07/02 03:29:27 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.13 $ $Date: 2003/07/02 03:19:43 $
+ * @version $Revision: 1.14 $ $Date: 2003/07/02 03:29:27 $
  * @since Struts 1.1
  */
 public class Resources  {
@@ -209,54 +209,36 @@ public class Resources  {
     * @param locale   the locale
     * @param field the validator field
     */
-   public static String[] getArgs(String actionName, MessageResources messages,
-                                  Locale locale, Field field) {
+    public static String[] getArgs(
+        String actionName,
+        MessageResources messages,
+        Locale locale,
+        Field field) {
 
-      Arg arg0 = field.getArg0(actionName);
-      Arg arg1 = field.getArg1(actionName);
-      Arg arg2 = field.getArg2(actionName);
-      Arg arg3 = field.getArg3(actionName);
+        String[] argMessages = new String[4];
 
-      String sArg0 = null;
-      String sArg1 = null;
-      String sArg2 = null;
-      String sArg3 = null;
+        Arg[] args =
+            new Arg[] {
+                field.getArg0(actionName),
+                field.getArg1(actionName),
+                field.getArg2(actionName),
+                field.getArg3(actionName)};
 
-      if (arg0 != null) {
-         if (arg0.getResource()) {
-            sArg0 = getMessage(messages, locale, arg0.getKey());
-         } else {
-            sArg0 = arg0.getKey();
-         }
-      }
+        for (int i = 0; i < args.length; i++) {
+            if (args[i] == null) {
+                continue;
+            }
 
-      if (arg1 != null) {
-         if (arg1.getResource()) {
-            sArg1 = getMessage(messages, locale, arg1.getKey());
-         } else {
-            sArg1 = arg1.getKey();
-         }
-      }
+            if (args[i].getResource()) {
+                argMessages[i] = getMessage(messages, locale, args[i].getKey());
+            } else {
+                argMessages[i] = args[i].getKey();
+            }
 
-      if (arg2 != null) {
-         if (arg2.getResource()) {
-            sArg2 = getMessage(messages, locale, arg2.getKey());
-         } else {
-            sArg2 = arg2.getKey();
-         }
-      }
+        }
 
-      if (arg3 != null) {
-         if (arg3.getResource()) {
-            sArg3 = getMessage(messages, locale, arg3.getKey());
-         } else {
-            sArg3 = arg3.getKey();
-         }
-      }
-
-      return new String[] { sArg0, sArg1, sArg2, sArg3 };
-
-   }
+        return argMessages;
+    }
 
    /**
     * Initialize the <code>Validator</code> to perform validation.
