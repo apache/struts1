@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextTag.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextTag.java,v 1.2 2003/03/23 06:08:41 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/03/23 06:08:41 $
  *
  * ====================================================================
  * 
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights 
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -67,7 +67,7 @@ package org.apache.struts.taglib.html;
  * Custom tag for input fields of type "text".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/01/06 21:50:39 $
+ * @version $Revision: 1.2 $ $Date: 2003/03/23 06:08:41 $
  */
 
 public class TextTag extends BaseFieldTag {
@@ -78,8 +78,8 @@ public class TextTag extends BaseFieldTag {
      */
     public TextTag() {
 
-	super();
-	this.type = "text";
+	   super();
+	   this.type = "text";
 
     }
 
