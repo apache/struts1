@@ -8,7 +8,7 @@
 <chapter href="faq" name="Newbie FAQ"> 
 <section href="contents" name="Table of Contents">
 <p><font color="red"><b>UNDER CONSTRUCTION</b></font> (contributions welcome)</p>
-<p>Here are answers to 25 common questions people ask when using Struts on 
+<p>Here are answers to 24 common questions people ask when using Struts on 
 their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b></p>
   <ul>
 
@@ -64,7 +64,7 @@ their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a
 </section>
 
 
-<section href="naming" name="Why are some of the class and element names countere-intuitive?">
+<section href="naming" name="Why are some of the class and element names counter-intuitive?">
 <p>
 The framework grew in the telling and as it evolved some of the names
 drifted.
@@ -73,10 +73,6 @@ drifted.
 available to the community as soon as it is written. The bad thing about 
 a nightly build is that things like classnames get locked down early and 
 then become difficult to change.
-</p>
-<p>
-To retain backward compatability, it is not likely that issues like this
-woule be addressed in anywhere in a Struts 1.* release. 
 </p>
 </section>
 
