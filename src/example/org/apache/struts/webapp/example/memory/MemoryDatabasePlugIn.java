@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.8 2003/02/17 00:31:45 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2003/02/17 00:31:45 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.9 2004/01/08 03:55:58 germuska Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/01/08 03:55:58 $
  *
  * ====================================================================
  *
@@ -93,7 +93,7 @@ import org.apache.struts.webapp.example.Constants;
  * of your servlet container.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2003/02/17 00:31:45 $
+ * @version $Revision: 1.9 $ $Date: 2004/01/08 03:55:58 $
  */
 
 public final class MemoryDatabasePlugIn implements PlugIn {
@@ -209,9 +209,6 @@ public final class MemoryDatabasePlugIn implements PlugIn {
         servlet.getServletContext().setAttribute(Constants.DATABASE_KEY,
                                                  database);
 
-        // Setup and cache other required data
-        setupCache(servlet, config);
-
     }
 
 
@@ -219,26 +216,6 @@ public final class MemoryDatabasePlugIn implements PlugIn {
 
 
     // ------------------------------------------------------ Protected Methods
-
-
-    /**
-     * <p>Cache commonly required data as servlet context attributes.</p>
-     *
-     * @param servlet The <code>ActionServlet</code> instance running
-     *  this webapp
-     * @param config The <code>ModuleConfig</code> for this application module
-     */
-    protected void setupCache(ActionServlet servlet, ModuleConfig config) {
-
-        // Set up list of server types under "serverTypes"
-        ArrayList serverTypes = new ArrayList();
-        serverTypes.add(new LabelValueBean("IMAP Protocol", "imap"));
-        serverTypes.add(new LabelValueBean("POP3 Protocol", "pop3"));
-        servlet.getServletContext().setAttribute("serverTypes", serverTypes);
-
-    }
-
-
 
 
     // -------------------------------------------------------- Private Methods
