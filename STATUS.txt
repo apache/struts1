@@ -21,7 +21,7 @@ and productively.
 
 ----
 
--[STATUS LOG] 20-Jul-2004 Apache Struts-
+-[STATUS LOG] 14-Jan-2005 Apache Struts-
 
 * PMC Members
 * Other Committers
@@ -40,80 +40,87 @@ and productively.
 
 -PMC Actions-
 
-* Started reorganization of repository. The goals of the refactoring are to better support
+* Opened 1.3.x series, featuring a significant refactoring of Struts internals.
 
-  * Subprojects   
-  * Maven builds
-  
-  The reorganization is being done under Subversion on an offsite server. We will be moving this to an Apache server soon, now that we have a consensus in favor of Subversion and Maven. 
+* Launched Struts Scripting subproject. 
 
-* Completed draft of Apache Struts bylaws: http://struts.apache.org/bylaws.html
+* Launched reorganization of codebase into discrete subprojects. 
+
+* Migrated the repository to Subversion.
 
 
 -Significant threads-
 
-* We discussed the "bar" for Committership. The consensus is to keep the bar fairly high and wait until a Committer has submitted a number of useful patches to Struts directly, rather than to related projects elsewhere. 
+* Discussions continue as to partitioning the codebase into multiple subprojects.
+
+* Several discussions compared the evolution of the Struts 1.x codebase with revolutions like Struts Shale.
+
+* The PMC discussed the release process and created a checklist to outline the process.
 
 
 -Releases-
 
-* Stable release: 1.1 (29 June 2003).
+* Stable release: 1.2.4 (19 Sep 2004).
 
-* Beta release: 1.2.1 (11 July 2004)
-
-* We anticipate 1.2.1 or 1.2.2 being promoted to GA in the next 30 days. 
+* Beta release: 1.2.6 (12 Dec 2004)
+  
+* A 1.2.7 release is anticipated to complete the 1.2.x series. As to 1.2.6, a bundled taglib package, struts-el, is not in synch with changes to the core taglib package).  
 
 
 -Roadmap-
 
-* We are discussing renumbering coding initatives, so that the current reorganization under SVN becomes 2.0, but that is undecided. Heretofore, the plans has been:
+  * Struts 1.2.x will remain based on Servlet 1.2/JSP 1.1 (maintenance).
 
-  * Struts 1.x will remain based on Servlet 1.2/JSP 1.1 (evolution).
+  * Struts 1.3.x is based on Servlet 1.3/JSP 1.2 (evolution).
 
-  * Struts 1.3.x will introduce the "Struts Chain" request processor. Some packages, like the taglibs, will be released as separate subprojects.
-
-  * Struts 2.x will be based on Servlet 2.4/JSP 2.0 (revolution).
+  * Struts 1.3.x introduces the "Struts Chain" request processor. Some packages, like the taglibs, will be released as separate subprojects.
 
 * For more see <http://jakarta.apache.org/struts/roadmap.html>.
 
 
 -Showstoppers-
 
+* None.
 
 
 -Recent Changes-
 
-* Many changes to Struts Faces in anticipate of a 1.0 release.
+* The build system is being revised to support subprojects.
 
-* Added a simplified build.properties file for use by developers who are not actively involved in Jakata Commons development.
+* Struts Scripting is available as a prerelease distribution.
 
-* Extended "EmptyTag" to support arrays. 
+* The repository is being restructured to support subprojects.
+
+* Struts Shale is available in the sandbox area. Shale is based on JavaServer Faces. The code is at a late prerelease stage.
+
+* Changes continue to Struts Faces in anticipate of a 1.0.0 release.
 
 * See also: http://jakarta.apache.org/struts/userGuide/release-notes.html
 
 
 -Mailing list Subscriptions-
 
-* User 1838
-* Dev: 719
+* User 1879
+* Dev: 673
 * PMC: 14
 
 
 -Wiki Posts-
 
-* 148 new posts; 323 total (since Apr 8)
+* 129 new posts in the last 60 days.
+* 853 posts since inception (8 Apr). 
 
 
--CVS Activity-
+-Repository Activity-
 
-* Timeframe: 56 days, Total Commits: 84 Total Number of Files Changed: 196
+* Timeframe: 60 days, Total Commits: 102.
 
 
 -Issue Reports-
 
-* Open "problem" reports:      10 [#27332 .. #30204]
-* Open "enhancement" reports: 261 [#  866 .. #30210] (28 with patch)
-* Open "LATER" reports:        19 [#17977 .. #26403]
+* Open "problem" reports:      27 [#15044 .. #33093]
+* Open "enhancement" reports: 285 [#  866 .. #33087] (25 with patch)
+* Open "LATER" reports:        22 [#17165 .. #30960]
 
 
 -PMC Members-
@@ -131,10 +138,6 @@ and productively.
     * Steve Raeburn (sraeburn at apache.org)
     * Don Brown (mrdon at apache.org)
     * Joe Germuska (germuska at apache.org)
-
-
--Other Committers-
-
     * Niall Pemberton (niallp at apache.org)
 
 
