@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.3 2001/01/08 00:17:43 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/01/08 00:17:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.4 2001/01/10 01:54:21 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/01/10 01:54:21 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/01/08 00:17:43 $
+ * @version $Revision: 1.4 $ $Date: 2001/01/10 01:54:21 $
  */
 
 public class RequestUtils {
@@ -309,8 +309,6 @@ public class RequestUtils {
             String name = (String) names.nextElement();
             String stripped = name;
             int subscript = stripped.lastIndexOf("[");
-            if (subscript >= 0)  // Remove subscript expression
-                stripped = stripped.substring(0, subscript);
             if (prefix != null) {
                 if (!stripped.startsWith(prefix))
                     continue;

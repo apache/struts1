@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.10 2001/01/09 01:45:10 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2001/01/09 01:45:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.11 2001/01/10 01:54:21 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2001/01/10 01:54:21 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import java.lang.reflect.Method;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.10 $ $Date: 2001/01/09 01:45:10 $
+ * @version $Revision: 1.11 $ $Date: 2001/01/10 01:54:21 $
  */
 
 public final class PropertyUtils {
@@ -146,6 +146,20 @@ public final class PropertyUtils {
 
 
     // ------------------------------------------------------- Static Variables
+
+
+    /**
+     * The debugging detail level for this component.
+     */
+    private static int debug = 0;
+
+    public static int getDebug() {
+        return (debug);
+    }
+
+    public static void setDebug(int newDebug) {
+        debug = newDebug;
+    }
 
 
     /**
@@ -604,6 +618,10 @@ public final class PropertyUtils {
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
+        if (debug >= 1)
+            System.out.println("setIndexedProperty('" + bean + ", " +
+                               name + ", " + value + ")");
+
 	// Identify the index of the requested individual property
 	int delim = name.indexOf(INDEXED_DELIM);
         int delim2 = name.indexOf(INDEXED_DELIM2);
@@ -646,6 +664,10 @@ public final class PropertyUtils {
 					  int index, Object value)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
+
+        if (debug >= 1)
+            System.out.println("setIndexedProperty('" + bean + ", " +
+                               name + ", " + index + ", " + value + ")");
 
 	// Retrieve the property descriptor for the specified property
 	PropertyDescriptor descriptor =
@@ -706,6 +728,10 @@ public final class PropertyUtils {
 					 String name, Object value)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
+
+        if (debug >= 1)
+            System.out.println("setNestedProperty('" + bean + ", " +
+                               name + ", " + value + ")");
 
 	while (true) {
 	    int delim = name.indexOf(NESTED_DELIM);
@@ -776,6 +802,10 @@ public final class PropertyUtils {
 					 String name, Object value)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
+
+        if (debug >= 1)
+            System.out.println("setSimpleProperty('" + bean + ", " +
+                               name + ", " + value + ")");
 
 	// Retrieve the property setter method for the specified property
 	PropertyDescriptor descriptor =

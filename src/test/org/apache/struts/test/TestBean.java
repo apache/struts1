@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/TestBean.java,v 1.3 2001/01/08 00:17:43 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/01/08 00:17:43 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/TestBean.java,v 1.4 2001/01/10 01:54:21 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/01/10 01:54:21 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.struts.action.ActionMapping;
  * General purpose test bean for Struts custom tag tests.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/01/08 00:17:43 $
+ * @version $Revision: 1.4 $ $Date: 2001/01/10 01:54:21 $
  */
 
 public class TestBean extends ActionForm {
@@ -124,7 +124,7 @@ public class TestBean extends ActionForm {
 
 
     /**
-     * An integer array that is accessed as an array as well as indexed.
+     * Integer arrays that are accessed as an array as well as indexed.
      */
     private int intArray[] = { 0, 10, 20, 30, 40 };
 
@@ -136,14 +136,26 @@ public class TestBean extends ActionForm {
         this.intArray = intArray;
     }
 
+    private int intIndexed[] = { 0, 10, 20, 30, 40 };
+
     public int getIntIndexed(int index) {
-        return (intArray[index]);
+        return (intIndexed[index]);
     }
 
     public void setIntIndexed(int index, int value) {
-        intArray[index] = value;
+        intIndexed[index] = value;
     }
 
+
+    private int intMultibox[] = new int[0];
+
+    public int[] getIntMultibox() {
+        return (this.intMultibox);
+    }
+
+    public void setIntMultibox(int intMultibox[]) {
+        this.intMultibox = intMultibox;
+    }
 
     /**
      * An integer property.
@@ -200,7 +212,7 @@ public class TestBean extends ActionForm {
 
 
     /**
-     * A String array that is accessed as an array as well as indexed.
+     * String arrays that are accessed as an array as well as indexed.
      */
     private String stringArray[] =
     { "String 0", "String 1", "String 2", "String 3", "String 4" };
@@ -213,14 +225,27 @@ public class TestBean extends ActionForm {
         this.stringArray = stringArray;
     }
 
+    private String stringIndexed[] =
+    { "String 0", "String 1", "String 2", "String 3", "String 4" };
+
     public String getStringIndexed(int index) {
-        return (stringArray[index]);
+        return (stringIndexed[index]);
     }
 
     public void setStringIndexed(int index, String value) {
-        stringArray[index] = value;
+        stringIndexed[index] = value;
     }
 
+
+    private String stringMultibox[] = new String[0];
+
+    public String[] getStringMultibox() {
+        return (this.stringMultibox);
+    }
+
+    public void setStringMultibox(String stringMultibox[]) {
+        this.stringMultibox = stringMultibox;
+    }
 
     /**
      * A String property.
@@ -245,6 +270,8 @@ public class TestBean extends ActionForm {
     public void reset(ActionMapping mapping, HttpServletRequest request) {
 
         booleanProperty = false;
+        intMultibox = new int[0];
+        stringMultibox = new String[0];
         if (nested != null)
             nested.reset(mapping, request);
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.23 2001/01/08 22:20:26 craigmcc Exp $
- * $Revision: 1.23 $
- * $Date: 2001/01/08 22:20:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.24 2001/01/10 01:54:21 craigmcc Exp $
+ * $Revision: 1.24 $
+ * $Date: 2001/01/10 01:54:21 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.util;
 
 
 import java.beans.BeanInfo;
+import java.beans.IndexedPropertyDescriptor;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -74,7 +75,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
-import org.apache.struts.upload.FormFile;
 
 
 /**
@@ -83,10 +83,27 @@ import org.apache.struts.upload.FormFile;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.23 $ $Date: 2001/01/08 22:20:26 $
+ * @version $Revision: 1.24 $ $Date: 2001/01/10 01:54:21 $
  */
 
 public final class BeanUtils {
+
+
+    // ------------------------------------------------------ Private Variables
+
+
+    /**
+     * The debugging detail level for this component.
+     */
+    private static int debug = 0;
+
+    public static int getDebug() {
+        return (debug);
+    }
+
+    public static void setDebug(int newDebug) {
+        debug = newDebug;
+    }
 
 
     // --------------------------------------------------------- Public Classes
@@ -431,11 +448,9 @@ public final class BeanUtils {
         if ((bean == null) || (properties == null))
             return;
 
-        // Identify the property descriptors supported by our JavaBean
-        PropertyDescriptor descriptors[] =
-            PropertyUtils.getPropertyDescriptors(bean);
-        if (descriptors.length < 1)
-            return;
+        if (debug >= 1)
+            System.out.println("BeanUtils.populate(" + bean + ", " +
+                               properties + ")");
 
         // Loop through the property name/value pairs to be set
         Iterator names = properties.keySet().iterator();
@@ -443,28 +458,66 @@ public final class BeanUtils {
 
             // Identify the property name and value(s) to be assigned
             String name = (String) names.next();
-            Object value = properties.get(name);	// String or String[]
-            if (value == null)
+            if (name == null)
                 continue;
+            Object value = properties.get(name);	// String or String[]
+
+            /*
+            if (debug >= 1)
+                System.out.println("  name='" + name + "', value.class='" +
+                                   (value == null ? "NONE" :
+                                   value.getClass().getName()) + "'");
+            */
+
+            // Get the property descriptor of the requested property (if any)
+            PropertyDescriptor descriptor = null;
+            try {
+                descriptor = PropertyUtils.getPropertyDescriptor(bean, name);
+            } catch (Throwable t) {
+                /*
+                if (debug >= 1)
+                    System.out.println("    getPropertyDescriptor: " + t);
+                */
+                descriptor = null;
+            }
+            if (descriptor == null) {
+                /*
+                if (debug >= 1)
+                    System.out.println("    No such property, skipping");
+                */
+                continue;
+            }
+            /*
+            if (debug >= 1)
+                System.out.println("    Property descriptor is '" +
+                                   descriptor + "'");
+            */
 
             // Identify the relevant setter method (if there is one)
             Method setter = null;
-            Class parameterTypes[] = null;
-            for (int i = 0; i < descriptors.length; i++) {
-                if (!name.equals(descriptors[i].getName()))
-                    continue;
-                setter = descriptors[i].getWriteMethod();
-                if (setter == null)
-                    continue;
-                parameterTypes = setter.getParameterTypes();
-                if (parameterTypes.length != 1) {
-                    setter = null;
-                    continue;
-                }
-                break;
-            }
+            if (descriptor instanceof IndexedPropertyDescriptor)
+                setter = ((IndexedPropertyDescriptor) descriptor).
+                    getIndexedWriteMethod();
             if (setter == null)
+                setter = descriptor.getWriteMethod();
+            if (setter == null) {
+                if (debug >= 1)
+                    System.out.println("    No setter method, skipping");
                 continue;
+            }
+            Class parameterTypes[] = setter.getParameterTypes();
+            /*
+            if (debug >= 1)
+                System.out.println("    Setter method is '" +
+                                   setter.getName() + "(" +
+                                   parameterTypes[0].getName() +
+                                   (parameterTypes.length > 1 ?
+                                    ", " + parameterTypes[1].getName() : "" )
+                                   + ")'");
+            */
+            Class parameterType = parameterTypes[0];
+            if (parameterTypes.length > 1)
+                parameterType = parameterTypes[1];      // Indexed setter
 
             // Convert the parameter value as required for this setter method
             Object parameters[] = new Object[1];
@@ -473,27 +526,47 @@ public final class BeanUtils {
                     String values[] = new String[1];
                     values[0] = (String) value;
                     parameters[0] = ConvertUtils.convert((String[]) values,
-                    parameterTypes[0]);
-                } else {
+                    parameterType);
+                } else if (value instanceof String[]) {
                     parameters[0] = ConvertUtils.convert((String[]) value,
-                    parameterTypes[0]);
+                    parameterType);
+                } else {
+                    parameters[0] = value;
                 }
             } else {
                 if (value instanceof String) {
                     parameters[0] = ConvertUtils.convert((String) value,
-                    parameterTypes[0]);
-                } else if (value instanceof FormFile) {
-                    parameters[0] = value;
-                } else {
+                    parameterType);
+                } else if (value instanceof String[]) {
                     parameters[0] = ConvertUtils.convert(((String[]) value)[0],
-                    parameterTypes[0]);
+                    parameterType);
+                } else {
+                    parameters[0] = value;
                 }
             }
 
             // Invoke the setter method
-            setter.invoke(bean, parameters);
+            /*
+            if (debug >= 1)
+                System.out.println("    Setting to " +
+                                   (parameters[0] == null ? "NULL" :
+                                    "'" + parameters[0] + "'"));
+            */
+            try {
+                PropertyUtils.setProperty(bean, name, parameters[0]);
+            } catch (NoSuchMethodException e) {
+                if (debug >= 1) {
+                    System.out.println("    CANNOT HAPPEN: " + e);
+                    e.printStackTrace(System.out);
+                }
+            }
 
         }
+
+        /*
+        if (debug >= 1)
+            System.out.println("============================================");
+        */
 
     }
 

@@ -20,6 +20,10 @@ main menu.
 <table border="0" width="100%">
 
   <tr>
+    <th align="center" colspan="4">Scalar Properties</th align="center">
+  </tr>
+
+  <tr>
     <th align="right">booleanProperty</th>
     <td align="left">
       <html:checkbox property="booleanProperty"/>
@@ -85,51 +89,53 @@ main menu.
     </td>
   </tr>
 
-<%--
   <tr>
-    <th align="right">intArray[0]</th>
+    <th align="center" colspan="4">Indexed Properties</th align="center">
+  </tr>
+
+  <tr>
+    <th align="right">intIndexed[0]</th>
     <td align="left">
-      <html:text property="intArray[0]" size="32"/>
+      <html:text property="intIndexed[0]" size="32"/>
     </td>
-    <th align="right">nested.intArray[0]</th>
+    <th align="right">nested.intIndexed[0]</th>
     <td align="left">
-      <html:text property="nested.intArray[0]" size="32"/>
+      <html:text property="nested.intIndexed[0]" size="32"/>
     </td>
   </tr>
 
   <tr>
-    <th align="right">intArray[1]</th>
+    <th align="right">intIndexed[1]</th>
     <td align="left">
-      <html:text property="intArray[1]" size="32"/>
+      <html:text property="intIndexed[1]" size="32"/>
     </td>
-    <th align="right">nested.intArray[1]</th>
+    <th align="right">nested.intIndexed[1]</th>
     <td align="left">
-      <html:text property="nested.intArray[1]" size="32"/>
-    </td>
-  </tr>
-
-  <tr>
-    <th align="right">stringArray[0]</th>
-    <td align="left">
-      <html:text property="stringArray[0]" size="32"/>
-    </td>
-    <th align="right">nested.stringArray[0]</th>
-    <td align="left">
-      <html:text property="nested.stringArray[0]" size="32"/>
+      <html:text property="nested.intIndexed[1]" size="32"/>
     </td>
   </tr>
 
   <tr>
-    <th align="right">stringArray[1]</th>
+    <th align="right">stringIndexed[0]</th>
     <td align="left">
-      <html:text property="stringArray[1]" size="32"/>
+      <html:text property="stringIndexed[0]" size="32"/>
     </td>
-    <th align="right">nested.stringArray[1]</th>
+    <th align="right">nested.stringIndexed[0]</th>
     <td align="left">
-      <html:text property="nested.stringArray[1]" size="32"/>
+      <html:text property="nested.stringIndexed[0]" size="32"/>
     </td>
   </tr>
---%>
+
+  <tr>
+    <th align="right">stringIndexed[1]</th>
+    <td align="left">
+      <html:text property="stringIndexed[1]" size="32"/>
+    </td>
+    <th align="right">nested.stringIndexed[1]</th>
+    <td align="left">
+      <html:text property="nested.stringIndexed[1]" size="32"/>
+    </td>
+  </tr>
 
   <tr>
     <td>&nbsp;</td>

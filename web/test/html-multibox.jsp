@@ -27,55 +27,55 @@ main menu.
   <tr>
     <th align="right">String 0</th>
     <td align="left">
-      <html:multibox property="stringArray" value="String 0"/>
+      <html:multibox property="stringMultibox" value="String 0"/>
     </td>
     <th align="right">(nested) String 0</th>
     <td align="left">
-      <html:multibox property="nested.stringArray" value="String 0"/>
+      <html:multibox property="nested.stringMultibox" value="String 0"/>
     </td>
   </tr>
 
   <tr>
     <th align="right">String 1</th>
     <td align="left">
-      <html:multibox property="stringArray" value="String 1"/>
+      <html:multibox property="stringMultibox" value="String 1"/>
     </td>
     <th align="right">(nested) String 1</th>
     <td align="left">
-      <html:multibox property="nested.stringArray" value="String 1"/>
+      <html:multibox property="nested.stringMultibox" value="String 1"/>
     </td>
   </tr>
 
   <tr>
     <th align="right">String 2</th>
     <td align="left">
-      <html:multibox property="stringArray" value="String 2"/>
+      <html:multibox property="stringMultibox" value="String 2"/>
     </td>
     <th align="right">(nested) String 2</th>
     <td align="left">
-      <html:multibox property="nested.stringArray" value="String 2"/>
+      <html:multibox property="nested.stringMultibox" value="String 2"/>
     </td>
   </tr>
 
   <tr>
     <th align="right">String 3</th>
     <td align="left">
-      <html:multibox property="stringArray" value="String 3"/>
+      <html:multibox property="stringMultibox" value="String 3"/>
     </td>
     <th align="right">(nested) String 3</th>
     <td align="left">
-      <html:multibox property="nested.stringArray" value="String 3"/>
+      <html:multibox property="nested.stringMultibox" value="String 3"/>
     </td>
   </tr>
 
   <tr>
     <th align="right">String 4</th>
     <td align="left">
-      <html:multibox property="stringArray" value="String 4"/>
+      <html:multibox property="stringMultibox" value="String 4"/>
     </td>
     <th align="right">(nested) String 4</th>
     <td align="left">
-      <html:multibox property="nested.stringArray" value="String 4"/>
+      <html:multibox property="nested.stringMultibox" value="String 4"/>
     </td>
   </tr>
 
@@ -86,55 +86,55 @@ main menu.
   <tr>
     <th align="right">0</th>
     <td align="left">
-      <html:multibox property="intArray" value="0"/>
+      <html:multibox property="intMultibox" value="0"/>
     </td>
     <th align="right">(nested) 0</th>
     <td align="left">
-      <html:multibox property="nested.intArray" value="0"/>
+      <html:multibox property="nested.intMultibox" value="0"/>
     </td>
   </tr>
 
   <tr>
     <th align="right">10</th>
     <td align="left">
-      <html:multibox property="intArray" value="10"/>
+      <html:multibox property="intMultibox" value="10"/>
     </td>
     <th align="right">(nested) 10</th>
     <td align="left">
-      <html:multibox property="nested.intArray" value="10"/>
+      <html:multibox property="nested.intMultibox" value="10"/>
     </td>
   </tr>
 
   <tr>
     <th align="right">20</th>
     <td align="left">
-      <html:multibox property="intArray" value="20"/>
+      <html:multibox property="intMultibox" value="20"/>
     </td>
     <th align="right">(nested) 20</th>
     <td align="left">
-      <html:multibox property="nested.intArray" value="20"/>
+      <html:multibox property="nested.intMultibox" value="20"/>
     </td>
   </tr>
 
   <tr>
     <th align="right">30</th>
     <td align="left">
-      <html:multibox property="intArray" value="30"/>
+      <html:multibox property="intMultibox" value="30"/>
     </td>
     <th align="right">(nested) 30</th>
     <td align="left">
-      <html:multibox property="nested.intArray" value="30"/>
+      <html:multibox property="nested.intMultibox" value="30"/>
     </td>
   </tr>
 
   <tr>
     <th align="right">40</th>
     <td align="left">
-      <html:multibox property="intArray" value="40"/>
+      <html:multibox property="intMultibox" value="40"/>
     </td>
     <th align="right">(nested) 40</th>
     <td align="left">
-      <html:multibox property="nested.intArray" value="40"/>
+      <html:multibox property="nested.intMultibox" value="40"/>
     </td>
   </tr>
 
