@@ -4,6 +4,7 @@
     <!-- Load local and user build preferences -->
     <property file="build.properties"/>
     <property file="${user.home}/.build.properties"/>
+    <property file="project.properties"/>
 
     <!-- Default values for unspecified properties -->
     <property name="struts.lib" value="../../dist/lib/struts.jar"/>
@@ -32,13 +33,6 @@
     <!-- Name of the core struts library -->
     <property name="app.name" value="service-manager"/>
 
-    <!-- Name of the project -->
-    <property name="project.name" value="service-manager"/>
-
-    <!-- Version of the project -->
-    <property name="project.version" value="0.1"/>
-
-
 <!-- ========== Derived Properties ======================================== -->
 
     <!-- The base directory for distribution targets -->
@@ -46,6 +40,12 @@
 
     <!-- Source directory -->
     <property name="src.dir" value="src"/>
+
+    <!-- Core library sources -->
+    <property name="core.dir" value="core"/>
+
+    <!-- Struts connector sources -->
+    <property name="struts.dir" value="struts"/>
 
     <!-- Config files directory -->
     <property name="conf.dir" value="conf"/>
@@ -77,7 +77,7 @@
 
 <!--          Create directories and copy files for the core library -->
     <target depends="init" name="prepare.library">
-        <mkdir dir="${build.home}/library/classes"/>
+        <mkdir dir="${build.home}/${core.dir}/classes"/>
     </target>
 
 <!--          Compile core factory library directory components -->
@@ -85,14 +85,38 @@
         <javac 
            debug="${compile.debug}" 
            deprecation="${compile.deprecation}" 
-           destdir="${build.home}/library/classes" 
+           destdir="${build.home}/${core.dir}/classes" 
            optimize="${compile.optimize}" 
-           srcdir="${src.dir}">
+           srcdir="${src.dir}/${core.dir}">
           <classpath refid="compile.classpath"/>
         </javac>
-        <jar basedir="${build.home}/library/classes" includes="**" jarfile="${build.home}/library/${app.name}.jar" manifest="${conf.dir}/MANIFEST.MF"/>
+        <jar basedir="${build.home}/${core.dir}/classes" includes="**" jarfile="${build.home}/${core.dir}/${app.name}.jar" manifest="${conf.dir}/${core.dir}/MANIFEST.MF"/>
         <copy 
-          file="${build.home}/library/${app.name}.jar" 
+          file="${build.home}/${core.dir}/${app.name}.jar" 
+          todir="${dist.home}"/>
+    </target>
+
+<!--          Create directories and copy files for the struts integration code -->
+    <target depends="init" name="prepare.struts">
+        <mkdir dir="${build.home}/${struts.dir}/classes"/>
+    </target>
+
+<!--          Compile struts integration code -->
+    <target depends="prepare.struts" description="Compile struts integration files" name="compile.struts">
+        <javac 
+           debug="${compile.debug}" 
+           deprecation="${compile.deprecation}" 
+           destdir="${build.home}/${struts.dir}/classes" 
+           optimize="${compile.optimize}" 
+           srcdir="${src.dir}/${struts.dir}">
+          <classpath refid="compile.classpath"/>
+          <classpath>
+                <pathelement path="${build.home}/${core.dir}/${app.name}.jar"/>
+          </classpath>
+        </javac>
+        <jar basedir="${build.home}/${struts.dir}/classes" includes="**" jarfile="${build.home}/${struts.dir}/${app.name}-struts.jar" manifest="${conf.dir}/${struts.dir}/MANIFEST.MF"/>
+        <copy 
+          file="${build.home}/${struts.dir}/${app.name}-struts.jar" 
           todir="${dist.home}"/>
     </target>
 
@@ -126,6 +150,6 @@
     </target>
 
 <!--         All-in-one build target -->
-    <target depends="clean,compile.library,doc" description="Clean and build library and web applications" name="all"/>
+    <target depends="clean,compile.library,compile.struts,doc" description="Clean and build library and web applications" name="all"/>
 
 </project>
