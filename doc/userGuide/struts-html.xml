@@ -2240,7 +2240,7 @@
               <p>Set to <code>true</code> in order to render 
               <code>xml:lang</code> and <code>xmlns</code> attributes 
               on the generated <code>html</code> element.  This also 
-              causes all other html tags to render as XHTML (the 
+              causes all other html tags to render as XHTML 1.0 (the 
               &lt;html:xhtml/&gt; tag has a similar purpose).
               </p>
             </info>
@@ -6970,9 +6970,10 @@
           <info>
           <p>
             Using this tag in a page tells all other html taglib tags
-            to render themselves as XHTML.  This is useful
+            to render themselves as XHTML 1.0.  This is useful
             when composing pages with JSP includes or Tiles. 
-            &lt;html:html xhtml="true"&gt; has a similar effect.
+            &lt;html:html xhtml="true"&gt; has a similar effect.  This
+            tag has no attributes; you use it like this: &lt;html:xhtml/&gt;.
           </p>
           <p>
           	<strong>Note</strong>: Included pages do not inherit the rendering
