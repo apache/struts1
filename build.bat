@@ -27,7 +27,12 @@ rem                         if you wish to deploy Struts directly to the
 rem                         Tomcat 3.2 build directory - otherwise it is
 rem                         optional
 rem
-rem $Id: build.bat,v 1.11 2001/02/14 17:27:18 craigmcc Exp $
+rem   XERCES_HOME           Distribution directory for the Xerces XML parser
+rem                         [../xml-xerces]  This is required only if you wish
+rem                         to deploy Struts directly to the Tomcat 4.0 build
+rem                         directory - otherwise it is optional
+rem
+rem $Id: build.bat,v 1.12 2001/02/19 02:09:04 craigmcc Exp $
 rem ---------------------------------------------------------------------------
 
 
@@ -38,6 +43,7 @@ set _ANT_OPTS=%ANT_OPTS%
 set _CATALINA_HOME=%CATALINA_HOME%
 set _SERVLETAPI_HOME=%SERVLETAPI_HOME%
 set _TOMCAT_HOME=%TOMCAT_HOME%
+set _XERCES_HOME=%XERCES_HOME%
 
 
 rem ----- Verify and Set Required Environment Variables -----------------------
@@ -63,6 +69,9 @@ if not "%TOMCAT_HOME%" == "" goto gotTomcatHome
 set TOMCAT_HOME=..\build\tomcat
 :gotTomcatHome
 
+if not "%XERCES_HOME%" == "" goto gotXercesHome
+set XERCES_HOME=..\xml-xerces
+:gotXercesHome
 
 
 rem ----- Set Up The Runtime Classpath ----------------------------------------
@@ -77,7 +86,7 @@ set CP=%ANT_HOME%\lib\ant.jar;%ANT_HOME%\lib\optional.jar;%JAVA_HOME%\lib\tools.
 
 rem ----- Execute The Requested Build -----------------------------------------
 
-%JAVA_HOME%\bin\java %ANT_OPTS% -classpath "%CP%" org.apache.tools.ant.Main -Dant.home=%ANT_HOME% -Dcatalina.home=%CATALINA_HOME% -Dservlet.jar=%SERVLETAPI_HOME%\lib\servlet.jar -Dtomcat.home=%TOMCAT_HOME% %1 %2 %3 %4 %5 %6 %7 %8 %9
+%JAVA_HOME%\bin\java %ANT_OPTS% -classpath "%CP%" org.apache.tools.ant.Main -Dant.home=%ANT_HOME% -Dcatalina.home=%CATALINA_HOME% -Dservlet.jar=%SERVLETAPI_HOME%\lib\servlet.jar -Dtomcat.home=%TOMCAT_HOME% -Dxerces.home=%XERCES_HOME% %1 %2 %3 %4 %5 %6 %7 %8 %9
 
 
 rem ----- Clean Up Environment Variables --------------------------------------
@@ -89,10 +98,12 @@ set ANT_OPTS=%_ANT_OPTS%
 set CATALINA_HOME=%_CATALINA_HOME%
 set SERVLETAPI_HOME=%_SERVLETAPI_HOME%
 set TOMCAT_HOME=%_TOMCAT_HOME%
+set XERCES_HOME=%_XERCES_HOME%
 
 set _ANT_HOME=
 set _ANT_OPTS=
 set _CATALINA_HOME=
 set _SERVLETAPI_HOME=
 set _TOMCAT_HOME=
+set _XERCES_HOME=
 

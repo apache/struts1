@@ -27,7 +27,12 @@
 #                         Tomcat 3.x build directory - otherwise it is
 #                         optional
 #
-# $Id: build.sh,v 1.6 2001/02/14 17:27:19 craigmcc Exp $
+#   XERCES_HOME           Distribution directory for the Xerces XML parser
+#                         [../xml-xerces]  This is required only if you wish
+#                         to deploy Struts directly to the Tomcat 4.0 build
+#                         directory - otherwise it is optional
+#
+# $Id: build.sh,v 1.7 2001/02/19 02:09:04 craigmcc Exp $
 # -----------------------------------------------------------------------------
 
 
@@ -58,6 +63,10 @@ if [ "$TOMCAT_HOME" = "" ] ; then
   TOMCAT_HOME=../build/tomcat
 fi
 
+if [ "$XERCES_HOME" = "" ] ; then
+  XERCES_HOME=../xml-xerces
+fi
+
 
 # ----- Set Up The Runtime Classpath ------------------------------------------
 
@@ -70,4 +79,10 @@ fi
 
 # ----- Execute The Requested Build -------------------------------------------
 
-java $ANT_OPTS -classpath "$CP" org.apache.tools.ant.Main -Dant.home=$ANT_HOME -Dcatalina.home=$CATALINA_HOME -Dservlet.jar=$SERVLETAPI_HOME/lib/servlet.jar -Dtomcat.home=$TOMCAT_HOME "$@"
+java $ANT_OPTS -classpath "$CP" org.apache.tools.ant.Main \
+ -Dant.home=$ANT_HOME \
+ -Dcatalina.home=$CATALINA_HOME \
+ -Dservlet.jar=$SERVLETAPI_HOME/lib/servlet.jar \
+ -Dtomcat.home=$TOMCAT_HOME \
+ -Dxerces.home=$XERCES_HOME \
+ "$@"
