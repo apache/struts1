@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.110 2002/07/06 19:11:06 husted Exp $
- * $Revision: 1.110 $
- * $Date: 2002/07/06 19:11:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.111 2002/07/07 18:45:18 husted Exp $
+ * $Revision: 1.111 $
+ * $Date: 2002/07/07 18:45:18 $
  *
  * ====================================================================
  *
@@ -181,18 +181,17 @@ import org.apache.struts.util.ServletContextWriter;
  * <li><strong>config</strong> - Context-relative path to the XML resource
  *     containing the configuration information for the default application.
  *     [/WEB-INF/struts-config.xml].</li>
- * <li><strong>config/foo</strong> - Context-relative path to the XML resource
- *     containing the configuration information for the sub-application that
- *     will be at prefix "/foo". This can be repeated as many times as
- *     required for multiple sub-applications. (Since Struts 1.1)</li>
- * <li><strong>convertHack</strong> - Set to <code>true</code> to force form
- *     bean population of bean properties that are of Java wrapper class types
- *     (such as java.lang.Integer) to set the property to <code>null</code>,
- *     instead of zero, in a manner equivalent to the behavior of Struts 1.0.
+ * <li><strong>config/${module}</strong> - Context-relative path to the XML resource
+ *     containing the configuration information for the application module that
+ *     will use the specified prefix (/${module}). This can be repeated as many
+ *     times as required for multiple application modules. (Since Struts 1.1)</li>
+ * <li><strong>convertNull</strong> - Force simulation of the Struts 1.0 behavior
+ *     when populating forms. If set to true, the numeric Java wrapper class types
+ *     (like <code>java.lang.Integer</code>) will default to null (rather than 0).
  *     (Since Struts 1.1) [false] </li>
- * <li><strong>debug</strong> - The debugging detail level for this
- *     servlet, which controls how much information is logged. Accepts
- *     values 0 (off) and 1 (least serious) through 6 (most serious). [0]</li>
+ * <li><strong>debug</strong> - TThe debugging detail level that controls how much
+ *     information is logged for this servlet. Accepts values 0 (off) and from
+ *     1 (least serious) through 6 (most serious). [0]</li>
  * <li><strong>detail</strong> - The debugging detail level for the Digester
  *     we utilize to process the application configuration files. Accepts
  *     values 0 (off) and 1 (least serious) through 6 (most serious). [0]</li>
@@ -293,7 +292,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.110 $ $Date: 2002/07/06 19:11:06 $
+ * @version $Revision: 1.111 $ $Date: 2002/07/07 18:45:18 $
  */
 
 public class ActionServlet
@@ -323,7 +322,7 @@ public class ActionServlet
      * properties of the Java wrapper class types.
      * @since Struts 1.1
      */
-    protected boolean convertHack = false;
+    protected boolean convertNull = false;
 
 
     /**
@@ -1115,19 +1114,19 @@ public class ActionServlet
 
         // Backwards compatibility hack for form beans of Java wrapper classes
         // Set to true for strict Struts 1.0 compatibility
-        value = getServletConfig().getInitParameter("convertHack");
+        value = getServletConfig().getInitParameter("convertNull");
         if (value != null) {
             if ("true".equalsIgnoreCase(value) ||
                 "yes".equalsIgnoreCase(value) ||
                 "on".equalsIgnoreCase(value) ||
                 "y".equalsIgnoreCase(value) ||
                 "1".equalsIgnoreCase(value)) {
-                convertHack = true;
+                convertNull = true;
             } else {
-                convertHack = false;
+                convertNull = false;
             }
         }
-        if (convertHack) {
+        if (convertNull) {
             ConvertUtils.deregister();
             ConvertUtils.register(new BooleanConverter(null), Boolean.class);
             ConvertUtils.register(new ByteConverter(null), Byte.class);
