@@ -250,14 +250,6 @@
 
     </target>
 
- <target name="changelog">
-         <cvschangelog dir="."
-                   destfile="changelog.xml"
-                   start="30 Jun 2003"
-                   end="25 Nov 2003"/>
-       </target>
- 
-
 <!--
         Create directories and copy files for the core struts library
 -->
