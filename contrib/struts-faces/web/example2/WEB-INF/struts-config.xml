@@ -180,7 +180,4 @@
                             /WEB-INF/validation.xml"/>
   </plug-in>
 
-  <plug-in className="org.apache.struts.webapp.example2.FacesPlugIn"/>
-
-
 </struts-config>

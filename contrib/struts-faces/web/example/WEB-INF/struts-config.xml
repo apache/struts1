@@ -167,7 +167,4 @@
                             /WEB-INF/validation.xml"/>
   </plug-in>
 
-  <plug-in className="org.apache.struts.webapp.example.FacesPlugIn"/>
-
-
 </struts-config>
