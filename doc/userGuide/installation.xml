@@ -35,7 +35,8 @@
       a Java2 (version 1.2 or later) Java Development Kit implementation for
       your operating system platform.
       A good starting point for locating Java Development Kit distributions is
-      <a href="http://java.sun.com/j2se">http://java.sun.com/j2se</a>.</li>
+      <a href="http://java.sun.com/j2se">http://java.sun.com/j2se</a>.
+      To build Struts, Java 1.4.2 or later is recommended. </li>
 
   <li><strong>Servlet Container</strong> - You <strong>must</strong> download and install a
       servlet container that is compatible with the Servlet API Specification,
@@ -49,7 +50,7 @@
       specification, 1.1 or later. This is bundled with J2SE 1.4 and later.
       (For earlier versions of Java, the easiest way to obtain JAXP is
       probably by downloading the Web Services Developers Kit
-      (1.1 or later!).See the <a href="http://java.sun.com/xml/jaxp/faq.html#jaxp-ri-latest">
+      (1.1 or later!). See the <a href="http://java.sun.com/xml/jaxp/faq.html#jaxp-ri-latest">
       Sun JAXP FAQ</a> for more information.)
       In Struts-based web applications, you may replace the reference
       implementation classes with any other JAXP compliant parser, such as
@@ -59,7 +60,7 @@
       Struts, below.</li>
 
   <li><strong>Ant Build System</strong> - If you are building Struts from the
-      source distribution, you must download and install version 1.5.1 (or later)
+      source distribution, you must download and install version 1.5.4 (or later)
       of the <a href="http://jakarta.apache.org/ant">Ant</a> build system.
       This package is also strongly recommended for use in developing your
       own web applications based on Struts.
