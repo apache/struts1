@@ -185,21 +185,21 @@ email client before posting.
 <p>
 There are also many third-party tutorials, articles, and books that cover Struts.
 See our
-<a href="resources/tutorials.html">Resources page</a> for current listings and
+<a href="../resources/tutorials.html">Resources page</a> for current listings and
 links.
 </p>
 </section>
 
 <section href="support" name="Is commercial support available?">
-<p>There is no official, commercial support for Struts, though third parties may offer different degrees of support. A list of Struts consultants is available on our <a href="resources/consultants.html">Resources page</a></p>
+<p>There is no official, commercial support for Struts, though third parties may offer different degrees of support. A list of Struts consultants is available on our <a href="../resources/consultants.html">Resources page</a></p>
 </section>
 
 <section href="providers" name="Are there ISPs that will host my Struts application?">
-<p>For a listing of some Java and Struts ISPs, visit our <a href="resources/hosts.html">Resources page</a>.</p>
+<p>For a listing of some Java and Struts ISPs, visit our <a href="../resources/hosts.html">Resources page</a>.</p>
 </section>
 
 <section href="powered" name="What Web sites are already Powered by Struts?">
-<p>For a listing of some Struts-powered Web sites available to the public, visit our <a href="resources/powered.html">Resources page</a>.</p>
+<p>For a listing of some Struts-powered Web sites available to the public, visit our <a href="../resources/powered.html">Resources page</a>.</p>
 </section>
 
 <section href="turbine" name="What's the difference between Struts and Turbine? What's the difference between Struts and Expresso?">
@@ -230,7 +230,7 @@ But, if you prefer a more integrated infrastructure, then packages like Turbine 
 </section>
 
 <section href="taglibs" name="Why aren't the Struts tags maintained as part of the Jakarta Taglibs project?">
-<p>Development of both products began about the same time. Leading up to the release of 1.0, it was thought better to continue to develop the taglibs alongside the controller. Now that 1.0 is out, the Java ServerPages Standard Taglib is in active development. Once work on the JSPTL stabilizes, the Struts taglibs will be revisited. Tags which are not linked directly to the framework may be hosted at Jakarta Taglibs instead.</p>
+<p>Development of both products began about the same time. Leading up to the release of 1.0, it was thought better to continue to develop the taglibs alongside the controller. Now that 1.0 is out, the JavaServer Pages Standard Taglib is in active development. Once work on the JSTL stabilizes, the Struts taglibs will be revisited. Tags which are not linked directly to the framework may be hosted at Jakarta Taglibs instead.</p>
 </section>
 
 <section href="xhtml" name="Are the Struts tags XHTML compliant?">
