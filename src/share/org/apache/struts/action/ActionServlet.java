@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.156 2003/07/03 03:36:18 dgraham Exp $
- * $Revision: 1.156 $
- * $Date: 2003/07/03 03:36:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.157 2003/07/03 03:43:37 dgraham Exp $
+ * $Revision: 1.157 $
+ * $Date: 2003/07/03 03:43:37 $
  *
  * ====================================================================
  *
@@ -224,28 +224,13 @@ import org.xml.sax.SAXException;
  *     </ul>
  *     <em>DEPRECATED - Configure this using the "className" attribute of
  *     each &lt;forward&gt; element.</em></li>
- * <li><strong>mapping</strong> - The Java class name of the ActionMapping
- *     implementation to use [org.apache.struts.action.ActionMapping].
- *     Two convenient classes you may wish to use are:
- *     <ul>
- *     <li><em>org.apache.struts.action.RequestActionMapping</em> - Subclass
- *         of <code>org.apache.struts.action.ActionMapping</code> that
- *         defaults the <code>scope</code> property to "request".
- *     <li><em>org.apache.struts.action.SessionActionMapping</em> - Subclass
- *         of <code>org.apache.struts.action.ActionMapping</code> that
- *         defaults the <code>scope</code> property to "session".  (Same
- *         as the ActionMapping default value).
- *     </ul>
- *     <em>DEPRECATED - Configure this using the "className" attribute of
- *     each &lt;action&gt; element, or globally for a module by using the
- *     "type" attribute of the &lt;action-mappings&gt; element.</em></li>
  * </ul>
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.156 $ $Date: 2003/07/03 03:36:18 $
+ * @version $Revision: 1.157 $ $Date: 2003/07/03 03:43:37 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -675,12 +660,6 @@ public class ActionServlet extends HttpServlet {
         //@todo & FIXME replace with a FactoryMethod
         ModuleConfigFactory factoryObject = ModuleConfigFactory.createFactory();
         ModuleConfig config = factoryObject.createModuleConfig(prefix);
-
-        // Support for module-wide ActionMapping type override
-        String mapping = getServletConfig().getInitParameter("mapping");
-        if (mapping != null) {
-            config.setActionMappingClass(mapping);
-        }
 
         // Configure the Digester instance we will use
         Digester digester = initConfigDigester();
