@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.77 2002/12/29 21:27:32 cedric Exp $
- * $Revision: 1.77 $
- * $Date: 2002/12/29 21:27:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.78 2003/01/09 04:12:42 jmitchell Exp $
+ * $Revision: 1.78 $
+ * $Date: 2003/01/09 04:12:42 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author James Turner
- * @version $Revision: 1.77 $ $Date: 2002/12/29 21:27:32 $
+ * @version $Revision: 1.78 $ $Date: 2003/01/09 04:12:42 $
  */
 
 public class RequestUtils {
@@ -1667,7 +1667,7 @@ public class RequestUtils {
     }
 
     /**
-     * Return the ModuleConfig object is it exists, null otherwise.
+     * Return the ModuleConfig object if it exists, null if otherwise.
      * @param pageContext The page context.
      * @return the ModuleConfig object
      * @since 1.1b3

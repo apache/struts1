@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory. 
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.24 2003/01/05 02:48:21 martinc Exp $
+# $Id: build.properties.sample,v 1.25 2003/01/09 04:12:41 jmitchell Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -30,7 +30,7 @@ apache.home=D:/Java/Programs/Apache
 # if you are going to execute the "deploy.catalina" target.
 catalina.home=${apache.home}/jakarta-tomcat-4.0.6
 
-# The JAR file containingthe Beanutils package (Version 1.5 or later)  
+# The JAR file containing the Beanutils package (Version 1.5 or later)  
 # from the Jakarta Commons project.
 
 commons-beanutils.jar=${commons-lib.home}/beanutils/dist/commons-beanutils.jar

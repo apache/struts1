@@ -61,8 +61,8 @@
     <p>
     Ideally, the business logic layer should encapsulate the data access
     details, including acquiring a database connection. 
-    However, some application designs expect that the caller able to provide a
-    with a database connection or DataSource instance. 
+    However, some application designs expect that the caller be able to provide a
+    database connection or DataSource instance. 
     When this is the case, the Struts DataSource manager can make it easy for 
     your Action to produce these resources on demand.
     </p>
@@ -71,11 +71,11 @@
     The Struts DataSource manager is configured as an element in the
     <a href="../userGuide/configuration.html#data-source_config">
     Struts configuration file</a> (struts-config.xml). 
-    The manager can used to deploy any connection pool that implements the
+    The manager can be used to deploy any connection pool that implements the
     <code>javax.sql.DataSource</code> interface and is configurable totally
     from JavaBean properties. 
     If your DBMS or container provides a connection pool that meets these 
-    requirements, then that component might your first choice.
+    requirements, then that component might be your first choice.
     </p>
 
     <p>
