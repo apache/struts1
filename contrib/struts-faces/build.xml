@@ -30,7 +30,7 @@
   <property name="commons-lang.jar"
                                     value="${struts.home}/lib/commons-lang.jar"/>
   <property name="commons-logging.jar"
-                                    value="${jwsdp.home}/lib/commons-logging.jar"/>
+                                    value="${struts.home}/lib/commons-logging.jar"/>
   <property name="commons-validator.jar"
                                     value="${struts.home}/lib/commons-validator.jar"/>
   <property name="jsf-api.jar"      value="${jsf.home}/lib/jsf-api.jar"/>
