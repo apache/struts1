@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.12 2004/04/08 22:07:56 mrdon Exp $
- * $Revision: 1.12 $
- * $Date: 2004/04/08 22:07:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.13 2004/04/08 22:53:18 mrdon Exp $
+ * $Revision: 1.13 $
+ * $Date: 2004/04/08 22:53:18 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -22,6 +22,7 @@ package org.apache.struts.config.impl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 
 import org.apache.struts.config.ActionConfig;
@@ -44,7 +45,7 @@ import org.apache.struts.config.PlugInConfig;
  * string) is selected, which is elegantly backwards compatible with the
  * previous Struts behavior that only supported one module.</p>
  *
- * @version $Revision: 1.12 $ $Date: 2004/04/08 22:07:56 $
+ * @version $Revision: 1.13 $ $Date: 2004/04/08 22:53:18 $
  * @since Struts 1.1
  */
 public class ModuleConfigImpl implements Serializable, ModuleConfig {
@@ -59,6 +60,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         super();
         this.prefix = prefix;
         this.actionConfigs = new HashMap();
+        this.actionConfigList = new ArrayList();
         this.actionFormBeanClass = "org.apache.struts.action.ActionFormBean";
         this.actionMappingClass = "org.apache.struts.action.ActionMapping";
         this.globalForwardClass = "org.apache.struts.action.ActionForward";
@@ -180,6 +182,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         }
         config.setModuleConfig(this);
         actionConfigs.put(config.getPath(), config);
+        actionConfigList.add(config);
 
     }
 
@@ -332,8 +335,8 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      */
     public ActionConfig[] findActionConfigs() {
 
-        ActionConfig results[] = new ActionConfig[actionConfigs.size()];
-        return ((ActionConfig[]) actionConfigs.values().toArray(results));
+        ActionConfig results[] = new ActionConfig[actionConfigList.size()];
+        return ((ActionConfig[]) actionConfigList.toArray(results));
 
     }
 
@@ -528,6 +531,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         }
         config.setModuleConfig(null);
         actionConfigs.remove(config.getPath());
+        actionConfigList.remove(config);
 
     }
 
@@ -625,6 +629,12 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      * keyed by the <code>path</code> property.
      */
     protected HashMap actionConfigs = null;
+    
+    /**
+     * The set of action configurations for this module, if any,
+     * listed in the order in which they are added.
+     */
+    protected List actionConfigList = null; 
     
     /**
      * The set of JDBC data source configurations for this

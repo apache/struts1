@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/config/TestModuleConfig.java,v 1.8 2004/03/14 06:23:48 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:48 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/config/TestModuleConfig.java,v 1.9 2004/04/08 22:53:19 mrdon Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/04/08 22:53:19 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -34,7 +34,7 @@ import org.apache.struts.Globals;
 /**
  * Unit tests for the <code>org.apache.struts.config</code> package.
  *
- * @version $Revision: 1.8 $ $Date: 2004/03/14 06:23:48 $
+ * @version $Revision: 1.9 $ $Date: 2004/04/08 22:53:19 $
  */
 
 public class TestModuleConfig extends TestCase {
@@ -227,5 +227,28 @@ public class TestModuleConfig extends TestCase {
          assertTrue("The custom mapping attribute has not been set", map.getPublic());
 
      }
+
+    /**
+     * Test order of action mappings defined perserved.
+     */
+    public void testPreserveActionMappingsOrder() {
+
+        parseConfig("-//Apache Software Foundation//DTD Struts Configuration 1.2//EN",
+             "/org/apache/struts/resources/struts-config_1_2.dtd",
+                    "/org/apache/struts/config/struts-config.xml");
+        
+        String[] paths = new String[] {"/editRegistration", 
+            "/editSubscription", "/logoff", "/logon", "/saveRegistration", 
+            "/saveSubscription", "/tour"
+            };
+
+        ActionConfig[] actions = config.findActionConfigs();
+        for (int x=0; x<paths.length; x++) {
+            assertTrue("Action config out of order:"+actions[x].getPath(), 
+                paths[x].equals(actions[x].getPath()));
+        } 
+    }
+
+
 
 }
