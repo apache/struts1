@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.17 2003/07/26 01:22:31 dgraham Exp $
- * $Revision: 1.17 $
- * $Date: 2003/07/26 01:22:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.18 2003/07/27 07:13:04 rleland Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/07/27 07:13:04 $
  *
  * ====================================================================
  *
@@ -70,14 +70,13 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 
 /**
  * Perform a forward or redirect to a page that is looked up in the
  * configuration information associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2003/07/26 01:22:31 $
+ * @version $Revision: 1.18 $ $Date: 2003/07/27 07:13:04 $
  */
 public class ForwardTag extends TagSupport {
 
@@ -136,7 +135,7 @@ public class ForwardTag extends TagSupport {
         if (forward == null) {
             JspException e =
                 new JspException(messages.getMessage("forward.lookup", name));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 
@@ -166,7 +165,7 @@ public class ForwardTag extends TagSupport {
             pageContext.forward(path);
             
         } catch (Exception e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException(
                 messages.getMessage("forward.forward", name, e.toString()));
         }
@@ -193,7 +192,7 @@ public class ForwardTag extends TagSupport {
             response.sendRedirect(response.encodeRedirectURL(path));
             
         } catch (Exception e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException(
                 messages.getMessage("forward.redirect", name, e.toString()));
         }

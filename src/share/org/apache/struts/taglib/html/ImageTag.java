@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.26 2003/07/26 19:11:57 dgraham Exp $
- * $Revision: 1.26 $
- * $Date: 2003/07/26 19:11:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.27 2003/07/27 07:13:04 rleland Exp $
+ * $Revision: 1.27 $
+ * $Date: 2003/07/27 07:13:04 $
  *
  * ====================================================================
  *
@@ -70,7 +70,6 @@ import javax.servlet.jsp.JspException;
 import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.TagUtils;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 
@@ -78,7 +77,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "image".
  *
  * @author Oleg V Alexeev
- * @version $Revision: 1.26 $ $Date: 2003/07/26 19:11:57 $
+ * @version $Revision: 1.27 $ $Date: 2003/07/27 07:13:04 $
  */
 
 public class ImageTag extends SubmitTag {
@@ -307,7 +306,7 @@ public class ImageTag extends SubmitTag {
                 (this.pageKey != null)) {
                 JspException e = new JspException
                     (messages.getMessage("imgTag.src"));
-                RequestUtils.saveException(pageContext, e);
+                TagUtils.getInstance().saveException(pageContext, e);
                 throw e;
             }
             ModuleConfig config = (ModuleConfig)
@@ -327,7 +326,7 @@ public class ImageTag extends SubmitTag {
             if ((this.src != null) || (this.srcKey != null)) {
                 JspException e = new JspException
                     (messages.getMessage("imgTag.src"));
-                RequestUtils.saveException(pageContext, e);
+                TagUtils.getInstance().saveException(pageContext, e);
                 throw e;
             }
             ModuleConfig config = (ModuleConfig)
@@ -359,7 +358,7 @@ public class ImageTag extends SubmitTag {
             if (this.srcKey != null) {
                 JspException e = new JspException
                     (messages.getMessage("imgTag.src"));
-                RequestUtils.saveException(pageContext, e);
+                TagUtils.getInstance().saveException(pageContext, e);
                 throw e;
             }
             return (this.src);
@@ -369,7 +368,7 @@ public class ImageTag extends SubmitTag {
         if (this.srcKey == null) {
             JspException e = new JspException
                 (messages.getMessage("imgTag.src"));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
         

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.16 2003/07/26 17:22:27 rleland Exp $
- * $Revision: 1.16 $
- * $Date: 2003/07/26 17:22:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.17 2003/07/27 07:13:04 rleland Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/07/27 07:13:04 $
  *
  * ====================================================================
  *
@@ -65,7 +65,6 @@ import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 import org.apache.struts.taglib.TagUtils;
 
@@ -76,7 +75,7 @@ import org.apache.struts.taglib.TagUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.16 $ $Date: 2003/07/26 17:22:27 $
+ * @version $Revision: 1.17 $ $Date: 2003/07/27 07:13:04 $
  */
 public class SelectTag extends BaseHandlerTag {
 
@@ -302,7 +301,7 @@ public class SelectTag extends BaseHandlerTag {
                 JspException e =
                     new JspException(messages.getMessage("getter.bean", name));
                     
-                RequestUtils.saveException(pageContext, e);
+                TagUtils.getInstance().saveException(pageContext, e);
                 throw e;
             }
 
@@ -313,18 +312,18 @@ public class SelectTag extends BaseHandlerTag {
                 }
 
             } catch (IllegalAccessException e) {
-                RequestUtils.saveException(pageContext, e);
+                TagUtils.getInstance().saveException(pageContext, e);
                 throw new JspException(
                     messages.getMessage("getter.access", property, name));
 
             } catch (InvocationTargetException e) {
                 Throwable t = e.getTargetException();
-                RequestUtils.saveException(pageContext, t);
+                TagUtils.getInstance().saveException(pageContext, t);
                 throw new JspException(
                     messages.getMessage("getter.result", property, t.toString()));
 
             } catch (NoSuchMethodException e) {
-                RequestUtils.saveException(pageContext, e);
+                TagUtils.getInstance().saveException(pageContext, e);
                 throw new JspException(
                     messages.getMessage("getter.method", property, name));
             }

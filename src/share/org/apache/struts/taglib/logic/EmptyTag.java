@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.9 2003/07/26 17:22:28 rleland Exp $
- * $Revision: 1.9 $
- * $Date: 2003/07/26 17:22:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.10 2003/07/27 07:13:04 rleland Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/07/27 07:13:04 $
  *
  * ====================================================================
  *
@@ -65,8 +65,6 @@ import java.util.Collection;
 import java.util.Map;
 
 import javax.servlet.jsp.JspException;
-
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.taglib.TagUtils;
 
 /**
@@ -75,7 +73,7 @@ import org.apache.struts.taglib.TagUtils;
  *
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.9 $ $Date: 2003/07/26 17:22:28 $
+ * @version $Revision: 1.10 $ $Date: 2003/07/27 07:13:04 $
  * @since Struts 1.1
  */
 public class EmptyTag extends ConditionalTagBase {
@@ -113,7 +111,7 @@ public class EmptyTag extends ConditionalTagBase {
 		if (this.name == null) {
 			JspException e =
 				new JspException(messages.getMessage("empty.noNameAttribute"));
-			RequestUtils.saveException(pageContext, e);
+			TagUtils.getInstance().saveException(pageContext, e);
 			throw e;
 		}
         

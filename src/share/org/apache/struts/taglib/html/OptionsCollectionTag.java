@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsCollectionTag.java,v 1.10 2003/07/26 17:22:27 rleland Exp $
- * $Revision: 1.10 $
- * $Date: 2003/07/26 17:22:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsCollectionTag.java,v 1.11 2003/07/27 07:13:04 rleland Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/07/27 07:13:04 $
  * 
  * ====================================================================
  *
@@ -74,7 +74,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.collections.IteratorUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 import org.apache.struts.taglib.TagUtils;
 
@@ -91,7 +90,7 @@ import org.apache.struts.taglib.TagUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Martin Cooper
- * @version $Revision: 1.10 $ $Date: 2003/07/26 17:22:27 $
+ * @version $Revision: 1.11 $ $Date: 2003/07/27 07:13:04 $
  * @since Struts 1.1
  */
 
@@ -212,7 +211,7 @@ public class OptionsCollectionTag extends TagSupport {
 
         if (selectTag == null) {
             JspException e = new JspException(messages.getMessage("optionsCollectionTag.select"));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 
@@ -222,7 +221,7 @@ public class OptionsCollectionTag extends TagSupport {
         if (collection == null) {
             JspException e =
                 new JspException(messages.getMessage("optionsCollectionTag.collection"));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 
@@ -247,18 +246,18 @@ public class OptionsCollectionTag extends TagSupport {
             } catch (IllegalAccessException e) {
                 JspException jspe =
                     new JspException(messages.getMessage("getter.access", label, bean));
-                RequestUtils.saveException(pageContext, jspe);
+                TagUtils.getInstance().saveException(pageContext, jspe);
                 throw jspe;
             } catch (InvocationTargetException e) {
                 Throwable t = e.getTargetException();
                 JspException jspe =
                     new JspException(messages.getMessage("getter.result", label, t.toString()));
-                RequestUtils.saveException(pageContext, jspe);
+                TagUtils.getInstance().saveException(pageContext, jspe);
                 throw jspe;
             } catch (NoSuchMethodException e) {
                 JspException jspe =
                     new JspException(messages.getMessage("getter.method", label, bean));
-                RequestUtils.saveException(pageContext, jspe);
+                TagUtils.getInstance().saveException(pageContext, jspe);
                 throw jspe;
             }
 
@@ -271,18 +270,18 @@ public class OptionsCollectionTag extends TagSupport {
             } catch (IllegalAccessException e) {
                 JspException jspe =
                     new JspException(messages.getMessage("getter.access", value, bean));
-                RequestUtils.saveException(pageContext, jspe);
+                TagUtils.getInstance().saveException(pageContext, jspe);
                 throw jspe;
             } catch (InvocationTargetException e) {
                 Throwable t = e.getTargetException();
                 JspException jspe =
                     new JspException(messages.getMessage("getter.result", value, t.toString()));
-                RequestUtils.saveException(pageContext, jspe);
+                TagUtils.getInstance().saveException(pageContext, jspe);
                 throw jspe;
             } catch (NoSuchMethodException e) {
                 JspException jspe =
                     new JspException(messages.getMessage("getter.method", value, bean));
-                RequestUtils.saveException(pageContext, jspe);
+                TagUtils.getInstance().saveException(pageContext, jspe);
                 throw jspe;
             }
 

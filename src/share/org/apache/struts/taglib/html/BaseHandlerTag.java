@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.31 2003/07/26 19:11:57 dgraham Exp $
- * $Revision: 1.31 $
- * $Date: 2003/07/26 19:11:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.32 2003/07/27 07:13:04 rleland Exp $
+ * $Revision: 1.32 $
+ * $Date: 2003/07/27 07:13:04 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Don Clasen
  * @author James Turner
- * @version $Revision: 1.31 $ $Date: 2003/07/26 19:11:57 $
+ * @version $Revision: 1.32 $ $Date: 2003/07/27 07:13:04 $
  */
 public abstract class BaseHandlerTag extends BodyTagSupport {
 
@@ -567,7 +567,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
             if (key != null) {
                 JspException e =
                     new JspException(messages.getMessage("common.both"));
-                RequestUtils.saveException(pageContext, e);
+                TagUtils.getInstance().saveException(pageContext, e);
                 throw e;
             } else {
                 return (literal);
@@ -680,7 +680,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
             // this tag should only be nested in iteratetag, if it's not, throw exception
             JspException e =
                 new JspException(messages.getMessage("indexed.noEnclosingIterate"));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 

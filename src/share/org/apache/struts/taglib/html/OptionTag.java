@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.20 2003/07/26 19:11:57 dgraham Exp $
- * $Revision: 1.20 $
- * $Date: 2003/07/26 19:11:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.21 2003/07/27 07:13:04 rleland Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/07/27 07:13:04 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 /**
@@ -79,7 +78,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.20 $ $Date: 2003/07/26 19:11:57 $
+ * @version $Revision: 1.21 $ $Date: 2003/07/27 07:13:04 $
  */
 public class OptionTag extends BodyTagSupport {
 
@@ -325,7 +324,7 @@ public class OptionTag extends BodyTagSupport {
             JspException e =
                 new JspException(messages.getMessage("optionTag.select"));
                 
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
         

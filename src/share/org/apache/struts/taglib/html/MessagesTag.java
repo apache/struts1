@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.17 2003/07/26 19:11:57 dgraham Exp $
- * $Revision: 1.17 $
- * $Date: 2003/07/26 19:11:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.18 2003/07/27 07:13:04 rleland Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/07/27 07:13:04 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.ResponseUtils;
  * to the default <code>ErrorsTag</code>.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.17 $ $Date: 2003/07/26 19:11:57 $
+ * @version $Revision: 1.18 $ $Date: 2003/07/27 07:13:04 $
  * @since Struts 1.1
  */
 public class MessagesTag extends BodyTagSupport {
@@ -239,7 +239,7 @@ public class MessagesTag extends BodyTagSupport {
         try {
             messages = RequestUtils.getActionMessages(pageContext, name);
         } catch (JspException e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 

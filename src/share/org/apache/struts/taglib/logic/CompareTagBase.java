@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.10 2003/07/26 17:22:28 rleland Exp $
- * $Revision: 1.10 $
- * $Date: 2003/07/26 17:22:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.11 2003/07/27 07:13:04 rleland Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/07/27 07:13:04 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.taglib.TagUtils;
 
 
@@ -78,7 +77,7 @@ import org.apache.struts.taglib.TagUtils;
  * define values for desired1 and desired2.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2003/07/26 17:22:28 $
+ * @version $Revision: 1.11 $ $Date: 2003/07/27 07:13:04 $
  */
 
 public abstract class CompareTagBase extends ConditionalTagBase {
@@ -221,7 +220,7 @@ public abstract class CompareTagBase extends ConditionalTagBase {
                 if (bean == null) {
                     JspException e = new JspException
                         (messages.getMessage("logic.bean", name));
-                    RequestUtils.saveException(pageContext, e);
+                    TagUtils.getInstance().saveException(pageContext, e);
                     throw e;
                 }
                 try {
@@ -230,12 +229,12 @@ public abstract class CompareTagBase extends ConditionalTagBase {
                     Throwable t = e.getTargetException();
                     if (t == null)
                         t = e;
-                    RequestUtils.saveException(pageContext, t);
+                    TagUtils.getInstance().saveException(pageContext, t);
                     throw new JspException
                         (messages.getMessage("logic.property", name, property,
                                              t.toString()));
                 } catch (Throwable t) {
-                    RequestUtils.saveException(pageContext, t);
+                    TagUtils.getInstance().saveException(pageContext, t);
                     throw new JspException
                         (messages.getMessage("logic.property", name, property,
                                              t.toString()));
@@ -249,7 +248,7 @@ public abstract class CompareTagBase extends ConditionalTagBase {
         } else {
             JspException e = new JspException
                 (messages.getMessage("logic.selector"));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
         if (variable == null) {

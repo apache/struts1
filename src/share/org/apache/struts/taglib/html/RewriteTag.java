@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.12 2003/07/27 06:30:10 rleland Exp $
- * $Revision: 1.12 $
- * $Date: 2003/07/27 06:30:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.13 2003/07/27 07:13:04 rleland Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/07/27 07:13:04 $
  *
  * ====================================================================
  *
@@ -64,7 +64,6 @@ package org.apache.struts.taglib.html;
 import java.net.MalformedURLException;
 import java.util.Map;
 import javax.servlet.jsp.JspException;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 import org.apache.struts.taglib.TagUtils;
 
@@ -73,7 +72,7 @@ import org.apache.struts.taglib.TagUtils;
  * Generate a URL-encoded URI as a string.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2003/07/27 06:30:10 $
+ * @version $Revision: 1.13 $ $Date: 2003/07/27 07:13:04 $
  */
 public class RewriteTag extends LinkTag {
 
@@ -110,7 +109,7 @@ public class RewriteTag extends LinkTag {
                     this.isXhtml());
                     
         } catch (MalformedURLException e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException
                 (messages.getMessage("rewrite.url", e.toString()));
         }

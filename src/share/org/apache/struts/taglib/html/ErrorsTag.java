@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.25 2003/07/26 19:05:31 dgraham Exp $
- * $Revision: 1.25 $
- * $Date: 2003/07/26 19:05:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.26 2003/07/27 07:13:04 rleland Exp $
+ * $Revision: 1.26 $
+ * $Date: 2003/07/27 07:13:04 $
  *
  * ====================================================================
  *
@@ -72,7 +72,6 @@ import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 /**
@@ -96,7 +95,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.25 $ $Date: 2003/07/26 19:05:31 $
+ * @version $Revision: 1.26 $ $Date: 2003/07/27 07:13:04 $
  */
 public class ErrorsTag extends TagSupport {
 
@@ -187,7 +186,7 @@ public class ErrorsTag extends TagSupport {
         try {
             errors = TagUtils.getInstance().getActionErrors(pageContext, name);
         } catch (JspException e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 

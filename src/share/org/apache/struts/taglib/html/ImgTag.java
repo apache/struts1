@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.29 2003/07/26 19:11:57 dgraham Exp $
- * $Revision: 1.29 $
- * $Date: 2003/07/26 19:11:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.30 2003/07/27 07:13:04 rleland Exp $
+ * $Revision: 1.30 $
+ * $Date: 2003/07/27 07:13:04 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.29 $
+ * @version $Revision: 1.30 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -522,7 +522,7 @@ public class ImgTag extends BaseHandlerTag {
         if (this.page != null) {
             if ((this.src != null) || (this.srcKey != null) || (this.pageKey != null)) {
                 JspException e = new JspException(messages.getMessage("imgTag.src"));
-                RequestUtils.saveException(pageContext, e);
+                TagUtils.getInstance().saveException(pageContext, e);
                 throw e;
             }
             ModuleConfig config =
@@ -539,7 +539,7 @@ public class ImgTag extends BaseHandlerTag {
         if (this.pageKey != null) {
             if ((this.src != null) || (this.srcKey != null)) {
                 JspException e = new JspException(messages.getMessage("imgTag.src"));
-                RequestUtils.saveException(pageContext, e);
+                TagUtils.getInstance().saveException(pageContext, e);
                 throw e;
             }
             ModuleConfig config =
@@ -569,7 +569,7 @@ public class ImgTag extends BaseHandlerTag {
         if (this.src != null) {
             if (this.srcKey != null) {
                 JspException e = new JspException(messages.getMessage("imgTag.src"));
-                RequestUtils.saveException(pageContext, e);
+                TagUtils.getInstance().saveException(pageContext, e);
                 throw e;
             }
             return (this.src);
@@ -578,7 +578,7 @@ public class ImgTag extends BaseHandlerTag {
         // Deal with an indirect source that has been specified
         if (this.srcKey == null) {
             JspException e = new JspException(messages.getMessage("imgTag.src"));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
         
@@ -624,7 +624,7 @@ public class ImgTag extends BaseHandlerTag {
         // Just return the URL if there is no bean to look up
         if ((property != null) && (name == null)) {
             JspException e = new JspException(messages.getMessage("getter.name"));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 
@@ -638,7 +638,7 @@ public class ImgTag extends BaseHandlerTag {
         try {
             map = (Map) mapObject;
         } catch (ClassCastException e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException(messages.getMessage("imgTag.type"));
         }
 
