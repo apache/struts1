@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: struts.xsl,v 1.16 2003/09/29 17:03:02 sraeburn Exp $ -->
+<!-- $Id: struts.xsl,v 1.17 2003/09/30 00:17:05 sraeburn Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns="http://www.w3.org/1999/xhtml"
@@ -21,7 +21,6 @@
   	      doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" 
   	      indent="yes" 
   	      media-type="text/html"/>
-
 
   <!-- Defined parameters (overrideable) -->
   <xsl:param    name="home-logo"         select="'/images/jakarta-logo.gif'"/>
@@ -88,17 +87,13 @@
             <img src="{$src}" alt="Struts Framework" id="struts-logo"/>
         </a>
         </div>
+        <xsl:comment>end heading</xsl:comment>
 
         <div id="content">
-
-        <div id="main">
-            <xsl:apply-templates select="body"/>
-        </div>
-
         <div id="menu">
         
             <!-- to be removed after ApacheCon 2003 ends 20th of November 2003 -->
-            <a href="http://apachecon.com/2003/US/index.html">
+            <a href="http://apachecon.com/2003/US/index.html" style="text-decoration: none">
             <img src="http://jakarta.apache.org/images/logos/ac2003-150.gif" alt="ApacheCon 2003"/>
             </a>   
         
@@ -125,8 +120,17 @@
                 </xsl:if>
             </xsl:if>
         </div>
+        <xsl:comment>end menu</xsl:comment>
+
+
+        <div id="main">
+            <xsl:apply-templates select="body"/>
+        </div>
+        <xsl:comment>end main</xsl:comment>
+        
         
         </div>
+        <xsl:comment>end content</xsl:comment>
 
       <div id="footer">
         <xsl:variable name="src">
@@ -136,6 +140,7 @@
         Copyright (c) 2000-2003, Apache Software Foundation <span class="noprint">- 
         <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsDocComments">Comments?</a></span>
       </div>
+      <xsl:comment>end footer</xsl:comment>
 
     </body>
     </html>

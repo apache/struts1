@@ -6,10 +6,11 @@ body {
 	background: #FFFFFF;
 	color: #000000;
 	margin: 0;
-	padding: 21px 16px;
+	padding: 20px 15px;
 }
 
 div.authors{
+	width: 150px;
 	background: #EEEEFF;
 	border: 1px solid #CCCCFF;
 	color: #333333;
@@ -31,7 +32,7 @@ div.authors ul {
 }
 
 div.indent {
-	padding: 0 5%;
+	padding: 0 4%;
 }
 
 div.notice {
@@ -210,14 +211,12 @@ tr.evenRow {
 }
 
 #main {
-	float: right;
-	margin-bottom: 1em;
-	width: 85%;
+	margin-left: 22%;
 }
 
 #menu {
-	margin: 1em 86% 1em 0;
-	padding: 0.2em;
+	width: 21%;
+	float: left;
 }
 
 #menu li {
@@ -254,6 +253,14 @@ tr.evenRow {
 	display: none;
 }
 #main {
-	width: 100%;
+	margin-left: 0;
 }
+
+h1, h2, h3 {
+	background: #fff;
+	color: #000;
+	font-weight: bold;
+}
+
+
 }
