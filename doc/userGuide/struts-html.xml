@@ -294,7 +294,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -563,7 +564,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -864,7 +866,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -1272,7 +1275,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -1469,7 +1473,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -1837,7 +1842,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -2741,7 +2747,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -3327,7 +3334,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -3750,7 +3758,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -4439,7 +4448,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -4693,7 +4703,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -4943,7 +4954,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -5443,7 +5455,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -5722,7 +5735,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -6030,7 +6044,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -6341,7 +6356,8 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Identifier to be assigned to this HTML element.
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
