@@ -10,7 +10,7 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Code Generators and GUIs">
-<p><a href="http://rivernorth.sourceforge.net">Struts Builder</a> by RiverNorth - an Opensource tool (GPL license) originally developed for internal use to aid in development of Struts-based web applications (1.1 style).</p>
+<p><a href="http://rivernorth.sourceforge.net"><b>Struts Builder</b></a> by RiverNorth - an Opensource tool (GPL license) originally developed for internal use to aid in development of Struts-based web applications (1.1 style).</p>
 <p><a href="http://www.synthis.com/products/adalon/overview.jsp"><b>Adalon</b></a> - Adalon is a next generation functional design tool that fills the gaps left by today's market leading software design products. </p>
 <p><a href="http://www.mycgiserver.com/~eboudrant/#wizard"><b>Struts Wizard for JBuilder and Eclipse</b></a> by Emmanuel Boudrant.</p>
 <p><a href="http://www.solanasoft.com"><b>JForms:</b></a> a visual tool for Struts-based Web forms.</p>
