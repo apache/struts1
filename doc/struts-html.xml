@@ -15,6 +15,7 @@
   <jspversion>1.1</jspversion>
   <shortname>html</shortname>
   <display-name>Page Construction Tags</display-name>
+  <uri>http://jakarta.apache.org/struts/tags-html-1.0</uri>
   <info>
   <p>
         This taglib contains tags used to create struts
