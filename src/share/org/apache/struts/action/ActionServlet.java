@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.21 2000/09/23 18:26:48 craigmcc Exp $
- * $Revision: 1.21 $
- * $Date: 2000/09/23 18:26:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.22 2000/09/23 19:17:10 craigmcc Exp $
+ * $Revision: 1.22 $
+ * $Date: 2000/09/23 19:17:10 $
  *
  * ====================================================================
  *
@@ -94,26 +94,26 @@ import org.xml.sax.SAXException;
  * <ul>
  * <li>The user interface will generally be created with JSP pages, which
  *     will not themselves contain any business logic.  These pages represent
- *     the "view" component of an MVC architecture.
+ *     the "view" component of an MVC architecture.</li>
  * <li>Forms and hyperlinks in the user interface that require business logic
  *     to be executed will be submitted to a request URI that is mapped to the
- *     controller servlet.
+ *     controller servlet.</li>
  * <li>There will be one instance of this servlet class,
  *     which receives and processes all requests that change the state of
  *     a user's interaction with the application.  This component represents
- *     the "controller" component of an MVC architecture.
+ *     the "controller" component of an MVC architecture.</li>
  * <li>The controller servlet will select and invoke an action class to perform
- *     the requested business logic.
+ *     the requested business logic.</li>
  * <li>The action classes will manipulate the state of the application's
  *     interaction with the user, typically by creating or modifying JavaBeans
  *     that are stored as request or session attributes (depending on how long
  *     they need to be available).  Such JavaBeans represent the "model"
- *     component of an MVC architecture.
+ *     component of an MVC architecture.</li>
  * <li>Instead of producing the next page of the user interface directly,
  *     action classes will generally use the
  *     <code>RequestDispatcher.forward()</code> facility of the servlet API
  *     to pass control to an appropriate JSP page to produce the next page
- *     of the user interface.
+ *     of the user interface.</li>
  * </ul>
  *
  * <p>The standard version of <code>ActionServlet</code> implements the
@@ -122,18 +122,20 @@ import org.xml.sax.SAXException;
  *    implementing your own version of the processing.</p>
  * <ul>
  * <li>Identify, from the incoming request URI, the substring that will be
- *     used to select an action procedure.
+ *     used to select an action procedure.</li>
  * <li>Use this substring to map to the Java class name of the corresponding
  *     action class (an implementation of the <code>Action</code> interface).
+ *     </li>
  * <li>If this is the first request for a particular action class, instantiate
- *     an instance of that class and cache it for future use.
+ *     an instance of that class and cache it for future use.</li>
  * <li>Optionally populate the properties of an <code>ActionForm</code> bean
- *     associated with this mapping.
+ *     associated with this mapping.</li>
  * <li>Call the <code>perform()</code> method of this action class, passing
  *     on a reference to the mapping that was used (thereby providing access
  *     to the underlying ActionServlet and ServletContext, as well as any
  *     specialized properties of the mapping itself), and the request and
  *     response that were passed to the controller by the servlet container.
+ *     </li>
  * </ul>
  *
  * <p>The standard version of <code>ActionServlet</code> is configured based
@@ -143,14 +145,14 @@ import org.xml.sax.SAXException;
  * define additional initialization parameters.</p>
  * <ul>
  * <li><strong>application</strong> - Java class name of the application
- *     resources bundle base class.  [NONE].
+ *     resources bundle base class.  [NONE].</li>
  * <li><strong>config</strong> - Context-relative path to the XML resource
- *     containing our configuration information.  [/WEB-INF/action.xml]
+ *     containing our configuration information.  [/WEB-INF/action.xml]</li>
  * <li><strong>debug</strong> - The debugging detail level for this
- *     servlet, which controls how much information is logged.  [0]
+ *     servlet, which controls how much information is logged.  [0]</li>
  * <li><strong>detail</strong> - The debugging detail level for the Digester
  *     we utilize in <code>initMapping()</code>, which logs to System.out
- *     instead of the servlet log.  [0]
+ *     instead of the servlet log.  [0]</li>
  * <li><strong>forward</strong> - The Java class name of the ActionForward
  *     implementation to use [org.apache.struts.action.ActionForward].
  *     Two convenient classes you may wish to use are:
@@ -163,7 +165,14 @@ import org.xml.sax.SAXException;
  *         Subclass of <code>org.apache.struts.action.ActionForward</code>
  *         that defaults the <code>redirect</code> property to
  *         <code>true</code>.
- *     </ul>
+ *     </ul></li>
+ * <li><strong>locale</strong> - If set to <code>true</code>, and there is a
+ *     user session, identify and store an appropriate
+ *     <code>java.util.Locale</code> object (under the standard key
+ *     identified by <code>Action.LOCALE_KEY</code>) in the user's session
+ *     if there is not a Locale object there already.
+ *     The identified locale will be based on the HTTP headers included
+ *     in this request.  [true]</li>
  * <li><strong>mapping</strong> - The Java class name of the ActionMapping
  *     implementation to use [org.apache.struts.action.ActionMapping].
  *     Two convenient classes you may wish to use are:
@@ -175,20 +184,20 @@ import org.xml.sax.SAXException;
  *         of <code>org.apache.struts.action.ActionMapping</code> that
  *         defaults the <code>formScope</code> property to "session".  (Same
  *         as the ActionMapping default value).
- *     </ul>
+ *     </ul></li>
  * <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
  *     to every response intended to defeat browser caching of any response we
- *     generate or forward to.  [false]
+ *     generate or forward to.  [false]</li>
  * <li><strong>null</strong> - If set to <code>true</code>, set our application
  *     resources to return <code>null</code> if an unknown message key is used.
  *     Otherwise, an error message including the offending message key will
- *     be returned.  [true]
+ *     be returned.  [true]</li>
  * <li><strong>validate</strong> - Are we using the new configuration file
- *     format?  [false]
+ *     format?  [false]</li>
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.21 $ $Date: 2000/09/23 18:26:48 $
+ * @version $Revision: 1.22 $ $Date: 2000/09/23 19:17:10 $
  */
 
 public class ActionServlet
@@ -214,6 +223,12 @@ public class ActionServlet
      * The debugging detail level for this servlet.
      */
     protected int debug = 0;
+
+
+    /**
+     * The default Locale for this server.
+     */
+    protected final Locale defaultLocale = Locale.getDefault();
 
 
     /**
@@ -252,6 +267,13 @@ public class ActionServlet
      * The Java base name of our internal resources.
      */
     protected String internalName = "org.apache.struts.action.ActionResources";
+
+
+    /**
+     * Should we create a <code>java.util.Locale</code> for this user,
+     * based on the HTTP headers of the request, if one is not present?
+     */
+    protected boolean locale = true;
 
 
     /**
@@ -877,11 +899,24 @@ public class ActionServlet
      */
     protected void initOther() throws ServletException {
 
-	// Process the "nocache" initialization parameter
-	String value = getServletConfig().getInitParameter("nocache");
-	if ("true".equalsIgnoreCase(value) ||
-	    "yes".equalsIgnoreCase(value))
-	    nocache = true;
+	// Process the "locale" and "nocache" initialization parameters
+	String value = null;
+
+        value = getServletConfig().getInitParameter("locale");
+        if (value != null) {
+            if ("true".equalsIgnoreCase(value) ||
+                "yes".equalsIgnoreCase(value))
+                locale = true;
+            else
+                locale = false;
+        }
+
+        if (value != null) {
+            value = getServletConfig().getInitParameter("nocache");
+            if ("true".equalsIgnoreCase(value) ||
+                "yes".equalsIgnoreCase(value))
+                nocache = true;
+        }
 
 	// Publish our internal collections as necessary
         getServletContext().setAttribute(Action.FORM_BEANS_KEY, formBeans);
@@ -916,6 +951,9 @@ public class ActionServlet
 	}
 	if (debug >= 1)
 	    log("Processing a " + request.getMethod() + " for " + path);
+
+        // Automatically select a locale for this user if requested
+        processLocale(request);
 
 	// Set the no-caching headers if requested
 	processNoCache(response);
@@ -1040,6 +1078,58 @@ public class ActionServlet
 		rd.forward(request, response);
 	    }
 	}
+
+    }
+
+
+    /**
+     * Automatically calculate an appropriate <code>java.util.Locale</code>
+     * for this user, and store it in their session, if there is no such
+     * Locale object present already.
+     *
+     * @param request The request we are processing
+     */
+    protected void processLocale(HttpServletRequest request) {
+
+        // Validate that we need to create a Locale
+        if (!locale)
+            return;             // Service not requested
+        HttpSession session = request.getSession(false);
+        if (session == null)
+            return;             // Not in a session
+        if (session.getAttribute(Action.LOCALE_KEY) != null)
+            return;             // Locale object is already present
+
+        // Calculate a Locale based on the HTTP headers with this request
+        String value = request.getHeader("Accept-Language");
+        if (value == null) {
+            session.setAttribute(Action.LOCALE_KEY, defaultLocale);
+            return;             // No Accept-Language header was present
+        }
+
+        int comma = value.indexOf(',');
+        if (comma >= 0)
+            value = value.substring(0, comma);  // Use first entry only
+        int semi = value.indexOf(';');
+        if (semi >= 0)
+            value = value.substring(0, semi);   // Strip quality ranking
+
+        String language = null;
+        String country = null;
+        int dash = value.indexOf('-');
+        if (dash < 0) {
+            language = value.trim();
+            country = "";
+        } else {
+            language = value.substring(0, dash).trim();
+            country = value.substring(dash + 1).trim();
+        }
+
+        Locale locale = new Locale(language, country);
+        if (debug >= 1)
+            log("Setting locale '" + locale + "' for header '" +
+                request.getHeader("Accept-Language") + "'");
+        session.setAttribute(Action.LOCALE_KEY, locale);
 
     }
 
