@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.119 2003/07/26 01:23:32 dgraham Exp $
- * $Revision: 1.119 $
- * $Date: 2003/07/26 01:23:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.120 2003/07/26 17:21:02 rleland Exp $
+ * $Revision: 1.120 $
+ * $Date: 2003/07/26 17:21:02 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.119 $ $Date: 2003/07/26 01:23:32 $
+ * @version $Revision: 1.120 $ $Date: 2003/07/26 17:21:02 $
  */
 
 public class RequestUtils {
@@ -266,7 +266,7 @@ public class RequestUtils {
         Map map = null;
         try {
             if (name != null) {
-                map = (Map) lookup(pageContext, name, property, scope);
+                map = (Map) TagUtils.getInstance().lookup(pageContext, name, property, scope);
             }
         } catch (ClassCastException e) {
             saveException(pageContext, e);
@@ -289,7 +289,7 @@ public class RequestUtils {
 
             Object paramValue = null;
             try {
-                paramValue = lookup(pageContext, paramName, paramProperty, paramScope);
+                paramValue = TagUtils.getInstance().lookup(pageContext, paramName, paramProperty, paramScope);
             } catch (JspException e) {
                 saveException(pageContext, e);
                 throw e;
@@ -842,22 +842,12 @@ public class RequestUtils {
      * @return JavaBean in the specified page context
      * @exception JspException if an invalid scope name
      *  is requested
+     * @deprecated To be removed after Struts 1.2.
+     * Use {@link org.apache.struts.taglib.TagUtils#lookup(PageContext,String,String)} instead.
      */
     public static Object lookup(PageContext pageContext, String name, String scopeName)
         throws JspException {
-            
-        if (scopeName == null) {
-            return pageContext.findAttribute(name);
-        }
-        
-        try {
-            return pageContext.getAttribute(name, getScope(scopeName));
-        
-        } catch (JspException e) {
-            saveException(pageContext, e);
-            throw e;
-        }
-
+        return TagUtils.getInstance().lookup(pageContext,name,scopeName);
     }
     
     /**
@@ -867,8 +857,9 @@ public class RequestUtils {
      * @return The constant representing the scope (ie. PageContext.REQUEST_SCOPE).
      * @throws JspException if the scopeName is not a valid name.
      * @since Struts 1.1
-     * @deprecated Use TagUtils.getScope() instead.  This will be removed after 
-     * Struts 1.2.
+     * @deprecated To be removed after Struts 1.2.
+     * Use {@link org.apache.struts.taglib.TagUtils#getScope(String)} instead.
+
      */
     public static int getScope(String scopeName) throws JspException {
         return TagUtils.getInstance().getScope(scopeName);
@@ -894,6 +885,9 @@ public class RequestUtils {
      * @exception JspException if accessing this property causes an
      *  IllegalAccessException, IllegalArgumentException,
      *  InvocationTargetException, or NoSuchMethodException
+     * @deprecated To be removed after Struts 1.2.
+     * Use {@link org.apache.struts.taglib.TagUtils#lookup(PageContext,String,String,String)} instead.
+
      */
     public static Object lookup(
         PageContext pageContext,
@@ -902,44 +896,7 @@ public class RequestUtils {
         String scope)
         throws JspException {
 
-        // Look up the requested bean, and return if requested
-        Object bean = lookup(pageContext, name, scope);
-        if (bean == null) {
-            JspException e = null;
-            if (scope == null) {
-                e = new JspException(messages.getMessage("lookup.bean.any", name));
-            } else {
-                e = new JspException(messages.getMessage("lookup.bean", name, scope));
-            }
-            saveException(pageContext, e);
-            throw e;
-        }
-        
-        if (property == null) {
-            return bean;
-        }
-
-        // Locate and return the specified property
-        try {
-            return PropertyUtils.getProperty(bean, property);
-            
-        } catch (IllegalAccessException e) {
-            saveException(pageContext, e);
-            throw new JspException(messages.getMessage("lookup.access", property, name));
-        
-        } catch (InvocationTargetException e) {
-            Throwable t = e.getTargetException();
-            if (t == null) {
-                t = e;
-            }
-            saveException(pageContext, t);
-            throw new JspException(messages.getMessage("lookup.target", property, name));
-        
-        } catch (NoSuchMethodException e) {
-            saveException(pageContext, e);
-            throw new JspException(messages.getMessage("lookup.method", property, name));
-        }
-
+        return TagUtils.getInstance().lookup(pageContext,name,property,scope);
     }
 
     /**
