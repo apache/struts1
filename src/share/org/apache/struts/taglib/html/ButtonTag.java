@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.6 2001/09/17 19:59:30 husted Exp $
- * $Revision: 1.6 $
- * $Date: 2001/09/17 19:59:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.7 2001/12/10 10:05:50 oalexeev Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/12/10 10:05:50 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.util.ResponseUtils;
  * Renders an HTML BUTTON tag within the Struts framework.
  *
  * @author Don Clasen
- * @version $Revision: 1.6 $ $Date: 2001/09/17 19:59:30 $
+ * @version $Revision: 1.7 $ $Date: 2001/12/10 10:05:50 $
  */
 
 public class ButtonTag extends BaseHandlerTag {
@@ -209,6 +209,7 @@ public class ButtonTag extends BaseHandlerTag {
         results.append("\"");
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
+        prepareFreetext( results );
         results.append(">");
 
         // Render this element to our writer

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CancelTag.java,v 1.3 2001/04/18 01:31:14 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/04/18 01:31:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CancelTag.java,v 1.4 2001/12/10 10:05:50 oalexeev Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/12/10 10:05:50 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "cancel".
  *
  * @author Jeff Hutchinson
- * @version $Revision: 1.3 $ $Date: 2001/04/18 01:31:14 $
+ * @version $Revision: 1.4 $ $Date: 2001/12/10 10:05:50 $
  */
 
 public class CancelTag extends BaseHandlerTag {
@@ -213,6 +213,7 @@ public class CancelTag extends BaseHandlerTag {
         results.append("\"");
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
+        prepareFreetext( results );
         results.append(">");
 
         // Render this element to our writer
@@ -229,10 +230,10 @@ public class CancelTag extends BaseHandlerTag {
      */
     public void release() {
 
-	super.release();
-	property = Constants.CANCEL_PROPERTY;
+        super.release();
+        property = Constants.CANCEL_PROPERTY;
         text = null;
-	value = null;
+        value = null;
 
     }
 

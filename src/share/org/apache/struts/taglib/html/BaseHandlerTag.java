@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.10 2001/11/26 15:08:02 oalexeev Exp $
- * $Revision: 1.10 $
- * $Date: 2001/11/26 15:08:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.11 2001/12/10 10:05:50 oalexeev Exp $
+ * $Revision: 1.11 $
+ * $Date: 2001/12/10 10:05:50 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.10 $ $Date: 2001/11/26 15:08:02 $
+ * @version $Revision: 1.11 $ $Date: 2001/12/10 10:05:50 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -175,6 +175,13 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /** The advisory title of this element. */
     private String title = null;
 
+
+// Freetext attributes holder
+
+    /** Free text attribute to place to it all additional attributes.
+     *  This attribute contents will be directly rendered to the tag.
+     */
+    protected String freeText = null;
 
     // ------------------------------------------------------------- Properties
 
@@ -425,6 +432,17 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         this.title = title;
     }
 
+// Freetext attributes holder
+
+    /** Returns the freetext attribute */
+    public String getFreetext() {
+        return freeText;
+    }
+
+    /** Sets the freetext attribute */
+    public void setFreetext( String freeText ) {
+        this.freeText = freeText;
+    }
 
     // --------------------------------------------------------- Public Methods
 
@@ -458,6 +476,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         styleId = null;
         title = null;
         indexed = false;
+        freeText = null;
 
     }
 
@@ -656,7 +675,20 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
     }
 
+    /**
+     * Prepares the freetext attributes, appending all it to the the given
+     * StringBuffer.
+     * @param handlers The StringBuffer that output will be appended to.
+     */
+    protected void prepareFreetext(StringBuffer handlers) {
 
+        if (freeText!= null) {
+            handlers.append(" ");
+            handlers.append(getFreetext());
+            handlers.append(" ");
+        }
+
+    }
 
 
 }

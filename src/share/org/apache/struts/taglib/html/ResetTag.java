@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.3 2001/04/18 01:31:15 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/04/18 01:31:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.4 2001/12/10 10:05:50 oalexeev Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/12/10 10:05:50 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "reset".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/04/18 01:31:15 $
+ * @version $Revision: 1.4 $ $Date: 2001/12/10 10:05:50 $
  */
 
 public class ResetTag extends BaseHandlerTag {
@@ -118,7 +118,7 @@ public class ResetTag extends BaseHandlerTag {
      */
     public String getName() {
 
-	return (this.name);
+        return (this.name);
 
     }
 
@@ -130,7 +130,7 @@ public class ResetTag extends BaseHandlerTag {
      */
     public void setName(String name) {
 
-	this.name = name;
+        this.name = name;
 
     }
 
@@ -140,7 +140,7 @@ public class ResetTag extends BaseHandlerTag {
      */
     public String getValue() {
 
-	return (this.value);
+        return (this.value);
 
     }
 
@@ -152,7 +152,7 @@ public class ResetTag extends BaseHandlerTag {
      */
     public void setValue(String value) {
 
-	this.value = value;
+        this.value = value;
 
     }
 
@@ -167,9 +167,9 @@ public class ResetTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-	// Do nothing until doEndTag() is called
+        // Do nothing until doEndTag() is called
         this.text = null;
-	return (EVAL_BODY_TAG);
+        return (EVAL_BODY_TAG);
 
     }
 
@@ -199,40 +199,41 @@ public class ResetTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-	// Acquire the label value we will be generating
-	String label = value;
-	if ((label == null) && (text != null))
-	    label = text;
-	if ((label == null) || (label.length() < 1))
-	    label = "Reset";
+        // Acquire the label value we will be generating
+        String label = value;
+        if ((label == null) && (text != null))
+            label = text;
+        if ((label == null) || (label.length() < 1))
+            label = "Reset";
 
-	// Generate an HTML element
-	StringBuffer results = new StringBuffer();
-	results.append("<input type=\"reset\" name=\"");
-	results.append(name);
-	results.append("\"");
-	if (accesskey != null) {
-	    results.append(" accesskey=\"");
-	    results.append(accesskey);
-	    results.append("\"");
-	}
-	if (tabindex != null) {
-	    results.append(" tabindex=\"");
-	    results.append(tabindex);
-	    results.append("\"");
-	}
-	results.append(" value=\"");
-	results.append(label);
-	results.append("\"");
-	results.append(prepareEventHandlers());
-	results.append(prepareStyles());
-	results.append(">");
+        // Generate an HTML element
+        StringBuffer results = new StringBuffer();
+        results.append("<input type=\"reset\" name=\"");
+        results.append(name);
+        results.append("\"");
+        if (accesskey != null) {
+            results.append(" accesskey=\"");
+            results.append(accesskey);
+            results.append("\"");
+        }
+        if (tabindex != null) {
+            results.append(" tabindex=\"");
+            results.append(tabindex);
+            results.append("\"");
+        }
+        results.append(" value=\"");
+        results.append(label);
+        results.append("\"");
+        results.append(prepareEventHandlers());
+        results.append(prepareStyles());
+        prepareFreetext( results ); 
+        results.append(">");
 
-	// Render this element to our writer
+        // Render this element to our writer
         ResponseUtils.write(pageContext, results.toString());
 
         // Evaluate the remainder of this page
-	return (EVAL_PAGE);
+        return (EVAL_PAGE);
 
     }
 
@@ -242,10 +243,10 @@ public class ResetTag extends BaseHandlerTag {
      */
     public void release() {
 
-	super.release();
-	name = "reset";
+        super.release();
+        name = "reset";
         text = null;
-	value = null;
+        value = null;
 
     }
 
