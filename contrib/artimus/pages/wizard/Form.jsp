@@ -3,13 +3,13 @@
  * Form to enter data.
  *
  * @author Ted Husted
- * @version $Revision: 1.1 $ $dateString: 2001/09/25 $
+ * @version $Revision: 1.2 $ $dateString: 2001/09/25 $
 */
 --%>
 <%@ page language="java" %>
 <%@ taglib uri="/tags/struts-html" prefix="html" %>
 <%@ taglib uri="/tags/struts-bean" prefix="bean" %>
-<html:html/>
+<html:html>
 <head>
 <title>Form - String</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -89,5 +89,5 @@ function submitForm(form) {
 </script>
 </table></td></tr>
 <tr><td align="center" bgcolor="#EEEEEE"></td></tr>
-</table></table></body></html>
+</table></body></html:html>
 

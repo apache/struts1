@@ -3,7 +3,7 @@
  * Data entry page.
  *
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:05:16 $
+ * @version $Revision: 1.2 $ $Date: 2002/06/26 23:38:52 $
  */
 --%>
 
@@ -74,7 +74,9 @@
                 </td>
                 <td align="left">
                 </td>
-              </tr>                <td align="right" nowrap>Article ID:</td>
+              </tr>
+              <tr>
+                <td align="right" nowrap>Article ID:</td>
                 <logic:notPresent name="articleForm" property="article">
                   <td align="left"><i>
                     <html:hidden property="article"/>

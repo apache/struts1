@@ -2,7 +2,7 @@
 /**
  * Menu page.
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:05:16 $
+ * @version $Revision: 1.2 $ $Date: 2002/06/26 23:38:52 $
  */
 --%>
 
@@ -124,11 +124,11 @@
                         &nbsp;
                         <html:link forward="createTables">
                           CREATE TABLES
-                        </html:link></br>
+                        </html:link><br>
                         &nbsp;
                         <html:link forward="createIndex">
                           CREATE INDEX
-                        </html:link></br>
+                        </html:link><br>
                         &nbsp;
                         <html:link forward="reload">
                           RELOAD CONFIG
