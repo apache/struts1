@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.110 2003/07/16 05:10:37 martinc Exp $
- * $Revision: 1.110 $
- * $Date: 2003/07/16 05:10:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.111 2003/07/25 07:26:53 sraeburn Exp $
+ * $Revision: 1.111 $
+ * $Date: 2003/07/25 07:26:53 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.110 $ $Date: 2003/07/16 05:10:37 $
+ * @version $Revision: 1.111 $ $Date: 2003/07/25 07:26:53 $
  */
 
 public class RequestUtils {
@@ -1874,14 +1874,6 @@ public class RequestUtils {
                 String keys[] = (String[]) value;
                 for (int i = 0; i < keys.length; i++)
                     am.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(keys[i]));
-            } else if (value instanceof ErrorMessages) {
-                String keys[] = ((ErrorMessages) value).getErrors();
-                if (keys == null) {
-                    keys = new String[0];
-                }
-                for (int i = 0; i < keys.length; i++) {
-                    am.add(ActionErrors.GLOBAL_ERROR, new ActionError(keys[i]));
-                }
             } else if (value instanceof ActionMessages) {
                 am = (ActionMessages) value;
             } else {
@@ -1920,14 +1912,6 @@ public class RequestUtils {
                 errors.add(ActionErrors.GLOBAL_ERROR, new ActionError((String) value));
             } else if (value instanceof String[]) {
                 String keys[] = (String[]) value;
-                for (int i = 0; i < keys.length; i++) {
-                    errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(keys[i]));
-                }
-            } else if (value instanceof ErrorMessages) {
-                String keys[] = ((ErrorMessages) value).getErrors();
-                if (keys == null) {
-                    keys = new String[0];
-                }
                 for (int i = 0; i < keys.length; i++) {
                     errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(keys[i]));
                 }
