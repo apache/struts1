@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<document url="./index.xml">
+<document url="./installation.xml">
 
   <properties>
     <author>Craig R. McClanahan</author>
@@ -8,9 +8,7 @@
 
   <body>
 
-  <section name="Prerequisite Software">
-
-  <a name="Prerequisites"></a>
+  <section name="Prerequisite Software" href="Prerequisites">
 
   <p>In order to build a Struts source distribution, or install and use a
   Struts binary distribution, you will need to acquire and install several
@@ -64,9 +62,7 @@
   </section>
 
 
-  <section name="Building Struts From Source">
-
-    <a name="Building"></a>
+  <section name="Building Struts From Source" href="Building">
 
     <p>First, download a source distribution of Struts by following the
     instructions <a href="index.html#Acquiring">here</a>.  Then, make sure
@@ -104,8 +100,7 @@
 
   </section>
 
-  <section name="Install A Struts Binary Distribution">
-    <a name="Installing"></a>
+  <section name="Install A Struts Binary Distribution" href="Installing">
 
     <p>First, download a binary distribution of Struts by following the
     instructions <a href="index.html#Acquiring">here</a>.  Then, make sure

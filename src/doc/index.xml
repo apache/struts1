@@ -9,9 +9,7 @@
   <body>
 
 
-  <section name="Welcome to Struts">
-
-  <a name="Welcome"></a>
+  <section name="Welcome to Struts" href="Welcome">
 
   <p>Welcome to the Struts Framework!  The goal of this project
   is to provide an open source framework useful in building web applications
@@ -45,9 +43,7 @@
   </section>
 
 
-  <section name="Acquiring Struts">
-
-  <a name="Acquiring"></a>
+  <section name="Acquiring Struts" href="Acquiring">
 
   <p>You can acquire binary and source distributions of Struts from the
   following locations:</p>
@@ -63,18 +59,24 @@
       here</a>.</li>
   </ul>
 
+  <p>Access to the CVS source repository for Struts is available through both
+  <a href="http://jakarta.apache.org/cvsweb/index.cgi/jakarta-struts/">web
+  browser</a> and
+  <a href="http://jakarta.apache.org/getinvolved/cvsindex.html">CVS client</a>
+  interfaces.</p>
+
   <p>In addition to the Struts distribution, you will need to ensure that
   you have downloaded and installed all of the
   <a href="installation.html#Prerequisites">prerequisite</a> software
   applications.  Then, follow the appropriate instructions to
   <a href="installation.html#Building">build Struts from the source
-  distribution</a>, or <a href="@installation.html#Installing">install and
+  distribution</a>, or <a href="installation.html#Installing">install and
   use a Struts binary distribution</a> in your web application.</p>
 
   </section>
 
 
-  <section name="Getting Involved">
+  <section name="Getting Involved" href="Involved">
 
   <p>There are a number of ways to get more involved in the Struts
   community, including contributing to the future development of Struts.
