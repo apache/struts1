@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.9 2001/04/18 23:32:35 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2001/04/18 23:32:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.10 2001/05/03 03:29:38 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/05/03 03:29:38 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/04/18 23:32:35 $
+ * @version $Revision: 1.10 $ $Date: 2001/05/03 03:29:38 $
  */
 
 public class RequestUtils {
@@ -123,25 +123,24 @@ public class RequestUtils {
      *
      * @param request The servlet request we are processing
      * @param path The context-relative path (must start with '/')
+     *
+     * @exception MalformedURLException if we cannot create an absolute URL
      */
-    public static String absoluteURL(HttpServletRequest request, String path) {
+    public static String absoluteURL(HttpServletRequest request, String path)
+        throws MalformedURLException {
 
         URL url = null;
         int port = request.getServerPort();
         String scheme = request.getScheme();
         String serverName = request.getServerName();
         String uri = request.getContextPath() + path;
-        try {
-            if ("http".equals(scheme) && (80 == port))
-                url = new URL(scheme, serverName, uri);
-            else if ("https".equals(scheme) && (443 == port))
-                url = new URL(scheme, serverName, uri);
-            else
-                url = new URL(scheme, serverName, port, uri);
-            return (url.toString());
-        } catch (MalformedURLException e) {
-            return (null);
-        }
+        if ("http".equals(scheme) && (80 == port))
+            url = new URL(scheme, serverName, uri);
+        else if ("https".equals(scheme) && (443 == port))
+            url = new URL(scheme, serverName, uri);
+        else
+            url = new URL(scheme, serverName, port, uri);
+        return (url.toString());
 
     }
 

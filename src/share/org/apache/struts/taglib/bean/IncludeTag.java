@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.10 2001/02/12 01:26:57 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.11 2001/05/03 03:29:36 craigmcc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -66,6 +66,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
@@ -89,7 +90,7 @@ import org.apache.struts.util.RequestUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2001/02/12 01:26:57 $
+ * @version $Revision: 1.11 $ $Date: 2001/05/03 03:29:36 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -301,14 +302,50 @@ public class IncludeTag extends TagSupport {
             }
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
-            href = RequestUtils.absoluteURL(request, forward.getPath());
+            try {
+                href = RequestUtils.absoluteURL(request, forward.getPath());
+            } catch (MalformedURLException mue) {
+                RequestUtils.saveException(pageContext, mue);
+                ServletContext sc = pageContext.getServletContext();
+                sc.log(messages.getMessage("include.url",
+                                           request.getScheme(),
+                                           request.getServerName(),
+                                           "" + request.getServerPort(),
+                                           forward.getPath()),
+                       mue);
+                JspException e = new JspException
+                    (messages.getMessage("include.url",
+                                         request.getScheme(),
+                                         request.getServerName(),
+                                         "" + request.getServerPort(),
+                                         forward.getPath()));
+                throw e;
+            }
         } else if (this.href != null) {
             href = this.href;
             includeSession = false;
         } else /* if (this.page != null) */ {
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
-            href = RequestUtils.absoluteURL(request, this.page);
+            try {
+                href = RequestUtils.absoluteURL(request, this.page);
+            } catch (MalformedURLException mue) {
+                RequestUtils.saveException(pageContext, mue);
+                ServletContext sc = pageContext.getServletContext();
+                sc.log(messages.getMessage("include.url",
+                                           request.getScheme(),
+                                           request.getServerName(),
+                                           "" + request.getServerPort(),
+                                           this.page),
+                       mue);
+                JspException e = new JspException
+                    (messages.getMessage("include.url",
+                                         request.getScheme(),
+                                         request.getServerName(),
+                                         "" + request.getServerPort(),
+                                         this.page));
+                throw e;
+            }
         }
 
         // Append the session identifier if appropriate

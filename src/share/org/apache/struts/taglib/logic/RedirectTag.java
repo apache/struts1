@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.7 2001/04/03 18:06:23 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/04/03 18:06:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.8 2001/05/03 03:29:38 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/05/03 03:29:38 $
  *
  * ====================================================================
  *
@@ -64,9 +64,11 @@ package org.apache.struts.taglib.logic;
 
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
@@ -86,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * Generate a URL-encoded redirect to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/04/03 18:06:23 $
+ * @version $Revision: 1.8 $ $Date: 2001/05/03 03:29:38 $
  */
 
 public class RedirectTag extends TagSupport {
@@ -358,14 +360,50 @@ public class RedirectTag extends TagSupport {
             }
 	    HttpServletRequest request =
 		(HttpServletRequest) pageContext.getRequest();
-            href = RequestUtils.absoluteURL(request, forward.getPath());
+            try {
+                href = RequestUtils.absoluteURL(request, forward.getPath());
+            } catch (MalformedURLException mue) {
+                RequestUtils.saveException(pageContext, mue);
+                ServletContext sc = pageContext.getServletContext();
+                sc.log(messages.getMessage("redirect.url",
+                                           request.getScheme(),
+                                           request.getServerName(),
+                                           "" + request.getServerPort(),
+                                           forward.getPath()),
+                       mue);
+                JspException e = new JspException
+                    (messages.getMessage("redirect.url",
+                                         request.getScheme(),
+                                         request.getServerName(),
+                                         "" + request.getServerPort(),
+                                         forward.getPath()));
+                throw e;
+            }
 	}
 
         // If "page" was specified, compute the "href" to forward to
         else if (page != null) {
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
-            href = RequestUtils.absoluteURL(request, page);
+            try {
+                href = RequestUtils.absoluteURL(request, page);
+            } catch (MalformedURLException mue) {
+                RequestUtils.saveException(pageContext, mue);
+                ServletContext sc = pageContext.getServletContext();
+                sc.log(messages.getMessage("redirect.url",
+                                           request.getScheme(),
+                                           request.getServerName(),
+                                           "" + request.getServerPort(),
+                                           page),
+                       mue);
+                JspException e = new JspException
+                    (messages.getMessage("redirect.url",
+                                         request.getScheme(),
+                                         request.getServerName(),
+                                         "" + request.getServerPort(),
+                                         page));
+                throw e;
+            }
         }
 
         // Append a single-parameter name and value, if requested

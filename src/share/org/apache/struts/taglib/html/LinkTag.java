@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.11 2001/05/03 01:13:54 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2001/05/03 01:13:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.12 2001/05/03 03:29:36 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2001/05/03 03:29:36 $
  *
  * ====================================================================
  *
@@ -65,9 +65,11 @@ package org.apache.struts.taglib.html;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -86,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2001/05/03 01:13:54 $
+ * @version $Revision: 1.12 $ $Date: 2001/05/03 03:29:36 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -477,7 +479,25 @@ public class LinkTag extends BaseHandlerTag {
             }
 	    HttpServletRequest request =
 		(HttpServletRequest) pageContext.getRequest();
-            href = RequestUtils.absoluteURL(request, forward.getPath());
+            try {
+                href = RequestUtils.absoluteURL(request, forward.getPath());
+            } catch (MalformedURLException mue) {
+                RequestUtils.saveException(pageContext, mue);
+                ServletContext sc = pageContext.getServletContext();
+                sc.log(messages.getMessage("linkTag.url",
+                                           request.getScheme(),
+                                           request.getServerName(),
+                                           "" + request.getServerPort(),
+                                           forward.getPath()),
+                       mue);
+                JspException e = new JspException
+                    (messages.getMessage("linkTag.url",
+                                         request.getScheme(),
+                                         request.getServerName(),
+                                         "" + request.getServerPort(),
+                                         forward.getPath()));
+                throw e;
+            }
 	}
 
         // If "linkName" was specified, return null (not making an href)
@@ -489,7 +509,25 @@ public class LinkTag extends BaseHandlerTag {
         else if (page != null) {
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
-            href = RequestUtils.absoluteURL(request, page);
+            try {
+                href = RequestUtils.absoluteURL(request, page);
+            } catch (MalformedURLException mue) {
+                RequestUtils.saveException(pageContext, mue);
+                ServletContext sc = pageContext.getServletContext();
+                sc.log(messages.getMessage("linkTag.url",
+                                           request.getScheme(),
+                                           request.getServerName(),
+                                           "" + request.getServerPort(),
+                                           page),
+                       mue);
+                JspException e = new JspException
+                    (messages.getMessage("linkTag.url",
+                                         request.getScheme(),
+                                         request.getServerName(),
+                                         "" + request.getServerPort(),
+                                         page));
+                throw e;
+            }
         }
 
         // Save any currently specified anchor string
