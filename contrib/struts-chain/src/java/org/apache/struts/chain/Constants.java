@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/Constants.java,v 1.4 2003/10/10 04:26:16 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2003/10/10 04:26:16 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/Constants.java,v 1.5 2003/10/25 00:02:33 mrdon Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/10/25 00:02:33 $
  *
  * ====================================================================
  *
@@ -132,7 +132,13 @@ public final class Constants {
      * will be stored.</p>
      */
     public static final String FORWARD_CONFIG_KEY = "forwardConfig";
-
+    
+    /**
+     * <p>The default context attribute under which the
+     * include path for the current request
+     * will be stored.</p>
+     */
+    public static final String INCLUDE_KEY = "include";
 
     /**
      * <p>The default context attribute under which the

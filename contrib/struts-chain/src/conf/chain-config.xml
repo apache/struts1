@@ -4,7 +4,7 @@
     This file contains definitions of the standard Chain Of Responsibility
     chains that emulate Struts 1.x processing functionality.
 
-    $Id: chain-config.xml,v 1.6 2003/10/24 02:35:02 mrdon Exp $
+    $Id: chain-config.xml,v 1.7 2003/10/25 00:02:32 mrdon Exp $
 -->
 
 
@@ -88,7 +88,7 @@
 
            processForward          SelectForward
 
-           processInclude          NOT SUPPORTED YET
+           processInclude          SelectInclude / PerformInclude
 
            processActionCreate     CreateAction
 
@@ -161,7 +161,17 @@
       <!-- Select the appropriate ForwardConfig for action mappings that only
            have an ActionForward -->
       <command
-          className="org.apache.struts.chain.servlet.SelectForward"/> 
+          className="org.apache.struts.chain.servlet.SelectForward"/>
+      
+      
+      <!-- Select the include uri (if any) for the current action mapping -->
+      <command
+          className="org.apache.struts.chain.SelectInclude"/>
+          
+      
+      <!-- Perform the include (if needed) -->
+      <command
+          className="org.apache.struts.chain.servlet.PerformInclude"/>
 
 
       <!-- Create (if needed) the Action for this request -->
