@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.42 2003/06/29 05:27:58 martinc Exp $
+# $Id: build.properties.sample,v 1.43 2003/07/01 17:49:25 turner Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -97,6 +97,12 @@ tomcat.home=${apache.home}/jakarta-tomcat-3.3.1
 # The JAR file containing the Xerces parser.  This is only required if you are
 # going to execute the "deploy.catalina" target.
 xerces.jar=${apache.home}/xerces-1_4_4/xerces.jar
+
+# The JAR file containing the ANTLR runtime support classes, needed for the
+# validwhen validator rule to work.  You can get this file from:
+# http://www.antlr.org/
+antlr.jar = ../../..//antlr-2.7.1/antlr.jar
+
 
 # Properties related to optional tasks
 # ------------------------------------

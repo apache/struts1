@@ -82,6 +82,10 @@
                                       classes to compile against (currently,
                                       either version 2.2 or 2.3 supported).
 
+        antlr.jar                     (required) The path to the ANTLR classes
+                                      to copy.  Required for the validwhen
+                                      validator rule to parser it's args.
+
         tomcat.home                   (optional). The path to the Tomcat 3.x
                                       installation. This is required only when
                                       executing the "deploy.tomcat" target.
@@ -204,6 +208,7 @@
       <pathelement location="${jdbc20ext.jar}"/>
       <pathelement location="${jsp.jar}"/>
       <pathelement location="${servlet.jar}"/>
+      <pathelement location="${antlr.jar}"/>
       <pathelement location="${xerces.jar}"/>
     </path>
 
@@ -261,6 +266,8 @@
             tofile="${build.home}/library/commons-validator.jar"/>
         <copy file="${jakarta-oro.jar}"
             tofile="${build.home}/library/jakarta-oro.jar"/>
+        <copy file="${antlr.jar}" failonerror="false"
+            tofile="${build.home}/library/antlr.jar"/>
 <!-- Compile-time dependency only
         <copy file="${jdbc20ext.jar}"
             tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
