@@ -734,6 +734,7 @@
         available to conventional or DynaActionForms.
         You might have difficulty referencing <a href="../faqs/indexedprops.html">indexed or mapped properties</a>
         using a map-backed ActionForm.
+        The <code>validwhen</code> validator (since Struts 1.2.1) also does not support map-backed ActionForms.
     </p>
 
 </section>

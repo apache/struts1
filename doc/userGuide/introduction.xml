@@ -410,15 +410,14 @@
         <p>
           <a href="index.html">Other chapters</a> in this document cover the 
           various Struts components in greater detail. The Struts release also 
-          includes several Developer Guides covering various aspects of the 
+          includes several Developer Guides covering various aspects of the
           frameworks, along with sample applications, the standard Javadoc API, 
           and, of course, the complete source code!
          </p>
          
          <p>
-          Struts is distributed under the Apache Software Foundation license. The code 
-          is copyrighted, but is free to use in any application. See the 
-          <a href="http://www.apache.org/LICENSE-1.1">ASF license</a> for specifics. 
+          Struts is distributed under the <a href="http://www.apache.org/licenses/">Apache Software Foundation license</a>.
+          The code is copyrighted, but is free to use in any application.
          </p>
           
 </section>

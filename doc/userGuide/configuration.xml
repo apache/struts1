@@ -388,7 +388,7 @@
 ]]></code></pre>
 
     <p>
-    In Struts 1.2.0, the GenericDataSource has been removed, and it is
+    Since Struts 1.2.0, the GenericDataSource has been removed, and it is
     recommended that you use the Commons BasicDataSource or other DataSource
     implementation instead. In practice, if you need to use the DataSource 
     manager, you should use whatever DataSource implementation works best 
@@ -442,7 +442,7 @@
     </p>
 
     <p>
-    In Struts 1.1, you have two options: you can list
+    Since Struts 1.1, you have two options: you can list
     <a href="#dd_config_servlet">multiple struts-config files</a> as a
     comma-delimited list, or you can subdivide a larger application into
     modules.
@@ -462,7 +462,7 @@
     href="module_config-inform_controller">
 
     <p>
-    In struts 1.0, you listed your configuration file as an initialization
+    Since Struts 1.0, you listed your configuration file as an initialization
     parameter to the action servlet in web.xml.
     This is still done in 1.1, but it's augmented a little.
     In order to tell the Struts machinery about your different modules, you
@@ -516,11 +516,42 @@
 <section name="5.3.3 Switching Modules" href="module_config-switching">
 
     <p>
-    There are two basic methods to switching from one module to another.
-    You can either use a forward (global or local) and specify the
-    contextRelative attribute with a value of true, or you can use
-    the built-in <code>org.apache.struts.actions.SwitchAction</code>.
+    There are three approaches for switching from one module to another.
+    You can you can use the built-in <code>org.apache.struts.actions.SwitchAction</code>,
+    you can use a forward (global or local) and specify the contextRelative attribute with a value of true,
+    or you can specify the "module" parameter as part of any of the Struts hyperlink tags (Include, Img, Link, Rewrite, or Forward).
     </p>
+
+    <p>
+     You can use <code>org.apache.struts.actions.SwitchAction</code> like so:
+    </p>
+
+<pre><code><![CDATA[
+    ...
+    <action-mappings>
+    <action path="/toModule"
+    type="org.apache.struts.actions.SwitchAction"/>
+    ...
+    </action-mappings>
+    ...
+]]></code></pre>
+
+    <p>
+     Now, to change to ModuleB, we would use a URI like this:
+    </p>
+
+    <pre><code>
+    http://localhost:8080/toModule.do?prefix=/moduleB&amp;page=/index.do
+    </code></pre>
+
+    <p>
+    If you are using the "default" module as well as "named" modules (like "/moduleB"),
+    you can switch back to the "default" module with a URI like this:
+    </p>
+
+    <pre><code>
+    http://localhost:8080/toModule.do?prefix=&amp;page=/index.do
+    </code></pre>
 
     <p>
     Here's an example of a global forward:
@@ -565,37 +596,12 @@
 ]]></code></pre>
 
     <p>
-     Finally, you could use
-     <code>org.apache.struts.actions.SwitchAction</code>,
-     like so:
+    Using the module parameter with a hyperlink tag is even simplier:
     </p>
 
-<pre><code><![CDATA[
-    ...
-    <action-mappings>
-    <action path="/toModule"
-    type="org.apache.struts.actions.SwitchAction"/>
-    ...
-    </action-mappings>
-    ...
-]]></code></pre>
-
-    <p>
-     Now, to change to ModuleB, we would use a URI like this:
-    </p>
-
-    <pre><code>
-    http://localhost:8080/toModule.do?prefix=/moduleB&amp;page=/index.do
-    </code></pre>
-
-    <p>
-    If you are using the "default" module as well as "named" modules (like "/moduleB"),
-    you can switch back to the "default" module with a URI like this:
-    </p>
-
-    <pre><code>
-    http://localhost:8080/toModule.do?prefix=&amp;page=/index.do
-    </code></pre>
+    <pre><code><![CDATA[
+    <html:link module="moduleB" path="/index.do"/>
+    ]]></code></pre>
 
     <p>
     That's all there is to it!  Happy module-switching!
@@ -788,7 +794,7 @@
 
         <p>
         <strong>WARNING</strong> - If you are using
-        the new module support in Struts 1.1, you should be aware
+        the new module support since Struts 1.1, you should be aware
         that <strong>only</strong> extension mapping is supported.
         </p>
 
@@ -1025,7 +1031,7 @@
     href="config_logging">
 
   <p>
-  In Struts 1.0, the logging functionality was fairly limited.  You could
+  Since Struts 1.0, the logging functionality was fairly limited.  You could
   set a debugging detail level with a servlet initialization parameter, and
   all log messages were written to wherever <code>ServletContext.log()</code>
   output is sent by your servlet container.  WIth Struts 1.1, however, all

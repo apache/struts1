@@ -326,8 +326,6 @@
         <ul>
           <li>2003-08-23 - TagUtils: Deprecated getActionErrors() in favor of getActionMessages().</li>
           <li>2003-08-16 - TagUtils: Replaced ActionError with ActionMessage.</li>
-        </ul>
-        <ul>
           <li>2003-08-02 - LocalStrings.properties,TagUtils: Move message resources from util package.</li>
         </ul>
         <ul>

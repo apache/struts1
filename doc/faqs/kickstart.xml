@@ -59,12 +59,17 @@ Here are answers to the usual getting-started questions. <strong>For an in-depth
 </section>
 
 <section href="compat" name="Is Struts compatible with other Java technologies?">
-<p>Yes. Struts is committed to supporting industry standards. Our lead developer is a member of <a href="http://java.sun.com/aboutJava/communityprocess/jsr/jsr_052_jsptaglib.html">JSR052</a>, Sun's Expert group for developing a standard library of custom JSP tags. A primary design criteria is that Struts must be compatible with Sun's J2EE platform for corporate enterprises. In fact, Struts really acts as an integrator of Java technologies, so that they can be used in the &quot;real world&quot;.</p>
+<p>Yes. Struts is committed to supporting industry standards.
+    Struts acts as an integrator of Java technologies so that they can be used in the &quot;real world&quot;.</p>
 </section>
 
 <section href="who" name="Who wrote Struts?">
-<p>Struts was created by Craig R. McClanahan, and donated to The Apache Software Foundation in May 2000. Craig is the primary developer of both Struts and <a href="http://jakarta.apache.org/tomcat/index.html">Tomcat 4</a>, the basis for the official reference implementation for a servlet 2.3 and JSP 1.2 container. With stable releases of Struts and Tomcat 4 in circulation, Craig is now the Specification Lead for <a href="http://jcp.org/jsr/detail/127.jsp">JavaServer Faces (JSR-127)</a>, and is the Web Layer Architect for the Java2 Enterprise Edition (J2EE) platform as a whole.</p>
-<p>There are now many active committers to the Struts project, working cooperatively from around the globe. Other Java developers are invited to <a href="helping.html#contribute">contribute to the project</a>. Struts is an <a href="http://jakarta.apache.org/">Apache Jakarta</a>  project, with the common mission to &quot;provide commercial-quality server solutions based on the Java Platform that are developed in an open and cooperative fashion&quot;. All told, 17 individual developers and committers contributed to the Struts 1.0 codebase.</p>
+    <p>There are several <a href="../volunteers.html">active committers</a> to the Struts project, working cooperatively from around the globe.  Dozens of individual developers and committers contributed to the Struts 1.x codebase. All interested Java developers are invited to <a href="helping.html#contribute">contribute to the project</a>.
+    Struts is a <a href="http://apache.org/">Apache Software Foundation</a>  project, with the mission to &quot;provide secure, enterprise-grade server solutions based on the Java Platform that are developed in an open and cooperative fashion&quot;.</p>
+    <p>Struts was created by Craig R. McClanahan and donated to The Apache Software Foundation in May 2000. Craig was the primary developer of both Struts 1.x and <a href="http://jakarta.apache.org/tomcat/index.html">Tomcat 4</a>. Tomcat 4 was the basis for the official reference implementation for a servlet 2.3 and JSP 1.2 container.</p>
+    <p>Craig's current focus is as architect of the Sun Java Studio Creator (formerly Project Rave).
+    Craig also serves as the Specification Lead for <a href="http://jcp.org/jsr/detail/127.jsp">JavaServer Faces (JSR-127)</a>,
+    and is the Web Layer Architect for the Java2 Enterprise Edition (J2EE) platform as a whole.</p>
 </section>
 
 <section href="struts" name="Why is it called Struts?">
@@ -72,12 +77,11 @@ Here are answers to the usual getting-started questions. <strong>For an in-depth
 </section>
 
 <section href="license" name="How is Struts licensed?">
-<p>Struts is copyrighted software available under a &quot;free-to-use-license&quot; by The Apache Software Foundation. The license appears at the head of every source code file. A reference copy of the license is available <a href="http://www.apache.org/LICENSE-1.1">here</a>.</p>
+<p>Struts is copyrighted software available under the <a href="http://www.apache.org/licenses">Apache License</a>, a &quot;free-to-use, business-friendly license&quot;.</p>
 </section>
 
 <section href="usage" name="Can Struts be used in a commercial product?">
-<p>Yes. The only requirements you must meet are those listed in the Apache Software Foundation license, which is included at the top of each source file and in the file LICENSE in the top-level directory of the distribution.</p>
-<p>In addition, <a href="helping.html#bugs">contributions of patches, improved code, new features,</a> or even just requests for features are also welcome.</p>
+<p>Yes. The only requirements you must meet are those listed in the <a href="http://www.apache.org/licenses">Apache License</a>.</p>
 </section>
 
 <section href="credits" name="Do I have to credit Struts on my own website?">
@@ -89,7 +93,7 @@ Required if you've used the source code to create your own server that you are r
 </section>
 
 <section href="where" name="Where can I get a copy of Struts?">
-<p>The best place to download Struts is at <a href="http://jakarta.apache.org/struts/">jakarta.apache.org/struts</a>. The nightly builds are very stable, and recommended as the best place to start today.</p>
+<p>The best place to download Struts is at <a href="http://struts.apache.org/">struts.apache.org</a>. The nightly builds are very stable, and recommended as the best place to start today.</p>
 </section>
 
 <section href="install" name="How do I install Struts?">
@@ -150,7 +154,7 @@ First, it's important to remember that Struts is an all-volunteer project.
 We don't charge anyone anything to use Struts.
 Committers and other developers work on Struts because they need to use it with their own applications.
 If others can use it too, that's "icing on the cake".
-If you submit a patch for a feature that a Committer finds useful, then that Committer may choose to volunteer his or her time to apply the patch.
+If you <a href="../helping.html">submit a patch</a> for a feature that a Committer finds useful, then that Committer may choose to volunteer his or her time to apply the patch.
 If you just submit an idea without a patch, it is much less likely to be added (since first someone else has to volunteer their time to write the patch).
 </p>
 <p>
@@ -167,11 +171,11 @@ also have their own in-depth Developers Guide, to cover more advanced topics. Co
 along with the <strong>full source code</strong>. For your convenience, these are bundled together as
 a self-installing application. The <code>struts-documentation.war</code> is the same
 bundle that is deployed as the
-<a href="http://jakarta.apache.org/struts/">Struts Web site</a>.
+<a href="http://struts.apache.org/">Struts Web site</a>.
 </p>
 <p>
 The
-<a href="http://jakarta.apache.org/site/mail.html">Strut's mailing list</a> is also
+<a href="http://struts.apache.org/using.html#lists">Strut's mailing list</a> is also
 very active, and welcomes posts from new users. Before posting a new question, be
 sure to consult the
 <a href="http://www.mail-archive.com/struts-user%40jakarta.apache.org/">
@@ -259,10 +263,9 @@ WAP up your EAserver</a>.
        desktop.
     </p>
 <p>
-The inventor of Struts, Craig McClanahan, was a member of the
-expert group for the JavaServer Standard Tag Library (JSR 052) and
-is now the specification co-lead for JavaServer Faces (JSR 127). Both
-technologies are complementary to Struts.</p>
+The inventor of Struts, Craig McClanahan, is the specification co-lead for
+JavaServer Faces (JSR 127), and architect of the reference implemenation
+as well as Java Studio Creator. Both JSTL and JSF are complementary to Struts.</p>
 <p>
 The mainstay of the Struts framework is the controller components, which
 can be used with any Java presentation technology. As new technologies
@@ -284,12 +287,13 @@ appear to help these technologies work as well with Struts.
 </p>
     <p>
         The JSF specification and reference implementation is available through Sun's
+        The JSF specification and reference implementation is available through Sun's
         <a href="http://java.sun.com/j2ee/javaserverfaces/index.jsp">Java ServerFaces page</a>.
         An early-release JavaServer Faces taglib for Struts,
-        <a href="http://cvs.apache.org/builds/jakarta-struts/nightly/struts-faces/">
-        <strong>Struts-Faces</strong></a>, is also in early release and available
-        through the nightly build. The Struts Faces taglib is expected to work with any
-        compliant JSF implementation, including <a href="http://www.myfaces.org/">MyFaces</a>.
+        <strong>Struts-Faces</strong>, is also in early release and available through the
+        <a href="http://cvs.apache.org/builds/jakarta-struts/nightly/struts-faces/">nightly build</a>.
+        The Struts Faces taglib is expected to work with any compliant JSF implementation, including
+        <a href="http://www.myfaces.org/">MyFaces</a>.
     </p>
     <p>
         For more about what JavaServer Faces means to the Struts community,
@@ -308,23 +312,18 @@ The members of the Struts development team each use their own tools such as
 and <a href="http://www.netbeans.org/">NetBeans</a>.
 </p>
 <p>
-At this writing, in the free zone, NetBeans had the edge with JSP editing, but Eclipse has more advanced refactoring features. 
-Eclipse is also a general-purpose IDE and can be used with non-Java projects.
-In the non-free zone, IDEA is highly regarded but costs money. (Of course, if *you* cost money, good tools are often a good investment.)
-</p>
-<p>
 See the <a href="../faqs/index.html">Howto Guides</a> for more about configuring IDEs to work with Struts.
 </p>
 </section>
 
 <section href="digest" name="Is there a digest for the User list?">
 <p>
-Yes. <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">send a blank message</a> to &lt; <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">struts-user-digest-subscribe@jakarta.apache.org</a>&gt;.
+Yes. <a href="mailto:user-digest-subscribe@struts.apache.org">send a blank message</a> to &lt; <a href="mailto:user-digest-subscribe@struts.apache.org">user-digest-subscribe@struts.apache.org</a>&gt;.
 </p>
 <p>
 If you are subscribed to the digest, you can also post to the list.
 Just be sure to send your post to the
-<a href="mailto:struts-user@jakarta.apache.org">user list</a> rather than trying to reply to the digest.
+<a href="mailto:user@struts.apache.org">user list</a> rather than trying to reply to the digest.
 </p>
 </section>
 
@@ -340,19 +339,19 @@ favorite newsgroup reader from the
 
 <section href="mailbounce" name="Why didn't my posting show up on the user list?">
 <p>
-You must be subscribed to the <a href="mailto:struts-user-subscribe@jakarta.apache.org">user list</a>
-or <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">user digest</a> before posting
+You must be subscribed to the <a href="mailto:user-subscribe@struts.apache.org">user list</a>
+or <a href="mailto:user-digest-subscribe@struts.apache.org">user digest</a> before posting
 (or use the <a href="http://news.gmane.org">GMane Newsgroups</a> instead).
 </p>
 </section>
 
 <section href="unsubscribe" name="How do I unsubscribe from the mailing list?">
 <p>
-<strong>From the email account used to subscribe to the list,</strong> <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">send a blank message</a> to &lt; <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">struts-user-unsubscribe@jakarta.apache.org</a>&gt;.
+<strong>From the email account used to subscribe to the list,</strong> <a href="mailto:user-unsubscribe@struts.apache.org">send a blank message</a> to &lt; <a href="mailto:user-unsubscribe@struts.apache.org">user-unsubscribe@struts.apache.org</a>&gt;.
 </p>
 <p>
 If you are receiving the digest, you must send a blank email to
-&lt;<a href="mailto:struts-user-digest-unsubscribe@jakarta.apache.org">struts-user-unsubscribe@jakarta.apache.org</a>&gt;
+&lt;<a href="mailto:user-digest-unsubscribe@struts.apache.org">user-unsubscribe@struts.apache.org</a>&gt;
 instead.
 </p>
 </section>

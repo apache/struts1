@@ -97,7 +97,7 @@
       <li><em>Commons FileUpload</em> (Version 1.0 or later)</li>
       <li><em>Commons Lang</em> (Version 2.0 or later)</li>
       <li><em>Commons Logging</em> (Version 1.0.3 or later when it is available)</li>
-      <li><em>Commons Validator</em> (Version 1.1.2 or later) </li>
+      <li><em>Commons Validator</em> (Version 1.1.3 or later) </li>
       <li><em>Jakarta ORO</em> (Version 2.0.7 or later)</li>
       </ul>
       ANTLR is a public domain library; all other libraries are distributed under the
