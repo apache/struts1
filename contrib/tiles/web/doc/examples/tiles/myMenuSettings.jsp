@@ -27,6 +27,7 @@ function move( col1, col2)
   opt = new Option( toMove.text, toMove.value, false, false );
   col1.options[col1.selectedIndex ] = null;
   col2.options[col2.length] = opt;
+  col2.selectedIndex = col2.length-1;
   return true;
 }
 
@@ -42,10 +43,13 @@ function up( col1 )
   if( index <= 0 )
     return true;
 	
-  toMove = col1.options[ index ];
-  opt = new Option( toMove.text, toMove.value, false, false );
-  col1.options[index] = col1.options[index-1];
-  col1.options[index-1] = opt;
+  toMoveX = col1.options[ index -1 ];
+  toMoveY = col1.options[ index ];
+  optX = new Option( toMoveX.text, toMoveX.value, false, false );
+  optY = new Option( toMoveY.text, toMoveY.value, false, false );
+  col1.options[index] = optX;
+  col1.options[index-1] = optY;
+  col1.selectedIndex = index-1;
   return true;
 }
 
@@ -55,10 +59,14 @@ function down( col1 )
   if( index+1 >=  col1.options.length )
     return true;
 	
-  toMove = col1.options[ index ];
-  opt = new Option( toMove.text, toMove.value, false, false );
-  col1.options[index] = col1.options[index+1];
-  col1.options[index+1] = opt;
+  toMoveX = col1.options[ index ];
+  toMoveY = col1.options[ index + 1 ];
+  optX = new Option( toMoveX.text, toMoveX.value, false, false );
+  optY = new Option( toMoveY.text, toMoveY.value, false, false );
+  col1.options[index] = optY;
+  col1.options[index+1] = optX;
+  col1.selectedIndex = index+1;
+
   return true;
 }
 
