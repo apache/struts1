@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.22 2000/09/23 19:17:10 craigmcc Exp $
- * $Revision: 1.22 $
- * $Date: 2000/09/23 19:17:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.23 2000/09/23 22:51:46 craigmcc Exp $
+ * $Revision: 1.23 $
+ * $Date: 2000/09/23 22:51:46 $
  *
  * ====================================================================
  *
@@ -67,8 +67,10 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Hashtable;
+import java.util.Enumeration;
 import java.util.Locale;
 import java.util.MissingResourceException;
+import java.util.Vector;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
@@ -197,7 +199,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.22 $ $Date: 2000/09/23 19:17:10 $
+ * @version $Revision: 1.23 $ $Date: 2000/09/23 22:51:46 $
  */
 
 public class ActionServlet
@@ -205,6 +207,13 @@ public class ActionServlet
 
 
     // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The set of Action instances that have been created and initialized,
+     * keyed by the fully qualified Java class name.
+     */
+    protected Hashtable actions = new Hashtable();
 
 
     /**
@@ -324,6 +333,7 @@ public class ActionServlet
 	if (debug >= 1)
 	    log(internal.getMessage("finalizing"));
 
+        destroyActions();
 	destroyApplication();
 	destroyInternal();
 
@@ -597,6 +607,24 @@ public class ActionServlet
 
 
     // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Gracefully shut down any action instances we have created.
+     */
+    protected void destroyActions() {
+
+        synchronized (this.actions) {
+            Vector actives = new Vector();
+            Enumeration actions = this.actions.elements();
+            while (actions.hasMoreElements()) {
+                Action action = (Action) actions.nextElement();
+                action.setServlet(null);
+            }
+            this.actions.clear();
+        }
+
+    }
 
 
     /**
@@ -973,8 +1001,49 @@ public class ActionServlet
 	if (!processValidate(mapping, formInstance, request, response))
 	    return;
 
+        // Acquire the Action instance to process this request
+        Action actionInstance = processActionCreate(mapping, request);
+        if (actionInstance == null) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                               internal.getMessage("actionCreate",
+                                                   mapping.getPath()));
+            return;
+        }
+
 	// Call the action instance itself
-	processActionInstance(mapping, formInstance, request, response);
+	processActionPerform(actionInstance, mapping, formInstance,
+                             request, response);
+
+    }
+
+
+    /**
+     * Create or retrieve the Action instance that will process this request,
+     * or <code>null</code> if no such Action instance can be created.
+     *
+     * @param mapping The ActionMapping we are processing
+     * @param request The servlet request we are processing
+     */
+    protected Action processActionCreate(ActionMapping mapping,
+                                         HttpServletRequest request) {
+
+        // Acquire the Action instance we will be using
+        String actionClass = mapping.getActionClass();
+        Action actionInstance = (Action) actions.get(actionClass);
+        if (actionInstance == null) {
+            try {
+                Class clazz = Class.forName(actionClass);
+                actionInstance = (Action) clazz.newInstance();
+                actionInstance.setServlet(this);
+                actions.put(actionClass, actionInstance);
+            } catch (Throwable t) {
+                log("Error creating Action instance for path '" +
+                    mapping.getPath() + "', class name '" +
+                    actionClass + "'", t);
+                return (null);
+            }
+        }
+        return (actionInstance);
 
     }
 
@@ -1035,9 +1104,9 @@ public class ActionServlet
 
 
     /**
-     * Identify and call an appropriate <code>Action</code> instance
-     * to handle this request.
+     * Ask the specified Action instance to handle this request.
      *
+     * @param action The Action to process this request
      * @param mapping The ActionMapping we are processing
      * @param formInstance The ActionForm we are processing
      * @param request The servlet request we are processing
@@ -1046,28 +1115,18 @@ public class ActionServlet
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      */
-    protected void processActionInstance(ActionMapping mapping,
-					 ActionForm formInstance,
-					 HttpServletRequest request,
-					 HttpServletResponse response)
+    protected void processActionPerform(Action action,
+                                        ActionMapping mapping,
+                                        ActionForm formInstance,
+                                        HttpServletRequest request,
+                                        HttpServletResponse response)
 	throws IOException, ServletException {
-
-	// Identify the action class we will be using
-	Action actionInstance = mapping.createActionInstance();
-	if (actionInstance == null) {
-	    if (debug >= 1)
-	        log("Could not create an ActionInstance for '" +
-		    mapping.getPath() + "'");
-	    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-			       internal.getMessage("actionCreate",
-						   mapping.getPath()));
-	    return;
-	}
 
 	// Perform the requested action
 	ActionForward forward =
-	    actionInstance.perform(this, mapping, formInstance,
-				   request, response);
+	    action.perform(mapping, formInstance, request, response);
+
+        // Obey any returned ActionForward
 	if (forward != null) {
 	    String path = forward.getPath();
 	    if (forward.getRedirect())

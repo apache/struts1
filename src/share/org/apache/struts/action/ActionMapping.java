@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.7 2000/09/20 04:20:21 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/09/20 04:20:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.8 2000/09/23 22:51:46 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/09/23 22:51:46 $
  *
  * ====================================================================
  *
@@ -138,7 +138,7 @@ package org.apache.struts.action;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/09/20 04:20:21 $
+ * @version $Revision: 1.8 $ $Date: 2000/09/23 22:51:46 $
  */
 
 public class ActionMapping {
@@ -647,29 +647,6 @@ public class ActionMapping {
     public void addForward(ActionForward forward) {
 
         forwards.addForward(forward);
-
-    }
-
-
-    /**
-     * Return an initialized instance of our Action class for this mapping.
-     * If instantiation fails for any reason, <code>null</code> is returned.
-     */
-    public Action createActionInstance() {
-
-        // Return the already instantiated instance (if any)
-        if (instance != null)
-            return (instance);
-
-        // Instantiate and return a new instance of the Action class
-        try {
-            Class clazz = Class.forName(type);
-            instance = (Action) clazz.newInstance();
-        } catch (Throwable t) {
-            instance = null;
-        }
-
-        return (instance);
 
     }
 

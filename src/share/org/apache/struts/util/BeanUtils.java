@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.11 2000/08/31 00:11:16 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2000/08/31 00:11:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.12 2000/09/23 22:51:47 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2000/09/23 22:51:47 $
  *
  * ====================================================================
  *
@@ -84,20 +84,10 @@ import javax.servlet.jsp.PageContext;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.11 $ $Date: 2000/08/31 00:11:16 $
+ * @version $Revision: 1.12 $ $Date: 2000/09/23 22:51:47 $
  */
 
 public final class BeanUtils {
-
-
-    // ------------------------------------------------------- Static Variables
-
-
-    /**
-     * The cache of PropertyDescriptor arrays for beans we have already
-     * introspected, keyed by the fully qualified class name of this bean.
-     */
-    private static Hashtable descriptorsCache = new Hashtable();
 
 
     // --------------------------------------------------------- Public Classes
@@ -339,7 +329,7 @@ public final class BeanUtils {
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
-	Object value = getPropertyValue(bean, name);
+	Object value = PropertyUtils.getProperty(bean, name);
 	if (value == null) {
 	    return (null);
 	} else if (value.getClass().isArray()) {
@@ -367,6 +357,10 @@ public final class BeanUtils {
      * property, as a String.  The index is specified by being appended
      * to the property name in square brackets.  If the specified index
      * is out of range, <code>null</code> is returned.
+     * <p>
+     * <strong>WARNING</strong> - Use of the "square brackets" syntax
+     * for indexed references has been deprecated in favor of the new
+     * approach using the PropertyUtils.INDEXED_DELIM delimiter
      *
      * @param bean Bean whose property is to be extracted
      * @param name name of the property to be extracted, plus a literal
@@ -383,15 +377,21 @@ public final class BeanUtils {
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
-	// Parse the property name and subscript expression
+        // @deprecated Convert the deprecated syntax to the new format
 	int left = name.lastIndexOf("[");
 	int right = name.lastIndexOf("]");
-	if ((left < 0) || (right < left) ||
-	    (right < (name.length() - 1)))
+        if ((left >= 0) && (right > left))
+            name = name.substring(0, left) + PropertyUtils.INDEXED_DELIM +
+                name.substring(left + 1, right);
+
+	// Parse the property name and subscript expression
+        int delim = PropertyUtils.INDEXED_DELIM;
+        if (delim < 0)
 	    return (getScalarProperty(bean, name));
 	int index = -1;
 	try {
-	    index = Integer.parseInt(name.substring(left + 1, right));
+	    index = Integer.parseInt(name.substring(delim + 1));
+            name = name.substring(0, delim);
 	} catch (NumberFormatException e) {
 	    return (getScalarProperty(bean, name));
 	}
@@ -441,20 +441,18 @@ public final class BeanUtils {
      *
      * @param bean The JavaBean that the property belongs to
      * @param name Name of the property whose setter method is requested
+     *
+     * @deprecated Use <code>PropertyUtils.getPropertyDescriptor()</code>
+     *  instead
      */
     public static PropertyDescriptor getPropertyDescriptor(Object bean,
 							   String name) {
 
-	if ((bean == null) || (name == null))
-	    return (null);
-	PropertyDescriptor descriptors[] = getPropertyDescriptors(bean);
-	if (descriptors == null)
-	    return (null);
-	for (int i = 0; i < descriptors.length; i++) {
-	    if (name.equals(descriptors[i].getName()))
-		return (descriptors[i]);
-	}
-	return (null);
+        try {
+            return (PropertyUtils.getPropertyDescriptor(bean, name));
+        } catch (Throwable t) {
+            return (null);
+        }
 
     }
 
@@ -465,31 +463,13 @@ public final class BeanUtils {
      * a zero-length array is returned.
      *
      * @param bean Bean whose property descriptors are required
+     *
+     * @deprecated Use <code>PropertyUtils.getPropertyDescriptors()</code>
+     *  instead
      */
     public static PropertyDescriptor[] getPropertyDescriptors(Object bean) {
 
-	if (bean == null)
-	    return (new PropertyDescriptor[0]);
-
-	// Look up any cached descriptors for this bean class
-	String beanClassName = bean.getClass().getName();
-	PropertyDescriptor descriptors[] =
-	    (PropertyDescriptor[]) descriptorsCache.get(beanClassName);
-	if (descriptors != null)
-	    return (descriptors);
-
-	// Introspect the bean and cache the generated descriptors
-	BeanInfo beanInfo = null;
-	try {
-	    beanInfo = Introspector.getBeanInfo(bean.getClass());
-	} catch (IntrospectionException e) {
-	    return (new PropertyDescriptor[0]);
-	}
-	descriptors = beanInfo.getPropertyDescriptors();
-	if (descriptors == null)
-	    descriptors = new PropertyDescriptor[0];
-	descriptorsCache.put(beanClassName, descriptors);
-	return (descriptors);
+        return (PropertyUtils.getPropertyDescriptors(bean));
 
     }
 
@@ -507,25 +487,14 @@ public final class BeanUtils {
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
      *  propety cannot be found
+     *
+     * @deprecated Use <code>PropertyUtils.getProperty()</code> instead.
      */
     public static Object getPropertyValue(Object bean, String name)
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
-	// Retrieve the property getter method for the specified property
-	PropertyDescriptor descriptor =
-	    getPropertyDescriptor(bean, name);
-	if (descriptor == null)
-	    throw new NoSuchMethodException("Unknown property '" +
-					    name + "'");
-	Method readMethod = descriptor.getReadMethod();
-	if (readMethod == null)
-	    throw new NoSuchMethodException("Property '" + name +
-					    "' has no getter method");
-
-	// Call the property getter and return the value
-	Object value = readMethod.invoke(bean, new Object[0]);
-	return (value);
+        return (PropertyUtils.getProperty(bean, name));
 
     }
 
@@ -548,7 +517,7 @@ public final class BeanUtils {
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
-	Object value = getPropertyValue(bean, name);
+	Object value = PropertyUtils.getProperty(bean, name);
 	if (value == null) {
 	    return (null);
 	} else if (value.getClass().isArray()) {
@@ -718,7 +687,8 @@ public final class BeanUtils {
 	    return;
 
 	// Identify the property descriptors supported by our JavaBean
-	PropertyDescriptor descriptors[] = getPropertyDescriptors(bean);
+	PropertyDescriptor descriptors[] =
+            PropertyUtils.getPropertyDescriptors(bean);
 	if (descriptors.length < 1)
 	    return;
 

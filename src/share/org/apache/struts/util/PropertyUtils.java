@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.2 2000/09/21 03:39:34 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/09/21 03:39:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.3 2000/09/23 22:51:47 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/09/23 22:51:47 $
  *
  * ====================================================================
  *
@@ -99,26 +99,44 @@ import java.util.Hashtable;
  *     will have a getter method named <code>getXyz()</code> or (for boolean
  *     properties only) <code>isXyz()</code>, and a setter method named
  *     <code>setXyz()</code>.</li>
- * <li><strong>Nested (<code>name1.name2.name3</code>)</strong> The first
+ * <li><strong>Nested (<code>name1_name2_name3</code>)</strong> The first
  *     name element is used to select a property getter, as for simple
  *     references above.  The object returned for this property is then
  *     consulted, using the same approach, for a property getter for a
  *     property named <code>name2</code>, and so on.  The property value that
  *     is ultimately retrieved or modified is the one identified by the
  *     last name element.</li>
- * <li><strong>Indexed (<code>name[index]</code>)</strong> - The underlying
+ * <li><strong>Indexed (<code>name$index</code>)</strong> - The underlying
  *     property value is assumed to be an array, or this JavaBean is assumed
  *     to have indexed property getter and setter methods.  The appropriate
  *     (zero-relative) entry in the array is selected.</li>
+ * <li><strong>Combined (<code>name1_name2$index_name3</strong> - Various
+ *     forms combining nested and indexed references are also supported.</li>
  * </ul>
  *
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.2 $ $Date: 2000/09/21 03:39:34 $
+ * @version $Revision: 1.3 $ $Date: 2000/09/23 22:51:47 $
  */
 
 public final class PropertyUtils {
+
+
+    // ----------------------------------------------------- Manifest Constants
+
+
+    /**
+     * The delimiter that preceeds the zero-relative subscript for an
+     * indexed reference.
+     */
+    public static final char INDEXED_DELIM = '$';
+
+
+    /**
+     * The delimiter that separates the components of a nested reference.
+     */
+    public static final char NESTED_DELIM = '_';
 
 
     // ------------------------------------------------------- Static Variables
@@ -192,23 +210,19 @@ public final class PropertyUtils {
 	       NoSuchMethodException {
 
 	// Identify the index of the requested individual property
-	int left = name.indexOf("[");
-	int right = name.indexOf("]");
-	if ((left < 0) || (right <= left))
-	    throw new IllegalArgumentException("Invalid indexed property '" +
-					       name + "'");
-	if (right > (name.length() - 1))
+        int delim = name.indexOf(INDEXED_DELIM);
+        if (delim < 0)
 	    throw new IllegalArgumentException("Invalid indexed property '" +
 					       name + "'");
 	int index = -1;
 	try {
-	    String subscript = name.substring(left + 1, right);
+	    String subscript = name.substring(delim + 1);
 	    index = Integer.parseInt(subscript);
 	} catch (NumberFormatException e) {
 	    throw new IllegalArgumentException("Invalid indexed property '" +
 					       name + "'");
 	}
-	name = name.substring(0, left);
+	name = name.substring(0, delim);
 
 	// Request the specified indexed property value
 	return (getIndexedProperty(bean, name, index));
@@ -291,22 +305,22 @@ public final class PropertyUtils {
 	       NoSuchMethodException {
 
 	while (true) {
-	    int period = name.indexOf(".");
-	    if (period < 0)
+	    int delim = name.indexOf(NESTED_DELIM);
+	    if (delim < 0)
 		break;
-	    String next = name.substring(0, period);
-	    if (next.indexOf("[") >= 0)
+	    String next = name.substring(0, delim);
+	    if (next.indexOf(INDEXED_DELIM) >= 0)
 		bean = getIndexedProperty(bean, next);
 	    else
 		bean = getSimpleProperty(bean, next);
 	    if (bean == null)
 		throw new IllegalArgumentException
 		    ("Null property value for '" +
-		     name.substring(0, period) + "'");
-	    name = name.substring(period + 1);
+		     name.substring(0, delim) + "'");
+	    name = name.substring(delim + 1);
 	}
 
-	if (name.indexOf("[") >= 0)
+	if (name.indexOf(INDEXED_DELIM) >= 0)
 	    return (getIndexedProperty(bean, name));
 	else
 	    return (getSimpleProperty(bean, name));
@@ -551,52 +565,6 @@ public final class PropertyUtils {
 
 
     /**
-     * Set the value of the (possibly nested) property of the specified
-     * name, for the specified bean, with no type conversions.
-     *
-     * @param bean Bean whose property is to be modified
-     * @param name Possibly nested name of the property to be modified
-     * @param value Value to which the property is to be set
-     *
-     * @exception IllegalAccessException if the caller does not have
-     *  access to the property accessor method
-     * @exception IllegalArgumentException if a nested reference to a
-     *  property returns null
-     * @exception InvocationTargetException if the property accessor method
-     *  throws an exception
-     * @exception NoSuchMethodException if an accessor method for this
-     *  propety cannot be found
-     */
-    public static void setNestedProperty(Object bean,
-					 String name, Object value)
-	throws IllegalAccessException, InvocationTargetException,
-	       NoSuchMethodException {
-
-	while (true) {
-	    int period = name.indexOf(".");
-	    if (period < 0)
-		break;
-	    String next = name.substring(0, period);
-	    if (next.indexOf("[") >= 0)
-		bean = getIndexedProperty(bean, next);
-	    else
-		bean = getSimpleProperty(bean, next);
-	    if (bean == null)
-		throw new IllegalArgumentException
-		    ("Null property value for '" +
-		     name.substring(0, period) + "'");
-	    name = name.substring(period + 1);
-	}
-
-	if (name.indexOf("[") >= 0)
-	    setIndexedProperty(bean, name, value);
-	else
-	    setSimpleProperty(bean, name, value);
-
-    }
-
-
-    /**
      * Set the value of the specified indexed property of the specified
      * bean, with no type conversions.  The zero-relative index of the
      * required value must be included (in square brackets) as a suffix to
@@ -622,25 +590,21 @@ public final class PropertyUtils {
 	       NoSuchMethodException {
 
 	// Identify the index of the requested individual property
-	int left = name.indexOf("[");
-	int right = name.indexOf("]");
-	if ((left < 0) || (right <= left))
-	    throw new IllegalArgumentException("Invalid indexed property '" +
-					       name + "'");
-	if (right > (name.length() - 1))
+	int delim = name.indexOf(INDEXED_DELIM);
+        if (delim < 0)
 	    throw new IllegalArgumentException("Invalid indexed property '" +
 					       name + "'");
 	int index = -1;
 	try {
-	    String subscript = name.substring(left + 1, right);
+	    String subscript = name.substring(delim + 1);
 	    index = Integer.parseInt(subscript);
 	} catch (NumberFormatException e) {
 	    throw new IllegalArgumentException("Invalid indexed property '" +
 					       name + "'");
 	}
-	name = name.substring(0, left);
+	name = name.substring(0, delim);
 
-	// Request the specified indexed property value
+	// Set the specified indexed property value
 	setIndexedProperty(bean, name, index, value);
 
     }
@@ -701,6 +665,52 @@ public final class PropertyUtils {
 
 	// Modify the specified value
 	Array.set(array, index, value);
+
+    }
+
+
+    /**
+     * Set the value of the (possibly nested) property of the specified
+     * name, for the specified bean, with no type conversions.
+     *
+     * @param bean Bean whose property is to be modified
+     * @param name Possibly nested name of the property to be modified
+     * @param value Value to which the property is to be set
+     *
+     * @exception IllegalAccessException if the caller does not have
+     *  access to the property accessor method
+     * @exception IllegalArgumentException if a nested reference to a
+     *  property returns null
+     * @exception InvocationTargetException if the property accessor method
+     *  throws an exception
+     * @exception NoSuchMethodException if an accessor method for this
+     *  propety cannot be found
+     */
+    public static void setNestedProperty(Object bean,
+					 String name, Object value)
+	throws IllegalAccessException, InvocationTargetException,
+	       NoSuchMethodException {
+
+	while (true) {
+	    int delim = name.indexOf(NESTED_DELIM);
+	    if (delim < 0)
+		break;
+	    String next = name.substring(0, delim);
+	    if (next.indexOf(INDEXED_DELIM) >= 0)
+		bean = getIndexedProperty(bean, next);
+	    else
+		bean = getSimpleProperty(bean, next);
+	    if (bean == null)
+		throw new IllegalArgumentException
+		    ("Null property value for '" +
+		     name.substring(0, delim) + "'");
+	    name = name.substring(delim + 1);
+	}
+
+	if (name.indexOf(INDEXED_DELIM) >= 0)
+	    setIndexedProperty(bean, name, value);
+	else
+	    setSimpleProperty(bean, name, value);
 
     }
 
