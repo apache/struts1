@@ -27,7 +27,10 @@ import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.util.ValidatorUtils;
 import org.apache.struts.action.ActionMessages;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.validator.Resources;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * This class contains the validwhen validation that is used in the 
@@ -36,6 +39,11 @@ import org.apache.struts.validator.Resources;
  * @since Struts 1.2
  */
 public class ValidWhen {
+
+    /**
+     *  Commons Logging instance.
+     */
+    private static final Log log = LogFactory.getLog(ValidWhen.class);
 
     /**
      * Returns true if <code>obj</code> is null or a String.
@@ -97,12 +105,36 @@ public class ValidWhen {
         
         String test = field.getVarValue("test");
         if (test == null) {
+            String msg = "ValidWhen Error 'test' parameter is missing for field ' " + field.getKey() + "'";
+            errors.add(field.getKey(), new ActionMessage(msg, false));
+            log.error(msg);
             return false;
         }
         
-        ValidWhenLexer lexer = new ValidWhenLexer(new StringReader(test));
+        // Create the Lexer
+        ValidWhenLexer lexer= null;
+        try {
+            lexer = new ValidWhenLexer(new StringReader(test));
+        } catch (Exception ex) {
+            String msg = "ValidWhenLexer Error for field ' " + field.getKey() + "' - " + ex;
+            errors.add(field.getKey(), new ActionMessage(msg + " - " + ex, false));
+            log.error(msg);
+            log.debug(msg, ex);
+            return false;
+        }
 
-        ValidWhenParser parser = new ValidWhenParser(lexer);
+        // Create the Parser
+        ValidWhenParser parser = null;
+        try {
+            parser = new ValidWhenParser(lexer);
+        } catch (Exception ex) {
+            String msg = "ValidWhenParser Error for field ' " + field.getKey() + "' - " + ex;
+            errors.add(field.getKey(), new ActionMessage(msg, false));
+            log.error(msg);
+            log.debug(msg, ex);
+            return false;
+        }
+
 
         parser.setForm(form);
         parser.setIndex(index);
@@ -113,11 +145,15 @@ public class ValidWhen {
             valid = parser.getResult();
             
         } catch (Exception ex) {
-            ex.printStackTrace();
-            
-            errors.add(
-                field.getKey(),
-                Resources.getActionMessage(validator, request, va, field));
+
+            // errors.add(
+            //    field.getKey(),
+            //    Resources.getActionMessage(validator, request, va, field));
+
+            String msg = "ValidWhen Error for field ' " + field.getKey() + "' - " + ex;
+            errors.add(field.getKey(), new ActionMessage(msg, false));
+            log.error(msg);
+            log.debug(msg, ex);
                 
             return false;
         }
