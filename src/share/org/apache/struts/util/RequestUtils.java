@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.75 2002/12/23 20:52:37 craigmcc Exp $
- * $Revision: 1.75 $
- * $Date: 2002/12/23 20:52:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.76 2002/12/29 16:59:58 husted Exp $
+ * $Revision: 1.76 $
+ * $Date: 2002/12/29 16:59:58 $
  *
  * ====================================================================
  *
@@ -114,7 +114,8 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.75 $ $Date: 2002/12/23 20:52:37 $
+ * @author James Turner
+ * @version $Revision: 1.76 $ $Date: 2002/12/29 16:59:58 $
  */
 
 public class RequestUtils {
@@ -216,7 +217,7 @@ public class RequestUtils {
      * identified, return <code>null</code>.
      *
      * @param pageContext PageContext we are operating in
-    
+
      * @param paramId Single-value request parameter name (if any)
      * @param paramName Bean containing single-value parameter value
      * @param paramProperty Property (of bean named by <code>paramName</code>
@@ -328,9 +329,11 @@ public class RequestUtils {
 
     /**
      * Compute a hyperlink URL based on the <code>forward</code>,
-     * <code>href</code>, or <code>page</code> parameter that is not null.
-     * The returned URL will have already been passed to
-     * <code>response.encodeURL()</code> for adding a session identifier.
+     * <code>href</code> or <code>page</code> parameter
+     * that is not null.
+     *
+     * @deprecated To be removed in Version 1.3.
+     * Use {@link RequestUtils#computeURL(pageContext, forward, href, page, action, param, anchor, redirect} instead.
      *
      * @param pageContext PageContext for the tag making this call
      *
@@ -348,11 +351,52 @@ public class RequestUtils {
      * @exception MalformedURLException if a URL cannot be created
      *  for the specified parameters
      */
+
     public static String computeURL(
         PageContext pageContext,
         String forward,
         String href,
         String page,
+        Map params,
+        String anchor,
+        boolean redirect)
+        throws MalformedURLException {
+
+	return computeURL(pageContext, forward, href, page, null, params,
+			  anchor, redirect);
+    }
+
+    /**
+     * Compute a hyperlink URL based on the <code>forward</code>,
+     * <code>href</code>, <code>action</code> or <code>page</code> parameter
+     * that is not null.
+     * The returned URL will have already been passed to
+     * <code>response.encodeURL()</code> for adding a session identifier.
+     *
+     * @param pageContext PageContext for the tag making this call
+     *
+     * @param forward Logical forward name for which to look up
+     *  the context-relative URI (if specified)
+     * @param href URL to be utilized unmodified (if specified)
+     * @param page Module-relative page for which a URL should
+     *  be created (if specified)
+     * @param action Logical action name for which to look up
+     *  the context-relative URI (if specified)
+     *
+     * @param params Map of parameters to be dynamically included (if any)
+     * @param anchor Anchor to be dynamically included (if any)
+     *
+     * @param redirect Is this URL for a <code>response.sendRedirect()</code>?
+     * @return URL with session identifier
+     * @exception MalformedURLException if a URL cannot be created
+     *  for the specified parameters
+     */
+    public static String computeURL(
+        PageContext pageContext,
+        String forward,
+        String href,
+        String page,
+        String action,
         Map params,
         String anchor,
         boolean redirect)
@@ -367,6 +411,9 @@ public class RequestUtils {
             n++;
         }
         if (page != null) {
+            n++;
+        }
+        if (action != null) {
             n++;
         }
         if (n != 1) {
@@ -401,6 +448,9 @@ public class RequestUtils {
             }
         } else if (href != null) {
             url.append(href);
+        } else if (action != null) {
+	    	url.append(getActionMappingURL(action, pageContext));
+
         } else /* if (page != null) */ {
             url.append(request.getContextPath());
             url.append(pageURL(request, page));
@@ -505,12 +555,92 @@ public class RequestUtils {
                 return (response.encodeURL(url.toString()));
             }
         } else {
-            return (url.toString());
-        }
+             return (url.toString());
+         }
 
     }
 
     /**
+     * Return the form action converted into an action mapping path.  The
+     * value of the <code>action</code> property is manipulated as follows in
+     * computing the name of the requested mapping:
+     * <ul>
+     * <li>Any filename extension is removed (on the theory that extension
+     *     mapping is being used to select the controller servlet).</li>
+     * <li>If the resulting value does not start with a slash, then a
+     *     slash is prepended.</li>
+     * </ul>
+     */
+    public static String getActionMappingName(String action) {
+
+        String value = action;
+        int question = action.indexOf("?");
+        if (question >= 0) {
+            value = value.substring(0, question);
+        }
+        int slash = value.lastIndexOf("/");
+        int period = value.lastIndexOf(".");
+        if ((period >= 0) && (period > slash)) {
+            value = value.substring(0, period);
+        }
+        if (value.startsWith("/")) {
+            return (value);
+        } else {
+            return ("/" + value);
+        }
+    }
+
+    /**
+     * Return the form action converted into a server-relative URL.
+     */
+    public static String getActionMappingURL(String action, PageContext pageContext) {
+
+        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+        StringBuffer value = new StringBuffer(request.getContextPath());
+        ModuleConfig config =
+            (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
+        if (config != null) {
+            value.append(config.getPrefix());
+        }
+
+        // Use our servlet mapping, if one is specified
+        String servletMapping =
+            (String) pageContext.getAttribute(Globals.SERVLET_KEY, PageContext.APPLICATION_SCOPE);
+        if (servletMapping != null) {
+            String queryString = null;
+            int question = action.indexOf("?");
+            if (question >= 0) {
+                queryString = action.substring(question);
+            }
+            String actionMapping = getActionMappingName(action);
+            if (servletMapping.startsWith("*.")) {
+                value.append(actionMapping);
+                value.append(servletMapping.substring(1));
+            } else if (servletMapping.endsWith("/*")) {
+                value.append(servletMapping.substring(0, servletMapping.length() - 2));
+                value.append(actionMapping);
+            } else if (servletMapping.equals("/")) {
+                value.append(actionMapping);
+            }
+            if (queryString != null) {
+                value.append(queryString);
+            }
+        }
+
+        // Otherwise, assume extension mapping is in use and extension is
+        // already included in the action property
+        else {
+            if (!action.startsWith("/")) {
+                value.append("/");
+            }
+            value.append(action);
+        }
+
+        // Return the completed value
+        return (value.toString());
+     }
+
+     /**
      * Create (if necessary) and return an ActionForm instance appropriate
      * for this request.  If no ActionForm instance is required, return
      * <code>null</code>.
@@ -1687,7 +1817,7 @@ public class RequestUtils {
     /**
      * Use the new URLEncoder.encode() method from java 1.4 if available, else
      * use the old deprecated version.  This method uses reflection to find the appropriate
-     * method; if the reflection operations throw exceptions, this will return the url 
+     * method; if the reflection operations throw exceptions, this will return the url
      * encoded with the old URLEncoder.encode() method.
      * @return String - the encoded url.
      */

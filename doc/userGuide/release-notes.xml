@@ -191,8 +191,10 @@
 
     <p>
     <ul>
-    <li>Scaffold - Library of reusable classes for building web applications.</li>
-    <li>Service Manager - Add custom services without subclassing controller.</li>
+    <li>Scaffold - An extension of the Commons Scaffold toolkit of reusable 
+    classes for building web applications.</li>
+    <li>Struts-el - The optional Struts-el taglib makes it easy to use Struts 
+    with JSTL (container with servlet 2.3 support required). </li>    
     </ul>
     </p>
 
@@ -246,7 +248,8 @@
     <p>The following new features have been added to the
     <em>struts-html</em> custom tag library [<code>org.apache.struts.taglib.html</code>]:</p>
     <ul>
-    <li><code>&lt;options&gt;:</code> If the property specified by the 'property' attribute returns null, tag now throws an error message that indicates what the real problem is, rather than causing an NPE.</li>
+    <li><code>&lt;html:link&gt;:</code> Added 'action' attribute.</li>
+    <li><code>&lt;html:options&gt;:</code> If the property specified by the 'property' attribute returns null, tag now throws an error message that indicates what the real problem is, rather than causing an NPE.</li>
     <li><code>&lt;html:option&gt; and &lt;html:options&gt;:</code> Added 'style' and 'styleClass' attributes.</li>
     <li><code>&lt;html:optionsCollection&gt;:</code> New tag providing a cleaner way of populating HTML options from a collection.</li>
     <li><code>&lt;bean:message&gt;:</code> Added 'name', 'property' and 'scope' attributes so that the message resource key can be obtained dynamically from a bean.</li>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.27 2002/09/23 05:13:43 martinc Exp $
- * $Revision: 1.27 $
- * $Date: 2002/09/23 05:13:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.28 2002/12/29 17:00:15 husted Exp $
+ * $Revision: 1.28 $
+ * $Date: 2002/12/29 17:00:15 $
  *
  * ====================================================================
  *
@@ -76,7 +76,8 @@ import org.apache.struts.taglib.logic.IterateTag;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.27 $ $Date: 2002/09/23 05:13:43 $
+ * @author James Turner
+ * @version $Revision: 1.28 $ $Date: 2002/12/29 17:00:15 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -187,9 +188,24 @@ public class LinkTag extends BaseHandlerTag {
 
 
     /**
-     * The single-parameter request parameter name to generate.
+     * The module-relative action (beginning with a slash) which will be
+     * called by this link
      */
-    protected String paramId = null;
+    protected String action = null;
+
+    public String getAction() {
+        return (this.action);
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+
+    /**
+      * The single-parameter request parameter name to generate.
+      */
+     protected String paramId = null;
 
     public String getParamId() {
         return (this.paramId);
@@ -417,6 +433,7 @@ public class LinkTag extends BaseHandlerTag {
         linkName = null;
         name = null;
         page = null;
+        action = null;
         paramId = null;
         paramName = null;
         paramProperty = null;
@@ -476,7 +493,7 @@ public class LinkTag extends BaseHandlerTag {
         String url = null;
         try {
             url = RequestUtils.computeURL(pageContext, forward, href,
-                                          page, params, anchor, false);
+                                          page, action, params, anchor, false);
         } catch (MalformedURLException e) {
             RequestUtils.saveException(pageContext, e);
             throw new JspException

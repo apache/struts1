@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.40 2002/12/13 02:36:47 dgraham Exp $
- * $Revision: 1.40 $
- * $Date: 2002/12/13 02:36:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.41 2002/12/29 17:00:15 husted Exp $
+ * $Revision: 1.41 $
+ * $Date: 2002/12/29 17:00:15 $
  *
  * ====================================================================
  *
@@ -86,7 +86,8 @@ import org.apache.struts.Globals;
  *
  * @author Craig R. McClanahan
  * @author Martin Cooper
- * @version $Revision: 1.40 $ $Date: 2002/12/13 02:36:47 $
+ * @author James Turner
+ * @version $Revision: 1.41 $ $Date: 2002/12/29 17:00:15 $
  */
 
 public class FormTag extends TagSupport {
@@ -115,8 +116,8 @@ public class FormTag extends TagSupport {
 
     /**
      * The index in the focus field array to receive focus.  This only applies if the field
-     * given in the focus attribute is actually an array of fields.  This allows a specific 
-     * field in a radio button array to receive focus while still allowing indexed field 
+     * given in the focus attribute is actually an array of fields.  This allows a specific
+     * field in a radio button array to receive focus while still allowing indexed field
      * names like "myRadioButtonField[1]" to be passed in the focus attribute.
      * @since Struts 1.1
      */
@@ -504,13 +505,13 @@ public class FormTag extends TagSupport {
         results.append(" name=\"");
         results.append(beanName);
         results.append("\"");
-        results.append(" method=\"");
-        results.append(method == null ? "post" : method);
-        results.append("\" action=\"");
-        results.append(response.encodeURL(getActionMappingURL()));
-        results.append("\"");
-        if (styleClass != null) {
-            results.append(" class=\"");
+         results.append(" method=\"");
+         results.append(method == null ? "post" : method);
+         results.append("\" action=\"");
+         results.append(response.encodeURL(RequestUtils.getActionMappingURL(action, pageContext)));
+         results.append("\"");
+         if (styleClass != null) {
+             results.append(" class=\"");
             results.append(styleClass);
             results.append("\"");
         }
@@ -695,87 +696,6 @@ public class FormTag extends TagSupport {
 
     // ------------------------------------------------------ Protected Methods
 
-    /**
-     * Return the form action converted into an action mapping path.  The
-     * value of the <code>action</code> property is manipulated as follows in
-     * computing the name of the requested mapping:
-     * <ul>
-     * <li>Any filename extension is removed (on the theory that extension
-     *     mapping is being used to select the controller servlet).</li>
-     * <li>If the resulting value does not start with a slash, then a
-     *     slash is prepended.</li>
-     * </ul>
-     */
-    protected String getActionMappingName() {
-
-        String value = action;
-        int question = action.indexOf("?");
-        if (question >= 0) {
-            value = value.substring(0, question);
-        }
-        int slash = value.lastIndexOf("/");
-        int period = value.lastIndexOf(".");
-        if ((period >= 0) && (period > slash)) {
-            value = value.substring(0, period);
-        }
-        if (value.startsWith("/")) {
-            return (value);
-        } else {
-            return ("/" + value);
-        }
-
-    }
-
-    /**
-     * Return the form action converted into a server-relative URL.
-     */
-    protected String getActionMappingURL() {
-
-        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-        StringBuffer value = new StringBuffer(request.getContextPath());
-        ModuleConfig config =
-            (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
-        if (config != null) {
-            value.append(config.getPrefix());
-        }
-
-        // Use our servlet mapping, if one is specified
-        String servletMapping =
-            (String) pageContext.getAttribute(Globals.SERVLET_KEY, PageContext.APPLICATION_SCOPE);
-        if (servletMapping != null) {
-            String queryString = null;
-            int question = action.indexOf("?");
-            if (question >= 0) {
-                queryString = action.substring(question);
-            }
-            String actionMapping = getActionMappingName();
-            if (servletMapping.startsWith("*.")) {
-                value.append(actionMapping);
-                value.append(servletMapping.substring(1));
-            } else if (servletMapping.endsWith("/*")) {
-                value.append(servletMapping.substring(0, servletMapping.length() - 2));
-                value.append(actionMapping);
-            } else if (servletMapping.equals("/")) {
-                value.append(actionMapping);
-            }
-            if (queryString != null) {
-                value.append(queryString);
-            }
-        }
-
-        // Otherwise, assume extension mapping is in use and extension is
-        // already included in the action property
-        else {
-            if (!action.startsWith("/")) {
-                value.append("/");
-            }
-            value.append(action);
-        }
-
-        // Return the completed value
-        return (value.toString());
-
-    }
 
     /**
      * Look up values for the <code>name</code>, <code>scope</code>, and
@@ -798,7 +718,7 @@ public class FormTag extends TagSupport {
                 Globals.ACTION_SERVLET_KEY);
 
         // Look up the action mapping we will be submitting to
-        String mappingName = getActionMappingName();
+        String mappingName = RequestUtils.getActionMappingName(action);
         mapping = (ActionMapping) moduleConfig.findActionConfig(mappingName);
         if (mapping == null) {
             JspException e = new JspException(messages.getMessage("formTag.mapping", mappingName));
