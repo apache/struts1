@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.2 2001/02/02 20:14:18 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/02/02 20:14:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.3 2001/03/06 22:06:05 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/03/06 22:06:05 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * this tag.
  *
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.2 $ $Date: 2001/02/02 20:14:18 $
+ * @version $Revision: 1.3 $ $Date: 2001/03/06 22:06:05 $
  */
 
 public class BaseTag extends TagSupport {
@@ -90,6 +90,20 @@ public class BaseTag extends TagSupport {
    */
   protected static MessageResources messages =
      MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
+
+    /**
+     * The target window for this base reference.
+     */
+    protected String target = null;
+
+    public String getTarget() {
+        return (this.target);
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
 
   /**
    * Process the start of this tag.
@@ -113,7 +127,13 @@ public class BaseTag extends TagSupport {
         buf.append(request.getServerPort());
     }
     buf.append(request.getRequestURI());
-    buf.append("\">");
+    buf.append("\"");
+    if (target != null) {
+        buf.append(" target=\"");
+        buf.append(target);
+        buf.append("\"");
+    }
+    buf.append(">");
     JspWriter out = pageContext.getOut();
     try {
         out.write(buf.toString());
