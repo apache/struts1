@@ -249,6 +249,7 @@
     <mkdir    dir="${build.home}/documentation/api"/>
     <javadoc sourcepath="src/share"
                 destdir="${build.home}/documentation/api"
+              classpath="${servlet.jar}:${java.class.path}"
            packagenames="org.apache.struts.*"
 	         author="true"
                 private="true"

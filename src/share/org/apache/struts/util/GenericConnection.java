@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericConnection.java,v 1.4 2001/01/08 23:53:11 husted Exp $
- * $Revision: 1.4 $
- * $Date: 2001/01/08 23:53:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericConnection.java,v 1.5 2001/01/11 00:03:38 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/01/11 00:03:38 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import javax.sql.DataSource;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.4 $ $Date: 2001/01/08 23:53:11 $
+ * @version $Revision: 1.5 $ $Date: 2001/01/11 00:03:38 $
 
  */
 
@@ -148,6 +148,12 @@ public class GenericConnection implements Connection {
      * The initial catalog to which we should return after release.
      */
     protected String catalog = null;
+
+
+    /**
+     * The closed flag for this wrapped connection.
+     */
+    private boolean closed = false;
 
 
     /**
@@ -406,8 +412,6 @@ public class GenericConnection implements Connection {
      * @exception SQLException if a database access error occurs
      */
 
-
-    private boolean closed = false;
 
     public boolean isClosed() throws SQLException {
 
