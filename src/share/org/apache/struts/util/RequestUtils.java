@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.35 2002/04/08 04:30:41 craigmcc Exp $
- * $Revision: 1.35 $
- * $Date: 2002/04/08 04:30:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.36 2002/06/16 05:32:50 craigmcc Exp $
+ * $Revision: 1.36 $
+ * $Date: 2002/06/16 05:32:50 $
  *
  * ====================================================================
  *
@@ -110,7 +110,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.35 $ $Date: 2002/04/08 04:30:41 $
+ * @version $Revision: 1.36 $ $Date: 2002/06/16 05:32:50 $
  */
 
 public class RequestUtils {
@@ -582,16 +582,22 @@ public class RequestUtils {
                     return (instance);
                 }
             } else {
-                String className =
-                    instance.getClass().getName();
-                if (className.equals(config.getType())) {
-                    if (LOG.isDebugEnabled()) {
-                        LOG.debug
-                            (" Recycling existing ActionForm instance " +
-                             "of class '" + className + "'");
-                        LOG.trace(" --> " + instance);
+                try {
+                    if (Class.forName(config.getType()).isInstance(instance)) {
+                        if (LOG.isDebugEnabled()) {
+                            LOG.debug
+                                (" Recycling existing ActionForm instance " +
+                                 "of class '" + instance.getClass().getName()
+                                 + "'");
+                            LOG.trace(" --> " + instance);
+                        }
+                        return (instance);
                     }
                     return (instance);
+                } catch (Throwable t) {
+                    LOG.error(servlet.getInternal().getMessage
+                              ("formBean", config.getName()), t);
+                    return (null);
                 }
             }
         }
@@ -624,7 +630,7 @@ public class RequestUtils {
                 }
             } catch (Throwable t) {
                 LOG.error(servlet.getInternal().getMessage
-                          ("formBean", config.getType()), t);
+                          ("formBean", config.getName()), t);
                 return (null);
             }
         }

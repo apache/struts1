@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.7 2002/03/11 06:13:13 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/03/11 06:13:13 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.8 2002/06/16 05:32:50 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/06/16 05:32:50 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.MessageResources;
  * updates the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/03/11 06:13:13 $
+ * @version $Revision: 1.8 $ $Date: 2002/06/16 05:32:50 $
  */
 
 public final class SaveSubscriptionAction extends Action {
@@ -188,8 +188,15 @@ public final class SaveSubscriptionAction extends Action {
                           user.getUsername() + "'");
             }
             user.removeSubscription(subscription);
-            user.getDatabase().save();
 	    session.removeAttribute(Constants.SUBSCRIPTION_KEY);
+            try {
+                UserDatabase database = (UserDatabase)
+                    servlet.getServletContext().
+                    getAttribute(Constants.DATABASE_KEY);
+                database.save();
+            } catch (Exception e) {
+                log.error("Database save", e);
+            }
 	    return (mapping.findForward("success"));
 	}
 
@@ -201,7 +208,6 @@ public final class SaveSubscriptionAction extends Action {
         }
         try {
             PropertyUtils.copyProperties(subscription, subform);
-            user.getDatabase().save();
         } catch (InvocationTargetException e) {
             Throwable t = e.getTargetException();
             if (t == null)
@@ -211,6 +217,15 @@ public final class SaveSubscriptionAction extends Action {
         } catch (Throwable t) {
             log.error("Subscription.populate", t);
             throw new ServletException("Subscription.populate", t);
+        }
+
+        try {
+            UserDatabase database = (UserDatabase)
+                servlet.getServletContext().
+                getAttribute(Constants.DATABASE_KEY);
+            database.save();
+        } catch (Exception e) {
+            log.error("Database save", e);
         }
 
 	// Remove the obsolete form bean and current subscription
