@@ -99,7 +99,7 @@ which only just trails Tomcat:
 <pre>
   TOMCAT-USER:     2,454
 </pre>
-
+	
 </section>
 
 <section name="Recent News" href="news">
@@ -109,6 +109,59 @@ which only just trails Tomcat:
 <p><a href=""></a></p>
 <hr size="1" noshade=""/>
 -->
+
+<h3><a name="20021115.2"></a>15 Nov 2002 - Struts ImageButtonBeanManager v0.2d</h3>
+<p>
+Version 0.2d of the ImageButtonBeanManager is now available on 
+<a href="http://sourceforge.net/projects/imagebuttonbean/">SourceForge.net</a>.
+</p>
+
+<p>
+ImageButtonBeanManager is a Struts Extension Package that supports the Struts
+HTML Image Tag and the ImageButtonBean class in a manner that is analgous to
+the support provided by Struts for the Struts HTML Submit Tag.
+</p>
+
+<p>
+It extends Ted Husted's 
+<a href="http://husted.com/struts/tips/001.html">ImageButtonBean</a> 
+approach with a few new features, such as automatically mapping the selected 
+ImageButton to an ActionForward and eliminating the need to define ImageButtonBean 
+instances in the ActionForm.  
+</p>
+
+<p>
+It builds on this capability and adds some features for similar support of the
+SubmitButton, yielding several new DispatchAction classes. The DispatchAction
+classes can be used to develop "Action Flows", which are analgous to
+server-side Action scripts. "Action Flows" are discussed in detail in the 
+documentation (please see the 
+"<a href="http://imagebuttonbeanmgr.webhop.org/">DispatchAction Classes page</a>".)
+</p>
+
+<p>
+The ImageButtonBeanManager DispatchAction classes are "ready-to-use" in that
+they don't need to be extended or require any application-specific code.  They
+can be used in lieu of an application's extensions of the Struts DispatchAction
+or LookupDispatchAction classes. They have the potential for relieving much of
+the dispatching duties of application-specific Actions. That should bring the
+side benefit of reducing the level of coupling between JSPs and Actions.
+</p>
+
+<p>
+Larger development projects might get more benefit from this than smaller ones
+...
+</p>
+
+<p>
+The developer documentation, JavaDoc, Java code and a sample WebApp are running
+at:
+</p>
+
+<p>
+<a href="http://imagebuttonbeanmgr.webhop.org/">http://imagebuttonbeanmgr.webhop.org/</a>
+</p>
+<hr size="1" noshade=""/>
 
 
 <h3><a name="20021115"></a>15 Nov 2002 - [FRIDAY] Top 10 things likely to be overheard from a Klingon Programmer</h3>
@@ -155,6 +208,91 @@ Klingon.
 <hr size="1" noshade=""/>
 
 
+<h3><a name="20021113"></a>13 Nov 2002 - Tiles and Validator Support in ObjectAssembler 2.5</h3>
+<p>
+ObjectAssembler 2.5 Pro is now available:
+</p>
+<p>
+<a href="http://www.objectventure.com/objectassembler.html">http://www.objectventure.com/objectassembler.html</a>
+</p>
+<p>
+New Struts features in this release:
+</p>
+<ul>
+<li>
+	Full support for Tiles definitions
+</li>
+<li>
+	Full support for Validator 1.0 configurations
+</li>
+<li>
+	Jump from any element in our visual editor to its associated XML
+</li>
+<li>
+	Two-way development. Changes made to XML are immediately reflected in
+	the visual editor and vice versa
+</li>
+<li>
+	Two additional component types: Struts Exception and Validator
+	(allows the implementation of Validator rules). For each of these
+	components that are created, their use is automated in the Struts,
+	Tiles, and Validator configuration editor
+</li> 
+<li>
+	Updated all Struts support to the latest 1.1 builds.
+</li>
+</ul>
+<p>
+ObjectAssembler doesn't just help you generate configuration files. It
+is a component-based Struts development environment that assists you in
+building both Struts components and configuration files. It also
+automates the process of packaging them in a WAR and generating the WAR
+itself.
+</p>
+<p>
+ObjectAssembler is currently supported in Jbuilder, Netbeans, Sun ONE
+Studio, and as a standalone IDE. We are working on the next supported
+IDE (the most popular requests being IDEA and Eclipse).
+</p>
+<p>
+I invite you to take ObjectAssembler for a spin. The User Manual, which
+is provided with the installation, explains how to make use of
+ObjectAssembler's Struts support. We also have some simple Struts
+Viewlets available here if you aren't quite up to downloading yet:
+http://www.objectventure.com/demos.html. If you have any
+questions/problems/feedback, please contact me directly or join me here:
+</p>
+<p>
+<a href="http://support.objectventure.net/">http://support.objectventure.net</a>.
+</p>
+<hr size="1" noshade=""/>
+
+
+<!--
+<h3><a name="20021112"></a>12 Nov 2002 - display tag: added columns functionality</h3>
+<p>
+In recent weeks I've noticed several people inquire about Ed Hill's
+awesome 
+<a href=" http://edhill.its.uiowa.edu/display-0.8/">display tag</a>
+and the ability to only display certain columns.
+</p>
+<p>
+I modified the jar and tld so that you can now provide a
+"columnsToDisplay" attribute in the display:table tag.
+columnsToDisplay just needs to be a String array of the columns you
+want to display. The only caveat is the Strings in the array should
+represent the titles of the columns and not the names of the fields.
+(I suppose I should change that, but I wasn't sure if it would still
+work when you use one of the table decorators. It shouldn't be a problem,
+though, so I'll probably change that).
+</p>
+<p>
+If anyone wants the jar/tld feel free to e-mail me or if I hear from
+Ed, I'll see if he wants to include it in his latest release or I
+could provide a link to the code somewhere else.
+</p>
+<hr size="1" noshade=""/>
+
 <h3><a name="20021109.3"></a>09 Nov 2002 - Sample chapter from "Struts Kick Start" available</h3>
 <p>
 Chapter 17 (DynaForms and the Validator) from the upcoming SAMS title
@@ -162,6 +300,7 @@ Chapter 17 (DynaForms and the Validator) from the upcoming SAMS title
 <a href="http://www.strutskickstart.com/">www.strutskickstart.com</a>.
 </p>
 <hr size="1" noshade=""/>
+-->
 
 
 <h3><a name="20021109.2"></a>09 Nov 2002 - Management-oriented Powerpoint Presentation for Struts</h3>
@@ -196,7 +335,7 @@ shipping. Order your copy now from the featured online store:
 <hr size="1" noshade=""/>
 
 
-<h3><a name="20021106.2"></a>06 Nov 2002 - Struts in Action now in print</h3>
+<h3><a name="20021107"></a>07 Nov 2002 - Struts in Action now in print</h3>
 <p>
 The Manning book, Struts in Action, is now available for sale at the publisher's website and will arrive at bookstores everywhere over the next few weeks.
 Struts solves the most common problems of Web development by providing an open source framework for building Web applications.
@@ -499,7 +638,7 @@ For those who were waiting, thanks for your patience.
 
 
 <h3><a name="20020908"></a>2002 Sep 08 - French book</h3>
-<p>A new book about UML named "Modéliser un site e-commerce en UML" from Pascal Roques will be available mid September.<br />
+<p>A new book about UML named "Modï¿½liser un site e-commerce en UML" from Pascal Roques will be available mid September.<br />
 Summary: <a href="http://www.dotnetguru.org/downloads/tabledesmatieres.pdf">http://www.dotnetguru.org/downloads/tabledesmatieres.pdf</a>
 </p>
 <p>
