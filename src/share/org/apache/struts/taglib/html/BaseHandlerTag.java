@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.14 2002/05/13 02:36:39 arron Exp $
- * $Revision: 1.14 $
- * $Date: 2002/05/13 02:36:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.15 2002/05/13 02:38:33 arron Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/05/13 02:38:33 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.14 $ $Date: 2002/05/13 02:36:39 $
+ * @version $Revision: 1.15 $ $Date: 2002/05/13 02:38:33 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -568,6 +568,8 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
             if (key != null) {
                 return (RequestUtils.message(pageContext, getBundle(),
                                              getLocale(), key));
+            } else {
+                return null;
             }
         }
 
