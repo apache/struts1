@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.18 2003/07/02 03:42:09 dgraham Exp $
- * $Revision: 1.18 $
- * $Date: 2003/07/02 03:42:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.19 2003/09/09 04:33:12 rleland Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/09/09 04:33:12 $
  *
  * ====================================================================
  * 
@@ -89,7 +89,7 @@ import org.apache.commons.logging.LogFactory;
  * application server environments.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2003/07/02 03:42:09 $
+ * @version $Revision: 1.19 $ $Date: 2003/09/09 04:33:12 $
  */
 public abstract class MessageResources implements Serializable {
 
@@ -329,6 +329,7 @@ public abstract class MessageResources implements Serializable {
                 }
 
                 format = new MessageFormat(escape(formatString));
+                format.setLocale(locale);
                 formats.put(formatKey, format);
             }
 
