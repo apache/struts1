@@ -76,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  *  <p>
  *
  *  An abstract <strong>Action</strong> that dispatches to the subclass mapped
- *  perform method. This is useful in
+ *  <code>execute</code> method. This is useful in
  *  cases where an HTML form has multiple submit buttons with the same name. The
  *  button name is specified by the <code>parameter</code> property of the
  *  corresponding ActionMapping. To configure the use of this action in your

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.2 2002/03/23 01:38:15 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/03/23 01:38:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.3 2002/06/25 18:26:15 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/06/25 18:26:15 $
  *
  * ====================================================================
  *
@@ -95,8 +95,8 @@ import org.apache.struts.util.RequestUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/03/23 01:38:15 $
- * @since 1.1
+ * @version $Revision: 1.3 $ $Date: 2002/06/25 18:26:15 $
+ * @since Struts 1.1
  */
 
 public class SwitchAction extends Action {

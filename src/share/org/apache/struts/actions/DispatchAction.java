@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.6 2002/06/23 00:52:50 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/06/23 00:52:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.7 2002/06/25 18:26:15 husted Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/06/25 18:26:15 $
  *
  * ====================================================================
  *
@@ -100,8 +100,8 @@ import org.apache.struts.util.MessageResources;
  * </code>
  *
  * <p>which will use the value of the request parameter named "method"
- * to pick the appropriate "perform" method, which must have the same
- * signature (other than method name) of the standard Action.perform()
+ * to pick the appropriate "execute" method, which must have the same
+ * signature (other than method name) of the standard Action.execute
  * method.  For example, you might have the following three methods in the
  * same action:</p>
  * <ul>
@@ -128,7 +128,7 @@ import org.apache.struts.util.MessageResources;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.6 $ $Date: 2002/06/23 00:52:50 $
+ * @version $Revision: 1.7 $ $Date: 2002/06/25 18:26:15 $
  */
 
 public abstract class DispatchAction extends Action {
@@ -179,7 +179,7 @@ public abstract class DispatchAction extends Action {
     /**
      * Dispatch to the specified method.
      * Added to class at Revision 1.3
-     * @since 1.1
+     * @since Struts 1.1
      */
      protected ActionForward dispatchMethod(ActionMapping mapping,
                                             ActionForm form,
@@ -293,7 +293,7 @@ public abstract class DispatchAction extends Action {
 
     /**
      * Introspect the current class to identify a method of the specified
-     * name that accepts the same parameter types as the <code>perform()</code>
+     * name that accepts the same parameter types as the <code>execute</code>
      * method does.
      *
      * @param name Name of the method to be introspected
