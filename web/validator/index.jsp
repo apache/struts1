@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="org.apache.struts.validator.ValidatorPlugIn" session="true" %>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
@@ -17,7 +18,7 @@
   </font>
 </logic:notPresent>
 
-<logic:notPresent name="org.apache.commons.validator.VALIDATOR_RESOURCES" scope="application">
+<logic:notPresent name="<%= ValidatorPlugIn.VALIDATOR_KEY %>" scope="application">
   <font color="red">
     ERROR:  Validator resources not loaded -- check Commons Logging
     logs for error messages.
