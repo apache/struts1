@@ -2,7 +2,7 @@ header {
 /*
  * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.g,v 1.7 2004/09/03 18:06:58 niallp Exp $
  * $Revision: 1.7 $
- * $Date: 2004/09/03 18:06:58 $
+ * $Date$
  *
  * Copyright 2003-2004 The Apache Software Foundation.
  * 
@@ -77,8 +77,12 @@ String value;
 		    return (v1 != v2);
 		}
 	}
-        if (!Integer.class.isInstance(v1) &&
-	    !Integer.class.isInstance(v2)) {
+      if ((Integer.class.isInstance(v1) ||
+           String.class.isInstance(v1)) &&
+	    (Integer.class.isInstance(v2) ||
+           String.class.isInstance(v2))) {
+	    intCompare = true;
+      } else {
 	    intCompare = false;
 	}
 	if (intCompare) {
