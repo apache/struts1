@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.16 2004/03/22 00:41:34 husted Exp $
- * $Revision: 1.16 $
- * $Date: 2004/03/22 00:41:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.17 2004/04/08 22:17:23 mrdon Exp $
+ * $Revision: 1.17 $
+ * $Date: 2004/04/08 22:17:23 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -47,7 +48,7 @@ import org.apache.struts.Globals;
   * This class implements the <code>MultipartRequestHandler</code> interface
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
-  * @version $Revision: 1.16 $ $Date: 2004/03/22 00:41:34 $
+  * @version $Revision: 1.17 $ $Date: 2004/04/08 22:17:23 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -460,7 +461,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      * implementation is <i>read-only</i>; any attempt to modify an instance
      * of this class will result in an <code>UnsupportedOperationException</code>.
      */
-    static class CommonsFormFile implements FormFile {
+    static class CommonsFormFile implements FormFile, Serializable {
 
         /**
          * The <code>FileItem</code> instance wrapped by this object.
