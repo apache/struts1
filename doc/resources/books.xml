@@ -9,8 +9,33 @@
 <body>
 <chapter name="Struts Resources" href="http://husted.com/struts/resources">
 
+<section name="Struts Book News">
+
+<p>
+<small>(12 December 2002)</small><br /><a href="http://www.amazon.com/exec/obidos/tg/browse/-/3610/1/002-5420337-0432053?rank=%2Bsalesrank&amp;submit.x=4&amp;submit.y=13"><img border="0" src="../images/books/topsellers.gif" align="right" valign="top"/></a>
+Struts books top the #1 <strong>and</strong> #2 slots on Amazon's <a href="http://www.amazon.com/exec/obidos/tg/browse/-/3610/1/002-5420337-0432053?rank=%2Bsalesrank&amp;submit.x=4&amp;submit.y=13">Java Programming bestseller list</a>!
+</p>
+
+<p>
+<small>(3 December 2002)</small><br /><strong>Struts in Action</strong> rated 11 out of 10 by <a href="http://books.slashdot.org/article.pl?sid=02/11/25/1731249&amp;mode=thread&amp;tid=156">Slashdot</a>.
+</p>
+
+</section>
+
 <section name="Books about Struts">
 <table>
+
+<tr>
+<td>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0672324725/hitchhikeguidetoA/">
+<img border="0" src="../images/books/0672324725.jpg" width="49" height="60" align="left"/>
+</a>
+</td>
+<td>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0672324725/hitchhikeguidetoA/"><b>Struts Kick Start</b></a> 
+by James Turner and Kevin Bedell - December 2002. [<a href="http://www.strutskickstart.com/">Sample chapter available</a>]
+</td>
+</tr>
 
 <tr>
 <td>
@@ -39,12 +64,12 @@ by Sue Spielman. November 2002.
 
 <tr>
 <td>
-<a href="http://books.manning.com/husted/">
+<a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/">
 <img border="0" src="../images/books/1930110502.jpg" width="49" height="60" align="left"/>
 </a>
 </td>
 <td>
-<a href="http://books.manning.com/husted/">
+<a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/">
 <b>Struts in Action</b></a> 
 by Ted Husted, Cedric Dumoulin, George Franciscus, and David Winterfeldt; Foreword by Craig R. McClanahan. November 2002. [<a href="http://www.manning.com/husted/">sample chapters available</a>] (formerly known as "Java Web Development with Struts")
 </td>
@@ -62,11 +87,21 @@ by Ted Husted, Cedric Dumoulin, George Franciscus, and David Winterfeldt; Forewo
 by James Goodwill. August 2002. [<a href="http://wiley.com/cda/product/0,,0471213020,00.html">excerpt available</a>]
 </td>
 </tr>
-</table>
 
-<p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0971661901/hitchhikeguidetoA/"><b>Struts Fast Track: J2EE / JSP Framework</b></a> by Victor Cekvenich - Practical Application with Database Access and Struts Extensions. November 2001.
-</p>
+<tr>
+<td>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0971661901/hitchhikeguidetoA/">
+<img border="0" src="../images/books/0971661901.jpg" width="49" height="60" align="left"/>
+</a>
+</td>
+<td>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0971661901/hitchhikeguidetoA/">
+<b>Struts Fast Track: J2EE / JSP Framework</b></a> 
+by Victor Cekvenich - Practical Application with Database Access and Struts Extensions. November 2001.
+</td>
+</tr>
+
+</table>
 </section>
 
 <section name="Books with Struts coverage">
@@ -97,9 +132,7 @@ by James Goodwill. August 2002. [<a href="http://wiley.com/cda/product/0,,047121
 </section>
 
 <section name="Coming Soon">
-<p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0672324725/hitchhikeguidetoA/"><b>Struts Kick Start</b></a> by James Turner and Kevin Bedell - Not yet published. [<a href="http://www.strutskickstart.com/">Sample chapter available</a>]
-</p>
+
 </section>
 
 </chapter></body></document>
