@@ -504,6 +504,12 @@
     named struts-&lt;module&gt;.xml)
     </p>
 
+    <p>
+        If you'd like to vary where the pages for each module is stored,
+        see the <a href="#controller_config">forwardPattern</a> setting for the
+        Controller.
+    </p>
+
 </section>
 
 
