@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.16 2003/07/11 23:47:57 dgraham Exp $
- * $Revision: 1.16 $
- * $Date: 2003/07/11 23:47:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.17 2003/08/13 04:53:43 rleland Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/08/13 04:53:43 $
  *
  * ====================================================================
  *
@@ -123,10 +123,18 @@ import org.apache.struts.util.MessageResources;
  * constraints over what types of handlers may reasonably be packaged into
  * the same <code>DispatchAction</code> subclass.</p>
  *
+ * <p><strong>NOTE</strong> - If the value of the request parameter is empty,
+ * a method named <code>unspecified</code> is called. The default action is
+ * to throw an exception. If the request was cancelled (a <code>html:cancel</code>
+ * button was pressed), the custom handler <code>cancelled</code> will be used instead.
+ * You can also override the <code>getMethodName</code> method to override the action's
+ * default handler selection.</p>
+ *
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.16 $ $Date: 2003/07/11 23:47:57 $
+ * @author Leonardo Quijano
+ * @version $Revision: 1.17 $ $Date: 2003/08/13 04:53:43 $
  */
 public abstract class DispatchAction extends Action {
 
@@ -150,8 +158,8 @@ public abstract class DispatchAction extends Action {
      * The message resources for this package.
      */
     protected static MessageResources messages =
-     MessageResources.getMessageResources
-        ("org.apache.struts.actions.LocalStrings");
+            MessageResources.getMessageResources
+            ("org.apache.struts.actions.LocalStrings");
 
 
     /**
@@ -168,11 +176,11 @@ public abstract class DispatchAction extends Action {
      * are the same for all calls, so calculate them only once.
      */
     protected Class[] types =
-        {
-            ActionMapping.class,
-            ActionForm.class,
-            HttpServletRequest.class,
-            HttpServletResponse.class };
+            {
+                ActionMapping.class,
+                ActionForm.class,
+                HttpServletRequest.class,
+                HttpServletResponse.class};
 
 
 
@@ -197,25 +205,28 @@ public abstract class DispatchAction extends Action {
                                  ActionForm form,
                                  HttpServletRequest request,
                                  HttpServletResponse response)
-        throws Exception {
+            throws Exception {
 
-        // Identify the request parameter containing the method name
-        String parameter = mapping.getParameter();
-        if (parameter == null) {
-            String message =
-                messages.getMessage("dispatch.handler", mapping.getPath());
-                
-            log.error(message);
-            
-            throw new ServletException(message);
+        if (isCancelled(request)) {
+            return cancelled(mapping, form, request, response);
+        } else {
+            // Identify the request parameter containing the method name
+            String parameter = mapping.getParameter();
+            if (parameter == null) {
+                String message =
+                        messages.getMessage("dispatch.handler", mapping.getPath());
+
+                log.error(message);
+
+                throw new ServletException(message);
+            }
+
+            // Get the method's name. This could be overridden in subclasses.
+            String name = getMethodName(mapping, form, request, response, parameter);
+
+            // Invoke the named method, and return the result
+            return dispatchMethod(mapping, form, request, response, name);
         }
-
-        // Identify the method name to be dispatched to.
-        // dispatchMethod() will call unspecified() if name is null
-        String name = request.getParameter(parameter);
-
-        // Invoke the named method, and return the result
-        return dispatchMethod(mapping, form, request, response, name);
     }
 
 
@@ -226,23 +237,46 @@ public abstract class DispatchAction extends Action {
      * to provide default behavior different than throwing a ServletException.
      */
     protected ActionForward unspecified(
-        ActionMapping mapping,
-        ActionForm form,
-        HttpServletRequest request,
-        HttpServletResponse response)
-        throws Exception {
+            ActionMapping mapping,
+            ActionForm form,
+            HttpServletRequest request,
+            HttpServletResponse response)
+            throws Exception {
 
         String message =
-            messages.getMessage(
-                "dispatch.parameter",
-                mapping.getPath(),
-                mapping.getParameter());
+                messages.getMessage(
+                        "dispatch.parameter",
+                        mapping.getPath(),
+                        mapping.getParameter());
 
         log.error(message);
 
         throw new ServletException(message);
     }
 
+    /**
+     * Method which is dispatched to when the request is a cancel button submit.
+     * Subclasses of <code>DispatchAction</code> should override this method if
+     * they wish to provide default behavior different than throwing a
+     * ServletException.
+     *
+     */
+    protected ActionForward cancelled(ActionMapping mapping,
+                                      ActionForm form,
+                                      HttpServletRequest request,
+                                      HttpServletResponse response)
+            throws Exception {
+
+        String message =
+                messages.getMessage(
+                        "dispatch.cancelled",
+                        mapping.getPath(),
+                        mapping.getParameter());
+
+        log.error(message);
+
+        throw new ServletException(message);
+    }
 
     // ----------------------------------------------------- Protected Methods
 
@@ -251,12 +285,12 @@ public abstract class DispatchAction extends Action {
      * Dispatch to the specified method.
      * @since Struts 1.1
      */
-     protected ActionForward dispatchMethod(ActionMapping mapping,
-                                            ActionForm form,
-                                            HttpServletRequest request,
-                                            HttpServletResponse response,
-                                            String name) throws Exception {
-                                                
+    protected ActionForward dispatchMethod(ActionMapping mapping,
+                                           ActionForm form,
+                                           HttpServletRequest request,
+                                           HttpServletResponse response,
+                                           String name) throws Exception {
+
         // Make sure we have a valid method name to call.
         // This may be null if the user hacks the query string.
         if (name == null) {
@@ -267,32 +301,32 @@ public abstract class DispatchAction extends Action {
         Method method = null;
         try {
             method = getMethod(name);
-            
-        } catch (NoSuchMethodException e) {
+
+        } catch(NoSuchMethodException e) {
             String message =
-                messages.getMessage("dispatch.method", mapping.getPath(), name);
+                    messages.getMessage("dispatch.method", mapping.getPath(), name);
             log.error(message, e);
             throw e;
         }
 
         ActionForward forward = null;
         try {
-            Object args[] = { mapping, form, request, response };
+            Object args[] = {mapping, form, request, response};
             forward = (ActionForward) method.invoke(this, args);
-            
-        } catch (ClassCastException e) {
+
+        } catch(ClassCastException e) {
             String message =
-                messages.getMessage("dispatch.return", mapping.getPath(), name);                
+                    messages.getMessage("dispatch.return", mapping.getPath(), name);
             log.error(message, e);
             throw e;
-            
-        } catch (IllegalAccessException e) {
+
+        } catch(IllegalAccessException e) {
             String message =
-                messages.getMessage("dispatch.error", mapping.getPath(), name);
+                    messages.getMessage("dispatch.error", mapping.getPath(), name);
             log.error(message, e);
             throw e;
-            
-        } catch (InvocationTargetException e) {
+
+        } catch(InvocationTargetException e) {
             // Rethrow the target exception if possible so that the
             // exception handling machinery can deal with it
             Throwable t = e.getTargetException();
@@ -300,7 +334,7 @@ public abstract class DispatchAction extends Action {
                 throw ((Exception) t);
             } else {
                 String message =
-                    messages.getMessage("dispatch.error", mapping.getPath(), name);
+                        messages.getMessage("dispatch.error", mapping.getPath(), name);
                 log.error(message, e);
                 throw new ServletException(t);
             }
@@ -321,9 +355,9 @@ public abstract class DispatchAction extends Action {
      * @exception NoSuchMethodException if no such method can be found
      */
     protected Method getMethod(String name)
-        throws NoSuchMethodException {
+            throws NoSuchMethodException {
 
-        synchronized (methods) {
+        synchronized(methods) {
             Method method = (Method) methods.get(name);
             if (method == null) {
                 method = clazz.getMethod(name, types);
@@ -334,5 +368,27 @@ public abstract class DispatchAction extends Action {
 
     }
 
+    /**
+     * Returns the method name, given a parameter's value.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The HTTP request we are processing
+     * @param response The HTTP response we are creating
+     * @param parameter The <code>ActionMapping</code> parameter's name
+     *
+     * @return The method's name.
+     */
+    protected String getMethodName(ActionMapping mapping,
+                                   ActionForm form,
+                                   HttpServletRequest request,
+                                   HttpServletResponse response,
+                                   String parameter)
+            throws Exception {
+
+        // Identify the method name to be dispatched to.
+        // dispatchMethod() will call unspecified() if name is null
+        return request.getParameter(parameter);
+    }
 
 }

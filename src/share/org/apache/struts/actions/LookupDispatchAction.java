@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.12 2003/07/03 02:42:58 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/07/03 02:42:58 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.13 2003/08/13 04:53:43 rleland Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/08/13 04:53:43 $
+ *
  *  ====================================================================
  *
  *  The Apache Software License, Version 1.1
@@ -69,6 +69,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -143,11 +144,15 @@ import org.apache.struts.util.MessageResources;
  *
  *  <strong>Notes</strong> - If duplicate values exist for the keys returned by
  *  getKeys, only the first one found will be returned. If no corresponding key
- *  is found then an exception will be thrown.
+ *  is found then an exception will be thrown. You can override the
+ *  method <code>unspecified</code> to provide a custom handler. If the submit
+ *  was cancelled (a <code>html:cancel</code> button was pressed), the custom
+ *  handler <code>cancelled</code> will be used instead.
  *
  * @author Erik Hatcher
  * @author Scott Carlson
  * @author David Graham
+ * @author Leonardo Quijano
  */
 public abstract class LookupDispatchAction extends DispatchAction {
 
@@ -178,46 +183,27 @@ public abstract class LookupDispatchAction extends DispatchAction {
      * @exception Exception if an error occurs
      */
     public ActionForward execute(
-        ActionMapping mapping,
-        ActionForm form,
-        HttpServletRequest request,
-        HttpServletResponse response)
-        throws Exception {
+            ActionMapping mapping,
+            ActionForm form,
+            HttpServletRequest request,
+            HttpServletResponse response)
+            throws Exception {
 
-        // Identify the request parameter containing the method name
-        String parameter = mapping.getParameter();
-        if (parameter == null) {
-            String message = messages.getMessage("dispatch.handler", mapping.getPath());
-            throw new ServletException(message);
-        }
-
-        // Identify the string to lookup
-        String name = request.getParameter(parameter);
-        if (name == null) {
-            String message =
-                messages.getMessage("dispatch.parameter", mapping.getPath(), parameter);
-            throw new ServletException(message);
-        }
-
-        // Based on this request's Locale get the lookupMap
-        Map lookupMap = null;
-        
-        synchronized (localeMap) {
-            Locale userLocale = this.getLocale(request);
-            lookupMap = (Map) this.localeMap.get(userLocale);
-            
-            if (lookupMap == null) {
-                lookupMap = this.initLookupMap(request, userLocale);
-                this.localeMap.put(userLocale, lookupMap);
+        if (isCancelled(request)) {
+            return cancelled(mapping, form, request, response);
+        } else {
+            // Identify the request parameter containing the method name
+            String parameter = mapping.getParameter();
+            if (parameter == null) {
+                String message = messages.getMessage("dispatch.handler", mapping.getPath());
+                throw new ServletException(message);
             }
+
+            // Identify the string to lookup
+            String methodName = getMethodName(mapping, form, request, response, parameter);
+
+            return dispatchMethod(mapping, form, request, response, methodName);
         }
-
-        // Find the key
-        String key = (String) lookupMap.get(name);
-
-        String methodName = (String) keyMethodMap.get(key);
-
-        return this.dispatchMethod(mapping, form, request, response, methodName);
     }
 
     /**
@@ -230,7 +216,7 @@ public abstract class LookupDispatchAction extends DispatchAction {
         this.keyMethodMap = this.getKeyMethodMap();
 
         ModuleConfig moduleConfig =
-            (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+                (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
 
         MessageResourcesConfig[] mrc = moduleConfig.findMessageResourcesConfigs();
 
@@ -250,7 +236,7 @@ public abstract class LookupDispatchAction extends DispatchAction {
                 }
             }
         }
-        
+
         return lookupMap;
     }
 
@@ -260,5 +246,62 @@ public abstract class LookupDispatchAction extends DispatchAction {
      * @return Resource key / method name map.
      */
     protected abstract Map getKeyMethodMap();
+
+    /**
+     * Returns the method name, given a parameter's value.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The HTTP request we are processing
+     * @param response The HTTP response we are creating
+     * @param parameter The <code>ActionMapping</code> parameter's name
+     *
+     * @return The method's name.
+     */
+    protected String getMethodName(ActionMapping mapping,
+                                   ActionForm form,
+                                   HttpServletRequest request,
+                                   HttpServletResponse response,
+                                   String parameter)
+            throws Exception {
+
+        // Identify the method name to be dispatched to.
+        // dispatchMethod() will call unspecified() if name is null
+        String keyName = request.getParameter(parameter);
+        if (StringUtils.isEmpty(keyName)) {
+            return null;
+        }
+
+        // Based on this request's Locale get the lookupMap
+        Map lookupMap = null;
+
+        synchronized(localeMap) {
+            Locale userLocale = this.getLocale(request);
+            lookupMap = (Map) this.localeMap.get(userLocale);
+
+            if (lookupMap == null) {
+                lookupMap = this.initLookupMap(request, userLocale);
+                this.localeMap.put(userLocale, lookupMap);
+            }
+        }
+
+        // Find the key for the resource
+        String key = (String) lookupMap.get(keyName);
+        if (key == null) {
+            String message = messages.getMessage(
+                    "dispatch.resource", mapping.getPath(), keyName);
+            throw new ServletException(message);
+        }
+
+        // Find the method name
+        String methodName = (String) keyMethodMap.get(key);
+        if (methodName == null) {
+            String message = messages.getMessage(
+                    "dispatch.lookup", mapping.getPath(), key);
+            throw new ServletException(message);
+        }
+
+        return methodName;
+    }
 
 }
