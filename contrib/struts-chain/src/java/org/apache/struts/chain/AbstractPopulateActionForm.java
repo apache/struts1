@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractPopulateActionForm.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/09/29 06:55:07 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractPopulateActionForm.java,v 1.3 2004/02/02 13:53:21 germuska Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/02/02 13:53:21 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.config.ActionConfig;
  * <p>Populate the form bean (if any) for this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
+ * @version $Revision: 1.3 $ $Date: 2004/02/02 13:53:21 $
  */
 
 public abstract class AbstractPopulateActionForm implements Command {
@@ -195,14 +195,59 @@ public abstract class AbstractPopulateActionForm implements Command {
         // Reset the form bean property values
         ActionConfig actionConfig = (ActionConfig)
             context.get(getActionConfigKey());
-        String prefix = actionConfig.getPrefix();
-        String suffix = actionConfig.getSuffix();
+
+
         reset(context, actionConfig, actionForm);
 
-        // Populate the form bean property values
+        populate(context, actionConfig, actionForm);
+
+        handleCancel(context, actionConfig, actionForm);
+
+        return (false);
+
+    }
+
+
+    // ------------------------------------------------------- Protected Methods
+
+    /**
+     * <p>Call the <code>reset()</code> method on the specified form bean.</p>
+     *
+     * @param context The context for this reqest
+     * @param actionConfing The actionConfig for this request
+     * @param actionForm The form bean for this request
+     */
+    protected abstract void reset(Context context,
+                                  ActionConfig actionConfig,
+                                  ActionForm actionForm);
+
+
+    /**
+     * <p>Base implementation assumes that the <code>Context</code>
+     * can be cast to <code>WebContext</code> and copies the parameter
+     * values from the context to the <code>ActionForm</code>.</p>
+     *
+     * <p>Note that this implementation does not handle "file uploads"
+     * because as far as I know there is no API for handling that without
+     * committing to servlets -- in a servlet environment, use
+     * <code>org.apache.struts.chain.servlet.PopulateActionForm</code>.</p>
+     *
+     * @param context
+     * @param actionConfig
+     * @param actionForm
+     * @throws Exception
+     */
+    protected void populate(Context context,
+                            ActionConfig actionConfig,
+                            ActionForm actionForm) throws Exception
+    {
         WebContext wcontext = (WebContext) context;
         Map paramValues = wcontext.getParamValues();
         Map parameters = new HashMap();
+
+        String prefix = actionConfig.getPrefix();
+        String suffix = actionConfig.getSuffix();
+
         Iterator keys = paramValues.keySet().iterator();
         while (keys.hasNext()) {
             String name = (String) keys.next();
@@ -218,39 +263,28 @@ public abstract class AbstractPopulateActionForm implements Command {
                     continue;
                 }
                 stripped =
-                    stripped.substring(0, stripped.length() - suffix.length());
+                        stripped.substring(0, stripped.length() - suffix.length());
             }
             parameters.put(stripped, paramValues.get(name));
         }
         BeanUtils.populate(actionForm, parameters);
+    }
+
+
+    protected void handleCancel(Context context,
+                                ActionConfig actionConfig,
+                                ActionForm actionForm) throws Exception
+    {
+        WebContext wcontext = (WebContext) context;
+        Map paramValues = wcontext.getParamValues();
 
         // Set the cancellation attribute if appropriate
         if ((paramValues.get(org.apache.struts.taglib.html.Constants.CANCEL_PROPERTY) != null) ||
             (paramValues.get(org.apache.struts.taglib.html.Constants.CANCEL_PROPERTY_X) != null)) {
-            wcontext.put(getCancelKey(), Boolean.TRUE);
+            context.put(getCancelKey(), Boolean.TRUE);
             wcontext.getRequestScope().put(Globals.CANCEL_KEY, Boolean.TRUE);
         } else {
-            wcontext.put(getCancelKey(), Boolean.FALSE);
+            context.put(getCancelKey(), Boolean.FALSE);
         }
-
-        return (false);
-
     }
-
-
-    // ------------------------------------------------------- Protected Methods
-
-
-    /**
-     * <p>Call the <code>reset()</code> method on the specified form bean.</p>
-     *
-     * @param context The context for this reqest
-     * @param actionConfing The actionConfig for this request
-     * @param actionForm The form bean for this request
-     */
-    protected abstract void reset(Context context,
-                                  ActionConfig actionConfig,
-                                  ActionForm actionForm);
-
-
 }
