@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.11 2003/02/04 18:21:18 husted Exp $</font></p>
+  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.12 2003/02/05 04:02:22 husted Exp $</font></p>
 
   <p>The objective of the <strong>Struts 1.1 Beta 3</strong> release is to
   create a milestone release against which a final series of bug fixes and
@@ -233,8 +233,20 @@
       <tr>
           <td>[ ]</td>
           <td>
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=16514">16514</a></td>
+        <td>NestedtTiles fail in this release</td>
+      </tr>
+      <tr>
+          <td>[ ]</td>
+          <td>
             <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=16603">16603</a></td>
         <td>internalModuleRelativeForward() does'nt  treat module-relative paths as defined by forwardPattern</td>
+      </tr>
+      <tr>
+          <td>[ ]</td>
+          <td>
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=16609">16609</a></td>
+        <td>MessageResource not in request scope for Module</td>
       </tr>
   </table>
 
