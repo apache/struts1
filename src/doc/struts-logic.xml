@@ -409,7 +409,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The name of a page scope JSP bean that will contain the current
       element of the collection on each iteration.</p>
@@ -433,7 +433,7 @@
     <attribute>
       <name>name</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The name of the JSP bean containing the collection to be iterated
       (if <code>property</code> is not specified), or the JSP bean whose
@@ -459,7 +459,7 @@
     <attribute>
       <name>property</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Name of the property, of the JSP bean specified by <code>name</code>,
       whose getter returns the collection to be iterated.</p>

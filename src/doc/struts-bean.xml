@@ -50,7 +50,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated page
       scope attribute) that will be made available with the value of the
@@ -61,7 +61,7 @@
     <attribute>
       <name>multiple</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>If any arbitrary value for this attribute is specified, causes all
       matching cookies to be accumulated and stored into a bean of type
@@ -108,7 +108,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated page
       scope attribute) that will be made available with the value of the
@@ -191,7 +191,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated page
       scope attribute) that will be made available with the value of the
@@ -202,7 +202,7 @@
     <attribute>
       <name>multiple</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>If any arbitrary value for this attribute is specified, causes a call
       to <code>HttpServletRequest.getHeaders()</code> and a definition of the
@@ -248,7 +248,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated page
       scope attribute) that will be made available with the value of the
@@ -387,7 +387,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated
       page scope attribute) that will be made available with the value of
@@ -434,7 +434,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated page
       scope attribute) that will be made available with the value of the
@@ -445,7 +445,7 @@
     <attribute>
       <name>multiple</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>If any arbitrary value for this attribute is specified, causes a call
       to <code>ServletRequest.getParameterValues()</code> and a definition of
@@ -490,7 +490,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated page
       scope attribute) that will be made available with the value of the
@@ -501,7 +501,7 @@
     <attribute>
       <name>input</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>If any arbitrary value for this attribute is specified, the resource
       will be made available as an <code>InputStream</code>.  If this
@@ -547,7 +547,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated
       page scope attribute) that will be made available with the value of
@@ -611,7 +611,7 @@
     <attribute>
       <name>filter</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>If any arbitrary value for this attribute is specified, the result
       of converting the specified bean property to a String will then be
@@ -623,7 +623,7 @@
     <attribute>
       <name>ignore</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>If this attribute is set to <code>true</code>, and the bean specified
       by the <code>name</code> and <code>scope</code> attributes does not

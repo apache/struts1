@@ -86,7 +86,7 @@
     <attribute>
       <name>direct</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       Determines how content is handled: true means content is
       printed <i>direct</i>ly; false, the default, means content
