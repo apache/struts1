@@ -53,7 +53,6 @@ import org.apache.commons.beanutils.converters.ShortConverter;
 import org.apache.commons.chain.Catalog;
 import org.apache.commons.chain.CatalogFactory;
 import org.apache.commons.chain.config.ConfigParser;
-import org.apache.commons.collections.FastHashMap;
 import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.RuleSet;
 import org.apache.commons.logging.Log;
@@ -69,7 +68,6 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
 import org.apache.struts.util.ModuleUtils;
 import org.apache.struts.util.RequestUtils;
-import org.apache.struts.util.ServletContextWriter;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
