@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.12 2002/12/16 03:41:43 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2002/12/16 03:41:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.13 2003/03/23 06:10:30 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/03/23 06:10:30 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -74,7 +74,7 @@ import org.apache.struts.util.ResponseUtils;
  * Custom tag for input fields of type "textarea".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2002/12/16 03:41:43 $
+ * @version $Revision: 1.13 $ $Date: 2003/03/23 06:10:30 $
  */
 
 public class TextareaTag extends BaseInputTag {
@@ -112,8 +112,9 @@ public class TextareaTag extends BaseInputTag {
         StringBuffer results = new StringBuffer("<textarea");
         results.append(" name=\"");
         // @since Struts 1.1
-        if( indexed )
-                prepareIndex( results, name );
+        if (indexed) {
+            prepareIndex( results, name );
+        }
         results.append(property);
         results.append("\"");
         if (accesskey != null) {
@@ -143,22 +144,28 @@ public class TextareaTag extends BaseInputTag {
             results.append(ResponseUtils.filter(value));
         } else {
             Object bean = RequestUtils.lookup(pageContext, name, null);
-            if (bean == null)
+            if (bean == null) {
                 throw new JspException
                     (messages.getMessage("getter.bean", name));
+            }
+            
             try {
                 String value = BeanUtils.getProperty(bean, property);
-                if (value == null)
+                if (value == null) {
                     value = "";
+                }
                 results.append(ResponseUtils.filter(value));
+                
             } catch (IllegalAccessException e) {
                 throw new JspException
                     (messages.getMessage("getter.access", property, name));
+                    
             } catch (InvocationTargetException e) {
                 Throwable t = e.getTargetException();
                 throw new JspException
                     (messages.getMessage("getter.result",
                                          property, t.toString()));
+                                         
             } catch (NoSuchMethodException e) {
                 throw new JspException
                     (messages.getMessage("getter.method", property, name));
