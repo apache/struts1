@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.10 2004/03/23 06:27:06 martinc Exp $
- * $Revision: 1.10 $
- * $Date: 2004/03/23 06:27:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.11 2004/04/01 17:56:47 mrdon Exp $
+ * $Revision: 1.11 $
+ * $Date: 2004/04/01 17:56:47 $
  *
  * Copyright 2003,2004 The Apache Software Foundation.
  * 
@@ -196,12 +196,15 @@ public class ActionConfigMatcher implements Serializable {
         Map.Entry entry;
         StringBuffer key = new StringBuffer("{0}");
         StringBuffer ret = new StringBuffer(val);
+        String keyTmp;
         int x;
         for (Iterator i = vars.entrySet().iterator(); i.hasNext();) {
             entry = (Map.Entry) i.next();
             key.setCharAt(1, ((String) entry.getKey()).charAt(0));
-            x = ret.toString().indexOf(key.toString());
-            if (x > -1) {
+            keyTmp = key.toString();
+            
+            // Replace all instances of the placeholder
+            while ((x = ret.toString().indexOf(keyTmp)) > -1) {
                 ret.replace(x, x + 3, (String) entry.getValue());
             }
         }

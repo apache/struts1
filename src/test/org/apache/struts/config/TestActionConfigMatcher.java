@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/config/TestActionConfigMatcher.java,v 1.7 2004/03/14 06:23:48 sraeburn Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/14 06:23:48 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/config/TestActionConfigMatcher.java,v 1.8 2004/04/01 17:56:47 mrdon Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/04/01 17:56:47 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -35,7 +35,7 @@ import org.apache.struts.mock.TestMockBase;
 /**
  * <p>Unit tests for <code>org.apache.struts.util.ActionConfigMatcher</code>.</p>
  *
- * @version $Revision: 1.7 $ $Date: 2004/03/14 06:23:48 $
+ * @version $Revision: 1.8 $ $Date: 2004/04/01 17:56:47 $
  */
 
 public class TestActionConfigMatcher extends TestMockBase {
@@ -151,6 +151,18 @@ public class TestActionConfigMatcher extends TestMockBase {
             }
         }
         assertTrue("The forward config 'name' cannot be found", found);
+    }
+ 
+    public void testCheckMultipleSubstitutions() {
+        ActionMapping[] mapping = new ActionMapping[1];
+        mapping[0] = new ActionMapping();
+        mapping[0].setPath("/foo*");
+        mapping[0].setName("name,{1}-{1}");
+
+        ActionConfigMatcher matcher = new ActionConfigMatcher(mapping);
+        ActionConfig m = matcher.match("/fooBar");
+        
+        assertTrue("Name hasn't been replaced correctly: "+m.getName(), "name,Bar-Bar".equals(m.getName()));
     }
     
     private ActionConfig buildActionConfig(String path) {
