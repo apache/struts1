@@ -1987,14 +1987,6 @@
                         </info>
                 </attribute>
 
-                <attribute>
-                        <name>name</name>
-                        <required>false</required>
-                        <rtexprvalue>false</rtexprvalue>
-                        <info>
-                            The name of the radio tag.
-                        </info>
-                </attribute>
 	</tag>
 	
 	<tag>
