@@ -6,7 +6,7 @@
 # to "build.properties" in the same directory that contains the Struts
 # "build.xml" file.
 #
-# $Id: build.properties.sample,v 1.8 2002/02/26 05:40:56 dwinterfeldt Exp $
+# $Id: build.properties.sample,v 1.9 2002/03/18 01:44:51 dwinterfeldt Exp $
 # -----------------------------------------------------------------------------
 
 # WARNING:  The relative paths below assume that the build.xml file is in the
@@ -51,6 +51,10 @@ commons-services.jar=/usr/local/commons-services/commons-services.jar
 # The JAR file containing a recent version of the VALIDATOR package
 # from the Jakarta Commons project.
 commons-validator.jar=/usr/local/commons-validator/commons-validator.jar
+
+# The JAR file containing version 1.2 (or later) of the 
+# Jakarta Regexp package.
+regexp.jar=/usr/local/jakarta-regexp/jakarta-regexp-1.2.jar
 
 # The JAR file containing the JDBC 2.0 Optional Package extensions API
 # (javax.sql).  This file will automatically be added to your class path
