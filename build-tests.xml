@@ -107,7 +107,6 @@
       <pathelement location="${commons-httpclient.jar}"/>
       <pathelement location="${commons-logging.jar}"/>
       <pathelement location="${commons-validator.jar}"/>
-      <pathelement location="${commons-lang.jar}"/>
       <pathelement location="${httpunit.jar}"/>
       <pathelement location="${aspectjrt.jar}"/>
       <pathelement location="${jakarta-oro.jar}"/>

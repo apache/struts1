@@ -61,10 +61,6 @@
                                       of the Jakarta Commons FileUpload
                                       package (version 1.0 or later)
 
-        commons-lang.jar              (required).  The path to the JAR file
-                                      of the Jakarta Commons Lang
-                                      package (version 1.0 or later).
-
         commons-logging.jar           (required).  The path to the JAR file
                                       of the Jakarta Commons Logging
                                       package (version 1.0 or later).
