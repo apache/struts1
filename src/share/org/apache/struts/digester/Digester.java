@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.10 2000/11/29 06:47:15 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2000/11/29 06:47:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.11 2000/12/28 00:27:09 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2000/12/28 00:27:09 $
  *
  * ====================================================================
  * 
@@ -68,9 +68,11 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.EmptyStackException;
-import java.util.Enumeration;
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Stack;
 import java.util.Vector;
 import javax.xml.parsers.SAXParser;
@@ -86,17 +88,22 @@ import org.xml.sax.SAXParseException;
 
 
 /**
- * A <strong>Digester</strong> processes an XML input stream by matching a
+ * <p>A <strong>Digester</strong> processes an XML input stream by matching a
  * series of element nesting patterns to execute Rules that have been added
  * prior to the start of parsing.  This package was inspired by the
  * <code>XmlMapper</code> class that was part of Tomcat 3.0 and 3.1,
- * but is organized somewhat differently.
- * <p>
- * See the <a href="package-summary.html#package_description">Digester
- * Developer Guide</a> for more information.
+ * but is organized somewhat differently.</p>
+ *
+ * <p>See the <a href="package-summary.html#package_description">Digester
+ * Developer Guide</a> for more information.</p>
+ *
+ * <p><strong>IMPLEMENTATION NOTE</strong> - A single Digester instance may
+ * only be used within the context of a single thread at a time, and a call
+ * to <code>parse()</code> must be completed before another can be initiated
+ * even from the same thread.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.10 $ $Date: 2000/11/29 06:47:15 $
+ * @version $Revision: 1.11 $ $Date: 2000/12/28 00:27:09 $
  */
 
 public final class Digester extends HandlerBase {
@@ -140,7 +147,7 @@ public final class Digester extends HandlerBase {
      * The URLs of DTDs that have been registered, keyed by the public
      * identifier that corresponds.
      */
-    private Hashtable dtds = new Hashtable();
+    private HashMap dtds = new HashMap();
 
 
     /**
@@ -171,10 +178,10 @@ public final class Digester extends HandlerBase {
     /**
      * The set of Rules that have been registered with this Digester.  The
      * key is the matching pattern against the current element stack, and
-     * the value is a Vector containing the Rules for that pattern, in the
+     * the value is a List containing the Rules for that pattern, in the
      * order that they were registered.
      */
-    private Hashtable rules = new Hashtable();
+    private HashMap rules = new HashMap();
 
 
     /**
@@ -312,13 +319,13 @@ public final class Digester extends HandlerBase {
 	    pop();
 
 	// Fire "finish" events for all defined rules
-	Enumeration keys = this.rules.keys();
-	while (keys.hasMoreElements()) {
-	    String key = (String) keys.nextElement();
-	    Vector rules = (Vector) this.rules.get(key);
+	Iterator keys = this.rules.keySet().iterator();
+	while (keys.hasNext()) {
+	    String key = (String) keys.next();
+	    List rules = (List) this.rules.get(key);
 	    for (int i = 0; i < rules.size(); i++) {
 		try {
-		    ((Rule) rules.elementAt(i)).finish();
+		    ((Rule) rules.get(i)).finish();
 		} catch (Exception e) {
 		    log("Finish event threw exception", e);
 		    throw new SAXException(e);
@@ -343,7 +350,7 @@ public final class Digester extends HandlerBase {
 
 	//	if (debug >= 3)
 	//	    log("endElement(" + match + ")");
-	Vector rules = getRules(match);
+	List rules = getRules(match);
 
 	// Fire "body" events for all relevant rules
 	if (rules != null) {
@@ -352,7 +359,7 @@ public final class Digester extends HandlerBase {
 	    String bodyText = this.bodyText.toString();
 	    for (int i = 0; i < rules.size(); i++) {
 		try {
-		    ((Rule) rules.elementAt(i)).body(bodyText);
+		    ((Rule) rules.get(i)).body(bodyText);
 		} catch (Exception e) {
 		    log("Body event threw exception", e);
 		    throw new SAXException(e);
@@ -370,7 +377,7 @@ public final class Digester extends HandlerBase {
 	    for (int i = 0; i < rules.size(); i++) {
 		int j = (rules.size() - i) - 1;
 		try {
-		    ((Rule) rules.elementAt(j)).end();
+		    ((Rule) rules.get(j)).end();
 		} catch (Exception e) {
 		    log("End event threw exception", e);
 		    throw new SAXException(e);
@@ -482,14 +489,14 @@ public final class Digester extends HandlerBase {
 
 
 	// Fire "begin" events for all relevant rules
-	Vector rules = getRules(match);
+	List rules = getRules(match);
 	if (rules != null) {
 	    //	    if (debug >= 3)
 	    //		log("  Firing 'begin' events for " + rules.size() + " rules");
 	    String bodyText = this.bodyText.toString();
 	    for (int i = 0; i < rules.size(); i++) {
 		try {
-		    ((Rule) rules.elementAt(i)).begin(list);
+		    ((Rule) rules.get(i)).begin(list);
 		} catch (Exception e) {
 		    log("Begin event threw exception", e);
 		    throw new SAXException(e);
@@ -755,12 +762,12 @@ public final class Digester extends HandlerBase {
      */
     public void addRule(String pattern, Rule rule) {
 
-	Vector list = (Vector) rules.get(pattern);
+	List list = (List) rules.get(pattern);
 	if (list == null) {
-	    list = new Vector();
+	    list = new ArrayList();
 	    rules.put(pattern, list);
 	}
-	list.addElement(rule);
+	list.add(rule);
 
     }
 
@@ -1048,22 +1055,22 @@ public final class Digester extends HandlerBase {
      *
      * @param match The current match position
      */
-    private Vector getRules(String match) {
+    private List getRules(String match) {
 
-        Vector rulesVector = (Vector) this.rules.get(match);
-	if (rulesVector == null) {
-	    Enumeration keys = this.rules.keys();
-	    while (keys.hasMoreElements()) {
-	        String key = (String) keys.nextElement();
+        List rulesList = (List) this.rules.get(match);
+	if (rulesList == null) {
+	    Iterator keys = this.rules.keySet().iterator();
+	    while (keys.hasNext()) {
+	        String key = (String) keys.next();
 		if (key.startsWith("*/")) {
 		    if (match.endsWith(key.substring(1))) {
-		        rulesVector = (Vector) this.rules.get(key);
+		        rulesList = (List) this.rules.get(key);
 			break;
 		    }
 		}
 	    }
 	}
-	return (rulesVector);
+	return (rulesList);
 
     }
 
