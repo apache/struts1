@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.11 2003/08/23 17:27:24 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2003/08/23 17:27:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.12 2003/08/23 17:33:28 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/08/23 17:33:28 $
  *
  * ====================================================================
  *
@@ -61,8 +61,6 @@
 
 package org.apache.struts.config;
 
-import java.util.Iterator;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,12 +68,10 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.apache.struts.Globals;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.MessageResources;
@@ -107,7 +103,7 @@ import org.apache.struts.util.RequestUtils;
  * @since Struts 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.11 $ $Date: 2003/08/23 17:27:24 $
+ * @version $Revision: 1.12 $ $Date: 2003/08/23 17:33:28 $
  */
 public class ConfigHelper implements ConfigHelperInterface {
 
@@ -198,10 +194,25 @@ public class ConfigHelper implements ConfigHelperInterface {
         ServletContext application,
         HttpServletRequest request,
         HttpServletResponse response) {
+        
         setApplication(application);
         setRequest(request);
         setResponse(response);
     }
+    
+    public ConfigHelper() {
+        super();
+    }
+
+    public ConfigHelper(
+        ServletContext application,
+        HttpServletRequest request,
+        HttpServletResponse response) {
+            
+        super();
+        this.setResources(application, request, response);
+    }
+    
 
     // ------------------------------------------------ Application Context
 
@@ -268,19 +279,6 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     // ---------------------------------------------------- Request Context
-
-    /**
-     * The <code>org.apache.struts.action.ActionErrors</code> object,
-     * for this request.
-     */
-    public ActionErrors getActionErrors() {
-
-        if (this.request == null) {
-            return null;
-        }
-        return (ActionErrors) this.request.getAttribute(Globals.ERROR_KEY);
-
-    }
 
     /**
      * The runtime JspException that may be been thrown by a Struts tag
@@ -617,144 +615,9 @@ public class ConfigHelper implements ConfigHelperInterface {
      * @param path Name given to local or global forward.
      */
     public String getAction(String path) {
-
         return getEncodeURL(getActionMappingURL(path));
-
     }
 
-    /**
-     * Return the number of error messages.
-     */
-    public int getErrorSize() {
-
-        ActionErrors actionErrors = getActionErrors();
-
-        if (actionErrors == null)
-            return 0;
-
-        return actionErrors.size();
-    }
-
-    /**
-     * Return true if there are no errors queued
-     */
-    public boolean getErrorsEmpty() {
-
-        ActionErrors actionErrors = getActionErrors();
-
-        if (actionErrors == null)
-            return false;
-
-        return actionErrors.isEmpty();
-    }
-
-    /**
-     * Return the error messages
-     */
-    public Iterator getErrors() {
-
-        ActionErrors actionErrors = getActionErrors();
-
-        if (actionErrors == null)
-            return null;
-
-        return actionErrors.get();
-    }
-
-    /**
-     * Return an ActionError for a property
-     *
-     * @param property Property name
-     */
-    public Iterator getErrors(String property) {
-
-        ActionErrors actionErrors = getActionErrors();
-
-        if (actionErrors == null)
-            return null;
-
-        return actionErrors.get(property);
-    }
-
-    /**
-     * Return the number of error messages.
-     *
-     * @param property Property name
-     */
-    public int getErrorSize(String property) {
-
-        ActionErrors actionErrors = getActionErrors();
-
-        if (actionErrors == null)
-            return 0;
-
-        return actionErrors.size(property);
-    }
-
-    /**
-     * Returns the errors.header, any errors, and the errors.footer.
-     *
-     * @param property Property name
-     */
-    public String getErrorOutput(String property) {
-
-        ActionErrors errors = getActionErrors();
-
-        if ((errors == null) || (errors.isEmpty())) {
-            return null;
-        }
-
-        // Check for presence of header and footer message keys
-        boolean headerPresent = isMessage("errors.header");
-        boolean footerPresent = isMessage("errors.footer");
-
-        // Render the error messages appropriately
-        StringBuffer results = new StringBuffer();
-        String message = null;
-        if (headerPresent)
-            message = getMessage("errors.header");
-        Iterator reports = null;
-
-        if (property == null)
-            reports = errors.get();
-        else
-            reports = errors.get(property);
-
-        // Render header if this is a global tag or there is an error for this property
-        boolean propertyMsgPresent = reports.hasNext();
-        if ((message != null) && (property == null) || propertyMsgPresent) {
-            results.append(message);
-            results.append("\r\n");
-        }
-
-        while (reports.hasNext()) {
-            ActionMessage report = (ActionMessage) reports.next();
-            message = getMessage(report.getKey(), report.getValues());
-            if (message != null) {
-                results.append(message);
-                results.append("\r\n");
-            }
-        }
-        message = null;
-        if (footerPresent)
-            message = getMessage("errors.footer");
-
-        if ((message != null) && (property == null) || propertyMsgPresent) {
-            results.append(message);
-            results.append("\r\n");
-        }
-
-        // return result
-        return results.toString();
-
-    }
-
-    /**
-     * Wrapper for getErrorMarkup(null)
-     */
-    public String getErrorOutput() {
-        return getErrorOutput(null);
-    }
 
     // --------------------------------------------- Presentation Wrappers
 
@@ -795,69 +658,9 @@ public class ConfigHelper implements ConfigHelperInterface {
         return getAction(path);
     }
 
-    /**
-     * Alias for getErrorSize()
-     */
-    public int errorSize() {
-        return getErrorSize();
-    }
 
-    /**
-     * Wrapper for getErrorEmpty()
-     */
-    public boolean errorsEmpty() {
-        return getErrorsEmpty();
-    }
 
-    /**
-     * Wrapper for getErrors()
-     */
-    public Iterator errors() {
-        return errors();
-    }
 
-    /**
-     * Wrapper for getErrors(String)
-     */
-    public Iterator errors(String property) {
-        return getErrors(property);
-    }
 
-    /**
-     * Wrapper for getErrorSize(String)
-     *
-     * @param property Property name
-     */
-    public int errorSize(String property) {
-        return getErrorSize(property);
-    }
-
-    /**
-     * Wrapper for getErrorMarkup(String)
-     */
-    public String errorOutput(String property) {
-        return getErrorOutput(property);
-    }
-
-    /**
-     * Wrapper for getErrorMarkup()
-     */
-    public String errorOutput() {
-        return getErrorOutput();
-    }
-
-    // ------------------------------------------------------- Constructors
-
-    public ConfigHelper() {
-        super();
-    }
-
-    public ConfigHelper(
-        ServletContext application,
-        HttpServletRequest request,
-        HttpServletResponse response) {
-        super();
-        setResources(application, request, response);
-    }
 
 }

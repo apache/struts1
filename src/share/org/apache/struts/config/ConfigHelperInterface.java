@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelperInterface.java,v 1.8 2003/08/23 17:27:24 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/08/23 17:27:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelperInterface.java,v 1.9 2003/08/23 17:33:28 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/08/23 17:33:28 $
  *
  * ====================================================================
  *
@@ -63,11 +63,8 @@
 package org.apache.struts.config;
 
 
-import java.util.Iterator;
-
 import javax.sql.DataSource;
 
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionForward;
@@ -103,7 +100,7 @@ import org.apache.struts.util.MessageResources;
  * @since Struts 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.8 $ $Date: 2003/08/23 17:27:24 $
+ * @version $Revision: 1.9 $ $Date: 2003/08/23 17:33:28 $
  */
 public interface ConfigHelperInterface {
 
@@ -140,13 +137,6 @@ public interface ConfigHelperInterface {
 
 
 // ---------------------------------------------------- Request Context
-
-
-    /**
-     * The <code>org.apache.struts.action.ActionErrors</code> object,
-     * for this request.
-     */
-    public ActionErrors getActionErrors();
 
 
     /**
@@ -304,54 +294,6 @@ public interface ConfigHelperInterface {
      * @param path Name given to local or global forward.
      */
     public String getAction(String path);
-
-
-    /**
-     * Return the number of error messages.
-     */
-    public int getErrorSize();
-
-
-    /**
-     * Return true if there are no errors queued
-     */
-    public boolean getErrorsEmpty();
-
-
-    /**
-     * Return the error messages
-     */
-    public Iterator getErrors();
-
-
-    /**
-     * Returns the errors.header, any errors, and the errors.footer.
-     */
-    public String getErrorOutput();
-
-
-    /**
-     * Return the number of error messages.
-     *
-     * @param property Property name
-     */
-    public int getErrorSize(String property);
-
-
-    /**
-     * Returns the errors.header, any errors, and the errors.footer.
-     *
-     * @param property Property name
-     */
-    public String getErrorOutput(String property);
-
-
-    /**
-     * Return an ActionError for a property
-     *
-     * @param property Property name
-     */
-    public Iterator getErrors(String property);
 
 
 }
