@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/ForwardAction.java,v 1.3 2002/09/22 05:58:46 martinc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/09/22 05:58:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/ForwardAction.java,v 1.4 2002/10/16 15:17:23 ekbush Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/16 15:17:23 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.util.MessageResources;
  * <code>parameter</code> attribute.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/09/22 05:58:46 $
+ * @version $Revision: 1.4 $ $Date: 2002/10/16 15:17:23 $
  */
 
 public class ForwardAction extends Action {
@@ -139,27 +139,16 @@ public class ForwardAction extends Action {
 
         // Create a RequestDispatcher the corresponding resource
         String path = mapping.getParameter();
+
         if (path == null) {
             response.sendError
                 (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                  messages.getMessage("forward.path"));
             return (null);
         }
-        RequestDispatcher rd =
-            servlet.getServletContext().getRequestDispatcher(path);
-        if (rd == null) {
-            response.sendError
-                (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                 messages.getMessage("forward.rd", path));
-            return (null);
-        }
 
-        // Forward control to the specified resource
-        rd.forward(request, response);
-
-        // Tell the controller servlet that the response has been created
-        return (null);
-
+        // Let the controller handle the request
+        return new ActionForward(path);
     }
 
 
