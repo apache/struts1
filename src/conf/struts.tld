@@ -1790,6 +1790,11 @@
 
 
   <tag>
+    <name>base</name>
+    <tagclass>org.apache.struts.taglib.BaseTag</tagclass>
+  </tag>
+
+  <tag>
     <name>encodeRedirectURL</name>
     <tagclass>org.apache.struts.taglib.EncodeRedirectURLTag</tagclass>
     <attribute>
