@@ -44,7 +44,7 @@ import org.apache.struts.util.RequestUtils;
 
 /**
  * <p><strong>RequestProcessor</strong> contains the processing logic that
- * the @link(ActionServlet) performs as it receives each servlet request
+ * the {@link ActionServlet} performs as it receives each servlet request
  * from the container. You can customize the request processing behavior by
  * subclassing this class and overriding the method(s) whose behavior you are
  * interested in changing.</p>

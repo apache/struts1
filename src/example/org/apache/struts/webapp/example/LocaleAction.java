@@ -30,7 +30,7 @@ import org.apache.struts.action.ActionMapping;
 
 
 /**
- * <p>Change user's Struts @link(java.util.Locale).</p>
+ * <p>Change user's Struts {@link java.util.Locale}.</p>
  */
 public final class LocaleAction extends BaseAction {
 
@@ -44,13 +44,13 @@ public final class LocaleAction extends BaseAction {
     }
 
     /**
-     * <p>Parameter for @link(java.util.Locale) language property.
+     * <p>Parameter for {@link java.util.Locale} language property.
      * ["language"]</p>
      */
     private static final String LANGUAGE = "language" ;
 
     /**
-     * <p>Parameter for @link(java.util.Locale) country property.
+     * <p>Parameter for {@link java.util.Locale} country property.
      * ["country"]</p>
      */
     private static final String COUNTRY = "country";
@@ -73,7 +73,7 @@ public final class LocaleAction extends BaseAction {
 
     /**
      * <p>
-     * Change the user's Struts @link(java.util.Locale) based on request
+     * Change the user's Struts {@link java.util.Locale} based on request
      * parameters for "language", "country".
      * After setting the Locale, control is forwarded to an URI path
      * indicated by a "page" parameter, or a forward indicated by a
