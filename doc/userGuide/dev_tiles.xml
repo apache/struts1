@@ -11,9 +11,9 @@ The Struts User's Guide - Tiles Guide
 
 <section href="tiles" name="The Tiles Document Assembly Framework">
 
-<p>Tiles builds on the "include" feature provided by the JavaServer Page
-specification to provided a full-featured, robust framework for assembling
-presentation pages from component parts. Each part, or tile, can be
+<p>Tiles builds on the "include" feature provided by the JavaServer Pages
+specification to provide a full-featured, robust framework for assembling
+presentation pages from component parts. Each part ("Tile") can be
 reused as often as needed throughout your application. This reduces the
 amount of markup that needs to be maintained and makes it easier to
 change the look and feel of a website.
@@ -30,30 +30,30 @@ change the look and feel of a website.
 
 <ul>
 <li>
-  Create a screen by assembling <strong><em>Tiles</em></strong>: header, footer, menu, body
+  Create a screen by assembling <strong><em>Tiles</em></strong>, e.g. header, footer, menu, body
 </li>
 <li>
-  Definitions can take place :
+  Definitions can take place:
 
 <ul>
 <li>
-  in a centralized xml file
+  in a centralized XML file
 </li>
 
 <li>
-  directly in jsp page
+  directly in JSP pages
 </li>
 
 <li>
-  in struts action
+  in Struts <code>Action</code>s
 </li>
 </ul>
 </li>
 
 <li>
   Definitions provide an inheritance
-  mechanism : a definition can extends another one,
-  and override parameters.
+  mechanism: a definition can extend another one
+  and override some (or all) of its parameters
 </li>
 </ul>
 </li>
@@ -63,11 +63,11 @@ Templating
 <ul>
 
 <li>
-  <strong><em>Tiles</em></strong> framework is entirely compatible with <em>Templates</em> defined by David Geary and implemented in Struts
+  <strong><em>The Tiles</em></strong> framework is entirely compatible with <em>Templates</em> (deprecated as for Struts 1.1) defined by David Geary and implemented in Struts
 </li>
 
 <li>
-  You can replace <em>Templates</em> library by <strong><em>Tiles</em></strong>one
+  You can replace the <em>Templates</em> library with <strong><em>Tiles</em></strong>
 </li>
 </ul>
 </li>
@@ -81,15 +81,15 @@ Layouts
 </li>
 
 <li>
-  Define menu layouts, and use them by passing lists of items and links
+  Define menu layouts and pass lists of items and links
 </li>
 
 <li>
-  Define portal layout, use it by passing list of <strong><em>Tiles</em></strong> (pages) to show
+  Define a portal layout, use it by passing list of <strong><em>Tiles</em></strong> (pages) to show
 </li>
 
 <li>
-  Reuse existing layouts, or define your own
+  Reuse existing layouts, or define your own ones
 </li>
 </ul>
 </li>
@@ -98,26 +98,26 @@ Layouts
   Dynamic page building
 <ul>
 <li>
-  Tiles are gather dynamically during page reload. It is possible to change any attributes: layout, list of Tiles in portal, list of menu items, ...
+  Tiles are gathered dynamically during page reload. It is possible to change any attributes: layout, list of Tiles in portal, list of menu items, ...
 </li>
 </ul>
 </li>
 
 <li>
-  Reuse of <strong><em>Tiles</em></strong> /Components
+  Reuse of <strong><em>Tiles</em></strong>/Components
 <ul>
 
 <li>
-  If well defined, a<strong><em>Tile</em></strong> can be reused in different location
+  If well defined, a <strong><em>Tile</em></strong> can be reused in different locations
 </li>
 
 <li>
-  Dynamic attributes are used to parameterized <em><strong>Tiles</strong>
+  Dynamic attributes are used to parameterize <em><strong>Tiles</strong>
 </em>
 </li>
 
 <li>
-  It is possible to define library of reusable <em><strong>Tiles</strong>
+  It is possible to define libraries of reusable <em><strong>Tiles</strong>
 </em>.
 </li>
 
@@ -128,16 +128,16 @@ Layouts
 </li>
 
 <li>
-  Internationalization (i18n)
+  Internationalization (I18N)
 </li>
 
 <ul>
 <li>
-  It is possible to load different tiles according to Locale
+  It is possible to load different Tiles according to the user's Locale
 </li>
 
 <li>
-A mechanism similar to Java properties files is used for definitions files : you can have one definition file per Locale. The appropriate definition is loaded according to current Locale
+A mechanism similar to Java properties files is used for definition files: you can have one definition file per Locale, the appropriate definition is loaded according to the current Locale
 </li>
 </ul>
 
@@ -147,15 +147,15 @@ A mechanism similar to Java properties files is used for definitions files : you
 
 <ul>
 <li>
-  It is possible to load different Tiles according to a key stored in jsp session, or anywhere.
+  It is possible to load different Tiles according to a key stored e.g. in session context
 </li>
 
 <li>
-  For example, key could be user privilege, browser type, ...
+  The key could hold e.g. user privileges, browser type, ...
 </li>
 
 <li>
-  A mechanism similar to Java properties files is used for definitions files : you can have one definition file per key. The appropriate definition is loaded according to the key.
+  A mechanism similar to Java properties files is used for definition files: you can have one definition file per key, the appropriate definition is loaded according to the key
 </li>
 </ul>
 </ul>
@@ -165,12 +165,12 @@ A mechanism similar to Java properties files is used for definitions files : you
 <section href="setup" name="Enabling your application for Tiles">
 
 <p>
-The Tiles framework is bundled with Struts. It is not enabled by default. To enable Tiles you need to:
+The Tiles framework is bundled with Struts but not enabled by default. To enable Tiles you need to:
 </p>
 
 <ul>
 <li>
-  Setup the struts-tiles taglib in your <code>WEB-INF/web.xml</code> file to include the following tag library declarations:
+  Setup the struts-tiles taglib in your <code>WEB-INF/web.xml</code> file to include the following tag library declaration:
 </li>
 </ul>
 
@@ -181,23 +181,24 @@ The Tiles framework is bundled with Struts. It is not enabled by default. To ena
 
 <ul>
 <li>
-  At the top of each JSP page that will use the Tiles custom tags, add line(s) declaring the Tiles custom tag libraries used on this particular page, like this:
+  At the top of each JSP page that will use the Tiles custom tags, add the following line declaring the Tiles custom tag library for use on the page:
 </li>
 </ul>
 
 <pre>&lt;%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %&gt;</pre>
-
+<strong>Servlet 2.3</strong>: You can omit the declaration in <code>WEB-INF/web.xml</code> and replace above line with the full URI:
+<pre>&lt;%@ taglib uri="http://jakarta.apache.org/struts/tags-tiles" prefix="tiles" %&gt;</pre>
 <ul>
 <li>
-  If you plan to use Tiles definitions defined in a centralized file, you need to create this file, and instruct Struts to load the plugin which will create the factory corresponding to the file. You can have more than one definitions files.
+  If you plan to use Tiles definitions defined in a centralized file, you need to create this file and instruct Struts to load the Tiles plugin which will create the factory corresponding to the file. You can have more than one definitions file.
 </li>
 
 <ul>
 <li>
-Create a file containing your definitions and give it a name (ex: <code>WEB-INF/tiles-defs.xml</code>). You can use the <code>tiles-defs.xml</code> file from the Tiles application for a detailed example of the required syntax.</li>
+Create a file containing your definitions (e.g. <code>WEB-INF/tiles-defs.xml</code>). You can use the <code>tiles-defs.xml</code> file from the Tiles application for a detailed example of the required syntax.</li>
 
 <li>
-  Setup Tiles plugin in each <code>struts-config.xml</code> file corresponding to a module:
+  Setup the Tiles plugin in each <code>struts-config.xml</code> file corresponding to a module:
 </li>
 </ul>
 
@@ -211,14 +212,14 @@ Create a file containing your definitions and give it a name (ex: <code>WEB-INF/
 
 <ul>
 <li>
-  <strong>note:</strong> This plugin creates one factory for each Struts modules. The plugin first read factory parameters from <code>web.xml</code> and then overload them with parameters from the first <code>struts-config.xml</code> file read.
+  <strong>Note:</strong> This plugin creates one factory for each Struts modules. The plugin first reads the factory parameters from <code>web.xml</code> and then overloads them with the ones defined in the first <code>struts-config.xml</code> file.
 </li>
 </ul>
 </ul>
 
 <ul>
 <li>
-<strong>note:</strong> Tiles framework now use the commons-logging package to output different information or debug data. Please refer to this package documentation to enable it. The simplest way to enable logging is to create two files under <code>WEB-INF/classes</code>:
+<strong>Note:</strong> The Tiles framework now uses the commons-logging package to output different information or debug statements. Please refer to this package documentation to enable it. The simplest way to enable logging is to create two files in <code>WEB-INF/classes</code>:
 <pre><strong>commons-logging.properties</strong>
 org.apache.commons.logging.Log=org.apache.commons.logging.impl.SimpleLog
 <strong>simplelog.properties</strong>
@@ -265,6 +266,16 @@ Sample chapter from
 <p>
 <a href="http://www.javaworld.com/javaworld/jw-01-2002/jw-0104-tilestrut.html">
 <b>UI design with Tiles and Struts</b></a> by Prakash Malani.
+</p>
+
+<p>
+<a href="http://www.theserverside.com/resources/article.jsp?l=Tiles101">
+<b>Tiles 101/201</b></a> by Patrick Peak.
+</p>
+
+<p>
+<a href="http://www.lifl.fr/~dumoulin/tiles/tilesAdvancedFeatures.pdf">
+<b>Tiles Advanced Features</b></a> by Cedric Dumoulin.
 </p>
 
 </section>
