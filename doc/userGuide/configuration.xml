@@ -625,28 +625,12 @@
     org.apache.struts.action.ActionServlet
   </servlet-class>
   <init-param>
-    <param-name>application</param-name>
-    <param-value>
-      org.apache.struts.webapp.example.ApplicationResources
-    </param-value>
-  </init-param>
-  <init-param>
     <param-name>config</param-name>
     <param-value>
       /WEB-INF/struts-config.xml
     </param-value>
   </init-param>
-  <init-param>
-    <param-name>debug</param-name>
-    <param-value>2</param-value>
-  </init-param>
-  <init-param>
-    <param-name>mapping</param-name>
-    <param-value>
-      org.apache.struts.webapp.example.ApplicationMapping
-    </param-value>
-  </init-param>
-  <load-on-startup>2</load-on-startup>
+  <load-on-startup>1</load-on-startup>
 </servlet>
 ]]></code></pre>
 
@@ -687,14 +671,6 @@
         If set to true, the numeric Java wrapper class types (like
         <code>java.lang.Integer</code>) will default to null (rather than 0).
         (Since Struts 1.1) [false]
-        </li>
-
-        <li>
-        <strong>debug</strong> - The debugging detail level that controls
-        how much information is logged for this servlet.
-        Accepts values 0 (off) and from 1 (least serious) through 6
-        (most serious).
-        [0]
         </li>
 
         <li>
@@ -745,6 +721,15 @@
         [text/html]
         <em>DEPRECATED - Configure this using the "contentType" attribute
         of the &lt;controller&gt; element.</em>
+        </li>
+
+        <li>
+        <strong>debug</strong> - The debugging detail level that controls
+        how much information is logged for this servlet.
+        Accepts values 0 (off) and from 1 (least serious) through 6
+        (most serious). [0]
+        <em>DEPRECATED - Configure the logging detail level in your
+        underlying logging implementation.</em>
         </li>
 
         <li>
@@ -880,6 +865,15 @@
         </li>
 
      </ul>
+
+     <p>
+       <font color="red"><strong>WARNING</strong></font> - Struts will not
+       operate correctly if you define more than one
+       <code>&lt;servlet&gt;</code> element for a controller
+       servlet, or a subclass of the standard controller servlet class.
+       The controller servlet <strong>MUST</strong> be a web application
+       wide singleton.
+     </p>
 
 </section>
 

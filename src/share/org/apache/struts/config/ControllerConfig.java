@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.11 2002/11/28 07:13:03 rleland Exp $
- * $Revision: 1.11 $
- * $Date: 2002/11/28 07:13:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.12 2003/01/28 19:30:24 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/01/28 19:30:24 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/11/28 07:13:03 $
+ * @version $Revision: 1.12 $ $Date: 2003/01/28 19:30:24 $
  * @since Struts 1.1
  */
 
@@ -127,6 +127,8 @@ public class ControllerConfig implements Serializable {
 
     /**
      * The debugging detail level that determines logging verbosity.
+     * @deprecated Configure the logging detail level in your underlying
+     *  logging implemenation
      */
     protected int debug = 0;
 

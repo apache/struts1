@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.22 2002/11/12 03:56:09 dgraham Exp $
- * $Revision: 1.22 $
- * $Date: 2002/11/12 03:56:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.23 2003/01/28 19:30:24 craigmcc Exp $
+ * $Revision: 1.23 $
+ * $Date: 2003/01/28 19:30:24 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.22 $ $Date: 2002/11/12 03:56:09 $
+ * @version $Revision: 1.23 $ $Date: 2003/01/28 19:30:24 $
  * @since Struts 1.1
  */
 
@@ -1068,6 +1068,9 @@ public class RequestProcessor {
     /**
      * Return the debugging detail level that has been configured for our
      * controller servlet.
+     *
+     * @deprecated Configure the logging detail level in your
+     *  underlying logging implementation
      */
     public int getDebug() {
 

@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.34 2002/12/23 22:00:24 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.35 2003/01/28 19:30:23 craigmcc Exp $
 -->
 
 
@@ -477,8 +477,9 @@ The "form-bean" element describes a particular form bean, which is a
                      JSP, or other resource to which the request is forwarded.
                      ["text/html"]
 
-     debug           Debugging detail level for this module.
-                     [0]
+     debug           Debugging detail level for this module. [0]
+                     DEPRECATED - configure the logging detail level
+                     in your underlying logging implementation.
 
      forwardPattern  Replacement pattern defining how the "path" attribute of a
                      <forward> element is mapped to a context-relative URL when

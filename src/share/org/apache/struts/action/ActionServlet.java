@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.141 2003/01/18 19:43:00 craigmcc Exp $
- * $Revision: 1.141 $
- * $Date: 2003/01/18 19:43:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.142 2003/01/28 19:30:23 craigmcc Exp $
+ * $Revision: 1.142 $
+ * $Date: 2003/01/28 19:30:23 $
  *
  * ====================================================================
  *
@@ -192,9 +192,6 @@ import org.xml.sax.InputSource;
  *     when populating forms. If set to true, the numeric Java wrapper class types
  *     (like <code>java.lang.Integer</code>) will default to null (rather than 0).
  *     (Since Struts 1.1) [false] </li>
- * <li><strong>debug</strong> - TThe debugging detail level that controls how much
- *     information is logged for this servlet. Accepts values 0 (off) and from
- *     1 (least serious) through 6 (most serious). [0]</li>
  * <li><strong>rulesets</strong> - Comma-delimited list of fully qualified
  *     classnames of additional <code>org.apache.commons.digester.RuleSet</code>
  *     instances that should be added to the <code>Digester</code> that will
@@ -220,6 +217,11 @@ import org.xml.sax.InputSource;
  *     servlet or JSP page.  [text/html]
  *     <em>DEPRECATED - Configure this using the "contentType" attribute
  *     of the &lt;controller&gt; element.</em></li>
+ * <li><strong>debug</strong> - TThe debugging detail level that controls how much
+ *     information is logged for this servlet. Accepts values 0 (off) and from
+ *     1 (least serious) through 6 (most serious). [0]
+ *     <em>DEPRECATED - Configure the logging detail level in your
+ *     underlying logging implementation.</li>
  * <li><strong>factory</strong> - The Java class name of the
  *     <code>MessageResourcesFactory</code> used to create the application
  *     <code>MessageResources</code> object.
@@ -300,7 +302,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.141 $ $Date: 2003/01/18 19:43:00 $
+ * @version $Revision: 1.142 $ $Date: 2003/01/28 19:30:23 $
  */
 
 public class ActionServlet
@@ -621,6 +623,9 @@ public class ActionServlet
 
     /**
      * Return the debugging detail level for this servlet.
+     *
+     * @deprecated Configure the logging detail level in your underlying
+     *  logging implementation
      */
     public int getDebug() {
 
