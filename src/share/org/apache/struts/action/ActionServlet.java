@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.118 2002/07/24 05:28:04 craigmcc Exp $
- * $Revision: 1.118 $
- * $Date: 2002/07/24 05:28:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.119 2002/07/27 21:53:13 martinc Exp $
+ * $Revision: 1.119 $
+ * $Date: 2002/07/27 21:53:13 $
  *
  * ====================================================================
  *
@@ -278,7 +278,7 @@ import org.xml.sax.InputSource;
  * <li><strong>multipartClass</strong> - The fully qualified name of the
  *     MultipartRequestHandler implementation class to be used for processing
  *     file uploads. If set to <code>none</code>, disables Struts multipart
- *     request handling.  [org.apache.struts.upload.DiskMultipartRequestHandler]
+ *     request handling.  [org.apache.struts.upload.CommonsMultipartRequestHandler]
  *     <em>DEPRECATED - Configure this using the "multipartClass" attribute of
  *     the &lt;controller&gt; element.</em></li>
  * <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
@@ -302,7 +302,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.118 $ $Date: 2002/07/24 05:28:04 $
+ * @version $Revision: 1.119 $ $Date: 2002/07/27 21:53:13 $
  */
 
 public class ActionServlet

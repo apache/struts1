@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.27 2002/07/24 05:28:04 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.28 2002/07/27 21:53:13 martinc Exp $
 -->
 
 
@@ -514,7 +514,7 @@ The "form-bean" element describes a particular form bean, which is a
 
      multipartClass  The fully qualified Java class name of the multipart request
                      handler class to be used with this module.
-                     ["org.apache.struts.upload.DiskMultipartRequestHandler"]
+                     ["org.apache.struts.upload.CommonsMultipartRequestHandler"]
 
      nocache         Set to "true" if you want the controller to add HTTP headers
                      for defeating caching to every response from this module.

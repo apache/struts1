@@ -625,7 +625,7 @@ public ActionForward execute(ActionMapping mapping,
               megabytes, or gigabytes, respectively.  [250M]</li>
           <li><strong>multipartClass</strong> - The fully qualified name of the
               MultipartRequestHandler implementation class to be used for processing
-              file uploads.  [org.apache.struts.upload.DiskMultipartRequestHandler]
+              file uploads.  [org.apache.struts.upload.CommonsMultipartRequestHandler]
               </li>
           <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
               to every response intended to defeat browser caching of any response we

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.8 2002/07/12 09:51:30 husted Exp $
- * $Revision: 1.8 $
- * $Date: 2002/07/12 09:51:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.9 2002/07/27 21:53:13 martinc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/07/27 21:53:13 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/07/12 09:51:30 $
+ * @version $Revision: 1.9 $ $Date: 2002/07/27 21:53:13 $
  * @since Struts 1.1
  */
 
@@ -233,7 +233,7 @@ public class ControllerConfig implements Serializable {
      * class to be used.
      */
     protected String multipartClass =
-        "org.apache.struts.upload.DiskMultipartRequestHandler";
+        "org.apache.struts.upload.CommonsMultipartRequestHandler";
 
     public String getMultipartClass() {
         return (this.multipartClass);

@@ -1,7 +1,7 @@
 /*
-* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadForm.java,v 1.4 2002/03/06 19:39:08 mschachter Exp $
-* $Revision: 1.4 $
-* $Date: 2002/03/06 19:39:08 $
+* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadForm.java,v 1.5 2002/07/27 21:53:13 martinc Exp $
+* $Revision: 1.5 $
+* $Date: 2002/07/27 21:53:13 $
 *
 * ====================================================================
 *
@@ -74,10 +74,10 @@ import javax.servlet.http.HttpServletRequest;
  * set and get methods that use the class org.apache.struts.upload.FormFile, an interface with
  * basic methods to retrieve file information.  The actual structure of the FormFile is dependant
  * on the underlying impelementation of multipart request handling.  The default implementation
- * that struts uses is org.apache.struts.upload.DiskMultipartRequestHandler.
+ * that struts uses is org.apache.struts.upload.CommonsMultipartRequestHandler.
  *
  * @author Mike Schachter
- * @version $Revision: 1.4 $ $Date: 2002/03/06 19:39:08 $
+ * @version $Revision: 1.5 $ $Date: 2002/07/27 21:53:13 $
  */
 
 public class UploadForm extends ActionForm
