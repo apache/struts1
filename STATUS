@@ -1,22 +1,25 @@
 STATUS
 ======
-$Id: STATUS,v 1.38 2002/07/21 20:07:31 husted Exp $
+$Id: STATUS,v 1.39 2002/07/24 02:25:53 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           15 open bugs to swat!!
+                           21 open bugs to swat!!
 
 
 Controller:
 ----------
 11021 ActionForward or <html:link> tag does not support absolute URIs
+11089 Data source keys are global, even when using application modules
 
 
 Custom Tags:
 -----------
  1586 The <html:form> tag generates incorrect focus javascript for radio buttons.
+ 8460 using null="false" in message-resources adds alt & title element to generated html
+10534 <html:link forward> does not add servlet context correctly
 
 
 Documentation:
@@ -41,10 +44,12 @@ Standard Actions:
 ----------------
 10322 Problems with LookupDispatchAction and other locales
 10953 sub-application loses message resource
+10979 DynaActionForm in session losts datas.
 
 
 Tiles Framework:
 ---------------
+11093 DefinitionsFactoryConfig is not Serializable
 
 
 Unknown:
