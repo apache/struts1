@@ -528,6 +528,48 @@
     </attribute>
   </tag>
 
+    <tag document-attributes="false">
+       <name>errors</name>
+       <summary>
+          Nested Extension - Conditionally display a set of accumulated error messages.
+       </summary>
+       <tagclass>org.apache.struts.taglib.nested.html.NestedErrorsTag</tagclass>
+
+       <bodycontent>empty</bodycontent>
+       <info>
+         <p>This tag is an extension of the
+         <a href="struts-html.html#errors"><code>&lt;html:errors&gt;</code></a>
+         tag. Please consult its documentation for information on tag attributes
+         and usage details.
+         </p>
+       </info>
+
+       <attribute>
+           <name>bundle</name>
+           <required>false</required>
+           <rtexprvalue>true</rtexprvalue>
+       </attribute>
+
+       <attribute>
+           <name>locale</name>
+           <required>false</required>
+           <rtexprvalue>true</rtexprvalue>
+       </attribute>
+
+       <attribute>
+         <name>name</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+       </attribute>
+
+       <attribute>
+         <name>property</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+       </attribute>
+
+    </tag>
+
   <tag document-attributes="false">
     <name>form</name>
     <summary>Nested Extension - Define An Input Form</summary>
@@ -1131,6 +1173,73 @@
     </attribute>
 
   </tag>
+
+   <tag document-attributes="false">
+      <name>messages</name>
+      <summary>
+         Nested Extension - Conditionally display a set of accumulated messages.
+      </summary>
+      <tagclass>org.apache.struts.taglib.nested.html.NestedMessagesTag</tagclass>
+      <teiclass>org.apache.struts.taglib.html.MessagesTei</teiclass>
+      <bodycontent>JSP</bodycontent>
+       <info>
+         <p>This tag is an extension of the
+         <a href="struts-html.html#messages"><code>&lt;html:messages&gt;</code></a>
+         tag. Please consult its documentation for information on tag attributes
+         and usage details.
+         </p>
+       </info>
+             
+      <attribute>
+        <name>id</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      
+      <attribute>
+          <name>bundle</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      
+      <attribute>
+          <name>locale</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      
+      <attribute>
+        <name>name</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      
+      <attribute>
+        <name>property</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      
+      <attribute>
+        <name>header</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      
+      <attribute>
+        <name>footer</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      
+      <attribute>
+        <name>message</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+      </attribute>
+   
+   </tag>
+
   <tag document-attributes="false">
     <name>multibox</name>
     <summary>Nested Extension - 
@@ -3037,6 +3146,84 @@
     </attribute>
 
   </tag>
+
+  <tag>
+
+    <name>messagesNotPresent</name>
+    <summary>
+       Nested Extension - 
+       Generate the nested body content of this tag if the specified
+       message is not present in this request.
+    </summary>
+    <tagclass>org.apache.struts.taglib.nested.logic.NestedMessagesNotPresentTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#messagesNotPresent"><code>&lt;logic:messagesNotPresent&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
+    </info>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>message</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+  </tag>
+
+  <tag>
+
+    <name>messagesPresent</name>
+    <summary>
+       Nested Extension - 
+       Generate the nested body content of this tag if the specified
+       message is present in this request.
+    </summary>
+    <tagclass>org.apache.struts.taglib.nested.logic.NestedMessagesPresentTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#messagesPresent"><code>&lt;logic:messagesPresent&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
+    </info>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>message</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+  </tag>
+
+
   <tag document-attributes="false">
 
     <name>notEmpty</name>
