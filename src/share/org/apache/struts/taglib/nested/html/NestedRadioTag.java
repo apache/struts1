@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedRadioTag.java,v 1.2 2002/01/22 03:30:50 arron Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/22 03:30:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedRadioTag.java,v 1.3 2002/03/29 21:49:09 rleland Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/03/29 21:49:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -59,7 +59,9 @@
  */
 package org.apache.struts.taglib.nested.html;
 
-import org.apache.struts.taglib.nested.*;
+import org.apache.struts.taglib.nested.NestedNameSupport;
+import org.apache.struts.taglib.nested.NestedPropertyHelper;
+import org.apache.struts.taglib.nested.NestedReference;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
 import org.apache.struts.taglib.html.RadioTag;
@@ -68,7 +70,7 @@ import org.apache.struts.taglib.html.RadioTag;
  * NestedRadioTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.2 $ $Date: 2002/01/22 03:30:50 $
+ * @version $Revision: 1.3 $ $Date: 2002/03/29 21:49:09 $
  */
 public class NestedRadioTag extends RadioTag implements NestedNameSupport {
 
@@ -79,20 +81,20 @@ public class NestedRadioTag extends RadioTag implements NestedNameSupport {
    *             This is in the hands of the super class.
    */
   public int doStartTag() throws JspException {
-    
+
     /* singleton tag implementations will need the original property to be
        set before running */
     super.setProperty(originalProperty);
-    
+
     /* let the NestedHelper set the properties it can */
     isNesting = true;
     NestedPropertyHelper.setNestedProperties(this);
     isNesting = false;
-    
+
     /* do the tag */
     return super.doStartTag();
   }
-  
+
   /** this is overridden so that properties being set by the JSP page aren't
    * written over by those needed by the extension. If the tag instance is
    * re-used by the JSP, the tag can set the property back to that set by the
@@ -108,7 +110,7 @@ public class NestedRadioTag extends RadioTag implements NestedNameSupport {
       originalProperty = newProperty;
     }
   }
-  
+
   /* hold original property */
   private String originalProperty = null;
   private boolean isNesting = false;

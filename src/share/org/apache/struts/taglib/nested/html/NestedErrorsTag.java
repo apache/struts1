@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedErrorsTag.java,v 1.1 2002/03/19 06:45:11 dwinterfeldt Exp $
- * $Revision: 1.1 $
- * $Date: 2002/03/19 06:45:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedErrorsTag.java,v 1.2 2002/03/29 21:49:09 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/03/29 21:49:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -59,7 +59,9 @@
  */
 package org.apache.struts.taglib.nested.html;
 
-import org.apache.struts.taglib.nested.*;
+import org.apache.struts.taglib.nested.NestedPropertySupport;
+import org.apache.struts.taglib.nested.NestedPropertyHelper;
+import org.apache.struts.taglib.nested.NestedReference;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
 import org.apache.struts.taglib.html.ErrorsTag;
@@ -69,7 +71,7 @@ import org.apache.struts.taglib.html.ErrorsTag;
  * @author Arron Bates
  * @author David Winterfeldt
  * @since Struts 1.1
- * @version $Revision: 1.1 $ $Date: 2002/03/19 06:45:11 $
+ * @version $Revision: 1.2 $ $Date: 2002/03/29 21:49:09 $
  */
 public class NestedErrorsTag extends ErrorsTag implements NestedPropertySupport {
 
@@ -92,7 +94,7 @@ public class NestedErrorsTag extends ErrorsTag implements NestedPropertySupport 
     /* do the tag */
     return super.doStartTag();
   }
-  
+
   /** this is overridden so that properties being set by the JSP page aren't
    * written over by those needed by the extension. If the tag instance is
    * re-used by the JSP, the tag can set the property back to that set by the
@@ -108,7 +110,7 @@ public class NestedErrorsTag extends ErrorsTag implements NestedPropertySupport 
       originalProperty = newProperty;
     }
   }
-  
+
   /* hold original property */
   private String originalProperty = null;
   private boolean isNesting = false;

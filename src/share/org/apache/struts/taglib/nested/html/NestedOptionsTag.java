@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedOptionsTag.java,v 1.3 2002/01/22 03:30:50 arron Exp $
- * $Revision: 1.3 $
- * $Date: 2002/01/22 03:30:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedOptionsTag.java,v 1.4 2002/03/29 21:49:09 rleland Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/03/29 21:49:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -59,7 +59,9 @@
  */
 package org.apache.struts.taglib.nested.html;
 
-import org.apache.struts.taglib.nested.*;
+import org.apache.struts.taglib.nested.NestedNameSupport;
+import org.apache.struts.taglib.nested.NestedPropertyHelper;
+import org.apache.struts.taglib.nested.NestedReference;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
 import org.apache.struts.taglib.html.OptionsTag;
@@ -68,7 +70,7 @@ import org.apache.struts.taglib.html.OptionsTag;
  * NestedOptionsTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.3 $ $Date: 2002/01/22 03:30:50 $
+ * @version $Revision: 1.4 $ $Date: 2002/03/29 21:49:09 $
  */
 public class NestedOptionsTag extends OptionsTag implements NestedNameSupport {
 

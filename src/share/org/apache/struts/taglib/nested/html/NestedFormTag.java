@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.4 2002/03/19 23:29:23 arron Exp $
- * $Revision: 1.4 $
- * $Date: 2002/03/19 23:29:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.5 2002/03/29 21:49:09 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/03/29 21:49:09 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -59,7 +59,9 @@
  */
 package org.apache.struts.taglib.nested.html;
 
-import org.apache.struts.taglib.nested.*;
+import org.apache.struts.taglib.nested.NestedParentSupport;
+import org.apache.struts.taglib.nested.NestedPropertyHelper;
+import org.apache.struts.taglib.nested.NestedReference;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
 import javax.servlet.http.HttpSession;
@@ -69,7 +71,7 @@ import org.apache.struts.taglib.html.FormTag;
  * NestedFormTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.4 $ $Date: 2002/03/19 23:29:23 $
+ * @version $Revision: 1.5 $ $Date: 2002/03/29 21:49:09 $
  */
 public class NestedFormTag extends FormTag implements NestedParentSupport {
 
@@ -80,13 +82,13 @@ public class NestedFormTag extends FormTag implements NestedParentSupport {
   public String getNestedProperty() {
     return "";
   }
-  
+
   public String getProperty() {
     return "";
   }
-  
+
   public void setProperty(String newProperty) {}
-  
+
 
   /**
    * Overriding to allow the chance to set the details of the system, so that
@@ -96,16 +98,16 @@ public class NestedFormTag extends FormTag implements NestedParentSupport {
   public int doStartTag() throws JspException {
     /* store original result */
     int temp = super.doStartTag();
-    
+
     /* set the details */
     HttpSession session = (HttpSession)pageContext.getSession();
     NestedReference nr = new NestedReference(getName(), getNestedProperty());
     NestedPropertyHelper.setIncludeReference(session, nr);
-    
+
     /* continue */
     return temp;
   }
-  
+
   /**
    * This is only overriden to clean up the include reference
    * @return int JSP continuation directive.
@@ -117,7 +119,7 @@ public class NestedFormTag extends FormTag implements NestedParentSupport {
     /* all done. clean up */
     HttpSession session = (HttpSession)pageContext.getSession();
     NestedPropertyHelper.setIncludeReference(session, null);
-    
+
     /* return super result */
     return temp;
   }
