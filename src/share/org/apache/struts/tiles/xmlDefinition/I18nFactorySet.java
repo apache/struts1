@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.8 2003/07/08 01:03:43 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/07/08 01:03:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.9 2003/07/27 04:59:44 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/07/27 04:59:44 $
  *
  * ====================================================================
  *
@@ -557,7 +557,6 @@ public class I18nFactorySet extends FactorySet {
             if (true) {
                 xmlParser = new XmlParser();
                 xmlParser.setValidating(isValidatingParser);
-                xmlParser.setDetailLevel(parserDetailLevel);
             }
 
             // Check if definition set already exist.
