@@ -586,7 +586,7 @@
     </p>
 
     <pre><code>
-    http://localhost:8080/toModule.do?prefix=moduleB&amp;page=index.do
+    http://localhost:8080/toModule.do?prefix=moduleB&amp;page=/index.do
     </code></pre>
 
     <p>
