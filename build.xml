@@ -270,8 +270,6 @@
             tofile="${build.home}/library/commons-digester.jar"/>
         <copy file="${commons-fileupload.jar}"
             tofile="${build.home}/library/commons-fileupload.jar"/>
-        <copy file="${commons-lang.jar}"
-            tofile="${build.home}/library/commons-lang.jar"/>
         <copy file="${commons-logging.jar}"
             tofile="${build.home}/library/commons-logging.jar"/>
         <copy file="${commons-validator.jar}"
@@ -283,6 +281,9 @@
 <!-- Compile-time dependency only
         <copy file="${jdbc20ext.jar}"
             tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
+            
+        <copy file="${commons-lang.jar}"
+            tofile="${build.home}/library/commons-lang.jar"/>
 -->
     </target>
 
