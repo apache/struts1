@@ -2,15 +2,16 @@
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/struts-html-el.tld"  prefix="html-el"  %>
 <%@ taglib uri="/WEB-INF/struts-bean-el.tld"  prefix="bean-el" %>
+<%@ taglib uri="/WEB-INF/struts-logic-el.tld" prefix="logic-el" %>
 <%@ taglib uri="/WEB-INF/c.tld" prefix="c" %>
 <html-el:html>
 <head>
-<title>Test Replacements for struts presence tags</title>
+<title>Test Struts presence tags and Replacements</title>
 </head>
 <body bgcolor="white">
 
 <div align="center">
-<h1>Test Replacements for struts presence tags</h1>
+<h1>Test Struts presence tags and Replacements</h1>
 </div>
 
 <jsp:useBean id="bean" scope="page" class="org.apache.struts.webapp.exercise.TestBean"/>
@@ -20,6 +21,18 @@
     <th>Test Type</th>
     <th>Correct Value</th>
     <th>Test Result</th>
+  </tr>
+  <tr>
+    <td>Role</td>
+    <td>notPresent</td>
+    <td>
+      <logic-el:present role="fubar">
+        present
+      </logic-el:present>
+      <logic-el:notPresent role="fubar">
+        notPresent
+      </logic-el:notPresent>
+    </td>
   </tr>
   <tr>
     <td>Bean</td>

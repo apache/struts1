@@ -635,6 +635,217 @@ JSTL EL.
 
   </tag>
 
+  <tag>
+
+    <name>notPresent</name>
+    <summary>
+    Generate the nested body content of this tag if the specified
+    value is not present in this request.
+    </summary>
+    <tagclass>org.apache.strutsel.taglib.logic.ELNotPresentTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+    <p>Depending on which attribute is specified, this tag checks the
+    current request, and evaluates the nested body content of this tag
+    only if the specified value <strong>is not</strong> present.  Only one
+    of the attributes may be used in one occurrence of this tag, unless
+    you use the <code>property</code> attribute, in which case the
+    <code>name</code> attribute is also required.</p>
+    </info>
+
+    <attribute>
+      <name>cookie</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks for the existence of a cookie with the specified name.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>header</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks for the existence of an HTTP header with the specified
+      name.  The name match is performed in a case insensitive manner.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks for the existence of a JSP bean, in any scope, with the
+      specified name.  If <code>property</code> is also specified, checks
+      for a non-null property value for the specified property.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>parameter</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks for the existence of at least one occurrence of the
+      specified request parameter on this request, even if the parameter
+      value is a zero-length string.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks for the existence of a non-null property value, returned
+      by a property getter method on the JSP bean (in any scope) that is
+      specified by the <code>name</code> attribute.  Property references
+      can be simple, nested, and/or indexed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>role</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks whether the currently authenticated user (if any) has been
+      associated with the specified security role.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>user</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks whether the currently authenticated user principal has the
+      specified name.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
+
+  <tag>
+
+    <name>present</name>
+    <summary>
+    Generate the nested body content of this tag if the specified
+    value is present in this request.
+    </summary>
+    <tagclass>org.apache.strutsel.taglib.logic.ELPresentTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+    <p>Depending on which attribute is specified, this tag checks the
+    current request, and evaluates the nested body content of this tag
+    only if the specified value <strong>is</strong> present.  Only one
+    of the attributes may be used in one occurrence of this tag, unless
+    you use the <code>property</code> attribute, in which case the
+    <code>name</code> attribute is also required.</p>
+    </info>
+
+    <attribute>
+      <name>cookie</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks for the existence of a cookie with the specified name.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>header</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks for the existence of an HTTP header with the specified
+      name.  The name match is performed in a case insensitive manner.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks for the existence of a JSP bean, in any scope, with the
+      specified name.  If <code>property</code> is also specified, checks
+      for a non-null property value for the specified property.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>parameter</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks for the existence of at least one occurrence of the
+      specified request parameter on this request, even if the parameter
+      value is a zero-length string.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks for the existence of a non-null property value, returned
+      by a property getter method on the JSP bean (in any scope) that is
+      specified by the <code>name</code> attribute.  Property references
+      can be simple, nested, and/or indexed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>role</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks whether the currently authenticated user (if any) has been
+      associated with any of the specified security roles. Use a comma-delimited
+      list to check for multiple roles. Example:
+      <code>&lt;logic-el:present role="role1,role2,role3"&gt;
+                code.....
+            &lt;/logic-el:present&gt;</code></p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>user</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Checks whether the currently authenticated user principal has the
+      specified name.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
         <tag>
 
                 <name>redirect</name>

@@ -32,6 +32,7 @@
 <ul>
 <li><a href="logic-iterate.jsp">Iterate Tag</a>[<a href="showSource.jsp?path=/logic-iterate.jsp">Source</a>]</li>
 <li><a href="logic-match.jsp?param1=value1">Match Tags</a>[<a href="showSource.jsp?path=/logic-match.jsp">Source</a>]</li>
+<li><a href="logic-present.jsp?param1=value1">Presence Tags</a>[<a href="showSource.jsp?path=/logic-present.jsp">Source</a>]</li>
 <li><a href="logic-redirect.jsp">&lt;logic:redirect&gt;</a>[<a href="showSource.jsp?path=/logic-redirect.jsp">Source</a>]</li>
 </ul>
 
@@ -48,7 +49,6 @@
 <h3>LOGIC Tags</h3>
 <ul>
 <li><a href="logic-compare.jsp">Comparison Tags</a>[<a href="showSource.jsp?path=/logic-compare.jsp">Source</a>]</li>
-<li><a href="logic-present.jsp?param1=value1">Presence Tags</a>[<a href="showSource.jsp?path=/logic-present.jsp">Source</a>]</li>
 <li><a href="logic-empty.jsp">Emptiness Tags</a>[<a href="showSource.jsp?path=/logic-empty.jsp">Source</a>]</li>
 </ul>
 </body>
