@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericConnection.java,v 1.5 2001/01/11 00:03:38 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/01/11 00:03:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericConnection.java,v 1.6 2001/01/31 21:45:13 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/01/31 21:45:13 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import javax.sql.DataSource;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.5 $ $Date: 2001/01/11 00:03:38 $
+ * @version $Revision: 1.6 $ $Date: 2001/01/31 21:45:13 $
 
  */
 
@@ -121,10 +121,14 @@ public class GenericConnection implements Connection {
         } catch (UnsupportedOperationException e) {
             ;   // JDBC-ODBC bridge throws this
         }
-        this.readOnly = readOnly;
-
+	this.readOnly = readOnly;
         this.conn.setAutoCommit(this.autoCommit);
-        this.conn.setReadOnly(this.readOnly);
+	try {
+	    this.conn.setReadOnly(this.readOnly);
+	} catch (SQLException e) {
+	    ;  // Informix throws a "not supported" exception
+	}
+
 
     }
 
