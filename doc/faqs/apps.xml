@@ -53,12 +53,12 @@ elsewhere and is referenced by "(more...)" links where possible.
 <li>Implement data entry forms as JSP files.</li>
 <ol>
 <li>Use elements from the <code>html</code> taglib to define the form
-    elements. <a href="struts-html.html">(more...)</a></li>
+    elements. <a href="../userGuide/struts-html.html">(more...)</a></li>
 <li>Use <code>message</code> and other elements from the
     <code>bean</code> taglib to define the labels and other static text
-    of the form. <a href="struts-bean.html">(more...)</a></li> <ol>
+    of the form. <a href="../userGuide/struts-bean.html">(more...)</a></li> <ol>
 <li>Create and maintain a properties file of the text elements to be
-    displayed. <a href="preface.html#resources">(more...) </a></li>
+    displayed. <a href="../userGuide/preface.html#resources">(more...) </a></li>
 </ol>
 <li>Use <code>property</code> attributes to link form fields to
     <code>ActionForm</code> instance variables.</li>
@@ -95,15 +95,15 @@ needs:
     actions.  The file minimally needs:</li>
 <ol>
 <li><code>&lt;form-beans&gt;</code> section to relate form-beans with ActionForms
-    <a href="building_controller.html#config">(more...)</a></li>
+    <a href="../userGuide/building_controller.html#config">(more...)</a></li>
 <li><code>&lt;action-mappings&gt;</code> section to relate <code>&lt;html:form&gt;
-    </code> actions with Action classes <a href="building_controller.html#action_classes">(more...)</a> </li>
+    </code> actions with Action classes <a href="../userGuide/building_controller.html#action_classes">(more...)</a> </li>
 <li><code>&lt;message-resources&gt;</code> to make your ApplicationResources
     available to the rest of the app</li>
-<li><code>&lt;plug-in&gt;</code> section to link in the Struts validator and other extensions<a href="building_controller.html#plugin_classes">
+<li><code>&lt;plug-in&gt;</code> section to link in the Struts validator and other extensions<a href="../userGuide/building_controller.html#plugin_classes">
 (more...)</a> </li>
 </ol> <li>Create or update <code>web.xml</code> to reference
-   <code>ActionServlet</code>, taglibs used by Struts. <a href="building_controller.html#dd_config">
+   <code>ActionServlet</code>, taglibs used by Struts. <a href="../userGuide/building_controller.html#dd_config">
 (more...)</a></li>
 <li>Parallel Tasks</li>
 <ol>
