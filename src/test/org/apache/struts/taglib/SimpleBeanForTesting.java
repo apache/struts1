@@ -1,7 +1,13 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/SimpleBeanForTesting.java,v 1.5 2003/03/08 19:03:56 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/03/08 19:03:56 $
+ *
+ * ====================================================================
+ *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -77,7 +83,7 @@ public class SimpleBeanForTesting extends ActionForm {
 	public SimpleBeanForTesting(boolean checked) {
 		this.checked = checked;
 	}
-	public SimpleBeanForTesting(Boolean checked) {
+	public SimpleBeanForTesting(Boolean checkedWrapper) {
 		this.checkedWrapper = checkedWrapper;
 	}
 	public SimpleBeanForTesting(Map map) {
