@@ -6,8 +6,8 @@
         This script will delegate some of it's tasks to the other build*.xml
         scripts (build-webapps.xml, build-tests.xml, ...
 
-        For a complete list of executable tasks use -projecthelp when calling this
-        build file.
+        For a complete list of executable tasks use -projecthelp when calling
+        this build file.
         
 -->
 
