@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <document url="./configuration.xml">
 
-  <properties>
+<properties>
     <title>The Struts User's Guide - Configuring Applications</title>
     <author>Craig R. McClanahan</author>
     <author>Mike Schachter</author>
@@ -13,16 +13,17 @@
     <author>Yann Cebron</author>
     <author>David Graham</author>
     <author>Tim O'Brien</author>
-  </properties>
+</properties>
 
-  <body>
-  <chapter name="7. Configuring Applications" href="config_apps">
+<body>
+<chapter name="7. Configuring Applications" href="config_apps">
 
- <section name="7.1 Overview" href="config-overview">
+<section name="7.1 Overview" href="config-overview">
 
     <p>
     Before you can build an application, you need to lay a solid foundation.
-    There are several setup tasks you need to perform before deploying your Struts application.
+    There are several setup tasks you need to perform before deploying
+    your Struts application.
     These include components in the Struts configuration file
     and in the Web Application Deployment Descriptor.
     </p>
@@ -42,168 +43,252 @@
     </p>
 
     <p>
-    These "static" configuration elements are :
+    These "static" configuration elements are:
     </p>
 
     <ul>
-        <li>controller</li>
-        <li>message-resources</li>
-        <li>plug-in</li>
-        <li>data-sources</li>
+    
+        <li>
+            controller
+        </li>
+        
+        <li>
+            message-resources
+        </li>
+        
+        <li>
+            plug-in
+        </li>
+    
+        <li>
+            data-sources
+        </li>
+    
     </ul>
 
  </section>
 
  <section name="7.2.1 Controller Configuration" href="controller_config">
-      <p>
-        The <code>&lt;controller&gt;</code> element allows you to configure
-        the ActionServlet.  Many of the controller parameters were previously
-        defined by servlet initialization parameters in your
-        <code>web.xml</code> file but have been moved to this section of
-        <code>struts-config.xml</code> in order to allow different modules
-        in the same web application to be configured differently.
-        For full details on available parameters see the
-        <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">struts-config_1_1.dtd</a>
-        or the list below.
-      </p>
-      <blockquote>
-      <ul>
-      <li>
-      <b>bufferSize</b> - The size (in bytes) of the input buffer
-      used when processing file uploads.  [4096] (optional)
-      </li>
-      <li>
-      <b>className</b> - Classname of configuration bean.
-      [org.apache.struts.config.ControllerConfig] (optional)
-      </li>
-      <li>
-      <b>contentType</b> - Default content type (and optional character
-      encoding) to be set on each response.  May be overridden by the
-      Action, JSP, or other resource to which the request is forwarded.
-      [text/html] (optional)
-      </li>
-      <li>
-      <b>forwardPattern</b> - Replacement pattern defining how the "path"
-      attribute of a <code>&lt;forward&gt;</code> element is mapped to a
-      context-relative URL when it starts with a slash (and when the
-      <code>contextRelative</code> property is <code>false</code>).
-      This value may consist of any combination of the following:
-          <ul>
-          <li><em>$M</em> - Replaced by the module prefix of this module.</li>
-          <li><em>$P</em> - Replaced by the "path" attribute of the selected
-              <code>&lt;forward&gt;</code> element.</li>
-          <li><em>$$</em> - Causes a literal dollar sign to be rendered.</li>
-          <li><em>$x</em> - (Where "x" is any character not defined above)
-              Silently swallowed, reserved for future use.</li>
-          </ul>
-      If not specified, the default forwardPattern is consistent with the
-      previous behavior of forwards.  [$M$P] (optional)
-      </li>
-      <li>
-      <b>inputForward</b> - Set to <code>true</code> if you want the
-      <code>input</code> attribute of <code>&lt;action&gt;</code> elements
-      to be the name of a local or global <code>ActionForward</code>, which
-      will then be used to calculate the ultimate URL.  Set to
-      <code>false</code> to treat the <code>input</code> parameter of
-      <code>&lt;action&gt;</code> elements as a module-relative path to
-      the resource to be used as the input form.  [false] (optional)
-      </li>
-      <li>
-      <b>locale</b> - Set to <code>true</code> if you want a
-      <code>Locale</code> object stored in the user's session if not already
-      present.  [true] (optional)
-      </li>
-      <li>
-      <b>maxFileSize</b> - The maximum size (in bytes) of a file to be accepted
-      as a file upload.  Can be expressed as a number followed by a "K",
-      "M", or "G", which are interpreted to mean kilobytes, megabytes, or
-      gigabytes, respectively.  [250M] (optional)
-      </li>
-      <li>
-      <b>multipartClass</b> - The fully qualified Java class name of the
-      multipart request handler class to be used with this module.
-      [org.apache.struts.upload.CommonsMultipartRequesthandler] (optional)
-      </li>
-      <li>
-      <b>nocache</b> - Set to <code>true</code> if you want the controller
-      to add HTTP headers for defeating caching to every response from
-      this module.  [false] (optional)
-      </li>
-      <li>
-      <b>pagePattern</b> - Replacement pattern defining how the
-      <code>page</code> attribute of custom tags using it is mapped to a
-      context-relative URL of the corresponding resource.  This value may
-      consist of any combination of the following:
-          <ul>
-          <li><em>$M</em> - Replaced by the module prefix of this module.</li>
-          <li><em>$P</em> - Replaced by the "path" attribute of the selected
-              <code>&lt;forward&gt;</code> element.</li>
-          <li><em>$$</em> - Causes a literal dollar sign to be rendered.</li>
-          <li><em>$x</em> - (Where "x" is any character not defined above)
-              Silently swallowed, reserved for future use.</li>
-          </ul>
-      If not specified, the default pagePattern is consistent with the
-      previous behavior of URL calculation.  [$M$P] (optional)
-      </li>
-      <li>
-      <b>processorClass</b> - The fully qualified Java class name of the
-      <code>RequestProcessor</code> subclass to be used with this module.
-      [org.apache.struts.action.RequestProcessor] (optional)
-      </li>
-      <li>
-      <b>tempDir</b> - Temporary working directory to use when processing
-      file uploads.
-      [{the directory provided by the servlet container}]
-      </li>
-      </ul>
-      </blockquote>
-      <p>
-        This example uses the default values for several controller parameters.
-        If you only want default behavior you can omit the controller section altogether.
-      </p>
+
+    <p>
+    The <code>&lt;controller&gt;</code> element allows you to configure
+    the ActionServlet.
+    Many of the controller parameters were previously defined by servlet
+    initialization parameters in your <code>web.xml</code> file but have been
+    moved to this section of <code>struts-config.xml</code> in order to allow
+    different modules in the same web application to be configured differently.
+    For full details on available parameters see the
+    <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+    struts-config_1_1.dtd</a> or the list below.
+    </p>
+
+    <blockquote>
+    
+    <ul>
+    
+        <li>
+        <b>bufferSize</b> - The size (in bytes) of the input buffer
+        used when processing file uploads.
+        [4096] (optional)
+        </li>
+        
+        <li>
+        <b>className</b> - Classname of configuration bean.
+        [org.apache.struts.config.ControllerConfig] (optional)
+        </li>
+
+        <li>
+        <b>contentType</b> - Default content type (and optional character
+        encoding) to be set on each response.
+        May be overridden by the Action, JSP, or other resource to which
+        the request is forwarded.
+        [text/html] (optional)
+        </li>
+
+        <li>
+        <b>forwardPattern</b> - Replacement pattern defining how the "path"
+        attribute of a <code>&lt;forward&gt;</code> element is mapped to a
+        context-relative URL when it starts with a slash (and when the
+        <code>contextRelative</code> property is <code>false</code>).
+        This value may consist of any combination of the following:
+
+        <ul>
+        
+            <li>
+            <em>$M</em> - Replaced by the module prefix of this module.
+            </li>
+
+            <li>
+            <em>$P</em> - Replaced by the "path" attribute of the selected
+            <code>&lt;forward&gt;</code> element.
+            </li>
+
+            <li>
+            <em>$$</em> - Causes a literal dollar sign to be rendered.
+            </li>
+
+            <li>
+            <em>$x</em> - (Where "x" is any character not defined above)
+            Silently swallowed, reserved for future use.
+            </li>
+
+        </ul>
+
+        If not specified, the default forwardPattern is consistent with the
+        previous behavior of forwards.
+        [$M$P] (optional)
+        </li>
+
+        <li>
+        <b>inputForward</b> - Set to <code>true</code> if you want the
+        <code>input</code> attribute of <code>&lt;action&gt;</code> elements
+        to be the name of a local or global <code>ActionForward</code>, which
+        will then be used to calculate the ultimate URL.
+        Set to <code>false</code> to treat the <code>input</code> parameter of
+        <code>&lt;action&gt;</code> elements as a module-relative path to
+        the resource to be used as the input form.
+        [false] (optional)
+        </li>
+
+        <li>
+        <b>locale</b> - Set to <code>true</code> if you want a
+        <code>Locale</code> object stored in the user's session if not already
+        present.
+        [true] (optional)
+        </li>
+
+        <li>
+        <b>maxFileSize</b> - The maximum size (in bytes) of a file to be
+        accepted as a file upload.
+        Can be expressed as a number followed by a "K", "M", or "G",
+        which are interpreted to mean kilobytes, megabytes, or gigabytes,
+        respectively.
+        [250M] (optional)
+        </li>
+
+        <li>
+        <b>multipartClass</b> - The fully qualified Java class name of the
+        multipart request handler class to be used with this module.
+        [org.apache.struts.upload.CommonsMultipartRequesthandler] (optional)
+        </li>
+
+        <li>
+        <b>nocache</b> - Set to <code>true</code> if you want the controller
+        to add HTTP headers for defeating caching to every response from
+        this module.
+        [false] (optional)
+        </li>
+
+        <li>
+        <b>pagePattern</b> - Replacement pattern defining how the
+        <code>page</code> attribute of custom tags using it is mapped to a
+        context-relative URL of the corresponding resource.
+        This value may consist of any combination of the following:
+
+        <ul>
+
+            <li>
+            <em>$M</em> - Replaced by the module prefix of this module.
+            </li>
+
+            <li>
+            <em>$P</em> - Replaced by the "path" attribute of the selected
+            <code>&lt;forward&gt;</code> element.
+
+            </li>
+            <li>
+            <em>$$</em> - Causes a literal dollar sign to be rendered.
+            </li>
+
+            <li>
+            <em>$x</em> - (Where "x" is any character not defined above)
+              Silently swallowed, reserved for future use.
+            </li>
+
+        </ul>
+
+        If not specified, the default pagePattern is consistent with the
+        previous behavior of URL calculation.
+        [$M$P] (optional)
+        </li>
+        <li>
+
+        <b>processorClass</b> - The fully qualified Java class name of the
+        <code>RequestProcessor</code> subclass to be used with this module.
+        [org.apache.struts.action.RequestProcessor] (optional)
+        </li>
+
+        <li>
+        <b>tempDir</b> - Temporary working directory to use when processing
+        file uploads.
+        [{the directory provided by the servlet container}]
+        </li>
+
+    </ul>
+
+    </blockquote>
+
+    <p>
+    This example uses the default values for several controller parameters.
+    If you only want default behavior you can omit the controller section
+    altogether.
+    </p>
+
 <pre><code><![CDATA[
 <controller
     processorClass="org.apache.struts.action.RequestProcessor"
              debug="0"
        contentType="text/html"/>;
 ]]></code></pre>
+
 </section>
 
- <section name="7.2.2 Message Resources Configuration" href="resources_config">
+<section name="7.2.2 Message Resources Configuration" href="resources_config">
 
     <p>
     Struts has built in support for internationalization (I18N).
-    You can define one or more <code>&lt;message-resources&gt;</code> elements for your webapp;
-    modules can define their own resource bundles.
-    Different bundles can be used simultaneously in your application, the 'key' attribute is used to specify the desired bundle.
+    You can define one or more <code>&lt;message-resources&gt;</code> elements
+    for your webapp; modules can define their own resource bundles.
+    Different bundles can be used simultaneously in your application, the 'key'
+    attribute is used to specify the desired bundle.
     </p>
 
     <blockquote>
+    
     <ul>
-    <li>
-    <b>className</b> - Classname of configuration bean.
-    [org.apache.struts.config.MessageResourcesConfig] (optional)
-    </li>
-    <li>
-    <b>factory</b> - Classname of MessageResourcesFactory.
-    [org.apache.struts.util.PropertyMessageResourcesFactory] (optional)
-    </li>
-    <li>
-    <b>key</b> - ServletContext attribute key to store this bundle.
-    [org.apache.struts.action.MESSAGE] (optional)
-    </li>
-    <li>
-    <b>null</b> - Set to <code>false</code> to display missing resource keys
-    in your application like '<i>???keyname???</i>' instead of <code>null</code>.
-    [true] (optional)
-    </li>
-    <li>
-    <b>parameter</b> - Name of the resource bundle. (required)
-    </li>
+
+        <li>
+        <b>className</b> - Classname of configuration bean.
+        [org.apache.struts.config.MessageResourcesConfig] (optional)
+        </li>
+
+        <li>
+        <b>factory</b> - Classname of MessageResourcesFactory.
+        [org.apache.struts.util.PropertyMessageResourcesFactory] (optional)
+        </li>
+
+        <li>
+        <b>key</b> - ServletContext attribute key to store this bundle.
+        [org.apache.struts.action.MESSAGE] (optional)
+        </li>
+
+        <li>
+        <b>null</b> - Set to <code>false</code> to display missing resource
+        keys in your application like '<i>???keyname???</i>' instead of
+        <code>null</code>.
+        [true] (optional)
+        </li>
+
+        <li>
+        <b>parameter</b> - Name of the resource bundle. (required)
+        </li>
+
     </ul>
+
     </blockquote>
 
     <p>Example configuration:</p>
+
 <pre><code><![CDATA[
 <message-resources
     parameter="MyWebAppResources"
@@ -221,10 +306,11 @@
 <section name="7.2.3 PlugIn Configuration" href="plugin_config">
 
     <p>
-    Struts PlugIns are configured using the <code>&lt;plug-in&gt;</code> element within
-    the Struts configuration file. This element has only one valid attribute,
-    'className', which is the fully qualified name of the Java class which
-    implements the <code>org.apache.struts.action.PlugIn</code> interface.
+    Struts PlugIns are configured using the <code>&lt;plug-in&gt;</code>
+    element within the Struts configuration file.
+    This element has only one valid attribute, 'className', which is the fully
+    qualified name of the Java class which implements the
+    <code>org.apache.struts.action.PlugIn</code> interface.
     </p>
 
     <p>
@@ -249,13 +335,15 @@
 <section name="7.2.4 Data Source Configuration" href="data-source_config">
 
       <p>
-      Besides the objects related to defining ActionMappings, the Struts configuration may
-      contain elements that create other useful objects.
+      Besides the objects related to defining ActionMappings, the Struts
+      configuration may contain elements that create other useful objects.
       </p>
 
       <p>
-      The <code>&lt;data-sources></code> section, which specifies data sources that your application can use.
-      This is how you would specify a basic data source for your application inside of struts-config.xml:
+      The <code>&lt;data-sources></code> section, which specifies data sources
+      that your application can use.
+      This is how you would specify a basic data source for your application
+      inside of struts-config.xml:
       </p>
 
 <pre><code><![CDATA[
@@ -317,13 +405,14 @@
 
     <p>
     For information on how to retrieve the data source, see the
-    <a href="building_model.html#databases">Accessing Relational Databases</a> section.
+    <a href="building_model.html#databases">Accessing Relational Databases</a>
+    section.
     </p>
 
     <p>
-    <i>Note: Since Struts is now using commons-dbcp for all it's
-    data-source needs, the query you provide for the pingQuery
-    attribute must return at least one row.</i>
+    <i>Note: Since Struts is now using commons-dbcp for all it's data-source
+    needs, the query you provide for the pingQuery attribute must return at
+    least one row.</i>
     </p>
 
     <p>
@@ -331,50 +420,78 @@
     </p>
 
     <p>
-    Just be sure you to replace "VALIDTABLE" with the name of a valid table in your database.
+    Just be sure you to replace "VALIDTABLE" with the name of a valid table
+    in your database.
     </p>
 
 </section>
 
-<section name="7.3 Configuring your application for modules" href="dd_config_modules">
-        <p>
-        Very little is required in order to start taking advantage of the Struts
-        application module feature.  Just go through the following steps:
-        </p>
-        <ol>
-          <li>Prepare a config file for each module.</li>
-          <li>Inform the controller of your module.</li>
-          <li>Use actions to refer to your pages.</li>
-        </ol>
+<section 
+    name="7.3 Configuring your application for modules" 
+    href="dd_config_modules">
+
+    <p>
+    Very little is required in order to start taking advantage of the Struts
+    application module feature. 
+    Just go through the following steps:
+    </p>
+
+    <ol>
+
+      <li>
+      Prepare a config file for each module.
+      </li>
+
+      <li>
+      Inform the controller of your module.
+      </li>
+
+      <li>
+      Use actions to refer to your pages.
+      </li>
+
+    </ol>
+
 </section>
 
 <section name="7.3.1 Module Configuration Files" href="module_config-files">
-        <p>
-          Back in Struts 1.0, a few "boot-strap" options were placed in the web.xml file,
-          and the bulk of the configuration was done in a single struts-config.xml file.
-          Obviously, this wasn't ideal for a team environment, since multiple users had
-          to share the same configuration file. Modules to the rescue!
-        </p>
-        <p>
-          With the advent of modules, a given module has it's
-          own configuration file.  This means each team (each module would presumably be
-          developed by a single team) has their own configuration file, and there should
-          be a lot less contention when trying to modify it.
-        </p>
+
+    <p>
+    Back in Struts 1.0, a few "boot-strap" options were placed in the web.xml 
+    file, and the bulk of the configuration was done in a single 
+    struts-config.xml file.
+    Obviously, this wasn't ideal for a team environment, since multiple users 
+    had to share the same configuration file.
+    Modules to the rescue!
+    </p>
+
+    <p>
+    With the advent of modules, a given module has its own configuration file.
+    This means each team (each module would presumably be developed by a
+    single team) has their own configuration file, and there should be a lot
+    less contention when trying to modify it.
+    </p>
+
 </section>
 
-<section name="7.3.2 Informing the Controller" href="module_config-inform_conroller">
-        <p>
-          In struts 1.0, you listed your configuration file as an initialization parameter
-          to the action servlet in web.xml.  This is still done in 1.1, but it's augmented
-          a little.  In order to tell the Struts machinery about your different
-          modules, you specify multiple config initialization parameters, with a
-          slight twist.  You'll still use "config" to tell the action servlet about your
-          "default" module, however, for each additional module, you will
-          list an initialization parameter named "config/module", where module is the name
-          of your module (this gets used when determining which URIs fall under a
-          given module, so choose something meaningful!).  For example:
-        </p>
+<section 
+    name="7.3.2 Informing the Controller" 
+    href="module_config-inform_conroller">
+
+    <p>
+    In struts 1.0, you listed your configuration file as an initialization
+    parameter to the action servlet in web.xml.
+    This is still done in 1.1, but it's augmented a little.
+    In order to tell the Struts machinery about your different modules, you
+    specify multiple config initialization parameters, with a slight twist.
+    You'll still use "config" to tell the action servlet about your "default"
+    module, however, for each additional module, you will
+    list an initialization parameter named "config/module", where module is
+    the name of your module (this gets used when determining which URIs fall
+    under a given module, so choose something meaningful!).
+    For example:
+    </p>
+
 <pre><code><![CDATA[
     ...
     <init-param>
@@ -387,30 +504,39 @@
     </init-param>
     ...
 ]]></code></pre>
-        <p>
-          This says I have two modules.  One happens to be the "default" module,
-          which has no "/module" in it's name, and one named "module1" (config/module1).  I've told
-          the controller it can find their respective configurations under /WEB-INF/conf (which is
-          where I put all my configuration files).  Pretty simple!
-        </p>
 
-        <p>
-          (My struts-default.xml would be equivalent to what most folks call struts-config.xml.  I just
-          like the symmetry of having all my Struts module files being named struts-&lt;module&gt;.xml)
-        </p>
+    <p>
+    This says I have two modules.
+    One happens to be the "default" module, which has no "/module" in it's
+    name, and one named "module1" (config/module1).
+    I've told the controller it can find their respective configurations
+    under /WEB-INF/conf (which is where I put all my configuration files).
+    Pretty simple!
+    </p>
+
+    <p>
+    (My struts-default.xml would be equivalent to what most folks call
+    struts-config.xml.
+    I just like the symmetry of having all my Struts module files being
+    named struts-&lt;module&gt;.xml)
+    </p>
+
 </section>
 
+
 <section name="7.3.3 Switching Modules" href="module_config-switching">
+
     <p>
     There are two basic methods to switching from one module to another.
-     You can either use a forward (global or local) and specify the
-     contextRelative attribute with a value of true, or you can use
-     the built-in <code>org.apache.struts.actions.SwitchAction</code>.
+    You can either use a forward (global or local) and specify the
+    contextRelative attribute with a value of true, or you can use
+    the built-in <code>org.apache.struts.actions.SwitchAction</code>.
     </p>
+
     <p>
-     Here's an example of a global forward:
+    Here's an example of a global forward:
     </p>
-    <p>
+
 <pre><code><![CDATA[
     ...
     <struts-config>
@@ -425,12 +551,12 @@
     ...
     </struts-config>
 ]]></code></pre>
-    </p>
+
     <p>
      You could do the same thing with a local forward declared in an
      ActionMapping:
     </p>
-    <p>
+
 <pre><code><![CDATA[
     ...
     <struts-config>
@@ -448,12 +574,13 @@
     ...
     </struts-config>
 ]]></code></pre>
-    </p>
+
     <p>
-     Finally, you could use <code>org.apache.struts.actions.SwitchAction
-     </code>, like so:
+     Finally, you could use
+     <code>org.apache.struts.actions.SwitchAction</code>,
+     like so:
     </p>
-    <p>
+
 <pre><code><![CDATA[
     ...
     <action-mappings>
@@ -463,11 +590,15 @@
     </action-mappings>
     ...
 ]]></code></pre>
-    </p>
+
     <p>
      Now, to change to ModuleB, we would use a URI like this:
     </p>
-<pre><code>http://localhost:8080/toModule.do?prefix=moduleB&amp;page=index.do</code></pre>
+
+    <pre><code>
+    http://localhost:8080/toModule.do?prefix=moduleB&amp;page=index.do
+    </code></pre>
+
     <p>
     That's all there is to it!  Happy module-switching!
     </p>
@@ -475,21 +606,27 @@
 </section>
 
 <section name="7.4 The Web Application Deployment Descriptor" href="dd_config">
-      <p>
-        The final step in setting up the application is to configure the application
-        deployment descriptor (stored in file <code>WEB-INF/web.xml</code>) to include
-        all the Struts components that are required.  Using the deployment descriptor
-        for the example application as a guide, we see that the following entries need
-        to be created or modified.
-      </p>
+
+    <p>
+    The final step in setting up the application is to configure the
+    application deployment descriptor (stored in file
+    <code>WEB-INF/web.xml</code>) to  include all the Struts components that
+    are required.
+    Using the deployment descriptor for the example application as a guide,
+    we see that the following entries need to be created or modified.
+    </p>
+
 </section>
 
-<section name="7.4.1 Configure the Action Servlet Instance" href="dd_config_servlet">
+<section 
+    name="7.4.1 Configure the Action Servlet Instance" 
+    href="dd_config_servlet">
 
-        <p>
-          Add an entry defining the action servlet itself, along with the appropriate
-          initialization parameters. Such an entry might look like this:
-        </p>
+    <p>
+    Add an entry defining the action servlet itself, along with the 
+    appropriate initialization parameters.
+    Such an entry might look like this:
+    </p>
 
 <pre><code><![CDATA[
 <servlet>
@@ -523,155 +660,265 @@
 </servlet>
 ]]></code></pre>
 
-        <p>
-          The initialization parameters supported by the controller servlet are
-          described below. (You can also find these details in the <a
-          href="../api/index.html">Javadocs</a> for the ActionServlet class.) Square brackets
-          describe the default values that are assumed if you do not provide a value for
-          that initialization parameter.
-        </p>
+    <p>
+    The initialization parameters supported by the controller servlet are
+    described below.
+    (You can also find these details in the
+    <a href="../api/index.html">Javadocs</a> for the ActionServlet class.)
+    Square brackets describe the default values that are assumed if you do
+    not provide a value for that initialization parameter.
+    </p>
 
- <ul>
- <li><strong>config</strong> - Context-relative path to the XML resource
-     containing the configuration information for the default module.
-     [/WEB-INF/struts-config.xml].</li>
- <li><strong>config/${module}</strong> - Context-relative path to the XML resource
-     containing the configuration information for the application module that
-     will use the specified prefix (/${module}). This can be repeated as many
-     times as required for multiple application modules. (Since Struts 1.1)</li>
- <li><strong>convertNull</strong> - Force simulation of the Struts 1.0 behavior
-     when populating forms. If set to true, the numeric Java wrapper class types
-     (like <code>java.lang.Integer</code>) will default to null (rather than 0).
-     (Since Struts 1.1) [false] </li>
- <li><strong>debug</strong> - TThe debugging detail level that controls how much
-     information is logged for this servlet. Accepts values 0 (off) and from
-     1 (least serious) through 6 (most serious). [0]</li>
- <li><strong>detail</strong> - The debugging detail level for the Digester
-     we utilize to process the application module configuration files. Accepts
-     values 0 (off) and 1 (least serious) through 6 (most serious). [0]</li>
- <li><strong>rulesets</strong> - Comma-delimited list of fully qualified
-     classnames of additional <code>org.apache.commons.digester.RuleSet</code>
-     instances that should be added to the <code>Digester</code> that will
-     be processing <code>struts-config.xml</code> files.  By default, only
-     the <code>RuleSet</code> for the standard configuration elements is
-     loaded.  (Since Struts 1.1)</li>
- <li><strong>validating</strong> - Should we use a validating XML parser to
-     process the configuration file (strongly recommended)? [true]</li>
- </ul>
- <p>The following parameters may still be used with the Struts 1.1 release but
- are <b>deprecated</b>.</p>
- <ul>
- <li><strong>application</strong> - Java class name of the application
-     resources bundle base class.  [NONE]
-     <em>DEPRECATED - Configure this using the "parameter" attribute
-     of the &lt;message-resources&gt; element.</em></li>
- <li><strong>bufferSize</strong> - The size of the input buffer used when
-     processing file uploads.  [4096]
-     <em>DEPRECATED - Configure this using the "bufferSize" attribute
-     of the &lt;controller&gt; element.</em></li>
- <li><strong>content</strong> - Default content type and character encoding
-     to be set on each response; may be overridden by a forwarded-to
-     servlet or JSP page.  [text/html]
-     <em>DEPRECATED - Configure this using the "contentType" attribute
-     of the &lt;controller&gt; element.</em></li>
- <li><strong>factory</strong> - The Java class name of the
-     <code>MessageResourcesFactory</code> used to create the application
-     <code>MessageResources</code> object.
-     [org.apache.struts.util.PropertyMessageResourcesFactory]
-     <em>DEPRECATED - Configure this using the "factory" attribute
-     of the &lt;message-resources&gt; element.</em></li>
- <li><strong>formBean</strong> - The Java class name of the ActionFormBean
-     implementation to use [org.apache.struts.action.ActionFormBean].
-     <em>DEPRECATED - Configure this using the "className" attribute
-     of each &lt;form-bean&gt; element.</em></li>
- <li><strong>forward</strong> - The Java class name of the ActionForward
-     implementation to use [org.apache.struts.action.ActionForward].
-     Two convenient classes you may wish to use are:
+    <ul>
+
+        <li>
+        <strong>config</strong> - Context-relative path to the XML resource
+        containing the configuration information for the default module.
+        [/WEB-INF/struts-config.xml].
+        </li>
+
+        <li>
+        <strong>config/${module}</strong> - Context-relative path to the XML
+        resource containing the configuration information for the application
+        module that will use the specified prefix (/${module}).
+        This can be repeated as many times as required for multiple
+        application modules. (Since Struts 1.1)
+        </li>
+
+        <li>
+        <strong>convertNull</strong> - Force simulation of the Struts 1.0
+        behavior when populating forms.
+        If set to true, the numeric Java wrapper class types (like
+        <code>java.lang.Integer</code>) will default to null (rather than 0).
+        (Since Struts 1.1) [false]
+        </li>
+
+        <li>
+        <strong>debug</strong> - The debugging detail level that controls
+        how much information is logged for this servlet.
+        Accepts values 0 (off) and from 1 (least serious) through 6
+        (most serious).
+        [0]
+        </li>
+
+        <li>
+        <strong>detail</strong> - The debugging detail level for the Digester
+        we utilize to process the application module configuration files.
+        Accepts values 0 (off) and 1 (least serious) through 6 (most serious).
+        [0]
+        </li>
+
+        <li>
+        <strong>rulesets</strong> - Comma-delimited list of fully qualified
+        classnames of additional
+        <code>org.apache.commons.digester.RuleSet</code> instances that
+        should be added to the <code>Digester</code> that will be processing
+        <code>struts-config.xml</code> files.
+        By default, only the <code>RuleSet</code> for the standard 
+        configuration elements is loaded. (Since Struts 1.1)
+        </li>
+
+        <li>
+        <strong>validating</strong> - Should we use a validating XML parser to
+        process the configuration file (strongly recommended)?
+        [true]
+        </li>
+
+    </ul>
+
+
+     <p>
+     The following parameters may still be used with the Struts 1.1 release
+     but are <b>deprecated</b>.
+     </p>
+
      <ul>
-     <li><em>org.apache.struts.action.ForwardingActionForward</em> -
-         Subclass of <code>org.apache.struts.action.ActionForward</code>
-         that defaults the <code>redirect</code> property to
-         <code>false</code> (same as the ActionForward default value).</li>
-     <li><em>org.apache.struts.action.RedirectingActionForward</em> -
-         Subclass of <code>org.apache.struts.action.ActionForward</code>
-         that defaults the <code>redirect</code> property to
-         <code>true</code>.</li>
+
+        <li>
+        <strong>application</strong> - Java class name of the application
+        resources bundle base class.
+        [NONE]
+        <em>DEPRECATED - Configure this using the "parameter" attribute
+        of the &lt;message-resources&gt; element.</em>
+        </li>
+
+        <li><strong>bufferSize</strong> - The size of the input buffer used
+        when processing file uploads.
+        [4096]
+        <em>DEPRECATED - Configure this using the "bufferSize" attribute
+        of the &lt;controller&gt; element.</em>
+        </li>
+
+        <li>
+        <strong>content</strong> - Default content type and character encoding
+        to be set on each response; may be overridden by a forwarded-to
+        servlet or JSP page.
+        [text/html]
+        <em>DEPRECATED - Configure this using the "contentType" attribute
+        of the &lt;controller&gt; element.</em>
+        </li>
+
+        <li>
+        <strong>factory</strong> - The Java class name of the
+        <code>MessageResourcesFactory</code> used to create the application
+        <code>MessageResources</code> object.
+        [org.apache.struts.util.PropertyMessageResourcesFactory]
+        <em>DEPRECATED - Configure this using the "factory" attribute
+        of the &lt;message-resources&gt; element.</em>
+        </li>
+
+        <li>
+        <strong>formBean</strong> - The Java class name of the ActionFormBean
+        implementation to use
+        [org.apache.struts.action.ActionFormBean].
+        <em>DEPRECATED - Configure this using the "className" attribute
+        of each &lt;form-bean&gt; element.</em>
+        </li>
+
+        <li>
+        <strong>forward</strong> - The Java class name of the ActionForward
+        implementation to use
+        [org.apache.struts.action.ActionForward].
+        Two convenient classes you may wish to use are:
+        <ul>
+
+            <li>
+            <em>org.apache.struts.action.ForwardingActionForward</em> -
+            Subclass of <code>org.apache.struts.action.ActionForward</code>
+            that defaults the <code>redirect</code> property to
+            <code>false</code> (same as the ActionForward default value).
+            </li>
+
+            <li>
+            <em>org.apache.struts.action.RedirectingActionForward</em> -
+            Subclass of <code>org.apache.struts.action.ActionForward</code>
+            that defaults the <code>redirect</code> property to
+            <code>true</code>.
+            </li>
+
+        </ul>
+        <em>DEPRECATED - Configure this using the "className" attribute of
+        each &lt;forward&gt; element.</em>
+        </li>
+
+        <li>
+        <strong>locale</strong> - If set to <code>true</code>, and there is a
+        user session, identify and store an appropriate
+        <code>java.util.Locale</code> object (under the standard key
+        identified by <code>Action.LOCALE_KEY</code>) in the user's session
+        if there is not a Locale object there already.
+        [true]
+        <em>DEPRECATED - Configure this using the "locale" attribute of
+        the &lt;controller&gt; element.</em>
+        </li>
+
+        <li>
+        <strong>mapping</strong> - The Java class name of the ActionMapping
+        implementation to use
+        [org.apache.struts.action.ActionMapping].
+        Two convenient classes you may wish to use are:
+
+        <ul>
+
+            <li>
+            <em>org.apache.struts.action.RequestActionMapping</em> - Subclass
+            of <code>org.apache.struts.action.ActionMapping</code> that
+            defaults the <code>scope</code> property to "request".
+            </li>
+
+            <li>
+            <em>org.apache.struts.action.SessionActionMapping</em> - Subclass
+            of <code>org.apache.struts.action.ActionMapping</code> that
+            defaults the <code>scope</code> property to "session".
+            (Same as the ActionMapping default value).
+            </li>
+
+        </ul>
+
+        <em>DEPRECATED - Configure this using the "className" attribute of
+        each &lt;action&gt; element, or globally for a module by using the
+        "type" attribute of the &lt;action-mappings&gt; element.</em>
+        </li>
+
+        <li>
+        <strong>maxFileSize</strong> - The maximum size (in bytes) of a file
+        to be accepted as a file upload.
+        Can be expressed as a number followed by a "K" "M", or "G", which are
+        interpreted to mean kilobytes, megabytes, or gigabytes, respectively.
+        [250M]
+        <em>DEPRECATED - Configure this using the "maxFileSize" attribute of
+        the &lt;controller&gt; element.</em>
+        </li>
+
+        <li>
+        <strong>multipartClass</strong> - The fully qualified name of the
+        MultipartRequestHandler implementation class to be used for processing
+        file uploads.
+        If set to <code>none</code>, disables Struts multipart request 
+        handling.
+        [org.apache.struts.upload.CommonsMultipartRequestHandler]
+        <em>DEPRECATED - Configure this using the "multipartClass" attribute 
+        of the &lt;controller&gt; element.</em>
+        </li>
+
+        <li>
+        <strong>nocache</strong> - If set to <code>true</code>, add HTTP
+        headers to every response intended to defeat browser caching of
+        any response we generate or forward to.
+        [false]
+        <em>DEPRECATED - Configure this using the "nocache" attribute of
+        the &lt;controller&gt; element.</em>
+        </li>
+
+        <li>
+        <strong>null</strong> - If set to <code>true</code>, set our
+        application resources to return <code>null</code> if an unknown
+        message key is used.
+        Otherwise, an error message including the offending message key will
+        be returned.
+        [true]
+        <em>DEPRECATED - Configure this using the "null" attribute of
+        the &lt;message-resources&gt; element.</em>
+        </li>
+
+        <li>
+        <strong>tempDir</strong> - The temporary working directory to use when
+        processing file uploads.
+        [The working directory provided to this web application as a servlet
+        context attribute]
+        <em>DEPRECATED - Configure this using the "tempDir" attribute of
+        the &lt;controller&gt; element.</em>
+        </li>
+
      </ul>
-     <em>DEPRECATED - Configure this using the "className" attribute of
-     each &lt;forward&gt; element.</em></li>
- <li><strong>locale</strong> - If set to <code>true</code>, and there is a
-     user session, identify and store an appropriate
-     <code>java.util.Locale</code> object (under the standard key
-     identified by <code>Action.LOCALE_KEY</code>) in the user's session
-     if there is not a Locale object there already. [true]
-     <em>DEPRECATED - Configure this using the "locale" attribute of
-     the &lt;controller&gt; element.</em></li>
- <li><strong>mapping</strong> - The Java class name of the ActionMapping
-     implementation to use [org.apache.struts.action.ActionMapping].
-     Two convenient classes you may wish to use are:
-     <ul>
-     <li><em>org.apache.struts.action.RequestActionMapping</em> - Subclass
-         of <code>org.apache.struts.action.ActionMapping</code> that
-         defaults the <code>scope</code> property to "request".</li>
-     <li><em>org.apache.struts.action.SessionActionMapping</em> - Subclass
-         of <code>org.apache.struts.action.ActionMapping</code> that
-         defaults the <code>scope</code> property to "session".  (Same
-         as the ActionMapping default value).</li>
-     </ul>
-     <em>DEPRECATED - Configure this using the "className" attribute of
-     each &lt;action&gt; element, or globally for a module by using the
-     "type" attribute of the &lt;action-mappings&gt; element.</em></li>
- <li><strong>maxFileSize</strong> - The maximum size (in bytes) of a file
-     to be accepted as a file upload.  Can be expressed as a number followed
-     by a "K" "M", or "G", which are interpreted to mean kilobytes,
-     megabytes, or gigabytes, respectively.  [250M]
-     <em>DEPRECATED - Configure this using the "maxFileSize" attribute of
-     the &lt;controller&gt; element.</em></li>
- <li><strong>multipartClass</strong> - The fully qualified name of the
-     MultipartRequestHandler implementation class to be used for processing
-     file uploads. If set to <code>none</code>, disables Struts multipart
-     request handling.  [org.apache.struts.upload.CommonsMultipartRequestHandler]
-     <em>DEPRECATED - Configure this using the "multipartClass" attribute of
-     the &lt;controller&gt; element.</em></li>
- <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
-     to every response intended to defeat browser caching of any response we
-     generate or forward to.  [false]
-     <em>DEPRECATED - Configure this using the "nocache" attribute of
-     the &lt;controller&gt; element.</em></li>
- <li><strong>null</strong> - If set to <code>true</code>, set our application
-     resources to return <code>null</code> if an unknown message key is used.
-     Otherwise, an error message including the offending message key will
-     be returned.  [true]
-     <em>DEPRECATED - Configure this using the "null" attribute of
-     the &lt;message-resources&gt; element.</em></li>
- <li><strong>tempDir</strong> - The temporary working directory to use when
-     processing file uploads.  [The working directory provided to this web
-     application as a servlet context attribute]
-     <em>DEPRECATED - Configure this using the "tempDir" attribute of
-     the &lt;controller&gt; element.</em></li>
- </ul>
+
 </section>
 
-<section name="7.4.2 Configure the Action Servlet Mapping" href="dd_config_mapping">
+<section 
+    name="7.4.2 Configure the Action Servlet Mapping" 
+    href="dd_config_mapping">
 
-        <p>
-          <strong>Note:</strong> The material in this section is not specific to
-          Struts. The configuration of servlet mappings is defined in the Java
-          Servlet Specification. This section describes the most common means
-          of configuring a Struts application.
-        </p>
-        <p>
-          There are two common approaches to defining the URLs that will
-          be processed by the controller servlet -- prefix matching and extension
-          matching.  An appropriate mapping entry for each approach will be
-          described below.
-        </p>
+    <p>
+    <strong>Note:</strong> The material in this section is not specific to
+    Struts.
+    The configuration of servlet mappings is defined in the Java Servlet
+    Specification.
+    This section describes the most common means of configuring a Struts
+    application.
+    </p>
 
-        <p>
-          Prefix matching means that you want all URLs that start (after the context
-          path part) with a particular value to be passed to this servlet.  Such an
-          entry might look like this:
-        </p>
+    <p>
+    There are two common approaches to defining the URLs that will
+    be processed by the controller servlet -- prefix matching and extension
+    matching.
+    An appropriate mapping entry for each approach will be described below.
+    </p>
+
+    <p>
+    Prefix matching means that you want all URLs that start (after the context
+    path part) with a particular value to be passed to this servlet.
+    Such an entry might look like this:
+    </p>
 
 <pre><code><![CDATA[
   <servlet-mapping>
@@ -681,23 +928,26 @@
 ]]></code></pre>
 
         <p>
-          which means that a request URI to match the <code>/logon</code> path
-          described earlier might look like this:</p>
+        which means that a request URI to match the <code>/logon</code> path
+        described earlier might look like this:
+        </p>
 
 <pre><code>http://www.mycompany.com/myapplication/do/logon</code></pre>
 
         <p>
-          where <code>/myapplication</code> is the context path under which your
-          application is deployed.
+        where <code>/myapplication</code> is the context path under which your
+        application is deployed.
         </p>
 
         <p>
-          Extension mapping, on the other hand, matches request URIs to the action
-          servlet based on the fact that the URI ends with a period followed by a
-          defined set of characters.  For example, the JSP processing servlet is mapped
-          to the <code>*.jsp</code> pattern so that it is called to process every
-          JSP page that is requested.  To use the <code>*.do</code> extension (which
-          implies "do something"), the mapping entry would look like this:
+        Extension mapping, on the other hand, matches request URIs to the
+        action servlet based on the fact that the URI ends with a period
+        followed by a defined set of characters.
+        For example, the JSP processing servlet is mapped
+        to the <code>*.jsp</code> pattern so that it is called to process
+        every JSP page that is requested.
+        To use the <code>*.do</code> extension (which implies "do something"),
+        the mapping entry would look like this:
         </p>
 
 <pre><code><![CDATA[
@@ -708,60 +958,80 @@
 ]]></code></pre>
 
         <p>
-          and a request URI to match the <code>/logon</code> path described
-          earlier might look like this:
+        and a request URI to match the <code>/logon</code> path described
+        earlier might look like this:
         </p>
 
 <pre><code>http://www.mycompany.com/myapplication/logon.do</code></pre>
 
-        <p><font color="red"><strong>WARNING</strong></font> - Struts will not
+        <p>
+        <font color="red"><strong>WARNING</strong></font> - Struts will not
         operate correctly if you define more than one
         <code>&lt;servlet-mapping&gt;</code> element for the controller
-        servlet.</p>
+        servlet.
+        </p>
 
-        <p><font color="red"><strong>WARNING</strong></font> - If you are using
+        <p>
+        <font color="red"><strong>WARNING</strong></font> - If you are using
         the new module support in Struts 1.1, you should be aware
-        that <strong>only</strong> extension mapping is supported.</p>
+        that <strong>only</strong> extension mapping is supported.
+        </p>
 
 </section>
 
-<section name="7.4.3 Configure the Struts Tag Library" href="dd_config_taglib">
+<section 
+    name="7.4.3 Configure the Struts Tag Library" 
+    href="dd_config_taglib">
+
         <p>
-          Next, you must add an entry defining the Struts tag library. There are six taglibs
-          included with the Struts distribution.
-        </p>
-        <p>
-          The struts-bean taglib contains tags useful in accessing
-          beans and their properties, as well as defining new beans (based on these accesses) that are
-          accessible to the remainder of the page via scripting variables and page scope attributes.
-          Convenient mechanisms to create new beans based on the value of request cookies, headers,
-          and parameters are also provided.
-        </p>
-        <p>
-          The struts-html taglib contains tags used to create struts input forms, as well as other
-          tags generally useful in the creation of HTML-based user interfaces.
-        </p>
-        <p>
-          The struts-logic taglib contains tags that are useful in managing conditional generation
-          of output text, looping over object collections for repetitive generation of output text,
-          and application flow management.
-        </p>
-        <p>
-          The struts-template taglib contains tags that define a template mechanism.
-        </p>
-        <p>
-          The struts-tiles taglib contains tags used for combining various view components,
-          called "tiles", into a final composite view.  This is similar to struts-template in that
-          it's used for view composition, but tiles is a more full featured set of tags.
-        </p>
-        <p>
-        The struts-nested taglib is an extension of other struts taglibs that allows the use
-        of nested beans.
+        Next, you must add an entry defining the Struts tag library.
+        There are six taglibs included with the Struts distribution.
         </p>
 
         <p>
-          Below is how you would define all taglibs for use within your application.
-          In practice, you would only specify the taglibs that your application uses:
+        The struts-bean taglib contains tags useful in accessingbeans and their
+        properties,  as well as defining new beans (based on these accesses)
+        that are accessible to the remainder of the page via scripting
+        variables and page scope attributes.
+        Convenient mechanisms to create new beans based on the value of request
+        cookies, headers, and parameters are also provided.
+        </p>
+
+        <p>
+        The struts-html taglib contains tags used to create struts input forms,
+        as well as other tags generally useful in the creation of HTML-based
+        user interfaces.
+        </p>
+
+        <p>
+        The struts-logic taglib contains tags that are useful in managing
+        conditional generation of output text,
+        looping over object collections for repetitive generation of output
+        text,and application flow management.
+        </p>
+
+        <p>
+        The struts-template taglib contains tags that define a template
+        mechanism.
+        </p>
+
+        <p>
+        The struts-tiles taglib contains tags used for combining various view
+        components, called "tiles", into a final composite view.
+        This is similar to struts-template in that it's used for view 
+        composition, but tiles is a more full featured set of tags.
+        </p>
+
+        <p>
+        The struts-nested taglib is an extension of other struts taglibs that
+        allows the use of nested beans.
+        </p>
+
+        <p>
+        Below is how you would define all taglibs for use within your
+        application.
+        In practice, you would only specify the taglibs that your application
+        uses:
         </p>
 
 <pre><code><![CDATA[
@@ -799,46 +1069,63 @@
 </taglib>
 ]]></code></pre>
 
-        <p>
-          This tells the JSP system where to find the tag library descriptor
-          for this library (in your application's WEB-INF directory, instead of
-          out on the Internet somewhere).
-        </p>
-      </section>
+    <p>
+    This tells the JSP system where to find the tag library descriptor
+    for this library (in your application's WEB-INF directory, instead of
+    out on the Internet somewhere).
+    </p>
 
-      <section name="7.4.3.1 Configure the Struts Tag Library (Servlet 2.3)" href="dd_config_taglib_23">
-      <p>
-        <b>Servlet 2.3 Users only:</b> The Servlet 2.3 specification simplifies the
-        deployment and configuration of tag libraries.  The instructions above will work
-        on older containers as well as 2.3 containers (Struts only requires a servlet 2.2 container);
-        however, if you're using a 2.3 container such as Tomcat 4.x, you can take advantage of
-        a simplified deployment.
-       </p>
-      <p>
-        All that's required to install the struts tag libraries is to copy struts.jar into
-        your /WEB-INF/lib directory and reference the tags in your code like this:
-        <br/>
-        <code>&lt;%@ taglib uri="http://jakarta.apache.org/struts/tags-html-1.0" prefix="html" %&gt;</code>
-        <br/>
-        Note that you <b>must use the full uri</b> defined in the various struts tlds so that the container
-        knows where to find the tag's class files. You don't have to alter your web.xml file or
-        copy tlds into any application directories.
-       </p>
 </section>
 
-<section name="7.5 Add Struts Components To Your Application" href="config_add">
+<section 
+    name="7.4.3.1 Configure the Struts Tag Library (Servlet 2.3)" 
+    href="dd_config_taglib_23">
 
-        <p>
-         To use Struts, you must copy the .tld files that you require into
-         your <code>WEB-INF</code> directory, and copy <code>struts.jar</code>
-         (and all of the <code>commons-*.jar</code> files) into your
-         <code>WEB-INF/lib</code> directory.
-        </p>
+    <p>
+    <b>Servlet 2.3 Users only:</b> The Servlet 2.3 specification simplifies 
+    the deployment and configuration of tag libraries.
+    The instructions above will work on older containers as well as 2.3
+    containers (Struts only requires a servlet 2.2 container);
+    however, if you're using a 2.3 container such as Tomcat 4.x,
+    you can take advantage of a simplified deployment.
+    </p>
 
-        <p>
-         <b>Servlet 2.3 Users:</b> See <a href="#dd_config_taglib_23">section 4.7.3.1</a>
-         for how to avoid copying the tlds into your application.
-        </p>
+    <p>
+    All that's required to install the struts tag libraries is to copy
+    struts.jar into your /WEB-INF/lib directory and reference the tags in
+    your code like this:
+
+    <pre><code>
+    &lt;%@ taglib 
+        uri="http://jakarta.apache.org/struts/tags-html-1.0" 
+        prefix="html" %&gt;
+    </code></pre>
+
+    Note that you <b>must use the full uri</b> defined in the various struts 
+    tlds so that the container knows where to find the tag's class files.
+    You don't have to alter your web.xml file or copy tlds into any
+    application directories.
+
+    </p>
+
+</section>
+
+<section 
+    name="7.5 Add Struts Components To Your Application" 
+    href="config_add">
+
+    <p>
+    To use Struts, you must copy the .tld files that you require into
+    your <code>WEB-INF</code> directory, and copy <code>struts.jar</code>
+    (and all of the <code>commons-*.jar</code> files) into your
+    <code>WEB-INF/lib</code> directory.
+    </p>
+
+    <p>
+    <b>Servlet 2.3 Users:</b> See
+    <a href="#dd_config_taglib_23">section 4.7.3.1</a>
+    for how to avoid copying the tlds into your application.
+    </p>
 
 </section>
 
