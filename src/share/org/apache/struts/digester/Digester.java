@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.12 2000/12/28 01:55:14 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2000/12/28 01:55:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.13 2001/01/02 23:40:18 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2001/01/02 23:40:18 $
  *
  * ====================================================================
  * 
@@ -102,7 +102,7 @@ import org.xml.sax.SAXParseException;
  * even from the same thread.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.12 $ $Date: 2000/12/28 01:55:14 $
+ * @version $Revision: 1.13 $ $Date: 2001/01/02 23:40:18 $
  */
 
 public final class Digester extends HandlerBase {
@@ -559,9 +559,11 @@ public final class Digester extends HandlerBase {
 
 	if (debug >= 1)
 	    log("resolveEntity('" + publicId + "', '" + systemId + "')");
-	String dtdURL = (String) dtds.get(publicId);
 
 	// Has this system identifier been registered?
+	String dtdURL = null;
+        if (publicId != null)
+            dtdURL = (String) dtds.get(publicId);
 	if (dtdURL == null) {
 	    if (debug >= 1)
 		log(" Not registered, use system identifier");
