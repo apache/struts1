@@ -88,6 +88,16 @@
         </attribute>
 
         <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
+        </attribute>
+
+        <attribute>
             <name>onblur</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -301,6 +311,16 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
         </attribute>
 
         <attribute>
@@ -536,6 +556,16 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
         </attribute>
 
         <attribute>
@@ -850,6 +880,16 @@
                 to limit the set of file options that is made available for selection.
                 If not specified, no content type list will be sent.
             </info>
+        </attribute>
+
+        <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
         </attribute>
 
         <attribute>
@@ -1403,6 +1443,16 @@
                 instance to use.  If not specified, defaults to the
                 application resources configured for our action servlet.</p>
                 </info>
+        </attribute>
+
+        <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
         </attribute>
 
         <attribute>
@@ -2529,6 +2579,16 @@
         </attribute>
 
         <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
+        </attribute>
+
+        <attribute>
             <name>name</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -2761,6 +2821,16 @@
                     </info>
                 </attribute>
 
+        <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this option should be
+          disabled.
+          </info>
+        </attribute>
+
                 <attribute>
                     <name>key</name>
                     <required>false</required>
@@ -2964,6 +3034,16 @@
         </attribute>
 
         <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
+        </attribute>
+
+        <attribute>
             <name>maxlength</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -3125,6 +3205,16 @@
             </info>
         </attribute>
 
+        <attribute>
+          <name>readonly</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          read only.
+          </info>
+        </attribute>
+
                 <attribute>
                         <name>redisplay</name>
                         <required>false</required>
@@ -3222,6 +3312,16 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
         </attribute>
 
         <attribute>
@@ -3395,6 +3495,16 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
         </attribute>
 
         <attribute>
@@ -3729,6 +3839,16 @@
             </info>
         </attribute>
 
+        <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
+        </attribute>
+
                 <attribute>
                         <name>multiple</name>
                         <required>false</required>
@@ -3972,6 +4092,16 @@
         </attribute>
 
         <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
+        </attribute>
+
+        <attribute>
             <name>onblur</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -4181,6 +4311,16 @@
         </attribute>
 
         <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
+        </attribute>
+
+        <attribute>
             <name>name</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -4201,6 +4341,16 @@
                 property if value is not specified. The corresponding bean property
                 (if any) must be of type String.
             </info>
+        </attribute>
+
+        <attribute>
+          <name>readonly</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          read only.
+          </info>
         </attribute>
 
         <attribute>
@@ -4432,6 +4582,16 @@
         </attribute>
 
         <attribute>
+          <name>disabled</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          disabled.
+          </info>
+        </attribute>
+
+        <attribute>
             <name>name</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -4452,6 +4612,16 @@
                 property if value is not specified. The corresponding bean property
                 (if any) must be of type String.
             </info>
+        </attribute>
+
+        <attribute>
+          <name>readonly</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+          <info>
+          Set to <code>true</code> if this input field should be
+          read only.
+          </info>
         </attribute>
 
         <attribute>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.2 2001/05/04 19:25:16 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/05/04 19:25:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.3 2001/05/05 00:54:33 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/05/05 00:54:33 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import org.apache.struts.util.MessageResources;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.2 $ $Date: 2001/05/04 19:25:16 $
+ * @version $Revision: 1.3 $ $Date: 2001/05/05 00:54:33 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -137,13 +137,19 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /** Content changed after component lost focus event. */
     private String onchange = null;
 
-// Focus Events
+// Focus Events and States
 
     /** Component lost focus event. */
     private String onblur = null;
 
     /** Component has received focus event. */
     private String onfocus = null;
+
+    /** Component is disabled. */
+    private boolean disabled = false;
+
+    /** Component is readonly. */
+    private boolean readonly = false;
 
 // CSS Style Support
 
@@ -307,7 +313,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return onselect;
     }
 
-// Focus Events
+// Focus Events and States
 
     /** Sets the onBlur event handler. */
     public void setOnblur(String onBlur) {
@@ -327,6 +333,26 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /** Returns the onFocus event handler. */
     public String getOnfocus() {
         return onfocus;
+    }
+
+    /** Sets the disabled event handler. */
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
+
+    /** Returns the disabled event handler. */
+    public boolean getDisabled() {
+        return disabled;
+    }
+
+    /** Sets the readonly event handler. */
+    public void setReadonly(boolean readonly) {
+        this.readonly = readonly;
+    }
+
+    /** Returns the readonly event handler. */
+    public boolean getReadonly() {
+        return readonly;
     }
 
 // CSS Style Support
@@ -386,6 +412,8 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 	onchange = null;
 	onblur = null;
 	onfocus = null;
+        disabled = false;
+        readonly = false;
 	style = null;
 	styleClass = null;
         styleId = null;
@@ -550,6 +578,15 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
             handlers.append(onfocus);
             handlers.append("\"");
         }
+
+        if (disabled) {
+            handlers.append(" disabled");
+        }
+
+        if (readonly) {
+            handlers.append(" readonly");
+        }
+
     }
 
 

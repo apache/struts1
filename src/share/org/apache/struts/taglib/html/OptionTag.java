@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.5 2001/04/17 23:57:01 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/04/17 23:57:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.6 2001/05/05 00:54:33 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/05/05 00:54:33 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.ResponseUtils;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/04/17 23:57:01 $
+ * @version $Revision: 1.6 $ $Date: 2001/05/05 00:54:33 $
  */
 
 public class OptionTag extends BodyTagSupport {
@@ -125,6 +125,20 @@ public class OptionTag extends BodyTagSupport {
 
     public void setBundle(String bundle) {
         this.bundle = bundle;
+    }
+
+
+    /**
+     * Is this option disabled?
+     */
+    protected boolean disabled = false;
+
+    public boolean getDisabled() {
+        return (this.disabled);
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
     }
 
 
@@ -233,6 +247,8 @@ public class OptionTag extends BodyTagSupport {
 	results.append("<option value=\"");
 	results.append(value);
 	results.append("\"");
+        if (disabled)
+            results.append(" disabled");
         if (selectTag.isMatched(value))
 	    results.append(" selected");
 	results.append(">");
@@ -259,6 +275,7 @@ public class OptionTag extends BodyTagSupport {
 
 	super.release();
         bundle = Action.MESSAGES_KEY;
+        disabled = false;
         key = null;
         locale = Action.LOCALE_KEY;
         text = null;
