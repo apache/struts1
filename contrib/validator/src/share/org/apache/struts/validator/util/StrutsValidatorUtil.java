@@ -178,31 +178,35 @@ public class StrutsValidatorUtil  {
       String sArg3 = null;
       
       if (arg0 != null) {
-         if ("true".equals(arg0.getResource()))
+         if (arg0.getResource()) {
             sArg0 = getMessage(messages, locale, arg0.getKey());
-         else
+         } else {
             sArg0 = arg0.getKey();
+         }
       }
       
       if (arg1 != null) {
-         if ("true".equals(arg1.getResource()))
+         if (arg1.getResource()) {
             sArg1 = getMessage(messages, locale, arg1.getKey());
-         else
+         } else {
             sArg1 = arg1.getKey();
+         }
       }
       
       if (arg2 != null) {
-         if ("true".equals(arg2.getResource()))
+         if (arg2.getResource()) {
             sArg2 = getMessage(messages, locale, arg2.getKey());
-         else
+         } else {
             sArg2 = arg2.getKey();
+         }
       }
       
       if (arg3 != null) {
-         if ("true".equals(arg3.getResource()))
+         if (arg3.getResource()) {
             sArg3 = getMessage(messages, locale, arg3.getKey());
-         else
+         } else {
             sArg3 = arg3.getKey();
+         }
       }   	
    	 
       return new String[] { sArg0, sArg1, sArg2, sArg3 };
