@@ -61,18 +61,23 @@
 
 <section name="Development Releases" href="Releases">
     <p>
+    The latest <em>development release</em> of Struts is
+    available in a convenient binary distribution and also with complete
+    source code.
+    </p>
+    <p>
         Development releases are being reviewed for quality by the Struts community.
         When a release is judged "ready for prime time", it is promoted to
         "General Availability" status and may be made the "Best Available" version.
     </p>
         <ul>
         <li>
-            <a href="http://cvs.apache.org/dist/struts">Struts Development
-                Releases - Not yet rated "General Availability".</a>
+            <a href="http://cvs.apache.org/dist/struts/v1.2.1">Struts Development
+                Releases - Not yet rated "General Availability" - Struts 1.2.1 (Beta) is the most recent.</a>
         </li>
             <li>
-                <a href="http://cvs.apache.org/repository/struts/">Struts Development
-                    Repository (Maven) - Not yet rated "General Availability".</a>
+                <a href="http://cvs.apache.org/repository/struts/jars">Struts Development
+                    Repository (Maven) - Not yet rated "General Availability" -  Struts 1.2.1 (Beta) is the most recent.</a>
             </li>
         </ul>
 

@@ -52,7 +52,7 @@
         <li>Before building the release, run the JUnit and Cactus tests using the same configuration used that will be used to build the Release distribution.</li>
         <li>There is a "release" target in the buildfile that will zip and tar the releases. Before uploading the release, extract the sample web applications and deploy the WARs under each of the "supported" containers. Play test each application under each container to be sure they operate nominally.</li>
         <li>The Alpha release can be posted to your Apache home directory (www.apache.org/~$USERNAME) for initial testing. Once it is voted to Beta or GA status, the release can be submitted to the distribution channels.</li>
-        <li>After announcing a release, remember to update the Announcements page.</li>
+        <li>After announcing a release, remember to update the Acquiring and Announcements pages.</li>
       </ul>
     </section>
     <section href="Coding" name="Coding Conventions and Guidelines">
