@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.3 2002/07/26 16:18:28 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/07/26 16:18:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.4 2002/08/15 09:29:32 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/08/15 09:29:32 $
  *
  * ====================================================================
  *
@@ -107,14 +107,18 @@ public class XmlParser
      * <strong>MUST</strong> be an even number of Strings in this list!
      */
     protected String registrations[] = {
+          // pre 1.1
         "-//Apache Software Foundation//DTD Tiles Configuration//EN",
-        "/org/apache/struts/tiles/resources/tiles-config.dtd",
+        "/org/apache/struts/tiles/resources/tiles-config_1_1.dtd",
         "-//Apache Software Foundation//DTD Tiles Configuration//EN",
-        "/org/apache/struts/tiles/resources/tiles-config.dtd",
-        "-//Apache Software Foundation//DTD Tiles Configuration//EN",
-        "/org/apache/struts/resources/tiles-config.dtd",
+        "/org/apache/struts/resources/tiles-config_1_1.dtd",
         "-//Apache Software Foundation//DTD Components Configuration//EN",
         "/org/apache/struts/tiles/resources/tiles-config.dtd",
+         // version 1.1
+        "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN",
+        "/org/apache/struts/tiles/resources/tiles-config_1_1.dtd",
+        "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN",
+        "/org/apache/struts/resources/tiles-config_1_1.dtd",
     };
 
      /**
@@ -254,7 +258,7 @@ public class XmlParser
 	digester.addSetProperties( NESTED_LIST);
 	digester.addSetNext(       NESTED_LIST, "add", putAttributeHandlerClass);
 
-    // bean elements rules
+    // item elements rules
     // We use Attribute class to avoid rewriting a new class.
     // Name part can't be used in listElement attribute.
   //String ADD_WILDCARD = LIST_TAG + "/addItem";
@@ -264,6 +268,16 @@ public class XmlParser
 	digester.addObjectCreate(  ADD_WILDCARD, menuItemDefaultClass, "classtype");
 	digester.addSetNext(       ADD_WILDCARD, "add", "java.lang.Object");
 	digester.addSetProperties( ADD_WILDCARD);
+
+    // bean elements rules
+  String BEAN_TAG = "*/bean";
+  String beanDefaultClass = "org.apache.struts.tiles.beans.SimpleMenuItem";
+	digester.addObjectCreate(  BEAN_TAG, menuItemDefaultClass, "classtype");
+	digester.addSetNext(       BEAN_TAG, "add", "java.lang.Object");
+	digester.addSetProperties( BEAN_TAG);
+
+    // Set properties to surrounding element
+  digester.addSetProperty(BEAN_TAG+ "/set-property", "property", "value");
   }
 
    /**
