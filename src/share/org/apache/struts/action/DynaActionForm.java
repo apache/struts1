@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.12 2004/01/10 21:03:38 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2004/01/10 21:03:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.13 2004/01/24 20:22:50 germuska Exp $
+ * $Revision: 1.13 $
+ * $Date: 2004/01/24 20:22:50 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * simplest solution is to subclass <code>DynaActionForm</code> and call
  * the <code>initialize</code> method inside it.</p>
  *
- * @version $Revision: 1.12 $ $Date: 2004/01/10 21:03:38 $
+ * @version $Revision: 1.13 $ $Date: 2004/01/24 20:22:50 $
  * @since Struts 1.1
  */
 public class DynaActionForm extends ActionForm implements DynaBean {
@@ -134,6 +134,12 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         if (config == null) {
             return;
         }
+
+        initialize(config);
+    }
+
+    public void initialize(FormBeanConfig config) {
+
         FormPropertyConfig props[] = config.findFormPropertyConfigs();
         for (int i = 0; i < props.length; i++) {
             set(props[i].getName(), props[i].initial());
@@ -149,7 +155,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * <p>Reset bean properties to their default state, as needed.
      * This method is called before the properties are repopulated by
      * the controller.</p>
-     * 
+     *
      * <p>The default implementation attempts to forward to the HTTP
      * version of this method.</p>
      *
@@ -170,7 +176,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
     /**
      * <p>Reset bean properties to their default state, as needed.  This method is
      * called before the properties are repopulated by the controller.</p>
-     * 
+     *
      * <p>The default implementation (since Struts 1.1) does nothing.
      * Subclasses may override this method to reset bean properties to
      * default values, or the <code>initialize</code> method may be used to
@@ -233,7 +239,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         Object value = dynaValues.get(name);
         if (value != null) {
             return (value);
-        } 
+        }
 
         // Return a null value for a non-primitive property
         Class type = getDynaProperty(name).getType();
@@ -336,7 +342,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * <p>Return the value of a <code>String</code> property with the specified
      * name. This is equivalent to calling
      * <code>(String) dynaForm.get(name)</code>.</p>
-     * 
+     *
      * @param name Name of the property whose value is to be retrieved
      *
      * @throws IllegalArgumentException if there is no property
@@ -407,7 +413,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         return (dynaValues);
 
     }
-    
+
 
     /**
      * <p>Remove any existing value for the specified key on the
