@@ -528,7 +528,7 @@ public class UploadForm extends ActionForm {
         </p>
           
         <ul>
-          <li>An <%@ include file="xxxxx" %> directive can include a file that contains
+          <li>An <code>&lt;%@ include file="xxxxx" %&gt;</code> directive can include a file that contains
 				  java code or jsp tags. The code in the included file can even reference
 				  variables declared earlier in the outer jsp page. The code is inlined into
 				  the other jsp before it is compiled so it can definately contain more than
