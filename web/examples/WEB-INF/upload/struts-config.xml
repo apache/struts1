@@ -7,12 +7,14 @@
   <action-mappings>
     <action path="/upload" forward="/upload.jsp" />
     <!-- Upload Action -->
-    <action path="/upload-submit" type="org.apache.struts.webapp.upload.UploadAction" name="uploadForm" scope="request" input="/upload.jsp">
+    <action path="/upload-submit" type="org.apache.struts.webapp.upload.UploadAction" name="uploadForm" scope="request" input="input">
+      <forward name="input" path="/upload.jsp" />
       <forward name="display" path="/display.jsp" />
     </action>
   </action-mappings>
   <!-- This is where you set the maximum file size for your file uploads.
          -1 is an unlimited size. If you
          don't specify this here, it defaults to -1. -->
-  <controller maxFileSize="2M" />
+  <controller maxFileSize="2M" inputForward="true" />
+  <message-resources parameter="org.apache.struts.webapp.upload.UploadResources"/>
 </struts-config>

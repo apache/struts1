@@ -26,7 +26,8 @@
     <action path="/welcome" forward="/index.jsp" />
     <!-- Registration Action -->
     <action path="/registration" forward="/registration.jsp" />
-    <action path="/registration-submit" type="org.apache.struts.webapp.validator.RegistrationAction" name="registrationForm" scope="request" validate="true" input="/registration.do">
+    <action path="/registration-submit" type="org.apache.struts.webapp.validator.RegistrationAction" name="registrationForm" scope="request" validate="true" input="input">
+      <forward name="input" path="/registration.do" />
       <forward name="success" path="/index.jsp" />
     </action>
     <action path="/jsRegistration" forward="/jsRegistration.jsp" />
@@ -39,7 +40,8 @@
     </action>
     <!-- Type Action -->
     <action path="/type" forward="/type.jsp" />
-    <action path="/type-submit" type="org.apache.struts.webapp.validator.TypeAction" name="typeForm" scope="request" validate="true" input="/type.do">
+    <action path="/type-submit" type="org.apache.struts.webapp.validator.TypeAction" name="typeForm" scope="request" validate="true" input="input">
+      <forward name="input" path="/type.do" />
       <forward name="success" path="/welcome.do" />
     </action>
     <!-- JavaScript Type Action -->
@@ -47,7 +49,8 @@
       <forward name="success" path="/jsType.do" />
     </action>
     <action path="/jsType" forward="/jsType.jsp" />
-    <action path="/jsType-submit" type="org.apache.struts.webapp.validator.TypeAction" name="jsTypeForm" scope="request" validate="true" input="/editJsType-submit.do?typeForm.reset=false">
+    <action path="/jsType-submit" type="org.apache.struts.webapp.validator.TypeAction" name="jsTypeForm" scope="request" validate="true" input="input">
+      <forward name="input" path="/editJsType-submit.do?typeForm.reset=false" />
       <forward name="success" path="/welcome.do" />
     </action>
     <!-- Locale Action -->
@@ -55,6 +58,8 @@
       <forward name="success" path="/welcome.do" />
     </action>
   </action-mappings>
+  <!-- ============================================= Controller Definition  -->
+  <controller inputForward="true" />
   <!-- ===================================== Message Resources Definitions  -->
   <message-resources parameter="org.apache.struts.webapp.validator.MessageResources" />
   <!-- ============================================ Plug Ins Configuration  -->

@@ -3,7 +3,7 @@
 <!--
   Default configuration file for examples application.
   Each module also has its own struts-config under: /WEB-INF/$MODULE/
-  @version $Revision: 1.1 $ $Date: 2004/01/08 16:22:11 $
+  @version $Revision: 1.2 $ $Date: 2004/01/09 21:50:59 $
 -->
 <struts-config>
   <data-sources />
@@ -15,6 +15,5 @@
   <action-mappings>
     <action path="/welcome" forward="/welcome.html" />
   </action-mappings>
-  <controller />
   <message-resources parameter="MessageResources" />
 </struts-config>
