@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/HtmlTag.java,v 1.2 2003/06/04 17:38:14 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:38:14 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/HtmlTag.java,v 1.3 2003/07/27 06:46:21 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/27 06:46:21 $
  *
  * ====================================================================
  *
@@ -64,6 +64,8 @@ package org.apache.struts.faces.taglib;
 
 import javax.faces.component.UIComponent;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
+
 import org.apache.struts.Globals;
 
 
@@ -72,7 +74,7 @@ import org.apache.struts.Globals;
  * the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:14 $
+ * @version $Revision: 1.3 $ $Date: 2003/07/27 06:46:21 $
  */
 
 public class HtmlTag extends AbstractFacesTag {
@@ -123,7 +125,7 @@ public class HtmlTag extends AbstractFacesTag {
         int result = super.doStartTag();
         if (xhtml) {
             pageContext.setAttribute(Globals.XHTML_KEY, "true",
-                                     this.pageContext.PAGE_SCOPE);
+                                     PageContext.PAGE_SCOPE);
         }
         return (result);
 
