@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.12 2002/07/09 23:57:05 husted Exp $
- * $Revision: 1.12 $
- * $Date: 2002/07/09 23:57:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.13 2002/10/20 17:06:57 husted Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/10/20 17:06:57 $
  *
  * ====================================================================
  *
@@ -93,9 +93,14 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * protected methods for which they wish to provide modified functionality.
  * </p>
  *
+ * <p>Since ActionForms are JavaBean, subclasses should also implement
+ * <code>Serializable</code>, as required by the JavaBean specification.
+ * Some containers require that an object meet all JavaBean requirements
+ * in order to use the introspection API upon which ActionForms rely.</p>
+ *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.12 $ $Date: 2002/07/09 23:57:05 $
+ * @version $Revision: 1.13 $ $Date: 2002/10/20 17:06:57 $
  */
 
 public abstract class ActionForm implements Serializable {
