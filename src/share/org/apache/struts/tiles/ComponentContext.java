@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentContext.java,v 1.2 2003/02/27 19:20:51 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/27 19:20:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentContext.java,v 1.3 2003/07/04 21:41:00 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/04 21:41:00 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,56 +59,54 @@
  *
  */
 
-
 package org.apache.struts.tiles;
 
-import java.util.Map;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.jsp.PageContext;
+
 import org.apache.struts.taglib.tiles.ComponentConstants;
-import java.io.Serializable;
 
 /**
  * Component context.
  */
-public class ComponentContext implements Serializable
-{
+public class ComponentContext implements Serializable {
 
-  /**
-   * Component attributes.
-   */
-  private Map attributes;
+    /**
+     * Component attributes.
+     */
+    private Map attributes=null;
 
-  /**
-   * EmptyIterator over component attributes.
-   */
-  private static Iterator EMPTY_ITERATOR = new EmptyIterator();
+    /**
+     * EmptyIterator over component attributes.
+     */
+    private static Iterator EMPTY_ITERATOR = new EmptyIterator();
 
     /**
      * Constructor.
      */
-  public ComponentContext()
-    {
+    public ComponentContext() {
+        super();
     }
 
     /**
      * Constructor.
      * @deprecated Use {@link #ComponentContext(Map attributes)} instead.
      */
-  public ComponentContext( ComponentDefinition instance )
-    {
-//    try
-//      {
+    public ComponentContext(ComponentDefinition instance) {
+        //    try
+        //      {
         // instance's attributes map is never null.
-      attributes = new HashMap(instance.getAttributes());
-//      }
-//     catch( NullPointerException ex )
-//      { // no attributes in instance : silently fail.
-//      }
+        attributes = new HashMap(instance.getAttributes());
+        //      }
+        //     catch( NullPointerException ex )
+        //      { // no attributes in instance : silently fail.
+        //      }
     }
 
     /**
@@ -116,93 +114,92 @@ public class ComponentContext implements Serializable
      * Create a context and set specified attributes.
      * @param attributes Attributes to initialize context.
      */
-  public ComponentContext( Map attributes )
-    {
-    if( attributes != null )
-      this.attributes = new HashMap(attributes);
+    public ComponentContext(Map attributes) {
+        if (attributes != null) {
+            this.attributes = new HashMap(attributes);
+        }
     }
 
-  /**
-   * Add all attributes to this context.
-   * Copies all of the mappings from the specified attribute map to this context.
-   * New attribute mappings will replace any mappings that this context had for any of the keys
-   * currently in the specified attribute map.
-   * @param newAttributes Attributes to add.
-   */
-  public void addAll(Map newAttributes)
-  {
-  if( attributes == null )
-    {
-    attributes = new HashMap(newAttributes);
-    return;
-    }
-  attributes.putAll( newAttributes );
-  }
-
-  /**
-   * Add all missing attributes to this context.
-   * Copies all of the mappings from the specified attributes map to this context.
-   * New attribute mappings will be added only if they don't already exist in
-   * this context.
-   * @param defaultAttributes Attributes to add.
-   */
-  public void addMissing(Map defaultAttributes)
-  {
-  if( defaultAttributes == null )
-    return;
-  if( attributes == null )
-    {
-    attributes = new HashMap(defaultAttributes);
-    return;
+    /**
+     * Add all attributes to this context.
+     * Copies all of the mappings from the specified attribute map to this context.
+     * New attribute mappings will replace any mappings that this context had for any of the keys
+     * currently in the specified attribute map.
+     * @param newAttributes Attributes to add.
+     */
+    public void addAll(Map newAttributes) {
+        if (attributes == null) {
+            attributes = new HashMap(newAttributes);
+            return;
+        }
+        
+        attributes.putAll(newAttributes);
     }
 
-  Set entries = defaultAttributes.entrySet();
-  Iterator iterator = entries.iterator();
-  while( iterator.hasNext() )
-    {
-    Map.Entry entry = (Map.Entry)iterator.next();
-    if( !attributes.containsKey( entry.getKey()) )
-      {
-      attributes.put(entry.getKey(), entry.getValue());
-      } // end if
-    } // end loop
-  }
+    /**
+     * Add all missing attributes to this context.
+     * Copies all of the mappings from the specified attributes map to this context.
+     * New attribute mappings will be added only if they don't already exist in
+     * this context.
+     * @param defaultAttributes Attributes to add.
+     */
+    public void addMissing(Map defaultAttributes) {
+        if (defaultAttributes == null) {
+            return;
+        }
+        
+        if (attributes == null) {
+            attributes = new HashMap(defaultAttributes);
+            return;
+        }
 
-  /**
-   * Get an attribute from context.
-   * @param name Name of the attribute.
-   * @return <{Object}>
-   */
-  public Object getAttribute(String name)
-  {
-  if( attributes == null )
-    return null;
-  return attributes.get( name );
-  }
+        Set entries = defaultAttributes.entrySet();
+        Iterator iterator = entries.iterator();
+        while (iterator.hasNext()) {
+            Map.Entry entry = (Map.Entry) iterator.next();
+            if (!attributes.containsKey(entry.getKey())) {
+                attributes.put(entry.getKey(), entry.getValue());
+            }
+        }
+    }
 
-  /**
-   * Get names of all attributes.
-   * @return <{Object}>
-   */
-  public Iterator getAttributeNames()
-  {
-  if( attributes == null )
-    return EMPTY_ITERATOR;
-  return attributes.keySet().iterator();
-  }
+    /**
+     * Get an attribute from context.
+     * @param name Name of the attribute.
+     * @return <{Object}>
+     */
+    public Object getAttribute(String name) {
+        if (attributes == null){
+            return null;
+        }
+        
+        return attributes.get(name);
+    }
 
-  /**
-   * Put a new attribute to context.
-   * @param name Name of the attribute.
-   * @param value Value of the attribute.
-   */
-  public void putAttribute(String name, Object value)
-  {
-  if( attributes == null )
-    attributes = new HashMap();
+    /**
+     * Get names of all attributes.
+     * @return <{Object}>
+     */
+    public Iterator getAttributeNames() {
+        if (attributes == null) {
+            return EMPTY_ITERATOR;
+        }
+        
+        return attributes.keySet().iterator();
+    }
 
-  attributes.put( name, value );
-  }
+    /**
+     * Put a new attribute to context.
+     * @param name Name of the attribute.
+     * @param value Value of the attribute.
+     */
+    public void putAttribute(String name, Object value) {
+        if (attributes == null) {
+            attributes = new HashMap();
+        }
+
+        attributes.put(name, value);
+    }
 
     /**
      * Find object in one of the contexts.
@@ -211,16 +208,14 @@ public class ComponentContext implements Serializable
      * @param pageContext Page context.
      * @return Requested bean or <code>null</code> if not found.
      */
-
-    public Object findAttribute( String beanName, PageContext pageContext)
-      {
-      Object attribute = getAttribute(beanName);
-      if( attribute == null )
-        {
-        attribute =  pageContext.findAttribute( beanName );
-        } // end if
-      return attribute;
-      }
+    public Object findAttribute(String beanName, PageContext pageContext) {
+        Object attribute = getAttribute(beanName);
+        if (attribute == null) {
+            attribute = pageContext.findAttribute(beanName);
+        }
+        
+        return attribute;
+    }
 
     /**
      * Get object from requested context.
@@ -230,22 +225,26 @@ public class ComponentContext implements Serializable
      * @param pageContext Page context.
      * @return requested bean or <code>null</code> if not found.
      */
-
-    public Object getAttribute( String beanName, int scope, PageContext pageContext)
-      {
-      if(scope == ComponentConstants.COMPONENT_SCOPE )
-        return getAttribute(beanName);
-      return  pageContext.getAttribute( beanName, scope );
-      }
+    public Object getAttribute(
+        String beanName,
+        int scope,
+        PageContext pageContext) {
+            
+        if (scope == ComponentConstants.COMPONENT_SCOPE){
+            return getAttribute(beanName);
+        }
+        
+        return pageContext.getAttribute(beanName, scope);
+    }
 
     /**
      * Get component context from request.
      * @param request ServletRequest.
      * @return ComponentContext
      */
-  static public ComponentContext getContext( ServletRequest request )
-    {
-    return (ComponentContext)request.getAttribute(ComponentConstants.COMPONENT_CONTEXT);
+    static public ComponentContext getContext(ServletRequest request) {
+        return (ComponentContext) request.getAttribute(
+            ComponentConstants.COMPONENT_CONTEXT);
     }
 
     /**
@@ -253,28 +252,25 @@ public class ComponentContext implements Serializable
      * @param context ComponentContext to store.
      * @param request Request to store ComponentContext.
      */
-  static public void setContext( ComponentContext context, ServletRequest request )
-    {
-    request.setAttribute(ComponentConstants.COMPONENT_CONTEXT, context);
+    static public void setContext(
+        ComponentContext context,
+        ServletRequest request) {
+            
+        request.setAttribute(ComponentConstants.COMPONENT_CONTEXT, context);
     }
- }
+}
 
-class EmptyIterator  implements Iterator {
+class EmptyIterator implements Iterator {
 
-  public boolean hasNext()
-  {
-   return false;
-  }
+    public boolean hasNext() {
+        return false;
+    }
 
-  public Object next()
-  {
-  throw new java.util.NoSuchElementException();
-  }
+    public Object next() {
+        throw new java.util.NoSuchElementException();
+    }
 
-  public void remove()
-  {
-  throw new UnsupportedOperationException();
-  }
- } // end inner class
-
-
+    public void remove() {
+        throw new UnsupportedOperationException();
+    }
+} // end inner class
