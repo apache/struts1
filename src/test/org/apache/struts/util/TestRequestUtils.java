@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.19 2003/07/02 03:09:47 dgraham Exp $
- * $Revision: 1.19 $
- * $Date: 2003/07/02 03:09:47 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.20 2003/07/25 07:19:48 sraeburn Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/07/25 07:19:48 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.taglib.html.Constants;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2003/07/02 03:09:47 $
+ * @version $Revision: 1.20 $ $Date: 2003/07/25 07:19:48 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -1503,8 +1503,10 @@ public class TestRequestUtils extends TestMockBase {
 
     // Map to the second module -- direct
     public void testSelectApplication1b() {
-
+        String[] prefixes = { "/1", "/2" };
+        context.setAttribute(Globals.MODULE_PREFIXES_KEY, prefixes);    
         request.setPathElements("/myapp", "/2/noform.do", null, null);
+        
         RequestUtils.selectModule(request, context);
         ApplicationConfig appConfig = (ApplicationConfig)
             request.getAttribute(Globals.MODULE_KEY);
@@ -1535,7 +1537,8 @@ public class TestRequestUtils extends TestMockBase {
 
     // Map to the second module -- include
     public void testSelectApplication2b() {
-
+        String[] prefixes = { "/1", "/2" };
+        context.setAttribute(Globals.MODULE_PREFIXES_KEY, prefixes);    
         request.setPathElements("/myapp", "/noform.do", null, null);
         request.setAttribute(RequestProcessor.INCLUDE_SERVLET_PATH,
                              "/2/noform.do");
