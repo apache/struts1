@@ -10,6 +10,8 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Articles">
+<!-- <p><a href="http://www.e-promag.com/eparchive/index.cfm?fuseaction=viewarticle&ContentID=1742"><b>Struts: A Standard Architecture for Web Applications</b></a> by Don Denoncourt.</p> -->
+<p><a href="http://www.mooreds.com/jaas.html"><b>Using JAAS for Authorization and Authentication</b></a> by Dan Moore.</p>
 <p><a href="http://www-106.ibm.com/developerworks/java/library/j-strutstiles.html?loc=j"><b>Struts and Tiles aid component-based development</b></a> by Wellie Chao.</p>
 <p><a href="http://www.fawcette.com/javapro/mags/2002_05/magazine/columns/weblication/default.asp"><b>Applying the MVC Design Pattern Using Struts</b></a> by Peter Varhol</p>
 <p><a href="http://www.fawcette.com/javapro/2002_04/magazine/features/tholloway/"><b>Struts: a Solid Web-App Framework</b></a> by Tim Holloway</p>
