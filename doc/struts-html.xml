@@ -1640,7 +1640,7 @@
                 <required>false</required>
                 <rtexprvalue>true</rtexprvalue>
                 <info>
-                <p>The context-relative path of the image for this
+                <p>The application-relative path of the image for this
                 input tag.</p>
                 </info>
         </attribute>
@@ -1651,7 +1651,7 @@
                 <rtexprvalue>true</rtexprvalue>
                 <info>
                 <p>The key of the message resources string specifying the
-                context-relative path of the image for this input tag.</p>
+                application-relative path of the image for this input tag.</p>
                 </info>
         </attribute>
 
@@ -2006,7 +2006,7 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p>The context-relative path, starting with a slash, of
+                  <p>The application-relative path, starting with a slash, of
                   the image to be displayed by this tag.  The rendered
                   URL for this image will automatically prepend the context
                   path of this web application (in the same manner as the
@@ -2024,7 +2024,7 @@
                   <info>
                   <p>The message key, in the message resources bundle named by
                   the <code>bundle</code> attribute, of the String to be
-                  used as the context-relative path for this image.</p>
+                  used as the application-relative path for this image.</p>
                   </info>
                 </attribute>
 
@@ -2199,12 +2199,14 @@
                 <ul>
                 <li><em>forward</em> - Use the value of this attribute as the
                     name of a global <code>ActionForward</code> to be looked
-                    up, and use the context-relative URI found there.</li>
+                    up, and use the application-relative or context-relative
+                    URI found there.</li>
                 <li><em>href</em> - Use the value of this attribute unchanged.
                     </li>
                 <li><em>page</em> - Use the value of this attribute as a
-                    context-relative URI, and generate a server-relative URI
-                    by including the context path.</li>
+                    application-relative URI, and generate a server-relative
+                    URI by including the context path and application
+                    prefix.</li>
                 </ul>
 
                 <p>Normally, the hyperlink you specify with one of the
@@ -2495,7 +2497,7 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p>The context-relative path (beginning with a "/"
+                  <p>The applicaiton-relative path (beginning with a "/"
                   character) to which this hyperlink will transfer control
                   if activated.  This hyperlink may be dynamically modified
                   by the inclusion of query parameters, as described in the
@@ -4067,7 +4069,7 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p>The context-relative path (beginning with a "/"
+                  <p>The application-relative path (beginning with a "/"
                   character) to which this hyperlink will transfer control
                   if activated.  This hyperlink may be dynamically modified
                   by the inclusion of query parameters, as described in the

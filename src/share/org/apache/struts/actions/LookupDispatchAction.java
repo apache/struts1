@@ -206,7 +206,8 @@ public abstract class LookupDispatchAction extends DispatchAction {
         if (lookupMap == null) {
             // Build the key lookup map
             lookupMap = new HashMap();
-            MessageResources resources = servlet.getResources();
+            MessageResources resources = (MessageResources)
+                request.getAttribute(Action.MESSAGES_KEY);
 
             keyMethodMap = getKeyMethodMap();
 

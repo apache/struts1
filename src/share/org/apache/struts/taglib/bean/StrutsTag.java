@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.7 2001/04/23 22:52:21 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/04/23 22:52:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.8 2002/01/13 00:25:36 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/01/13 00:25:36 $
  *
  * ====================================================================
  *
@@ -68,9 +68,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionFormBeans;
-import org.apache.struts.action.ActionForwards;
-import org.apache.struts.action.ActionMappings;
+import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
@@ -80,7 +78,7 @@ import org.apache.struts.util.RequestUtils;
  * internal configuraton object.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/04/23 22:52:21 $
+ * @version $Revision: 1.8 $ $Date: 2002/01/13 00:25:36 $
  */
 
 public class StrutsTag extends TagSupport {
@@ -180,30 +178,27 @@ public class StrutsTag extends TagSupport {
             throw e;
         }
 
+        // Retrieve our application configuration information
+        ApplicationConfig config = (ApplicationConfig)
+            pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+        if (config == null) { // Backwards compatibility hack
+            config = (ApplicationConfig)
+                pageContext.getServletContext().getAttribute
+                (Action.APPLICATION_KEY);
+        }
+
         // Retrieve the requested object to be exposed
         Object object = null;
         String selector = null;
         if (formBean != null) {
             selector = formBean;
-            ActionFormBeans collection = (ActionFormBeans)
-                pageContext.getAttribute(Action.FORM_BEANS_KEY,
-                                         PageContext.APPLICATION_SCOPE);
-            if (collection != null)
-                object = collection.findFormBean(formBean);
+            object = config.findFormBeanConfig(formBean);
         } else if (forward != null) {
             selector = forward;
-            ActionForwards collection = (ActionForwards)
-                pageContext.getAttribute(Action.FORWARDS_KEY,
-                                         PageContext.APPLICATION_SCOPE);
-            if (collection != null)
-                object = collection.findForward(forward);
+            object = config.findForwardConfig(forward);
         } else if (mapping != null) {
             selector = mapping;
-            ActionMappings collection = (ActionMappings)
-                pageContext.getAttribute(Action.MAPPINGS_KEY,
-                                         PageContext.APPLICATION_SCOPE);
-            if (collection != null)
-                object = collection.findMapping(mapping);
+            object = config.findActionConfig(mapping);
         }
         if (object == null) {
             JspException e = new JspException

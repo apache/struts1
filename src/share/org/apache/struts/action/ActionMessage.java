@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.2 2001/09/17 19:58:57 husted Exp $
- * $Revision: 1.2 $
- * $Date: 2001/09/17 19:58:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.3 2002/01/13 00:25:35 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/01/13 00:25:35 $
  *
  * ====================================================================
  *
@@ -67,16 +67,16 @@ import java.io.Serializable;
 
 
 /**
- * An encapsulation of an individual message returned by the
+ * <p>An encapsulation of an individual message returned by the
  * <code>validate()</code> method of an <code>ActionForm</code>, consisting
  * of a message key (to be used to look up message text in an appropriate
  * message resources database) plus up to four placeholder objects that can
- * be used for parametric replacement in the message text.
+ * be used for parametric replacement in the message text.</p>
  *
  * @since 1.1
  * @author Craig R. McClanahan
  * @author David Winterfeldt
- * @version $Revision: 1.2 $ $Date: 2001/09/17 19:58:57 $
+ * @version $Revision: 1.3 $ $Date: 2002/01/13 00:25:35 $
  */
 
 public class ActionMessage implements Serializable {

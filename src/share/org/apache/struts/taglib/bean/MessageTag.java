@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.5 2001/06/26 05:18:25 martinc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/06/26 05:18:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.6 2002/01/13 00:25:36 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/01/13 00:25:36 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.ResponseUtils;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/06/26 05:18:25 $
+ * @version $Revision: 1.6 $ $Date: 2002/01/13 00:25:36 $
  */
 
 public class MessageTag extends TagSupport {
@@ -164,7 +164,7 @@ public class MessageTag extends TagSupport {
     /**
      * The servlet context attribute key for our resources.
      */
-    protected String bundle = Action.MESSAGES_KEY;
+    protected String bundle = null;
 
     public String getBundle() {
 	return (this.bundle);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.4 2001/12/31 01:58:26 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/12/31 01:58:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.5 2002/01/13 00:25:36 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/01/13 00:25:36 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@
 package org.apache.struts.config;
 
 
+import java.io.Serializable;
 import org.apache.commons.collections.FastHashMap;
 import org.apache.struts.action.ActionServlet;
  
@@ -78,11 +79,11 @@ import org.apache.struts.action.ActionServlet;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/12/31 01:58:26 $
+ * @version $Revision: 1.5 $ $Date: 2002/01/13 00:25:36 $
  * @since Struts 1.1
  */
 
-public class ApplicationConfig {
+public class ApplicationConfig implements Serializable {
 
 
     // ----------------------------------------------------------- Constructors

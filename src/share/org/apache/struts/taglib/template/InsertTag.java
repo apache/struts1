@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.8 2001/04/29 05:34:49 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2001/04/29 05:34:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.9 2002/01/13 00:25:37 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/01/13 00:25:37 $
  *
  * ====================================================================
  *
@@ -66,6 +66,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
+import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.taglib.template.util.*;
 
 /**
@@ -74,7 +75,7 @@ import org.apache.struts.taglib.template.util.*;
  * tags, which are accessed by &lt;template:get&gt; in the template.
  *
  * @author David Geary
- * @version $Revision: 1.8 $ $Date: 2001/04/29 05:34:49 $
+ * @version $Revision: 1.9 $ $Date: 2002/01/13 00:25:37 $
  */
 public class InsertTag extends TagSupport {
 
@@ -89,9 +90,10 @@ public class InsertTag extends TagSupport {
 
 
    /**
-     * The URI of the template. 
+     * The application-relative URI of the template. 
      */
    private String template;
+
 
 // --------------------------------------------------------- Public Methods
 
@@ -141,8 +143,14 @@ public class InsertTag extends TagSupport {
      */
    public int doEndTag() throws JspException {
 
+      String prefix = "";
+      ApplicationConfig config = (ApplicationConfig)
+          pageContext.getServletContext().getAttribute(Action.APPLICATION_KEY);
+      if (config != null) {
+          prefix = config.getPrefix();
+      }
       try {
-         pageContext.include(template);
+         pageContext.include(prefix + template);
       }
       catch(Exception ex) { // IOException or ServletException
          saveException(ex);

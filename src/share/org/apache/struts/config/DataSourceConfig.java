@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/DataSourceConfig.java,v 1.1 2001/12/26 19:16:25 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/12/26 19:16:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/DataSourceConfig.java,v 1.2 2002/01/13 00:25:36 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/01/13 00:25:36 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@
 package org.apache.struts.config;
 
 
+import java.io.Serializable;
 import org.apache.struts.action.Action;
 
 
@@ -76,11 +77,11 @@ import org.apache.struts.action.Action;
  * of them may be ignored by custom data source implementations.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/12/26 19:16:25 $
+ * @version $Revision: 1.2 $ $Date: 2002/01/13 00:25:36 $
  * @since Struts 1.1
  */
 
-public class DataSourceConfig {
+public class DataSourceConfig implements Serializable {
 
 
 

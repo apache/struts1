@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.5 2001/12/31 01:58:26 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.6 2002/01/13 00:25:35 craigmcc Exp $
 -->
 
 
@@ -59,8 +59,8 @@
 <!ENTITY % PropName "CDATA">
 
 
-<!-- A "RequestPath" is a context-relative URI path, beginning with a slash,
-     that identifies a mapped resource (such as a JSP page or a servlet)
+<!-- A "RequestPath" is an application-relative URI path, beginning with a
+     slash, that identifies a mapped resource (such as a JSP page or a servlet)
      within this web application.
 -->
 <!ENTITY % RequestPath "CDATA">
@@ -159,7 +159,7 @@
 
 <!-- The "global-exceptions" element configures the global handling of
      exceptions thrown by Actions to mappable resources (identified by
-     context-relative URI paths).  A global "exception" handler for a
+     application-relative URI paths).  A global "exception" handler for a
      particular exception class can be locally overridden by defining an
      "exception" element with the same "type" attribute.
 -->
@@ -174,13 +174,10 @@
     handler          Fully qualified Java class name of the exception handler
                      which should handle this exception.
 
-    hierarchical     Determines if the exception's class hierarchy should be
-                     used to determine the correct handler.
-
     key              Message resources key specifying the error message
                      associated with this exception.
 
-    path             The context-relative path of the resource to
+    path             The application-relative path of the resource to
                      forward to if this exception occurs.
 
     scope            Identifier of the scope ("request" or "session")
@@ -193,7 +190,6 @@
 <!ELEMENT exception (icon?, display-name?, description?, set-property*)>
 <!ATTLIST exception      id             ID              #IMPLIED>
 <!ATTLIST exception      handler        %ClassName;     "org.apache.struts.action.ExceptionHandler">
-<!ATTLIST exception      hierarchical   %Boolean;       #IMPLIED>
 <!ATTLIST exception      key            CDATA           #IMPLIED>
 <!ATTLIST exception      path           %RequestPath;   #IMPLIED>
 <!ATTLIST exception      scope          CDATA           #IMPLIED>
@@ -240,9 +236,9 @@
 
 <!-- The "global-forwards" element configures the global mappings of logical
      names (used within the application) to mappable resources (identified
-     by context-relative URI paths).  A global "forward" with a particular name
-     can be locally overridden by defining a "forward" of the same name within
-     an "action" element.  The following attribute are defined:
+     by application-relative URI paths).  A global "forward" with a particular
+     name can be locally overridden by defining a "forward" of the same name
+     within an "action" element.  The following attribute are defined:
 
      type            Fully qualified Java class name of the implementation
                      class used for ActionForward objects.  DEPRECATED.
@@ -258,18 +254,24 @@
 
 
 <!-- The "forward" element describes a mapping of a logical name (used within
-     the application) to a mappable resource identified by a context-relative
-     URI path.  The following attributes are defined:
+     the application) to a mappable resource identified by an
+     application-relative URI path.  The following attributes are defined:
 
      className       Fully qualified Java class name of the ActionForward
                      implementation class to use.  Defaults to the value
                      configured as the "forward" initialization parameter
                      to the Struts controller servlet.
 
+    contextRelative  Set to "true" if the path should be considered relative
+                     to the entire web application, rather than prefixed with
+                     the sub-application prefix, if it starts with a "/".
+
      name            Unique identifier of this forward, used to reference it
                      in application action classes.
 
-     path            The context-relative path of the mapped resource.
+     path            The application-relative or context-relative path of
+                     the mapped resource (determined by the selected value
+                     for the "contextRelative" attribute).
 
      redirect        Set to "true" if sendRedirect() should be used to forward
                      to this resource, or "false" in order to use
@@ -278,6 +280,7 @@
 <!ELEMENT forward (icon?, display-name?, description?, set-property*)>
 <!ATTLIST forward        id             ID              #IMPLIED>
 <!ATTLIST forward        className      %ClassName;     #IMPLIED>
+<!ATTLIST forward        contextRelative %Boolean;      #IMPLIED>
 <!ATTLIST forward        name           CDATA           #REQUIRED>
 <!ATTLIST forward        path           %RequestPath;   #REQUIRED>
 <!ATTLIST forward        redirect       %Boolean;       #IMPLIED>
@@ -315,27 +318,29 @@
                      configured as the "mapping" initialization parameter
                      to the Struts controller servlet.
 
-     forward         Context-relative path of the servlet or JSP resource that
-                     will process this request, instead of instantiating and
-                     calling the Action class specified by "type".  Exactly one
-                     of "forward", "include", or "type" must be specified.
+     forward         Application-relative path of the servlet or JSP resource
+                     that will process this request, instead of instantiating
+                     and calling the Action class specified by "type".
+                     Exactly one of "forward", "include", or "type" must be
+                     specified.
 
-     include         Context-relative path of the servlet or JSP resource that
-                     will process this request, instead of instantiating and
-                     calling the Action class specified by "type".  Exactly one
-                     of "forward", "include", or "type" must be specified.
+     include         Application-relative path of the servlet or JSP resource
+                     that will process this request, instead of instantiating
+                     and calling the Action class specified by "type".
+                     Exactly one of "forward", "include", or "type" must be
+                     specified.
 
-     input           Context-relative path of the input form to which control
-                     should be returned if a validation error is encountered.
-                     Required if "name" is specified and the input bean
-                     returns validation errors.  Optional if "name" is
-                     specified and the input bean does not return validation
+     input           Application-relative path of the input form to which
+                     control should be returned if a validation error is
+                     encountered.  Required if "name" is specified and the
+                     input bean returns validation errors.  Optional if "name"
+                     is specified and the input bean does not return validation
                      errors.  Not allowed if "name" is not specified.
 
      name            Name of the form bean, if any, that is associated
                      with this action.
 
-     path            The context-relative path of the submitted request,
+     path            The Application-relative path of the submitted request,
                      starting with a "/" character, and without the
                      filename extension if extension mapping is used.
 
@@ -399,6 +404,8 @@
                      to be set on each response.  May be overridden by a
                      forwarded-to servlet or JSP page.  [text/html]
 
+     debug           Debugging detail level for this application.  [0]
+
      locale          Set to true if you want a Locale object stored in the
                      user's session if not already present.  [true]
 
@@ -406,6 +413,10 @@
                      as a file upload.  Can be expressed as a number followed
                      by a "K", "M", or "G", which are interpreted to mean
                      kilobytes, megabytes, or gigabytes, respectively.  [250M]
+
+     multipartClass  The fully qualified Java class name of the multipart
+                     request handler class to be used.
+                     [org.apache.struts.upload.DiskMultipartRequestHandler]
 
      nocache         Set to <code>true</code> if you want Struts to add
                      HTTP headers for defeating caching to every response.
@@ -416,11 +427,13 @@
 -->
 <!ELEMENT controller     EMPTY>
 <!ATTLIST controller     id             ID              #IMPLIED>
-<!ATTLIST controller     bufferSize     %Integer;        #IMPLIED>
+<!ATTLIST controller     bufferSize     %Integer;       #IMPLIED>
 <!ATTLIST controller     contentType    CDATA           #IMPLIED>
-<!ATTLIST controller     locale         %Boolean;        #IMPLIED>
+<!ATTLIST controller     debug          %Integer;       #IMPLIED>  
+<!ATTLIST controller     locale         %Boolean;       #IMPLIED>
 <!ATTLIST controller     maxFileSize    CDATA           #IMPLIED>
-<!ATTLIST controller     nocache        %Boolean;        #IMPLIED>
+<!ATTLIST controller     multipartClass %ClassName;     #IMPLIED>
+<!ATTLIST controller     nocache        %Boolean;       #IMPLIED>
 <!ATTLIST controller     tempDir        CDATA           #IMPLIED>
 
 

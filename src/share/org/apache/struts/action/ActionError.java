@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionError.java,v 1.5 2001/11/02 04:14:44 martinc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/11/02 04:14:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionError.java,v 1.6 2002/01/13 00:25:35 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/01/13 00:25:35 $
  *
  * ====================================================================
  *
@@ -66,18 +66,18 @@ import java.io.Serializable;
 
 
 /**
- * An encapsulation of an individual error message returned by the
+ * <p>An encapsulation of an individual error message returned by the
  * <code>validate()</code> method of an <code>ActionForm</code>, consisting
  * of a message key (to be used to look up message text in an appropriate
  * message resources database) plus up to four placeholder objects that can
- * be used for parametric replacement in the message text.
+ * be used for parametric replacement in the message text.</p>
  *
- * The placeholder objects are referenced in the message text using the same
+ * <p>The placeholder objects are referenced in the message text using the same
  * syntax used by the JDK <code>MessageFormat</code> class. Thus, the first
- * placeholder is '{0}', the second is '{1}', etc.
+ * placeholder is '{0}', the second is '{1}', etc.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/11/02 04:14:44 $
+ * @version $Revision: 1.6 $ $Date: 2002/01/13 00:25:35 $
  */
 
 public class ActionError extends ActionMessage implements Serializable {

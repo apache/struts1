@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.26 2001/12/29 19:35:33 craigmcc Exp $
- * $Revision: 1.26 $
- * $Date: 2001/12/29 19:35:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.27 2002/01/13 00:25:37 craigmcc Exp $
+ * $Revision: 1.27 $
+ * $Date: 2002/01/13 00:25:37 $
  *
  * ====================================================================
  *
@@ -88,7 +88,6 @@ import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionForwards;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
@@ -105,7 +104,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.26 $ $Date: 2001/12/29 19:35:33 $
+ * @version $Revision: 1.27 $ $Date: 2002/01/13 00:25:37 $
  */
 
 public class RequestUtils {
@@ -291,7 +290,7 @@ public class RequestUtils {
      * @param forward Logical forward name for which to look up
      *  the context-relative URI (if specified)
      * @param href URL to be utilized unmodified (if specified)
-     * @param page Context-relative page for which a URL should
+     * @param page Application-relative page for which a URL should
      *  be created (if specified)
      *
      * @param params Map of parameters to be dynamically included (if any)
@@ -310,40 +309,57 @@ public class RequestUtils {
 
         // Validate that exactly one specifier was included
         int n = 0;
-        if (forward != null)
+        if (forward != null) {
             n++;
-        if (href != null)
+        }
+        if (href != null) {
             n++;
-        if (page != null)
+        }
+        if (page != null) {
             n++;
-        if (n != 1)
+        }
+        if (n != 1) {
             throw new MalformedURLException
                 (messages.getMessage("computeURL.specifier"));
+        }
+
+        // Look up the application configuration for this request
+        ApplicationConfig config = (ApplicationConfig)
+            pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+        if (config == null) { // Backwards compatibility hack
+            config = (ApplicationConfig)
+                pageContext.getServletContext().getAttribute
+                (Action.APPLICATION_KEY);
+        }
 
         // Calculate the appropriate URL
         StringBuffer url = new StringBuffer();
         HttpServletRequest request =
             (HttpServletRequest) pageContext.getRequest();
         if (forward != null) {
-            ActionForwards forwards = (ActionForwards)
-                pageContext.getAttribute(Action.FORWARDS_KEY,
-                                         PageContext.APPLICATION_SCOPE);
-            if (forwards == null)
-                throw new MalformedURLException
-                    (messages.getMessage("computeURL.forwards"));
-            ActionForward af = forwards.findForward(forward);
-            if (af == null)
+            ActionForward af =
+                (ActionForward) config.findForwardConfig(forward);
+            if (af == null) {
                 throw new MalformedURLException
                     (messages.getMessage("computeURL.forward", forward));
-            if (af.getRedirect())
+            }
+            if (af.getRedirect()) {
                 redirect = true;
-            if (af.getPath().startsWith("/"))
+            }
+            if (af.getPath().startsWith("/")) {
                 url.append(request.getContextPath());
+                if ((config != null) && !af.getContextRelative()) {
+                    url.append(config.getPrefix());
+                }
+            }
             url.append(af.getPath());
         } else if (href != null) {
             url.append(href);
         } else /* if (page != null) */ {
             url.append(request.getContextPath());
+            if (config != null) {
+                url.append(config.getPrefix());
+            }
             url.append(page);
         }
 
@@ -351,8 +367,9 @@ public class RequestUtils {
         if (anchor != null) {
             String temp = url.toString();
             int hash = temp.indexOf('#');
-            if (hash >= 0)
+            if (hash >= 0) {
                 url.setLength(hash);
+            }
             url.append('#');
             url.append(URLEncoder.encode(anchor));
         }
@@ -367,8 +384,9 @@ public class RequestUtils {
                 anchor = temp.substring(hash + 1);
                 url.setLength(hash);
                 temp = url.toString();
-            } else
+            } else {
                 anchor = null;
+            }
 
             // Add the required request parameters
             boolean question = temp.indexOf('?') >= 0;
@@ -380,16 +398,18 @@ public class RequestUtils {
                     if (!question) {
                         url.append('?');
                         question = true;
-                    } else
+                    } else {
                         url.append("&amp;");
+                    }
                     url.append(URLEncoder.encode(key));
                     url.append('='); // Interpret null as "no value"
                 } else if (value instanceof String) {
                     if (!question) {
                         url.append('?');
                         question = true;
-                    } else
+                    } else {
                         url.append("&amp;");
+                    }
                     url.append(URLEncoder.encode(key));
                     url.append('=');
                     url.append(URLEncoder.encode((String) value));
@@ -399,8 +419,9 @@ public class RequestUtils {
                         if (!question) {
                             url.append('?');
                             question = true;
-                        } else
+                        } else {
                             url.append("&amp;");
+                        }
                         url.append(URLEncoder.encode(key));
                         url.append('=');
                         url.append(URLEncoder.encode(values[i]));
@@ -409,8 +430,9 @@ public class RequestUtils {
                     if (!question) {
                         url.append('?');
                         question = true;
-                    } else
+                    } else {
                         url.append("&amp;");
+                    }
                     url.append(URLEncoder.encode(key));
                     url.append('=');
                     url.append(URLEncoder.encode(value.toString()));
@@ -429,12 +451,14 @@ public class RequestUtils {
         if (pageContext.getSession() != null) {
             HttpServletResponse response =
                 (HttpServletResponse) pageContext.getResponse();
-            if (redirect)
+            if (redirect) {
                 return (response.encodeRedirectURL(url.toString()));
-            else
+            } else {
                 return (response.encodeURL(url.toString()));
-        } else
+            }
+        } else {
             return (url.toString());
+        }
 
     }
 
@@ -592,11 +616,19 @@ public class RequestUtils {
                                  String locale, String key, Object args[])
         throws JspException {
 
+        MessageResources resources = null;
+
         // Look up the requested MessageResources
-        if (bundle == null)
+        if (bundle == null) {
             bundle = Action.MESSAGES_KEY;
-        MessageResources resources = (MessageResources)
-            pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
+            resources = (MessageResources)
+                pageContext.getAttribute(bundle);
+        }
+        if (resources == null) {
+            resources = (MessageResources)
+                pageContext.getAttribute(bundle,
+                                         PageContext.APPLICATION_SCOPE);
+        }
         if (resources == null) {
             JspException e = new JspException
                 (messages.getMessage("message.bundle", bundle));
@@ -605,13 +637,16 @@ public class RequestUtils {
         }
 
         // Look up the requested Locale
+        if (locale == null)
+            locale = Action.LOCALE_KEY;
         Locale userLocale = retrieveUserLocale( pageContext, locale );
 
         // Return the requested message
-        if (args == null)
+        if (args == null) {
             return (resources.getMessage(userLocale, key));
-        else
+        } else {
             return (resources.getMessage(userLocale, key, args));
+        }
 
     }
 
@@ -812,7 +847,9 @@ public class RequestUtils {
                 return multipartHandler;
         }
 
-        multipartClass = servlet.getMultipartClass();
+        ApplicationConfig appConfig = (ApplicationConfig)
+            request.getAttribute(Action.APPLICATION_KEY);
+        multipartClass = appConfig.getControllerConfig().getMultipartClass();
 
         // Try to initialize the global request handler
         if (multipartClass != null) {
@@ -822,19 +859,19 @@ public class RequestUtils {
             }
             catch (ClassNotFoundException cnfe) {
                 throw new ServletException("Cannot find multipart class \"" +
-                    servlet.getMultipartClass() + "\"" +
+                    multipartClass + "\"" +
                     ", exception: " + cnfe.getMessage());
             }
             catch (InstantiationException ie) {
                 throw new ServletException(
                     "InstantiaionException when instantiating " +
-                    "multipart class \"" + servlet.getMultipartClass() +
+                    "multipart class \"" + multipartClass +
                     "\", exception: " + ie.getMessage());
             }
             catch (IllegalAccessException iae) {
                 throw new ServletException(
                     "IllegalAccessException when instantiating " +
-                    "multipart class \"" + servlet.getMultipartClass() +
+                    "multipart class \"" + multipartClass +
                     "\", exception: " + iae.getMessage());
             }
 
@@ -863,11 +900,19 @@ public class RequestUtils {
                                   String locale, String key)
         throws JspException {
 
+        MessageResources resources = null;
+
         // Look up the requested MessageResources
-        if (bundle == null)
+        if (bundle == null) {
             bundle = Action.MESSAGES_KEY;
-        MessageResources resources = (MessageResources)
-            pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
+            resources = (MessageResources)
+                pageContext.getAttribute(bundle);
+        }
+        if (resources == null) {
+            resources = (MessageResources)
+                pageContext.getAttribute(bundle,
+                                         PageContext.APPLICATION_SCOPE);
+        }
         if (resources == null) {
             JspException e = new JspException
                 (messages.getMessage("message.bundle", bundle));

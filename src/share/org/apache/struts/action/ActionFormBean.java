@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionFormBean.java,v 1.3 2001/02/21 00:35:43 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/02/21 00:35:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionFormBean.java,v 1.4 2002/01/13 00:25:35 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/01/13 00:25:35 $
  *
  * ====================================================================
  *
@@ -63,7 +63,7 @@
 package org.apache.struts.action;
 
 
-import java.io.Serializable;
+import org.apache.struts.config.FormBeanConfig;
 
 
 /**
@@ -73,88 +73,15 @@ import java.io.Serializable;
  * properties.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/02/21 00:35:43 $
+ * @version $Revision: 1.4 $ $Date: 2002/01/13 00:25:35 $
+ *
+ * <p><strong>NOTE</strong> - This class would have been deprecated and
+ * replaced by <code>org.apache.struts.config.FormBeanConfig</code> except
+ * for the fact that it is part of the public API that existing applications
+ * are using.</p>
  */
 
-public class ActionFormBean implements Serializable {
-
-
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * The bean name of this action form bean.
-     */
-    private String name = null;
-
-
-    /**
-     * The Java class name of this action form bean.
-     */
-    private String type = null;
-
-
-    // ------------------------------------------------------------- Properties
-
-
-    /**
-     * Return the bean name of this action form bean.
-     */
-    public String getName() {
-
-	return (this.name);
-
-    }
-
-
-    /**
-     * Set the bean name of this action form bean.
-     *
-     * @param name The new bean name
-     */
-    public void setName(String name) {
-
-	this.name = name;
-
-    }
-
-
-    /**
-     * Return the Java class name of this action form bean.
-     */
-    public String getType() {
-
-	return (this.type);
-
-    }
-
-
-    /**
-     * Set the Java class name of this action form bean.
-     *
-     * @param type The new Java class name
-     */
-    public void setType(String type) {
-
-	this.type = type;
-
-    }
-
-
-    // --------------------------------------------------------- Public Methods
-
-
-    /**
-     * Return a string representation of this object.
-     */
-    public String toString() {
-
-        StringBuffer sb = new StringBuffer("ActionFormBean[");
-        sb.append(this.name);
-        sb.append(']');
-        return (sb.toString());
-
-    }
+public class ActionFormBean extends FormBeanConfig {
 
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionException.java,v 1.1 2001/12/31 01:14:36 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/12/31 01:14:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionException.java,v 1.2 2002/01/13 00:25:35 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/01/13 00:25:35 $
  *
  * ====================================================================
  *
@@ -60,7 +60,9 @@
  */
 package org.apache.struts.action;
 
-import java.io.Serializable;
+
+import org.apache.struts.config.ExceptionConfig;
+
 
 /**
  * An <strong>ActionException</strong> represents a potential exception
@@ -91,167 +93,11 @@ import java.io.Serializable;
  * </ul>
  *
  * @author ldonlan
- * @version $Revision: 1.1 $ $Date: 2001/12/31 01:14:36 $
+ * @version $Revision: 1.2 $ $Date: 2002/01/13 00:25:35 $
+ *
+ * @deprecated Replaced by org.apache.struts.config.ExceptionConfig
  */
-public class ActionException implements Serializable {
-
-    /** Holds value of property key. */
-    private String key;
-
-    /** Holds value of property type. */
-    private String type;
-
-    /** Holds value of property path. */
-    private String path;
-
-    /** Holds value of property exClass. */
-    private Class exClass;
-
-    /** Holds value of property hierachal. */
-    private boolean hierarchical = true;
-
-    /** Holds value of property scope. */
-    private String scope = "request";
-
-    /** Holds value of handler. */
-    private String handler;
-
-    /** Holds value of property handlerClass */
-    private Class handlerClass;
-
-    /** Creates new ActionException */
-    public ActionException() {
-
-    }
-
-    /**
-     * Returns the key associated with the exception.
-     * @return Value of property key.
-     */
-    public String getKey() {
-        return key;
-    }
-
-    /**
-     * Setter for property key.
-     * @param key New value of property key.
-     */
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    /**
-     * Returns the fully qualified type of the exception
-     * @return Value of property type.
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Setter for property type.
-     * @param type New value of property type.
-     * @todo Need to clean up this logging, but don't want to die if
-     * an exception is mistyped, etc.
-     */
-    public void setType(String type){
-        this.type = type;
-        try{
-            exClass = Class.forName(type);
-        }catch(ClassNotFoundException ex){
-            System.out.println("[ActionException] - Could not instantiate: " +
-            ex.getClass() + " " + type);
-            exClass = null;
-        }
-
-    }
-
-    /**
-     * Returns the path associated with the exception.
-     * @return Value of property path.
-     */
-    public String getPath() {
-        return path;
-    }
-
-    /**
-     * Setter for property path.
-     * @param path New value of property path.
-     */
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    /**
-     * Getter for property exClass.  Will be null if the type could not
-     * be used to create a class instance.
-     * @return Value of property exClass.
-     */
-    public Class getExClass() {
-        return exClass;
-    }
-
-    /** Getter for property hierachal.
-     * @return Value of property hierachal.
-     */
-    public boolean isHierarchical() {
-        return hierarchical;
-    }
-
-    /** Setter for property hierachal.
-     * @param hierarchical  */
-    public void setHierarchical(boolean hierarchical) {
-        this.hierarchical = hierarchical;
-    }
-
-    /** Getter for property scope.
-     * @return Value of property scope.
-     */
-    public String getScope() {
-        return scope;
-    }
-
-    /** Setter for property scope.
-     * @param scope New value of property scope.
-     */
-    public void setScope(String scope) {
-        this.scope = scope;
-    }
-
-    /**
-     * Returns the fully qualified type of the exception handler
-     * @return Value of property handler.
-     */
-    public String getHandler() {
-        return handler;
-    }
-
-    /**
-     * Setter for property handler.
-     * @param type New value of property handler.
-     * @todo Need to clean up this logging, but don't want to die if
-     * an exception is mistyped, etc.
-     */
-    public void setHandler(String handler){
-        this.handler = handler;
-        try{
-            handlerClass = Class.forName(handler);
-        }catch(ClassNotFoundException ex){
-            System.out.println("[ActionException] - Could not instantiate: " +
-            ex.getClass() + " " + handler);
-            handlerClass = null;
-        }
-    }
-
-
-    /**
-     * Getter for property handler.  Will be null if the handler could not
-     * be used to create a class instance.
-     * @return Value of property handlerClass.
-     */
-    public Class getHandlerClass() {
-        return handlerClass;
-    }
+public class ActionException extends ExceptionConfig {
 
     /**
      *Returns an instance of an <b>ActionError</b> configured for

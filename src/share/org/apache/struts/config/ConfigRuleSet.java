@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.2 2001/12/31 01:42:13 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/12/31 01:42:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.3 2002/01/13 00:25:36 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/01/13 00:25:36 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.commons.digester.RuleSetBase;
  * configuration file (<code>struts-config.xml</code>).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/12/31 01:42:13 $
+ * @version $Revision: 1.3 $ $Date: 2002/01/13 00:25:36 $
  * @since Struts 1.1
  */
 
@@ -112,7 +112,8 @@ public class ConfigRuleSet extends RuleSetBase {
 
         digester.addObjectCreate
             ("struts-config/action-mappings/action",
-             "org.apache.struts.config.ActionConfig",
+             //             "org.apache.struts.config.ActionConfig",
+             "org.apache.struts.action.ActionMapping",
              "className");
         digester.addSetProperties
             ("struts-config/action-mappings/action");
@@ -142,7 +143,8 @@ public class ConfigRuleSet extends RuleSetBase {
 
         digester.addObjectCreate
             ("struts-config/action-mappings/action/forward",
-             "org.apache.struts.config.ForwardConfig",
+             //             "org.apache.struts.config.ForwardConfig",
+             "org.apache.struts.action.ActionForward",
              "className");
         digester.addSetProperties
             ("struts-config/action-mappings/action/forward");
@@ -172,7 +174,8 @@ public class ConfigRuleSet extends RuleSetBase {
 
         digester.addObjectCreate
             ("struts-config/form-beans/form-bean",
-             "org.apache.struts.config.FormBeanConfig",
+             //             "org.apache.struts.config.FormBeanConfig",
+             "org.apache.struts.action.ActionFormBean",
              "className");
         digester.addSetProperties
             ("struts-config/form-beans/form-bean");
@@ -202,7 +205,8 @@ public class ConfigRuleSet extends RuleSetBase {
 
         digester.addObjectCreate
             ("struts-config/global-forwards/forward",
-             "org.apache.struts.config.ForwardConfig",
+             //             "org.apache.struts.config.ForwardConfig",
+             "org.apache.struts.action.ActionForward",
              "className");
         digester.addSetProperties
             ("struts-config/global-forwards/forward");

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*, org.apache.struts.util.*;"%>
+<%@ page language="java" import="java.util.*, org.apache.struts.util.*"%>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.11 2001/07/16 00:44:57 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2001/07/16 00:44:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.12 2002/01/13 00:25:37 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/01/13 00:25:37 $
  *
  * ====================================================================
  *
@@ -79,7 +79,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -89,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * Generate a URL-encoded redirect to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2001/07/16 00:44:57 $
+ * @version $Revision: 1.12 $ $Date: 2002/01/13 00:25:37 $
  */
 
 public class RedirectTag extends TagSupport {
@@ -163,7 +162,7 @@ public class RedirectTag extends TagSupport {
 
 
     /**
-     * The context-relative page URL (beginning with a slash) to which
+     * The application-relative page URL (beginning with a slash) to which
      * this redirect will be rendered.
      */
     protected String page = null;

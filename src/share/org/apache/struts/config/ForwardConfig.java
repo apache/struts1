@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.1 2001/12/26 19:16:25 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/12/26 19:16:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.2 2002/01/13 00:25:36 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/01/13 00:25:36 $
  *
  * ====================================================================
  *
@@ -63,20 +63,39 @@
 package org.apache.struts.config;
 
 
+import java.io.Serializable;
+
+
 /**
  * <p>A JavaBean representing the configuration information of a
  * <code>&lt;forward&gt;</code> element from a Struts application
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/12/26 19:16:25 $
+ * @version $Revision: 1.2 $ $Date: 2002/01/13 00:25:36 $
  * @since Struts 1.1
  */
 
-public class ForwardConfig {
+public class ForwardConfig implements Serializable {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Should the value of the <code>path</code> property be considered
+     * context-relative if it starts with a slash (and therefore not
+     * prefixed with the application prefix?
+     */
+    protected boolean contextRelative = false;
+
+    public boolean getContextRelative() {
+        return (this.contextRelative);
+    }
+
+    public void setContextRelative(boolean contextRelative) {
+        this.contextRelative = contextRelative;
+    }
 
 
     /**
@@ -95,8 +114,9 @@ public class ForwardConfig {
 
 
     /**
-     * The context-relative path (starting with a "/") of the resource that
-     * is mapped by this forward.
+     * The application-relative (if contextRelative is <code>false</code>) or
+     * context-relative (if contextRelative is <code>true</code>) path,
+     * starting with a "/", of the resource that is mapped by this forward.
      */
     protected String path = null;
 

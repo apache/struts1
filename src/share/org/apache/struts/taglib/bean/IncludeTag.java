@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.16 2001/06/13 21:32:54 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.17 2002/01/13 00:25:36 craigmcc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -77,7 +77,6 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
@@ -93,7 +92,7 @@ import org.apache.struts.util.RequestUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2001/06/13 21:32:54 $
+ * @version $Revision: 1.17 $ $Date: 2002/01/13 00:25:36 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -237,8 +236,9 @@ public class IncludeTag extends TagSupport {
                 HttpServletRequest request = (HttpServletRequest)
                     pageContext.getRequest();
                 url = new URL(RequestUtils.requestURL(request), urlString);
-            } else
+            } else {
                 url = new URL(urlString);
+            }
         } catch (MalformedURLException e) {
             RequestUtils.saveException(pageContext, e);
             throw new JspException

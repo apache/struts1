@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.33 2001/12/31 01:14:36 craigmcc Exp $
- * $Revision: 1.33 $
- * $Date: 2001/12/31 01:14:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.34 2002/01/13 00:25:35 craigmcc Exp $
+ * $Revision: 1.34 $
+ * $Date: 2002/01/13 00:25:35 $
  *
  * ====================================================================
  *
@@ -84,11 +84,12 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * HTTP request and the corresponding business logic that should be executed to
  * process this request.  The controller (ActionServlet) will select an
  * appropriate Action for each request, create an instance (if necessary),
- * and call the <code>perform</code> method.
- * <p>
- * Actions must be programmed in a thread-safe manner, because the controller
- * will share the same instance for multiple simultaneous requests.  In
- * this means you should design with the following items in mind:
+ * and call the <code>perform</code> method.</p>
+ *
+ * <p>Actions must be programmed in a thread-safe manner, because the
+ * controller will share the same instance for multiple simultaneous
+ * requests.  This means you should design with the following items in mind:
+ * </p>
  * <ul>
  * <li>Instance and static variables MUST NOT be used to store information
  *     related to the state of a particular request.  They MAY be used to
@@ -98,17 +99,17 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *     however, resource classes should be designed to provide their own
  *     protection where necessary.</li>
  * </ul>
- * <p>
- * When an <code>Action</code> instance is first created, the controller
+ *
+ * <p>When an <code>Action</code> instance is first created, the controller
  * servlet will call <code>setServlet()</code> with a non-null argument to
  * identify the controller servlet instance to which this Action is attached.
  * When the controller servlet is to be shut down (or restarted), the
  * <code>setServlet()</code> method will be called with a <code>null</code>
  * argument, which can be used to clean up any allocated resources in use
- * by this Action.
+ * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.33 $ $Date: 2001/12/31 01:14:36 $
+ * @version $Revision: 1.34 $ $Date: 2002/01/13 00:25:35 $
  */
 
 public class Action {
@@ -150,13 +151,6 @@ public class Action {
     public static final String ERROR_KEY =
       "org.apache.struts.action.ERROR";
 
-    /**
-     * The request attributes key under which your action should store an
-     * <code>org.apache.struts.action.ActionMessages</code> object, if you
-     * are using the corresponding custom tag library elements.
-     */
-    public static final String MESSAGE_KEY =
-      "org.apache.struts.action.ACTION_MESSAGE";
 
     /**
      * The request attributes key under which Struts custom tags might store a
@@ -173,6 +167,8 @@ public class Action {
      * <code>org.apache.struts.action.ActionFormBeans</code> collection
      * is normally stored, unless overridden when initializing our
      * ActionServlet.
+     *
+     * @deprecated Replaced by collection in ApplicationConfig
      */
     public static final String FORM_BEANS_KEY =
         "org.apache.struts.action.FORM_BEANS";
@@ -183,6 +179,8 @@ public class Action {
      * <code>org.apache.struts.action.ActionForwards</code> collection
      * is normally stored, unless overridden when initializing our
      * ActionServlet.
+     *
+     * @deprecated Replaced by collection in ApplicationConfig.
      */
     public static final String FORWARDS_KEY =
       "org.apache.struts.action.FORWARDS";
@@ -213,15 +211,27 @@ public class Action {
      * <code>org.apache.struts.action.ActionMappings</code> collection
      * is normally stored, unless overridden when initializing our
      * ActionServlet.
+     *
+     * @deprecated Replaced by collection in ApplicationConfig
      */
     public static final String MAPPINGS_KEY =
       "org.apache.struts.action.MAPPINGS";
 
 
     /**
-     * <p>The context attributes key under which our application resources are
-     * normally stored, unless overridden when initializing our ActionServlet.
-     * </p>
+     * The request attributes key under which your action should store an
+     * <code>org.apache.struts.action.ActionMessages</code> object, if you
+     * are using the corresponding custom tag library elements.
+     */
+    public static final String MESSAGE_KEY =
+      "org.apache.struts.action.ACTION_MESSAGE";
+
+
+    /**
+     * <p>The base of the context attributes key under which our
+     * application <code>MessageResources</code> will be stored.  This
+     * will be suffixed with the actual application prefix (including the
+     * leading "/" character) to form the actual resources key.</p>
      *
      * <p>For each request processed by the controller servlet, the
      * <code>MessageResources</code> object for the application selected by
@@ -304,6 +314,56 @@ public class Action {
 
 
     /**
+     * Process the specified HTTP request, and create the corresponding HTTP
+     * response (or forward to another web component that will create it),
+     * with provision for handling exceptions thrown by the business logic.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The non-HTTP request we are processing
+     * @param response The non-HTTP response we are creating
+     *
+     * @exception Exception if the application business logic throws
+     *  an exception
+     */
+    public ActionForward execute(ActionMapping mapping,
+                                 ActionForm form,
+                                 ServletRequest request,
+                                 ServletResponse response)
+        throws Exception {
+
+        // Call the deprecated method for backwards compatibility
+        return (perform(mapping, form, request, response));
+
+    }
+
+
+    /**
+     * Process the specified HTTP request, and create the corresponding HTTP
+     * response (or forward to another web component that will create it),
+     * with provision for handling exceptions thrown by the business logic.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The HTTP request we are processing
+     * @param response The HTTP response we are creating
+     *
+     * @exception Exception if the application business logic throws
+     *  an exception
+     */
+    public ActionForward execute(ActionMapping mapping,
+                                 ActionForm form,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response)
+        throws Exception {
+
+        // Call the deprecated method for backwards compatibility
+        return (perform(mapping, form, request, response));
+
+    }
+
+
+    /**
      * Process the specified non-HTTP request, and create the corresponding
      * non-HTTP response (or forward to another web component that will create
      * it).  Return an <code>ActionForward</code> instance describing where
@@ -368,31 +428,6 @@ public class Action {
     }
 
 
-    /**
-     * Process the specified HTTP request, and create the corresponding HTTP
-     * response (or forward to another web component that will create it),
-     * with provision for handling exceptions thrown by the business logic.
-     *
-     * @param mapping The ActionMapping used to select this instance
-     * @param form The optional ActionForm bean for this request (if any)
-     * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
-     *
-     * @exception Exception if the application business logic throws
-     *  an exception
-     */
-    public ActionForward execute(ActionMapping mapping,
-                                 ActionForm form,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response)
-        throws Exception {
-
-        // Call the deprecated method
-        return (perform(mapping, form, request, response));
-
-    }
-
-
     // ---------------------------------------------------- Protected Methods
 
 
@@ -429,23 +464,41 @@ public class Action {
      */
     protected Locale getLocale(HttpServletRequest request) {
 
-    HttpSession session = request.getSession();
-    Locale locale = (Locale) session.getAttribute(LOCALE_KEY);
-    if (locale == null)
-        locale = defaultLocale;
-    return (locale);
+        HttpSession session = request.getSession();
+        Locale locale = (Locale) session.getAttribute(LOCALE_KEY);
+        if (locale == null)
+            locale = defaultLocale;
+        return (locale);
 
     }
 
 
     /**
-     * Return the message resources for this application.
+     * Return the message resources for the default sub-application.
+     *
+     * @deprecated This method can only return the resources for the default
+     *  sub-application.  Use getResources(HttpServletRequest) to get the
+     *  resources for the current sub-application.
      */
     protected MessageResources getResources() {
 
-    return (servlet.getResources());
+        return ((MessageResources)
+                servlet.getServletContext().getAttribute(Action.MESSAGES_KEY));
 
     }
+
+
+    /**
+     * Return the message resources for the current sub-application.
+     *
+     * @param request The servlet request we are processing
+     */
+    protected MessageResources getResources(HttpServletRequest request) {
+
+        return ((MessageResources) request.getAttribute(Action.MESSAGES_KEY));
+
+    }
+
 
 
     /**
@@ -564,22 +617,23 @@ public class Action {
     protected void saveErrors(HttpServletRequest request,
                   ActionErrors errors) {
 
-    // Remove any error messages attribute if none are required
-    if ((errors == null) || errors.empty()) {
-        request.removeAttribute(ERROR_KEY);
-        return;
+        // Remove any error messages attribute if none are required
+        if ((errors == null) || errors.empty()) {
+            request.removeAttribute(ERROR_KEY);
+            return;
+        }
+
+        // Save the error messages we need
+        request.setAttribute(ERROR_KEY, errors);
+
     }
 
-    // Save the error messages we need
-    request.setAttribute(ERROR_KEY, errors);
-
-    }
 
     /**
      * Save the specified messages keys into the appropriate request
-     * attribute for use by the &lt;struts:messages&gt; tag (if messages="true" is set),
-     * if any messages are required.  Otherwise, ensure that the request
-     * attribute is not created.
+     * attribute for use by the &lt;struts:messages&gt; tag (if
+     * messages="true" is set), if any messages are required.  Otherwise,
+     * ensure that the request attribute is not created.
      *
      * @param request   The servlet request we are processing
      * @param messages  Messages object
@@ -587,16 +641,17 @@ public class Action {
     protected void saveMessages(HttpServletRequest request,
                     ActionMessages messages) {
 
-    // Remove any messages attribute if none are required
-    if ((messages == null) || messages.empty()) {
-        request.removeAttribute(MESSAGE_KEY);
-        return;
+        // Remove any messages attribute if none are required
+        if ((messages == null) || messages.empty()) {
+            request.removeAttribute(MESSAGE_KEY);
+            return;
+        }
+
+        // Save the messages we need
+        request.setAttribute(MESSAGE_KEY, messages);
+
     }
 
-    // Save the messages we need
-    request.setAttribute(MESSAGE_KEY, messages);
-
-    }
 
     /**
      * Save a new transaction token in the user's current session, creating
@@ -623,10 +678,10 @@ public class Action {
      */
     protected void setLocale(HttpServletRequest request, Locale locale) {
 
-    HttpSession session = request.getSession();
-    if (locale == null)
-        locale = defaultLocale;
-    session.setAttribute(LOCALE_KEY, locale);
+        HttpSession session = request.getSession();
+        if (locale == null)
+            locale = defaultLocale;
+        session.setAttribute(LOCALE_KEY, locale);
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.4 2001/02/21 00:35:44 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/21 00:35:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.5 2002/01/13 00:25:35 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/01/13 00:25:35 $
  *
  * ====================================================================
  *
@@ -63,7 +63,7 @@
 package org.apache.struts.action;
 
 
-import java.io.Serializable;
+import org.apache.struts.config.ForwardConfig;
 
 
 /**
@@ -79,24 +79,30 @@ import java.io.Serializable;
  * An <code>ActionForward</code> has the following minimal set of properties.
  * Additional properties can be provided as needed by subclassses.
  * <ul>
+ * <li><strong>contextRelative</strong> - Should the <code>path</code>
+ *     value be interpreted as context-relative (instead of
+ *     application-relative, if it starts with a '/' character? [false]</li>
  * <li><strong>name</strong> - Logical name by which this instance may be
  *     looked up in relationship to a particular <code>ActionMapping</code>.
- * <li><strong>path</strong> - Context-relative URI to which control should
- *     be forwarded, or an absolute or relative URI to which control should
- *     be redirected.
+ *     </li>
+ * <li><strong>path</strong> - Application-relative or context-relative URI to
+ *     which control should be forwarded, or an absolute or relative URI to
+ *     which control should be redirected.</li>
  * <li><strong>redirect</strong> - Set to <code>true</code> if the controller
  *     servlet should call <code>HttpServletResponse.sendRedirect()</code>
- *     on the associated path; otherwise <code>false</code>.  [false]
+ *     on the associated path; otherwise <code>false</code>.  [false]</li>
  * </ul>
  *
+ * <p><strong>NOTE</strong> - This class would have been deprecated and
+ * replaced by <code>org.apache.struts.config.ForwardConfig</code> except
+ * for the fact that it is part of the public API that existing applications
+ * are using.</p>
+ *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/02/21 00:35:44 $
+ * @version $Revision: 1.5 $ $Date: 2002/01/13 00:25:35 $
  */
 
-public class ActionForward implements Serializable {
-
-
-    // ----------------------------------------------------------- Constructors
+public class ActionForward extends ForwardConfig {
 
 
     /**
@@ -133,109 +139,6 @@ public class ActionForward implements Serializable {
 	setName(null);
 	setPath(path);
 	setRedirect(redirect);
-
-    }
-
-
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * The logical name of this forward.
-     */
-    protected String name = null;
-
-
-    /**
-     * The context-relative (for a forward) or relative or absolute (for a
-     * redirect) URI path to be forwarded to.
-     */
-    protected String path = null;
-
-
-    /**
-     * Should this be a redirect instead of a forward?
-     */
-    protected boolean redirect = false;
-
-
-    // ------------------------------------------------------------- Properties
-
-
-    /**
-     * Return the name.
-     */
-    public String getName() {
-
-	return (this.name);
-
-    }
-
-
-    /**
-     * Set the name.
-     *
-     * @param name The new name
-     */
-    public void setName(String name) {
-
-	this.name = name;
-
-    }
-
-
-    /**
-     * Return the path.
-     */
-    public String getPath() {
-
-	return (this.path);
-
-    }
-
-
-    /**
-     * Set the path.
-     *
-     * @param path The new path
-     */
-    public void setPath(String path) {
-
-	this.path = path;
-
-    }
-
-
-    /**
-     * Return the redirect flag.
-     */
-    public boolean getRedirect() {
-
-	return (this.redirect);
-
-    }
-
-
-    /**
-     * Set the redirect flag.
-     *
-     * @param redirect The new redirect flag
-     */
-    public void setRedirect(boolean redirect) {
-
-	this.redirect = redirect;
-
-    }
-
-
-    // --------------------------------------------------------- Public Methods
-
-    /**
-     * Return a String version of this mapping.
-     */
-    public String toString() {
-
-	return ("ActionForward[" + name + "]");
 
     }
 

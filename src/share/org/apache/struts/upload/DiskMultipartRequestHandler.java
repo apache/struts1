@@ -10,9 +10,10 @@ import java.util.Enumeration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-
+import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.config.ApplicationConfig;
 
 /**
  * This is a MultipartRequestHandler that writes file data directly to
@@ -60,12 +61,15 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      */
     public void handleRequest(HttpServletRequest request) throws ServletException {
         
-        retrieveTempDir();
+        ApplicationConfig appConfig = (ApplicationConfig)
+            request.getAttribute(Action.APPLICATION_KEY);
+        retrieveTempDir(appConfig);
         
-        MultipartIterator iterator = new MultipartIterator(request,
-                                                            servlet.getBufferSize(),
-                                                            getMaxSizeFromServlet(),
-                                                            tempDir);
+        MultipartIterator iterator =
+            new MultipartIterator(request,
+                                  appConfig.getControllerConfig().getBufferSize(),
+                                  getMaxSize(appConfig.getControllerConfig().getMaxFileSize()),
+                                  tempDir);
         MultipartElement element;
 
         textElements = new Hashtable();
@@ -166,10 +170,9 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
 
     /**
      * Gets the maximum post data size in bytes from the string
-     * representation in ActionServlet
+     * representation in the configuration file.
      */
-    protected long getMaxSizeFromServlet() throws ServletException{
-        String stringSize = servlet.getMaxFileSize();
+    protected long getMaxSize(String stringSize) throws ServletException{
         long size = -1;
         int multiplier = 1;
         
@@ -190,8 +193,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
             size = Long.parseLong(stringSize);
         }
         catch (NumberFormatException nfe) {
-            throw new ServletException("Invalid format for maximum file size: \"" +
-                servlet.getMaxFileSize() + "\"");
+            throw new ServletException("Invalid format for maximum file size");
         }
                 
         return (size * multiplier);
@@ -201,13 +203,15 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      * Retrieves the temporary directory from either ActionServlet, a context
      * property, or a system property, in that order
      */
-    protected void retrieveTempDir() { 
+    protected void retrieveTempDir(ApplicationConfig appConfig) { 
         
         //attempt to retrieve the servlet container's temporary directory
-        ServletContext context = servlet.getServletConfig().getServletContext();
+        ServletContext context =
+            appConfig.getServlet().getServletContext();
        
         try {
-            tempDir = (String) context.getAttribute("javax.servlet.context.tempdir");
+            tempDir =
+                (String) context.getAttribute("javax.servlet.context.tempdir");
         }
         catch (ClassCastException cce) {
             tempDir = ((File) context.getAttribute("javax.servlet.context.tempdir")).getAbsolutePath();
@@ -215,13 +219,13 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
         
         if (tempDir == null) {            
             //attempt to retrieve the temporary directory from the controller
-            tempDir = servlet.getTempDir();
+            tempDir = appConfig.getControllerConfig().getTempDir();
 
             if (tempDir == null) {
                 //default to system-wide tempdir
                 tempDir = System.getProperty("java.io.tmpdir");
 
-                if (servlet.getDebug() > 1) {
+                if (appConfig.getServlet().getDebug() > 1) {
                     servlet.log("DiskMultipartRequestHandler.handleRequest(): " +
                     "defaulting to java.io.tmpdir directory \"" +
                     tempDir);

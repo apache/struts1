@@ -1483,12 +1483,13 @@
                 <ul>
                 <li><em>forward</em> - Use the value of this attribute as the
                     name of a global <code>ActionForward</code> to be looked
-                    up, and use the context-relative URI found there.</li>
+                    up, and use the application-relative or context-relative
+                    URI found there.</li>
                 <li><em>href</em> - Use the value of this attribute unchanged.
                     </li>
-                <li><em>page</em> - Use the value of this attribute as a
-                    context-relative URI, and generate a server-relative URI
-                    by including the context path.</li>
+                <li><em>page</em> - Use the value of this attribute as an
+                    applicaiton-relative URI, and generate a server-relative
+                    URI by including the context path.</li>
                 </ul>
 
                 <p>Normally, the redirect you specify with one of the

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.3 2001/12/31 01:58:26 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/12/31 01:58:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.4 2002/01/13 00:25:36 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/01/13 00:25:36 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@
 package org.apache.struts.config;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.collections.FastHashMap;
@@ -74,11 +75,11 @@ import org.apache.commons.collections.FastHashMap;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/12/31 01:58:26 $
+ * @version $Revision: 1.4 $ $Date: 2002/01/13 00:25:36 $
  * @since Struts 1.1
  */
 
-public class ActionConfig {
+public class ActionConfig implements Serializable {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -123,7 +124,11 @@ public class ActionConfig {
     protected String attribute = null;
 
     public String getAttribute() {
-        return (this.attribute);
+        if (this.attribute == null) {
+            return (this.name);
+        } else {
+            return (this.attribute);
+        }
     }
 
     public void setAttribute(String attribute) {
@@ -214,22 +219,6 @@ public class ActionConfig {
 
 
     /**
-     * Context-relative path of the submitted request, starting with a
-     * slash ("/") character, and omitting any filename extension if
-     * extension mapping is being used.
-     */
-    protected String path = null;
-
-    public String getPath() {
-        return (this.path);
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-
-    /**
      * General purpose configuration parameter that can be used to pass
      * extra iunformation to the Action instance selected by this Action.
      * Struts does not itself use this value in any way.
@@ -242,6 +231,22 @@ public class ActionConfig {
 
     public void setParameter(String parameter) {
         this.parameter = parameter;
+    }
+
+
+    /**
+     * Context-relative path of the submitted request, starting with a
+     * slash ("/") character, and omitting any filename extension if
+     * extension mapping is being used.
+     */
+    protected String path = null;
+
+    public String getPath() {
+        return (this.path);
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.13 2001/12/11 17:54:28 oalexeev Exp $
- * $Revision: 1.13 $
- * $Date: 2001/12/11 17:54:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.14 2002/01/13 00:25:37 craigmcc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/01/13 00:25:37 $
  *
  * ====================================================================
  *
@@ -72,6 +72,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
 import org.apache.struts.action.Action;
+import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -81,7 +82,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "image".
  *
  * @author Oleg V Alexeev
- * @version $Revision: 1.13 $ $Date: 2001/12/11 17:54:28 $
+ * @version $Revision: 1.14 $ $Date: 2002/01/13 00:25:37 $
  */
 
 public class ImageTag extends SubmitTag {
@@ -184,7 +185,7 @@ public class ImageTag extends SubmitTag {
 
 
     /**
-     * The context-relative URI of the image.
+     * The application-relative URI of the image.
      */
     protected String page = null;
 
@@ -198,7 +199,7 @@ public class ImageTag extends SubmitTag {
 
 
     /**
-     * The message resources key of the context-relative URI of the image.
+     * The message resources key of the application-relative URI of the image.
      */
     protected String pageKey = null;
 
@@ -422,9 +423,16 @@ public class ImageTag extends SubmitTag {
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
+            ApplicationConfig config = (ApplicationConfig)
+                pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
-            return (request.getContextPath() + this.page);
+            if (config == null) {
+                return (request.getContextPath() + this.page);
+            } else {
+                return (request.getContextPath() + config.getPrefix() +
+                        this.page);
+            }
         }
 
         // Deal with an indirect context-relative page that has been specified
@@ -435,11 +443,19 @@ public class ImageTag extends SubmitTag {
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
+            ApplicationConfig config = (ApplicationConfig)
+                pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
-            return (request.getContextPath() +
-                    RequestUtils.message(pageContext, bundle,
-                                         locale, this.pageKey));
+            if (config == null) {
+                return (request.getContextPath() +
+                        RequestUtils.message(pageContext, bundle,
+                                             locale, this.pageKey));
+            } else {
+                return (request.getContextPath() + config.getPrefix() +
+                        RequestUtils.message(pageContext, bundle,
+                                             locale, this.pageKey));
+            }
         }
 
         // Deal with an absolute source that has been specified

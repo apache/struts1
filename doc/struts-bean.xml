@@ -343,12 +343,12 @@
     <ul>
     <li><em>forward</em> - Use the value of this attribute as the name
         of a global <code>ActionForward</code> to be looked up, and
-        use the context-relative URI found there.</li>
+        use the application-relative or context-relative URI found there.</li>
     <li><em>href</em> - Use the value of this attribute unchanged (since
         this might link to a resource external to the application, the
         session identifier is <strong>not</strong> included.</li>
-    <li><em>page</em> - Use the value of this attribute as a context-relative
-        URI to the desired resource.</li>
+    <li><em>page</em> - Use the value of this attribute as an
+        application-relative URI to the desired resource.</li>
     </ul>
     </info>
 
@@ -401,8 +401,8 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      <p>Context-relative name (starting with a '/') of the web application
-      request to be dispatched, and whose response data is to be made
+      <p>Application-relative name (starting with a '/') of the web application
+      resource to be dispatched, and whose response data is to be made
       available as a bean.  <strong>DEPRECATED - Use the "page" attribute
       instead</strong>.</p>
       </info>
@@ -413,7 +413,7 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      <p>Context-relative URI (starting with a '/') of the web application
+      <p>Application-relative URI (starting with a '/') of the web application
       resource to be included.</p>
       </info>
     </attribute>
@@ -729,7 +729,7 @@
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      <p>Context-relative name (starting with a '/') of the web application
+      <p>Application-relative name (starting with a '/') of the web application
       resource to be loaded and made available.</p>
       </info>
     </attribute>

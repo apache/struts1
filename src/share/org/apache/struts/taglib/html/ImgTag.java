@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.13 2001/12/11 17:54:28 oalexeev Exp $
- * $Revision: 1.13 $
- * $Date: 2001/12/11 17:54:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.14 2002/01/13 00:25:37 craigmcc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/01/13 00:25:37 $
  *
  * ====================================================================
  *
@@ -75,6 +75,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import org.apache.struts.action.Action;
+import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -95,7 +96,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -289,7 +290,7 @@ public class ImgTag extends BaseHandlerTag {
 
 
     /**
-     * The context-relative path, starting with a slash character, of the
+     * The application-relative path, starting with a slash character, of the
      * image to be displayed by this rendered tag.
      */
     protected String page = null;
@@ -680,9 +681,16 @@ public class ImgTag extends BaseHandlerTag {
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
+            ApplicationConfig config = (ApplicationConfig)
+                pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
-            return (request.getContextPath() + this.page);
+            if (config == null) {
+                return (request.getContextPath() + this.page);
+            } else {
+                return (request.getContextPath() + config.getPrefix() +
+                        this.page);
+            }
         }
 
         // Deal with an indirect context-relative page that has been specified
@@ -693,11 +701,19 @@ public class ImgTag extends BaseHandlerTag {
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
+            ApplicationConfig config = (ApplicationConfig)
+                pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
-            return (request.getContextPath() +
-                    RequestUtils.message(pageContext, bundle,
-                                         locale, this.pageKey));
+            if (config == null) {
+                return (request.getContextPath() +
+                        RequestUtils.message(pageContext, bundle,
+                                             locale, this.pageKey));
+            } else {
+                return (request.getContextPath() + config.getPrefix() +
+                        RequestUtils.message(pageContext, bundle,
+                                             locale, this.pageKey));
+            }
         }
 
         // Deal with an absolute source that has been specified

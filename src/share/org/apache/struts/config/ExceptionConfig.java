@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ExceptionConfig.java,v 1.1 2001/12/31 01:42:13 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/12/31 01:42:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ExceptionConfig.java,v 1.2 2002/01/13 00:25:36 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/01/13 00:25:36 $
  *
  * ====================================================================
  *
@@ -63,17 +63,20 @@
 package org.apache.struts.config;
 
 
+import java.io.Serializable;
+
+
 /**
  * <p>A JavaBean representing the configuration information of an
  * <code>&lt;exception&gt;</code> element from a Struts application
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/12/31 01:42:13 $
+ * @version $Revision: 1.2 $ $Date: 2002/01/13 00:25:36 $
  * @since Struts 1.1
  */
 
-public class ExceptionConfig {
+public class ExceptionConfig implements Serializable {
 
 
     // ------------------------------------------------------------- Properties
@@ -91,21 +94,6 @@ public class ExceptionConfig {
 
     public void setHandler(String handler) {
         this.handler = handler;
-    }
-
-
-    /**
-     * Should we use the inheritance hierarchy of this exception class to
-     * find an appropriate handler?
-     */
-    protected boolean hierarchical = true;
-
-    public boolean getHierarchical() {
-        return (this.hierarchical);
-    }
-
-    public void setHierarchical(boolean hierarchical) {
-        this.hierarchical = hierarchical;
     }
 
 

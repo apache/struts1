@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.3 2001/07/16 00:44:51 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/07/16 00:44:51 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.4 2002/01/13 00:25:35 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/01/13 00:25:35 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.MessageResources;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/07/16 00:44:51 $
+ * @version $Revision: 1.4 $ $Date: 2002/01/13 00:25:35 $
  */
 
 public final class SaveRegistrationAction extends Action {
@@ -139,7 +139,7 @@ public final class SaveRegistrationAction extends Action {
             if (servlet.getDebug() >= 1)
                 servlet.log(" User is not logged on in session "
                             + session.getId());
-	    return (servlet.findForward("logon"));
+	    return (mapping.findForward("logon"));
         }
 
 	// Was this transaction cancelled?

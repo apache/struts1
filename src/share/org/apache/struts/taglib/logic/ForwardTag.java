@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.7 2001/04/29 03:51:01 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/04/29 03:51:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.8 2002/01/13 00:25:37 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/01/13 00:25:37 $
  *
  * ====================================================================
  *
@@ -72,17 +72,17 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionForwards;
+import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
 
 /**
- * Perform a forward or redirect to a page that is looked up in the global
- * ActionForwards collection associated with our application.
+ * Perform a forward or redirect to a page that is looked up in the
+ * configuration information associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/04/29 03:51:01 $
+ * @version $Revision: 1.8 $ $Date: 2002/01/13 00:25:37 $
  */
 
 public class ForwardTag extends TagSupport {
@@ -139,11 +139,15 @@ public class ForwardTag extends TagSupport {
 
 	// Look up the desired ActionForward entry
 	ActionForward forward = null;
-	ActionForwards forwards =
-	    (ActionForwards) pageContext.getAttribute
-	      (Action.FORWARDS_KEY, PageContext.APPLICATION_SCOPE);
-	if (forwards != null)
-	    forward = forwards.findForward(name);
+        ApplicationConfig config = (ApplicationConfig)
+            pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+        if (config == null) { // Backwards compatibility hack
+            config = (ApplicationConfig)
+                pageContext.getServletContext().getAttribute
+                (Action.APPLICATION_KEY);
+        }
+	if (config != null)
+	    forward = (ActionForward) config.findForwardConfig(name);
 	if (forward == null) {
             JspException e = new JspException
 		(messages.getMessage("forward.lookup", name));

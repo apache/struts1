@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.6 2001/05/12 20:34:01 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/05/12 20:34:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.7 2002/01/13 00:25:37 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/01/13 00:25:37 $
  *
  * ====================================================================
  *
@@ -78,7 +78,6 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -88,7 +87,7 @@ import org.apache.struts.util.ResponseUtils;
  * Generate a URL-encoded URI as a string.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/05/12 20:34:01 $
+ * @version $Revision: 1.7 $ $Date: 2002/01/13 00:25:37 $
  */
 
 public class RewriteTag extends LinkTag {
