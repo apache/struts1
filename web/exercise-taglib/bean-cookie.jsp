@@ -37,11 +37,6 @@ one):</p>
     <td><bean:write name="sess" property="maxAge"/></td>
   </tr>
   <tr>
-    <td>name</td>
-    <td><jsp:getProperty name="sess" property="name"/></td>
-    <td><bean:write name="sess" property="name"/></td>
-  </tr>
-  <tr>
     <td>path</td>
     <td><jsp:getProperty name="sess" property="path"/></td>
     <td><bean:write name="sess" property="path"/></td>
