@@ -32,7 +32,10 @@
 </ul>
 
 <p>&nbsp;</p>
-<p><a target="_blank" href="tour.htm"><font size="1">A Walking Tour of the Example Application</font></a></p>
+<html:link page="/tour.do">
+<font size="-1"><bean:message key="index.tour"/></font>
+</html:link>
+<p>&nbsp;</p>
 
 <html:img page="/struts-power.gif" alt="Powered by Struts"/>
 

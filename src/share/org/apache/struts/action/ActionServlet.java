@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.62 2001/02/23 21:13:09 craigmcc Exp $
- * $Revision: 1.62 $
- * $Date: 2001/02/23 21:13:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.63 2001/03/11 02:50:10 craigmcc Exp $
+ * $Revision: 1.63 $
+ * $Date: 2001/03/11 02:50:10 $
  *
  * ====================================================================
  *
@@ -230,7 +230,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.62 $ $Date: 2001/02/23 21:13:09 $
+ * @version $Revision: 1.63 $ $Date: 2001/03/11 02:50:10 $
  */
 
 public class ActionServlet
@@ -561,6 +561,20 @@ public class ActionServlet
      */
     public void addMapping(ActionMapping mapping) {
 
+        // Validate that exactly one of "include" or "type" is included
+        int n = 0;
+        if (mapping.getInclude() != null)
+            n++;
+        if (mapping.getType() != null)
+            n++;
+        if (n != 1) {
+            String message =
+                internal.getMessage("mappingType", mapping.getPath());
+            log(message);
+            throw new IllegalArgumentException(message);
+        }
+
+        // Add this mapping to our global collection
 	mappings.addMapping(mapping);
 
     }
@@ -1522,6 +1536,10 @@ public class ActionServlet
 	if (!processValidate(mapping, formInstance, request, response))
 	    return;
 
+        // Execute an include if specified by this mapping
+        if (!processInclude(mapping, request, response))
+            return;
+
         // Acquire the Action instance to process this request
         Action actionInstance = processActionCreate(mapping, request);
         if (actionInstance == null) {
@@ -1740,6 +1758,47 @@ public class ActionServlet
 
         if (content != null)
             response.setContentType(content);
+
+    }
+
+
+    /**
+     * Process an include requested by this mapping, if any.  Return
+     * <code>true</code> if processing of this request should continue (i.e.
+     * be processed by an Action class), or <code>false</code> if we have
+     * already handled this request.
+     *
+     * @param mapping The ActionMapping we are processing
+     * @param request The request we are processing
+     * @param response The response we are processing
+     *
+     * @exception IOException if the included resource throws an exception
+     * @exception ServletException if the included resource throws an
+     *  exception
+     */
+    protected boolean processInclude(ActionMapping mapping,
+                                     HttpServletRequest request,
+                                     HttpServletResponse response)
+        throws IOException, ServletException {
+
+        // Are we going to process this request?
+        String include = mapping.getInclude();
+        if (include == null)
+            return (true);
+
+        // Construct a request dispatcher for the specified path
+        RequestDispatcher rd =
+            getServletContext().getRequestDispatcher(include);
+        if (rd == null) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                               internal.getMessage("requestDispatcher",
+                                                   include));
+            return (false);
+        }
+
+        // Delegate the processing of this request
+        rd.include(request, response);
+        return (false);
 
     }
 

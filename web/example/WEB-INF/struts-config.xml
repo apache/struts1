@@ -113,6 +113,11 @@
     </action>
 
 
+    <!-- Display the "walking tour" documentation -->
+    <action    path="/tour"
+            include="/tour.htm">
+    </action>
+
     <!-- The standard administrative actions available with Struts -->
     <!-- These would be either omitted or protected by security -->
     <!-- in a real application deployment -->

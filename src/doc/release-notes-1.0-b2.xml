@@ -29,6 +29,18 @@
     deprecated, and have been replaced (and considerably enhanced) in
     the various individual tag libraries.</p>
 
+    <p>The following new features have been added to the basic controller
+    framework (package <code>org.apache.struts.action</code>):</p>
+    <ul>
+    <li>You can now specify that an <code>&lt;action&gt;</code> element should
+        invoke an existing servlet or JSP page resource, rather than calling an
+        <code>Action</code> class, by using the <code>include</code> attribute
+        rather than the <code>type</code> attribute.  The standard form bean
+        processing provided by the controller is still performed first, if you
+        have configured it, so the included resource can benefit from this
+        processing if it wishes to.</li>
+    </ul>
+
     <p>The following new features have been added to the
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
@@ -114,7 +126,7 @@
     <li>Excessive filter() calls in <code>LinkSubscriptionTag</code>
         have been eliminated.</li>
     <li>Calls to the deprecated <code>BeanUtils.filter()</code> have been
-        replaced by calls to <code>ResponseUtils.filter(</code>.</li>
+        replaced by calls to <code>ResponseUtils.filter()</code>.</li>
     </ul>
 
   </section>

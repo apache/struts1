@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.14 2001/03/06 22:15:13 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2001/03/06 22:15:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.15 2001/03/11 02:50:09 craigmcc Exp $
+ * $Revision: 1.15 $
+ * $Date: 2001/03/11 02:50:09 $
  *
  * ====================================================================
  *
@@ -108,6 +108,12 @@ import java.io.Serializable;
  *     instead</em>.
  * <li><strong>forwards</strong> - The set of ActionForwards locally
  *     associated with this mapping.
+ * <li><strong>include</strong> - Context-relative path of the resource that
+ *     should serve this request (via a call to
+ *     <code>RequestDispatcher.include()</code>) instead of instantiating the
+ *     specified Action class specified by the <code>type</code> property.
+ *     Exactly one of the <code>include</code> and <code>type</code> properties
+ *     must be specified.</li>
  * <li><strong>input</strong> - Context-relative path of the input form
  *     to which control should be returned if a validation error is
  *     encountered.  Replaces the old <code>inputForm</code> property.
@@ -133,7 +139,9 @@ import java.io.Serializable;
  *     bean (if any).  Replaces the old <code>formSuffix</code> property.
  * <li><strong>type</strong> - Fully qualified Java class name of the
  *     <code>Action</code> implementation class used by this mapping.
- *     Replaces the old <code>actionClass</code> property.
+ *     Replaces the old <code>actionClass</code> property.  Exactly one of
+ *     the <code>include</code> and <code>type</code> properties must be
+ *     specified.</li>
  * <li><strong>unknown</strong> - Set to <code>true</code> if this action
  *     should be configured as the default for this application, to handle
  *     all requests not handled by another action.  Only one action can be
@@ -144,7 +152,7 @@ import java.io.Serializable;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2001/03/06 22:15:13 $
+ * @version $Revision: 1.15 $ $Date: 2001/03/11 02:50:09 $
  */
 
 public class ActionMapping implements Serializable {
@@ -164,6 +172,15 @@ public class ActionMapping implements Serializable {
      * The set of ActionForward objects associated with this mapping.
      */
     protected ActionForwards forwards = new ActionForwards();
+
+
+    /**
+     * The context relative path of the servlet or JSP resource (to be called
+     * via <code>RequestDispatcher.include()</code>) that will process this
+     * request, rather than instantiating and calling the Action class that is
+     * specified by the <code>type</code> attribute.
+     */
+    protected String include = null;
 
 
     /**
@@ -423,6 +440,28 @@ public class ActionMapping implements Serializable {
     public void setFormSuffix(String formSuffix) {
 
         setSuffix(formSuffix);
+
+    }
+
+
+    /**
+     * Return the include path for this mapping.
+     */
+    public String getInclude() {
+
+        return (this.include);
+
+    }
+
+
+    /**
+     * Set the include path for this mapping.
+     *
+     * @param include The include path for this mapping
+     */
+    public void setInclude(String include) {
+
+        this.include = include;
 
     }
 
@@ -792,6 +831,10 @@ public class ActionMapping implements Serializable {
 
         StringBuffer sb = new StringBuffer("ActionMapping[path=");
         sb.append(path);
+        if (include != null) {
+            sb.append(", include=");
+            sb.append(include);
+        }
         if (type != null) {
             sb.append(", type=");
             sb.append(type);
