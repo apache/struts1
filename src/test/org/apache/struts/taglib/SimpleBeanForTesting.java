@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/SimpleBeanForTesting.java,v 1.6 2003/04/08 02:18:28 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2003/04/08 02:18:28 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/SimpleBeanForTesting.java,v 1.7 2003/05/31 00:10:37 jmitchell Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/05/31 00:10:37 $
  *
  * ====================================================================
  *
@@ -185,7 +185,7 @@ public class SimpleBeanForTesting extends ActionForm {
 	 * Sets the string array.
 	 * @param string The string array to set
 	 */
-	public void setStringArray(String[] string) {
+	public void setStringArray(String[] stringArray) {
 		this.stringArray = stringArray;
 	}
 

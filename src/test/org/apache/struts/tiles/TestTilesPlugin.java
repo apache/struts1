@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/tiles/TestTilesPlugin.java,v 1.3 2003/05/04 22:41:13 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/05/04 22:41:13 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/tiles/TestTilesPlugin.java,v 1.4 2003/05/31 00:10:37 jmitchell Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/05/31 00:10:37 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import junit.framework.TestSuite;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.Globals;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.PlugIn;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.ModuleConfigFactory;
@@ -82,7 +81,7 @@ import org.apache.struts.util.RequestUtils;
  * <p>Unit tests for <code>org.apache.struts.tiles.*</code>.</p>
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.3 $ $Date: 2003/05/04 22:41:13 $
+ * @version $Revision: 1.4 $ $Date: 2003/05/31 00:10:37 $
  */
 
 public class TestTilesPlugin extends TestMockBase {
