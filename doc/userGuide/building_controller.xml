@@ -501,6 +501,7 @@ public ActionForward execute(ActionMapping mapping,
     <pre>
     &lt;struts-config>
       &lt;data-sources>
+	&lt;!-- configuration for GenericDataSource wrapper -->
         &lt;data-source>
           &lt;set-property property="autoCommit"
                            value="false"/>
@@ -518,6 +519,23 @@ public ActionForward execute(ActionMapping mapping,
                            value="jdbc:postgresql://localhost/mydatabase"/>
           &lt;set-property property="user"
                            value="myusername"/>
+        &lt;/data-source>
+
+        &lt;!-- configuration for commons BasicDataSource -->
+        &lt;data-source type="org.apache.commons.dbcp.BasicDataSource">
+            &lt;set-property property="driverClassName" 
+            				value="org.postgresql.Driver" />
+            &lt;set-property property="url" 
+            				value="jdbc:postgresql://localhost/mydatabase" />
+            &lt;set-property property="maxActive" 
+            				value="10" />
+            &lt;set-property property="maxWait" 
+            				value="5000" />
+            &lt;set-property property="defaultAutoCommit" 
+            				value="false" />
+            &lt;set-property property="defaultReadOnly" 
+            				value="false" />
+
         &lt;/data-source>
       &lt;/data-sources>
     &lt;/struts-config>
