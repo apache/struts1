@@ -201,7 +201,7 @@
 
         <strong>processorClass</strong> - The fully qualified Java class name of the
         <code>RequestProcessor</code> subclass to be used with this module.
-        [org.apache.struts.action.RequestProcessor] (optional)
+        [org.apache.struts.chain.ComposableRequestProcessor] (optional)
         </li>
 
         <li>
