@@ -91,20 +91,20 @@
             include this file in the <code>/WEB-INF/lib</code> directory
             of your application, if it is not already made visible to web
             applications by your servlet container.</li>
-        <li><code>struts-config_1_1.dtd</code> - The document type descriptor
+        <li><code>struts-config_1_1.dtd</code> - The Document Type Definition
             (DTD) for the Struts 1.1 configuration file (which is typically named
             <code>/WEB-INF/struts-config.xml</code>.  Your configuration file
             will be validated against an internal copy of this DTD -- this
             copy is available for reference purposes only.</li>
-        <li><code>struts-config_1_0.dtd</code> - The document type descriptor
+        <li><code>struts-config_1_0.dtd</code> - The Document Type Definition
             (DTD) for the Struts 1.0 configuration file (which is typically named
             <code>/WEB-INF/struts-config.xml</code>.  Your configuration file
             will be validated against an internal copy of this DTD -- this
             copy is available for reference purposes only.</li>
-        <li><code>web-app_2_2.dtd</code> - The document type descriptor (DTD)
+        <li><code>web-app_2_2.dtd</code> - The Document Type Definition (DTD)
             for web.xml files conforming to the Servlet 2.2 specification.
             This copy is for reference purposes only.</li>
-        <li><code>web-app_2_3.dtd</code> - The document type descriptor (DTD)
+        <li><code>web-app_2_3.dtd</code> - The Document Type Definition (DTD)
             for web.xml files conforming to the Servlet 2.3 specification.
             This copy is for reference purposes only.</li>
         </ul></li>
