@@ -1,6 +1,6 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtil.java,v 1.4 2002/12/27 10:41:23 cedric Exp $
- * $Revision: 1.4 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilImpl.java,v 1.1 2002/12/27 10:41:23 cedric Exp $
+ * $Revision: 1.1 $
  * $Date: 2002/12/27 10:41:23 $
  *
  * ====================================================================
@@ -62,6 +62,7 @@
 package org.apache.struts.tiles;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -71,63 +72,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
 
   /**
-   * Class containing utilities for Tiles.
-   * Methods of this class are static, and so are accessible from anywhere.
-   * The underlying implementation can be changed with
-   * {@link void setTilesUtil(TilesUtilImpl tilesUtil)}.
-   * <br>
-   * Real implementation classes should derive from the {@link TilesUtilImpl } class.
-   * <br>
-   * Some methods are specified to throw the <code>UnsupportedOperationException</code>
-   * if the underlying implementation doesn't support the operation.
-   *
-   *
+   * Default implementation of TilesUtil.
+   * This class conatains default implementation of utilities. This implementation
+   * is intended to be used without Struts
    */
-public class TilesUtil
+public class TilesUtilImpl implements Serializable
 {
      /** Commons Logging instance.*/
-  protected static Log log = LogFactory.getLog(TilesUtil.class);
+  protected Log log = LogFactory.getLog(TilesUtil.class);
 
-    /** The implementation of tilesUtilImpl */
-  protected static TilesUtilImpl tilesUtilImpl = new TilesUtilImpl();
-
-    /**
-     * Get the real implementation.
-     * @return The underlying implementation object.
-     */
-  static public TilesUtilImpl getTilesUtil()
-  {
-  return tilesUtilImpl;
-  }
-
-    /**
-     * Set the real implementation.
-     * This method should be called only once.
-     * Successive calls have no effect.
-     */
-  static public void setTilesUtil(TilesUtilImpl tilesUtil)
-  {
-  if( implAlreadySet)
-    return;
-  tilesUtilImpl = tilesUtil;
-  implAlreadySet = true;
-  }
-
-    /**
-     * Getter to know if the underlying implementation is already set to another
-     * value than the default value.
-     * @return true if setTilesUtil() has already been called.
-     */
-  static boolean isTilesUtilImplSet()
-  {
-  return implAlreadySet;
-  }
-
-
-    /** Flag to know if internal implementation have been set by the setter method */
-  private static boolean implAlreadySet=false;
+    /** Constant name used to store factory in servlet context */
+  public static final String DEFINITIONS_FACTORY = "org.apache.struts.tiles.DEFINITIONS_FACTORY";
 
     /**
      * Do a forward using request dispatcher.
@@ -135,14 +93,13 @@ public class TilesUtil
      * This method is used by the Tiles package anytime a forward is required.
      * @param uri Uri or Definition name to forward
      * @param request Current page request
-     * @param response Current page response
      * @param servletContext Current servlet context
      */
-  public static void doForward(String uri, HttpServletRequest request, HttpServletResponse response,
+  public void doForward(String uri, HttpServletRequest request, HttpServletResponse response,
                         ServletContext servletContext)
-                            throws IOException, ServletException
+    throws IOException, ServletException
   {
-  tilesUtilImpl.doForward(uri, request, response, servletContext);
+  request.getRequestDispatcher( uri ).forward(request, response);
   }
 
     /**
@@ -154,65 +111,100 @@ public class TilesUtil
      * @param response Current page response
      * @param servletContext Current servlet context
      */
-  public static void doInclude(String uri, HttpServletRequest request, HttpServletResponse response,
+  public void doInclude(String uri, HttpServletRequest request, HttpServletResponse response,
                         ServletContext servletContext)
-        throws IOException, ServletException
+    throws IOException, ServletException
   {
-  tilesUtilImpl.doInclude(uri, request, response, servletContext);
+  request.getRequestDispatcher( uri ).include(request, response);
   }
 
     /**
      * Get definition factory from appropriate servlet context.
      * @return Definitions factory or null if not found.
      */
-  static  public DefinitionsFactory getDefinitionsFactory(ServletRequest request, ServletContext servletContext)
+  public DefinitionsFactory getDefinitionsFactory(ServletRequest request, ServletContext servletContext)
   {
-  return tilesUtilImpl.getDefinitionsFactory(request, servletContext);
+  return (DefinitionsFactory)servletContext.getAttribute(DEFINITIONS_FACTORY);
   }
 
     /**
      * Create Definition factory from specified configuration object.
-     * Create a ConfigurableDefinitionsFactory and initialize it with the configuration
-     * object. This later can contains the factory classname to use.
-     * Factory is made accessible from tags.
+     * Create an instance of the factory , with the class specified in the config
+     * object. Then, initialize this factory, and finally store the factory in
+     * appropriate context by the way of
+     * {@link #makeDefinitionsFactoryAccessible(DefinitionsFactory, ServletContext)}.
+     * Factory creation is done by the way of {@link #createDefinitionFactoryInstance(String)}
      * <p>
-     * Fallback of several factory creation methods.
      *
      * @param servletContext Servlet Context passed to newly created factory.
      * @param factoryConfig Configuration object passed to factory.
-     * @return newly created factory of type ConfigurableDefinitionsFactory.
+     * @return newly created factory of type specified in the config object.
      * @throws DefinitionsFactoryException If an error occur while initializing factory
      */
-  public static DefinitionsFactory createDefinitionsFactory(ServletContext servletContext, DefinitionsFactoryConfig factoryConfig)
+  public DefinitionsFactory createDefinitionsFactory(ServletContext servletContext, DefinitionsFactoryConfig factoryConfig)
     throws DefinitionsFactoryException
   {
-  return tilesUtilImpl.createDefinitionsFactory(servletContext, factoryConfig);
+      // Create configurable factory
+    DefinitionsFactory factory = createDefinitionFactoryInstance(factoryConfig.getFactoryClassname());
+    factory.init( factoryConfig, servletContext );
+      // Make factory accessible from jsp tags (push it in appropriate context)
+    makeDefinitionsFactoryAccessible(factory, servletContext );
+    return factory;
   }
 
   /**
-   * Get a definition by its name.
-   * First, retrieve definition factory, and then get requested definition.
-   * Throw appropriate exception if definition or definition factory is not found.
-   * @param definitionName Name of requested definition.
-   * @param request Current servelet request
-   * @param servletContext current servlet context
-   * @throws FactoryNotFoundException Can't find definition factory.
-   * @throws DefinitionsFactoryException General error in factory while getting definition.
-   * @throws NoSuchDefinitionException No definition found for specified name
+   * Create Definition factory of specified classname.
+   * Factory class must extends the {@link DefinitionsFactory} class.
+   * The factory is wrapped appropriately with {@link ComponentDefinitionsFactoryWrapper}
+   * if it is instance of the deprecated ComponentDefinitionsFactory class.
+   * @param classname Class name of the factory to create.
+   * @return newly created factory.
+   * @throws DefinitionsFactoryException If an error occur while initializing factory
    */
-  static public ComponentDefinition getDefinition(String definitionName, ServletRequest request, ServletContext servletContext)
-    throws FactoryNotFoundException, DefinitionsFactoryException
+  protected DefinitionsFactory createDefinitionFactoryInstance(String classname)
+    throws DefinitionsFactoryException
   {
   try
     {
-    return getDefinitionsFactory(request, servletContext).getDefinition(definitionName,
-                                                       (HttpServletRequest)request,
-                                                        servletContext);
+    Class factoryClass = applicationClass(classname);
+    Object factory = factoryClass.newInstance();
+
+      // Backward compatibility : if factory classes implements old interface,
+      // provide appropriate wrapper
+    if( factory instanceof ComponentDefinitionsFactory )
+      {
+      factory = new ComponentDefinitionsFactoryWrapper( (ComponentDefinitionsFactory)factory );
+      } // end if
+    return (DefinitionsFactory)factory;
     }
-   catch( NullPointerException ex )
-    {  // Factory not found in context
-    throw new FactoryNotFoundException( "Can't get definitions factory from context." );
+   catch( ClassCastException ex )
+    { // Bad classname
+    throw new DefinitionsFactoryException( "Error - createDefinitionsFactory : Factory class '"
+                                           + classname +" must implements 'TilesDefinitionsFactory'.", ex );
     }
+   catch( ClassNotFoundException ex )
+    { // Bad classname
+    throw new DefinitionsFactoryException( "Error - createDefinitionsFactory : Bad class name '"
+                                           + classname +"'.", ex );
+    }
+   catch( InstantiationException ex )
+    { // Bad constructor or error
+    throw new DefinitionsFactoryException( ex );
+    }
+   catch( IllegalAccessException ex )
+    { //
+    throw new DefinitionsFactoryException( ex );
+    }
+  }
+  /**
+   * Make definition factory accessible to Tags.
+   * Factory is stored in servlet context.
+   * @param factory Factory to make accessible
+   * @param servletContext Current servlet context
+   */
+ protected void makeDefinitionsFactoryAccessible(DefinitionsFactory factory, ServletContext servletContext)
+  {
+  servletContext.setAttribute(DEFINITIONS_FACTORY, factory);
   }
 
     /**
@@ -223,20 +215,9 @@ public class TilesUtil
      * @return Class object
      * @exception ClassNotFoundException if the class cannot be found
      */
-  public static Class applicationClass(String className) throws ClassNotFoundException
+  public Class applicationClass(String className) throws ClassNotFoundException
   {
-  return tilesUtilImpl.applicationClass(className);
-  }
-
-
-    /**
-     * Reset internal state.
-     * This method is used by test suites to reset the class to its original state.
-     */
-  protected static void testReset()
-  {
-  implAlreadySet = false;
-  tilesUtilImpl = new TilesUtilImpl();
+  return Class.forName(className);
   }
 
 }
