@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
        "http://jakarta.apache.org/struts/dtds/struts-jericho-config_2_0.dtd">
 
-     $Id: struts-jericho-config_2_0.dtd,v 1.1 2003/12/17 20:50:35 husted Exp $
+     $Id: struts-jericho-config_2_0.dtd,v 1.2 2003/12/18 13:20:25 husted Exp $
 -->
 
 
@@ -285,6 +285,11 @@ The following attribute is defined:
                      relative to application root rather than the current module.
                      ["false"]
 
+     merge           Set to "true" if the resource path should be scanned for replacement
+                     parameters {[scope:]xyz}. Replacement parameters must begin
+                     with a letter. If a scope is not specified, all scopes are
+                     checked in turn (request, session, application).
+
      redirect        Set to "true" if a redirect instruction should be issued to
                      the user-agent so that a new request is issued for this
                      Location's resource. If "true", RequestDispatcher.Redirect is
@@ -299,6 +304,7 @@ The following attribute is defined:
 <!ATTLIST location        resource       %RequestPath;   #REQUIRED>
 <!ATTLIST location        mappingRef     %Boolean;       #IMPLIED>
 <!ATTLIST location        appRelative    %Boolean;       #IMPLIED>
+<!ATTLIST location        merge          %Boolean;       #IMPLIED>
 <!ATTLIST location        redirect       %Boolean;       #IMPLIED>
 
 
@@ -558,6 +564,8 @@ The following attribute is defined:
                      module.
                      [false]
 
+     secure          whether to force secure access to this mapping (via SSL).
+
      roles           Comma-delimited list of security role names that are allowed
                      access to this Mapping object.
 
@@ -604,6 +612,7 @@ The following attribute is defined:
 <!ATTLIST mapping         matches        %RequestPath;   #REQUIRED>
 <!ATTLIST mapping         processor      CDATA           #IMPLIED>
 <!ATTLIST mapping         default        %Boolean;       #IMPLIED>
+<!ATTLIST mapping         secure         %Boolean;       #IMPLIED>
 <!ATTLIST mapping         roles          CDATA           #IMPLIED>
 <!ATTLIST mapping         parameter      CDATA           #IMPLIED>
 <!ATTLIST mapping         attribute      %PropName;      #IMPLIED>
