@@ -315,11 +315,90 @@ public ActionForward execute(ActionMapping mapping,
     </section>
 
     <section name="4.4 The ActionServlet" href="action_servlet">
-    <p>[:TODO:]</p>
+      <p>
+        For those of you familiar with MVC architecture, the ActionServlet
+        represents the C - the controller.  The job of the controller is to
+        process user requests, determine what the user is trying to achieve
+        according to the request, pull data from the model (if necessary) to
+        be given to the appropriate view, and then select the proper view
+        to respond to the user.  The Struts controller delegates most of this 
+        grunt work to Action classes.
+      </p>
+      <p>
+        In addition to being the controller for your application, the
+        ActionServlet instance also is responsible for initialization and
+        clean-up of resources.  When the controller initializes, it first
+        loads the application con fig corresponding to the "config" init-param.
+        It then goes through an enumeration of all <code>init-param</code>
+        elements, looking for those elements who's name starts with
+        <code>config/</code>.  For each of these elements, Struts loads the
+        configuration file specified by the value of that
+        <code>init-param</code>, and assigns a "prefix" value
+        to that module's ApplicationConfig instance consisting of the piece of
+        the <code>init-param</code> name following "config/".  For example, the
+        module prefix specified by the <code>init-param config/foo</code> would
+        be "foo".  This is important to know, since this is how the
+        controller determines which module will be given control of processing
+        the request.  To access the module foo, you would use a URL like:
+      </p>
+      <p>
+        <pre>http://localhost:8080/myApp/foo/someAction.do</pre>
+      </p>
+      <p>
+        For each request made of the controller, the method
+        <code>process(HttpServletRequest, HttpServletResponse)</code> will be
+        called.  This method simply determines which module should service
+        the request and then invokes that module's RequestProcessor's
+        process method, passing the same request and response.
+      </p>
     </section>
-
-      <section name="4.4.1 Request Processor" href="request_processor">
-      <p>[:TODO:]</p>
+    <section name="4.4.1 Request Processor" href="request_processor">
+        <p>
+          The RequestProcessor is where the majority of the core
+          processing occurs for each request.  Let's take a look at the
+          helper functions the process method invokes in-turn:
+	</p>
+        ul>
+          <li><code>processPath</code> Determine the path that invoked us.  This
+            will be used later to retrieve an ActionMapping.</li>
+          <li><code>processLocale</code> Select a locale for this request, if one
+            hasn't already been selected, and place it in the request.</li>
+          <li><code>processContent</code> [:TODO:]</li>
+          <li><code>processNoCache</code> If appropriate, set the following response
+            headers: "Pragma", "Cache-Control", and "Expires".</li>
+          <li><code>processPreprocess</code> This is one of the "hooks" the 
+            RequestProcessor makes available for subclasses to override.  The
+            default implementation simply returns true.  If you subclass
+            RequestProcessor and override processPreprocess you should either
+            return true (indicating process should continue
+            processing the request) or false (indicating you have handled the
+            request and the process should return).</li>
+          <li><code>processMapping</code> Determine the ActionMapping associated with
+            this path.</li>
+          <li><code>processRoles</code> If the mapping has a role associated with it,
+            ensure the requesting user is has the specified role.  If they do
+            not, raise an error and stop processing of the request.</li>
+          <li><code>processActionForm</code> Instantiate (if necessary) the
+            ActionForm associated with this mapping (if any) and place it
+            into the appropriate scope.</li>
+          <li><code>processPopulate</code> Populate the ActionForm associated with
+            this request, if any.</li>
+          <li><code>processValidate</code> Perform validation (if requested) on the
+            ActionForm associated with this request (if any).</li>
+          <li><code>processForward</code> If this mapping represents a forward,
+            forward to the path specified by the mapping.</li>
+          <li><code>processInclude</code> If this mapping represents an include,
+            include the result of invoking the path in this request.</li>
+          <li><code>processActionCreate</code> Instantiate an instance of the class
+            specified by the current ActionMapping (if necessary).</li>
+          <li><code>processActionPerform</code> This is the point at which your
+            action's perform or execute method will be called.</li>
+          <li><code>processActionForward</code> Finally, the process method of the
+            RequestProcessor takes the ActionForward returned by your
+            Action class, and uses to select the next resource (if any). 
+            Most often the ActionForward leads to the presentation page that 
+            renders the response. </li>
+        </ul>
       </section>
 
       <section name="4.4.2 Exception Handler" href="exception_handler">
@@ -335,6 +414,12 @@ public ActionForward execute(ActionMapping mapping,
           use of a plugin is to configure or load application-specific data as
           the web application is starting up.
         </p>
+        <p>
+          At runtime, any resource setup by <code>init</code> would be accessed by Actions 
+          or business tier classes. The PlugIn interface allows you to setup
+          resources, but does not provide any special way to access them. Most 
+          often, the resource would be stored in application context, under 
+          a known key, where other components can find it.</p>
         <p>
           PlugIns are configured using &lt;plug-in&gt; elements within the
           Struts configuration file. See <a href="#plugin_config">
