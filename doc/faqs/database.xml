@@ -18,6 +18,13 @@
 <section name="Accessing a Database" href="database">
 
     <p>
+    Most developers would consider accessing a database part of the "business
+    end" of an application. Most often, we don't access a databse for the sake
+    of accessing a database. We use the database as part of a larger business
+    transaction. So lets start with accessing business logic from Struts.
+    </p>
+
+    <p>
     The best thing is use the Action as a thin adaptor between the
     web/presentation-tier and your business classes (including those that
     access a database).
@@ -32,9 +39,15 @@
     </p>
 
     <p>
-    A common approach is to create an Action class for each of the business
-    API methods/classes that you need to call.
-    Ideally, all the database access code should be encapsulated in the
+    A common approach is to create an Action class for each of business
+    transaction, or use case, in your application. A simple "CRUD"
+    application might have a CreateAction, a RetrieveAction, an UpdateAction,
+    and a DeleteAction. To complete each transaction, the Action can make
+    whatever calls are needed to your business API classes.
+    </p>
+
+    <p>
+    Ideally, all the database access code should be encapsulated behind the
     business API classes, so Struts doesn't know what persistent layer you
     are using (or even if there is a persistence layer).
     It just passes a key or search String and gets back a bean or collection
@@ -45,28 +58,106 @@
     </p>
 
     <p>
+    The MailReader example application bundled with Struts demonstrates
+    how this is usually done. The MailReader uses the DAO (Data Access Object)
+    pattern to separate the persistence layer from the (Struts) control layer.
+    MailReader defines a DAO interface that the Actions can call, it then
+    defines a implementation that uses a database stored in main memory.
+    Other implementations could be defined and used instead, without
+    changing any of the Struts Action classes.
+    </p>
+
+    <p>
     To get started, it's simplest to setup a 1:1 correspondence between the
-    Actions and the entry-points to your business API.
-    As you gain experience, you will find ways to combine your Actions, say
-    by using the DispatchAction.
+    Actions and your application's use cases. Each use case may make one or
+    more calls to your business API, but from the user's perspective, each
+    use case is a single transaction.
+    </p>
+
+    <p>
+    As you gain experience, you will find ways to combine your Action classes,
+    say by using the DispatchAction.
     It's even possible to use a single "framework" Action to call all of your
     business classes, as is done with Scaffold ProcessAction in the contrib
     folder.
+    </p>
+
+    <p>
     Using fewer Actions does require a deeper understanding of how Struts and
     MVC frameworks operate.
-    Don't hesitate to err on the side of creating more Actions at first.
+    Don't hesitate to err on the side of creating more Action classes at first.
     The Struts configuration makes it easy to refactor your Actions later,
     since you can change the Action type without changing anything else in the
     application.
     </p>
 
+    </section>
+
+    <section name="Using DataSources" href="datasources">
+
+    <p>
+    When you use the DAO approach, all of the database access details are
+    hidden behind the business interface. The implementation of the business
+    classes handle all the gritty details, like using a <code>DataSource</code>
+    to pool connections to the database.
+    </p>
+
+    <p>
+    As a rule, you should always use a connection pool to access a database.
+    The <code>DataSource</code> interface is the preferred way to implement a
+    connection pool today. Many containers and database systems now bundle
+    a DataSource implmentation that you can use. Most often, the DataSource
+    is made available through JNDI. The JNDI approach makes it easy for your
+    business classes to access the DataSource without worrying about who set it
+    up.
+    </p>
+
+    </section>
+
+    <section name="Persistence Franeworks" href="persistence">
+
+    <p>
+    There are many useful and mature persistence layer frameworks available.
+    Before using raw JDBC or "rolling your own" solution, you should carefully
+    review one or more of these packages. Here's a short list of packages
+    most often mentioned on the Struts User list:
+    </p>
+
+    <ul>
+        <li><a href="http://www.hibernate.org/">Hibernate</a></li>
+        <li><a href="http://sourceforge.net/projects/ibatisdb">iBATIS</a></li>
+        <li><a href="http://db.apache.org/ojb/">Object Relational Bridge</a></li>
+        <li><a href="http://db.apache.org/torque/index.html">Torque / Peers</a></li>
+    </ul>
+
+    <p>
+    For more, see the
+    <a href="http://struts.sourceforge.net/community/models.html">Struts
+    Community Resources area</a> on SourceForge.
+    </p>
+
+    </section>
+
+    <section name="The Struts DataSource Manager" href="manager">
+
     <p>
     Ideally, the business logic layer should encapsulate the data access
     details, including acquiring a database connection.
-    However, some application designs expect that the caller be able to provide a
-    database connection or DataSource instance.
-    When this is the case, the Struts DataSource manager can make it easy for
-    your Action to produce these resources on demand.
+    However, some older application designs expect that the caller be able to
+    provide a database connection or DataSource instance.
+    When you need to access a legacy design, the Struts DataSource manager can
+    make it easy for your Action class to produce these resources on demand.
+    </p>
+
+    <p>
+    <strong>NOTE:</strong> It is preferred that data connectivity be handled
+    directly by the business classes, usually via JNDI. The Struts DataSource
+    manager should only be used with legacy business classes that don't provide
+    their own  connectivity. When possible, we <b>strongly</b> recommend use of
+    the standard DAO pattern, so that the Action classes do not need to know
+    anything about the persitence mechanism. The DataSource manager is being
+    retained in Struts 1.x for backward compatibility but may not be retained
+    in Struts 2.x or later.
     </p>
 
     <p>
