@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.12 2003/03/08 19:23:49 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/03/08 19:23:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.13 2003/03/18 02:42:59 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/03/18 02:42:59 $
  *
  * ====================================================================
  *
@@ -83,10 +83,10 @@ import org.apache.struts.tiles.Controller;
 import org.apache.struts.tiles.DefinitionAttribute;
 import org.apache.struts.tiles.DefinitionNameAttribute;
 import org.apache.struts.tiles.DefinitionsFactoryException;
-import org.apache.struts.tiles.TilesUtil;
 import org.apache.struts.tiles.DirectStringAttribute;
 import org.apache.struts.tiles.FactoryNotFoundException;
 import org.apache.struts.tiles.NoSuchDefinitionException;
+import org.apache.struts.tiles.TilesUtil;
 
 /**
  * This is the tag handler for &lt;tiles:insert&gt;, which includes
@@ -95,9 +95,11 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.12 $ $Date: 2003/03/08 19:23:49 $
+ * @version $Revision: 1.13 $ $Date: 2003/03/18 02:42:59 $
  */
-public class InsertTag extends DefinitionTagSupport implements PutTagParent, ComponentConstants, PutListTagParent {
+public class InsertTag
+    extends DefinitionTagSupport
+    implements PutTagParent, ComponentConstants, PutListTagParent {
 
     /** Commons Logging instance. */
     protected static Log log = LogFactory.getLog(InsertTag.class);
@@ -346,7 +348,7 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
             && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(
                 role)) { // not allowed : skip attribute
             return;
-        } // end if
+        }
 
         putAttribute(nestedTag.getName(), nestedTag.getRealValue());
     }
@@ -364,11 +366,12 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
             && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(
                 role)) { // not allowed : skip attribute
             return;
-        } // end if
+        }
 
         // Check if a name is defined
-        if (nestedTag.getName() == null)
+        if (nestedTag.getName() == null) {
             throw new JspException("Error - PutList : attribute name is not defined. It is mandatory as the list is added as attribute of 'insert'.");
+        }
         // now add attribute to enclosing parent (i.e. : this object).
         putAttribute(nestedTag.getName(), nestedTag.getList());
     }
@@ -384,7 +387,7 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
             && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(
                 role)) { // not allowed : skip attribute
             return;
-        } // end if
+        }
 
         putAttribute(nestedTag.getName(), nestedTag.getList());
     }
@@ -413,7 +416,9 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
             return null;
         }
         try {
-            return ComponentDefinition.createController(controllerName, controllerType);
+            return ComponentDefinition.createController(
+                controllerName,
+                controllerType);
         } catch (InstantiationException ex) {
             throw new JspException(ex.getMessage());
         }
@@ -428,16 +433,16 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
      * <li> direct String
      * </ul>
      * Handlers also contain sub-component context.
-     *
      */
     public int doStartTag() throws JspException {
         // Check role immediatly to avoid useless stuff.
         // In case of insertion of a "definition", definition's role still checked later.
         // This lead to a double check of "role" ;-(
-        if (role != null && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(role)) {
+        if (role != null
+            && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(role)) {
             processEndTag = false;
             return SKIP_BODY;
-        } // end if
+        }
 
         // Now, real stuff
         try {
@@ -503,8 +508,10 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
         if (value instanceof AttributeDefinition) {
             // We have a type => return appropriate IncludeType
             return processTypedAttribute((AttributeDefinition) value);
-        } else if (value instanceof ComponentDefinition)
+            
+        } else if (value instanceof ComponentDefinition) {
             return processDefinition((ComponentDefinition) value);
+        }
 
         // Value must denote a valid String
         return processAsDefinitionOrURL(value.toString());
@@ -526,8 +533,9 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
     public TagHandler processName(String name) throws JspException {
         Object attrValue = getCurrentContext().getAttribute(name);
 
-        if (attrValue != null)
+        if (attrValue != null) {
             return processObjectValue(attrValue);
+        }
 
         return processAsDefinitionOrURL(name);
     }
@@ -552,39 +560,49 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
      */
     protected TagHandler processDefinitionName(String name) throws JspException {
 
-    try {
-        ComponentDefinition definition = TilesUtil.getDefinition(name, (HttpServletRequest)pageContext.getRequest(),pageContext.getServletContext());
-        if (definition == null) { // is it possible ?
-            throw new NoSuchDefinitionException();
-        }
-        return processDefinition(definition);
+        try {
+            ComponentDefinition definition =
+                TilesUtil.getDefinition(
+                    name,
+                    (HttpServletRequest) pageContext.getRequest(),
+                    pageContext.getServletContext());
+                    
+            if (definition == null) { // is it possible ?
+                throw new NoSuchDefinitionException();
+            }
+            return processDefinition(definition);
 
-    } catch (NoSuchDefinitionException ex) {
-        throw new JspException(
-            "Error -  Tag Insert : Can't get definition '"
-                + definitionName
-                + "'. Check if this name exist in definitions factory.");
-    } catch (FactoryNotFoundException ex) { // factory not found.
-        throw new JspException(ex.getMessage());
-    } // end catch
-    catch (DefinitionsFactoryException ex) {
-        if (log.isDebugEnabled())
-            ex.printStackTrace();
-        // Save exception to be able to show it later
-        pageContext.setAttribute(Globals.EXCEPTION_KEY, ex, PageContext.REQUEST_SCOPE);
-        throw new JspException(ex.getMessage());
-    } // end catch
+        } catch (NoSuchDefinitionException ex) {
+            throw new JspException(
+                "Error -  Tag Insert : Can't get definition '"
+                    + definitionName
+                    + "'. Check if this name exist in definitions factory.");
+        } catch (FactoryNotFoundException ex) {
+            throw new JspException(ex.getMessage());
+            
+        } catch (DefinitionsFactoryException ex) {
+            if (log.isDebugEnabled()) {
+                ex.printStackTrace();
+            }
+            // Save exception to be able to show it later
+            pageContext.setAttribute(
+                Globals.EXCEPTION_KEY,
+                ex,
+                PageContext.REQUEST_SCOPE);
+            throw new JspException(ex.getMessage());
+        }
     }
 
     /**
      * End of Process tag attribute "definition".
-    * Overload definition with tag attributes "template" and "role".
-    * Then, create appropriate tag handler.
+     * Overload definition with tag attributes "template" and "role".
+     * Then, create appropriate tag handler.
      * @param definition Definition to process.
      * @return Appropriate TagHandler.
-    * @throws JspException InstantiationException Can't create requested controller
+     * @throws JspException InstantiationException Can't create requested controller
      */
-    protected TagHandler processDefinition(ComponentDefinition definition) throws JspException {
+    protected TagHandler processDefinition(ComponentDefinition definition)
+        throws JspException {
         // Declare local variable in order to not change Tag attribute values.
         String role = this.role;
         String page = this.page;
@@ -594,15 +612,25 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
             controller = definition.getOrCreateController();
 
             // Overload definition with tag's template and role.
-            if (role == null)
+            if (role == null) {
                 role = definition.getRole();
-            if (page == null)
+            }
+            if (page == null) {
                 page = definition.getTemplate();
-            if (controllerName != null)
-                controller = ComponentDefinition.createController(controllerName, controllerType);
+            }
+            if (controllerName != null) {
+                controller =
+                    ComponentDefinition.createController(
+                        controllerName,
+                        controllerType);
+            }
 
             // Can check if page is set
-            return new InsertHandler(definition.getAttributes(), page, role, controller);
+            return new InsertHandler(
+                definition.getAttributes(),
+                page,
+                role,
+                controller);
         } catch (InstantiationException ex) {
             throw new JspException(ex.getMessage());
         }
@@ -616,13 +644,22 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
      * @param beanScope bean scope, or null.
      * @return Appropriate TagHandler.
      * @throws JspException - NoSuchDefinitionException No value associated to bean.
-    * @throws JspException an error occur while reading bean, or no definition found.
-    * @throws JspException - Throws by underlying nested call to processDefinitionName()
+     * @throws JspException an error occur while reading bean, or no definition found.
+     * @throws JspException - Throws by underlying nested call to processDefinitionName()
      */
-    protected TagHandler processBean(String beanName, String beanProperty, String beanScope)
+    protected TagHandler processBean(
+        String beanName,
+        String beanProperty,
+        String beanScope)
         throws JspException {
+
         Object beanValue =
-            TagUtils.getRealValueFromBean(beanName, beanProperty, beanScope, pageContext);
+            TagUtils.getRealValueFromBean(
+                beanName,
+                beanProperty,
+                beanScope,
+                pageContext);
+
         if (beanValue == null) {
             //throw new NoSuchDefinitionException();
             throw new JspException(
@@ -633,7 +670,7 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
                     + "' in scope '"
                     + beanScope
                     + "'.");
-        } // end if
+        }
         return processObjectValue(beanValue);
     }
 
@@ -649,9 +686,10 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
     public TagHandler processAttribute(String name) throws JspException {
         Object attrValue = getCurrentContext().getAttribute(name);
 
-        if (attrValue == null)
+        if (attrValue == null) {
             throw new JspException(
                 "Error - Tag Insert : No value found for attribute '" + name + "'.");
+        }
         return processObjectValue(attrValue);
     }
 
@@ -663,10 +701,16 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
      */
     public TagHandler processAsDefinitionOrURL(String name) throws JspException {
         try {
-            ComponentDefinition definition = TilesUtil.getDefinition(name, pageContext.getRequest(), pageContext.getServletContext());
-            if (definition != null)
+            ComponentDefinition definition =
+                TilesUtil.getDefinition(
+                    name,
+                    pageContext.getRequest(),
+                    pageContext.getServletContext());
+            if (definition != null) {
                 return processDefinition(definition);
-        } catch (DefinitionsFactoryException ex) { // silently failed, because we can choose to not define a factory.
+            }
+        } catch (DefinitionsFactoryException ex) {
+            // silently failed, because we can choose to not define a factory.
         }
         // no definition found, try as url
         return processUrl(name);
@@ -678,14 +722,15 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
      * @return appropriate TagHandler.
     * @throws JspException - Throws by underlying nested call to processDefinitionName()
      */
-    public TagHandler processTypedAttribute(AttributeDefinition value) throws JspException {
-        if (value instanceof DirectStringAttribute)
+    public TagHandler processTypedAttribute(AttributeDefinition value)
+        throws JspException {
+        if (value instanceof DirectStringAttribute) {
             return new DirectStringHandler((String) value.getValue());
 
-        else if (value instanceof DefinitionAttribute)
+        } else if (value instanceof DefinitionAttribute) {
             return processDefinition((ComponentDefinition) value.getValue());
 
-        else if (value instanceof DefinitionNameAttribute) {
+        } else if (value instanceof DefinitionNameAttribute) {
             return processDefinitionName((String) value.getValue());
         }
         //else if( value instanceof PathAttribute )
@@ -699,17 +744,17 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
      * @throws IOException - Thrown by call to pageContext.include()
      */
     protected void doInclude(String page) throws ServletException, IOException {
-        TilesUtil.doInclude( page,
-                        (HttpServletRequest)pageContext.getRequest(),
-                        (HttpServletResponse)pageContext.getResponse(),
-                        pageContext.getServletContext());
+        TilesUtil.doInclude(
+            page,
+            (HttpServletRequest) pageContext.getRequest(),
+            (HttpServletResponse) pageContext.getResponse(),
+            pageContext.getServletContext());
     }
-
 
     /////////////////////////////////////////////////////////////////////////////
 
     /**
-    * Inner Interface.
+     * Inner Interface.
      * Sub handler for tag.
      */
     protected interface TagHandler {
@@ -744,7 +789,12 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
          * Constructor.
          * Create insert handler using Component definition.
          */
-        public InsertHandler(Map attributes, String page, String role, Controller controller) {
+        public InsertHandler(
+            Map attributes,
+            String page,
+            String role,
+            Controller controller) {
+                
             this.page = page;
             this.role = role;
             this.controller = controller;
@@ -768,9 +818,10 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
         public int doStartTag() throws JspException {
             // Check role
             if (role != null
-                && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(role)) {
+                && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(
+                    role)) {
                 return SKIP_BODY;
-            } // end if
+            }
 
             // save current context
             this.currentContext = getCurrentContext();
@@ -791,35 +842,43 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
         public int doEndTag() throws JspException {
             // Check role
             if (role != null
-                && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(role)) {
+                && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(
+                    role)) {
                 return EVAL_PAGE;
-            } // end if
+            }
 
             try {
-                if (log.isDebugEnabled())
+                if (log.isDebugEnabled()) {
                     log.debug("insert page='" + page + "'.");
+                }
 
                 // set new context for included component.
                 pageContext.setAttribute(
                     ComponentConstants.COMPONENT_CONTEXT,
                     subCompContext,
                     PageContext.REQUEST_SCOPE);
+
                 // Call controller if any
-                if (controller != null)
+                if (controller != null) {
                     controller.perform(
                         subCompContext,
                         (HttpServletRequest) pageContext.getRequest(),
                         (HttpServletResponse) pageContext.getResponse(),
                         pageContext.getServletContext());
+                }
+
                 // include requested component.
-                if (flush)
+                if (flush) {
                     pageContext.getOut().flush();
+                }
                 doInclude(page);
             } catch (IOException ex) {
-                processException(ex, "Can't insert page '" + page + "' : " + ex.getMessage());
+                processException(
+                    ex,
+                    "Can't insert page '" + page + "' : " + ex.getMessage());
             } catch (IllegalArgumentException ex) { // Can't resolve page uri
                 // Do we ignore bad page uri errors ?
-                if (!(page == null && isErrorIgnored))
+                if (!(page == null && isErrorIgnored)) {
                     // Don't ignore bad page uri errors
                     processException(
                         ex,
@@ -827,6 +886,7 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
                             + page
                             + "'. Check if it exists.\n"
                             + ex.getMessage());
+                }
             } catch (ServletException ex) {
                 Throwable realEx = ex;
                 if (ex.getRootCause() != null) {
@@ -834,20 +894,28 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
                 }
                 processException(
                     realEx,
-                    "[ServletException in:" + page + "] " + realEx.getMessage() + "'");
+                    "[ServletException in:"
+                        + page
+                        + "] "
+                        + realEx.getMessage()
+                        + "'");
             } catch (Exception ex) {
-                processException(ex, "[Exception in:" + page + "] " + ex.getMessage());
+                processException(
+                    ex,
+                    "[Exception in:" + page + "] " + ex.getMessage());
             } finally {
                 // restore old context
                 // done only if currentContext not null (bug with Silverstream ?; related by Arvindra Sehmi 20010712)
-                if (currentContext != null)
+                if (currentContext != null) {
                     pageContext.setAttribute(
                         ComponentConstants.COMPONENT_CONTEXT,
                         currentContext,
                         PageContext.REQUEST_SCOPE);
+                }
             }
             return EVAL_PAGE;
         }
+
         /**
          * Process an exception.
          * Depending of debug attribute, print full exception trace or only
@@ -855,18 +923,19 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
          * @param ex Exception
          * @param msg An additional message to show in console and to propagate if we can't output exception.
          */
-        protected void processException(Throwable ex, String msg) throws JspException {
+        protected void processException(Throwable ex, String msg)
+            throws JspException {
             try {
-                if (msg == null)
+                if (msg == null) {
                     msg = ex.getMessage();
-
+                }
                 if (log.isDebugEnabled()) { // show full trace
                     log.debug(msg, ex);
                     pageContext.getOut().println(msg);
                     ex.printStackTrace(new PrintWriter(pageContext.getOut(), true));
                 } else { // show only message
                     pageContext.getOut().println(msg);
-                } // end if
+                }
             } catch (IOException ioex) { // problems. Propagate original exception
                 pageContext.setAttribute(
                     ComponentConstants.EXCEPTION_KEY,
@@ -883,18 +952,16 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
      * @param role Comma-delimited list of roles.
      * @param request The request.
      */
-  static public boolean userHasRole(HttpServletRequest request, String role)
-  {
-  StringTokenizer st = new StringTokenizer(role, ROLE_DELIMITER, false);
-  while( st.hasMoreTokens())
-   {
-   if(request.isUserInRole(st.nextToken()))
-     return true;
-   } // end loop
-  return false;
-  }
+    static public boolean userHasRole(HttpServletRequest request, String role) {
+        StringTokenizer st = new StringTokenizer(role, ROLE_DELIMITER, false);
+        while (st.hasMoreTokens()) {
+            if (request.isUserInRole(st.nextToken()))
+                return true;
+        }
+        return false;
+    }
     /** The role delimiter. */
-  static public final String ROLE_DELIMITER =",";
+    static public final String ROLE_DELIMITER = ",";
 
     /////////////////////////////////////////////////////////////////////////////
 
@@ -931,18 +998,21 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
          */
         public int doEndTag() throws JspException {
             try {
-                if (flush)
+                if (flush) {
                     pageContext.getOut().flush();
-
+                }
                 pageContext.getOut().print(value);
+
             } catch (IOException ex) {
-                if (log.isDebugEnabled())
+                if (log.isDebugEnabled()) {
                     log.debug("Can't write string '" + value + "' : ", ex);
+                }
                 pageContext.setAttribute(
                     ComponentConstants.EXCEPTION_KEY,
                     ex,
                     PageContext.REQUEST_SCOPE);
-                throw new JspException("Can't write string '" + value + "' : " + ex.getMessage());
+                throw new JspException(
+                    "Can't write string '" + value + "' : " + ex.getMessage());
             }
             return EVAL_PAGE;
         }
