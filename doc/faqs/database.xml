@@ -16,6 +16,49 @@
 <section name="Accessing a Database" href="database">
 
     <p>
+    The best thing is use the Action as a thin adaptor between the 
+    web/presentation-tier and your business classes (including those that 
+    access a database).
+    </p>
+
+    <p>
+    So you first design a business API that uses plain Java classes. 
+    The best thing is to use objects that take ordinary Java types and return 
+    a JavaBean or collection of JavaBeans. 
+    The Action then calls these objects and passes the result back to the 
+    web/presentation tier.
+    </p>
+
+    <p>
+    A common approach is to create an Action class for each of the business 
+    API methods/classes that you need to call.
+    Ideally, all the database access code should be encapsulated in the 
+    business API classes, so Struts doesn't know what persistent layer you 
+    are using (or even if there is a persistence layer). 
+    It just passes a key or search String and gets back a bean or collection 
+    of beans. 
+    This lets you use the same business API classes in other environments, 
+    and also to run unit tests against your business API outside of Struts or 
+    a HTTP environment.
+    </p>
+
+    <p>
+    To get started, it's simplest to setup a 1:1 correspondence between the 
+    Actions and the entry-points to your business API. 
+    As you gain experience, you will find ways to combine your Actions, say 
+    by using the DispatchAction. 
+    It's even possible to use a single "framework" Action to call all of your 
+    business classes, as is done with Scaffold ProcessAction in the contrib 
+    folder. 
+    Using fewer Actions does require a deeper understanding of how Struts and 
+    MVC frameworks operate. 
+    Don't hesitate to err on the side of creating more Actions at first. 
+    The Struts configuration makes it easy to refactor your Actions later, 
+    since you can change the Action type without changing anything else in the 
+    application.
+    </p>
+    
+    <p>
     Ideally, the business logic layer should encapsulate the data access
     details, including acquiring a database connection. 
     However, some application designs expect that the caller able to provide a
@@ -169,6 +212,40 @@ public ActionForward
     <p>
     Just be sure you to replace "VALIDTABLE" with the name of a valid table
     in your database.
+    </p>
+
+</section>
+
+<section href="more" name="See Also">
+
+    <p>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24621.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24621.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24709.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24709.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24626.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24626.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24331.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24331.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24102.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24102.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23501.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23501.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23455.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23455.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23375.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23375.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23321.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23321.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23098.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23098.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22713.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22713.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21974.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21974.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21026.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21026.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg18323.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg18323.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14975.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14975.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14914.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14914.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14435.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14435.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01562.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01562.html</a>
+    </p>
+
+    <p>
+    Transformation/Data Transfer<br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24480.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24480.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23623.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23623.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10195.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10195.html</a><br/>
+    <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10205.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10205.html</a>
     </p>
 
 </section>

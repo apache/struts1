@@ -4,6 +4,7 @@
 <author>Ted Husted</author>
 <author>James Holmes</author>
 <author>Craig R. McClanahan</author>
+<author>Edgar Dollin</author>
 <title>Newbie FAQ - Apache Struts</title>
 </properties>
 <body>
@@ -20,30 +21,82 @@
 
     <ul>
 
-    <li><a href="#reload">Why was reload removed from Struts 1.1?</a></li>
+    <li>
+    <a href="#reload">Why was reload removed from Struts 1.1?</a>
+    </li>
 
-    <li><a href="#modules">What is a modular application? What does module-relative mean?</a></li>
+    <li>
+    <a href="#modules">What is a modular application? What does 
+    module-relative mean?</a>
+    </li>
 
-    <li><a href="#naming">Why are some of the class and element names counter-intuitive?</a></li>
+    <li>
+    <a href="#naming">Why are some of the class and element names 
+    counter-intuitive?</a>
+    </li>
 
-    <li><a href="#multiple">Can I use multiple HTML form elements with the same name?</a></li>
+    <li>
+    <a href="#actionForms">Whither ActionForms?</a>
+    </li>
 
-    <li><a href="#actionforms">Why are my checkboxes not being set from ON to OFF?</a></li>
+    <li>
+    <a href="#multiple">Can I use multiple HTML form elements with the same 
+    name?</a>
+    </li>
+
+    <li><a href="#checkboxes">Why are my checkboxes not being set from ON to 
+    OFF?</a>
+    </li>
+
+    <li><a href="#focus">Why doesn't the focus feature on the &lt;html:form> 
+    tag work in every circumstance?</a>
+    </li>
 
     <li>
     <a href="#javascript">How do I use Javascript to ... </a>
     </li>
     
-    <li><a href="#reset">Do I need to implement reset and set all my form properties to their initial values?</a></li>
+    <li>
+    <a href="#reset">Do I need to implement reset and set all my form 
+    properties to their initial values?</a>
+    </li>
 
-    <li><a href="#scriptlets">Can't I just create some of my JavaBeans in the JSP using a scriptlet?</a></li>
+    <li>
+    <a href="#scriptlets">Can't I just create some of my JavaBeans in the JSP 
+    using a scriptlet?</a>
+    </li>
 
-    <li><a href="#tags">Why do the Struts tags provide for so little formatting?</a></li>
+    <li>
+    <a href="#tags">Why do the Struts tags provide for so little 
+    formatting?</a>
+    </li>
 
-    <li><a href="#link">Why does the &lt;html:link> tag URL-encode javascript and mailto links?"</a></li>
+    <li>
+    <a href="#layout">Why don't the Struts taglibs offer more layout options?</a>
+    </li>
 
-    <li><a href="minimization">Why does the option tag render selected="selected" instead of just "selected"?</a></li>
 
+    <li>
+    <a href="#link">Why does the &lt;html:link> tag URL-encode javascript and 
+    mailto links?"</a>
+    </li>
+
+    <li>
+    <a href="#authenticate">How can I authenticate my users?</a>
+    </li>
+    
+    <li>
+    <a href="#pager">How can I scroll through list of pages like the search 
+    results in google?</a>
+    </li>
+
+    <li>
+    <a href="#minimization">Why does the option tag render selected="selected" 
+    instead of just "selected"?
+    </a></li>
+    
+    <li><a href="#jsp">Do I have to use JSPs with my application?</a></li>
+        
     </ul>
  
     <p>
@@ -148,7 +201,7 @@ then become difficult to change.
 </section>
 
 
-<section href="actionforms" name="Wither ActionForms?">
+<section href="actionForms" name="Wither ActionForms?">
 <p>
 <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19281.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19281.html</a><br/>
 <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html</a><br/>
@@ -330,7 +383,6 @@ In the same arena, there is a well regarded contributor taglib that can help you
 </p>
 </section>
 
-
 <section href="link" name="Why does the &lt;html:link> tag URL-encode javascript and mailto links?">
 <p>
 The &lt;html:link> tag is not intended for use with client-side references like those used to launch Javascripts or email clients.
@@ -341,73 +393,12 @@ Simply markup the client-side links using the standard <a/> tag.
 </p>
 </section>
 
-<section name="How do I access my database?">
-<p>
-The best thing is use the Action as a thin adaptor between the web/presentation-tier and your business classes
-(including those that access a database).
-</p>
-<p>
-So you first design a business API that uses plain Java classes. The best thing is to use objects that take
-ordinary Java types and return a JavaBean or collection of JavaBeans. The Action then calls these objects and
-passes the result back to the web/presentation tier.
-</p>
-<p>
-A common approach is to create an Action class for each of the business API methods/classes that you need to call.
-Ideally, all the database access code should be encapsulated in the business API classes, so Struts doesn't know
-what persistent layer you are using (or even if there is a persistence layer). It just passes a key or search
-String and gets back a bean or collection of beans. This lets you use the same business API classes in other
-environments, and also to run unit tests against your business API outside of Struts or a HTTP environment.
-</p>
-<p>
-To get started, it's simplest to setup a 1:1 correspondence between the Actions and the entry-points to
-your business API. As you gain experience, you will find ways to combine your Actions, say by using the
-DispatchAction. It's even possible to use a single "framework" Action to call all of your business
-classes, as is done with Scaffold ProcessAction in the contrib folder. Using fewer Actions does require
-a deeper understanding of how Struts and MVC frameworks operate. Don't hesitate to err on the side
-of creating more Actions at first. The Struts configuration makes it easy to refactor your Actions
-later, since you can change the Action type without changing anything else in the application.
-</p>
-<p>
-For more, see
-</p>
-<p>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24621.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24621.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24709.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24709.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24626.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24626.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24331.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24331.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24102.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24102.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23501.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23501.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23455.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23455.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23375.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23375.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23321.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23321.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23098.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23098.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22713.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22713.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21974.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21974.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21026.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg21026.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg18323.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg18323.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14975.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14975.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14914.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14914.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14435.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg14435.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01562.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg01562.html</a>
-</p>
-<p>
-Transformation/Data Transfer<br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24480.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24480.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23623.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg23623.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10195.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10195.html</a><br/>
-<a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10205.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg10205.html</a>
-</p>
-</section>
-
-
 <section name="How can I authenticate my users?">
 <p>
 <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24504.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24504.html</a><br/>
 <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22949.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22949.html</a>
 </p>
 </section>
-
 
 <section href="pager" name="How can I scroll through list of pages like the search results in google?">
 <p>Many Struts developers use the Pager from the JSPTags site.</p>
@@ -427,6 +418,59 @@ behavior recommended by the <a href="http://www.w3.org/TR/xhtml1/#h-4.5">
 XHTML specification</a></p>
 </section>
 
+
+<section href="jsp" name="Do I have to use JSPs with my application?">
+
+    <p>
+    The short answer to this question is: No, you are not limited to 
+    JavaServer Pages.
+    </p>
+
+    <p>
+    The longer answer is that you can use any type of presentation technology 
+    which can be returned by a web server or Java container.  
+    The list includes but is not limited to:
+    </p>
+    
+    <ul>
+    
+        <li>
+        JavaServer Pages, 
+        </li>
+
+        <li>
+        HTML pages, 
+        </li>
+
+        <li>
+        WML files, 
+        </li>
+
+        <li>
+        Java servlets,
+        </li>
+
+        <li>
+        Velocity templates, and
+        </li>
+
+        <li>
+        XML/XLST
+        </li>
+    
+    </ul>
+    
+    <p>
+    Some people even mix and match apparently unrelated technologies, 
+    like PHP, into the same web application. 
+    </p>
+    
+    <p>
+    For some links, see <a href="../resources/views.html">Presentation 
+    Systems</a> in the Resource area. 
+    </p>
+
+</section>     
 
 <section 
     href="undocumented" 
@@ -461,12 +505,6 @@ XHTML specification</a></p>
 
     <li>Can I have an Action without a form?</li>
 
-    <li>How do I access my database?</li>
-
-    <li>How can I authenticate my users?</li>
-
-    <li>How can I scroll through list of pages like the search results in google?</li>
-
     <li>Can I have multiple submit buttons on the same form?</li>
 
     <li>Why can't my Javascript submit a form?</li>    
@@ -474,8 +512,6 @@ XHTML specification</a></p>
     <li>Can I create dynamic ActionForwards?</li>
 
     <li>How can I use my own (ActionForm, ActionForward, ActionMapping, ActionServlet) class?</li>
-
-    <li>Do I have to use JSPs with my application?</li>
 
     </ul>
     
