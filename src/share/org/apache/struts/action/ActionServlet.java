@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.113 2002/07/09 23:57:05 husted Exp $
- * $Revision: 1.113 $
- * $Date: 2002/07/09 23:57:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.114 2002/07/10 14:52:46 cedric Exp $
+ * $Revision: 1.114 $
+ * $Date: 2002/07/10 14:52:46 $
  *
  * ====================================================================
  *
@@ -294,7 +294,7 @@ import org.apache.struts.util.ServletContextWriter;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.113 $ $Date: 2002/07/09 23:57:05 $
+ * @version $Revision: 1.114 $ $Date: 2002/07/10 14:52:46 $
  */
 
 public class ActionServlet
@@ -448,6 +448,7 @@ public class ActionServlet
         initApplicationMessageResources(ac);
         initApplicationDataSources(ac);
         initApplicationPlugIns(ac);
+        ac.freeze();
         Enumeration names = getServletConfig().getInitParameterNames();
         while (names.hasMoreElements()) {
             String name = (String) names.nextElement();
@@ -460,6 +461,7 @@ public class ActionServlet
             initApplicationMessageResources(ac);
             initApplicationDataSources(ac);
             initApplicationPlugIns(ac);
+            ac.freeze();
         }
         destroyConfigDigester();
 
@@ -873,7 +875,7 @@ public class ActionServlet
         }
 
         // Return the completed configuration object
-        config.freeze();
+        //config.freeze();  // Now done after plugins init
         return (config);
 
     }
@@ -956,6 +958,9 @@ public class ActionServlet
 
         PlugInConfig plugInConfigs[] = config.findPlugInConfigs();
         PlugIn plugIns[] = new PlugIn[plugInConfigs.length];
+
+        getServletContext().setAttribute
+            (Action.PLUG_INS_KEY + config.getPrefix(), plugIns);
         for (int i = 0; i < plugIns.length; i++) {
             try {
                 plugIns[i] = (PlugIn)
@@ -964,14 +969,16 @@ public class ActionServlet
                 BeanUtils.populate(plugIns[i],
                                    plugInConfigs[i].getProperties());
                 plugIns[i].init(this, config);
+            } catch (ServletException e) {
+              // Lets propagate
+                throw e;
             } catch (Exception e) {
+                e.printStackTrace();
                 throw new UnavailableException
                     (internal.getMessage("plugIn.init",
                                          plugInConfigs[i].getClassName()));
             }
         }
-        getServletContext().setAttribute
-            (Action.PLUG_INS_KEY + config.getPrefix(), plugIns);
 
 
     }
