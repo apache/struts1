@@ -33,6 +33,11 @@ Display the values of the headers included in this request.<br><br>
 <%
   }
 %>
+  <bean:header id="dummy" name="UNKNOWN-HEADER" value="UNKNOWN VALUE"/>
+  <tr>
+    <td>UNKNOWN HEADER</td>
+    <td><bean:write name="dummy"/></td>
+  </tr>
 </table>
 
 </body>

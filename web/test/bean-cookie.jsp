@@ -62,5 +62,55 @@ Display the properties of our current session ID cookie
   </tr>
 </table>
 
+<bean:cookie id="dummy" name="UNKNOWN_COOKIE" value="UNKNOWN_VALUE"/>
+
+<table border="1">
+  <tr>
+    <th>Property Name</th>
+    <th>Correct Value</th>
+    <th>Test Result</th>
+  </tr>
+  <tr>
+    <td>comment</td>
+    <td><jsp:getProperty name="dummy" property="comment"/></td>
+    <td><bean:write name="dummy" property="comment"/></td>
+  </tr>
+  <tr>
+    <td>domain</td>
+    <td><jsp:getProperty name="dummy" property="domain"/></td>
+    <td><bean:write name="dummy" property="domain"/></td>
+  </tr>
+  <tr>
+    <td>maxAge</td>
+    <td><jsp:getProperty name="dummy" property="maxAge"/></td>
+    <td><bean:write name="dummy" property="maxAge"/></td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td><jsp:getProperty name="dummy" property="name"/></td>
+    <td><bean:write name="dummy" property="name"/></td>
+  </tr>
+  <tr>
+    <td>path</td>
+    <td><jsp:getProperty name="dummy" property="path"/></td>
+    <td><bean:write name="dummy" property="path"/></td>
+  </tr>
+  <tr>
+    <td>secure</td>
+    <td><jsp:getProperty name="dummy" property="secure"/></td>
+    <td><bean:write name="dummy" property="secure"/></td>
+  </tr>
+  <tr>
+    <td>value</td>
+    <td><jsp:getProperty name="dummy" property="value"/></td>
+    <td><bean:write name="dummy" property="value"/></td>
+  </tr>
+  <tr>
+    <td>version</td>
+    <td><jsp:getProperty name="dummy" property="version"/></td>
+    <td><bean:write name="dummy" property="version"/></td>
+  </tr>
+</table>
+
 </body>
 </html>

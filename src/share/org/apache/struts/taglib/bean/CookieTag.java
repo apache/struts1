@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.6 2000/12/28 02:09:08 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/12/28 02:09:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.7 2001/02/03 03:23:24 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/02/03 03:23:24 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.PropertyUtils;
  * cookie received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/12/28 02:09:08 $
+ * @version $Revision: 1.7 $ $Date: 2001/02/03 03:23:24 $
  */
 
 public class CookieTag extends TagSupport {
@@ -142,6 +142,20 @@ public class CookieTag extends TagSupport {
     }
 
 
+    /**
+     * The default value to return if no cookie of the specified name is found.
+     */
+    protected String value = null;
+
+    public String getValue() {
+        return (this.value);
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -163,6 +177,8 @@ public class CookieTag extends TagSupport {
             if (name.equals(cookies[i].getName()))
                 values.add(cookies[i]);
         }
+        if ((values.size() < 1) && (value != null))
+            values.add(new Cookie(name, value));
         if (values.size() < 1) {
             JspException e = new JspException
                 (messages.getMessage("getter.cookie", name));
@@ -193,6 +209,7 @@ public class CookieTag extends TagSupport {
         id = null;
         multiple = null;
         name = null;
+        value = null;
 
     }
 

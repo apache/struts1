@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTag.java,v 1.5 2000/12/28 02:09:09 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/12/28 02:09:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTag.java,v 1.6 2001/02/03 03:23:24 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/02/03 03:23:24 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.PropertyUtils;
  * header received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/12/28 02:09:09 $
+ * @version $Revision: 1.6 $ $Date: 2001/02/03 03:23:24 $
  */
 
 public class HeaderTag extends TagSupport {
@@ -142,6 +142,20 @@ public class HeaderTag extends TagSupport {
     }
 
 
+    /**
+     * The default value to return if no header of the specified name is found.
+     */
+    protected String value = null;
+
+    public String getValue() {
+        return (this.value);
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -156,6 +170,8 @@ public class HeaderTag extends TagSupport {
         if (multiple == null) {
 	    String value =
 	      ((HttpServletRequest) pageContext.getRequest()).getHeader(name);
+            if ((value == null) && (this.value != null))
+                value = this.value;
 	    if (value == null) {
 	        JspException e = new JspException
 		  (messages.getMessage("getter.header", name));
@@ -173,6 +189,8 @@ public class HeaderTag extends TagSupport {
 	  ((HttpServletRequest) pageContext.getRequest()).getHeaders(name);
 	while (items.hasMoreElements())
 	    values.add(items.nextElement());
+        if ((values.size() == 0) && (this.value != null))
+            values.add(this.value);
 	String headers[] = new String[values.size()];
 	if (headers.length == 0) {
 	    JspException e = new JspException
@@ -196,6 +214,7 @@ public class HeaderTag extends TagSupport {
         id = null;
         multiple = null;
         name = null;
+        value = null;
 
     }
 

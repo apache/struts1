@@ -50,8 +50,8 @@
     (if <code>multiple</code> is not specified) or <code>Cookie[]</code>
     (if <code>multiple</code> is specified).</p>
 
-    <p>If no cookie with the specified name can be located, a request time
-    exception will be thrown.</p>
+    <p>If no cookie with the specified name can be located, and no default
+    value is specified, a request time exception will be thrown.</p>
     </info>
 
     <attribute>
@@ -85,6 +85,16 @@
       <info>
       <p>Specifies the name of the request cookie whose value, or values,
       is to be retrieved.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>value</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The default cookie value to return if no cookie with the
+      specified name was included in this request.</p>
       </info>
     </attribute>
 
@@ -241,8 +251,8 @@
     (if <code>multiple</code> is not specified) or <code>String[]</code>
     (if <code>multiple</code> is specified).</p>
 
-    <p>If no header with the specified name can be located, a request time
-    exception will be thrown.</p>
+    <p>If no header with the specified name can be located, and no default
+    value is specified, a request time exception will be thrown.</p>
     </info>
 
     <attribute>
@@ -277,6 +287,16 @@
       <info>
       <p>Specifies the name of the request header whose value, or values,
       is to be retrieved.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>value</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The default header value to return if no header with the
+      specified name was included in this request.</p>
       </info>
     </attribute>
 
@@ -534,8 +554,8 @@
     (if <code>multiple</code> is not specified) or <code>String[]</code>
     (if <code>multiple</code> is specified).</p>
 
-    <p>If no request parameter with the specified name can be located, a
-    request time exception will be thrown.</p>
+    <p>If no request parameter with the specified name can be located, and
+    no default value is specified, a request time exception will be thrown.</p>
     </info>
 
     <attribute>
@@ -570,6 +590,16 @@
       <info>
       <p>Specifies the name of the request parameter whose value, or values,
       is to be retrieved.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>value</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The default parameter value to return if no parameter with the
+      specified name was included in this request.</p>
       </info>
     </attribute>
 

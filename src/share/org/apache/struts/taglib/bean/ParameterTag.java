@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTag.java,v 1.4 2000/10/30 06:02:13 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/10/30 06:02:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTag.java,v 1.5 2001/02/03 03:23:24 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/02/03 03:23:24 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.PropertyUtils;
  * parameter received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/10/30 06:02:13 $
+ * @version $Revision: 1.5 $ $Date: 2001/02/03 03:23:24 $
  */
 
 public class ParameterTag extends TagSupport {
@@ -140,6 +140,21 @@ public class ParameterTag extends TagSupport {
     }
 
 
+    /**
+     * The default value to return if no parameter of the specified name is
+     * found.
+     */
+    protected String value = null;
+
+    public String getValue() {
+        return (this.value);
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -154,6 +169,8 @@ public class ParameterTag extends TagSupport {
         if (multiple == null) {
 	    String value =
 	      pageContext.getRequest().getParameter(name);
+            if ((value == null) && (this.value != null))
+                value = this.value;
 	    if (value == null) {
 	        JspException e = new JspException
 		  (messages.getMessage("getter.parameter", name));
@@ -168,6 +185,12 @@ public class ParameterTag extends TagSupport {
 	// Deal with multiple parameter values
 	String values[] =
 	  pageContext.getRequest().getParameterValues(name);
+        if ((values == null) || (values.length == 0)) {
+            if (this.value != null) {
+                values = new String[1];
+                values[0] = this.value;
+            }
+        }
 	if ((values == null) || (values.length == 0)) {
 	    JspException e = new JspException
 	      (messages.getMessage("getter.parameter", name));
@@ -190,6 +213,7 @@ public class ParameterTag extends TagSupport {
         id = null;
         multiple = null;
         name = null;
+        value = null;
 
     }
 
