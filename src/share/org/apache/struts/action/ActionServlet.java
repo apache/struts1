@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.40 2000/12/01 19:54:42 craigmcc Exp $
- * $Revision: 1.40 $
- * $Date: 2000/12/01 19:54:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.41 2000/12/06 19:15:58 craigmcc Exp $
+ * $Revision: 1.41 $
+ * $Date: 2000/12/06 19:15:58 $
  *
  * ====================================================================
  *
@@ -203,7 +203,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.40 $ $Date: 2000/12/01 19:54:42 $
+ * @version $Revision: 1.41 $ $Date: 2000/12/06 19:15:58 $
  */
 
 public class ActionServlet
@@ -1396,33 +1396,44 @@ public class ActionServlet
             session = request.getSession();
             instance = (ActionForm) session.getAttribute(attribute);
         }
-        if (instance != null)
-            return (instance);
 
-        // Create a new form bean if we need to
-        if (debug >= 1)
-            log(" Creating new ActionForm instance");
+	// Determine the form bean class that we expect to use
         String name = mapping.getName();
         String className = null;
         ActionFormBean formBean = findFormBean(name);
         if (formBean != null)
             className = formBean.getType();
-        if (className != null) {
-            try {
-                Class clazz = Class.forName(className);
-                instance = (ActionForm) clazz.newInstance();
-            } catch (Throwable t) {
-                log("Error creating ActionForm instance of class '" +
-                    className + "'", t);
-            }
-        }
+	else
+            return (null);
+
+	// Can we recycle the existing form bean instance?
+	if ((instance != null) &&
+	    className.equals(instance.getClass().getName())) {
+	    if (debug >= 1)
+	        log(" Recycling existing ActionForm bean instance of class '"
+		    + className + "'");
+	    return (instance);
+	}
+
+        // Create a new form bean if we need to
+        if (debug >= 1)
+            log(" Creating new ActionForm instance of class '"
+		+ className + "'");
+	try {
+	    instance = null;
+	    Class clazz = Class.forName(className);
+	    instance = (ActionForm) clazz.newInstance();
+        } catch (Throwable t) {
+	    log("Error creating ActionForm instance of class '" +
+		className + "'", t);
+	}
         if (instance == null)
             return (null);
 
         // Store the newly created bean in the appropriate scope
         if (debug >= 1)
             log(" Storing instance under attribute '" +
-                attribute + "'");
+                attribute + "' in scope '" + mapping.getScope() + "'");
         if ("request".equals(mapping.getScope()))
             request.setAttribute(attribute, instance);
         else
