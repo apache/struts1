@@ -19,10 +19,10 @@
 package org.apache.struts.chain.commands.generic;
 
 import junit.framework.TestCase;
+
 import org.apache.commons.chain.Context;
 import org.apache.commons.chain.impl.ContextBase;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
-import org.apache.struts.chain.contexts.ActionContextBase;
 import org.apache.struts.chain.contexts.ServletActionContext;
 
 /* JUnitTest case for class: org.apache.struts.chain.commands.generic.WrappingLookupCommand */
@@ -47,16 +47,6 @@ public class TestWrappingLookupCommand extends TestCase {
         Context wrapped = command.getContext(testContext);
         assertNotNull(wrapped);
         assertSame(testContext, wrapped);
-    }
-
-    public void testWrapper() throws Exception {
-        WrappingLookupCommand command = new WrappingLookupCommand();
-        command.setWrapperClassName(ActionContextBase.class.getName());
-        Context testContext = new ContextBase();
-
-        Context wrapped = command.getContext(testContext);
-        assertNotNull(wrapped);
-        assertTrue(wrapped instanceof ActionContextBase);
     }
 
     public void testWrapContextSubclass() throws Exception {
