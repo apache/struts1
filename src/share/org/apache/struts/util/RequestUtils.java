@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.136 2003/08/28 05:50:32 rleland Exp $
- * $Revision: 1.136 $
- * $Date: 2003/08/28 05:50:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.137 2003/12/18 03:34:58 husted Exp $
+ * $Revision: 1.137 $
+ * $Date: 2003/12/18 03:34:58 $
  *
  * ====================================================================
  *
@@ -106,7 +106,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.136 $ $Date: 2003/08/28 05:50:32 $
+ * @version $Revision: 1.137 $ $Date: 2003/12/18 03:34:58 $
  */
 public class RequestUtils {
 
@@ -116,13 +116,6 @@ public class RequestUtils {
      * Commons Logging instance.
      */
     protected static Log log = LogFactory.getLog(RequestUtils.class);
-
-    /**
-     * The message resources for this package.
-     */
-    private static MessageResources messages =
-            MessageResources.getMessageResources("org.apache.struts.util.LocalStrings");
-
 
     // --------------------------------------------------------- Public Methods
 
