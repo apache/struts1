@@ -1459,14 +1459,13 @@ throws Exception;
 
     <ul>
         <li><code>type</code></li>
+        <li><code>name</code></li>
         <li><code>roles</code></li>
         <li><code>parameter</code></li>
         <li><code>attribute</code></li>
         <li><code>forward</code></li>
         <li><code>include</code></li>
         <li><code>input</code></li>
-        <li><code>forward</code></li>
-        <li><code>forward</code></li>
     </ul>
 
     <p>
