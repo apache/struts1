@@ -22,6 +22,7 @@ package org.apache.struts.mock;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 
 
 import org.apache.struts.action.ActionServlet;
@@ -61,6 +62,7 @@ public class MockActionServlet extends ActionServlet
      */
   public MockActionServlet( )
   {
+      ; // do nothing
   }
 
     /**
@@ -98,4 +100,13 @@ public class MockActionServlet extends ActionServlet
   {
   return servletConfig;
   }
+
+  /**
+   * Expose as public so that test classes can exercise things which
+   * retrieve messages.
+   */
+  public void initInternal() throws ServletException {
+      super.initInternal();
+  }
+
 }
