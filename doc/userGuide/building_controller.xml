@@ -599,9 +599,12 @@
     </p>
 
     <p>
-    If need be, you can extend the DynaActionForm to add whatever
-    helper methods you might need. Simply specify your subclass
-    in the struts-config instead.
+    If need be, you can extend the DynaActionForm to add custom
+    validate and reset methods you might need.
+    Simply specify your subclass in the struts-config instead.
+    However, you cannot mix conventional properties and DynaProperties.
+    A conventional getter or setter on a DynaActionForm won't be found
+    by the reflection utilities.
     </p>
 
     <p>
