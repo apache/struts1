@@ -1,0 +1,13 @@
+
+[SCAFFOLD]
+=======================================================================
+[Ordering is LIFO. Last thing done for a day is the first item listed.]
+
+
+// ------------------------------------------------------------ CHANGES
+
+14-AUG-2002
+-----------
++ Initial upload of new version to Struts Contrib. 
+
+
