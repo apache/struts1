@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.6 2002/08/10 02:00:38 martinc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/08/10 02:00:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.7 2002/09/10 16:07:59 arron Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/09/10 16:07:59 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -64,14 +64,15 @@ import org.apache.struts.taglib.nested.NestedPropertyHelper;
 import org.apache.struts.taglib.nested.NestedReference;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts.taglib.html.FormTag;
 
 /**
  * NestedFormTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.6 $ $Date: 2002/08/10 02:00:38 $
+ * @version $Revision: 1.7 $ $Date: 2002/09/10 16:07:59 $
  */
 public class NestedFormTag extends FormTag implements NestedParentSupport {
 
@@ -100,9 +101,9 @@ public class NestedFormTag extends FormTag implements NestedParentSupport {
     int temp = super.doStartTag();
 
     /* set the details */
-    HttpSession session = (HttpSession)pageContext.getSession();
+    HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
     NestedReference nr = new NestedReference(getBeanName(), getNestedProperty());
-    NestedPropertyHelper.setIncludeReference(session, nr);
+    NestedPropertyHelper.setIncludeReference(request, nr);
 
     /* continue */
     return temp;
@@ -117,8 +118,8 @@ public class NestedFormTag extends FormTag implements NestedParentSupport {
     int temp = super.doEndTag();
 
     /* all done. clean up */
-    HttpSession session = (HttpSession)pageContext.getSession();
-    NestedPropertyHelper.setIncludeReference(session, null);
+    HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+    NestedPropertyHelper.setIncludeReference(request, null);
 
     /* return super result */
     return temp;

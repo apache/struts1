@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyTag.java,v 1.3 2002/03/13 13:13:28 arron Exp $
- * $Revision: 1.3 $
- * $Date: 2002/03/13 13:13:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyTag.java,v 1.4 2002/09/10 16:07:59 arron Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/09/10 16:07:59 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -61,7 +61,8 @@ package org.apache.struts.taglib.nested;
 
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts.util.*;
 
 /**
@@ -76,7 +77,7 @@ import org.apache.struts.util.*;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.3 $ $Date: 2002/03/13 13:13:28 $
+ * @version $Revision: 1.4 $ $Date: 2002/09/10 16:07:59 $
  */
 public class NestedPropertyTag extends BodyTagSupport implements NestedParentSupport, NestedNameSupport {
   
@@ -139,8 +140,8 @@ public class NestedPropertyTag extends BodyTagSupport implements NestedParentSup
     /* make the current reference */
     NestedReference nr = new NestedReference(getName(), getNestedProperty());
     /* replace and store old session */
-    HttpSession session = (HttpSession)pageContext.getSession();
-    originalReference = NestedPropertyHelper.setIncludeReference(session,nr);
+    HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+    originalReference = NestedPropertyHelper.setIncludeReference(request, nr);
     
     return (EVAL_BODY_TAG);
   }
@@ -170,8 +171,8 @@ public class NestedPropertyTag extends BodyTagSupport implements NestedParentSup
   public int doEndTag() throws JspException {
     
     /* set the reference back */
-    HttpSession session = (HttpSession)pageContext.getSession();
-    NestedPropertyHelper.setIncludeReference(session, originalReference);
+    HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+    NestedPropertyHelper.setIncludeReference(request, originalReference);
     originalReference = null;
     
     return (EVAL_PAGE);

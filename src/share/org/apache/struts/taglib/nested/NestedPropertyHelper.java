@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.7 2002/08/10 02:00:38 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/08/10 02:00:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.8 2002/09/10 16:07:59 arron Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/09/10 16:07:59 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,7 +62,8 @@ package org.apache.struts.taglib.nested;
 import java.util.StringTokenizer;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts.taglib.nested.html.*;
 import org.apache.struts.taglib.nested.logic.*;
 import org.apache.struts.taglib.html.FormTag;
@@ -77,7 +78,7 @@ import org.apache.struts.taglib.html.FormTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.7 $ $Date: 2002/08/10 02:00:38 $
+ * @version $Revision: 1.8 $ $Date: 2002/09/10 16:07:59 $
  */ 
 public class NestedPropertyHelper {
   
@@ -89,17 +90,17 @@ public class NestedPropertyHelper {
    * @param session User's session object
    * @param reference New reference to put into the session
    */
-  public static final NestedReference setIncludeReference(HttpSession session,
+  public static final NestedReference setIncludeReference(HttpServletRequest request,
           NestedReference reference) {
     /* get the old one if any */
     NestedReference nr = (NestedReference)
-            session.getAttribute(NESTED_INCLUDES_KEY);
+            request.getAttribute(NESTED_INCLUDES_KEY);
     if (reference != null) {
       /* put in the new one */
-      session.setAttribute(NESTED_INCLUDES_KEY, reference);
+      request.setAttribute(NESTED_INCLUDES_KEY, reference);
     } else {
       /* null target, just remove it */
-      session.removeAttribute(NESTED_INCLUDES_KEY);
+      request.removeAttribute(NESTED_INCLUDES_KEY);
     }
     /* return the old */
     return nr;
