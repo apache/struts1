@@ -30,6 +30,5 @@ import org.apache.struts.action.Action;
  */
 
 public class MockAction extends Action {
-
-
+    // nothing here
 }

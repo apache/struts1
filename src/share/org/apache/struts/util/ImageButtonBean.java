@@ -43,6 +43,7 @@ public class ImageButtonBean implements Serializable {
      * Construct an instance with empty property values.
      */
     public ImageButtonBean() {
+        ; // do nothing
     }
 
     /**

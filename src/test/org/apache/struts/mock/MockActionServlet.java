@@ -61,6 +61,7 @@ public class MockActionServlet extends ActionServlet
      */
   public MockActionServlet( )
   {
+      ; // do nothing
   }
 
     /**

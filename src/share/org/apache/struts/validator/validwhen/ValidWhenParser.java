@@ -127,7 +127,9 @@ String value;
 		case NOT_EQUAL:
 		    return (v1i != v2i);
 		}
-	    } catch (NumberFormatException ex) {};
+	    } catch (NumberFormatException ex) {
+	        ; // do nothing
+	    };
 	}
 	String v1s = "", v2s = "";
 
