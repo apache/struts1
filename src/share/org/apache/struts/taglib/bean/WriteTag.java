@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.13 2001/12/06 17:59:34 oalexeev Exp $
- * $Revision: 1.13 $
- * $Date: 2001/12/06 17:59:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.14 2001/12/12 14:11:30 oalexeev Exp $
+ * $Revision: 1.14 $
+ * $Date: 2001/12/12 14:11:30 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2001/12/06 17:59:34 $
+ * @version $Revision: 1.14 $ $Date: 2001/12/12 14:11:30 $
  */
 
 public class WriteTag extends TagSupport {
@@ -301,6 +301,7 @@ public class WriteTag extends TagSupport {
         if ( value instanceof java.lang.String ) {
                 return (String)value;
         } else if ( value instanceof Number ) {
+                boolean formatStrFromResources = false;
                 if( formatStr==null ) {
                         if( ( value instanceof Byte )    ||
                             ( value instanceof Short )   ||
@@ -314,12 +315,18 @@ public class WriteTag extends TagSupport {
                                  ( value instanceof BigDecimal ) )
                                 formatStr = RequestUtils.message(pageContext, this.bundle,
                                               this.localeKey, FLOAT_FORMAT_KEY );
+                        if( formatStr!=null ) 
+                                formatStrFromResources = true;
                 }
                 if( formatStr==null )
                         format = NumberFormat.getInstance( locale );
                 else {
                         try {
-                                format = new DecimalFormat( formatStr );
+                                format = NumberFormat.getNumberInstance( locale );
+                                if( formatStrFromResources ) 
+                                        ( ( DecimalFormat ) format ).applyLocalizedPattern( formatStr );
+                                else
+                                        ( ( DecimalFormat ) format ).applyPattern( formatStr );                                        
                         } catch( IllegalArgumentException _e ) {
                                 JspException e = new JspException(messages.getMessage("write.format", formatStr));
                                 RequestUtils.saveException(pageContext, e);
