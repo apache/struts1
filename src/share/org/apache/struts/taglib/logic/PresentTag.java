@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.12 2002/09/23 05:22:08 martinc Exp $
- * $Revision: 1.12 $
- * $Date: 2002/09/23 05:22:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.13 2003/03/24 04:19:21 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/03/24 04:19:21 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -76,7 +76,7 @@ import org.apache.struts.util.RequestUtils;
  * is present for this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2002/09/23 05:22:08 $
+ * @version $Revision: 1.13 $ $Date: 2003/03/24 04:19:21 $
  */
 
 public class PresentTag extends ConditionalTagBase {
@@ -113,32 +113,31 @@ public class PresentTag extends ConditionalTagBase {
      * @exception JspException if a JSP exception occurs
      */
     protected boolean condition(boolean desired) throws JspException {
-
         // Evaluate the presence of the specified value
         boolean present = false;
+        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+        
         if (cookie != null) {
-            Cookie cookies[] =
-                ((HttpServletRequest) pageContext.getRequest()).
-                getCookies();
-            if (cookies == null)
+            Cookie cookies[] = request.getCookies();
+            if (cookies == null) {
                 cookies = new Cookie[0];
+            }
             for (int i = 0; i < cookies.length; i++) {
                 if (cookie.equals(cookies[i].getName())) {
                     present = true;
                     break;
                 }
             }
+            
         } else if (header != null) {
-            String value =
-                ((HttpServletRequest) pageContext.getRequest()).
-                getHeader(header);
+            String value = request.getHeader(header);
             present = (value != null);
+            
         } else if (name != null) {
             Object value = null;
             try {
                 if (property != null) {
-                    value = RequestUtils.lookup(pageContext, name,
-                                                property, scope);
+                    value = RequestUtils.lookup(pageContext, name, property, scope);
                 } else {
                     value = RequestUtils.lookup(pageContext, name, scope);
                 }
@@ -146,23 +145,21 @@ public class PresentTag extends ConditionalTagBase {
                 value = null;
             }
             present = (value != null);
+            
         } else if (parameter != null) {
-            String value =
-                pageContext.getRequest().getParameter(parameter);
+            String value = request.getParameter(parameter);
             present = (value != null);
+            
         } else if (role != null) {
-            HttpServletRequest request = (HttpServletRequest)
-                                                       pageContext.getRequest();
             StringTokenizer st = new StringTokenizer(role, ROLE_DELIMITER, false);
-            while(!present && st.hasMoreTokens()){
-		present = request.isUserInRole(st.nextToken());
+            while (!present && st.hasMoreTokens()) {
+                present = request.isUserInRole(st.nextToken());
             }
+            
         } else if (user != null) {
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
             Principal principal = request.getUserPrincipal();
-            present = (principal != null) &&
-                user.equals(principal.getName());
+            present = (principal != null) && user.equals(principal.getName());
+            
         } else {
             JspException e = new JspException
                 (messages.getMessage("logic.selector"));
