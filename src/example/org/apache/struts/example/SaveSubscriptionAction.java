@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.4 2000/06/16 07:12:16 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/06/16 07:12:16 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.5 2000/06/20 16:33:51 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/06/20 16:33:51 $
  *
  * ====================================================================
  *
@@ -66,7 +66,6 @@ package org.apache.struts.example;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Hashtable;
-import java.util.Vector;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -77,6 +76,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
+import org.apache.struts.util.ErrorMessages;
 import org.apache.struts.util.MessageResources;
 
 
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/06/16 07:12:16 $
+ * @version $Revision: 1.5 $ $Date: 2000/06/20 16:33:51 $
  */
 
 public final class SaveSubscriptionAction extends ActionBase {
@@ -129,7 +129,7 @@ public final class SaveSubscriptionAction extends ActionBase {
 	// Is there a currently logged on user?
 	User user = (User) session.getAttribute(Constants.USER_KEY);
 	if (user == null)
-	    return (mapping.findForward("logon"));
+	    return (servlet.findForward("logon"));
 
 	// Is there a related Subscription object?
 	Subscription subscription =

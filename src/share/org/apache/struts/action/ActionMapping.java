@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.3 2000/06/16 07:12:18 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/16 07:12:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.4 2000/06/20 16:34:05 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/20 16:34:05 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ package org.apache.struts.action;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/16 07:12:18 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/20 16:34:05 $
  */
 
 public interface ActionMapping {
@@ -236,6 +236,14 @@ public interface ActionMapping {
      * @param name Name of the forward entry to be returned
      */
     public ActionForward findForward(String name);
+
+
+    /**
+     * Remove a <code>ActionForward</code> associated with this mapping.
+     *
+     * @param forward The ActionForward to be removed
+     */
+    public void removeForward(ActionForward forward);
 
 
 }

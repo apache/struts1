@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.2 2000/06/16 01:32:21 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/16 01:32:21 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.3 2000/06/20 16:33:48 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/20 16:33:48 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.example;
 
 import java.util.Vector;
 import org.apache.struts.action.ValidatingActionForm;
+import org.apache.struts.util.ErrorMessages;
 
 
 /**
@@ -88,7 +89,7 @@ import org.apache.struts.action.ValidatingActionForm;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/16 01:32:21 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/20 16:33:48 $
  */
 
 public final class RegistrationForm implements ValidatingActionForm  {
@@ -361,33 +362,27 @@ public final class RegistrationForm implements ValidatingActionForm  {
 	if ("Cancel".equals(submit))
 	    return (null);
 
-        Vector errors = new Vector();
+	ErrorMessages errors = new ErrorMessages();
 	if ((username == null) || (username.length() < 1))
-	    errors.addElement("error.username.required");
+	    errors.addError("error.username.required");
 	if (!password.equals(password))
-	    errors.addElement("error.password.match");
+	    errors.addError("error.password.match");
 	if ((fromAddress == null) || (fromAddress.length() < 1))
-	    errors.addElement("error.fromAddress.required");
+	    errors.addError("error.fromAddress.required");
 	else {
 	    int atSign = fromAddress.indexOf("@");
 	    if ((atSign < 1) || (atSign >= (fromAddress.length() - 1)))
-		errors.addElement("error.fromAddress.format");
+		errors.addError("error.fromAddress.format");
 	}
 	if ((fullName == null) || (fullName.length() < 1))
-	    errors.addElement("error.fullName.required");
+	    errors.addError("error.fullName.required");
 	if ((replyToAddress != null) && (replyToAddress.length() > 0)) {
 	    int atSign = replyToAddress.indexOf("@");
 	    if ((atSign < 1) || (atSign >= (replyToAddress.length() - 1)))
-		errors.addElement("error.replyToAddress.format");
+		errors.addError("error.replyToAddress.format");
 	}
 
-        String[] results = null;
-        if (errors.size() > 0) {
-            results = new String[errors.size()];
-            for (int i = 0; i < results.length; i++)
-                results[i] = (String) errors.elementAt(i);
-        }
-        return results;
+	return (errors.getErrors());
 
     }
 

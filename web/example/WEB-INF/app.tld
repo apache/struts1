@@ -20,8 +20,14 @@
     <tagclass>org.apache.struts.example.CheckLogonTag</tagclass>
     <info>
       Validate that there is a currently logged on user.  If there is
-      not, forward control to the logon page.
+      not, forward control to the logon page.  If not overridden by the
+      "page" attribute, forwarding will be to "/logon.jsp".
     </info>
+    <attribute>
+      <name>page</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
   </tag>
 
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditSubscriptionAction.java,v 1.3 2000/06/16 07:12:16 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/16 07:12:16 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditSubscriptionAction.java,v 1.4 2000/06/20 16:33:47 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/20 16:33:47 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/16 07:12:16 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/20 16:33:47 $
  */
 
 public final class EditSubscriptionAction extends ActionBase {
@@ -131,7 +131,7 @@ public final class EditSubscriptionAction extends ActionBase {
 	    if (servlet.getDebug() >= 1)
 	        servlet.log("EditSubscriptionAction: User is not logged on in session "
 	                    + session.getId());
-	    return (mapping.findForward("logon"));
+	    return (servlet.findForward("logon"));
 	}
 
 	// Identify the relevant subscription

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionBase.java,v 1.3 2000/06/16 07:12:18 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/16 07:12:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionBase.java,v 1.4 2000/06/20 16:34:04 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/20 16:34:04 $
  *
  * ====================================================================
  *
@@ -65,11 +65,11 @@ package org.apache.struts.action;
 
 import java.io.IOException;
 import java.util.Locale;
-import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.struts.util.ErrorMessages;
 import org.apache.struts.util.MessageResources;
 
 
@@ -78,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * useful utility methods for use by Action classes.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/16 07:12:18 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/20 16:34:04 $
  */
 
 public abstract class ActionBase implements Action {
@@ -161,19 +161,17 @@ public abstract class ActionBase implements Action {
      * @param messages Vector containing message keys for looking
      *  up errors in the application resources
      */
-    protected void saveErrors(HttpServletRequest request, Vector messages) {
+    protected void saveErrors(HttpServletRequest request,
+			      ErrorMessages messages) {
 
 	// Remove any error messages attribute if none are required
-	if ((messages == null) || (messages.size() == 0)) {
+	if ((messages == null) || (messages.getSize() == 0)) {
 	    request.removeAttribute(ERROR_KEY);
 	    return;
 	}
 
-	// Construct and save the error messages we need
-	String results[] = new String[messages.size()];
-	for (int i = 0; i < results.length; i++)
-	    results[i] = (String) messages.elementAt(i);
-	request.setAttribute(ERROR_KEY, results);
+	// Save the error messages we need
+	request.setAttribute(ERROR_KEY, messages.getErrors());
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/Constants.java,v 1.1 2000/05/31 22:28:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:14 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/Constants.java,v 1.2 2000/06/20 16:33:45 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/20 16:33:45 $
  *
  * ====================================================================
  *
@@ -67,7 +67,7 @@ package org.apache.struts.example;
  * Manifest constants for the example application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:14 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/20 16:33:45 $
  */
 
 public final class Constants {
@@ -84,12 +84,6 @@ public final class Constants {
      * Users is stored.
      */
     public static final String DATABASE_KEY = "database";
-
-
-    /**
-     * The context-relative URI of the logon page for this application.
-     */
-    public static final String LOGON_PAGE = "/logon.jsp";
 
 
     /**

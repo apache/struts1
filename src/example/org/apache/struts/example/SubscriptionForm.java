@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SubscriptionForm.java,v 1.2 2000/06/16 01:32:22 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/16 01:32:22 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SubscriptionForm.java,v 1.3 2000/06/20 16:33:52 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/20 16:33:52 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.example;
 
 import java.util.Vector;
 import org.apache.struts.action.ValidatingActionForm;
+import org.apache.struts.util.ErrorMessages;
 
 
 /**
@@ -82,7 +83,7 @@ import org.apache.struts.action.ValidatingActionForm;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/16 01:32:22 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/20 16:33:52 $
  */
 
 public final class SubscriptionForm implements ValidatingActionForm  {
@@ -292,25 +293,19 @@ public final class SubscriptionForm implements ValidatingActionForm  {
 	if ("Cancel".equals(submit))
 	    return (null);
 
-        Vector errors = new Vector();
+	ErrorMessages errors = new ErrorMessages();
 	if ((host == null) || (host.length() < 1))
-	    errors.addElement("error.host.required");
+	    errors.addError("error.host.required");
 	if ((username == null) || (username.length() < 1))
-	    errors.addElement("error.username.required");
+	    errors.addError("error.username.required");
 	if ((password == null) || (password.length() < 1))
-	    errors.addElement("error.password.required");
+	    errors.addError("error.password.required");
 	if ((type == null) || (type.length() < 1))
-	    errors.addElement("error.type.required");
+	    errors.addError("error.type.required");
 	else if (!"imap".equals(type) && !"pop3".equals(type))
-	    errors.addElement("error.type.invalid");
+	    errors.addError("error.type.invalid");
 
-        String[] results = null;
-        if (errors.size() > 0) {
-            results = new String[errors.size()];
-            for (int i = 0; i < results.length; i++)
-                results[i] = (String) errors.elementAt(i);
-        }
-        return results;
+	return (errors.getErrors());
 
     }
 

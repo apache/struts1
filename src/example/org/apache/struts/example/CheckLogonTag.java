@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/CheckLogonTag.java,v 1.1 2000/05/31 22:28:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:14 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/CheckLogonTag.java,v 1.2 2000/06/20 16:33:45 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/20 16:33:45 $
  *
  * ====================================================================
  *
@@ -79,10 +79,44 @@ import org.apache.struts.util.MessageResources;
  * such user, forward control to the logon page.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:14 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/20 16:33:45 $
  */
 
 public final class CheckLogonTag extends TagSupport {
+
+
+    // --------------------------------------------------- Instance Variables
+
+
+    /**
+     * The page to which we should forward for the user to log on.
+     */
+    private String page = "/logon.jsp";
+
+
+    // ----------------------------------------------------------- Properties
+
+
+    /**
+     * Return the forward page.
+     */
+    public String getPage() {
+
+	return (this.page);
+
+    }
+
+
+    /**
+     * Set the forward page.
+     *
+     * @param page The new forward page
+     */
+    public void setPage(String page) {
+
+	this.page = page;
+
+    }
 
 
     // ------------------------------------------------------- Public Methods
@@ -107,7 +141,7 @@ public final class CheckLogonTag extends TagSupport {
 	    return (EVAL_BODY_INCLUDE);
 	else {
 	    try {
-		pageContext.forward(Constants.LOGON_PAGE);
+		pageContext.forward(page);
 	    } catch (Exception e) {
 		throw new JspException(e.toString());
 	    }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.8 2000/06/16 07:12:18 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/06/16 07:12:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.9 2000/06/20 16:34:07 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/06/20 16:34:07 $
  *
  * ====================================================================
  *
@@ -153,7 +153,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/06/16 07:12:18 $
+ * @version $Revision: 1.9 $ $Date: 2000/06/20 16:34:07 $
  */
 
 public class ActionServlet
@@ -174,6 +174,13 @@ public class ActionServlet
      */
     protected String forwardClass =
 	"org.apache.struts.action.ActionForward";
+
+
+    /**
+     * The global ActionForward collection for this controller, keyed
+     * by logical name.
+     */
+    protected Hashtable forwards = new Hashtable();
 
 
     /**
@@ -314,6 +321,18 @@ public class ActionServlet
 
 
     /**
+     * Register a logical forwarding to the set configured for this servlet.
+     *
+     * @param forward The forwarding to be added
+     */
+    public void addForward(ActionForward forward) {
+
+	forwards.put(forward.getName(), forward);
+
+    }
+
+
+    /**
      * Register a mapping to the set configured for this servlet.
      *
      * @param mapping The mapping to be added
@@ -326,14 +345,39 @@ public class ActionServlet
 
 
     /**
+     * Return the forwarding associated with the specified logical name,
+     * if any; otherwise return <code>null</code>.
+     *
+     * @param name Logical name of the requested forwarding
+     */
+    public ActionForward findForward(String name) {
+
+	return ((ActionForward) forwards.get(name));
+
+    }
+
+
+    /**
      * Return the mapping associated with the specified request path, if any;
      * otherwise return <code>null</code>.
      *
      * @param path Request path for which a mapping is requested
      */
-    public ActionMapping getMapping(String path) {
+    public ActionMapping findMapping(String path) {
 
 	return ((ActionMapping) mappings.get(path));
+
+    }
+
+
+    /**
+     * Deregister a forwarding from the set configured for this servlet.
+     *
+     * @param forward The forwarding to be deregistered
+     */
+    public void removeForward(ActionForward forward) {
+
+	forwards.remove(forward.getName());
 
     }
 
@@ -484,7 +528,11 @@ public class ActionServlet
 	digester.addSetProperties("action-mappings/action/forward");
 	digester.addSetNext("action-mappings/action/forward", "addForward",
 			    "org.apache.struts.action.ActionForward");
-
+	digester.addObjectCreate("action-mappings/forward",
+				 forwardClass);
+	digester.addSetProperties("action-mappings/forward");
+	digester.addSetNext("action-mappings/forward", "addForward",
+			    "org.apache.struts.action.ActionForward");
 
 	// Parse the input stream to configure our mappings
 	try {
@@ -647,7 +695,7 @@ public class ActionServlet
      */
     protected ActionMapping processMapping(String path) {
 
-	return (getMapping(path));
+	return (findMapping(path));
 
     }
 

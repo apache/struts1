@@ -6,7 +6,7 @@
 
 <div align="center">
 <h1>Struts User's Guide</h2>
-<h3>$Id: users_guide.html,v 1.4 2000/06/13 22:45:44 craigmcc Exp $</h3>
+<h3>$Id: users_guide.html,v 1.5 2000/06/20 16:34:10 craigmcc Exp $</h3>
 </div>
 
 
@@ -114,18 +114,14 @@ control to the appropriate View component to create the response.</p>
 
 <p>Struts also supports the ability to use <code>ActionMapping</code>
 classes that have additional properties beyond the standard ones required
-to operate the framework.  In many cases, this facility can be used to
-declare the JSP page names of the appropriate "next" page, or pages, to
-be displayed after the business logic represented by this <code>Action</code>
-class is complete.  Using extended mappings in such a manner lets you
-decouple the <i>Controller</i> logic (in the <code>Action</code> class)
-from the <i>View</i> logic (in the JSP pages).  For example, most web
-sites and web applications undergo periodic updates to their look and
-feel (as well as changes in availble functionality).  Typically, such
-redesigns cause the names of the relevant JSP pages to be changed.  If
-you have defined the names of these pages only in the mappings, dealing
-with such redesigns is substantially easier than if you had to go update
-all of the <code>Action</code> classes individually.</p>
+to operate the framework.  This allows you to store additional information
+specific to your application, but still utilize the remaining features of
+the framework.  In addition, Struts lets you define logical "names" to which
+control should be forwarded so that an action method can ask for the
+"Main Menu" page (for example), without knowing what the actual name of the
+corresponding JSP page is.  These features greatly assist you in separating
+the control logic (what do I do next) with the view logic (what is the name
+of the corresponding page).</p>
 
 
 <h2>2. Building the Model Components</h2>
@@ -659,6 +655,42 @@ creating user interfaces:</p>
 </ul>
 
 
+<h4>3.3.4 Automatic Form Validation</h4>
+
+<p>In addition to the form and bean interactions described above, Struts
+offers an additional facility if your bean knows how to validate the input
+fields it has received.  To utilize this feature, have your bean class
+implement the <code>ValidatingActionForm</code> interface, rather than the
+<code>ActionForm</code> interface.  A ValidatingActionForm adds an additional
+method signature:</p>
+
+<pre>
+    public String[] validate()
+</pre>
+
+<p>for a method that is called by the controller servlet after the bean
+properties have been populated, but before the corresponding action class's
+<code>perform()</code> method is invoked.  The <code>validate()</code> method
+has the following options:</li>
+<ul>
+<li>Perform the appropriate validations and find no problems -- Return either
+    <code>null</code> or a zero-length String array, and the controller servlet
+    will proceed to call the <code>perform()</code> method of the appropriate
+    <code>Action</code> class.
+<li>Perform the appropriate validations and find problems -- Return a String
+    array whose contents are the error message keys (into the application's
+    <code>MessageResources</code> bundle) that should be displayed.  The
+    controller servlet will store this array as a request attribute suitable
+    for use by the <code>&lt;struts:errors&gt;</code> tag, and will forward
+    control back to the input form (identified by the <code>inputForm</code>
+    property for this <code>ActionMapping</code>.
+</ul>
+
+<p>As mentioned earlier, this feature is entirely optional.  If your form bean
+implements only the <code>ActionForm</code> interface, the controller servlet
+will assume that any required validation is done by the action class.</p>
+
+
 <h3>3.4 Other Presentation Techniques</h3>
 
 <p>Although the look and feel of your application can be completely constructed
@@ -784,18 +816,19 @@ primary responsibilities related to the Controller are:</p>
 <p>The <code>Action</code> interface defines a single method that must be
 implemented by an <code>Action</code> class, as follows:</p>
 <pre>
-    public void perform(ActionServlet servlet,
-                        ActionMapping mapping,
-                        ActionForm form,
-                        HttpServletRequest request,
-                        HttpServletResponse response)
+    public ActionForward perform(ActionServlet servlet,
+                                 ActionMapping mapping,
+                                 ActionForm form,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response)
       throws IOException, ServletException;
 </pre>
 
 <p>The goal of an <code>Action</code> class is to process this request,
-and to forward control to the View component, such as a JSP page, that
-will generate the corresponding response.  In the <i>Model 2</i> design
-pattern, a typical <code>Action</code> class will implement the following
+and then to return an <code>ActionForward</code> object that identifies
+the JSP page (if any) to which control should be forwarded to generate
+the corresponding response.  In the <i>Model 2</i> design pattern,
+a typical <code>Action</code> class will implement the following
 logic in its <code>perform()</code> method:
 <ul>
 <li>Validate the current state of the user's session (for example, checking
@@ -805,10 +838,12 @@ logic in its <code>perform()</code> method:
     logging on.  This could occur because a user tried to enter your
     application "in the middle" (say, from a bookmark), or because the
     session has timed out, and the servlet container created a new one.</li>
-<li>Validate the request parameters included with this request.  If the
-    <code>Action</code> class finds a problem, it stores appropriate error
-    messages in a request scope bean, and forwards control back to the
-    originating JSP page so that the errors can be corrected.</li>
+<li>If validation has not yet occurred (due to the use of a form bean
+    that implements the <code>ValidatingActionForm</code> interface),
+    validate the form bean properties as necessary.  If a problem is found,
+    store the appropriate error message keys as a request attribute, and
+    forward control back to the input form so that the errors can be
+    corrected.</li>
 <li>Perform the processing required to deal with this request (such as
     saving a row into a database).  This can be done by code embedded within
     the <code>Action</code> class itself, but should generally be performed
@@ -816,9 +851,13 @@ logic in its <code>perform()</code> method:
 <li>Update the server-side objects that will be used to create the next
     page of the user interface (typically request scope or session scope
     beans, depending on how long you need to keep these items available).</li>
-<li>Forward this request (using <code>RequestDispatcher.forward()</code>) to
-    the appropriate JSP page to create the next page of the user interface,
-    based on the newly updated beans.</li>
+<li>Return an appropriate <code>ActionForward</code> object that identifies
+    the JSP page to be used to generate this response, based on the newly
+    updated beans.  Typically, you will acquire a reference to such an
+    object by calling <code>findForward()</code> on either the
+    <code>ActionMapping</code> object you received (if you are using a
+    logical name local to this mapping), or on the controller servlet
+    itself (if you are using a logical name global to the application).</li>
 </ul>
 
 <p>Design issues to remember when coding <code>Action</code> classes
@@ -956,9 +995,9 @@ to illustrate the requirements:</p>
        actionClass="org.apache.struts.example.LogonAction"
      formAttribute="logonForm"
          formClass="org.apache.struts.example.LogonForm"
-           success="/mainMenu.jsp"
-           failure="/logon.jsp"
-    /&gt;
+         inputForm="/logon.jsp"&gt;
+      &lt;forward name="success" path="/mainMenu.jsp"/&gt;
+    &lt;/action&gt;
 
   &lt;/action-mapping&gt;
 </pre>
@@ -973,6 +1012,12 @@ and saving a bean of the specified class if needed.  The <code>success</code>
 and <code>failure</code> properties indicate that the logon action should
 forward control to the main menu if successful, or back to the logon form
 if not successful (such as an invalid username or password).</p>
+
+<p>This <code>action</code> element also defines a logical name "success",
+which is used within the <code>LogonAction</code> class to identify the
+page to be used when a user successfully logs on.  Using a logical name like
+this allows the action class to be insulated from any changes in the page
+names that might occur due to a site redesign.</p>
 
 
 <h3>4.5 The Web Application Deployment Descriptor</h3>
@@ -1014,8 +1059,7 @@ initialization parameters.  Such an entry might look like this:
 
 <p>The initialization parameters supported by the controller servlet are
 described in the <a href="api/index.html">Javadocs</a> for the
-<code>ActionServlet</code> class, under the description for the
-<code>init()</code> method.</p>
+<code>ActionServlet</code> class.</p>
 
 
 <h4>4.5.2 Configure the Action Servlet Mapping</h4>
