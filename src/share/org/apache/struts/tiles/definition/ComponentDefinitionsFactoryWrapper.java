@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.7 2003/07/09 00:05:17 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/07/09 00:05:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.8 2003/07/09 00:14:01 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/09 00:14:01 $
  *
  * ====================================================================
  *
@@ -74,6 +74,7 @@ import org.apache.struts.tiles.DefinitionsFactoryConfig;
 import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.NoSuchDefinitionException;
 import org.apache.struts.tiles.TilesUtil;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * Wrapper from new definition factory interface to old interface.
@@ -198,7 +199,7 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory {
         throws DefinitionsFactoryException {
 
         try {
-            Class factoryClass = TilesUtil.applicationClass(classname);
+            Class factoryClass = RequestUtils.applicationClass(classname);
             Object factory = factoryClass.newInstance();
             return (ComponentDefinitionsFactory) factory;
 

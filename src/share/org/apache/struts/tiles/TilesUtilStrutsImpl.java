@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsImpl.java,v 1.4 2003/04/17 03:51:12 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/04/17 03:51:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsImpl.java,v 1.5 2003/07/09 00:14:00 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/09 00:14:00 $
  *
  * ====================================================================
  *
@@ -63,30 +63,15 @@ package org.apache.struts.tiles;
 
 import javax.servlet.ServletContext;
 
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.config.ModuleConfig;
 
-  /**
-   * TilesUtil implementation for Struts 1.1 with one single factory.
-   * This class contains default implementation of utilities. This implementation
-   * is intended to be used with Struts 1.1.
-   * This class is used as the base class for all Struts 1.1 implementations of TilesUtil.
-   */
-public class TilesUtilStrutsImpl extends TilesUtilImpl
-{
-
-    /**
-     * Return the <code>Class</code> object for the specified fully qualified
-     * class name from the Struts class loader.
-     *
-     * @param className Fully qualified class name to be loaded.
-     * @return Class object.
-     * @exception ClassNotFoundException if the class cannot be found
-     * @deprecated Use RequestUtils.applicationClass() instead.
-     */
-    public Class applicationClass(String className) throws ClassNotFoundException {
-        return RequestUtils.applicationClass(className);
-    }
+/**
+ * TilesUtil implementation for Struts 1.1 with one single factory.
+ * This class contains default implementation of utilities. This implementation
+ * is intended to be used with Struts 1.1.
+ * This class is used as the base class for all Struts 1.1 implementations of TilesUtil.
+ */
+public class TilesUtilStrutsImpl extends TilesUtilImpl {
 
     /**
      * Get definition factory for the module attached to the specified moduleConfig.
@@ -94,10 +79,11 @@ public class TilesUtilStrutsImpl extends TilesUtilImpl
      * @param moduleConfig Module config of the module for which the factory is requested.
      * @return Definitions factory or null if not found.
      */
-  public DefinitionsFactory getDefinitionsFactory(ServletContext servletContext, ModuleConfig moduleConfig)
-  {
-  return (DefinitionsFactory)servletContext.getAttribute(DEFINITIONS_FACTORY);
-  }
-
+    public DefinitionsFactory getDefinitionsFactory(
+        ServletContext servletContext,
+        ModuleConfig moduleConfig) {
+            
+        return (DefinitionsFactory) servletContext.getAttribute(DEFINITIONS_FACTORY);
+    }
 
 }

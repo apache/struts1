@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilImpl.java,v 1.4 2003/04/17 03:51:12 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/04/17 03:51:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilImpl.java,v 1.5 2003/07/09 00:14:00 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/09 00:14:00 $
  *
  * ====================================================================
  *
@@ -76,18 +76,19 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
 import org.apache.struts.util.RequestUtils;
 
-  /**
-   * Default implementation of TilesUtil.
-   * This class contains default implementation of utilities. This implementation
-   * is intended to be used without Struts.
-   */
-public class TilesUtilImpl implements Serializable
-{
-     /** Commons Logging instance.*/
-  protected Log log = LogFactory.getLog(TilesUtil.class);
+/**
+ * Default implementation of TilesUtil.
+ * This class contains default implementation of utilities. This implementation
+ * is intended to be used without Struts.
+ */
+public class TilesUtilImpl implements Serializable {
+    
+    /** Commons Logging instance.*/
+    protected Log log = LogFactory.getLog(TilesUtil.class);
 
     /** Constant name used to store factory in servlet context */
-  public static final String DEFINITIONS_FACTORY = "org.apache.struts.tiles.DEFINITIONS_FACTORY";
+    public static final String DEFINITIONS_FACTORY =
+        "org.apache.struts.tiles.DEFINITIONS_FACTORY";
 
     /**
      * Do a forward using request dispatcher.
@@ -97,12 +98,15 @@ public class TilesUtilImpl implements Serializable
      * @param request Current page request.
      * @param servletContext Current servlet context.
      */
-  public void doForward(String uri, HttpServletRequest request, HttpServletResponse response,
-                        ServletContext servletContext)
-    throws IOException, ServletException
-  {
-  request.getRequestDispatcher( uri ).forward(request, response);
-  }
+    public void doForward(
+        String uri,
+        HttpServletRequest request,
+        HttpServletResponse response,
+        ServletContext servletContext)
+        throws IOException, ServletException {
+            
+        request.getRequestDispatcher(uri).forward(request, response);
+    }
 
     /**
      * Do an include using request dispatcher.
@@ -114,12 +118,15 @@ public class TilesUtilImpl implements Serializable
      * @param response Current page response.
      * @param servletContext Current servlet context.
      */
-  public void doInclude(String uri, HttpServletRequest request, HttpServletResponse response,
-                        ServletContext servletContext)
-    throws IOException, ServletException
-  {
-  request.getRequestDispatcher( uri ).include(request, response);
-  }
+    public void doInclude(
+        String uri,
+        HttpServletRequest request,
+        HttpServletResponse response,
+        ServletContext servletContext)
+        throws IOException, ServletException {
+            
+        request.getRequestDispatcher(uri).include(request, response);
+    }
 
     /**
      * Do an include using PageContext.include().
@@ -131,20 +138,22 @@ public class TilesUtilImpl implements Serializable
      * @param response Current page response.
      * @param servletContext Current servlet context.
      */
-  public static void doInclude(String uri, PageContext pageContext)
-        throws IOException, ServletException
-  {
-  pageContext.include(uri);
-  }
+    public static void doInclude(String uri, PageContext pageContext)
+        throws IOException, ServletException {
+            
+        pageContext.include(uri);
+    }
 
     /**
      * Get definition factory from appropriate servlet context.
      * @return Definitions factory or <code>null</code> if not found.
      */
-  public DefinitionsFactory getDefinitionsFactory(ServletRequest request, ServletContext servletContext)
-  {
-  return (DefinitionsFactory)servletContext.getAttribute(DEFINITIONS_FACTORY);
-  }
+    public DefinitionsFactory getDefinitionsFactory(
+        ServletRequest request,
+        ServletContext servletContext) {
+            
+        return (DefinitionsFactory) servletContext.getAttribute(DEFINITIONS_FACTORY);
+    }
 
     /**
      * Create Definition factory from specified configuration object.
@@ -160,84 +169,80 @@ public class TilesUtilImpl implements Serializable
      * @return newly created factory of type specified in the config object.
      * @throws DefinitionsFactoryException If an error occur while initializing factory
      */
-  public DefinitionsFactory createDefinitionsFactory(ServletContext servletContext, DefinitionsFactoryConfig factoryConfig)
-    throws DefinitionsFactoryException
-  {
-      // Create configurable factory
-    DefinitionsFactory factory = createDefinitionFactoryInstance(factoryConfig.getFactoryClassname());
-    factory.init( factoryConfig, servletContext );
-      // Make factory accessible from jsp tags (push it in appropriate context)
-    makeDefinitionsFactoryAccessible(factory, servletContext );
-    return factory;
-  }
-
-  /**
-   * Create Definition factory of specified classname.
-   * Factory class must extend the {@link DefinitionsFactory} class.
-   * The factory is wrapped appropriately with {@link ComponentDefinitionsFactoryWrapper}
-   * if it is an instance of the deprecated ComponentDefinitionsFactory class.
-   * @param classname Class name of the factory to create.
-   * @return newly created factory.
-   * @throws DefinitionsFactoryException If an error occur while initializing factory
-   */
-  protected DefinitionsFactory createDefinitionFactoryInstance(String classname)
-    throws DefinitionsFactoryException
-  {
-  try
-    {
-    Class factoryClass = applicationClass(classname);
-    Object factory = factoryClass.newInstance();
-
-      // Backward compatibility : if factory classes implements old interface,
-      // provide appropriate wrapper
-    if( factory instanceof ComponentDefinitionsFactory )
-      {
-      factory = new ComponentDefinitionsFactoryWrapper( (ComponentDefinitionsFactory)factory );
-      } // end if
-    return (DefinitionsFactory)factory;
+    public DefinitionsFactory createDefinitionsFactory(
+        ServletContext servletContext,
+        DefinitionsFactoryConfig factoryConfig)
+        throws DefinitionsFactoryException {
+            
+        // Create configurable factory
+        DefinitionsFactory factory =
+            createDefinitionFactoryInstance(factoryConfig.getFactoryClassname());
+            
+        factory.init(factoryConfig, servletContext);
+        
+        // Make factory accessible from jsp tags (push it in appropriate context)
+        makeDefinitionsFactoryAccessible(factory, servletContext);
+        return factory;
     }
-   catch( ClassCastException ex )
-    { // Bad classname
-    throw new DefinitionsFactoryException( "Error - createDefinitionsFactory : Factory class '"
-                                           + classname +" must implement 'TilesDefinitionsFactory'.", ex );
-    }
-   catch( ClassNotFoundException ex )
-    { // Bad classname
-    throw new DefinitionsFactoryException( "Error - createDefinitionsFactory : Bad class name '"
-                                           + classname +"'.", ex );
-    }
-   catch( InstantiationException ex )
-    { // Bad constructor or error
-    throw new DefinitionsFactoryException( ex );
-    }
-   catch( IllegalAccessException ex )
-    { //
-    throw new DefinitionsFactoryException( ex );
-    }
-  }
-  /**
-   * Make definition factory accessible to Tags.
-   * Factory is stored in servlet context.
-   * @param factory Factory to be made accessible.
-   * @param servletContext Current servlet context.
-   */
- protected void makeDefinitionsFactoryAccessible(DefinitionsFactory factory, ServletContext servletContext)
-  {
-  servletContext.setAttribute(DEFINITIONS_FACTORY, factory);
-  }
 
     /**
-     * Return the <code>Class</code> object for the specified fully qualified
-     * class name from the underlying class loader.
-     *
-     * @param className Fully qualified class name to be loaded.
-     * @return Class object.
-     * @exception ClassNotFoundException if the class cannot be found
-     * @deprecated Use RequestUtils.applicationClass() instead.
+     * Create Definition factory of specified classname.
+     * Factory class must extend the {@link DefinitionsFactory} class.
+     * The factory is wrapped appropriately with {@link ComponentDefinitionsFactoryWrapper}
+     * if it is an instance of the deprecated ComponentDefinitionsFactory class.
+     * @param classname Class name of the factory to create.
+     * @return newly created factory.
+     * @throws DefinitionsFactoryException If an error occur while initializing factory
      */
-  public Class applicationClass(String className) throws ClassNotFoundException
-  {
-    return RequestUtils.applicationClass(className);
-  }
+    protected DefinitionsFactory createDefinitionFactoryInstance(String classname)
+        throws DefinitionsFactoryException {
+            
+        try {
+            Class factoryClass = RequestUtils.applicationClass(classname);
+            Object factory = factoryClass.newInstance();
+
+            // Backward compatibility : if factory classes implements old interface,
+            // provide appropriate wrapper
+            if (factory instanceof ComponentDefinitionsFactory) {
+                factory =
+                    new ComponentDefinitionsFactoryWrapper(
+                        (ComponentDefinitionsFactory) factory);
+            }
+            return (DefinitionsFactory) factory;
+            
+        } catch (ClassCastException ex) { // Bad classname
+            throw new DefinitionsFactoryException(
+                "Error - createDefinitionsFactory : Factory class '"
+                    + classname
+                    + " must implement 'TilesDefinitionsFactory'.",
+                ex);
+                
+        } catch (ClassNotFoundException ex) { // Bad classname
+            throw new DefinitionsFactoryException(
+                "Error - createDefinitionsFactory : Bad class name '"
+                    + classname
+                    + "'.",
+                ex);
+                
+        } catch (InstantiationException ex) { // Bad constructor or error
+            throw new DefinitionsFactoryException(ex);
+            
+        } catch (IllegalAccessException ex) {
+            throw new DefinitionsFactoryException(ex);
+        }
+    }
+    
+    /**
+     * Make definition factory accessible to Tags.
+     * Factory is stored in servlet context.
+     * @param factory Factory to be made accessible.
+     * @param servletContext Current servlet context.
+     */
+    protected void makeDefinitionsFactoryAccessible(
+        DefinitionsFactory factory,
+        ServletContext servletContext) {
+            
+        servletContext.setAttribute(DEFINITIONS_FACTORY, factory);
+    }
 
 }
