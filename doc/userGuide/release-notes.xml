@@ -131,12 +131,13 @@
     <p> The Struts Configuration 1.1 DTD has been deprecated in favor of the
     <code><a href="http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">struts-config_1_2.dtd</a></code>.
     In the Struts 1.2 release, existing Struts configuration files can be
-    loaded using either DTD version. The new DTD adds two new elements &lt;description-short&gt;
-    and &lt;description-long&gt; for use by struts config file tools and document generation. 
+    loaded using either DTD version. The new DTD adds two new elements &lt;display-name&gt;
+    and &lt;description&gt; to the struts-config element.
+    There are for use by struts config file tools and document generation. 
     </p>
 
     <p><strong>New Dependencies on Commons packages</strong></p>
-    <p>The resource components of Struts 1.1 has been found to be useful in
+    <p>The resource component of Struts 1.1 has been found to be useful in
     general Java development (and not just useful for building Struts-based
     web applications), and have been migrated into the
     <a href="http://jakarta.apache.org/commons/">Jakarta Commons Project</a>.
@@ -149,7 +150,7 @@
     <p>The following Commons packages contain the replacements for the
     corresponding Struts 1.1 classes:</p>
     <ul>
-    <li><strong>BeanUtils Package</strong>
+    <li><strong>Resources Package</strong>
         [<a href="http://jakarta.apache.org/commons/resources.html"><code>org.apache.commons.resources</code></a>] -
         <code>org.apache.struts.utils.MessageResources</code></li>
     </ul>
