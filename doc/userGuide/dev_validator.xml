@@ -24,14 +24,14 @@
     days of Struts 0.5.
     It was orignally packaged as a developer contribution.
     Later, the core code was moved to the Jakarta Commons and
-    a Struts specific extension became part of Struts 1.1.
+    a Struts specific extension became part of Struts since 1.1.
     </p>
 
     <p>
     For the convenience of the many developers who have been using
     the Struts Validator all along, this document first overviews
     the core functionality and then covers the changes and
-    new functionality added in the Struts 1.1.
+    new functionality added since Struts 1.1.
     </p>
 
     <p>
@@ -123,7 +123,7 @@
     without retrieving the value from the message resources.
     </p>
     <p>
-    Note that as of the Struts 1.1 release, you must explicitly define your message
+    Note that since Struts 1.1, you must explicitly define your message
     resource in any module that is going to use the Validator, due to a problem
     accessing the top-level resource.  This only effects applications which are
     using modules.
@@ -439,9 +439,8 @@
     against another (for example, if you have asked the user to type in
     a password twice for confirmation, to make sure that the values match.)
     In addition, there are fields in a form that may only be required if
-    other fields have certain values.  The new <code>validwhen</code>
-    validation rule, which will be included into the Struts release
-    immediately after the 1.1 release, is designed to handle these cases.</p>
+    other fields have certain values.  The <code>validwhen</code>
+    validation rule is designed to handle these cases.</p>
     <p>
     The <code>validwhen</code> rule takes a single <code>var</code> field,
     called <code>test</code>.  The value of this var is a boolean expression
@@ -765,8 +764,8 @@ public static boolean validateTwoFields(
     You can define logic like "only validate this field if field X is
     non-null and field Y equals 'male'".  The recommended way to do this will
     be with the <code>validwhen</code> rule, described above, and available
-    in the first release after 1.1.  The
-    <code>requiredif</code> validation rule, which was added in Struts 1.1,
+    since Struts 1.2.0.  The
+    <code>requiredif</code> validation rule, which was added since Struts 1.1,
     will be deprecated in favor of this rule, and will be removed in a
     future release.  However, if you are using <code>requiredif</code>, here
     is a brief tutorial.
@@ -963,11 +962,15 @@ public static boolean validateTwoFields(
     <section href="stopOnFirstError" name="Unstoppable JavaScript Validations">
 
         <p>
-        [Since Struts 1.2.0] You can force the clientside Javascript validation to check all constraints, instead of stopping at the first error. By setting a new property, <code>stopOnFirstError</code>, on the Validator PlugIn to false.
+        [Since Struts 1.2.0] You can force the clientside Javascript validation
+        to check all constraints, instead of stopping at the first error.
+        By setting a new property, <code>stopOnFirstError</code>, on the
+        Validator PlugIn to false.
         </p>
 
         <p>
-            Here's a sample configuration block that you could use in the struts-config.xml:
+        Here's a sample configuration block that you could use in the
+        struts-config.xml:
         </p>
 
       <pre>
