@@ -210,7 +210,7 @@
 	  Url usually denote a Struts action. Controller (action) is used to prepare data
 	  to be render by inserted Tile.
 	  <br></br>
-	  See also controlerClass
+	  See also controlerClass. Only one of controllerUrl or controllerClass should be used.
       </info>
     </attribute>
 
@@ -230,6 +230,8 @@
 	    <li>org.apache.struts.tiles.ControllerSupport</li>
 	    <li>org.apache.struts.action.Action (wrapper org.apache.struts.action.ActionController is used)</li>
 	  </ul>
+	  <br></br>
+	  See also controllerUrl. Only one of controllerUrl or controllerClass should be used.
       </info>
     </attribute>
 
@@ -380,11 +382,11 @@
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
       <info>
-      Specify content type: string, page, template or instance.
+      Specify content type: string, page, template or definition.
       <ul>
 	  <li>String : Content is printed directly.</li>
 	  <li>page | template : Content is included from specified URL. Name is used as an URL.</li>
-	  <li>definition : Value denote a definition defined in factory (xml file). Definition will be searched
+	  <li>definition : Value is the name of a definition defined in factory (xml file). Definition will be searched
 	  in the inserted tile, in a <code>&lt;template:insert attribute="attributeName"&gt;</code> tag, where 'attributeName' 
 	  is the name used for this tag.</li>
 	  </ul>
@@ -563,6 +565,8 @@
       <info>
       If the user is in the specified role, the tag is taken into account; 
 	  otherwise, the tag is ignored (skipped).
+	  <br></br>
+	  The role isn't taken into account if &lt;add&gt; tag is used in a definition.
       </info>
     </attribute>
 
