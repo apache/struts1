@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.10 2001/04/18 22:05:02 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2001/04/18 22:05:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.11 2001/04/29 01:26:19 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2001/04/29 01:26:19 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * or a Map (which includes Hashtables) whose elements will be iterated over.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2001/04/18 22:05:02 $
+ * @version $Revision: 1.11 $ $Date: 2001/04/29 01:26:19 $
  */
 
 public class IterateTag extends BodyTagSupport {
@@ -131,6 +131,12 @@ public class IterateTag extends BodyTagSupport {
     protected int offsetValue = 0;
 
 
+    /**
+     * Has this tag instance been started?
+     */
+    protected boolean started = false;
+
+
     // ------------------------------------------------------------- Properties
 
 
@@ -159,6 +165,25 @@ public class IterateTag extends BodyTagSupport {
 
     public void setId(String id) {
 	this.id = id;
+    }
+
+
+    /**
+     * <p>Return the zero-relative index of the current iteration through the
+     * loop.  If you specify an <code>offset</code>, the first iteration
+     * through the loop will have that value; otherwise, the first iteration
+     * will return zero.</p>
+     *
+     * <p>This property is read-only, and gives nested custom tags access to
+     * this information.  Therefore, it is <strong>only</strong> valid in
+     * between calls to <code>doStartTag()</code> and <code>doEndTag()</code>.
+     * </p>
+     */
+    public int getIndex() {
+        if (started)
+            return (offsetValue + lengthCount - 1);
+        else
+            return (0);
     }
 
 
@@ -340,6 +365,7 @@ public class IterateTag extends BodyTagSupport {
             else
                 pageContext.setAttribute(id, element);
 	    lengthCount++;
+            started = true;
 	    return (EVAL_BODY_TAG);
         } else
             return (SKIP_BODY);
@@ -385,6 +411,9 @@ public class IterateTag extends BodyTagSupport {
      */
     public int doEndTag() throws JspException {
 
+        // Clean up our started state
+        started = false;
+
 	// Continue processing this page
 	return (EVAL_PAGE);
 
@@ -410,6 +439,7 @@ public class IterateTag extends BodyTagSupport {
         offset = null;
         property = null;
         scope = null;
+        started = false;
 
     }
 
