@@ -138,7 +138,9 @@
       <strong>STRUTS-USER Digest</strong> - Subscribe to this list to receive 
       a daily digest of the Struts USER list.<br/>
       [<a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">Subscribe</a>]<br/>
-      [<a href="mailto:struts-user-digest-unsubscribe@jakarta.apache.org">Unsubscribe</a>]
+      [<a href="mailto:struts-user-digest-unsubscribe@jakarta.apache.org">Unsubscribe</a>]<br/>
+      If you subscribe to the Digest, you can also post to the User list. 
+      (Just don't quote the entire Digest mailing in a reply!)
     </li>
     
     <li>
@@ -146,6 +148,8 @@
       so that you can participate <b>without</b> subscribing to the regular mailing
       list.<br/>
       [<a href="http://www.proj.com/subscribe.jsp">Struts Newsgroup</a>]<br/>
+      This is another way to post to the User list without subscribing to the 
+      regular list. <br/>
       Our thanks to BaseBeans Engineering for providing this much-needed service!
       </li>
     </ul>
