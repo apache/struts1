@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTei.java,v 1.4 2001/02/12 01:26:57 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/12 01:26:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTei.java,v 1.4.2.1 2001/10/04 03:25:32 craigmcc Exp $
+ * $Revision: 1.4.2.1 $
+ * $Date: 2001/10/04 03:25:32 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/02/12 01:26:57 $
+ * @version $Revision: 1.4.2.1 $ $Date: 2001/10/04 03:25:32 $
  */
 
 public class ParameterTei extends TagExtraInfo {
@@ -84,14 +84,14 @@ public class ParameterTei extends TagExtraInfo {
      */
     public VariableInfo[] getVariableInfo(TagData data) {
 
-        Object type = null;
+        String className = null;
         if (data.getAttribute("multiple") == null)
-            type = new String();
+            className = "java.lang.String";
         else
-            type = new String[0];
+            className = "java.lang.String[]";
 	return new VariableInfo[] {
 	  new VariableInfo(data.getAttributeString("id"),
-	                   type.getClass().getName(),
+                           className,
 	                   true,
 	                   VariableInfo.AT_BEGIN)
 	};
