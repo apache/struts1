@@ -10,7 +10,8 @@
         <item name="Installation"           href="installation.html"/>
 	<item name="User Guide (1.0)"       href="userGuide/index.html"/>
         <item name="Javadoc"                href="api/index.html"/>
-        <item name="Release Notes (1.0b1)"  href="release.html"/>
+        <item name="Release Notes (1.0b1)"  href="release-notes-1.0-b1.html"/>
+        <item name="Release Notes (1.0b2)"  href="release-notes-1.0-b2.html"/>
         <item name="Resources"              href="userGuide/resources.html"/>
         <item name="TODO List (1.1)"        href="todo-1.1.html"/>
     </menu>
