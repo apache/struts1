@@ -355,7 +355,7 @@
         control should be forwarded so that an action method can ask for the
         "Main Menu" page (for example), without knowing what the actual name of the
         corresponding JSP page is.  These features greatly assist you in separating
-        the control logic (what to do) with the view logic (how it's done).
+        the control logic (what to do) with the view logic (how it's rendered).
       </p>
       
       <p align="center">

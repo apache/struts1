@@ -24,14 +24,10 @@
       </p>
       
       <ul>
-        <li>Write an <code>Action</code> class (that is, an extension of the
-            <code>Action</code> class) for each logical request
-            that may be received.</li>
-        <li>[Optionally] Write an <code>ActionMapping</code> class (that is, an
-           extension of the <code>ActionMapping</code> class) that defines the class
-           names and other information associated with each possible mapping.</li>
-        <li>Write the action mapping configuration file (in XML) that is used
-            to configure the controller servlet. This file is usually named
+        <li>Write an <code>Action</code> class for each logical request that may 
+            be received (extend <code>org.apache.action.Action</code>).</li>
+        <li>Configure a ActionMapping (in XML) for each logical request that may 
+            be submitted. The XML configuration file is usually named
             <code>struts-config.xml</code>.</li>
         <li>Update the web application deployment descriptor file (in XML)
             for your application to include the necessary Struts components.</li>
@@ -60,31 +56,31 @@ public ActionForward perform(ActionMapping mapping,
 </pre>
       
       <p>
-        Most people would only use the "HttpServletRequest" version. 
+        Most projects would only use the "HttpServletRequest" version. 
       </p>
       <p>
-        The goal of an <code>Action</code> class is to process this request,
-        and then to return an <code>ActionForward</code> object that identifies
-        the JSP page (if any) to which control should be forwarded to generate
-        the corresponding response.  In the <i>MVC/Model 2</i> design pattern,
-        a typical <code>Action</code> class will implement the following
-        logic in its <code>perform()</code> method:
+        The goal of an <code>Action</code> class is to process a request, via 
+        its <code>perform()</code> method, and return an <code>ActionForward</code> object 
+        that identifies where control should be forwarded (e.g. a JSP) to provide 
+        the appropriate response. In the <i>MVC/Model 2</i> design pattern,
+        a typical <code>Action</code> class will often implement logic like the following
+        in its <code>perform()</code> method:
       </p>
       <ul>
         <li>Validate the current state of the user's session (for example, checking
             that the user has successfully logged on).  If the <code>Action</code>
-            class finds that no logon exists, the request should be forwarded to
+            class finds that no logon exists, the request can be forwarded to
             the JSP page that displays the username and password prompts for
-            logging on.  This could occur because a user tried to enter your
+            logging on.  This could occur because a user tried to enter an 
             application "in the middle" (say, from a bookmark), or because the
             session has timed out, and the servlet container created a new one.</li>
-        <li>If validation has not yet occurred,
-            validate the form bean properties as necessary.  If a problem is found,
+        <li>If validation is not complete,
+            validate the form bean properties as needed.  If a problem is found,
             store the appropriate error message keys as a request attribute, and
             forward control back to the input form so that the errors can be
             corrected.</li>
         <li>Perform the processing required to deal with this request (such as
-            saving a row into a database).  This can be done by code embedded within
+            saving a row into a database).  This can be done by logic code embedded within
             the <code>Action</code> class itself, but should generally be performed
             by calling an appropriate method of a business logic bean.</li>
         <li>Update the server-side objects that will be used to create the next
@@ -140,6 +136,12 @@ public ActionForward perform(ActionMapping mapping,
         it is embedded inside a component (the <code>Action</code> class) that
         is tied to being executed in a web application environment.
       </p>
+
+      <p>
+        An <code>Action</code> can be factored into several local methods, so long as all 
+        properties needed are passed in the method signatures. The JVM 
+        handles such properties using the stack, and so they are thread-safe. 
+      </p>
         
       <p>
         The example application included with Struts stretches this design
@@ -167,7 +169,6 @@ public ActionForward perform(ActionMapping mapping,
           that this action will use</li>
         <li><b>path</b> - The request URI path that is matched to select this
             mapping.  See below for examples of how matching works.</li>
-            
         <li><b>unknown</b> - Set to <code>true</code> if this action
           should be configured as the default for this application, to handle
           all requests not handled by another action.  Only one action can be
@@ -175,6 +176,10 @@ public ActionForward perform(ActionMapping mapping,
         <li><b>validate</b> - Set to <code>true</code> if the
           <code>validate()</code> method of the action associated
           with this mapping should be called.</li>
+        <li><b>forward</b> - The request URI path to which control is passed 
+         when his mapping is invoked. This is an alternative to declaring 
+         a <b>type</b> property. </li>
+
       </ul>
                
     </section>
@@ -557,7 +562,7 @@ http://www.mycompany.com/myapplication/logon.do
         
         <p>
           Next, you must add an entry defining the Struts tag library.  There are currently four
-          taglibs that struts is packaged with.
+          taglibs that Struts is packaged with.
         </p>
         <p>
           The struts-bean taglib contains tags useful in accessing

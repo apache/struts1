@@ -80,10 +80,11 @@
       </ul>
         
       <p>
-        Please note that the i18n support in Struts is currently limited to the
-        <b>presentation</b> of internationalized information to the user.
-        Support for various Locale specific <b>input methods</b> is left up
-        to the client device, which is usually a web browser.
+        Please note that the i18n support in a framework like Struts is limited to the
+        <b>presentation</b> of internationalized text and images to the user.
+        Support for Locale specific <b>input methods</b> (used with languages 
+        such as Japanese, Chinese, and Korean) is left up to the client device, which 
+        is usually a web browser.
       </p>
 
       <p>
@@ -138,13 +139,24 @@
         The important thing is for the resource bundle to be found on the 
         class path for your application. Another approach is to store 
         the <code>MyResources.properties</code> file in your application's 
-        class folder. You can then simply specify "myResources" as the 
-        application value.
+        <code>classes</code> folder. You can then simply specify "myResources" as the 
+        application value. Just be careful it is not deleted if your 
+        build script deletes classes as part of a "clean" target.
       </p>
+      <p>
+        If it does, here is an Ant task to run when compiling your application 
+        that copies the contents of a <code>src/conf</code>
+        directory to the <code>classes</code> directory:
+      </p>
+       <pre>
+        &lt;!-- Copy any configuration files -->
+        &lt;copy todir="classes">
+            &lt;fileset dir="src/conf"/>
+        &lt;/copy>
+       </pre>
     </section>
 
-    <section name="3.3 Forms and FormBean Interactions" href="form_beans">
-    
+    <section name="3.3 Forms and FormBean Interactions" href="form_beans">    
       <p>
         At one time or another, most web developers have built forms using
         the standard capabilities of HTML, such as the <code>&lt;input&gt;</code>
@@ -189,8 +201,9 @@
         files. Struts handles these "multipart" forms in a way identical to 
         building normal forms. In the next section, we will cover using Struts to 
         create a simple login form, and also a simple mulitpart form. 
-      </p>
-    
+      </p>   
+      </section>
+
       <section name="3.3.1 Building Forms With Struts" href="forms">
         
         <p>
@@ -366,9 +379,9 @@ public class UploadForm extends ActionForm {
 </pre>
 <hr/>        
         <p>
-          Look at the <a href="../api/index.html">javadocs</a> for FormFile to see the
+          Look at the <a href="../api/index.html">Javadocs</a> for FormFile to see the
           methods it exposes to manipulate files in file uploading.  Also look at the
-          javadocs for ActionServlet and ActionMapping for the various parameters
+          Javadocs for ActionServlet and ActionMapping for the various parameters
           you can specify to change how files are uploaded.  Basically in your
           peform() method in your action class you would call <code>((UploadForm) form).getMyFile()</code>
           to retrieve the FormFile and do what you want with it.
@@ -440,7 +453,6 @@ public class UploadForm extends ActionForm {
               specified request parameter, and defines the result as a page scope attribute of
               type String or String[].</li>
         </ul>
-        
       </section>
       
       <section name="3.3.4 Automatic Form Validation" href="form_validation">    
@@ -485,12 +497,16 @@ public class UploadForm extends ActionForm {
           will assume that any required validation is done by the action class.
         </p>
         <p>
-          One common approach is to perform simple validations using the validate() method, and 
-          also provide further "business logic" validation as part of your Action object. 
+          One common approach is to perform simple, prima facia validations using the 
+          ActionForm validate() method, and then handle the "business logic" validation 
+          from the Action. 
         </p>
-
+        <p>
+          An optional package for performing ActionForm validations is available in the 
+          Nightly Build and from <a href="http://home.earthlink.net/~dwinterfeldt/">
+          David Winterfeldt's Web site</a>.
+        </p>
       </section>
-    </section>
     
     <section name="3.4 Other Presentation Techniques" href="other_presentations">
     
@@ -501,6 +517,7 @@ public class UploadForm extends ActionForm {
         reuse, reduce maintenance efforts, and/or reduce errors.  Several options
         are discussed in the following sections.
       </p>
+    </section>
       
       <section name="3.4.1 Application-Specific Custom Tags" href="custom_tags">
       
@@ -569,9 +586,9 @@ public class UploadForm extends ActionForm {
           
         <ul>
           <li>An <code>&lt;%@ include file="xxxxx" %&gt;</code> directive can include a file that contains
-          java code or jsp tags. The code in the included file can even reference
+          Java code or JSP tags. The code in the included file can even reference
           variables declared earlier in the outer jsp page. The code is inlined into
-          the other jsp before it is compiled so it can definately contain more than
+          the other JavaServer Page before it is compiled so it can definately contain more than
           just HTML.</li>
           <li>The include <i>action</i> (<code>&lt;jsp:include page="xxxxx"
               flush="true" /&gt;</code>) is processed at request time, and is handled
@@ -588,6 +605,12 @@ public class UploadForm extends ActionForm {
           Another approach to this would be to use the Struts Template Tag library. See the         
           Developer's Guide for details.
         </p>  
+        <p>
+          Tiles is an alternative to the original Template Tag library, offering several 
+          enhancements and new capabilities. Tiles is available in the 
+          Nightly Build, and from <a href="http://www.lifl.fr/~dumoulin/tiles/">
+          Cedric Dumoulin's Web site</a>.
+        </p>
       </section>
 
       <section name="3.4.3 Image Rendering Components" href="image_rendering">
@@ -610,12 +633,27 @@ public class UploadForm extends ActionForm {
               can have the applet make its own connection to the server to receive
               these parameters.</li>
         </ul>
-      
+      </section>
+
+      <section name="3.4.4 Rendering Text" href="text_rendering">
+
+         <p>
+           Some applications require dynamically generated text or markup, 
+           such as XML. If a complete page is being rendered, and can be output 
+           using a PrintWriter, this is very easy to do from an Action:
+         </p>
+         <pre>
+           response.setContentType("text/plain"); // or text/xml
+           PrintWriter writer = response.getWriter();
+           // use writer to render text
+           return(null);
+         </pre>
+
         <p align="center">
           Next: <a href="building_controller.html">Building Controller Components</a>
         </p>
       </section>
-    </section>
+
   </chapter>
   </body>
 </document> 

@@ -50,6 +50,7 @@
                     <li><a href="building_view.html#custom_tags">3.4.1 Application-Specific Custom Tags</a></li>
                     <li><a href="building_view.html#includes">3.4.2 Page Composition With Includes</a></li>
                     <li><a href="building_view.html#image_rendering">3.4.3 Image Rendering Components</a></li>
+                    <li><a href="building_view.html#text_rendering">3.4.4 Rendering Text</a></li>
                     </ul></li>
                 </ul></li>
             <li><a href="building_controller.html">4. Building Controller Components</a>
