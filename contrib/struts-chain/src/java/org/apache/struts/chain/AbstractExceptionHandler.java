@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractExceptionHandler.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/09/29 06:55:07 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractExceptionHandler.java,v 1.3 2004/01/19 22:22:03 germuska Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/19 22:22:03 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.config.ModuleConfig;
  * exception class that occurred.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/19 22:22:03 $
  */
 
 public abstract class AbstractExceptionHandler implements Command {
@@ -233,12 +233,12 @@ public abstract class AbstractExceptionHandler implements Command {
             context.get(getActionConfigKey());
         ModuleConfig moduleConfig = (ModuleConfig)
             context.get(getModuleConfigKey());
+
+
         if (actionConfig != null) {
+            log.debug("See if actionConfig " + actionConfig + " has an exceptionConfig for " + exception.getClass().getName());
             exceptionConfig =
-                actionConfig.findExceptionConfig(exception.getClass().getName());
-        } else {
-            exceptionConfig =
-                moduleConfig.findExceptionConfig(exception.getClass().getName());
+                actionConfig.findException(exception.getClass());
         }
 
         // Handle the exception in the configured manner
@@ -280,6 +280,5 @@ public abstract class AbstractExceptionHandler implements Command {
                                             ActionConfig actionConfig,
                                             ModuleConfig moduleConfig)
         throws Exception;
-
 
 }

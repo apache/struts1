@@ -6,7 +6,7 @@
 # source code.  To use this file, make a copy of it in "build.properties" and
 # customize the values as required.
 #
-# $Id: build.properties.sample,v 1.3 2003/09/19 18:56:18 husted Exp $
+# $Id: build.properties.sample,v 1.4 2004/01/19 22:22:02 germuska Exp $
 #
 ### In order to build with Tomcat integration you must have the catalina-ant.jar in your CLASSPATH
 ### this is located under the jakarta-tomcat/server/lib directory
@@ -17,7 +17,7 @@
 servlet.home=/usr/local/jakarta-tomcat-4.1.27/commons/lib
 
 
-# The absolute or relative pathname of the Struts Nightly Build (2003/08/11 or later)
+# The absolute or relative pathname of the Struts Nightly Build (2004/01/19 or later)
 struts.home=/usr/local/jakarta-struts
 
 
