@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.2 2001/02/09 20:50:18 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/02/09 20:50:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.3 2001/02/10 23:31:50 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/02/10 23:31:50 $
  *
  * ====================================================================
  *
@@ -68,6 +68,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
+import org.apache.struts.action.Action;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -81,13 +82,20 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/02/09 20:50:18 $
+ * @version $Revision: 1.3 $ $Date: 2001/02/10 23:31:50 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {
 
 
     // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The constant String value to be returned when this checkbox is
+     * selected and the form is submitted.
+     */
+    protected String constant = null;
 
 
     /**
@@ -175,11 +183,42 @@ public class MultiboxTag extends BaseHandlerTag {
 
 
     /**
-     * Generate the required input tag.
+     * Process the beginning of this tag.
      *
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
+
+	// Defer processing until the end of this tag is encountered
+	return (EVAL_BODY_TAG);
+
+    }
+
+
+
+    /**
+     * Save the body contents of this tag as the constant that we will
+     * be returning.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
+    public int doAfterBody() throws JspException {
+
+        if (bodyContent != null)
+            this.constant = bodyContent.getString().trim();
+        if ("".equals(this.constant))
+            this.constant = null;
+        return (SKIP_PAGE);
+
+    }
+
+
+    /**
+     * Render an input element for this tag.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
+    public int doEndTag() throws JspException {
 
 	// Create an appropriate "input" element based on our parameters
 	StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
@@ -197,7 +236,17 @@ public class MultiboxTag extends BaseHandlerTag {
 	    results.append("\"");
 	}
 	results.append(" value=\"");
-	results.append(this.value);
+        String value = this.value;
+        if (value == null)
+            value = this.constant;
+        if (value == null) {
+            JspException e = new JspException
+                (messages.getMessage("multiboxTag.value"));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
+        results.append(BeanUtils.filter(value));
 	results.append("\"");
 	Object bean = pageContext.findAttribute(name);
 	String values[] = null;
@@ -230,35 +279,10 @@ public class MultiboxTag extends BaseHandlerTag {
 	results.append(prepareStyles());
 	results.append(">");
 
-	// Print this field to our output writer
+        // Render this element to our response
 	JspWriter writer = pageContext.getOut();
 	try {
-	    writer.print(results.toString());
-	} catch (IOException e) {
-	    throw new JspException
-		(messages.getMessage("common.io", e.toString()));
-	}
-
-	// Continue processing this page
-	return (EVAL_BODY_TAG);
-
-    }
-
-
-
-    /**
-     * Optionally render the associated label from the body content.
-     *
-     * @exception JspException if a JSP exception has occurred
-     */
-    public int doEndTag() throws JspException {
-
-	if (bodyContent == null)
-	    return (EVAL_PAGE);
-
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.println(bodyContent.getString().trim());
+	    writer.println(results.toString());
 	} catch (IOException e) {
 	    throw new JspException
 		(messages.getMessage("common.io", e.toString()));
@@ -276,6 +300,7 @@ public class MultiboxTag extends BaseHandlerTag {
     public void release() {
 
 	super.release();
+        constant = null;
 	name = Constants.BEAN_KEY;
 	property = null;
 	value = null;

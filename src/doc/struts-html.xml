@@ -2200,6 +2200,17 @@
 				array-valued property instead of multiple boolean properties.
 				This tag is only valid when nested inside a form tag body.
 			</p>
+
+                <p>The value to be returned to the server, if this checkbox is
+                selected, must be defined by one of the following methods:</p>
+                <ul>
+                <li>Specify a <code>value</code> attribute, whose contents will
+                be used literally as the value to be returned.</li>
+                <li>Specify no <code>value</code> attribute, and the nested
+                body content of this tag will be used as the value to be
+                returned.</li>
+                </ul>
+
 		</info>
 
 		<attribute>
