@@ -150,12 +150,12 @@
         <li>
             Documentation - The Struts documentation bundle, as seen on the website.</li>
         <li>
+            Tiles-Doc - Extensive demonstration of Tiles extension.</li>
+        <li>
             <strong>MailReader</strong> - The original Struts example application. <em>Try me first!</em></li>
         <li>Examples - Various demonstration applications combined as separate modules:<ul>
         <li>
             Exercise-Taglib - A set of test pages that also demonstrate use of the custom tags.</li>
-        <li>
-            Tiles-Doc - Extensive demonstration of Tiles extension.</li>
         <li>
             Upload - Demonstrates using the file upload facilities. (Based on Commons Upload.)</li>
         <li>
@@ -238,7 +238,7 @@
     </p>
 
     <p>
-    The <a href="status.html#roadmap"><strong>Roadmap</strong></a> page outlines our tentative plans for future development.
+    The <a href="roadmap.html"><strong>Roadmap</strong></a> page outlines our tentative plans for future development.
     </p>
 
 </section>

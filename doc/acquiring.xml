@@ -126,10 +126,15 @@
     repository, you will need to specify one of the following URLs:
     </p>
     <ul>
+      <li>http://svn.apache.org/repos/asf/struts/apps/trunk</li>
+      <li>http://svn.apache.org/repos/asf/struts/bsf/trunk</li>
       <li>http://svn.apache.org/repos/asf/struts/core/trunk</li>
       <li>http://svn.apache.org/repos/asf/struts/el/trunk</li>
       <li>http://svn.apache.org/repos/asf/struts/faces/trunk</li>
       <li>http://svn.apache.org/repos/asf/struts/sandbox/trunk</li>
+      <li>http://svn.apache.org/repos/asf/struts/shale/trunk</li>
+      <li>http://svn.apache.org/repos/asf/struts/taglib/trunk</li>
+      <li>http://svn.apache.org/repos/asf/struts/tiles/trunk</li>
     </ul>
     <p>
     <strong>Warning:</strong> If you try to take a shortcut, and check out
@@ -144,6 +149,27 @@
     User Guide for prerequisites. There are several JARs from the Jakarta
     Commons project that are required to build Struts.
     </p>
+
+    <p>
+    To download the trunk (HEAD revision) of all struts projects, a convenience
+    directory has been added, named current.  The current directory uses a 
+    Subversion feature called externals which stores properties on the directory.
+    With those properties Subversion has all the information it needs to download
+    all the struts subprojects together automatically.
+    </p>
+    <p>There are some caveats to remember.  Since all the subdirectories are 
+    still really different slices from the repository, relative paths won't 
+    always work as expected, for example.  See the 
+    <a href="http://svnbook.red-bean.com/en/1.1/ch07s03.html">Externals 
+    Definitions</a> section of the 
+    <a href="http://svnbook.red-bean.com/">Subversion Book</a> for details.
+    </p>
+
+    <p>To take advantage of this shortcut, use the following URL:
+    </p>
+    <ul>
+      <li>http://svn.apache.org/repos/asf/struts/current</li>
+    </ul>
 
     <p>
     If you are interested in the Tag Library Descriptor (TLD) files, these

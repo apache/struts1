@@ -216,7 +216,7 @@
         </td>
         <td>
         If the mapping has a role associated with it, ensure the requesting 
-        user is has the specified role.  
+        user has the specified role.  
         If they do not, raise an error and stop processing of the request.
         </td>
     </tr>
@@ -526,7 +526,7 @@
     "property", the tags will automatically use the DynaActionForm properties
     just like those of a conventional JavaBean.
     You can even expose DynaActionForm properties using bean:define.
-    (Although, tou can't use bean:define to <strong>instantiate</strong> a DynaActionForm,
+    (Although, you can't use bean:define to <strong>instantiate</strong> a DynaActionForm,
     since it needs to be setup with the appropriate dyna-properties).
     </p>
 

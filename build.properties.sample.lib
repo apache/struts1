@@ -18,7 +18,7 @@
 #   * place a copy of the servlet.jar for your container in the same folder.
 #
 # If you prefer to keep the JARs at another location, the properties
-# at the very top of the file may changed. If you require more versatility
+# at the very top of the file may be changed. If you require more versatility
 # in specifiying JAR locations, see the original "build.properties.sample" file.
 #
 # Only the "shared" properties are required for a typical build. 

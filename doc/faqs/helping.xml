@@ -238,7 +238,7 @@ If it does, then your page should be available under target/documentation/.
 <p>
 The website portion of the package is the root directory of doc/.
 The User Guide portion is under the userGuide/ folder.
-If the material you'd to add doesn't fit right in with what's there,
+If the material you'd like to add doesn't fit right in with what's there,
 the best thing may to start a new section after the existing material.
 The navigation column can be found in the project.xml document.
 </p>
