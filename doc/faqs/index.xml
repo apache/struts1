@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <document url="./index.xml">
+
 <properties>
-<author>Ted Husted</author>
-<title>FAQs and Howtos - Apache Struts</title>
+    <author>Ted Husted</author>
+    <title>FAQs and Howtos - Apache Struts</title>
 </properties>
+
 <body>
 
 <section name="Struts FAQs">
 
  <ul>
-    <li><a href="kickstart.html">Kickstart FAQ</a> (read me first)</li>
-    <li><a href="newbie.html">Newbie FAQ</a> </li>
-    <li><a href="helping.html">How to Help FAQ</a> </li>
+
+    <li>
+    <a href="kickstart.html">Kickstart FAQ</a> (read me first)
+    </li>
+
+    <li>
+    <a href="newbie.html">Newbie FAQ</a>
+    </li>
+
+    <li>
+    <a href="helping.html">How to Help FAQ</a>
+    </li>
+
  </ul>
 
 </section>
@@ -19,10 +32,35 @@
 <section name="Howto Guides">
 
  <ul>
-    <li><a href="ssl.html">Using the SSL protocol</a></li>
-    <li><a href="eclipse.html">Installing the Eclipse IDE</a></li>
-    <li><a href="netbeans.html">Installing the Netbeans IDE</a></li>
-    <li><a href="indexedprops.html">Indexed Properties, Mapped Properties, and Indexed Tags</a></li>
+
+    <li>
+    <a href="actionForm.html">Building an Action Form</a>
+    </li>
+    
+    <li>
+    <a href="indexedprops.html">Indexed Properties, Mapped Properties, and Indexed Tags</a>
+    </li>
+
+    <li>
+    <a href="ssl.html">Using the SSL protocol</a>
+    </li>
+    
+ </ul>
+
+</section>
+
+<section name="IDE Guides">
+
+ <ul>
+
+    <li>
+    <a href="eclipse.html">Installing the Eclipse IDE</a>
+    </li>
+
+    <li>
+    <a href="netbeans.html">Installing the Netbeans IDE</a>
+    </li>
+    
  </ul>
 
 </section>
@@ -30,15 +68,21 @@
 <section name="Offsite FAQs and Howtos">
 
  <ul>
-    <li><a href="http://www.jguru.com/faq/home.jsp?topic=Struts">jGuru FAQ</a></li>
+    <li>
+    <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">jGuru FAQ</a>
+    </li>
  </ul>
 
  <ul>
-    <li><a href="http://strutstestcase.sourceforge.net">Unit testing with Struts Use Case</a></li>
+    <li>
+    <a href="http://strutstestcase.sourceforge.net">Unit testing with Struts Use Case</a>
+    </li>
  </ul>
 
  <ul>
-    <li><a href="http://www.husted.com/struts/tips">Struts Tips</a></li>
+    <li>
+    <a href="http://www.husted.com/struts/tips">Struts Tips</a>
+    </li>
  </ul>
 
 </section>

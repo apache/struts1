@@ -1,24 +1,49 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="Apache Struts Web Application Framework"
-         href="http://jakarta.apache.org/struts"
-        image="images/struts.gif">
+
+<project 
+    name="Apache Struts Web Application Framework"
+    href="http://jakarta.apache.org/struts"
+    image="images/struts.gif">
 
     <title>Apache Struts Web Application Framework</title>
 
     <menu name="FAQs">
-        <item href="kickstart.html" name="Kickstart"/>
-        <item href="newbie.html" name="Newbie"/>
-        <item href="helping.html" name="How to Help"/>
+        <item 
+            href="kickstart.html" 
+            name="Kickstart"/>
+        <item 
+            href="newbie.html" 
+            name="Newbie"/>
+        <item 
+            href="helping.html" 
+            name="How to Help"/>
     </menu>
 
     <menu name="Howto Guides">
-        <item href="ssl.html" name="SSL"/>
-        <item href="netbeans.html" name="Netbeans"/>
-        <item href="eclipse.html" name="Eclipse"/>
+        <item 
+            href="actionForm.html" 
+            name="Action Forms"/>
+        <item 
+            href="indexedprops.html" 
+            name="Indexed Properties"/>
+        <item 
+            href="ssl.html" 
+            name="SSL"/>
+    </menu>
+
+    <menu name="IDE Guides">
+        <item 
+            href="eclipse.html" 
+            name="Eclipse"/>
+        <item 
+            href="netbeans.html" 
+            name="Netbeans"/>
     </menu>
 
     <menu name="Struts">
-        <item name="Welcome"                 href="../index.html"/>
+        <item 
+            name="Welcome" 
+            href="../index.html"/>
     </menu>
 
 </project>
