@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTag.java,v 1.9 2002/09/22 06:32:45 martinc Exp $
- * $Revision: 1.9 $
- * $Date: 2002/09/22 06:32:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTag.java,v 1.10 2003/07/14 00:04:44 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/07/14 00:04:44 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,32 +59,28 @@
  *
  */
 
-
 package org.apache.struts.taglib.bean;
-
 
 import java.util.ArrayList;
 import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
+
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
-
 
 /**
  * Define a scripting variable based on the value(s) of the specified
  * header received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/09/22 06:32:45 $
+ * @version $Revision: 1.10 $ $Date: 2003/07/14 00:04:44 $
  */
-
 public class HeaderTag extends TagSupport {
 
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * The name of the scripting variable that will be exposed as a page
@@ -100,14 +96,12 @@ public class HeaderTag extends TagSupport {
         this.id = id;
     }
 
-
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-        MessageResources.getMessageResources
-        ("org.apache.struts.taglib.bean.LocalStrings");
-
+        MessageResources.getMessageResources(
+            "org.apache.struts.taglib.bean.LocalStrings");
 
     /**
      * Return an array of header values if <code>multiple</code> is non-null.
@@ -122,7 +116,6 @@ public class HeaderTag extends TagSupport {
         this.multiple = multiple;
     }
 
-
     /**
      * The name of the header whose value is to be exposed.
      */
@@ -135,7 +128,6 @@ public class HeaderTag extends TagSupport {
     public void setName(String name) {
         this.name = name;
     }
-
 
     /**
      * The default value to return if no header of the specified name is found.
@@ -150,9 +142,7 @@ public class HeaderTag extends TagSupport {
         this.value = value;
     }
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Retrieve the required property and expose it as a scripting variable.
@@ -163,40 +153,48 @@ public class HeaderTag extends TagSupport {
 
         // Deal with a single header value
         if (multiple == null) {
-	    String value =
-	      ((HttpServletRequest) pageContext.getRequest()).getHeader(name);
-            if ((value == null) && (this.value != null))
+            String value =
+                ((HttpServletRequest) pageContext.getRequest()).getHeader(name);
+                
+            if ((value == null) && (this.value != null)) {
                 value = this.value;
-	    if (value == null) {
-	        JspException e = new JspException
-		  (messages.getMessage("header.get", name));
+            }
+                
+            if (value == null) {
+                JspException e =
+                    new JspException(messages.getMessage("header.get", name));
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
-	    pageContext.setAttribute(id, value);
-	    return (SKIP_BODY);
-	}
+            pageContext.setAttribute(id, value);
+            return (SKIP_BODY);
+        }
 
-	// Deal with multiple header values
-	ArrayList values = new ArrayList();
-	Enumeration items =
-	  ((HttpServletRequest) pageContext.getRequest()).getHeaders(name);
-	while (items.hasMoreElements())
-	    values.add(items.nextElement());
-        if ((values.size() == 0) && (this.value != null))
+        // Deal with multiple header values
+        ArrayList values = new ArrayList();
+        Enumeration items =
+            ((HttpServletRequest) pageContext.getRequest()).getHeaders(name);
+            
+        while (items.hasMoreElements()){
+            values.add(items.nextElement());
+        }
+            
+        if ((values.size() == 0) && (this.value != null)){
             values.add(this.value);
-	String headers[] = new String[values.size()];
-	if (headers.length == 0) {
-	    JspException e = new JspException
-	      (messages.getMessage("header.get", name));
+        }
+            
+        String headers[] = new String[values.size()];
+        if (headers.length == 0) {
+            JspException e =
+                new JspException(messages.getMessage("header.get", name));
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-	pageContext.setAttribute(id, (String[]) values.toArray(headers));
+        
+        pageContext.setAttribute(id, (String[]) values.toArray(headers));
         return (SKIP_BODY);
 
     }
-
 
     /**
      * Release all allocated resources.
@@ -210,6 +208,5 @@ public class HeaderTag extends TagSupport {
         value = null;
 
     }
-
 
 }
