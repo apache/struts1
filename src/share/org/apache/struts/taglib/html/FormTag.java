@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.60 2004/07/21 21:02:22 niallp Exp $
- * $Revision: 1.60 $
- * $Date: 2004/07/21 21:02:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.61 2004/07/22 01:11:42 niallp Exp $
+ * $Revision: 1.61 $
+ * $Date: 2004/07/22 01:11:42 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -44,7 +44,7 @@ import org.apache.struts.util.RequestUtils;
  * Custom tag that represents an input form, associated with a bean whose
  * properties correspond to the various fields of the form.
  *
- * @version $Revision: 1.60 $ $Date: 2004/07/21 21:02:22 $
+ * @version $Revision: 1.61 $ $Date: 2004/07/22 01:11:42 $
  */
 public class FormTag extends TagSupport {
 
@@ -473,16 +473,47 @@ public class FormTag extends TagSupport {
      * @since Struts 1.1
      */
     protected String renderFormStartElement() {
-        HttpServletResponse response =
-            (HttpServletResponse) this.pageContext.getResponse();
             
         StringBuffer results = new StringBuffer("<form");
+
+        // render attributes
+        renderName(results);
+        renderAttribute(results, "method", getMethod() == null ? "post" : getMethod());
+        renderAction(results);
+        renderAttribute(results, "accept-charset", getAcceptCharset());
+        renderAttribute(results, "class", getStyleClass());
+        renderAttribute(results, "enctype", getEnctype());
+        renderAttribute(results, "onreset", getOnreset());
+        renderAttribute(results, "onsubmit", getOnsubmit());
+        renderAttribute(results, "style", getStyle());
+        renderAttribute(results, "id", getStyleId());
+        renderAttribute(results, "target", getTarget());
+
+        // Hook for additional attributes
+        renderOtherAttributes(results);
+
+        results.append(">");
+        return results.toString();
+    }
+
+    /**
+     * Renders the name attribute
+     */
+    protected void renderName(StringBuffer results) {
         results.append(" name=\"");
         results.append(beanName);
         results.append("\"");
-        results.append(" method=\"");
-        results.append(method == null ? "post" : method);
-        results.append("\" action=\"");
+    }
+
+    /**
+     * Renders the action attribute
+     */
+    protected void renderAction(StringBuffer results) {
+
+        HttpServletResponse response =
+            (HttpServletResponse) this.pageContext.getResponse();
+
+        results.append(" action=\"");
         results.append(
             response.encodeURL(
                 TagUtils.getInstance().getActionMappingURL(
@@ -490,49 +521,13 @@ public class FormTag extends TagSupport {
                     this.pageContext)));
                 
         results.append("\"");
-        
-        if (acceptCharset != null) {
-            results.append(" accept-charset=\"");
-            results.append(getAcceptCharset());
-            results.append("\"");
-        }
-        if (styleClass != null) {
-            results.append(" class=\"");
-            results.append(styleClass);
-            results.append("\"");
-        }
-        if (enctype != null) {
-            results.append(" enctype=\"");
-            results.append(enctype);
-            results.append("\"");
-        }
-        if (onreset != null) {
-            results.append(" onreset=\"");
-            results.append(onreset);
-            results.append("\"");
-        }
-        if (onsubmit != null) {
-            results.append(" onsubmit=\"");
-            results.append(onsubmit);
-            results.append("\"");
-        }
-        if (style != null) {
-            results.append(" style=\"");
-            results.append(style);
-            results.append("\"");
-        }
-        if (styleId != null) {
-            results.append(" id=\"");
-            results.append(styleId);
-            results.append("\"");
-        }
-        if (target != null) {
-            results.append(" target=\"");
-            results.append(target);
-            results.append("\"");
-        }
-        results.append(">");
-        return results.toString();
+    }
+
+    /**
+     * 'Hook' to enable this tag to be extended and 
+     *  additional attributes added.
+     */
+    protected void renderOtherAttributes(StringBuffer results) {
     }
 
     /**
@@ -562,6 +557,19 @@ public class FormTag extends TagSupport {
         }
 
         return results.toString();
+    }
+
+    /**
+     * Renders attribute="value" if not null
+     */
+    protected void renderAttribute(StringBuffer results, String attribute, String value) {
+        if (value != null) {
+            results.append(" ");
+            results.append(attribute);
+            results.append("=\"");
+            results.append(value);
+            results.append("\"");
+        }
     }
 
     /**
