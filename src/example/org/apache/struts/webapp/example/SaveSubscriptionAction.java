@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.9 2002/06/23 04:59:33 jholmes Exp $
- * $Revision: 1.9 $
- * $Date: 2002/06/23 04:59:33 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.10 2002/08/27 00:52:18 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/08/27 00:52:18 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.MessageResources;
  * updates the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/06/23 04:59:33 $
+ * @version $Revision: 1.10 $ $Date: 2002/08/27 00:52:18 $
  */
 
 public final class SaveSubscriptionAction extends Action {
@@ -131,7 +131,7 @@ public final class SaveSubscriptionAction extends Action {
 	MessageResources messages = getResources(request);
 	HttpSession session = request.getSession();
 	SubscriptionForm subform = (SubscriptionForm) form;
-	String action = request.getParameter("action");
+	String action = subform.getAction();
 	if (action == null) {
 	    action = "?";
         }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.10 2002/06/23 04:59:33 jholmes Exp $
- * $Revision: 1.10 $
- * $Date: 2002/06/23 04:59:33 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.11 2002/08/27 00:52:18 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/08/27 00:52:18 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.util.MessageResources;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2002/06/23 04:59:33 $
+ * @version $Revision: 1.11 $ $Date: 2002/08/27 00:52:18 $
  */
 
 public final class SaveRegistrationAction extends Action {
@@ -132,7 +132,7 @@ public final class SaveRegistrationAction extends Action {
 	MessageResources messages = getResources(request);
 	HttpSession session = request.getSession();
 	RegistrationForm regform = (RegistrationForm) form;
-	String action = request.getParameter("action");
+	String action = regform.getAction();
 	if (action == null) {
 	    action = "Create";
         }
@@ -203,7 +203,7 @@ public final class SaveRegistrationAction extends Action {
 	if (!errors.empty()) {
 	    saveErrors(request, errors);
             saveToken(request);
-	    return (new ActionForward(mapping.getInput()));
+            return (mapping.getInputForward());
 	}
 
 	// Update the user's persistent profile information
