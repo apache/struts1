@@ -77,13 +77,13 @@
     
     <li>
         Nightly builds - Download the binary distributions from the
-       <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly">
+       <a href="http://cvs.apache.org/builds/jakarta-struts/nightly">
         Struts nightly builds directory</a>.
     </li>
     
     <li>
         Nightly builds - Download the source distributions from the
-        <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/src">
+        <a href="http://cvs.apache.org/builds/jakarta-struts/nightly/src">
         Struts nightly build source directory</a>.
     </li>
     

@@ -15,7 +15,7 @@
 
     <p>
     This document describes the Struts <a href="#Releases">release process</a> and our <a href="#Coding">coding
-    conventions</a>.
+    conventions</a>. Both stable and development releases are <a href="acquiring.html">available for download</a>.
     </p>
 
     </section>
@@ -49,7 +49,8 @@
                 <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?SigningReleases">Signing a release version</a>
                 <ul>
                 <li>
-                    <small>The MD5 tool is installed on daedalus, and you can create the digests for Struts releases there.</small>
+                    <small>The MD5 tool is installed on daedalus, and you can create the digests for Struts releases
+                        there.</small>
                 </li>
                 </ul>
             </li>
@@ -64,16 +65,19 @@
 
         <ul>
             <li>
-                Remember to update the <a href="news/index.html">Status section of the News page</a> when cutting any milestone.
+                Remember to update the <a href="news/index.html">Status section of the News page</a> when cutting any
+                milestone.
                 For a final release, also update the /doc/project.xml with the current release number.
             </li>
             <li>
                 The release process can seem daunting when you review it for the first time.
                 But, essentially, it breaks down into three phases of just a few steps each:
                 <ul>
-                    <li>Building - Bugzilla, dependencies, release notes, JAR manifest, licenses, copyrights, and build (using the release target).</li>
+                    <li>Building - Bugzilla, dependencies, release notes, JAR manifest, licenses, copyrights, and build
+                        (using the release target).</li>
                     <li>Testing - JUnit, Cactus, web apps (for all "supported" containers). </li>
-                    <li>Distributing - Checksum, sign, mirror, release, update Struts site, update Jakarta site, announce.</li>
+                    <li>Distributing - Checksum, sign, mirror, release, update Struts site, update Jakarta site,
+                        announce.</li>
                 </ul>
             </li>
             <li>
