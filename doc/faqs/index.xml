@@ -16,6 +16,8 @@
 
  <ul>
     <li><a href="ssl.html">SSL Howto</a></li>
+    <li><a href="eclipse.html">Example development environment with Eclipse 2.0.1</a></li>
+    <li><a href="netbeans.html">Example development environment with Netbeans 3.4</a></li>
  </ul>
 
 </section>

@@ -12,8 +12,9 @@
     </menu>
 
     <menu name="Howtos">
-        <item href="netbeans.html" name="Netbeans"/>
         <item href="ssl.html" name="SSL"/>
+        <item href="netbeans.html" name="Netbeans"/>
+        <item href="eclipse.html" name="Eclipse"/>
     </menu>
 
     <menu name="Struts">
