@@ -349,7 +349,9 @@ class.  For example, the following code sequence:</p>
 </pre>
 
 <a name="doc.Usage"></a>
-<h3>Usage Example</h3>
+<h3>Usage Examples</h3>
+
+<h5>Processing The Struts Configuration File</h5>
 
 <p>As stated earlier, the primary reason that the
 <code>org.apache.struts.digester.Digester</code> package exists is because the
@@ -435,6 +437,89 @@ the following actions take place:</p>
 information that was defined in the <code>struts-config.xml</code> file is
 now represented as collections of objects cached within the Struts controller
 servlet, as well as being exposed as servlet context attributes.</p>
+
+<h5>Parsing Body Text In XML Files</h5>
+
+<p>The Digester module also allows you to process the nested body text in an
+XML file, not just the elements and attributes that are encountered.  The
+following example is based on an assumed need to parse the web application
+deployment descriptor (<code>/WEB-INF/web.xml</code>) for the current web
+application, and record the configuration information for a particular
+servlet.  To record this information, assume the existence of a bean class
+with the following method signatures (among others):</p>
+<pre>
+  package com.mycompany;
+  public class ServletBean {
+    public void setServletName(String servletName);
+    public void setServletClass(String servletClass);
+    public void addInitParam(String name, String value);
+  }
+</pre>
+
+<p>We are going to process the <code>web.xml</code> file that declares the
+controller servlet in a typical Struts-based application (abridged for
+brevity in this example):</p>
+<pre>
+  &lt;web-app&gt;
+    ...
+    &lt;servlet&gt;
+      &lt;servlet-name&gt;action&lt;/servlet-name&gt;
+      &lt;servlet-class&gt;org.apache.struts.action.ActionServlet&lt;servlet-class&gt;
+      &lt;init-param&gt;
+        &lt;param-name&gt;application&lt;/param-name&gt;
+        &lt;param-value&gt;org.apache.struts.example.ApplicationResources&lt;param-value&gt;
+      &lt;/init-param&gt;
+      &lt;init-param&gt;
+        &lt;param-name&gt;config&lt;/param-name&gt;
+        &lt;param-value&gt;/WEB-INF/struts-config.xml&lt;param-value&gt;
+      &lt;/init-param&gt;
+    &lt;/servlet&gt;
+    ...
+  &lt;/web-app&gt;
+</pre>
+
+<p>Next, lets define some Digester processing rules for this input file:</p>
+<pre>
+  digester.addObjectCreate("web-app/servlet",
+                           "com.mycompany.ServletBean");
+  digester.addCallMethod("web-app/servlet/servlet-name", "setServletName", 0);
+  digester.addCallMethod("web-app/servlet/servlet-class",
+                         "setServletClass", 0);
+  digester.addCallMethod("web-app/servlet/init-param",
+                         "addInitParam", 2);
+  digester.addCallParam("web-app/servlet/init-param/param-name", 0);
+  digester.addCallParam("web-app/servlet/init-param/param-value", 1);
+</pre>
+
+<p>Now, as elements are parsed, the following processing occurs:</p>
+<ul>
+<li><em>&lt;servlet&gt;</em> - A new <code>com.mycompany.ServletBean</code>
+    object is created, and pushed on to the object stack.</li>
+<li><em>&lt;servlet-name&gt;</em> - The <code>setServletName()</code> method
+    of the top object on the stack (our <code>ServletBean</code>) is called,
+    passing the body content of this element as a single parameter.</li>
+<li><em>&lt;servlet-class&gt;</em> - The <code>setServletClass()</code> method
+    of the top object on the stack (our <code>ServletBean</code>) is called,
+    passing the body content of this element as a single parameter.</li>
+<li><em>&lt;init-param&gt;</em> - A call to the <code>addInitParam</code>
+    method of the top object on the stack (our <code>ServletBean</code>) is
+    set up, but it is <strong>not</strong> called yet.  The call will be
+    expecting two <code>String</code> parameters, which must be set up by
+    subsequent call parameter rules.</li>
+<li><em>&lt;param-name&gt;</em> - The body content of this element is assigned
+    as the first (zero-relative) argument to the call we are setting up.</li>
+<li><em>&lt;param-value&gt;</em> - The body content of this element is assigned
+    as the second (zero-relative) argument to the call we are setting up.</li>
+<li><em>&lt;/init-param&gt;</em> - The call to <code>addInitParam()</code>
+    that we have set up is now executed, which will cause a new name-value
+    combination to be recorded in our bean.</li>
+<li><em>&lt;init-param&gt;</em> - The same set of processing rules are fired
+    again, causing a second call to <code>addInitParam()</code> with the
+    second parameter's name and value.</li>
+<li><em>&lt;/servlet&gt;</em> - The element on the top of the object stack
+    (which should be the <code>ServletBean</code> we pushed earlier) is
+    popped off the object stack.</li>
+</ul>
 
 </body>
 </html>
