@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/ModuleConfigVerifier.java,v 1.1 2003/01/07 06:14:59 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/01/07 06:14:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/ModuleConfigVerifier.java,v 1.2 2003/03/23 05:46:23 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/03/23 05:46:23 $
  *
  * ====================================================================
  *
@@ -86,8 +86,8 @@ import org.apache.struts.util.RequestUtils;
  * calls to <code>ServletContext.log()</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/01/07 06:14:59 $
- * @since Struts 1.1-b4
+ * @version $Revision: 1.2 $ $Date: 2003/03/23 05:46:23 $
+ * @since Struts 1.1
  */
 
 public class ModuleConfigVerifier implements PlugIn {
