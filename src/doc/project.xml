@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Struts Framework"
+         href="http://jakarta.apache.org/struts"
+        image="images/struts.gif">
+
+    <title>Struts Framework</title>
+
+    <menu name="Overview">
+        <item name="Home"              href="index.html"/>
+        <item name="Installation"      href="installation.html"/>
+        <item name="TODO"              href="todo.txt"/>
+    </menu>
+
+    <menu name="Old Documents">
+        <item name="User's Guide"      href="users_guide.html"/>
+        <item name="Tag Library (Old)" href="tags.html"/>
+        <item name="API Javadoc"       href="api/index.html"/>
+    </menu>
+<!--
+    <menu name="New Documents">
+        <item name="Bean Tags"         href="tags-bean.html"/>
+        <item name="Form Tags"         href="tags-form.html"/>
+        <item name="Logic Tags"        href="tags-logic.html"/>
+        <item name="Message Tags"      href="tags-message.html"/>
+        <item name="Template Tags"     href="tags-template.html"/>
+    </menu>
+-->
+
+</project>

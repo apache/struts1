@@ -58,17 +58,31 @@
   <!-- BUILD:  Compile documentation application components -->
   <target name="compile.documentation"
        depends="compile.library,prepare.documentation">
+
+    <!-- Compile beans and tags required by the documentation app -->
 <!--
     <javac srcdir="src/documentation"
           destdir="${build.home}/documentation/WEB-INF/classes"
         classpath="${build.home}/library/classes:${servlet.jar}"
             debug="true" optimize="false" deprecation="false"/>
 -->
-    <copydir src="web/documentation" dest="${build.home}/documentation"/>
+
+    <!-- Copy Struts JAR file and TLD to the documentation app -->
     <copyfile src="${dist.home}/lib/${app.name}.jar"
              dest="${build.home}/documentation/WEB-INF/lib/${app.name}.jar"/>
     <copyfile src="${dist.home}/lib/${app.name}.tld"
              dest="${build.home}/documentation/WEB-INF/${app.name}.tld"/>
+
+    <!-- Copy static documentation content -->
+    <copyfile src="TODO" dest="${build.home}/documentation/todo.txt"/>
+    <copydir src="web/documentation" dest="${build.home}/documentation"/>
+
+    <!-- Create dynamically generated documentation -->
+    <style   basedir="src/doc" destdir="${build.home}/documentation"
+           extension=".html" style="stylesheets/struts.xsl" includes="*.xml"/>
+    <copydir src="src/doc" dest="${build.home}/documentation"
+        includes="**/*.css,**/*.gif,**/*.html,**/*.jpg,**/*.js"/>
+
   </target>
 
   <!-- BUILD:  Compile example application components -->

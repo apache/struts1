@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<document url="./index.xml">
+
+  <properties>
+    <author>Craig R. McClanahan</author>
+    <title>The Struts Framework Project</title>
+  </properties>
+
+  <body>
+
+
+  <section name="Welcome to Struts">
+
+  <a name="Welcome"></a>
+
+  <p>Welcome to the Struts Framework!  The goal of this project
+  is to provide an open source framework useful in building web applications
+  with Java <a href="http://java.sun.com/products/servlet">Servlet</a> and
+  <a href="http://java.sun.com/products/jsp">JavaServer Pages</a> (JSP)
+  technology.  Struts encourages appliation architectures based on the
+  Model-View-Controller (MVC) design paradigm, colloquially known as
+  <i>Model 2</i> in discussions on various servlet and JSP related
+  mailing lists.</p>
+
+  <p>Struts includes the following primary areas of functionality:</p>
+  <ul>
+  <li>A controller servlet that dispatches requests to appropriate
+      <strong>Action</strong> classes provided by the application
+      developer.</li>
+  <li>JSP custom tag libraries, and associated support in the controller
+      servlet, that assists developers in creating interactive form-based
+      applications.</li>
+  <li>Utility classes to support XML parsing, automatic population of
+      JavaBeans properties based on the Java reflection APIs, and
+      internationalization of prompts and messages.</li>
+  </ul>
+
+  <p>Struts is part of the <a href="http://jakarta.apache.org">Jakarta
+  Project</a>, sponsored by the
+  <a href="http://www.apache.org">Apache Software Foundation</a>.  The
+  official Struts home page is at
+  <a href="http://jakarta.apache.org/struts">http://jakarta.apache.org/struts</a>.
+  </p>
+
+  </section>
+
+
+  <section name="Acquiring Struts">
+
+  <a name="Acquiring"></a>
+
+  <p>You can acquire binary and source distributions of Struts from the
+  following locations:</p>
+  <ul>
+  <li>Download the source directly via
+      <a href="http://jakarta.apache.org/getinvolved/cvsindex.html">
+      Anonymous CVS</a>.</li>
+  <li>Download nightly binary distributions from
+      <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly">
+      here</a>.</li>
+  <li>Download nightly source distributions from
+      <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/src">
+      here</a>.</li>
+  </ul>
+
+  <p>In addition to the Struts distribution, you will need to ensure that
+  you have downloaded and installed all of the
+  <a href="installation.html#Prerequisites">prerequisite</a> software
+  applications.  Then, follow the appropriate instructions to
+  <a href="installation.html#Building">build Struts from the source
+  distribution</a>, or <a href="@installation.html#Installing">install and
+  use a Struts binary distribution</a> in your web application.</p>
+
+  </section>
+
+
+  <section name="Getting Involved">
+
+  <p>There are a number of ways to get more involved in the Struts
+  community, including contributing to the future development of Struts.
+  Check out the following resources:</p>
+  <ul>
+  <li><strong>STRUTS-USER Mailing List</strong> - Subscribe to the
+      <a href="mailto:struts-user-subscribe@jakarta.apache.org">STRUTS-USER</a>
+      mailing list to communicate with other developers that are using
+      Struts for their own applications, including questions about the
+      installation of Struts, and the usage of particular Struts features.</li>
+  <li><strong>STRUTS-DEV Mailing List</strong> - Subscribe to the
+      <a href="mailto:struts-dev-subscribe@jakarta.apache.org">STRUTS-DEV</a>
+      mailing list to communicate with other developers interested in expanding
+      and improving the functionality supported by Struts itself.</li>
+  <li><strong>Patches and Modules</strong> - You can contribute patches and
+      new modules to Struts by posting them to the STRUTS-DEV mailing list.
+      After discussion and acceptance, one of the existing Committers will
+      add your contribution to the Struts source code base (with credit to
+      you, of course).</li>
+  <li><strong>Become A Committer</strong> - If you wish to contribute directly
+      to the development of Struts, and have commit access to the CVS source
+      repository, you can be nominated (or nominate yourself) for Committer
+      status on this project.  The rules by which committers are voted on are
+      listed at the
+      <a href="http://jakarta.apache.org/guidelines/index.html">Jakarta
+      web site</a>.</li>
+  </ul>
+
+  </section>
+
+
+  </body>
+</document>
