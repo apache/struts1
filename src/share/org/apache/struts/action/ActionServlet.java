@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.105 2002/06/23 03:59:34 jholmes Exp $
- * $Revision: 1.105 $
- * $Date: 2002/06/23 03:59:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.106 2002/06/23 04:05:21 craigmcc Exp $
+ * $Revision: 1.106 $
+ * $Date: 2002/06/23 04:05:21 $
  *
  * ====================================================================
  *
@@ -82,7 +82,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.beanutils.converters.BooleanConverter;
+import org.apache.commons.beanutils.converters.ByteConverter;
+import org.apache.commons.beanutils.converters.CharacterConverter;
+import org.apache.commons.beanutils.converters.DoubleConverter;
+import org.apache.commons.beanutils.converters.FloatConverter;
+import org.apache.commons.beanutils.converters.IntegerConverter;
+import org.apache.commons.beanutils.converters.LongConverter;
+import org.apache.commons.beanutils.converters.ShortConverter;
 import org.apache.commons.collections.FastHashMap;
 import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.Rule;
@@ -187,6 +196,11 @@ import org.apache.struts.util.ServletContextWriter;
  *     servlet or JSP page.  [text/html]
  *     <em>DEPRECATED - Configure this using the "contentType" attribute
  *     of the &lt;controller&gt; element.</em></li>
+ * <li><strong>convertHack</strong> - Set to <code>true</code> to force form
+ *     bean population of bean properties that are of Java wrapper class types
+ *     (such as java.lang.Integer) to set the property to <code>null</code>,
+ *     instead of zero, in a manner equivalent to the behavior of Struts 1.0.
+ *     [false]</li>
  * <li><strong>debug</strong> - The debugging detail level for this
  *     servlet, which controls how much information is logged. Accepts
  *     values 0 (off) and 1 (least serious) through 6 (most serious). [0]</li>
@@ -271,7 +285,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.105 $ $Date: 2002/06/23 03:59:34 $
+ * @version $Revision: 1.106 $ $Date: 2002/06/23 04:05:21 $
  */
 
 public class ActionServlet
@@ -293,6 +307,13 @@ public class ActionServlet
      * Struts configuration file.
      */
     protected Digester configDigester = null;
+
+
+    /**
+     * The flag to request backwards-compatible conversions for form bean
+     * properties of the Java wrapper class types.
+     */
+    protected boolean convertHack = false;
 
 
     /**
@@ -1066,6 +1087,33 @@ public class ActionServlet
             detail = Integer.parseInt(value);
         } catch (Throwable t) {
             detail = 0;
+        }
+
+        // Backwards compatibility hack for form beans of Java wrapper classes
+        // Set to true for strict Struts 1.0 compatibility
+        value = getServletConfig().getInitParameter("convertHack");
+        if (value != null) {
+            if ("true".equalsIgnoreCase(value) ||
+                "yes".equalsIgnoreCase(value) ||
+                "on".equalsIgnoreCase(value) ||
+                "y".equalsIgnoreCase(value) ||
+                "1".equalsIgnoreCase(value)) {
+                convertHack = true;
+            } else {
+                convertHack = false;
+            }
+        }
+        if (convertHack) {
+            ConvertUtils.deregister();
+            ConvertUtils.register(new BooleanConverter(null), Boolean.class);
+            ConvertUtils.register(new ByteConverter(null), Byte.class);
+            ConvertUtils.register(new CharacterConverter(null),
+                                  Character.class);
+            ConvertUtils.register(new DoubleConverter(null), Double.class);
+            ConvertUtils.register(new FloatConverter(null), Float.class);
+            ConvertUtils.register(new IntegerConverter(null), Integer.class);
+            ConvertUtils.register(new LongConverter(null), Long.class);
+            ConvertUtils.register(new ShortConverter(null), Short.class);
         }
 
     }
