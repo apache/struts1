@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.6 2003/02/04 02:23:08 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/02/04 02:23:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.7 2003/07/11 23:57:15 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/07/11 23:57:15 $
  *
  * ====================================================================
  *
@@ -59,13 +59,14 @@
  *
  */
 
-
 package org.apache.struts.tiles.actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
@@ -77,7 +78,6 @@ import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.DefinitionsUtil;
 import org.apache.struts.tiles.FactoryNotFoundException;
 import org.apache.struts.tiles.NoSuchDefinitionException;
-
 
 /**
  * <p>An <strong>Action</strong> that dispatches to a Tiles Definition
@@ -109,12 +109,14 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.6 $ $Date: 2003/02/04 02:23:08 $
+ * @version $Revision: 1.7 $ $Date: 2003/07/11 23:57:15 $
  */
-
 public class DefinitionDispatcherAction extends Action {
-    /** Commons Logging instance. */
-   protected static Log log = LogFactory.getLog(DefinitionDispatcherAction.class);
+    
+    /** 
+     * Commons Logging instance. 
+     */
+    protected static Log log = LogFactory.getLog(DefinitionDispatcherAction.class);
 
     /**
      * Process the specified HTTP request, and create the corresponding HTTP
@@ -130,71 +132,88 @@ public class DefinitionDispatcherAction extends Action {
      *  an exception
      * @since Struts 1.1
      */
-    public ActionForward execute(ActionMapping mapping,
-                                 ActionForm form,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response)
-        throws Exception
-    {
+    public ActionForward execute(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws Exception {
+            
         // Identify the request parameter containing the method name
         // If none defined, use "def"
         String parameter = mapping.getParameter();
         if (parameter == null) {
-          parameter = "def";
+            parameter = "def";
         }
 
         // Identify the method name to be dispatched to
         String name = request.getParameter(parameter);
-        if (name == null)
-          {
-          String msg = "Definition dispatcher action : can't get parameter '"
-                           + parameter + "'.";
-          printError( response, msg );
-          return (null);
-          }
+        if (name == null) {
+            String msg =
+                "Definition dispatcher action : can't get parameter '"
+                    + parameter
+                    + "'.";
+                    
+            printError(response, msg);
+            return null;
+        }
 
         // Try to dispatch to requested definition
-      try
-        {
-          // Read definition from factory, but we can create it here.
-        ComponentDefinition definition = DefinitionsUtil.getDefinition( name, request, getServlet().getServletContext() );
-        if(log.isDebugEnabled())
-            log.debug("get Definition " + definition );
-        DefinitionsUtil.setActionDefinition( request, definition);
-        }
-       catch( FactoryNotFoundException ex )
-        {
-        printError( response, "Error - DefinitionDispatcherAction : Can't get definition factory.");
-        return (mapping.findForward("error"));
-        }
-       catch( NoSuchDefinitionException ex )
-        {
-        printError( response, "Error - DefinitionDispatcherAction : Can't get definition '" + name +"'.");
-        return (mapping.findForward("error"));
-        }
-       catch( DefinitionsFactoryException ex )
-        {
-        printError( response, "Error - DefinitionDispatcherAction : General Factory error '" + ex.getMessage() +"'.");
-        return (mapping.findForward("error"));
-        }
-       catch( Exception ex )
-        {
-        printError( response, "Error - DefinitionDispatcherAction : General error '" + ex.getMessage() +"'.");
-        return (mapping.findForward("error"));
+        try {
+            // Read definition from factory, but we can create it here.
+            ComponentDefinition definition =
+                DefinitionsUtil.getDefinition(
+                    name,
+                    request,
+                    getServlet().getServletContext());
+                    
+            if (log.isDebugEnabled()) {
+                log.debug("get Definition " + definition);
+            }
+            
+            DefinitionsUtil.setActionDefinition(request, definition);
+            
+        } catch (FactoryNotFoundException ex) {
+            printError(
+                response,
+                "Error - DefinitionDispatcherAction : Can't get definition factory.");
+            return mapping.findForward("error");
+            
+        } catch (NoSuchDefinitionException ex) {
+            printError(
+                response,
+                "Error - DefinitionDispatcherAction : Can't get definition '"
+                    + name
+                    + "'.");
+            return mapping.findForward("error");
+            
+        } catch (DefinitionsFactoryException ex) {
+            printError(
+                response,
+                "Error - DefinitionDispatcherAction : General Factory error '"
+                    + ex.getMessage()
+                    + "'.");
+            return mapping.findForward("error");
+            
+        } catch (Exception ex) {
+            printError(
+                response,
+                "Error - DefinitionDispatcherAction : General error '"
+                    + ex.getMessage()
+                    + "'.");
+            return mapping.findForward("error");
         }
 
-   return (mapping.findForward("success"));
+        return mapping.findForward("success");
 
-   }
+    }
 
-  protected void printError( HttpServletResponse response, String msg )
-      throws IOException
-    {
-    response.setContentType("text/plain");
-    PrintWriter writer = response.getWriter();
-    writer.println(msg);
-    writer.flush();
-    writer.close();
+    protected void printError(HttpServletResponse response, String msg)
+        throws IOException {
+        response.setContentType("text/plain");
+        PrintWriter writer = response.getWriter();
+        writer.println(msg);
+        writer.flush();
+        writer.close();
     }
 }
-
