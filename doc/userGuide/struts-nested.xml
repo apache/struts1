@@ -131,10 +131,25 @@
         means). For example you can load a bean for use with the
         <code>jsp:useBean</code> tag.
       </p>
+      <p>
+        The tag can also be used without specifying the <code>name</code>
+        attribute, but this is only in the case that the current JSP is a
+        dynamic include specified in another file. You will not be able to run
+        the tag without a name unless this inclusion is in place. Otherwise
+        the nested tags will not have the bean and property references that they
+        need to provide their logic.
+      </p>
+      <p>
+        <strong>Note</strong>: The acess to a bean via the <code>name</code>
+        attribute takes priority over looking for the reference from other
+        parent tags. So if a name is specified, a bean will have to be there
+        waiting for it. It was made this way so that you could use separate
+        beans within a JSP that itself is an inclusion into another.
+      </p>
     </info>
     <attribute>
       <name>name</name>
-      <required>true</required>
+      <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
         The name of the bean by which all child nested tags will derive their
