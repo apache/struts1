@@ -74,9 +74,14 @@
         <tagclass>org.apache.struts.taglib.html.ButtonTag</tagclass>
         <info>
             <p>
-                Renders an HTML &lt;input&gt; element of type button, populated
-                from the specified value or the content of this tag body. This
-                tag is only valid when nested inside a form tag body.
+                Renders an HTML &lt;input&gt; element of type
+                <code>button</code>, populated from the specified value or the
+                content of this tag body. This tag is only valid when nested
+                inside a form tag body.
+            </p>
+            <p>
+             If a graphical button is needed (a button with an image), then the
+             <a href="#image"><code>image</code></a> tag is more appropriate.
             </p>
         </info>
 
@@ -5981,7 +5986,11 @@
         </summary>
         <tagclass>org.apache.struts.taglib.html.SubmitTag</tagclass>
         <info>
-            Render an input button of type submit.
+            Renders an HTML &lt;input&gt; element of type <code>submit</code>.
+            <p>
+             If a graphical button is needed (a button with an image), then the
+             <a href="#image"><code>image</code></a> tag is more appropriate.
+            </p>
         </info>
 
         <attribute>
