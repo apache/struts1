@@ -1,7 +1,7 @@
 <!--
 @author Ted Husted
 @author Craig McClanahan
-@version $Revision: 1.1 $ $Date: 2003/05/09 10:14:42 $
+@version $Revision: 1.2 $ $Date: 2003/05/17 12:32:19 $
 -->
 
 <project name="struts-legacy" default="compile">
@@ -20,9 +20,6 @@
 
     <property name="commons.home"            location="../../../jakarta-commons"/>
     <property name="commons-logging.jar"     location="${commons.home}/commons-logging/dist/commons-logging.jar"/>
-    <!--
-    <property name="jdbc20ext.jar"           value="/classes/jdbc20ext.jar"/>
-    -->
 
     <!-- ========== Local System Paths ==================================== -->
 
@@ -30,6 +27,12 @@
     <property name="conf.home"               location="src/conf"/>
     <property name="dist.home"               location="dist"/>
     <property name="source.home"             location="src/java"/>
+    <property name="source.jdk.home"         location="src/jdk"/>
+
+    <!-- Must select either JDK 1.3 or 1.4 -->
+    <property name="jdk.version"             value="1.3"/>
+    <!-- Define for JDK 1.3 only -->
+    <property name="jdbc20ext.jar"           value="/opt/Javasoft/lib/jdbc2_0-stdext.jar"/>
 
     <!-- ========== Java Compilation Defaults ============================= -->
     <!-- These defaults may be overridden by user preferences from above    -->
@@ -43,9 +46,7 @@
     <path id="compile.classpath">
       <pathelement location="${build.home}/classes"/>
       <pathelement location="${commons-logging.jar}"/>
-        <!--
       <pathelement location="${jdbc20ext.jar}"/>
-        -->
     </path>
 
 
@@ -111,6 +112,15 @@
 
     <target name="compile" depends="resources"
      description="Compile library classes">
+        <!-- jdk specific -->
+        <javac srcdir="${source.jdk.home}/${jdk.version}"
+              destdir="${build.home}/classes"
+                debug="${compile.debug}"
+          deprecation="${compile.deprecation}"
+             optimize="${compile.optimize}">
+            <classpath refid="compile.classpath"/>
+        </javac>
+        <!-- jdk generic (1.2+) -->
         <javac srcdir="${source.home}"
               destdir="${build.home}/classes"
                 debug="${compile.debug}"
