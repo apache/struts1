@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditRegistrationAction.java,v 1.9 2000/10/16 05:02:38 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/10/16 05:02:38 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditRegistrationAction.java,v 1.10 2001/01/07 04:37:04 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/01/07 04:37:04 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.util.PropertyUtils;
  * User (if any).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2000/10/16 05:02:38 $
+ * @version $Revision: 1.10 $ $Date: 2001/01/07 04:37:04 $
  */
 
 public final class EditRegistrationAction extends Action {
@@ -171,6 +171,11 @@ public final class EditRegistrationAction extends Action {
                 throw new ServletException("RegistrationForm.populate", t);
             }
 	}
+
+        // Set a transactional control token to prevent double posting
+        if (servlet.getDebug() >= 1)
+            servlet.log(" Setting transactional control token");
+        saveToken(request);
 
 	// Forward control to the edit user registration page
         if (servlet.getDebug() >= 1)

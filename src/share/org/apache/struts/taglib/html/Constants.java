@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/Constants.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/Constants.java,v 1.2 2001/01/07 04:37:06 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/01/07 04:37:06 $
  *
  * ====================================================================
  *
@@ -98,6 +98,12 @@ public class Constants {
      * The attribute key for the select tag itself.
      */
     public static final String SELECT_KEY = Package + ".SELECT";
+
+
+    /**
+     * The property under which a transaction token is reported.
+     */
+    public static final String TOKEN_KEY = Package + ".TOKEN";
 
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.12 2000/12/29 22:33:54 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2000/12/29 22:33:54 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.13 2001/01/07 04:37:05 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2001/01/07 04:37:05 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.PropertyUtils;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2000/12/29 22:33:54 $
+ * @version $Revision: 1.13 $ $Date: 2001/01/07 04:37:05 $
  */
 
 public final class SaveRegistrationAction extends Action {
@@ -153,11 +153,20 @@ public final class SaveRegistrationAction extends Action {
 	    return (mapping.findForward("success"));
 	}
 
+        // Validate the transactional control token
+	ActionErrors errors = new ActionErrors();
+        if (servlet.getDebug() >= 1) {
+            servlet.log(" Checking transactional control token");
+        }
+        if (!isTokenValid(request))
+            errors.add(ActionErrors.GLOBAL_ERROR,
+                       new ActionError("error.transaction.token"));
+        resetToken(request);
+
 	// Validate the request parameters specified by the user
         if (servlet.getDebug() >= 1)
             servlet.log(" Performing extra validations");
 	String value = null;
-	ActionErrors errors = new ActionErrors();
 	value = regform.getUsername();
 	if (("Create".equals(action)) &&
 	    (database.get(value) != null))
@@ -178,6 +187,7 @@ public final class SaveRegistrationAction extends Action {
 	// Report any errors we have discovered back to the original form
 	if (!errors.empty()) {
 	    saveErrors(request, errors);
+            saveToken(request);
 	    return (new ActionForward(mapping.getInput()));
 	}
 

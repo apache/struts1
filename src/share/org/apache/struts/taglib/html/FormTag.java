@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.2 2001/01/07 04:37:06 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/01/07 04:37:06 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.taglib.html;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -84,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/01/06 21:50:39 $
+ * @version $Revision: 1.2 $ $Date: 2001/01/07 04:37:06 $
  */
 
 public class FormTag extends TagSupport {
@@ -539,6 +540,20 @@ public class FormTag extends TagSupport {
 	    results.append("\"");
 	}
 	results.append(">");
+
+        // Add a transaction token (if present in our session)
+        HttpSession session = pageContext.getSession();
+        if (session != null) {
+            String token =
+                (String) session.getAttribute(Action.TRANSACTION_TOKEN_KEY);
+            if (token != null) {
+                results.append("<input type=\"hidden\" name=\"");
+                results.append(Constants.TOKEN_KEY);
+                results.append("\" value=\"");
+                results.append(token);
+                results.append("\">");
+            }
+        }
 
 	// Print this field to our output writer
 	JspWriter writer = pageContext.getOut();
