@@ -45,6 +45,19 @@
 
   <section name="Acquiring Struts" href="Acquiring">
 
+  <p><strong>NEW!</strong> - A milestone release, <strong>Version 0.5</strong>
+  of Struts has been created and made available at
+  <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v0.5">
+  http://jakarta.apache.org/builds/jakarta-struts/release/v0.5</a>.  This
+  release will provide a stable basis for current projects being developed
+  on Struts, while (sometimes incompatible) changes are occurring on the
+  main code branch leading up to a <strong>Version 1.0</strong> release later.
+  You can track the progress towards <strong>Version 1.0</strong>, and get
+  early warning about new features and changes, by monitoring the
+  <a href="http://jakarta.apache.org/struts/release.html">Release Notes</a>
+  that are posted on the Struts project web site, as well as included in the
+  nightly build distributions.</p>
+
   <p>You can acquire binary and source distributions of Struts from the
   following locations:</p>
   <ul>
@@ -76,6 +89,33 @@
   </section>
 
 
+  <section name="Reporting Bugs and Feature Requests" href="Bugs">
+
+  <p>Thanks to the gracious efforts of
+  <a href="mailto:nick@cortexity.com">Nick Bauman</a> and his employer,
+  Cortexity, there is now an interim bug tracking system available for
+  all of the Jakarta projects (including Struts).  To report a bug, or
+  request a feature enhancement, simply point your browser at:
+  <a href="http://znutar.cortexity.com:8888">
+  http://znutar.cortexity.com:8888</a>.  When filling out a bug report
+  or feature request, please follow these simple rules:</p>
+  <ul>
+  <li>From the list of projects and categories, select one of the following
+      entries:
+      <ul>
+      <li>Struts / Feature Requests / New Features</li>
+      <li>Struts / Feature Requests / Enhancement</li>
+      <li>Struts / Bug Report / New Bug Report</li>
+      </ul></li>
+  <li>For the <code>Project Release</code> field, enter the Struts version
+      number (such as <strong>0.5</strong>) if you are using a released
+      version, or the date included in the filename of a nightly distribution
+      (such as <strong>20000922</strong>) if you are using that.</li>
+  </ul>
+
+  </section>
+
+
   <section name="Getting Involved" href="Involved">
 
   <p>There are a number of ways to get more involved in the Struts
@@ -91,6 +131,8 @@
       <a href="mailto:struts-dev-subscribe@jakarta.apache.org">STRUTS-DEV</a>
       mailing list to communicate with other developers interested in expanding
       and improving the functionality supported by Struts itself.</li>
+  <li><strong>Bug Reports and Feature Requests</strong> Use the
+      <a href="#Bugs">Bug Reporting System</a> to submit these reports.</li>
   <li><strong>Patches and Modules</strong> - You can contribute patches and
       new modules to Struts by posting them to the STRUTS-DEV mailing list.
       After discussion and acceptance, one of the existing Committers will

@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<document url="./release.xml">
+
+  <properties>
+    <author>Craig R. McClanahan</author>
+    <title>Struts Release Notes (Version 1.0)</title>
+  </properties>
+
+  <body>
+
+  <section name="Introduction" href="Introduction">
+
+  <p>This document contains the release notes for <strong>Version 1.0</strong>
+  of the Struts Framework.  The following sections cover
+  <a href="#New">New Features</a> and <a href="#Changes">Changes</a> since
+  the <strong>Version 0.5</strong> of Struts was made available.</p>
+
+  </section>
+
+
+  <section name="What's New?" href="New">
+
+  <p>The following major new features have been added to the controller
+  servlet and associated classes
+  (package <code>org.apache.struts.action</code>):</p>
+  <ul>
+  <li>A new configuration file format, including the
+      <a href="dtds/struts-config_1_0.dtd">Document Type Definition (DTD)</a>
+      it is based on, is available for configuring the Struts controller
+      servlet.  Support for the previous format is still present, but will
+      be phased out by the 1.0 release.</li>
+  <li>If enabled by setting the <code>locale</code> servlet initialization
+      parameter to <code>true</code>, the controller servlet will now calculate
+      a Locale for this user (based on the HTTP headers included with the
+      request) and store it in the user's session, unless the application
+      has stored one there already.</li>
+  <li>Application <code>Action</code> instances now have lifecycle support.
+      The controller servlet will call <code>setServlet()</code> with a
+      non-null argument when the instance is first created, and call it with
+      a <code>null</code> argument when the instance is being shut down.</li>
+  </ul>
+
+  </section>
+
+
+  <section name="Changes and Bug Fixes" href="Changes">
+
+  <p>The following changes and bug fixes to the controller servlet and
+  associated classes (package <code>org.apache.struts.action</code>) have
+  occurred:</p>
+  <ul>
+  <li>The <code>ActionMapping</code> interface has been converted to a base
+      class instead, to reduce the impact of future enhancements.  Anyone who
+      has extended the <code>ActionMappingBase</code> convenience base class
+      (which has been deprecated) should extend <code>ActionMapping</code>
+      instead.</li>
+  <li>In conjunction with the new configuration file format mentioned above,
+      the properties of <code>ActionMapping</code> have been substantially
+      updated.  See the
+      <a href="api/org/apache/struts/action/ActionMapping.html">API
+      Documentation</a> for more information</li>
+  <li>The <code>Action</code> interface has been converted to a base class
+      instead, to reduce the impact of future enhancements.  Anyone who has
+      extended the <code>ActionBase</code> convenience base class (which
+      has been deprecated) should extend <code>Action</code> instead.</li>
+  <li>In conjunction with the above change, the <code>servlet</code>
+      argument has been removed from the parameter list for the
+      <code>perform()</code> method, because it is now redundant -- the
+      associated servlet is set via the <code>setServlet()</code> method
+      when the <code>Action</code> instance is first created.</li>
+  <li>Responsibility for creating <code>Action</code> instances has been moved
+      from <code>ActionMapping</code> to the controller servlet, so that
+      instance lifecycle management can be performed.  As a side effect of this
+      change, if you had two actions that used the same Action class name,
+      there will now be only one (shared) instance of the Action class,
+      rather than two.</li>
+  </ul>
+
+  <p>The following changes and bug fixes to the Digester module
+  (package <code>org.apache.struts.digester</code>) have occurred:</p>
+  <ul>
+  <li>The <code>Digester.resolveEntity()</code> method has been enhanced
+      to correctly handle local URIs so that it works with resources loaded via
+      <code>Class.getResource()</code>.</li>
+  </ul>
+
+  <p>The following changes and bug fixes to the Utilities package
+  (package <code>org.apache.struts.util</code>) have occurred:</p>
+  <ul>
+  <li>Fixed <code>PropertyUtils.getPropertyType()</code> to correctly return
+      the underlying element type even if there was a non-indexed property
+      getter method.</li>
+  <li>Added a missing "return" statement to
+      <code>PropertyUtils.setIndexedProperty()</code>.</li>
+  <li>Functionality in <code>BeanUtils</code> that previously duplicated
+      functionality that was earlier moved to <code>PropertyUtils</code>
+      has been removed.</li>
+  </ul>
+
+  </section>
+
+  </body>
+
+</document>
+

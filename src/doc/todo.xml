@@ -39,19 +39,6 @@
       action and form bean classes, plus the supporting data structures.</p>
     </info>
 
-    <task name="Enhanced Configuration">
-      <info>
-        <p>Implement a new configuration mechanism for the controller servlet
-        (replacing <code>action.xml</code>) that is based on the proposed
-        <code>struts-config.dtd</code> DTD with future extensibility in mind.
-        For backwards compatibility, support the existing configuration format
-        at least until 1.0 is released.</p>
-      </info>
-      <assigned>
-        Craig McClanahan
-      </assigned>
-    </task>
-
     <task name="Standard Actions">
       <info>
         <p>Begin the collection of a set of generally useful standard
@@ -62,13 +49,6 @@
       </info>
     </task>
 
-    <task name="Default Action">
-      <info>
-        <p>Support a configurable default action mapping if none of the
-        other mappings are selected.</p>
-      </info>
-    </task>
-
     <task name="Enhanced Validation">
       <info>
         <p>Replace the current <code>ValidatingActionForm.validate()</code>
@@ -76,29 +56,6 @@
         servlet?, mapping?) so that it can do more global sorts of validation
         checks, as well as access external resources.</p>
         <p><strong>NOTE:  Likely to break backwards compatibility.</strong></p>
-      </info>
-    </task>
-
-    <task name="Calculate User Locale">
-      <info>
-        <p>Provide configurable support in <code>ActionServlet</code> to
-        attempt a mapping of the values specified in the HTTP
-        <code>Accept-Language</code> headers (if any) to a corresponding
-        <code>Locale</code>, if one has not been set as a session attribute
-        by application code.  It should also be possible to request creation
-        of this Locale as a request attribute, rather than a session
-        attribute, when Struts is used in a session-less environment.</p>
-      </info>
-    </task>
-
-    <task name="Non-HTTP Actions">
-      <info>
-        <p>Define a second <code>Action.perform()</code> method signature that
-        takes <code>ServletRequest</code> and <code>ServletResponse</code> as
-        parameters, rather than their HTTP subclasses.  Default implementation
-        in <code>ActionBase</code> should forward to the HTTP equivalents if
-        possible, or throw an exception otherwise, to partially preserve
-        backwards compatibility.</p>
       </info>
     </task>
 
