@@ -17,7 +17,7 @@
     <p>This section contains the release notes for
     <strong>nightly build</strong> of the Struts Framework,
     for changes that have taken place since
-    <a href="release-notes-1.1-b2.html">Version 1.1 beta 2</a>
+    <a href="release-notes-1.1.html">Version 1.1 </a>
     was released. For a complete list of changes since the last
     production release, see the <a href="#Introduction">Introduction</a> </p>
 
@@ -26,18 +26,9 @@
 <section name="Beta Fixes" href="beta.Changes">
 
   <p>
-  <b>ApplicationConfig:</b> In Struts 1.1. beta 3, the ApplicationConfig class 
-  is renamed to ModuleConfig, to conform with the venacular.
+  <b>ApplicationConfig:</b> In Struts 1.2 was removed.
   </p>
 
-  <p>
-  <b>Dyna*Form:</b> In Struts 1.1. beta 3, the reset method was changed so that 
-  it conforms to the original ActionForm implementation.</p>
-
-  <p>
-  <b>Blank application:</b> Fixed configuration problem with Struts Blank 
-  application.
-  </p>
 
 </section>
 
@@ -46,7 +37,7 @@
     <p>The remainder of this document contains the release notes for
     <strong>nightly build</strong> of the Struts Framework,
     and covers changes that have taken place since
-    <a href="release-notes-1.0.2.html">Version 1.0.2</a>
+    <a href="release-notes-1.1.html">Version 1.1</a>
     was released.  The following sections cover
     <a href="#New">New Features</a> and <a href="#Changes">Changes</a>
     to Struts.</p>
@@ -120,9 +111,9 @@
     provide links to the JavaDocs for the affected classes.</p>
 
     <p><strong>New Configuration DTD</strong></p>
-    <p> The Struts Configuration 1.0 DTD has been deprecated in favor of the
-    <code><a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">struts-config_1_1.dtd</a></code>.
-    In the Struts 1.1 release, existing Struts configuration files can be
+    <p> The Struts Configuration 1.1 DTD has been deprecated in favor of the
+    <code><a href="http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">struts-config_1_1.dtd</a></code>.
+    In the Struts 1.2 release, existing Struts configuration files can be
     loaded using either DTD version.
     </p>
 
@@ -538,29 +529,11 @@
       <li>getResources(javax.servlet.http.HttpServletRequest)</li>
       <li>saveMessages</li>
     </ul>
-    <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">action.A</a><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">ctionServlet</a></p>
+    <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">action.A</a><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">ActionServlet</a></p>
     <ul>
-      <li>configDigester</li>
-      <li>convertHack</li>
-      <li>log</li>
-      <li>processor</li>
-      <li>getInternal</li>
-      <li>destroyApplications</li>
-      <li>destroyConfigDigester</li>
-      <li>getApplicationConfig</li>
-      <li>getRequestProcessor</li>
-      <li>initApplicationConfig</li>
-      <li>initApplicationDataSources</li>
-      <li>initApplicationPlugIns</li>
-      <li>initApplicationMessageResources</li>
-      <li>initConfigDigester</li>
+      <li>initModuleConfigFactory()</li>
       <li>methods created for backward-compatiblity only
         <ul>
-          <li>defaultControllerConfig</li>
-          <li>defaultFormBeansConfig</li>
-          <li>defaultForwardsConfig</li>
-          <li>defaultMappingsConfig</li>
-          <li>defaultMessageResourcesConfig</li>
         </ul>
       </li>
     </ul>
@@ -570,16 +543,13 @@
       <li>setIndexed</li>
       <li>getIndexed</li>
     </ul>
-    <p><strong>Classes deprecated between Struts 1.0 and Struts 1.1</strong></p>
+    <p><strong>Classes deprecated between Struts 1.1 and Struts 1.2</strong></p>
     <p>action</p>
     <ul>
-      <li>ActionException</li>
-      <li>ActionFormBeans</li>
-      <li>ActionForwards</li>
-      <li>ActionMappings</li>
+      <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/xxx/xxxx.html"> xxx</a></li>
     </ul>
-    <p><strong>Classes with members deprecated between Struts 1.0 and Struts 1.1</strong></p>
-    <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/Action.html">action.Action</a></p>
+    <p><strong>Classes with members deprecated between Struts 1.1 and Struts 1.2</strong></p>
+    <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/xxxx/xxxx.html">class.method</a></p>
 
     <ul>
       <li>FORM_BEANS_KEY</li>
