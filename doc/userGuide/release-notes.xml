@@ -78,8 +78,8 @@
           <code>Action.perform</code>: Use
           <code>Action.execute</code> instead.</li>
         </ul>
-        <p>Although not removed, in many cases
-        <strong>you should replace</strong> the deprecated
+        <p>Although not removed or deprecated, in many cases
+        <strong>you should replace</strong> the 
         <code>ActionErrors</code> with the preferred
         <code>ActionMessages</code> to ensure correct operation.</p>
         <p>
