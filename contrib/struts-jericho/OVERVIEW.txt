@@ -17,6 +17,7 @@ Request Adapter (module, portlet, mock)
 Controller
 * Receives context and selects the matching mapping
 * Adds reference to mapping instance to context
+* Sets mapping's default Location to context
 * Removes any expired messages from context
 * Invokes processor for mapping
 
@@ -35,10 +36,15 @@ Processor
     * Validate
     * Invalid
   * MappingHandler
-    * Command | Script | Forward | Include
+    * Command | Script
+      * Invoke buiness logic
+      * Affect context state
+      * Identify resource to render response
+    * Location
+      * Identify resource to render response
 
 ExceptionHandler
-* Intercept any Exception thrown by Processor and dispatch to designated error page.
+* Intercept any Exception thrown by Processor and set Location to designated error page.
 
 Tags/Tools
 * Reference Command Context (stored in request) to access framework members
