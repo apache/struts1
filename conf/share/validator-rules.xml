@@ -2,6 +2,9 @@
           "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
           "http://jakarta.apache.org/commons/dtds/validator_1_0.dtd">
 <!--
+  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.38 2003/08/15 19:33:52 rleland Exp $
+  $Revision: 1.38 $
+  $Date: 2003/08/15 19:33:52 $
 
    This file contains the default Struts Validator pluggable validator
    definitions.  It should be placed somewhere under /WEB-INF and
