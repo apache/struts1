@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.6 2002/07/07 23:15:36 martinc Exp $
+$Id: STATUS,v 1.7 2002/07/07 23:20:20 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -53,7 +53,6 @@ Unknown:
 Utilities:
 ---------
  7541 Digester/Commons Logging error with -security
-10535 DynaActionForm, BeanUtils.populate, Unknown property 'multipartRequestHandler'
 
 
 Validator Framework:
