@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.25 2004/01/10 21:03:38 dgraham Exp $
- * $Revision: 1.25 $
- * $Date: 2004/01/10 21:03:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.26 2004/01/17 22:11:07 dgraham Exp $
+ * $Revision: 1.26 $
+ * $Date: 2004/01/17 22:11:07 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.RequestUtils;
  * This class helps provides some useful methods for retrieving objects
  * from different scopes of the application.
  *
- * @version $Revision: 1.25 $ $Date: 2004/01/10 21:03:38 $
+ * @version $Revision: 1.26 $ $Date: 2004/01/17 22:11:07 $
  * @since Struts 1.1
  */
 public class Resources {
@@ -191,8 +191,9 @@ public class Resources {
     }
 
     /**
-     * Gets the locale sensitive message based on the <code>ValidatorAction</code> message and the
-     * <code>Field</code>'s arg objects.
+     * Gets the locale sensitive message based on the 
+     * <code>ValidatorAction</code> message and the <code>Field</code>'s 
+     * arg objects.
      * @param messages  The Message resources
      * @param locale The locale
      * @param va The Validator Action
@@ -244,7 +245,7 @@ public class Resources {
     }
     
     /**
-     * Gets the <code>ActionError</code> based on the 
+     * Gets the <code>ActionMessage</code> based on the 
      * <code>ValidatorAction</code> message and the <code>Field</code>'s 
      * arg objects.
      * @param request the servlet request
@@ -272,11 +273,11 @@ public class Resources {
     }
 
     /**
-     * Gets the message arguments based on the current <code>ValidatorAction</code>
-     * and <code>Field</code>.
-     * @param actionName   action name
-     * @param messages  message resources
-     * @param locale   the locale
+     * Gets the message arguments based on the current 
+     * <code>ValidatorAction</code> and <code>Field</code>.
+     * @param actionName action name
+     * @param messages message resources
+     * @param locale the locale
      * @param field the validator field
      */
     public static String[] getArgs(
