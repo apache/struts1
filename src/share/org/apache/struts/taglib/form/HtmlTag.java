@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/HtmlTag.java,v 1.1 2000/11/19 01:18:17 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/19 01:18:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/HtmlTag.java,v 1.2 2000/11/19 02:38:40 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/11/19 02:38:40 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * there is a current Locale available in the user's session.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/11/19 01:18:17 $
+ * @version $Revision: 1.2 $ $Date: 2000/11/19 02:38:40 $
  */
 
 public class HtmlTag extends TagSupport {
@@ -87,6 +87,21 @@ public class HtmlTag extends TagSupport {
      */
     protected static MessageResources messages =
      MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
+
+
+    /**
+     * Are we rendering an xhtml page?
+     */
+    protected boolean xhtml = false;
+
+    public boolean getXhtml() {
+        return (xhtml);
+    }
+
+    public void setXhtml(boolean xhtml) {
+        this.xhtml = xhtml;
+    }
+
 
     /**
      * Process the start of this tag.
@@ -103,9 +118,12 @@ public class HtmlTag extends TagSupport {
             if ((lang != null) && (lang.length() > 0)) {
                 sb.append(" lang=\"");
                 sb.append(lang);
-                sb.append("\" xml:lang=\"");
-                sb.append(lang);
                 sb.append("\"");
+                if (xhtml) {
+                    sb.append(" xml:lang=\"");
+                    sb.append(lang);
+                    sb.append("\"");
+                }
             }
         }
         sb.append(">");
@@ -119,6 +137,16 @@ public class HtmlTag extends TagSupport {
                 (messages.getMessage("common.io", e.toString()));
         }
         return (SKIP_BODY);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+        xhtml = false;
 
     }
 

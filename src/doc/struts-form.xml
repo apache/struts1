@@ -1154,6 +1154,7 @@
 	
 
         <tag>
+
           <name>html</name>
           <summary>Render an HTML &lt;html&gt; Element</summary>
           <tagclass>org.apache.struts.taglib.form.HtmlTag</tagclass>
@@ -1163,6 +1164,13 @@
           language attributes extracted from the user's current Locale
           object, if there is one.</p>
           </info>
+
+          <attribute>
+            <name>xhtml</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+          </attribute>
+
         </tag>
 
 
