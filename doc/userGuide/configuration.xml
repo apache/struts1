@@ -450,7 +450,7 @@
     
     <p>
     In Struts 1.1, you have two options: you can list 
-    <a href="dd_config_servlet">multiple struts-config files</a> as a 
+    <a href="#dd_config_servlet">multiple struts-config files</a> as a 
     comma-delimited list, or you can subdivide a larger application into 
     modules.
     </p>
