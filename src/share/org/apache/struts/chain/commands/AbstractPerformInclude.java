@@ -19,9 +19,8 @@ package org.apache.struts.chain.commands;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.WebContext;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.chain.Constants;
 
 
 /**
@@ -33,68 +32,6 @@ import org.apache.struts.chain.Constants;
  */
 
 public abstract class AbstractPerformInclude implements Command {
-
-
-    // ------------------------------------------------------ Instance Variables
-
-
-    private String includeKey = Constants.INCLUDE_KEY;
-    private String moduleConfigKey = Constants.MODULE_CONFIG_KEY;
-
-
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * include uri for the currently selected application
-     * action is stored.</p>
-     */
-    public String getIncludeKey() {
-
-        return (this.includeKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * include uri for the currently selected application
-     * action is stored.</p>
-     *
-     * @param includeKey The new context attribute key
-     */
-    public void setIncludeKey(String includeKey) {
-
-        this.includeKey = includeKey;
-
-    }
-    
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * module is stored.</p>
-     */
-    public String getModuleConfigKey() {
-
-        return (this.moduleConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * module is stored.</p>
-     *
-     * @param moduleConfigKey The new context attribute key
-     */
-    public void setModuleConfigKey(String moduleConfigKey) {
-
-        this.moduleConfigKey = moduleConfigKey;
-
-    }
-
 
     // ---------------------------------------------------------- Public Methods
 
@@ -110,13 +47,11 @@ public abstract class AbstractPerformInclude implements Command {
     public boolean execute(Context context) throws Exception {
 
         // Retrieve module config instance
-        WebContext wcontext = (WebContext) context;
-        ModuleConfig moduleConfig = (ModuleConfig)
-            wcontext.get(getModuleConfigKey());
+        ActionContext actionCtx = (ActionContext) context;
+        ModuleConfig moduleConfig = actionCtx.getModuleConfig();
         
         // Is there an include to be performed?
-        String include = (String)
-            context.get(getIncludeKey());
+        String include = actionCtx.getInclude();
         if (include == null) {
             return (false);
         }

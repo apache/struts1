@@ -18,13 +18,13 @@ package org.apache.struts.chain.commands.servlet;
 
 
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.chain.commands.AbstractExecuteAction;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ForwardConfig;
+import org.apache.struts.chain.contexts.ServletActionContext;
 
 
 /**
@@ -58,11 +58,11 @@ public class ExecuteAction extends AbstractExecuteAction {
                                     ActionForm actionForm)
         throws Exception {
 
-        ServletWebContext swcontext = (ServletWebContext) context;
+        ServletActionContext saContext = (ServletActionContext) context;
         return (action.execute((ActionMapping) actionConfig,
                                actionForm,
-                               swcontext.getRequest(),
-                               swcontext.getResponse()));
+                               saContext.getRequest(),
+                               saContext.getResponse()));
 
     }
 

@@ -33,45 +33,34 @@
 
 <catalog       name="struts">
 
-
+    <define name= "lookup"
+            className= "org.apache.struts.chain.commands.generic.WrappingLookupCommand" />
     <!-- ========== Servlet Complete Request Chain ========================= -->
 
-    <chain     name="servlet-complete">
+    <chain     name="servlet-standard">
 
-      <!-- Identify the ModuleConfig for this request -->
+      <!-- Establish exception handling filter -->
       <command
-          className="org.apache.struts.chain.commands.servlet.SelectModule"/>
-
-
-      <!-- Establish the default request processor chain -->
-      <command
-          className="org.apache.commons.chain.generic.CopyCommand"
-              toKey="requestProcessorChain"
-              value="servlet-standard"/>
-
-
-      <!-- Look up optional preprocess command -->
-      <!-- NOTE:  Can override request processor chain name if desired -->
-      <command
-          className="org.apache.commons.chain.generic.LookupCommand"
+          className="org.apache.struts.chain.commands.ExceptionCatcher"
         catalogName="struts"
-               name="servlet-complete-preprocess"
-           optional="true"/>
+   exceptionCommand="servlet-exception"/>
 
-
-      <!-- Delegate to the appropriate request processor chain -->
-      <command
-          className="org.apache.commons.chain.generic.LookupCommand"
+      <lookup
+        wrapperClassName="org.apache.struts.chain.contexts.ServletActionContext"
         catalogName="struts"
-            nameKey="requestProcessorChain"
+               name="process-action"
+           optional="false"/>
+
+      <lookup
+        catalogName="struts"
+               name="process-view"
            optional="false"/>
 
     </chain>
 
 
-   <!-- ========== Servlet Standard Request Processor Chain ================ -->
-
-   <chain      name="servlet-standard">
+    <!-- ========== View Processing chain ======================== -->
+   <chain      name="process-action">
 
       <!--
            This chain attempts to emulate (most of) the standard request
@@ -116,25 +105,14 @@
            processActionCreate     CreateAction
 
            processActionPerform    ExecuteAction
-
-           processForwardConfig    PerformForward
-
       -->
 
 
       <!-- Look up optional preprocess command -->
-      <command
-          className="org.apache.commons.chain.generic.LookupCommand"
+      <lookup
         catalogName="struts"
                name="servlet-standard-preprocess"
            optional="true"/>
-
-
-      <!-- Establish exception handling filter -->
-      <command
-          className="org.apache.struts.chain.commands.ExceptionCatcher"
-        catalogName="struts"
-   exceptionCommand="servlet-exception"/>
 
 
       <!-- Identify the Locale for this request -->
@@ -164,7 +142,7 @@
 
       <!-- Create (if needed) the ActionForm for this request -->
       <command
-          className="org.apache.struts.chain.commands.CreateActionForm"/>
+          className="org.apache.struts.chain.commands.servlet.CreateActionForm"/>
 
 
       <!-- Populate the ActionForm for this request -->
@@ -206,20 +184,22 @@
 
       <!-- Create (if needed) the Action for this request -->
       <command
-          className="org.apache.struts.chain.commands.CreateAction"/>
+          className="org.apache.struts.chain.commands.servlet.CreateAction"/>
 
 
       <!-- Execute the Action for this request -->
       <command
           className="org.apache.struts.chain.commands.servlet.ExecuteAction"/>
+    </chain>
 
-
+    <!-- ========== View Processing chain ======================== -->
+    <chain name="process-view">
       <!--
       If you want to use Tiles, uncomment this command and make sure you have 
       the struts-tiles JAR included in your web application.
 
       <command
-          className="org.apache.struts.chain.commands.servlet.TilesPreProcessor"/>
+          className="org.apache.struts.tiles.commands.TilesPreProcessor"/>
       
       -->
 
@@ -230,8 +210,7 @@
 
 
     </chain>
-
-
+    
     <!-- ========== Servlet Exception Handler Chain ======================== -->
 
     <chain     name="servlet-exception">

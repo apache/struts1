@@ -17,16 +17,16 @@
 package org.apache.struts.chain.commands.servlet;
 
 
-import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.chain.commands.AbstractPopulateActionForm;
+import org.apache.struts.chain.contexts.ActionContext;
+import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.util.RequestUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <p>Populate the form bean (if any) for this request.  Sets the multipart
@@ -43,28 +43,26 @@ public class PopulateActionForm extends AbstractPopulateActionForm {
     // ------------------------------------------------------- Protected Methods
 
 
-    protected void populate(Context context,
+    protected void populate(ActionContext context,
                          ActionConfig actionConfig,
                          ActionForm actionForm) throws Exception
     {
-        ServletWebContext swcontext = (ServletWebContext) context;
-        RequestUtils.populate(actionForm, actionConfig.getPrefix(), actionConfig.getSuffix(), swcontext.getRequest());
+        ServletActionContext saContext = (ServletActionContext) context;
+        RequestUtils.populate(actionForm, actionConfig.getPrefix(), actionConfig.getSuffix(), saContext.getRequest());
     }
 
-    protected void reset(Context context,
+    protected void reset(ActionContext context,
                          ActionConfig actionConfig,
                          ActionForm actionForm) {
 
-        ServletWebContext swcontext = (ServletWebContext) context;
-        actionForm.reset((ActionMapping) actionConfig, swcontext.getRequest());
+        ServletActionContext saContext = (ServletActionContext) context;
+        actionForm.reset((ActionMapping) actionConfig, saContext.getRequest());
 
         // Set the multipart class
         if (actionConfig.getMultipartClass() != null) {
-            swcontext.getRequestScope().put(Globals.MULTIPART_KEY,
+            saContext.getRequestScope().put(Globals.MULTIPART_KEY,
                                  actionConfig.getMultipartClass());
         }
 
     }
-
-
 }

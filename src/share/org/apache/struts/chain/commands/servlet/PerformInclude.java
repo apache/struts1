@@ -20,7 +20,7 @@ package org.apache.struts.chain.commands.servlet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
+import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.chain.commands.AbstractPerformInclude;
 import org.apache.struts.upload.MultipartRequestWrapper;
 
@@ -48,7 +48,7 @@ public class PerformInclude extends AbstractPerformInclude {
     protected void perform(Context context, String uri)
         throws Exception {
 
-        ServletWebContext swcontext = (ServletWebContext) context;
+        ServletActionContext swcontext = (ServletActionContext) context;
         
         // Get the underlying request in the case of a multipart wrapper
         HttpServletRequest request = swcontext.getRequest();

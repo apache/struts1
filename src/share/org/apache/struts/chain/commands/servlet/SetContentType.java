@@ -19,8 +19,8 @@ package org.apache.struts.chain.commands.servlet;
 
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.chain.commands.AbstractSetContentType;
+import org.apache.struts.chain.contexts.ServletActionContext;
 
 
 /**
@@ -39,7 +39,7 @@ public class SetContentType extends AbstractSetContentType {
 
     protected void setContentType(Context context, String contentType) {
 
-        ServletWebContext swcontext = (ServletWebContext) context;
+        ServletActionContext swcontext = (ServletActionContext) context;
         HttpServletResponse response = swcontext.getResponse();
         
         response.setContentType(contentType);

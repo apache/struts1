@@ -18,9 +18,12 @@ package org.apache.struts.chain.commands;
 
 
 import java.util.Locale;
+
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-import org.apache.struts.chain.Constants;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ModuleConfig;
 
 
@@ -33,66 +36,7 @@ import org.apache.struts.config.ModuleConfig;
 
 public abstract class AbstractSelectLocale implements Command {
 
-
-    // ------------------------------------------------------ Instance Variables
-
-
-    private String localeKey = Constants.LOCALE_KEY;
-    private String moduleConfigKey = Constants.MODULE_CONFIG_KEY;
-
-
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>Locale</code> for the current request is stored.</p>
-     */
-    public String getLocaleKey() {
-
-        return (this.localeKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>Locale</code> for the current request is stored.</p>
-     *
-     * @param localeKey The new context attribute key
-     */
-    public void setLocaleKey(String localeKey) {
-
-        this.localeKey = localeKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * module will be stored.</p>
-     */
-    public String getModuleConfigKey() {
-
-        return (this.moduleConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * module will be stored.</p>
-     *
-     * @param moduleConfigKey The new context attribute key
-     */
-    public void setModuleConfigKey(String moduleConfigKey) {
-
-        this.moduleConfigKey = moduleConfigKey;
-
-    }
-
+    private static final Log log = LogFactory.getLog(AbstractSelectLocale.class);
 
     // ---------------------------------------------------------- Public Methods
 
@@ -105,17 +49,21 @@ public abstract class AbstractSelectLocale implements Command {
      * @return <code>false</code> so that processing continues
      */
     public boolean execute(Context context) throws Exception {
+        log.trace("execute(" + context + ")");
+        ActionContext actionCtx = (ActionContext) context;
 
         // Are we configured to select Locale automatically?
-        ModuleConfig moduleConfig = (ModuleConfig)
-            context.get(getModuleConfigKey());
+        log.trace("retrieve config...");
+        ModuleConfig moduleConfig = actionCtx.getModuleConfig();
         if (!moduleConfig.getControllerConfig().getLocale()) {
+            log.debug("module is not configured for a specific locale; nothing to do");
             return (false);
         }
 
         // Retrieve and cache appropriate Locale for this request
         Locale locale = getLocale(context);
-        context.put(getLocaleKey(), locale);
+        log.debug("set context locale to " + locale);
+        actionCtx.setLocale(locale);
 
         return (false);
 

@@ -19,8 +19,8 @@ package org.apache.struts.chain.commands;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.chain.Constants;
+import org.apache.struts.config.ForwardConfig;
 
 
 /**

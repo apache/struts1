@@ -17,17 +17,14 @@
 package org.apache.struts.chain.commands;
 
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import org.apache.commons.beanutils.BeanUtils;
+
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.WebContext;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
-import org.apache.struts.chain.Constants;
 
 
 /**
@@ -38,93 +35,6 @@ import org.apache.struts.chain.Constants;
  */
 
 public abstract class AbstractPopulateActionForm implements Command {
-
-
-    // ------------------------------------------------------ Instance Variables
-
-
-    private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
-    private String actionFormKey = Constants.ACTION_FORM_KEY;
-    private String cancelKey = Constants.CANCEL_KEY;
-
-
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionConfigKey() {
-
-        return (this.actionConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionConfigKey The new context attribute key
-     */
-    public void setActionConfigKey(String actionConfigKey) {
-
-        this.actionConfigKey = actionConfigKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ActionForm</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionFormKey() {
-
-        return (this.actionFormKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ActionForm</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionFormKey The new context attribute key
-     */
-    public void setActionFormKey(String actionFormKey) {
-
-        this.actionFormKey = actionFormKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * cancellation flag for this request is stored.</p>
-     */
-    public String getCancelKey() {
-
-        return (this.cancelKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * cancellation flag for this request is stored.</p>
-     *
-     * @param cancelKey The new context attribute key
-     */
-    public void setCancelKey(String cancelKey) {
-
-        this.cancelKey = cancelKey;
-
-    }
 
 
     // ---------------------------------------------------------- Public Methods
@@ -139,23 +49,22 @@ public abstract class AbstractPopulateActionForm implements Command {
      */
     public boolean execute(Context context) throws Exception {
 
+        ActionContext actionCtx = (ActionContext) context;
         // Is there a form bean for this request?
-        ActionForm actionForm = (ActionForm)
-            context.get(getActionFormKey());
+        ActionForm actionForm = actionCtx.getActionForm();
+
         if (actionForm == null) {
             return (false);
         }
 
         // Reset the form bean property values
-        ActionConfig actionConfig = (ActionConfig)
-            context.get(getActionConfigKey());
+        ActionConfig actionConfig = actionCtx.getActionConfig();
 
+        reset(actionCtx, actionConfig, actionForm);
 
-        reset(context, actionConfig, actionForm);
+        populate(actionCtx, actionConfig, actionForm);
 
-        populate(context, actionConfig, actionForm);
-
-        handleCancel(context, actionConfig, actionForm);
+        handleCancel(actionCtx, actionConfig, actionForm);
 
         return (false);
 
@@ -171,74 +80,80 @@ public abstract class AbstractPopulateActionForm implements Command {
      * @param actionConfig The actionConfig for this request
      * @param actionForm The form bean for this request
      */
-    protected abstract void reset(Context context,
+    protected abstract void reset(ActionContext context,
                                   ActionConfig actionConfig,
                                   ActionForm actionForm);
 
 
     /**
-     * <p>Base implementation assumes that the <code>Context</code>
-     * can be cast to <code>WebContext</code> and copies the parameter
-     * values from the context to the <code>ActionForm</code>.</p>
-     *
-     * <p>Note that this implementation does not handle "file uploads"
-     * because as far as I know there is no API for handling that without
-     * committing to servlets -- in a servlet environment, use
-     * <code>org.apache.struts.chain.servlet.PopulateActionForm</code>.</p>
-     *
+     * Populate the given <code>ActionForm</code> with request parameter values,
+     * taking into account any prefix/suffix values configured on the given
+     * <code>ActionConfig</code>.
+     * 
      * @param context
      * @param actionConfig
      * @param actionForm
      * @throws Exception
      */
-    protected void populate(Context context,
-                            ActionConfig actionConfig,
-                            ActionForm actionForm) throws Exception
-    {
-        WebContext wcontext = (WebContext) context;
-        Map paramValues = wcontext.getParamValues();
-        Map parameters = new HashMap();
+    // original implementation casting context to WebContext is not safe
+    // when the input value is an ActionContext.
+    protected abstract void populate(ActionContext context,
+                                     ActionConfig actionConfig,
+                                     ActionForm actionForm) throws Exception;
+    
 
+    /**
+     * For a given request parameter name, trim off any prefix and/or suffix which
+     * are defined in <code>actionConfig</code> and return what remains.  If 
+     * either prefix or suffix is defined, then return null for <code>name</code>
+     * values which do not begin or end accordingly.
+     * @param actionConfig
+     * @param name
+     * @return
+     */
+    protected String trimParameterName(ActionConfig actionConfig, String name) {
+        String stripped = name;
         String prefix = actionConfig.getPrefix();
         String suffix = actionConfig.getSuffix();
 
-        Iterator keys = paramValues.keySet().iterator();
-        while (keys.hasNext()) {
-            String name = (String) keys.next();
-            String stripped = name;
-            if (prefix != null) {
-                if (!stripped.startsWith(prefix)) {
-                    continue;
-                }
-                stripped = stripped.substring(prefix.length());
+        if (prefix != null) {
+            if (!stripped.startsWith(prefix)) {
+                return null;
             }
-            if (suffix != null) {
-                if (!stripped.endsWith(suffix)) {
-                    continue;
-                }
-                stripped =
-                        stripped.substring(0, stripped.length() - suffix.length());
-            }
-            parameters.put(stripped, paramValues.get(name));
+            stripped = stripped.substring(prefix.length());
         }
-        BeanUtils.populate(actionForm, parameters);
+        if (suffix != null) {
+            if (!stripped.endsWith(suffix)) {
+                return null;
+            }
+            stripped = stripped.substring(0, stripped.length() - suffix.length());
+        }
+
+        return stripped;
+
     }
 
-
-    protected void handleCancel(Context context,
-                                ActionConfig actionConfig,
-                                ActionForm actionForm) throws Exception
-    {
-        WebContext wcontext = (WebContext) context;
-        Map paramValues = wcontext.getParamValues();
-
+    /**
+     * Take into account whether the request includes any defined value for the global "cancel" parameter.
+     * @param context
+     * @param actionConfig
+     * @param actionForm
+     * @throws Exception
+     * @see Globals.CANCEL_PROPERTY
+     * @see Globals.CANCEL_PROPERTY_X
+     */
+    protected void handleCancel(ActionContext context, ActionConfig actionConfig, ActionForm actionForm) throws Exception {
+        Map paramValues = context.getParameterMap();
+    
         // Set the cancellation attribute if appropriate
+        /** @todo An issue was raised (but I don't think a Bugzilla ticket created) about
+         * the security implications of using a well-known cancel property which skips form validation,
+         * as you may not write your actions to deal with the cancellation case. */
         if ((paramValues.get(Globals.CANCEL_PROPERTY) != null) ||
             (paramValues.get(Globals.CANCEL_PROPERTY_X) != null)) {
-            context.put(getCancelKey(), Boolean.TRUE);
-            wcontext.getRequestScope().put(Globals.CANCEL_KEY, Boolean.TRUE);
+            context.setCancelled(Boolean.TRUE);
         } else {
-            context.put(getCancelKey(), Boolean.FALSE);
+            context.setCancelled(Boolean.FALSE);
         }
     }
 }

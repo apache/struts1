@@ -18,10 +18,13 @@ package org.apache.struts.chain.commands.servlet;
 
 
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
+
+import org.apache.struts.action.ActionServlet;
 import org.apache.struts.chain.commands.AbstractAuthorizeAction;
+import org.apache.struts.chain.contexts.ActionContext;
+import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ActionConfig;
+import org.apache.struts.util.MessageResources;
 
 
 /**
@@ -36,12 +39,12 @@ public class AuthorizeAction extends AbstractAuthorizeAction {
     // ------------------------------------------------------- Protected Methods
 
 
-    protected boolean isAuthorized(Context context, String[] roles,
+    protected boolean isAuthorized(ActionContext context, String[] roles,
                                    ActionConfig mapping) throws Exception {
         
         // Identify the HTTP request object
-        ServletWebContext swcontext = (ServletWebContext) context;
-        HttpServletRequest request = swcontext.getRequest();
+        ServletActionContext servletActionContext = (ServletActionContext) context;
+        HttpServletRequest request = servletActionContext.getRequest();
         
         // Check the current user against the list of required roles
         for (int i = 0; i < roles.length; i++) {
@@ -53,6 +56,15 @@ public class AuthorizeAction extends AbstractAuthorizeAction {
         // Default to unauthorized
         return (false);
 
+    }
+
+
+    protected String getErrorMessage(ActionContext context, ActionConfig actionConfig) {
+        ServletActionContext servletActionContext = (ServletActionContext) context;
+        // Retrieve internal message resources
+        ActionServlet servlet =  (ActionServlet) servletActionContext.getActionServlet();
+        MessageResources resources = servlet.getInternal();
+        return resources.getMessage("notAuthorized", actionConfig.getPath());      
     }
 
 }

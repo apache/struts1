@@ -23,8 +23,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
-import org.apache.struts.chain.Constants;
 
 
 /**
@@ -40,119 +40,8 @@ public abstract class AbstractValidateActionForm implements Command {
 
 
     // ------------------------------------------------------ Instance Variables
-
-
-    private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
-    private String actionFormKey = Constants.ACTION_FORM_KEY;
-    private String cancelKey = Constants.CANCEL_KEY;
-    private String validKey = Constants.VALID_KEY;
-
     private static final Log log =
         LogFactory.getLog(AbstractValidateActionForm.class);
-
-
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionConfigKey() {
-
-        return (this.actionConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionConfigKey The new context attribute key
-     */
-    public void setActionConfigKey(String actionConfigKey) {
-
-        this.actionConfigKey = actionConfigKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ActionForm</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionFormKey() {
-
-        return (this.actionFormKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ActionForm</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionFormKey The new context attribute key
-     */
-    public void setActionFormKey(String actionFormKey) {
-
-        this.actionFormKey = actionFormKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * cancellation flag for this request is stored.</p>
-     */
-    public String getCancelKey() {
-
-        return (this.cancelKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * cancellation flag for this request is stored.</p>
-     *
-     * @param cancelKey The new context attribute key
-     */
-    public void setCancelKey(String cancelKey) {
-
-        this.cancelKey = cancelKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * validity flag for this request is stored.</p>
-     */
-    public String getValidKey() {
-
-        return (this.validKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * validity flag for this request is stored.</p>
-     *
-     * @param validKey The new context attribute key
-     */
-    public void setValidKey(String validKey) {
-
-        this.validKey = validKey;
-
-    }
-
 
     // ---------------------------------------------------------- Public Methods
 
@@ -168,28 +57,26 @@ public abstract class AbstractValidateActionForm implements Command {
      *  no validation errors; otherwise <code>true</code>
      */
     public boolean execute(Context context) throws Exception {
+        ActionContext actionCtx = (ActionContext) context;
 
         // Is there a form bean for this request?
-        ActionForm actionForm = (ActionForm)
-            context.get(getActionFormKey());
+        ActionForm actionForm = actionCtx.getActionForm();
         if (actionForm == null) {
-            context.put(getValidKey(), Boolean.TRUE);
+            actionCtx.setFormValid(Boolean.TRUE);
             return (false);
         }
 
         // Was this request cancelled?
-        Boolean cancel = (Boolean)
-            context.get(getCancelKey());
+        Boolean cancel = actionCtx.getCancelled();
         if ((cancel != null) && cancel.booleanValue()) {
-            context.put(getValidKey(), Boolean.TRUE);
+            actionCtx.setFormValid(Boolean.TRUE);
             return (false);
         }
 
         // Is validation disabled on this request?
-        ActionConfig actionConfig = (ActionConfig)
-            context.get(getActionConfigKey());
+        ActionConfig actionConfig = actionCtx.getActionConfig();
         if (!actionConfig.getValidate()) {
-            context.put(getValidKey(), Boolean.TRUE);
+            actionCtx.setFormValid(Boolean.TRUE);
             return (false);
         }
 
@@ -198,12 +85,15 @@ public abstract class AbstractValidateActionForm implements Command {
 
         // If there were no errors, proceed normally
         if ((errors == null) || (errors.isEmpty())) {
-            context.put(getValidKey(), Boolean.TRUE);
+            actionCtx.setFormValid(Boolean.TRUE);
             return (false);
         }
 
         // Flag the validation failure and proceed
-        context.put(getValidKey(), Boolean.FALSE);
+        /** @todo Is there any concern that there might have already
+         * been errors, or that other errors might be coming? */
+        actionCtx.saveErrors(errors);
+        actionCtx.setFormValid(Boolean.FALSE);
         return (false);
 
     }

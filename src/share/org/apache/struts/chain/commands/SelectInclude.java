@@ -21,8 +21,8 @@ import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
-import org.apache.struts.chain.Constants;
 
 
 /**
@@ -37,67 +37,10 @@ public class SelectInclude implements Command {
 
 
     // ------------------------------------------------------ Instance Variables
-
-
-    private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
-    private String includeKey = Constants.INCLUDE_KEY;
-    
     private static final Log log =
         LogFactory.getLog(SelectInclude.class);
 
     
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionConfigKey() {
-
-        return (this.actionConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionConfigKey The new context attribute key
-     */
-    public void setActionConfigKey(String actionConfigKey) {
-
-        this.actionConfigKey = actionConfigKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * include uri is stored.</p>
-     */
-    public String getIncludeKey() {
-
-        return (this.includeKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * include uri is stored.</p>
-     *
-     * @param includeKey The new context attribute key
-     */
-    public void setIncludeKey(String includeKey) {
-
-        this.includeKey = includeKey;
-
-    }
-
 
     // ---------------------------------------------------------- Public Methods
 
@@ -112,17 +55,18 @@ public class SelectInclude implements Command {
      */
     public boolean execute(Context context) throws Exception {
 
+        ActionContext actionCtx = (ActionContext) context;
+
         // Acquire configuration objects that we need
-        ActionConfig actionConfig = (ActionConfig)
-            context.get(getActionConfigKey());
-            
+        ActionConfig actionConfig = actionCtx.getActionConfig();
+
         // Cache an include uri if found
         String include = actionConfig.getInclude();
         if (include != null) {
             if (log.isDebugEnabled()) {
                 log.debug("Including " + include);
             }
-            context.put(getIncludeKey(), include);
+            actionCtx.setInclude(include);
         }
         return (false);
 

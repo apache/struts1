@@ -15,16 +15,14 @@
  */
 package org.apache.struts.chain.commands;
 
-import org.apache.struts.chain.Constants;
-import org.apache.struts.config.ActionConfig;
-
 import org.apache.commons.chain.Catalog;
 import org.apache.commons.chain.CatalogFactory;
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.chain.Constants;
+import org.apache.struts.config.ActionConfig;
 
 /**
  * <p>Invoke the appropriate <code>Command</code> for this request.  If the context's 

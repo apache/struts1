@@ -19,9 +19,7 @@ package org.apache.struts.chain.commands;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.WebContext;
-import org.apache.struts.Globals;
-import org.apache.struts.chain.Constants;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ModuleConfig;
 
@@ -37,66 +35,6 @@ import org.apache.struts.config.ModuleConfig;
 public abstract class AbstractSelectAction implements Command {
 
 
-    // ------------------------------------------------------ Instance Variables
-
-
-    private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
-    private String moduleConfigKey = Constants.MODULE_CONFIG_KEY;
-
-
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionConfigKey() {
-
-        return (this.actionConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionConfigKey The new context attribute key
-     */
-    public void setActionConfigKey(String actionConfigKey) {
-
-        this.actionConfigKey = actionConfigKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * module is stored.</p>
-     */
-    public String getModuleConfigKey() {
-
-        return (this.moduleConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * module is stored.</p>
-     *
-     * @param moduleConfigKey The new context attribute key
-     */
-    public void setModuleConfigKey(String moduleConfigKey) {
-
-        this.moduleConfigKey = moduleConfigKey;
-
-    }
 
 
     // ---------------------------------------------------------- Public Methods
@@ -114,14 +52,13 @@ public abstract class AbstractSelectAction implements Command {
      * @return <code>false</code> so that processing continues
      */
     public boolean execute(Context context) throws Exception {
+        ActionContext actionCtx = (ActionContext) context;
 
         // Identify the matching path for this request
         String path = getPath(context);
 
         // Cache the corresponding ActonConfig instance
-        WebContext wcontext = (WebContext) context;
-        ModuleConfig moduleConfig = (ModuleConfig)
-            wcontext.get(getModuleConfigKey());
+        ModuleConfig moduleConfig = actionCtx.getModuleConfig();
         ActionConfig actionConfig = moduleConfig.findActionConfig(path);
 
         if (actionConfig == null) {
@@ -140,8 +77,7 @@ public abstract class AbstractSelectAction implements Command {
             throw new IllegalArgumentException("No action config for '" +
                                                path + "'");
         }
-        wcontext.put(getActionConfigKey(), actionConfig);
-        wcontext.getRequestScope().put(Globals.MAPPING_KEY, actionConfig);
+        actionCtx.setActionConfig(actionConfig);
         return (false);
 
     }

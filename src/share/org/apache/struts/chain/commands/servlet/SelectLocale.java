@@ -20,9 +20,11 @@ package org.apache.struts.chain.commands.servlet;
 import java.util.Locale;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.Globals;
 import org.apache.struts.chain.commands.AbstractSelectLocale;
+import org.apache.struts.chain.contexts.ServletActionContext;
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
 
 
 /**
@@ -34,6 +36,8 @@ import org.apache.struts.chain.commands.AbstractSelectLocale;
 public class SelectLocale extends AbstractSelectLocale {
 
 
+    private static final Log log = LogFactory.getLog(SelectLocale.class);
+
     // ------------------------------------------------------- Protected Methods
 
 
@@ -44,17 +48,17 @@ public class SelectLocale extends AbstractSelectLocale {
      */
     protected Locale getLocale(Context context) {
 
-        ServletWebContext swcontext = (ServletWebContext) context;
+        ServletActionContext saContext = (ServletActionContext) context;
 
         // Has a Locale already been selected?
-        HttpSession session = swcontext.getRequest().getSession();
+        HttpSession session = saContext.getRequest().getSession();
         Locale locale = (Locale) session.getAttribute(Globals.LOCALE_KEY);
         if (locale != null) {
             return (locale);
         }
 
         // Select and cache the Locale to be used
-        locale = swcontext.getRequest().getLocale();
+        locale = saContext.getRequest().getLocale();
         if (locale == null) {
             locale = Locale.getDefault();
         }

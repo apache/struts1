@@ -19,9 +19,9 @@ package org.apache.struts.chain.commands;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-import org.apache.struts.chain.Constants;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ForwardConfig;
 
@@ -35,147 +35,6 @@ import org.apache.struts.config.ForwardConfig;
  */
 
 public abstract class AbstractExecuteAction implements Command {
-
-
-    // ------------------------------------------------------ Instance Variables
-
-
-    private String actionKey = Constants.ACTION_KEY;
-    private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
-    private String actionFormKey = Constants.ACTION_FORM_KEY;
-    private String forwardConfigKey = Constants.FORWARD_CONFIG_KEY;
-    private String validKey = Constants.VALID_KEY;
-
-
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>Action</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionKey() {
-
-        return (this.actionKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>Action</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionKey The new context attribute key
-     */
-    public void setActionKey(String actionKey) {
-
-        this.actionKey = actionKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionConfigKey() {
-
-        return (this.actionConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionConfigKey The new context attribute key
-     */
-    public void setActionConfigKey(String actionConfigKey) {
-
-        this.actionConfigKey = actionConfigKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ActionForm</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionFormKey() {
-
-        return (this.actionFormKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ActionForm</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionFormKey The new context attribute key
-     */
-    public void setActionFormKey(String actionFormKey) {
-
-        this.actionFormKey = actionFormKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ForwardConfig</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getForwardConfigKey() {
-
-        return (this.forwardConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ForwardConfig</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param forwardConfigKey The new context attribute key
-     */
-    public void setForwardConfigKey(String forwardConfigKey) {
-
-        this.forwardConfigKey = forwardConfigKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * validity flag for this request is stored.</p>
-     */
-    public String getValidKey() {
-
-        return (this.validKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * validity flag for this request is stored.</p>
-     *
-     * @param validKey The new context attribute key
-     */
-    public void setValidKey(String validKey) {
-
-        this.validKey = validKey;
-
-    }
 
 
     // ---------------------------------------------------------- Public Methods
@@ -194,27 +53,26 @@ public abstract class AbstractExecuteAction implements Command {
      */
     public boolean execute(Context context) throws Exception {
 
+        ActionContext actionCtx = (ActionContext) context;
+
         // Skip processing if the current request is not valid
-        Boolean valid = (Boolean) context.get(getValidKey());
+        Boolean valid = actionCtx.getFormValid();
         if ((valid == null) || !valid.booleanValue()) {
             return (false);
         }
 
         // Acquire the resources we will need to send to the Action
-        Action action = (Action)
-            context.get(getActionKey());
+        Action action = actionCtx.getAction();
         if (action == null) {
             return (false);
         }
-        ActionConfig actionConfig = (ActionConfig)
-            context.get(getActionConfigKey());
-        ActionForm actionForm = (ActionForm)
-            context.get(getActionFormKey());
+        ActionConfig actionConfig = actionCtx.getActionConfig();
+        ActionForm actionForm = actionCtx.getActionForm();
 
         // Execute the Action for this request, caching returned ActionForward
         ForwardConfig forwardConfig =
             execute(context, action, actionConfig, actionForm);
-        context.put(getForwardConfigKey(), forwardConfig);
+        actionCtx.setForwardConfig(forwardConfig);
 
         return (false);
 

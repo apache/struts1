@@ -19,9 +19,8 @@ package org.apache.struts.chain.commands;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.WebContext;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.chain.Constants;
 
 
 /**
@@ -33,41 +32,6 @@ import org.apache.struts.chain.Constants;
  */
 
 public abstract class AbstractRequestNoCache implements Command {
-
-
-    // ------------------------------------------------------ Instance Variables
-
-
-    private String moduleConfigKey = Constants.MODULE_CONFIG_KEY;
-
-
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * module is stored.</p>
-     */
-    public String getModuleConfigKey() {
-
-        return (this.moduleConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * module is stored.</p>
-     *
-     * @param moduleConfigKey The new context attribute key
-     */
-    public void setModuleConfigKey(String moduleConfigKey) {
-
-        this.moduleConfigKey = moduleConfigKey;
-
-    }
 
 
     // ---------------------------------------------------------- Public Methods
@@ -84,9 +48,8 @@ public abstract class AbstractRequestNoCache implements Command {
     public boolean execute(Context context) throws Exception {
 
         // Retrieve the ModuleConfig instance
-        WebContext wcontext = (WebContext) context;
-        ModuleConfig moduleConfig = (ModuleConfig)
-            wcontext.get(getModuleConfigKey());
+        ActionContext actionCtx = (ActionContext) context;
+        ModuleConfig moduleConfig = actionCtx.getModuleConfig();
             
         // If the module is configured for no caching, request no caching    
         if (moduleConfig.getControllerConfig().getNocache()) {

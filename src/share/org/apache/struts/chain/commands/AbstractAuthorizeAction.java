@@ -21,10 +21,8 @@ import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionServlet;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
-import org.apache.struts.util.MessageResources;
-import org.apache.struts.chain.Constants;
 
 
 /**
@@ -40,68 +38,8 @@ public abstract class AbstractAuthorizeAction implements Command {
 
 
     // ------------------------------------------------------ Instance Variables
-
-
-    private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
-    private String actionServletKey = Constants.ACTION_SERVLET_KEY;
-    
     private static final Log log =
         LogFactory.getLog(AbstractAuthorizeAction.class);
-
-
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionConfigKey() {
-
-        return (this.actionConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionConfigKey The new context attribute key
-     */
-    public void setActionConfigKey(String actionConfigKey) {
-
-        this.actionConfigKey = actionConfigKey;
-
-    }
-    
-    
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ActionServlet</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionServletKey() {
-
-        return (this.actionServletKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ActionServlet</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionServletKey The new context attribute key
-     */
-    public void setActionServletKey(String actionServletKey) {
-
-        this.actionServletKey = actionServletKey;
-
-    }
 
 
     // ---------------------------------------------------------- Public Methods
@@ -119,9 +57,10 @@ public abstract class AbstractAuthorizeAction implements Command {
      */
     public boolean execute(Context context) throws Exception {
 
+        ActionContext actionCtx = (ActionContext) context;
+
         // Retrieve ActionConfig
-        ActionConfig actionConfig = (ActionConfig)
-            context.get(getActionConfigKey());
+        ActionConfig actionConfig = actionCtx.getActionConfig();
             
         // Is this action protected by role requirements?
         String roles[] = actionConfig.getRoleNames();
@@ -131,7 +70,7 @@ public abstract class AbstractAuthorizeAction implements Command {
         
         boolean throwEx = false;
         try {
-            throwEx = !(isAuthorized(context, roles, actionConfig));
+            throwEx = !(isAuthorized(actionCtx, roles, actionConfig));
         }
         catch (Exception ex) {
             throwEx = true;
@@ -139,15 +78,9 @@ public abstract class AbstractAuthorizeAction implements Command {
         }
         
         if (throwEx) {
-            // Retrieve internal message resources
-            ActionServlet servlet = 
-                (ActionServlet) context.get(actionServletKey);
-            MessageResources resources = servlet.getInternal();
             
             // The current user is not authorized for this action
-            throw new UnauthorizedActionException(
-                resources.getMessage("notAuthorized",
-                actionConfig.getPath()));
+            throw new UnauthorizedActionException(getErrorMessage(actionCtx, actionConfig));
         } else {
             return (false);
         }
@@ -169,8 +102,11 @@ public abstract class AbstractAuthorizeAction implements Command {
      * <code>false</code>
      * @exception Exception If the action cannot be tested for authorization
      */
-    protected abstract boolean isAuthorized(Context context, String[] roles,    
+    protected abstract boolean isAuthorized(ActionContext context, String[] roles,    
                                             ActionConfig actionConfig)
               throws Exception;
+
+    
+    protected abstract String getErrorMessage(ActionContext context, ActionConfig actionConfig);
 
 }

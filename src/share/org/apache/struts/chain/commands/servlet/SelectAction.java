@@ -19,10 +19,10 @@ package org.apache.struts.chain.commands.servlet;
 
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.chain.commands.AbstractSelectAction;
 import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.chain.contexts.ServletActionContext;
 
 
 /**
@@ -40,8 +40,8 @@ public class SelectAction extends AbstractSelectAction {
 
     protected String getPath(Context context) {
 
-        ServletWebContext swcontext = (ServletWebContext) context;
-        HttpServletRequest request = swcontext.getRequest();
+        ServletActionContext saContext = (ServletActionContext) context;
+        HttpServletRequest request = saContext.getRequest();
         String path = null;
         boolean extension = false;
 
@@ -66,8 +66,7 @@ public class SelectAction extends AbstractSelectAction {
         }
 
         // Strip the module prefix and extension (if any)
-        ModuleConfig moduleConfig = (ModuleConfig)
-            swcontext.get(getModuleConfigKey());
+        ModuleConfig moduleConfig = saContext.getModuleConfig();
         String prefix = moduleConfig.getPrefix();
         if (!path.startsWith(prefix)) {
             throw new IllegalArgumentException("Path does not start with '" +

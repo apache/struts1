@@ -21,34 +21,31 @@ import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.Action;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.ForwardConfig;
-import org.apache.struts.config.ModuleConfig;
 
 
 /**
- * <p>Select and cache the <code>ActionForward</code> for this
- * <code>ActionConfig</code> if specified.</p>
+ * <p>Create (if necessary) and cache an <code>Action</code> for this request.
+ * </p>
  *
- * @author Don Brown
+ * @author Craig R. McClanahan
  * @version $Rev$ $Date$
  */
 
-public abstract class AbstractSelectForward implements Command {
+public abstract class AbstractCreateAction implements Command {
 
 
     // ------------------------------------------------------ Instance Variables
-    private static final Log log =
-        LogFactory.getLog(AbstractSelectForward.class);
-
+    private static final Log log = LogFactory.getLog(AbstractCreateAction.class);
 
     // ---------------------------------------------------------- Public Methods
 
 
     /**
-     * <p>Select and cache the <code>ActionForward</code> for this
-     * <code>ActionConfig</code> if specified.</p>
+     * <p>Create (if necessary) and cache an <code>Action</code> for this
+     * request.</p>
      *
      * @param context The <code>Context</code> for the current request
      *
@@ -60,22 +57,30 @@ public abstract class AbstractSelectForward implements Command {
         // Skip processing if the current request is not valid
         Boolean valid = actionCtx.getFormValid();
         if ((valid == null) || !valid.booleanValue()) {
+            log.trace("Invalid form; not going to execute.");
+            return (false);
+        }
+        
+        // Check to see if an action has already been created
+        if (actionCtx.getAction() != null) {
+            log.trace("already have an action [" + actionCtx.getAction() + "]");
             return (false);
         }
 
-        // Acquire configuration objects that we need
+        // Look up the class name for the desired Action
         ActionConfig actionConfig = actionCtx.getActionConfig();
-        ModuleConfig moduleConfig = actionConfig.getModuleConfig();
+        String type = actionConfig.getType();
 
-        ForwardConfig forwardConfig = null;
-        String forward = actionConfig.getForward();
-        if (forward != null) {
-            forwardConfig = forward(context, moduleConfig, forward);
-            if (log.isDebugEnabled()) {
-                log.debug("Forwarding to " + forwardConfig);
-            }
-            actionCtx.setForwardConfig(forwardConfig);
+        if (type == null) {
+            log.trace("no type for " + actionConfig.getPath());
+            return (false);
         }
+
+        // Create (if necessary) and cache an Action instance
+        Action action = getAction(actionCtx, type, actionConfig);
+        log.trace("setting action to " + action);
+        actionCtx.setAction(action);
+
         return (false);
 
     }
@@ -85,17 +90,17 @@ public abstract class AbstractSelectForward implements Command {
 
 
     /**
-     * <p>Create and return a <code>ForwardConfig</code> representing the
-     * specified module-relative destination.</p>
-     *
-     * @param context The context for this request
-     * @param moduleConfig The <code>ModuleConfig</code> for this request
-     * @param uri The module-relative URI to be the destination
+     * Create and return the appropriate <code>Action</code> class for the given <code>type</code>
+     * and <code>actionConfig</code>.
+     * @param context
+     * @param type
+     * @param actionConfig
+     * @return
+     * @throws Exception if there are any problems instantiating the Action class.
+     * @todo The dependence on ActionServlet suggests that this should be broken up
+     * along the lines of the other Abstract/concrete pairs in the org.apache.struts.chain.commands package.
      */
-    protected abstract ForwardConfig forward(Context context,
-                                             ModuleConfig moduleConfig,
-                                             String uri);
-
+    protected abstract Action getAction(ActionContext context, String type, ActionConfig actionConfig) throws Exception;
 
 
 }

@@ -18,15 +18,14 @@ package org.apache.struts.chain.commands.servlet;
 
 
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.chain.commands.AbstractValidateActionForm;
+import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ActionConfig;
-import org.apache.struts.Globals;
 
 
 /**
@@ -63,9 +62,9 @@ public class ValidateActionForm extends AbstractValidateActionForm {
                                     ActionConfig actionConfig,
                                     ActionForm actionForm) {
 
-        ServletWebContext swcontext = (ServletWebContext) context;
+        ServletActionContext saContext = (ServletActionContext) context;
         ActionErrors errors = (actionForm.validate((ActionMapping) actionConfig,
-                                    swcontext.getRequest()));
+                                    saContext.getRequest()));
 
         // Special handling for multipart request
         if (errors != null && !errors.isEmpty()) {
@@ -76,13 +75,6 @@ public class ValidateActionForm extends AbstractValidateActionForm {
                 actionForm.getMultipartRequestHandler().rollback();
             }
         }
-
-        // Saving the errors is not part of the contract for this method,
-        // but the idea of the HttpServletRequest is not present in the
-        // abstract parent of this class.  Put this in now so that it
-        // at least gets done -- and then see if other developers have
-        // opinions about whether this is good, bad, or at least acceptable.
-        swcontext.getRequest().setAttribute(Globals.ERROR_KEY, errors);
 
         return errors;
 
