@@ -88,7 +88,7 @@
       <a href="../using.html#Lists">struts-dev mailing list</a>, receive reports of all changes as they are made.</p>
       <p>
       <strong>Deprecations</strong>&#160;- Many constructs were deprecated for the Struts 1.1 release, most of which have now been removed. Before moving to this release, you should clean-compile your application with deprecation warnings enabled. Alternatives should be available for all decprecated constructs.
-      <strong>You are strongly advised</strong>to resolve all Struts 1.1. deprecations before moving to this release. Removed constructs most likely to affect developers are:</p>
+      <strong>You are strongly advised</strong> to resolve all Struts 1.1. deprecations before moving to this release. Removed constructs most likely to affect developers are:</p>
       <ul>
         <li>
         <code>org.apache.struts.Action</code>statics: Use
@@ -98,16 +98,27 @@
         <code>Action.execute</code>instead.</li>
       </ul>
       <p>Although not removed, in many cases
-      <strong>you should replace</strong>the deprecated
+      <strong>you should replace</strong> the deprecated
       <code>ActionErrors</code>with the preferred
       <code>ActionMessages</code>to ensure correct operation.</p>
-      <p>
-      <strong>ValidWhen?</strong>- The Struts Validator now supports a ValidWhen rule, so that one validation can be dependant on another.</p>
-      <p>
-      <strong>TagUtils and ModuleUtils</strong>&#160;- Many utility methods previously found in
-      <code>org.apache.struts.utils.RequestUtils</code>have been moved to
-      <code>org.apache.struts.taglibs.TagUtils</code>or 0
-      <code>org.apache.struts.utils.ModuleUtils</code>.</p>
+        <p>
+        <strong>TagUtils and ModuleUtils</strong>&#160;- Many utility methods previously found in
+        <code>org.apache.struts.utils.RequestUtils</code> have been moved to
+        <code>org.apache.struts.taglibs.TagUtils</code> or 0
+        <code>org.apache.struts.utils.ModuleUtils</code>.</p>
+        <p>
+        <strong>GenericDataSource / GenericConnection implementations removed</strong>&#160;- The datasources manager is still supported, but our own datasource
+        <em>implementation</em>is not. You are welcome to plug in your own DataSource implementation, but we do not have the resources to maintain one of our own. If your container does not supply a DataSource implementation, the DBCP package from the Jakarta Commons is suggested.</p>
+        <p>
+         <strong>Validator enhancements</strong>&#160;
+        </p>
+            <ul>
+                <li>ValidWhen? - The Struts Validator now supports a ValidWhen rule, so that one validation can be dependant on another. <a href="dev_validator.html#validWhen">Details ...</a></li>
+                <li>IntRange now checks select-one and radio fields. Example: This allows populating combo boxes with valid choices plus one additional choice with a caption something like "Choose one" and a value 0f "-1". Then when the user attempts to submit the form, you can look for the value of "-1" and yell at them if they failed to pick something.</li>
+                <li>You can now force the clientside Javascript validation to check all constraints, instead of stopping at the first error. By setting a new property, <code>stopOnFirstError</code>, on the Validator PlugIn to false. <a href="dev_validator.html#stopOnFirstError">Details ...</a></li>
+                <li>The "required" validation can now handle checkboxes, radio,select-one, and select-multiple field types. See the updated Validator example application to see these new features in action.</li>
+                <li>A standard <code>validateUrl</code> rule lets you check if a property contains a well-formed URL.</li>
+           </ul>
       <p>
       <strong>DigestingPlugIn</strong>&#160;- [:TODO:]</p>
       <p>
@@ -121,9 +132,6 @@
       <p>
       <strong>New Committers</strong>&#160;- We are pleased to welcome Steve Raeburn, Don Brown, and Joe Germuska to the team of Struts Committers.</p>
       <p>
-      <strong>GenericDataSource / GenericConnection implementations removed</strong>&#160;- The datasources manager is still supported, but our own datasource
-      <em>implementation</em>is not. You are welcome to plug in your own DataSource implementation, but we do not have the resources to maintain one of our own. If your container does not supply a DataSource implementation, the DBCP package from the Jakarta Commons is suggested.</p>
-      <p>
       <strong>Struts-Chain</strong>&#160;- Still experimental, this new "contrib" package utilizes the new Chain of Responsibilty package in the Jakarta Sandbox to create a new breed of RequestProcessor. Look for this to become the default implementation in a future release.</p>
       <p>
       <strong>MappingDispatchAction</strong>&#160;- A new standard Action that dispatches to a method named by the ActionMapping parameter.</p>
@@ -136,24 +144,8 @@
       <p>
       <strong>Tiles EL</strong>- The Tiles tags are now avaiable through the Struts EL taglib, which is based on JSTL.</p>
       <p>
-      <strong>Versatile required</strong>&#160;- The Struts Validator's "required" validation can now handle checkboxes, radio,select-one, and select-multiple field types. See the updated Validator example application to see these new features in action.</p>
-      <p>
       <strong>Wildcard Mappings</strong>&#160;- You can now use wildcards in your action-mappings. For details see
-      <a href="building_controller.html#action_mapping_wildcards">Using Wildcards in ActionMappings</a>.</p>
-      <p>Unstoppable Validations: You can now force the clientside Javascript validation to check all constraints, instead of stopping at the first error. By setting a new property, stopOnFirstError, on the Validator PlugIn to false. Thisis set thorugh the struts-config.xml as follow:
-      <pre>
-<code>
-<![CDATA[
-  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
-  <set-property property="pathnames"
-   value="/WEB-INF/validation.xml,/WEB-INF/validator-rules.xml"/>
-  <set-property property="stopOnFirstError" value="true"/>
-  </plug-in>
-  ]]>
-
-</code>
-</pre></p>
-      <p>validator-rules.xml[intRange]: IntRange now checks select-one and radio fields. Example: This allows populating combo boxes with valid choices plus one additional choice with a caption something like "Choose one" and a value 0f "-1". Then when the user attempts to submit the form, you can look for the value of "-1" and yell at them if they failed to pick something.</p>
+      <a href="building_controller.html#action_mapping_wildcards">Using Wildcards in ActionMappings</a> as well as the Struts Mailreader Example application.</p>
     </section>
     <section name="What Changed?" href="Changes">
       <p>This section highlights some of the changes that have taken place since the last release. For a complete review of all changes, see the
@@ -284,6 +276,11 @@
       <p>
       <strong>HTML Taglib Package Changes</strong>&#160;[
       <code>org.apache.struts.taglib.html</code>]:</p>
+        <ul>
+            <li>
+                 2003-11-28 JavascriptValidatorTag - Removed getNextVar() and replaceChar() methods and use a simpler javascript identifier naming scheme. All variables with be named a0, a1, etc. to prevent using reserved words as variable names.
+            </li>
+        </ul>
       <ul>
         <li>2003-08-19 - Remove "request scope" references from messages tag. The messages are searched for in all scopes.</li>
         <li>2003-08-10 - struts-html.xml,RewriteTag.java: Added action attribute to rewrite tag.</li>
@@ -351,6 +348,9 @@
       <p>
       <strong>Upload Package Changes</strong>&#160;[
       <code>org.apache.struts.upload</code>]:</p>
+        <ul>
+            <li>2003-11-26 DiskMultipartRequestHandler: Deprecate DiskMultipartRequestHandler and friends, which is the buggy old upload implementation, no longer used as the default as of Struts 1.1. This will be removed after 1.2 (meaning as of 1.3/2.0).</li>
+        </ul>
       <ul>
         <li>2003-07-31 - MultipartElement: Remove deprecated methods.</li>
       </ul>
@@ -377,8 +377,13 @@
       <p>
       <strong>Validator Package Changes</strong>&#160;[
       <code>org.apache.struts.validator</code>]</p>
+        <ul>
+            <li>
+                2003-10-06 FieldChecks - Add validateUrl. Remove deprecated validateRange.
+            </li>
+        </ul>
       <ul>
-        <li>2003-09-26 FieldChecks,ValidWhen: Changed validator signatures to use ActionMessages rather than ActionErrors, was breaking validations.</li>
+        <li>2003-09-26 - FieldChecks,ValidWhen: Changed validator signatures to use ActionMessages rather than ActionErrors, was breaking validations.</li>
         <li>2003-09-26 - validator-rules.xml: Modify JavaScript to honor datePattern option.</li>
         <li>2003-09-24 - validator-rules.xml: Add ability of required to handle checkboxes, radio,select-one, and select-multiple field types.</li>
       </ul>
@@ -396,11 +401,14 @@
       <strong>Documentation Application Changes</strong>&#160;[
       <code>struts-documentation.war</code>]:</p>
       <ul>
-        <li>No signficant changes.</li>
+        <li>2003-11-27 - resource: Move resource area to <a href="http://struts.sf.net/">Struts SourceForge site</a>.</li>
       </ul>
       <p>
       <strong>MailReader Example Application Changes</strong>&#160;[
       <code>struts-example.war</code>]:</p>
+        <ul>
+            <li>2003-10-25 - Updated to include the usage of wildcards in action mappings</li>
+        </ul>
       <ul>
         <li>2003-08-30 - AlternateApplicationResources_ja.properties,ApplicationResources_ja.properties: Provide Japanese resources.</li>
         <li>2003-08-16 - Changed ActionError to ActionMessage.</li>
