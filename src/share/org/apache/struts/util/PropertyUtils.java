@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.11 2001/01/10 01:54:21 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2001/01/10 01:54:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.12 2001/02/03 02:12:25 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2001/02/03 02:12:25 $
  *
  * ====================================================================
  *
@@ -71,6 +71,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 
 /**
@@ -116,7 +117,7 @@ import java.lang.reflect.Method;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.11 $ $Date: 2001/01/10 01:54:21 $
+ * @version $Revision: 1.12 $ $Date: 2001/02/03 02:12:25 $
  */
 
 public final class PropertyUtils {
@@ -298,7 +299,7 @@ public final class PropertyUtils {
 	}
 
 	// Otherwise, the underlying property must be an array
-	Method readMethod = descriptor.getReadMethod();
+        Method readMethod = getReadMethod(descriptor);
 	if (readMethod == null)
 	    throw new NoSuchMethodException("Property '" + name +
 					    "' has no getter method");
@@ -581,7 +582,7 @@ public final class PropertyUtils {
 	if (descriptor == null)
 	    throw new NoSuchMethodException("Unknown property '" +
 					    name + "'");
-	Method readMethod = descriptor.getReadMethod();
+        Method readMethod = getReadMethod(descriptor);
 	if (readMethod == null)
 	    throw new NoSuchMethodException("Property '" + name +
 					    "' has no getter method");
@@ -690,7 +691,7 @@ public final class PropertyUtils {
 	}
 
 	// Otherwise, the underlying property must be an array
-	Method readMethod = descriptor.getReadMethod();
+        Method readMethod = descriptor.getReadMethod();
 	if (readMethod == null)
 	    throw new NoSuchMethodException("Property '" + name +
 					    "' has no getter method");
@@ -813,7 +814,7 @@ public final class PropertyUtils {
 	if (descriptor == null)
 	    throw new NoSuchMethodException("Unknown property '" +
 					    name + "'");
-	Method writeMethod = descriptor.getWriteMethod();
+        Method writeMethod = getWriteMethod(descriptor);
 	if (writeMethod == null)
 	    throw new NoSuchMethodException("Property '" + name +
 					    "' has no setter method");
@@ -822,6 +823,86 @@ public final class PropertyUtils {
 	Object values[] = new Object[1];
 	values[0] = value;
 	writeMethod.invoke(bean, values);
+
+    }
+
+
+    // -------------------------------------------------------- Private Methods
+
+
+    /**
+     * Return an accessible method (that is, one that can be invoked via
+     * reflection) that implements the specified Method.  If no such method
+     * can be found, return <code>null</code>.
+     *
+     * @param method The method that we wish to call
+     */
+    private static Method getAccessibleMethod(Method method) {
+
+        // Make sure we have a method to check
+        if (method == null) {
+            return (null);
+        }
+
+        // If the requested method is not public we cannot call it
+        if (!Modifier.isPublic(method.getModifiers())) {
+            return (null);
+        }
+
+        // If the declaring class is public, we are done
+        Class clazz = method.getDeclaringClass();
+        if (Modifier.isPublic(clazz.getModifiers())) {
+            return (method);
+        }
+
+        // Check the implemented interfaces
+        String methodName = method.getName();
+        Class[] parameterTypes = method.getParameterTypes();
+        Class[] interfaces = clazz.getInterfaces();
+        for (int i = 0; i < interfaces.length; i++) {
+            // Is this interface public?
+            if (!Modifier.isPublic(interfaces[i].getModifiers())) {
+                continue;
+            }
+            // Does the method exist on this interface?
+            try {
+                method = interfaces[i].getDeclaredMethod(methodName,
+                                                         parameterTypes);
+            } catch (NoSuchMethodException e) {
+                continue;
+            }
+            // We have found what we are looking for
+            return (method);
+        }
+
+        // We are out of luck
+        return (null);
+
+    }
+
+
+    /**
+     * Return an accessible property getter method for this property,
+     * if there is one; otherwise return <code>null</code>.
+     *
+     * @param descriptor Property descriptor to return a getter for
+     */
+    private static Method getReadMethod(PropertyDescriptor descriptor) {
+
+        return (getAccessibleMethod(descriptor.getReadMethod()));
+
+    }
+
+
+    /**
+     * Return an accessible property setter method for this property,
+     * if there is one; otherwise return <code>null</code>.
+     *
+     * @param descriptor Property descriptor to return a setter for
+     */
+    private static Method getWriteMethod(PropertyDescriptor descriptor) {
+
+        return (getAccessibleMethod(descriptor.getWriteMethod()));
 
     }
 
