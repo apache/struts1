@@ -1619,6 +1619,23 @@
 
         </info>
 
+         <attribute>
+           <name>action</name>
+           <required>false</required>
+           <rtexprvalue>true</rtexprvalue>
+           <info>
+               <p>Logical name of a global <code>Action</code> that
+               contains the actual content-relative URI of the destination
+               of this transfer.  This hyperlink may be dynamically
+               modified by the inclusion of query parameters, as described
+               in the tag description.  You <strong>must</strong> specify
+               exactly one of the <code>action</code> attribute, the
+               <code>forward</code> attribute, the
+               <code>href</code> attribute,
+               or the <code>page</code> attribute.</p>
+           </info>
+       </attribute>
+
         <attribute>
             <name>anchor</name>
             <required>false</required>

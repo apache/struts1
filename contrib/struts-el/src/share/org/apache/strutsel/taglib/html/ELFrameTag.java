@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTag.java,v 1.7 2003/03/09 05:47:23 dmkarr Exp $
- * $Revision: 1.7 $
- * $Date: 2003/03/09 05:47:23 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTag.java,v 1.8 2003/04/23 03:11:18 dmkarr Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/04/23 03:11:18 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -87,10 +87,15 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ELFrameTag extends FrameTag {
 
+    /**
+     * Instance variable mapped to "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String actionExpr;
     /**
      * Instance variable mapped to "anchor" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -213,6 +218,11 @@ public class ELFrameTag extends FrameTag {
     private String transactionExpr;
 
     /**
+     * Getter method for "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getActionExpr() { return (actionExpr); }
+    /**
      * Getter method for "anchor" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -333,6 +343,11 @@ public class ELFrameTag extends FrameTag {
      */
     public String getTransactionExpr() { return (transactionExpr); }
 
+    /**
+     * Setter method for "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setActionExpr(String actionExpr) { this.actionExpr = actionExpr; }
     /**
      * Setter method for "anchor" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -460,6 +475,7 @@ public class ELFrameTag extends FrameTag {
     public void release()
     {
         super.release();
+        setActionExpr(null);
         setAnchorExpr(null);
         setForwardExpr(null);
         setFrameborderExpr(null);
@@ -506,6 +522,10 @@ public class ELFrameTag extends FrameTag {
         String  string  = null;
         Integer integer = null;
         Boolean bool    = null;
+
+        if ((string = EvalHelper.evalString("action", getActionExpr(),
+                                            this, pageContext)) != null)
+            setAction(string);
 
         if ((string = EvalHelper.evalString("anchor", getAnchorExpr(),
                                             this, pageContext)) != null)
