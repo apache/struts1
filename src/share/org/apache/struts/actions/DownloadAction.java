@@ -131,9 +131,9 @@ public abstract class DownloadAction extends Action {
      *
      * @throws IOException In case of an I/O problem
      */
-    public static int copy(InputStream input, OutputStream output)
+    public int copy(InputStream input, OutputStream output)
             throws IOException {
-        byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+        byte[] buffer = new byte[getBufferSize()];
         int count = 0;
         int n = 0;
         while (-1 != (n = input.read(buffer))) {
