@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.105 2003/06/28 00:20:07 dgraham Exp $
- * $Revision: 1.105 $
- * $Date: 2003/06/28 00:20:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.106 2003/07/02 03:09:47 dgraham Exp $
+ * $Revision: 1.106 $
+ * $Date: 2003/07/02 03:09:47 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.105 $ $Date: 2003/06/28 00:20:07 $
+ * @version $Revision: 1.106 $ $Date: 2003/07/02 03:09:47 $
  */
 
 public class RequestUtils {
@@ -1704,22 +1704,6 @@ public class RequestUtils {
      * @param prefix The module prefix of the desired module
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
-     * @deprecated use {@link #selectModule(String,HttpServletRequest,ServletContext)}
-     */
-    public static void selectApplication(
-        String prefix,
-        HttpServletRequest request,
-        ServletContext context) {
-        selectModule(prefix, request, context);
-    }
-
-    /**
-     * Select the module to which the specified request belongs, and
-     * add corresponding request attributes to this request.
-     *
-     * @param prefix The module prefix of the desired module
-     * @param request The servlet request we are processing
-     * @param context The ServletContext for this web application
      * @since struts 1.1
      */
     public static void selectModule(
@@ -1742,18 +1726,6 @@ public class RequestUtils {
             request.removeAttribute(Globals.MESSAGES_KEY);
         }
 
-    }
-
-    /**
-     * Select the module to which the specified request belongs, and
-     * add corresponding request attributes to this request.
-     *
-     * @param request The servlet request we are processing
-     * @param context The ServletContext for this web application
-     * @deprecated use {@link #selectModule(HttpServletRequest,ServletContext)}
-     */
-    public static void selectApplication(HttpServletRequest request, ServletContext context) {
-        selectModule(request, context);
     }
 
     /**
@@ -1868,19 +1840,6 @@ public class RequestUtils {
         return getModuleConfig(
             (HttpServletRequest) pageContext.getRequest(),
             pageContext.getServletContext());
-    }
-
-    /**
-     * Return the list of module prefixes that are defined for
-     * this web application, creating it if necessary.  <strong>NOTE</strong> -
-     * the "" prefix for the default module is not included in this list.
-     *
-     * @param context The ServletContext for this web application
-     * @return an array of module prefixes
-     * @deprecated Use getModulePrefixes(ServletContext) instead.
-     */
-    public static String[] getApplicationPrefixes(ServletContext context) {
-        return getModulePrefixes(context);  
     }
 
     /**

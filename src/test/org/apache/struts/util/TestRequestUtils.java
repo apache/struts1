@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.18 2003/05/04 22:41:13 dgraham Exp $
- * $Revision: 1.18 $
- * $Date: 2003/05/04 22:41:13 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.19 2003/07/02 03:09:47 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/07/02 03:09:47 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.taglib.html.Constants;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2003/05/04 22:41:13 $
+ * @version $Revision: 1.19 $ $Date: 2003/07/02 03:09:47 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -1490,7 +1490,7 @@ public class TestRequestUtils extends TestMockBase {
     public void testSelectApplication1a() {
 
         request.setPathElements("/myapp", "/noform.do", null, null);
-        RequestUtils.selectApplication(request, context);
+        RequestUtils.selectModule(request, context);
         ApplicationConfig appConfig = (ApplicationConfig)
             request.getAttribute(Globals.MODULE_KEY);
         assertNotNull("Selected an application", appConfig);
@@ -1505,7 +1505,7 @@ public class TestRequestUtils extends TestMockBase {
     public void testSelectApplication1b() {
 
         request.setPathElements("/myapp", "/2/noform.do", null, null);
-        RequestUtils.selectApplication(request, context);
+        RequestUtils.selectModule(request, context);
         ApplicationConfig appConfig = (ApplicationConfig)
             request.getAttribute(Globals.MODULE_KEY);
         assertNotNull("Selected an application", appConfig);
@@ -1522,7 +1522,7 @@ public class TestRequestUtils extends TestMockBase {
         request.setPathElements("/myapp", "/2/noform.do", null, null);
         request.setAttribute(RequestProcessor.INCLUDE_SERVLET_PATH,
                              "/noform.do");
-        RequestUtils.selectApplication(request, context);
+        RequestUtils.selectModule(request, context);
         ApplicationConfig appConfig = (ApplicationConfig)
             request.getAttribute(Globals.MODULE_KEY);
         assertNotNull("Selected an application", appConfig);
@@ -1539,7 +1539,7 @@ public class TestRequestUtils extends TestMockBase {
         request.setPathElements("/myapp", "/noform.do", null, null);
         request.setAttribute(RequestProcessor.INCLUDE_SERVLET_PATH,
                              "/2/noform.do");
-        RequestUtils.selectApplication(request, context);
+        RequestUtils.selectModule(request, context);
         ApplicationConfig appConfig = (ApplicationConfig)
             request.getAttribute(Globals.MODULE_KEY);
         assertNotNull("Selected an application", appConfig);
