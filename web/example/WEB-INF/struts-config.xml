@@ -3,9 +3,9 @@
           "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
           "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
 <!--
- $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/struts-config.xml,v 1.41 2004/03/12 02:44:34 husted Exp $
- $Revision: 1.41 $
- $Date: 2004/03/12 02:44:34 $
+ $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/struts-config.xml,v 1.42 2004/03/12 05:19:46 husted Exp $
+ $Revision: 1.42 $
+ $Date: 2004/03/12 05:19:46 $
 
  Copyright 2000-2004 Apache Software Foundation
 
@@ -35,25 +35,24 @@
   <form-beans>
 
     <!-- Logon form bean -->
-    <form-bean       name="logonForm"
+    <form-bean       name="LogonForm"
                      type="org.apache.struts.validator.DynaValidatorForm">
       <form-property name="username" type="java.lang.String"/>
       <form-property name="password" type="java.lang.String"/>
     </form-bean>
 
     <!-- Subscription form bean -->
-    <form-bean      name="subscriptionForm"
+    <form-bean      name="SubscriptionForm"
                     type="org.apache.struts.webapp.example.SubscriptionForm"/>
-
-  </form-beans>
+    </form-beans>
 
 
   <!-- ========== Global Forward Definitions ============================== -->
   <global-forwards>
-    <forward   name="welcome"              path="/welcome.do"/>
-    <forward   name="logoff"               path="/logoff.do"/>
-    <forward   name="logon"                path="/logon.do"/>
-    <forward   name="success"              path="/mainMenu.do"/>
+    <forward   name="welcome"              path="/Welcome.do"/>
+    <forward   name="logoff"               path="/Logoff.do"/>
+    <forward   name="logon"                path="/Logon.do"/>
+    <forward   name="success"              path="/MainMenu.do"/>
   </global-forwards>
 
 
@@ -61,7 +60,7 @@
   <action-mappings>
 
       <!-- Display welcome page -->
-      <action    path="/welcome"
+      <action    path="/Welcome"
                  type="org.apache.struts.webapp.example.WelcomeAction">
           <forward name="failure" path="/Error.jsp" />
           <forward name="success" path="/welcome.jsp" />
@@ -69,26 +68,26 @@
 
       <!-- Change locale action -->
       <action
-          path="/locale"
+          path="/Locale"
           type="org.apache.struts.webapp.example.LocaleAction"
           parameter="welcome" />
 
       <!-- Display registration page -->
-      <action    path="/registration"
-                 forward="/Registration.jsp"/>
+      <action    path="/Registration"
+                 forward="/registration.jsp"/>
 
       <!-- Display logon page -->
-      <action    path="/mainMenu"
+      <action    path="/MainMenu"
                  forward="/mainMenu.jsp"/>
 
       <!-- Display logon page -->
-      <action    path="/logon"
+      <action    path="/Logon"
                  forward="/logon.jsp"/>
 
        <!-- Process a user logon -->
-       <action    path="/submitLogon"
+       <action    path="/SubmitLogon"
                   type="org.apache.struts.webapp.example.LogonAction"
-                  name="logonForm"
+                  name="LogonForm"
                  scope="request"
                  input="logon">
          <exception
@@ -98,29 +97,29 @@
        </action>
 
       <!-- Process a user logoff -->
-       <action    path="/logoff"
+       <action    path="/Logoff"
                   type="org.apache.struts.webapp.example.LogoffAction">
-         <forward name="success"              path="/welcome.do"/>
+         <forward name="success"              path="/Welcome.do"/>
        </action>
 
       <!-- Edit mail subscription -->
-      <action    path="/editSubscription"
+      <action    path="/EditSubscription"
                  type="org.apache.struts.webapp.example.EditSubscriptionAction"
-                 name="subscriptionForm"
+                 name="SubscriptionForm"
                 scope="request"
              validate="false">
-        <forward name="failure"              path="/mainMenu.do"/>
+        <forward name="failure"              path="/MainMenu.do"/>
         <forward name="success"              path="/subscription.jsp"/>
       </action>
 
        <!-- Save mail subscription -->
-       <action    path="/saveSubscription"
+       <action    path="/SaveSubscription"
                   type="org.apache.struts.webapp.example.SaveSubscriptionAction"
-                  name="subscriptionForm"
+                  name="SubscriptionForm"
                  scope="request"
                  input="subscription">
          <forward name="subscription"    path="/subscription.jsp"/>
-         <forward name="success"         path="/editRegistration.do?action=Edit"/>
+         <forward name="success"         path="/EditRegistration.do?action=Edit"/>
        </action>
 
       <!-- Display the change password page when a password expires -->
@@ -129,7 +128,7 @@
       </action>
 
       <!-- Display the "walking tour" documentation -->
-      <action    path="/tour"
+      <action    path="/Tour"
               forward="/tour.html">
       </action>
 

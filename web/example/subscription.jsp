@@ -7,15 +7,15 @@
 
 <html:html>
 <head>
-<logic:equal name="subscriptionForm" property="action"
+<logic:equal name="SubscriptionForm" property="action"
             scope="request" value="Create">
   <title><bean:message key="subscription.title.create"/></title>
 </logic:equal>
-<logic:equal name="subscriptionForm" property="action"
+<logic:equal name="SubscriptionForm" property="action"
             scope="request" value="Delete">
   <title><bean:message key="subscription.title.delete"/></title>
 </logic:equal>
-<logic:equal name="subscriptionForm" property="action"
+<logic:equal name="SubscriptionForm" property="action"
             scope="request" value="Edit">
   <title><bean:message key="subscription.title.edit"/></title>
 </logic:equal>
@@ -25,7 +25,7 @@
 
 <html:errors/>
 
-<html:form action="/saveSubscription" focus="host">
+<html:form action="/SaveSubscription" focus="host">
 <html:hidden property="action"/>
 <table border="0" width="100%">
 
@@ -43,11 +43,11 @@
       <bean:message key="prompt.mailHostname"/>:
     </th>
     <td align="left">
-      <logic:equal name="subscriptionForm" property="action"
+      <logic:equal name="SubscriptionForm" property="action"
                   scope="request" value="Create">
         <html:text property="host" size="50"/>
       </logic:equal>
-      <logic:notEqual name="subscriptionForm" property="action"
+      <logic:notEqual name="SubscriptionForm" property="action"
                      scope="request" value="Create">
         <html:hidden property="host" write="true"/>
       </logic:notEqual>
@@ -95,19 +95,19 @@
 
   <tr>
     <td align="right">
-      <logic:equal name="subscriptionForm" property="action"
+      <logic:equal name="SubscriptionForm" property="action"
                   scope="request" value="Create">
         <html:submit>
           <bean:message key="button.save"/>
         </html:submit>
       </logic:equal>
-      <logic:equal name="subscriptionForm" property="action"
+      <logic:equal name="SubscriptionForm" property="action"
                   scope="request" value="Delete">
         <html:submit>
           <bean:message key="button.confirm"/>
         </html:submit>
       </logic:equal>
-      <logic:equal name="subscriptionForm" property="action"
+      <logic:equal name="SubscriptionForm" property="action"
                   scope="request" value="Edit">
         <html:submit>
           <bean:message key="button.save"/>
@@ -115,7 +115,7 @@
       </logic:equal>
     </td>
     <td align="left">
-      <logic:notEqual name="subscriptionForm" property="action"
+      <logic:notEqual name="SubscriptionForm" property="action"
                      scope="request" value="Delete">
         <html:reset>
           <bean:message key="button.reset"/>

@@ -3,9 +3,9 @@
           "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
           "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
 <!--
- $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/struts-config-registration.xml,v 1.6 2004/03/09 04:40:53 husted Exp $
- $Revision: 1.6 $
- $Date: 2004/03/09 04:40:53 $
+ $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/struts-config-registration.xml,v 1.7 2004/03/12 05:19:46 husted Exp $
+ $Revision: 1.7 $
+ $Date: 2004/03/12 05:19:46 $
 
  Copyright 2000-2004 Apache Software Foundation
 
@@ -50,7 +50,7 @@
   <action-mappings>
 
     <!-- Matches all edit actions (in this case, only user regstration) -->
-    <action    path="/edit*"
+    <action    path="/Edit*"
                type="org.apache.struts.webapp.example.Edit{1}Action"
                name="{1}Form"
               scope="request"
@@ -59,7 +59,7 @@
     </action>
 
     <!-- Matches all save actions (in this case, only user registration) -->
-    <action    path="/save*"
+    <action    path="/Save*"
                type="org.apache.struts.webapp.example.Save{1}Action"
                name="{1}Form"
               scope="request"

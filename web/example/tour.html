@@ -60,9 +60,9 @@
         <a href="#subscription.jsp">registration.jsp</a>
 
         <ul>
-          <li><a href="#registrationForm.java">RegistrationForm.java</a></li>
+          <li><a href="#RegistrationForm.java">RegistrationForm.java</a></li>
 
-          <li><a href="#editRegistrationAction.java">EditRegistrationAction.java</a></li>
+          <li><a href="#EditRegistrationAction.java">EditRegistrationAction.java</a></li>
 
           <li><a href="#LinkSubscriptionTag.java">LinkSubscriptionTag.java</a></li>
 
@@ -89,6 +89,14 @@
     <p>The Struts distribution bundles four applications: struts-documentation, tiles-documentation, struts-example, and struts-examples. This document walks through the struts-example, also known as the "MailReader Demonstration Application".</p>
 
     <p>The premise of the MailReader is that it is the first iteration of a portal application. This version allows users to register themselves and maintain a set of accounts with various mail servers. When completed, the application would let users read mail from their accounts.</p>
+
+    <p>The MailReader application demonstrates registering with an application, logging into an application, maintaining a master record, and maintaining child records. This document walks through the JSP pages, Struts Java classes, and Struts configuration elements needed to do these things.</p>
+
+    <blockquote>
+      <p>Note that for compatability and ease of deployment, the MailReader uses "application-based" authorization. However, use of the standard Java Authentication and Authorization Service (JAAS) is recommended for most applications. (See the <a href="http://jakarta.apache.org/struts/userGuide/preface.html">Preface to the Struts User Guide</a> for more about authentification technologies.)</p>
+    </blockquote>
+
+    <p>The walkthrough starts with how the initial welcome page is displayed, and then steps through logging in, adding and editing subscriptions, and creating a new registration.</p>
 
     <h3><a name="index.jsp" id="index.jsp">index.jsp</a></h3>
 
@@ -120,7 +128,7 @@
 </pre>
     <hr />
 
-    <p>If someone asked for the welcome action ("/welcome.do"), the welcome.jsp page would be displayed in return.</p>
+    <p>If someone asked for the welcome action ("/Welcome.do"), the welcome.jsp page would be displayed in return.</p>
 
     <h4><a name="WelcomeAction.java" id="WelcomeAction.java">WelcomeAction.java</a></h4>
 
@@ -266,9 +274,7 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
 
     <p>If you choose the logon link, the Logon action forwards control to the logon.jsp page. The logon page displays a form that accepts a username and password. You can use the default username and password to logon (user and pass). Note that both the username and password are case sensitive. Better yet, try omitting or misspelling the username and password in various combinations and see how the application reacts.</p>
 
-    <p>Once you enter the correct username and password combination, the LogonAction will send you to the main menu. Note that whatever username you entered before is defaulted on the form.</p>
-
-    <p>Now that we've gotten through a logon, let's backtrack and take a look at the logon.jsp.</p>
+    <p>Here's how the login.jsp is coded:</p>
     <hr />
     <pre>
 <code>&lt;%@ page contentType="text/html;charset=UTF-8" language="java" %&gt;
@@ -319,7 +325,7 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
 
 &lt;/html:form&gt;
 
-&lt;html:javascript formName="logonForm"
+&lt;html:javascript formName="LogonForm"
         dynamicJavascript="true"
          staticJavascript="false"/&gt;
 &lt;script language="Javascript1.1" src="staticJavascript.jsp"&gt;&lt;/script&gt;
@@ -332,17 +338,17 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
 
     <p>We saw some of these tags on the welcome page. Let's focus on the new tags.</p>
 
-    <p>The first new tag on the logon page is html:errors. If a person enters incorrect credentials, then the LogonAction will post an appropriate error message. If the html:errors tag sees that one or more messages were posted, the tag ouputs the messages to the page. The text of the messages can be specified in the MessageResource bundle, making them easy to internationalize.</p>
+    <p>The first new tag on the logon page is "html:errors". The credentials you entered are processed by a "LogonAction" class. If the credentials are incorrect, the LogonAction posts an appropriate error message and forwards back to the input page. If the html:errors tag sees that one or more messages were posted, the tag ouputs the messages to the page. The text of the messages can be specified in the MessageResource bundle, making them easy to internationalize.</p>
 
-    <p>The second new tag is html:form. This tag renders a html form tag. The "action" element tells the tag to use "logonSubmit.do" for the form's action. The "focus" attribute tells the tag to generate a little Javascript after the form that sets its focus to the "username" field. The "onsubmit" attribute tells the form to run a Javascript when the form is submitted. (Just like the corresponding attribute on the standard form tag.)</p>
+    <p>The second new tag is "html:form". This tag renders a html form tag. The "action" element tells the tag to use "SubmitLogon.do" for the form's action. The "focus" attribute tells the tag to generate a little Javascript after the form that sets its focus to the "username" field. The "onsubmit" attribute tells the form to run a Javascript when the form is submitted. (Just like the corresponding attribute on the standard form tag.)</p>
 
     <p>Within the html:form tag, we see four other new tags: "html:text", "html:password", "html:submit", and "html:reset".</p>
 
     <p>The html:text tag renders a "input type=text" tag. The "property" attribute becomes the input tag's "name" attribute.</p>
 
-    <p>The html:password tag renders a "input type=password" tag. The "redisplay" attribute tell the tag not to render the password back into the file, if the submit fails. The html:submit and html:reset tags renders buttons of the corresponding types.</p>
+    <p>The html:password tag renders a "input type=password" tag. The "redisplay" attribute tell the tag not to render the password back into the file, if the submit fails. The html:submit and html:reset tags render buttons of the corresponding types.</p>
 
-    <p>Following the form is a html:javascript tag. This tag works with the Struts Validator component to generate a JavaScript that can validate input before it is submitted to the LogonAction.</p>
+    <p>Following the form is a "html:javascript" tag. This tag works with the Struts Validator component to generate a JavaScript that can validate input before it is submitted to the LogonAction.</p>
 
     <blockquote>
       <p><font class="note">Most of these tags have many more options than the ones we use in this application. For the complete documentation for each tag, see the Tag Developers Guides in the Struts documentation bundle.</font></p>
@@ -350,23 +356,23 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
 
     <p>But, how do these tags know so much? How does the Javascript tag know what scripts to write? How do the text and password tags know what values to redisplay?</p>
 
-    <p>For the answers, we need to turn to the Struts configuration files.</p>
+    <p>For the answers, we need to turn to the Struts configuration files, "struts-config.xml" and "validation.xml".</p>
 
     <h4><a name="struts-config.xml" id="struts-config.xml">struts-config.xml</a></h4>
 
-    <p>In the struts-config.xml file, we find an element for the "/logonSubmit" action</p>
+    <p>In the struts-config.xml file, we find an element for the "/SubmitLogon" action</p>
     <hr />
     <pre>
 <code>&lt;!-- Process a user logon --&gt;
 &lt;action    path="/submitLogon"
                   type="org.apache.struts.webapp.example.LogonAction"
-                  name="logonForm"
+                  name="LogonForm"
                  scope="request"
                  input="logon"&gt;
  &lt;exception
                    key="expired.password"
                   type="org.apache.struts.webapp.example.ExpiredPasswordException"
-                  path="/expiredPassword.do"/&gt;
+                  path="/ExpiredPassword.do"/&gt;
        &lt;/action&gt;</code>
 </pre>
     <hr />
@@ -375,10 +381,10 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
 
     <p>The "name" attribute specifies something Struts calls an "ActionForm". The ActionForm buffers input from a form and delivers it to an Action class as an object. The ActionForm can also validate the input. If validation fails, the tags can rewrite the input values from the ActionForm.</p>
 
-    <p>The ActionForms are defined in the "formbeans" section of the configuration file. Here's the formbean element for the "logonForm".</p>
+    <p>The ActionForms are defined in the "formbeans" section of the configuration file. Here's the formbean element for the "LogonForm".</p>
     <hr />
     <pre>
-<code>&lt;form-bean       name="logonForm"
+<code>&lt;form-bean       name="LogonForm"
                  type="org.apache.struts.validator.DynaValidatorForm"&gt;
                  &lt;form-property name="username" type="java.lang.String"/&gt;
                  &lt;form-property name="password" type="java.lang.String"/&gt;
@@ -397,7 +403,7 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
     <p>Struts can also validate the ActionForm automatically. If validation fails, Struts looks for the forward specified by the "input" attribute. In this case, the "logon" forward sends control back to the input.jsp page.</p>
     <hr />
     <pre>
-<code>&lt;forward name="logon" path="/logon.do"/&gt;</code>
+<code>&lt;forward name="logon" path="/Logon.do"/&gt;</code>
 </pre>
     <hr />
 
@@ -405,10 +411,10 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
 
     <h4><a name="validations.xml" id="validations.xml">validations.xml</a></h4>
 
-    <p>In the logon.jsp, we mentioned that the html:javascript tag confers with the Struts Validator components. The Validator is configured through another XML document, the "validation.xml". Here's the element for our logonForm:</p>
+    <p>In the logon.jsp, we mentioned that the html:javascript tag confers with the Struts Validator components. The Validator is configured through another XML document, the "validation.xml". Here's the element for our LogonForm:</p>
     <hr />
     <pre>
-<code>&lt;form name="logonForm"&gt;
+<code>&lt;form name="LogonForm"&gt;
 
         &lt;field property="username"
                         depends="required"&gt;
@@ -442,13 +448,12 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
 
     <h4><a name="LogonAction.java" id="LogonAction.java">LogonAction.java</a></h4>
 
-    <p>If validation passes, the logonForm is forwarded to the LogonAction. The LogonAction interacts with the database to see if the credentials are valid. If so, the user is logged on, and control passes to the "success" forward. Otherwise, control is forwarded to the input page and the list of error messages displayed.</p>
+    <p>If validation passes, the LogonForm object is forwarded to the LogonAction. The LogonAction interacts with the database to see if the credentials are valid. If so, the user is logged on, and control passes to the "success" forward. Otherwise, control is forwarded to the input page and the list of error messages displayed.</p>
 
     <p>Here's the LogonAction (sans comments):</p>
-
     <hr />
-
-<pre><code>package org.apache.struts.webapp.example;
+    <pre>
+<code>package org.apache.struts.webapp.example;
 import ...
 
 public final class LogonAction extends BaseAction {
@@ -468,7 +473,7 @@ public final class LogonAction extends BaseAction {
         }
         else {
             user = database.findUser(username);
-            if ((user != null) && !user.getPassword().equals(password)) {
+            if ((user != null) &amp;&amp; !user.getPassword().equals(password)) {
                 user = null;
             }
             if (user == null) {
@@ -522,9 +527,9 @@ public final class LogonAction extends BaseAction {
 
         return (findSuccess(mapping));
 
-    }</code></pre>
-
-	<hr />
+    }</code>
+</pre>
+    <hr />
 
     <h4><a name="mainMenu.jsp" id="mainMenu.jsp">mainMenu.jsp</a></h4>
 
@@ -536,10 +541,10 @@ public final class LogonAction extends BaseAction {
       <li>Log off MailReader Demonstration Application</li>
     </ul>
 
-    <p>If you check the page path shown by your browser, you will see that it shows "logon.do" not "mainMenu.jsp". This is because the page was loaded as the ultimate result of the logon.do request, so for all the browser knows, that's where you are. This is why the base custom tag is important. If your page included relative links to images, your browser would be trying to make them based on the path to "logon.do". So the Struts base tag saves the day by telling the browser to resolve relative links based on the path to the file Struts returned, rather than on the "file" the browser requested.</p>
+    <p>If you check the page path shown by your browser, you will see that it shows "Logon.do" not "mainMenu.jsp". This is because the page was loaded as the ultimate result of the Logon.do request, so for all the browser knows, that's where you are. This is why the base custom tag is important. If your page included relative links to images, your browser would be trying to make them based on the path to "Logon.do". So the Struts base tag saves the day by telling the browser to resolve relative links based on the path to the file Struts returned, rather than on the "file" the browser requested.</p>
 
     <blockquote>
-      <p><i>If you have a sharp eye, you also may have noticed that logon.do is not followed by any parameters from the login form (logon.do?username=user). The default method for a from created with the Struts form tag is POST, which does not append form parameters to the request path, as GET does. This is the opposite of the HTML form tag, which uses GET by default.</i></p>
+      <p><i>If you have a sharp eye, you also may have noticed that logon.do is not followed by any parameters from the login form (Logon.do?username=user). The default method for a from created with the Struts form tag is POST, which does not append form parameters to the request path, as GET does. This is the opposite of the HTML form tag, which uses GET by default.</i></p>
     </blockquote>
 
     <h3><a name="mainMenu.jsp" id="mainMenu.jsp">mainMenu.jsp</a></h3>
@@ -562,7 +567,7 @@ public final class LogonAction extends BaseAction {
       <p><i>Unfortunately, some of the application's model is exposed by this page view. Struts goes a long way toward minimizing this sort of thing, but in some cases it is unavoidable.</i></p>
     </blockquote>
 
-    <p>The other links we've seen have either gone directly to a JSP file, or to a Struts action path, like login.do. The "Edit your user registration profile" link is a little different, since it also uses a parameter, as in editRegistration.do?action=Edit. When the Struts ActionServlet processes this link, it will ignore the parameter for the purpose of matching the request, but still pass the parameter along to action's object.</p>
+    <p>The other links we've seen have either gone directly to a JSP file, or to a Struts action path, like Login.do. The "Edit your user registration profile" link is a little different, since it also uses a parameter, as in EditRegistration.do?action=Edit. When the Struts ActionServlet processes this link, it will ignore the parameter for the purpose of matching the request, but still pass the parameter along to action's object.</p>
 
     <blockquote>
       <p><i>This means that in Struts, an action object must be able to handle every valid parameter for it's base path. (In the Example, editRegistration <b>must</b> handle both Edit and Create.)</i></p>
@@ -570,17 +575,17 @@ public final class LogonAction extends BaseAction {
       <p><i>You may want to check for invalid parameters too. (And be careful of differences in case if your comparisons are not case insensitive!)</i></p>
     </blockquote>
 
-    <p>If you check the struts-config.xml, you'll see that the editRegistration action is mapped to the (surprise again!), the EditRegistrationAction; it uses a registrationForm bean, and registration.jsp for input.</p>
+    <p>If you check the struts-config.xml, you'll see that the editRegistration action is mapped to the (surprise again!), the EditRegistrationAction; it uses a RegistrationForm bean, and registration.jsp for input.</p>
 
     <blockquote>
       <p><code>&lt;!-- Registration form bean --&gt;<br />
-      &lt;form-bean name="registrationForm"<br />
+      &lt;form-bean name="RegistrationForm"<br />
       type="org.apache.struts.webapp.example.RegistrationForm"/&gt;</code></p>
 
       <p><code>&lt;!-- Edit user registration --&gt;<br />
       &lt;action path="/editRegistration"<br />
       type="org.apache.struts.webapp.example.EditRegistrationAction"<br />
-      name="registrationForm"<br />
+      name="RegistrationForm"<br />
       scope="request"<br />
       validate="false"<br />
       input="/registration.jsp"&gt;<br />
@@ -606,7 +611,7 @@ public final class LogonAction extends BaseAction {
 
     <blockquote>
       <p><code>&lt;logic:equal<br />
-      name="registrationForm"<br />
+      name="RegistrationForm"<br />
       property="action"<br />
       scope="request"<br />
       value="Edit"<br />
@@ -614,10 +619,10 @@ public final class LogonAction extends BaseAction {
       &lt;app:checkLogon/&gt;<br />
       &lt;/logic:equal&gt;</code></p>
 
-      <p><i>Note that the Struts html:form tag will refer to properties set by struts-config.xml and automatically create a registrationForm bean if one is not present. However, that does not happen until the form tag is processed within the page. Since this block appears before the html:form tag, a runtime error is exposed if you try to access registration.jsp directly (rather then going through the editRegistration.do action).</i></p>
+      <p><i>Note that the Struts html:form tag will refer to properties set by struts-config.xml and automatically create a RegistrationForm bean if one is not present. However, that does not happen until the form tag is processed within the page. Since this block appears before the html:form tag, a runtime error is exposed if you try to access registration.jsp directly (rather then going through the EditRegistration.do action).</i></p>
     </blockquote>
 
-    <p>registation.jsp continues to use logic tags throughout the page so that a single JSP can be used to perform more than one task. For example, if you are editing the form (action == "Edit"), the page inserts your username from the registrationForm bean. If you are new user (action == "Create"), the page creates an empty field, so you can pick your username.</p>
+    <p>registation.jsp continues to use logic tags throughout the page so that a single JSP can be used to perform more than one task. For example, if you are editing the form (action == "Edit"), the page inserts your username from the RegistrationForm bean. If you are new user (action == "Create"), the page creates an empty field, so you can pick your username.</p>
 
     <blockquote>
       <p><i>The Struts logic tags are a very convenient way to express application logic within your pages. This prevents user error and reduces the number of JSPs your application needs to maintain, among other benefits.</i></p>
@@ -627,7 +632,7 @@ public final class LogonAction extends BaseAction {
 
     <blockquote>
       <p><code>&lt;logic:equal<br />
-      name="registrationForm"<br />
+      name="RegistrationForm"<br />
       property="action"<br />
       scope="request"<br />
       value="Edit"<br />
@@ -690,11 +695,11 @@ public final class LogonAction extends BaseAction {
       &lt;bean:write name="subscription" property="autoConnect"/&gt;<br />
       &lt;/td&gt;<br />
       &lt;td align="center"&gt;<br />
-      &lt;app:linkSubscription page="/editSubscription.do?action=Delete"&gt;<br />
+      &lt;app:linkSubscription page="/EditSubscription.do?action=Delete"&gt;<br />
       &lt;bean:message key="registration.deleteSubscription"/&gt;<br />
       &lt;/app:linkSubscription&gt;<br />
-      &lt;app:linkSubscription page="/editSubscription.do?action=Edit"&gt;<br />
-      &lt;bean:message key="registration.editSubscription"/&gt;<br />
+      &lt;app:linkSubscription page="/EditSubscription.do?action=Edit"&gt;<br />
+      &lt;bean:message key="registration.EditSubscription"/&gt;<br />
       &lt;/app:linkSubscription&gt;<br />
       &lt;/td&gt;<br />
       &lt;/tr&gt;<br />
@@ -710,7 +715,7 @@ public final class LogonAction extends BaseAction {
     <p>The Example application uses a subscription's host name (e.g. yahoo.com) as a primary key, which means you can only have one subscription for each host. It also means that to edit a subscription, all you need to know is the user and host. In fact, the editSubscription action is designed to create, edit, or delete a subscription if provided a user and host names in the request. The goal of LinkSubscriptionTag is then to output a block like:</p>
 
     <blockquote>
-      <p><code>&lt;A HREF=[path]editSubscription.do?action=[action]&amp;username=[user]&amp;host=[host]"&gt;[action]<br />
+      <p><code>&lt;A HREF=[path]EditSubscription.do?action=[action]&amp;username=[user]&amp;host=[host]"&gt;[action]<br />
       &lt;/A&gt;</code></p>
     </blockquote>
 
@@ -718,7 +723,7 @@ public final class LogonAction extends BaseAction {
 
     <blockquote>
       <p><code>&lt;app:linkSubscription<br />
-      page="/editSubscription.do?action=Delete"&gt;Delete<br />
+      page="/EditSubscription.do?action=Delete"&gt;Delete<br />
       &lt;/app:linkSubscription&gt;</code></p>
     </blockquote>
 
@@ -742,7 +747,7 @@ public final class LogonAction extends BaseAction {
     <p>Meanwhile, back on registration.jsp, there is one more link on the page. This uses yet another custom tag, the app:linkUser tag.</p>
 
     <blockquote>
-      <p><code>&lt;app:linkUser page="/editSubscription.do?action=Create"&gt;<br />
+      <p><code>&lt;app:linkUser page="/EditSubscription.do?action=Create"&gt;<br />
       &lt;bean:message key="registration.addSubscription"/&gt;<br />
       &lt;/app:linkUser&gt;</code></p>
     </blockquote>
@@ -754,7 +759,7 @@ public final class LogonAction extends BaseAction {
     <p>Since they solve the same general problem, LinkUserTag and LinkSubscriptionTag are quite a bit a like, except that LinkUserTag grabs the user bean from the session context, instead of a subscription bean from the iteration. Like the LinkSubscriptionTag, the name for the user bean (e.g. "user") is defaulted, and can be omitted from the tag; all that's needed is the page property -- the rest is automatic!</p>
 
     <blockquote>
-      <p><code>&lt;app:linkUser page="/editSubscription.do?action=Create"&gt;<br />
+      <p><code>&lt;app:linkUser page="/EditSubscription.do?action=Create"&gt;<br />
       &lt;bean:message key="registration.addSubscription"/&gt;<br />
       &lt;/app:linkUser&gt;</code></p>
     </blockquote>
@@ -762,7 +767,7 @@ public final class LogonAction extends BaseAction {
     <p>When rendered, this displays a HTML hypertext link like:</p>
 
     <blockquote>
-      <p><code>&lt;a href="/struts-example/editSubscription.do?action=Create&amp;amp;username=user"&gt;<br />
+      <p><code>&lt;a href="/struts-example/EditSubscription.do?action=Create&amp;amp;username=user"&gt;<br />
       Add<br />
       &lt;/a&gt;</code></p>
 
@@ -778,14 +783,14 @@ public final class LogonAction extends BaseAction {
     <blockquote>
       <p><code>&lt;!-- Subscription form bean --&gt;<br />
       &lt;form-bean<br />
-      name="subscriptionForm"<br />
+      name="SubscriptionForm"<br />
       type="org.apache.struts.webapp.example.SubscriptionForm"<br />
       /&gt;</code></p>
 
       <p><code>&lt;!-- Edit mail subscription --&gt;<br />
       &lt;action path="/editSubscription"<br />
       type="org.apache.struts.webapp.example.EditSubscriptionAction"<br />
-      name="subscriptionForm"<br />
+      name="SubscriptionForm"<br />
       scope="request"<br />
       validate="false"<br />
       &gt;<br />
@@ -796,7 +801,7 @@ public final class LogonAction extends BaseAction {
       <p><i>When we've introduced these type of mappings before, and mentioned that the struts-config.xml was parsed when the ActionServlet was initialized. But we should make it clear that when the Struts digester parsed this file, it actually created standard Java objects, linked as properties to the controller. This means you don't have to edit Java source files just to add a bunch of "new" statements. (How cool is that?)</i></p>
     </blockquote>
 
-    <p>Following what was specified by struts-config.xml, the controller makes sure that a subscriptionForm bean exists, along with the SubscriptionAction object, and then calls the action object's perform method. The perform method first checks to see that the user is logged-in. If not, control is forwarded to the login action. EditSubscriptionAction.perform then either creates a new subscription object (if the task is Create), or searches the user's subscription hashtable for a matching hostname (if the task is Edit).</p>
+    <p>Following what was specified by struts-config.xml, the controller makes sure that a SubscriptionForm bean exists, along with the SubscriptionAction object, and then calls the action object's perform method. The perform method first checks to see that the user is logged-in. If not, control is forwarded to the login action. EditSubscriptionAction.perform then either creates a new subscription object (if the task is Create), or searches the user's subscription hashtable for a matching hostname (if the task is Edit).</p>
 
     <p>Finally, EditSubscriptionAction conforms the ActionForm bean with the database bean. There may be several subscriptions in the database, but in EditSubscriptionAction we expose the one selected (or just created) for this request to use. Once the Action form (called "subform" in the code) is created and populated from the database, the bean's action is set to either Create or Edit, and control is forwarded to our "success" form, subscription.jsp .</p>
 
@@ -861,7 +866,7 @@ public final class LogonAction extends BaseAction {
 
     <blockquote>
       <p><code>&lt;logic:equal<br />
-      name="subscriptionForm"<br />
+      name="SubscriptionForm"<br />
       property="action"<br />
       scope="request"<br />
       value="Create"&gt;<br />

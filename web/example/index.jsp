@@ -1,13 +1,13 @@
 <%@ taglib uri="/tags/struts-logic" prefix="logic" %>
-<logic:redirect action="/welcome"/>
+<logic:redirect action="/Welcome"/>
 <%--
 Redirect default requests to Welcome action.
 By using a redirect, the user-agent will change address to match the path of our Welcome action.
 
 /*
- * $Header: /home/cvs/jakarta-struts/web/example/index.jsp,v 1.21 2004/03/09 04:35:01 husted Exp $
- * $Revision: 1.21 $
- * $Date: 2004/03/09 04:35:01 $
+ * $Header: /home/cvs/jakarta-struts/web/example/index.jsp,v 1.22 2004/03/12 05:19:45 husted Exp $
+ * $Revision: 1.22 $
+ * $Date: 2004/03/12 05:19:45 $
  *
  * Copyright 2000-2004 Apache Software Foundation
  *

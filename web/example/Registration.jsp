@@ -24,7 +24,7 @@
 
 <html:errors/>
 
-<html:form action="/saveRegistration" focus="username"
+<html:form action="/SaveRegistration" focus="username"
          onsubmit="return validateRegistrationForm(this);">
 <html:hidden property="action"/>
 <table border="0" width="100%">
@@ -156,10 +156,10 @@
       <bean:write name="subscription" property="autoConnect"/>
     </td>
     <td align="center">
-      <app:linkSubscription page="/editSubscription.do?action=Delete">
+      <app:linkSubscription page="/EditSubscription.do?action=Delete">
         <bean:message key="registration.deleteSubscription"/>
       </app:linkSubscription>
-      <app:linkSubscription page="/editSubscription.do?action=Edit">
+      <app:linkSubscription page="/EditSubscription.do?action=Edit">
         <bean:message key="registration.editSubscription"/>
       </app:linkSubscription>
     </td>
@@ -168,7 +168,7 @@
 
 </table>
 
-<html:link action="/editSubscription?action=Create" paramId="username"
+<html:link action="/EditSubscription?action=Create" paramId="username"
  paramName="RegistrationForm" paramProperty="username">
   <bean:message key="registration.addSubscription"/>
 </html:link>

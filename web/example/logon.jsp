@@ -10,7 +10,7 @@
 
 <html:errors/>
 
-<html:form action="/submitLogon" focus="username"
+<html:form action="/SubmitLogon" focus="username"
          onsubmit="return validateLogonForm(this);">
 <table border="0" width="100%">
 
@@ -46,7 +46,7 @@
 
 </html:form>
 
-<html:javascript formName="logonForm"
+<html:javascript formName="LogonForm"
         dynamicJavascript="true"
          staticJavascript="false"/>
 <script language="Javascript1.1" src="staticJavascript.jsp"></script>
