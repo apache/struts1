@@ -24,7 +24,7 @@ import org.apache.scaffold.lang.Tokens;
  * Scan request parameters for the name of a local or global
  * forward. If one is found, use it. If not, return null.
  * @author Dmitri Valdin
- * @version $Revision: 1.2 $ $Date: 2002/01/22 22:37:50 $
+ * @version $Revision: 1.3 $ $Date: 2002/01/23 21:40:52 $
 **/
 public final class FindForwardAction extends Action {
 
@@ -44,49 +44,36 @@ public final class FindForwardAction extends Action {
                  HttpServletResponse response)
     throws IOException, ServletException {
 
-        //   String forwards[] = ActionMapping.findForwards();
+        String forwards[] = mapping.findForwards();
+        /* -- non-deprecated version
         ApplicationConfig config = (ApplicationConfig)
             request.getAttribute(Action.APPLICATION_KEY);
         ForwardConfig forwards[] = config.findForwardConfigs();
+        */
         for (int i=0; i<forwards.length; i++) {
-            if (request.getParameter(forwards[i].getName())!=null) {
+            if (request.getParameter(forwards[i])!=null) {
                  // Return the required ActionForward instance
-                 return mapping.findForward(forwards[i].getName());
+                 return mapping.findForward(forwards[i]);
              }
          }
 
         return null;
 
-        /*
-        int count=0;
-        ActionForward forward = null;
-        for (int i=0; i<forwards.length; i++) {
-            if (request.getParameter(forwards[i])!=null) {
-                forward = mapping.findForward(forwards[i]);
-                count++;
-             }
-         }
-
-        if (count>1) {
-            // duplicate forward error
-        }
-
-        return forward;
-       **/
     }
 
 } // end FindForwardAction
 
+
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/FindForwardAction.java,v 1.2 2002/01/22 22:37:50 husted Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/22 22:37:50 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/FindForwardAction.java,v 1.3 2002/01/23 21:40:52 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/01/23 21:40:52 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2002 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
