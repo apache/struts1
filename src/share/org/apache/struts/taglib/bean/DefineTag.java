@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.15 2002/02/25 21:02:04 oalexeev Exp $
- * $Revision: 1.15 $
- * $Date: 2002/02/25 21:02:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.16 2002/03/16 05:04:33 craigmcc Exp $
+ * $Revision: 1.16 $
+ * $Date: 2002/03/16 05:04:33 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.RequestUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2002/02/25 21:02:04 $
+ * @version $Revision: 1.16 $ $Date: 2002/03/16 05:04:33 $
  */
 
 public class DefineTag extends BodyTagSupport {
@@ -223,10 +223,21 @@ public class DefineTag extends BodyTagSupport {
 
         // Retrieve the required property value
         Object value = this.value;
-        if (value == null && name!=null) 
+        if ((value == null) && (name!=null)) {
             value = RequestUtils.lookup(pageContext, name, property, scope);
-        if (value == null) 
+        }
+        if (value == null) {
             value = bodyContent.getString();
+            if (value != null) {
+                value = ((String) value).trim();
+            }
+        }
+        if (value == null) {
+            JspException e =
+                new JspException(messages.getMessage("define.null"));
+            RequestUtils.saveException(pageContext, e);
+            throw e;
+        }
 
         // Expose this value as a scripting variable
         int inScope = PageContext.PAGE_SCOPE;
