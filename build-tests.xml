@@ -648,7 +648,7 @@
         <test       name="org.apache.struts.action.TestDynaActionForm"/>
         <test       name="org.apache.struts.action.TestDynaActionFormClass"/>
         <test       name="org.apache.struts.config.TestModuleConfig"/>
-        <test       name="org.apache.struts.action.TestActionMappingMatcher"/>
+        <test       name="org.apache.struts.config.TestActionConfigMatcher"/>
 
         <!-- Tests for org.apache.struts.util -->
         <batchtest fork="yes">
