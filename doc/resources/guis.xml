@@ -10,6 +10,7 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Code Generators and GUIs">
+<p><a href="http://www.alien-factory.co.uk/struts/struts-index.html"><b>Struts GUI</b></a> by Alien-Factory - Alien-Factory's Struts GUI for Microsoft Visio is essentially a Visio Stencil with Visual Basic Macros.</p>
 <p><a href="http://rivernorth.sourceforge.net"><b>Struts Builder</b></a> by RiverNorth - an Opensource tool (GPL license) originally developed for internal use to aid in development of Struts-based web applications (1.1 style).</p>
 <p><a href="http://www.synthis.com/products/adalon/overview.jsp"><b>Adalon</b></a> - Adalon is a next generation functional design tool that fills the gaps left by today's market leading software design products. </p>
 <p><a href="http://easystruts.sourceforge.net/"><b>Easy Struts Project</b></a> by Emmanuel Boudrant - The aim of this project is to provide a bunch of development tools, for Eclispe v2.0 and Borland JBuilder 5-6, in order to facilitate the development of a web project based on the MVC2 Jakarta Struts framework.</p>
