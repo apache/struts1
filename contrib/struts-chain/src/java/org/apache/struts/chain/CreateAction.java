@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/CreateAction.java,v 1.3 2003/10/10 04:26:16 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2003/10/10 04:26:16 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/CreateAction.java,v 1.4 2004/01/15 13:47:03 germuska Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/15 13:47:03 $
  *
  * ====================================================================
  *
@@ -73,6 +73,8 @@ import org.apache.struts.chain.Constants;
 import org.apache.struts.chain.util.ClassUtils;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -80,14 +82,14 @@ import org.apache.struts.config.ModuleConfig;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/10/10 04:26:16 $
+ * @version $Revision: 1.4 $ $Date: 2004/01/15 13:47:03 $
  */
 
 public class CreateAction implements Command {
 
 
     // ------------------------------------------------------ Instance Variables
-
+    private static final Log log = LogFactory.getLog(CreateAction.class);
 
     private String actionKey = Constants.ACTION_KEY;
     private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
@@ -224,12 +226,17 @@ public class CreateAction implements Command {
             context.get(getActionConfigKey());
         String type = actionConfig.getType();
 
+        if (type == null) {
+            return (false);
+        }
+
         // Create (if necessary) and cache an Action instance
         Action action = null;
         Map actions = getActions(context, actionConfig.getModuleConfig());
         synchronized (actions) {
             action = (Action) actions.get(type);
             if (action == null) {
+                log.info("Initialize action of type: " + type + " for actionConfig " + actionConfig);
                 action = (Action) ClassUtils.getApplicationInstance(type);
                 ActionServlet actionServlet = (ActionServlet)
                     context.get(getActionServletKey());
