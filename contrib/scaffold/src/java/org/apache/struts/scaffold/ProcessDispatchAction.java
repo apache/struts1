@@ -49,9 +49,9 @@ import org.apache.commons.scaffold.util.ResultListBase;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.6 $ $Date: 2002/10/31 14:32:07 $
+ * @version $Revision: 1.7 $ $Date: 2002/11/23 19:09:07 $
  */
-public class ProcessDispatchAction extends ProcessAction {
+public class ProcessDispatchAction extends ProcessFormAction {
 
     /**
      * The set of argument type classes for the reflected method call.
@@ -106,13 +106,19 @@ public class ProcessDispatchAction extends ProcessAction {
         servlet.log(Log.HELPER_PROCESSING,Log.DEBUG);
         Map properties = null;
 
+            // Munge the parameter property
         servlet.log(Log.TOKENS_PARSING,Log.DEBUG);
         String[] tokens = tokenize(mapping.getParameter());
-            // :TODO: This could loop and instantiate every other
-            // token [class;method;class;method]
+               
+            // Create our ProcessBean helper
         Object helper = createHelperObject(request,tokens[0]);
         servlet.log(Log.HELPER_EXECUTING,Log.DEBUG);
         ProcessBean dataBean = (ProcessBean) helper;
+        
+            // Pass along the helper's parameter, if any
+        if (tokens.length>2) {
+            dataBean.setParameter(tokens[2]);
+        }
 
         properties = null;
         if (null!=form) {

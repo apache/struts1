@@ -41,7 +41,7 @@ import org.apache.commons.scaffold.util.ResultListBase;
  *
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.5 $ $Date: 2002/10/31 14:32:07 $
+ * @version $Revision: 1.6 $ $Date: 2002/11/23 19:09:07 $
  */
 public class ProcessAction extends BaseHelperAction {
 
@@ -475,8 +475,9 @@ public class ProcessAction extends BaseHelperAction {
                     servlet.log(Log.HELPER_POPULATE,Log.DEBUG);
                     properties = formBean.merge(userBean);
 
-                        // Pass up the Locale and RemoteServer (if any)
+                        // Pass up the Locale, RemoteNode, and RemoteServer (if any)
                     dataBean.setLocale(formBean.getSessionLocale());
+                    dataBean.setRemoteNode(getRemoteNode(request));
                     dataBean.setRemoteServer(getRemoteServer());
                 }
                 else {

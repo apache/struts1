@@ -20,47 +20,63 @@ import org.apache.struts.action.ActionMapping;
 import com.wintecinc.struts.action.ValidatorForm; // Struts 1.0.x
 
 import org.apache.commons.scaffold.lang.ChainedException;
-import org.apache.commons.scaffold.text.ConvertUtils;
+import org.apache.commons.scaffold.lang.Log;
 import org.apache.commons.scaffold.lang.Tokens;
+import org.apache.commons.scaffold.text.ConvertUtils;
 
 
 /**
  * Enhanced base ActionForm.
+ * :TODO: Extend from DynaValidatorForm in 1.1 version.
  * @author Ted Husted
- * @version $Revision: 1.10 $ $Date: 2002/11/13 19:16:41 $
- * @todo Change from BeanUtil.populate to copyProperties
- * in 1.1 version.
+ * @version $Revision: 1.11 $ $Date: 2002/11/23 19:09:19 $
  */
 public class BaseForm extends ValidatorForm {
 
 
-// ----------------------------------------------------------- Properties
-
+// ---------------------------------------------------------- Remote Host
+ 
     /**
      * The network address making this request.
      * <p>
-     * This is the value returned by reqest.getRemoteAddr.
+     * This is the value returned by reqest.getremoteHost.
      * It is provided so that this can be logged by components on
      * the business tier if needed.
      * This property is maintained automatically through the
      * <code>reset</code> method.
      */
-    private String remoteAddr = null;
+    private String remoteHost = null;
 
     /**
-     * Return our remoteAddr property.
+     * Return our remoteHost property.
      */
-    public String getRemoteAddr() {
-        return (this.remoteAddr);
+    public String getRemoteHost() {
+        return (this.remoteHost);
+    }
+
+    /**
+     * Set our remoteHost property.
+     */
+    public void setRemoteHost(String remoteHost) {
+        this.remoteHost = remoteHost;
     }
 
 
+     /**
+      * Sets RemoteHost attribute to request.getRemoteHost().
+      */
+     protected void resetRemoteHost(HttpServletRequest request) {
+         setRemoteHost(request.getRemoteHost());
+     }
+ 
+ 
+// ------------------------------------------------------- Session Locale
+
     /**
-     * Set our remoteAddr property.
+     * The session attribute key for our session locale [Action.LOCALE_KEY].
+     * (Suggestion only, may be overridden by presentation framework
      */
-    public void setRemoteAddr(String remoteAddr) {
-        this.remoteAddr = remoteAddr;
-    }
+    public static String STRUTS_LOCALE_KEY = Action.LOCALE_KEY;
 
 
     /**
@@ -95,127 +111,10 @@ public class BaseForm extends ValidatorForm {
 
 
     /**
-     * The mutable state.
-     * <p>
-     * To avoid autopopulation when forwarding beans between actions,
-     * set mutable to be true and be sure all setters observe the
-     * mutable state.
-     * <p>
-     * (<code>if (isMutable()) this.field = field;</code>).
-     * subject to autopopulation.
+     * Return the session key attribute for our locale object.
      */
-    private boolean mutable = true;
-
-
-    /**
-     * Set the mutable state.
-     */
-    public void setMutable(boolean mutable) {
-        this.mutable = mutable;
-    }
-
-
-    /**
-     * Retrieve the mutable state.
-     */
-    public boolean isMutable() {
-        return this.mutable;
-    }
-
-
-    /**
-     * The dispatch property.
-     * <p>
-     * This can be set by a JavaScript buttonto indicate which task should
-     * be performed (or dispatched) by an action.
-     * Observes the bean's mutable state.
-     */
-    public String dispatch = null;
-
-
-    /**
-     * Set dispatch.
-     */
-    public void setDispatch(String dispatch) {
-        if (isMutable()) this.dispatch = dispatch;
-    }
-
-
-    /**
-     * Get the dispatch.
-     */
-    public String getDispatch() {
-        return this.dispatch;
-    }
-
-
-// --------------------------------------------------------- Public Methods
-
-    /**
-     * Convenience method to test for a required field
-     * and setup the error message.
-     */
-    protected void required(
-        ActionErrors errors,
-        String field,
-        String name,
-        String arg) {
-        if ((null==field) || (0==field.length())) {
-            errors.add(name,
-                new ActionError(Tokens.ERRORS_REQUIRED,arg));
-        }
-    }
-
-
-    /**
-     * Convenience method to test for a required array
-     * and setup the error message.
-     */
-    protected void required(
-        ActionErrors errors,
-        String[] field,
-        String name,
-        String arg) {
-        if ((null==field) || (0==field.length)) {
-            errors.add(name,
-                new ActionError(Tokens.ERRORS_REQUIRED,arg));
-        }
-    }
-
-
-    /**
-     * If bean is set to mutable, calls <code>resetSessionLocale</code>
-     * and <code>setRemoteAddr</code>.
-     *
-     * Subclasses resetting their own fields should observe the mutable
-     * state (<code>if (isMutable()) ...</code>).
-     *
-     * @param mapping The mapping used to select this instance
-     * @param request The servlet request we are processing
-     */
-    public void reset(
-            ActionMapping mapping,
-            HttpServletRequest request) {
-
-        if (isMutable()) {
-
-            resetSessionLocale(request);
-            setRemoteAddr(request.getRemoteAddr());
-        }
-
-    } // end reset
-
-
-    /**
-     * Return an empty ActionErrors or the result of calling
-     * the superclass validate. Will not return null.
-     */
-    public ActionErrors validate(ActionMapping mapping,
-        HttpServletRequest request) {
-
-        ActionErrors errors = super.validate(mapping,request);
-        if (null==errors) errors = new ActionErrors();
-        return errors;
+    public String getSessionLocaleName() {
+        return STRUTS_LOCALE_KEY;
     }
 
 
@@ -229,7 +128,7 @@ public class BaseForm extends ValidatorForm {
         if (session!=null) {
 
             setSessionLocale((Locale)
-                session.getAttribute(Action.LOCALE_KEY));
+                session.getAttribute(getSessionLocaleName()));
 
         }
         else {
@@ -277,6 +176,67 @@ public class BaseForm extends ValidatorForm {
      }
 
 
+// -------------------------------------------------------------- Mutable
+
+    /**
+     * The mutable state.
+     * <p>
+     * To avoid autopopulation when forwarding beans between actions,
+     * set mutable to be true and be sure all setters observe the
+     * mutable state.
+     * <p>
+     * (<code>if (isMutable()) this.field = field;</code>).
+     * subject to autopopulation.
+     */
+    private boolean mutable = true;
+
+
+    /**
+     * Set the mutable state.
+     */
+    public void setMutable(boolean mutable) {
+        this.mutable = mutable;
+    }
+
+
+    /**
+     * Retrieve the mutable state.
+     */
+    public boolean isMutable() {
+        return this.mutable;
+    }
+
+
+// ------------------------------------------------------------- Dispatch
+
+    /**
+     * The dispatch property.
+     * <p>
+     * This can be set by a JavaScript buttonto indicate which task should
+     * be performed (or dispatched) by an action.
+     * Observes the bean's mutable state.
+     */
+    public String dispatch = null;
+
+
+    /**
+     * Set dispatch.
+     */
+    public void setDispatch(String dispatch) {
+        if (isMutable()) this.dispatch = dispatch;
+    }
+
+
+    /**
+     * Get the dispatch.
+     */
+    public String getDispatch() {
+        return this.dispatch;
+    }
+
+
+// --------------------------------------------------------- Public Methods
+
     /**
      * A static, empty String used by isBlank.
      */
@@ -312,13 +272,80 @@ public class BaseForm extends ValidatorForm {
 
 
     /**
+     * Convenience method to test for a required field
+     * and setup the error message.
+     */
+    protected void required(
+        ActionErrors errors,
+        String field,
+        String name,
+        String arg) {
+        if ((null==field) || (0==field.length())) {
+            errors.add(name,
+                new ActionError(Tokens.ERRORS_REQUIRED,arg));
+        }
+    }
+
+
+    /**
+     * Convenience method to test for a required array
+     * and setup the error message.
+     */
+    protected void required(
+        ActionErrors errors,
+        String[] field,
+        String name,
+        String arg) {
+        if ((null==field) || (0==field.length)) {
+            errors.add(name,
+                new ActionError(Tokens.ERRORS_REQUIRED,arg));
+        }
+    }
+
+
+    /**
+     * Create an object of the specified class,
+     * throwing a runtime exception if any error occurs.
+     * If an exception is not thrown, then helper is guaranteed to exist.
+     *
+     * @param objectClass The name of the class
+     * @throws IllegalArgumentException if object cannot be
+     * instantiated
+     */
+    public Object createObject(
+            String objectClass) {
+
+            // Try the create
+        Object object = null;
+        try {
+            object = Class.forName(objectClass).newInstance();
+        }
+        catch (Throwable t) {
+           object = null;
+               // assemble message: {class}: {exception}
+           StringBuffer sb = new StringBuffer();
+           sb.append(Log.CREATE_OBJECT_ERROR);
+           sb.append(Log.CLASS);
+           sb.append(objectClass);
+           sb.append(Log.SPACE);
+           sb.append(Log.ACTION_EXCEPTION);
+           sb.append(t.toString());
+                // throw runtime exception
+           throw new IllegalArgumentException(sb.toString());
+        }
+        return object;
+
+     } // createHelperObject()
+
+
+    /**
      * Return map of properties for this bean.
      * Base method uses <code>PropertyUtils.describe</code>.
      * Override if some properties should not be transfered
      * this way, or a property name should be altered.
      * This will return the actual public properties.
      *
-     * @exception Throws Exception on any error.
+     * @exception Exception on any error.
      */
     public Map describe() throws Exception {
 
@@ -337,7 +364,7 @@ public class BaseForm extends ValidatorForm {
      * <code>PropertyUtils.describe</code>.
      *
      * @param o The object to use to populate this object.
-     * @exception Throws Exception on any error.
+     * @exception Exception on any error.
      */
     public void set(Object o) throws Exception {
 
@@ -356,7 +383,7 @@ public class BaseForm extends ValidatorForm {
      * <code>describe()</code>.
      *
      * @param o The object to populate from this object.
-     * @exception Throws Exception on any error.
+     * @exception Exception on any error.
      */
     public void populate(Object o) throws Exception {
 
@@ -389,7 +416,7 @@ public class BaseForm extends ValidatorForm {
      * For an instance of BaseMapForm, getMap() is used; otherwise
      * describe() or PropertyUtils.describe() is used.
      *
-     * @fixme Needs testing. Works OK without a profile bean =:o)
+     * :FIXME: Needs testing. Works OK without a profile bean =:o)
      * @param profile The profile bean, if any
      * @throws Exception if error transfering data to map
      */
@@ -434,9 +461,48 @@ public class BaseForm extends ValidatorForm {
 
     } // end merge
 
-// end BaseForm
 
-}
+ 
+    /**
+     * If bean is set to mutable, calls <code>resetSessionLocale</code>
+     * and <code>resetRemoteHost</code>.
+     *
+     * Subclasses resetting their own fields should observe the mutable
+     * state (<code>if (isMutable()) ...</code>).
+     *
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
+     */
+    public void reset(
+            ActionMapping mapping,
+            HttpServletRequest request) {
+
+        if (isMutable()) {
+			
+			super.reset(mapping,request);
+
+		   // :TODO: Might be useful to have a collection of reset listeners 
+            resetRemoteHost(request);
+            resetSessionLocale(request);
+        }
+
+    } // end reset
+
+
+    /**
+     * Return an empty ActionErrors or the result of calling
+     * the superclass validate. Will not return null.
+     */
+    public ActionErrors validate(ActionMapping mapping,
+        HttpServletRequest request) {
+
+        ActionErrors errors = super.validate(mapping,request);
+        if (null==errors) errors = new ActionErrors();
+        return errors;
+    }
+    
+
+} // end BaseForm
 
 
 /*

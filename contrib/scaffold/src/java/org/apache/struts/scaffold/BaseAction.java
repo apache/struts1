@@ -6,25 +6,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
-import java.util.StringTokenizer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.beanutils.BeanUtils;
-
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionFormBean;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
-
-import org.apache.struts.taglib.html.Constants;
+import org.apache.struts.action.*;
 
 import org.apache.struts.util.MessageResources;
 
@@ -40,9 +28,10 @@ import org.apache.commons.scaffold.text.ConvertUtils;
  * operational details.
  * A <code>perform</code> method is also provided for backwards
  * compatibility with 1_0.
+ * :TODO: Remove deprecations after formal 1.0 Scaffod release.
  *
  * @author Ted Husted
- * @version $Revision: 1.6 $ $Date: 2002/10/31 14:32:08 $
+ * @version $Revision: 1.7 $ $Date: 2002/11/23 19:09:19 $
  */
 public class BaseAction extends Action {
 
@@ -124,8 +113,8 @@ public class BaseAction extends Action {
      * set, the default locale is returned.
      *
      * @param request The HTTP request we are processing
-     * @author  François Rey (FREY - francois.rey@capco.com)
-     * @author  Eric Bariaux (EBRX - eric.bariaux@capco.com)
+     * author  François Rey (FREY - francois.rey@capco.com)
+     * author  Eric Bariaux (EBRX - eric.bariaux@capco.com)
      */
     protected Locale getLocale(HttpServletRequest request) {
 
@@ -148,7 +137,7 @@ public class BaseAction extends Action {
      * If a session context does not exist, one is created.
      *
      * @param request The HTTP request we are processing
-     * @local locale The locale to use for this session
+     * @param locale The locale to use for this session
      */
     protected void setLocale(
             HttpServletRequest request,
@@ -159,6 +148,17 @@ public class BaseAction extends Action {
 
     } // end setLocale()
 
+
+
+// ------------------------------------------------------ Remote Node
+
+
+    /**
+     * Returns the RemoteHost IP as an Integer.
+     */
+    protected Integer getRemoteNode(HttpServletRequest request) {
+        return new Integer(0); // :FIXME: Non functional
+    }
 
 
 // ------------------------------------------------------ Remote Server
@@ -186,7 +186,6 @@ public class BaseAction extends Action {
     protected Object getRemoteServer() {
 return servlet.getServletContext().getAttribute(getRemoteServerName());
     }
-
 
 // ----------------------------------------------------------- Messages
 
@@ -224,8 +223,9 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
      * // :FIXME: In 1.1 this should be updated to use the
      * new ActionMessages superclass.
      *
-     * @param errors Our ActionErrors collection
-     * @param message our list of replaceable parameters
+     * @param request The request we are servicing
+     * @param alerts Our ActionErrors collection
+     * @param list our list of replaceable parameters
      */
     protected void mergeAlerts(
             HttpServletRequest request,
@@ -280,11 +280,11 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
      * If it doesn't exist, and create is true, a new collection is
      * returned.
      *
-     * @fixme In 1.1 this should be the ActionMessage superclass
+     * :FIXME: In 1.1 this should be the ActionMessage superclass
      * @param request The HTTP request we are processing
      * @param create Whether to create a new collection if one does
      * not exist
-     * @returns The pending ActionError queue
+     * @return The pending ActionError queue
      */
     protected ActionErrors getMessages(
             HttpServletRequest request,
@@ -337,7 +337,7 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
      * Return whether there is an informational alert collection pending.
      *
      * @param request The HTTP request we are processing
-     * @returns True if an informational alert collection exists
+     * @return True if an informational alert collection exists
      */
     protected boolean isMessages(HttpServletRequest request) {
         return (null!=getMessages(request,false));
@@ -369,7 +369,7 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
      * Return whether there is an errors alert collection pending.
      *
      * @param request The HTTP request we are processing
-     * @returns True if an errors alert collection exists
+     * @return True if an errors alert collection exists
      */
     protected ActionErrors getErrors(
             HttpServletRequest request,
@@ -396,7 +396,7 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
      * Return whether there is an errors alert collection pending.
      *
      * @param request The HTTP request we are processing
-     * @returns True if an errors alert collection exists
+     * @return True if an errors alert collection exists
      */
     protected boolean isErrors(HttpServletRequest request) {
         return (null!=getErrors(request,false));
@@ -425,10 +425,13 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
      * separator.
      * Blanks are trimmed from tokens.
      *
-     * @parameter parameter The string to tokenize into an array
+     * @param parameter The string to tokenize into an array
      */
     public String[] tokenize(String parameter) {
-
+        
+        return ConvertUtils.tokensToArray(parameter,getTokenSep());
+             
+/*        
         StringTokenizer tokenizer =
             new StringTokenizer(parameter,getTokenSep());
         int i = 0;
@@ -439,7 +442,7 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
             tokens[i++] = token;
         }
         return tokens;
-
+*/
     } // end tokenize()
 
 
@@ -593,7 +596,7 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
      * default behaviour will branch to findFailure().
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request
+     * @param form The optional ActionForm bean for this request
      * @param request The HTTP request we are processing
      * @param response The resonse we are creating
      */
@@ -619,7 +622,7 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
       * One possible error may be whether the form is null.
       *
       * @param mapping The ActionMapping used to select this instance
-      * @param actionForm The optional ActionForm bean for this request
+      * @param form The optional ActionForm bean for this request
       * @param request The HTTP request we are processing
       * @param response The resonse we are creating
       * @return The ActionForward representing FAILURE
@@ -689,14 +692,12 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
      * If overridden, if an alert is logged to the errors
      * queue (getErrors()), then default behaviour will branch
      * to findFailure().
+     * :TODO: Use a StringBufferOUTPUTStream to capture trace for error queue
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request
+     * @param form The optional ActionForm bean for this request
      * @param request The HTTP request we are processing
      * @param response The response we are creating
-     * @param errors Our ActionErrors collection
-     * @param exception The exception we are catching
-     * @todo Use a StringBufferOUTPUTStream to capture trace for error queue
      */
     protected void catchException(
                 ActionMapping mapping,
@@ -752,7 +753,7 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
      * Use getException() to check if error occured.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request
+     * @param form The optional ActionForm bean for this request
      * @param request The HTTP request we are processing
      * @param response The resonse we are creating
      */
@@ -773,10 +774,9 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
      * The default returns mapping.findForward("continue");
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request
+     * @param form The optional ActionForm bean for this request
      * @param request The HTTP request we are processing
      * @param response The response we are creating
-     * @param errors Our ActionErrors collection
      * @return The ActionForward representing SUCCESS
      * or null if a SUCCESS forward has not been specified.
      */
@@ -810,7 +810,7 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
      * <code>ServetExceptions</code> and rethrown.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request
+     * @param form The optional ActionForm bean for this request
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      * @exception IOException if an input/output error occurs
@@ -854,7 +854,7 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
      * as needed, and leave this one as is.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request
+     * @param form The optional ActionForm bean for this request
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      * @exception IOException if an input/output error occurs
