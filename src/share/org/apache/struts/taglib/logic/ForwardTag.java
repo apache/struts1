@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.12 2002/11/09 16:30:02 rleland Exp $
- * $Revision: 1.12 $
- * $Date: 2002/11/09 16:30:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.13 2002/11/23 06:31:23 rleland Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/11/23 06:31:23 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.RequestUtils;
  * configuration information associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2002/11/09 16:30:02 $
+ * @version $Revision: 1.13 $ $Date: 2002/11/23 06:31:23 $
  */
 
 public class ForwardTag extends TagSupport {
@@ -147,6 +147,12 @@ public class ForwardTag extends TagSupport {
 
 	// Forward or redirect to the corresponding actual path
 	String path = forward.getPath();
+    // support modules
+    if (config != null) {
+        path = config.getPrefix() + path;
+    }
+
+
 	if (forward.getRedirect()) {
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
