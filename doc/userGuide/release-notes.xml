@@ -434,6 +434,9 @@
         <strong>Validator Package Changes</strong> [
         <code>org.apache.struts.validator</code>]</p>
         <ul>
+            <li>2004-02-20 - Changed FieldCheck so that it examines all indexed fields and does not stop on the first failure.</li>
+        </ul>
+        <ul>
             <li>2004-01-17 - Changed initValidator() to accept an ActionMessages object instead of ActionErrors; changed ACTION_ERRORS_PARAM name to ACTION_MESSAGES_PARAM.</li>
             <li>2004-01-17 - Add section to Validator User Guide listing standard validations.</li>
         </ul>
