@@ -15,11 +15,23 @@
         <item href="news_2001.html" name="2001 News"/>
     </menu>
 
-    <menu name="Struts">
-        <item name="Welcome"                 href="../index.html"/>
-</menu>
-
-
+    <menu name="Quick Links">
+        <item 
+            name="Welcome"                 
+            href="../index.html"/>
+        <item 
+            name="News and Status *"         
+            href="index.html"/>
+        <item 
+            name="Resources"         
+            href="../resources/index.html"/>
+        <item 
+            name="User Guide" 
+            href="../userGuide/index.html"/>
+        <item 
+            name="FAQs and HowTos"         
+            href="../faqs/index.html"/>
+    </menu>
 </project>
 
 
