@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.8 2002/07/12 09:51:57 husted Exp $
- * $Revision: 1.8 $
- * $Date: 2002/07/12 09:51:57 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.9 2002/07/24 13:01:46 cedric Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/07/24 13:01:46 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.mock.TestMockBase;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/07/12 09:51:57 $
+ * @version $Revision: 1.9 $ $Date: 2002/07/24 13:01:46 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -591,7 +591,6 @@ public class TestRequestUtils extends TestMockBase {
 
 
     // Default subapp -- Forward with relative path (non-context-relative)
-    /* FIXME - comment out until Tiles conundrum is solved
     public void testComputeURL1f() {
 
         request.setPathElements("/myapp", "/action.do", null, null);
@@ -609,11 +608,9 @@ public class TestRequestUtils extends TestMockBase {
                      "/myapp/relative.jsp",
                      url);
     }
-    */
 
 
     // Default subapp -- Forward with relative path (context-relative)
-    /* FIXME - comment out until Tiles conundrum is solved
     public void testComputeURL1g() {
 
         request.setPathElements("/myapp", "/action.do", null, null);
@@ -631,7 +628,6 @@ public class TestRequestUtils extends TestMockBase {
                      "/myapp/relative.jsp",
                      url);
     }
-    */
 
 
     // Second subapp -- Forward only
@@ -749,7 +745,6 @@ public class TestRequestUtils extends TestMockBase {
 
 
     // Second subapp -- Forward with relative path (non-context-relative)
-    /* FIXME - comment out until Tiles conundrum is solved
     public void testComputeURL2f() {
 
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
@@ -768,11 +763,9 @@ public class TestRequestUtils extends TestMockBase {
                      "/myapp/2/relative.jsp",
                      url);
     }
-    */
 
 
     // Second subapp -- Forward with relative path (context-relative)
-    /* FIXME - comment out until Tiles conundrum is solved
     public void testComputeURL2g() {
 
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
@@ -791,7 +784,6 @@ public class TestRequestUtils extends TestMockBase {
                      "/myapp/relative.jsp",
                      url);
     }
-    */
 
 
     // Add parameters only

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.48 2002/07/12 15:47:01 craigmcc Exp $
- * $Revision: 1.48 $
- * $Date: 2002/07/12 15:47:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.49 2002/07/24 13:01:46 cedric Exp $
+ * $Revision: 1.49 $
+ * $Date: 2002/07/24 13:01:46 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.48 $ $Date: 2002/07/12 15:47:01 $
+ * @version $Revision: 1.49 $ $Date: 2002/07/24 13:01:46 $
  */
 
 public class RequestUtils {
@@ -1172,15 +1172,18 @@ public class RequestUtils {
 
     }
 
-
     /**
      * Return the context-relative URL that corresponds to the specified
      * {@link ForwardConfig}, relative to the module associated
-     * with the current {@link ApplicationConfig}.
+     * with the current {@link ApplicationConfig}. The forward path is
+     * gracefully prefixed with a '/' according to the boolean
+     *
      *
      * @param request The servlet request we are processing
      * @param forward ForwardConfig to be evaluated
-     *
+     * @param slashPrefixed If true, method takes care to prefix the forward path
+     * URL with a '/' if needed. If false, the '/' is added only if forward
+     * path is used after another prefix.
      * @since Struts 1.1b2
      */
     public static String forwardURL(HttpServletRequest request,
@@ -1191,11 +1194,9 @@ public class RequestUtils {
         // Handle a ForwardConfig marked as context relative
         StringBuffer sb = new StringBuffer();
         if (forward.getContextRelative()) {
-            /* Disabled to let Tiles definition names unchanged !
-            if (!path.startsWith("/")) {
+            if ( !path.startsWith("/") ) {
                 sb.append("/");
             }
-            */
             sb.append(path);
             return (sb.toString());
         }
@@ -1208,11 +1209,10 @@ public class RequestUtils {
         if (forwardPattern == null) {
             // Performance optimization for previous default behavior
             sb.append(appConfig.getPrefix());
-            /* Disabled to let Tiles definition names unchanged !
+            // smoothly insert a '/' if needed
             if (!path.startsWith("/")) {
                 sb.append("/");
             }
-            */
             sb.append(path);
         } else {
             boolean dollar = false;
@@ -1224,11 +1224,10 @@ public class RequestUtils {
                         sb.append(appConfig.getPrefix());
                         break;
                     case 'P':
-                        /* Disabled to let Tiles definition names unchanged !
+                        // add '/' if needed
                         if (!path.startsWith("/")) {
                             sb.append("/");
                         }
-                        */
                         sb.append(path);
                         break;
                     case '$':
