@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ComponentConstants.java,v 1.1 2002/06/25 03:16:30 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:16:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ComponentConstants.java,v 1.2 2002/10/27 00:29:53 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/10/27 00:29:53 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.struts.action.Action;
 public interface ComponentConstants {
 
     /** Name used to store Tile/Component context */
-  public static final String COMPONENT_CONTEXT = "CompContext";
+  public static final String COMPONENT_CONTEXT = "org.apache.struts.taglib.tiles.CompContext";
 
   public static final int    COMPONENT_SCOPE = 8;
   public static final String LOCALE_KEY = Action.LOCALE_KEY;
