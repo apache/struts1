@@ -10,6 +10,8 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Tutorials">
+<p><a href="http://javaboutique.internet.com/tutorials/Struts/"><b>Stepping through Jakarta Struts</b></a> by Keld H. Hansen.</p>
+<p><a href="http://javaboutique.internet.com/tutorials/Struts2/"><b>Coding your second Jakarta Struts Application</b></a> by Keld H. Hansen.</p>
 <p><a href="http://otn.oracle.com/products/jdev/howtos/jsp/StrutsHowTo.html"><b>How Do I use Jakarta Struts with Oracle9i JDeveloper?</b></a> by Oracle Corporation.</p>
 <p><a href="http://rollerjm.free.fr/pro/Struts.html"><b>Struts Controller UML Diagrams</b></a> by Jean-Michel Garnier - The goal of this article is to illustrate the Struts 1.1 Controller with UML diagrams. This article is an introduction to the Struts framework in order to help beginners programmers to understand the MVC model 2.</p>
 <p><a href="http://husted.com/struts/tips/"><b>Struts Tips</b></a> by Ted Husted - Practical cut-and-paste advice.</p>
