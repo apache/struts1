@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.10 2002/08/04 00:33:04 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2002/08/04 00:33:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.11 2002/09/22 05:58:46 martinc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/09/22 05:58:46 $
  *
  * ====================================================================
  *
@@ -63,13 +63,11 @@
 package org.apache.struts.actions;
 
 
-import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
@@ -128,7 +126,7 @@ import org.apache.struts.util.MessageResources;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.10 $ $Date: 2002/08/04 00:33:04 $
+ * @version $Revision: 1.11 $ $Date: 2002/09/22 05:58:46 $
  */
 
 public abstract class DispatchAction extends Action {
@@ -187,7 +185,7 @@ public abstract class DispatchAction extends Action {
      * already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *

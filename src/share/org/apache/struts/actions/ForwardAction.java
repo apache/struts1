@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/ForwardAction.java,v 1.2 2002/06/23 00:52:50 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/06/23 00:52:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/ForwardAction.java,v 1.3 2002/09/22 05:58:46 martinc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/09/22 05:58:46 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.util.MessageResources;
  * <code>parameter</code> attribute.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/06/23 00:52:50 $
+ * @version $Revision: 1.3 $ $Date: 2002/09/22 05:58:46 $
  */
 
 public class ForwardAction extends Action {
@@ -125,7 +125,7 @@ public class ForwardAction extends Action {
      * already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/IncludeAction.java,v 1.3 2002/08/09 05:20:15 martinc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/08/09 05:20:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/IncludeAction.java,v 1.4 2002/09/22 05:58:46 martinc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/09/22 05:58:46 $
  *
  * ====================================================================
  *
@@ -98,7 +98,7 @@ import org.apache.struts.util.MessageResources;
  * <code>parameter</code> attribute.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/08/09 05:20:15 $
+ * @version $Revision: 1.4 $ $Date: 2002/09/22 05:58:46 $
  */
 
 public class IncludeAction extends Action {
@@ -126,7 +126,7 @@ public class IncludeAction extends Action {
      * already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *

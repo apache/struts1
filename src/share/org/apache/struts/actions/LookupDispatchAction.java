@@ -56,8 +56,6 @@
  */
 package org.apache.struts.actions;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
