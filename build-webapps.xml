@@ -206,10 +206,22 @@
            extension=".html" style="${doc.dir}/stylesheets/resources.xsl"
             includes="*.xml"/>
     <!-- Create the user guide -->
+    <!--   ... browser version ... -->
     <style   basedir="${doc.dir}/userGuide"
              destdir="${build.home}/documentation/userGuide"
-           extension=".html" style="${doc.dir}/stylesheets/userGuide.xsl"
-            includes="*.xml"/>
+           extension=".html" style="../stylesheets/userGuide.xsl"
+            includes="*.xml">
+      <param name="relative-path" expression=".."/>
+    </style>
+    <!--   ... printer version ... -->
+    <mkdir       dir="${build.home}/documentation/userGuide/printer"/>
+    <style   basedir="${doc.dir}/userGuide"
+             destdir="${build.home}/documentation/userGuide/printer"
+           extension=".html" style="../stylesheets/userGuide.xsl"
+            includes="*.xml">
+      <param name="relative-path" expression="../.."/>
+      <param name="project-menu" expression="nomenu"/>
+    </style>
     <!-- Copy the basic documentation files -->
     <copy      todir="${build.home}/documentation">
       <fileset   dir="${doc.dir}">

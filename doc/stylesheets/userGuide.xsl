@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: userGuide.xsl,v 1.11 2003/01/07 05:57:36 martinc Exp $ -->
+<!-- $Id: userGuide.xsl,v 1.12 2003/01/19 00:40:41 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
 
 
   <!-- Output method -->
-  <xsl:output method="html" indent="no"/>
-  
+  <xsl:output method="html"
+            encoding="iso-8859-1"
+              indent="no"/>
 
-  <!-- Defined variables -->
-  <xsl:variable name="body-bg"   select="'#ffffff'"/>
-  <xsl:variable name="body-fg"   select="'#000000'"/>
-  <xsl:variable name="body-link" select="'#023264'"/>
-  <xsl:variable name="banner-bg" select="'#023264'"/>
-  <xsl:variable name="banner-fg" select="'#ffffff'"/>
+
+  <!-- Defined parameters (overrideable) -->
+  <xsl:param    name="home-href"         select="'http://jakarta.apache.org/'"/>
+  <xsl:param    name="home-logo"         select="'/images/jakarta-logo.gif'"/>
+  <xsl:param    name="home-name"         select="'The Jakarta Project'" />
+  <xsl:param    name="printer-logo"      select="'/images/printer.gif'"/>
+  <xsl:param    name="printer-name"      select="'Print-Friendly Version'"/>
+  <xsl:param    name="project-href"      select="'http://jakarta.apache.org/struts/'"/>
+  <xsl:param    name="project-logo"      select="'/images/struts.gif'"/>
+  <xsl:param    name="project-menu"      select="'menu'"/>
+  <xsl:param    name="project-name"      select="'Struts Framework'"/>
+  <xsl:param    name="relative-path"     select="'.'"/>
+
+
+  <!-- Defined variables (non-overrideable) -->
+  <xsl:variable name="body-bg"           select="'#ffffff'"/>
+  <xsl:variable name="body-fg"           select="'#000000'"/>
+  <xsl:variable name="body-link"         select="'#023264'"/>
+  <xsl:variable name="banner-bg"         select="'#023264'"/>
+  <xsl:variable name="banner-fg"         select="'#ffffff'"/>
 
 
   <!-- Process an entire document into an HTML page -->
@@ -52,22 +67,69 @@
     <table border="0" width="100%" cellspacing="5">
 
       <tr><td colspan="2">
-        <a href="http://jakarta.apache.org">
-        <img src="../images/jakarta-logo.gif" align="left" border="0"/>
+
+        <xsl:comment>
+          JAKARTA LOGO
+        </xsl:comment>
+        <xsl:variable name="alt">
+          <xsl:value-of select="$home-name"/>
+        </xsl:variable>
+        <xsl:variable name="href">
+          <xsl:value-of select="$home-href"/>
+        </xsl:variable>
+        <xsl:variable name="src">
+          <xsl:value-of select="$relative-path"/><xsl:value-of select="$home-logo"/>
+        </xsl:variable>
+        <a href="{$href}">
+        <img src="{$src}" align="left" alt="{$alt}" border="0"/>
         </a>
-        <a href="http://jakarta.apache.org/struts">
-        <img src="../images/struts.gif" align="right" border="0"/>
+
+        <xsl:comment>
+          STRUTS LOGO
+        </xsl:comment>
+        <xsl:variable name="alt">
+          <xsl:value-of select="$project-name"/>
+        </xsl:variable>
+        <xsl:variable name="href">
+          <xsl:value-of select="$project-href"/>
+        </xsl:variable>
+        <xsl:variable name="src">
+          <xsl:value-of select="$relative-path"/><xsl:value-of select="$project-logo"/>
+        </xsl:variable>
+        <a href="{$href}">
+        <img src="{$src}" align="right" alt="{$alt}" border="0"/>
         </a>
+
       </td></tr>
 
       <tr><td colspan="2">
         <hr/>
       </td></tr>
 
+      <xsl:if test="$project-menu = 'menu'">
+        <tr><td colspan="2" align="center">
+          <xsl:variable name="alt">
+            <xsl:value-of select="$printer-name"/>
+          </xsl:variable>
+          <xsl:variable name="url">
+            <xsl:value-of select="/document/@url"/>
+          </xsl:variable>
+          <xsl:variable name="src">
+            <xsl:value-of select="$relative-path"/><xsl:value-of select="$printer-logo"/>
+          </xsl:variable>
+          <a href="printer/{$url}">
+            <img src="{$src}" alt="{$alt}" border="0"/>
+            <xsl:value-of select="$printer-name"/>
+          </a>
+        </td></tr>
+      </xsl:if>
+
       <tr>
-        <td width="120" valign="top">
-          <xsl:apply-templates select="$project"/>
-        </td>
+        <xsl:if test="$project-menu = 'menu'">
+          <td width="120" valign="top">
+            <xsl:apply-templates select="$project"/>
+          </td>
+        </xsl:if>
 
         <td valign="top">
           <xsl:apply-templates select="body"/>

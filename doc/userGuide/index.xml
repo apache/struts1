@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<document url="./index.xml">
+<document url="index.html">
 
   <properties>
     <author>Craig R. McClanahan</author>
@@ -125,7 +125,7 @@
                 <li><a href="building_controller.html#logging">4.10 Using The Commons Logging Interface</a></li>                
                 </ul></li>
 
-             <li>5. Configuring Applications</li>
+             <li><a href="configuration.html">5. Configuring Applications</a></li>
                 <ul>
                 <li><a href="configuration.html#config-overview">5.1 Overview</a></li>
                 <li><a href="configuration.html#struts-config">5.2 The Struts Configuration File</a>
