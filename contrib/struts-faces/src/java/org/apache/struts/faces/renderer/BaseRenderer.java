@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/BaseRenderer.java,v 1.4 2003/09/20 23:34:35 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2003/09/20 23:34:35 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/BaseRenderer.java,v 1.5 2003/09/21 00:41:56 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/09/21 00:41:56 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.commons.logging.LogFactory;
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2003/09/20 23:34:35 $
+ * @version $Revision: 1.5 $ $Date: 2003/09/21 00:41:56 $
  */
 
 public class BaseRenderer extends AbstractRenderer {
@@ -134,7 +134,17 @@ public class BaseRenderer extends AbstractRenderer {
         }
         if (request.getContextPath() != null) {
             writer.write(request.getContextPath());
-            writer.write("/");
+        }
+        String servletPath = request.getServletPath();
+        if (servletPath != null) {
+            if (servletPath.startsWith("/faces")) {
+                writer.write(servletPath.substring(6));
+            } else {
+                writer.write(servletPath);
+            }
+        }
+        if (request.getPathInfo() != null) {
+            writer.write(request.getPathInfo());
         }
         writer.write("\"");
         String target = (String) component.getAttribute("target");
