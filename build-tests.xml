@@ -261,6 +261,13 @@
               </fileset>
             </batchtest>
 
+            <!-- Html Taglib Tests -->
+            <batchtest fork="yes">
+              <fileset dir="${out.test.dir}/classes">
+                <include name="org/apache/struts/taglib/html/Test*.class" />
+              </fileset>
+            </batchtest>
+
             <!-- org.apache.struts.util package Tests -->
             <batchtest fork="yes">
               <fileset dir="${out.test.dir}/classes">
