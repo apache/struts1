@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.45 2004/02/04 17:12:01 germuska Exp $
- * $Revision: 1.45 $
- * $Date: 2004/02/04 17:12:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.46 2004/02/14 11:11:02 husted Exp $
+ * $Revision: 1.46 $
+ * $Date: 2004/02/14 11:11:02 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import java.util.StringTokenizer;
  * on the validation rules loaded by the <code>ValidatorPlugIn</code>
  * defined in the struts-config.xml file.
  *
- * @version $Revision: 1.45 $ $Date: 2004/02/04 17:12:01 $
+ * @version $Revision: 1.46 $ $Date: 2004/02/14 11:11:02 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -677,7 +677,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      */
     protected String getJavascriptBegin(String methods) {
         StringBuffer sb = new StringBuffer();
-        String name =
+        String name = formName.replace('/', '_'); // remove any '/' characters
+        name =
             formName.substring(0, 1).toUpperCase()
                 + formName.substring(1, formName.length());
 
