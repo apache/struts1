@@ -10,6 +10,7 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Code Generators and GUIs">
+<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console 3.0</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Sun Forte for Java, NetBeans, Borland JBuilder, and Oracle JDeveloper 9i. </p>
 <p><a href="http://www.synthis.com/products/adalon/overview.jsp"><b>Adalon</b></a> - Adalon is a next generation functional design tool that fills the gaps left by today's market leading software design products. </p>
 <p><a href="http://easystruts.sourceforge.net/"><b>Easy Struts</b></a> by Emmanuel Boudrant - The aim of this project is to provide a bunch of development tools, for Eclispe v2.0 and Borland JBuilder 5-7, in order to facilitate the development of a Struts application. A GUI editor for struts-config.xml files is available in Eclipse 2.0 plugin.</p>
 <p><a href="http://www.solanasoft.com"><b>JForms:</b></a> a visual tool for Struts-based Web forms.</p>
@@ -18,7 +19,6 @@
 <p><a href="http://www.scioworks.com/scioworks_camino.html"><b>Scioworks Camino</b></a> by Scioworks Pte Ltd. - A visual tool for Struts. </p>
 <p><a href="http://rivernorth.sourceforge.net"><b>Struts Builder</b></a> by RiverNorth - an Opensource tool (GPL license) originally developed for internal use to aid in development of Struts-based web applications (1.1 style).</p>
 <p><a href="http://husted.com/struts/resources/codemaker.htm"><b>Struts CodeMaker</b></a> by Ravindran Ramaiah - Generate Struts application by reading configuration file or JSP files. Updated 2001-08-21.</p>
-<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Sun Forte for Java, NetBeans, Borland JBuilder, and Oracle JDeveloper 9i. </p>
 <p><a href="http://husted.com/struts/resources/StrutsGen.htm"><b>Struts Gen</b></a> by Cyberzombie - A rudimentary wrapper tool for value objects.</p>
 <p><a href="http://home.earthlink.net/~dwinterfeldt/generator/"><b>Struts Generator</b></a> by David Winterfeldt - Based on the generator.xml and a table/query an xml file is generated.  Based on the generated xml file a primary key class, data bean class, jdbc class, and an ActionForm (Struts) can be generated.</p>
 <p><a href="http://www.alien-factory.co.uk/struts/struts-index.html"><b>Struts GUI</b></a> by Alien-Factory - Alien-Factory's Struts GUI for Microsoft Visio is essentially a Visio Stencil with Visual Basic Macros.</p>

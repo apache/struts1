@@ -13,7 +13,9 @@
 -->
 <section name="Contributor Extensions">
 <p><a href="http://dynclass.sourceforge.net/">dynclass.sourceforge.net</a> by John Raley. A Class-creation API with very simple but powerful Map-to-JavaBeans translation</p>
+<p><a href="http://www.livinglogic.de/Struts/"><b>Workflow Extension</b></a> by Matthias Bauer - An extension to the core Struts framework which provides control flow between actions.</p>
 <p><a href="http://otn.oracle.com/products/jdev/content.html">JDeveloper9i 9.0.3 w/ Struts, J2EE 1.3, et. al.</a> by Oracle. Developer's Preview of interest to Struts users who might be using (or might want to evaluate) Oracle's JDeveloper Java IDE</p>
+<p><a href="http://jcorporate.com/"><b>Expresso 5.0</b></a> by jCorporate - Expresso provides a foundation set of reusable, standards-based Java software components designed to shorten time-to-delivery of Web applications, and is integrated with the Struts framework. See also <a href="http://www.xenonsoft.demon.co.uk/products/java.html">Best Practice with Expresso Framework 4.0</a>.</p>
 <p><a href="http://www.asqdotcom.be/struts/"><b>Struts Action Plug-in Extension 1.0 (for Struts 1.1b)</b></a> by ASQ dot COM. Provides a clean and transparent way to plug-in common controller logic (such as authentication, workflow, etc.) for all Struts actions in an application</p>
 <p><a href="http://struts.ditlinger.com/"><b>SSL Ext</b></a> by eBuilt, Inc.<b> </b>- Switch between using the http &amp; https protocols on a page by page basis. See README.txt.</p>
 <p><a href="http://sourceforge.net/projects/htmltable/"><b>HTMLTable framework for Struts framework</b></a> by Yuriy Zubarev - Incorporate look and feel and behaviour (in terms of columns order) of tables in XML configuration file with capabilities of properties inheritance. </p>
@@ -26,7 +28,6 @@
 <p><a href="http://www.mycgiserver.com/~eboudrant/#rose"><b>Struts .. in Rose</b></a> by Emmanuel.Boudrant - Use Struts with the Rational Rose UML model. </p>
 <p><a href="http://husted.com/struts/resources/multi-struts.htm"><b>Multi-Controller</b></a> by Sukachevin, Stoehr - Use more than once ActionServlet in your Struts application </p>
 <p><a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg16093.html"><b>JavaScript with html:errors - new Struts validation</b></a> by Adam Grohs.  </p>
-<p><a href="http://jcorporate.com/"><b>Expresso</b></a> by jCorporate - Expresso provides a foundation set of reusable, standards-based Java software components designed to shorten time-to-delivery of Web applications, and is integrated with the Struts framework. See also <a href="http://www.xenonsoft.demon.co.uk/products/java.html">Best Practice with Expresso Framework 4.0</a>.</p>
 <p><a href="http://husted.com/struts/resources/DynamicProperties.htm"><b>Dynamic ActionForm Properties</b></a> by Jan Sorensen.</p>
 <p><a href="http://husted.com/struts/resources/bean-util.htm"><b>Bean Utils with Indexed Strings</b></a> by Gregor Rayman.</p>
 <p><a href="http://husted.com/struts/resources/struts-security.htm"><b>Role-Based Actions</b></a> by Nic Hobs. Set a security role for an Action from with struts-config.</p>
@@ -35,7 +36,6 @@
 <p><a href="http://www.rpsenterprises.com/struts/index.html"><b>Struts Extender</b></a> by Ron Smith - Add extensions to the struts framework via entries in the Struts configuration file.</p>
 <p><a href="http://husted.com/struts/resources/mapper.htm"><b>Mapper Framework</b></a> by Capco - The Mapper framework can be used for automating the process of validating/converting/transferring data fields. <font size="2">(See README to get started. Updated 18-JUL-2001.)</font></p>
 <p><a href="http://www.sura.ru/~gonza/bean-factory/"><b>Bean factory</b></a> by Oleg V Alexeev - Adds the ability to easily link data bean creation to any Struts Action. All information about databeans and actions mappings stored in the standard Struts configuraton file. </p>
-<p><a href="http://www.livinglogic.de/Struts/"><b>Workflow Extension</b></a> by Matthias Bauer - An extension to the core Struts framework which provides control flow between actions.</p>
 <p><a href="http://home.earthlink.net/~dwinterfeldt/"><b>Struts Validator</b></a> [Now bundled with Struts 1.1] by David Winterfeldt - Perform basic validations to check if a field is required, matches a regular expression, and some basic type checking. Different validation rules can be defined for different locales. The framework has basic support for user defined constants which can be used in some field attributes. The validation routines are modifiable in the validation.xml file so custom validation routines can be created and added to the framework.</p>
 </section>
 

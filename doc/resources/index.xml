@@ -20,7 +20,7 @@
 
  <ul>
     <li><a href="models.html">Data Access Systems</a></li>
-    <li><a href="views.html">Presentation Systems</a></li>
+    <li><a href="views.html">Presentation Systems</a> (XLST, Velocity)</li>
     <li><a href="guis.html">Code Generators and GUIs</a></li>
     <li><a href="taglibs.html">Contributor Taglibs</a></li>
     <li><a href="extensions.html">Contributor Extensions</a></li>

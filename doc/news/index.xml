@@ -255,6 +255,77 @@ Changes with Struts Console v3.0
 <hr size="1" noshade=""/>
 
 
+<h3><a name="20021016"></a>2002 Oct 16 - Architectural framework Brings Next Level of Best Practices, Interoperability, Re-use and Configurability to J2EE Web Development With Release 5.0.</h3>
+<p>
+Jcorporate Ltd. today announces the release of Expresso 5.0, the most popular architectural framework for Java web development.
+</p>
+<p>
+The Expresso 5.0 release is a major new release with more than 50 new features, breaks new ground in software with new workflow engine and raises the bar by providing 100% higher release stability than the previous version.
+</p>
+<p>
+The Release 5.0 release has brewed more than 50 new features, as well as many feature updates, performance improvements, bug fixes and updated documentation. Here are some highlights:
+</p>
+<p>
+   1. Additional Struts Integration including Tiles integration, ActionForms, Radio Input types, Combobox tag, and an Expresso-aware html:link tag that will work with Transitions.<br />
+   2. Container-based authentication integration.<br />
+   3. Authentication and Registration: refactored with many improvements including email address validation, login redirecting to original destination.<br />
+   4. SSL Integration Capabilities: now can transition into and out of SSL web pages and still maintain session state.<br />
+   5. DBObjects: Has many new improvements including a new class of DBObjects that can have Row level permissions.<br />
+   6. Basic Workflow Capabilities<br />
+   7. BLOB/CLOB datatypes Support<br />
+   8. JNDI Compatible Data Connections: Expresso can now retrieve connections to databases through JNDI lookups. This is critical for JTA compatibility as well as some drivers for, for example, DB-2 databases.<br />
+   9. i18n Improvements: Error Collections can have keys to Message Bundles with this tag. Polish and Chinese language support added.<br />
+  10. Clean &amp; universal URLs: allows for clean URLS without lots of URL parameters<br />
+  11. Performance improvements to overall web application performance.<br />
+  12. Security Enhancements have been made.<br />
+  13. Expresso Developer's Guide has been substantially updated.<br />
+  14. and much more.
+</p>
+<p>
+Expresso is available free of charge for download at <a href="http://www.jcorporate.com/product/expresso.html">http://www.jcorporate.com/product/expresso.html</a>.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20021009"></a>2002 Oct 9 -  StrutsCX: Struts with Castor XML and XSLT</h3>
+<p>
+StrutsCX is a small Struts add-on framework that combines Struts with Castor XML and XSLT.
+</p>
+<p>
+Features:
+</p>
+<ul>
+<li>
+Lightweight framework running on any Servlet Engine or J2EE Application Server.Simple and fast to implement.
+</li>
+<li>
+Support of internationalization. IS0-8859-1 and any other language, like chinese, korean, arabic, too!
+</li>
+<li>
+StrutsCXServlet: Replaces Struts JSP and Message Ressources features with a pure XML and XSLT solution 100% internationalizable.
+</li>
+<li>
+Output of 100% standard conform XML, XHTML, XSL-FO, WML or whatever you like.
+</li>
+<li>
+Simple validation error mechanism.
+</li>
+<li>
+Prototype persists via Castor XML.
+</li>
+<li>
+Prototype featuring the CRUD cycle (Create, Reatrieve, Update, Delete) and support for english, german and korean language.
+</li>
+</ul>
+<p>
+StrutsCX takes further the idea of the Model 2X by Julien Mercay and Gilbert Bouzeid. Check out the StrutsCX website:
+</p>
+<p>
+<a href="http://it.cappuccinonet.com/strutscx">http://it.cappuccinonet.com/strutscx</a>
+</p>
+<hr size="1" noshade=""/>
+
+
 <h3><a name="20020910"></a>2002 Sep 10 - ApplicationResources.properties from Database</h3>
 <p>
 For anyone interested, I have finished implementing DBMessageResources

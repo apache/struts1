@@ -8,8 +8,11 @@
 </properties>
 <body>
 <chapter name="Struts Resources" href="http://husted.com/struts/resources">
-
+<!--
+<p><a href=""><b></b></a> by .</p>
+-->
 <section name="Articles">
+<p><a href="http://www2.theserverside.com/home/thread.jsp?thread_id=16336"><b>Fast Track to Struts</b></a> by Nadir Gulzar. Chapter from a forthcoming book, "Practical J2EE Application Architecture".</p>
 <p><a href="http://www.onjava.com/pub/a/onjava/2002/10/30/jakarta.html"><b>Jakarta Struts: Seven Lessons from the Trenches</b></a> by Chuck Cavaness.</p>
 <p><a href="http://www.scioworks.net/servlets/ShowPage?pid=34&amp;dp=3"><b>Struts Q&amp;A Distilled, Vol#2</b></a> by John Yu.</p>
 <p><a href="http://www.theserverside.com/resources/article.jsp?l=Struts1_1"><b>Struts 1.1: Should I Upgrade?</b></a> by John Yu.</p>
