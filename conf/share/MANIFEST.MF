@@ -7,11 +7,12 @@ Implementation-Title: Struts Framework
 Implementation-Vendor: Apache Software Foundation
 Implementation-Vendor-Id: org.apache
 Implementation-Version: 1.1
-Class-Path: commons-beanutils.jar
-Class-Path: commons-collections.jar
-Class-Path: commons-dbcp.jar
-Class-Path: commons-digester.jar
-Class-Path: commons-logging.jar
-Class-Path: commons-pool.jar
-Class-Path: commons-validator.jar
-Class-Path: jakarta-oro.jar
+Class-Path: 
+  commons-beanutils.jar
+  commons-collections.jar
+  commons-dbcp.jar
+  commons-digester.jar
+  commons-logging.jar
+  commons-pool.jar
+  commons-validator.jar
+  jakarta-oro.jar
