@@ -6,6 +6,7 @@
 
 <web-app>
 
+  <display-name>Struts-Faces Integration Library Example</display-name>
 
   <!-- JavaServer Faces Servlet Configuration -->
   <servlet>

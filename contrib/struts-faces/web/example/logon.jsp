@@ -39,14 +39,14 @@
     </h:output_label>
 
     <h:input_text id="username" size="16"
-      modelReference="logonForm.map.username"/>
+            valueRef="logonForm.username"/>
 
     <h:output_label for="password">
       <s:message key="prompt.password"/>
     </h:output_label>
 
     <h:input_secret id="password" size="16"
-        modelReference="logonForm.map.password"/>
+              valueRef="logonForm.password"/>
 
     <h:command_button id="submit" type="SUBMIT"
             commandClass="command-single"

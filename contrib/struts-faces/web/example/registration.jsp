@@ -35,7 +35,7 @@
 <s:form action="/saveRegistration" focus="username"
          onsubmit="return validateRegistrationForm(this);">
 
-  <h:input_hidden id="action" modelReference="registrationForm.action"/>
+  <h:input_hidden id="action" valueRef="registrationForm.action"/>
 
   <h:panel_grid
            columns="2"
@@ -71,14 +71,14 @@
       <c:choose>
         <c:when test="${registrationForm.action == 'Create'}">
           <h:input_text id="username" size="16"
-            modelReference="registrationForm.username"/>
+            valueRef="registrationForm.username"/>
         </c:when>
         <c:when test="${registrationForm.action == 'Edit'}">
           <h:panel_group id="usernameGroup">
             <s:write filter="true"
-             modelReference="registrationForm.username"/>
+             valueRef="registrationForm.username"/>
             <h:input_hidden id="username"
-                modelReference="registrationForm.username"/>
+                valueRef="registrationForm.username"/>
           </h:panel_group>
         </c:when>
         <c:otherwise>
@@ -92,35 +92,35 @@
     </h:output_label>
 
     <h:input_text id="password"
-                size="16" modelReference="registrationForm.password"/>
+                size="16" valueRef="registrationForm.password"/>
 
     <h:output_label for="password2">
       <s:message key="prompt.password2"/>
     </h:output_label>
 
     <h:input_text id="password2"
-                size="16" modelReference="registrationForm.password2"/>
+                size="16" valueRef="registrationForm.password2"/>
 
     <h:output_label for="fullName">
       <s:message key="prompt.fullName"/>
     </h:output_label>
 
     <h:input_text id="fullName"
-                size="50" modelReference="registrationForm.fullName"/>
+                size="50" valueRef="registrationForm.fullName"/>
 
     <h:output_label for="fromAddress">
       <s:message key="prompt.fromAddress"/>
     </h:output_label>
 
     <h:input_text id="fromAddress"
-                size="50" modelReference="registrationForm.fromAddress"/>
+                size="50" valueRef="registrationForm.fromAddress"/>
 
     <h:output_label for="replyToAddress">
       <s:message key="prompt.replyToAddress"/>
     </h:output_label>
 
     <h:input_text id="replyToAddress"
-                size="50" modelReference="registrationForm.replyToAddress"/>
+                size="50" valueRef="registrationForm.replyToAddress"/>
 
     <h:command_button id="submit" type="SUBMIT" commandName="submit"
             commandClass="command-single"
@@ -160,29 +160,35 @@
 
     <%-- List Data --%>
     <h:panel_data id="data" var="subscription"
-       modelReference="user.subscriptions">
-      <h:output_text id="subhost"   modelReference="subscription.host"/>
-      <h:output_text id="subusername" modelReference="subscription.username"/>
-      <h:output_text id="subtype"   modelReference="subscription.type"/>
-      <h:output_text id="subconn"   modelReference="subscription.autoConnect"/>
-      <s:body id="subactions">
-        <a:linkSubscription page="/editSubscription.do?action=Delete">
-          <s:message key="registration.deleteSubscription"
-              styleClass="command-multiple"/>
-        </a:linkSubscription>
-        <a:linkSubscription page="/editSubscription.do?action=Edit">
-          <s:message key="registration.editSubscription"
-              styleClass="command-multiple"/>
-        </a:linkSubscription>
-      </s:body>
+       valueRef="user.subscriptions">
+      <h:output_text id="subhost"     valueRef="subscription.host"/>
+      <h:output_text id="subusername" valueRef="subscription.username"/>
+      <h:output_text id="subtype"     valueRef="subscription.type"/>
+      <h:output_text id="subconn"     valueRef="subscription.autoConnect"/>
+      <h:panel_group id="subactions">
+        <h:command_hyperlink id="delete" label="Delete"
+                                  commandClass="command-multiple"
+                                          href="editSubscription.do">
+          <f:parameter name="action"      value="Delete"/>
+          <f:parameter name="username" valueRef="subscription.user.username"/>
+          <f:parameter name="host"     valueRef="subscription.host"/>
+        </h:command_hyperlink>
+        <h:command_hyperlink id="edit"    label="Edit"
+                                   commandClass="command-multiple"
+                                           href="editSubscription.do">
+          <f:parameter name="action"      value="Edit"/>
+          <f:parameter name="username" valueRef="subscription.user.username"/>
+          <f:parameter name="host"     valueRef="subscription.host"/>
+        </h:command_hyperlink>
+      </h:panel_group>
     </h:panel_data>
 
   </h:panel_list>
 
-  <h:command_hyperlink id="add" label="Create New Mail Subscription"
-   href="editSubscription.do?action=Create">
-    <f:parameter id="foo" name="username"
-       modelReference="registrationForm.username"/>
+  <h:command_hyperlink id="add"           label="Create New Mail Subscription"
+                                           href="editSubscription.do">
+    <f:parameter name="action"            value="Create"/>
+    <f:parameter name="username"       valueRef="registrationForm.username"/>
   </h:command_hyperlink>
 
 </c:if>

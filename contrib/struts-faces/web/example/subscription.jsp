@@ -33,7 +33,7 @@
 
 <s:form action="/saveSubscription" focus="host">
 
-  <h:input_hidden id="action" modelReference="subscriptionForm.action"/>
+  <h:input_hidden id="action" valueRef="subscriptionForm.action"/>
 
   <h:panel_grid
            columns="2"
@@ -69,7 +69,7 @@
     </h:output_label>
 
     <s:write id="user" filter="true"
- modelReference="user.username"/>
+ valueRef="user.username"/>
 
     <h:output_label for="host">
       <s:message key="prompt.mailHostname"/>
@@ -78,13 +78,13 @@
     <c:choose>
       <c:when test="${subscriptionForm.action == 'Create'}">
         <h:input_text id="host" size="50"
-          modelReference="subscriptionForm.host"/>
+          valueRef="subscriptionForm.host"/>
       </c:when>
       <c:otherwise>
         <h:panel_group id="hostGroup">
           <s:write id="hostDisplay" filter="true"
-                                    modelReference="subscriptionForm.host"/>
-          <h:input_hidden id="host" modelReference="subscriptionForm.host"/>
+                                    valueRef="subscriptionForm.host"/>
+          <h:input_hidden id="host" valueRef="subscriptionForm.host"/>
         </h:panel_group>
       </c:otherwise>
     </c:choose>
@@ -94,21 +94,21 @@
     </h:output_label>
 
     <h:input_text id="username"
-                size="50" modelReference="subscriptionForm.username"/>
+                size="50" valueRef="subscriptionForm.username"/>
 
     <h:output_label for="password">
       <s:message key="prompt.mailPassword"/>
     </h:output_label>
 
     <h:input_text id="password"
-                size="50" modelReference="subscriptionForm.password"/>
+                size="50" valueRef="subscriptionForm.password"/>
 
     <h:output_label for="type">
       <s:message key="prompt.mailServerType"/>
     </h:output_label>
 
     <h:selectone_menu id="type"
-          modelReference="subscriptionForm.type">
+          valueRef="subscriptionForm.type">
       <h:selectitem itemValue="imap" itemLabel="IMAP Protocol"/>
       <h:selectitem itemValue="pop3" itemLabel="POP3 Protocol"/>
     </h:selectone_menu>
@@ -118,7 +118,7 @@
     </h:output_label>
 
     <h:selectboolean_checkbox id="autoConnect"
-                  modelReference="subscriptionForm.autoConnect"/>
+                  valueRef="subscriptionForm.autoConnect"/>
 
     <c:choose>
       <c:when test="${subscriptionForm.action == 'Delete'}">
