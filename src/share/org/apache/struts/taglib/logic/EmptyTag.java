@@ -1,16 +1,16 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.13 2004/03/14 06:23:44 sraeburn Exp $
- * $Revision: 1.13 $
- * $Date: 2004/03/14 06:23:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.14 2004/06/26 00:22:59 husted Exp $
+ * $Revision: 1.14 $
+ * $Date: 2004/06/26 00:22:59 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,15 +22,17 @@ package org.apache.struts.taglib.logic;
 
 import java.util.Collection;
 import java.util.Map;
+import java.lang.reflect.Array;
 
 import javax.servlet.jsp.JspException;
+
 import org.apache.struts.taglib.TagUtils;
 
 /**
  * Evalute the nested body content of this tag if the specified value
  * is empty for this request.
  *
- * @version $Revision: 1.13 $ $Date: 2004/03/14 06:23:44 $
+ * @version $Revision: 1.14 $ $Date: 2004/06/26 00:22:59 $
  * @since Struts 1.1
  */
 public class EmptyTag extends ConditionalTagBase {
@@ -65,22 +67,22 @@ public class EmptyTag extends ConditionalTagBase {
      * @exception JspException if a JSP exception occurs
      */
     protected boolean condition(boolean desired) throws JspException {
-		if (this.name == null) {
-			JspException e =
-				new JspException(messages.getMessage("empty.noNameAttribute"));
-			TagUtils.getInstance().saveException(pageContext, e);
-			throw e;
-		}
-        
-		Object value = null;
-		if (this.property == null) {
-			value = TagUtils.getInstance().lookup(pageContext, name, scope);
-		} else {
-			value = TagUtils.getInstance().lookup(pageContext, name, property, scope);
-		}
-        
+        if (this.name == null) {
+            JspException e =
+                    new JspException(messages.getMessage("empty.noNameAttribute"));
+            TagUtils.getInstance().saveException(pageContext, e);
+            throw e;
+        }
+
+        Object value = null;
+        if (this.property == null) {
+            value = TagUtils.getInstance().lookup(pageContext, name, scope);
+        } else {
+            value = TagUtils.getInstance().lookup(pageContext, name, property, scope);
+        }
+
         boolean empty = true;
-        
+
         if (value == null) {
             empty = true;
 
@@ -96,11 +98,14 @@ public class EmptyTag extends ConditionalTagBase {
             Map mapValue = (Map) value;
             empty = mapValue.isEmpty();
 
+        } else if (value.getClass().isArray()) {
+            empty = Array.getLength(value) == 0;
+
         } else {
             empty = false;
         }
 
-		return (empty == desired);
+        return (empty == desired);
     }
 
 }
