@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.5 2001/02/21 00:35:42 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/02/21 00:35:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.6 2001/07/12 05:18:33 dwinterfeldt Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/07/12 05:18:33 $
  *
  * ====================================================================
  *
@@ -90,10 +90,10 @@ import java.util.HashMap;
  *
  * @author David Geary
  * @author Craig R. McClanahan
- * @revision $Revision: 1.5 $ $Date: 2001/02/21 00:35:42 $
+ * @revision $Revision: 1.6 $ $Date: 2001/07/12 05:18:33 $
  */
 
-public class ActionErrors implements Serializable {
+public class ActionErrors extends ActionMessages implements Serializable {
 
 
     // ----------------------------------------------------- Manifest Constants
@@ -107,19 +107,10 @@ public class ActionErrors implements Serializable {
         "org.apache.struts.action.GLOBAL_ERROR";
 
 
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * The accumulated set of <code>ActionError</code> objects (represented
-     * as an ArrayList) for each property, keyed by property name.
-     */
-    protected HashMap errors = new HashMap();
-
 
     // --------------------------------------------------------- Public Methods
-
-
+    
+    
     /**
      * Add an error message to the set of errors for the specified property.
      *
@@ -128,122 +119,7 @@ public class ActionErrors implements Serializable {
      */
     public void add(String property, ActionError error) {
 
-        ArrayList list = (ArrayList) errors.get(property);
-        if (list == null) {
-            list = new ArrayList();
-            errors.put(property, list);
-        }
-        list.add(error);
-
-    }
-
-
-    /**
-     * Clear all error messages recorded by this object.
-     */
-    public void clear() {
-
-        errors.clear();
-
-    }
-
-
-    /**
-     * Return <code>true</code> if there are no error messages recorded
-     * in this collection, or <code>false</code> otherwise.
-     */
-    public boolean empty() {
-
-        return (errors.size() == 0);
-
-    }
-
-
-    /**
-     * Return the set of all recorded error messages, without distinction
-     * by which property the messages are associated with.  If there are
-     * no error messages recorded, an empty enumeration is returned.
-     */
-    public Iterator get() {
-
-        if (errors.size() == 0)
-            return (Collections.EMPTY_LIST.iterator());
-        ArrayList results = new ArrayList();
-        Iterator props = errors.keySet().iterator();
-        while (props.hasNext()) {
-            String prop = (String) props.next();
-            Iterator errors = ((ArrayList) this.errors.get(prop)).iterator();
-            while (errors.hasNext())
-                results.add(errors.next());
-        }
-        return (results.iterator());
-
-    }
-
-
-    /**
-     * Return the set of error messages related to a specific property.
-     * If there are no such errors, an empty enumeration is returned.
-     *
-     * @param property Property name (or ActionErrors.GLOBAL_ERROR)
-     */
-    public Iterator get(String property) {
-
-        ArrayList list = (ArrayList) errors.get(property);
-        if (list == null)
-            return (Collections.EMPTY_LIST.iterator());
-        else
-            return (list.iterator());
-
-    }
-
-
-    /**
-     * Return the set of property names for which at least one error has
-     * been recorded.  If there are no errors, an empty Iterator is returned.
-     * If you have recorded global errors, the String value of
-     * <code>ActionErrors.GLOBAL_ERROR</code> will be one of the returned
-     * property names.
-     */
-    public Iterator properties() {
-
-        return (errors.keySet().iterator());
-
-    }
-
-
-    /**
-     * Return the number of errors recorded for all properties (including
-     * global errors).  <strong>NOTE</strong> - it is more efficient to call
-     * <code>empty()</code> if all you care about is whether or not there are
-     * any error messages at all.
-     */
-    public int size() {
-
-        int total = 0;
-        Iterator keys = errors.keySet().iterator();
-        while (keys.hasNext()) {
-            String key = (String) keys.next();
-            ArrayList list = (ArrayList) errors.get(key);
-            total += list.size();
-        }
-        return (total);
-
-    }
-
-
-    /**
-     * Return the number of errors associated with the specified property.
-     *
-     * @param property Property name (or ActionErrors.GLOBAL_ERROR)
-     */
-    public int size(String property) {
-
-        ArrayList list = (ArrayList) errors.get(property);
-        if (list == null)
-            return (0);
-        else
-            return (list.size());
+        super.add(property, error);
 
     }
 

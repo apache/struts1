@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionError.java,v 1.4 2001/07/12 05:18:32 dwinterfeldt Exp $
- * $Revision: 1.4 $
- * $Date: 2001/07/12 05:18:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.1 2001/07/12 05:18:31 dwinterfeldt Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/07/12 05:18:31 $
  *
  * ====================================================================
  *
@@ -62,32 +62,34 @@
 
 package org.apache.struts.action;
 
+
 import java.io.Serializable;
 
 
 /**
- * An encapsulation of an individual error message returned by the
+ * An encapsulation of an individual message returned by the
  * <code>validate()</code> method of an <code>ActionForm</code>, consisting
  * of a message key (to be used to look up message text in an appropriate
  * message resources database) plus up to four placeholder objects that can
  * be used for parametric replacement in the message text.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/07/12 05:18:32 $
+ * @author David Winterfeldt
+ * @version $Revision: 1.1 $ $Date: 2001/07/12 05:18:31 $
  */
 
-public class ActionError extends ActionMessage implements Serializable {
+public class ActionMessage implements Serializable {
 
 
     // ----------------------------------------------------------- Constructors
 
 
     /**
-     * Construct an action error with no replacement values.
+     * Construct an action message with no replacement values.
      *
-     * @param key Message key for this error message
+     * @param key Message key for this message
      */
-    public ActionError(String key) {
+    public ActionMessage(String key) {
 
         this(key, null, null, null, null);
 
@@ -95,12 +97,12 @@ public class ActionError extends ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action error with the specified replacement values.
+     * Construct an action message with the specified replacement values.
      *
-     * @param key Message key for this error message
+     * @param key Message key for this message
      * @param value0 First replacement value
      */
-    public ActionError(String key, Object value0) {
+    public ActionMessage(String key, Object value0) {
 
         this(key, value0, null, null, null);
 
@@ -108,13 +110,13 @@ public class ActionError extends ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action error with the specified replacement values.
+     * Construct an action message with the specified replacement values.
      *
-     * @param key Message key for this error message
+     * @param key Message key for this message
      * @param value0 First replacement value
      * @param value1 Second replacement value
      */
-    public ActionError(String key, Object value0, Object value1) {
+    public ActionMessage(String key, Object value0, Object value1) {
 
         this(key, value0, value1, null, null);
 
@@ -122,14 +124,14 @@ public class ActionError extends ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action error with the specified replacement values.
+     * Construct an action message with the specified replacement values.
      *
-     * @param key Message key for this error message
+     * @param key Message key for this message
      * @param value0 First replacement value
      * @param value1 Second replacement value
      * @param value2 Third replacement value
      */
-    public ActionError(String key, Object value0, Object value1,
+    public ActionMessage(String key, Object value0, Object value1,
                        Object value2) {
 
         this(key, value0, value1, value2, null);
@@ -138,19 +140,63 @@ public class ActionError extends ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action error with the specified replacement values.
+     * Construct an action message with the specified replacement values.
      *
-     * @param key Message key for this error message
+     * @param key Message key for this message
      * @param value0 First replacement value
      * @param value1 Second replacement value
      * @param value2 Third replacement value
      * @param value3 Fourth replacement value
      */
-    public ActionError(String key, Object value0, Object value1,
+    public ActionMessage(String key, Object value0, Object value1,
                        Object value2, Object value3) {
 
-        super(key, value0, value1, value2, value3);
+        super();
+        this.key = key;
+        values[0] = value0;
+        values[1] = value1;
+        values[2] = value2;
+        values[3] = value3;
 
     }
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The message key for this message.
+     */
+    protected String key = null;
+
+
+    /**
+     * The replacement values for this mesasge.
+     */
+    protected Object values[] = { null, null, null, null };
+
+
+    // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Get the message key for this message.
+     */
+    public String getKey() {
+
+        return (this.key);
+
+    }
+
+
+    /**
+     * Get the replacement values for this message.
+     */
+    public Object[] getValues() {
+
+        return (this.values);
+
+    }
+
 
 }
