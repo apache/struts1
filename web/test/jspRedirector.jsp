@@ -1,8 +1,6 @@
-<%@page import="org.apache.cactus.server.*,
-                org.apache.cactus.util.log.LogService" session="true" %><%
+<%@page import="org.apache.cactus.server.*" session="true" %><%
 
     /**                                                
-     *                                                 
      * Note:                                           
      * It is very important not to put any character between the end
      * of the page tag and the beginning of the java code expression, otherwise,
@@ -16,14 +14,6 @@
      * example we need access to JSP implicit objects (PageContext and
      * JspWriter).
      */
-
-    /**
-     * Initialise logging if not already initialised
-     */
-    if (!LogService.getInstance().isInitialized())
-    {
-        LogService.getInstance().init("/log_server.properties");
-    }
 
     JspImplicitObjects objects = new JspImplicitObjects();
     objects.setHttpServletRequest(request);
