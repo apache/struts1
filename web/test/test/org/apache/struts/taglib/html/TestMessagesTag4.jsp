@@ -2,7 +2,7 @@
 <%@page import="junit.framework.Assert"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="org.apache.struts.util.MessageResources"%>
-<%@page import="org.apache.struts.action.Action"%>
+<%@page import="org.apache.struts.Globals"%>
 <%@page import="org.apache.struts.action.ActionError"%>
 <%@page import="org.apache.struts.action.ActionMessage"%>
 <%@page import="org.apache.struts.action.ActionMessages"%>
@@ -23,13 +23,13 @@
   * will be rendered.
   * 
   * The tests are setup to test all possible scenarios with each ojbect listed.
-  * Using Action.ERROR_KEY in the request
+  * Using Globals.ERROR_KEY in the request
   * TestMessagesTag1.jsp - uses ActionMessages to store any keys for testing
   * TestMessagesTag2.jsp - uses a String to store any keys for testing
   * TestMessagesTag3.jsp - uses a String Array to store any keys for testing
   * TestMessagesTag4.jsp - uses ActionErrors to store any keys for testing
   * 
-  * Using Action.MESSAGE_KEY in the request
+  * Using Globals.MESSAGE_KEY in the request
   * TestMessagesTag5.jsp - uses ActionMessages to store any keys for testing
   * TestMessagesTag6.jsp - uses a String to store any keys for testing
   * TestMessagesTag7.jsp - uses a String Array to store any keys for testing
@@ -58,7 +58,7 @@
     </bean:define>
    <% 
      ActionMessages messages = new ActionMessages();
-     request.setAttribute(Action.ERROR_KEY, messages);
+     request.setAttribute(Globals.ERROR_KEY, messages);
    %>
     <bean:define id="TEST_RESULTS" toScope="page">
       Messages:
@@ -82,7 +82,7 @@
      ActionMessages messages = new ActionMessages();
      messages.add("myproperty1", new ActionMessage("default.bundle.message"));
      messages.add("myproperty2", new ActionMessage("default.bundle.message"));
-     request.setAttribute(Action.ERROR_KEY, messages);
+     request.setAttribute(Globals.ERROR_KEY, messages);
    %>
     <bean:define id="TEST_RESULTS" toScope="page">
       Messages:
@@ -106,7 +106,7 @@
      ActionMessages messages = new ActionMessages();
      messages.add("myproperty1", new ActionMessage("default.bundle.message"));
      messages.add("myproperty2", new ActionMessage("default.bundle.message"));
-     request.setAttribute(Action.ERROR_KEY, messages);
+     request.setAttribute(Globals.ERROR_KEY, messages);
    %>
     <bean:define id="TEST_RESULTS" toScope="page">
       Messages:
@@ -131,7 +131,7 @@
      ActionMessages messages = new ActionMessages();
      messages.add("myproperty1", new ActionMessage("default.bundle.message"));
      messages.add("myproperty2", new ActionMessage("default.bundle.message"));
-     request.setAttribute(Action.ERROR_KEY, messages);
+     request.setAttribute(Globals.ERROR_KEY, messages);
    %>
     <bean:define id="TEST_RESULTS" toScope="page">
       Messages:
@@ -332,7 +332,7 @@
 
    <% 
      ActionMessages messages = new ActionMessages();
-     request.setAttribute(Action.ERROR_KEY, messages);
+     request.setAttribute(Globals.ERROR_KEY, messages);
    %>
     <bean:define id="TEST_RESULTS" toScope="page">
       Messages:
@@ -356,7 +356,7 @@
      ActionMessages messages = new ActionMessages();
      messages.add("myproperty1", new ActionMessage("alternate.bundle.message"));
      messages.add("myproperty2", new ActionMessage("alternate.bundle.message"));
-     request.setAttribute(Action.ERROR_KEY, messages);
+     request.setAttribute(Globals.ERROR_KEY, messages);
    %>
     <bean:define id="TEST_RESULTS" toScope="page">
       Messages:
@@ -380,7 +380,7 @@
      ActionMessages messages = new ActionMessages();
      messages.add("myproperty1", new ActionMessage("alternate.bundle.message"));
      messages.add("myproperty2", new ActionMessage("alternate.bundle.message"));
-     request.setAttribute(Action.ERROR_KEY, messages);
+     request.setAttribute(Globals.ERROR_KEY, messages);
    %>
     <bean:define id="TEST_RESULTS" toScope="page">
       Messages:
@@ -405,7 +405,7 @@
      ActionMessages messages = new ActionMessages();
      messages.add("myproperty1", new ActionMessage("alternate.bundle.message"));
      messages.add("myproperty2", new ActionMessage("alternate.bundle.message"));
-     request.setAttribute(Action.ERROR_KEY, messages);
+     request.setAttribute(Globals.ERROR_KEY, messages);
    %>
     <bean:define id="TEST_RESULTS" toScope="page">
       Messages:
