@@ -9,24 +9,69 @@
 <body>
 <chapter name="Struts Resources" href="http://husted.com/struts/resources">
 
-<section name="Books">
-<p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0596003285/hitchhikeguidetoA/"><b>Programming Jakarta Struts</b></a> by Chuck Cavaness - Not yet published. [<a href="http://www.oreilly.com/catalog/jakarta/">beta chapter available</a>] [<a href="http://www.theserverside.com/resources/strutsreview.jsp">Public review draft</a>]
-</p>
-<p>
-<a href="http://www.softpro.com/1-55860-862-1.html"><b>The Struts Framework: Practical Guide for Programmers</b></a> by Sue Spielman. November 2002.
-</p>
-<p>
-<a href="http://www.manning.com/husted/"><b>Struts in Action</b></a> by Ted Husted, Cedric Dumoulin, George Franciscus, and David Winterfeldt; Foreword by Craig R. McClanahan. November 2002. [<a href="http://www.manning.com/husted/">sample chapters available</a>] (formerly known as "Java Web Development with Struts")
-</p>
-<p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0471213020/hitchhikeguidetoA/"><b>Mastering Jakarta Struts</b></a> by James Goodwill. August 2002. [<a href="http://wiley.com/cda/product/0,,0471213020,00.html">excerpt available</a>]
-</p>
-<p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0735710953/hitchhikeguidetoA/"><b>JSP and Tag Libraries for Web Development </b></a>- by Wellington L. S. Da Silva. January 2002. Several chapters regarding Struts.
-</p>
+<section name="Books about Struts">
+<table>
+
+<tr>
+<td>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0596003285/hitchhikeguidetoA/">
+<img border="0" src="../images/books/0596003285.jpg" width="49" height="60" align="left"/>
+</a>
+</td>
+<td>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0596003285/hitchhikeguidetoA/"><b>Programming Jakarta Struts</b></a> 
+by Chuck Cavaness. November 2002. [<a href="http://www.oreilly.com/catalog/jakarta/">beta chapter available</a>]
+</td>
+</tr>
+
+<tr>
+<td>
+<a href="http://www.amazon.com/exec/obidos/ISBN=1558608621/hitchhikeguidetoA/">
+<img border="0" src="../images/books/1558608621.jpg" width="49" height="60" align="left"/>
+</a>
+</td>
+<td>
+<a href="http://www.amazon.com/exec/obidos/ISBN=1558608621/hitchhikeguidetoA/">
+<b>The Struts Framework: Practical Guide for Programmers</b></a> 
+by Sue Spielman. November 2002.
+</td>
+</tr>
+
+<tr>
+<td>
+<a href="http://books.manning.com/husted/">
+<img border="0" src="../images/books/1930110502.jpg" width="49" height="60" align="left"/>
+</a>
+</td>
+<td>
+<a href="http://books.manning.com/husted/">
+<b>Struts in Action</b></a> 
+by Ted Husted, Cedric Dumoulin, George Franciscus, and David Winterfeldt; Foreword by Craig R. McClanahan. November 2002. [<a href="http://www.manning.com/husted/">sample chapters available</a>] (formerly known as "Java Web Development with Struts")
+</td>
+</tr>
+
+<tr>
+<td>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0471213020/hitchhikeguidetoA/">
+<img border="0" src="../images/books/0471213020.jpg" width="49" height="60" align="left"/>
+</a>
+</td>
+<td>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0471213020/hitchhikeguidetoA/">
+<b>Mastering Jakarta Struts</b></a> 
+by James Goodwill. August 2002. [<a href="http://wiley.com/cda/product/0,,0471213020,00.html">excerpt available</a>]
+</td>
+</tr>
+</table>
+
 <p>
 <a href="http://www.amazon.com/exec/obidos/ISBN=0971661901/hitchhikeguidetoA/"><b>Struts Fast Track: J2EE / JSP Framework</b></a> by Victor Cekvenich - Practical Application with Database Access and Struts Extensions. November 2001.
+</p>
+</section>
+
+<section name="Books with Struts coverage">
+<p>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0735710953/hitchhikeguidetoA/"><b>JSP and Tag Libraries for Web Development </b></a>- by Wellington L. S. Da Silva. January 2002. Several chapters regarding Struts.
 </p>
 <p>
 <a href="http://www.amazon.com/exec/obidos/ISBN=1861005512/hitchhikeguidetoA/"><b>Professional JSP Site Design</b></a> - Wrox book by Husted, Kunnumpurath, Lavandowska, Panduranga, et al. November 2001. Features Struts in chapters 2 (The Struts Framework), 6 (Navigation), 8 (Data Access Patterns), 12 (Content Management), 13 (Searching), and 14 (Portals).
