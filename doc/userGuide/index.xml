@@ -113,6 +113,9 @@
                     <li><a href="building_controller.html#map_action_form_classes">4.3.2 Map-backed ActionForm Classes</a></li>
                     </ul>
                 <li><a href="building_controller.html#action_classes">4.4 Action Classes</a></li>
+                    <ul>
+                    <li><a href="building_controller.html#action_design_guide">4.4.1 Action Class Design Guidelines</a></li>
+                    </ul>
                 <li><a href="building_controller.html#exception_handler">4.5 Exception Handler</a></li>
                 <li><a href="building_controller.html#plugin_classes">4.6 Plugin Classes</a></li>
                 <li><a href="building_controller.html#actionmapping">4.7 The ActionMapping Implementation</a></li>
