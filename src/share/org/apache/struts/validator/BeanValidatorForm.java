@@ -37,8 +37,9 @@ import org.apache.commons.logging.LogFactory;
  *    <ActionForm</code>.</p>
  *
  * <p>This form is based on the standard struts <code>ValidatorForm</code> for use with the
- *    <i>Validator</i> framework and validates using the <i>name</i> from the Struts
- *    <code>ActionMapping</code>.</p>
+ *    <i>Validator</i> framework and validates either using the <i>name</i> from the Struts
+ *    <code>ActionMapping</code> or the  <code>ActionMapping</code>'s path depending on
+ *    whether <code>pathValidation</code> is <code>true</code> or <code>false</code>.</p>
  */
 public class BeanValidatorForm extends ValidatorForm implements DynaBean, Serializable {
 
@@ -101,10 +102,6 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean, Serial
 
    /**
     * <p>Return the <code>Bean</code> that this <code>ActionForm</code> is backed by.</p>
-    *
-    * <p>If the <code>DynaBean</code> is a <code>LazyDynaMap</code> type then this method
-    * returns the <code>Map</code> associated with it. If you require the actual <code>LazyDynaMap</code>
-    * then use the <code>getDynaBean()</code> method.</p>
     *
     * <p>If the <code>DynaBean</code> is a <code>WrapDynaBean</code> type then this method
     * returns the 'Wrapped' POJO bean associated with it. If you require the actual <code>WrapDynaBean</code>
@@ -187,7 +184,9 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean, Serial
         }
 
         if (logger.isDebugEnabled()) {
-            logger.debug("Validating ActionForm '" + mapping.getName()+"' using key '"+validationKey+"' for mapping '"+mapping.getPath()+"'");
+            logger.debug("Validating ActionForm '" + mapping.getName() +
+                         "' using key '" + validationKey + 
+                         "' for mapping '" + mapping.getPath() + "'");
         }
 
 
@@ -198,35 +197,48 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean, Serial
     // ------------------- DynaBean Methods ----------------------------------
 
    /**
-    * Return the associated <code>DynaClass</code> for this <code>DynaBean</code>
+    * Return the <code>DynaClass</code> instance that describes the set of
+    * properties available for this DynaBean. 
     */
     public DynaClass getDynaClass() {
         return dynaBean.getDynaClass();
     }
 
    /**
-    * Return a property value.
+     * Return the value of a simple property with the specified name.
+     *
+     * @param name Name of the property whose value is to be retrieved
     */
     public Object get(String name) {
         return dynaBean.get(name);
     }
 
    /**
-    * Return an indexed property value.
+     * Return the value of an indexed property with the specified name.
+     *
+     * @param name Name of the property whose value is to be retrieved
+     * @param index Index of the value to be retrieved
     */
     public Object get(String name, int index) {
         return dynaBean.get(name, index);
     }
 
    /**
-    * Return a mapped property value.
+     * Return the value of a mapped property with the specified name,
+     * or <code>null</code> if there is no value for the specified key.
+     *
+     * @param name Name of the property whose value is to be retrieved
+     * @param key Key of the value to be retrieved
     */
     public Object get(String name, String key) {
         return dynaBean.get(name, key);
     }
 
    /**
-    * Set a property value.
+     * Set the value of a simple property with the specified name.
+     *
+     * @param name Name of the property whose value is to be set
+     * @param value Value to which this property is to be set
     */
     public void set(String name, Object value) {
 
@@ -252,28 +264,45 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean, Serial
     }
 
    /**
-    * Set an indexed property value.
+     * Set the value of an indexed property with the specified name.
+     *
+     * @param name Name of the property whose value is to be set
+     * @param index Index of the property to be set
+     * @param value Value to which this property is to be set
     */
     public void set(String name, int index, Object value) {
         dynaBean.set(name, index, value);
     }
 
    /**
-    * Set a mapped property value.
+     * Set the value of a mapped property with the specified name.
+     *
+     * @param name Name of the property whose value is to be set
+     * @param key Key of the property to be set
+     * @param value Value to which this property is to be set
     */
     public void set(String name, String key, Object value) {
         dynaBean.set(name, key, value);
     }
 
    /**
-    * Indicates whether a mapped property contains a specified key.
+     * Does the specified mapped property contain a value for the specified
+     * key value?
+     *
+     * @param name Name of the property to check
+     * @param key Name of the key to check
     */
     public boolean contains(String name, String key) {
         return dynaBean.contains(name, key);
     }
 
    /**
-    * Remove a mapped property value.
+     * Remove any existing value for the specified key on the
+     * specified mapped property.
+     *
+     * @param name Name of the property for which a value is to
+     *  be removed
+     * @param key Key of the value to be removed
     */
     public void remove(String name, String key) {
         dynaBean.remove(name, key);
