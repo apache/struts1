@@ -193,14 +193,30 @@
   <copy file="${jstl.jar}" tofile="${build.home}/library/jstl.jar"/>
   <copy file="${jstl-standard.jar}"
         tofile="${build.home}/library/standard.jar"/>
-  <copy file="${commons-logging.jar}"
-		  tofile="${build.home}/library/commons-logging.jar"/>
   <copy file="${commons-beanutils.jar}"
-		  tofile="${build.home}/library/commons-beanutils.jar"/>
+        tofile="${build.home}/library/commons-beanutils.jar"/>
   <copy file="${commons-collections.jar}"
         tofile="${build.home}/library/commons-collections.jar"/>
+  <copy file="${commons-dbcp.jar}"
+        tofile="${build.home}/library/commons-dbcp.jar"/>
   <copy file="${commons-digester.jar}"
         tofile="${build.home}/library/commons-digester.jar"/>
+  <copy file="${commons-fileupload.jar}"
+        tofile="${build.home}/library/commons-fileupload.jar"/>
+  <copy file="${commons-lang.jar}"
+        tofile="${build.home}/library/commons-lang.jar"/>
+  <copy file="${commons-logging.jar}"
+        tofile="${build.home}/library/commons-logging.jar"/>
+  <copy file="${commons-pool.jar}"
+        tofile="${build.home}/library/commons-pool.jar"/>
+  <copy file="${commons-resources.jar}"
+        tofile="${build.home}/library/commons-resources.jar"/>
+  <copy file="${commons-validator.jar}"
+        tofile="${build.home}/library/commons-validator.jar"/>
+  <copy file="${jakarta-oro.jar}"
+        tofile="${build.home}/library/jakarta-oro.jar"/>
+  <copy file="${jdbc20ext.jar}"
+        tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
   <copy todir="${build.home}/library">
    <fileset dir="${jstl.home}/tld" includes="*.tld"/>
    <fileset dir="${struts.home}/lib" includes="*.tld"/>
