@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
 
-     $Id: tiles-config_1_1.dtd,v 1.2 2002/10/11 03:11:41 martinc Exp $
+     $Id: tiles-config_1_1.dtd,v 1.3 2002/12/13 05:57:26 martinc Exp $
 -->
 
 
@@ -270,3 +270,10 @@
 <!ELEMENT large-icon     (%Location;)>
 <!ATTLIST large-icon     id             ID              #IMPLIED>
 
+
+<!-- The "small-icon" element specifies the location, relative to the Struts
+     configuration file, of a resource containing a small (16x16 pixel)
+     icon image.
+-->
+<!ELEMENT small-icon     (%Location;)>
+<!ATTLIST small-icon     id             ID              #IMPLIED>
