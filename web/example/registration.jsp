@@ -8,7 +8,7 @@
   <app:checkLogon/>
 </logic:equal>
 
-<html>
+<form:html/>
 <head>
 <logic:equal name="registrationForm" property="action"
             scope="request" value="Create">

@@ -27,6 +27,7 @@
           <name>base</name>
           <summary>Render an HTML &lt;base&gt; Element</summary>
           <tagclass>org.apache.struts.taglib.form.BaseTag</tagclass>
+          <bodycontent>empty</bodycontent>
           <info>
           <p>Renders an HTML <code>&lt;base&gt;</code> element with an
           <code>href</code> attribute pointing to the absolute location of
@@ -1151,6 +1152,19 @@
 		</attribute>
 	</tag>
 	
+
+        <tag>
+          <name>html</name>
+          <summary>Render an HTML &lt;html&gt; Element</summary>
+          <tagclass>org.apache.struts.taglib.form.HtmlTag</tagclass>
+          <bodycontent>empty</bodycontent>
+          <info>
+          <p>Renders an HTML <code>&lt;html&gt;</code> element with
+          language attributes extracted from the user's current Locale
+          object, if there is one.</p>
+          </info>
+        </tag>
+
 
         <tag>
 

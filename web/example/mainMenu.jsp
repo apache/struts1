@@ -5,7 +5,7 @@
 <app:checkLogon/>
 <jsp:useBean id="user" scope="session" type="org.apache.struts.example.User"/>
 
-<html>
+<form:html/>
 <head>
 <title><bean:message key="mainMenu.title"/></title>
 <form:base/>
