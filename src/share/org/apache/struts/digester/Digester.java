@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.4 2000/06/22 21:05:10 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/06/22 21:05:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.5 2000/06/23 19:33:34 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/06/23 19:33:34 $
  *
  * ====================================================================
  * 
@@ -98,9 +98,10 @@ import org.xml.sax.SAXParseException;
  *	Digester digester = new Digester();
  *	digester.push(this);
  *	digester.setValidating(false);
- *	digester.addObjectCreate("action-mappings/action", mappingClass);
+ *	digester.addObjectCreate("action-mappings/action", mappingClass,
+ *                               "className");
  *	digester.addSetProperties("action-mappings/action");
- *	digester.addSetNext("action-mappings.action", "addMapping",
+ *	digester.addSetNext("action-mappings/action", "addMapping",
  *			    "org.apache.struts.action.ActionMapping");
  *	try {
  *	    digester.parse(input);
@@ -115,11 +116,15 @@ import org.xml.sax.SAXParseException;
  * code (the ActionServlet in the example above) onto the digester's stack.
  * Each of the "add" methods adds a processing rule that is matched when
  * an <code>&lt;action&gt;</code> element is found nested within an
- * <code>&lt;action-mapping&gt;</code> element.  These rules perform the
+ * <code>&lt;action-mappings&gt;</code> element.  These rules perform the
  * following processing:
  * <ul>
- * <li>A new Java object, of the class defined by the <code>mappingClass</code>
- *     variable, is instantiated and pushed onto the digester's stack.</li>
+ * <li>A new Java object will be instantiated and pushed onto the digester's
+ *     object stack.  If the <code>&lt;action&gt;</code>  element includes
+ *     an attribute named <code>className</code>, the value of that attribute
+ *     must be the fully qualified Java class name of the object to be created.
+ *     Otherwise, the class name is taken from the <code>mappingClass</code>
+ *     instance variable.</li>
  * <li>The attributes of the <code>&lt;action&gt;</code> element are matched
  *     against the properties of the object on top of the stack.  Whenever
  *     there is a <code>setXxx()</code> method with a corresponding name, that
@@ -128,7 +133,7 @@ import org.xml.sax.SAXParseException;
  *     on the stack (i.e. the action servlet) is made, passing the top object
  *     on the stack as an argument.  The method expects an argument of type
  *    "org.apache.struts.action.ActionMapping" (or a subclass or interface
- *    implementation of this) to be passed.
+ *    implementation of this type) to be passed.
  * <li>Any object added to the digeter's stack is removed.
  * </ul>
  * <p>
@@ -137,7 +142,7 @@ import org.xml.sax.SAXParseException;
  * hard code the configuration logic.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/06/22 21:05:10 $
+ * @version $Revision: 1.5 $ $Date: 2000/06/23 19:33:34 $
  */
 
 public final class Digester extends HandlerBase {
