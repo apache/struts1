@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.5 2002/09/23 05:13:43 martinc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/09/23 05:13:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.6 2002/10/05 22:56:21 dmkarr Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/10/05 22:56:21 $
  *
  * ====================================================================
  *
@@ -77,11 +77,10 @@ import org.apache.struts.util.MessageResources;
  * tag is only valid when nested inside a head tag body. The presence 
  * of this tag allows the browser to resolve relative URL's to images,
  * CSS stylesheets  and other resources in a manner independent of the URL
- * used to call the ActionServlet.  There are no attributes associated with
- * this tag.
+ * used to call the ActionServlet.
  *
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.5 $ $Date: 2002/09/23 05:13:43 $
+ * @version $Revision: 1.6 $ $Date: 2002/10/05 22:56:21 $
  */
 
 public class BaseTag extends TagSupport {
