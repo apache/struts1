@@ -18,17 +18,18 @@
 package org.apache.struts.action;
 
 import javax.servlet.ServletException;
+
 import junit.framework.Test;
+import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.apache.cactus.ServletTestCase;
 import org.apache.struts.util.MessageResources;
 
 /**
  * Suite of unit tests for the
  * <code>org.apache.struts.action.ActionServlet</code> class.
  */
-public class TestActionServlet extends ServletTestCase
+public class TestActionServlet extends TestCase
 {
     /**
      * Defines the testcase name for JUnit.
