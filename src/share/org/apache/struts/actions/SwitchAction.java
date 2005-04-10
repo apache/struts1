@@ -25,11 +25,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ModuleUtils;
 
 /**
@@ -52,7 +50,7 @@ import org.apache.struts.util.ModuleUtils;
  * @version $Rev$ $Date$
  * @since Struts 1.1
  */
-public class SwitchAction extends Action {
+public class SwitchAction extends BaseAction {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -62,17 +60,6 @@ public class SwitchAction extends Action {
      * Commons Logging instance.
      */
     protected static Log log = LogFactory.getLog(SwitchAction.class);
-
-
-    /**
-     * The message resources for this package.
-     */
-    protected static MessageResources messages =
-        MessageResources.getMessageResources
-        ("org.apache.struts.actions.LocalStrings");
-
-
-    // --------------------------------------------------------- Public Methods
 
 
     // See superclass for JavaDoc

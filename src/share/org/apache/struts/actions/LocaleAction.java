@@ -29,10 +29,10 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.DynaActionForm;
 
 
 /**
@@ -41,7 +41,7 @@ import org.apache.struts.action.ActionMapping;
  * parameters that are set  (language, country, &amp; page).
  *
 */
-public final class LocaleAction extends Action {
+public final class LocaleAction extends BaseAction {
 
     /**
      * Commons Logging instance.

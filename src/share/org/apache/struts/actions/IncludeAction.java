@@ -23,12 +23,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.MultipartRequestWrapper;
-import org.apache.struts.util.MessageResources;
 
 /**
  * <p>An <strong>Action</strong> that includes the context-relative
@@ -55,21 +53,10 @@ import org.apache.struts.util.MessageResources;
  *
  * @version $Rev$ $Date$
  */
-public class IncludeAction extends Action {
+public class IncludeAction extends BaseAction {
 
 
     // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * The message resources for this package.
-     */
-    protected static MessageResources messages =
-     MessageResources.getMessageResources
-        ("org.apache.struts.actions.LocalStrings");
-
-
-    // --------------------------------------------------------- Public Methods
 
 
     /**

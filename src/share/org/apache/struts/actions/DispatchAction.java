@@ -28,11 +28,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.MessageResources;
 
 /**
  * <p>An abstract <strong>Action</strong> that dispatches to a public
@@ -89,7 +87,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @version $Rev$ $Date$
  */
-public abstract class DispatchAction extends Action {
+public abstract class DispatchAction extends BaseAction {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -105,14 +103,6 @@ public abstract class DispatchAction extends Action {
      * Commons Logging instance.
      */
     protected static Log log = LogFactory.getLog(DispatchAction.class);
-
-
-    /**
-     * The message resources for this package.
-     */
-    protected static MessageResources messages =
-            MessageResources.getMessageResources
-            ("org.apache.struts.actions.LocalStrings");
 
 
     /**
