@@ -301,7 +301,8 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
     public HttpSession getSession(boolean create) {
         if (create && (session == null)) {
-            throw new UnsupportedOperationException();
+            return new MockHttpSession();
+//            throw new UnsupportedOperationException();
         }
         return (session);
     }
