@@ -141,21 +141,18 @@ public class MockPageContext extends PageContext {
         } else if (scope == PageContext.REQUEST_SCOPE) {
             if (request != null) {
                 return (request.getAttribute(name));
-            } else {
-                return (null);
             }
+            return (null);
         } else if (scope == PageContext.SESSION_SCOPE) {
             if (session != null) {
                 return (session.getAttribute(name));
-            } else {
-                return (null);
             }
+            return (null);
         } else if (scope == PageContext.APPLICATION_SCOPE) {
             if (application != null) {
                 return (application.getAttribute(name));
-            } else {
-                return (null);
             }
+            return (null);
         } else {
             throw new IllegalArgumentException("Invalid scope " + scope);
         }
@@ -168,24 +165,18 @@ public class MockPageContext extends PageContext {
         } else if (scope == PageContext.REQUEST_SCOPE) {
             if (request != null) {
                 return (request.getAttributeNames());
-            } else {
-                return
-                    (new MockEnumeration(Collections.EMPTY_LIST.iterator()));
             }
+            return (new MockEnumeration(Collections.EMPTY_LIST.iterator()));
         } else if (scope == PageContext.SESSION_SCOPE) {
             if (session != null) {
                 return (session.getAttributeNames());
-            } else {
-                return
-                    (new MockEnumeration(Collections.EMPTY_LIST.iterator()));
             }
+            return (new MockEnumeration(Collections.EMPTY_LIST.iterator()));
         } else if (scope == PageContext.APPLICATION_SCOPE) {
             if (application != null) {
                 return (application.getAttributeNames());
-            } else {
-                return
-                    (new MockEnumeration(Collections.EMPTY_LIST.iterator()));
             }
+            return new MockEnumeration(Collections.EMPTY_LIST.iterator());
         } else {
             throw new IllegalArgumentException("Invalid scope " + scope);
         }
