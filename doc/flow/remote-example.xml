@@ -40,9 +40,9 @@ function main() {
          "guesses" : guesses},
        ["cheat"]);
 
-    print("processing a user guess "+getRequestParams().guess);
+    print("processing a user guess "+struts.param.guess);
     // process user's guess
-    var guess = parseInt( getRequestParams().guess );
+    var guess = parseInt( struts.param.guess );
     guesses++;
     if (guess) {
       if (guess > random) {

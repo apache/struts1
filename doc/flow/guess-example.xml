@@ -30,7 +30,7 @@ function main() {
          "guesses" : guesses} );
 
     // process user's guess
-    var guess = parseInt( getRequestParams().guess );
+    var guess = parseInt( struts.param.guess );
     guesses++;
     if (guess) {
       if (guess > random) {

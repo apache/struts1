@@ -35,7 +35,7 @@
         directly. Here is what the new parts of the flow code looks like:
         </p>
 <pre>
-context.load("/templates/template.js");
+flow.load("/templates/template.js");
 
 ...
 
@@ -50,11 +50,11 @@ function renderTemplate(page, bizdata) {
        
        // Use default ttl value from continuation manager
        var timeToLive = 0;
-       var kont = new WebContinuation(context, k, lastContinuation, timeToLive);
+       var kont = new WebContinuation(flow, k, lastContinuation, timeToLive);
        
        bizdata.contid = kont.id;
-       res = context.chainContext.response;
-       stream = context.chainContext.context.getResourceAsStream("/WEB-INF/templates/"+page+".jt");
+       res = struts.response;
+       stream = struts.servletContext.getResourceAsStream("/WEB-INF/templates/"+page+".jt");
        if (stream != null) {
            text = new String(stream.getText());
            html = text.process(bizdata);
