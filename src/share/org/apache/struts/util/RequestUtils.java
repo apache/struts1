@@ -33,7 +33,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
@@ -172,13 +171,8 @@ public class RequestUtils {
         ActionForm instance = lookupActionForm(request, attribute, mapping.getScope());
 
         // Can we recycle the existing form bean instance (if there is one)?
-        try {
-            if (instance != null && canReuseActionForm(instance, config)) {
-                return (instance);
-            }
-        } catch(ClassNotFoundException e) {
-            log.error(servlet.getInternal().getMessage("formBean", config.getType()), e);
-            return (null);
+        if (instance != null && config.canReuse(instance)) {
+            return (instance);
         }
 
         return createActionForm(config, servlet);
@@ -207,55 +201,6 @@ public class RequestUtils {
         }
 
         return (instance);
-    }
-
-    /**
-     * <p>Determine whether <code>instance</code> of <code>ActionForm</code> is
-     * suitable for re-use as an instance of the form described by
-     * <code>config</code>.</p>
-     * @param instance an instance of <code>ActionForm</code> which was found,
-     * probably in either request or session scope.
-     * @param config the configuration for the ActionForm which is needed.
-     * @return true if the instance found is "compatible" with the type required
-     * in the <code>FormBeanConfig</code>; false if not, or if <code>instance</code>
-     * is null.
-     * @throws ClassNotFoundException if the <code>type</code> property of
-     * <code>config</code> is not a valid Class name.
-     */
-    private static boolean canReuseActionForm(ActionForm instance, FormBeanConfig config)
-            throws ClassNotFoundException
-    {
-        if (instance == null) {
-            return (false);
-        }
-
-        boolean canReuse = false;
-        String formType = null;
-        String className = null;
-
-        if (config.getDynamic()) {
-            className = ((DynaBean) instance).getDynaClass().getName();
-            canReuse = className.equals(config.getName());
-            formType = "DynaActionForm";
-        } else {
-            Class configClass = applicationClass(config.getType());
-            className = instance.getClass().getName();
-            canReuse = configClass.isAssignableFrom(instance.getClass());
-            formType = "ActionForm";
-        }
-
-        if (log.isDebugEnabled()) {
-            log.debug(
-                    " Can recycle existing "
-                    + formType
-                    + " instance "
-                    + "of type '"
-                    + className
-                    + "'?: "
-                    + canReuse);
-            log.trace(" --> " + instance);
-        }
-        return (canReuse);
     }
 
     /**

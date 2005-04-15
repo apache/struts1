@@ -141,7 +141,7 @@
 
       <!-- Create (if needed) the ActionForm for this request -->
       <command
-          className="org.apache.struts.chain.commands.servlet.CreateActionForm"/>
+          className="org.apache.struts.chain.commands.CreateActionForm"/>
 
 
       <!-- Populate the ActionForm for this request -->

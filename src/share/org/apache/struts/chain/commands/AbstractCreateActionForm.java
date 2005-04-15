@@ -32,6 +32,9 @@ import org.apache.struts.config.FormBeanConfig;
  *
  * @author Craig R. McClanahan
  * @version $Id$
+ * @deprecated This class no longer needs to be abstract.  Use 
+ * <code>org.apache.struts.chain.commands.CreateActionForm</code> instead.
+ * This will be removed BEFORE a full Struts 1.3.0 release.
  */
 
 public abstract class AbstractCreateActionForm extends ActionCommandBase {

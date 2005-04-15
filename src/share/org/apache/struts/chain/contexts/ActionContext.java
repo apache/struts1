@@ -95,6 +95,16 @@ public interface ActionContext extends Context {
     Map getRequestScope();
 
     /**
+     * Return the Map representing the scope identified by <code>scopeName</code>.
+     * Implementations should support at minimum the names associated with the constants
+     * <code>APPLICATION_SCOPE</code>, <code>SESSION_SCOPE</code>, and 
+     * <code>REQUEST_SCOPE</code>, but are permitted to support others as well.
+     * @param scopeName
+     * @return
+     */
+    Map getScope(String scopeName);
+    
+    /**
      * <p>Return a <code>Map</code> of parameters submitted by the user
      * as part of this request.</p>
      * 

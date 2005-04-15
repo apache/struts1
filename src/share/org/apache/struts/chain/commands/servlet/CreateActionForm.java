@@ -27,6 +27,11 @@ import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.FormBeanConfig;
 
+/**
+ * @deprecated This class and its parent are no longer necessary.  Use 
+ * <code>org.apache.struts.chain.commands.CreateActionForm</code> instead.
+ * This will be removed BEFORE a full Struts 1.3.0 release.
+ */
 public class CreateActionForm extends
         org.apache.struts.chain.commands.AbstractCreateActionForm {
 

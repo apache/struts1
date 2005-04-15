@@ -27,10 +27,15 @@ import java.lang.reflect.InvocationTargetException;
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.MutableDynaClass;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.DynaActionFormClass;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.chain.commands.util.ClassUtils;
+import org.apache.struts.chain.contexts.ActionContext;
+import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.validator.BeanValidatorForm;
 import org.apache.struts.util.RequestUtils;
 
@@ -46,7 +51,7 @@ import org.apache.struts.util.RequestUtils;
 
 public class FormBeanConfig implements Serializable {
 
-
+    private static final Log log = LogFactory.getLog(FormBeanConfig.class);
     // ----------------------------------------------------- Instance Variables
 
 
@@ -296,6 +301,11 @@ public class FormBeanConfig implements Serializable {
      * <p>Create and return an <code>ActionForm</code> instance appropriate
      * to the information in this <code>FormBeanConfig</code>.</p>
      *
+     * <p>Although this method is not formally deprecated yet, where possible, the
+     * form which accepts an <code>ActionContext</code> as an argument is preferred,
+     * to help sever direct dependencies on the Servlet API.  As the ActionContext becomes
+     * more familiar in Struts, this method will almost certainly be deprecated.</p>
+     * 
      * @param servlet The action servlet
      * @return ActionForm instance
      * @exception IllegalAccessException if the Class or the appropriate
@@ -345,7 +355,69 @@ public class FormBeanConfig implements Serializable {
 
     }
 
+    /**
+     * <p>Create and return an <code>ActionForm</code> instance appropriate
+     * to the information in this <code>FormBeanConfig</code>.</p>
+     * <p><b>NOTE:</b> If the given <code>ActionContext</code> is not of type 
+     * <code>ServletActionContext</code> (or a subclass), then the form which is
+     * returned will have a null <code>servlet</code> property.  Some of 
+     * the subclasses of <code>ActionForm</code> included in Struts will 
+     * later throw a <code>NullPointerException</code> in this case. 
+     * </p>
+     * <p>TODO: Find a way to control this direct dependency on the Servlet API.</p>
+     * 
+     * @param context The ActionContext.
+     * @return ActionForm instance
+     * @exception IllegalAccessException if the Class or the appropriate
+     *  constructor is not accessible
+     * @exception InstantiationException if this Class represents an abstract
+     *  class, an array class, a primitive type, or void; or if instantiation
+     *  fails for some other reason
+     */
+    public ActionForm createActionForm(ActionContext context)
+        throws IllegalAccessException, InstantiationException {
 
+        ActionServlet actionServlet = null;
+        if (context instanceof ServletActionContext) {
+            ServletActionContext saContext = (ServletActionContext) context;
+            actionServlet = saContext.getActionServlet();
+        }
+        return createActionForm(actionServlet);
+    }
+
+    /**
+     * Is the given <code>ActionForm</code> instance suitable for use as an
+     * alternative to calling this <code>FormBeanConfig</code> instance's 
+     * <code>createActionForm</code> method. 
+     * @param form
+     * @return
+     */
+    public boolean canReuse(ActionForm form) {
+        if (form != null) {
+            if (this.getDynamic()) {
+                String className =
+                    ((DynaBean) form).getDynaClass().getName();
+                if (className.equals(this.getName())) {
+                    log.debug("Can reuse existing instance (dynamic)");
+                    return (true);
+                }
+            } else {
+                try {
+                    Class configClass =
+                        ClassUtils.getApplicationClass
+                        (this.getType());
+                    if (configClass.isAssignableFrom(form.getClass())) {
+                        log.debug("Can reuse existing instance (non-dynamic)");
+                        return (true);
+                    }
+                } catch (Exception e) {
+                    log.debug("Error testing existing instance for reusability; just create a new instance", e);
+                }
+            }
+        }
+        return false;
+    }
+    
     /**
      * Add a new <code>FormPropertyConfig</code> instance to the set associated
      * with this module.
