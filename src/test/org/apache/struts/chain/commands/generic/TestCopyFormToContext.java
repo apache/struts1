@@ -82,8 +82,8 @@ public class TestCopyFormToContext extends TestCase {
         command.setToKey(POST_EXECUTION_CONTEXT_KEY);
 
         assertNull(context.get(POST_EXECUTION_CONTEXT_KEY));
-        assertNull(context.getRequestScope().get(POST_EXECUTION_CONTEXT_KEY));
-        assertNull(context.getSessionScope().get(POST_EXECUTION_CONTEXT_KEY));
+        assertNull(context.getRequestScope().get(formName));
+        assertNull(context.getSessionScope().get(formName));
         
         command.execute(context);
 
@@ -100,15 +100,15 @@ public class TestCopyFormToContext extends TestCase {
         CopyFormToContext command = new CopyFormToContext();
         command.setActionPath("/Test");
         command.setToKey(POST_EXECUTION_CONTEXT_KEY);
+        String formName = "foo"; // we know this, even though it's not being used for the lookup.
 
         assertNull(context.get(POST_EXECUTION_CONTEXT_KEY));
-        assertNull(context.getRequestScope().get(POST_EXECUTION_CONTEXT_KEY));
-        assertNull(context.getSessionScope().get(POST_EXECUTION_CONTEXT_KEY));
+        assertNull(context.getRequestScope().get(formName));
+        assertNull(context.getSessionScope().get(formName));
         
         command.execute(context);
 
         assertNotNull(context.get(POST_EXECUTION_CONTEXT_KEY));
-        String formName = "foo";
         assertNotNull(context.getRequestScope().get(formName));
         assertNull(context.getSessionScope().get(formName));
 
@@ -125,8 +125,8 @@ public class TestCopyFormToContext extends TestCase {
         command.setToKey(POST_EXECUTION_CONTEXT_KEY);
 
         assertNull(context.get(POST_EXECUTION_CONTEXT_KEY));
-        assertNull(context.getRequestScope().get(POST_EXECUTION_CONTEXT_KEY));
-        assertNull(context.getSessionScope().get(POST_EXECUTION_CONTEXT_KEY));
+        assertNull(context.getRequestScope().get(formName));
+        assertNull(context.getSessionScope().get(formName));
         
         command.execute(context);
 
@@ -151,8 +151,8 @@ public class TestCopyFormToContext extends TestCase {
         command.setToKey(POST_EXECUTION_CONTEXT_KEY);
 
         assertNull(context.get(POST_EXECUTION_CONTEXT_KEY));
-        assertNull(context.getRequestScope().get(POST_EXECUTION_CONTEXT_KEY));
-        assertNull(context.getSessionScope().get(POST_EXECUTION_CONTEXT_KEY));
+        assertNull(context.getRequestScope().get(formName));
+        assertNull(context.getSessionScope().get(formName));
         
         try {
             command.execute(context);
@@ -173,8 +173,8 @@ public class TestCopyFormToContext extends TestCase {
         // command.setToKey(POST_EXECUTION_CONTEXT_KEY);
 
         assertNull(context.get(POST_EXECUTION_CONTEXT_KEY));
-        assertNull(context.getRequestScope().get(POST_EXECUTION_CONTEXT_KEY));
-        assertNull(context.getSessionScope().get(POST_EXECUTION_CONTEXT_KEY));
+        assertNull(context.getRequestScope().get(formName));
+        assertNull(context.getSessionScope().get(formName));
         
         try {
             command.execute(context);
@@ -183,8 +183,30 @@ public class TestCopyFormToContext extends TestCase {
             ; // expected.
         }
 
+       
     }
 
+    public void testCopyToDefaultContextKey() throws Exception {
+        CopyFormToContext command = new CopyFormToContext();
+        String formName = "foo";
+        command.setFormName(formName);
+        command.setScope("request");
+
+        assertNull(context.getActionForm());
+        assertNull(context.getRequestScope().get(POST_EXECUTION_CONTEXT_KEY));
+        assertNull(context.getSessionScope().get(POST_EXECUTION_CONTEXT_KEY));
+        
+        command.execute(context);
+
+        assertNotNull(context.getActionForm());
+        assertNotNull(context.getRequestScope().get(formName));
+        assertNull(context.getSessionScope().get(formName));
+
+        assertSame(context.getActionForm(), context.getRequestScope().get(formName));
+        ActionForm theForm = (ActionForm) context.getActionForm();
+        assertTrue(theForm instanceof MockFormBean);
+        
+    }
 
 }
 
