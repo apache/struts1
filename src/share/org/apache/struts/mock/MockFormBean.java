@@ -33,18 +33,101 @@ import org.apache.struts.action.ActionForm;
 
 public class MockFormBean extends ActionForm {
 
-
+    /*
+     * Flag to indicate whether certain methods should complete properly
+     * or throw an Exception
+     */
+    private boolean throwException = false;
+    
+    
+    private boolean returnNulls    = false;
+    private String  defaultValue;
+    private Double  defaultDouble;
+    private int     arrayCount;
+    protected boolean booleanProperty = false;
+    
+    // ------------------- Constructors
+    
     public MockFormBean() {
         this(null);
     }
 
-
+    public MockFormBean(boolean throwException, boolean returnNulls){
+        super();
+        this.throwException = throwException;
+        this.returnNulls    = returnNulls;
+    }
+    
+    public MockFormBean(boolean throwException){
+        this.throwException = throwException;
+    }
+    
+    public MockFormBean(boolean throwException, 
+            boolean returnNulls, String defaultValue){
+        this(throwException, returnNulls);
+        this.defaultValue = defaultValue;
+        
+    }
     public MockFormBean(String stringProperty) {
         this.stringProperty = stringProperty;
     }
 
 
-    protected boolean booleanProperty = false;
+    public MockFormBean(boolean throwException, 
+            boolean returnNulls, String defaultValue, int arrayCount){
+        this(throwException, returnNulls, defaultValue);
+        this.arrayCount = arrayCount;
+        
+    }
+    
+    public MockFormBean(boolean throwException, 
+            boolean returnNulls, Double defaultDouble){
+        this(throwException, returnNulls);
+        this.defaultDouble = defaultDouble;
+        
+    }
+    
+    // ------------------- public methods
+    
+    public String getJustThrowAnException() throws Exception{
+            throw new Exception();
+    }
+    
+    public Object getThrowIllegalAccessException() throws Exception{
+        if (true)
+            throw new IllegalAccessException();
+        return null;
+    }
+    
+    public String getStringValue() throws Exception{
+        if (throwException)
+            throw new Exception();
+        if (returnNulls)
+            return null;
+        return defaultValue;
+    }
+
+    public String[] getStringArray() throws Exception{
+        if (throwException)
+            throw new Exception();
+        if (returnNulls)
+            return null;
+        
+        String[] rtn = new String[arrayCount];
+        for (int i = 0; i < rtn.length; i++) {
+            rtn[i] = defaultValue + i;
+        }
+        return rtn;
+    }
+
+    public Double getDoubleValue() throws Exception{
+        if (throwException)
+            throw new Exception();
+        if (returnNulls)
+            return null;
+        return defaultDouble;
+        
+    }
 
     public boolean getBooleanProperty() {
         return (this.booleanProperty);
@@ -59,6 +142,13 @@ public class MockFormBean extends ActionForm {
         HashMap map = new HashMap();
         map.put("foo1", "bar1");
         map.put("foo2", "bar2");
+        return (map);
+    }
+
+    public Map getMapPropertyArrayValues() {
+        HashMap map = new HashMap();
+        map.put("foo1", new String[]{"bar1", "baz1"});
+        map.put("foo2", new String[]{"bar2", "baz2"});
         return (map);
     }
 

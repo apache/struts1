@@ -20,6 +20,9 @@
 package org.apache.struts.mock;
 
 
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -55,10 +58,21 @@ import javax.servlet.jsp.tagext.BodyContent;
 
 public class MockPageContext extends PageContext {
 
+    // ----------------------------------------------------- Instance Variables
+    protected ServletContext application = null;
+    protected HashMap attributes = new HashMap();    // Page scope attributes
+    protected ServletConfig config = null;
+    protected ServletRequest request = null;
+    protected ServletResponse response = null;
+    protected HttpSession session = null;
+
+    private boolean throwIOException;
+    private boolean returnBodyContent;
+    
+
 
 
     // ----------------------------------------------------------- Constructors
-
 
     public MockPageContext() {
         super();
@@ -72,17 +86,22 @@ public class MockPageContext extends PageContext {
         setValues(config, request, response);
     }
 
-
-    // ----------------------------------------------------- Instance Variables
-
-
-    protected ServletContext application = null;
-    protected HashMap attributes = new HashMap();    // Page scope attributes
-    protected ServletConfig config = null;
-    protected ServletRequest request = null;
-    protected ServletResponse response = null;
-    protected HttpSession session = null;
-
+    /**
+     * Construct a new PageContext impl.
+     * @param throwIOException Determines if the returned JspWriter should 
+     *                         throw an IOException on any method call.
+     * @param returnBody Determines if getOut() should return a new 
+     *                   <code>JspWriter</code> or a <code>BodyContent</code>.
+     */
+    public MockPageContext(boolean throwIOException, boolean returnBody){
+        this.throwIOException = throwIOException;
+        this.returnBodyContent = returnBody;
+    }
+    private void checkAndThrow() throws IOException{
+        if (throwIOException){
+            throw new IOException();
+        }
+    }
 
     // --------------------------------------------------------- Public Methods
 
@@ -206,9 +225,78 @@ public class MockPageContext extends PageContext {
     }
 
 
+    /**
+     * Custom JspWriter that throws the specified exception 
+     * (supplied on the constructor...if any), else it simply 
+     * returns.
+     */
     public JspWriter getOut() {
-        throw new UnsupportedOperationException();
+                JspWriter jspWriter = new JspWriter(0, false) {
+                    public void print(String s) throws IOException {
+                        checkAndThrow();
+                    }
+                    public void newLine() throws IOException {checkAndThrow();}
+                    public void print(boolean b) throws IOException {checkAndThrow();}
+                    public void print(char c) throws IOException {checkAndThrow();}
+                    public void print(int i) throws IOException {checkAndThrow();}
+                    public void print(long l) throws IOException {checkAndThrow();}
+                    public void print(float f) throws IOException {checkAndThrow();}
+                    public void print(double d) throws IOException {checkAndThrow();}
+                    public void print(char[] s) throws IOException {checkAndThrow();}
+                    public void print(Object obj) throws IOException {checkAndThrow();}
+                    public void println() throws IOException {checkAndThrow();}
+                    public void println(boolean x) throws IOException {checkAndThrow();}
+                    public void println(char x) throws IOException {checkAndThrow();}
+                    public void println(int x) throws IOException {checkAndThrow();}
+                    public void println(long x) throws IOException {checkAndThrow();}
+                    public void println(float x) throws IOException {checkAndThrow();}
+                    public void println(double x) throws IOException {checkAndThrow();}
+                    public void println(char[] x) throws IOException {checkAndThrow();}
+                    public void println(String x) throws IOException {checkAndThrow();}
+                    public void println(Object x) throws IOException {checkAndThrow();}
+                    public void clear() throws IOException {checkAndThrow();}
+                    public void clearBuffer() throws IOException {checkAndThrow();}
+                    public void flush() throws IOException {checkAndThrow();}
+                    public void close() throws IOException {checkAndThrow();}
+                    public int getRemaining() {return 0;}
+                    public void write(char[] cbuf, int off, int len) throws IOException {checkAndThrow();}
+
+                };
+                if (returnBodyContent)
+                    return new BodyContent(jspWriter) {
+                    public Reader getReader() {return null;}
+                    public String getString() {return null;}
+                    public void writeOut(Writer out) throws IOException {checkAndThrow();}
+                    public void newLine() throws IOException {checkAndThrow();}
+                    public void print(boolean b) throws IOException {checkAndThrow();}
+                    public void print(char c) throws IOException {checkAndThrow();}
+                    public void print(int i) throws IOException {checkAndThrow();}
+                    public void print(long l) throws IOException {checkAndThrow();}
+                    public void print(float f) throws IOException {checkAndThrow();}
+                    public void print(double d) throws IOException {checkAndThrow();}
+                    public void print(char[] s) throws IOException {checkAndThrow();}
+                    public void print(String s) throws IOException {checkAndThrow();}
+                    public void print(Object obj) throws IOException {checkAndThrow();}
+                    public void println() throws IOException {checkAndThrow();}
+                    public void println(boolean x) throws IOException {checkAndThrow();}
+                    public void println(char x) throws IOException {checkAndThrow();}
+                    public void println(int x) throws IOException {checkAndThrow();}
+                    public void println(long x) throws IOException {checkAndThrow();}
+                    public void println(float x) throws IOException {checkAndThrow();}
+                    public void println(double x) throws IOException {checkAndThrow();}
+                    public void println(char[] x) throws IOException {checkAndThrow();}
+                    public void println(String x) throws IOException {checkAndThrow();}
+                    public void println(Object x) throws IOException {checkAndThrow();}
+                    public void clear() throws IOException {checkAndThrow();}
+                    public void clearBuffer() throws IOException {checkAndThrow();}
+                    public void close() throws IOException {checkAndThrow();}
+                    public int getRemaining() {return 0;}
+                    public void write(char[] cbuf, int off, int len) throws IOException {checkAndThrow();}
+
+                };
+                return jspWriter;
     }
+
 
 
     public Object getPage() {
