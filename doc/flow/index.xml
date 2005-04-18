@@ -9,12 +9,29 @@
 
     <section name="Struts Flow" href="overview">
       <p>
-Struts Flow is a port of <a href="http://cocoon.apache.org">Cocoon's</a> <a href="http://cocoon.apache.org/2.1/userdocs/flow/index.html">Control Flow</a> to <a href="http://struts.apache.org">Struts</a> to allow
+Struts Flow is a port of <a href="http://cocoon.apache.org">Cocoon's</a> <a href="http://cocoon.apache.org/2.1/userdocs/flow/index.html">Control Flow</a> to Struts to allow
 complex workflow, like multi-form wizards, to be easily implemented using continuations-capable
-JavaScript.  It provides the ability to describe the order of Web pages that have to be sent to the client, at any given point in time in an application.  
-Struts Flow uses a low-impact integration method that allows an existing Struts application to use Struts Flow along side traditional Struts 
-components like Actions and ActionForms.
+JavaScript.  It provides the ability to describe the order of Web pages that have to be sent to the client, at any given point in time in an application.  The flow scripts fulfill the role of Struts Actions, however, they can be used along side traditional Java-based Struts Actions.
 
+        </p>
+        <p>This is an example of a Struts Flow server-side script which logs the user on to an application:
+        <pre>
+function login() {
+  userManager = struts.applicationScope["userManager"];
+  error = "";
+  while (struts.sessionScope["curUser"] == null) {
+    forwardAndWait("loginForm", {"error" : error});
+    user = struts.param["user"];
+    passwd = struts.param["passwd"];
+    if (userManager.login(user, passwd)) {
+      struts.sessionScope["curUser"] = user;
+    } else {
+      error = "Invalid login, please try again";
+    }
+  }
+}  
+        </pre>
+        The <code>forwardAndWait()</code> method sends an HTML page to the user and waits for a response.  When the form is submitted, Struts Flow restores the variable values and restarts the script where it left off.  There are more detailed examples in the <a href="#examples">Examples</a> section.
         </p>
         <p>
         Since continuations are best implemented in Javascript, Struts Flow also focuses on making Javascript
@@ -97,7 +114,7 @@ components like Actions and ActionForms.
      </section>   
       <section name="Reqirements" href="requirements">
           <p>
-            Struts integration requres Struts 1.1 or greater.
+            Struts-specific features of Struts Flow requires Struts 1.1 or greater.
           </p>
       </section>
       <section name="Examples" href="examples">
