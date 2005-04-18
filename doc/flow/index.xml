@@ -112,7 +112,7 @@ function login() {
             </ul>
         </section>
      </section>   
-      <section name="Reqirements" href="requirements">
+      <section name="Requirements" href="requirements">
           <p>
             Struts-specific features of Struts Flow requires Struts 1.1 or greater.
           </p>
