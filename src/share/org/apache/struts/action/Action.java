@@ -553,6 +553,33 @@ public class Action {
 
 
     /**
+     * <p>Save the specified error messages keys into the appropriate session
+     * attribute for use by the &lt;html:messages&gt; tag (if messages="false") 
+     * or &lt;html:errors&gt;, if any error messages are required. Otherwise, 
+     * ensure that the session attribute is empty.</p>
+     *
+     * @param session The session to save the error messages in.
+     * @param errors The error messages to save. <code>null</code> or empty
+     * messages removes any existing error ActionMessages in the session.
+     *
+     * @since Struts 1.3
+     */
+    protected void saveErrors(
+        HttpSession session,
+        ActionMessages errors) {
+
+        // Remove the error attribute if none are required
+        if ((errors == null) || errors.isEmpty()) {
+            session.removeAttribute(Globals.ERROR_KEY);
+            return;
+        }
+
+        // Save the errors we need
+        session.setAttribute(Globals.ERROR_KEY, errors);
+    }
+
+
+    /**
      * <p>Save a new transaction token in the user's current session, creating
      * a new session if necessary.</p>
      *
