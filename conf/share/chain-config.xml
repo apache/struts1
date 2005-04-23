@@ -201,8 +201,9 @@
           className="org.apache.struts.chain.commands.ExecuteForwardCommand"/>
 
       <!--
-      If you want to use Tiles, uncomment this command and make sure you have 
-      the struts-tiles JAR included in your web application.
+      If you want to use Tiles, uncomment this command, and the one in the
+      'servlet-exception' chain below, and make sure you have the
+      struts-tiles JAR included in your web application.
 
       <command
           className="org.apache.struts.tiles.commands.TilesPreProcessor"/>
@@ -233,6 +234,15 @@
       <!-- Execute the configured exception handler (if any) -->
       <command
           className="org.apache.struts.chain.commands.servlet.ExceptionHandler"/>
+
+      <!--
+      If you want to use Tiles, uncomment this command, and the one in the
+      'servlet-standard' chain below. This one is needed to allow Tiles to
+      be used from global exception handlers.
+
+      <command
+          className="org.apache.struts.chain.servlet.TilesPreProcessor"/>
+      -->
 
       <!-- Follow the returned ForwardConfig (if any) -->
       <command
