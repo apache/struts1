@@ -468,8 +468,8 @@
     specify multiple 'config' initialization parameters, with a slight twist.
     You'll still use 'config' to tell the ActionServlet about your "default"
     module, however, for each additional module, you will
-    list an initialization parameter named "config/<em>module</em>", where <em>module</em> is
-    the name of your module (this gets used when determining which URIs fall
+    list an initialization parameter named "config<em>/module</em>", where <em>/module</em> is
+    the prefix for your module (this gets used when determining which URIs fall
     under a given module, so choose something meaningful!).
     For example:
     </p>
@@ -489,8 +489,9 @@
 
     <p>
     Here we have two modules.
-    One happens to be the "default" module, which has no "/module" in its
-    name, and the other one named "module1" (config/module1).
+    One happens to be the "default" module, identified by the param-name of
+    "config", and the other will be using the module prefix "/module1" based 
+    on the param-name it was given ("config/module1").
     The controller is configured to find the respective configuration files
     under <code>/WEB-INF/conf/</code> (which is the recommended place to put all configuration files).
     Pretty simple!
@@ -500,7 +501,7 @@
     (The <code>struts-default.xml</code> would be equivalent to what most folks call
     <code>struts-config.xml</code>.
     I just like the symmetry of having all my Struts module configuration files being
-    named <code>struts-<em>modulename</em>.xml</code>)
+    named <code>struts-<em>module</em>.xml</code>)
     </p>
 
     <p>
@@ -605,11 +606,11 @@
     </code></pre>
 
     <p>
-    Using the module parameter with a hyperlink tag is even simplier:
+    Using the module parameter with a hyperlink tag is even simpler:
     </p>
 
     <pre><code><![CDATA[
-    <html:link module="moduleB" path="/index.do"/>
+    <html:link module="/moduleB" path="/index.do"/>
     ]]></code></pre>
 
     <p>
