@@ -126,7 +126,10 @@ public class DigestingPlugIn implements PlugIn {
                       + this.configSource + "]");
 
             URL configURL = this.getConfigURL(this.configPath, this.configSource);
-
+            if (configURL == null) throw new ServletException("Unable to locate XML data file at [path: "
+                      + this.configPath
+                      + ", source: "
+                      + this.configSource + "]");
             obj = digester.parse(configURL.openStream());
 
         } catch (IOException e) {
