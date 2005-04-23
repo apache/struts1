@@ -22,6 +22,107 @@
         </p>
       </section>
 
+     <section name="Version 1.2.7" href="STRUTS_1_2_7">
+
+         <p>
+            2005-04-23 [164340] - Resolve #33122 ClassCastException when a non String paramId value
+                                  already exists in the params map.
+         </p>
+
+         <p>
+            2005-04-23 [164337] - Resolve #33918 Allow saving errors to the session in the same
+                                  way that messages are.
+         </p>
+
+         <p>
+            2005-04-23 [164336] - Change DigestingPlugIn to give an explicit message when configSource/configPath
+                                  yields a null URL.
+         </p>
+
+         <p>
+            2005-04-23 [164334] - Resolve #33238 Change JavascriptValidatorTag to escape double quotes
+                                  in variable values.
+         </p>
+
+         <p>
+            2005-04-05 [160262] - Resolve #21603 Automatic readonly/disabled settings in struts-html.
+         </p>
+
+         <p>
+            2005-04-05 [160255] - Resolve #32778 HTML Link Tag does not work with JSTL Loop Tag.
+         </p>
+
+         <p>
+            2005-04-01 [159674] - Remove use of "enum" as its a keyword in Java 5.
+         </p>
+
+         <p>
+            2005-03-31 [159609] - Improve ValidWhen Exception Handling - exceptions are now logged and
+                                  validation fails returning an error message with details of the error.
+         </p>
+
+         <p>
+            2005-03-31 [159606] - Two new validation examples added to struts-examples webapp. One for the validwhen
+                                  validator and the other showing alternative resource bundles being used.
+         </p>
+
+         <p>
+            2005-03-28 [159342] - Commons Validator dependency changed to version 1.1.4.
+         </p>
+
+         <p>
+            2005-03-28 [159292] - Add "bundle" attribute to El version of JavascriptValidatorTag.
+         </p>
+
+         <p>
+            2005-03-28 [159291] - Resolve #21760 Support for non-default resource bundles in validation.
+                                  Resolve #18169 Resource attribute of msg tag in the validation.xml doesn't work.
+         </p>
+
+         <p>
+            2005-03-23 [158730] - Resolve #27089 doubleRange added to the validator-rules.xml.
+         </p>
+
+         <p>
+            2005-03-22 [158727] - Resolve #34027 Name attribute is no longer rendered in the &lt;html:form&gt;
+                                  tag if the rendering mode is XHTML.
+         </p>
+
+         <p>
+            2005-03-22 [158617] - Resolve #34120 Fix invalid XML in the struts-doc-config.xml file in the 
+                                  Tiles Documentation webapp.
+         </p>
+
+         <p>
+            2005-03-22 [158605] - Resolve #14042 Memory leaks with JBoss 3.x +(Tomcat/Jetty).
+         </p>
+
+         <p>
+            2005-03-14 [157399] - Resolve #33876 JavaDoc corrections.
+         </p>
+
+         <p>
+            2005-03-14 [157397] - Resolve #33998 Fix @link() tags
+         </p>
+
+         <p>
+            2005-01-06 [124418] - Change DownloadAction to use supplied buffer size. 
+         </p>
+
+         <p>
+            2005-12-29 [123587] - Change ModuleException to ensure all constructors invoke super. Resolve #32504 - document
+                                  the means used to format values in the &lt;bean:write&gt; tag. Resolve #32016 - wrap the hidden
+                                  token field in a &lt;div&gt; element for HTML 4.01 Strict compliance.
+         </p>
+
+         <p>
+            2005-12-28 [123473] - Sync up the EL tags with their non-EL counterparts. This adds the 'bundle'
+                                  attribute to many tags, and also the 'error*' attributes, and 'header', 'footer',
+                                  'prefix' and 'suffix' for the Errors tag. Resolves Bugzilla #32490.
+
+         </p>
+
+     </section>
      <section name="Version 1.2.6" href="STRUTS_1_2_6">
 
          <p>
