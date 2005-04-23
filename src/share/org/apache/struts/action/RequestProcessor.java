@@ -425,10 +425,11 @@ public class RequestProcessor {
     }
     
     /**
-     * <p>Removes any <code>ActionMessages</code> object stored in the session under
-     * <code>Globals.MESSAGE_KEY</code> if the messages' 
-     * <code>isAccessed</code> method returns true.  This allows messages to
-     * be stored in the session, display one time, and be released here.</p>
+     * <p>Removes any <code>ActionMessages</code> object stored in the session 
+     * under <code>Globals.MESSAGE_KEY</code> and <code>Globals.ERROR_KEY</code> 
+     * if the messages' <code>isAccessed</code> method returns true.  This 
+     * allows messages to be stored in the session, display one time, and be 
+     * released here.</p>
      *
      * @param request The servlet request we are processing.
      * @param response The servlet response we are creating.
@@ -445,17 +446,25 @@ public class RequestProcessor {
             return;
         }
 
+        // Remove messages as needed
         ActionMessages messages =
             (ActionMessages) session.getAttribute(Globals.MESSAGE_KEY);
 
-        if (messages == null) {
-            return;
+        if (messages != null) {
+            if (messages.isAccessed()) {
+                session.removeAttribute(Globals.MESSAGE_KEY);
+            }
         }
+        
+        // Remove error messages as needed
+        messages = (ActionMessages) session.getAttribute(Globals.ERROR_KEY);
 
-        if (messages.isAccessed()) {
-            session.removeAttribute(Globals.MESSAGE_KEY);
+        if (messages != null) {
+            if (messages.isAccessed()) {
+                session.removeAttribute(Globals.ERROR_KEY);
+            }
         }
-
+        
     }
 
 
