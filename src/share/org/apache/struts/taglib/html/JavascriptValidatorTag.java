@@ -26,21 +26,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.validator.Field;
-import org.apache.commons.validator.Msg;
 import org.apache.commons.validator.Form;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
-import org.apache.commons.validator.util.ValidatorUtils;
 import org.apache.commons.validator.Var;
+import org.apache.commons.validator.util.ValidatorUtils;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.config.ModuleConfig;
@@ -48,7 +48,6 @@ import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.validator.Resources;
 import org.apache.struts.validator.ValidatorPlugIn;
-import java.util.StringTokenizer;
 
 /**
  * Custom tag that generates JavaScript for client side validation based
@@ -512,26 +511,29 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                         continue;
                     }
 
+                    String varValueEscaped = ValidatorUtils.replace(varValue, "\\", "\\\\");
+                    varValueEscaped = ValidatorUtils.replace(varValue, "\"", "\\\"");
+
                     if (Var.JSTYPE_INT.equalsIgnoreCase(jsType)) {
                         results.append(
                             "this."
                                 + varName
                                 + "="
-                                + ValidatorUtils.replace(varValue, "\\", "\\\\")
+                                + varValueEscaped
                                 + "; ");
                     } else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(jsType)) {
                         results.append(
                             "this."
                                 + varName
                                 + "=/"
-                                + ValidatorUtils.replace(varValue, "\\", "\\\\")
+                                + varValueEscaped
                                 + "/; ");
                     } else if (Var.JSTYPE_STRING.equalsIgnoreCase(jsType)) {
                         results.append(
                             "this."
                                 + varName
                                 + "='"
-                                + ValidatorUtils.replace(varValue, "\\", "\\\\")
+                                + varValueEscaped
                                 + "'; ");
                         // So everyone using the latest format doesn't need to change their xml files immediately.
                     } else if ("mask".equalsIgnoreCase(varName)) {
@@ -539,14 +541,14 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                             "this."
                                 + varName
                                 + "=/"
-                                + ValidatorUtils.replace(varValue, "\\", "\\\\")
+                                + varValueEscaped
                                 + "/; ");
                     } else {
                         results.append(
                             "this."
                                 + varName
                                 + "='"
-                                + ValidatorUtils.replace(varValue, "\\", "\\\\")
+                                + varValueEscaped
                                 + "'; ");
                     }
                 }
