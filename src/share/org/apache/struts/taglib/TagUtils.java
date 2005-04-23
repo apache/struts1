@@ -226,17 +226,17 @@ public class TagUtils {
                 if (mapValue == null) {
                     results.put(paramId, paramString);
 
-                } else if (mapValue instanceof String) {
-                    String newValues[] = new String[2];
-                    newValues[0] = (String) mapValue;
-                    newValues[1] = paramString;
-                    results.put(paramId, newValues);
-
-                } else {
+                } else if (mapValue instanceof String[]) {
                     String oldValues[] = (String[]) mapValue;
                     String newValues[] = new String[oldValues.length + 1];
                     System.arraycopy(oldValues, 0, newValues, 0, oldValues.length);
                     newValues[oldValues.length] = paramString;
+                    results.put(paramId, newValues);
+
+                } else {
+                    String newValues[] = new String[2];
+                    newValues[0] = mapValue.toString();
+                    newValues[1] = paramString;
                     results.put(paramId, newValues);
                 }
 
