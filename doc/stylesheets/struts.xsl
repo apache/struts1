@@ -138,7 +138,7 @@
           <xsl:value-of select="$relative-path"/><xsl:value-of select="$powered-logo"/>
         </xsl:variable>
         <img src="{$powered-src}" alt="Powered by Struts" id="powered-logo"/>
-        Copyright (c) 2000-2004, The Apache Software Foundation <span class="noprint">- 
+        Copyright (c) 2000-2005, The Apache Software Foundation <span class="noprint">- 
         <a href="http://wiki.apache.org/struts/StrutsDocComments">Comments?</a></span>
       </div>
       <xsl:comment>end footer</xsl:comment>
