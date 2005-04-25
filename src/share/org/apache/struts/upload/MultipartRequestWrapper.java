@@ -34,6 +34,10 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.InvocationTargetException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.beanutils.MethodUtils;
 
 /**
  * This class functions as a wrapper around HttpServletRequest to
@@ -50,6 +54,9 @@ import javax.servlet.http.HttpServletRequest;
  * HttpServletRequest object.
  */
 public class MultipartRequestWrapper implements HttpServletRequest {
+
+    /** Logging instance */
+    private static final Log log = LogFactory.getLog(MultipartRequestWrapper.class);
     
     /**
      * The parameters for this multipart request
@@ -267,45 +274,99 @@ public class MultipartRequestWrapper implements HttpServletRequest {
         return request.isRequestedSessionIdFromUrl();
     }
     
-    //SERVLET 2.3 EMPTY METHODS
+    //SERVLET 2.3 METHODS
+
     /**
-     * This method returns null.  To use any Servlet 2.3 methods,
-     * call on getRequest() and use that request object.  Once Servlet 2.3
-     * is required to build Struts, this will no longer be an issue.
+     * Implements the Servlet 2.3 <i>getParameterMap</i> method.
      */
     public Map getParameterMap() {
-        return null;
+        Map map = new HashMap(parameters);
+        Enumeration names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            String name = (String)names.nextElement();
+            map.put(name, request.getParameterValues(name));
+        }
+        return map;
     }
+
     /**
-     * This method does nothing.  To use any Servlet 2.3 methods,
-     * call on getRequest() and use that request object.  Once Servlet 2.3
-     * is required to build Struts, this will no longer be an issue.
+     * Use Reflection to invoke Servlet 2.3 <i>setCharacterEncoding</i>
+     * method on the wrapped Request.
      */
     public void setCharacterEncoding(String encoding) {
-        ;
+        invokeRequestMethod("setCharacterEncoding", new Object[] {encoding});
     }
+
     /**
-     * This method returns null.  To use any Servlet 2.3 methods,
-     * call on getRequest() and use that request object.  Once Servlet 2.3
-     * is required to build Struts, this will no longer be an issue.
+     * Use Reflection to invoke Servlet 2.3 <i>getRequestURL</i>
+     * method on the wrapped Request.
      */
     public StringBuffer getRequestURL() {
-        return null;
+        return (StringBuffer)invokeRequestMethod("getRequestURL", null);
     }
+
     /**
-     * This method returns false.  To use any Servlet 2.3 methods,
-     * call on getRequest() and use that request object.  Once Servlet 2.3
-     * is required to build Struts, this will no longer be an issue.
+     * Use Reflection to invoke Servlet 2.3 <i>isRequestedSessionIdFromCookie</i>
+     * method on the wrapped Request.
      */
     public boolean isRequestedSessionIdFromCookie() {
-        return false;
+        Object result = invokeRequestMethod("isRequestedSessionIdFromCookie", null);
+        return (result == null) ? false : ((Boolean)result).booleanValue();
     }
+
+    //SERVLET 2.4 METHODS
     
-    
-    
-        
-        
-        
-        
+    /**
+     * Use Reflection to invoke Servlet 2.4 <i>getLocalAddr</i>
+     * method on the wrapped Request.
+     */
+    public String getLocalAddr() {
+        return (String)invokeRequestMethod("getLocalAddr", null);
+    }
+
+    /**
+     * Use Reflection to invoke Servlet 2.4 <i>getLocalName</i>
+     * method on the wrapped Request.
+     */
+    public String getLocalName() {
+        return (String)invokeRequestMethod("getLocalName", null);
+    }
+
+    /**
+     * Use Reflection to invoke Servlet 2.4 <i>getLocalPort</i>
+     * method on the wrapped Request.
+     */
+    public int getLocalPort() {
+        Object result = invokeRequestMethod("getLocalPort", null);
+        return (result == null) ? 0 : ((Integer)result).intValue();
+    }
+
+    /**
+     * Use Reflection to invoke Servlet 2.4 <i>getRemotePort</i>
+     * method on the wrapped Request.
+     */
+    public int getRemotePort() {
+        Object result = invokeRequestMethod("getRemotePort", null);
+        return (result == null) ? 0 : ((Integer)result).intValue();
+    }
+
+    /**
+     * Convenience method which uses reflection to invoke a method
+     * on the Request.
+     */
+    private Object invokeRequestMethod(String name, Object[] args) {
+        try {
+            return MethodUtils.invokeExactMethod(request, name, args);
+        } catch (NoSuchMethodException e) {
+            if (log.isDebugEnabled()) {
+                log.debug("Method '" +name + "' not defined for javax.servlet.http.HttpServletRequest");
+            }
+        } catch (InvocationTargetException e) {
+            log.error("Error invoking method '" +name + "' ", e.getTargetException());
+        } catch (IllegalAccessException e) {
+            log.error("Error invoking method '" +name + "' ", e);
+        }
+        return null;
+    }
     
 }
