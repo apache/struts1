@@ -507,6 +507,13 @@
     </attribute>
 
     <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.7</since>
+    </attribute>
+
+    <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -790,6 +797,13 @@
     </attribute>
 
     <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.7</since>
+    </attribute>
+
+    <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -1000,6 +1014,13 @@
      </attribute>
 
     <attribute>
+      <name>disabled</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.7</since>
+    </attribute>
+
+    <attribute>
       <name>enctype</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -1033,6 +1054,13 @@
       <name>onsubmit</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>readonly</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.7</since>
     </attribute>
 
     <attribute>
@@ -1660,6 +1688,13 @@
     </attribute>
 
     <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.7</since>
+    </attribute>
+
+    <attribute>
       <name>linkName</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -1937,6 +1972,13 @@
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.7</since>
     </attribute>
 
     <attribute>
@@ -2289,6 +2331,13 @@
     </attribute>
 
     <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.7</since>
+    </attribute>
+
+    <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -2521,6 +2570,13 @@
     </attribute>
 
     <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.7</since>
+    </attribute>
+
+    <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -2708,6 +2764,13 @@
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.7</since>
     </attribute>
 
     <attribute>
@@ -2929,6 +2992,13 @@
     </attribute>
 
     <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.7</since>
+    </attribute>
+
+    <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -3101,6 +3171,13 @@
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.7</since>
     </attribute>
 
     <attribute>
@@ -3323,6 +3400,13 @@
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <since>Struts 1.2.7</since>
     </attribute>
 
     <attribute>
