@@ -46,9 +46,9 @@
           <h3>2.2 Core Struts</h3>
           <h4>Saving Messages in the Session</h4>
           <p>
-              A new method to store <i>messages</i> in the Session [<code>saveMessages(HttpSession, ActionMessages)</code>]
-              has been added to <i>Action</i> along with the automatic removal of these messages once they have been
-              accessed. This is equivalent to the facility for <i>errors</i> that was included in the Version 1.2.4
+              A new method to store <i>errors</i> in the Session [<code>saveErrors(HttpSession, ActionMessages)</code>]
+              has been added to <i>Action</i> along with the automatic removal of these errors once they have been
+              accessed. This is equivalent to the facility for <i>messages</i> that was included in the Version 1.2.4
               release.
           </p>
 
