@@ -4,8 +4,8 @@
     <title>Struts Release Notes (since 1.2.4)</title>
   </properties>
  <body>
- <chapter name="Version 1.2.7 Release Notes" href="RELEASE_1_2_7">
-      <section name="1. Introduction" href="Introduction">
+ <chapter name="6.1 Release Notes - Version 1.2.7" href="release_notes">
+      <section name="Introduction" href="Introduction">
           <p>
               This section contains release notes for changes that have taken
               place since
@@ -26,7 +26,7 @@
  
       </section>
 
-      <section name="2. Highlights of Changes Since Version 1.2.4" href="Highlight">
+      <section name="Highlights of Changes" href="Highlight">
           <p>
               The purpose of this section is to highlight the new features since the
               Version 1.2.4 release. For detailed information concerning changes 
@@ -44,7 +44,7 @@
                    <li>Dependency on Commons Lang has been removed</li>
               </ul>
 
-          <h3>2.2 Core Struts</h3>
+          <h3>Core Struts</h3>
           <h4>Saving Messages in the Session</h4>
           <p>
               A new method to store <i>errors</i> in the Session [<code>saveErrors(HttpSession, ActionMessages)</code>]
@@ -75,7 +75,7 @@
           <h4><i>Lazy</i> Validator Form</h4>
           <p>
               A <i>DynaBean</i> flavour ActionForm which doesn't need its properties to be
-              defined and provdies <i>Lazy List</i> and <i>Lazy Map</i> behaviours.
+              defined and provides <i>Lazy List</i> and <i>Lazy Map</i> behaviours.
           </p>
           <h4> Config Files in jars</h4>
           <p>
@@ -83,7 +83,7 @@
               Struts checks the servlet context, as before but if not found Struts now tries the classloader to try
               and get them.
           </p>
-          <h3>2.3 Tag Libray Changes</h3>
+          <h3>Tag Library Changes</h3>
           <h4>Highlighting Errors</h4>
           <p>
               Struts can now automatically highlight error fields using the new <i>errorKey</i>,
@@ -129,7 +129,7 @@
               See the <a href="struts-html.html#errors">User Guide</a> for details of these attributes.
           </p>
 
-          <h3>2.4 Validator</h3>
+          <h3>Validator</h3>
           <h4>Resource Bundle Support</h4>
           <p>
               The <i>bundle</i> attribute for the &lt;msg&gt; and &lt;arg&gt; elements in the Validator
@@ -141,14 +141,14 @@
               <i>Resource Bundle Support</i> and a page for <i>validwhen</i> examples.
           </p>
 
-          <h3>2.5 Subversion</h3>
+          <h3>Subversion</h3>
           <p>
               Struts has migrated it's source repository from CVS to Subversion, following which the
               repository has been refactored into subprojects. The subproject re-factoring does not
               however affect the 1.2.x series which is released from the
               <a href="http://svn.apache.org/viewcvs.cgi/struts/core/branches/STRUTS_1_2_BRANCH/">STRUTS_1_2</a> branch.
           </p>
-          <h3>2.6 People</h3>
+          <h3>People</h3>
           <p>
               On the <a href="../volunteers.html">people</a> front, in addition to <i>Martin Cooper</i>  being 
               appointed the <a href="../announce.html#a20050331">new PMC chair</a>, one new committer, 
@@ -158,13 +158,19 @@
           
       </section>
 
-      <section name="3. Detailed Changes" href="Detail">
+      <section name="Detailed Changes" href="Detail">
           <p>
               This section contains the details of changes since version 1.2.4 with links to
-              bugzilla tickets and Subersion Revision details.
+              bugzilla tickets and Subversion Revision details. It is split into the following
+              sub-sections.
           </p>
+          <ul>
+              <li><a href="#STRUTS_1_2_7">Version 1.2.7 Changes</a></li>
+              <li><a href="#STRUTS_1_2_6">Version 1.2.6 Changes</a></li>
+              <li><a href="#STRUTS_1_2_5">Version 1.2.5 Changes</a></li>
+          </ul>
   
-      <h3 id="STRUTS_1_2_7">3.1 Version 1.2.7</h3>
+      <h3 id="STRUTS_1_2_7">Version 1.2.7</h3>
 
          <table>
              <thead><tr>
@@ -394,7 +400,7 @@
              </tr>
          </table>
 
-     <h3 id="STRUTS_1_2_6">3.2 Version 1.2.6</h3>
+     <h3 id="STRUTS_1_2_6">Version 1.2.6</h3>
 
          <table>
              <thead><tr>
@@ -566,7 +572,7 @@
              </tr>
          </table>
 
-     <h3 id="STRUTS_1_2_5">3.3 Version 1.2.5</h3>
+     <h3 id="STRUTS_1_2_5">Version 1.2.5</h3>
 
          <table>
              <thead><tr>
