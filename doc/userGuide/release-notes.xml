@@ -175,7 +175,7 @@
                  <td align="center">
                      (<a href="http://svn.apache.org/viewcvs.cgi?rev=164684&amp;view=rev">164684</a>)</td>
                  <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=33132">33132</a></td>
-                 <td>implement Servlet 2.3/2.4 methods using reflection in MultipartRequestWrapper.</td>
+                 <td>Implement Servlet 2.3/2.4 methods using reflection in MultipartRequestWrapper.</td>
              </tr>
              <tr>
                  <td align="center">2005-04-23</td>
