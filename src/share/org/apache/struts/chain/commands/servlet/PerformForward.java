@@ -20,12 +20,15 @@ package org.apache.struts.chain.commands.servlet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts.action.ActionServlet;
 import org.apache.struts.chain.commands.AbstractPerformForward;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
+import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.upload.MultipartRequestWrapper;
+import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
 
@@ -55,6 +58,13 @@ public class PerformForward extends AbstractPerformForward {
         ServletActionContext sacontext = (ServletActionContext) context;
         String forwardPath = forwardConfig.getPath();
         String uri = null;
+
+        if (forwardPath == null) {
+            // Retrieve internal message resources
+            ActionServlet servlet =  (ActionServlet) sacontext.getActionServlet();
+            MessageResources resources = servlet.getInternal();
+            throw new IllegalArgumentException(resources.getMessage("forwardPathNull"));      
+        }
 
         ModuleConfig moduleConfig  = context.getModuleConfig();
         // Resolve module-relative paths
