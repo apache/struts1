@@ -177,7 +177,7 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean, Serial
 
         } else {
 
-            validationKey = mapping.getName();
+            validationKey = mapping.getAttribute();
 
         }
 
