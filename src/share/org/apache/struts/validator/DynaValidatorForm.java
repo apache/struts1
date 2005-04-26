@@ -136,13 +136,18 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
     protected void setPageFromDynaProperty() {
         Map props = this.getMap();
         if (props.containsKey("page")) {
+            Integer p = null;
             try {
-                this.page = ((Integer) props.get("page")).intValue();
-
+                p = (Integer)props.get("page");
             } catch (ClassCastException e) {
                 log.error("Dyna 'page' property must be of type java.lang.Integer.", e);
                 throw e;
             }
+            if (p == null) {
+                throw new NullPointerException("Dyna 'page' property must not be null. " +
+                    " Either provide an initial value or set 'convertNull' to false. ");
+            }              
+            this.page = p.intValue();
         }
     }
 
