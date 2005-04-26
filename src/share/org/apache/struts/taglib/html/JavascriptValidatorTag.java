@@ -369,6 +369,12 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 ValidatorPlugIn.VALIDATOR_KEY + config.getPrefix(),
                 PageContext.APPLICATION_SCOPE);
 
+        if (resources == null) {
+            throw new JspException(
+                "ValidatorResources not found in application scope under key \"" 
+                + ValidatorPlugIn.VALIDATOR_KEY + config.getPrefix() + "\"");
+        }        
+
         Locale locale = TagUtils.getInstance().getUserLocale(this.pageContext, null);
 
         Form form = resources.getForm(locale, formName);
