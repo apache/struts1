@@ -1,7 +1,7 @@
 /*
  * $Id$ 
  *
- * Copyright 2000-2004 Apache Software Foundation
+ * Copyright 2000-2005 Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -140,14 +140,15 @@ public final class LogonAction extends BaseAction {
         // Retrieve user
         User user = getUser(database,username,password,errors);
 
-        // Save (or clear) user object
-        SaveUser(request,user);
-
         // Report back any errors, and exit if any
         if (!errors.isEmpty()) {
             this.saveErrors(request, errors);
             return (mapping.getInputForward());
         }
+
+        // Save user object
+        SaveUser(request,user);
+
 
         // Otherwise, return "success"
         return (findSuccess(mapping));
