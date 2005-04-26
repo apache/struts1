@@ -4,6 +4,7 @@
     <title>Struts Release Notes (since 1.2.4)</title>
   </properties>
  <body>
+ <chapter name="Version 1.2.7 Release Notes" href="RELEASE_1_2_7">
       <section name="1. Introduction" href="Introduction">
           <p>
               This section contains release notes for changes that have taken
@@ -52,10 +53,23 @@
               release.
           </p>
 
+          <h4>Re-directing ActionForward</h4>
+          <p>
+              <i>ActionRedirect</i> is a subclass of ActionForward which is designed for use in redirecting requests, 
+                            with support for adding parameters at runtime. See the <i>javadoc</i> for more details.
+          </p>
+
           <h4>Download Action</h4>
           <p>
-              An abstract action that provides the nuts and bolts for downloading files. See the <i>javadocs</i>
-              and <a href="http://wiki.apache.org/struts/StrutsFileDownload">Wiki</a> for further information.
+              <i>DownloadAction</i> is an abstract action that provides the nuts and bolts for downloading 
+              files. See the <i>javadocs</i> and <a href="http://wiki.apache.org/struts/StrutsFileDownload">Wiki</a>
+              for further information.
+          </p>
+
+          <h4>Dispatch Helper</h4>
+          <p>
+              <i>ActionDispatcher</i> is a helper class for providing <i>DispatchAction</i> type behaviour
+              without having to inherit from <i>DispatchAction</i>. See the <i>javadoc</i> for more details.
           </p>
 
           <h4><i>Lazy</i> Validator Form</h4>
@@ -158,10 +172,38 @@
              </tr></thead>
              <tr>
                  <td align="center">2005-04-26</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=164814&amp;view=rev">164814</a>
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=164831&amp;view=rev">164831</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=34624">34624</a></td>
+                 <td>BeanValidatorForm's getValidationKey method should call mapping.getAttribute() .</td>
+             </tr>
+             <tr>
+                 <td align="center">2005-04-26</td>
                  <td align="center"><a href="http://svn.apache.org/viewcvs?rev=164745&amp;view=rev">164745</a>
                      (<a href="http://svn.apache.org/viewcvs.cgi?rev=164746&amp;view=rev">164746</a>)</td>
                  <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=31270">31270</a></td>
                  <td>Add ActionDispatcher to provide dispatch behavior to classes that do not extend DispatchAction.</td>
+             </tr>
+             <tr>
+                 <td align="center">2005-04-26</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=164729&amp;view=rev">164729</a>
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=164862&amp;view=rev">164862</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=19901">19901</a></td>
+                 <td>Add a check for null page value and throwing more informative exception.</td>
+             </tr>
+             <tr>
+                 <td align="center">2005-04-26</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=164723&amp;view=rev">164723</a>
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=164860&amp;view=rev">164860</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=16653">16653</a></td>
+                 <td>Add a check for missing Validator Resources and throw a more useful error message.</td>
+             </tr>
+             <tr>
+                 <td align="center">2005-04-26</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=164718&amp;view=rev">164718</a>
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=164858&amp;view=rev">164858</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=31658">31658</a></td>
+                 <td>LogonAction does not check errors in appropriate place.</td>
              </tr>
              <tr>
                  <td align="center">2005-04-25</td>
@@ -176,6 +218,16 @@
                      (<a href="http://svn.apache.org/viewcvs.cgi?rev=164684&amp;view=rev">164684</a>)</td>
                  <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=33132">33132</a></td>
                  <td>Implement Servlet 2.3/2.4 methods using reflection in MultipartRequestWrapper.</td>
+             </tr>
+             <tr>
+                 <td align="center">2005-04-25</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=164591&amp;view=rev">164591</a>
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=164590&amp;view=rev">164590</a>)</td>
+                 <td align="center"><i>n/a</i></td>
+                 <td>Synchronize the <i>Nested</i> tag attributes for changes made in 
+                     <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=17708">Bug #17708</a> and
+                     <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=21603">Bug #21603</a>.
+               </td>
              </tr>
              <tr>
                  <td align="center">2005-04-23</td>
@@ -624,5 +676,6 @@
        <p class="right">Next:
        <a href="installation.html">Installation</a></p>
      </section>
+ </chapter>
 </body>
 </document>
