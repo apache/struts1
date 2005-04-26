@@ -157,6 +157,27 @@
                  <th>Modification</th><th>Revision</th><th>Bugzilla</th><th>Description</th>
              </tr></thead>
              <tr>
+                 <td align="center">2005-04-26</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=164745&amp;view=rev">164745</a>
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=164746&amp;view=rev">164746</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=31270">31270</a></td>
+                 <td>Add ActionDispatcher to provide dispatch behavior to classes that do not extend DispatchAction.</td>
+             </tr>
+             <tr>
+                 <td align="center">2005-04-25</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=164734&amp;view=rev">164734</a>
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=164703&amp;view=rev">164703</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=34314">34314</a></td>
+                 <td>Add TilesRequestProcessor handling for NoSuchDefinitionException.</td>
+             </tr>
+             <tr>
+                 <td align="center">2005-04-25</td>
+                 <td align="center">
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=164684&amp;view=rev">164684</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=33132">33132</a></td>
+                 <td>implement Servlet 2.3/2.4 methods using reflection in MultipartRequestWrapper.</td>
+             </tr>
+             <tr>
                  <td align="center">2005-04-23</td>
                  <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=164343&amp;view=rev">164343</a>
                      (<a href="http://svn.apache.org/viewcvs.cgi?rev=164340&amp;view=rev">164340</a>)</td>
@@ -272,6 +293,13 @@
                  <td>Fix @link() tags</td>
              </tr>
              <tr>
+                 <td align="center">2005-02-15</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=153901&amp;view=rev">153901</a>
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=164747&amp;view=rev">164747</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=866">866</a></td>
+                 <td>Add ActionRedirect class to allow adding request parameters to redirecting forwards.</td>
+             </tr>
+             <tr>
                  <td align="center">2005-02-09</td>
                  <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=153065&amp;view=rev">153065</a>
                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=158605&amp;view=rev">158605</a>)</td>
@@ -286,7 +314,7 @@
                  <td>Change DownloadAction to use supplied buffer size. </td>
              </tr>
              <tr>
-                 <td align="center">2005-12-28</td>
+                 <td align="center">2004-12-28</td>
                  <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=123473&amp;view=rev">123473</a></td>
                  <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=32490">32490</a></td>
                  <td>Sync up the EL tags with their non-EL counterparts. This adds the 'bundle'
@@ -294,7 +322,7 @@
                      'prefix' and 'suffix' for the Errors tag.</td>
              </tr>
              <tr>
-                 <td align="center">2005-12-27</td>
+                 <td align="center">2004-12-27</td>
                  <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=123447&amp;view=rev">123447</a>, 
                      <a href="http://svn.apache.org/viewcvs.cgi?rev=123444&amp;view=rev">123444</a> &amp;
                      <a href="http://svn.apache.org/viewcvs.cgi?rev=123442&amp;view=rev">123442</a> 
