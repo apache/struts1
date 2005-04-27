@@ -1,7 +1,7 @@
 /*
  * $Id$ 
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2005 The Apache Software Foundation.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -211,11 +211,13 @@ public class ImageTag extends SubmitTag {
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
             
-            if (config == null) {
-                return (request.getContextPath() + this.page);
-            } else {
-                return (request.getContextPath() + config.getPrefix() + this.page);
+            String pageValue = this.page;
+            if (config != null) {
+                pageValue = TagUtils.getInstance().pageURL(request,
+                                                           this.page,
+                                                           config);
             }
+            return (request.getContextPath() + pageValue);
         }
 
         // Deal with an indirect context-relative page that has been specified
@@ -233,24 +235,17 @@ public class ImageTag extends SubmitTag {
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
             
-            if (config == null) {
-                return (
-                    request.getContextPath()
-                        + TagUtils.getInstance().message(
-                            pageContext,
-                            getBundle(),
-                            getLocale(),
-                            this.pageKey));
-            } else {
-                return (
-                    request.getContextPath()
-                        + config.getPrefix()
-                        + TagUtils.getInstance().message(
-                            pageContext,
-                            getBundle(),
-                            getLocale(),
-                            this.pageKey));
+            String pageValue = TagUtils.getInstance().message(
+                                          pageContext,
+                                          getBundle(),
+                                          getLocale(),
+                                          this.pageKey);
+            if (config != null) {
+                pageValue = TagUtils.getInstance().pageURL(request,
+                                                           pageValue,
+                                                           config);
             }
+            return (request.getContextPath() + pageValue);
         }
 
         // Deal with an absolute source that has been specified

@@ -542,11 +542,13 @@ public class ImgTag extends BaseHandlerTag {
                         pageContext.getServletContext());                
             
             HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-            if (srcDefaultReference(config)) {
-                return (request.getContextPath() + this.page);
-            } else {
-                return (request.getContextPath() + config.getPrefix() + this.page);
+            String pageValue = this.page;
+            if (!srcDefaultReference(config)) {
+                pageValue = TagUtils.getInstance().pageURL(request,
+                                                           this.page,
+                                                           config);
             }
+            return (request.getContextPath() + pageValue);
         }
 
         // Deal with an indirect context-relative page that has been specified
@@ -561,24 +563,17 @@ public class ImgTag extends BaseHandlerTag {
                         pageContext.getServletContext());
             
             HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-            if (srcDefaultReference(config)) {
-                return (
-                    request.getContextPath()
-                        + TagUtils.getInstance().message(
-                            pageContext,
-                            getBundle(),
-                            getLocale(),
-                            this.pageKey));
-            } else {
-                return (
-                    request.getContextPath()
-                        + config.getPrefix()
-                        + TagUtils.getInstance().message(
-                            pageContext,
-                            getBundle(),
-                            getLocale(),
-                            this.pageKey));
+            String pageValue = TagUtils.getInstance().message(
+                                          pageContext,
+                                          getBundle(),
+                                          getLocale(),
+                                          this.pageKey);
+            if (!srcDefaultReference(config)) {
+                pageValue = TagUtils.getInstance().pageURL(request,
+                                                           pageValue,
+                                                           config);
             }
+            return (request.getContextPath() + pageValue);
         }
 
         if (this.action != null) {
