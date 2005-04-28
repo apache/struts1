@@ -98,6 +98,9 @@
 
 	<!-- This is only used if you execute "ant download-dependencies" -->
     <property name="libdir" value="lib" />
+
+    <!-- Cactus Test Runner -->
+    <property name="cactus.servertest.class" value="org.apache.cactus.ant.RunServerTestsTask" />
     	
     <path id="downloaded.lib.classpath">
       <fileset dir="${libdir}">
@@ -138,7 +141,7 @@
     <target name="init">
 
         <taskdef name="runservertests"
-            classname="org.apache.cactus.ant.RunServerTestsTask">
+            classname="${cactus.servertest.class}">
 
             <classpath>
                 <pathelement location="${cactus.ant.jar}"/>
@@ -222,7 +225,13 @@
         <war warfile="${out.test.dir}/test.war"
              webxml="${conf.test.dir}/web.xml">
 
-	    <fileset dir="${web.dir}/test"/>
+            <!-- copy JspRedirector.jsp from cactus home -->
+            <fileset file="${cactus.home}/web/jspRedirector.jsp"/>
+
+            <!-- copy jsps (except JspRedirector.jsp) -->
+            <fileset dir="${web.dir}/test" >
+               <exclude name="jspRedirector.jsp" />
+            </fileset>
 
             <classes dir="${out.test.dir}/classes"/>
 

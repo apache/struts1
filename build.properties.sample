@@ -282,6 +282,36 @@ junit.jar = ${apache.home}/junit3.8.1/junit.jar
 commons-httpclient.jar = ${cactus.lib}/commons-httpclient-2.0alpha1-20020606.jar
 
 # -----------------------------------------
+# Cactus 13-1.7 home
+# cactus.home=${apache.home}/jakarta-cactus-13-1.7
+# cactus.lib=${cactus.home}/lib
+
+# Server Test Task class name
+# cactus.servertest.class=org.apache.cactus.integration.ant.RunServerTestsTask
+
+# Cactus jar for the Servlet API corresponding to the servlet.jar file
+# selected above (either 2.2 or 2.3)
+# cactus.jar = ${cactus.lib}/cactus-1.7.jar
+
+# Cactus Ant custom tasks jar
+# cactus.ant.jar = ${cactus.lib}/cactus-ant-1.7.jar
+
+# AspectJ from Cactus distribution
+aspectjrt.jar = ${cactus.lib}/aspectjrt-1.2.1.jar
+
+# The httpunit runtime jar
+# httpunit.jar = ${cactus.lib}/httpunit-1.6.jar
+
+# Log4J has been replaced by commons logging in cactus
+# log4j.jar = ${commons-logging.jar}
+
+# JUnit jar file, version 3.81 or newer required.
+# junit.jar = ${cactus.lib}/junit-3.8.1.jar
+
+# Httpclient from Jakarta-Commons
+# commons-httpclient.jar = ${cactus.lib}/commons-httpclient-2.0.2.jar
+
+# -----------------------------------------
 
 
 # Scheme used to run tests for cactus, http, https.
