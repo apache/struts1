@@ -32,7 +32,7 @@
               Version 1.2.4 release. For detailed information concerning changes 
               see the <a href="#Detail">Detailed Changes</a> section.
           </p>
-          <h3>2.1 Dependencies</h3>
+          <h3>Dependencies</h3>
           <p>
               Struts has changed its dependencies on the following software components:
           </p>
@@ -184,6 +184,19 @@
              <thead><tr>
                  <th>Modification</th><th>Revision</th><th>Bugzilla</th><th>Description</th>
              </tr></thead>
+             <tr>
+                 <td align="center">2005-04-28</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=165158&amp;view=rev">165158</a>
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=165160&amp;view=rev">165160</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=20034">20034</a></td>
+                 <td>Additional fix to "Invalid cache in InsertTag" for a problem on Orion.</td>
+             </tr>
+             <tr>
+                 <td align="center">2005-04-28</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=165097&amp;view=rev">165097</a></td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=33989">33989</a></td>
+                 <td>Fix cactus tests to work with Cactus 1.7.</td>
+             </tr>
              <tr>
                  <td align="center">2005-04-27</td>
                  <td align="center"><a href="http://svn.apache.org/viewcvs?rev=164922&amp;view=rev">164922</a>
