@@ -64,6 +64,13 @@ public class ComposableRequestProcessor extends RequestProcessor {
 
 
     /**
+     * <p>The {@link CatalogFactory} from which catalog containing the the 
+     * base request-processing {@link Command} will be retrieved.</p>  
+     */
+    protected CatalogFactory catalogFactory = null;
+
+
+    /**
      * <p>The {@link Catalog} containing all of the available command chains
      * for this module.
      */
@@ -92,6 +99,7 @@ public class ComposableRequestProcessor extends RequestProcessor {
     public void destroy() {
 
         super.destroy();
+        catalogFactory = null;
         catalog = null;
         command = null;
 
@@ -114,10 +122,12 @@ public class ComposableRequestProcessor extends RequestProcessor {
                  + moduleConfig.getPrefix() + "'");
         super.init(servlet, moduleConfig);
 
+        initCatalogFactory(servlet, moduleConfig);
+        
         ControllerConfig controllerConfig = moduleConfig.getControllerConfig();
 
         String catalogName = controllerConfig.getCatalog();
-        catalog = CatalogFactory.getInstance().getCatalog(catalogName);
+        catalog = this.catalogFactory.getCatalog(catalogName);
         if (catalog == null) {
             throw new ServletException("Cannot find catalog '" +
                                        catalogName + "'");
@@ -130,6 +140,22 @@ public class ComposableRequestProcessor extends RequestProcessor {
                                        commandName + "'");
         }
 
+    }
+
+
+    /**
+     * <p>Establish the <code>CatalogFactory</code> which will be used to look up
+     * the catalog which has the request processing command.</p>
+     * <p>The base implementation simply calls <code>CatalogFactory.getInstance()</code>,
+     * unless the <code>catalogFactory</code> property of this object has already been set,
+     * in which case it is not changed.</p>
+     * @param servlet
+     * @param moduleConfig
+     */
+    protected void initCatalogFactory(ActionServlet servlet, ModuleConfig moduleConfig) {
+        if (this.catalogFactory != null) return;
+        this.catalogFactory = CatalogFactory.getInstance();
+        
     }
 
 
@@ -199,7 +225,16 @@ public class ComposableRequestProcessor extends RequestProcessor {
 
     }
 
-
+    /**
+     * <p>Set the <code>CatalogFactory</code> instance which should be used to find
+     * the request-processing command.  In the base implementation, if this value is not 
+     * already set, then it will be initialized when {@link initCatalogFactory} is called. 
+     * </p>
+     * @param catalogFactory
+     */
+    public void setCatalogFactory(CatalogFactory catalogFactory) {
+        this.catalogFactory = catalogFactory;
+    }
 }
 
 
