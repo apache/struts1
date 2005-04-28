@@ -518,7 +518,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                     }
 
                     String varValueEscaped = ValidatorUtils.replace(varValue, "\\", "\\\\");
-                    varValueEscaped = ValidatorUtils.replace(varValue, "\"", "\\\"");
+                    varValueEscaped = ValidatorUtils.replace(varValueEscaped, "\"", "\\\"");
 
                     if (Var.JSTYPE_INT.equalsIgnoreCase(jsType)) {
                         results.append(
