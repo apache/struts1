@@ -22,6 +22,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Locale;
 
+import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
@@ -861,7 +862,8 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         FormTag formTag = null;
         if ((doDisabled && !getDisabled()) ||
             (doReadonly && !getReadonly())) {
-            formTag = (FormTag)findAncestorWithClass(this, FormTag.class);
+            formTag = (FormTag)pageContext.getAttribute(Constants.FORM_KEY,
+                                                        PageContext.REQUEST_SCOPE);
         }
 
         // Format Disabled
