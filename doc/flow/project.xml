@@ -10,12 +10,22 @@
         <item name="What's New" href="index.html#new"/>
         <item name="Requirements" href="index.html#requirements"/>
         <item name="Download (Sourceforge)" href="http://sourceforge.net/project/showfiles.php?group_id=49385&amp;package_id=120079"/>
+        <item name="Examples" href="index.html#examples"/>    
     </menu>
     
-    <menu name="Documentation">
-        <item name="Examples" href="index.html#examples"/>    
-        <item name="Java Enhancements" href="extensions.html"/>
+    <menu name="Built-in Resources">
+        
         <item name="Flow Methods" href="system.html"/>
+        <item name="Variable 'flow'" href="JSFlow.html"/>
+        <item name="Variable 'log'" href="JSLog.html"/>
+        <item name="Variable 'struts'" href="Struts.html"/>
+    </menu>
+
+    <menu name="Java Extensions">
+        <item name="java.util.Collection" href="CollectionExtensions.html"/>
+        <item name="java.util.List" href="ListExtensions.html"/>
+        <item name="java.io.File" href="FileExtensions.html"/>
+        <item name="java.io.InputStream" href="InputStreamExtensions.html"/>
     </menu>
 
     <menu name="Quick Links">
