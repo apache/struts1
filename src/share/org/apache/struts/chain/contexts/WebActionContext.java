@@ -119,17 +119,6 @@ public class WebActionContext extends ActionContextBase {
      * instead of the ServletWebContext level.  Consider whether that's how we want to do it
      * universally for other manipulations of the RequestScope or not...
      */
-    public void setResources(MessageResources messageResources) {
-        super.setMessageResources(messageResources);
-        this.getRequestScope().put(Globals.MESSAGES_KEY, messageResources);
-
-    }
-    
-    /*
-     * @todo AbstractSelectModule set the precedent of doing this at the "web context" level
-     * instead of the ServletWebContext level.  Consider whether that's how we want to do it
-     * universally for other manipulations of the RequestScope or not...
-     */
     public void setCancelled(Boolean cancelled) {
         super.setCancelled(cancelled);
         // historic semantics of "isCancelled" are to consider any non-null

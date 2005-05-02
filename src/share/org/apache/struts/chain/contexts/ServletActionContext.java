@@ -86,12 +86,12 @@ public class ServletActionContext extends WebActionContext {
         this.getRequestScope().put(Globals.MAPPING_KEY, actionConfig);
     }
 
-    public MessageResources getResources() {
+    public MessageResources getMessageResources() {
         return ((MessageResources) getRequest().getAttribute(Globals.MESSAGES_KEY));
 
     }
 
-    public MessageResources getResources(String key) {
+    public MessageResources getMessageResources(String key) {
         // Identify the current module
         ServletContext context = getActionServlet().getServletContext();
 
@@ -102,12 +102,12 @@ public class ServletActionContext extends WebActionContext {
 
     }
 
-    public void setResources(MessageResources resources) {
-        super.setResources(resources);
+    public void setMessageResources(MessageResources resources) {
+        super.setMessageResources(resources);
         this.getRequest().setAttribute(Globals.MESSAGES_KEY, resources);
     }
 
-    public void setResources(String key, MessageResources resources) {
+    public void setMessageResources(String key, MessageResources resources) {
         this.getRequest().setAttribute(key + getModuleConfig().getPrefix(), resources);
     }
 
