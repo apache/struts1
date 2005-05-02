@@ -70,11 +70,13 @@ public abstract class AbstractSelectModule extends ActionCommandBase {
                                                prefix + "'");
         }
         actionCtx.setModuleConfig(moduleConfig);
+        String key = Globals.MESSAGES_KEY + prefix;
         MessageResources messageResources = (MessageResources)
-            actionCtx.getApplicationScope().get(Globals.MESSAGES_KEY + prefix);
-        if (messageResources != null) {
-            actionCtx.setMessageResources(messageResources);
+            actionCtx.getApplicationScope().get(key);
+        if (messageResources == null) {
+            throw new IllegalArgumentException("No message resources found in application scope under " + key);
         }
+        actionCtx.setMessageResources(messageResources);
 
         return (false);
 
