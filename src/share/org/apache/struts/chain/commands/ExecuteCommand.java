@@ -111,13 +111,16 @@ public class ExecuteCommand extends ActionCommandBase {
      * @return
      */
     protected Command getCommand(String commandName, String catalogName) {
+
+        if (commandName == null) return null;
+        
         Command command = null;
         Catalog catalog = null;
 
         if (catalogName != null) {
             catalog = CatalogFactory.getInstance().getCatalog(catalogName);
             if (catalog == null) {
-                log.warn("No catalog found under " + catalogName);
+                log.warn("When looking up " + commandName + ", no catalog found under " + catalogName);
                 return null;
             }
 
@@ -125,7 +128,7 @@ public class ExecuteCommand extends ActionCommandBase {
             catalogName = "the default catalog";
             catalog = CatalogFactory.getInstance().getCatalog();
             if (catalog == null) {
-                log.warn("No default catalog found.");
+                log.warn("When looking up " + commandName + ", no default catalog found.");
                 return null;
             }
         }
