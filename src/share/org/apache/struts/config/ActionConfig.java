@@ -25,6 +25,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
+import java.util.Enumeration;
 import java.lang.reflect.InvocationTargetException;
 
 
@@ -780,6 +781,40 @@ public class ActionConfig implements Serializable {
     }
 
 
+    /**
+     * <p>Compare the properties of this action with that of the given and
+     * copy those that are not present.</p>
+     * 
+     * @param baseConfig    The action config to copy properties from.
+     * 
+     * @see #inheritFrom(ActionConfig) 
+     */ 
+    protected void inheritProperties(ActionConfig baseConfig) 
+            throws ClassNotFoundException, 
+            IllegalAccessException, 
+            InstantiationException,
+            InvocationTargetException {
+        
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+
+        // Inherit forward properties
+        Properties baseProperties = baseConfig.properties;
+        Enumeration keys = baseProperties.propertyNames();
+        while (keys.hasMoreElements()) {
+            String key = (String) keys.nextElement();
+            
+            // Check if we have this property before copying it
+            String value = properties.getProperty(key);
+            if (value == null) {
+                value = baseProperties.getProperty(key);
+                setProperty(key, value);
+            }            
+        }
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -1092,6 +1127,7 @@ public class ActionConfig implements Serializable {
 
         inheritExceptionHandlers(config);
         inheritForwards(config);
+        inheritProperties(config);
     }
 
     

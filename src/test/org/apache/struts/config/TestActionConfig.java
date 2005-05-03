@@ -93,6 +93,10 @@ public class TestActionConfig
         exceptionConfig.setType("java.sql.SQLException");
         exceptionConfig.setKey("msg.exception.sql");
         baseConfig.addExceptionConfig(exceptionConfig);
+
+        // set some arbitrary properties
+        baseConfig.setProperty("label", "base");
+        baseConfig.setProperty("version", "1a");
         
         // register it to our config
         config.addActionConfig(baseConfig);
@@ -243,6 +247,9 @@ public class TestActionConfig
         handler.setKey("msg.exception.npe");
         subConfig.addExceptionConfig(handler);
         
+        // override arbitrary "label" property
+        subConfig.setProperty("label", "sub");
+        
         config.addActionConfig(subConfig);
         
         subConfig.inheritFrom(baseConfig);
@@ -284,6 +291,15 @@ public class TestActionConfig
         handler = subConfig.findExceptionConfig("java.lang.NullPointerException");
         assertNotNull("'NullPointerException' handler disappeared",
                 handler);
+        
+        // check the arbitrary properties
+        String version = subConfig.getProperty("version");
+        assertEquals("Arbitrary property 'version' wasn't inherited", 
+                "1a", version);
+
+        String label = subConfig.getProperty("label");
+        assertEquals("Arbitrary property 'label' shouldn't have changed", 
+                "sub", label);
     }
     
     
