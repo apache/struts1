@@ -507,8 +507,13 @@ public class DynaActionForm extends ActionForm implements DynaBean {
     public String toString() {
 
         StringBuffer sb = new StringBuffer("DynaActionForm[dynaClass=");
-        sb.append(getDynaClass().getName());
-        DynaProperty props[] = getDynaClass().getDynaProperties();
+        DynaClass dynaClass = getDynaClass();
+        if (dynaClass == null) {
+            return sb.append("null]").toString();
+        }
+        
+        sb.append(dynaClass.getName());
+        DynaProperty props[] = dynaClass.getDynaProperties();
         if (props == null) {
             props = new DynaProperty[0];
         }
