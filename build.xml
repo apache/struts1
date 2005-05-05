@@ -147,7 +147,7 @@
     <property name="project.name" value="struts"/>
 
     <!-- Version of the project -->
-    <property name="project.version" value="1.2.7-dev"/>
+    <property name="project.version" value="1.2.7"/>
 
 <!-- ========== Derived Properties ======================================== -->
 
