@@ -276,7 +276,6 @@
     -->
 
         <mkdir dir="${libdir}"/>
-        <mkdir dir="${libdir}/tld"/>
 
         <get dest="${libdir}/commons-beanutils.jar"
             usetimestamp="true" ignoreerrors="true"
@@ -333,9 +332,6 @@
         <property name="servlet.jar"            value="${libdir}/servlet.jar"/>
         <property name="jstl.jar"               value="${libdir}/jstl-1.0.6.jar"/>
         <property name="jstl-standard.jar"      value="${libdir}/standard-1.0.6.jar"/>
-
-        <property name="mailreader.inherit"     value="true"/>
-        <property name="jstl.tld.dir"           value="${libdir}/tld"/>
 
 
     </target>
