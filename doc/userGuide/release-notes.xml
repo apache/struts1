@@ -185,6 +185,39 @@
                  <th>Modification</th><th>Revision</th><th>Bugzilla</th><th>Description</th>
              </tr></thead>
              <tr>
+                 <td align="center">2005-05-05</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=168223&amp;view=rev">168223</a></td>
+                 <td align="center"><i>n/a</i></td>
+                 <td>Fix 1.2.x Build - remove duplicate "el" directory from "contrib".</td>
+             </tr>
+             <tr>
+                 <td align="center">2005-05-05</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=168218&amp;view=rev">168218</a></td>
+                 <td align="center"><i>n/a</i></td>
+                 <td>Fix 1.2.x build to include struts-chain in the "contrib" directory (from sandbox STRUTS_1_2_BRANCH).</td>
+             </tr>
+             <tr>
+                 <td align="center">2005-05-03</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=168011&amp;view=rev">168011</a>
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=168012&amp;view=rev">168012</a>)</td>
+                 <td align="center"><i>n/a</i></td>
+                 <td>Prevent NullPointerException when toString() is called before dynaClass is initialized.</td>
+             </tr>
+             <tr>
+                 <td align="center">2005-04-29</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=165304&amp;view=rev">165304</a>
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=165305&amp;view=rev">165305</a>)</td>
+                 <td align="center"><i>n/a</i></td>
+                 <td>Retrieve FormTag stored in Request scope, rather than the TagSupport's findAncestorWithClass() .</td>
+             </tr>
+             <tr>
+                 <td align="center">2005-04-29</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=165186&amp;view=rev">165186</a>
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=165208&amp;view=rev">165208</a>)</td>
+                 <td align="center"><i>n/a</i></td>
+                 <td>Fixing value escape so that both backslashes and quotes are escaped correctly.</td>
+             </tr>
+             <tr>
                  <td align="center">2005-04-28</td>
                  <td align="center"><a href="http://svn.apache.org/viewcvs?rev=165158&amp;view=rev">165158</a>
                      (<a href="http://svn.apache.org/viewcvs.cgi?rev=165160&amp;view=rev">165160</a>)</td>
