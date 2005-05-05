@@ -698,9 +698,8 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     }
 
     /**
-     *  Appends bean name with index in brackets for tags with
-     *  'true' value in 'indexed' attribute.
-     *  @param handlers The StringBuffer that output will be appended to.
+     *  Returns the index value for tags with 'true' value in 'indexed' attribute.
+     *  @return the index value.
      *  @exception JspException if 'indexed' tag used outside of iterate tag.
      */
     protected int getIndexValue() throws JspException {
