@@ -591,6 +591,9 @@
             </fileset>
         </copy>
 
+        <!-- delete duplicate "el" directory -->
+        <delete dir="${stage.src.dir}/${upload.file.base}-src/contrib/el"/>
+
         <mkdir dir="${upload.dir}"/>
         <zip  zipfile="${upload.dir}/${upload.file.base}.zip"
               basedir="${stage.bin.dir}"/>
