@@ -577,6 +577,7 @@
                 <exclude name="target/**"/>
                 <exclude name="dist/**"/>
                 <exclude name="release/**"/>
+                <exclude name="lib/**"/>
             </fileset>
         </copy>
 
