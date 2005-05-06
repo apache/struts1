@@ -321,6 +321,10 @@
             usetimestamp="true" ignoreerrors="true"
             src="http://www.ibiblio.org/maven/taglibs/jars/standard-1.0.6.jar"/>
 
+        <get dest="${libdir}/junit-3.8.1.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/junit/jars/junit-3.8.1.jar"/>
+
         <property name="commons-beanutils.jar"  value="${libdir}/commons-beanutils.jar"/>
         <property name="commons-digester.jar"   value="${libdir}/commons-digester.jar"/>
         <property name="commons-fileupload.jar" value="${libdir}/commons-fileupload.jar"/>
@@ -332,6 +336,7 @@
         <property name="servlet.jar"            value="${libdir}/servlet.jar"/>
         <property name="jstl.jar"               value="${libdir}/jstl-1.0.6.jar"/>
         <property name="jstl-standard.jar"      value="${libdir}/standard-1.0.6.jar"/>
+        <property name="junit.jar"              value="${libdir}/junit-3.8.1.jar"/>
 
 
     </target>
@@ -968,6 +973,7 @@
      description="Run Cactus-based unit tests on Tomcat 3.2">
         <echo message="tomcat.home.32 = ${tomcat.home.32}"/>
         <ant antfile="build-tests.xml" target="test.tomcat.32"/>
+        <echo message="test.tomcat.32 complete using ${cactus.home}"/>
     </target>
 
 
@@ -984,6 +990,7 @@
      description="Run Cactus-based unit tests on Tomcat 3.3">
         <echo message="tomcat.home.33 = ${tomcat.home.33}"/>
         <ant antfile="build-tests.xml" target="test.tomcat.33"/>
+        <echo message="test.tomcat.33 complete using ${cactus.home}"/>
     </target>
 
     <target name="skip.tomcat.40" unless="tomcat.home.40">
@@ -999,6 +1006,7 @@
      description="Run Cactus-based unit tests on Tomcat 4.0">
         <echo message="tomcat.home.40 = ${tomcat.home.40}"/>
         <ant antfile="build-tests.xml" target="test.tomcat.40"/>
+        <echo message="test.tomcat.40 complete using ${cactus.home}"/>
     </target>
 
 
@@ -1015,6 +1023,7 @@
      description="Run unit tests on Tomcat 4.1">
         <echo message="tomcat.home.41 = ${tomcat.home.41}"/>
         <ant antfile="build-tests.xml" target="test.tomcat.41"/>
+        <echo message="test.tomcat.41 complete using ${cactus.home}"/>
     </target>
 
 
@@ -1031,6 +1040,7 @@
      description="Run unit tests on Tomcat 5.0">
         <echo message="tomcat.home.50 = ${tomcat.home.50}"/>
         <ant antfile="build-tests.xml" target="test.tomcat.50"/>
+        <echo message="test.tomcat.50 complete using ${cactus.home}"/>
     </target>
 
 
