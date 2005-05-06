@@ -158,7 +158,6 @@
 
  <property name="jstl.jar"               value="${libdir}/jstl-1.0.6.jar"/>
  <property name="jstl-standard.jar"      value="${libdir}/standard-1.0.6.jar"/>
- <property name="jstl.tld.dir"           value="${libdir}/tld"/>
  <property name="servlet.jar"            value="${libdir}/servlet.jar"/>
 
 
@@ -217,10 +216,25 @@
   <copy file="${jdbc20ext.jar}"
         tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
 -->
+
+  <!-- Extract JSTL tlds -->
+  <unjar src="${jstl-standard.jar}" dest="${build.home}/library">
+      <patternset>
+          <include name="**/c*.tld"/>
+          <include name="**/f*.tld"/>
+          <include name="**/sql*.tld"/>
+          <include name="**/x*.tld"/>
+      </patternset>
+  </unjar>
+
+  <!-- Copy all tlds -->
   <copy todir="${build.home}/library">
-   <fileset dir="${jstl.tld.dir}" includes="*.tld"/>
+   <fileset dir="${build.home}/library/META-INF" includes="*.tld"/>
    <fileset dir="${struts.core.home}/dist/lib" includes="*.tld"/>
   </copy>
+
+  <!-- Remove JSLT META-INF directory -->
+  <delete dir="${build.home}/library/META-INF"/>
  </target>
 
 <!-- 
