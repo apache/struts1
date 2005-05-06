@@ -1,0 +1,355 @@
+<!--
+
+ Copyright 2002,2004 The Apache Software Foundation.
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+      http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+ $Id$
+
+-->
+
+
+<project name="Struts-Faces System Test Webapp 1" default="compile" basedir=".">
+
+
+  <!-- ===================== Initialize Property Values ==================== -->
+
+
+  <!-- Initialize property values -->
+  <property file="build.properties"/>
+  <property file="../build.properties"/>
+  <property file="../../build.properties"/>
+  <property file="${user.home}/build.properties"/>
+
+
+  <!-- Dependency home directory defaults -->
+  <property name="jsf.home"         value="/usr/local/jsf-1_1"/>
+  <property name="jstl.home"        value="/usr/local/standard-1.0.3"/>
+  <property name="junit.home"       value="/usr/local/junit-3.8.1"/>
+  <property name="server.home"      value="/usr/local/jakarta-tomcat-5.0.25"/>
+  <property name="struts.home"      value="/usr/local/jakarta-struts-1.1"/>
+
+
+  <!-- Dependency library defaults -->
+  <property name="commons-beanutils.jar"
+                                    value="${struts.home}/lib/commons-beanutils.jar"/>
+  <property name="commons-collections.jar"
+                                    value="${struts.home}/lib/commons-collections.jar"/>
+  <property name="commons-digester.jar"
+                                    value="${struts.home}/lib/commons-digester.jar"/>
+  <property name="commons-fileupload.jar"
+                                    value="${struts.home}/lib/commons-fileupload.jar"/>
+  <property name="commons-logging.jar"
+                                    value="${struts.home}/lib/commons-logging.jar"/>
+  <property name="commons-validator.jar"
+                                    value="${struts.home}/lib/commons-validator.jar"/>
+  <property name="jakarta-oro.jar"  value="${struts.home}/lib/jakarta-oro.jar"/>
+  <property name="jsf-api.jar"      value="${jsf.home}/lib/jsf-api.jar"/>
+  <property name="jsf-impl.jar"     value="${jsf.home}/lib/jsf-impl.jar"/>
+  <property name="jsp-api.jar"      value="${server.home}/common/lib/jsp-api.jar"/>
+  <property name="jstl.jar"         value="${jstl.home}/lib/jstl.jar"/>
+  <property name="junit.jar"        value="${junit.home}/junit.jar"/>
+  <property name="servlet.jar"      value="${server.home}/common/lib/servlet.jar"/>
+  <property name="standard.jar"     value="${jstl.home}/lib/standard.jar"/>
+  <property name="struts.jar"       value="${struts.home}/lib/struts.jar"/>
+  <property name="struts-faces.jar" value="${basedir}/../core-library/target/lib/struts-faces.jar"/>
+
+
+  <!-- Conditional Processing Flags -->
+  <available                     property="jsfri.present"
+                                classname="com.sun.faces.RIConstants"
+                                classpath="${jsf-impl.jar}"/>
+  <available                     property="myfaces.present"
+                                classname="net.sourceforge.myfaces.config.MyfacesConfig"
+                                classpath="${jsf-impl.jar}"/>
+
+  <!-- Build Defaults -->
+  <property name="build.home"      value="${basedir}/target"/>
+  <property name="dist.home"       value="${basedir}/dist"/>
+  <property name="context.path"    value="struts-faces-systest1"/>
+  <property name="project.name"    value="Struts-Faces System Test Webapp 1"/>
+  <property name="project.package" value="org.apache.struts.faces"/>
+  <property name="project.version" value="1.0-dev"/>
+
+
+  <!-- Compile Defaults -->
+  <property name="compile.debug"           value="true"/>
+  <property name="compile.deprecation"     value="false"/>
+  <property name="compile.optimize"        value="true"/>
+
+
+  <!-- Compile Classpath -->
+  <path id="compile.classpath">
+    <pathelement location="${commons-beanutils.jar}"/>
+    <pathelement location="${commons-collections.jar}"/>
+    <pathelement location="${commons-digester.jar}"/>
+    <pathelement location="${commons-logging.jar}"/>
+    <pathelement location="${commons-validator.jar}"/>
+    <pathelement location="${jsf-api.jar}"/>
+    <pathelement location="${jsp-api.jar}"/>
+    <pathelement location="${jstl.jar}"/>
+    <pathelement location="${servlet.jar}"/>
+    <pathelement location="${struts.jar}"/>
+    <pathelement location="${struts-faces.jar}"/>
+    <pathelement location="${build.home}/${context.path}/WEB-INF/classes"/>
+  </path>
+
+
+  <!-- Custom Tomcat Integration -->
+  <taskdef  name="deploy"   classname="org.apache.catalina.ant.DeployTask"/>
+  <taskdef  name="install"  classname="org.apache.catalina.ant.InstallTask"/>
+  <taskdef  name="list"     classname="org.apache.catalina.ant.ListTask"/>
+  <taskdef  name="reload"   classname="org.apache.catalina.ant.ReloadTask"/>
+  <taskdef  name="remove"   classname="org.apache.catalina.ant.RemoveTask"/>
+  <taskdef  name="undeploy" classname="org.apache.catalina.ant.UndeployTask"/>
+  <property name="password" value="tomcat"/>
+  <property name="url"      value="http://localhost:8080/manager"/>
+  <property name="username" value="tomcat"/>
+
+
+  <!-- System Integration Test Settings -->
+  <property name="webapp.state.saving" value="server"/>
+  <property name="webapp.url"          value="http://localhost:8080$/{context.path}"/>
+
+
+  <!-- ==================== Maintenance Targets ============================ -->
+
+
+  <target     name="clean"
+       description="Clean all build directories">
+    <delete    dir="${build.home}"/>
+    <delete    dir="${dist.home}"/>
+  </target>
+
+
+  <target     name="init">
+    <echo  message="---------- ${project.name} ${project.version} -----------"/>
+    <filter  token="name"       value="${project.name}"/>
+    <filter  token="package"    value="${project.package}"/>
+    <filter  token="state"      value="${webapp.state.saving}"/>
+    <filter  token="version"    value="${project.version}"/>
+    <echo  message="build.standalone = ${build.standalone}"/>
+    <echo  message="jsf-api.jar =      ${jsf-api.jar}"/>
+    <echo  message="jsf-impl.jar =     ${jsf-impl.jar}"/>
+    <echo  message="struts.jar =       ${struts.jar}"/>
+    <echo  message="struts-faces.jar = ${struts-faces.jar}"/>
+    <echo  message="jsfri.present =    ${jsfri.present}"/>
+    <echo  message="myfaces.present=   ${myfaces.present}"/>
+  </target>
+
+
+  <target     name="prepare" depends="init">
+    <mkdir     dir="${build.home}"/>
+    <mkdir     dir="${build.home}/${context.path}"/>
+    <mkdir     dir="${build.home}/${context.path}/WEB-INF"/>
+    <mkdir     dir="${build.home}/${context.path}/WEB-INF/classes"/>
+    <mkdir     dir="${build.home}/${context.path}/WEB-INF/lib"/>
+    <mkdir     dir="${dist.home}"/>
+    <mkdir     dir="${dist.home}/docs"/>
+    <mkdir     dir="${dist.home}/docs/api"/>
+  </target>
+
+
+  <target     name="static" depends="prepare">
+
+    <!-- Copy static web resources -->
+    <copy    todir="${build.home}/${context.path}"
+         filtering="on">
+      <fileset dir="src/web"/>
+    </copy>
+
+    <!-- Copy required configuration files -->
+    <copy    todir="${build.home}/${context.path}/WEB-INF">
+      <fileset dir="${struts.home}/lib"
+          includes="valid*.xml"/>
+    </copy>
+
+    <!-- Copy required library JAR files -->
+    <mkdir         dir="${build.home}/${context.path}/WEB-INF/lib"/>
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${struts-faces.jar}"/>
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${commons-beanutils.jar}"/>
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${commons-collections.jar}"/>
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${commons-digester.jar}"/>
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${commons-fileupload.jar}"/>
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${commons-logging.jar}"/>
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${commons-validator.jar}"/>
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${jakarta-oro.jar}"/>
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${struts.jar}"/>
+
+  </target>
+
+
+  <target name="static.jsfri" depends="static"
+            if="jsfri.present">
+
+    <replace        dir="${build.home}/${context.path}/WEB-INF"
+                  token="MYFACES_BEGIN"
+                  value="&lt;!-- MyFaces Listener"/>
+    <replace        dir="${build.home}/${context.path}/WEB-INF"
+                  token="MYFACES_END"
+                  value="--&gt;"/>
+
+  </target>
+
+
+  <target name="static.myfaces" depends="static.jsfri"
+            if="myfaces.present">
+
+    <replace        dir="${build.home}/${context.path}/WEB-INF"
+                  token="MYFACES_BEGIN"
+                  value="&lt;!-- MyFaces Listener --&gt;"/>
+    <replace        dir="${build.home}/${context.path}/WEB-INF"
+                  token="MYFACES_END"
+                  value=""/>
+
+  </target>
+
+
+  <target name="libraries" depends="static.jsfri"
+            if="build.standalone">
+
+    <!-- Copy libraries required for standalone use only -->
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${jsf-api.jar}"/>
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${jsf-impl.jar}"/>
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${jstl.jar}"/>
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${standard.jar}"/>
+
+  </target>
+
+
+  <target name="libraries.myfaces" depends="libraries"
+            if="myfaces.present">
+
+    <!-- Copy additional libraries required by MyFaces implementation -->
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${jsf.home}/lib/commons-codec-1.2.jar"/>
+    <copy        todir="${build.home}/${context.path}/WEB-INF/lib"
+                  file="${jsf.home}/lib/commons-el.jar"/>
+
+  </target>
+
+
+  <!-- ================= Compile Application Components ==================== -->
+
+
+  <target         name="compile" depends="libraries.myfaces"
+           description="Compile application components">
+
+    <!-- Compile Java Sources -->
+    <javac      srcdir="src/java"
+               destdir="${build.home}/${context.path}/WEB-INF/classes"
+                 debug="${compile.debug}"
+           deprecation="${compile.deprecation}"
+              optimize="${compile.optimize}">
+      <classpath refid="compile.classpath" />
+    </javac>
+
+    <!-- Copy non-Java Sources -->
+    <copy        todir="${build.home}/${context.path}/WEB-INF/classes">
+      <fileset     dir="src/java">
+        <exclude  name="**/*.java"/>
+      </fileset>
+    </copy>
+
+  </target>
+
+
+  <!-- ===================== Generate Documentation ======================== -->
+
+
+  <target         name="docs" depends="compile"
+           description="Create JavaDocs">
+
+    <javadoc
+            sourcepath="src/java"
+               destdir="${dist.home}/docs/api"
+                author="true"
+               private="true"
+               version="true"
+          packagenames="org.apache.struts.*"
+           windowtitle="${project.name} (Version ${project.version})"
+              doctitle="${project.name} (Version ${project.version})"
+                bottom="Copyright &#169; 2003-2004 - The Apache Software Foundation">
+      <classpath refid="compile.classpath"/>
+    </javadoc>
+
+  </target>
+
+
+  <!-- ==================== Create Binary Distribution ==================== -->
+
+
+  <target name="dist" depends="docs"
+   description="Create binary distribution">
+
+    <mkdir     dir="${dist.home}"/>
+    <copy    todir="${dist.home}">
+      <fileset dir="${basedir}" includes="*.txt build.*"
+                                excludes="build.properties"/>
+    </copy>
+
+    <jar   jarfile="${dist.home}/${context.path}.war"
+           basedir="${build.home}/${context.path}"/>
+
+    <mkdir     dir="${dist.home}/src"/>
+    <copy    todir="${dist.home}/src">
+      <fileset dir="src" excludes="**/.svn/**"/>
+    </copy>
+
+  </target>
+
+
+  <!-- ===================== Tomcat Integration ============================ -->
+
+
+  <target name="install" depends="compile"
+   description="Install webapp on Tomcat">
+    <install url="${url}" username="${username}" password="${password}"
+            path="/${context.path}"
+             war="file://${build.home}/${context.path}"/>
+  </target>
+
+
+  <target name="list" description="List installed webapps on Tomcat">
+    <list url="${url}" username="${username}" password="${password}"/>
+  </target>
+
+
+  <target name="reload" depends="compile"
+   description="Reload webapp on Tomcat">
+    <reload url="${url}" username="${username}" password="${password}"
+            path="/${context.path}"/>
+  </target>
+
+
+  <target name="remove"
+   description="Remove webapp from Tomcat">
+    <remove url="${url}" username="${username}" password="${password}"
+            path="/${context.path}"/>
+  </target>
+
+
+</project>
