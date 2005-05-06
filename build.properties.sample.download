@@ -1,0 +1,101 @@
+# -----------------------------------------------------------------------------
+# build.properties.sample.download
+#
+# This is an example "build.properties" file, used to customize building Struts
+# for your local environment.  Make any changes you need, and rename this file
+# to "build.properties" in the same directory that contains the Struts
+# "build.xml" file.
+#
+# This version automatically downloads all the required jars - EXCEPT for cactus
+# and the JDBC jar.
+# Chose your cactus by un-commenting ONE set of cactus properties.
+#
+#
+# Using this version of the sample build.properties file, you need to run the 
+# "download-dependencies" target as well as the actual target.
+#
+# For example to test:  $ant download-dependencies test.junit
+#                       $ant download-dependencies test.tomcat.41
+#                       $ant download-dependencies test.tomcat.50
+# For example to build: $ant download-dependencies dist
+#
+# $Id$
+# -----------------------------------------------------------------------------
+
+# apache.home - Where precompiled jar files from Apache live.
+apache.home=D:/Java/Programs/Apache
+
+# -----------------------------------------
+# JDBC 2.0 jar
+# -----------------------------------------
+# The JAR file containing the JDBC 2.0 Optional Package extensions API
+# (javax.sql).  This file will automatically be added to your class path
+# when you compile Struts
+#
+# This file can be obtained from:
+# http://java.sun.com/products/jdbc/download.html
+jdbc20ext.jar=../../../Java/Programs/sun/jdbc2_0-stdext.jar
+
+# ==========================================
+# Choose your Cactus!
+# (un-comment only one set of cacuts properties)
+# ==========================================
+
+# -----------------------------------------
+# J2EE 1.2 (Servlet 2.2)
+# -----------------------------------------
+# --- Cactus 12-1.3 ---
+# cactus.home=${apache.home}/jakarta-cactus-12-1.3
+# cactus.jspRedirector=web/test/jspRedirector.jsp
+# cactus.servertest.class=org.apache.cactus.ant.RunServerTestsTask
+
+# --- Cactus 12-1.4 ---
+# cactus.home=${apache.home}/jakarta-cactus-12-1.4
+# cactus.servertest.class=org.apache.cactus.ant.RunServerTestsTask
+
+# --- Cactus 12-1.4.1 ---
+# cactus.home=${apache.home}/jakarta-cactus-12-1.4.1
+# cactus.servertest.class=org.apache.cactus.ant.RunServerTestsTask
+
+# --- Cactus 12-1.6.1 ---
+# cactus.home=${apache.home}/jakarta-cactus-12-1.6.1
+
+# --- Cactus 12-1.7 ---
+# cactus.home=${apache.home}/jakarta-cactus-12-1.7
+
+# -----------------------------------------
+# J2EE 1.3 (Servlet 2.3)
+# -----------------------------------------
+# --- Cactus 13-1.3 ---
+# cactus.home=${apache.home}/jakarta-cactus-13-1.3
+# cactus.jspRedirector=web/test/jspRedirector.jsp
+# cactus.servertest.class=org.apache.cactus.ant.RunServerTestsTask
+
+# --- Cactus 13-1.4 ---
+# cactus.home=${apache.home}/jakarta-cactus-13-1.4
+# cactus.servertest.class=org.apache.cactus.ant.RunServerTestsTask
+
+# --- Cactus 13-1.4.1 ---
+# cactus.home=${apache.home}/jakarta-cactus-13-1.4.1
+# cactus.servertest.class=org.apache.cactus.ant.RunServerTestsTask
+
+# --- Cactus 13-1.6.1 ---
+# cactus.home=${apache.home}/jakarta-cactus-13-1.6.1
+
+# --- Cactus 13-1.7 ---
+# cactus.home=${apache.home}/jakarta-cactus-13-1.7
+
+# -----------------------------------------
+# Servlet engine locations for the tests
+# -----------------------------------------
+
+# Note: If you don't want to run the test on a given servlet engine, just
+#       comment it's home property. For example, if you don't want to run the
+#       tests on Tomcat 4.0, comment the "tomcat.home.40" property.
+
+#tomcat.home.33 = ${apache.home}/jakarta-tomcat-3.3.1
+#tomcat.home.40 = ${apache.home}/jakarta-tomcat-4.0.6
+tomcat.home.41 = ${apache.home}/jakarta-tomcat-4.1.29
+tomcat.home.50 = ${apache.home}/Tomcat 5.0
+# use value of tomcat.home.41 to set equivalent property for Maven-Cactus plug-in
+cactus.home.tomcat4x=${tomcat.home.41}
