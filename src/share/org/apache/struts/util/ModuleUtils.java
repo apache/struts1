@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,7 +30,7 @@ import org.apache.struts.config.MessageResourcesConfig;
 
 /**
  * General purpose utility methods related to module processing.
- * 
+ *
  * @version $Rev$
  * @since Struts 1.2
  */
@@ -59,7 +59,7 @@ public class ModuleUtils {
     protected ModuleUtils() {
         super();
     }
-    
+
     /**
      * Return the current ModuleConfig object stored in request, if it exists,
      * null otherwise.
@@ -75,11 +75,11 @@ public class ModuleUtils {
     public ModuleConfig getModuleConfig(HttpServletRequest request) {
         return (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
     }
-    
+
     /**
      * Return the desired ModuleConfig object stored in context, if it exists,
      * null otherwise.
-     * 
+     *
      * @param prefix The module prefix of the desired module
      * @param context The ServletContext for this web application
      * @return the ModuleConfig object specified, or null if not found in
@@ -88,11 +88,11 @@ public class ModuleUtils {
     public ModuleConfig getModuleConfig(String prefix, ServletContext context) {
         return (ModuleConfig) context.getAttribute(Globals.MODULE_KEY + prefix);
     }
-    
+
     /**
      * Return the desired ModuleConfig object stored in context, if it exists,
      * otherwise return the current ModuleConfig
-     * 
+     *
      * @param prefix The module prefix of the desired module
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
@@ -101,8 +101,8 @@ public class ModuleUtils {
      */
     public ModuleConfig getModuleConfig(String prefix, HttpServletRequest request, ServletContext context) {
         ModuleConfig moduleConfig = null;
-        
-        
+
+
         if(prefix != null) {
             //lookup module stored with the given prefix.
             moduleConfig = this.getModuleConfig(prefix, context);
@@ -250,7 +250,7 @@ public class ModuleUtils {
                     request.setAttribute(key, resources);
                 } else {
                     request.removeAttribute(key);
-                }    
+                }
             }
         } else {
             request.removeAttribute(Globals.MODULE_KEY);

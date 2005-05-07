@@ -1,20 +1,20 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
+ */
 
 
 package org.apache.struts.util;
@@ -223,12 +223,12 @@ public class PropertyMessageResources extends MessageResources {
         if (log.isTraceEnabled()) {
             log.trace("loadLocale(" + localeKey + ")");
         }
-        
+
         // Have we already attempted to load messages for this locale?
         if (locales.get(localeKey) != null) {
             return;
         }
-        
+
         locales.put(localeKey, localeKey);
 
         // Set up to load the property resource for this locale key, if we can
@@ -236,7 +236,7 @@ public class PropertyMessageResources extends MessageResources {
         if (localeKey.length() > 0) {
             name += "_" + localeKey;
         }
-        
+
         name += ".properties";
         InputStream is = null;
         Properties props = new Properties();
@@ -245,17 +245,17 @@ public class PropertyMessageResources extends MessageResources {
         if (log.isTraceEnabled()) {
             log.trace("  Loading resource '" + name + "'");
         }
-        
+
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         if (classLoader == null) {
             classLoader = this.getClass().getClassLoader();
         }
-        
+
         is = classLoader.getResourceAsStream(name);
         if (is != null) {
             try {
                 props.load(is);
-                
+
             } catch (IOException e) {
                 log.error("loadLocale()", e);
             } finally {
@@ -266,7 +266,7 @@ public class PropertyMessageResources extends MessageResources {
                 }
             }
         }
-        
+
         if (log.isTraceEnabled()) {
             log.trace("  Loading resource completed");
         }
@@ -275,7 +275,7 @@ public class PropertyMessageResources extends MessageResources {
         if (props.size() < 1) {
             return;
         }
-        
+
         synchronized (messages) {
             Iterator names = props.keySet().iterator();
             while (names.hasNext()) {

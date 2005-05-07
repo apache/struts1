@@ -49,10 +49,10 @@ import org.apache.struts.Globals;
  * <p/>
  * <pre>
  *   public class MyCustomAction extends Action {
- * 
+ *
  *       protected ActionDispatcher dispatcher
  *                = new ActionDispatcher(this, ActionDispatcher.MAPPING_FLAVOR);
- * 
+ *
  *       public ActionForward execute(ActionMapping mapping,
  *                                    ActionForm form,
  *                                    HttpServletRequest request,
@@ -223,10 +223,10 @@ public class ActionDispatcher {
 
 
     /**
-     * <p>Dispatches to the target class' <code>unspecified</code> method,  
-     * if present, otherwise throws a ServletException. Classes utilizing 
-     * <code>ActionDispatcher</code> should provide an <code>unspecified</code> 
-     * method if they wish to provide behavior different than 
+     * <p>Dispatches to the target class' <code>unspecified</code> method,
+     * if present, otherwise throws a ServletException. Classes utilizing
+     * <code>ActionDispatcher</code> should provide an <code>unspecified</code>
+     * method if they wish to provide behavior different than
      * throwing a ServletException..</p>
      */
     protected ActionForward unspecified(ActionMapping mapping,
@@ -257,9 +257,9 @@ public class ActionDispatcher {
     }
 
     /**
-     * <p>Dispatches to the target class' cancelled method, if present, 
-     * otherwise returns null. Classes utilizing <code>ActionDispatcher</code> 
-     * should provide a <code>cancelled</code> method if they wish to provide 
+     * <p>Dispatches to the target class' cancelled method, if present,
+     * otherwise returns null. Classes utilizing <code>ActionDispatcher</code>
+     * should provide a <code>cancelled</code> method if they wish to provide
      * behavior different than returning null.</p>
      */
     protected ActionForward cancelled(ActionMapping mapping,
@@ -404,7 +404,7 @@ public class ActionDispatcher {
         if ("".equals(parameter)) {
             parameter = null;
         }
-        
+
         if ((parameter == null) && (flavor == DEFAULT_FLAVOR)) {
             // use "method" for DEFAULT_FLAVOR if no parameter was provided
             return "method";

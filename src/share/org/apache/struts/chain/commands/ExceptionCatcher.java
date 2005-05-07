@@ -1,12 +1,12 @@
 /*
  * Copyright 2003,2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -131,7 +131,7 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
      * @param exception The <code>Exception</code> (if any) that was thrown
      *  by the last {@link Command} that was executed; otherwise
      *  <code>null</code>
-     */ 
+     */
     public boolean postprocess(Context context, Exception exception) {
         // Do nothing if there was no exception thrown
         if (exception == null) {
@@ -194,7 +194,7 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
                 ("No exceptionCommand property specfied");
         }
         return catalog.getCommand(exceptionCommand);
-        
+
     }
 
 }

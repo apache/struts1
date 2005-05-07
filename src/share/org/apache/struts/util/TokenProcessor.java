@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2003-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,12 +27,12 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts.Globals;
 
 /**
- * TokenProcessor is responsible for handling all token related functionality.  The 
+ * TokenProcessor is responsible for handling all token related functionality.  The
  * methods in this class are synchronized to protect token processing from multiple
  * threads.  Servlet containers are allowed to return a different HttpSession object
- * for two threads accessing the same session so it is not possible to synchronize 
+ * for two threads accessing the same session so it is not possible to synchronize
  * on the session.
- * 
+ *
  * @since Struts 1.1
  */
 public class TokenProcessor {
@@ -161,7 +161,7 @@ public class TokenProcessor {
     /**
      * Generate a new transaction token, to be used for enforcing a single
      * request for a particular transaction.
-     * 
+     *
      * @param request The request we are processing
      */
     public synchronized String generateToken(HttpServletRequest request) {
@@ -174,7 +174,7 @@ public class TokenProcessor {
     /**
      * Generate a new transaction token, to be used for enforcing a single
      * request for a particular transaction.
-     * 
+     *
      * @param id a unique Identifier for the session or other context in
      * which this token is to be used.
      */

@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2000-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -185,8 +185,8 @@ public class Resources {
     }
 
     /**
-     * Gets the locale sensitive message based on the 
-     * <code>ValidatorAction</code> message and the <code>Field</code>'s 
+     * Gets the locale sensitive message based on the
+     * <code>ValidatorAction</code> message and the <code>Field</code>'s
      * arg objects.
      * @param messages  The Message resources
      * @param locale The locale
@@ -255,8 +255,8 @@ public class Resources {
     }
 
     /**
-     * Gets the <code>ActionError</code> based on the 
-     * <code>ValidatorAction</code> message and the <code>Field</code>'s 
+     * Gets the <code>ActionError</code> based on the
+     * <code>ValidatorAction</code> message and the <code>Field</code>'s
      * arg objects.
      * @param request the servlet request
      * @param va Validator action
@@ -283,10 +283,10 @@ public class Resources {
 
         return new ActionError(msg, args);
     }
-    
+
     /**
-     * Gets the <code>ActionMessage</code> based on the 
-     * <code>ValidatorAction</code> message and the <code>Field</code>'s 
+     * Gets the <code>ActionMessage</code> based on the
+     * <code>ValidatorAction</code> message and the <code>Field</code>'s
      * arg objects.
      * @param request the servlet request
      * @param va Validator action
@@ -313,8 +313,8 @@ public class Resources {
     }
 
     /**
-     * Gets the <code>ActionMessage</code> based on the 
-     * <code>ValidatorAction</code> message and the <code>Field</code>'s 
+     * Gets the <code>ActionMessage</code> based on the
+     * <code>ValidatorAction</code> message and the <code>Field</code>'s
      * arg objects.
      * @param validator the Validator
      * @param request the servlet request
@@ -365,7 +365,7 @@ public class Resources {
 
 
     /**
-     * Gets the message arguments based on the current 
+     * Gets the message arguments based on the current
      * <code>ValidatorAction</code> and <code>Field</code>.
      * @param actionName action name
      * @param messages message resources
@@ -404,7 +404,7 @@ public class Resources {
     }
 
     /**
-     * Gets the message arguments based on the current 
+     * Gets the message arguments based on the current
      * <code>ValidatorAction</code> and <code>Field</code>.
      * @param application the servlet context
      * @param request the servlet request
@@ -449,14 +449,14 @@ public class Resources {
     /**
      * Initialize the <code>Validator</code> to perform validation.
      *
-     * @param key The key that the validation rules are under (the form elements 
+     * @param key The key that the validation rules are under (the form elements
      * name attribute).
      * @param bean The bean validation is being performed on.
      * @param application servlet context
      * @param request The current request object.
      * @param errors The object any errors will be stored in.
-     * @param page This in conjunction with  the page property of a 
-     * <code>Field<code> can control the processing of fields.  If the field's 
+     * @param page This in conjunction with  the page property of a
+     * <code>Field<code> can control the processing of fields.  If the field's
      * page is less than or equal to this page value, it will be processed.
      */
     public static Validator initValidator(

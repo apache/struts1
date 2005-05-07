@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -731,17 +731,17 @@ public class RequestUtils {
         if(moduleConfig == null) {
             moduleConfig = ModuleUtils.getInstance().getModuleConfig(request);
         }
-              
+
         String path = forward.getPath();
         //load default prefix
         String prefix = moduleConfig.getPrefix();
-        
+
         //override prefix if supplied by forward
         if(forward.getModule() != null) {
             prefix = forward.getModule();
             if ("/".equals(prefix)) {
                 prefix = "";
-            }    
+            }
         }
 
         // Handle a ForwardConfig marked as context relative

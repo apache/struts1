@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2001-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -95,7 +95,7 @@ public class ActionMessage implements Serializable {
      */
     public ActionMessage(String key, Object value0, Object value1,
                        Object value2, Object value3) {
-        
+
         this(key, new Object[] { value0, value1, value2, value3 });
     }
 
@@ -121,7 +121,7 @@ public class ActionMessage implements Serializable {
      * @param resource Indicates whether the key is a bundle key or literal value
      */
     public ActionMessage(String key, boolean resource) {
- 
+
         this.key = key;
         this.resource = resource;
 
@@ -179,7 +179,7 @@ public class ActionMessage implements Serializable {
         return (this.resource);
 
     }
-    
+
     /**
      * <p>Returns a String in the format: key[value1, value2, etc].</p>
      *
@@ -200,7 +200,7 @@ public class ActionMessage implements Serializable {
                 if (i < this.values.length - 1) {
                     buff.append(", ");
                 }
-                
+
             }
         }
 

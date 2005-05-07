@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2000-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -62,11 +62,11 @@ public class ActionRedirect extends ActionForward {
     // ----------------------------------------------------- Static variables
 
     /**
-     * <p>Commons logging instance.</p> 
-     */ 
+     * <p>Commons logging instance.</p>
+     */
     protected static final Log log = LogFactory.getLog(ActionRedirect.class);
-    
-    
+
+
     // ----------------------------------------------------- Instance variables
 
     /**
@@ -154,7 +154,7 @@ public class ActionRedirect extends ActionForward {
      * @param valueObj the value for this parameter
      */
     public void addParameter(String fieldName, Object valueObj) {
-        
+
         String value = (valueObj != null) ? valueObj.toString() : "";
         if (parameterValues == null) {
             initializeParameters();
@@ -168,19 +168,19 @@ public class ActionRedirect extends ActionForward {
        //     log.error(errorMsg, uce);
        //     throw new RuntimeException(errorMsg, uce);
        // }
-        
-        Object currentValue = parameterValues.get(fieldName);        
+
+        Object currentValue = parameterValues.get(fieldName);
         if (currentValue == null) {
             // there's no value for this param yet; add it to the map
             parameterValues.put(fieldName, value);
-            
+
         } else if (currentValue instanceof String) {
             // there's already a value; let's use an array for these parameters
             String[] newValue = new String[2];
             newValue[0] = (String) currentValue;
             newValue[1] = value;
             parameterValues.put(fieldName, newValue);
-            
+
         } else if (currentValue instanceof String[]) {
             // add the value to the list of existing values
             List newValues = new ArrayList(Arrays.asList((Object[]) currentValue));
@@ -249,22 +249,22 @@ public class ActionRedirect extends ActionForward {
      */
     public String getParameterString() {
         StringBuffer strParam = new StringBuffer(256);
-        
+
         // loop through all parameters
         Iterator iterator = parameterValues.keySet().iterator();
         while (iterator.hasNext()) {
             // get the parameter name
             String name = (String) iterator.next();
-            
+
             // get the value for this parameter
             Object value = parameterValues.get(name);
-            
+
             if (value instanceof String) {
                 // just one value for this param
                 strParam.append(name)
                         .append("=")
                         .append(value);
-                
+
             } else if (value instanceof String[]) {
                 // loop through all values for this param
                 String[] values = (String[]) value;
@@ -276,7 +276,7 @@ public class ActionRedirect extends ActionForward {
                         strParam.append("&");
                 }
             }
-            
+
             if (iterator.hasNext()) {
                 strParam.append("&");
             }

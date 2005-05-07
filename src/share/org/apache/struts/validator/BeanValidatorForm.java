@@ -183,7 +183,7 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean, Serial
 
         if (logger.isDebugEnabled()) {
             logger.debug("Validating ActionForm '" + mapping.getName() +
-                         "' using key '" + validationKey + 
+                         "' using key '" + validationKey +
                          "' for mapping '" + mapping.getPath() + "'");
         }
 
@@ -196,7 +196,7 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean, Serial
 
    /**
     * Return the <code>DynaClass</code> instance that describes the set of
-    * properties available for this DynaBean. 
+    * properties available for this DynaBean.
     */
     public DynaClass getDynaClass() {
         return dynaBean.getDynaClass();

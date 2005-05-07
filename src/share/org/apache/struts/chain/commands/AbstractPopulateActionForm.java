@@ -1,12 +1,12 @@
 /*
  * Copyright 2003,2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -85,7 +85,7 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
      * Populate the given <code>ActionForm</code> with request parameter values,
      * taking into account any prefix/suffix values configured on the given
      * <code>ActionConfig</code>.
-     * 
+     *
      * @param context
      * @param actionConfig
      * @param actionForm
@@ -96,11 +96,11 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
     protected abstract void populate(ActionContext context,
                                      ActionConfig actionConfig,
                                      ActionForm actionForm) throws Exception;
-    
+
 
     /**
      * For a given request parameter name, trim off any prefix and/or suffix which
-     * are defined in <code>actionConfig</code> and return what remains.  If 
+     * are defined in <code>actionConfig</code> and return what remains.  If
      * either prefix or suffix is defined, then return null for <code>name</code>
      * values which do not begin or end accordingly.
      * @param actionConfig
@@ -140,7 +140,7 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
      */
     protected void handleCancel(ActionContext context, ActionConfig actionConfig, ActionForm actionForm) throws Exception {
         Map paramValues = context.getParameterMap();
-    
+
         // Set the cancellation attribute if appropriate
         /** @todo An issue was raised (but I don't think a Bugzilla ticket created) about
          * the security implications of using a well-known cancel property which skips form validation,

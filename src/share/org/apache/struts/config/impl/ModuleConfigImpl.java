@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,7 +46,7 @@ import org.apache.struts.config.PlugInConfig;
  * @since Struts 1.1
  */
 public class ModuleConfigImpl implements Serializable, ModuleConfig {
-    
+
     /**
      * Construct an ModuleConfigImpl object according to the specified
      * parameter values.
@@ -138,7 +138,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      * The default class name to be used when creating action form bean
      * instances.
      *
-     * @param actionFormBeanClass default class name to be used when creating 
+     * @param actionFormBeanClass default class name to be used when creating
      *                            action form bean instances.
      */
     public void setActionFormBeanClass(String actionFormBeanClass) {
@@ -155,7 +155,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
     /**
      * The default class name to be used when creating action mapping instances.
      *
-     * @param actionMappingClass default class name to be used when creating 
+     * @param actionMappingClass default class name to be used when creating
      *                           action mapping instances.
      */
     public void setActionMappingClass(String actionMappingClass) {
@@ -296,13 +296,13 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
     public ActionConfig findActionConfig(String path) {
 
         ActionConfig config = (ActionConfig) actionConfigs.get(path);
-        
-        // If a direct match cannot be found, try to match action configs 
+
+        // If a direct match cannot be found, try to match action configs
         // containing wildcard patterns
         if (config == null) {
             config = matcher.match(path);
         }
-        
+
         return config;
 
     }
@@ -556,61 +556,61 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
     // ----------------------------------------------------- Instance Variables
     // Instance Variables at end to make comparing Interface and implementation easier.
 
-    
+
     /**
      * The set of action configurations for this module, if any,
      * keyed by the <code>path</code> property.
      */
     protected HashMap actionConfigs = null;
-    
+
     /**
      * The set of action configurations for this module, if any,
      * listed in the order in which they are added.
      */
-    protected List actionConfigList = null; 
-    
+    protected List actionConfigList = null;
+
     /**
      * The set of exception handling configurations for this
      * module, if any, keyed by the <code>type</code> property.
      */
     protected HashMap exceptions = null;
-    
+
     /**
      * The set of form bean configurations for this module, if any,
      * keyed by the <code>name</code> property.
      */
     protected HashMap formBeans = null;
-    
+
     /**
      * The set of global forward configurations for this module, if any,
      * keyed by the <code>name</code> property.
      */
     protected HashMap forwards = null;
-    
+
     /**
      * The set of message resources configurations for this
      * module, if any, keyed by the <code>key</code> property.
      */
     protected HashMap messageResources = null;
-    
+
     /**
      * The set of configured plug-in Actions for this module,
      * if any, in the order they were declared and configured.
      */
     protected ArrayList plugIns = null;
-    
+
     /**
      * Has this module been completely configured yet.  Once this flag
      * has been set, any attempt to modify the configuration will return an
      * IllegalStateException.
      */
     protected boolean configured = false;
-    
+
     /**
      * The controller configuration object for this module.
      */
     protected ControllerConfig controllerConfig = null;
-    
+
     /**
      * The prefix of the context-relative portion of the request URI, used to
      * select this configuration versus others supported by the controller
@@ -618,23 +618,23 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      * default configuration for this web module.
      */
     protected String prefix = null;
-    
+
     /**
      * The default class name to be used when creating action form bean
      * instances.
      */
     protected String actionFormBeanClass = "org.apache.struts.action.ActionFormBean";
-    
+
     /**
      * The default class name to be used when creating action mapping instances.
      */
     protected String actionMappingClass = "org.apache.struts.action.ActionMapping";
-    
+
     /**
      * The default class name to be used when creating action forward instances.
      */
     protected String actionForwardClass = "org.apache.struts.action.ActionForward";
-    
+
     /**
      * Matches action config paths against compiled wildcard patterns
      */

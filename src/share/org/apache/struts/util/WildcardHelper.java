@@ -1,21 +1,21 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2003-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 package org.apache.struts.util;
 
 import java.util.Map;
@@ -31,16 +31,16 @@ public class WildcardHelper {
 
     /** The int representing '*' in the pattern <code>int []</code>. */
     protected static final int MATCH_FILE = -1;
-    
+
     /** The int representing '**' in the pattern <code>int []</code>. */
     protected static final int MATCH_PATH = -2;
-    
+
     /** The int representing begin in the pattern <code>int []</code>. */
     protected static final int MATCH_BEGIN = -4;
-    
+
     /** The int representing end in pattern <code>int []</code>. */
     protected static final int MATCH_THEEND = -5;
-    
+
     /** The int value that terminates the pattern <code>int []</code>. */
     protected static final int MATCH_END = -3;
 
@@ -106,7 +106,7 @@ public class WildcardHelper {
                 if (slash) {
                     expr[y++] = buff[x];
                     slash = false;
-                // If the previous char was not '\' we have to do a bunch of 
+                // If the previous char was not '\' we have to do a bunch of
                 // checks
                 } else {
                     // If this char is '\' declare that and continue
@@ -145,13 +145,13 @@ public class WildcardHelper {
     public boolean match(Map map, String data, int[] expr) {
         if (map == null) {
             throw new NullPointerException ("No map provided");
-        }    
+        }
         if (data == null) {
             throw new NullPointerException ("No data provided");
-        }    
+        }
         if (expr == null) {
             throw new NullPointerException ("No pattern expression provided");
-        }    
+        }
 
 
         char buff[] = data.toCharArray();
@@ -182,11 +182,11 @@ public class WildcardHelper {
             exprpos = ++charpos;
         }
 
-        // Search the fist expression character (except MATCH_BEGIN - already 
+        // Search the fist expression character (except MATCH_BEGIN - already
         // skipped)
         while (expr[charpos] >= 0) {
             charpos++;
-        }    
+        }
 
         // The expression charater (MATCH_*)
         int exprchr = expr[charpos];
@@ -197,21 +197,21 @@ public class WildcardHelper {
             if (matchBegin) {
                 if (!matchArray(expr, exprpos, charpos, buff, buffpos)) {
                     return (false);
-                }    
+                }
                 matchBegin = false;
             } else {
                 offset = indexOfArray (expr, exprpos, charpos, buff,
                         buffpos);
                 if (offset < 0) {
                     return (false);
-                }    
+                }
             }
 
             // Check for MATCH_BEGIN
             if (matchBegin) {
                 if (offset != 0) {
                     return (false);
-                }    
+                }
                 matchBegin = false;
             }
 
@@ -223,14 +223,14 @@ public class WildcardHelper {
                 if (rsltpos > 0) {
                     map.put(Integer.toString(++mcount),
                         new String(rslt, 0, rsltpos));
-                }    
+                }
                 // Don't care about rest of input buffer
                 return (true);
             } else if (exprchr == MATCH_THEEND) {
                 if (rsltpos > 0) {
                     map.put(Integer.toString(++mcount),
                         new String(rslt, 0, rsltpos));
-                }    
+                }
                 // Check that we reach buffer's end
                 return (buffpos == buff.length);
             }
@@ -239,7 +239,7 @@ public class WildcardHelper {
             exprpos = ++charpos;
             while (expr[charpos] >= 0) {
                 charpos++;
-            }    
+            }
             int prevchr = exprchr;
             exprchr = expr[charpos];
 
@@ -251,20 +251,20 @@ public class WildcardHelper {
 
             if (offset < 0) {
                 return (false);
-            }    
+            }
 
             // Copy the data from the source buffer into the result buffer
             // to substitute the expression character
             if (prevchr == MATCH_PATH) {
                 while (buffpos < offset) {
                     rslt[rsltpos++] = buff[buffpos++];
-                }    
+                }
             } else {
                 // Matching file, don't copy '/'
                 while (buffpos < offset) {
                     if (buff[buffpos] == '/') {
                         return (false);
-                    }    
+                    }
                     rslt[rsltpos++] = buff[buffpos++];
                 }
             }
@@ -291,15 +291,15 @@ public class WildcardHelper {
       */
     protected int indexOfArray (int r[], int rpos, int rend,
             char d[], int dpos) {
-                
+
         // Check if pos and len are legal
         if (rend < rpos) {
             throw new IllegalArgumentException ("rend < rpos");
-        }    
+        }
         // If we need to match a zero length string return current dpos
         if (rend == rpos) {
             return (d.length); //?? dpos?
-        }    
+        }
         // If we need to match a 1 char length string do it simply
         if ((rend - rpos) == 1) {
             // Search for the specified character
@@ -307,7 +307,7 @@ public class WildcardHelper {
                 if (r[rpos] == d[x]) {
                     return (x);
                 }
-            }    
+            }
         }
         // Main string matching loop. It gets executed if the characters to
         // match are less then the characters left in the d buffer
@@ -319,10 +319,10 @@ public class WildcardHelper {
             for (int x = rpos; x <= rend; x++) {
                 if (x == rend) {
                     return (dpos);
-                }    
+                }
                 if (r[x] != d[y++]) {
                     break;
-                }    
+                }
             }
             // Increase dpos to search for the same string at next offset
             dpos++;
@@ -344,7 +344,7 @@ public class WildcardHelper {
       * @param rend The index of the last character in r to look for plus 1.
       * @param d The array of char that should contain a part of r.
       * @param dpos The starting offset in d for the matching.
-      * @return The offset in d of the last part of r matched in d or -1 if 
+      * @return The offset in d of the last part of r matched in d or -1 if
       *         that was not found.
       */
     protected int lastIndexOfArray (int r[], int rpos, int rend,
@@ -352,11 +352,11 @@ public class WildcardHelper {
         // Check if pos and len are legal
         if (rend < rpos) {
             throw new IllegalArgumentException ("rend < rpos");
-        }    
+        }
         // If we need to match a zero length string return current dpos
         if (rend == rpos) {
             return (d.length); //?? dpos?
-        }    
+        }
 
         // If we need to match a 1 char length string do it simply
         if ((rend - rpos) == 1) {
@@ -365,7 +365,7 @@ public class WildcardHelper {
                 if (r[rpos] == d[x]) {
                     return (x);
                 }
-            }    
+            }
         }
 
         // Main string matching loop. It gets executed if the characters to
@@ -379,10 +379,10 @@ public class WildcardHelper {
             for (int x = rpos; x <= rend; x++) {
                 if (x == rend) {
                     return (l);
-                }    
+                }
                 if (r[x] != d[y++]) {
                     break;
-                }    
+                }
             }
             // Decrease l to search for the same string at next offset
             l--;
@@ -393,7 +393,7 @@ public class WildcardHelper {
     }
 
      /**
-      * Matches elements of array r from rpos to rend with array d, starting 
+      * Matches elements of array r from rpos to rend with array d, starting
       * from dpos.
       * <br>
       * This method return true if elements of array r from rpos to rend
@@ -410,12 +410,12 @@ public class WildcardHelper {
             char d[], int dpos) {
         if (d.length - dpos < rend - rpos) {
             return (false);
-        }    
+        }
         for (int i = rpos; i < rend; i++) {
             if (r[i] != d[dpos++]) {
                 return (false);
             }
-        }    
+        }
         return (true);
     }
 }

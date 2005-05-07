@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -133,29 +133,29 @@ public class ActionConfig implements Serializable {
 
 
     /**
-     * <p>The path of the ActionConfig that this object should inherit 
-     * properties from.</p> 
+     * <p>The path of the ActionConfig that this object should inherit
+     * properties from.</p>
      */
     protected String inherit = null;
 
     /**
-     * <p>Returns the path of the ActionConfig that this object should inherit 
+     * <p>Returns the path of the ActionConfig that this object should inherit
      * properties from.</p>
-     * 
-     * @return  the path of the ActionConfig that this object should inherit 
+     *
+     * @return  the path of the ActionConfig that this object should inherit
      * properties from.
-     */ 
+     */
     public String getExtends() {
         return (this.inherit);
     }
 
     /**
-     * <p>Set the path of the ActionConfig that this object should inherit 
+     * <p>Set the path of the ActionConfig that this object should inherit
      * properties from.</p>
-     * 
-     * @param inherit the path of the ActionConfig that this object should 
+     *
+     * @param inherit the path of the ActionConfig that this object should
      * inherit properties from.
-     */ 
+     */
     public void setExtends(String inherit) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -166,13 +166,13 @@ public class ActionConfig implements Serializable {
 
     /**
      * Have the inheritance values for this class been applied?
-     */ 
+     */
     protected boolean extensionProcessed = false;
 
     public boolean isExtensionProcessed() {
         return extensionProcessed;
     }
-    
+
 
     /**
      * Context-relative path of the web application resource that will process
@@ -581,14 +581,14 @@ public class ActionConfig implements Serializable {
     }
 
     /**
-     * The name of a <code>commons-chain</code> command which should 
+     * The name of a <code>commons-chain</code> command which should
      * be executed as part of the processing of this action.
      * @since Struts 1.3.0
      */
     protected String command = null;
 
     /**
-     * The name of a <code>commons-chain</code> catalog in which <code>command</code> 
+     * The name of a <code>commons-chain</code> catalog in which <code>command</code>
      * should be sought.  If a <code>command</code> is defined and this property is undefined,
      * the "default" catalog will be used.
      * This is likely to be infrequently
@@ -599,9 +599,9 @@ public class ActionConfig implements Serializable {
     protected String catalog = null;
 
     /**
-     * Get the name of a <code>commons-chain</code> command which should 
+     * Get the name of a <code>commons-chain</code> command which should
      * be executed as part of the processing of this action.
-     * @return name of a <code>commons-chain</code> command which should 
+     * @return name of a <code>commons-chain</code> command which should
      * be executed as part of the processing of this action.
      * @since Struts 1.3.0
      */
@@ -623,9 +623,9 @@ public class ActionConfig implements Serializable {
     }
 
     /**
-     * Set the name of a <code>commons-chain</code> command which should 
+     * Set the name of a <code>commons-chain</code> command which should
      * be executed as part of the processing of this action.
-     * @param command name of a <code>commons-chain</code> command which should 
+     * @param command name of a <code>commons-chain</code> command which should
      * be executed as part of the processing of this action.
      * @since Struts 1.3.0
      */
@@ -642,7 +642,7 @@ public class ActionConfig implements Serializable {
      * used after a future release of <code>commons-chain</code> supports
      * a one-string expression of a catalog/chain combination.
      * @param catalog name of a <code>commons-chain</code> catalog in which
-     * a specified command should be sought. 
+     * a specified command should be sought.
      * @since Struts 1.3.0
      */
     public void setCatalog(String catalog) {
@@ -654,18 +654,18 @@ public class ActionConfig implements Serializable {
 
 
     // ------------------------------------------------------ Protected Methods
-    
-    
+
+
     /**
      * <p>Traces the hierarchy of this object to check if any of the ancestors
      * is extending this instance.</p>
-     * 
+     *
      * @param moduleConfig  The configuration for the module being configured.
-     * 
+     *
      * @return true if circular inheritance was detected.
-     */ 
+     */
     protected boolean checkCircularInheritance(ModuleConfig moduleConfig) {
-        
+
         String ancestorPath = getExtends();
         while (ancestorPath != null) {
             // check if we have the same path as an ancestor
@@ -674,7 +674,7 @@ public class ActionConfig implements Serializable {
             }
 
             // get our ancestor's ancestor
-            ActionConfig ancestor = 
+            ActionConfig ancestor =
                     moduleConfig.findActionConfig(ancestorPath);
             if (ancestor != null) {
                 ancestorPath = ancestor.getExtends();
@@ -682,11 +682,11 @@ public class ActionConfig implements Serializable {
                 ancestorPath = null;
             }
         }
-        
+
         return false;
     }
 
-    
+
     /**
      * <p>Compare the exception handlers of this action with that of the given
      * and copy those that are not present.</p>
@@ -698,13 +698,13 @@ public class ActionConfig implements Serializable {
     protected void inheritExceptionHandlers(ActionConfig baseConfig)
             throws ClassNotFoundException,
             IllegalAccessException,
-            InstantiationException, 
+            InstantiationException,
             InvocationTargetException {
 
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
-        
+
         // Inherit exception handler configs
         ExceptionConfig[] baseHandlers = baseConfig.findExceptionConfigs();
         for (int i = 0; i < baseHandlers.length; i++) {
@@ -727,7 +727,7 @@ public class ActionConfig implements Serializable {
 
                 // process any extension that this config might have
                 copy.processExtends(getModuleConfig(), this);
-                
+
             }
 
         }
@@ -737,17 +737,17 @@ public class ActionConfig implements Serializable {
     /**
      * <p>Compare the forwards of this action with that of the given and
      * copy those that are not present.</p>
-     * 
+     *
      * @param baseConfig    The action config to copy forwards from.
-     * 
-     * @see #inheritFrom(ActionConfig) 
-     */ 
-    protected void inheritForwards(ActionConfig baseConfig) 
-            throws ClassNotFoundException, 
-            IllegalAccessException, 
+     *
+     * @see #inheritFrom(ActionConfig)
+     */
+    protected void inheritForwards(ActionConfig baseConfig)
+            throws ClassNotFoundException,
+            IllegalAccessException,
             InstantiationException,
             InvocationTargetException {
-        
+
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
@@ -757,17 +757,17 @@ public class ActionConfig implements Serializable {
         for (int i = 0; i < baseForwards.length; i++) {
             ForwardConfig baseForward = baseForwards[i];
 
-            // Do we have this forward? 
-            ForwardConfig copy = 
+            // Do we have this forward?
+            ForwardConfig copy =
                     this.findForwardConfig(baseForward.getName());
-            
+
             if (copy == null) {
-                
+
                 // We don't have this, so let's copy it
                 copy = (ForwardConfig) RequestUtils
-                        .applicationInstance(baseForward.getClass().getName());                    
+                        .applicationInstance(baseForward.getClass().getName());
                 BeanUtils.copyProperties(copy, baseForward);
-                    
+
                 this.addForwardConfig(copy);
 
             } else {
@@ -784,17 +784,17 @@ public class ActionConfig implements Serializable {
     /**
      * <p>Compare the properties of this action with that of the given and
      * copy those that are not present.</p>
-     * 
+     *
      * @param baseConfig    The action config to copy properties from.
-     * 
-     * @see #inheritFrom(ActionConfig) 
-     */ 
-    protected void inheritProperties(ActionConfig baseConfig) 
-            throws ClassNotFoundException, 
-            IllegalAccessException, 
+     *
+     * @see #inheritFrom(ActionConfig)
+     */
+    protected void inheritProperties(ActionConfig baseConfig)
+            throws ClassNotFoundException,
+            IllegalAccessException,
             InstantiationException,
             InvocationTargetException {
-        
+
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
@@ -804,13 +804,13 @@ public class ActionConfig implements Serializable {
         Enumeration keys = baseProperties.propertyNames();
         while (keys.hasMoreElements()) {
             String key = (String) keys.nextElement();
-            
+
             // Check if we have this property before copying it
             String value = properties.getProperty(key);
             if (value == null) {
                 value = baseProperties.getProperty(key);
                 setProperty(key, value);
-            }            
+            }
         }
     }
 
@@ -861,16 +861,16 @@ public class ActionConfig implements Serializable {
      * for subclassing <code>ActionConfig</code> or <code>ActionMapping</code> by
      * providing more than just the single <code>parameter</code> property for passing
      * arbitrary configuration information into an action.</p>
-     * 
+     *
      * <p>This method must not be called after configuration is complete, or an
-     * <code>IllegalStateException</code> will be thrown.  Rather than calling it in Java code, 
-     * it is used by editing the <code>struts-config</code> file.  Specifically, these values can 
+     * <code>IllegalStateException</code> will be thrown.  Rather than calling it in Java code,
+     * it is used by editing the <code>struts-config</code> file.  Specifically, these values can
      * be set by using a <code>&lt;set-property&gt;</code> element nested within the <code>&lt;action&gt;</code>
      * element.  The element should use the <code>key</code> attribute, not the <code>name</code>
      * attribute: the <code>name</code> attribute is for setting bean properties on a custom subclass
      * of <code>ActionConfig</code>.
      * </p>
-     * 
+     *
      * <p><b>Example</b>
      * <code><pre>
      * &lt;action path="/example" type="com.example.MyAction"&gt;
@@ -878,7 +878,7 @@ public class ActionConfig implements Serializable {
      * &lt;/action&gt;
      * </pre></code>
      * </p>
-     * 
+     *
      * @param key the key by which this value will be retrieved
      * @param value the value which should be returned when <code>getProperty(key)</code> is
      * called with the corresponding <code>key</code>.
@@ -1022,36 +1022,36 @@ public class ActionConfig implements Serializable {
 
 
     /**
-     * <p>Inherit values that have not been overridden from the provided 
+     * <p>Inherit values that have not been overridden from the provided
      * config object.  Subclasses overriding this method should verify that
      * the given parameter is of a class that contains a property it is trying
      * to inherit:</p>
-     * 
+     *
      * <pre>
      * if (config instanceof MyCustomConfig) {
      *     MyCustomConfig myConfig =
      *         (MyCustomConfig) config;
-     * 
+     *
      *     if (getMyCustomProp() == null) {
      *         setMyCustomProp(myConfig.getMyCustomProp());
-     *     } 
+     *     }
      * }
      * </pre>
-     * 
-     * <p>If the given <code>config</code> is extending another object, those 
-     * extensions should be resolved before it's used as a parameter to this 
+     *
+     * <p>If the given <code>config</code> is extending another object, those
+     * extensions should be resolved before it's used as a parameter to this
      * method.</p>
-     * 
+     *
      * @param config    The object that this instance will be inheriting
-     *                  its values from.  
-     * @see #processExtends(ModuleConfig)  
-     */ 
+     *                  its values from.
+     * @see #processExtends(ModuleConfig)
+     */
     public void inheritFrom(ActionConfig config)
-            throws ClassNotFoundException, 
-            IllegalAccessException, 
+            throws ClassNotFoundException,
+            IllegalAccessException,
             InstantiationException,
             InvocationTargetException {
-        
+
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
@@ -1060,7 +1060,7 @@ public class ActionConfig implements Serializable {
         if (getAttribute() == null) {
             setAttribute(config.getAttribute());
         }
-            
+
         if (getCatalog() == null) {
             setCatalog(config.getCatalog());
         }
@@ -1072,7 +1072,7 @@ public class ActionConfig implements Serializable {
         if (getForward() == null) {
             setForward(config.getForward());
         }
-            
+
         if (getInclude() == null) {
             setInclude(config.getInclude());
         }
@@ -1130,18 +1130,18 @@ public class ActionConfig implements Serializable {
         inheritProperties(config);
     }
 
-    
+
     /**
      * <p>Inherit configuration information from the ActionConfig that this
      * instance is extending.  This method verifies that any action config
      * object that it inherits from has also had its processExtends() method
      * called.</p>
-     * 
+     *
      * @param moduleConfig  The {@link ModuleConfig} that this bean is from.
-     * 
+     *
      * @see #inheritFrom(ActionConfig)
-     */ 
-    public void processExtends(ModuleConfig moduleConfig) 
+     */
+    public void processExtends(ModuleConfig moduleConfig)
             throws ClassNotFoundException,
                    IllegalAccessException,
                    InstantiationException,
@@ -1154,12 +1154,12 @@ public class ActionConfig implements Serializable {
         if ((!extensionProcessed) && (ancestorPath != null)) {
             ActionConfig baseConfig =
                     moduleConfig.findActionConfig(ancestorPath);
-            
+
             if (baseConfig == null) {
                 throw new NullPointerException("Unable to find "
                         + "action for '" + ancestorPath + "' to extend.");
             }
-            
+
             // Check against circular inheritance and make sure the base
             //  config's own extends has been processed already
             if (checkCircularInheritance(moduleConfig)) {
@@ -1167,7 +1167,7 @@ public class ActionConfig implements Serializable {
                         "Circular inheritance detected for action "
                         + getPath());
             }
-            
+
             // Make sure the ancestor's own extension has been processed.
             if (!baseConfig.isExtensionProcessed()) {
                 baseConfig.processExtends(moduleConfig);
@@ -1176,10 +1176,10 @@ public class ActionConfig implements Serializable {
             // Copy values from the base config
             inheritFrom(baseConfig);
         }
-        
+
         extensionProcessed = true;
     }
-    
+
 
     /**
      * Remove the specified exception configuration instance.

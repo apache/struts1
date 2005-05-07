@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2000-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -554,8 +554,8 @@ public class Action {
 
     /**
      * <p>Save the specified error messages keys into the appropriate session
-     * attribute for use by the &lt;html:messages&gt; tag (if messages="false") 
-     * or &lt;html:errors&gt;, if any error messages are required. Otherwise, 
+     * attribute for use by the &lt;html:messages&gt; tag (if messages="false")
+     * or &lt;html:errors&gt;, if any error messages are required. Otherwise,
      * ensure that the session attribute is empty.</p>
      *
      * @param session The session to save the error messages in.

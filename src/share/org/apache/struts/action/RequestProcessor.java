@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2000-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -137,7 +137,7 @@ public class RequestProcessor {
         synchronized (actions) {
             actions.clear();
         }
-        
+
         this.servlet = servlet;
         this.moduleConfig = moduleConfig;
     }
@@ -166,7 +166,7 @@ public class RequestProcessor {
         if (path == null) {
             return;
         }
-        
+
         if (log.isDebugEnabled()) {
             log.debug("Processing a '" + request.getMethod() +
                       "' for path '" + path + "'");
@@ -183,7 +183,7 @@ public class RequestProcessor {
         if (!processPreprocess(request, response)) {
             return;
         }
-        
+
         this.processCachedMessages(request, response);
 
         // Identify the mapping for this request
@@ -208,7 +208,7 @@ public class RequestProcessor {
         if (!processForward(request, response, mapping)) {
             return;
         }
-        
+
         if (!processInclude(request, response, mapping)) {
             return;
         }
@@ -274,7 +274,7 @@ public class RequestProcessor {
             if (log.isTraceEnabled()) {
                 log.trace("  Creating new Action instance");
             }
-            
+
             try {
                 instance = (Action) RequestUtils.applicationInstance(className);
                 // :TODO: Maybe we should propagate this exception
@@ -283,14 +283,14 @@ public class RequestProcessor {
                 log.error(
                     getInternal().getMessage("actionCreate", mapping.getPath()),
                     e);
-                    
+
                 response.sendError(
                     HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                     getInternal().getMessage("actionCreate", mapping.getPath()));
-                    
+
                 return (null);
             }
-            
+
             instance.setServlet(this.servlet);
             actions.put(className, instance);
         }
@@ -358,14 +358,14 @@ public class RequestProcessor {
         if (forward == null) {
             return;
         }
-        
+
         if (log.isDebugEnabled()) {
             log.debug("processForwardConfig(" + forward + ")");
         }
-        
+
         String forwardPath = forward.getPath();
         String uri = null;
-        
+
         // paths not starting with / should be passed through without any processing
         // (ie. they're absolute)
         if (forwardPath.startsWith("/")) {
@@ -373,14 +373,14 @@ public class RequestProcessor {
         } else {
             uri = forwardPath;
         }
-        
+
         if (forward.getRedirect()) {
             // only prepend context path for relative uri
             if (uri.startsWith("/")) {
                 uri = request.getContextPath() + uri;
             }
             response.sendRedirect(response.encodeRedirectURL(uri));
-            
+
         } else {
             doForward(uri, request, response);
         }
@@ -422,12 +422,12 @@ public class RequestProcessor {
         }
 
     }
-    
+
     /**
-     * <p>Removes any <code>ActionMessages</code> object stored in the session 
-     * under <code>Globals.MESSAGE_KEY</code> and <code>Globals.ERROR_KEY</code> 
-     * if the messages' <code>isAccessed</code> method returns true.  This 
-     * allows messages to be stored in the session, display one time, and be 
+     * <p>Removes any <code>ActionMessages</code> object stored in the session
+     * under <code>Globals.MESSAGE_KEY</code> and <code>Globals.ERROR_KEY</code>
+     * if the messages' <code>isAccessed</code> method returns true.  This
+     * allows messages to be stored in the session, display one time, and be
      * released here.</p>
      *
      * @param request The servlet request we are processing.
@@ -454,7 +454,7 @@ public class RequestProcessor {
                 session.removeAttribute(Globals.MESSAGE_KEY);
             }
         }
-        
+
         // Remove error messages as needed
         messages = (ActionMessages) session.getAttribute(Globals.ERROR_KEY);
 
@@ -463,7 +463,7 @@ public class RequestProcessor {
                 session.removeAttribute(Globals.ERROR_KEY);
             }
         }
-        
+
     }
 
 
@@ -662,7 +662,7 @@ public class RequestProcessor {
         String msg = getInternal().getMessage("processInvalid", path);
         log.error(msg);
         response.sendError(HttpServletResponse.SC_NOT_FOUND, msg);
-        
+
         return null;
     }
 
@@ -678,7 +678,7 @@ public class RequestProcessor {
         if (!"POST".equalsIgnoreCase(request.getMethod())) {
             return (request);
         }
-        
+
         String contentType = request.getContentType();
         if ((contentType != null) &&
             contentType.startsWith("multipart/form-data")) {
@@ -746,13 +746,13 @@ public class RequestProcessor {
         if (!path.startsWith(prefix)) {
             String msg =
                 getInternal().getMessage("processPath", request.getRequestURI());
-            
+
             log.error(msg);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, msg);
 
             return null;
         }
-        
+
         path = path.substring(prefix.length());
         int slash = path.lastIndexOf("/");
         int period = path.lastIndexOf(".");
@@ -792,22 +792,22 @@ public class RequestProcessor {
         if (log.isDebugEnabled()) {
             log.debug(" Populating bean properties from this request");
         }
-        
+
         form.setServlet(this.servlet);
         form.reset(mapping, request);
-        
+
         if (mapping.getMultipartClass() != null) {
             request.setAttribute(Globals.MULTIPART_KEY,
                                  mapping.getMultipartClass());
         }
-        
+
         RequestUtils.populate(form, mapping.getPrefix(), mapping.getSuffix(),
                               request);
 
         // Set the cancellation request attribute if appropriate
         if ((request.getParameter(Globals.CANCEL_PROPERTY) != null) ||
             (request.getParameter(Globals.CANCEL_PROPERTY_X) != null)) {
-                
+
             request.setAttribute(Globals.CANCEL_KEY, Boolean.TRUE);
         }
 
@@ -871,11 +871,11 @@ public class RequestProcessor {
             log.debug(" User '" + request.getRemoteUser() +
                       "' does not have any required role, denying access");
         }
-        
+
         response.sendError(
             HttpServletResponse.SC_FORBIDDEN,
             getInternal().getMessage("notAuthorized", mapping.getPath()));
-                                                    
+
         return (false);
 
     }
@@ -988,7 +988,7 @@ public class RequestProcessor {
         HttpServletRequest request,
         HttpServletResponse response)
         throws IOException, ServletException {
-            
+
         // Construct a request dispatcher for the specified path
         uri = moduleConfig.getPrefix() + uri;
 
@@ -1019,7 +1019,7 @@ public class RequestProcessor {
         HttpServletRequest request,
         HttpServletResponse response)
         throws IOException, ServletException {
-            
+
         // Construct a request dispatcher for the specified path
         uri = moduleConfig.getPrefix() + uri;
 
@@ -1046,7 +1046,7 @@ public class RequestProcessor {
         HttpServletRequest request,
         HttpServletResponse response)
         throws IOException, ServletException {
-            
+
         // Unwrap the multipart request, if there is one.
         if (request instanceof MultipartRequestWrapper) {
             request = ((MultipartRequestWrapper) request).getRequest();
@@ -1077,7 +1077,7 @@ public class RequestProcessor {
         HttpServletRequest request,
         HttpServletResponse response)
         throws IOException, ServletException {
-            
+
         // Unwrap the multipart request, if there is one.
         if (request instanceof MultipartRequestWrapper) {
             request = ((MultipartRequestWrapper) request).getRequest();

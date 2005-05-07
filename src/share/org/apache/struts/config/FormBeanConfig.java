@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -117,12 +117,12 @@ public class FormBeanConfig implements Serializable {
      */
     public void setDynamic(boolean dynamic) {
         if (configured) {
-            throw new IllegalStateException("Configuration is frozen"); 
+            throw new IllegalStateException("Configuration is frozen");
         }
         ; // No action required
     }
 
-    
+
     /**
      * The name of the FormBeanConfig that this config inherits configuration
      * information from.
@@ -143,13 +143,13 @@ public class FormBeanConfig implements Serializable {
 
     /**
      * Have the inheritance values for this class been applied?
-     */ 
+     */
     protected boolean extensionProcessed = false;
 
     public boolean isExtensionProcessed() {
         return extensionProcessed;
     }
-    
+
 
     /**
      * The unique identifier of this form bean, which is used to reference this
@@ -206,7 +206,7 @@ public class FormBeanConfig implements Serializable {
 
     /**
      * <p>Indicates whether a MutableDynaClass is currently restricted.</p>
-     * <p>If so, no changes to the existing registration of property names, 
+     * <p>If so, no changes to the existing registration of property names,
      *    data types, readability, or writeability are allowed.</p>
      */
     public boolean isRestricted() {
@@ -215,7 +215,7 @@ public class FormBeanConfig implements Serializable {
 
     /**
      * <p>Set whether a MutableDynaClass is currently restricted.</p>
-     * <p>If so, no changes to the existing registration of property names, 
+     * <p>If so, no changes to the existing registration of property names,
      *    data types, readability, or writeability are allowed.</p>
      */
     public void setRestricted(boolean restricted) {
@@ -224,18 +224,18 @@ public class FormBeanConfig implements Serializable {
 
 
     // ------------------------------------------------------ Protected Methods
-    
-    
+
+
     /**
      * <p>Traces the hierarchy of this object to check if any of the ancestors
      * is extending this instance.</p>
-     * 
+     *
      * @param moduleConfig  The configuration for the module being configured.
-     * 
+     *
      * @return true if circular inheritance was detected.
-     */ 
+     */
     protected boolean checkCircularInheritance(ModuleConfig moduleConfig) {
-        
+
         String ancestorName = getExtends();
         while (ancestorName != null) {
             // check if we have the same name as an ancestor
@@ -244,29 +244,29 @@ public class FormBeanConfig implements Serializable {
             }
 
             // get our ancestor's ancestor
-            FormBeanConfig ancestor = 
+            FormBeanConfig ancestor =
                     moduleConfig.findFormBeanConfig(ancestorName);
             ancestorName = ancestor.getExtends();
         }
-        
+
         return false;
     }
 
-    
+
     /**
      * <p>Compare the form properties of this bean with that of the given and
      * copy those that are not present.</p>
-     * 
+     *
      * @param config    The form bean config to copy properties from.
-     * 
-     * @see #inheritFrom(FormBeanConfig) 
-     */ 
-    protected void inheritFormProperties(FormBeanConfig config) 
-            throws ClassNotFoundException, 
-            IllegalAccessException, 
+     *
+     * @see #inheritFrom(FormBeanConfig)
+     */
+    protected void inheritFormProperties(FormBeanConfig config)
+            throws ClassNotFoundException,
+            IllegalAccessException,
             InstantiationException,
             InvocationTargetException {
-        
+
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
@@ -276,20 +276,20 @@ public class FormBeanConfig implements Serializable {
         for (int i = 0; i < baseFpcs.length; i++) {
             FormPropertyConfig baseFpc = baseFpcs[i];
 
-            // Do we have this prop? 
-            FormPropertyConfig prop = 
+            // Do we have this prop?
+            FormPropertyConfig prop =
                     this.findFormPropertyConfig(baseFpc.getName());
-            
+
             if (prop == null) {
-                
+
                 // We don't have this, so let's copy it
                 prop = (FormPropertyConfig) RequestUtils
-                        .applicationInstance(baseFpc.getClass().getName());                    
+                        .applicationInstance(baseFpc.getClass().getName());
 
                 BeanUtils.copyProperties(prop, baseFpc);
                 this.addFormPropertyConfig(prop);
             }
-            
+
         }
     }
 
@@ -305,7 +305,7 @@ public class FormBeanConfig implements Serializable {
      * form which accepts an <code>ActionContext</code> as an argument is preferred,
      * to help sever direct dependencies on the Servlet API.  As the ActionContext becomes
      * more familiar in Struts, this method will almost certainly be deprecated.</p>
-     * 
+     *
      * @param servlet The action servlet
      * @return ActionForm instance
      * @exception IllegalAccessException if the Class or the appropriate
@@ -335,7 +335,7 @@ public class FormBeanConfig implements Serializable {
 
         form.setServlet(servlet);
 
-        if (form instanceof DynaBean && 
+        if (form instanceof DynaBean &&
             ((DynaBean)form).getDynaClass() instanceof MutableDynaClass) {
             DynaBean         dynaBean  = (DynaBean)form;
             MutableDynaClass dynaClass = (MutableDynaClass)dynaBean.getDynaClass();
@@ -358,14 +358,14 @@ public class FormBeanConfig implements Serializable {
     /**
      * <p>Create and return an <code>ActionForm</code> instance appropriate
      * to the information in this <code>FormBeanConfig</code>.</p>
-     * <p><b>NOTE:</b> If the given <code>ActionContext</code> is not of type 
+     * <p><b>NOTE:</b> If the given <code>ActionContext</code> is not of type
      * <code>ServletActionContext</code> (or a subclass), then the form which is
-     * returned will have a null <code>servlet</code> property.  Some of 
-     * the subclasses of <code>ActionForm</code> included in Struts will 
-     * later throw a <code>NullPointerException</code> in this case. 
+     * returned will have a null <code>servlet</code> property.  Some of
+     * the subclasses of <code>ActionForm</code> included in Struts will
+     * later throw a <code>NullPointerException</code> in this case.
      * </p>
      * <p>TODO: Find a way to control this direct dependency on the Servlet API.</p>
-     * 
+     *
      * @param context The ActionContext.
      * @return ActionForm instance
      * @exception IllegalAccessException if the Class or the appropriate
@@ -387,8 +387,8 @@ public class FormBeanConfig implements Serializable {
 
     /**
      * Is the given <code>ActionForm</code> instance suitable for use as an
-     * alternative to calling this <code>FormBeanConfig</code> instance's 
-     * <code>createActionForm</code> method. 
+     * alternative to calling this <code>FormBeanConfig</code> instance's
+     * <code>createActionForm</code> method.
      * @param form
      * @return
      */
@@ -417,7 +417,7 @@ public class FormBeanConfig implements Serializable {
         }
         return false;
     }
-    
+
     /**
      * Add a new <code>FormPropertyConfig</code> instance to the set associated
      * with this module.
@@ -484,36 +484,36 @@ public class FormBeanConfig implements Serializable {
 
 
     /**
-     * <p>Inherit values that have not been overridden from the provided 
+     * <p>Inherit values that have not been overridden from the provided
      * config object.  Subclasses overriding this method should verify that
      * the given parameter is of a class that contains a property it is trying
      * to inherit:</p>
-     * 
+     *
      * <pre>
      * if (config instanceof MyCustomConfig) {
-     *     MyCustomConfig myConfig = 
+     *     MyCustomConfig myConfig =
      *         (MyCustomConfig) config;
-     * 
+     *
      *     if (getMyCustomProp() == null) {
      *         setMyCustomProp(myConfig.getMyCustomProp());
-     *     } 
+     *     }
      * }
      * </pre>
-     * 
-     * <p>If the given <code>config</code> is extending another object, those 
-     * extensions should be resolved before it's used as a parameter to this 
+     *
+     * <p>If the given <code>config</code> is extending another object, those
+     * extensions should be resolved before it's used as a parameter to this
      * method.</p>
-     * 
+     *
      * @param config    The object that this instance will be inheriting
-     *                  its values from.  
-     * @see #processExtends(ModuleConfig)  
-     */ 
-    public void inheritFrom(FormBeanConfig config) 
-            throws ClassNotFoundException, 
-            IllegalAccessException, 
+     *                  its values from.
+     * @see #processExtends(ModuleConfig)
+     */
+    public void inheritFrom(FormBeanConfig config)
+            throws ClassNotFoundException,
+            IllegalAccessException,
             InstantiationException,
             InvocationTargetException {
-        
+
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
@@ -522,7 +522,7 @@ public class FormBeanConfig implements Serializable {
         if (getName() == null) {
             setName(config.getName());
         }
-            
+
         if (!isRestricted()) {
             setRestricted(config.isRestricted());
         }
@@ -530,22 +530,22 @@ public class FormBeanConfig implements Serializable {
         if (getType() == null) {
             setType(config.getType());
         }
-            
+
         inheritFormProperties(config);
     }
 
-    
+
     /**
      * <p>Inherit configuration information from the FormBeanConfig that this
      * instance is extending.  This method verifies that any form bean config
      * object that it inherits from has also had its processExtends() method
      * called.</p>
-     * 
+     *
      * @param moduleConfig  The {@link ModuleConfig} that this bean is from.
-     * 
-     * @see #inheritFrom(FormBeanConfig) 
-     */ 
-    public void processExtends(ModuleConfig moduleConfig) 
+     *
+     * @see #inheritFrom(FormBeanConfig)
+     */
+    public void processExtends(ModuleConfig moduleConfig)
             throws ClassNotFoundException,
                    IllegalAccessException,
                    InstantiationException,
@@ -556,22 +556,22 @@ public class FormBeanConfig implements Serializable {
         }
         String ancestor = getExtends();
         if ((!extensionProcessed) && (ancestor != null)) {
-            FormBeanConfig baseConfig = 
+            FormBeanConfig baseConfig =
                     moduleConfig.findFormBeanConfig(ancestor);
-            
+
             if (baseConfig == null) {
                 throw new NullPointerException("Unable to find "
                         + "form bean '" + ancestor + "' to extend.");
             }
-            
+
             // Check against circule inheritance and make sure the base config's
             //  own extends have been processed already
             if (checkCircularInheritance(moduleConfig)) {
                 throw new IllegalArgumentException(
-                        "Circular inheritance detected for form bean " 
+                        "Circular inheritance detected for form bean "
                         + getName());
             }
-            
+
             // Make sure the ancestor's own extension has been processed.
             if (!baseConfig.isExtensionProcessed()) {
                 baseConfig.processExtends(moduleConfig);
@@ -580,10 +580,10 @@ public class FormBeanConfig implements Serializable {
             // Copy values from the base config
             inheritFrom(baseConfig);
         }
-        
+
         extensionProcessed = true;
     }
-    
+
 
     /**
      * Remove the specified form property configuration instance.

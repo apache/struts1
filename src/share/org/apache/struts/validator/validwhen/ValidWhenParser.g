@@ -1,17 +1,17 @@
 header {
 /*
  * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.g,v 1.7 2004/09/03 18:06:58 niallp Exp $
- * $Revision: 1.7 $
+ * $Revision$
  * $Date$
  *
  * Copyright 2003-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,7 +21,7 @@ header {
 
 package org.apache.struts.validator.validwhen;
 
-import java.util.Stack; 
+import java.util.Stack;
 import org.apache.commons.validator.util.ValidatorUtils;
 
 }
@@ -166,10 +166,10 @@ integer
 
 string : str:STRING_LITERAL { argStack.push(str.getText().substring(1, str.getText().length()-1)); };
 
-identifier 
+identifier
 : str:IDENTIFIER { argStack.push(str.getText()); } ;
 
-field 
+field
 : identifier LBRACKET RBRACKET identifier {
             Object i2 = argStack.pop();
             Object i1 = argStack.pop();
@@ -185,7 +185,7 @@ field
             Object i7 = argStack.pop();
             Object i6 = argStack.pop();
             argStack.push(ValidatorUtils.getValueAsString(form, i6 + "[" + i7 + "]"));
-} 
+}
 | identifier LBRACKET RBRACKET {
             Object i8 = argStack.pop();
             argStack.push(ValidatorUtils.getValueAsString(form, i8 + "[" + index + "]"));
@@ -215,10 +215,10 @@ joinedExpression : expr join expr {
      }
 };
 
-join : ANDSIGN { argStack.push(new Integer(AND)); } | 
+join : ANDSIGN { argStack.push(new Integer(AND)); } |
         ORSIGN { argStack.push(new Integer(OR)); };
 
-comparison : 
+comparison :
    EQUALSIGN  { argStack.push(new Integer(EQUAL)); } |
    GREATERTHANSIGN { argStack.push(new Integer(GREATER_THAN)); } |
    GREATEREQUALSIGN  { argStack.push(new Integer(GREATER_EQUAL)); } |

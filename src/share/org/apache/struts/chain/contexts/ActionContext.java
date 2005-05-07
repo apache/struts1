@@ -1,14 +1,14 @@
 /*
- * $Id$ 
- * 
+ * $Id$
+ *
  * Copyright 2005 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,64 +31,64 @@ import org.apache.struts.action.Action;
 
 
 /**
- * <p>An ActionContext represents a view of a commons-chain 
- * <code>Context</code> which encapsulates access to request 
+ * <p>An ActionContext represents a view of a commons-chain
+ * <code>Context</code> which encapsulates access to request
  * and session-scoped resources and services</p>
  */
 public interface ActionContext extends Context {
 
     public static final String APPLICATION_SCOPE = "application";
-    
+
     public static final String SESSION_SCOPE = "session";
-    
+
     public static final String REQUEST_SCOPE = "request";
 
     // -------------------------------
     // General Application Support
     // -------------------------------
     /**
-     * Signal to the instance that it will not be used any more, so that any resources which should 
+     * Signal to the instance that it will not be used any more, so that any resources which should
      * be cleaned up can be cleaned up.
      */
     void release();
-    
+
     /**
-     * <p>Return a <code>Map</code> of Application scoped values.</p>  
-     * 
-     * <p>This is implemented in analogy with the Application scope in 
+     * <p>Return a <code>Map</code> of Application scoped values.</p>
+     *
+     * <p>This is implemented in analogy with the Application scope in
      * the Servlet API, but it seems reasonable to expect that any
      * Struts implementation will have an equivalent concept.</p>
-     * 
-     * <p>The ultimate meaning of "application scope" is an implementation detail 
+     *
+     * <p>The ultimate meaning of "application scope" is an implementation detail
      * left unspecified by Struts.</p>
      * @return
      */
     Map getApplicationScope();
-    
+
     /**
      * <p>Return a <code>Map</code> of Session scoped values.  A session
-     * is understood as a sequence of requests made by the same user.</p>  
-     * 
-     * <p>This is implemented in analogy with the Session scope in 
+     * is understood as a sequence of requests made by the same user.</p>
+     *
+     * <p>This is implemented in analogy with the Session scope in
      * the Servlet API, but it seems reasonable to expect that any
      * Struts implementation will have an equivalent concept.</p>
-     * 
-     * <p>The ultimate meaning of "session scope" is an implementation detail 
+     *
+     * <p>The ultimate meaning of "session scope" is an implementation detail
      * left unspecified by Struts.</p>
      * @return
      */
     Map getSessionScope();
-    
+
     /**
-     * <p>Return a <code>Map</code> of request scoped values.  A 
-     * request is understood as the fundamental motivation for any 
+     * <p>Return a <code>Map</code> of request scoped values.  A
+     * request is understood as the fundamental motivation for any
      * particular instance of an <code>ActionContext</code>.</p>
-     * 
-     * <p>This is implemented in analogy with the Request Context in 
+     *
+     * <p>This is implemented in analogy with the Request Context in
      * the Servlet API, but it seems reasonable to expect that any
      * Struts implementation will have an equivalent concept.</p>
-     * 
-     * <p>The ultimate meaning of "request scope" is an implementation detail 
+     *
+     * <p>The ultimate meaning of "request scope" is an implementation detail
      * left unspecified by Struts.</p>
      * @return
      */
@@ -97,25 +97,25 @@ public interface ActionContext extends Context {
     /**
      * Return the Map representing the scope identified by <code>scopeName</code>.
      * Implementations should support at minimum the names associated with the constants
-     * <code>APPLICATION_SCOPE</code>, <code>SESSION_SCOPE</code>, and 
+     * <code>APPLICATION_SCOPE</code>, <code>SESSION_SCOPE</code>, and
      * <code>REQUEST_SCOPE</code>, but are permitted to support others as well.
      * @param scopeName
      * @return
      */
     Map getScope(String scopeName);
-    
+
     /**
      * <p>Return a <code>Map</code> of parameters submitted by the user
      * as part of this request.</p>
-     * 
-     * <p>This is implemented in analogy with the Request parameters of 
+     *
+     * <p>This is implemented in analogy with the Request parameters of
      * the Servlet API, but it seems reasonable to expect that any
      * Struts implementation will have an equivalent concept.</p>
-     * 
+     *
      * @return
      */
     Map getParameterMap();
-    
+
     // -------------------------------
     // General Struts properties
     // -------------------------------
@@ -130,7 +130,7 @@ public interface ActionContext extends Context {
     /**
      * Get the action which has been identified to be executed as part
      * of processing this request.
-     * 
+     *
      * @return
      */
     Action getAction();
@@ -144,15 +144,15 @@ public interface ActionContext extends Context {
     void setActionForm(ActionForm form);
 
     /**
-     * Get the ActionForm instance which will carry any data submitted as 
+     * Get the ActionForm instance which will carry any data submitted as
      * part of this request.
-     * 
+     *
      * @return
      */
     ActionForm getActionForm();
 
     /**
-     * Set the ActionConfig class contains the details 
+     * Set the ActionConfig class contains the details
      * for processing this request.
      * @param config
      */
@@ -165,45 +165,45 @@ public interface ActionContext extends Context {
     ActionConfig getActionConfig();
 
     /**
-     * Set the ForwardConfig which should be used as the basis of the view segment 
+     * Set the ForwardConfig which should be used as the basis of the view segment
      * of the overall processing.  This is the primary method of "communication" with
      * the "view" sub-chain.
-     * 
+     *
      * @param forward
      */
     void setForwardConfig(ForwardConfig forward);
 
     /**
      * Get the ForwardConfig which has been identified as the basis for view-processing.
-     * 
+     *
      * @return
      */
     ForwardConfig getForwardConfig();
 
     /**
      * Set the include path which should be processed as part of processing this request.
-     * 
+     *
      * @param forward
      */
     void setInclude(String include);
 
     /**
      * Get the include path which should be processed as part of processing this request.
-     * 
+     *
      * @return
      */
     String getInclude();
 
     /**
      * Set the ModuleConfig which is operative for the current request.
-     * 
+     *
      * @param config
      */
     void setModuleConfig(ModuleConfig config);
 
     /**
      * Get the ModuleConfig which is operative for the current request.
-     * @return 
+     * @return
      */
     ModuleConfig getModuleConfig();
 
@@ -211,7 +211,7 @@ public interface ActionContext extends Context {
      * Is the ActionForm for this context valid?  This <em>does not</em> actually perform
      * form validation.  It is simply a holder property where processes which perform validation
      * can store the results of the validation for other processes' benefit.
-     * 
+     *
      * @return <code>Boolean.TRUE</code> if the form passed validation; <code>Boolean.FALSE</code>
      * if the form failed validation; null if the form has not yet been validated.
      */
@@ -228,13 +228,13 @@ public interface ActionContext extends Context {
      * @return
      */
     Exception getException();
-    
+
     /**
      * Store an exception in this context for use by other handling code.
      * @param e
      */
     void setException(Exception e);
-    
+
     // -------------------------------
     // ActionMessage Processing
     // -------------------------------
@@ -307,7 +307,7 @@ public interface ActionContext extends Context {
 
 
     /**
-     * <p>Save the specified messages keys into the appropriate scope 
+     * <p>Save the specified messages keys into the appropriate scope
      * for use by the &lt;html:messages&gt; tag (if
      * messages="true" is set), if any messages are required. Otherwise,
      * ensure that the session attribute is not created.</p>
@@ -394,7 +394,7 @@ public interface ActionContext extends Context {
 
     /**
      * <p>Returns <code>Boolean.TRUE</code> if the current form's cancel button was
-     * pressed. Rather than evaluating any system state, 
+     * pressed. Rather than evaluating any system state,
      * this simply reflects the value of the <code>cancelled</code> property,
      * assuming it was set elsewhere by some other process.</p>
      *

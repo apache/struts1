@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -88,7 +88,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
     public void handleRequest(HttpServletRequest request) throws ServletException {
         ModuleConfig moduleConfig = ModuleUtils.getInstance().getModuleConfig(request);
         this.retrieveTempDir(moduleConfig);
-        
+
         try {
             MultipartIterator iterator =
                 new MultipartIterator(
@@ -96,7 +96,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
                     moduleConfig.getControllerConfig().getBufferSize(),
                     getMaxSize(moduleConfig.getControllerConfig().getMaxFileSize()),
                     tempDir);
-                    
+
             MultipartElement element;
 
             textElements = new Hashtable();
@@ -110,12 +110,12 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
                     createDiskFile(element);
                 }
             }
-            
+
             //take care of maximum length being exceeded
             if (iterator.isMaxLengthExceeded()) {
                 request.setAttribute(MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED, Boolean.TRUE);
             }
-            
+
         } catch(IOException ioe) {
             throw new ServletException(ioe);
         }

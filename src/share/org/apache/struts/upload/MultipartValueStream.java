@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,7 +24,7 @@ import java.io.InputStream;
 import javax.servlet.ServletException;
 
 /**
- * This class implements an inputStream that reads another stream until 
+ * This class implements an inputStream that reads another stream until
  * a multipart boundary is found. The class reports eof when boundary found.
  * The undelying stream is not closed.
  *
@@ -44,7 +44,7 @@ class MultipartValueStream extends InputStream {
 
     /** the underlying stream */
     private InputStream in;
-    
+
     /** byte buffer with the boundary */
     private byte boundaryBytes[];
 
@@ -72,7 +72,7 @@ class MultipartValueStream extends InputStream {
      *
      * NOTE: the boundary parameter is without the trailing dashes "--".
      */
-    public MultipartValueStream(InputStream in, String boundary) 
+    public MultipartValueStream(InputStream in, String boundary)
     throws IOException
     {
     this.in = in;
@@ -100,8 +100,8 @@ class MultipartValueStream extends InputStream {
     readAheadBufferStartI = 0;
     readAheadBufferEndI = readAheadBytes.length - 1;
     }
-    
-    
+
+
     /**
      * Read the next byte
      *
@@ -118,7 +118,7 @@ class MultipartValueStream extends InputStream {
 
         boundaryReached = true;
 
-        /* 
+        /*
          * Boundary found...
          *
          * Read two more bytes:
@@ -152,11 +152,11 @@ class MultipartValueStream extends InputStream {
 
         return -1;
     }
-    
-    /* 
-     * Might seem odd, but we are supposed to return 
+
+    /*
+     * Might seem odd, but we are supposed to return
      * a byte as an int in range 0 - 255, and the byte type
-     * is signed (-128 to 127) 
+     * is signed (-128 to 127)
      *
      */
     int returnByte = (int)(char) readAheadBytes[readAheadBufferStartI];
@@ -198,8 +198,8 @@ class MultipartValueStream extends InputStream {
      * @exception ServletException if the boundary has not yet been reached
      */
 
-    public boolean encounteredFinalBoundary() 
-    throws ServletException 
+    public boolean encounteredFinalBoundary()
+    throws ServletException
     {
     if (!boundaryReached) {
         throw new ServletException("have not reached boundary yet!");

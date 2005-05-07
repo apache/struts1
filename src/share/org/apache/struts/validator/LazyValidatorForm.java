@@ -1,5 +1,5 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2004 The Apache Software Foundation.
  *
@@ -27,7 +27,7 @@ import org.apache.commons.beanutils.LazyDynaBean;
 /**
  * <p>Struts <i>Lazy</i> <code>ActionForm</code> which <i>wraps</i> a <code>LazyDynaBean</code>.</p>
  *
- * <p>There isn't really that much to this implementation as most of the <i>lazy</i> behaviour is in 
+ * <p>There isn't really that much to this implementation as most of the <i>lazy</i> behaviour is in
  *    <code>LazyDynaBean</code> and <i>wrapping</i> the <code>LazyDynaBean<code> is handled in the parent
  *    <code>BeanValidatorForm</code>. The only thing it really does is populate <i>indexed</i> properties
  *    which are a <code>List<code> type with a <code>LazyDynaBean<code> in the <code>get(name, index)</code>
@@ -45,8 +45,8 @@ import org.apache.commons.beanutils.LazyDynaBean;
  *         for <i>mapped</i> properties, if it doesn't exist.</li>
  * </ul>
  *
- * <p>Using this <i>lazy</i> <code>ActionForm</code> means that you don't have to define the ActionForm's 
- *    properties in the <code>struts-config.xml</code>. However, a word of warning, everything in the 
+ * <p>Using this <i>lazy</i> <code>ActionForm</code> means that you don't have to define the ActionForm's
+ *    properties in the <code>struts-config.xml</code>. However, a word of warning, everything in the
  *    Request gets populated into this <code>ActionForm</code> circumventing the normal <i>firewall</i>
  *    function of Struts forms. Therefore you should only <i>take out</i> of this form properties you expect
  *    to be there rather than blindly populating all the properties into the business tier.</p>
@@ -55,7 +55,7 @@ import org.apache.commons.beanutils.LazyDynaBean;
  *    useful to sometimes do so for <i>mapped</i> or <i>indexed</i> properties. For example, if you want to use
  *    a different <code>Map<code> implementation from the default <code>HashMap</code> or an array for indexed
  *    properties, rather than the default <code>List</code> type:</p>
- * 
+ *
  * <pre><code>
  *   &lt;form-bean name="myForm" type="org.apache.struts.validator.LazyValidatorForm"&gt;
  *     &lt;form-property name="myMap" type="java.util.TreeMap" /&gt;
@@ -86,7 +86,7 @@ import org.apache.commons.beanutils.LazyDynaBean;
  * <p>Rather than using this class, another alternative is to either use a <code>LazyDynaBean</code> or
  *    custom version of <code>LazyDynaBean</code> directly. Struts now automatically <i>wraps</i> objects
  *    which are not <code>ActionForms</code> in a <code>BeanValidatorForm</code>. For example:</p>
- * 
+ *
  * <pre><code>
  *   &lt;form-bean name="myForm" type="org.apache.commons.beanutils.LazyDynaBean"&gt;
  *     &lt;form-property name="myBeans" type="org.apache.commons.beanutils.LazyDynaBean[]" /&gt;
@@ -95,7 +95,7 @@ import org.apache.commons.beanutils.LazyDynaBean;
  *
  * @see <a href="http://jakarta.apache.org/commons/beanutils/apidocs/org/apache/commons/beanutils/package-summary.html#dynamic.lazy">Commons BeanUtils JavaDoc</a>
  * @since Struts 1.2.6
- * @version $Rev$ $Date$ 
+ * @version $Rev$ $Date$
  */
 public class LazyValidatorForm extends BeanValidatorForm {
 

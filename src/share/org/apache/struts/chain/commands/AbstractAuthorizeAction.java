@@ -1,12 +1,12 @@
 /*
  * Copyright 2003,2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,13 +57,13 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
 
         // Retrieve ActionConfig
         ActionConfig actionConfig = actionCtx.getActionConfig();
-            
+
         // Is this action protected by role requirements?
         String roles[] = actionConfig.getRoleNames();
         if ((roles == null) || (roles.length < 1)) {
             return (false);
         }
-        
+
         boolean throwEx = false;
         try {
             throwEx = !(isAuthorized(actionCtx, roles, actionConfig));
@@ -72,21 +72,21 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
             throwEx = true;
             log.error("Unable to complete authorization process", ex);
         }
-        
+
         if (throwEx) {
-            
+
             // The current user is not authorized for this action
             throw new UnauthorizedActionException(getErrorMessage(actionCtx, actionConfig));
         } else {
             return (false);
         }
-        
+
     }
-    
-    
+
+
     // ------------------------------------------------------- Protected Methods
-    
-    
+
+
     /**
      * <p>Determine if the action is authorized for the given roles.</p>
      *
@@ -94,15 +94,15 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
      * @param roles          An array of valid roles for this request
      * @param actionConfig   The current action mapping
      *
-     * @return <code>true</code> if the request is authorized, else 
+     * @return <code>true</code> if the request is authorized, else
      * <code>false</code>
      * @exception Exception If the action cannot be tested for authorization
      */
-    protected abstract boolean isAuthorized(ActionContext context, String[] roles,    
+    protected abstract boolean isAuthorized(ActionContext context, String[] roles,
                                             ActionConfig actionConfig)
               throws Exception;
 
-    
+
     protected abstract String getErrorMessage(ActionContext context, ActionConfig actionConfig);
 
 }

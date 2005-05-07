@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2001-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -112,7 +112,7 @@ public class ActionMessages implements Serializable {
     /**
      * <p>Create an <code>ActionMessages</code> object initialized with the given
      * messages.</p>
-     * 
+     *
      * @param messages The messages to be initially added to this object.
      * This parameter can be <code>null</code>.
      * @since Struts 1.1
@@ -157,8 +157,8 @@ public class ActionMessages implements Serializable {
      * <code>ActionMessages</code> object, it is added to the end of the list for that
      * property. If a message's property is not in the current list it is added to the end
      * of the properties.</p>
-     * 
-     * @param messages The <code>ActionMessages</code> object to be added.  
+     *
+     * @param messages The <code>ActionMessages</code> object to be added.
      * This parameter can be <code>null</code>.
      * @since Struts 1.1
      */
@@ -167,7 +167,7 @@ public class ActionMessages implements Serializable {
         if (messages == null) {
             return;
         }
-        
+
         // loop over properties
         Iterator props = messages.properties();
         while (props.hasNext()) {
@@ -215,7 +215,7 @@ public class ActionMessages implements Serializable {
     public Iterator get() {
 
         this.accessed = true;
-        
+
         if (messages.isEmpty()) {
             return Collections.EMPTY_LIST.iterator();
         }
@@ -252,7 +252,7 @@ public class ActionMessages implements Serializable {
     public Iterator get(String property) {
 
         this.accessed = true;
-        
+
         ActionMessageItem item = (ActionMessageItem) messages.get(property);
 
         if (item == null) {
@@ -260,7 +260,7 @@ public class ActionMessages implements Serializable {
         } else {
             return (item.getList().iterator());
         }
-        
+
     }
 
 
@@ -309,7 +309,7 @@ public class ActionMessages implements Serializable {
         }
 
         return results.iterator();
- 
+
     }
 
 
@@ -350,7 +350,7 @@ public class ActionMessages implements Serializable {
      * <p>Returns a String representation of this ActionMessages'
      * property name=message list mapping.</p>
      * @see java.lang.Object#toString()
-     */    
+     */
     public String toString() {
         return this.messages.toString();
     }

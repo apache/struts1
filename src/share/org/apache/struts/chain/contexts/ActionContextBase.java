@@ -1,14 +1,14 @@
 /*
- * $Id$ 
- * 
+ * $Id$
+ *
  * Copyright 2005 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -59,7 +59,7 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     public static final String MODULE_CONFIG_KEY = Constants.MODULE_CONFIG_KEY;
 
     public static final String EXCEPTION_KEY = Constants.EXCEPTION_KEY;
-    
+
     public static final String ERROR_ACTION_MESSAGES_KEY = "errors";
 
     public static final String MESSAGE_ACTION_MESSAGES_KEY = "messages";
@@ -77,11 +77,11 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     public static final String TRANSACTION_TOKEN_KEY = "TRANSACTION_TOKEN_KEY";
 
     public static final String TOKEN_KEY = "TOKEN_KEY";
-    
+
     protected TokenProcessor token = null;
 
     private Log logger = null;
-    
+
     public ActionContextBase(Context context) {
         super(context);
         token = TokenProcessor.getInstance();
@@ -98,14 +98,14 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
 
     public void release() {
         this.token = null;
-     };  
+     };
 
-    public abstract Map getApplicationScope(); 
+    public abstract Map getApplicationScope();
 
     public abstract Map getRequestScope();
 
     public abstract Map getSessionScope();
-   
+
     public Map getScope(String scopeName) {
         if (REQUEST_SCOPE.equals(scopeName)) return this.getRequestScope();
         if (SESSION_SCOPE.equals(scopeName)) return this.getSessionScope();
@@ -175,11 +175,11 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     public Exception getException() {
         return (Exception) this.get(EXCEPTION_KEY);
     }
-    
+
     public void setException(Exception e) {
         this.put(EXCEPTION_KEY, e);
     }
-    
+
     // -------------------------------
     // ActionMessage Processing
     // -------------------------------
@@ -256,8 +256,8 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     // Token Processing
     // -------------------------------
 
-    /** @todo Is there a problem trying to map this method from Action 
-     * to ActionContext when we aren't necessarily sure how token 
+    /** @todo Is there a problem trying to map this method from Action
+     * to ActionContext when we aren't necessarily sure how token
      * processing maps into a context with an ill-defined "session"?
      * There's no getToken() method, but maybe there should be. */
     public void saveToken() {
@@ -271,7 +271,7 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     }
 
     protected String getTokenGeneratorId() {
-        /** @todo The original implementation was based on the HttpSession identifier; 
+        /** @todo The original implementation was based on the HttpSession identifier;
          what would be a way to do that without depending on the Servlet API?
          */
         return "";
@@ -380,9 +380,9 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     public ActionForm findOrCreateActionForm(String formName, String scopeName) throws IllegalAccessException, InstantiationException {
         return this.findOrCreateActionForm(formName, scopeName, this.getModuleConfig());
     }
-    
+
     /**
-     * <p>In the context of the given <code>ModuleConfig</code> and this <code>ActionContext</code>, 
+     * <p>In the context of the given <code>ModuleConfig</code> and this <code>ActionContext</code>,
      * look for an existing <code>ActionForm</code> in the specified scope.  If one is found, return
      * it; otherwise, create a new instance, add it to that scope, and then return it.</p>
      * @param formName
@@ -393,14 +393,14 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
      */
     public ActionForm findOrCreateActionForm(String formName, String scopeName, ModuleConfig moduleConfig) throws IllegalAccessException, InstantiationException {
         Map scope = this.getScope(scopeName);
-        
+
         ActionForm instance = null;
         FormBeanConfig formBeanConfig = moduleConfig.findFormBeanConfig(formName);
 
         if (formBeanConfig == null) {
             throw new IllegalArgumentException("No form config found under " + formName + " in module " + moduleConfig.getPrefix() );
         }
-        
+
         instance = (ActionForm) scope.get(formName);
         // Can we recycle the existing instance (if any)?
         if (instance != null) {
@@ -415,6 +415,6 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
         return form;
     }
 
-    
+
 
 }

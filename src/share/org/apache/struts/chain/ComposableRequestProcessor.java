@@ -1,12 +1,12 @@
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,8 +64,8 @@ public class ComposableRequestProcessor extends RequestProcessor {
 
 
     /**
-     * <p>The {@link CatalogFactory} from which catalog containing the the 
-     * base request-processing {@link Command} will be retrieved.</p>  
+     * <p>The {@link CatalogFactory} from which catalog containing the the
+     * base request-processing {@link Command} will be retrieved.</p>
      */
     protected CatalogFactory catalogFactory = null;
 
@@ -123,7 +123,7 @@ public class ComposableRequestProcessor extends RequestProcessor {
         super.init(servlet, moduleConfig);
 
         initCatalogFactory(servlet, moduleConfig);
-        
+
         ControllerConfig controllerConfig = moduleConfig.getControllerConfig();
 
         String catalogName = controllerConfig.getCatalog();
@@ -155,7 +155,7 @@ public class ComposableRequestProcessor extends RequestProcessor {
     protected void initCatalogFactory(ActionServlet servlet, ModuleConfig moduleConfig) {
         if (this.catalogFactory != null) return;
         this.catalogFactory = CatalogFactory.getInstance();
-        
+
     }
 
 
@@ -175,7 +175,7 @@ public class ComposableRequestProcessor extends RequestProcessor {
 
         // Wrap the request in the case of a multipart request
         request = processMultipart(request);
-        
+
         // Create and populate a Context for this request
         ActionContext context = contextInstance(request, response);
 
@@ -193,7 +193,7 @@ public class ComposableRequestProcessor extends RequestProcessor {
         // Release the context.
         context.release();
     }
-    
+
     protected ActionContext contextInstance(HttpServletRequest request,
                                             HttpServletResponse response) {
         // Create and populate a Context for this request
@@ -202,7 +202,7 @@ public class ComposableRequestProcessor extends RequestProcessor {
         context.setModuleConfig(this.moduleConfig);
         return context;
     }
-    
+
     /**
      * If this is a multipart request, wrap it with a special wrapper.
      * Otherwise, return the request unchanged.
@@ -214,7 +214,7 @@ public class ComposableRequestProcessor extends RequestProcessor {
         if (!"POST".equalsIgnoreCase(request.getMethod())) {
             return (request);
         }
-        
+
         String contentType = request.getContentType();
         if ((contentType != null) &&
             contentType.startsWith("multipart/form-data")) {
@@ -227,8 +227,8 @@ public class ComposableRequestProcessor extends RequestProcessor {
 
     /**
      * <p>Set the <code>CatalogFactory</code> instance which should be used to find
-     * the request-processing command.  In the base implementation, if this value is not 
-     * already set, then it will be initialized when {@link initCatalogFactory} is called. 
+     * the request-processing command.  In the base implementation, if this value is not
+     * already set, then it will be initialized when {@link initCatalogFactory} is called.
      * </p>
      * @param catalogFactory
      */

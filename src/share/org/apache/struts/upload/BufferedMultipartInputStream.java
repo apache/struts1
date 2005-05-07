@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,60 +31,60 @@ import java.io.ByteArrayOutputStream;
  *             class will be removed after Struts 1.2.
  */
 public class BufferedMultipartInputStream extends InputStream {
-   
+
     /**
      * The underlying InputStream used by this class
      */
     protected InputStream inputStream;
-    
+
     /**
      * The byte array used to hold buffered data
      */
     protected byte[] buffer;
-    
+
     /**
      * The current offset we're at in the buffer's byte array
      */
     protected int bufferOffset = 0;
-    
+
     /**
      * The size of the byte array buffer
      */
     protected int bufferSize = 8192;
-    
+
     /**
      * The number of bytes read from the underlying InputStream that are
      * in the buffer
      */
     protected int bufferLength = 0;
-    
+
     /**
      * The total number of bytes read so far
      */
     protected int totalLength = 0;
-    
+
     /**
      * The content length of the multipart data
      */
     protected long contentLength;
-    
+
     /**
      * The maximum allowed size for the multipart data, or -1 for an unlimited
      * maximum file length
      */
     protected long maxSize = -1;
-    
+
     /**
      * Whether or not bytes up to the Content-Length have been read
      */
     protected boolean contentLengthMet = false;
-    
+
     /**
      * Whether or not bytes up to the maximum length have been read
      */
     protected boolean maxLengthMet = false;
-    
-    
+
+
     /**
      * Public constructor for this class, just wraps the InputStream
      * given
@@ -102,14 +102,14 @@ public class BufferedMultipartInputStream extends InputStream {
         this.bufferSize = bufferSize;
         this.contentLength = contentLength;
         this.maxSize = maxSize;
-        
+
         if ((maxSize != -1) && (maxSize < contentLength)) {
             throw new MaxLengthExceededException(maxSize);
         }
         buffer = new byte[bufferSize];
         fill();
     }
-    
+
     /**
      * This method returns the number of available bytes left to read
      * in the buffer before it has to be refilled
@@ -117,50 +117,50 @@ public class BufferedMultipartInputStream extends InputStream {
     public int available() {
         return bufferLength - bufferOffset;
     }
-    
+
     /**
      * This method attempts to close the underlying InputStream
      */
     public void close() throws IOException {
         inputStream.close();
     }
-    
+
     /**
      * This method calls on the mark() method of the underlying InputStream
      */
     public void mark(int position) {
-        inputStream.mark(position);  
-    } 
-    
+        inputStream.mark(position);
+    }
+
     /**
      * This method calls on the markSupported() method of the underlying InputStream
      * @return Whether or not the underlying InputStream supports marking
      */
     public boolean markSupported() {
-        return inputStream.markSupported();        
+        return inputStream.markSupported();
     }
-    
+
     /**
      * @return true if the maximum length has been reached, false otherwise
      */
     public boolean maxLengthMet() {
         return maxLengthMet;
     }
-    
+
     /**
      * @return true if the content length has been reached, false otherwise
      */
     public boolean contentLengthMet() {
         return contentLengthMet;
     }
-    
+
     /**
      * This method returns the next byte in the buffer, and refills it if necessary.
      * @return The next byte read in the buffer, or -1 if the end of the stream has
      *         been reached
      */
     public int read() throws IOException {
-        
+
         if (maxLengthMet) {
             throw new MaxLengthExceededException(maxSize);
         }
@@ -170,34 +170,34 @@ public class BufferedMultipartInputStream extends InputStream {
         if (buffer == null) {
             return -1;
         }
-        
-        if (bufferOffset < bufferLength) {            
-            return (int)(char) buffer[bufferOffset++];            
+
+        if (bufferOffset < bufferLength) {
+            return (int)(char) buffer[bufferOffset++];
         }
         fill();
-        return read();        
+        return read();
     }
-    
+
     /**
      * This method populates the byte array <code>b</code> with data up to
      * <code>b.length</code> bytes
      */
     public int read(byte[] b) throws IOException {
-        return read(b, 0, b.length);        
+        return read(b, 0, b.length);
     }
-    
+
     /**
-     * This method populates the byte array <code>b</code> with data up to 
+     * This method populates the byte array <code>b</code> with data up to
      * <code>length</code> starting at b[offset]
      */
     public int read(byte[] b, int offset, int length) throws IOException {
-        
+
         int count = 0;
         int read = read();
         if (read == -1) {
             return -1;
         }
-        
+
         while ((read != -1) && (count < length)) {
             b[offset] = (byte) read;
             read = read();
@@ -206,20 +206,20 @@ public class BufferedMultipartInputStream extends InputStream {
         }
         return count;
     }
-    
+
     /**
      * This method reads into the byte array <code>b</code> until
      * a newline ('\n') character is encountered or the number of bytes
      * specified by <code>length</code> have been read
      */
     public int readLine(byte[] b, int offset, int length) throws IOException {
-        
+
         int count = 0;
         int read = read();
         if (read == -1) {
             return -1;
         }
-        
+
         while ((read != -1) && (count < length)) {
             if (read == '\n')
                 break;
@@ -257,7 +257,7 @@ public class BufferedMultipartInputStream extends InputStream {
      * InputStream
      */
     public void reset() throws IOException {
-        inputStream.reset();        
+        inputStream.reset();
     }
 
     /**
@@ -291,7 +291,7 @@ public class BufferedMultipartInputStream extends InputStream {
             else {
                 bufferLength = bytesRead;
                 totalLength += bytesRead;
-                bufferOffset = 0;            
+                bufferOffset = 0;
             }
         }
     }

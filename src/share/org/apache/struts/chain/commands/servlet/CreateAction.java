@@ -1,14 +1,14 @@
 /*
  * $Id$
- * 
+ *
  * Copyright 2005 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,7 +33,7 @@ import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ModuleConfig;
 
 /**
- * <p>Concrete implementation of <code>org.apache.struts.chain.commands.CreateAction</code> 
+ * <p>Concrete implementation of <code>org.apache.struts.chain.commands.CreateAction</code>
  * for use in a Servlet API chain.  Expects that the ActionContext passed into it
  * can safely be cast to <code>ServletActionContext</code>.</p>
  */
@@ -45,7 +45,7 @@ public class CreateAction extends org.apache.struts.chain.commands.AbstractCreat
 
 
     /* :TODO The Action class' dependency on having its "servlet" property set requires this
-     * API-dependent subclass of AbstractCreateAction.  
+     * API-dependent subclass of AbstractCreateAction.
      */
     protected synchronized Action getAction(ActionContext context, String type,
             ActionConfig actionConfig) throws Exception  {

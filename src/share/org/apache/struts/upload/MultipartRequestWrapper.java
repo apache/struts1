@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -50,22 +50,22 @@ import javax.servlet.http.HttpServletRequest;
  * HttpServletRequest object.
  */
 public class MultipartRequestWrapper implements HttpServletRequest {
-    
+
     /**
      * The parameters for this multipart request
      */
     protected Map parameters;
-    
+
     /**
      * The underlying HttpServletRequest
      */
     protected HttpServletRequest request;
-    
+
     public MultipartRequestWrapper(HttpServletRequest request) {
         this.request = request;
         this.parameters = new HashMap();
     }
-    
+
     /**
      * Sets a parameter for this request.  The parameter is actually
      * separate from the request parameters, but calling on the
@@ -79,10 +79,10 @@ public class MultipartRequestWrapper implements HttpServletRequest {
         String[] newValue = new String[mValue.length + 1];
         System.arraycopy(mValue, 0, newValue, 0, mValue.length);
         newValue[mValue.length] = value;
-        
+
         parameters.put(name, newValue);
     }
-    
+
     /**
      * Attempts to get a parameter for this request.  It first looks in the
      * underlying HttpServletRequest object for the parameter, and if that
@@ -99,7 +99,7 @@ public class MultipartRequestWrapper implements HttpServletRequest {
         }
         return value;
     }
-    
+
     /**
      * Returns the names of the parameters for this request.
      * The enumeration consists of the normal request parameter
@@ -118,7 +118,7 @@ public class MultipartRequestWrapper implements HttpServletRequest {
         }
         return Collections.enumeration(list);
     }
-    
+
     public String[] getParameterValues(String name) {
         String[] value = request.getParameterValues(name);
         if (value == null) {
@@ -126,14 +126,14 @@ public class MultipartRequestWrapper implements HttpServletRequest {
         }
         return value;
     }
-    
+
     /**
      * Returns the underlying HttpServletRequest for this wrapper
      */
     public HttpServletRequest getRequest() {
         return request;
     }
-    
+
     //WRAPPER IMPLEMENTATIONS OF SERVLET REQUEST METHODS
     public Object getAttribute(String name) {
         return request.getAttribute(name);
@@ -195,7 +195,7 @@ public class MultipartRequestWrapper implements HttpServletRequest {
     public String getRealPath(String path) {
         return request.getRealPath(path);
     }
-    
+
     //WRAPPER IMPLEMENTATIONS OF HTTPSERVLETREQUEST METHODS
     public String getAuthType() {
         return request.getAuthType();
@@ -266,7 +266,7 @@ public class MultipartRequestWrapper implements HttpServletRequest {
     public boolean isRequestedSessionIdFromUrl() {
         return request.isRequestedSessionIdFromUrl();
     }
-    
+
     //SERVLET 2.3 EMPTY METHODS
     /**
      * This method returns null.  To use any Servlet 2.3 methods,
@@ -300,12 +300,12 @@ public class MultipartRequestWrapper implements HttpServletRequest {
     public boolean isRequestedSessionIdFromCookie() {
         return false;
     }
-    
-    
-    
-        
-        
-        
-        
-    
+
+
+
+
+
+
+
+
 }

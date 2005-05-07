@@ -1,14 +1,14 @@
 /*
- * $Id$ 
- * 
+ * $Id$
+ *
  * Copyright 2005 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,7 +25,7 @@ import org.apache.struts.util.MessageResources;
 import org.apache.commons.chain.web.WebContext;
 
 /**
- * Subclass of ActionContextBase which is understood to be wrapping 
+ * Subclass of ActionContextBase which is understood to be wrapping
  * an instance of <code>org.apache.commons.chain.web.WebContext</code>.
  */
 public class WebActionContext extends ActionContextBase {
@@ -41,7 +41,7 @@ public class WebActionContext extends ActionContextBase {
     public void release() {
         super.release();
     }
-    
+
     public Map getApplicationScope()
     {
         return wcontext().getApplicationScope();
@@ -78,14 +78,14 @@ public class WebActionContext extends ActionContextBase {
     }
 
     /**
-     * <p>Return the map returned by our nested <code>WebContext</code>'s 
+     * <p>Return the map returned by our nested <code>WebContext</code>'s
      * <code>getParamValues()</code> method. </p>
      */
     public Map getParameterMap()
     {
         return getParamValues();
     }
-    
+
     public Map getSessionScope()
     {
         return wcontext().getSessionScope();
@@ -113,7 +113,7 @@ public class WebActionContext extends ActionContextBase {
         }
         return mc;
     }
-    
+
     /*
      * @todo AbstractSelectModule set the precedent of doing this at the "web context" level
      * instead of the ServletWebContext level.  Consider whether that's how we want to do it
@@ -131,7 +131,7 @@ public class WebActionContext extends ActionContextBase {
 
     }
 
-     
+
     public Boolean getCancelled() {
         Boolean c = super.getCancelled();
         if (c == null) {

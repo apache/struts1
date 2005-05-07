@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2000-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -260,12 +260,12 @@ final class SetActionFormBeanClassRule extends Rule {
 }
 
 /**
- * A variant of the standard Digester <code>SetPropertyRule</code>.  If the element 
- * being processed has a "key" attribute, then the value will be used to call 
- * <code>setProperty(key,value)</code> on the object on top of the stack, which 
- * will be assumed to be of type <code>ActionConfig</code>.  Otherwise, the standard 
+ * A variant of the standard Digester <code>SetPropertyRule</code>.  If the element
+ * being processed has a "key" attribute, then the value will be used to call
+ * <code>setProperty(key,value)</code> on the object on top of the stack, which
+ * will be assumed to be of type <code>ActionConfig</code>.  Otherwise, the standard
  * <code>SetPropertyRule</code> behavior is invoked, and the value will
- * be used to set a bean property on the object on top of the Digester stack.  
+ * be used to set a bean property on the object on top of the Digester stack.
  * In that case, the element being processed is assumed to have attributes
  * "property" and "value".
  */
@@ -277,7 +277,7 @@ final class ActionConfigSetPropertyRule extends SetPropertyRule {
 
     public void begin(Attributes attributes) throws Exception {
 
-        if (attributes.getIndex("key") == -1) { 
+        if (attributes.getIndex("key") == -1) {
             super.begin(attributes);
             return;
         }

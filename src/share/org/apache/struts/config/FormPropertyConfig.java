@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -161,7 +161,7 @@ public class FormPropertyConfig implements Serializable {
         }
         this.size = size;
     }
-        
+
 
 
     /**
@@ -317,42 +317,42 @@ public class FormPropertyConfig implements Serializable {
 
 
     /**
-     * <p>Inherit values that have not been overridden from the provided 
+     * <p>Inherit values that have not been overridden from the provided
      * config object.  Subclasses overriding this method should verify that
      * the given parameter is of a class that contains a property it is trying
      * to inherit:</p>
      * <pre>
      * if (config instanceof MyCustomFormPropertyConfig) {
-     *     MyCustomFormPropertyConfig myConfig = 
+     *     MyCustomFormPropertyConfig myConfig =
      *         (MyCustomFormPropertyConfig) config;
-     * 
+     *
      *     if (getMyCustomProp() == null) {
      *         setMyCustomProp(myConfig.getMyCustomProp());
-     *     } 
+     *     }
      * }
      * </pre>
-     * 
+     *
      * @param config    The object that this instance will be inheriting
-     *                  its values from. 
-     */ 
+     *                  its values from.
+     */
     public void inheritFrom(FormPropertyConfig config) {
 
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
-        
+
         if (getInitial() == null) {
             setInitial(config.getInitial());
         }
-                    
+
         if (getName() == null) {
             setName(config.getName());
         }
-                    
+
         if (getSize() == 0) {
             setSize(config.getSize());
         }
-                    
+
         if (getType() == null) {
             setType(config.getType());
         }

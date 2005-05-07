@@ -1,12 +1,12 @@
 /*
  * Copyright 2003,2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,7 +32,7 @@ import org.apache.struts.config.FormBeanConfig;
  *
  * @author Craig R. McClanahan
  * @version $Id$
- * @deprecated This class no longer needs to be abstract.  Use 
+ * @deprecated This class no longer needs to be abstract.  Use
  * <code>org.apache.struts.chain.commands.CreateActionForm</code> instead.
  * This will be removed BEFORE a full Struts 1.3.0 release.
  */
@@ -131,7 +131,7 @@ public abstract class AbstractCreateActionForm extends ActionCommandBase {
     }
 
     /**
-     * Request the creation of a new ActionForm instance based on the information in 
+     * Request the creation of a new ActionForm instance based on the information in
      * the <code>ActionContext</code>, <code>ActionConfig</code>, and <code>FormBeanConfig</code>.
      * :TODO if FormBeanConfig.createActionForm took ActionContext as an argument instead of Servlet,
      * this method wouldn't need to be abstract.

@@ -1,14 +1,14 @@
 /*
  * $Id$
- * 
+ *
  * Copyright 2005 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,7 +31,7 @@ public class ExecuteForwardCommand extends ExecuteCommand {
 
     /**
      * <p>Return the command specified by the <code>command</code> and
-     * <code>catalog</code> properties of the <code>forwardConfig</code> 
+     * <code>catalog</code> properties of the <code>forwardConfig</code>
      * property of the given <code>ActionContext</code>.  If <code>forwardConfig</code>
      * is null, return null.</p>
      */
@@ -40,7 +40,7 @@ public class ExecuteForwardCommand extends ExecuteCommand {
         if (forwardConfig == null) return null;
         return getCommand(forwardConfig.getCommand(), forwardConfig.getCatalog());
     }
-    
+
     /**
      * @return <p><code>true</code> if the given <code>ActionContext</code> has
      * a non-null <code>forwardConfig</code> property.</p>

@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -68,7 +68,7 @@ public class MockPageContext extends PageContext {
 
     private boolean throwIOException;
     private boolean returnBodyContent;
-    
+
 
 
 
@@ -88,9 +88,9 @@ public class MockPageContext extends PageContext {
 
     /**
      * Construct a new PageContext impl.
-     * @param throwIOException Determines if the returned JspWriter should 
+     * @param throwIOException Determines if the returned JspWriter should
      *                         throw an IOException on any method call.
-     * @param returnBody Determines if getOut() should return a new 
+     * @param returnBody Determines if getOut() should return a new
      *                   <code>JspWriter</code> or a <code>BodyContent</code>.
      */
     public MockPageContext(boolean throwIOException, boolean returnBody){
@@ -226,8 +226,8 @@ public class MockPageContext extends PageContext {
 
 
     /**
-     * Custom JspWriter that throws the specified exception 
-     * (supplied on the constructor...if any), else it simply 
+     * Custom JspWriter that throws the specified exception
+     * (supplied on the constructor...if any), else it simply
      * returns.
      */
     public JspWriter getOut() {

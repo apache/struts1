@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,16 +38,16 @@ public class MockFormBean extends ActionForm {
      * or throw an Exception
      */
     private boolean throwException = false;
-    
-    
+
+
     private boolean returnNulls    = false;
     private String  defaultValue;
     private Double  defaultDouble;
     private int     arrayCount;
     protected boolean booleanProperty = false;
-    
+
     // ------------------- Constructors
-    
+
     public MockFormBean() {
         this(null);
     }
@@ -57,48 +57,48 @@ public class MockFormBean extends ActionForm {
         this.throwException = throwException;
         this.returnNulls    = returnNulls;
     }
-    
+
     public MockFormBean(boolean throwException){
         this.throwException = throwException;
     }
-    
-    public MockFormBean(boolean throwException, 
+
+    public MockFormBean(boolean throwException,
             boolean returnNulls, String defaultValue){
         this(throwException, returnNulls);
         this.defaultValue = defaultValue;
-        
+
     }
     public MockFormBean(String stringProperty) {
         this.stringProperty = stringProperty;
     }
 
 
-    public MockFormBean(boolean throwException, 
+    public MockFormBean(boolean throwException,
             boolean returnNulls, String defaultValue, int arrayCount){
         this(throwException, returnNulls, defaultValue);
         this.arrayCount = arrayCount;
-        
+
     }
-    
-    public MockFormBean(boolean throwException, 
+
+    public MockFormBean(boolean throwException,
             boolean returnNulls, Double defaultDouble){
         this(throwException, returnNulls);
         this.defaultDouble = defaultDouble;
-        
+
     }
-    
+
     // ------------------- public methods
-    
+
     public String getJustThrowAnException() throws Exception{
             throw new Exception();
     }
-    
+
     public Object getThrowIllegalAccessException() throws Exception{
         if (true)
             throw new IllegalAccessException();
         return null;
     }
-    
+
     public String getStringValue() throws Exception{
         if (throwException)
             throw new Exception();
@@ -112,7 +112,7 @@ public class MockFormBean extends ActionForm {
             throw new Exception();
         if (returnNulls)
             return null;
-        
+
         String[] rtn = new String[arrayCount];
         for (int i = 0; i < rtn.length; i++) {
             rtn[i] = defaultValue + i;
@@ -126,7 +126,7 @@ public class MockFormBean extends ActionForm {
         if (returnNulls)
             return null;
         return defaultDouble;
-        
+
     }
 
     public boolean getBooleanProperty() {

@@ -1,12 +1,12 @@
 /*
  * Copyright 2003,2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -50,13 +50,13 @@ public class PerformInclude extends AbstractPerformInclude {
         throws Exception {
 
         ServletActionContext swcontext = (ServletActionContext) context;
-        
+
         // Get the underlying request in the case of a multipart wrapper
         HttpServletRequest request = swcontext.getRequest();
         if (request instanceof MultipartRequestWrapper) {
             request = ((MultipartRequestWrapper) request).getRequest();
         }
-        
+
         RequestDispatcher rd =
                 swcontext.getContext().getRequestDispatcher(uri);
         rd.forward(request, swcontext.getResponse());

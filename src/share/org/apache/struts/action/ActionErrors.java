@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2000-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,7 +47,7 @@ public class ActionErrors extends ActionMessages implements Serializable {
     /**
      * The "property name" marker to use for global errors, as opposed to
      * those related to a specific property.
-     * @deprecated Use ActionMessages.GLOBAL_MESSAGE instead.  This will be 
+     * @deprecated Use ActionMessages.GLOBAL_MESSAGE instead.  This will be
      * removed after Struts 1.2.
      */
     public static final String GLOBAL_ERROR = "org.apache.struts.action.GLOBAL_ERROR";
@@ -62,9 +62,9 @@ public class ActionErrors extends ActionMessages implements Serializable {
     }
 
     /**
-     * Create an <code>ActionErrors</code> object initialized with the given 
+     * Create an <code>ActionErrors</code> object initialized with the given
      * messages.
-     * 
+     *
      * @param messages The messages to be initially added to this object.
      * This parameter can be <code>null</code>.
      * @since Struts 1.1

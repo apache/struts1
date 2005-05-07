@@ -1,14 +1,14 @@
 /*
  * $Id$
- * 
+ *
  * Copyright 2005 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,7 +26,7 @@ import org.apache.struts.config.ActionConfig;
 
 /**
  * <p>Subclass this command and configure it as part of a per-forward chain to
- * perform any necessary pre-population or other preparation for a form before 
+ * perform any necessary pre-population or other preparation for a form before
  * control is dispatched to the view layer.</p>
  *
  * @version $Id$
@@ -36,7 +36,7 @@ public class CopyFormToContext extends ActionCommandBase {
     // ------------------------------------------------------ Instance Variables
 
     /**
-     * <p>The name of a form bean as configured in a <code>struts-config.xml</code> file 
+     * <p>The name of a form bean as configured in a <code>struts-config.xml</code> file
      * for this module.  </p>
 
      * <p>
@@ -57,7 +57,7 @@ public class CopyFormToContext extends ActionCommandBase {
     private String scope = null;
 
     /**
-     * <p>The path of an <code>&lt;action&gt;</code> mapping as configured in a <code>struts-config.xml</code> file 
+     * <p>The path of an <code>&lt;action&gt;</code> mapping as configured in a <code>struts-config.xml</code> file
      * for this module.  This action will be looked up, and its <code>name</code> and
      * <code>scope</code> values will be used as if those values were configured directly
      * in this instance's <code>formName</code> and <code>scope</code> properties.</p>
@@ -66,14 +66,14 @@ public class CopyFormToContext extends ActionCommandBase {
      * configuration properties.</p>
      */
     private String actionPath = null;
-    
+
     /**
      * The context key under which the form which was looked up will be stored.  Defaults
      * to "actionForm" but may be overridden in cases where the "request" ActionForm must
      * be preserved.
      */
     private String toKey = ActionContextBase.ACTION_FORM_KEY;
-    
+
     // ------------------------------------------------------ Properties
     public String getActionPath() {
         return this.actionPath;
@@ -100,11 +100,11 @@ public class CopyFormToContext extends ActionCommandBase {
         this.toKey = toKey;
     }
 
-    
-    // ------------------------------------------------------ 
+
+    // ------------------------------------------------------
 
     /**
-     * <p>Look up an ActionForm instance based on the configured properties of this command and 
+     * <p>Look up an ActionForm instance based on the configured properties of this command and
      * copy it into the <code>Context</code>.  After this command successfully
      * executes, an ActionForm instance will exist in the specified scope
      * and will be available, for example for backing fields in an HTML form.  It
@@ -120,11 +120,11 @@ public class CopyFormToContext extends ActionCommandBase {
         actionContext.put(getToKey(), form);
         return false;
     }
-    
+
     /**
      * <p>Based on the properties of this command and the given <code>ActionContext</code>,
      * find or create an ActionForm instance for preparation.</p>
-     * 
+     *
      * @param context
      * @return
      * @throws IllegalAccessException
@@ -143,13 +143,13 @@ public class CopyFormToContext extends ActionCommandBase {
 
             effectiveFormName = actionConfig.getName();
             effectiveScope = actionConfig.getScope();
-            
+
         } else {
             effectiveFormName = this.getFormName();
             effectiveScope = this.getScope();
         }
         if (isEmpty(effectiveScope) || isEmpty(effectiveFormName)) {
-            throw new IllegalStateException("Both scope [" 
+            throw new IllegalStateException("Both scope ["
                     + effectiveScope
                     + "] and formName ["
                     + effectiveFormName
@@ -160,17 +160,17 @@ public class CopyFormToContext extends ActionCommandBase {
     }
 
     /**
-     *  Actually find or create an instance of ActionForm configured under 
+     *  Actually find or create an instance of ActionForm configured under
      * the form-bean-name <code>effectiveFormName</code>, looking in
      * in the <code>ActionContext's</code> scope as identified by <code>effectiveScope</code>.
      * If a form is created, it will also be stored in that scope.
-     * 
-     * <p><b>NOTE:</b> This specific method depends on the instance of 
-     * <code>ActionContext</code> which is passed being a subclass of 
+     *
+     * <p><b>NOTE:</b> This specific method depends on the instance of
+     * <code>ActionContext</code> which is passed being a subclass of
      * <code>ActionContextBase</code>, which implements the utility method
      * <code>findOrCreateActionForm</code>.
      * </p>
-     * 
+     *
      * @param ctx
      * @param effectiveFormName
      * @param effectiveScope
@@ -188,7 +188,7 @@ public class CopyFormToContext extends ActionCommandBase {
         }
         ActionForm form = context.findOrCreateActionForm(effectiveFormName, effectiveScope);
         if (form == null) {
-            throw new IllegalArgumentException("No form found under scope [" 
+            throw new IllegalArgumentException("No form found under scope ["
                     + effectiveScope
                     + "] and formName ["
                     + effectiveFormName

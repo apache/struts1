@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,17 +26,17 @@ import java.util.Comparator;
  * when constructing user interface elements which have a label to be displayed
  * to the user, and a corresponding value to be returned to the server. One
  * example is the <code>&lt;html:options&gt;</code> tag.
- * 
+ *
  * <p>
  * Note: this class has a natural ordering that is inconsistent with equals.
  * </p>
- * 
+ *
  * @version $Rev$ $Date$
  */
 public class LabelValueBean implements Comparable, Serializable {
 
     /**
-     * Comparator that can be used for a case insensitive sort of 
+     * Comparator that can be used for a case insensitive sort of
      * <code>LabelValueBean</code> objects.
      */
     public static final Comparator CASE_INSENSITIVE_ORDER = new Comparator() {
@@ -104,12 +104,12 @@ public class LabelValueBean implements Comparable, Serializable {
     // --------------------------------------------------------- Public Methods
 
     /**
-     * Compare LabelValueBeans based on the label, because that's the human 
+     * Compare LabelValueBeans based on the label, because that's the human
      * viewable part of the object.
      * @see Comparable
      */
     public int compareTo(Object o) {
-        // Implicitly tests for the correct type, throwing 
+        // Implicitly tests for the correct type, throwing
         // ClassCastException as required by interface
         String otherLabel = ((LabelValueBean) o).getLabel();
 
