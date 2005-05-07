@@ -303,9 +303,9 @@ public class MockHttpServletRequest implements HttpServletRequest {
         if (create && (session == null)) {
             session = new MockHttpSession();
             
-			// modified to act like the real deal,
-			// call with (false) if you want null
-			// throw new UnsupportedOperationException();
+            // modified to act like the real deal,
+            // call with (false) if you want null
+            // throw new UnsupportedOperationException();
         }
         return (session);
     }

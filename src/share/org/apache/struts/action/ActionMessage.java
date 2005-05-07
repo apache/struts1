@@ -185,29 +185,29 @@ public class ActionMessage implements Serializable {
      *
      * @see java.lang.Object#toString()
      */
-	public String toString() {
-		StringBuffer buff = new StringBuffer();
-		buff.append(this.key);
-		buff.append("[");
+    public String toString() {
+        StringBuffer buff = new StringBuffer();
+        buff.append(this.key);
+        buff.append("[");
 
-		if (this.values != null) {
+        if (this.values != null) {
 
-			for (int i = 0; i < this.values.length; i++) {
+            for (int i = 0; i < this.values.length; i++) {
 
-				buff.append(this.values[i]);
+                buff.append(this.values[i]);
 
                 // don't append comma to last entry
-				if (i < this.values.length - 1) {
-					buff.append(", ");
-				}
+                if (i < this.values.length - 1) {
+                    buff.append(", ");
+                }
                 
-			}
-		}
+            }
+        }
 
-		buff.append("]");
+        buff.append("]");
 
-		return buff.toString();
-	}
+        return buff.toString();
+    }
 
 
 }

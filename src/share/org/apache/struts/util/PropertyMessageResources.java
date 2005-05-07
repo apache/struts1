@@ -98,8 +98,8 @@ public class PropertyMessageResources extends MessageResources {
     /**
      * The <code>Log</code> instance for this class.
      */
-	protected static final Log log =
-		LogFactory.getLog(PropertyMessageResources.class);
+    protected static final Log log =
+        LogFactory.getLog(PropertyMessageResources.class);
 
 
     /**

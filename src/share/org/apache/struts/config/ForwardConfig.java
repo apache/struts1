@@ -222,28 +222,28 @@ public class ForwardConfig implements Serializable {
     }
 
 
-	/**
-	 * <p>The prefix of the module to which this <code>ForwardConfig</code> entry points,
-	 * which must start with a slash ("/") character.  </p>
+    /**
+     * <p>The prefix of the module to which this <code>ForwardConfig</code> entry points,
+     * which must start with a slash ("/") character.  </p>
      * <p>Usage note: If a forward config is used in a hyperlink,
      * and a module is specified, the path must lead to another
      * action and not directly to a page. This is in keeping with
      * rule that in a modular application all links must be to
      * an action rather than a page.
      * </p>
-	 */
-	protected String module = null;
+     */
+    protected String module = null;
 
-	public String getModule() {
-		return (this.module);
-	}
+    public String getModule() {
+        return (this.module);
+    }
 
-	public void setModule(String module) {
-		if (configured) {
-			throw new IllegalStateException("Configuration is frozen");
-		}
-		this.module = module;
-	}
+    public void setModule(String module) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.module = module;
+    }
 
 
     /**

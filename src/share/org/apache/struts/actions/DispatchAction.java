@@ -170,14 +170,14 @@ public abstract class DispatchAction extends BaseAction {
         String name = getMethodName(mapping, form, request, response, parameter);
 
 
-	// Prevent recursive calls
-	if ("execute".equals(name) || "perform".equals(name)){
-		String message =
-			messages.getMessage("dispatch.recursive", mapping.getPath());
+    // Prevent recursive calls
+    if ("execute".equals(name) || "perform".equals(name)){
+        String message =
+            messages.getMessage("dispatch.recursive", mapping.getPath());
 
-		log.error(message);
-		throw new ServletException(message);
-	}
+        log.error(message);
+        throw new ServletException(message);
+    }
 
 
         // Invoke the named method, and return the result

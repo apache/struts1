@@ -200,81 +200,81 @@ public class Action {
     // ---------------------------------------------------- Protected Methods
 
 
-	/**
-	 * Adds the specified messages keys into the appropriate request
-	 * attribute for use by the &lt;html:messages&gt; tag (if
-	 * messages="true" is set), if any messages are required.
-	 * Initialize the attribute if it has not already been.
-	 * Otherwise, ensure that the request attribute is not set.
-	 *
-	 * @param request   The servlet request we are processing
-	 * @param messages  Messages object
-	 * @since Struts 1.2.1
-	 */
-	protected void addMessages(
-		HttpServletRequest request,
-		ActionMessages messages) {
+    /**
+     * Adds the specified messages keys into the appropriate request
+     * attribute for use by the &lt;html:messages&gt; tag (if
+     * messages="true" is set), if any messages are required.
+     * Initialize the attribute if it has not already been.
+     * Otherwise, ensure that the request attribute is not set.
+     *
+     * @param request   The servlet request we are processing
+     * @param messages  Messages object
+     * @since Struts 1.2.1
+     */
+    protected void addMessages(
+        HttpServletRequest request,
+        ActionMessages messages) {
 
-		if (messages == null){
-			//	bad programmer! *slap*
-			return;
-		}
+        if (messages == null){
+            //  bad programmer! *slap*
+            return;
+        }
 
-		// get any existing messages from the request, or make a new one
-		ActionMessages requestMessages = (ActionMessages) request.getAttribute(Globals.MESSAGE_KEY);
-		if (requestMessages == null){
-			requestMessages = new ActionMessages();
-		}
-		// add incoming messages
-		requestMessages.add(messages);
+        // get any existing messages from the request, or make a new one
+        ActionMessages requestMessages = (ActionMessages) request.getAttribute(Globals.MESSAGE_KEY);
+        if (requestMessages == null){
+            requestMessages = new ActionMessages();
+        }
+        // add incoming messages
+        requestMessages.add(messages);
 
-		// if still empty, just wipe it out from the request
-		if (requestMessages.isEmpty()) {
-			request.removeAttribute(Globals.MESSAGE_KEY);
-			return;
-		}
+        // if still empty, just wipe it out from the request
+        if (requestMessages.isEmpty()) {
+            request.removeAttribute(Globals.MESSAGE_KEY);
+            return;
+        }
 
-		// Save the messages
-		request.setAttribute(Globals.MESSAGE_KEY, requestMessages);
-	}
+        // Save the messages
+        request.setAttribute(Globals.MESSAGE_KEY, requestMessages);
+    }
 
 
-	/**
-	 * Adds the specified errors keys into the appropriate request attribute
+    /**
+     * Adds the specified errors keys into the appropriate request attribute
      * for use by the &lt;html:errors&gt; tag, if any messages are required.
-	 * Initialize the attribute if it has not already been. Otherwise, ensure
+     * Initialize the attribute if it has not already been. Otherwise, ensure
      * that the request attribute is not set.
-	 *
-	 * @param request   The servlet request we are processing
-	 * @param errors  Errors object
-	 * @since Struts 1.2.1
-	 */
-	protected void addErrors(
-		HttpServletRequest request,
-		ActionMessages errors) {
+     *
+     * @param request   The servlet request we are processing
+     * @param errors  Errors object
+     * @since Struts 1.2.1
+     */
+    protected void addErrors(
+        HttpServletRequest request,
+        ActionMessages errors) {
 
-		if (errors == null){
-			//	bad programmer! *slap*
-			return;
-		}
+        if (errors == null){
+            //  bad programmer! *slap*
+            return;
+        }
 
-		// get any existing errors from the request, or make a new one
-		ActionMessages requestErrors = (ActionMessages)request.getAttribute(Globals.ERROR_KEY);
-		if (requestErrors == null){
-			requestErrors = new ActionMessages();
-		}
-		// add incoming errors
-		requestErrors.add(errors);
+        // get any existing errors from the request, or make a new one
+        ActionMessages requestErrors = (ActionMessages)request.getAttribute(Globals.ERROR_KEY);
+        if (requestErrors == null){
+            requestErrors = new ActionMessages();
+        }
+        // add incoming errors
+        requestErrors.add(errors);
 
-		// if still empty, just wipe it out from the request
-		if (requestErrors.isEmpty()) {
-			request.removeAttribute(Globals.ERROR_KEY);
-			return;
-		}
+        // if still empty, just wipe it out from the request
+        if (requestErrors.isEmpty()) {
+            request.removeAttribute(Globals.ERROR_KEY);
+            return;
+        }
 
-		// Save the errors
-		request.setAttribute(Globals.ERROR_KEY, requestErrors);
-	}
+        // Save the errors
+        request.setAttribute(Globals.ERROR_KEY, requestErrors);
+    }
 
 
     /**
@@ -319,23 +319,23 @@ public class Action {
     }
 
 
-	/**
-	 * Retrieves any existing messages placed in the request by previous actions.  This method could be called instead
-	 * of creating a <code>new ActionMessages()<code> at the beginning of an <code>Action<code>
-	 * This will prevent saveMessages() from wiping out any existing Messages
-	 *
-	 * @return the Messages that already exist in the request, or a new ActionMessages object if empty.
-	 * @param request The servlet request we are processing
+    /**
+     * Retrieves any existing messages placed in the request by previous actions.  This method could be called instead
+     * of creating a <code>new ActionMessages()<code> at the beginning of an <code>Action<code>
+     * This will prevent saveMessages() from wiping out any existing Messages
+     *
+     * @return the Messages that already exist in the request, or a new ActionMessages object if empty.
+     * @param request The servlet request we are processing
      * @since Struts 1.2.1
-	 */
-	protected ActionMessages getMessages(HttpServletRequest request) {
-		ActionMessages messages =
-			(ActionMessages) request.getAttribute(Globals.MESSAGE_KEY);
-		if (messages == null) {
-			messages = new ActionMessages();
-		}
-		return messages;
-	}
+     */
+    protected ActionMessages getMessages(HttpServletRequest request) {
+        ActionMessages messages =
+            (ActionMessages) request.getAttribute(Globals.MESSAGE_KEY);
+        if (messages == null) {
+            messages = new ActionMessages();
+        }
+        return messages;
+    }
 
 
     /**

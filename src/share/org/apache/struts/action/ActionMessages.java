@@ -64,8 +64,8 @@ public class ActionMessages implements Serializable {
      * <p>The "property name" marker to use for global messages, as opposed to
      * those related to a specific property.</p>
      */
-	public static final String GLOBAL_MESSAGE =
-		"org.apache.struts.action.GLOBAL_MESSAGE";
+    public static final String GLOBAL_MESSAGE =
+        "org.apache.struts.action.GLOBAL_MESSAGE";
 
 
     // ----------------------------------------------------- Instance Variables
@@ -338,12 +338,12 @@ public class ActionMessages implements Serializable {
      *
      * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
      */
-	public int size(String property) {
+    public int size(String property) {
 
-		ActionMessageItem item = (ActionMessageItem) messages.get(property);
+        ActionMessageItem item = (ActionMessageItem) messages.get(property);
 
-		return (item == null) ? 0 : item.getList().size();
-	}
+        return (item == null) ? 0 : item.getList().size();
+    }
 
 
     /**
@@ -351,9 +351,9 @@ public class ActionMessages implements Serializable {
      * property name=message list mapping.</p>
      * @see java.lang.Object#toString()
      */    
-	public String toString() {
+    public String toString() {
         return this.messages.toString();
-	}
+    }
 
 
     /**

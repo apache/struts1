@@ -131,17 +131,17 @@ public class ResponseUtils {
 
         return result == null ? value : result.toString();
     }
-	
+    
     
     /**
-	 * URLencodes a string assuming the character encoding is UTF-8.
-	 *
-	 * @param url
-	 * @return String The encoded url in UTF-8
-	 */
-	public static String encodeURL(String url) {
-		return encodeURL(url, "UTF-8");
-	}
+     * URLencodes a string assuming the character encoding is UTF-8.
+     *
+     * @param url
+     * @return String The encoded url in UTF-8
+     */
+    public static String encodeURL(String url) {
+        return encodeURL(url, "UTF-8");
+    }
 
     /**
      * Use the new URLEncoder.encode() method from Java 1.4 if available, else
@@ -154,9 +154,9 @@ public class ResponseUtils {
     public static String encodeURL(String url, String enc) {
         try {
 
-			if(enc==null || enc.length()==0){
-				enc = "UTF-8";
-			}
+            if(enc==null || enc.length()==0){
+                enc = "UTF-8";
+            }
 
             // encode url with new 1.4 method and UTF-8 encoding
             if (encode != null) {

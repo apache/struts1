@@ -212,7 +212,7 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     public void addActionMessages(String key, ActionMessages msgs) {
 
         if (msgs == null){
-            //	bad programmer! *slap*
+            // bad programmer! *slap*
             return;
         }
 

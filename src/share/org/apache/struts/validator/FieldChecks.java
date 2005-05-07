@@ -181,18 +181,18 @@ public class FieldChecks implements Serializable {
             i++;
         }
 
-		if (required) {
-			if (GenericValidator.isBlankOrNull(value)) {
-				errors.add(
-					field.getKey(),
-					Resources.getActionMessage(validator, request, va, field));
+        if (required) {
+            if (GenericValidator.isBlankOrNull(value)) {
+                errors.add(
+                    field.getKey(),
+                    Resources.getActionMessage(validator, request, va, field));
 
                 return false;
 
-			} else {
-				return true;
-			}
-		}
+            } else {
+                return true;
+            }
+        }
         return true;
     }
 

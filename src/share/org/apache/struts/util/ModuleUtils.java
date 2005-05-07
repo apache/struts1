@@ -60,59 +60,59 @@ public class ModuleUtils {
         super();
     }
     
-	/**
-	 * Return the current ModuleConfig object stored in request, if it exists,
-	 * null otherwise.
-	 * This method can be used by plugin to retrieve the current module config
-	 * object. If no moduleConfig is found, this means that the request haven't
-	 * hit the server throught the struts servlet. The appropriate module config
-	 * can be set and found with
-	 * <code>{@link RequestUtils#selectModule(HttpServletRequest, ServletContext)} </code>.
-	 * @param request The servlet request we are processing
-	 * @return the ModuleConfig object from request, or null if none is set in
-	 * the request.
-	 */
-	public ModuleConfig getModuleConfig(HttpServletRequest request) {
-		return (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
-	}
+    /**
+     * Return the current ModuleConfig object stored in request, if it exists,
+     * null otherwise.
+     * This method can be used by plugin to retrieve the current module config
+     * object. If no moduleConfig is found, this means that the request haven't
+     * hit the server throught the struts servlet. The appropriate module config
+     * can be set and found with
+     * <code>{@link RequestUtils#selectModule(HttpServletRequest, ServletContext)} </code>.
+     * @param request The servlet request we are processing
+     * @return the ModuleConfig object from request, or null if none is set in
+     * the request.
+     */
+    public ModuleConfig getModuleConfig(HttpServletRequest request) {
+        return (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+    }
     
-	/**
-	 * Return the desired ModuleConfig object stored in context, if it exists,
-	 * null otherwise.
-	 * 
+    /**
+     * Return the desired ModuleConfig object stored in context, if it exists,
+     * null otherwise.
+     * 
      * @param prefix The module prefix of the desired module
      * @param context The ServletContext for this web application
-	 * @return the ModuleConfig object specified, or null if not found in
-	 * the context.
-	 */
-	public ModuleConfig getModuleConfig(String prefix, ServletContext context) {
-		return (ModuleConfig) context.getAttribute(Globals.MODULE_KEY + prefix);
-	}
+     * @return the ModuleConfig object specified, or null if not found in
+     * the context.
+     */
+    public ModuleConfig getModuleConfig(String prefix, ServletContext context) {
+        return (ModuleConfig) context.getAttribute(Globals.MODULE_KEY + prefix);
+    }
     
-	/**
-	 * Return the desired ModuleConfig object stored in context, if it exists,
-	 * otherwise return the current ModuleConfig
-	 * 
-	 * @param prefix The module prefix of the desired module
-	 * @param request The servlet request we are processing
-	 * @param context The ServletContext for this web application
-	 * @return the ModuleConfig object specified, or null if not found in
-	 * the context.
-	 */
-	public ModuleConfig getModuleConfig(String prefix, HttpServletRequest request, ServletContext context) {
-		ModuleConfig moduleConfig = null;
-		
-		
-		if(prefix != null) {
-			//lookup module stored with the given prefix.
-			moduleConfig = this.getModuleConfig(prefix, context);
-		}
-		else {
-			//return the current module if no prefix was supplied.
-			moduleConfig = this.getModuleConfig(request, context);
-		}
-		return moduleConfig;
-	}
+    /**
+     * Return the desired ModuleConfig object stored in context, if it exists,
+     * otherwise return the current ModuleConfig
+     * 
+     * @param prefix The module prefix of the desired module
+     * @param request The servlet request we are processing
+     * @param context The ServletContext for this web application
+     * @return the ModuleConfig object specified, or null if not found in
+     * the context.
+     */
+    public ModuleConfig getModuleConfig(String prefix, HttpServletRequest request, ServletContext context) {
+        ModuleConfig moduleConfig = null;
+        
+        
+        if(prefix != null) {
+            //lookup module stored with the given prefix.
+            moduleConfig = this.getModuleConfig(prefix, context);
+        }
+        else {
+            //return the current module if no prefix was supplied.
+            moduleConfig = this.getModuleConfig(request, context);
+        }
+        return moduleConfig;
+    }
 
     /**
      * Return the ModuleConfig object is it exists, null otherwise.
@@ -124,14 +124,14 @@ public class ModuleUtils {
         HttpServletRequest request,
         ServletContext context) {
 
-		ModuleConfig moduleConfig = this.getModuleConfig(request);
+        ModuleConfig moduleConfig = this.getModuleConfig(request);
 
-		if (moduleConfig == null) {
-			moduleConfig = this.getModuleConfig("", context);
-			request.setAttribute(Globals.MODULE_KEY, moduleConfig);
-		}
+        if (moduleConfig == null) {
+            moduleConfig = this.getModuleConfig("", context);
+            request.setAttribute(Globals.MODULE_KEY, moduleConfig);
+        }
 
-		return moduleConfig;
+        return moduleConfig;
     }
 
 
