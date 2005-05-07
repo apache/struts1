@@ -211,14 +211,14 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     // do we want to add this to the public API?
     public void addActionMessages(String key, ActionMessages msgs) {
 
-        if (msgs == null){
+        if (msgs == null) {
             // bad programmer! *slap*
             return;
         }
 
         // get any existing messages from the request, or make a new one
         ActionMessages requestMessages = (ActionMessages) this.get(key);
-        if (requestMessages == null){
+        if (requestMessages == null) {
             requestMessages = new ActionMessages();
         }
         // add incoming messages

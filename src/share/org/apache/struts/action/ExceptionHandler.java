@@ -115,7 +115,7 @@ public class ExceptionHandler {
      * @param e The Exception to log.
      * @since Struts 1.2
      */
-    protected void logException(Exception e){
+    protected void logException(Exception e) {
 
         log.debug(messages.getMessage("exception.log"), e);
 

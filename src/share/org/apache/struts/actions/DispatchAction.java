@@ -171,7 +171,7 @@ public abstract class DispatchAction extends BaseAction {
 
 
     // Prevent recursive calls
-    if ("execute".equals(name) || "perform".equals(name)){
+    if ("execute".equals(name) || "perform".equals(name)) {
         String message =
             messages.getMessage("dispatch.recursive", mapping.getPath());
 

@@ -50,8 +50,7 @@ import javax.servlet.http.HttpServletRequest;
  * @deprecated Use the Commons FileUpload based multipart handler instead. This
  *             class will be removed after Struts 1.2.
  */
-public class MultipartIterator
-{
+public class MultipartIterator {
 
     /**
      * The default encoding of a text element if none is specified.

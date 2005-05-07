@@ -93,12 +93,12 @@ public class MockPageContext extends PageContext {
      * @param returnBody Determines if getOut() should return a new
      *                   <code>JspWriter</code> or a <code>BodyContent</code>.
      */
-    public MockPageContext(boolean throwIOException, boolean returnBody){
+    public MockPageContext(boolean throwIOException, boolean returnBody) {
         this.throwIOException = throwIOException;
         this.returnBodyContent = returnBody;
     }
-    private void checkAndThrow() throws IOException{
-        if (throwIOException){
+    private void checkAndThrow() throws IOException {
+        if (throwIOException) {
             throw new IOException();
         }
     }

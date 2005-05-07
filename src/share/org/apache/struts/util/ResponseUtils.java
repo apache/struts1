@@ -64,7 +64,7 @@ public class ResponseUtils {
 
         try {
             // get version of encode method with two String args
-            Class[] args = new Class[]{String.class, String.class};
+            Class[] args = new Class[] {String.class, String.class};
             encode = URLEncoder.class.getMethod("encode", args);
         } catch (NoSuchMethodException e) {
             log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
@@ -154,13 +154,13 @@ public class ResponseUtils {
     public static String encodeURL(String url, String enc) {
         try {
 
-            if(enc==null || enc.length()==0){
+            if(enc==null || enc.length()==0) {
                 enc = "UTF-8";
             }
 
             // encode url with new 1.4 method and UTF-8 encoding
             if (encode != null) {
-                return (String) encode.invoke(null, new Object[]{url,  enc});
+                return (String) encode.invoke(null, new Object[] {url,  enc});
             }
 
         } catch (IllegalAccessException e) {

@@ -635,7 +635,7 @@ public class ActionServlet extends HttpServlet {
      * <p>Initialize the factory used to create the module configuration.</p>
      * @since Struts 1.2
      */
-    protected void initModuleConfigFactory(){
+    protected void initModuleConfigFactory() {
         String configFactory = getServletConfig().getInitParameter("configFactory");
         if (configFactory != null) {
             ModuleConfigFactory.setFactoryClass(configFactory);

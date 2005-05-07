@@ -52,18 +52,18 @@ public class MockFormBean extends ActionForm {
         this(null);
     }
 
-    public MockFormBean(boolean throwException, boolean returnNulls){
+    public MockFormBean(boolean throwException, boolean returnNulls) {
         super();
         this.throwException = throwException;
         this.returnNulls    = returnNulls;
     }
 
-    public MockFormBean(boolean throwException){
+    public MockFormBean(boolean throwException) {
         this.throwException = throwException;
     }
 
     public MockFormBean(boolean throwException,
-            boolean returnNulls, String defaultValue){
+            boolean returnNulls, String defaultValue) {
         this(throwException, returnNulls);
         this.defaultValue = defaultValue;
 
@@ -74,14 +74,14 @@ public class MockFormBean extends ActionForm {
 
 
     public MockFormBean(boolean throwException,
-            boolean returnNulls, String defaultValue, int arrayCount){
+            boolean returnNulls, String defaultValue, int arrayCount) {
         this(throwException, returnNulls, defaultValue);
         this.arrayCount = arrayCount;
 
     }
 
     public MockFormBean(boolean throwException,
-            boolean returnNulls, Double defaultDouble){
+            boolean returnNulls, Double defaultDouble) {
         this(throwException, returnNulls);
         this.defaultDouble = defaultDouble;
 
@@ -89,17 +89,17 @@ public class MockFormBean extends ActionForm {
 
     // ------------------- public methods
 
-    public String getJustThrowAnException() throws Exception{
+    public String getJustThrowAnException() throws Exception {
             throw new Exception();
     }
 
-    public Object getThrowIllegalAccessException() throws Exception{
+    public Object getThrowIllegalAccessException() throws Exception {
         if (true)
             throw new IllegalAccessException();
         return null;
     }
 
-    public String getStringValue() throws Exception{
+    public String getStringValue() throws Exception {
         if (throwException)
             throw new Exception();
         if (returnNulls)
@@ -107,7 +107,7 @@ public class MockFormBean extends ActionForm {
         return defaultValue;
     }
 
-    public String[] getStringArray() throws Exception{
+    public String[] getStringArray() throws Exception {
         if (throwException)
             throw new Exception();
         if (returnNulls)
@@ -120,7 +120,7 @@ public class MockFormBean extends ActionForm {
         return rtn;
     }
 
-    public Double getDoubleValue() throws Exception{
+    public Double getDoubleValue() throws Exception {
         if (throwException)
             throw new Exception();
         if (returnNulls)
@@ -147,8 +147,8 @@ public class MockFormBean extends ActionForm {
 
     public Map getMapPropertyArrayValues() {
         HashMap map = new HashMap();
-        map.put("foo1", new String[]{"bar1", "baz1"});
-        map.put("foo2", new String[]{"bar2", "baz2"});
+        map.put("foo1", new String[] {"bar1", "baz1"});
+        map.put("foo2", new String[] {"bar2", "baz2"});
         return (map);
     }
 

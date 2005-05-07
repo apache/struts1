@@ -30,8 +30,7 @@ import java.io.FileNotFoundException;
  * the only interface or class in upload package which is typically referenced
  * directly by a Struts application.
  */
-public interface FormFile
-{
+public interface FormFile {
     /**
      * Returns the content type for this file.
      *

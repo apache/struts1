@@ -141,7 +141,7 @@ public class ServletActionContext extends WebActionContext {
             if (messages == null) return;
 
             ActionMessages requestMessages = getMessages();
-            if (requestMessages == null){
+            if (requestMessages == null) {
                     requestMessages = new ActionMessages();
             }
             requestMessages.add(messages);
@@ -154,7 +154,7 @@ public class ServletActionContext extends WebActionContext {
             if (errors == null) return;
 
             ActionMessages requestErrors = getErrors();
-            if (requestErrors == null){
+            if (requestErrors == null) {
                     requestErrors = new ActionMessages();
             }
             requestErrors.add(errors);

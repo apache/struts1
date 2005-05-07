@@ -30,8 +30,7 @@ import org.apache.struts.action.ActionMapping;
   * Providers must provide a no-argument constructor for initialization.
   *
   */
-public interface MultipartRequestHandler
-{
+public interface MultipartRequestHandler {
     /**
      * This is the ServletRequest attribute that should be set when a multipart request is being read
      * and the maximum length is exceeded. The value is a Boolean. If the maximum length isn't exceeded,

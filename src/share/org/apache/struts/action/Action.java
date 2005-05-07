@@ -215,14 +215,14 @@ public class Action {
         HttpServletRequest request,
         ActionMessages messages) {
 
-        if (messages == null){
+        if (messages == null) {
             //  bad programmer! *slap*
             return;
         }
 
         // get any existing messages from the request, or make a new one
         ActionMessages requestMessages = (ActionMessages) request.getAttribute(Globals.MESSAGE_KEY);
-        if (requestMessages == null){
+        if (requestMessages == null) {
             requestMessages = new ActionMessages();
         }
         // add incoming messages
@@ -253,14 +253,14 @@ public class Action {
         HttpServletRequest request,
         ActionMessages errors) {
 
-        if (errors == null){
+        if (errors == null) {
             //  bad programmer! *slap*
             return;
         }
 
         // get any existing errors from the request, or make a new one
         ActionMessages requestErrors = (ActionMessages)request.getAttribute(Globals.ERROR_KEY);
-        if (requestErrors == null){
+        if (requestErrors == null) {
             requestErrors = new ActionMessages();
         }
         // add incoming errors

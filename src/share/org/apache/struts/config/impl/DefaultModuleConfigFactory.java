@@ -31,7 +31,7 @@ import org.apache.struts.config.ModuleConfigFactory;
  *
  * @version $Rev$ $Date$
  */
-public class DefaultModuleConfigFactory extends ModuleConfigFactory implements Serializable{
+public class DefaultModuleConfigFactory extends ModuleConfigFactory implements Serializable {
     // --------------------------------------------------------- Public Methods
 
     /**

@@ -30,8 +30,7 @@ import java.io.File;
  * @deprecated Use the Commons FileUpload based multipart handler instead. This
  *             class will be removed after Struts 1.2.
  */
-public class MultipartBoundaryInputStream extends InputStream
-{
+public class MultipartBoundaryInputStream extends InputStream {
     private static final byte NEWLINE_BYTE = ((byte) '\n');
 
     private static final byte CARRIAGE_RETURN = ((byte) '\r');

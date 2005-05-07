@@ -31,7 +31,7 @@ import org.apache.struts.util.MessageResources;
  * @since Struts 1.3
  */
 
-public abstract class BaseAction extends Action{
+public abstract class BaseAction extends Action {
 
     /**
      * The message resources for this package.

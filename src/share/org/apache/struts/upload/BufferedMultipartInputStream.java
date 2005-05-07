@@ -272,7 +272,7 @@ public class BufferedMultipartInputStream extends InputStream {
             if (length == 0) {
                 contentLengthMet = true;
             }
-            if ((maxSize > -1) && (length > 0)){
+            if ((maxSize > -1) && (length > 0)) {
                 length = Math.min(length, ((int) maxSize - totalLength));
                 if (length == 0) {
                     maxLengthMet = true;

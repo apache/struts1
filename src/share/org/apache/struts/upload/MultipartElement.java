@@ -31,8 +31,7 @@ import java.io.File;
  * @deprecated Use the Commons FileUpload based multipart handler instead. This
  *             class will be removed after Struts 1.2.
  */
-public class MultipartElement
-{
+public class MultipartElement {
     /**
      * The content type of this element.
      */

@@ -199,7 +199,7 @@ public class ActionMessages implements Serializable {
      *
      * @since Struts 1.1
      */
-    public boolean isEmpty(){
+    public boolean isEmpty() {
 
         return (messages.isEmpty());
 

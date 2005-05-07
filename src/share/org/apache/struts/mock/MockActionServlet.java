@@ -43,8 +43,7 @@ import org.apache.struts.action.ActionServlet;
  *
  * @version $Rev$ $Date$
  */
-public class MockActionServlet extends ActionServlet
-{
+public class MockActionServlet extends ActionServlet {
   protected ServletContext servletContext;
   protected ServletConfig servletConfig;
 
