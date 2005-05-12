@@ -25,6 +25,7 @@ import java.util.HashMap;
 
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ActionConfigMatcher;
+import org.apache.struts.config.BaseConfig;
 import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.config.FormBeanConfig;
@@ -45,7 +46,7 @@ import org.apache.struts.config.PlugInConfig;
  * @version $Rev$ $Date$
  * @since Struts 1.1
  */
-public class ModuleConfigImpl implements Serializable, ModuleConfig {
+public class ModuleConfigImpl extends BaseConfig implements Serializable, ModuleConfig {
 
     /**
      * Construct an ModuleConfigImpl object according to the specified
@@ -97,9 +98,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      * @param cc   The controller configuration object for this module.
      */
     public void setControllerConfig(ControllerConfig cc) {
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         this.controllerConfig = cc;
     }
 
@@ -120,9 +119,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      * default configuration for this web module.
      */
     public void setPrefix(String prefix) {
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         this.prefix = prefix;
     }
 
@@ -173,9 +170,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      */
     public void addActionConfig(ActionConfig config) {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         config.setModuleConfig(this);
         actionConfigs.put(config.getPath(), config);
         actionConfigList.add(config);
@@ -193,9 +188,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      */
     public void addExceptionConfig(ExceptionConfig config) {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         exceptions.put(config.getType(), config);
 
     }
@@ -211,9 +204,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      */
     public void addFormBeanConfig(FormBeanConfig config) {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         formBeans.put(config.getName(), config);
 
     }
@@ -246,9 +237,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      */
     public void addForwardConfig(ForwardConfig config) {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         forwards.put(config.getName(), config);
 
     }
@@ -264,9 +253,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      */
     public void addMessageResourcesConfig(MessageResourcesConfig config) {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         messageResources.put(config.getKey(), config);
 
     }
@@ -279,9 +266,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      */
     public void addPlugInConfig(PlugInConfig plugInConfig) {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         plugIns.add(plugInConfig);
 
     }
@@ -430,7 +415,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      */
     public void freeze() {
 
-        this.configured = true;
+        super.freeze();
 
         ActionConfig[] aconfigs = findActionConfigs();
         for (int i = 0; i < aconfigs.length; i++) {
@@ -476,9 +461,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      */
     public void removeActionConfig(ActionConfig config) {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         config.setModuleConfig(null);
         actionConfigs.remove(config.getPath());
         actionConfigList.remove(config);
@@ -495,9 +478,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      */
     public void removeExceptionConfig(ExceptionConfig config) {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         exceptions.remove(config.getType());
 
     }
@@ -512,9 +493,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      */
     public void removeFormBeanConfig(FormBeanConfig config) {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         formBeans.remove(config.getName());
 
     }
@@ -529,9 +508,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      */
     public void removeForwardConfig(ForwardConfig config) {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         forwards.remove(config.getName());
 
     }
@@ -546,9 +523,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      */
     public void removeMessageResourcesConfig(MessageResourcesConfig config) {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         messageResources.remove(config.getKey());
 
     }
@@ -598,13 +573,6 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      * if any, in the order they were declared and configured.
      */
     protected ArrayList plugIns = null;
-
-    /**
-     * Has this module been completely configured yet.  Once this flag
-     * has been set, any attempt to modify the configuration will return an
-     * IllegalStateException.
-     */
-    protected boolean configured = false;
 
     /**
      * The controller configuration object for this module.

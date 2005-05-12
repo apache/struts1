@@ -19,10 +19,6 @@
 
 package org.apache.struts.config;
 
-
-import java.io.Serializable;
-
-
 /**
  * <p>A JavaBean representing the configuration information of a
  * <code>&lt;forward&gt;</code> element from a Struts
@@ -32,7 +28,7 @@ import java.io.Serializable;
  * @since Struts 1.1
  */
 
-public class ForwardConfig implements Serializable {
+public class ForwardConfig extends BaseConfig {
 
 
     // ----------------------------------------------------------- Constructors
@@ -103,16 +99,6 @@ public class ForwardConfig implements Serializable {
 
     }
 
-
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * Has this component been completely configured?
-     */
-    protected boolean configured = false;
-
-
     // ------------------------------------------------------------- Properties
 
 
@@ -135,9 +121,7 @@ public class ForwardConfig implements Serializable {
      * @deprecated Use module property instead; will be removed in a release following 1.2.0.
      */
     public void setContextRelative(boolean contextRelative) {
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         this.contextRelative = contextRelative;
     }
 
@@ -531,17 +515,6 @@ public class ForwardConfig implements Serializable {
 
         extensionProcessed = true;
     }
-
-
-    /**
-     * Freeze the configuration of this component.
-     */
-    public void freeze() {
-
-        configured = true;
-
-    }
-
 
     /**
      * Return a String representation of this object.

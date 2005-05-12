@@ -657,18 +657,18 @@ The "form-bean" element describes a particular form bean, which is a
      can be passed whatever other properties may be required to configure the
      object without changing how the struts-config is parsed.
 
-    Within the <action> element, an alternate syntax is supported.  By using
+    Since Struts 1.3, an alternate syntax is supported.  By using
     the "key" attribute instead of the "property" attribute, you can set 
-    arbitrary string properties on the ActionConfig object which is populated
-    based on the <action> element.    
+    arbitrary string properties on the Config object which is populated
+    based on the containing element.   NOTE: the "key" attribute is NOT
+	supported for <set-property> inside a <plug-in> element.
 
      property        Name of the JavaBeans property whose setter method
                      will be called. Exactly one of
                      "property" or "key" must be specified.
 
-     key             In <action> only, the key which will be used to store
-                     the specified value in the ActionConfig object associated
-                     with this path.  Exactly one of
+     key             Where supported, the key which will be used to store
+                     the specified value in the given config object.  Exactly one of
                      "property" or "key" must be specified.
 
      value           String representation of the value to which this

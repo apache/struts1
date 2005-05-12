@@ -19,10 +19,6 @@
 
 package org.apache.struts.config;
 
-
-import java.io.Serializable;
-
-
 /**
  * <p>A JavaBean representing the configuration information of a
  * <code>&lt;controller&gt;</code> element in a Struts
@@ -32,16 +28,8 @@ import java.io.Serializable;
  * @since Struts 1.1
  */
 
-public class ControllerConfig implements Serializable {
+public class ControllerConfig extends BaseConfig {
 
-
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * Has this component been completely configured?
-     */
-    protected boolean configured = false;
 
 
     // ------------------------------------------------------------- Properties
@@ -324,17 +312,6 @@ public class ControllerConfig implements Serializable {
 
 
     // --------------------------------------------------------- Public Methods
-
-
-    /**
-     * Freeze the configuration of this component.
-     */
-    public void freeze() {
-
-        configured = true;
-
-    }
-
 
     /**
      * Return a String representation of this object.

@@ -29,7 +29,12 @@ import java.util.Map;
  * <p>A JavaBean representing the configuration information of a
  * <code>&lt;plug-in&gt;</code> element in a Struts
  * configuration file.</p>
- *
+ * <p>Note that this class does not extend <code>BaseConfig</code> because it is more "internal"
+ * than the other classes which do, and because this class has an existing "properties" object
+ * which collides with the one in <code>BaseConfig</code>.  Also, since one always writes a concrete
+ * PlugIn implementation, there seems to be less call for an arbitrary property map; one can simply
+ * use bean properties instead.</p>
+ * 
  * @version $Rev$ $Date$
  * @since Struts 1.1
  */

@@ -20,7 +20,6 @@
 package org.apache.struts.config;
 
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.lang.reflect.InvocationTargetException;
 
@@ -49,16 +48,11 @@ import org.apache.struts.util.RequestUtils;
  * @since Struts 1.1
  */
 
-public class FormBeanConfig implements Serializable {
+public class FormBeanConfig extends BaseConfig {
 
     private static final Log log = LogFactory.getLog(FormBeanConfig.class);
     // ----------------------------------------------------- Instance Variables
 
-
-    /**
-     * Has this component been completely configured?
-     */
-    protected boolean configured = false;
 
 
     /**
@@ -116,9 +110,7 @@ public class FormBeanConfig implements Serializable {
      * is now computed automatically in <code>setType()</code>
      */
     public void setDynamic(boolean dynamic) {
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         ; // No action required
     }
 
@@ -134,9 +126,7 @@ public class FormBeanConfig implements Serializable {
     }
 
     public void setExtends(String extend) {
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         this.inherit = extend;
     }
 
@@ -164,9 +154,7 @@ public class FormBeanConfig implements Serializable {
     }
 
     public void setName(String name) {
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         this.name = name;
     }
 
@@ -182,9 +170,7 @@ public class FormBeanConfig implements Serializable {
     }
 
     public void setType(String type) {
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         this.type = type;
         Class dynaBeanClass = DynaActionForm.class;
         Class formBeanClass = formBeanClass();
@@ -267,9 +253,7 @@ public class FormBeanConfig implements Serializable {
             InstantiationException,
             InvocationTargetException {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
 
         // Inherit form property configs
         FormPropertyConfig[] baseFpcs = config.findFormPropertyConfigs();
@@ -429,9 +413,7 @@ public class FormBeanConfig implements Serializable {
      */
     public void addFormPropertyConfig(FormPropertyConfig config) {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
         if (formProperties.containsKey(config.getName())) {
             throw new IllegalArgumentException("Property " +
                                                config.getName() +
@@ -473,7 +455,7 @@ public class FormBeanConfig implements Serializable {
      */
     public void freeze() {
 
-        configured = true;
+        super.freeze();
 
         FormPropertyConfig[] fpconfigs = findFormPropertyConfigs();
         for (int i = 0; i < fpconfigs.length; i++) {
@@ -514,9 +496,7 @@ public class FormBeanConfig implements Serializable {
             InstantiationException,
             InvocationTargetException {
 
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
+        throwIfConfigured();
 
         // Inherit values that have not been overridden
         if (getName() == null) {

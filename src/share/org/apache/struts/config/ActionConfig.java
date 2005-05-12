@@ -21,7 +21,6 @@ package org.apache.struts.config;
 import org.apache.struts.util.RequestUtils;
 import org.apache.commons.beanutils.BeanUtils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
@@ -37,16 +36,10 @@ import java.lang.reflect.InvocationTargetException;
  * @version $Rev$ $Date$
  * @since Struts 1.1
  */
-public class ActionConfig implements Serializable {
+public class ActionConfig extends BaseConfig {
 
 
     // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * Indicates if configuration of this component been completed.
-     */
-    protected boolean configured = false;
 
 
     /**
@@ -61,12 +54,6 @@ public class ActionConfig implements Serializable {
      * keyed by the <code>name</code> property.
      */
     protected HashMap forwards = new HashMap();
-
-    /**
-     * A map of arbitrary properties configured for this action mapping.
-     * @since Struts 1.3
-     */
-    protected Properties properties = new Properties();
 
 
     // ------------------------------------------------------------- Properties
@@ -800,13 +787,13 @@ public class ActionConfig implements Serializable {
         }
 
         // Inherit forward properties
-        Properties baseProperties = baseConfig.properties;
+        Properties baseProperties = baseConfig.getProperties();
         Enumeration keys = baseProperties.propertyNames();
         while (keys.hasMoreElements()) {
             String key = (String) keys.nextElement();
 
             // Check if we have this property before copying it
-            String value = properties.getProperty(key);
+            String value = this.getProperty(key);
             if (value == null) {
                 value = baseProperties.getProperty(key);
                 setProperty(key, value);
@@ -855,56 +842,6 @@ public class ActionConfig implements Serializable {
 
     }
 
-    /**
-     * <p>Set an arbitary key/value pair which can be retrieved by the action
-     * executed for this mapping.  This facility should eliminate many use cases
-     * for subclassing <code>ActionConfig</code> or <code>ActionMapping</code> by
-     * providing more than just the single <code>parameter</code> property for passing
-     * arbitrary configuration information into an action.</p>
-     *
-     * <p>This method must not be called after configuration is complete, or an
-     * <code>IllegalStateException</code> will be thrown.  Rather than calling it in Java code,
-     * it is used by editing the <code>struts-config</code> file.  Specifically, these values can
-     * be set by using a <code>&lt;set-property&gt;</code> element nested within the <code>&lt;action&gt;</code>
-     * element.  The element should use the <code>key</code> attribute, not the <code>name</code>
-     * attribute: the <code>name</code> attribute is for setting bean properties on a custom subclass
-     * of <code>ActionConfig</code>.
-     * </p>
-     *
-     * <p><b>Example</b>
-     * <code><pre>
-     * &lt;action path="/example" type="com.example.MyAction"&gt;
-     *    &lt;set-property key="foo" property="bar" /&gt;
-     * &lt;/action&gt;
-     * </pre></code>
-     * </p>
-     *
-     * @param key the key by which this value will be retrieved
-     * @param value the value which should be returned when <code>getProperty(key)</code> is
-     * called with the corresponding <code>key</code>.
-     * @since Struts 1.3
-     * @exception IllegalStateException if this module configuration
-     *  has been frozen
-     */
-    public void setProperty(String key, String value) {
-
-        if (configured) {
-            throw new IllegalStateException("Configuration is frozen");
-        }
-        properties.setProperty(key,value);
-
-    }
-
-    /**
-     * Return the property-value for the specified key, if any;
-     * otherwise return <code>null</code>.
-     *
-     * @param key a key specified in the <code>struts-config</code> file.
-     * @since Struts 1.3
-     */
-    public String getProperty(String key) {
-        return properties.getProperty(key);
-    }
 
     /**
      * Return the exception configuration for the specified type, if any;
@@ -1006,7 +943,7 @@ public class ActionConfig implements Serializable {
      */
     public void freeze() {
 
-        configured = true;
+        super.freeze();
 
         ExceptionConfig[] econfigs = findExceptionConfigs();
         for (int i = 0; i < econfigs.length; i++) {

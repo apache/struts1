@@ -19,10 +19,6 @@
 
 package org.apache.struts.config;
 
-
-import java.io.Serializable;
-
-
 /**
  * <p>A JavaBean representing the configuration information of an
  * <code>&lt;exception&gt;</code> element from a Struts
@@ -32,17 +28,7 @@ import java.io.Serializable;
  * @since Struts 1.1
  */
 
-public class ExceptionConfig implements Serializable {
-
-
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * Has this component been completely configured?
-     */
-    protected boolean configured = false;
-
+public class ExceptionConfig extends BaseConfig {
 
     // ------------------------------------------------------------- Properties
 
@@ -409,17 +395,6 @@ public class ExceptionConfig implements Serializable {
 
         extensionProcessed = true;
     }
-
-
-    /**
-     * Freeze the configuration of this component.
-     */
-    public void freeze() {
-
-        configured = true;
-
-    }
-
 
     /**
      * Return a String representation of this object.

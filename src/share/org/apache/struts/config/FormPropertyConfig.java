@@ -20,7 +20,6 @@
 package org.apache.struts.config;
 
 
-import java.io.Serializable;
 import java.lang.reflect.Array;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.logging.Log;
@@ -36,7 +35,7 @@ import org.apache.commons.logging.LogFactory;
  * @since Struts 1.1
  */
 
-public class FormPropertyConfig implements Serializable {
+public class FormPropertyConfig extends BaseConfig {
 
     /**
      * The logging instance
@@ -95,11 +94,6 @@ public class FormPropertyConfig implements Serializable {
 
     // ----------------------------------------------------- Instance Variables
 
-
-    /**
-     * Has this component been completely configured?
-     */
-    protected boolean configured = false;
 
 
     // ------------------------------------------------------------- Properties
@@ -358,17 +352,6 @@ public class FormPropertyConfig implements Serializable {
         }
 
     }
-
-
-    /**
-     * Freeze the configuration of this component.
-     */
-    public void freeze() {
-
-        configured = true;
-
-    }
-
 
     /**
      * Return a String representation of this object.

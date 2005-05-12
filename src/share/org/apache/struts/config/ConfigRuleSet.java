@@ -72,7 +72,7 @@ public class ConfigRuleSet extends RuleSetBase {
 
         digester.addRule
             ("struts-config/action-mappings/action/set-property",
-             new ActionConfigSetPropertyRule());
+             new BaseConfigSetPropertyRule());
 
         digester.addObjectCreate
             ("struts-config/action-mappings/action/exception",
@@ -85,9 +85,9 @@ public class ConfigRuleSet extends RuleSetBase {
              "addExceptionConfig",
              "org.apache.struts.config.ExceptionConfig");
 
-        digester.addSetProperty
-            ("struts-config/action-mappings/action/exception/set-property",
-             "property", "value");
+        digester.addRule
+        ("struts-config/action-mappings/action/exception/set-property",
+         new BaseConfigSetPropertyRule());
 
         digester.addFactoryCreate
             ("struts-config/action-mappings/action/forward",
@@ -99,9 +99,9 @@ public class ConfigRuleSet extends RuleSetBase {
              "addForwardConfig",
              "org.apache.struts.config.ForwardConfig");
 
-        digester.addSetProperty
+        digester.addRule
             ("struts-config/action-mappings/action/forward/set-property",
-             "property", "value");
+             new BaseConfigSetPropertyRule());
 
         digester.addObjectCreate
             ("struts-config/controller",
@@ -114,9 +114,9 @@ public class ConfigRuleSet extends RuleSetBase {
              "setControllerConfig",
              "org.apache.struts.config.ControllerConfig");
 
-        digester.addSetProperty
-            ("struts-config/controller/set-property",
-             "property", "value");
+        digester.addRule
+        ("struts-config/controller/forward/set-property",
+         new BaseConfigSetPropertyRule());
 
         digester.addRule
             ("struts-config/form-beans",
@@ -143,13 +143,13 @@ public class ConfigRuleSet extends RuleSetBase {
              "addFormPropertyConfig",
              "org.apache.struts.config.FormPropertyConfig");
 
-        digester.addSetProperty
-            ("struts-config/form-beans/form-bean/form-property/set-property",
-             "property", "value");
+        digester.addRule
+        ("struts-config/form-beans/form-bean/form-property/set-property",
+         new BaseConfigSetPropertyRule());
 
-        digester.addSetProperty
+        digester.addRule
             ("struts-config/form-beans/form-bean/set-property",
-             "property", "value");
+             new BaseConfigSetPropertyRule());
 
         digester.addObjectCreate
             ("struts-config/global-exceptions/exception",
@@ -162,9 +162,10 @@ public class ConfigRuleSet extends RuleSetBase {
              "addExceptionConfig",
              "org.apache.struts.config.ExceptionConfig");
 
-        digester.addSetProperty
+        digester.addRule
             ("struts-config/global-exceptions/exception/set-property",
-             "property", "value");
+             new BaseConfigSetPropertyRule());
+
 
         digester.addRule
             ("struts-config/global-forwards",
@@ -180,9 +181,9 @@ public class ConfigRuleSet extends RuleSetBase {
              "addForwardConfig",
              "org.apache.struts.config.ForwardConfig");
 
-        digester.addSetProperty
-            ("struts-config/global-forwards/forward/set-property",
-             "property", "value");
+        digester.addRule
+        ("struts-config/global-forwards/forward/set-property",
+         new BaseConfigSetPropertyRule());
 
         digester.addObjectCreate
             ("struts-config/message-resources",
@@ -195,9 +196,9 @@ public class ConfigRuleSet extends RuleSetBase {
              "addMessageResourcesConfig",
              "org.apache.struts.config.MessageResourcesConfig");
 
-        digester.addSetProperty
-            ("struts-config/message-resources/set-property",
-             "property", "value");
+        digester.addRule
+        ("struts-config/message-resources/set-property",
+         new BaseConfigSetPropertyRule());
 
         digester.addObjectCreate
             ("struts-config/plug-in",
@@ -212,7 +213,7 @@ public class ConfigRuleSet extends RuleSetBase {
         digester.addRule
             ("struts-config/plug-in/set-property",
              new PlugInSetPropertyRule());
-
+        // PluginConfig does not extend BaseConfig, at least for now.
     }
 
 }
@@ -269,9 +270,9 @@ final class SetActionFormBeanClassRule extends Rule {
  * In that case, the element being processed is assumed to have attributes
  * "property" and "value".
  */
-final class ActionConfigSetPropertyRule extends SetPropertyRule {
+final class BaseConfigSetPropertyRule extends SetPropertyRule {
 
-    public ActionConfigSetPropertyRule() {
+    public BaseConfigSetPropertyRule() {
         super("property", "value");
     }
 
@@ -283,13 +284,24 @@ final class ActionConfigSetPropertyRule extends SetPropertyRule {
         }
 
         if (attributes.getIndex("property") != -1) {
-            throw new IllegalArgumentException("<set-property> inside <action> accepts only one of 'key' or 'property' attributes.");
+            throw new IllegalArgumentException("<set-property> accepts only one of 'key' or 'property' attributes.");
         }
 
-        ActionConfig actionConfig = (ActionConfig) digester.peek();
-        actionConfig.setProperty(attributes.getValue("key"),
-                                 attributes.getValue("value"));
-
+        Object topOfStack = digester.peek();
+        if (topOfStack instanceof BaseConfig) {
+            BaseConfig config = (BaseConfig) topOfStack;
+            config.setProperty(attributes.getValue("key"),
+                                     attributes.getValue("value"));
+        } else {
+            throw new IllegalArgumentException(
+                    "'key' attribute of <set-property> only applicable to subclasses of BaseConfig; " 
+                    + "object on top of stack is " + topOfStack
+                    + " [key: "
+                    + attributes.getValue("key") 
+                    + ", value: "
+                    + attributes.getValue("value")
+                    + "]");
+        }
 
     }
 

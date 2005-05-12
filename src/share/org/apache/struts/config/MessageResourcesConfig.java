@@ -33,17 +33,7 @@ import org.apache.struts.Globals;
  * @since Struts 1.1
  */
 
-public class MessageResourcesConfig implements Serializable {
-
-
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * Has this component been completely configured?
-     */
-    protected boolean configured = false;
-
+public class MessageResourcesConfig extends BaseConfig {
 
     // ------------------------------------------------------------- Properties
 
@@ -121,17 +111,6 @@ public class MessageResourcesConfig implements Serializable {
 
 
     // --------------------------------------------------------- Public Methods
-
-
-    /**
-     * Freeze the configuration of this component.
-     */
-    public void freeze() {
-
-        configured = true;
-
-    }
-
 
     /**
      * Return a String representation of this object.
