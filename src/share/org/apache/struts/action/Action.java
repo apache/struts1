@@ -35,11 +35,11 @@ import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.TokenProcessor;
 
 /**
- * <p>An <strong>Action</strong> is an adapter between the contents of an incoming
- * HTTP request and the corresponding business logic that should be executed to
- * process this request. The controller (RequestProcessor) will select an
- * appropriate Action for each request, create an instance (if necessary),
- * and call the <code>execute</code> method.</p>
+ * <p>An <strong>Action</strong> is an adapter between the contents of an
+ * incoming HTTP request and the corresponding business logic that should be
+ * executed to process this request. The controller (RequestProcessor) will
+ * select an appropriate Action for each request, create an instance (if
+ * necessary), and call the <code>execute</code> method.</p>
  *
  * <p>Actions must be programmed in a thread-safe manner, because the
  * controller will share the same instance for multiple simultaneous
@@ -68,11 +68,13 @@ import org.apache.struts.util.TokenProcessor;
 public class Action {
 
     /**
-     * <p>An instance of <code>TokenProcessor</code> to use for token functionality.</p>
+     * <p>An instance of <code>TokenProcessor</code> to use for token
+     * functionality.</p>
      */
     private static TokenProcessor token = TokenProcessor.getInstance();
-    // :TODO: We can make this variable protected and remove Action's token methods
-    // or leave it private and allow the token methods to delegate their calls.
+    // :TODO: We can make this variable protected and remove Action's token
+    // methods or leave it private and allow the token methods to delegate
+    // their calls.
 
 
     // ----------------------------------------------------- Instance Variables
@@ -99,6 +101,8 @@ public class Action {
 
     /**
      * <p>Return the servlet instance to which we are attached.</p>
+     *
+     * @return The servlet instance to which we are attached.
      */
     public ActionServlet getServlet() {
 
@@ -142,6 +146,8 @@ public class Action {
      * @param form The optional ActionForm bean for this request (if any)
      * @param request The non-HTTP request we are processing
      * @param response The non-HTTP response we are creating
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
      *
      * @exception Exception if the application business logic throws
      *  an exception.
@@ -180,6 +186,8 @@ public class Action {
      * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
      *
      * @exception Exception if the application business logic throws
      *  an exception
@@ -221,7 +229,8 @@ public class Action {
         }
 
         // get any existing messages from the request, or make a new one
-        ActionMessages requestMessages = (ActionMessages) request.getAttribute(Globals.MESSAGE_KEY);
+        ActionMessages requestMessages =
+                (ActionMessages) request.getAttribute(Globals.MESSAGE_KEY);
         if (requestMessages == null) {
             requestMessages = new ActionMessages();
         }
@@ -259,7 +268,8 @@ public class Action {
         }
 
         // get any existing errors from the request, or make a new one
-        ActionMessages requestErrors = (ActionMessages)request.getAttribute(Globals.ERROR_KEY);
+        ActionMessages requestErrors =
+                (ActionMessages) request.getAttribute(Globals.ERROR_KEY);
         if (requestErrors == null) {
             requestErrors = new ActionMessages();
         }
@@ -282,6 +292,7 @@ public class Action {
      * request for a particular transaction.</p>
      *
      * @param request The request we are processing
+     * @return The new transaction token.
      */
     protected String generateToken(HttpServletRequest request) {
         return token.generateToken(request);
@@ -289,11 +300,14 @@ public class Action {
 
 
     /**
-     * Retrieves any existing errors placed in the request by previous actions.  This method could be called instead
-     * of creating a <code>new ActionMessages()<code> at the beginning of an <code>Action<code>
-     * This will prevent saveErrors() from wiping out any existing Errors
+     * Retrieves any existing errors placed in the request by previous actions.
+     * This method could be called instead of creating a
+     * <code>new ActionMessages()</code> at the beginning of an
+     * <code>Action</code>. This will prevent saveErrors() from wiping out any
+     * existing Errors
      *
-     * @return the Errors that already exist in the request, or a new ActionMessages object if empty.
+     * @return the Errors that already exist in the request, or a new
+     *         ActionMessages object if empty.
      * @param request The servlet request we are processing
      * @since Struts 1.2.1
      */
@@ -311,6 +325,7 @@ public class Action {
      * <p>Return the user's currently selected Locale.</p>
      *
      * @param request The request we are processing
+     * @return The user's currently selected Locale.
      */
     protected Locale getLocale(HttpServletRequest request) {
 
@@ -320,11 +335,14 @@ public class Action {
 
 
     /**
-     * Retrieves any existing messages placed in the request by previous actions.  This method could be called instead
-     * of creating a <code>new ActionMessages()<code> at the beginning of an <code>Action<code>
-     * This will prevent saveMessages() from wiping out any existing Messages
+     * Retrieves any existing messages placed in the request by previous
+     * actions. This method could be called instead of creating a
+     * <code>new ActionMessages()</code> at the beginning of an
+     * <code>Action</code> This will prevent saveMessages() from wiping out any
+     * existing Messages
      *
-     * @return the Messages that already exist in the request, or a new ActionMessages object if empty.
+     * @return the Messages that already exist in the request, or a new
+     *         ActionMessages object if empty.
      * @param request The servlet request we are processing
      * @since Struts 1.2.1
      */
@@ -342,6 +360,7 @@ public class Action {
      * <p>Return the default message resources for the current module.</p>
      *
      * @param request The servlet request we are processing
+     * @return The default message resources for the current module.
      * @since Struts 1.1
      */
     protected MessageResources getResources(HttpServletRequest request) {
@@ -356,8 +375,9 @@ public class Action {
      *
      * @param request The servlet request we are processing
      * @param key The key specified in the
-     *  <code>&lt;message-resources&gt;</code> element for the
-     *  requested bundle
+     *            <code>&lt;message-resources&gt;</code> element for the
+     *            requested bundle.
+     * @return The specified message resource for the current module.
      *
      * @since Struts 1.1
      */
@@ -387,6 +407,8 @@ public class Action {
      * will have been skipped by the controller servlet.</p>
      *
      * @param request The servlet request we are processing
+     * @return <code>true</code> if the cancel button was pressed;
+     *         <code>false</code> otherwise.
      * @see org.apache.struts.taglib.html.CancelTag
      */
     protected boolean isCancelled(HttpServletRequest request) {
@@ -410,6 +432,8 @@ public class Action {
      * </ul>
      *
      * @param request The servlet request we are processing
+     * @return <code>true</code> if there is a transaction token and it is
+     *         valid; <code>false</code> otherwise.
      */
     protected boolean isTokenValid(HttpServletRequest request) {
 
@@ -433,6 +457,8 @@ public class Action {
      *
      * @param request The servlet request we are processing
      * @param reset Should we reset the token after checking it?
+     * @return <code>true</code> if there is a transaction token and it is
+     *         valid; <code>false</code> otherwise.
      */
     protected boolean isTokenValid(HttpServletRequest request, boolean reset) {
 
@@ -468,7 +494,7 @@ public class Action {
      */
     protected void saveErrors(HttpServletRequest request, ActionErrors errors) {
 
-        this.saveErrors(request,(ActionMessages)errors);
+        this.saveErrors(request, (ActionMessages) errors);
         // :TODO: Remove after Struts 1.2.
 
     }
@@ -484,7 +510,8 @@ public class Action {
      * @param errors Error messages object
      * @since Struts 1.2
      */
-    protected void saveErrors(HttpServletRequest request, ActionMessages errors) {
+    protected void saveErrors(HttpServletRequest request,
+            ActionMessages errors) {
 
         // Remove any error messages attribute if none are required
         if ((errors == null) || errors.isEmpty()) {

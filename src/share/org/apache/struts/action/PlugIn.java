@@ -29,17 +29,18 @@ import org.apache.struts.config.ModuleConfig;
  * module-specific resource or service that needs to be notified about
  * application startup and application shutdown events (corresponding to when
  * the container calls <code>init</code> and <code>destroy</code> on the
- * corresponding {@link ActionServlet} instance). <code>PlugIn</code> objects can be
- * configured in the <code>struts-config.xml</code> file, without the need
- * to subclass {@link ActionServlet} simply to perform application lifecycle
- * activities.</p>
+ * corresponding {@link ActionServlet} instance). <code>PlugIn</code> objects
+ * can be configured in the <code>struts-config.xml</code> file, without the
+ * need to subclass {@link ActionServlet} simply to perform application
+ * lifecycle activities.</p>
  *
  * <p>Implementations of this interface must supply a zero-argument constructor
  * for use by {@link ActionServlet}. Configuration can be accomplished by
  * providing standard JavaBeans property setter methods, which will all have
  * been called before the <code>init()</code> method is invoked.</p>
  *
- * <p>This interface can be applied to any class, including an Action subclass</p>
+ * <p>This interface can be applied to any class, including an Action subclass.
+ * </p>
  *
  * @version $Rev$ $Date$
  * @since Struts 1.1

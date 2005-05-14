@@ -163,13 +163,15 @@ public class ActionForward extends ForwardConfig {
 
 
     /**
-     * <p>Construct a new instance based on the values of another ActionForward.</p>
+     * <p>Construct a new instance based on the values of another
+     * ActionForward.</p>
      *
      * @param copyMe An ActionForward instance to copy
      * @since Struts 1.2.1
      */
     public ActionForward(ActionForward copyMe) {
-        this(copyMe.getName(),copyMe.getPath(),copyMe.getRedirect(),copyMe.getModule());
+        this(copyMe.getName(), copyMe.getPath(), copyMe.getRedirect(),
+                copyMe.getModule());
         setContextRelative(copyMe.getContextRelative());
     }
 

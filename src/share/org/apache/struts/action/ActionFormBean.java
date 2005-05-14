@@ -29,7 +29,8 @@ import org.apache.struts.config.FormBeanConfig;
  * configuration file. It can be subclassed as necessary to add additional
  * properties.</p>
  *
- * <p>Since Struts 1.1 <code>ActionFormBean</code> extends <code>FormBeanConfig</code>.</p>
+ * <p>Since Struts 1.1 <code>ActionFormBean</code> extends
+ * <code>FormBeanConfig</code>.</p>
  *
  * <p><strong>NOTE</strong> - This class would have been deprecated and
  * replaced by <code>org.apache.struts.config.FormBeanConfig</code> except

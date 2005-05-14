@@ -110,8 +110,8 @@ public class ActionMessages implements Serializable {
 
 
     /**
-     * <p>Create an <code>ActionMessages</code> object initialized with the given
-     * messages.</p>
+     * <p>Create an <code>ActionMessages</code> object initialized with the
+     * given messages.</p>
      *
      * @param messages The messages to be initially added to this object.
      * This parameter can be <code>null</code>.
@@ -151,12 +151,12 @@ public class ActionMessages implements Serializable {
 
 
     /**
-     * <p>Adds the messages from the given <code>ActionMessages</code> object to
-     * this set of messages. The messages are added in the order they are returned from
-     * the <code>properties</code> method. If a message's property is already in the current
-     * <code>ActionMessages</code> object, it is added to the end of the list for that
-     * property. If a message's property is not in the current list it is added to the end
-     * of the properties.</p>
+     * <p>Adds the messages from the given <code>ActionMessages</code> object
+     * to this set of messages. The messages are added in the order they are
+     * returned from the <code>properties</code> method. If a message's property
+     * is already in the current <code>ActionMessages</code> object, it is added
+     * to the end of the list for that property. If a message's property is not
+     * in the current list it is added to the end of the properties.</p>
      *
      * @param messages The <code>ActionMessages</code> object to be added.
      * This parameter can be <code>null</code>.
@@ -197,6 +197,9 @@ public class ActionMessages implements Serializable {
      * <p>Return <code>true</code> if there are no messages recorded
      * in this collection, or <code>false</code> otherwise.</p>
      *
+     * @return <code>true</code> if there are no messages recorded in this
+     *         collection; <code>false</code> otherwise.
+     *
      * @since Struts 1.1
      */
     public boolean isEmpty() {
@@ -211,6 +214,8 @@ public class ActionMessages implements Serializable {
      * <p>Return the set of all recorded messages, without distinction
      * by which property the messages are associated with. If there are
      * no messages recorded, an empty enumeration is returned.</p>
+     *
+     * @return An iterator over the messages for all properties.
      */
     public Iterator get() {
 
@@ -234,7 +239,8 @@ public class ActionMessages implements Serializable {
         for (Iterator i = actionItems.iterator(); i.hasNext();) {
             ActionMessageItem ami = (ActionMessageItem) i.next();
 
-            for (Iterator messages = ami.getList().iterator(); messages.hasNext();) {
+            for (Iterator messages = ami.getList().iterator();
+                    messages.hasNext();) {
                 results.add(messages.next());
             }
         }
@@ -248,6 +254,7 @@ public class ActionMessages implements Serializable {
      * If there are no such messages, an empty enumeration is returned.</p>
      *
      * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
+     * @return An iterator over the messages for the specified property.
      */
     public Iterator get(String property) {
 
@@ -281,10 +288,12 @@ public class ActionMessages implements Serializable {
 
     /**
      * <p>Return the set of property names for which at least one message has
-     * been recorded. If there are no messages, an empty <code>Iterator</code> is returned.
-     * If you have recorded global messages, the <code>String</code> value of
-     * <code>ActionMessages.GLOBAL_MESSAGE</code> will be one of the returned
-     * property names.</p>
+     * been recorded. If there are no messages, an empty <code>Iterator</code>
+     * is returned. If you have recorded global messages, the
+     * <code>String</code> value of <code>ActionMessages.GLOBAL_MESSAGE</code>
+     * will be one of the returned property names.</p>
+     *
+     * @return An iterator over the property names for which messages exist.
      */
     public Iterator properties() {
 
@@ -318,6 +327,8 @@ public class ActionMessages implements Serializable {
      * global messages). <strong>NOTE</strong> - it is more efficient to call
      * <code>isEmpty</code> if all you care about is whether or not there are
      * any messages at all.</p>
+     *
+     * @return The number of messages associated with all properties.
      */
     public int size() {
 
@@ -334,9 +345,11 @@ public class ActionMessages implements Serializable {
 
 
     /**
-     * <p>Return the number of messages associated with the specified property.</p>
+     * <p>Return the number of messages associated with the specified property.
+     * </p>
      *
      * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
+     * @return The number of messages associated with the property.
      */
     public int size(String property) {
 

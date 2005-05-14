@@ -50,7 +50,8 @@ public class ActionErrors extends ActionMessages implements Serializable {
      * @deprecated Use ActionMessages.GLOBAL_MESSAGE instead.  This will be
      * removed after Struts 1.2.
      */
-    public static final String GLOBAL_ERROR = "org.apache.struts.action.GLOBAL_ERROR";
+    public static final String GLOBAL_ERROR =
+            "org.apache.struts.action.GLOBAL_ERROR";
 
     // --------------------------------------------------------- Public Methods
 

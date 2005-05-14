@@ -181,8 +181,8 @@ public class Globals implements Serializable {
         "org.apache.struts.action.TOKEN";
 
     /**
-     * The page attributes key under which xhtml status is stored.  This may be "true"
-     * or "false".  When set to true, the html tags output xhtml.
+     * The page attributes key under which xhtml status is stored.  This may be
+     * "true" or "false".  When set to true, the html tags output xhtml.
      * @since Struts 1.1
      */
     public static final String XHTML_KEY =

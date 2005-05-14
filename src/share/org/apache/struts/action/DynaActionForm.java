@@ -97,7 +97,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
     public void initialize(FormBeanConfig config) {
 
-        FormPropertyConfig props[] = config.findFormPropertyConfigs();
+        FormPropertyConfig[] props = config.findFormPropertyConfigs();
         for (int i = 0; i < props.length; i++) {
             set(props[i].getName(), props[i].initial());
         }
@@ -120,13 +120,13 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @param request The servlet request we are processing
      */
     public void reset(ActionMapping mapping, ServletRequest request) {
-        super.reset(mapping,request);
+        super.reset(mapping, request);
     }
 
 
     /**
-     * <p>Reset bean properties to their default state, as needed.  This method is
-     * called before the properties are repopulated by the controller.</p>
+     * <p>Reset bean properties to their default state, as needed.  This method
+     * is called before the properties are repopulated by the controller.</p>
      *
      * <p>The default implementation (since Struts 1.1) does nothing.
      * Subclasses may override this method to reset bean properties to
@@ -139,7 +139,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @param request The servlet request we are processing
      */
     public void reset(ActionMapping mapping, HttpServletRequest request) {
-        super.reset(mapping,request);
+        super.reset(mapping, request);
     }
 
 
@@ -419,11 +419,10 @@ public class DynaActionForm extends ActionForm implements DynaBean {
                     ("Primitive value for '" + name + "'");
             }
         } else if (!isDynaAssignable(descriptor.getType(), value.getClass())) {
-            throw new ConversionException
-                ("Cannot assign value of type '" +
-                 value.getClass().getName() +
-                 "' to property '" + name + "' of type '" +
-                 descriptor.getType().getName() + "'");
+            throw new ConversionException("Cannot assign value of type '"
+                 + value.getClass().getName()
+                 + "' to property '" + name + "' of type '"
+                 + descriptor.getType().getName() + "'");
         }
         dynaValues.put(name, value);
 
@@ -618,14 +617,14 @@ public class DynaActionForm extends ActionForm implements DynaBean {
     protected boolean isDynaAssignable(Class dest, Class source) {
 
         if (dest.isAssignableFrom(source) ||
-            ((dest == Boolean.TYPE) && (source == Boolean.class)) ||
-            ((dest == Byte.TYPE) && (source == Byte.class)) ||
-            ((dest == Character.TYPE) && (source == Character.class)) ||
-            ((dest == Double.TYPE) && (source == Double.class)) ||
-            ((dest == Float.TYPE) && (source == Float.class)) ||
-            ((dest == Integer.TYPE) && (source == Integer.class)) ||
-            ((dest == Long.TYPE) && (source == Long.class)) ||
-            ((dest == Short.TYPE) && (source == Short.class))) {
+            ((dest == Boolean.TYPE) && (source == Boolean.class))
+                || ((dest == Byte.TYPE) && (source == Byte.class))
+                || ((dest == Character.TYPE) && (source == Character.class))
+                || ((dest == Double.TYPE) && (source == Double.class))
+                || ((dest == Float.TYPE) && (source == Float.class))
+                || ((dest == Integer.TYPE) && (source == Integer.class))
+                || ((dest == Long.TYPE) && (source == Long.class))
+                ||((dest == Short.TYPE) && (source == Short.class))) {
             return (true);
         } else {
             return (false);

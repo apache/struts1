@@ -19,7 +19,6 @@
 package org.apache.struts.action;
 
 import org.apache.struts.config.ForwardConfig;
-import org.apache.struts.action.ActionForward;
 import org.apache.struts.util.ResponseUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -183,9 +182,11 @@ public class ActionRedirect extends ActionForward {
 
         } else if (currentValue instanceof String[]) {
             // add the value to the list of existing values
-            List newValues = new ArrayList(Arrays.asList((Object[]) currentValue));
+            List newValues = new ArrayList(Arrays.asList(
+                    (Object[]) currentValue));
             newValues.add(value);
-            parameterValues.put(fieldName, (String[]) newValues.toArray(new String[newValues.size()]));
+            parameterValues.put(fieldName,
+                    (String[]) newValues.toArray(new String[newValues.size()]));
         }
     }
 
@@ -272,8 +273,9 @@ public class ActionRedirect extends ActionForward {
                     strParam.append(name)
                             .append("=")
                             .append(values[i]);
-                    if (i < values.length - 1)
+                    if (i < values.length - 1) {
                         strParam.append("&");
+                    }
                 }
             }
 

@@ -82,6 +82,8 @@ public abstract class ActionForm implements Serializable {
 
     /**
      * <p>Return the servlet instance to which we are attached.</p>
+     *
+     * @return The servlet instance to which we are attached.
      */
     protected ActionServlet getServlet() {
 
@@ -140,7 +142,8 @@ public abstract class ActionForm implements Serializable {
      *
      * @param multipartRequestHandler The Handler to use for fileuploads.
      */
-    public void setMultipartRequestHandler(MultipartRequestHandler multipartRequestHandler) {
+    public void setMultipartRequestHandler(
+            MultipartRequestHandler multipartRequestHandler) {
 
         this.multipartRequestHandler = multipartRequestHandler;
 
@@ -171,26 +174,26 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * <p>Reset bean properties to their default state, as needed.  This method is
-     * called before the properties are repopulated by the controller.</p>
+     * <p>Reset bean properties to their default state, as needed.  This method
+     * is called before the properties are repopulated by the controller.</p>
      *
-     * <p>The default implementation does nothing. In practice, the only properties
-     * that need to be reset are those which represent checkboxes on a session-scoped
-     * form. Otherwise, properties can be given initial values where the field is
-     * declared. </p>
+     * <p>The default implementation does nothing. In practice, the only
+     * properties that need to be reset are those which represent checkboxes on
+     * a session-scoped form. Otherwise, properties can be given initial values
+     * where the field is declared. </p>
      *
      * <p>If the form is stored in session-scope so that values can be collected
      * over multiple requests (a "wizard"), you must be very careful of which
      * properties, if any, are reset. As mentioned, session-scope checkboxes
      * must be reset to false for any page where this property is set. This is
-     * because the client does not submit a checkbox value when it is clear (false).
-     * If a session-scoped checkbox is not proactively reset, it can never be set
-     * to false.</p>
+     * because the client does not submit a checkbox value when it is clear
+     * (false). If a session-scoped checkbox is not proactively reset, it can
+     * never be set to false.</p>
      *
-     * <p>This method is <strong>not</strong> the appropriate place to initialize
-     * form value for an "update" type page (this should be done in a setup Action).
-     * You mainly need to worry about setting checkbox values to false; most of the
-     * time you can leave this method unimplemented.
+     * <p>This method is <strong>not</strong> the appropriate place to
+     * initialize form value for an "update" type page (this should be done in
+     * a setup Action). You mainly need to worry about setting checkbox values
+     * to false; most of the time you can leave this method unimplemented.
      * </p>
      *
      * @param mapping The mapping used to select this instance
@@ -198,7 +201,7 @@ public abstract class ActionForm implements Serializable {
      */
     public void reset(ActionMapping mapping, HttpServletRequest request) {
 
-        ;       // Default implementation does nothing
+        // Default implementation does nothing
 
     }
 
@@ -215,6 +218,8 @@ public abstract class ActionForm implements Serializable {
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
+     * @return The set of validation errors, if validation failed; an empty set
+     *         or <code>null</code> if validation succeeded.
      */
     public ActionErrors validate(ActionMapping mapping,
                                  ServletRequest request) {
@@ -243,6 +248,8 @@ public abstract class ActionForm implements Serializable {
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
+     * @return The set of validation errors, if validation failed; an empty set
+     *         or <code>null</code> if validation succeeded.
      */
     public ActionErrors validate(ActionMapping mapping,
                                  HttpServletRequest request) {

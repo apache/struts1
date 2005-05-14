@@ -29,10 +29,10 @@ import org.apache.struts.config.ForwardConfig;
 /**
  * <p>An <strong>ActionMapping</strong> represents the information that the
  * controller, <code>RequestProcessor</code>, knows about the mapping
- * of a particular request to an instance of a particular <code>Action</code> class.
- * The <code>ActionMapping</code> instance used to select a particular
- * <code>Action</code> is passed on to that <code>Action</code>, thereby providing
- * access to any custom configuration information included with the
+ * of a particular request to an instance of a particular <code>Action</code>
+ * class. The <code>ActionMapping</code> instance used to select a particular
+ * <code>Action</code> is passed on to that <code>Action</code>, thereby
+ * providing access to any custom configuration information included with the
  * <code>ActionMapping</code> object.</p>
  *
  * <p>Since Struts 1.1 this class extends <code>ActionConfig</code>.
@@ -57,6 +57,8 @@ public class ActionMapping extends ActionConfig {
      * can be found, return <code>null</code>.</p>
      *
      * @param name Logical name of the forwarding instance to be returned
+     *
+     * @return The local or global forward with the specified name.
      */
     public ActionForward findForward(String name) {
 
@@ -73,11 +75,13 @@ public class ActionMapping extends ActionConfig {
      * <p>Return the logical names of all locally defined forwards for this
      * mapping. If there are no such forwards, a zero-length array
      * is returned.</p>
+     *
+     * @return The forward names for this action mapping.
      */
     public String[] findForwards() {
 
         ArrayList results = new ArrayList();
-        ForwardConfig fcs[] = findForwardConfigs();
+        ForwardConfig[] fcs = findForwardConfigs();
         for (int i = 0; i < fcs.length; i++) {
             results.add(fcs[i].getName());
         }
@@ -89,6 +93,8 @@ public class ActionMapping extends ActionConfig {
     /**
      * <p>Create (if necessary) and return an {@link ActionForward} that
      * corresponds to the <code>input</code> property of this Action.</p>
+     *
+     * @return The input forward for this action mapping.
      *
      * @since Struts 1.1
      */

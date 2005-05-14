@@ -94,7 +94,7 @@ public class DynaActionFormClass implements DynaClass, Serializable {
     /**
      * <p>The set of dynamic properties that are part of this DynaClass.</p>
      */
-    protected DynaProperty properties[] = null;
+    protected DynaProperty[] properties = null;
 
 
     /**
@@ -111,7 +111,7 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
     /**
      * <p>Return the name of this <code>DynaClass</code> (analogous to the
-     * <code>getName()</code> method of <code>java.lang.Class</code), which
+     * <code>getName()</code> method of <code>java.lang.Class</code>, which
      * allows the same <code>DynaClass</code> implementation class to support
      * different dynamic classes, with different sets of properties.
      */
@@ -176,7 +176,7 @@ public class DynaActionFormClass implements DynaClass, Serializable {
         DynaActionForm dynaBean =
             (DynaActionForm) getBeanClass().newInstance();
         dynaBean.setDynaActionFormClass(this);
-        FormPropertyConfig props[] = config.findFormPropertyConfigs();
+        FormPropertyConfig[] props = config.findFormPropertyConfigs();
         for (int i = 0; i < props.length; i++) {
             dynaBean.set(props[i].getName(), props[i].initial());
         }
@@ -195,7 +195,7 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
         StringBuffer sb = new StringBuffer("DynaActionFormBean[name=");
         sb.append(name);
-        DynaProperty props[] = getDynaProperties();
+        DynaProperty[] props = getDynaProperties();
         if (props == null) {
             props = new DynaProperty[0];
         }
@@ -215,7 +215,8 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * @deprecated No longer need to Clear our cache of <code>DynaActionFormClass</code> instances.
+     * @deprecated No longer need to Clear our cache of
+     * <code>DynaActionFormClass</code> instances.
      */
     public static void clear() {
         ; // do nothing
@@ -223,8 +224,8 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * Return the <code>DynaActionFormClass</code> instance for the specified form bean
-     * configuration instance.
+     * Return the <code>DynaActionFormClass</code> instance for the specified
+     * form bean configuration instance.
      */
     public static DynaActionFormClass
         createDynaActionFormClass(FormBeanConfig config) {
@@ -272,21 +273,21 @@ public class DynaActionFormClass implements DynaClass, Serializable {
         try {
             beanClass = RequestUtils.applicationClass(config.getType());
         } catch (Throwable t) {
-            throw new IllegalArgumentException
-                ("Cannot instantiate ActionFormBean class '" +
-                 config.getType() + "': " + t);
+            throw new IllegalArgumentException(
+                    "Cannot instantiate ActionFormBean class '"
+                    + config.getType() + "': " + t);
         }
         if (!DynaActionForm.class.isAssignableFrom(beanClass)) {
-            throw new IllegalArgumentException
-                ("Class '" + config.getType() + "' is not a subclass of " +
-                 "'org.apache.struts.action.DynaActionForm'");
+            throw new IllegalArgumentException(
+                    "Class '" + config.getType() + "' is not a subclass of "
+                    + "'org.apache.struts.action.DynaActionForm'");
         }
 
         // Set the name we will know ourselves by from the form bean name
         this.name = config.getName();
 
         // Look up the property descriptors for this bean class
-        FormPropertyConfig descriptors[] = config.findFormPropertyConfigs();
+        FormPropertyConfig[] descriptors = config.findFormPropertyConfigs();
         if (descriptors == null) {
             descriptors = new FormPropertyConfig[0];
         }

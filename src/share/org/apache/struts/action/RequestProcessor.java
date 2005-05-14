@@ -66,8 +66,9 @@ public class RequestProcessor {
 
 
     /**
-     * <p>The request attribute under which the servlet path information is stored
-     * for processing during a <code>RequestDispatcher.include</code> call.</p>
+     * <p>The request attribute under which the servlet path information is
+     * stored for processing during a <code>RequestDispatcher.include</code>
+     * call.</p>
      */
     public static final String INCLUDE_SERVLET_PATH =
         "javax.servlet.include.servlet_path";
@@ -168,8 +169,8 @@ public class RequestProcessor {
         }
 
         if (log.isDebugEnabled()) {
-            log.debug("Processing a '" + request.getMethod() +
-                      "' for path '" + path + "'");
+            log.debug("Processing a '" + request.getMethod()
+                    + "' for path '" + path + "'");
         }
 
         // Select a Locale for the current user if requested
@@ -286,7 +287,8 @@ public class RequestProcessor {
 
                 response.sendError(
                     HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                    getInternal().getMessage("actionCreate", mapping.getPath()));
+                    getInternal().getMessage("actionCreate",
+                            mapping.getPath()));
 
                 return (null);
             }
@@ -323,9 +325,9 @@ public class RequestProcessor {
 
         // Store the new instance in the appropriate scope
         if (log.isDebugEnabled()) {
-            log.debug(" Storing ActionForm bean instance in scope '" +
-                mapping.getScope() + "' under attribute key '" +
-                mapping.getAttribute() + "'");
+            log.debug(" Storing ActionForm bean instance in scope '"
+                    + mapping.getScope() + "' under attribute key '"
+                    + mapping.getAttribute() + "'");
         }
         if ("request".equals(mapping.getScope())) {
             request.setAttribute(mapping.getAttribute(), instance);
@@ -366,10 +368,11 @@ public class RequestProcessor {
         String forwardPath = forward.getPath();
         String uri = null;
 
-        // paths not starting with / should be passed through without any processing
-        // (ie. they're absolute)
+        // paths not starting with / should be passed through without any
+        // processing (ie. they're absolute)
         if (forwardPath.startsWith("/")) {
-            uri = RequestUtils.forwardURL(request, forward, null);    // get module relative uri
+            // get module relative uri
+            uri = RequestUtils.forwardURL(request, forward, null);
         } else {
             uri = forwardPath;
         }
@@ -388,8 +391,9 @@ public class RequestProcessor {
     }
 
 
-    // :FIXME: if Action.execute throws Exception, and Action.process has been removed,
-    // should the process* methods still throw IOException, ServletException?
+    // :FIXME: if Action.execute throws Exception, and Action.process has been
+    // removed, should the process* methods still throw IOException,
+    // ServletException?
 
     /**
      * <P>Ask the specified <code>Action</code> instance to handle this
@@ -480,7 +484,8 @@ public class RequestProcessor {
     protected void processContent(HttpServletRequest request,
                                   HttpServletResponse response) {
 
-        String contentType = moduleConfig.getControllerConfig().getContentType();
+        String contentType =
+                moduleConfig.getControllerConfig().getContentType();
         if (contentType != null) {
             response.setContentType(contentType);
         }
@@ -589,9 +594,9 @@ public class RequestProcessor {
 
 
     /**
-     * <p>Automatically select a <code>Locale</code> for the current user, if requested.
-     * <strong>NOTE</strong> - configuring Locale selection will trigger
-     * the creation of a new <code>HttpSession</code> if necessary.</p>
+     * <p>Automatically select a <code>Locale</code> for the current user, if
+     * requested. <strong>NOTE</strong> - configuring Locale selection will
+     * trigger the creation of a new <code>HttpSession</code> if necessary.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -623,9 +628,9 @@ public class RequestProcessor {
 
 
     /**
-     * <p>Select the mapping used to process the selection path for this request.
-     * If no mapping can be identified, create an error response and return
-     * <code>null</code>.</p>
+     * <p>Select the mapping used to process the selection path for this
+     * request. If no mapping can be identified, create an error response and
+     * return <code>null</code>.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -649,7 +654,7 @@ public class RequestProcessor {
         }
 
         // Locate the mapping for unknown paths (if any)
-        ActionConfig configs[] = moduleConfig.findActionConfigs();
+        ActionConfig[] configs = moduleConfig.findActionConfigs();
         for (int i = 0; i < configs.length; i++) {
             if (configs[i].getUnknown()) {
                 mapping = (ActionMapping) configs[i];
@@ -713,9 +718,9 @@ public class RequestProcessor {
 
     /**
      * <p>Identify and return the path component (from the request URI) that
-     * we will use to select an <code>ActionMapping</code> with which to dispatch.
-     * If no such path can be identified, create an error response and return
-     * <code>null</code>.</p>
+     * we will use to select an <code>ActionMapping</code> with which to
+     * dispatch. If no such path can be identified, create an error response
+     * and return <code>null</code>.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -744,8 +749,8 @@ public class RequestProcessor {
         }
         String prefix = moduleConfig.getPrefix();
         if (!path.startsWith(prefix)) {
-            String msg =
-                getInternal().getMessage("processPath", request.getRequestURI());
+            String msg = getInternal().getMessage(
+                    "processPath", request.getRequestURI());
 
             log.error(msg);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, msg);
@@ -765,10 +770,10 @@ public class RequestProcessor {
 
 
     /**
-     * <p>Populate the properties of the specified <code>ActionForm</code> instance from
-     * the request parameters included with this request.  In addition,
-     * request attribute <code>Globals.CANCEL_KEY</code> will be set if
-     * the request was submitted with a button created by
+     * <p>Populate the properties of the specified <code>ActionForm</code>
+     * instance from the request parameters included with this request.  In
+     * addition, request attribute <code>Globals.CANCEL_KEY</code> will be set
+     * if the request was submitted with a button created by
      * <code>CancelTag</code>.</p>
      *
      * @param request The servlet request we are processing
@@ -805,8 +810,8 @@ public class RequestProcessor {
                               request);
 
         // Set the cancellation request attribute if appropriate
-        if ((request.getParameter(Globals.CANCEL_PROPERTY) != null) ||
-            (request.getParameter(Globals.CANCEL_PROPERTY_X) != null)) {
+        if ((request.getParameter(Globals.CANCEL_PROPERTY) != null)
+                || (request.getParameter(Globals.CANCEL_PROPERTY_X) != null)) {
 
             request.setAttribute(Globals.CANCEL_KEY, Boolean.TRUE);
         }
@@ -859,8 +864,8 @@ public class RequestProcessor {
         for (int i = 0; i < roles.length; i++) {
             if (request.isUserInRole(roles[i])) {
                 if (log.isDebugEnabled()) {
-                    log.debug(" User '" + request.getRemoteUser() +
-                        "' has role '" + roles[i] + "', granting access");
+                    log.debug(" User '" + request.getRemoteUser()
+                            + "' has role '" + roles[i] + "', granting access");
                 }
                 return (true);
             }
@@ -868,8 +873,8 @@ public class RequestProcessor {
 
         // The current user is not authorized for this action
         if (log.isDebugEnabled()) {
-            log.debug(" User '" + request.getRemoteUser() +
-                      "' does not have any required role, denying access");
+            log.debug(" User '" + request.getRemoteUser()
+                    + "' does not have any required role, denying access");
         }
 
         response.sendError(
@@ -971,11 +976,11 @@ public class RequestProcessor {
 
 
     /**
-     * <p>Do a module relative forward to specified URI using request dispatcher.
-     * URI is relative to the current module. The real URI is compute by prefixing
-     * the module name.</p>
-     * <p>This method is used internally and is not part of the public API. It is
-     * advised to not use it in subclasses. </p>
+     * <p>Do a module relative forward to specified URI using request
+     * dispatcher. URI is relative to the current module. The real URI is
+     * compute by prefixing the module name.</p>
+     * <p>This method is used internally and is not part of the public API.
+     * It is advised to not use it in subclasses. </p>
      *
      * @param uri Module-relative URI to forward to
      * @param request Current page request
@@ -1109,8 +1114,8 @@ public class RequestProcessor {
 
 
     /**
-     * <p>Return the <code>ServletContext</code> for the web application in which
-     * we are running.
+     * <p>Return the <code>ServletContext</code> for the web application in
+     * which we are running.
      */
     protected ServletContext getServletContext() {
 
@@ -1124,8 +1129,8 @@ public class RequestProcessor {
      * web application.</p>
      *
      * @param message The message to be logged
-     * @deprecated Use commons-logging instead. This will be removed in a release
-     * after Struts 1.2.
+     * @deprecated Use commons-logging instead. This will be removed in a
+     * release after Struts 1.2.
      */
     protected void log(String message) {
         // :TODO: Remove after Struts 1.2
@@ -1142,8 +1147,8 @@ public class RequestProcessor {
      * @param message The message to be logged
      * @param exception The exception to be logged
 
-     * @deprecated Use commons-logging instead.  This will be removed in a release
-     * after Struts 1.2.
+     * @deprecated Use commons-logging instead.  This will be removed in a
+     * release after Struts 1.2.
      */
     protected void log(String message, Throwable exception) {
         // :TODO: Remove after Sruts 1.2

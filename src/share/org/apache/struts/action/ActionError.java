@@ -33,10 +33,12 @@ import java.io.Serializable;
  * syntax used by the JDK <code>MessageFormat</code> class. Thus, the first
  * placeholder is '{0}', the second is '{1}', etc.</p>
  *
- * <p>Since Struts 1.1 <code>ActionError</code> extends <code>ActionMessage</code>.
+ * <p>Since Struts 1.1 <code>ActionError</code> extends
+ * <code>ActionMessage</code>.
  *
  * @version $Rev$ $Date$
- * @deprecated Please use <code>ActionMessage</code> instead, deprecated since 1.2.0.
+ * @deprecated Please use <code>ActionMessage</code> instead, deprecated
+ * since 1.2.0.
  */
 public class ActionError extends ActionMessage implements Serializable {
 
