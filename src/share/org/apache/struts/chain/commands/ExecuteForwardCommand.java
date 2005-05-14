@@ -37,7 +37,9 @@ public class ExecuteForwardCommand extends ExecuteCommand {
      */
     protected Command getCommand(ActionContext context) {
         ForwardConfig forwardConfig = context.getForwardConfig();
-        if (forwardConfig == null) return null;
+        if (forwardConfig == null) {
+            return null;
+        }
         return getCommand(forwardConfig.getCommand(), forwardConfig.getCatalog());
     }
 

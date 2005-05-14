@@ -153,7 +153,9 @@ public class ComposableRequestProcessor extends RequestProcessor {
      * @param moduleConfig
      */
     protected void initCatalogFactory(ActionServlet servlet, ModuleConfig moduleConfig) {
-        if (this.catalogFactory != null) return;
+        if (this.catalogFactory != null) {
+            return;
+        }
         this.catalogFactory = CatalogFactory.getInstance();
 
     }

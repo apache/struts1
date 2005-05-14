@@ -44,68 +44,63 @@ import org.apache.struts.action.ActionServlet;
  * @version $Rev$ $Date$
  */
 public class MockActionServlet extends ActionServlet {
-  protected ServletContext servletContext;
-  protected ServletConfig servletConfig;
+    protected ServletContext servletContext;
+    protected ServletConfig servletConfig;
 
     /**
      * Constructor.
      */
-  public MockActionServlet( ServletContext servletContext, ServletConfig servletConfig  )
-  {
-  this.servletContext = servletContext;
-  this.servletConfig = servletConfig;
-  }
+    public MockActionServlet(ServletContext servletContext,
+            ServletConfig servletConfig) {
+        this.servletContext = servletContext;
+        this.servletConfig = servletConfig;
+    }
 
     /**
      * Constructor.
      */
-  public MockActionServlet( )
-  {
+    public MockActionServlet() {
       ; // do nothing
-  }
+    }
 
     /**
      * Set property
      * @param servletContext
      */
-  public void setServletContext( ServletContext servletContext )
-  {
-  this.servletContext = servletContext;
-  }
+    public void setServletContext(ServletContext servletContext) {
+        this.servletContext = servletContext;
+    }
 
     /**
      * Get property
      * @return
      */
-  public ServletContext getServletContext(  )
-  {
-  return servletContext;
-  }
+    public ServletContext getServletContext() {
+        return servletContext;
+    }
 
     /**
      * Set property
      * @param servletConfig
      */
-  public void setServletConfig( ServletConfig servletConfig )
-  {
-  this.servletConfig = servletConfig;
-  }
+    public void setServletConfig(ServletConfig servletConfig) {
+        this.servletConfig = servletConfig;
+    }
 
     /**
      * Get property
      * @return
      */
-  public ServletConfig getServletConfig(  )
-  {
-  return servletConfig;
-  }
+    public ServletConfig getServletConfig() {
+        return servletConfig;
+    }
 
-  /**
-   * Expose as public so that test classes can exercise things which
-   * retrieve messages.
-   */
-  public void initInternal() throws ServletException {
-      super.initInternal();
-  }
+    /**
+     * Expose as public so that test classes can exercise things which
+     * retrieve messages.
+     */
+    public void initInternal() throws ServletException {
+        super.initInternal();
+    }
 
 }

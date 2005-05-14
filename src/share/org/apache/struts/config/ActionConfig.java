@@ -425,14 +425,16 @@ public class ActionConfig extends BaseConfig {
         ArrayList list = new ArrayList();
         while (true) {
             int comma = roles.indexOf(',');
-            if (comma < 0)
+            if (comma < 0) {
                 break;
+            }
             list.add(roles.substring(0, comma).trim());
             roles = roles.substring(comma + 1);
         }
         roles = roles.trim();
-        if (roles.length() > 0)
+        if (roles.length() > 0) {
             list.add(roles);
+        }
         roleNames = (String[]) list.toArray(new String[list.size()]);
     }
 

@@ -112,7 +112,9 @@ public class ExecuteCommand extends ActionCommandBase {
      */
     protected Command getCommand(String commandName, String catalogName) {
 
-        if (commandName == null) return null;
+        if (commandName == null) {
+            return null;
+        }
 
         Command command = null;
         Catalog catalog = null;

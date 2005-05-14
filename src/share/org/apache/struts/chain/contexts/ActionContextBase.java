@@ -107,9 +107,15 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     public abstract Map getSessionScope();
 
     public Map getScope(String scopeName) {
-        if (REQUEST_SCOPE.equals(scopeName)) return this.getRequestScope();
-        if (SESSION_SCOPE.equals(scopeName)) return this.getSessionScope();
-        if (APPLICATION_SCOPE.equals(scopeName)) return this.getApplicationScope();
+        if (REQUEST_SCOPE.equals(scopeName)) {
+            return this.getRequestScope();
+        }
+        if (SESSION_SCOPE.equals(scopeName)) {
+            return this.getSessionScope();
+        }
+        if (APPLICATION_SCOPE.equals(scopeName)) {
+            return this.getApplicationScope();
+        }
         throw new IllegalArgumentException("Invalid scope: " + scopeName);
     }
 

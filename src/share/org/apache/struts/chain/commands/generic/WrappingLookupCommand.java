@@ -36,8 +36,7 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class WrappingLookupCommand implements Filter {
 
-    public WrappingLookupCommand()
-    {
+    public WrappingLookupCommand() {
         catalogName = null;
         name = null;
         nameKey = null;
@@ -54,43 +53,35 @@ public class WrappingLookupCommand implements Filter {
     private static final Log log = LogFactory.getLog(WrappingLookupCommand.class);
 
 
-    public String getCatalogName()
-    {
+    public String getCatalogName() {
         return catalogName;
     }
 
-    public void setCatalogName(String catalogName)
-    {
+    public void setCatalogName(String catalogName) {
         this.catalogName = catalogName;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getNameKey()
-    {
+    public String getNameKey() {
         return nameKey;
     }
 
-    public void setNameKey(String nameKey)
-    {
+    public void setNameKey(String nameKey) {
         this.nameKey = nameKey;
     }
 
-    public boolean isOptional()
-    {
+    public boolean isOptional() {
         return optional;
     }
 
-    public void setOptional(boolean optional)
-    {
+    public void setOptional(boolean optional) {
         this.optional = optional;
     }
 
@@ -103,18 +94,17 @@ public class WrappingLookupCommand implements Filter {
     }
 
     public boolean execute(Context context)
-        throws Exception
-    {
+            throws Exception {
         log.trace("execute ["+this+"]");
         Command command = getCommand(context);
-        if(command != null)
+        if(command != null) {
             return command.execute(getContext(context));
-        else
+        } else {
             return false;
+        }
     }
 
-    public boolean postprocess(Context context, Exception exception)
-    {
+    public boolean postprocess(Context context, Exception exception) {
         Command command = getCommand(context);
         if(command != null && (command instanceof Filter)) {
             try {
@@ -135,8 +125,7 @@ public class WrappingLookupCommand implements Filter {
         return false;
     }
 
-    protected Command getCommand(Context context)
-    {
+    protected Command getCommand(Context context) {
         CatalogFactory catalogFactory = CatalogFactory.getInstance();
         String catalogName = getCatalogName();
         Catalog catalog = null;
@@ -157,20 +146,16 @@ public class WrappingLookupCommand implements Filter {
             name = (String)context.get(getNameKey());
         }
 
-        if(name != null)
-        {
+        if(name != null) {
             log.debug("Lookup command " + name + " in catalog " + catalogName);
             command = catalog.getCommand(name);
             log.debug("Found command " + command + "; optional: " + isOptional());
-            if(command == null && !isOptional())
-            {
+            if(command == null && !isOptional()) {
                 throw new IllegalArgumentException("Cannot find command '" + name + "' in catalog '" + catalogName + "'");
-            } else
-            {
+            } else {
                 return command;
             }
-        } else
-        {
+        } else {
             throw new IllegalArgumentException("No command name");
         }
     }

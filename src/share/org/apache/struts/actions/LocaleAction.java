@@ -111,8 +111,11 @@ public final class LocaleAction extends BaseAction {
 
         session.setAttribute(Globals.LOCALE_KEY, locale);
 
-        if (null==page) return mapping.findForward("success");
-        else return new ActionForward(page);
+        if (null == page) {
+            return mapping.findForward("success");
+        } else {
+            return new ActionForward(page);
+        }
 
     }
 

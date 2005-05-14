@@ -42,38 +42,31 @@ public class WebActionContext extends ActionContextBase {
         super.release();
     }
 
-    public Map getApplicationScope()
-    {
+    public Map getApplicationScope() {
         return wcontext().getApplicationScope();
     }
 
-    public Map getHeader()
-    {
+    public Map getHeader() {
         return wcontext().getHeader();
     }
 
-    public Map getHeaderValues()
-    {
+    public Map getHeaderValues() {
         return wcontext().getHeaderValues();
     }
 
-    public Map getInitParam()
-    {
+    public Map getInitParam() {
         return wcontext().getInitParam();
     }
 
-    public Map getParam()
-    {
+    public Map getParam() {
         return wcontext().getParam();
     }
 
-    public Map getParamValues()
-    {
+    public Map getParamValues() {
         return wcontext().getParamValues();
     }
 
-    public Map getRequestScope()
-    {
+    public Map getRequestScope() {
         return wcontext().getRequestScope();
     }
 
@@ -81,13 +74,11 @@ public class WebActionContext extends ActionContextBase {
      * <p>Return the map returned by our nested <code>WebContext</code>'s
      * <code>getParamValues()</code> method. </p>
      */
-    public Map getParameterMap()
-    {
+    public Map getParameterMap() {
         return getParamValues();
     }
 
-    public Map getSessionScope()
-    {
+    public Map getSessionScope() {
         return wcontext().getSessionScope();
     }
 

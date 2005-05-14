@@ -55,18 +55,15 @@ public class ServletActionContext extends WebActionContext {
     // -------------------------------
     // Servlet specific properties
     // -------------------------------
-    public ServletContext getContext()
-    {
+    public ServletContext getContext() {
         return swcontext().getContext();
     }
 
-    public HttpServletRequest getRequest()
-    {
+    public HttpServletRequest getRequest() {
         return swcontext().getRequest();
     }
 
-    public HttpServletResponse getResponse()
-    {
+    public HttpServletResponse getResponse() {
         return swcontext().getResponse();
     }
 
@@ -138,7 +135,9 @@ public class ServletActionContext extends WebActionContext {
 
     public void addMessages(ActionMessages messages) {
 
-            if (messages == null) return;
+            if (messages == null) {
+                return;
+            }
 
             ActionMessages requestMessages = getMessages();
             if (requestMessages == null) {
@@ -151,7 +150,9 @@ public class ServletActionContext extends WebActionContext {
 
     public void addErrors(ActionMessages errors) {
 
-            if (errors == null) return;
+            if (errors == null) {
+                return;
+            }
 
             ActionMessages requestErrors = getErrors();
             if (requestErrors == null) {
@@ -191,8 +192,5 @@ public class ServletActionContext extends WebActionContext {
     public void resetToken() {
         token.resetToken(getRequest());
     }
-
-
-
 
 }

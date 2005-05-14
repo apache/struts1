@@ -99,10 +99,11 @@ public class ConfigHelper implements ConfigHelperInterface {
      */
     public void setRequest(HttpServletRequest request) {
         this.request = request;
-        if (this.request == null)
+        if (this.request == null) {
             setSession(null);
-        else
+        } else {
             setSession(this.request.getSession());
+        }
     }
 
     /**
@@ -172,8 +173,9 @@ public class ConfigHelper implements ConfigHelperInterface {
 
     public ActionMessages getActionMessages() {
 
-        if (this.application == null)
+        if (this.application == null) {
             return null;
+        }
         return (ActionMessages) this.application.getAttribute(Globals.MESSAGE_KEY);
 
     }
@@ -290,13 +292,15 @@ public class ConfigHelper implements ConfigHelperInterface {
 
         // Is there a mapping associated with this request?
         ActionMapping mapping = getMapping();
-        if (mapping == null)
+        if (mapping == null) {
             return (null);
+        }
 
         // Is there a form bean associated with this mapping?
         String attribute = mapping.getAttribute();
-        if (attribute == null)
+        if (attribute == null) {
             return (null);
+        }
 
         // Look up the existing form bean, if any
         ActionForm instance = null;
@@ -354,16 +358,19 @@ public class ConfigHelper implements ConfigHelperInterface {
 
         String value = action;
         int question = action.indexOf("?");
-        if (question >= 0)
+        if (question >= 0) {
             value = value.substring(0, question);
+        }
         int slash = value.lastIndexOf("/");
         int period = value.lastIndexOf(".");
-        if ((period >= 0) && (period > slash))
+        if ((period >= 0) && (period > slash)) {
             value = value.substring(0, period);
-        if (value.startsWith("/"))
+        }
+        if (value.startsWith("/")) {
             return (value);
-        else
+        } else {
             return ("/" + value);
+        }
 
     }
 
@@ -380,8 +387,9 @@ public class ConfigHelper implements ConfigHelperInterface {
         if (servletMapping != null) {
             String queryString = null;
             int question = action.indexOf("?");
-            if (question >= 0)
+            if (question >= 0) {
                 queryString = action.substring(question);
+            }
             String actionMapping = getActionMappingName(action);
             if (servletMapping.startsWith("*.")) {
                 value.append(actionMapping);
@@ -390,15 +398,17 @@ public class ConfigHelper implements ConfigHelperInterface {
                 value.append(servletMapping.substring(0, servletMapping.length() - 2));
                 value.append(actionMapping);
             }
-            if (queryString != null)
+            if (queryString != null) {
                 value.append(queryString);
+            }
         }
 
         // Otherwise, assume extension mapping is in use and extension is
         // already included in the action property
         else {
-            if (!action.startsWith("/"))
+            if (!action.startsWith("/")) {
                 value.append("/");
+            }
             value.append(action);
         }
 
@@ -415,15 +425,18 @@ public class ConfigHelper implements ConfigHelperInterface {
         if ((session != null) && (response != null)) {
 
             boolean redirect = false;
-            if (forward != null)
+            if (forward != null) {
                 redirect = forward.getRedirect();
+            }
 
-            if (redirect)
+            if (redirect) {
                 return response.encodeRedirectURL(url);
-            else
+            } else {
                 return response.encodeURL(url);
-        } else
+            }
+        } else {
             return (url);
+        }
     }
 
     // ------------------------------------------------ Presentation API
@@ -435,8 +448,9 @@ public class ConfigHelper implements ConfigHelperInterface {
 
         // HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
 
-        if (request == null)
+        if (request == null) {
             return null;
+        }
         StringBuffer result = RequestUtils.requestToServerUriStringBuffer(request);
         return result.toString();
     }
@@ -446,15 +460,17 @@ public class ConfigHelper implements ConfigHelperInterface {
      */
     public String getBaseRef() {
 
-        if (request == null)
+        if (request == null) {
             return null;
+        }
 
         StringBuffer result = RequestUtils.requestToServerStringBuffer(request);
         String path = null;
-        if (forward == null)
+        if (forward == null) {
             path = request.getRequestURI();
-        else
+        } else {
             path = request.getContextPath() + forward.getPath();
+        }
         result.append(path);
 
         return result.toString();
@@ -469,8 +485,9 @@ public class ConfigHelper implements ConfigHelperInterface {
     public String getLink(String name) {
 
         ActionForward forward = getActionForward(name);
-        if (forward == null)
+        if (forward == null) {
             return null;
+        }
 
         StringBuffer path = new StringBuffer(this.request.getContextPath());
         path.append(forward.getPath());
@@ -490,8 +507,9 @@ public class ConfigHelper implements ConfigHelperInterface {
     public String getMessage(String key) {
 
         MessageResources resources = getMessageResources();
-        if (resources == null)
+        if (resources == null) {
             return null;
+        }
 
         return resources.getMessage(RequestUtils.getUserLocale(request, null), key);
 
@@ -507,20 +525,21 @@ public class ConfigHelper implements ConfigHelperInterface {
 
         MessageResources resources = getMessageResources();
 
-        if (resources == null)
+        if (resources == null) {
             return null;
+        }
 
         // Return the requested message
-        if (args == null)
+        if (args == null) {
             return resources.getMessage(
                 RequestUtils.getUserLocale(request, null),
                 key);
-        else
+        } else {
             return resources.getMessage(
                 RequestUtils.getUserLocale(request, null),
                 key,
                 args);
-
+        }
     }
 
     /**
