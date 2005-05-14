@@ -50,7 +50,6 @@ import org.apache.commons.beanutils.converters.FloatConverter;
 import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
-import org.apache.commons.chain.Catalog;
 import org.apache.commons.chain.CatalogFactory;
 import org.apache.commons.chain.config.ConfigParser;
 import org.apache.commons.digester.Digester;
@@ -241,7 +240,7 @@ public class ActionServlet extends HttpServlet {
      * the versions of the configuration file DTDs that we know about.  There
      * <strong>MUST</strong> be an even number of Strings in this list!</p>
      */
-    protected String registrations[] = {
+    protected String[] registrations = {
         "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN",
         "/org/apache/struts/resources/struts-config_1_0.dtd",
         "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN",
@@ -289,7 +288,8 @@ public class ActionServlet extends HttpServlet {
         getServletContext().removeAttribute(Globals.ACTION_SERVLET_KEY);
 
         // Release our LogFactory and Log instances (if any)
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        ClassLoader classLoader =
+                Thread.currentThread().getContextClassLoader();
         if (classLoader == null) {
             classLoader = ActionServlet.class.getClassLoader();
         }
@@ -297,7 +297,7 @@ public class ActionServlet extends HttpServlet {
             LogFactory.release(classLoader);
         } catch (Throwable t) {
             ; // Servlet container doesn't have the latest version
-            ; // of commons-logging-api.jar installed
+              // of commons-logging-api.jar installed
 
             // :FIXME: Why is this dependent on the container's version of
             // commons-logging? Shouldn't this depend on the version packaged
@@ -323,6 +323,8 @@ public class ActionServlet extends HttpServlet {
      * @exception ServletException if we cannot configure ourselves correctly
      */
     public void init() throws ServletException {
+        final String configPrefix = "config/";
+        final int configPrefixLength = configPrefix.length();
 
         // Wraps the entire initialization in a try/catch to better handle
         // unexpected exceptions and errors to provide better feedback
@@ -348,10 +350,10 @@ public class ActionServlet extends HttpServlet {
             Enumeration names = getServletConfig().getInitParameterNames();
             while (names.hasMoreElements()) {
                 String name = (String) names.nextElement();
-                if (!name.startsWith("config/")) {
+                if (!name.startsWith(configPrefix)) {
                     continue;
                 }
-                String prefix = name.substring(6);
+                String prefix = name.substring(configPrefixLength);
                 moduleConfig = initModuleConfig
                     (prefix, getServletConfig().getInitParameter(name));
                 initModuleMessageResources(moduleConfig);
@@ -460,8 +462,8 @@ public class ActionServlet extends HttpServlet {
     public void addServletMapping(String servletName, String urlPattern) {
 
         if (log.isDebugEnabled()) {
-            log.debug("Process servletName=" + servletName +
-                      ", urlPattern=" + urlPattern);
+            log.debug("Process servletName=" + servletName
+                    + ", urlPattern=" + urlPattern);
         }
         if (servletName == null) {
             return;
@@ -476,6 +478,9 @@ public class ActionServlet extends HttpServlet {
     /**
      * <p>Return the <code>MessageResources</code> instance containing our
      * internal message strings.</p>
+     *
+     * @return the <code>MessageResources</code> instance containing our
+     *         internal message strings.
      *
      * @since Struts 1.1
      */
@@ -519,7 +524,7 @@ public class ActionServlet extends HttpServlet {
 
             getServletContext().removeAttribute(name);
 
-            PlugIn plugIns[] =
+            PlugIn[] plugIns =
                 (PlugIn[]) getServletContext().getAttribute(
                     Globals.PLUG_INS_KEY + config.getPrefix());
 
@@ -565,10 +570,13 @@ public class ActionServlet extends HttpServlet {
      * module.</p>
      *
      * @param request The servlet request we are processing
+     *
+     * @return The module configuration object for the currently selected
+     *         module.
+     *
      * @since Struts 1.1
      */
-    protected ModuleConfig getModuleConfig
-        (HttpServletRequest request) {
+    protected ModuleConfig getModuleConfig(HttpServletRequest request) {
 
         ModuleConfig config = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
@@ -588,8 +596,12 @@ public class ActionServlet extends HttpServlet {
      * @param config The module configuration for which to
      *  acquire and return a RequestProcessor.
      *
+     * @return The {@link RequestProcessor} responsible for the
+     *         specified module,
+     *
      * @exception ServletException if we cannot instantiate a RequestProcessor
-     *  instance
+     *                             instance
+     *
      * @since Struts 1.1
      */
     protected synchronized RequestProcessor getRequestProcessor(
@@ -631,6 +643,9 @@ public class ActionServlet extends HttpServlet {
      * not exist.  This method will not create a RequestProcessor.</p>
      *
      * @param config The ModuleConfig.
+     *
+     * @return The <code>RequestProcessor</code> for the given module, or
+     *         <code>null</code> if one does not exist.
      */
     private RequestProcessor getProcessorForModule(ModuleConfig config) {
         String key = Globals.REQUEST_PROCESSOR_KEY + config.getPrefix();
@@ -659,6 +674,8 @@ public class ActionServlet extends HttpServlet {
      * @param paths Comma-separated list of context-relative resource path(s)
      *  for this modules's configuration resource(s)
      *
+     * @return The new module configuration instance.
+     *
      * @exception ServletException if initialization cannot be performed
      * @since Struts 1.1
      */
@@ -686,8 +703,8 @@ public class ActionServlet extends HttpServlet {
 
         List urls = splitAndResolvePaths(paths);
         URL url = null;
-        for (Iterator i = urls.iterator(); i.hasNext(); ) {
-            url = (URL)i.next();
+        for (Iterator i = urls.iterator(); i.hasNext();) {
+            url = (URL) i.next();
             digester.push(config);
             this.parseModuleConfigFile(digester, url);
         }
@@ -718,10 +735,10 @@ public class ActionServlet extends HttpServlet {
             List paths = splitAndResolvePaths(path);
             if (paths.size() > 0) {
                 // Get first path as was the old behavior
-                URL url = (URL)paths.get(0);
+                URL url = (URL) paths.get(0);
                 parseModuleConfigFile(digester, url);
             } else {
-                throw new UnavailableException("Cannot locate path "+path);
+                throw new UnavailableException("Cannot locate path " + path);
             }
         } catch (UnavailableException ex) {
             throw ex;
@@ -767,8 +784,11 @@ public class ActionServlet extends HttpServlet {
 
     /**
      * <p>Simplifies exception handling in the
-     * <code>parseModuleConfigFile</code> method.<p> @param path
-     * @param e
+     * <code>parseModuleConfigFile</code> method.<p>
+     *
+     * @param path The path to which the exception relates.
+     * @param e The exception to be wrapped and thrown.
+     *
      * @throws UnavailableException as a wrapper around Exception
      */
     private void handleConfigException(String path, Exception e)
@@ -860,8 +880,8 @@ public class ActionServlet extends HttpServlet {
                     + "' plug ins");
         }
 
-        PlugInConfig plugInConfigs[] = config.findPlugInConfigs();
-        PlugIn plugIns[] = new PlugIn[plugInConfigs.length];
+        PlugInConfig[] plugInConfigs = config.findPlugInConfigs();
+        PlugIn[] plugIns = new PlugIn[plugInConfigs.length];
 
         getServletContext().setAttribute(
                 Globals.PLUG_INS_KEY + config.getPrefix(), plugIns);
@@ -880,6 +900,7 @@ public class ActionServlet extends HttpServlet {
                         "currentPlugInConfigObject",
                         plugInConfigs[i]);
                 } catch (Exception e) {
+                    ;
                   // FIXME Whenever we fail silently, we must document a valid
                   // reason for doing so.  Why should we fail silently if a
                   // property can't be set on the plugin?
@@ -1500,7 +1521,7 @@ public class ActionServlet extends HttpServlet {
     protected void initModuleMessageResources(ModuleConfig config)
         throws ServletException {
 
-        MessageResourcesConfig mrcs[] = config.findMessageResourcesConfigs();
+        MessageResourcesConfig[] mrcs = config.findMessageResourcesConfigs();
         for (int i = 0; i < mrcs.length; i++) {
             if ((mrcs[i].getFactory() == null)
                 || (mrcs[i].getParameter() == null)) {
@@ -1538,6 +1559,8 @@ public class ActionServlet extends HttpServlet {
      * <code>ModuleConfig</code> object (which must be pushed on to the
      * evaluation stack before parsing begins).</p>
      *
+     * @return A new configured <code>Digester</code> instance.
+     *
      * @exception ServletException if a Digester cannot be configured
      * @since Struts 1.1
      */
@@ -1558,7 +1581,7 @@ public class ActionServlet extends HttpServlet {
         configDigester.addRuleSet(new ConfigRuleSet());
 
         for (int i = 0; i < registrations.length; i += 2) {
-            URL url = this.getClass().getResource(registrations[i+1]);
+            URL url = this.getClass().getResource(registrations[i + 1]);
             if (url != null) {
                 configDigester.register(registrations[i], url.toString());
             }
@@ -1575,7 +1598,7 @@ public class ActionServlet extends HttpServlet {
      * <p>Add any custom RuleSet instances to configDigester that have
      * been specified in the <code>rulesets</code> init parameter.</p>
      *
-     * @throws ServletException
+     * @throws ServletException if an error occurs
      */
     private void addRuleSets() throws ServletException {
 
@@ -1663,6 +1686,8 @@ public class ActionServlet extends HttpServlet {
      * <code>chainConfig</code> init-param to configure the default
      * {@link Catalog} that is registered in the {@link CatalogFactory}
      * instance for this application.</p>
+     *
+     * @throws ServletException if an error occurs.
      */
     protected void initChain() throws ServletException {
 
@@ -1677,9 +1702,9 @@ public class ActionServlet extends HttpServlet {
             ConfigParser parser = new ConfigParser();
             List urls = splitAndResolvePaths(chainConfig);
             URL resource = null;
-            for (Iterator i = urls.iterator(); i.hasNext(); ) {
-                resource = (URL)i.next();
-                log.info("Loading chain catalog from "+resource);
+            for (Iterator i = urls.iterator(); i.hasNext();) {
+                resource = (URL) i.next();
+                log.info("Loading chain catalog from " + resource);
                 parser.parse(resource);
             }
         } catch (Exception e) {
@@ -1756,7 +1781,7 @@ public class ActionServlet extends HttpServlet {
 
         // Register our local copy of the DTDs that we can find
         for (int i = 0; i < registrations.length; i += 2) {
-            URL url = this.getClass().getResource(registrations[i+1]);
+            URL url = this.getClass().getResource(registrations[i + 1]);
             if (url != null) {
                 digester.register(registrations[i], url.toString());
             }
@@ -1803,8 +1828,8 @@ public class ActionServlet extends HttpServlet {
 
         // Record a servlet context attribute (if appropriate)
         if (log.isDebugEnabled()) {
-            log.debug("Mapping for servlet '" + servletName + "' = '" +
-                servletMapping + "'");
+            log.debug("Mapping for servlet '" + servletName + "' = '"
+                    + servletMapping + "'");
         }
 
         if (servletMapping != null) {
@@ -1857,8 +1882,9 @@ public class ActionServlet extends HttpServlet {
 
                 if (resource == null) {
                     if (log.isDebugEnabled()) {
-                        log.debug("Unable to locate "+path+" in the servlet "
-                                + "context, trying classloader.");
+                        log.debug("Unable to locate " + path
+                                + " in the servlet context, "
+                                + "trying classloader.");
                     }
                     Enumeration e = loader.getResources(path);
                     if (!e.hasMoreElements()) {

@@ -394,6 +394,14 @@ public class ActionMessages implements Serializable {
         protected String property = null;
 
 
+        /**
+         * <p>Construct an instance of this class.</p>
+         *
+         * @param list     The list of <code>ActionMessage</code>s.
+         * @param iOrder   The position in the list of messages.
+         * @param property The property associated with
+         *                 <code>ActionMessage</code>.
+         */
         public ActionMessageItem(List list, int iOrder, String property) {
             this.list = list;
             this.iOrder = iOrder;
@@ -401,36 +409,71 @@ public class ActionMessages implements Serializable {
         }
 
 
+        /**
+         * <p>Retrieve the list of messages associated with this item.</p>
+         *
+         * @return The list of messages associated with this item.
+         */
         public List getList() {
             return list;
         }
 
 
+        /**
+         * <p>Set the list of messages associated with this item.</p>
+         *
+         * @param list The list of messages associated with this item.
+         */
         public void setList(List list) {
             this.list = list;
         }
 
 
+        /**
+         * <p>Retrieve the position in the message list.</p>
+         *
+         * @return The position in the message list.
+         */
         public int getOrder() {
             return iOrder;
         }
 
 
+        /**
+         * <p>Set the position in the message list.</p>
+         *
+         * @param iOrder The position in the message list.
+         */
         public void setOrder(int iOrder) {
             this.iOrder = iOrder;
         }
 
 
+        /**
+         * <p>Retrieve the property associated with this item.</p>
+         *
+         * @return The property associated with this item.
+         */
         public String getProperty() {
             return property;
         }
 
 
+        /**
+         * <p>Set the property associated with this item.</p>
+         *
+         * @param property The property associated with this item.
+         */
         public void setProperty(String property) {
             this.property = property;
         }
 
 
+        /**
+         * <p>Construct a string representation of this object.</p>
+         *
+         * @return A string representation of this object.
+         */
         public String toString() {
             return this.list.toString();
         }

@@ -95,6 +95,11 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         initialize(config);
     }
 
+    /**
+     * <p>Initialize the specified form bean.</p>
+     *
+     * @param config The configuration for the form bean to initialize.
+     */
     public void initialize(FormBeanConfig config) {
 
         FormPropertyConfig[] props = config.findFormPropertyConfigs();
@@ -153,6 +158,9 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @param name Name of the property to check
      * @param key Name of the key to check
      *
+     * @return <code>true</code> if the specified mapped property contains a
+     *         value for the specified key value; <code>true</code> otherwise.
+     *
      * @exception IllegalArgumentException if there is no property
      *  of the specified name
      */
@@ -176,6 +184,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * <p>Return the value of a simple property with the specified name.</p>
      *
      * @param name Name of the property whose value is to be retrieved
+     *
+     * @return The value of a simple property with the specified name.
      *
      * @exception IllegalArgumentException if there is no property
      *  of the specified name
@@ -231,6 +241,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @param name Name of the property whose value is to be retrieved
      * @param index Index of the value to be retrieved
      *
+     * @return The value of an indexed property with the specified name.
+     *
      * @exception IllegalArgumentException if there is no property
      *  of the specified name
      * @exception IllegalArgumentException if the specified property
@@ -266,6 +278,9 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @param name Name of the property whose value is to be retrieved
      * @param key Key of the value to be retrieved
      *
+     * @return The value of a mapped property with the specified name, or
+     *         <code>null</code> if there is no value for the specified key.
+     *
      * @exception IllegalArgumentException if there is no property
      *  of the specified name
      * @exception IllegalArgumentException if the specified property
@@ -292,7 +307,10 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * name. This is equivalent to calling
      * <code>(String) dynaForm.get(name)</code>.</p>
      *
-     * @param name Name of the property whose value is to be retrieved
+     * @param name Name of the property whose value is to be retrieved.
+     *
+     * @return The value of a <code>String</code> property with the specified
+     *         name.
      *
      * @throws IllegalArgumentException if there is no property
      *  of the specified name
@@ -313,7 +331,10 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * specified name. This is equivalent to calling
      * <code>(String[]) dynaForm.get(name)</code>.</p>
      *
-     * @param name Name of the property whose value is to be retrieved
+     * @param name Name of the property whose value is to be retrieved.
+     *
+     * @return The value of a <code>String[]</code> property with the
+     *         specified name.
      *
      * @throws IllegalArgumentException if there is no property
      *  of the specified name
@@ -332,6 +353,9 @@ public class DynaActionForm extends ActionForm implements DynaBean {
     /**
      * <p>Return the <code>DynaClass</code> instance that describes the set
      * of properties available for this <code>DynaBean</code>.</p>
+     *
+     * @return The <code>DynaClass</code> instance that describes the set
+     *         of properties available for this <code>DynaBean</code>.
      */
     public DynaClass getDynaClass() {
 
@@ -341,7 +365,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * <p>Returns the <code>Map</code> containing the property values.  This is
+     * <p>Returns the <code>Map</code> containing the property values. This is
      * done mostly to facilitate accessing the <code>DynaActionForm</code>
      * through JavaBeans accessors, in order to use the JavaServer Pages
      * Standard Tag Library (JSTL).</p>
@@ -356,6 +380,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * <pre>
      *  ${dynabean.map.prop}</pre>
      * </p>
+     *
+     * @return The <code>Map</code> containing the property values.
      */
     public Map getMap() {
 
@@ -502,6 +528,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
     /**
      * <p>Render a String representation of this object.</p>
+     *
+     * @return A string representation of this object.
      */
     public String toString() {
 
@@ -512,7 +540,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         }
 
         sb.append(dynaClass.getName());
-        DynaProperty props[] = dynaClass.getDynaProperties();
+        DynaProperty[] props = dynaClass.getDynaProperties();
         if (props == null) {
             props = new DynaProperty[0];
         }
@@ -592,6 +620,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      *
      * @param name Name of the property for which to retrieve the descriptor
      *
+     * @return The property descriptor for the specified property name.
+     *
      * @exception IllegalArgumentException if this is not a valid property
      *  name for our DynaClass
      */
@@ -613,18 +643,21 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      *
      * @param dest Destination class
      * @param source Source class
+     *
+     * @return <code>true</code> if the source is assignable to the destination;
+     *         <code>false</code> otherwise.
      */
     protected boolean isDynaAssignable(Class dest, Class source) {
 
-        if (dest.isAssignableFrom(source) ||
-            ((dest == Boolean.TYPE) && (source == Boolean.class))
+        if (dest.isAssignableFrom(source)
+                || ((dest == Boolean.TYPE) && (source == Boolean.class))
                 || ((dest == Byte.TYPE) && (source == Byte.class))
                 || ((dest == Character.TYPE) && (source == Character.class))
                 || ((dest == Double.TYPE) && (source == Double.class))
                 || ((dest == Float.TYPE) && (source == Float.class))
                 || ((dest == Integer.TYPE) && (source == Integer.class))
                 || ((dest == Long.TYPE) && (source == Long.class))
-                ||((dest == Short.TYPE) && (source == Short.class))) {
+                || ((dest == Short.TYPE) && (source == Short.class))) {
             return (true);
         } else {
             return (false);

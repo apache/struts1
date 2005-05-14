@@ -65,6 +65,9 @@ public class ExceptionHandler {
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
      *
+     * @return The <code>ActionForward</code> instance (if any) returned by
+     *         the called <code>ExceptionHandler</code>.
+     *
      * @exception ServletException if a servlet exception occurs
      *
      * @since Struts 1.1

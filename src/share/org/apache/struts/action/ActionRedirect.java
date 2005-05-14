@@ -58,6 +58,14 @@ import java.util.Iterator;
  */
 public class ActionRedirect extends ActionForward {
 
+    // ----------------------------------------------------- Manifest constants
+
+    /**
+     * <p>Default allocation size for string buffers.</p>
+     */
+    private static final int DEFAULT_BUFFER_SIZE = 256;
+
+
     // ----------------------------------------------------- Static variables
 
     /**
@@ -204,6 +212,8 @@ public class ActionRedirect extends ActionForward {
     /**
      * <p>Get the path for this object, including any parameters
      * that may have been added at runtime.</p>
+     *
+     * @return The path for this object.
      */
     public String getPath() {
         // get the original path and the parameter string that was formed
@@ -249,7 +259,7 @@ public class ActionRedirect extends ActionForward {
      *    mark (?).
      */
     public String getParameterString() {
-        StringBuffer strParam = new StringBuffer(256);
+        StringBuffer strParam = new StringBuffer(DEFAULT_BUFFER_SIZE);
 
         // loop through all parameters
         Iterator iterator = parameterValues.keySet().iterator();
@@ -297,7 +307,7 @@ public class ActionRedirect extends ActionForward {
      *  and the parameters it currently holds
      */
     public String toString() {
-        StringBuffer result = new StringBuffer(256);
+        StringBuffer result = new StringBuffer(DEFAULT_BUFFER_SIZE);
         result.append("ActionRedirect [");
         result.append("originalPath=").append(getOriginalPath()).append(";");
         result.append("parameterString=")

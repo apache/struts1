@@ -114,6 +114,8 @@ public class DynaActionFormClass implements DynaClass, Serializable {
      * <code>getName()</code> method of <code>java.lang.Class</code>, which
      * allows the same <code>DynaClass</code> implementation class to support
      * different dynamic classes, with different sets of properties.
+     *
+     * @return The name of this <code>DynaClass</code>.
      */
     public String getName() {
 
@@ -128,6 +130,8 @@ public class DynaActionFormClass implements DynaClass, Serializable {
      *
      * @param name Name of the dynamic property for which a descriptor
      *  is requested
+     *
+     * @return A property descriptor for the specified property.
      *
      * @exception IllegalArgumentException if no property name is specified
      */
@@ -146,6 +150,8 @@ public class DynaActionFormClass implements DynaClass, Serializable {
      * <p>Return an array of <code>DynaProperty</code>s for the properties
      * currently defined in this <code>DynaClass</code>.  If no properties are
      * defined, a zero-length array will be returned.</p>
+     *
+     * @return An array of property instances for this class.
      */
     public DynaProperty[] getDynaProperties() {
 
@@ -163,6 +169,8 @@ public class DynaActionFormClass implements DynaClass, Serializable {
      * properties of the returned {@link DynaActionForm} will have been
      * initialized to the default values specified in the form bean
      * configuration information.</p>
+     *
+     * @return A new {@link DynaActionForm} instance.
      *
      * @exception IllegalAccessException if the Class or the appropriate
      *  constructor is not accessible
@@ -190,6 +198,8 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
     /**
      * <p>Render a <code>String</code> representation of this object.</p>
+     *
+     * @return The string representation of this instance.
      */
     public String toString() {
 
@@ -226,9 +236,13 @@ public class DynaActionFormClass implements DynaClass, Serializable {
     /**
      * Return the <code>DynaActionFormClass</code> instance for the specified
      * form bean configuration instance.
+     *
+     * @param config The config for which the class should be created.
+     *
+     * @return The instance for the specified form bean config.
      */
-    public static DynaActionFormClass
-        createDynaActionFormClass(FormBeanConfig config) {
+    public static DynaActionFormClass createDynaActionFormClass(
+            FormBeanConfig config) {
 
         return config.getDynaActionFormClass();
 
@@ -243,6 +257,8 @@ public class DynaActionFormClass implements DynaClass, Serializable {
      * instances, re-introspecting our {@link FormBeanConfig} if necessary
      * (that is, after being deserialized, since <code>beanClass</code> is
      * marked transient).</p>
+     *
+     * @return The implementation class used to construct new instances.
      */
     protected Class getBeanClass() {
 

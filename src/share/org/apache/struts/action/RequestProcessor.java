@@ -242,6 +242,9 @@ public class RequestProcessor {
      * @param response The servlet response we are creating
      * @param mapping The mapping we are using
      *
+     * @return An <code>Action</code> instance that will be used to process
+     *         the current request.
+     *
      * @exception IOException if an input/output error occurs
      */
     protected Action processActionCreate(HttpServletRequest request,
@@ -307,6 +310,8 @@ public class RequestProcessor {
      * this mapping, creating and retaining one if necessary. If there is no
      * <code>ActionForm</code> associated with this mapping, return
      * <code>null</code>.</p>
+     *
+     * @return The <code>ActionForm</code> associated with this mapping.
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -407,6 +412,9 @@ public class RequestProcessor {
      * @param form The ActionForm instance to pass to this Action
      * @param mapping The ActionMapping instance to pass to this Action
      *
+     * @return The <code>ActionForward</code> instance (if any) returned by the
+     *         called <code>Action</code>.
+     *
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      */
@@ -504,6 +512,9 @@ public class RequestProcessor {
      * @param form The ActionForm we are processing
      * @param mapping The ActionMapping we are using
      *
+     * @return The <code>ActionForward</code> instance (if any) returned by the
+     *         called <code>ExceptionHandler</code>.
+     *
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      */
@@ -549,6 +560,9 @@ public class RequestProcessor {
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
      * @param mapping The ActionMapping we are using
+     *
+     * @return <code>true</code> to continue normal processing;
+     *         <code>false</code> if a response has been created.
      */
     protected boolean processForward(HttpServletRequest request,
                                      HttpServletResponse response,
@@ -575,6 +589,12 @@ public class RequestProcessor {
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
      * @param mapping The ActionMapping we are using
+     *
+     * @return <code>true</code> to continue normal processing;
+     *         <code>false</code> if a response has been created.
+     *
+     * @throws IOException if an input/output error occurs
+     * @throws ServletException if thrown by invoked methods
      */
     protected boolean processInclude(HttpServletRequest request,
                                      HttpServletResponse response,
@@ -636,6 +656,8 @@ public class RequestProcessor {
      * @param response The servlet response we are creating
      * @param path The portion of the request URI for selecting a mapping
      *
+     * @return The mapping used to process the selection path for this request.
+     *
      * @exception IOException if an input/output error occurs
      */
     protected ActionMapping processMapping(HttpServletRequest request,
@@ -677,6 +699,9 @@ public class RequestProcessor {
      * Otherwise, return the request unchanged.</p>
      *
      * @param request The HttpServletRequest we are processing
+     *
+     * @return A wrapped request, if the request is multipart; otherwise the
+     *         original request.
      */
     protected HttpServletRequest processMultipart(HttpServletRequest request) {
 
@@ -685,8 +710,8 @@ public class RequestProcessor {
         }
 
         String contentType = request.getContentType();
-        if ((contentType != null) &&
-            contentType.startsWith("multipart/form-data")) {
+        if ((contentType != null)
+                && contentType.startsWith("multipart/form-data")) {
             return (new MultipartRequestWrapper(request));
         } else {
             return (request);
@@ -724,6 +749,8 @@ public class RequestProcessor {
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
+     *
+     * @return The path that will be used to select an action mapping.
      *
      * @exception IOException if an input/output error occurs
      */
@@ -827,6 +854,9 @@ public class RequestProcessor {
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
+     *
+     * @return <code>true</code> to continue normal processing;
+     *         <code>false</code> if a response has been created.
      */
     protected boolean processPreprocess(HttpServletRequest request,
                                         HttpServletResponse response) {
@@ -846,6 +876,9 @@ public class RequestProcessor {
      * @param response The servlet response we are creating
      * @param mapping The mapping we are using
      *
+     * @return <code>true</code> to continue normal processing;
+     *         <code>false</code> if a response has been created.
+     *
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      */
@@ -855,7 +888,7 @@ public class RequestProcessor {
         throws IOException, ServletException {
 
         // Is this action protected by role requirements?
-        String roles[] = mapping.getRoleNames();
+        String[] roles = mapping.getRoleNames();
         if ((roles == null) || (roles.length < 1)) {
             return (true);
         }
@@ -899,6 +932,9 @@ public class RequestProcessor {
      * @param response The servlet response we are creating
      * @param form The ActionForm instance we are populating
      * @param mapping The ActionMapping we are using
+     *
+     * @return <code>true</code> to continue normal processing;
+     *         <code>false</code> if a response has been created.
      *
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
@@ -965,7 +1001,7 @@ public class RequestProcessor {
 
         if (moduleConfig.getControllerConfig().getInputForward()) {
             ForwardConfig forward = mapping.findForward(input);
-            processForwardConfig( request, response, forward);
+            processForwardConfig(request, response, forward);
         } else {
             internalModuleRelativeForward(input, request, response);
         }
@@ -1007,11 +1043,11 @@ public class RequestProcessor {
 
 
     /**
-     * <p>Do a module relative include to specified URI using request dispatcher.
-     * URI is relative to the current module. The real URI is compute by prefixing
-     * the module name.</p>
-     * <p>This method is used internally and is not part of the public API. It is
-     * advised to not use it in subclasses.</p>
+     * <p>Do a module relative include to specified URI using request
+     * dispatcher. URI is relative to the current module. The real URI is
+     * compute by prefixing the module name.</p>
+     * <p>This method is used internally and is not part of the public API. It
+     * is advised to not use it in subclasses.</p>
      *
      * @param uri Module-relative URI to include
      * @param request Current page request
@@ -1105,6 +1141,9 @@ public class RequestProcessor {
     /**
      * <p>Return the <code>MessageResources</code> instance containing our
      * internal message strings.</p>
+     *
+     * @return The <code>MessageResources</code> instance containing our
+     *         internal message strings.
      */
     protected MessageResources getInternal() {
 
@@ -1115,7 +1154,9 @@ public class RequestProcessor {
 
     /**
      * <p>Return the <code>ServletContext</code> for the web application in
-     * which we are running.
+     * which we are running.</p>
+     *
+     * @return The <code>ServletContext</code> for the web application.
      */
     protected ServletContext getServletContext() {
 
