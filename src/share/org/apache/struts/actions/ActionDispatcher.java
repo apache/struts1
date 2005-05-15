@@ -36,15 +36,16 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.Globals;
 
 /**
- * <p>Action <i>helper</i> class that dispatches to a public method in an Action.</p>
+ * <p>Action <i>helper</i> class that dispatches to a public method in an
+ * Action.</p>
  * <p/>
  * <p>This class is provided as an alternative mechanism to using DispatchAction
  * and its various flavours and means <i>Dispatch</i> behaviour can be
  * easily implemented into any <code>Action</code> without having to
  * inherit from a particular super <code>Action</code>.</p>
  * <p/>
- * <p>To implement <i>dispatch</i> behaviour</i> in an <code>Action</code> class,
- * create your custom Action as follows, along with the methods you
+ * <p>To implement <i>dispatch</i> behaviour in an <code>Action</code>
+ * class, create your custom Action as follows, along with the methods you
  * require (and optionally "cancelled" and "unspecified" methods):</p>
  * <p/>
  * <pre>
@@ -66,24 +67,24 @@ import org.apache.struts.Globals;
  * <p>It provides three flavours of determing the name of the method:</p>
  * <p/>
  * <ul>
- * <li><strong>{@link #DEFAULT_FLAVOR}</strong> - uses the parameter specified in
- * the struts-config.xml to get the method name from the Request
+ * <li><strong>{@link #DEFAULT_FLAVOR}</strong> - uses the parameter specified
+ * in the struts-config.xml to get the method name from the Request
  * (equivalent to <code>DispatchAction</code> <b>except</b> uses "method"
  * as a default if the <code>parameter</code> is not specified
  * in the struts-config.xml).</li>
  * <p/>
- * <li><strong>{@link #DISPATCH_FLAVOR}</strong> - uses the parameter specified in
- * the struts-config.xml to get the method name from the Request
+ * <li><strong>{@link #DISPATCH_FLAVOR}</strong> - uses the parameter specified
+ * in the struts-config.xml to get the method name from the Request
  * (equivalent to <code>DispatchAction</code>).</li>
  * <p/>
- * <li><strong>{@link #MAPPING_FLAVOR}</strong> - uses the parameter specified in
- * the struts-config.xml as the method name
+ * <li><strong>{@link #MAPPING_FLAVOR}</strong> - uses the parameter specified
+ * in the struts-config.xml as the method name
  * (equivalent to <code>MappingDispatchAction</code>).</li>
  * <p/>
  * </ul>
  *
  * @since Struts 1.2.7
- * @version $Revision$ $Date$
+ * @version $Rev$ $Date$
  */
 public class ActionDispatcher {
 
@@ -91,17 +92,17 @@ public class ActionDispatcher {
     // ----------------------------------------------------- Instance Variables
 
     /**
-     * Indicates "default" dispatch flavor
+     * Indicates "default" dispatch flavor.
      */
     public static final int DEFAULT_FLAVOR = 0;
 
     /**
-     * Indicates "mapping" dispatch flavor
+     * Indicates "mapping" dispatch flavor.
      */
     public static final int MAPPING_FLAVOR = 1;
 
     /**
-     * Indicates flavor compatible with DispatchAction
+     * Indicates flavor compatible with DispatchAction.
      */
     public static final int DISPATCH_FLAVOR = 2;
 
@@ -112,7 +113,7 @@ public class ActionDispatcher {
     protected Action actionInstance;
 
     /**
-     * Indicates dispatch <i>flavor</i>
+     * Indicates dispatch <i>flavor</i>.
      */
     protected int flavor;
 
@@ -155,11 +156,22 @@ public class ActionDispatcher {
 
     // ----------------------------------------------------- Constructors
 
+    /**
+     * Construct an instance of this class from the supplied parameters.
+     *
+     * @param actionInstance The action instance to be invoked.
+     */
     public ActionDispatcher(Action actionInstance) {
         this(actionInstance, DEFAULT_FLAVOR);
     }
 
 
+    /**
+     * Construct an instance of this class from the supplied parameters.
+     *
+     * @param actionInstance The action instance to be invoked.
+     * @param flavor The flavor of dispatch to use.
+     */
     public ActionDispatcher(Action actionInstance, int flavor) {
 
         this.actionInstance = actionInstance;
@@ -184,6 +196,10 @@ public class ActionDispatcher {
      * @param form     The optional ActionForm bean for this request (if any)
      * @param request  The HTTP request we are processing
      * @param response The HTTP response we are creating
+     *
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
+     *
      * @throws Exception if an exception occurs
      */
     public ActionForward execute(ActionMapping mapping,
@@ -203,13 +219,14 @@ public class ActionDispatcher {
         String parameter = getParameter(mapping, form, request, response);
 
         // Get the method's name. This could be overridden in subclasses.
-        String name = getMethodName(mapping, form, request, response, parameter);
+        String name = getMethodName(mapping, form, request, response,
+                parameter);
 
 
         // Prevent recursive calls
         if ("execute".equals(name) || "perform".equals(name)) {
-            String message =
-                    messages.getMessage("dispatch.recursive", mapping.getPath());
+            String message = messages.getMessage("dispatch.recursive",
+                    mapping.getPath());
 
             log.error(message);
             throw new ServletException(message);
@@ -227,7 +244,18 @@ public class ActionDispatcher {
      * if present, otherwise throws a ServletException. Classes utilizing
      * <code>ActionDispatcher</code> should provide an <code>unspecified</code>
      * method if they wish to provide behavior different than
-     * throwing a ServletException..</p>
+     * throwing a ServletException.</p>
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The non-HTTP request we are processing
+     * @param response The non-HTTP response we are creating
+     *
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
+     *
+     * @exception Exception if the application business logic throws an
+     *                      exception.
      */
     protected ActionForward unspecified(ActionMapping mapping,
                                         ActionForm form,
@@ -261,6 +289,17 @@ public class ActionDispatcher {
      * otherwise returns null. Classes utilizing <code>ActionDispatcher</code>
      * should provide a <code>cancelled</code> method if they wish to provide
      * behavior different than returning null.</p>
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The non-HTTP request we are processing
+     * @param response The non-HTTP response we are creating
+     *
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
+     *
+     * @exception Exception if the application business logic throws an
+     *                      exception.
      */
     protected ActionForward cancelled(ActionMapping mapping,
                                       ActionForm form,
@@ -287,6 +326,18 @@ public class ActionDispatcher {
 
     /**
      * Dispatch to the specified method.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The non-HTTP request we are processing
+     * @param response The non-HTTP response we are creating
+     * @param name The name of the method to invoke
+     *
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
+     *
+     * @exception Exception if the application business logic throws an
+     *                      exception.
      */
     protected ActionForward dispatchMethod(ActionMapping mapping,
                                            ActionForm form,
@@ -306,8 +357,8 @@ public class ActionDispatcher {
             method = getMethod(name);
 
         } catch (NoSuchMethodException e) {
-            String message =
-                    messages.getMessage("dispatch.method", mapping.getPath(), name);
+            String message = messages.getMessage("dispatch.method",
+                    mapping.getPath(), name);
             log.error(message, e);
             throw e;
         }
@@ -318,6 +369,19 @@ public class ActionDispatcher {
 
     /**
      * Dispatch to the specified method.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The non-HTTP request we are processing
+     * @param response The non-HTTP response we are creating
+     * @param name The name of the method to invoke
+     * @param method The method to invoke
+     *
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
+     *
+     * @exception Exception if the application business logic throws an
+     *                      exception.
      */
     protected ActionForward dispatchMethod(ActionMapping mapping,
                                            ActionForm form,
@@ -328,18 +392,18 @@ public class ActionDispatcher {
 
         ActionForward forward = null;
         try {
-            Object args[] = {mapping, form, request, response};
+            Object[] args = {mapping, form, request, response};
             forward = (ActionForward) method.invoke(actionInstance, args);
 
         } catch (ClassCastException e) {
-            String message =
-                    messages.getMessage("dispatch.return", mapping.getPath(), name);
+            String message = messages.getMessage("dispatch.return",
+                    mapping.getPath(), name);
             log.error(message, e);
             throw e;
 
         } catch (IllegalAccessException e) {
-            String message =
-                    messages.getMessage("dispatch.error", mapping.getPath(), name);
+            String message = messages.getMessage("dispatch.error",
+                    mapping.getPath(), name);
             log.error(message, e);
             throw e;
 
@@ -350,8 +414,8 @@ public class ActionDispatcher {
             if (t instanceof Exception) {
                 throw ((Exception) t);
             } else {
-                String message =
-                        messages.getMessage("dispatch.error", mapping.getPath(), name);
+                String message = messages.getMessage("dispatch.error",
+                        mapping.getPath(), name);
                 log.error(message, e);
                 throw new ServletException(t);
             }
@@ -368,6 +432,7 @@ public class ActionDispatcher {
      * method does.
      *
      * @param name Name of the method to be introspected
+     * @return The method with the specified name.
      * @throws NoSuchMethodException if no such method can be found
      */
     protected Method getMethod(String name)
@@ -393,6 +458,7 @@ public class ActionDispatcher {
      * @param request  The HTTP request we are processing
      * @param response The HTTP response we are creating
      * @return The <code>ActionMapping</code> parameter's value
+     * @throws Exception if an error occurs.
      */
     protected String getParameter(ActionMapping mapping,
                                   ActionForm form,
@@ -410,8 +476,8 @@ public class ActionDispatcher {
             return "method";
         }
 
-        if ((parameter == null) &&
-                ((flavor == MAPPING_FLAVOR || flavor == DISPATCH_FLAVOR))) {
+        if ((parameter == null)
+                && ((flavor == MAPPING_FLAVOR || flavor == DISPATCH_FLAVOR))) {
             String message =
                     messages.getMessage("dispatch.handler", mapping.getPath());
 
@@ -433,6 +499,7 @@ public class ActionDispatcher {
      * @param response  The HTTP response we are creating
      * @param parameter The <code>ActionMapping</code> parameter's name
      * @return The method's name.
+     * @throws Exception if an error occurs.
      */
     protected String getMethodName(ActionMapping mapping,
                                    ActionForm form,
@@ -461,6 +528,10 @@ public class ActionDispatcher {
      * will have been skipped by the controller servlet.</p>
      *
      * @param request The servlet request we are processing
+     *
+     * @return <code>true</code> if the current form's cancel button was
+     *         pressed; <code>false</code> otherwise.
+     *
      * @see org.apache.struts.taglib.html.CancelTag
      */
     protected boolean isCancelled(HttpServletRequest request) {

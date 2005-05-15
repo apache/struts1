@@ -213,6 +213,9 @@ public class MappingDispatchAction extends DispatchAction {
      * @param parameter The <code>ActionMapping</code> parameter's name
      *
      * @return The method's name.
+     *
+     * @throws Exception if an error occurs
+     *
      * @since Struts 1.2.0
      */
     protected String getMethodName(

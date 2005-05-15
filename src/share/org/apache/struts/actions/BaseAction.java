@@ -36,8 +36,9 @@ public abstract class BaseAction extends Action {
     /**
      * The message resources for this package.
      */
-    protected static MessageResources messages = MessageResources.getMessageResources
-                ("org.apache.struts.actions.LocalStrings");
+    protected static MessageResources messages =
+            MessageResources.getMessageResources(
+                    "org.apache.struts.actions.LocalStrings");
 
 
 }

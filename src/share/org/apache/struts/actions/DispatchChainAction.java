@@ -1,4 +1,6 @@
 /*
+ * $Id: DispatchChainAction.java 54929 2004-10-16 16:38:42Z germuska $
+ *
  * Copyright 1999-2004 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -89,6 +91,11 @@ public class DispatchChainAction extends BaseAction {
      * @param form <code>ActionForm</code> for this request (if any)
      * @param request <code>HttpServletRequest</code> we are processing
      * @param response <code>HttpServletResponse</code> we are creating
+     *
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
+     *
+     * @exception Exception if an exception occurs
      */
     public ActionForward execute(ActionMapping mapping,
                                  ActionForm form,
@@ -135,6 +142,8 @@ public class DispatchChainAction extends BaseAction {
      * <p>Return the <code>Catalog</code> we will use to acquire the
      * <code>Command</code> to be executed.  NOTE: Any race condition
      * calling this method is harmless, so do not bother to synchronize.</p>
+     *
+     * @return The catalog in which to look up commands.
      */
     protected Catalog getCatalog() {
 

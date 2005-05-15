@@ -53,7 +53,7 @@ public abstract class DownloadAction extends BaseAction {
      * the buffer size that will be used to transfer the data to the servlet
      * output stream.
      */
-    protected static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
+    protected static final int DEFAULT_BUFFER_SIZE = 4096;
 
     /**
      * Returns the information on the file, or other stream, to be downloaded
@@ -95,6 +95,9 @@ public abstract class DownloadAction extends BaseAction {
      * @param form     The optional ActionForm bean for this request (if any).
      * @param request  The HTTP request we are processing.
      * @param response The HTTP response we are creating.
+     *
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
      *
      * @throws Exception if an exception occurs.
      */
@@ -153,15 +156,17 @@ public abstract class DownloadAction extends BaseAction {
          *
          * @return The content type of the stream.
          */
-        public abstract String getContentType();
+        String getContentType();
 
         /**
          * Returns an input stream on the content to be downloaded. This stream
          * will be closed by the <code>DownloadAction</code>.
          *
          * @return The input stream for the content to be downloaded.
+         *
+         * @throws IOException if an error occurs
          */
-        public abstract InputStream getInputStream() throws IOException;
+        InputStream getInputStream() throws IOException;
     }
 
     /**
@@ -206,6 +211,8 @@ public abstract class DownloadAction extends BaseAction {
          * will be closed by the <code>DownloadAction</code>.
          *
          * @return The input stream for the file to be downloaded.
+         *
+         * @throws IOException if an error occurs
          */
         public InputStream getInputStream() throws IOException {
             FileInputStream fis = new FileInputStream(file);
@@ -264,6 +271,8 @@ public abstract class DownloadAction extends BaseAction {
          * will be closed by the <code>DownloadAction</code>.
          *
          * @return The input stream for the resource to be downloaded.
+         *
+         * @throws IOException if an error occurs
          */
         public InputStream getInputStream() throws IOException {
             return context.getResourceAsStream(path);

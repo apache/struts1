@@ -96,8 +96,8 @@ import org.apache.struts.util.MessageResources;
  *      // do delete
  *      return mapping.findForward("success");
  *  }
- *  <p>
- *
+ * </pre>
+ * <p>
  *  <strong>Notes</strong> - If duplicate values exist for the keys returned by
  *  getKeys, only the first one found will be returned. If no corresponding key
  *  is found then an exception will be thrown. You can override the
@@ -150,21 +150,28 @@ public abstract class LookupDispatchAction extends DispatchAction {
         // Identify the request parameter containing the method name
         String parameter = mapping.getParameter();
         if (parameter == null) {
-            String message = messages.getMessage("dispatch.handler", mapping.getPath());
+            String message = messages.getMessage("dispatch.handler",
+                    mapping.getPath());
             throw new ServletException(message);
         }
 
         // Identify the string to lookup
-        String methodName = getMethodName(mapping, form, request, response, parameter);
+        String methodName = getMethodName(mapping, form, request, response,
+                parameter);
 
         return dispatchMethod(mapping, form, request, response, methodName);
 
     }
 
     /**
-     * This is the first time this Locale is used so build the reverse lookup Map.
-     * Search for message keys in all configured MessageResources for
+     * This is the first time this Locale is used so build the reverse lookup
+     * Map. Search for message keys in all configured MessageResources for
      * the current module.
+     *
+     * @param request The HTTP request we are processing
+     * @param userLocale The locale for this request
+     *
+     * @return The reverse lookup map for the specified locale.
      */
     private Map initLookupMap(HttpServletRequest request, Locale userLocale) {
         Map lookupMap = new HashMap();
@@ -173,11 +180,13 @@ public abstract class LookupDispatchAction extends DispatchAction {
         ModuleConfig moduleConfig =
                 (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
 
-        MessageResourcesConfig[] mrc = moduleConfig.findMessageResourcesConfigs();
+        MessageResourcesConfig[] mrc =
+                moduleConfig.findMessageResourcesConfigs();
 
         // Look through all module's MessageResources
         for (int i = 0; i < mrc.length; i++) {
-            MessageResources resources = this.getResources(request, mrc[i].getKey());
+            MessageResources resources = this.getResources(request,
+                    mrc[i].getKey());
 
             // Look for key in MessageResources
             Iterator iter = this.keyMethodMap.keySet().iterator();
@@ -222,7 +231,7 @@ public abstract class LookupDispatchAction extends DispatchAction {
         // Based on this request's Locale get the lookupMap
         Map lookupMap = null;
 
-        synchronized(localeMap) {
+        synchronized (localeMap) {
             Locale userLocale = this.getLocale(request);
             lookupMap = (Map) this.localeMap.get(userLocale);
 
@@ -261,6 +270,9 @@ public abstract class LookupDispatchAction extends DispatchAction {
      * @param parameter The <code>ActionMapping</code> parameter's name
      *
      * @return The method's name.
+     *
+     * @throws Exception if an error occurs
+     *
      * @since Struts 1.2.0
      */
     protected String getMethodName(

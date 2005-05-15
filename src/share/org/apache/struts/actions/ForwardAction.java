@@ -69,6 +69,9 @@ public class ForwardAction extends BaseAction {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
+     *
      * @exception Exception if an error occurs
      */
     public ActionForward execute(

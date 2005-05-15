@@ -80,10 +80,11 @@ import org.apache.struts.action.ActionMapping;
  *
  * <p><strong>NOTE</strong> - If the value of the request parameter is empty,
  * a method named <code>unspecified</code> is called. The default action is
- * to throw an exception. If the request was cancelled (a <code>html:cancel</code>
- * button was pressed), the custom handler <code>cancelled</code> will be used instead.
- * You can also override the <code>getMethodName</code> method to override the action's
- * default handler selection.</p>
+ * to throw an exception. If the request was cancelled (a
+ * <code>html:cancel</code> button was pressed), the custom handler
+ * <code>cancelled</code> will be used instead. You can also override the
+ * <code>getMethodName</code> method to override the action's default handler
+ * selection.</p>
  *
  * @version $Rev$ $Date$
  */
@@ -142,6 +143,9 @@ public abstract class DispatchAction extends BaseAction {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
+     *
      * @exception Exception if an exception occurs
      */
     public ActionForward execute(ActionMapping mapping,
@@ -158,8 +162,8 @@ public abstract class DispatchAction extends BaseAction {
         // Identify the request parameter containing the method name
         String parameter = mapping.getParameter();
         if (parameter == null) {
-            String message =
-                    messages.getMessage("dispatch.handler", mapping.getPath());
+            String message = messages.getMessage("dispatch.handler",
+                    mapping.getPath());
 
             log.error(message);
 
@@ -167,7 +171,8 @@ public abstract class DispatchAction extends BaseAction {
         }
 
         // Get the method's name. This could be overridden in subclasses.
-        String name = getMethodName(mapping, form, request, response, parameter);
+        String name = getMethodName(mapping, form, request, response,
+                parameter);
 
 
     // Prevent recursive calls
@@ -193,6 +198,17 @@ public abstract class DispatchAction extends BaseAction {
      * request parameter included in the request.  Subclasses of
      * <code>DispatchAction</code> should override this method if they wish
      * to provide default behavior different than throwing a ServletException.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The non-HTTP request we are processing
+     * @param response The non-HTTP response we are creating
+     *
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
+     *
+     * @exception Exception if the application business logic throws an
+     *                      exception.
      */
     protected ActionForward unspecified(
             ActionMapping mapping,
@@ -216,6 +232,18 @@ public abstract class DispatchAction extends BaseAction {
      * Method which is dispatched to when the request is a cancel button submit.
      * Subclasses of <code>DispatchAction</code> should override this method if
      * they wish to provide default behavior different than returning null.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The non-HTTP request we are processing
+     * @param response The non-HTTP response we are creating
+     *
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
+     *
+     * @exception Exception if the application business logic throws an
+     *                      exception.
+     *
      * @since Struts 1.2.0
      */
     protected ActionForward cancelled(ActionMapping mapping,
@@ -232,6 +260,19 @@ public abstract class DispatchAction extends BaseAction {
 
     /**
      * Dispatch to the specified method.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The non-HTTP request we are processing
+     * @param response The non-HTTP response we are creating
+     * @param name The name of the method to invoke
+     *
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
+     *
+     * @exception Exception if the application business logic throws an
+     *                      exception.
+     *
      * @since Struts 1.1
      */
     protected ActionForward dispatchMethod(ActionMapping mapping,
@@ -251,39 +292,39 @@ public abstract class DispatchAction extends BaseAction {
         try {
             method = getMethod(name);
 
-        } catch(NoSuchMethodException e) {
-            String message =
-                    messages.getMessage("dispatch.method", mapping.getPath(), name);
+        } catch (NoSuchMethodException e) {
+            String message = messages.getMessage("dispatch.method",
+                    mapping.getPath(), name);
             log.error(message, e);
             throw e;
         }
 
         ActionForward forward = null;
         try {
-            Object args[] = {mapping, form, request, response};
+            Object[] args = {mapping, form, request, response};
             forward = (ActionForward) method.invoke(this, args);
 
-        } catch(ClassCastException e) {
-            String message =
-                    messages.getMessage("dispatch.return", mapping.getPath(), name);
+        } catch (ClassCastException e) {
+            String message = messages.getMessage("dispatch.return",
+                    mapping.getPath(), name);
             log.error(message, e);
             throw e;
 
-        } catch(IllegalAccessException e) {
-            String message =
-                    messages.getMessage("dispatch.error", mapping.getPath(), name);
+        } catch (IllegalAccessException e) {
+            String message = messages.getMessage("dispatch.error",
+                    mapping.getPath(), name);
             log.error(message, e);
             throw e;
 
-        } catch(InvocationTargetException e) {
+        } catch (InvocationTargetException e) {
             // Rethrow the target exception if possible so that the
             // exception handling machinery can deal with it
             Throwable t = e.getTargetException();
             if (t instanceof Exception) {
                 throw ((Exception) t);
             } else {
-                String message =
-                        messages.getMessage("dispatch.error", mapping.getPath(), name);
+                String message = messages.getMessage("dispatch.error",
+                        mapping.getPath(), name);
                 log.error(message, e);
                 throw new ServletException(t);
             }
@@ -301,12 +342,14 @@ public abstract class DispatchAction extends BaseAction {
      *
      * @param name Name of the method to be introspected
      *
+     * @return The method with the specified name.
+     *
      * @exception NoSuchMethodException if no such method can be found
      */
     protected Method getMethod(String name)
             throws NoSuchMethodException {
 
-        synchronized(methods) {
+        synchronized (methods) {
             Method method = (Method) methods.get(name);
             if (method == null) {
                 method = clazz.getMethod(name, types);
@@ -327,6 +370,9 @@ public abstract class DispatchAction extends BaseAction {
      * @param parameter The <code>ActionMapping</code> parameter's name
      *
      * @return The method's name.
+     *
+     * @throws Exception if an error occurs.
+     *
      * @since Struts 1.2.0
      */
     protected String getMethodName(ActionMapping mapping,

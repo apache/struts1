@@ -62,7 +62,24 @@ public class SwitchAction extends BaseAction {
     protected static Log log = LogFactory.getLog(SwitchAction.class);
 
 
-    // See superclass for JavaDoc
+    /**
+     * Process the specified HTTP request, and create the corresponding HTTP
+     * response (or forward to another web component that will create it).
+     * Return an <code>ActionForward</code> instance describing where and how
+     * control should be forwarded, or <code>null</code> if the response has
+     * already been completed.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The HTTP request we are processing
+     * @param response The HTTP response we are creating
+     *
+     * @return  Return an <code>ActionForward</code> instance describing where
+     *           and how control should be forwarded, or <code>null</code> if
+     *           the response has already been completed.
+     *
+     * @exception Exception if an exception occurs
+     */
     public ActionForward execute(ActionMapping mapping,
                                  ActionForm form,
                                  HttpServletRequest request,
@@ -79,7 +96,8 @@ public class SwitchAction extends BaseAction {
         }
 
         // Switch to the requested module
-        ModuleUtils.getInstance().selectModule(prefix, request, getServlet().getServletContext());
+        ModuleUtils.getInstance().selectModule(prefix, request,
+                getServlet().getServletContext());
 
         if (request.getAttribute(Globals.MODULE_KEY) == null) {
             String message = messages.getMessage("switch.prefix", prefix);

@@ -32,7 +32,6 @@ import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.DynaActionForm;
 
 
 /**
@@ -45,8 +44,9 @@ public final class LocaleAction extends BaseAction {
 
     /**
      * Commons Logging instance.
-    */
-    private Log log = LogFactory.getFactory().getInstance(this.getClass().getName());
+     */
+    private Log log = LogFactory.getFactory().getInstance(
+            this.getClass().getName());
 
     /**
      * <p>
@@ -73,7 +73,7 @@ public final class LocaleAction extends BaseAction {
      * @param response The HTTP response we are creating
      *
      * @return Action to forward to
-     * @exception java.lang.Exception if an input/output error or servlet exception occurs
+     * @exception Exception if an input/output error or servlet exception occurs
      */
     public ActionForward execute(ActionMapping mapping,
                  ActionForm form,
