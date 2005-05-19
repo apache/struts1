@@ -47,6 +47,15 @@ import org.apache.struts.config.PlugInConfig;
  * @since Struts 1.1
  */
 public class ModuleConfigImpl implements Serializable, ModuleConfig {
+
+    /**
+     * Constructor for ModuleConfigImpl.  Assumes default configuration.
+     *
+     * @since Struts 1.2.8
+     */
+    public ModuleConfigImpl() {
+        this("/");
+    }
     
     /**
      * Construct an ModuleConfigImpl object according to the specified
