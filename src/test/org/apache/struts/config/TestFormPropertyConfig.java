@@ -29,9 +29,12 @@ public class TestFormPropertyConfig
         extends TestCase {
     
     
-    public void testBasicInherit() {
+    public void testBasicInherit() 
+            throws Exception {
         FormPropertyConfig base = 
                 new FormPropertyConfig("base", "java.lang.String[]", "", 10);
+        String baseCount = "10";
+        base.setProperty("count", baseCount);
         
         FormPropertyConfig sub = new FormPropertyConfig();
         sub.setName("base");
@@ -41,10 +44,13 @@ public class TestFormPropertyConfig
         assertEquals("Type was not inherited", base.getType(), sub.getType());
         assertEquals("Initial is incorrect", 
                 base.getInitial(), sub.getInitial());
-        assertEquals("Size was not inherited", base.getSize(), sub.getSize());        
+        assertEquals("Size was not inherited", base.getSize(), sub.getSize());
+        assertEquals("Arbitrary config property was not inherited",
+                baseCount, sub.getProperty("count"));
     }
     
-    public void testInheritWithInitialOverride() {
+    public void testInheritWithInitialOverride() 
+            throws Exception {
         FormPropertyConfig base = 
                 new FormPropertyConfig("base", "java.lang.String", "value");
         
@@ -61,7 +67,8 @@ public class TestFormPropertyConfig
         assertEquals("Size is incorrect", base.getSize(), sub.getSize());        
     }
                 
-    public void testInheritWithTypeOverride() {
+    public void testInheritWithTypeOverride() 
+            throws Exception {
         FormPropertyConfig base = 
                 new FormPropertyConfig("base", "java.lang.String", "");
         
@@ -77,7 +84,8 @@ public class TestFormPropertyConfig
         assertEquals("Size is incorrect", base.getSize(), sub.getSize());        
     }
     
-    public void testInheritWithTypeOverride2() {
+    public void testInheritWithTypeOverride2() 
+            throws Exception {
         FormPropertyConfig base = 
                 new FormPropertyConfig("base", "java.lang.String", "");
         
@@ -96,7 +104,8 @@ public class TestFormPropertyConfig
         assertEquals("Size is incorrect", size, sub.getSize());        
     }
     
-    public void testInheritWithSizeOverride() {
+    public void testInheritWithSizeOverride() 
+            throws Exception {
         FormPropertyConfig base = 
                 new FormPropertyConfig("base", "java.lang.String[]", "", 20);
         
@@ -112,5 +121,6 @@ public class TestFormPropertyConfig
                 base.getInitial(), sub.getInitial());
         assertEquals("Size is incorrect", size, sub.getSize());        
     }
+    
     
 }

@@ -232,6 +232,10 @@ public class TestFormBeanConfig
     public void testInheritFrom() 
             throws Exception {
         
+        // give baseForm some arbitrary parameters
+        String baseFormCount = "1";
+        baseForm.setProperty("count", baseFormCount);
+        
         // create a basic subform
         FormBeanConfig subForm = new FormBeanConfig();
         String subFormName = "subForm";
@@ -258,7 +262,6 @@ public class TestFormBeanConfig
         property.setSize(10);
         subForm.addFormPropertyConfig(property);
         
-
         config.addFormBeanConfig(subForm);
         
         subForm.inheritFrom(baseForm);
@@ -317,74 +320,13 @@ public class TestFormBeanConfig
         assertEquals("Wrong initial value for message", original.getInitial(),
                 property.getInitial());
         assertEquals("Wrong size value for message", 10, property.getSize());
+        
+        String count = subForm.getProperty("count");
+        assertEquals("Arbitrary property was not inherited", 
+                baseFormCount, count); 
     }
-    
-    
-    ///**
-    // * Test that a subform's property is changed to use the correct 
-    // * FormPropertyConfig subclass if a superform's prop class is overridden.
-    // * Also test that the subclass' inheritFrom() gets called, and that
-    // * overridden values are retained, even when a prop's class is changed.
-    // */ 
-    //public void testInheritFromCustomFormProperty() 
-    //        throws Exception {
-    //
-    //
-    //    // Modify baseForm, changing 2 props to use a custom config object
-    //    FormPropertyConfig id = baseForm.findFormPropertyConfig("id");
-    //    CustomFormPropertyConfig customId = new CustomFormPropertyConfig();
-    //    customId.setName(id.getName());
-    //    customId.setType(id.getType());
-    //    customId.setInitial(id.getInitial());
-    //    customId.setSize(id.getSize());
-    //    customId.integer = 12;
-    //    baseForm.removeFormPropertyConfig(id);
-    //    baseForm.addFormPropertyConfig(customId);
-    //    
-    //    FormPropertyConfig name = baseForm.findFormPropertyConfig("name");
-    //    CustomFormPropertyConfig customName = new CustomFormPropertyConfig();
-    //    customName.setName(name.getName());
-    //    customName.setType(name.getType());
-    //    customName.setInitial(name.getInitial());
-    //    customName.setSize(name.getSize());
-    //    baseForm.removeFormPropertyConfig(name);
-    //    baseForm.addFormPropertyConfig(customName);
-    //    
-    //    // Create our subform
-    //    FormBeanConfig subForm = new FormBeanConfig();
-    //    String subFormName = "subForm";
-    //    subForm.setName(subFormName);
-    //    subForm.setExtends("baseForm");
-    //    
-    //    // Add an "id" prop with some overridden values
-    //    FormPropertyConfig property = new FormPropertyConfig();
-    //    property.setName("id");
-    //    property.setType("java.lang.Integer");  
-    //    subForm.addFormPropertyConfig(property);
-    //    
-    //    // The "name" property isn't overridden and won't be configured
-    //    
-    //    // now let's run this thing
-    //    subForm.inheritFrom(baseForm);
-    //    
-    //    // Let's see what we have
-    //    
-    //    FormPropertyConfig subId = subForm.findFormPropertyConfig("id");
-    //    assertTrue("Incorrect form property class",
-    //            subId instanceof CustomFormPropertyConfig);
-    //    
-    //    assertEquals("An overridden value was lost", 
-    //            "java.lang.Integer", subId.getType());
-    //    
-    //    assertEquals("Custom class' inheritFrom() was not called.", 12, 
-    //            ((CustomFormPropertyConfig) subId).integer);
-    //
-    //    FormPropertyConfig subName = subForm.findFormPropertyConfig("name");
-    //    assertTrue("Incorrect form property class",
-    //            subName instanceof CustomFormPropertyConfig);
-    //}
-    
-    
+
+
     /**
      * Used to detect that FormBeanConfig is making the right calls.
      */ 
@@ -400,22 +342,5 @@ public class TestFormBeanConfig
         }
     }
 
-    
-    ///**
-    // * Used to test custom FormPropertyConfig classes.
-    // */ 
-    //public static class CustomFormPropertyConfig 
-    //        extends FormPropertyConfig {
-    //    
-    //    int integer = 0;
-    //
-    //    public void inheritFrom(FormPropertyConfig config) {
-    //        super.inheritFrom(config);
-    //        if (config instanceof CustomFormPropertyConfig) {
-    //            this.integer = ((CustomFormPropertyConfig) config).integer;
-    //        }
-    //    }
-    //
-    //}
-    
+
 }

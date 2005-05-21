@@ -21,6 +21,8 @@ package org.apache.struts.config;
 
 
 import java.lang.reflect.Array;
+import java.lang.reflect.InvocationTargetException;
+
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -329,7 +331,11 @@ public class FormPropertyConfig extends BaseConfig {
      * @param config    The object that this instance will be inheriting
      *                  its values from.
      */
-    public void inheritFrom(FormPropertyConfig config) {
+    public void inheritFrom(FormPropertyConfig config) 
+            throws IllegalAccessException, 
+            InvocationTargetException, 
+            InstantiationException, 
+            ClassNotFoundException {
 
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -350,7 +356,8 @@ public class FormPropertyConfig extends BaseConfig {
         if (getType() == null) {
             setType(config.getType());
         }
-
+        
+        inheritProperties(config);
     }
 
     /**

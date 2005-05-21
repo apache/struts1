@@ -19,6 +19,8 @@
 
 package org.apache.struts.config;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * <p>A JavaBean representing the configuration information of a
  * <code>&lt;forward&gt;</code> element from a Struts
@@ -406,7 +408,8 @@ public class ForwardConfig extends BaseConfig {
     public void inheritFrom(ForwardConfig config)
             throws ClassNotFoundException,
             IllegalAccessException,
-            InstantiationException {
+            InstantiationException,
+            InvocationTargetException {
 
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -441,6 +444,7 @@ public class ForwardConfig extends BaseConfig {
             setRedirect(config.getRedirect());
         }
 
+        inheritProperties(config);
     }
 
 
@@ -461,7 +465,8 @@ public class ForwardConfig extends BaseConfig {
                                ActionConfig actionConfig)
             throws ClassNotFoundException,
                    IllegalAccessException,
-                   InstantiationException {
+                   InstantiationException,
+                   InvocationTargetException {
 
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");

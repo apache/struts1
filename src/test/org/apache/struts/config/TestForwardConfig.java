@@ -317,6 +317,12 @@ public class TestForwardConfig
      */
     public void testProcessExtendsBasicExtension() 
             throws Exception {
+        
+        String baseCount = "10";
+        baseConfig.setProperty("count", baseCount);
+
+        String baseLabel = "label a";
+        baseConfig.setProperty("label", baseLabel);
 
         String path = baseConfig.getPath();
         String module = baseConfig.getModule();
@@ -324,6 +330,9 @@ public class TestForwardConfig
         String inherit = subConfig.getExtends();
         String name = subConfig.getName();
         boolean redirect = subConfig.getRedirect();
+        
+        String subLabel = "label b";
+        subConfig.setProperty("label", subLabel);
         
         moduleConfig.addForwardConfig(baseConfig);
         moduleConfig.addForwardConfig(subConfig);
@@ -337,6 +346,10 @@ public class TestForwardConfig
                 subConfig.getExtends());
         assertEquals("Redirect shouldn't have changed", redirect,
                 subConfig.getRedirect());
+        assertEquals("Arbitrary config property was not inherited",
+                baseCount, subConfig.getProperty("count"));
+        assertEquals("Overridden config property was not retained",
+                subLabel, subConfig.getProperty("label"));
     }
 
 

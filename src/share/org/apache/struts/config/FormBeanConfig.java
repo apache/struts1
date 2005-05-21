@@ -512,6 +512,7 @@ public class FormBeanConfig extends BaseConfig {
         }
 
         inheritFormProperties(config);
+        inheritProperties(config);
     }
 
 

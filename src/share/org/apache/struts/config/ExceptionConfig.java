@@ -19,6 +19,8 @@
 
 package org.apache.struts.config;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * <p>A JavaBean representing the configuration information of an
  * <code>&lt;exception&gt;</code> element from a Struts
@@ -289,8 +291,9 @@ public class ExceptionConfig extends BaseConfig {
      */
     public void inheritFrom(ExceptionConfig config)
             throws ClassNotFoundException,
-            IllegalAccessException,
-            InstantiationException {
+                   IllegalAccessException,
+                   InstantiationException,
+                   InvocationTargetException {
 
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -320,6 +323,8 @@ public class ExceptionConfig extends BaseConfig {
         if (getType() == null) {
             setType(config.getType());
         }
+        
+        inheritProperties(config);
     }
 
 
@@ -340,8 +345,9 @@ public class ExceptionConfig extends BaseConfig {
                                ActionConfig actionConfig)
             throws ClassNotFoundException,
                    IllegalAccessException,
-                   InstantiationException {
-
+                   InstantiationException,
+                   InvocationTargetException {
+        
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }

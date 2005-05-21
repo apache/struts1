@@ -22,6 +22,8 @@ package org.apache.struts.config;
 import java.io.Serializable;
 
 import java.util.Properties;
+import java.util.Enumeration;
+import java.lang.reflect.InvocationTargetException;
 
 
 /**
@@ -53,6 +55,7 @@ public abstract class BaseConfig implements Serializable {
     public void freeze() {
         configured = true;
     }
+    
 
     /**
      * Throw <code>IllegalStateException</code> if configuration is 
@@ -94,6 +97,7 @@ public abstract class BaseConfig implements Serializable {
         throwIfConfigured();
         properties.setProperty(key,value);
     }
+    
 
     /**
      * Return the property-value for the specified key, if any;
@@ -117,5 +121,33 @@ public abstract class BaseConfig implements Serializable {
     protected Properties getProperties() {
         return this.properties;
     }
+
+    
+    /**
+     * <p>Compare the properties of this config with that of the given and
+     * copy those that are not present.  This method is used by subclasses
+     * that support configuration inheritance.</p>
+     *
+     * @param baseConfig    The config object to copy properties from.
+     */
+    protected void inheritProperties(BaseConfig baseConfig) {
+
+        throwIfConfigured();
+
+        // Inherit forward properties
+        Properties baseProperties = baseConfig.getProperties();
+        Enumeration keys = baseProperties.propertyNames();
+        while (keys.hasMoreElements()) {
+            String key = (String) keys.nextElement();
+
+            // Check if we have this property before copying it
+            String value = this.getProperty(key);
+            if (value == null) {
+                value = baseProperties.getProperty(key);
+                setProperty(key, value);
+            }
+        }
+    }
+
 }
 
