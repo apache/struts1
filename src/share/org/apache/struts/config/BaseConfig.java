@@ -114,8 +114,8 @@ public abstract class BaseConfig implements Serializable {
 
     /**
      * Return the entire set of properties configured for this object.
-     * At this time, this only needs to be exposed 
-     * to support inheritance, so choosing a conservative access modifier ("protected"). 
+     * At this time, this only needs to be exposed to support inheritance, 
+     * so choosing a conservative access modifier ("protected"). 
      * @return
      */
     protected Properties getProperties() {
@@ -123,6 +123,15 @@ public abstract class BaseConfig implements Serializable {
     }
 
     
+    /**
+     * Set the entire set of properties configured for this object.
+     * At this time, this only needs to be exposed to support inheritance, 
+     * so choosing a conservative access modifier ("protected"). 
+     */
+    protected void setProperties(Properties properties) {
+        this.properties = properties;
+    }
+
     /**
      * <p>Compare the properties of this config with that of the given and
      * copy those that are not present.  This method is used by subclasses

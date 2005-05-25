@@ -711,7 +711,8 @@ public class ActionConfig extends BaseConfig {
 
                 BeanUtils.copyProperties(copy, baseHandler);
                 this.addExceptionConfig(copy);
-
+                copy.setProperties(baseHandler.getProperties());
+                
             } else {
 
                 // process any extension that this config might have
@@ -758,7 +759,8 @@ public class ActionConfig extends BaseConfig {
                 BeanUtils.copyProperties(copy, baseForward);
 
                 this.addForwardConfig(copy);
-
+                copy.setProperties(baseForward.getProperties());
+                
             } else {
 
                 // process any extension for this forward

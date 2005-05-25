@@ -86,12 +86,14 @@ public class TestActionConfig
         baseConfig.addForwardConfig(forward);
         
         forward = new ForwardConfig("failure","/failure.jsp",false);
+        forward.setProperty("forwardCount", "10");
         baseConfig.addForwardConfig(forward);
         
         // setup an exception handler
         ExceptionConfig exceptionConfig = new ExceptionConfig();
         exceptionConfig.setType("java.sql.SQLException");
         exceptionConfig.setKey("msg.exception.sql");
+        exceptionConfig.setProperty("exceptionCount", "10");
         baseConfig.addExceptionConfig(exceptionConfig);
 
         // set some arbitrary properties
@@ -277,16 +279,23 @@ public class TestActionConfig
         assertNotNull("'failure' forward was not inherited", forward);
         assertEquals("Wrong type for 'failure'", origForward.getPath(), 
                 forward.getPath());
+        assertEquals("Arbitrary property not copied",
+                origForward.getProperty("forwardCount"), 
+                forward.getProperty("forwardCount"));
         
         // check our exceptions 
         ExceptionConfig[] handlers = subConfig.findExceptionConfigs();
         assertEquals("Wrong exception config count", 2, handlers.length);
     
         handler = subConfig.findExceptionConfig("java.sql.SQLException");
-        ExceptionConfig origHandler = subConfig.findExceptionConfig("java.sql.SQLException"); 
+        ExceptionConfig origHandler = baseConfig.findExceptionConfig("java.sql.SQLException"); 
         assertNotNull("'SQLException' handler was not found", handler);
         assertEquals("Wrong key for 'SQLException'", origHandler.getKey(), 
                 handler.getKey());
+        assertEquals("Arbitrary property not copied",
+                origHandler.getProperty("exceptionCount"), 
+                handler.getProperty("exceptionCount"));
+        
         
         handler = subConfig.findExceptionConfig("java.lang.NullPointerException");
         assertNotNull("'NullPointerException' handler disappeared",

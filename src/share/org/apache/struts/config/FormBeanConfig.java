@@ -21,6 +21,7 @@ package org.apache.struts.config;
 
 
 import java.util.HashMap;
+import java.util.Properties;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.beanutils.DynaBean;
@@ -272,6 +273,7 @@ public class FormBeanConfig extends BaseConfig {
 
                 BeanUtils.copyProperties(prop, baseFpc);
                 this.addFormPropertyConfig(prop);
+                prop.setProperties(baseFpc.getProperties());
             }
 
         }

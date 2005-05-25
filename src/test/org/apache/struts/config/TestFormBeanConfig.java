@@ -90,6 +90,7 @@ public class TestFormBeanConfig
         property = new FormPropertyConfig();
         property.setName("name");
         property.setType("java.lang.String");
+        property.setProperty("count", "10");
         baseForm.addFormPropertyConfig(property);
         
         property = new FormPropertyConfig();
@@ -321,6 +322,11 @@ public class TestFormBeanConfig
                 property.getInitial());
         assertEquals("Wrong size value for message", 10, property.getSize());
         
+        property = subForm.findFormPropertyConfig("name");
+        original = baseForm.findFormPropertyConfig("name");
+        assertEquals("Arbitrary property not found", 
+                original.getProperty("count"), property.getProperty("count"));
+
         String count = subForm.getProperty("count");
         assertEquals("Arbitrary property was not inherited", 
                 baseFormCount, count); 
