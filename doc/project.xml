@@ -67,20 +67,20 @@
 
     <menu name="Community">
         <item
-            name="Known Issues (Bugzilla)"
-            href="http://jakarta.apache.org/site/bugs.html"
+            name="Mailing Lists"            
+            href="mail.html"
             />
         <item
             name="Wiki Pages"
             href="http://wiki.apache.org/struts"
             />
         <item
-            name="List Archive"            
-            href="http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=241"
-            />
-        <item
             name="Resource Directory"
             href="http://wiki.apache.org/struts/StrutsResources"
+            />
+        <item
+            name="Known Issues (Bugzilla)"
+            href="http://jakarta.apache.org/site/bugs.html"
             />
     </menu>
 
