@@ -9,6 +9,22 @@
 
 <section name="Announcements">
 
+    <h4 id="a20050526">26 May 2005 - Struts 1.2.7 (General Availability)</h4>
+    <p>
+        The Struts team is pleased to announce the release of Struts 1.2.7 for
+        General Availability. This release includes new
+        functionality, as well as numerous fixes for bugs which were reported
+        against the previous release, and supersedes the earlier 1.2.4 version
+        as the latest official release of Struts from The Apache Software
+        Foundation.
+    </p>
+    <p>
+        The binary, source and library distributions are available from the
+        <a href="http://struts.apache.org/download.cgi">Struts download page</a>.
+        The <a href="http://struts.apache.org/userGuide/release-notes.html">Release Notes</a>
+        are available on the Struts web site.
+    </p>
+    <hr/>
     <h4 id="a20050331">31 March 2005 - New Struts PMC Chair</h4>
     <p>
         <a href="http://struts.apache.org/volunteers.html#martinc">Martin Cooper</a> has been appointed
