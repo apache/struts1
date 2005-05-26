@@ -109,9 +109,9 @@
 
     <p>
     Before joining any Apache mailing list, please be sure to read the
-    <a href="mail.html">Mailing List Guidelines</a>.
+    <a href="mail.html#Guidelines">Mailing List Guidelines</a>.
     If you have read and understood these guidelines, you are welcome to
-    <a href="mail.html">join the Struts mailing lists</a>.
+    <a href="mail.html#Subscribing">join the Struts mailing lists</a>.
     </p>
     
 </section>
@@ -119,9 +119,9 @@
 <section name="Posting a Question to a Mailing List" href="Questions">
 
     <p>
-    Before posting a new question, be sure to consult the
-    <a href="http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=41">
-    <strong>MAILING LIST ARCHIVE</strong></a> and the very excellent
+    Before posting a new question, be sure to consult one of the
+    <a href="mail.html#Archives">
+    <strong>Mailing List Archives</strong></a> and the very excellent
     <a href="http://www.catb.org/~esr/faqs/smart-questions.html">
     How To Ask Questions The Smart Way</a> by Eric Raymond.
     </p>
