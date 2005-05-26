@@ -49,17 +49,17 @@
         <ul>
           <li>
             <a href="http://struts.apache.org/download.cgi">
-              Struts 1.2.4
+              Struts 1.2.7
             </a>
           </li>
         </ul>
       </li>
       <li>
-        <strong>Beta Releases</strong>
+        <strong>Older Releases</strong> are available from the 
         <ul>
           <li>
-            <a href="http://struts.apache.org/download.cgi">
-              Struts 1.2.6 (Beta)
+            <a href="http://archive.apache.org/dist/struts/">
+              Archive Site
             </a>
           </li>
         </ul>
