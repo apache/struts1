@@ -24,6 +24,8 @@ import java.util.ArrayList;
 
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ForwardConfig;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -47,6 +49,13 @@ import org.apache.struts.config.ForwardConfig;
 
 public class ActionMapping extends ActionConfig {
 
+    
+    /**
+     * <p>Commons Logging instance.</p>
+     *
+     * @since Struts 1.2.8
+     */
+    private static Log log = LogFactory.getLog(ActionMapping.class);
 
 
     /**
@@ -65,6 +74,11 @@ public class ActionMapping extends ActionConfig {
         ForwardConfig config = findForwardConfig(name);
         if (config == null) {
             config = getModuleConfig().findForwardConfig(name);
+        }
+        if (config == null) {
+            if (log.isWarnEnabled()) {
+                log.warn("Unable to find '" + name + "' forward.");
+            }
         }
         return ((ActionForward) config);
 
