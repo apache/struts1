@@ -711,7 +711,7 @@ public class ActionConfig extends BaseConfig {
 
                 BeanUtils.copyProperties(copy, baseHandler);
                 this.addExceptionConfig(copy);
-                copy.setProperties(baseHandler.getProperties());
+                copy.setProperties(baseHandler.copyProperties());
                 
             } else {
 
@@ -759,7 +759,7 @@ public class ActionConfig extends BaseConfig {
                 BeanUtils.copyProperties(copy, baseForward);
 
                 this.addForwardConfig(copy);
-                copy.setProperties(baseForward.getProperties());
+                copy.setProperties(baseForward.copyProperties());
                 
             } else {
 

@@ -158,5 +158,22 @@ public abstract class BaseConfig implements Serializable {
         }
     }
 
+
+    /**
+     * <p>Return a copy of the properties held by this object.</p>
+     */
+    protected Properties copyProperties() {
+
+        Properties copy = new Properties();
+        
+        Enumeration keys = properties.propertyNames();
+        while (keys.hasMoreElements()) {
+            String key = (String) keys.nextElement();
+            copy.setProperty(key, properties.getProperty(key));
+        }
+        
+        return copy;
+    }
+
 }
 

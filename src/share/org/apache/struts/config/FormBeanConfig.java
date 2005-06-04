@@ -273,7 +273,7 @@ public class FormBeanConfig extends BaseConfig {
 
                 BeanUtils.copyProperties(prop, baseFpc);
                 this.addFormPropertyConfig(prop);
-                prop.setProperties(baseFpc.getProperties());
+                prop.setProperties(baseFpc.copyProperties());
             }
 
         }
