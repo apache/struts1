@@ -30,7 +30,6 @@ import org.apache.struts.config.FormBeanConfig;
 /**
  * <p>Create (if necessary) and cache a form bean for this request.</p>
  *
- * @author Craig R. McClanahan
  * @version $Id$
  * @deprecated This class no longer needs to be abstract.  Use
  * <code>org.apache.struts.chain.commands.CreateActionForm</code> instead.
@@ -52,7 +51,7 @@ public abstract class AbstractCreateActionForm extends ActionCommandBase {
     /**
      * <p>Create (if necessary) and cache a form bean for this request.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>false</code> so that processing continues
      */

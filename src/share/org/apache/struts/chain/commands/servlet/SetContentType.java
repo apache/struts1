@@ -28,7 +28,6 @@ import org.apache.struts.chain.contexts.ServletActionContext;
  * <p>Check to see if the content type is set, and if so, set it for this
  * response.</p>
  *
- * @author Don Brown
  * @version $Rev$ $Date$
  */
 

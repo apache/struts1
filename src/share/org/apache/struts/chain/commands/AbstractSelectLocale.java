@@ -28,7 +28,6 @@ import org.apache.struts.config.ModuleConfig;
 /**
  * <p>Select the <code>Locale</code> to be used for this request.</p>
  *
- * @author Craig R. McClanahan
  * @version $Rev$ $Date$
  */
 
@@ -42,7 +41,7 @@ public abstract class AbstractSelectLocale extends ActionCommandBase {
     /**
      * <p>Select the <code>Locale</code> to be used for this request.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>false</code> so that processing continues
      */

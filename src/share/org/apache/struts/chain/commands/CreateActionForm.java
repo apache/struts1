@@ -48,7 +48,7 @@ public class CreateActionForm extends ActionCommandBase {
     /**
      * <p>Create (if necessary) and cache a form bean for this request.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>false</code> so that processing continues
      */

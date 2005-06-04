@@ -25,7 +25,6 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Check to see if the content type is set, and if so, set it for this
  * response.</p>
  *
- * @author Don Brown
  * @version $Rev$ $Date$
  */
 
@@ -39,7 +38,7 @@ public abstract class AbstractSetContentType extends ActionCommandBase {
      * <p>Check to see if the content type is set, and if so, set it for this
      * response.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>false</code> so that processing continues
      */

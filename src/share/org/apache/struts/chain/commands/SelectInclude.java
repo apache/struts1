@@ -27,7 +27,6 @@ import org.apache.struts.config.ActionConfig;
  * <p>Select and cache the include for this
  * <code>ActionConfig</code> if specified.</p>
  *
- * @author Don Brown
  * @version $Rev$ $Date$
  */
 
@@ -47,7 +46,7 @@ public class SelectInclude extends ActionCommandBase {
      * <p>Select and cache the include uri for this
      * <code>ActionConfig</code> if specified.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>false</code> so that processing continues
      */

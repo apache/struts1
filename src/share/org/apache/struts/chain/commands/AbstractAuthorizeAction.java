@@ -28,7 +28,6 @@ import org.apache.struts.config.ActionConfig;
  * user.  If not, abort chain processing and perferably, return an error
  * message of some kind.</p>
  *
- * @author Don Brown
  * @version $Rev$ $Date$
  */
 
@@ -48,7 +47,7 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
      * user.  If not, abort chain processing and perferably, return an error
      * message of some kind.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>false</code> if the user is authorized for the selected
      * action, else <code>true</code> to abort processing.

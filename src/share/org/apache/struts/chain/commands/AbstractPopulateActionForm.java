@@ -28,7 +28,6 @@ import org.apache.struts.config.ActionConfig;
 /**
  * <p>Populate the form bean (if any) for this request.</p>
  *
- * @author Craig R. McClanahan
  * @version $Rev$ $Date$
  */
 
@@ -41,7 +40,7 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
     /**
      * <p>Populate the form bean (if any) for this request.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>false</code> so that processing continues
      */

@@ -19,7 +19,6 @@ package org.apache.struts.chain.commands;
  *  <p>Exception thrown when the chosen action mapping is not authorized
  *  for the current request.</p>
  *
- *@author     Don Brown
  *@version    $Rev$ $Date$
  */
 

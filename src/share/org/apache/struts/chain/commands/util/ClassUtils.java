@@ -19,7 +19,6 @@ package org.apache.struts.chain.commands.util;
 /**
  * <p>Utility methods to load application classes and create instances.</p>
  *
- * @author Craig R. McClanahan
  * @version $Rev$ $Date$
  */
 

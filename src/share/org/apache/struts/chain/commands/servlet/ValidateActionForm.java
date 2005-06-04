@@ -34,8 +34,6 @@ import org.apache.struts.config.ActionConfig;
  * proceed normally.  Also, if any errors are found and the request is a
  * multipart request, rollback the <code>MultipartRequestHandler</code>.</p>
  *
- * @author Craig R. McClanahan
- * @author Don Brown
  * @version $Rev$ $Date$
  */
 

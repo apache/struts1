@@ -34,7 +34,6 @@ import org.apache.struts.chain.contexts.ActionContext;
  * after storing the exception that has occurred into the <code>Context</code>.
  * </p>
  *
- * @author Craig R. McClanahan
  * @version $Rev$ $Date$
  */
 
@@ -110,7 +109,7 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
      * <p>Clear any existing stored exception and pass the <code>context</code>
      * on to the remainder of the current chain.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>false</code> so that processing continues
      */

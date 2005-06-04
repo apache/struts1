@@ -25,7 +25,6 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Check to see if the controller is configured to prevent caching,
  * and if so, request no cache flags to be set.</p>
  *
- * @author Don Brown
  * @version $Rev$ $Date$
  */
 
@@ -39,7 +38,7 @@ public abstract class AbstractRequestNoCache extends ActionCommandBase {
      * <p>Check to see if the controller is configured to prevent caching,
      * and if so, request no cache flags to be set.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>false</code> so that processing continues
      */

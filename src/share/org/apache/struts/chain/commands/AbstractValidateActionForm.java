@@ -30,7 +30,6 @@ import org.apache.struts.config.ActionConfig;
  * any validation errors, execute the specified command; otherwise,
  * proceed normally.</p>
  *
- * @author Craig R. McClanahan
  * @version $Rev$ $Date$
  */
 
@@ -49,7 +48,7 @@ public abstract class AbstractValidateActionForm extends ActionCommandBase {
      * there are any validation errors, execute the child commands in our
      * chain; otherwise, proceed normally.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>false</code> so that processing continues, if there are
      *  no validation errors; otherwise <code>true</code>

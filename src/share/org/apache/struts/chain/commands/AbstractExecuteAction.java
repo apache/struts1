@@ -28,7 +28,6 @@ import org.apache.struts.config.ForwardConfig;
  * <p>Invoke the appropriate <code>Action</code> for this request, and cache
  * the returned <code>ActionForward</code>.</p>
  *
- * @author Craig R. McClanahan
  * @version $Rev$ $Date$
  */
 
@@ -42,7 +41,7 @@ public abstract class AbstractExecuteAction extends ActionCommandBase {
      * <p>Invoke the appropriate <code>Action</code> for this request, and cache
      * the returned <code>ActionForward</code>.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @exception InvalidPathException if no valid
      *  action can be identified for this request

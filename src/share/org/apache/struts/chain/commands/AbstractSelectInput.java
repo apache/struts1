@@ -29,7 +29,6 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Select and cache a <code>ForwardConfig</code> that returns us to the
  * input page for the current action, if any.</p>
  *
- * @author Craig R. McClanahan
  * @version $Rev$ $Date$
  */
 
@@ -48,7 +47,7 @@ public abstract class AbstractSelectInput extends ActionCommandBase {
      * <p>Select and cache a <code>ForwardConfig</code> for the input page
      * for the current request.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>false</code> so that processing continues
      */

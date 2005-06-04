@@ -28,7 +28,6 @@ import org.apache.struts.config.ActionConfig;
  * <p>Create (if necessary) and cache an <code>Action</code> for this request.
  * </p>
  *
- * @author Craig R. McClanahan
  * @version $Rev$ $Date$
  */
 
@@ -45,7 +44,7 @@ public abstract class AbstractCreateAction extends ActionCommandBase {
      * <p>Create (if necessary) and cache an <code>Action</code> for this
      * request.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>false</code> so that processing continues
      */

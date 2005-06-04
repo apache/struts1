@@ -25,7 +25,6 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Perform forwarding or redirection based on the specified
  * <code>String</code> (if any).</p>
  *
- * @author Don Brown
  * @version $Rev$ $Date$
  */
 
@@ -38,7 +37,7 @@ public abstract class AbstractPerformInclude extends ActionCommandBase {
      * <p>Perform an include based on the specified
      * include uri (if any).</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>true</code> so that processing completes
      */

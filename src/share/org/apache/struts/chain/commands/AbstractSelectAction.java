@@ -26,7 +26,6 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Cache the <code>ActionConfig</code> instance for the
  * action to be used for processing this request.</p>
  *
- * @author Craig R. McClanahan
  * @version $Rev$ $Date$
  */
 
@@ -42,7 +41,7 @@ public abstract class AbstractSelectAction extends ActionCommandBase {
      * <p>Cache the <code>ActionConfig</code> instance for the
      * action to be used for processing this request.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @exception IllegalArgumentException if no valid
      *  action can be identified for this request

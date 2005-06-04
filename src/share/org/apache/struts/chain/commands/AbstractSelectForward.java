@@ -29,7 +29,6 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Select and cache the <code>ActionForward</code> for this
  * <code>ActionConfig</code> if specified.</p>
  *
- * @author Don Brown
  * @version $Rev$ $Date$
  */
 
@@ -48,7 +47,7 @@ public abstract class AbstractSelectForward extends ActionCommandBase {
      * <p>Select and cache the <code>ActionForward</code> for this
      * <code>ActionConfig</code> if specified.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return <code>false</code> so that processing continues
      */

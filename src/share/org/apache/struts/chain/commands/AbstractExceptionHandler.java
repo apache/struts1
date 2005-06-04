@@ -30,7 +30,6 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Invoke the local or global exception handler configured for the
  * exception class that occurred.</p>
  *
- * @author Craig R. McClanahan
  * @version $Rev$ $Date$
  */
 
@@ -52,7 +51,7 @@ public abstract class AbstractExceptionHandler extends ActionCommandBase {
      * <p>Invoke the appropriate <code>Action</code> for this request, and cache
      * the returned <code>ActionForward</code>.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @exception InvalidPathException if no valid
      *  action can be identified for this request

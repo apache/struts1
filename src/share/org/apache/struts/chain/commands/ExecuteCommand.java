@@ -49,7 +49,7 @@ public class ExecuteCommand extends ActionCommandBase {
     /**
      * <p>If the <code>context</code> is "valid", lookup a command and execute it.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @return the result of the lookup command's <code>execute</code> method, if executed,
      * or <code>false</code> if it was not executed.

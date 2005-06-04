@@ -29,7 +29,6 @@ import org.apache.struts.util.MessageResources;
  * instances for the sub-application module to be used for processing
  * this request.</p>
  *
- * @author Craig R. McClanahan
  * @version $Rev$ $Date$
  */
 
@@ -52,7 +51,7 @@ public abstract class AbstractSelectModule extends ActionCommandBase {
      * instances for the sub-application module to be used for processing
      * this request.</p>
      *
-     * @param context The <code>Context</code> for the current request
+     * @param actionCtx The <code>Context</code> for the current request
      *
      * @exception IllegalArgumentException if no valid
      *  ModuleConfig or MessageResources can be identified for this request

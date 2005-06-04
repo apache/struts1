@@ -31,7 +31,6 @@ import org.apache.struts.chain.contexts.ServletActionContext;
  * instances for the sub-application module to be used for processing
  * this request.</p>
  *
- * @author Craig R. McClanahan
  * @version $Rev$ $Date$
  */
 
