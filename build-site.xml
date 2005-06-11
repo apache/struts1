@@ -95,6 +95,15 @@
             reloadstylesheet="true">
       <param name="project-path" expression="../bsf/project.xml"/>
     </style>            
+    <!-- Create the Faces integration site -->
+    <style   basedir="${doc.dir}/faces"
+             destdir="${build.home}/documentation/faces"
+           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
+            includes="*.xml"
+            excludes="project.xml"
+            reloadstylesheet="true">
+      <param name="project-path" expression="../faces/project.xml"/>
+    </style>            
     <!-- Create the Struts Flow site -->
     <style   basedir="${doc.dir}/flow"
              destdir="${build.home}/documentation/flow"
@@ -103,6 +112,15 @@
             excludes="project.xml"
             reloadstylesheet="true">
       <param name="project-path" expression="../flow/project.xml"/>
+    </style>            
+    <!-- Create the Shale site -->
+    <style   basedir="${doc.dir}/shale"
+             destdir="${build.home}/documentation/shale"
+           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
+            includes="*.xml"
+            excludes="project.xml"
+            reloadstylesheet="true">
+      <param name="project-path" expression="../shale/project.xml"/>
     </style>            
  
     <!-- Copy the basic documentation files -->
