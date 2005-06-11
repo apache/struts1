@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<document url="index.html">
+
+  <properties>
+    <title>Shale Framework</title>
+  </properties>
+
+  <body>
+
+
+    <section name="Shale Framework"      href="background">
+
+      <p>FIXME - Shale Framework background.  While waiting for this section
+      to be completed, the <a href="http://people.apache.org/~craigmcc/struts-shale-README.html">
+      Original Shale Proposal</a> makes for interesting reading.</p>
+
+    </section>
+
+
+    <section name="Shale Features"       href="features">
+
+      <p>The major features of the Shale Framework are described in the
+      following detail sections:</p>
+
+      <ul>
+        <li><a href="features.html#view">View Controller</a> - Convenient
+            mechanism to associate a "backing" Java class with each
+            JavaServer Faces <em>view</em> in an application, with predefined
+            event handers for events significant to an application developer.</li>
+        <li><a href="features.html#dialog">Dialog Manager</a> - Mechanism to
+            define a "conversation" with a user that requires multiple HTTP
+            requests to implement, modeled as a state diagram.</li>
+        <li><a href="features.html#application">Application Manager</a> -
+            Traditional application wide front controller features that should
+            be applied to every request.</li>
+        <li><a href="features.html#validation">Validation</a> - Integration with
+            the <a href="http://jakarta.apache.org/commons/validator/">
+            Jakarta Commons Validator Framework</a>, supporting both client side
+            and server side validations based on a single set of configured
+            validation rules.</li>
+        <li><a href="features.html#remoting">Remoting</a> - Server side support
+            for applications that employ <a href="http://wikipedia.org/wiki/AJAX">
+            AJAX</a> (Asynchronous JavaScript and XML) style interactions.</li>
+        <li><a href="features.html#spring">Spring Integration</a> - Integration
+            with the <a href="http://www.springframework.org">Spring Framework</a>,
+            allowing the use of Spring's dependency injection framework to create
+            JavaServer Faces managed beans.</li>
+        <li><a href="features.html#clay">Reusable Views</a> - An innovative
+            sub-framework for supporting the configuration of reusable subtrees
+            of JavaServer Faces components for customizable reuse.</li>
+        <li><a href="features.html#test">Test Framework</a> - Set of mock objects
+            and <a href="junit.org">JUnit</a> test case base classes suitable for
+            testing both the framework classes themselves, as well as application
+            components built on top of the framework.</li>
+      </ul>
+
+    </section>
+
+
+    <section name="Shale Download"       href="download">
+
+      <p>Nightly builds of Shale are available from
+      <a href="http://cvs.apache.org/builds/struts/nightly/struts-shale/">
+      http://cvs.apache.org/builds/struts/nightly/struts-shale/</a>.
+      For convenience, there are four available packages:</p>
+
+      <ul>
+      <li><a href="http://cvs.apache.org/builds/struts/nightly/struts-shale/core-library/">
+          Core Library</a> - The fundamental core of Shale, required for
+          all applications using the framework.</li>
+      <li><a href="http://cvs.apache.org/builds/struts/nightly/struts-shale/clay-plugin/">
+          Clay Plug-In</a> - Library supporting reusable view fragments.</li>
+      <li><a href="http://cvs.apache.org/builds/struts/nightly/struts-shale/test-framework/">
+          Test Framework</a> - Library of mock objects and convenience base
+          classes for JUnit test cases, suitable for testing both the framework
+          itself and the components of applications built on top of Shale.</li>
+      <li><a href="http://cvs.apache.org/builds/struts/nightly/struts-shale/use-cases/">
+          Use Cases Sample App</a> - Composite set of use case based examples
+          of Shale features.</li>
+      </ul>
+
+    </section>
+
+
+    <section name="Shale Documentation"  href="documentation">
+
+      <p>Online Javadocs for Shale (based on the SVN trunk) are
+      periodically updated at:</p>
+
+      <ul>
+      <li><a href="http://people.apache.org/~craigmcc/shale-core-javadocs/">
+          Core Library</a>.</li>
+      <li><a href="http://people.apache.org/~craigmcc/shale-clay-javadocs/">
+          Clay Plug-In</a>.</li>
+      <li><a href="http://people.apache.org/~craigmcc/shale-test-javadocs/">
+          Test Framework</a>.</li>
+      <li><a href="http://people.apache.org/~craigmcc/shale-usecases-javadocs/">
+          Use Cases Sample App</a>.</li>
+      </ul>
+
+    </section>
+
+
+    <section name="Shale Issue Tracking" href="issue">
+
+      <p>Please report any bugs, or log any enhancement requests, in the
+      <a href="http://issues.apache.org/bugzilla">Apache Issue Tracking System</a>,
+      using product <code>Struts</code> and component <code>Shale</code>.</p>
+
+    </section>
+
+
+  </body>
+
+</document>

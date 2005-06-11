@@ -41,6 +41,14 @@
             href="bsf/index.html"
             />
         <item
+            name="JavaServer Faces Integration"
+            href="faces/index.html"
+            />
+        <item
+            name="Shale Framework"
+            href="shale/index.html"
+            />
+        <item
             name="Struts Flow"
             href="flow/index.html"
             />
