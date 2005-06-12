@@ -101,8 +101,8 @@
         </ul>
 
         <p>It can be difficult initially to visualize the order that events will
-        occur, based solely on the descriptions above.  Let's look at some
-        common scenarios and see what happens when:</p>
+           occur, based solely on the descriptions above.  Let's look at some
+           common scenarios and see what happens when:</p>
         
         <ul>
         <li><em>Initial navigation to welcome page, or a page directly accessed
@@ -426,8 +426,187 @@
 
     <section name="Shale Reusable Views"      href="clay">
 
-      <p>FIXME - Describe Clay plugin feature.</p>
+      <subsection name="Clay Introduction"    href="clay-introduction">
 
+        <p>The <strong>Clay</strong> component is a complex JavaServer Faces
+        component that features a way to build more reusable view fragments.
+        As it's name implies, the Clay component can be shaped and molded into
+        a subtree of JSF components acting as a &quot;stand-in&quot;
+        for the JSP tags normally required to add components 
+        to the view's component tree.</p>
+
+      </subsection>
+
+      <subsection name="Clay View Composition Options"   href="clay-view-options">
+
+        <p>There are three options for creating the Clay component subtree.</p>
+
+        <ol>
+        <li>The Clay subtree can be formed by strictly using a XML configuration
+            that resembles JSF/JSP tags.  The meta-data used to define a
+            component is similar to Tiles. It provides composition and allows
+            for inheritance relationships.  Clay's approach is unique. The
+            granularity is targeted at the declaration of JSF components versus
+            composition of JSP fragments.
+            <blockquote><pre>
+&lt;clay:clay id="address" jsfid="addressPanel"/&gt;
+</pre></blockquote></li>
+        <li>The subtree can be formed using a Tapestry like HTML layout.  HTML
+            elements are bound to corresponding JSF components using a
+            <code>jsfid</code> attribute. This attribute binds the HTML mock-up
+            with a component declared in the Clay view configuration files.
+            Some HTML elements, the such as the <code>FORM</code> element,
+            have an implied mapping to a JSF component.  If the mapping is
+            not explicitly declared using the <code>jsfid</code> attribute and
+            there is not an assumed mapping, the default mapping is to the 
+            standard <code>verbatim</code> (<code>ouputText</code>) component.
+            This combines the first option's component definitions
+            with the flexibility of using HTML for layout.<br/> 
+           <blockquote><pre>
+&lt;clay:clay id="address" jsfid="address.html"/&gt;
+</pre></blockquote></li>
+        <li>The subtree can also be defined at runtime.  The Clay component
+            provides a postback validation method event,
+            <code>shapeValidator</code>, that can be bound to the associated
+            <code>ViewController</code>. The event is fired on the
+            <code>ViewController</code> when the subtree is first created.
+            Responding to this event, the view controller will construct a
+            graph of objects used by the Clay component to build the
+            subcomponent tree.   The object's graph is representative of
+            the first two declarative approaches.
+            <blockquote><pre>
+&lt;clay:clay id="address" jsfid="RUNTIME" shapeValidator="#{fullAddress.createSubtree}"/&gt;
+</pre></blockquote></li>
+        </ol>
+
+      </subsection>
+
+      <subsection name="Clay Key Reuse Features"   href="clay-reuse-features">
+
+        <p>The Clay XML configuration data is a replacement for the JSF/JSP tags.
+        A base configuration file is provide in the META-INF directory of the
+        <code>shale-clay.jar</code> archive.  The configuration document 
+        type definitions have similarities to the JSP tags, but are designed
+        to be more generic.  The same node structure is used to define a
+        variety of resources.</p>
+ 
+        <p>A <code>component</code> is a "top-level" element.  In the DTD, a
+        <code>component</code> can represent a JSF component, converter,
+        validator, action listener or value change listener.  Only
+        "top-level" elements can be the root of a clay subtree.  The
+        <code>componentType</code> attribute defines the association
+        to the face's resource.  The <code>jsfid</code> attribute is a
+        logical unique identifier.
+        <blockquote><pre>
+&lt;component jsfid="outputText" componentType="javax.faces.HtmlOutputText"/&gt;
+&lt;component jsfid="validateLongRange" componentType="javax.faces.LongRange"/&gt;
+</pre></blockquote></p>
+      
+        <p>A <code>component</code> can extend another component, thereby
+        inheriting <code>attributes</code> and contained <code>element</code>
+        nodes from the parent component.  This is accomplished by using
+        the <code>extends</code> attribute.  The  value of the
+        <code>extends</code> attribute should be a <code>jsfid</code> of
+        the parent <code>component</code> definition.
+        <blockquote><pre>
+&lt;component jsfid="baseLabel" extends="outputLabel" allowBody="false"&gt;
+  &lt;attributes&gt;
+    &lt;set name="style" value="color:blue"/&gt;
+  &lt;/attributes&gt;
+&lt;/component&gt;
+&lt;component jsfid="cityLabel" extends="baseLabel"&gt; 
+  &lt;attributes&gt;
+    &lt;set name="value" value="City:"/&gt;		
+    &lt;set name="for"   value="city"/&gt;
+  &lt;/attributes&gt;
+&lt;/component&gt;
+</pre></blockquote></p>
+
+        <p>A <code>component</code> node has an attribute container.  This is
+        a generic container to hold all <code>attributes</code> that would
+        be represented by associated JSF/JSP Tags.  Attributes are added or
+        overridden in inheritance using the attribute <code>name</code> as the 
+        unique identifier.      
+        <blockquote><pre>
+&lt;component jsfid="addressPanel" extends="panelGrid"&gt;
+  &lt;attributes&gt;<br/>
+    &lt;set name="columns" value="2" /&gt;
+  &lt;/attributes&gt;
+  &lt;element renderId="1" jsfid="street1Label"/&gt;
+  &lt;element renderId="2" jsfid="street1"/&gt;
+&lt;/component&gt;
+&lt;component jsfid="addressPanelEx" extends="addressPanel"&gt;
+  &lt;attributes&gt;
+    &lt;set name="columns" value="3" /&gt;
+  &lt;/attributes&gt;
+  &lt;element renderId="3" jsfid="street1Message"/&gt;
+&lt;/component&gt;
+</pre></blockquote></p>
+ 
+       <p>The <code>element</code> node is the composition glue.  Components
+       are uniquely defined by a <code>renderId</code> attribute.  This
+       integer value defines the sequential order within the outer
+       <code>component</code>.  The <code>renderId</code> attribute also
+       acts as the "method signature" for the <code>element</code> when
+       resolving inheritance.  This means components can extend other
+       components by overriding or extending elements based on the
+       <code>renderId</code> of the first level of child components. 
+       <blockquote><pre>
+&lt;component jsfid="ssnColumn" extends="column" id="ssn"&gt;
+  &lt;element renderId="1" jsfid="outputText" facetName="header"&gt;
+    &lt;attributes&gt;
+      &lt;set name="value" value="SSN" /&gt;
+    &lt;/attributes&gt;
+  &lt;/element&gt;        
+  &lt;element renderId="2" jsfid="outputText"&gt;
+    &lt;attributes&gt;
+      &lt;set name="value" useValueLateBinding="true" value="#{e.ssn}" /&gt;
+    &lt;/attributes&gt;
+   &lt;/element&gt;      
+&lt;/component&gt;				
+&lt;component jsfid="personTable" extends="dataTable"&gt;
+  &lt;attributes&gt;
+    &lt;set name="value" useValueLateBinding="true" value="#{managed-bean-name.persons}"/&gt;
+    &lt;set name="var"   value="e"/&gt;
+    &lt;set name="rows"  value="5"/&gt; 
+    &lt;set name="first"  value="1"/&gt; 	
+    &lt;set name="border" value="1"/&gt;
+    &lt;set name="cellpadding" value="3"/&gt;       
+  &lt;/attributes&gt;
+  &lt;element renderId="1" jsfid="firstNameColumn"/&gt;
+  &lt;element renderId="2" jsfid="lastNameColumn"/&gt;
+&lt;/component&gt;
+&lt;component jsfid="employeeTable" extends="personTable"&gt;	    
+  &lt;element renderId="0" jsfid="ssnColumn"/&gt;    
+  &lt;element renderId="3" jsfid="birthDateColumn"/&gt;    
+&lt;/component&gt;
+</pre></blockquote></p>
+
+        <p>Clay also allows reuse of view fragments bound to different logical
+        managed bean names.  Managed bean names in Shale will most likely
+        resolve to a <code>ViewController</code> implementation.  Decoupling
+        a view with the managed bean name is accomplished by using a simple
+        token replacement on the expression. This is only performed on
+        attribute values containing faces EL bindings.  A token value of
+        "managed-bean-name" is replaced with the value of the Clay
+        <code>managedBeanName</code> property.  This preprocessing is
+        performed prior to applying the meta attribute values to the target
+        JavaServer Faces component's properties.<br/>
+        <blockquote><pre>
+&lt;clay:clay id="saveResidential" managedBeanName="residentialAddress" jsfid="saveCommand"/&gt; 
+&lt;clay:clay id="saveBusiness" managedBeanName="businessAddress" jsfid="saveCommand"/&gt;
+&lt;component jsfid="saveCommand" extends="commandButton"&gt; 
+  &lt;attributes&gt;
+    &lt;set name="value" value="Save" /&gt;		
+    &lt;set name="action" useValueLateBinding="true" value="#{managed-bean-name.save}" /&gt;	
+    &lt;set name="actionListener" useMethodLateBinding="true" value="#{managed-bean-name.saveAction}"/&gt;			   	
+  &lt;/attributes&gt;
+  &lt;actionListener jsfid="logNavigationActionListener"/&gt;
+&lt;/component&gt;
+</pre></blockquote></p>
+
+      </subsection>
+ 
     </section>
 
 

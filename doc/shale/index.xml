@@ -10,9 +10,56 @@
 
     <section name="Shale Framework"      href="background">
 
-      <p>FIXME - Shale Framework background.  While waiting for this section
-      to be completed, the <a href="http://people.apache.org/~craigmcc/struts-shale-README.html">
-      Original Shale Proposal</a> makes for interesting reading.</p>
+
+      <subsection name="Background"      href="background-background">
+
+        <p>Little did anyone know, when the first few lines of code were
+        committed to the <a href="http://struts.apache.org">Struts</a>
+        CVS repository in June 2000, that a revolution was brewing.  Prior
+        to that time, there were few useful models for best practices for
+        the architecture of web based applcations.  The best we could do
+        was handwaving about "Model 1" and "Model 2" approaches.</p>
+
+        <p>The original implementation of Struts, which was released as a
+        1.0 product approximately one year later, changed all that.  As
+        more and more people came to understand the advantages of building
+        on top of a stable and supported framework, and as more and more
+        developers adopted it for their own application development, and
+        as more and more books helped everyone understand how to use the
+        framework correctly, and as more and more development tools provided
+        support for building Struts based applications, the word changed.
+        A small open source project became a defacto industry standard that,
+        even today, is very popular.</p>
+
+        <p>But that was then ... and this is now.  In the years that Struts
+        has been around (five and counting as of this writing), vastly
+        improved technologies have become available from many talented
+        architects and designers.  Moore's Law has continued its seemingly
+        inexhaustible progress.  Developers have grown in their ability to
+        understand the benefits of a monolithic controller architecture ...
+        as well as increasingly developing preferences towards agility,
+        code reuse, unit tests, and building applications by composition
+        instead of inheritance.</p>
+
+        <p>One of the critical success factors for Struts has been, and
+        continues to be, an obvious commitment on the part of the Struts
+        developers towards backwards compatibility.  This has led to Struts
+        being both praised (for protecting the investment of developers
+        with thousands of applications critically dependent on the framework)
+        and dissed (for being a dinosaur compared to all the "latest and
+        greatest" favorite technological approaches).  History has shown,
+        in terms of its continued popularity, that this is a good
+        strategic approach.</p>
+
+      </subsection>
+
+
+      <subsection name="Foundations"    href="background-foundations">
+
+        <p>FIXME - describe foundational technologies.</p>
+
+      </subsection>
+
 
     </section>
 
