@@ -14,13 +14,13 @@
   <!--                              charset if declared in xml declaration. -->
   <!--                              defaults to utf-8 otherwise             -->
   <xsl:output method="xml" 
-  	      version="1.0" 
-  	      encoding="utf-8" 
-  	      omit-xml-declaration="yes" 
-  	      doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" 
-  	      doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" 
-  	      indent="yes" 
-  	      media-type="text/html"/>
+          version="1.0" 
+          encoding="utf-8" 
+          omit-xml-declaration="yes" 
+          doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" 
+          doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" 
+          indent="yes" 
+          media-type="text/html"/>
 
   <!-- Defined parameters (overrideable) -->
   <xsl:param    name="home-logo"         select="'/images/asf_logo_wide.gif'"/>
@@ -65,7 +65,7 @@
     <xsl:variable name="css">
       <xsl:value-of select="$relative-path"/>
       <xsl:value-of select="$css-path"/>
-    </xsl:variable>	    
+    </xsl:variable>     
     <link rel="stylesheet" type="text/css" href="{$css}"/>
     </head>
 
@@ -92,11 +92,11 @@
         <div id="content">
         <div id="menu">
         
-            <!-- to be removed after ApacheCon 2004 ends 17th of November 2004
-            <a href="http://ApacheCon.Com/2004/US/">
-			<img src="http://ApacheCon.Com/2004/US/logos/logo_only.gif" width="170" height="100" alt="ApacheCon!" title="Come to ApacheCon!" />
-			</a>
-			-->
+            <!-- to be removed after ApacheCon Europe 2005 ends 22nd of July 2005 -->
+            <a href="http://apachecon.com/">
+            <img src="http://apache.org/images/ac2005eu_135x50.gif" width="135" height="50" alt="ApacheCon Europe 2005" title="ApacheCon Europe 2005" />
+            </a>
+            <!-- End ApacheCon logo -->
 
             <xsl:apply-templates select="$project"/>
 
@@ -113,9 +113,9 @@
                 <div class="authors">
                 <p><strong>Contributors</strong></p>
                   <ul>
-	          <xsl:for-each select="/document/properties/author">
-	            <li><xsl:value-of select="."/></li>
-	          </xsl:for-each>
+              <xsl:for-each select="/document/properties/author">
+                <li><xsl:value-of select="."/></li>
+              </xsl:for-each>
                   </ul>
                 </div>
                 </xsl:if>
@@ -312,7 +312,7 @@
       <p><a href="#top">Back to top</a></p>
 
   </xsl:template>
-	
+    
 
   <!-- Create the table of documentation for a tag -->
   <xsl:template match="attribute">    
