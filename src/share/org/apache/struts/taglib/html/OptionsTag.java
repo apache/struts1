@@ -242,9 +242,7 @@ public class OptionsTag extends TagSupport {
             // Construct iterators for the values and labels collections
             Iterator valuesIterator = getIterator(name, property);
             Iterator labelsIterator = null;
-            if ((labelName == null) && (labelProperty == null)) {
-                labelsIterator = getIterator(name, property); // Same coll.
-            } else {
+            if ((labelName != null) || (labelProperty != null)) {
                 labelsIterator = getIterator(labelName, labelProperty);
             }
 
@@ -256,7 +254,7 @@ public class OptionsTag extends TagSupport {
                 }
                 String value = valueObject.toString();
                 String label = value;
-                if (labelsIterator.hasNext()) {
+                if ((labelsIterator != null) && labelsIterator.hasNext()) {
                     Object labelObject = labelsIterator.next();
                     if (labelObject == null) {
                         labelObject = "";
