@@ -217,9 +217,9 @@ public class DefineTag extends BodyTagSupport {
         if (this.value != null) {
             n++;
         }
-        if (n != 1) {
+        if (n > 1) {
             JspException e =
-                new JspException(messages.getMessage("define.value"));
+                new JspException(messages.getMessage("define.value", id));
             TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
@@ -234,7 +234,7 @@ public class DefineTag extends BodyTagSupport {
         }
         if (value == null) {
             JspException e =
-                new JspException(messages.getMessage("define.null"));
+                new JspException(messages.getMessage("define.null", id));
             TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
@@ -246,7 +246,7 @@ public class DefineTag extends BodyTagSupport {
 				inScope = TagUtils.getInstance().getScope(toScope);
 			}
 		} catch (JspException e) {
-            log.warn("toScope was invalid name so we default to PAGE_SCOPE",e);
+            log.warn("toScope was invalid name so we default to PAGE_SCOPE", e);
 		}
             
         pageContext.setAttribute(id, value, inScope);
