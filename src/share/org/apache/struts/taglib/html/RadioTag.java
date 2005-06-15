@@ -218,7 +218,7 @@ public class RadioTag extends BaseHandlerTag {
         prepareAttribute(results, "name", prepareName());
         prepareAttribute(results, "accesskey", getAccesskey());
         prepareAttribute(results, "tabindex", getTabindex());
-        prepareAttribute(results, "value", serverValue);
+        prepareAttribute(results, "value", TagUtils.getInstance().filter(serverValue));
         if (serverValue.equals(checkedValue)) {
             results.append(" checked=\"checked\"");
         }
