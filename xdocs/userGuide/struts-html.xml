@@ -939,7 +939,8 @@
                 <bodycontent>empty</bodycontent>
                 <info>
                 <p>Displays a set of error messages prepared by a business
-                logic component and stored as an <code>ActionErrors</code>
+                logic component and stored as an <code>ActionMessages</code>
+                object, an <code>ActionErrors</code>
                 object, a String, or a String array in request scope.  If
                 such a bean is not found, nothing will be rendered.</p>
 
@@ -961,6 +962,10 @@
                 <li><strong>errors.suffix</strong> - Text that will be rendered
                 after each individual error in the list.</li>
                 </ul>
+
+                <p>See the <code>messages</code> tag for an alternative to this tag that
+                   does not rely on HTML in your <code>MessageResources</code>.</p>
+                
                 </info>
 
                 <attribute>
@@ -3841,7 +3846,10 @@
                 logic component and stored as an <code>ActionMessages</code>
                 object, <code>ActionErrors</code> object, a String,
                 or a String array in any scope.  If
-                such a bean is not found, nothing will be rendered.</p>
+                such a bean is not found, nothing will be rendered.  The messages are 
+                placed into the page scope in the body of this tag where they can be displayed 
+                by standard JSP methods. (For example: <code>&lt;bean:write&gt;</code>,<code>&lt;c:out&gt;</code>)
+                </p>
 
                 <p>In order to use this tag successfully, you must have
                 defined an application scope <code>MessageResources</code>
