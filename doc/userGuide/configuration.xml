@@ -838,15 +838,15 @@
 </section>
 
 <section
-    name="5.4.3.1 Configure the Struts Tag Libraries (Servlet 2.3)"
+    name="5.4.3.1 Configure the Struts Tag Libraries (Servlet 2.3/2.4)"
     href="dd_config_taglib_23">
 
     <p>
-    <strong>Servlet 2.3 users only:</strong> The Servlet 2.3 specification simplifies
+    <strong>Servlet 2.3/2.4 users only:</strong> The Servlet 2.3 and 2.4 specifications simplify
     the deployment and configuration of tag libraries.
-    The instructions above will work on older containers as well as 2.3
+    The instructions above will work on older containers as well as 2.3 and 2.4
     containers (Struts only requires a servlet 2.2 container);
-    however, if you're using a 2.3 container such as Tomcat 4.x,
+    however, if you're using a 2.3/2.4 container such as Tomcat 4.x/5.x,
     you can take advantage of a simplified deployment.
     </p>
 
@@ -884,7 +884,7 @@
     </p>
 
     <p>
-    <strong>Servlet 2.3 Users:</strong> See
+    <strong>Servlet 2.3/2.4 Users:</strong> See
     <a href="#dd_config_taglib_23">section 4.5.3.1</a>
     for how to avoid copying the tlds into your application.
     </p>
