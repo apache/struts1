@@ -113,6 +113,7 @@ public class TestActionConfigMatcher extends TestMockBase {
         assertNotNull("ActionConfig should be matched", matched);
         assertTrue("ActionConfig should have two action forward", matched.findForwardConfigs().length == 2);
         assertTrue("ActionConfig should have two exception forward", matched.findExceptionConfigs().length == 2);
+        assertTrue("ActionConfig should have properties", matched.getProperties().size() == 2);
     }
     
     public void testCheckSubstitutionsMatch() {
@@ -137,6 +138,9 @@ public class TestActionConfigMatcher extends TestMockBase {
         assertTrue("Forward hasn't been replaced", "fwd,Bar".equals(m.getForward()));
         assertTrue("Include hasn't been replaced", "include,Bar".equals(m.getInclude()));
         assertTrue("Input hasn't been replaced", "input,Bar".equals(m.getInput()));
+
+        assertTrue("ActionConfig property not replaced", "testBar".equals(m.getProperty("testprop2")));
+
 
         ForwardConfig[] fConfigs = m.findForwardConfigs();
         boolean found = false;
@@ -206,6 +210,8 @@ public class TestActionConfigMatcher extends TestMockBase {
         excfg.setPath("path2");
         mapping.addExceptionConfig(excfg);
 
+        mapping.setProperty("testprop", "testval");
+        mapping.setProperty("testprop2", "test{1}");
 
         mapping.freeze();
 

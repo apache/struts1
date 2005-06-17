@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -170,6 +171,15 @@ public class ActionConfigMatcher implements Serializable {
             config.removeForwardConfig(fConfigs[x]);
             config.addForwardConfig(cfg);
         }
+
+        Properties origProps = orig.getProperties();
+        Properties configProps = config.getProperties();
+        Map.Entry entry = null;
+        for (Iterator i = origProps.entrySet().iterator(); i.hasNext(); ) {
+            entry = (Map.Entry) i.next();
+            configProps.setProperty((String)entry.getKey(), 
+                convertParam((String)entry.getValue(), vars));
+        } 
 
         ExceptionConfig[] exConfigs = orig.findExceptionConfigs();
         for (int x = 0; x < exConfigs.length; x++) {

@@ -1465,6 +1465,12 @@ throws Exception;
     </ul>
 
     <p>
+    Also, the action mapping properties (set using the <code>&lt;set-property key="foo"
+     value="bar"&gt;</code> syntax) will accept wildcard-matched strings in their 
+    <code>value</code> attribute.
+    </p>
+
+   <p>
     The action forward attributes that will accept wildcard-matched strings
     are:
     </p>
