@@ -970,8 +970,21 @@ public class TagUtils {
 
         } catch (NoSuchMethodException e) {
             saveException(pageContext, e);
+            
+            String beanName = name;
+            
+            // Name defaults to Contants.BEAN_KEY if no name is specified by
+            // an input tag. Thus lookup the bean under the key and use
+            // its class name for the exception message.
+            if (Constants.BEAN_KEY.equals(name)) {
+            	Object obj = pageContext.findAttribute(Constants.BEAN_KEY);
+            	if (obj != null) {
+            		beanName = obj.getClass().getName();
+            	}
+            }
+            
             throw new JspException(
-                    messages.getMessage("lookup.method", property, name));
+                    messages.getMessage("lookup.method", property, beanName));
         }
 
     }
