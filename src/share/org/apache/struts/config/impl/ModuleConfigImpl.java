@@ -23,6 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ActionConfigMatcher;
 import org.apache.struts.config.BaseConfig;
@@ -181,7 +184,11 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable, Module
 
         throwIfConfigured();
         config.setModuleConfig(this);
-        actionConfigs.put(config.getPath(), config);
+        String key = config.getPath();
+        if (actionConfigs.containsKey(key)) {
+           log.warn("Overriding ActionConfig of path " + key);
+        }   
+        actionConfigs.put(key, config);
         actionConfigList.add(config);
 
     }
@@ -198,7 +205,11 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable, Module
     public void addExceptionConfig(ExceptionConfig config) {
 
         throwIfConfigured();
-        exceptions.put(config.getType(), config);
+        String key = config.getType();
+        if (exceptions.containsKey(key)) {
+           log.warn("Overriding ExceptionConfig of type " + key);
+        }   
+        exceptions.put(key, config);
 
     }
 
@@ -214,7 +225,11 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable, Module
     public void addFormBeanConfig(FormBeanConfig config) {
 
         throwIfConfigured();
-        formBeans.put(config.getName(), config);
+        String key = config.getName();
+        if (formBeans.containsKey(key)) {
+           log.warn("Overriding ActionForm of name " + key);
+        }   
+        formBeans.put(key, config);
 
     }
 
@@ -247,7 +262,11 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable, Module
     public void addForwardConfig(ForwardConfig config) {
 
         throwIfConfigured();
-        forwards.put(config.getName(), config);
+        String key = config.getName();
+        if (forwards.containsKey(key)) {
+           log.warn("Overriding global ActionForward of name " + key);
+        }   
+        forwards.put(key, config);
 
     }
 
@@ -263,7 +282,11 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable, Module
     public void addMessageResourcesConfig(MessageResourcesConfig config) {
 
         throwIfConfigured();
-        messageResources.put(config.getKey(), config);
+        String key = config.getKey();
+        if (messageResources.containsKey(key)) {
+           log.warn("Overriding MessageResources bundle of key " + key);
+        }   
+        messageResources.put(key, config);
 
     }
 
@@ -616,5 +639,12 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable, Module
      * Matches action config paths against compiled wildcard patterns
      */
     protected ActionConfigMatcher matcher = null;
+
+    /**
+     * Commons Logging instance.
+     */
+    protected static Log log = LogFactory.getLog(ModuleConfigImpl.class);
+
+
 
 }
