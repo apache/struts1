@@ -56,13 +56,15 @@ public class ConfigRuleSet extends RuleSetBase {
      */
     public void addRuleInstances(Digester digester) {
 
+        ClassLoader cl = digester.getClassLoader();
+
         digester.addRule
             ("struts-config/action-mappings",
              new SetActionMappingClassRule());
 
         digester.addFactoryCreate
             ("struts-config/action-mappings/action",
-             new ActionMappingFactory());
+             new ActionMappingFactory(cl));
         digester.addSetProperties
             ("struts-config/action-mappings/action");
         digester.addSetNext
@@ -91,7 +93,7 @@ public class ConfigRuleSet extends RuleSetBase {
 
         digester.addFactoryCreate
             ("struts-config/action-mappings/action/forward",
-             new ActionForwardFactory());
+             new ActionForwardFactory(cl));
         digester.addSetProperties
             ("struts-config/action-mappings/action/forward");
         digester.addSetNext
@@ -124,7 +126,7 @@ public class ConfigRuleSet extends RuleSetBase {
 
         digester.addFactoryCreate
             ("struts-config/form-beans/form-bean",
-             new ActionFormBeanFactory());
+             new ActionFormBeanFactory(cl));
         digester.addSetProperties
             ("struts-config/form-beans/form-bean");
         digester.addSetNext
@@ -173,7 +175,7 @@ public class ConfigRuleSet extends RuleSetBase {
 
         digester.addFactoryCreate
             ("struts-config/global-forwards/forward",
-             new GlobalForwardFactory());
+             new GlobalForwardFactory(cl));
         digester.addSetProperties
             ("struts-config/global-forwards/forward");
         digester.addSetNext
@@ -318,6 +320,13 @@ final class BaseConfigSetPropertyRule extends SetPropertyRule {
  */
 final class ActionFormBeanFactory extends AbstractObjectCreationFactory {
 
+    private ClassLoader cl;
+
+    public ActionFormBeanFactory(ClassLoader cl) {
+        super();
+        this.cl = cl;
+    }    
+
     public Object createObject(Attributes attributes) {
 
         // Identify the name of the class to instantiate
@@ -331,7 +340,7 @@ final class ActionFormBeanFactory extends AbstractObjectCreationFactory {
         Object actionFormBean = null;
         try {
             actionFormBean =
-                RequestUtils.applicationInstance(className);
+                RequestUtils.applicationInstance(className, cl);
         } catch (Exception e) {
             digester.getLogger().error(
                     "ActionFormBeanFactory.createObject: ", e);
@@ -374,6 +383,14 @@ final class SetActionMappingClassRule extends Rule {
  */
 final class ActionMappingFactory extends AbstractObjectCreationFactory {
 
+    private ClassLoader cl;
+
+    public ActionMappingFactory(ClassLoader cl) {
+        super();
+        this.cl = cl;
+    }    
+
+
     public Object createObject(Attributes attributes) {
 
         // Identify the name of the class to instantiate
@@ -387,7 +404,7 @@ final class ActionMappingFactory extends AbstractObjectCreationFactory {
         Object actionMapping = null;
         try {
             actionMapping =
-                RequestUtils.applicationInstance(className);
+                RequestUtils.applicationInstance(className, cl);
         } catch (Exception e) {
             digester.getLogger().error(
                     "ActionMappingFactory.createObject: ", e);
@@ -430,6 +447,14 @@ final class SetActionForwardClassRule extends Rule {
  */
 final class GlobalForwardFactory extends AbstractObjectCreationFactory {
 
+    private ClassLoader cl;
+
+    public GlobalForwardFactory(ClassLoader cl) {
+        super();
+        this.cl = cl;
+    }    
+
+
     public Object createObject(Attributes attributes) {
 
         // Identify the name of the class to instantiate
@@ -443,7 +468,7 @@ final class GlobalForwardFactory extends AbstractObjectCreationFactory {
         Object globalForward = null;
         try {
             globalForward =
-                RequestUtils.applicationInstance(className);
+                RequestUtils.applicationInstance(className, cl);
         } catch (Exception e) {
             digester.getLogger().error(
                     "GlobalForwardFactory.createObject: ", e);
@@ -464,6 +489,14 @@ final class GlobalForwardFactory extends AbstractObjectCreationFactory {
  */
 final class ActionForwardFactory extends AbstractObjectCreationFactory {
 
+    private ClassLoader cl;
+
+    public ActionForwardFactory(ClassLoader cl) {
+        super();
+        this.cl = cl;
+    }    
+
+
     public Object createObject(Attributes attributes) {
 
         // Identify the name of the class to instantiate
@@ -477,7 +510,7 @@ final class ActionForwardFactory extends AbstractObjectCreationFactory {
         Object actionForward = null;
         try {
             actionForward =
-                RequestUtils.applicationInstance(className);
+                RequestUtils.applicationInstance(className, cl);
         } catch (Exception e) {
             digester.getLogger().error(
                     "ActionForwardFactory.createObject: ", e);

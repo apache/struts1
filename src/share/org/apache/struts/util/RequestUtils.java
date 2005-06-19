@@ -98,12 +98,29 @@ public class RequestUtils {
      * @exception ClassNotFoundException if the class cannot be found
      */
     public static Class applicationClass(String className) throws ClassNotFoundException {
+        return applicationClass(className, null);
+    }
 
-        // Look up the class loader to be used
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+   /**
+     * <p>Return the <code>Class</code> object for the specified fully qualified
+     * class name, from this web application's class loader.</p>
+     *
+     * @param className Fully qualified class name to be loaded
+     * @param classLoader The desired classloader to use
+     * @return Class object
+     *
+     * @exception ClassNotFoundException if the class cannot be found
+     */
+    public static Class applicationClass(String className, ClassLoader classLoader) 
+            throws ClassNotFoundException {
+
         if (classLoader == null) {
-            classLoader = RequestUtils.class.getClassLoader();
-        }
+            // Look up the class loader to be used
+            classLoader = Thread.currentThread().getContextClassLoader();
+            if (classLoader == null) {
+                classLoader = RequestUtils.class.getClassLoader();
+            }
+        }    
 
         // Attempt to load the specified class
         return (classLoader.loadClass(className));
@@ -132,7 +149,32 @@ public class RequestUtils {
     public static Object applicationInstance(String className)
             throws ClassNotFoundException, IllegalAccessException, InstantiationException {
 
-        return (applicationClass(className).newInstance());
+        return applicationInstance(className, null);
+    }
+
+   /**
+     * <p>Return a new instance of the specified fully qualified class name,
+     * after loading the class from this web application's class loader.
+     * The specified class <strong>MUST</strong> have a public zero-arguments
+     * constructor.</p>
+     *
+     * @param className Fully qualified class name to use
+     * @param classLoader The desired classloader to use
+     *
+     * @return new instance of class
+     * @exception ClassNotFoundException if the class cannot be found
+     * @exception IllegalAccessException if the class or its constructor
+     *  is not accessible
+     * @exception InstantiationException if this class represents an
+     *  abstract class, an interface, an array class, a primitive type,
+     *  or void
+     * @exception InstantiationException if this class has no
+     *  zero-arguments constructor
+     */
+    public static Object applicationInstance(String className, ClassLoader classLoader)
+            throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+
+        return (applicationClass(className, classLoader).newInstance());
 
     }
 
