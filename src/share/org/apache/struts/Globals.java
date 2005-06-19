@@ -73,6 +73,14 @@ public class Globals implements Serializable {
     public static final String MODULE_PREFIXES_KEY =
         "org.apache.struts.globals.MODULE_PREFIXES";
 
+   /**
+     * The request attribute under which we store the original URI of the 
+     * request.
+     * @since Struts 1.3
+     */
+    public static final String ORIGINAL_URI_KEY =
+        "org.apache.struts.globals.ORIGINAL_URI_KEY";
+
     /**
      * The request attributes key under which your action should store an
      * <code>org.apache.struts.action.ActionErrors</code> object, if you
