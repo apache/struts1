@@ -233,6 +233,18 @@
               depends="integer"
                   msg="errors.range"/>
 
+      <validator name="longRange"
+            classname="org.apache.struts.validator.FieldChecks"
+               method="validateLongRange"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+              depends="long"
+                  msg="errors.range"/>
+
 
       <validator name="floatRange"
             classname="org.apache.struts.validator.FieldChecks"

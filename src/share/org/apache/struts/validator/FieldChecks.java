@@ -534,6 +534,52 @@ public class FieldChecks implements Serializable {
         return result == null ? Boolean.FALSE : result;
     }
 
+
+    /**
+     * Checks if a fields value is within a range (min &amp; max specified in the
+     * vars attribute).
+     *
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
+     *      field being validated.
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
+     *      validation errors occur.
+     * @param validator The <code>Validator</code> instance, used to access
+     * other field values.
+     * @param  request  Current request object.
+     * @return True if in range, false otherwise.
+     */
+    public static boolean validateLongRange(Object bean,
+                                           ValidatorAction va, Field field,
+                                           ActionMessages errors,
+                                           Validator validator,
+                                           HttpServletRequest request) {
+
+        String value = null;
+        value = evaluateBean(bean, field);
+
+        if (!GenericValidator.isBlankOrNull(value)) {
+            try {
+                long longValue = Long.parseLong(value);
+                long min = Long.parseLong(field.getVarValue("min"));
+                long max = Long.parseLong(field.getVarValue("max"));
+
+                if (!GenericValidator.isInRange(longValue, min, max)) {
+                    errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+
+                    return false;
+                }
+            } catch (Exception e) {
+                errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
     /**
      * Checks if a fields value is within a range (min &amp; max specified in the
      * vars attribute).
