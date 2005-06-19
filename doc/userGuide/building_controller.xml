@@ -972,6 +972,122 @@ throws Exception;
     The <code>key</code> is a key into your message resources properties file 
     that can be used to retrieve an error message.
     </p>
+    <p>
+    If the <code>handler</code> attribute is not specified, the default handler
+    stores the exception in the request attribute under the value of the 
+    <code>Globals.EXCEPTION_KEY</code> global key.
+    </p>
+
+    <p>
+    The possible attributes for the "exception" element are as follows:
+    </p>
+    <table>
+    <tr>
+        <th>Attribute</th>
+        <th>Description</th>
+        <th>Default</th>
+    </tr>    
+    <tr>
+        <td>
+        <code>bundle</code>
+        </td>
+        <td>
+            Servlet context attribute for the message resources bundle
+            associated with this handler. The default attribute is the
+            value specified by the string constant declared at
+            <code>Globals.MESSAGES_KEY</code>.
+        </td>
+        <td>
+            <code>org.apache.struts.Globals.MESSAGES_KEY</code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <code>className</code>
+        </td>
+        <td>
+            The configuration bean for this ExceptionHandler object.
+            If specified, className must be a subclass of the default
+            configuration bean
+        </td>
+        <td>
+            "<code>org.apache.struts.config.ExceptionConfig</code>"
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <code>extends</code>
+        </td>
+        <td>
+            The name of the exception handler that this 
+            will inherit configuration information from.
+        </td>
+        <td>
+            None
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <code>handler</code>
+        </td>
+        <td>
+            Fully qualified Java class name for this exception handler.
+        </td>
+        <td>
+            "<code>org.apache.struts.action.ExceptionHandler</code>"
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <code>key</code>
+        </td>
+        <td>
+            The key to use with this handler's message resource bundle
+            that will retrieve the error message template for this
+            exception.
+        </td>
+        <td>
+            None
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <code>path</code>
+        </td>
+        <td>
+            The module-relative URI to the resource that will complete
+            the request/response if this exception occurs.
+        </td>
+        <td>
+            None
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <code>scope</code>
+        </td>
+        <td>
+            The context ("request" or "session") that is used to access
+            the ActionError object [org.apache.struts.action.ActionError]
+            for this exception.
+        </td>
+        <td>
+            "<code>request</code>"
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <code>type</code>
+        </td>
+        <td>
+            Fully qualified Java class name of the exception type to
+            register with this handler.
+        </td>
+        <td>
+            None
+        </td>
+    </tr>
+    </table>
     
     <p>
     You can override global exception handlers by defining a handler inside an 
