@@ -76,9 +76,12 @@
     </li>
     
     <li>
-        Nightly builds - Download the binary distributions from the
-       <a href="http://svn.apache.org/builds/struts/nightly/">
-        Struts nightly builds directory</a>.
+        Binary builds - Download the binary distribution from one of the
+        Struts nightly build directories:
+        <a href="http://svn.apache.org/builds/struts/nightly/">
+        Built by Ant</a> or
+        <a href="http://svn.apache.org/builds/struts/maven/">
+        Built by Maven</a>.
     </li>
     
     <li>
