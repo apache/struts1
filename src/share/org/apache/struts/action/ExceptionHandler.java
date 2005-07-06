@@ -18,6 +18,9 @@
 
 package org.apache.struts.action;
 
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,6 +41,49 @@ import org.apache.struts.util.ModuleException;
  */
 public class ExceptionHandler {
 
+    /**
+     * <p>The name of a configuration property which can be set to specify an alternative path which should be used
+     * when the <code>HttpServletResponse</code> has already been committed.</p>
+     * <p>To use this, in your <code>struts-config.xml</code> specify the exception handler like this:
+     * <pre>
+     *   &lt;exception
+     *       key="GlobalExceptionHandler.default"
+     *       type="java.lang.Exception"
+     *       path="/ErrorPage.jsp"&gt;
+     *       &lt;set-property key="INCLUDE_PATH" value="/error.jsp" /&gt;
+     *   &lt;/exception&gt;
+     *  </pre>
+     * </p>
+     * <p>You would want to use this when your normal ExceptionHandler path is a Tiles definition or otherwise unsuitable for use
+     * in an <code>include</code> context.  If you do not use this, and you do not specify "SILENT_IF_COMMITTED" then the
+     * ExceptionHandler will attempt to forward to the same path which would be used in normal circumstances,
+     * specified using the "path" attribute in the &lt;exception&gt; element.</p>
+     * @since Struts 1.3
+     */
+    public static final String INCLUDE_PATH = "INCLUDE_PATH";
+
+    /**
+     * <p>The name of a configuration property which indicates that Struts should do nothing 
+     * if the response has already been committed.  This suppresses the default behavior, which is
+     * to use an "include" rather than a "forward" in this case in hopes of providing some meaningful
+     * information to the browser.</p>
+     * <p>To use this, in your <code>struts-config.xml</code> specify the exception handler like this:
+     * <pre>
+     *   &lt;exception
+     *       key="GlobalExceptionHandler.default"
+     *       type="java.lang.Exception"
+     *       path="/ErrorPage.jsp"&gt;
+     *       &lt;set-property key="SILENT_IF_COMMITTED" value="true" /&gt;
+     *   &lt;/exception&gt;
+     *  </pre>
+     * To be effective, this value must be defined to the literal String "true".  If it is not defined or
+     * defined to any other value, the default behavior will be used.
+     * </p>
+     * <p>You only need to use this if you do not want error information displayed in the browser when Struts
+     * intercepts an exception after the response has been committed.</p>
+     * @since Struts 1.3
+     */
+    public static final String SILENT_IF_COMMITTED = "SILENT_IF_COMMITTED";
 
     /**
      * <p>Commons logging instance.</p>
@@ -81,6 +127,7 @@ public class ExceptionHandler {
         HttpServletResponse response)
         throws ServletException {
 
+        log.debug("ExceptionHandler executing for exception " + ex);
         ActionForward forward = null;
         ActionMessage error = null;
         String property = null;
@@ -107,11 +154,97 @@ public class ExceptionHandler {
         // Store the exception
         request.setAttribute(Globals.EXCEPTION_KEY, ex);
         this.storeException(request, property, error, forward, ae.getScope());
-
-        return forward;
+        if (!response.isCommitted()) return forward;
+        log.debug("Response is already committed, so forwarding will not work.  Attempt alternate handling.");
+        if (!silent(ae)) {
+            handleCommittedResponse(ex, ae, mapping, formInstance, request,response, forward);
+        } else {
+            log.warn("ExceptionHandler configured with " + SILENT_IF_COMMITTED + " and response is committed.",ex);
+        }
+        return null;
 
     }
 
+    /**
+     * <p>Attempt to give good information when the response has already been committed when the exception was thrown.
+     * This happens often when Tiles is used. Base implementation will see if the INCLUDE_PATH property has been set,
+     * or if not, it will attempt to use the same path to which control would have been forwarded.</p> 
+     * @param ex
+     * @param config
+     * @param mapping
+     * @param formInstance
+     * @param request
+     * @param response
+     * @param actionForward
+     * @since Struts 1.3
+     */
+    protected void handleCommittedResponse(
+            Exception ex,
+            ExceptionConfig config,
+            ActionMapping mapping,
+            ActionForm formInstance,
+            HttpServletRequest request,
+            HttpServletResponse response,
+            ActionForward actionForward) {
+        String includePath = determineIncludePath(config, actionForward);
+        if (includePath != null) {
+            if (includePath.startsWith("/")) {
+                log.debug("response committed, but attempt to include results of actionForward path");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher(includePath);
+                try {
+                    requestDispatcher.include(request, response);
+                    return;
+                } catch (IOException e) {
+                    log.error("IOException when trying to include the error page path " + includePath,e);
+                } catch (ServletException e) {
+                    log.error("ServletException when trying to include the error page path " + includePath,e);
+                }
+            } else {
+                log.warn("Suspicious includePath doesn't seem likely to work, so skipping it: " + includePath + "; expected path to start with '/'");
+            }
+        } 
+        log.debug("Include not available or failed; try writing to the response directly.");
+        try {
+            response.getWriter().println("Unexpected error: " + ex);
+            response.getWriter().println("<!-- ");
+            ex.printStackTrace(response.getWriter());
+            response.getWriter().println("-->");
+        } catch (IOException e) {
+            log.error("Error giving minimal information about exception", e);
+            log.error("Original exception: ", ex);
+        }
+
+    }
+
+
+    /**
+     * <p>Return a path to which an include should be attempted in the case when the response was committed
+     * before the <code>ExceptionHandler</code> was invoked.  </p>
+     * <p>If the <code>ExceptionConfig</code> has the property <code>INCLUDE_PATH</code> defined, then the value
+     * of that property will be returned.</p>
+     * @param config
+     * @param actionForward
+     * @return
+     * @since Struts 1.3
+     */
+    protected String determineIncludePath(ExceptionConfig config, ActionForward actionForward) {
+        String includePath = config.getProperty("INCLUDE_PATH"); 
+        if (includePath == null) {
+            includePath = actionForward.getPath();
+        }
+        return includePath;
+    }
+
+    /**
+     * Determine teh boo
+     * @param config
+     * @param string
+     * @return
+     */
+    private boolean booleanProperty(ExceptionConfig config, String string) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
     /**
      * <p>Logs the <code>Exception</code> using commons-logging.</p>
@@ -191,5 +324,15 @@ public class ExceptionHandler {
         }
     }
 
+    /**
+     * <p>Indicate whether this Handler has been configured to be silent.  In the base implementation, this is
+     * done by specifying the value <code>"true"</code> for the property "SILENT_IF_COMMITTED" in the ExceptionConfig.</p>
+     * @param config
+     * @return
+     * @since Struts 1.3
+     */
+    private boolean silent(ExceptionConfig config) {
+        return "true".equals(config.getProperty(SILENT_IF_COMMITTED));
+    }
 }
 
