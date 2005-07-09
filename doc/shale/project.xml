@@ -19,6 +19,7 @@
         <item name="Application Manager" href="features.html#application"/>
         <item name="Validation"         href="features.html#validation"/>
         <item name="Remoting"           href="features.html#remoting"/>
+        <item name="JNDI Integration"   href="features.html#jndi"/>
         <item name="Spring Integration" href="features.html#spring"/>
         <item name="Reusable Views"     href="features.html#clay"/>
         <item name="Test Framework"     href="features.html#test"/>

@@ -417,6 +417,127 @@
     </section>
 
 
+    <section name="Shale JNDI Integration"    href="jndi">
+
+      <subsection name="JNDI Introduction"    href="jndi-introduction">
+
+        <p>The <em>Java Naming and Directory Interface</em> (JNDI) API is
+        commonly used in a Java2 Enterprise Edition (J2EE) (recently renamed
+        to Java Enterprise Edition (Java EE)) to acquire references to
+        resources that are declared in either:</p>
+
+        <ul>
+        <li>The deployment descriptor (<code>web.xml</code>) provided with
+            the application.</li>
+        <li>The customized configuration settings applied when the application
+            is depoyed to a particular instance of a particular application
+            server.</li>
+        </ul>
+
+        <p>As an example of the usefulness of this technique, consider an
+        application that requires a JDBC data source (i.e. a connection pool).
+        Consider also that the development environment contains two instances
+        of the database (development and staging), in addition to the production
+        instance.  If your application can define just a <em>reference</em>
+        to the data source, then the same web application archive (WAR) can
+        be deployed, unchanged, to <strong>any</strong> of these instances.
+        The hookup to a particular database instance is performed through
+        deployment configuration, rather than modifying property settings in
+        the WAR for each environment.</p>
+
+      </subsection>
+
+      <subsection name="Services Provided" href="jndi-services">
+
+        <p>Shale includes custom instances of the <code>VariableResolver</code>
+        and <code>PropertyResolver</code> APIs, from JavaServer Faces, that
+        allow value binding and method binding expressions to navigate through
+        the JNDI <code>InitialContext</code> (and subcontexts) that are provided
+        to each web application by the application server.  Such expressions can
+        be used to configure the values for properties of a JSF component, in
+        the usual way.  In addition, expressions can be evaluated programatically
+        in your event handling code -- providing an easier to use mechanism for
+        acquiring such resources.</p>
+
+        <p>For example, assume you have a data source (i.e. instance of
+        <code>javax.sql.DataSoruce</code>) with a resource reference name
+        of <code>jdbc/CustomerDB</code> defined in your deployment descriptor.
+        You can programmatically gain access to this data source by evaluating
+        the following expression:</p>
+
+        <blockquote><code>#{jndi['jdbc/CustomerDB']}</code></blockquote>
+            
+      </subsection>
+
+      <subsection name="Using JNDI Integration" href="jndi-using">
+
+        <p>Two examples of using the JNDI integration capabilities are
+        presented -- one using a value binding to a JSF component property,
+        and one using programmatic access to acquire a resource.</p>
+
+        <p><strong>(1) Binding to JSF Component Property</strong></p>
+        
+        <p>JNDI supports the concept of <em>environment entries</em> that can
+        be declared in the deployment descriptor, and optionally modified by
+        the deployment configuration when the application is instaled in a
+        particular environment.  Let's assume that you have a boolean
+        environment entry to define whether your application is running in
+        debug mode or not, declared in <code>web.xml</code> like this:</p>
+
+        <blockquote><pre>
+&lt;env-entry&gt;
+  &lt;description&gt;Flag indicating whether we run in debug mode.&lt;/description&gt;
+  &lt;env-entry-name&gt;debugMode&lt;/env-entry-name&gt;
+  &lt;env-entry-value&gt;false&lt;/env-entry-value&gt;
+  &lt;env-entry-type&gt;java.lang.Boolean&lt;env-entry-type&gt;
+&lt;/env-entry&gt;
+</pre></blockquote>
+
+        <p>Now, assume you have a status message that you only want to have
+        displayed when debug mode is enabled.  You can bind the
+        <code>rendered</code> property of the component to this environment
+        entry value:</p>
+
+        <blockquote><pre>
+&lt;h:outputText ... rendered="#{jndi.debugMode}" .../&gt;
+</pre></blockquote>
+
+        <p><strong>(2) Programmatic Resource Access</strong></p>
+
+        <p>Assume you have a data source reference (discussed in the introduction)
+        defined in your <code>web.xml</code> like this:</p>
+
+        <blockquote><pre>
+&lt;resource-ref&gt;
+  &lt;description&gt;Customer Database&lt;/description&gt;
+  &lt;res-ref-name&gt;jdbc/CustomerDB&lt;/res-ref-name&gt;
+  &lt;res-type&gt;javax.sql.DataSource&lt;/res-type&gt;
+  &lt;res-auth&gt;Container&lt;/res-auth&gt;
+&lt;/resource-ref&gt;
+</pre></blockquote>
+
+        <p>You can acquire a <code>java.sql.Connection</code> from this data
+        source with code like the following (note that the convenience base
+        class <code>BaseViewController</code> contains a <code>getBean()</code>
+        method that substantially reduces the amount of code needed):</p>
+
+        <blockquote><pre>
+FacesContext context = FacesContext.getCurrentInstance();
+ValueBinding vb =
+  context.getApplication().createValueBinding("#{jndi['jdbc/CustomerDB'].connection}");
+Connection conn = (Connection) vb.getValue(context);
+</pre></blockquote>
+
+        <p>This works by first retrieving the JNDI-configured data source
+        instance, and then calling its <code>getConnection()</code> method.
+        After you are through with the connection, return it to the pool
+        by calling the connection's <code>close()</code> method.</p>
+
+      </subsection>
+
+    </section>
+
+
     <section name="Shale Spring Integration"  href="spring">
 
       <p>FIXME - Describe Spring integration feature.</p>

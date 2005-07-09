@@ -51,13 +51,92 @@
         in terms of its continued popularity, that this is a good
         strategic approach.</p>
 
+        <p>But, it is also time to harvest many of the great ideas that have
+        matured in the last several years.  It is time to base a web tier
+        framework on top of the new standard API in this space (JavaServer Faces),
+        and eliminate the need to implement redundant features, instead of just
+        treating JSF as a UI component technology.  It is time to answer the
+        question "if we knew then what we know now, what would Struts have
+        looked like?"</p>
+
+        <p>Thus, Shale is a proposal for a modern web application framework,
+        fundamentaly based on JavaServer Faces, and focused on improving
+        ease of use for developers adopting JSF as a foundational technology
+        in their own development environments.  At the same time, the
+        architecture of Shale is a set of fine grained services (and service
+        options) that can be combined as needed to meet particular application
+        requirements, rather than a monolithic request processor that is hard
+        to customize and extend.  In addition, integration links for other
+        frameworks and framework components are provided, to ease development
+        when combinations of technologies are required.</p>
+
+        <blockquote><em>EDITOR'S NOTE:  Why "Shale"?  As others have pointed out,
+        the cultural rules of engagement at Apache encourage both evolution
+        and revolution in software designs.  Revolutions are typically assigned
+        code names while they are under discussion, gaining access to the
+        branding of the overall project once they are accepted (or, going off
+        on their own if they are not).  Other proposals for Struts 2.x have
+        talked about tearing down the walls inside the framework, and those
+        are Good Things.  Shale's architecture, on the other hand, is based
+        on the principle that we should fundamentally divide the notion of a
+        web application framework into solid individual layers, much as we
+        see geologically in shale deposits around our volcanoes and coastlines.
+        Each layer of the framework should focus on the specific requirements
+        that are relevant to that layer -- and use of one layer should not
+        necessarily require the use of all the rest (although it's certainly
+        reasonable for synergies to exist if all the layers are chosen :-).
+        Hence, "shale".</em></blockquote>
+
       </subsection>
 
 
       <subsection name="Foundations"    href="background-foundations">
 
-        <p>FIXME - describe foundational technologies.</p>
+        <p>Shale is based on (and requires a runtime environment that
+        supports) the following foundation technologies:</p>
 
+        <ul>
+        <li>Java Runtime Environment (JRE) 1.4 or later.</li>
+        <li>Servlet API 2.4 or later. (*)</li>
+        <li>JavaServer Pages 2.0 or later. (*)</li>
+        <li>JavaServer Faces 1.1 or later.</li>
+        <li>JSP Standard Tag Library (JSTL) 1.1 or later.</li>
+        <li>Apache Commons BeanUtils 1.7 or later.</li>
+        <li>Apache Commons Chain 1.0 or later.</li>
+        <li>Apache Commons Digester 1.7 or later.</li>
+        <li>Apache Commons Logging 1.0.4 or later.</li>
+        </ul>
+
+        <p>(*) Although the sample applications shipped with Shale are
+        configured for these Servlet and JSP versions, at the time of this
+        writing Shale itself does not rely on them; you can successfully
+        run Shale based applications on a Servlet 2.3 / JSP 1.2 platform
+        by using the appropriate syntax in deployment descriptors and JSP
+        pages, and substituting a JSTL 1.0 library for the JSTL 1.1 library
+        listed above.  This is <strong>not</strong> a committed feature for
+        a 1.0 release, unless discussion on the development and user mailing
+        lists indicates that it is important to a significant number of
+        users.</p>
+
+        <p>Various optional Shale components have dependencies on the following
+        additional runtime technologies:</p>
+
+        <ul>
+        <li>Apache Commons Validator 1.1.4 or later.</li>
+        <li>Spring Framework 1.2.2 or later.</li>
+        <li>Struts Tiles (Stand Alone) - currently in Struts Sandbox.</li>
+        </ul>
+
+        <p>If you wish to work on Shale itself, you will require the following
+        additional resources:</p>
+
+        <ul>
+        <li>Java Development Kit (JDK) 1.4 or later.</li>
+        <li>Apache Ant 1.6.3 or later.</li>
+        <li>FindBugs (SourceForge Project) 0.8.6 or later (optional).</li>
+        <li>JUnit 3.8.1 or later.</li>
+        </ul>
+                
       </subsection>
 
 
