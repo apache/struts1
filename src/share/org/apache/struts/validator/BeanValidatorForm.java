@@ -40,6 +40,10 @@ import org.apache.commons.logging.LogFactory;
  *    <i>Validator</i> framework and validates either using the <i>name</i> from the Struts
  *    <code>ActionMapping</code> or the  <code>ActionMapping</code>'s path depending on
  *    whether <code>pathValidation</code> is <code>true</code> or <code>false</code>.</p>
+ * 
+ * <p><b>Note</b>: WrapDynaBean is NOT serializable.  If you use this class
+ *    with a WrapDynaBean (as described above), you should not store your form 
+ *    in session scope.</p>
  */
 public class BeanValidatorForm extends ValidatorForm implements DynaBean, Serializable {
 
