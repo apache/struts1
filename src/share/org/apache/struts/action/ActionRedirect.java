@@ -38,7 +38,7 @@ import java.util.Iterator;
  * An {@link ForwardConfig} (or subclass) can be passed to the constructor
  * to copy its configuration:
  * <br/>
- * <code>
+ * <pre>
  * public ActionForward execute(ActionMapping mapping,
  *                              ActionForm form,
  *                              HttpServletRequest request,
@@ -51,7 +51,7 @@ import java.util.Iterator;
  *     redirect.addParameter("param3","3.0");
  *     return redirect;
  * }
- * </code>
+ * </pre>
  * <p/>
  *
  * @version $Rev$ $Date$
