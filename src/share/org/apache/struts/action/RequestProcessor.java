@@ -296,8 +296,11 @@ public class RequestProcessor {
                 return (null);
             }
 
-            instance.setServlet(this.servlet);
             actions.put(className, instance);
+        }
+
+        if (instance.getServlet() == null) {
+            instance.setServlet(this.servlet);
         }
 
         return (instance);

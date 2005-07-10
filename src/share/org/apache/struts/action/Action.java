@@ -93,7 +93,7 @@ public class Action {
     /**
      * <p>The servlet to which we are attached.</p>
      */
-    protected ActionServlet servlet = null;
+    protected transient ActionServlet servlet = null;
 
 
     // ------------------------------------------------------------- Properties

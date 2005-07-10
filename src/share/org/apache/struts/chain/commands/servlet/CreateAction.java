@@ -65,13 +65,15 @@ public class CreateAction extends org.apache.struts.chain.commands.AbstractCreat
             if (action == null) {
                 log.info("Initialize action of type: " + type);
                 action = (Action) ClassUtils.getApplicationInstance(type);
-                ServletActionContext saContext = (ServletActionContext) context;
-                ActionServlet actionServlet = saContext.getActionServlet();
-                action.setServlet(actionServlet);
                 actions.put(type, action);
             }
         }
 
+        if (action.getServlet() == null) {
+            ServletActionContext saContext = (ServletActionContext) context;
+            ActionServlet actionServlet = saContext.getActionServlet();
+            action.setServlet(actionServlet);
+        }
 
         return (action);
 
