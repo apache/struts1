@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="Struts Framework"
-         href="http://struts.apache.org/bsf"
+         href="http://struts.apache.org/flow"
         image="images/struts.gif">
 
     <title>Struts Flow - Apache Struts Framework</title>

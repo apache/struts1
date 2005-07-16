@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="Struts Framework"
-         href="http://struts.apache.org/bsf"
+         href="http://struts.apache.org/faces"
         image="images/struts.gif">
 
     <title>Struts and JavaServer Faces Integration Library</title>
