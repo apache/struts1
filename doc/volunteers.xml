@@ -7,7 +7,11 @@
    <body>
       <chapter name="Who We Are" href="whoWeAre">
          <section name="Community Support" href="support">
-            <p>In July 2004, there were almost 2700 subscribers to STRUTS-USER (including the digest version). It's the largest user mailing list at Jakarta, exceeding the TOMCAT-USER list of about 2400 subscribers. In addition to the regular subscribers, an unknown number of developers read the lists through newsfeed mirrors and through several list archives.</p>
+         
+            <p>In July 2005, there were more than 2800 subscribers to
+            STRUTS-USER (including the digest version). In addition to the
+            regular subscribers, an unknown number of developers read the lists
+            through newsfeed mirrors and through several list archives.</p>
 
             <p>According to recently released
             <a href="http://www.apache.org/~vgritsenko/stats/projects/struts">statistics</a>, Struts downloads range around 15,000 a month.</p>
@@ -73,7 +77,7 @@
             </ul>
          </section>
 
-         <section name="Committers" href="comitters">
+         <section name="Committers" href="committers">
             <ul>
 
                <li>
@@ -88,11 +92,14 @@
                <li>
                <strong>David Geary</strong>
                (dgeary at apache.org)</li>
+               <li>
+               <strong>Wendy Smoak</strong>
+               (wsmoak at apache.org)</li>
 
             </ul>
          </section>
 
-         <section name="Emeritus Committers" href="comitters.emeritus">
+         <section name="Emeritus Committers" href="committers.emeritus">
             <ul>
                <li>Luis Arias</li>
 
@@ -346,6 +353,25 @@
               September 2004.
             </p>
 
+            <h4 id="wsmoak">Wendy Smoak -- Committer</h4>
+            
+            <p>In late 2001, I was asked to put information from a database on
+            the web, including a few forms to allow updates. By that time I had
+            been working with Java for a couple of years in class projects, but
+            "Servlet" was still a foreign word. With no real deadline and
+            complete freedom to pick anything I wanted, I spent hours online
+            searching and participating in different forums and lists. And any
+            time I asked for advice using 'Java' and 'HTML forms' in the same
+            sentence, I got a resounding chorus of "Struts!" in reply.</p>
+
+            <p>That first webapp went through quite a few iterations as I tried
+            and discarded various things. But I kept coming back to Struts, and
+            eventually things fell into place-- thanks mostly to the helpful
+            community on the struts-user list. As I gained more experience,
+            asking questions on the user list naturally transformed into
+            answering them, which I've been doing ever since. I accepted an
+            invitation to become a Struts Committer in June, 2005.</p>
+            
          </section>
 
          <section>
