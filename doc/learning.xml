@@ -131,7 +131,7 @@
     to <em>use the source</em>. 
     For the complete, buildable source code to the entire Struts framework, 
     see the "src" folder in
-    <a href="http://jakarta.apache.org/site/sourceindex.html"><strong>your source 
+    <a href="http://struts.apache.org/acquiring.html"><strong>your source 
     distribution</strong></a>.
     </p>
 
@@ -179,7 +179,7 @@
             Struts, along with different security packages and Hibernate for database persistence.
         </li>
         <li>
-            <a href="http://www.ibatis.com/jpetstore/jpetstore.html">JPetStore</a> - A streamlined version of the Java
+            <a href="http://ibatis.apache.org/petstore.html">JPetStore</a> - A streamlined version of the Java
             Petstore application implemented with Struts and iBATIS database layer.
         </li>
         <li>

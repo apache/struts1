@@ -10,7 +10,7 @@
 
 <p>
 Nested tags &amp; supporting classes extend the base struts tags to allow them to relate to each other in a nested nature. 
-The fundamental logic of the original tags don't change, except in that all references to beans and bean properties 
+The fundamental logic of the original tags doesn't change, except in that all references to beans and bean properties 
 will be managed in a nested context. 
 </p>
 

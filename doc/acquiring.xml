@@ -164,7 +164,7 @@
     <p>There are some caveats to remember.  Since all the subdirectories are 
     still really different slices from the repository, relative paths won't 
     always work as expected, for example.  See the 
-    <a href="http://svnbook.red-bean.com/en/1.1/ch07s03.html">Externals 
+    <a href="http://svnbook.red-bean.com/en/1.1/ch07s04.html">Externals 
     Definitions</a> section of the 
     <a href="http://svnbook.red-bean.com/">Subversion Book</a> for details.
     </p>
