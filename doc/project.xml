@@ -88,7 +88,7 @@
             />
         <item
             name="Known Issues (Bugzilla)"
-            href="http://jakarta.apache.org/site/bugs.html"
+            href="http://issues.apache.org/bugzilla"
             />
     </menu>
 

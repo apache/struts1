@@ -49,7 +49,7 @@
 
     <p>
     Tracking of bug reports and enhancement requests for Struts is handled
-    through the <a href="http://jakarta.apache.org/site/bugs.html"> Apache Bug 
+    through the <a href="http://issues.apache.org/bugzilla"> Apache Bug 
     Database</a>. 
     Please select <strong>Struts</strong> from the product list, along with 
     the details of which component of Struts you feel this report
