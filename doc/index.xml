@@ -94,8 +94,8 @@
     <pre><code><![CDATA[
     <?xml version="1.0" encoding="ISO-8859-1" ?>
     <!DOCTYPE struts-config PUBLIC
-              "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
-              "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
     <struts-config>
         <form-beans>
             <form-bean
@@ -180,15 +180,15 @@
     </section>
 
 <section>
-   <p>
-   Next: <a href="learning.html">Learning About Struts</a>
-   </p>
-</section>
-
-<section>
     <p>
     <a href="faqs/kickstart.html#jsf">What about JSTL and JavaServer Faces?</a>
     </p>
+</section>
+
+<section>
+   <p class="right">
+   Next: <a href="learning.html">Learning About Struts</a>
+   </p>
 </section>
 
 </body>

@@ -114,4 +114,10 @@
 
 </section>
 
+<section  name="Search">
+  <search label="Search the Struts FAQs and HowTos" 
+          site="http://struts.apache.org/faqs" 
+          domains="http://struts.apache.org/faqs;http://struts.apache.org/userGuide"/>
+</section>
+
 </body></document>

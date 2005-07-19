@@ -404,6 +404,38 @@
   </xsl:template>
 
 
+  <!-- Process a Search section -->
+  <xsl:template match="search">
+    <xsl:variable name="site">
+      <xsl:value-of select="@site"/>
+    </xsl:variable>
+    <xsl:variable name="domains">
+      <xsl:value-of select="@domains"/>
+    </xsl:variable>
+    <!-- SiteSearch Google -->
+        <form method="GET" action="http://www.google.com/search">
+        <input type="hidden" name="ie" value="UTF-8"/>
+        <input type="hidden" name="oe" value="UTF-8"/>
+        <table class="noborder">
+          <tr>
+            <td>
+              <a href="http://www.google.com/">
+                <img src="http://www.google.com/logos/Logo_40wht.gif" border="0" alt="Google"/>
+              </a>
+            </td>
+            <td>
+              <input type="text" name="q" size="31" maxlength="255" value=""/>
+              <input type="submit" name="btnG" value="Google Search"/>
+              <input type="hidden" name="domains" value="{$domains}"/><br/>
+              <input type="hidden" name="sitesearch" value="{$site}"/> 
+              <xsl:value-of select="@label"/><br/>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- SiteSearch Google -->
+  </xsl:template>
+  
   <!-- Process everything else by just passing it through -->
   <xsl:template match="*|@*">
     <xsl:copy>

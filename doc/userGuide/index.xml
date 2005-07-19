@@ -165,6 +165,12 @@
 
       </section>
       
+      <section  name="Search">
+         <search label="Search the Struts User and Developers Guides"
+                 site="http://struts.apache.org/userGuide"
+                 domains="http://struts.apache.org/userGuide;http://struts.apache.org/faqs"/>
+      </section>
+
     <section>
         <p class="right">
         Next: <a href="preface.html">Preface</a>
