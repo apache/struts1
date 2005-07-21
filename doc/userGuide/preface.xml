@@ -531,14 +531,13 @@
       it is processed by subsequent filters (and the servlet that is ultimately
       called).</p>
 
-      <p>
-          The Struts 1.x series (versions 1.0, 1.1, and so forth) require only version 2.2 or later of the Servlet
-          Specification to be implemented by your servlet container, so Struts does not itself utilize Filters
-          at this time.
-          The next generation of Struts (the 2.x series) will be based on Servlet 2.3 or later.
-          It is likely that the Struts 2.x release series will utilize filters.
-      </p>
-
+      <p>The Struts 1.0, 1.1, and 1.2 versions require only version 2.2 or later
+      of the Servlet Specification to be implemented by your servlet container,
+      so those versions of Struts do not use Filters. Beginning with the Struts
+      1.3 version, support for version 2.2 of the Servlet Specification is no
+      longer guaranteed, and it is possible that Struts itself might use Filters
+      in the future.</p>
+      
       <p>
       For more about filters, see:
       </p>
