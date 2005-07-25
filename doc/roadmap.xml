@@ -140,7 +140,7 @@
 
         <p>
             As planned, in Struts 1.3.x we will integrate Struts Chain from config and add
-            an "extends" attribute to all the configruation elements (a la Tiles). While
+            an "extends" attribute to all the configuration elements (a la Tiles). While
             we're at it, we may also add a Ant-style properties file to make variable
             substitutions within the XML elements. The substitution feature is supported by 
             Spring and iBATIS, among others, and is a useful way to configure applications 
@@ -162,7 +162,7 @@
             <b>ActionCommand</b> - A Chain Command-like interface with one method:
         </p>
 
-        <p><code>void Execute(ActionContext context)</code></p>
+        <p><code>void execute(ActionContext context)</code></p>
 
         <p>
             Support for conventional Actions would stay in place, but as an alternative, a
@@ -479,7 +479,7 @@
         <ul>
             <li>Craig McClanahan's <a href="http://blogs.sun.com/roller/page/craigmcc/20040927">blog entry</a></li>
             <li>Our <a href="faqs/kickstart.html#jsf">FAQ</a></li>
-            <li><a href="http://www.jamesholmes.com/JavaServerFaces/">Java Server Faces Resources at JamesHomes.com</a></li>
+            <li><a href="http://www.jamesholmes.com/JavaServerFaces/">Java Server Faces Resources at JamesHolmes.com</a></li>
          </ul>
     </section>
 

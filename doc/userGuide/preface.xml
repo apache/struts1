@@ -534,9 +534,9 @@
       <p>The Struts 1.0, 1.1, and 1.2 versions require only version 2.2 or later
       of the Servlet Specification to be implemented by your servlet container,
       so those versions of Struts do not use Filters. Beginning with the Struts
-      1.3 version, support for version 2.2 of the Servlet Specification is no
-      longer guaranteed, and it is possible that Struts itself might use Filters
-      in the future.</p>
+      1.3 version, a container that supports version 2.3 or later of the Servlet
+      Specification is required, and it is possible that Struts itself might use
+      Filters in the future.</p>
       
       <p>
       For more about filters, see:
