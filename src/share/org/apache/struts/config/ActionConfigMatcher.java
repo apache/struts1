@@ -37,7 +37,9 @@ import org.apache.struts.util.WildcardHelper;
 /**
  * Matches paths against pre-compiled wildcard expressions pulled from
  * action configs. It uses the wildcard matcher from the Apache
- * Cocoon project.
+ * Cocoon project. Patterns will be matched in the order they exist
+ * in the Struts config file. The last match wins, so more specific
+ * patterns should be defined after less specific patterns. 
  *
  * @since Struts 1.2
  */
@@ -109,6 +111,10 @@ public class ActionConfigMatcher implements Serializable {
             for (Iterator i = compiledPaths.iterator(); i.hasNext();) {
                 m = (Mapping) i.next();
                 if (wildcard.match(vars, path, m.getPattern())) {
+                    if (log.isDebugEnabled()) {
+                        log.debug("Path matches pattern '"
+                            + m.getActionConfig().getPath() + "'");
+                    } 
                     config = convertActionConfig(
                             path,
                             (ActionConfig) m.getActionConfig(),

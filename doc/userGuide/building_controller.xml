@@ -1521,7 +1521,15 @@ throws Exception;
     For the rest of the request, Struts will see the action mapping and its 
     action forwards containing the new values.
     </p>
-    
+   
+    <p>
+    Mappings are matched against the request in the order they appear in
+    the Struts configuration file. If more than one pattern matches the
+    last one wins, so less specific patterns must appear before more
+    specific ones. However, if the request URL can be matched against
+    a path without any wildcards in it, no wildcard matching is performed
+    and order in not important.
+    </p>
     <p>
     Wildcard patterns can contain one or more of the following special tokens:
     </p>
