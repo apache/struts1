@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ package org.apache.struts.config;
 
 
 import java.util.HashMap;
-import java.util.Properties;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.beanutils.DynaBean;
@@ -372,11 +371,12 @@ public class FormBeanConfig extends BaseConfig {
     }
 
     /**
-     * Is the given <code>ActionForm</code> instance suitable for use as an
-     * alternative to calling this <code>FormBeanConfig</code> instance's
-     * <code>createActionForm</code> method.
-     * @param form
-     * @return
+     * <p>Checks if the given <code>ActionForm</code> instance is suitable for 
+     * use as an alternative to calling this <code>FormBeanConfig</code> 
+     * instance's <code>createActionForm</code> method.</p>
+     * 
+     * @param form  an existing form instance that may be reused.
+     * @return true if the given form can be reused as the form for this config.
      */
     public boolean canReuse(ActionForm form) {
         if (form != null) {
@@ -389,10 +389,21 @@ public class FormBeanConfig extends BaseConfig {
                 }
             } else {
                 try {
+                    // check if the form's class is compatible with the class
+                    //      we're configured for
+                    Class formClass = form.getClass();                
+                    if (form instanceof BeanValidatorForm) {
+                        // what we really want is to compare against the 
+                        //  BeanValidatorForm's getInstance()
+                        BeanValidatorForm beanValidatorForm = 
+                                (BeanValidatorForm) form;
+                        formClass = beanValidatorForm.getInstance().getClass();
+                    }
+                    
                     Class configClass =
                         ClassUtils.getApplicationClass
                         (this.getType());
-                    if (configClass.isAssignableFrom(form.getClass())) {
+                    if (configClass.isAssignableFrom(formClass)) {
                         log.debug("Can reuse existing instance (non-dynamic)");
                         return (true);
                     }
