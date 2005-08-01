@@ -208,7 +208,7 @@ The
 <a href="http://struts.apache.org/using.html#lists">Strut's mailing list</a> is also
 very active, and welcomes posts from new users. Before posting a new question, be
 sure to consult the
-<a href="http://www.mail-archive.com/struts-user%40jakarta.apache.org/">
+<a href="../mail.html#Archives">
 <strong>MAILING LIST ARCHIVE</strong></a> and the very excellent
 <a href="http://www.tuxedo.org/~esr/faqs/smart-questions.html">
 How To Ask Questions The Smart Way</a> by Eric Raymond. Please do be sure
@@ -222,7 +222,7 @@ email client before posting.
 </section>
 
 <section href="providers" name="Are there ISPs that will host my Struts application?">
-<p>For a listing of some Java and Struts ISPs, visit the <a href="http://struts.sf.net/commnity/index.html">Struts Community Resources</a> area on SourceForge.</p>
+<p>For a listing of some Java and Struts ISPs, visit the <a href="http://struts.sf.net/community/index.html">Struts Community Resources</a> area on SourceForge.</p>
 </section>
 
 <section href="turbine" name="What's the difference between Struts and Turbine? What's the difference between Struts and Expresso?">
