@@ -78,6 +78,9 @@ public abstract class AbstractExceptionHandler extends ActionCommandBase {
             log.debug("See if actionConfig " + actionConfig + " has an exceptionConfig for " + exception.getClass().getName());
             exceptionConfig =
                 actionConfig.findException(exception.getClass());
+        } else if (moduleConfig != null) {
+            log.debug("No action yet, see if moduleConfig " + moduleConfig + " has an exceptionConfig " + exception.getClass().getName());
+            exceptionConfig = moduleConfig.findException(exception.getClass());
         }
 
         // Handle the exception in the configured manner

@@ -192,6 +192,18 @@ public interface ModuleConfig {
     ExceptionConfig findExceptionConfig(String type);
 
     /**
+     * Perform a recursive search for an ExceptionConfig registered for this class, or for any
+     * superclass.  This should only be used in the case when an <code>ActionConfig</code> 
+     * is not available; otherwise, use <code>ActionConfig.findException(Class)</code>
+     * to preserve the search order.
+     *
+     * @param type Exception class name to find a configuration for
+     * @see ActionConfig.findException(Class)
+     */
+    ExceptionConfig findException(Class type);
+
+    
+    /**
      * Return the exception configurations for this module.  If there
      * are none, a zero-length array is returned.
      */

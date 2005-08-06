@@ -20,6 +20,8 @@ package org.apache.struts.config;
 
 import org.apache.struts.util.RequestUtils;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +40,7 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class ActionConfig extends BaseConfig {
 
+    private static final Log log = LogFactory.getLog(ActionConfig.class);
 
     // ----------------------------------------------------- Instance Variables
 
@@ -859,12 +862,14 @@ public class ActionConfig extends BaseConfig {
 
             // Check for a locally defined handler
             String name = type.getName();
+            log.debug("findException: look locally for " + name);
             config = findExceptionConfig(name);
             if (config != null) {
                 return (config);
             }
 
             // Check for a globally defined handler
+            log.debug("findException: look globally for " + name);
             config = getModuleConfig().findExceptionConfig(name);
             if (config != null) {
                 return (config);

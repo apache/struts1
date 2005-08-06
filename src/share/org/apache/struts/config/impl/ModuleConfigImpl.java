@@ -347,6 +347,47 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable, Module
 
     }
 
+    
+    /**
+     * <p>Find and return the <code>ExceptionConfig</code> instance defining
+     * how <code>Exceptions</code> of the specified type should be handled.
+     * 
+     * <p>In original Struts usage, this was only available in <code>ActionConfig</code>,
+     * but there are cases when an exception could be thrown before an <code>ActionConfig</code>
+     * has been identified, where global exception handlers may still be pertinent.</p>
+     * 
+     * <p>TODO: Look for a way to share this logic with <code>ActionConfig</code>, although
+     * there are subtle differences, and it certainly doesn't seem like it should be done with
+     * inheritance.</p>
+     *
+     * @param type Exception class for which to find a handler
+     * @since Struts 1.3.0
+     */
+    public ExceptionConfig findException(Class type) {
+
+        // Check through the entire superclass hierarchy as needed
+        ExceptionConfig config = null;
+        while (true) {
+
+            // Check for a locally defined handler
+            String name = type.getName();
+            log.debug("findException: look locally for " + name);
+            config = findExceptionConfig(name);
+            if (config != null) {
+                return (config);
+            }
+
+            // Loop again for our superclass (if any)
+            type = type.getSuperclass();
+            if (type == null) {
+                break;
+            }
+
+        }
+        return (null); // No handler has been configured
+
+    }
+
     /**
      * Return the exception configurations for this module.  If there
      * are none, a zero-length array is returned.
