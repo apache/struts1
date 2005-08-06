@@ -105,15 +105,6 @@ public class FormBeanConfig extends BaseConfig {
         return (this.dynamic);
     }
 
-    /**
-     * @deprecated The value to be returned by <code>getDynamic()</code>
-     * is now computed automatically in <code>setType()</code>
-     */
-    public void setDynamic(boolean dynamic) {
-        throwIfConfigured();
-        ; // No action required
-    }
-
 
     /**
      * The name of the FormBeanConfig that this config inherits configuration

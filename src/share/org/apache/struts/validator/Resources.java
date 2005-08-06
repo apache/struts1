@@ -30,7 +30,6 @@ import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
 import org.apache.struts.Globals;
-import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.MessageResources;
@@ -53,22 +52,10 @@ public class Resources {
     private static String SERVLET_CONTEXT_PARAM = "javax.servlet.ServletContext";
 
     /**
-     * Resources key the <code>ServletContext</code> is stored under.
-     * @deprecated This will be removed after Struts 1.2
-     */
-    public static String SERVLET_CONTEXT_KEY = SERVLET_CONTEXT_PARAM;
-
-    /**
      * Resources key the <code>HttpServletRequest</code> is stored under.
      */
     private static String HTTP_SERVLET_REQUEST_PARAM =
         "javax.servlet.http.HttpServletRequest";
-
-    /**
-     * Resources key the <code>HttpServletRequest</code> is stored under.
-     * @deprecated This will be removed after Struts 1.2
-     */
-    public static String HTTP_SERVLET_REQUEST_KEY = HTTP_SERVLET_REQUEST_PARAM;
 
     /**
      * Resources key the <code>ActionMessages</code> is stored under.
@@ -76,11 +63,6 @@ public class Resources {
     private static String ACTION_MESSAGES_PARAM =
         "org.apache.struts.action.ActionMessages";
 
-    /**
-     * Resources key the <code>ActionErrors</code> is stored under.
-     * @deprecated This will be removed after Struts 1.2
-     */
-    public static String ACTION_ERRORS_KEY = ACTION_MESSAGES_PARAM;
 
     /**
      * Retrieve <code>ValidatorResources</code> for the current module.
@@ -144,15 +126,6 @@ public class Resources {
 
     }
 
-    /**
-     * Get the <code>Locale</code> of the current user.
-     * @param request servlet request
-     * @deprecated Use RequestUtils.getUserLocale() instead.  This will be removed
-     * after Struts 1.2.
-     */
-    public static Locale getLocale(HttpServletRequest request) {
-        return RequestUtils.getUserLocale(request, null);
-    }
 
     /**
      * Gets the <code>Locale</code> sensitive value based on the key passed in.
@@ -254,35 +227,6 @@ public class Resources {
 
     }
 
-    /**
-     * Gets the <code>ActionError</code> based on the
-     * <code>ValidatorAction</code> message and the <code>Field</code>'s
-     * arg objects.
-     * @param request the servlet request
-     * @param va Validator action
-     * @param field the validator Field
-     * @deprecated Use getActionMessage() instead.  This will be removed after
-     * Struts 1.2.
-     */
-    public static ActionError getActionError(
-        HttpServletRequest request,
-        ValidatorAction va,
-        Field field) {
-
-        String args[] =
-            getArgs(
-                va.getName(),
-                getMessageResources(request),
-                RequestUtils.getUserLocale(request, null),
-                field);
-
-        String msg =
-            field.getMsg(va.getName()) != null
-                ? field.getMsg(va.getName())
-                : va.getMsg();
-
-        return new ActionError(msg, args);
-    }
 
     /**
      * Gets the <code>ActionMessage</code> based on the

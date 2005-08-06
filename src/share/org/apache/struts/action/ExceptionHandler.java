@@ -259,38 +259,6 @@ public class ExceptionHandler {
 
 
     /**
-     * <p>Default implementation for handling an <code>ActionError</code>
-     * generated from an <code>Exception</code> during <code>Action</code>
-     * delegation. The default implementation is to set an attribute of the
-     * request or session, as defined by the scope provided (the scope from
-     * the exception mapping). An <code>ActionErrors</code> instance is created,
-     * the error is added to the collection and the collection is set under the
-     * <code>Globals.ERROR_KEY</code>.</p>
-     *
-     * @param request The request we are handling
-     * @param property The property name to use for this error
-     * @param error The error generated from the exception mapping
-     * @param forward The forward generated from the input path (from the form
-     *                or exception mapping)
-     * @param scope The scope of the exception mapping.
-     * @deprecated Use storeException(HttpServletRequest, String, ActionMessage,
-     * ActionForward, String) instead. This will be removed after Struts 1.2.
-     */
-    protected void storeException(
-        HttpServletRequest request,
-        String property,
-        ActionError error,
-        ActionForward forward,
-        String scope) {
-
-        this.storeException(request, property, (ActionMessage) error, forward,
-                scope);
-        // :TODO: Remove after Struts 1.2
-
-    }
-
-
-    /**
      * <p>Default implementation for handling an <code>ActionMessage</code>
      * generated from an <code>Exception</code> during <code>Action</code>
      * delegation. The default implementation is to set an attribute of the

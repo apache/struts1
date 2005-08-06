@@ -137,7 +137,7 @@ public class ExceptionConfig extends BaseConfig {
 
 
     /**
-     * The scope in which we should expose the ActionError for this exception
+     * The scope in which we should expose the ActionMessage for this exception
      * handler.
      */
     protected String scope = "request";

@@ -1168,38 +1168,4 @@ public class RequestProcessor {
     }
 
 
-    /**
-     * <p>Log the specified message to the servlet context log for this
-     * web application.</p>
-     *
-     * @param message The message to be logged
-     * @deprecated Use commons-logging instead. This will be removed in a
-     * release after Struts 1.2.
-     */
-    protected void log(String message) {
-        // :TODO: Remove after Struts 1.2
-
-        servlet.log(message);
-
-    }
-
-
-    /**
-     * <p>Log the specified message and exception to the servlet context log
-     * for this web application.</p>
-     *
-     * @param message The message to be logged
-     * @param exception The exception to be logged
-
-     * @deprecated Use commons-logging instead.  This will be removed in a
-     * release after Struts 1.2.
-     */
-    protected void log(String message, Throwable exception) {
-        // :TODO: Remove after Sruts 1.2
-
-        servlet.log(message, exception);
-
-    }
-
-
 }

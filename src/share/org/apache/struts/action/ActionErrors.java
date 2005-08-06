@@ -42,16 +42,6 @@ import java.io.Serializable;
  */
 public class ActionErrors extends ActionMessages implements Serializable {
 
-    // ----------------------------------------------------- Manifest Constants
-
-    /**
-     * The "property name" marker to use for global errors, as opposed to
-     * those related to a specific property.
-     * @deprecated Use ActionMessages.GLOBAL_MESSAGE instead.  This will be
-     * removed after Struts 1.2.
-     */
-    public static final String GLOBAL_ERROR =
-            "org.apache.struts.action.GLOBAL_ERROR";
 
     // --------------------------------------------------------- Public Methods
 
@@ -74,18 +64,5 @@ public class ActionErrors extends ActionMessages implements Serializable {
         super(messages);
     }
 
-    /**
-     * Add an error message to the set of errors for the specified property.
-     *
-     * @param property Property name (or ActionErrors.GLOBAL_ERROR)
-     * @param error The error message to be added
-     * @deprecated Use add(String, ActionMessage) instead.  This will be
-     * removed after Struts 1.2.
-     */
-    public void add(String property, ActionError error) {
-
-        super.add(property, error);
-
-    }
 
 }

@@ -81,16 +81,6 @@ public class Action {
 
 
     /**
-     * <p>The system default Locale.</p>
-     *
-     * @deprecated Use Locale.getDefault directly.  This will be removed after
-     * Struts 1.2.
-     */
-    protected static Locale defaultLocale = Locale.getDefault();
-    // :TODO: Remove after Struts 1.2
-
-
-    /**
      * <p>The servlet to which we are attached.</p>
      */
     protected transient ActionServlet servlet = null;
@@ -477,25 +467,6 @@ public class Action {
     protected void resetToken(HttpServletRequest request) {
 
         token.resetToken(request);
-
-    }
-
-
-    /**
-     * <p>Save the specified error messages keys into the appropriate request
-     * attribute for use by the &lt;html:errors&gt; tag, if any messages
-     * are required. Otherwise, ensure that the request attribute is not
-     * created.</p>
-     *
-     * @param request The servlet request we are processing
-     * @param errors Error messages object
-     * @deprecated Use saveErrors(HttpServletRequest, ActionMessages) instead.
-     * This will be removed after Struts 1.2.
-     */
-    protected void saveErrors(HttpServletRequest request, ActionErrors errors) {
-
-        this.saveErrors(request, (ActionMessages) errors);
-        // :TODO: Remove after Struts 1.2.
 
     }
 
