@@ -588,24 +588,27 @@
 
 <pre><code><![CDATA[
 <validator name="required"
-        classname="org.apache.struts.validator.FieldChecks"
-        method="validateRequired"
-        methodParams="java.lang.Object,
+      classname="org.apache.struts.validator.FieldChecks"
+         method="validateRequired"
+   methodParams="java.lang.Object,
                  org.apache.commons.validator.ValidatorAction,
                  org.apache.commons.validator.Field,
-                 org.apache.struts.action.ActionErrors,
+                 org.apache.struts.action.ActionMessages,
+                 org.apache.commons.validator.Validator,
                  javax.servlet.http.HttpServletRequest"
-        msg="errors.required">
+            msg="errors.required"/>
 
 <validator name="mask"
-        classname="org.apache.struts.validator.FieldChecks"
-        method="validateMask"
-        methodParams="java.lang.Object,
+      classname="org.apache.struts.validator.FieldChecks"
+         method="validateMask"
+   methodParams="java.lang.Object,
                  org.apache.commons.validator.ValidatorAction,
                  org.apache.commons.validator.Field,
-                 org.apache.struts.action.ActionErrors,
+                 org.apache.struts.action.ActionMessages,
+                 org.apache.commons.validator.Validator,
                  javax.servlet.http.HttpServletRequest"
-        msg="errors.invalid">
+        depends=""
+            msg="errors.invalid"/>
 ]]></code></pre>
 
     <p>
@@ -637,8 +640,8 @@
         </li>
 
         <li>
-        <code>org.apache.struts.action.ActionErrors</code>
-        - The errors objects to add an ActionError to if the validation fails.
+        <code>org.apache.struts.action.ActionMessages</code>
+        - The errors object to add an ActionMessage to if the validation fails.
         </li>
 
         <li>

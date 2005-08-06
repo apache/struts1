@@ -1068,7 +1068,7 @@ throws Exception;
         </td>
         <td>
             The context ("request" or "session") that is used to access
-            the ActionError object [org.apache.struts.action.ActionError]
+            the ActionMessage object [org.apache.struts.action.ActionMessage]
             for this exception.
         </td>
         <td>

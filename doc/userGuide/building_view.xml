@@ -452,7 +452,7 @@ HttpServletRequest request);
 
         <li>
         Perform the appropriate validations and find problems -- Return an 
-        ActionErrors instance containing <code>ActionError</code>'s, which 
+        ActionErrors instance containing <code>ActionMessage</code>'s, which 
         are classes that contain the error message keys (into the 
         application's <code>MessageResources</code> bundle) that should be 
         displayed. 
