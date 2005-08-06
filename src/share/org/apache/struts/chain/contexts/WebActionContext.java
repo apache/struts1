@@ -19,10 +19,10 @@ package org.apache.struts.chain.contexts;
 
 
 import java.util.Map;
-import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.Globals;
-import org.apache.struts.util.MessageResources;
+
 import org.apache.commons.chain.web.WebContext;
+import org.apache.struts.Globals;
+import org.apache.struts.config.ModuleConfig;
 
 /**
  * Subclass of ActionContextBase which is understood to be wrapping
@@ -58,10 +58,21 @@ public class WebActionContext extends ActionContextBase {
         return wcontext().getInitParam();
     }
 
+    /**
+     * Return a map whose keys are <code>String</code> request parameter names and whose values
+     * are <code>String</code> values.  For parameters which were submitted with more than one value,
+     * only one value will be returned, as if one called <code>ServletRequest.getParameter(String)</code>
+     * @return
+     */
     public Map getParam() {
         return wcontext().getParam();
     }
 
+    /**
+     * Return a map whose keys are <code>String</code> request parameter names and whose values
+     * are <code>String[]</code> values.
+     * @return
+     */
     public Map getParamValues() {
         return wcontext().getParamValues();
     }

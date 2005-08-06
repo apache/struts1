@@ -106,7 +106,8 @@ public interface ActionContext extends Context {
 
     /**
      * <p>Return a <code>Map</code> of parameters submitted by the user
-     * as part of this request.</p>
+     * as part of this request.  The keys to this map will be request parameter
+     * names (of type <code>String</code>), and the values will be <code>String[]</code>.</p>
      *
      * <p>This is implemented in analogy with the Request parameters of
      * the Servlet API, but it seems reasonable to expect that any
