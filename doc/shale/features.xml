@@ -62,7 +62,7 @@
             this backing bean is associated with is created.  (Technically, it
             happens when <code>ViewManager.createView()</code> is called.)
             For a postback, this happens during the <em>Restore View</em>
-            phase of the request processing lifecycle, once it ha been
+            phase of the request processing lifecycle, once it has been
             determined which view should be restored.  If your application
             navigates from one page to another, the <code>init()</code> method
             of the second page will be called as part of the
@@ -314,7 +314,7 @@
         JavaServer Navigation will resume.</p>
 
         <p>The configuration of a Dialog is represented as a tree of
-        JavaBeans defined in the <code>org.apache.shale.dialog</code>code>
+        JavaBeans defined in the <code>org.apache.shale.dialog</code>
         package, rooted at an instance <code>Dialog</code>.  The set of
         all known <code>Dialog</code> instances is stored in a <code>Map</code>,
         keyed by dialog identifier, which is stored in an application scope
