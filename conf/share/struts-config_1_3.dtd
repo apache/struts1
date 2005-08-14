@@ -260,13 +260,6 @@ The "form-bean" element describes a particular form bean, which is a
                      subclass to use for this object.
                      ["org.apache.struts.action.ActionForward"]
 
-    contextRelative  Set this to "true" if, in a modular application, the path
-                     attribute starts with a slash "/" and should be considered
-                     relative to the entire web application rather than the module.
-                     Since Struts 1.1.
-                     DEPRECATED.
-                     [false]
-
      extends         The name of the forward configuration that this 
                      will inherit configuration information from.
 
@@ -277,12 +270,9 @@ The "form-bean" element describes a particular form bean, which is a
                      Action object at runtime to select - by its logical name -
                      the resource that should complete the request/response.
 
-     path            The module-relative or context-relative path to the resources
-                     that is encapsulated by the logical name of this ActionForward.
-                     If the path is to be considered context-relative when used in
-                     a modular application, then the contextRelative attribute
-                     should be set to "true". This value should begin with a slash
-                     ("/") character.
+     path            The module-relative path to the resources that is 
+                     encapsulated by the logical name of this ActionForward.
+                     This value should begin with a slash ("/") character.
 
      redirect        Set to "true" if a redirect instruction should be issued to
                      the user-agent so that a new request is issued for this
@@ -295,7 +285,6 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST forward        catalog        CDATA           #IMPLIED>
 <!ATTLIST forward        className      %ClassName;     #IMPLIED>
 <!ATTLIST forward        command        CDATA           #IMPLIED>
-<!ATTLIST forward        contextRelative %Boolean;      #IMPLIED>
 <!ATTLIST forward        extends        CDATA           #IMPLIED>
 <!ATTLIST forward        module         %RequestPath;   #IMPLIED>
 <!ATTLIST forward        name           CDATA           #REQUIRED>
