@@ -109,19 +109,48 @@ public class TilesRequestProcessor extends RequestProcessor {
 
 	/**
 	 * Process a Tile definition name.
-	 * This method tries to process the parameter <code>definitionName</code> as a definition name.
-	 * It returns <code>true</code> if a definition has been processed, or <code>false</code> otherwise.
-	 * Parameter <code>contextRelative</code> is not used in this implementation.
+	 * This method tries to process the parameter <code>definitionName</code> 
+     * as a definition name.
+	 * It returns <code>true</code> if a definition has been processed, or 
+     * <code>false</code> otherwise.
+	 * This method is deprecated; the method without the 
+     * <code>contextRelative</code> parameter should be used instead.
 	 *
 	 * @param definitionName Definition name to insert.
 	 * @param contextRelative Is the definition marked contextRelative ?
 	 * @param request Current page request.
 	 * @param response Current page response.
-	 * @return <code>true</code> if the method has processed uri as a definition name, <code>false</code> otherwise.
+	 * @return <code>true</code> if the method has processed uri as a 
+     * definition name, <code>false</code> otherwise.
+     * @deprecated use processTilesDefinition(definitionName, request, response)
+     *  instead.  This method will be removed in a version after 1.3.0.
 	 */
 	protected boolean processTilesDefinition(
 		String definitionName,
 		boolean contextRelative,
+		HttpServletRequest request,
+		HttpServletResponse response)
+		throws IOException, ServletException {
+
+        return processTilesDefinition(definitionName, request, response);
+        
+    }
+    
+	/**
+	 * Process a Tile definition name.
+	 * This method tries to process the parameter <code>definitionName</code> 
+     * as a definition name.
+	 * It returns <code>true</code> if a definition has been processed, or 
+     * <code>false</code> otherwise.
+	 *
+	 * @param definitionName Definition name to insert.
+	 * @param request Current page request.
+	 * @param response Current page response.
+	 * @return <code>true</code> if the method has processed uri as a 
+     * definition name, <code>false</code> otherwise.
+	 */
+	protected boolean processTilesDefinition(
+		String definitionName,
 		HttpServletRequest request,
 		HttpServletResponse response)
 		throws IOException, ServletException {
@@ -293,14 +322,11 @@ public class TilesRequestProcessor extends RequestProcessor {
 			log.debug(
 				"processForwardConfig("
 					+ forward.getPath()
-					+ ", "
-					+ forward.getContextRelative()
 					+ ")");
 		}
         
 		// Try to process the definition.
 		if (processTilesDefinition(forward.getPath(),
-			forward.getContextRelative(),
 			request,
 			response)) {
 			if (log.isDebugEnabled()) {
@@ -338,7 +364,7 @@ public class TilesRequestProcessor extends RequestProcessor {
 		HttpServletResponse response)
 		throws IOException, ServletException {
             
-		if (processTilesDefinition(uri, false, request, response)) {
+		if (processTilesDefinition(uri, request, response)) {
 			return;
 		}
 
@@ -362,7 +388,7 @@ public class TilesRequestProcessor extends RequestProcessor {
 		HttpServletResponse response)
 		throws IOException, ServletException {
             
-		if (processTilesDefinition(uri, false, request, response)) {
+		if (processTilesDefinition(uri, request, response)) {
 			return;
 		}
 
