@@ -128,19 +128,19 @@ public class TestMockBase extends TestCase {
         // Forward "external" to "http://jakarta.apache.org/"
         moduleConfig.addForwardConfig
             (new ActionForward("external", "http://jakarta.apache.org/",
-                               false, false));
+                               false));
 
         // Forward "foo" to "/bar.jsp"
         moduleConfig.addForwardConfig
-            (new ActionForward("foo", "/bar.jsp", false, false));
+            (new ActionForward("foo", "/bar.jsp", false));
 
         // Forward "relative1" to "relative.jsp" non-context-relative
         moduleConfig.addForwardConfig
-            (new ActionForward("relative1", "relative.jsp", false, false));
+            (new ActionForward("relative1", "relative.jsp", false));
 
         // Forward "relative2" to "relative.jsp" context-relative
         moduleConfig.addForwardConfig
-            (new ActionForward("relative2", "relative.jsp", false, true));
+            (new ActionForward("relative2", "relative.jsp", false));
 
         // Form Bean "static" is a standard ActionForm subclass
         formBean = new ActionFormBean
@@ -222,38 +222,36 @@ public class TestMockBase extends TestCase {
         moduleConfig.addForwardConfig
             (new ForwardConfig("moduleForward",
                                "/module/forward",
-                               false,   // No redirect
-                               false)); // Not context relative
+                               false)); // No redirect, same module
 
         moduleConfig.addForwardConfig
             (new ForwardConfig("moduleRedirect",
                                "/module/redirect",
-                               true,    // Redirect
-                               false)); // Not context relative
+                               true));  // Redirect, same module
 
         moduleConfig.addForwardConfig
             (new ForwardConfig("contextForward",
-                               "/context/forward",
+                               "/forward",
                                false,   // No redirect
-                               true));  // Context relative
+                               "/context"));  // Specify module
 
         moduleConfig.addForwardConfig
             (new ForwardConfig("contextRedirect",
-                               "/context/redirect",
+                               "/redirect",
                                true,    // Redirect
-                               true));  // Context relative
+                               "/context"));  // Specify module
 
         moduleConfig.addForwardConfig
             (new ForwardConfig("moduleNoslash",
                                "module/noslash",
-                               false,   // No redirect
-                               false)); // Not context relative
+                               false)); // No redirect, same module
+                               
 
         moduleConfig.addForwardConfig
             (new ForwardConfig("contextNoslash",
-                               "context/noslash",
+                               "noslash",
                                false,   // No redirect
-                               true));  // Not context relative
+                               "/context"));  // Specify module
 
     }
 
@@ -272,19 +270,19 @@ public class TestMockBase extends TestCase {
         // Forward "external" to "http://jakarta.apache.org/"
         moduleConfig2.addForwardConfig
             (new ActionForward("external", "http://jakarta.apache.org/",
-                               false, false));
+                               false));
 
         // Forward "foo" to "/baz.jsp" (different from default)
         moduleConfig2.addForwardConfig
-            (new ActionForward("foo", "/baz.jsp", false, false));
+            (new ActionForward("foo", "/baz.jsp", false));
 
         // Forward "relative1" to "relative.jsp" non-context-relative
         moduleConfig2.addForwardConfig
-            (new ActionForward("relative1", "relative.jsp", false, false));
+            (new ActionForward("relative1", "relative.jsp", false));
 
         // Forward "relative2" to "relative.jsp" context-relative
         moduleConfig2.addForwardConfig
-            (new ActionForward("relative2", "relative.jsp", false, true));
+            (new ActionForward("relative2", "relative.jsp", false));
 
         // Form Bean "static" is a standard ActionForm subclass (same as default)
         formBean = new ActionFormBean
@@ -331,38 +329,36 @@ public class TestMockBase extends TestCase {
         moduleConfig2.addForwardConfig
             (new ForwardConfig("moduleForward",
                                "/module/forward",
-                               false,   // No redirect
-                               false)); // Not context relative
+                               false)); // No redirect, same module
 
         moduleConfig2.addForwardConfig
             (new ForwardConfig("moduleRedirect",
                                "/module/redirect",
-                               true,    // Redirect
-                               false)); // Not context relative
+                               true));  // Redirect, same module
+                               
 
         moduleConfig2.addForwardConfig
             (new ForwardConfig("contextForward",
-                               "/context/forward",
+                               "/forward",
                                false,   // No redirect
-                               true));  // Context relative
+                               "/context"));  // Specify module
 
         moduleConfig2.addForwardConfig
             (new ForwardConfig("contextRedirect",
-                               "/context/redirect",
+                               "/redirect",
                                true,    // Redirect
-                               true));  // Context relative
+                               "/context"));  // Specify module
 
         moduleConfig2.addForwardConfig
             (new ForwardConfig("moduleNoslash",
                                "module/noslash",
-                               false,   // No redirect
-                               false)); // Not context relative
+                               false)); // No redirect, same module
 
         moduleConfig2.addForwardConfig
             (new ForwardConfig("contextNoslash",
-                               "context/noslash",
+                               "noslash",
                                false,   // No redirect
-                               true));  // Not context relative
+                               "/context"));  // Specify module
 
     }
 
@@ -389,38 +385,35 @@ public class TestMockBase extends TestCase {
         moduleConfig3.addForwardConfig
             (new ForwardConfig("moduleForward",
                                "/module/forward",
-                               false,   // No redirect
-                               false)); // Not context relative
+                               false));   // No redirect, same module
 
         moduleConfig3.addForwardConfig
             (new ForwardConfig("moduleRedirect",
                                "/module/redirect",
-                               true,    // Redirect
-                               false)); // Not context relative
+                               true));  // Redirect, same module
 
         moduleConfig3.addForwardConfig
             (new ForwardConfig("contextForward",
-                               "/context/forward",
+                               "/forward",
                                false,   // No redirect
-                               true));  // Context relative
+                               "/context"));  // Specify module
 
         moduleConfig3.addForwardConfig
             (new ForwardConfig("contextRedirect",
-                               "/context/redirect",
+                               "/redirect",
                                true,    // Redirect
-                               true));  // Context relative
+                               "/context"));  // Specify module
 
         moduleConfig3.addForwardConfig
             (new ForwardConfig("moduleNoslash",
                                "module/noslash",
-                               false,   // No redirect
-                               false)); // Not context relative
+                               false)); // No redirect, same module
 
         moduleConfig3.addForwardConfig
             (new ForwardConfig("contextNoslash",
-                               "context/noslash",
-                               false,   // No redirect
-                               true));  // Not context relative
+                               "noslash",
+                               false,       // No redirect
+                               "/context"));  // specify module
 
     }
 

@@ -62,27 +62,7 @@ public class ForwardConfig extends BaseConfig {
 
     }
 
-
-    /**
-     * Construct a new instance with the specified values.
-     *
-     * @param name Name of this forward
-     * @param path Path to which control should be forwarded or redirected
-     * @param redirect Should we do a redirect?
-     * @param contextRelative Is this path context relative?
-     * @deprecated Use module rather than contextRelative
-     */
-    public ForwardConfig(String name, String path, boolean redirect,
-                         boolean contextRelative) {
-
-        super();
-        setName(name);
-        setPath(path);
-        setRedirect(redirect);
-        setContextRelative(contextRelative);
-
-    }
-
+    
     /**
      * <p>Construct a new instance with the specified values.</p>
      * @param name Name of this forward
@@ -102,30 +82,6 @@ public class ForwardConfig extends BaseConfig {
     }
 
     // ------------------------------------------------------------- Properties
-
-
-    /**
-     * Should the value of the <code>path</code> property be considered
-     * context-relative if it starts with a slash (and therefore not
-     * prefixed with the module prefix?
-     * @deprecated Use module property instead; will be removed in a release following 1.2.0.
-     */
-    protected boolean contextRelative = false;
-
-    /**
-     * @deprecated Use module property instead; will be removed in a release following 1.2.0.
-     */
-    public boolean getContextRelative() {
-        return (this.contextRelative);
-    }
-
-    /**
-     * @deprecated Use module property instead; will be removed in a release following 1.2.0.
-     */
-    public void setContextRelative(boolean contextRelative) {
-        throwIfConfigured();
-        this.contextRelative = contextRelative;
-    }
 
 
     /**
@@ -424,10 +380,6 @@ public class ForwardConfig extends BaseConfig {
             setCommand(config.getCommand());
         }
 
-        if (!getContextRelative()) {
-            setContextRelative(config.getContextRelative());
-        }
-
         if (getModule() == null) {
             setModule(config.getModule());
         }
@@ -533,8 +485,6 @@ public class ForwardConfig extends BaseConfig {
         sb.append(this.path);
         sb.append(",redirect=");
         sb.append(this.redirect);
-        sb.append(",contextRelative=");
-        sb.append(this.contextRelative);
         sb.append(",module=");
         sb.append(this.module);
         sb.append(",extends=");

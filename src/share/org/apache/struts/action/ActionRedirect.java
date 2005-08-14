@@ -132,7 +132,6 @@ public class ActionRedirect extends ActionForward {
     public ActionRedirect(ForwardConfig baseConfig) {
         setName(baseConfig.getName());
         setPath(baseConfig.getPath());
-        setContextRelative(baseConfig.getContextRelative());
         setModule(baseConfig.getModule());
         setRedirect(true);
         initializeParameters();

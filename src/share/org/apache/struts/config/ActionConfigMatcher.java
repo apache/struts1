@@ -168,7 +168,6 @@ public class ActionConfigMatcher implements Serializable {
         ForwardConfig cfg;
         for (int x = 0; x < fConfigs.length; x++) {
             cfg = new ActionForward();
-            cfg.setContextRelative(fConfigs[x].getContextRelative());
             cfg.setName(fConfigs[x].getName());
             cfg.setPath(convertParam(fConfigs[x].getPath(), vars));
             cfg.setRedirect(fConfigs[x].getRedirect());

@@ -148,7 +148,6 @@ public class TestActionConfigMatcher extends TestMockBase {
             ForwardConfig cfg = fConfigs[x];
             if ("name".equals(cfg.getName())) {
                 found = true;
-                assertTrue("ContextRelative isn't correct", cfg.getContextRelative());
                 assertTrue("Path hasn't been replaced", "path,Bar".equals(cfg.getPath()));
             }
         }
@@ -187,13 +186,11 @@ public class TestActionConfigMatcher extends TestMockBase {
         mapping.setInput("input,{1}");
 
         ForwardConfig cfg = new ActionForward();
-        cfg.setContextRelative(true);
         cfg.setName("name");
         cfg.setPath("path,{1}");
         mapping.addForwardConfig(cfg);
         
         cfg = new ActionForward();
-        cfg.setContextRelative(true);
         cfg.setName("name2");
         cfg.setPath("path2");
         mapping.addForwardConfig(cfg);

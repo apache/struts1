@@ -90,7 +90,6 @@ public class ForwardAction extends BaseAction {
 
         // Let the controller handle the request
         ActionForward retVal = new ActionForward(path);
-        retVal.setContextRelative(true);
 
         return retVal;
     }

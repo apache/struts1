@@ -786,15 +786,7 @@ public class RequestUtils {
             }
         }
 
-        // Handle a ForwardConfig marked as context relative
         StringBuffer sb = new StringBuffer();
-        if (forward.getContextRelative()) {
-            if (!path.startsWith("/")) {
-                sb.append("/");
-            }
-            sb.append(path);
-            return (sb.toString());
-        }
 
         // Calculate a context relative path for this ForwardConfig
         String forwardPattern = moduleConfig.getControllerConfig().getForwardPattern();

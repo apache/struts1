@@ -122,27 +122,6 @@ public class ActionForward extends ForwardConfig {
 
 
     /**
-     * <p>Construct a new instance with the specified values.</p>
-     *
-     * @param name Name of this instance
-     * @param path Path for this instance
-     * @param redirect Redirect flag for this instance
-     * @param contextRelative Context relative flag for this instance
-     * @deprecated Use module rather than contextRelative
-     */
-    public ActionForward(String name, String path, boolean redirect,
-                         boolean contextRelative) {
-
-        super();
-        setName(name);
-        setPath(path);
-        setRedirect(redirect);
-        setContextRelative(contextRelative);
-
-    }
-
-
-    /**
      * Construct a new instance with the specified values.
      *
      * @param name Name of this forward
@@ -172,7 +151,6 @@ public class ActionForward extends ForwardConfig {
     public ActionForward(ActionForward copyMe) {
         this(copyMe.getName(), copyMe.getPath(), copyMe.getRedirect(),
                 copyMe.getModule());
-        setContextRelative(copyMe.getContextRelative());
     }
 
 }
