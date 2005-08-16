@@ -236,17 +236,6 @@ public class ExceptionHandler {
     }
 
     /**
-     * Determine teh boo
-     * @param config
-     * @param string
-     * @return
-     */
-    private boolean booleanProperty(ExceptionConfig config, String string) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    /**
      * <p>Logs the <code>Exception</code> using commons-logging.</p>
      * @param e The Exception to log.
      * @since Struts 1.2
