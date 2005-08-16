@@ -117,7 +117,7 @@ public class ConfigRuleSet extends RuleSetBase {
              "org.apache.struts.config.ControllerConfig");
 
         digester.addRule
-        ("struts-config/controller/forward/set-property",
+        ("struts-config/controller/set-property",
          new BaseConfigSetPropertyRule());
 
         digester.addRule
