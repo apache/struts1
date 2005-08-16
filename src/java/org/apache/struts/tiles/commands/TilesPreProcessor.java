@@ -215,9 +215,7 @@ public class TilesPreProcessor implements Command
             // by an AbstractPerformForward later as if our ForwardConfig
             // were the one actually returned by an executing Action
             log.info("Tiles process complete; forward to " + uri);
-            // :FIXME: How do we need to coordinate the "context-relative" value
-            // with other places it might be set.  For now, hardcode to true.
-            sacontext.setForwardConfig( new ForwardConfig("tiles-chain", uri, false, true) );
+            sacontext.setForwardConfig( new ForwardConfig("tiles-chain", uri, false) );
             return (false);
         }
     }
