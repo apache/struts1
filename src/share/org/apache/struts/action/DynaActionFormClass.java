@@ -225,15 +225,6 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * @deprecated No longer need to Clear our cache of
-     * <code>DynaActionFormClass</code> instances.
-     */
-    public static void clear() {
-        ; // do nothing
-    }
-
-
-    /**
      * Return the <code>DynaActionFormClass</code> instance for the specified
      * form bean configuration instance.
      *
