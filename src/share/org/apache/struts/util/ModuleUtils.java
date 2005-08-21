@@ -67,7 +67,7 @@ public class ModuleUtils {
      * object. If no moduleConfig is found, this means that the request haven't
      * hit the server throught the struts servlet. The appropriate module config
      * can be set and found with
-     * <code>{@link RequestUtils#selectModule(HttpServletRequest, ServletContext)} </code>.
+     * <code>{@link ModuleUtils#selectModule(HttpServletRequest, ServletContext)} </code>.
      * @param request The servlet request we are processing
      * @return the ModuleConfig object from request, or null if none is set in
      * the request.
