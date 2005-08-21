@@ -58,14 +58,13 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
         ActionConfig actionConfig = actionCtx.getActionConfig();
 
         // Is this action protected by role requirements?
-        String roles[] = actionConfig.getRoleNames();
-        if ((roles == null) || (roles.length < 1)) {
+        if (!isAuthorizationRequired(actionConfig)) {
             return (false);
         }
 
         boolean throwEx = false;
         try {
-            throwEx = !(isAuthorized(actionCtx, roles, actionConfig));
+            throwEx = !(isAuthorized(actionCtx, actionConfig.getRoleNames(), actionConfig));
         }
         catch (Exception ex) {
             throwEx = true;
@@ -80,6 +79,19 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
             return (false);
         }
 
+    }
+
+    /**
+     * <p>Must authorization rules be consulted?  The base implementation returns
+     * <code>true</code> if the given <code>ActionConfig</code> has one or more 
+     * roles defined.</p>
+     * 
+     * @param actionConfig the current ActionConfig object
+     * @return true if the <code>isAuthorized</code> method should be consulted.
+     */
+    protected boolean isAuthorizationRequired(ActionConfig actionConfig) {
+        String[] roles = actionConfig.getRoleNames();
+        return (roles != null) && (roles.length > 0);
     }
 
 
