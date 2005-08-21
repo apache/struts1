@@ -52,12 +52,6 @@ public class ChannelFactorySet extends FactorySet {
     private static final Log log = LogFactory.getLog(ChannelFactorySet.class);
 
     /** 
-     * Debug flag. 
-     * @deprecated This will be removed in a release after Struts 1.2.
-     */
-    public static final boolean debug = false;
-
-    /** 
      * Default name.
      */
     public static final String DEFAULT_DEFINITIONS_FILE_NAME =

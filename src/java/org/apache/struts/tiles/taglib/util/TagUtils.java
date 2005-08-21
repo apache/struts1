@@ -110,34 +110,6 @@ public class TagUtils {
     }
 
 
-
-    /**
-     * Return the value of the specified property of the specified bean,
-     * no matter which property reference format is used, with no
-     * type conversions.
-     *
-     * @param bean Bean whose property is to be extracted.
-     * @param name Possibly indexed and/or nested name of the property
-     *  to be extracted.
-     *
-     * @exception IllegalAccessException if the caller does not have
-     *  access to the property accessor method
-     * @exception InvocationTargetException if the property accessor method
-     *  throws an exception
-     * @exception NoSuchMethodException if an accessor method for this
-     *  propety cannot be found.
-     * @deprecated Use PropertyUtils.getProperty() directly.  This will be removed
-     * after Struts 1.2.
-     */
-	public static Object getProperty(Object bean, String name)
-		throws
-			IllegalAccessException,
-			InvocationTargetException,
-			NoSuchMethodException {
-
-		return PropertyUtils.getProperty(bean, name);
-	}
-
     /**
      * Retrieve bean from page context, using specified scope.
      * If scope is not set, use <code>findAttribute()</code>.
