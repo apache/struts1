@@ -1858,11 +1858,13 @@ public class ActionServlet extends HttpServlet {
         }
         ArrayList resolvedUrls = new ArrayList();
 
-        URL resource = null;
+        URL resource;
         String path = null;
         try {
+            
             // Process each specified resource path
             while (paths.length() > 0) {
+                resource = null;
                 int comma = paths.indexOf(',');
                 if (comma >= 0) {
                     path = paths.substring(0, comma).trim();
