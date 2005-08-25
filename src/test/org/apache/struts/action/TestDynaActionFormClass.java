@@ -24,7 +24,6 @@ import junit.framework.TestSuite;
 import org.apache.commons.beanutils.DynaProperty;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.FormPropertyConfig;
-import org.apache.struts.config.impl.ModuleConfigImpl;
 
 
 /**
@@ -125,9 +124,6 @@ public class TestDynaActionFormClass extends TestCase
             beanConfig.addFormPropertyConfig(dynaProperties[i]);
         }
         
-        // Create a temporary ModuleConfig
-        ModuleConfigImpl moduleConfig = new ModuleConfigImpl("");
-
         // Construct a corresponding DynaActionFormClass
         dynaClass = new DynaActionFormClass(beanConfig);
 
