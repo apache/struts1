@@ -161,6 +161,13 @@
           <include>chain-config.xml</include>
         </includes>
       </resource>
+      <resource>
+        <directory>build</directory>
+        <includes>
+          <include>LICENSE.txt</include>
+          <include>NOTICE.txt</include>
+        </includes>
+      </resource>
     </resources>
   </build>
   
