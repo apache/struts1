@@ -264,14 +264,14 @@ public class ActionRedirect extends ActionForward {
         Iterator iterator = parameterValues.keySet().iterator();
         while (iterator.hasNext()) {
             // get the parameter name
-            String name = (String) iterator.next();
+            String paramName = (String) iterator.next();
 
             // get the value for this parameter
-            Object value = parameterValues.get(name);
+            Object value = parameterValues.get(paramName);
 
             if (value instanceof String) {
                 // just one value for this param
-                strParam.append(name)
+                strParam.append(paramName)
                         .append("=")
                         .append(value);
 
@@ -279,7 +279,7 @@ public class ActionRedirect extends ActionForward {
                 // loop through all values for this param
                 String[] values = (String[]) value;
                 for (int i = 0; i < values.length; i++) {
-                    strParam.append(name)
+                    strParam.append(paramName)
                             .append("=")
                             .append(values[i]);
                     if (i < values.length - 1) {

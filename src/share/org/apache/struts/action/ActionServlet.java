@@ -461,14 +461,14 @@ public class ActionServlet extends HttpServlet {
      */
     public void addServletMapping(String servletName, String urlPattern) {
 
-        if (log.isDebugEnabled()) {
-            log.debug("Process servletName=" + servletName
-                    + ", urlPattern=" + urlPattern);
-        }
         if (servletName == null) {
             return;
         }
         if (servletName.equals(this.servletName)) {
+            if (log.isDebugEnabled()) {
+                log.debug("Process servletName=" + servletName
+                        + ", urlPattern=" + urlPattern);
+            }
             this.servletMapping = urlPattern;
         }
 
@@ -599,16 +599,16 @@ public class ActionServlet extends HttpServlet {
      * @return The {@link RequestProcessor} responsible for the
      *         specified module,
      *
-     * @exception ServletException if we cannot instantiate a RequestProcessor
-     *                             instance
+     * @exception ServletException If we cannot instantiate a RequestProcessor
+     *                             instance a {@link UnavailableException} is
+     *                             thrown, meaning your application is not loaded
+     *                             and will not be available.
      *
      * @since Struts 1.1
      */
     protected synchronized RequestProcessor getRequestProcessor(
             ModuleConfig config)
         throws ServletException {
-
-        // :FIXME: Document UnavailableException?
 
         RequestProcessor processor = this.getProcessorForModule(config);
 
@@ -681,9 +681,6 @@ public class ActionServlet extends HttpServlet {
      */
     protected ModuleConfig initModuleConfig(String prefix, String paths)
         throws ServletException {
-
-        // :FIXME: Document UnavailableException? (Doesn't actually throw
-        // anything)
 
         if (log.isDebugEnabled()) {
             log.debug(
@@ -1293,7 +1290,7 @@ public class ActionServlet extends HttpServlet {
      * @return  The exception config using the correct class as determined
      *          by the config's ancestor and its own overridden value.
      *
-     * @throws UnavailableException if an instance of the exception config
+     * @throws ServletException if an instance of the exception config
      *          class cannot be created.
      */
     protected ExceptionConfig processExceptionConfigClass(
@@ -1443,7 +1440,7 @@ public class ActionServlet extends HttpServlet {
      * @return  The config object using the correct class as determined
      *          by the config's ancestor and its own overridden value.
      *
-     * @throws UnavailableException if an instance of the action config
+     * @throws ServletException if an instance of the action config
      *          class cannot be created.
      */
     protected ActionConfig processActionConfigClass(
@@ -1684,7 +1681,7 @@ public class ActionServlet extends HttpServlet {
     /**
      * <p>Parse the configuration documents specified by the
      * <code>chainConfig</code> init-param to configure the default
-     * {@link Catalog} that is registered in the {@link CatalogFactory}
+     * {@link org.apache.commons.chain.Catalog} that is registered in the {@link CatalogFactory}
      * instance for this application.</p>
      *
      * @throws ServletException if an error occurs.

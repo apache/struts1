@@ -158,23 +158,23 @@ public class ActionMessages implements Serializable {
      * to the end of the list for that property. If a message's property is not
      * in the current list it is added to the end of the properties.</p>
      *
-     * @param messages The <code>ActionMessages</code> object to be added.
+     * @param actionMessages The <code>ActionMessages</code> object to be added.
      * This parameter can be <code>null</code>.
      * @since Struts 1.1
      */
-    public void add(ActionMessages messages) {
+    public void add(ActionMessages actionMessages) {
 
-        if (messages == null) {
+        if (actionMessages == null) {
             return;
         }
 
         // loop over properties
-        Iterator props = messages.properties();
+        Iterator props = actionMessages.properties();
         while (props.hasNext()) {
             String property = (String) props.next();
 
             // loop over messages for each property
-            Iterator msgs = messages.get(property);
+            Iterator msgs = actionMessages.get(property);
             while (msgs.hasNext()) {
                 ActionMessage msg = (ActionMessage) msgs.next();
                 this.add(property, msg);
@@ -239,9 +239,9 @@ public class ActionMessages implements Serializable {
         for (Iterator i = actionItems.iterator(); i.hasNext();) {
             ActionMessageItem ami = (ActionMessageItem) i.next();
 
-            for (Iterator messages = ami.getList().iterator();
-                    messages.hasNext();) {
-                results.add(messages.next());
+            for (Iterator msgsIter = ami.getList().iterator();
+            	msgsIter.hasNext();) {
+                results.add(msgsIter.next());
             }
         }
 

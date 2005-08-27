@@ -399,7 +399,6 @@ public class Action {
      * @param request The servlet request we are processing
      * @return <code>true</code> if the cancel button was pressed;
      *         <code>false</code> otherwise.
-     * @see org.apache.struts.taglib.html.CancelTag
      */
     protected boolean isCancelled(HttpServletRequest request) {
 

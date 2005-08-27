@@ -95,7 +95,8 @@ public abstract class ActionForm implements Serializable {
     /**
      * <p>Return the controller servlet instance to which we are attached.
      * as an <code>ActionServletWrapper</code>.</p>
-     *
+     * 
+     * @return An instance of {@link org.apache.struts.action.ActionServletWrapper}
      * @see org.apache.struts.action.ActionServletWrapper
      * @since Struts 1.0.1
      */
@@ -115,6 +116,7 @@ public abstract class ActionForm implements Serializable {
      * <code>null</code> if this form's enctype is not
      * "multipart/form-data".</p>
      *
+     * @return The {@link org.apache.struts.upload.MultipartRequestHandler} for this form.
      * @see org.apache.struts.upload.MultipartRequestHandler
      */
     public MultipartRequestHandler getMultipartRequestHandler() {

@@ -65,19 +65,19 @@ public class ActionMapping extends ActionConfig {
      * specified forwarding configuration. If no forwarding configuration
      * can be found, return <code>null</code>.</p>
      *
-     * @param name Logical name of the forwarding instance to be returned
+     * @param forwardName Logical name of the forwarding instance to be returned
      *
      * @return The local or global forward with the specified name.
      */
-    public ActionForward findForward(String name) {
+    public ActionForward findForward(String forwardName) {
 
-        ForwardConfig config = findForwardConfig(name);
+        ForwardConfig config = findForwardConfig(forwardName);
         if (config == null) {
-            config = getModuleConfig().findForwardConfig(name);
+            config = getModuleConfig().findForwardConfig(forwardName);
         }
         if (config == null) {
             if (log.isWarnEnabled()) {
-                log.warn("Unable to find '" + name + "' forward.");
+                log.warn("Unable to find '" + forwardName + "' forward.");
             }
         }
         return ((ActionForward) config);
