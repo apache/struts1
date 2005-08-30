@@ -251,13 +251,17 @@ public class MessagesTag extends BodyTagSupport {
         // Decide whether to iterate or quit
         if (iterator.hasNext()) {
             ActionMessage report = (ActionMessage) iterator.next();
-            String msg =
-                TagUtils.getInstance().message(
+            String msg = null;
+            if (report.isResource()) {
+                msg = TagUtils.getInstance().message(
                     pageContext,
                     bundle,
                     locale,
                     report.getKey(),
                     report.getValues());
+            } else {
+                msg = report.getKey();
+            }
 
            if (msg == null) {
                pageContext.removeAttribute(id);
