@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -91,6 +91,31 @@ public class MessageResourcesConfig extends BaseConfig {
         this.nullValue = nullValue;
     }
 
+    /**
+     * Indicates whether 'escape processing' should be performed on
+     * the error message string.
+     */
+    private boolean escape = true;
+
+    /**
+     * Indicates whether 'escape processing' should be performed on
+     * the error message string.
+     *
+     * @since Struts 1.2.8
+     */
+    public boolean isEscape() {
+        return escape;
+    }
+
+    /**
+     * Set whether 'escape processing' should be performed on
+     * the error message string.
+     *
+     * @since Struts 1.2.8
+     */
+    public void setEscape(boolean escape) {
+        this.escape = escape;
+    }
 
     /**
      * Parameter that is passed to the <code>createResources()</code> method
@@ -122,6 +147,8 @@ public class MessageResourcesConfig extends BaseConfig {
         sb.append(this.factory);
         sb.append(",null=");
         sb.append(this.nullValue);
+        sb.append(",escape=");
+        sb.append(this.escape);
         sb.append(",parameter=");
         sb.append(this.parameter);
         sb.append("]");

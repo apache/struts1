@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ package org.apache.struts.util;
 import java.io.Serializable;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.config.MessageResourcesConfig;
 
 
 /**
@@ -47,6 +48,28 @@ public abstract class MessageResourcesFactory implements Serializable {
 
     // ---------------------------------------------------- Instance Properties
 
+    /**
+     * Configuration information for Message Resources.
+     */
+    protected MessageResourcesConfig config;
+
+    /**
+     * Set the configuration information for Message Resources.
+     *
+     * @since Struts 1.2.8
+     */
+    public MessageResourcesConfig getConfig() {
+        return config;
+    }
+
+    /**
+     * Return the configuration information for Message Resources.
+     *
+     * @since Struts 1.2.8
+     */
+    public void setConfig(MessageResourcesConfig config) {
+        this.config = config;
+    }
 
     /**
      * The "return null" property value to which newly created

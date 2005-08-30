@@ -1537,10 +1537,12 @@ public class ActionServlet extends HttpServlet {
             MessageResourcesFactory.setFactoryClass(factory);
             MessageResourcesFactory factoryObject =
                 MessageResourcesFactory.createFactory();
+            factoryObject.setConfig(mrcs[i]);
 
             MessageResources resources =
                 factoryObject.createResources(mrcs[i].getParameter());
             resources.setReturnNull(mrcs[i].getNull());
+            resources.setEscape(mrcs[i].isEscape());
             getServletContext().setAttribute(
                 mrcs[i].getKey() + config.getPrefix(),
                 resources);
