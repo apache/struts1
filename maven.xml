@@ -10,7 +10,7 @@
     <!-- Copy configuration files -->
     <j:set var="docsDest" value="${maven.docs.dest}"/>
     <ant:copy todir="${maven.dist.bin.assembly.dir}/conf">
-      <ant:fileset dir="./conf/share">
+      <ant:fileset dir="./conf/java">
         <ant:include name="*.xml"/>
         <ant:include name="*.dtd"/>
       </ant:fileset>
@@ -22,8 +22,8 @@
 
     <!-- Copy configuration files -->
     <j:set var="docsDest" value="${maven.docs.dest}"/>
-    <ant:copy todir="${maven.dist.src.assembly.dir}/conf/share">
-      <ant:fileset dir="./conf/share">
+    <ant:copy todir="${maven.dist.src.assembly.dir}/conf/java">
+      <ant:fileset dir="./conf/java">
         <ant:include name="*.xml"/>
         <ant:include name="*.dtd"/>
       </ant:fileset>

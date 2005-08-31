@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.42 2004/02/17 05:51:47 martinc Exp $
+     $Id$
 -->
 
 

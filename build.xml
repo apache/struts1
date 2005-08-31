@@ -45,14 +45,14 @@
     </mkdir>
     <javac destdir="${classesdir}" deprecation="true" debug="true" optimize="false" excludes="**/package.html">
       <src>
-        <pathelement location="src/share">
+        <pathelement location="src/java">
         </pathelement>
       </src>
       <classpath refid="build.classpath">
       </classpath>
     </javac>
     <copy todir="${classesdir}">
-      <fileset dir="src/share">
+      <fileset dir="src/java">
         <include name="**/*.properties">
         </include>
       </fileset>
@@ -60,7 +60,7 @@
     <mkdir dir="${classesdir}/org/apache/struts/resources">
     </mkdir>
     <copy todir="${classesdir}/org/apache/struts/resources">
-      <fileset dir="conf/share">
+      <fileset dir="conf/java">
         <include name="**/*.dtd">
         </include>
       </fileset>
@@ -68,7 +68,7 @@
     <mkdir dir="${classesdir}/org/apache/struts/chain">
     </mkdir>
     <copy todir="${classesdir}/org/apache/struts/chain">
-      <fileset dir="conf/share">
+      <fileset dir="conf/java">
         <include name="chain-config.xml">
         </include>
       </fileset>
@@ -172,7 +172,7 @@
     </property>
     <property name="title" value="Struts Core 1.3.0-dev API">
     </property>
-    <javadoc use="true" private="true" destdir="${javadocdir}" author="true" version="true" sourcepath="src/share" packagenames="org.apache.struts.*">
+    <javadoc use="true" private="true" destdir="${javadocdir}" author="true" version="true" sourcepath="src/java" packagenames="org.apache.struts.*">
       <classpath>
         <path refid="build.classpath">
         </path>

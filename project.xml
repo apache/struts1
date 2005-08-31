@@ -117,7 +117,7 @@
   </dependencies>
   
   <build>
-    <sourceDirectory>src/share</sourceDirectory>
+    <sourceDirectory>src/java</sourceDirectory>
     <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
     <unitTest>
       <includes>
@@ -125,7 +125,7 @@
       </includes>
       <resources>
         <resource>
-          <directory>conf/share</directory>
+          <directory>conf/java</directory>
           <targetPath>org/apache/struts/resources</targetPath>
           <includes>
             <include>**/*.xml</include>
@@ -142,20 +142,20 @@
     </unitTest>
     <resources>
       <resource>
-        <directory>src/share</directory>
+        <directory>src/java</directory>
         <includes>
           <include>**/*.properties</include>
         </includes>
       </resource>
       <resource>
-        <directory>conf/share</directory>
+        <directory>conf/java</directory>
         <targetPath>org/apache/struts/resources</targetPath>
         <includes>
           <include>**/*.dtd</include>
         </includes>
       </resource>
       <resource>
-        <directory>conf/share</directory>
+        <directory>conf/java</directory>
         <targetPath>org/apache/struts/chain</targetPath>
         <includes>
           <include>chain-config.xml</include>

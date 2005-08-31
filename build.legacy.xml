@@ -165,13 +165,13 @@
     <property name="src.dir" value="src"/>
 
     <!-- Source directory for core struts library -->
-    <property name="src.share.dir" value="${src.dir}/share"/>
+    <property name="src.java.dir" value="${src.dir}/java"/>
 
     <!-- Source directory for non-Cactus unit tests -->
     <property name="src.test.dir" value="${src.dir}/test"/>
 
     <!-- Directory where core struts library configurations files are stored -->
-    <property name="conf.share.dir" value="conf/share"/>
+    <property name="conf.java.dir" value="conf/java"/>
 
     <!-- Directory where test configurations files are stored -->
     <property name="conf.test.dir" value="conf/test"/>
@@ -257,10 +257,10 @@
             tofile="${build.home}/library/classes/META-INF/LICENSE"/>
         <copy file="build/NOTICE.txt"
             tofile="${build.home}/library/classes/META-INF/NOTICE"/>
-        <copy file="${conf.share.dir}/chain-config.xml"
+        <copy file="${conf.java.dir}/chain-config.xml"
             tofile="${build.home}/library/classes/org/apache/struts/chain/chain-config.xml" />
         <copy todir="${build.home}/library/classes/org/apache/struts/resources">
-            <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
+            <fileset dir="${conf.java.dir}" includes="**/*.dtd"/>
         </copy>
         <copy file="${commons-beanutils.jar}"
             tofile="${build.home}/library/commons-beanutils.jar"/>
@@ -290,7 +290,7 @@
 -->
     <target name="compile.library" depends="prepare.library"
      description="Compile Struts library files">
-        <javac srcdir="${src.share.dir}"
+        <javac srcdir="${src.java.dir}"
             destdir="${build.home}/library/classes"
             debug="${compile.debug}"
             optimize="${compile.optimize}"
@@ -298,12 +298,12 @@
           <classpath refid="compile.classpath"/>
         </javac>
         <copy todir="${build.home}/library/classes">
-            <fileset dir="${src.share.dir}" includes="**/*.properties"/>
+            <fileset dir="${src.java.dir}" includes="**/*.properties"/>
         </copy>
         <copy todir="${build.home}/library">
-            <fileset dir="${conf.share.dir}" includes="*.dtd"/>
-            <fileset dir="${conf.share.dir}" includes="*.tld"/>
-            <fileset dir="${conf.share.dir}" includes="*.xml"/>
+            <fileset dir="${conf.java.dir}" includes="*.dtd"/>
+            <fileset dir="${conf.java.dir}" includes="*.tld"/>
+            <fileset dir="${conf.java.dir}" includes="*.xml"/>
         </copy>
         <style basedir="${doc.dir}/userGuide"
             destdir="${build.home}/library"
@@ -323,7 +323,7 @@
                            value="http://jakarta.apache.org/struts/tags"/>
         </replace>
         <jar jarfile="${build.home}/library/${app.name}.jar"
-            manifest="${conf.share.dir}/MANIFEST.MF"
+            manifest="${conf.java.dir}/MANIFEST.MF"
             basedir="${build.home}/library/classes"
             includes="**"/>
     </target>
@@ -335,7 +335,7 @@
      description="Generate JavaDoc API docs">
         <delete dir="${build.home}/documentation/api"/>
         <mkdir dir="${build.home}/documentation/api"/>
-        <javadoc sourcepath="${src.share.dir}"
+        <javadoc sourcepath="${src.java.dir}"
             destdir="${build.home}/documentation/api"
             classpath="${servlet.jar}:${jsp.jar}:${jdbc20ext.jar}"
             packagenames="org.apache.struts.*"
@@ -525,7 +525,7 @@
         </taskdef>
         <checkstyle>
             <formatter type="plain"/>
-            <fileset dir="${src.share.dir}" includes="**/*.java"/>
+            <fileset dir="${src.java.dir}" includes="**/*.java"/>
         </checkstyle>
     </target>
 
@@ -537,7 +537,7 @@
         </taskdef>
         <pmd printToConsole="true" rulesetfiles="${pmd.rulesets}" shortFilenames="true">
             <formatter type="html" toFile="${pmd.report}"  />
-            <fileset dir="${src.share.dir}" includes="**/*.java"/>
+            <fileset dir="${src.java.dir}" includes="**/*.java"/>
         </pmd>
     </target>
 
@@ -555,7 +555,7 @@
             <auxClasspath>
                 <path refid="compile.classpath"/>
             </auxClasspath>
-            <sourcePath path="${src.share.dir}"/>
+            <sourcePath path="${src.java.dir}"/>
       </findbugs>
   </target>
 
