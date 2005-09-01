@@ -796,6 +796,7 @@
         <test       name="org.apache.struts.action.TestDynaActionFormClass"/>
         <test       name="org.apache.struts.config.TestModuleConfig"/>
         <test       name="org.apache.struts.config.TestActionConfigMatcher"/>
+        <test       name="org.apache.struts.tiles.TestTilesPlugin"/>
 
         <!-- Tests for org.apache.struts.validator -->
         <test       name="org.apache.struts.validator.TestValidWhen"/>
