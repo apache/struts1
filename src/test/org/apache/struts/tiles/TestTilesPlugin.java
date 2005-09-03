@@ -248,7 +248,7 @@ public class TestTilesPlugin extends TestMockBase {
                     "config/I18nFactorySet-A.xml");
 
      try {
-         TestI18nFactorySet i18nFactorySet = new TestI18nFactorySet(context, properties);
+         CustomI18nFactorySet i18nFactorySet = new CustomI18nFactorySet(context, properties);
          String defName = "A-DEFAULT";
 
          // Default Locale
@@ -306,7 +306,7 @@ public class TestTilesPlugin extends TestMockBase {
 
      try {
 
-         TestI18nFactorySet i18nFactorySet = new TestI18nFactorySet(context, properties);
+         CustomI18nFactorySet i18nFactorySet = new CustomI18nFactorySet(context, properties);
          String defName = null;
 
          // Default Locale
