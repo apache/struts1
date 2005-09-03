@@ -30,7 +30,7 @@ import org.apache.struts.tiles.xmlDefinition.I18nFactorySet;
  * @version $Rev$ $Date$
  */
 
-public class TestI18nFactorySet extends I18nFactorySet {
+public class CustomI18nFactorySet extends I18nFactorySet {
 
     /**
      * Constructor.
@@ -39,7 +39,7 @@ public class TestI18nFactorySet extends I18nFactorySet {
      * @param properties Map containing all properties.
      * @throws FactoryNotFoundException Can't find factory configuration file.
      */
-    public TestI18nFactorySet(ServletContext servletContext, Map properties)
+    public CustomI18nFactorySet(ServletContext servletContext, Map properties)
         throws DefinitionsFactoryException {
         super(servletContext, properties);
     }
@@ -55,4 +55,3 @@ public class TestI18nFactorySet extends I18nFactorySet {
 
 
 }
-
