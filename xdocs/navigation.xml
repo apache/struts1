@@ -7,7 +7,7 @@
   <body>
 
     <menu name="Tiles">
-        <item href="tiles/installation.html" name="Installation"/>
+        <item href="installation.html" name="Installation"/>
     </menu>
     <!--
     <menu name="Examples">
@@ -25,7 +25,7 @@
     <menu name="Quick Links">
         <item 
             name="Struts"
-            href="index.html"/>
+            href="../index.html"/>
     </menu>
     
   </body>
