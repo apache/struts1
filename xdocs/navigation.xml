@@ -1,10 +1,46 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="Struts Core">
     <body>
+
+        <menu name="Struts Core">
+            <item
+                name="Welcome"
+                href="index.html"
+                />
+            <item
+                name="Learning"
+                href="learning.html"
+                />
+            <item
+                name="Roadmap"
+                href="roadmap.html"
+                />
+            <item
+                name="Milestones"
+                href="milestones.html"
+                />
+            <item
+                name="User Guide"
+                href="userGuide/index.html"
+                />
+            <item
+                name="Roadmap"
+                href="roadmap.html"
+                />
+            <item
+                name="Source Repository"
+                href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/?root=Apache-SVN"
+                />
+
+        </menu>
+
         <menu name="Quick Links">
             <item
                     name="Struts"
                     href="../index.html"/>
+            <item
+                    name="Download"
+                    href="../acquiring.html"/>
         </menu>
     </body>
 </project>

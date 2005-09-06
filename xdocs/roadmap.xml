@@ -531,14 +531,10 @@
 
 </subsection>
 
-    <subsection>
-      <p class="right">Next:
-      <a href="http://svn.apache.org/viewcvs.cgi/struts/?root=Apache-SVN">Source Repository</a></p>
-    </subsection>
-
 <subsection>
-    <p class="version">Website updated from repository: 2005 APR 13 by husted.</p>
-    <p class="version">Javadocs updated from repository: 2004 OCT 23 by husted.</p>
+  <p class="right">Next:
+  <a href="userGuide/index.html">User Guide</a></p>
 </subsection>
+
 </section>
 </body></document>
