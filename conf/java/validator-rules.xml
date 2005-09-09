@@ -207,6 +207,84 @@
                   msg="errors.double"/>
 
 
+      <validator name="byteLocale"
+            classname="org.apache.struts.validator.FieldChecks"
+               method="validateByteLocale"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+              depends=""
+                  msg="errors.byte"/>
+
+
+      <validator name="shortLocale"
+            classname="org.apache.struts.validator.FieldChecks"
+               method="validateShortLocale"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+              depends=""
+                  msg="errors.short"/>
+
+
+      <validator name="integerLocale"
+            classname="org.apache.struts.validator.FieldChecks"
+               method="validateIntegerLocale"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+              depends=""
+                  msg="errors.integer"/>
+
+
+
+      <validator name="longLocale"
+            classname="org.apache.struts.validator.FieldChecks"
+               method="validateLongLocale"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+              depends=""
+                  msg="errors.long"/>
+
+
+      <validator name="floatLocale"
+            classname="org.apache.struts.validator.FieldChecks"
+               method="validateFloatLocale"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+              depends=""
+                  msg="errors.float"/>
+
+      <validator name="doubleLocale"
+            classname="org.apache.struts.validator.FieldChecks"
+               method="validateDoubleLocale"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+              depends=""
+                  msg="errors.double"/>
+                  
+                  
       <validator name="date"
             classname="org.apache.struts.validator.FieldChecks"
                method="validateDate"

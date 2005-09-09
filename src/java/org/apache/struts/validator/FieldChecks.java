@@ -276,6 +276,45 @@ public class FieldChecks implements Serializable {
 
         return result == null ? Boolean.FALSE : result;
     }
+    
+    
+    /**
+     * Checks if the field can safely be converted to a byte primitive.
+     *
+     *@param bean The bean validation is being performed on.
+     *@param va The <code>ValidatorAction</code> that is currently being performed.
+     *@param field The <code>Field</code> object associated with the current
+     *field being validated.
+     *@param errors The <code>ActionMessages</code> object to add errors to if
+     *any validation errors occur.
+     * @param validator The <code>Validator</code> instance, used to access
+     * other field values.
+     *@param request Current request object.
+     *@return true if valid, false otherwise.
+     */
+    public static Object validateByteLocale(Object bean,
+                                    ValidatorAction va, Field field,
+                                    ActionMessages errors,
+                                    Validator validator,
+                                    HttpServletRequest request) {
+
+        Object result = null;
+        String value = null;
+        value = evaluateBean(bean, field);
+
+        if (GenericValidator.isBlankOrNull(value)) {
+            return Boolean.TRUE;
+        }
+
+        Locale locale = RequestUtils.getUserLocale(request, null);
+        result = GenericTypeValidator.formatByte(value, locale);
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+        }
+
+        return result == null ? Boolean.FALSE : result;
+    }
 
     /**
      * @param bean
@@ -328,6 +367,44 @@ public class FieldChecks implements Serializable {
 
         return result == null ? Boolean.FALSE : result;
     }
+    
+    
+    /**
+     * Checks if the field can safely be converted to a short primitive.
+     *
+     * @param bean The bean validation is being performed on.
+     * @param va The <code>ValidatorAction</code> that is currently being performed.
+     * @param field The <code>Field</code> object associated with the current
+     * field being validated.
+     * @param errors The <code>ActionMessages</code> object to add errors to if
+     * any validation errors occur.
+     * @param validator The <code>Validator</code> instance, used to access
+     * other field values.
+     * @param request Current request object.
+     * @return true if valid, false otherwise.
+     */
+    public static Object validateShortLocale(Object bean,
+                                      ValidatorAction va, Field field,
+                                      ActionMessages errors,
+                                      Validator validator,
+                                      HttpServletRequest request) {
+        Object result = null;
+        String value = null;
+        value = evaluateBean(bean, field);
+
+        if (GenericValidator.isBlankOrNull(value)) {
+            return Boolean.TRUE;
+        }
+
+        Locale locale = RequestUtils.getUserLocale(request, null);
+        result = GenericTypeValidator.formatShort(value, locale);
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+        }
+
+        return result == null ? Boolean.FALSE : result;
+    }
 
 
     /**
@@ -366,6 +443,44 @@ public class FieldChecks implements Serializable {
         return result == null ? Boolean.FALSE : result;
     }
 
+    
+    /**
+     * Checks if the field can safely be converted to an int primitive.
+     *
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
+     *      field being validated.
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
+     *      validation errors occur.
+     * @param validator The <code>Validator</code> instance, used to access
+     * other field values.
+     * @param  request  Current request object.
+     * @return true if valid, false otherwise.
+     */
+    public static Object validateIntegerLocale(Object bean,
+                                          ValidatorAction va, Field field,
+                                          ActionMessages errors,
+                                          Validator validator,
+                                          HttpServletRequest request) {
+        Object result = null;
+        String value = null;
+        value = evaluateBean(bean, field);
+
+        if (GenericValidator.isBlankOrNull(value)) {
+            return Boolean.TRUE;
+        }
+
+        Locale locale = RequestUtils.getUserLocale(request, null);
+        result = GenericTypeValidator.formatInt(value, locale);
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+        }
+
+        return result == null ? Boolean.FALSE : result;
+    }
+    
 
     /**
      * Checks if the field can safely be converted to a long primitive.
@@ -395,6 +510,44 @@ public class FieldChecks implements Serializable {
         }
 
         result = GenericTypeValidator.formatLong(value);
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+        }
+
+        return result == null ? Boolean.FALSE : result;
+    }
+    
+    
+    /**
+     * Checks if the field can safely be converted to a long primitive.
+     *
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
+     *      field being validated.
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
+     *      validation errors occur.
+     * @param validator The <code>Validator</code> instance, used to access
+     * other field values.
+     * @param  request  Current request object.
+     * @return true if valid, false otherwise.
+     */
+    public static Object validateLongLocale(Object bean,
+                                    ValidatorAction va, Field field,
+                                    ActionMessages errors,
+                                    Validator validator,
+                                    HttpServletRequest request) {
+        Object result = null;
+        String value = null;
+        value = evaluateBean(bean, field);
+
+        if (GenericValidator.isBlankOrNull(value)) {
+            return Boolean.TRUE;
+        }
+
+        Locale locale = RequestUtils.getUserLocale(request, null);
+        result = GenericTypeValidator.formatLong(value, locale);
 
         if (result == null) {
             errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
@@ -440,6 +593,44 @@ public class FieldChecks implements Serializable {
         return result == null ? Boolean.FALSE : result;
     }
 
+    
+    /**
+     * Checks if the field can safely be converted to a float primitive.
+     *
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
+     *      field being validated.
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
+     *      validation errors occur.
+     * @param validator The <code>Validator</code> instance, used to access
+     * other field values.
+     * @param  request  Current request object.
+     * @return true if valid, false otherwise.
+     */
+    public static Object validateFloatLocale(Object bean,
+                                      ValidatorAction va, Field field,
+                                      ActionMessages errors,
+                                      Validator validator,
+                                      HttpServletRequest request) {
+        Object result = null;
+        String value = null;
+        value = evaluateBean(bean, field);
+
+        if (GenericValidator.isBlankOrNull(value)) {
+            return Boolean.TRUE;
+        }
+
+        Locale locale = RequestUtils.getUserLocale(request, null);
+        result = GenericTypeValidator.formatFloat(value, locale);
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+        }
+
+        return result == null ? Boolean.FALSE : result;
+    }
+    
 
     /**
      *  Checks if the field can safely be converted to a double primitive.
@@ -469,6 +660,44 @@ public class FieldChecks implements Serializable {
         }
 
         result = GenericTypeValidator.formatDouble(value);
+
+        if (result == null) {
+            errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+        }
+
+        return result == null ? Boolean.FALSE : result;
+    }
+    
+    
+    /**
+     *  Checks if the field can safely be converted to a double primitive.
+     *
+     * @param  bean     The bean validation is being performed on.
+     * @param  va       The <code>ValidatorAction</code> that is currently being performed.
+     * @param  field    The <code>Field</code> object associated with the current
+     *      field being validated.
+     * @param  errors   The <code>ActionMessages</code> object to add errors to if any
+     *      validation errors occur.
+     * @param validator The <code>Validator</code> instance, used to access
+     * other field values.
+     * @param  request  Current request object.
+     * @return true if valid, false otherwise.
+     */
+    public static Object validateDoubleLocale(Object bean,
+                                        ValidatorAction va, Field field,
+                                        ActionMessages errors,
+                                        Validator validator,
+                                        HttpServletRequest request) {
+        Object result = null;
+        String value = null;
+        value = evaluateBean(bean, field);
+
+        if (GenericValidator.isBlankOrNull(value)) {
+            return Boolean.TRUE;
+        }
+
+        Locale locale = RequestUtils.getUserLocale(request, null);
+        result = GenericTypeValidator.formatDouble(value, locale);
 
         if (result == null) {
             errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
