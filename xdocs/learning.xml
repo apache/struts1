@@ -46,80 +46,92 @@
         </li>
     </ul>
 
+ <a name="Versions"/>
+ <subsection name="Documentation Versions">
     <p>
-    You are invited to preview the documentation online and then install
-    the documentation bundle locally for closer study.
+        You are invited to preview the documentation online,
+        and then install the documentation bundle locally for closer study.
     </p>
 
     <p>
-    <strong>NOTE:</strong> If you are previewing the documentation on the website,
-    most of the links in this section will refer to the <strong>Nightly Build</strong>.
-    When learning about Struts Core, <strong>be sure to refer to the documentation for
-    the version you are actually using</strong>.
+        <strong>NOTE:</strong>
+        If you are previewing the documentation on the website,
+        most of the links in this section will refer to the
+        <strong>Nightly Build</strong>.
+        When learning about Struts Core,
+        <strong>be sure to refer to the documentation for the version
+        you are actually using</strong>.
     </p>
 
     <p>
-    The concise Struts Core <a href="userGuide/index.html"><strong>User Guide</strong></a>
-    introduces the Model-View-Controller architecture, and how it relates to
-    the major components of Struts Core.
-    If you want to find out "How Core works", this is the place to start.
-    Along with an architectural overview, the User Guide also includes
-    detailed installation instructions and release notes for each version of
-    the framework.
+        The concise Struts Core <a href="userGuide/index.html"><strong>
+        User Guide</strong></a>
+        introduces the Model-View-Controller architecture,
+        and how it relates to the major components of Struts Core.
+        If you want to find out "How Core works", this is the place to start.
+        Along with an architectural overview,
+        the User Guide also includes detailed installation instructions
+        and release notes for each version of Struts Core.
     </p>
 
     <p>
-    For more detail about a specific class or package, the Struts Core
-    <a href="api/index.html"><strong>Javadocs</strong></a> are <strong>surprisingly
-    comprehensive and carefully maintained</strong>.
-    It is <em>strongly</em> recommended that you refer to the
-    <a href="api/index.html"> Javadoc</a> for each class as you begin to use
-    it.
-    This will help ensure that important features and options are not
-    overlooked.
-    <em>What you don't know, can't help you.</em>
+        For more detail about a specific class or package,
+        the Struts Core <a href="api/index.html"><strong>
+        Javadocs</strong></a> are <strong>surprisingly comprehensive and
+        carefully maintained</strong>.
+        It is <em>strongly</em> recommended that you refer to the
+        <a href="api/index.html"> Javadoc</a> for each class
+        as you begin to use it.
+        This will help ensure that important features and options are not
+        overlooked.
+        <em>What you don't know, can't help you.</em>
     </p>
 
     <p id="faqs">
-    The Struts Core <strong>FAQs</strong> are designed to fill in any small gaps left by the
-    Javadocs or the User Guides.
+        The Struts Core <strong>FAQs</strong> are designed to fill in
+        any gaps left by the Javadocs or the User Guides.
     </p>
 
     <ul>
-    <li>The <a href="./faqs/kickstart.html">Kickstart FAQ</a>
-    answers the most common non-technical questions people first ask about
-    Struts Core.
-    </li>
-    <li>
-    The <a href="./faqs/newbie.html">Struts Core Newbie FAQ</a> answers the most
-    common technical questions asked by first-timer Struts Core developers.
-    </li>
+        <li>
+            The <a href="./faqs/kickstart.html">Kickstart FAQ</a>
+            answers the most common non-technical questions
+            people first ask about Struts Core.
+        </li>
+        <li>
+            The <a href="./faqs/newbie.html">Struts Core Newbie FAQ</a>
+            answers the most common technical questions asked by first-timer
+            Struts Core developers.
+        </li>
     </ul>
 
     <p id="howtos">
-    The <strong>Howto Guides</strong> are designed to help you get started with some of
-    the optional extensions and components available for Struts Core.
-    These include topics like using the Secure Socket Layer (SSL) protocol 
-    with Struts Core and how to unit test your Struts applications.
+        The <strong>Howto Guides</strong> are designed to help you get started
+        with some of the optional extensions and components available
+        for Struts Core.
+        These include topics like using the Secure Socket Layer (SSL) protocol
+        with Struts Core and how to unit test your Struts applications.
     </p>
 
     <p>
-        If you have any comments on the pages you see here, they can be posted to the Wiki by following the link on the
-        bottom of any page.
+        If you have any comments on the pages you see here,
+        they can be posted to the Wiki by following the link
+        on the bottom of any page.
     </p>
 
     <p>
-    Of course, the only true documentation is the code itself. 
-    If you have any questions about how Struts Core actually works, do not hesitate
-    to <em>use the source</em>. 
-    For the complete, buildable source code to the entire Struts Core framework,
-    see the "src" folder in your <strong>source distribution</strong>.
+        Of course,
+        the only true documentation is the code itself.
+        If you have any questions about how Struts Core actually works,
+        do not hesitate to <em>use the source</em>.
+        For the complete, buildable source code to the entire
+        Struts Core product,
+        see the "src" folder in your <strong>source distribution</strong>.
     </p>
-
-</section>
+</subsection>
 
 <a name="Examples"/>
-<section name="Struts Core by Example">
+<subsection name="Struts Core by Example">
     <p>
         To help you see how it all fits together, several example applications
         are available that demonstrate using Struts Core with other
@@ -128,95 +140,120 @@
 
     <ul>
         <li>
-            Blank - A simple template for starting new Struts applications.</li>
+            Blank - A simple template for starting new Struts applications.
+        </li>
         <li>
-            <strong>MailReader</strong> - The original Struts example application. <em>Try me first!</em></li>
-        <li>Examples - Various demonstration applications combined as separate modules:<ul>
+            <strong>MailReader</strong> - The original Struts example
+            application. <em>Try me first!</em>
+        </li>
         <li>
-            Exercise - A set of test pages that also demonstrate use of the custom tags.</li>
-        <li>
-            Upload - Demonstrates using the file upload facilities. (Based on Commons Upload.)</li>
-        <li>
-            Validator - Demonstrates using the Validator extension.</li>
-        </ul></li>
-    </ul>
+            Examples - Various demonstration applications combined as separate
+            modules:
+            <ul>
+                <li>
+                    Exercise - A set of test pages that also demonstrate
+                    use of the custom tags.
+                </li>
+                <li>
+                    Upload - Demonstrates using the file upload facilities.
+                    (Based on Commons Upload.)
+                </li>
+                <li>
+                   Validator - Demonstrates using the Validator extension.
+                </li>
+            </ul>
+        </li>
+   </ul>
 
     <p>
-        These applications are available for download from the
-        Struts Applications subproject, in both source and binary form.
+        These applications are available for
+        <a href="http://struts.apache.org/acquiring.html">download</a> from
+        the Struts Applications subproject, in both source and binary form.
     </p>
 
     <p>
-        There are also many third-party example applications available for study, including these three:
+        There are also many third-party example applications available
+        for study, including these three:
     </p>
 
     <ul>
         <li>
-            <a href="http://raibledesigns.com/wiki/Wiki.jsp?page=AppFuse">AppFuse</a> - Demonstrates using XDoclet with
-            Struts Classic, along with different security packages and Hibernate for database persistence.
+            <a href="http://raibledesigns.com/wiki/Wiki.jsp?page=AppFuse">
+             AppFuse</a> - Demonstrates using XDoclet with Struts Classic,
+            along with different security packages and Hibernate for
+            database persistence.
         </li>
         <li>
-            <a href="http://ibatis.apache.org/petstore.html">JPetStore</a> - A streamlined version of the Java
-            Petstore application implemented with Struts Classic and iBATIS database layer.
+            <a href="http://ibatis.apache.org/petstore.html">JPetStore</a> -
+            A streamlined version of the Java Petstore application
+            implemented with Struts Classic and iBATIS database layer.
         </li>
         <li>
-           <a href="http://www.codeczar.com/products/logweb/index.html">LogWeb</a> - A Struts Classic webapp for configuring
-            Log4J at runtime within a servlet container.
+           <a href="http://www.codeczar.com/products/logweb/index.html">
+           LogWeb</a> - A Struts Classic webapp for configuring
+           Log4J at runtime within a servlet container.
         </li>
     </ul>
 
-</section>
+</subsection>
 
 <a name="More"/>
-<section name="Learning More About Struts Core">
+<subsection name="Learning More About Struts Core">
     <p>
-    The Struts <a href="using.html#Lists">Mailing Lists</a> are a treasure trove of 
-    useful, interactive information. The user list tends to carry a high 
-    volume, so always check the published documentation and one of the
-    <a href="mail.html#Archives">
-    <strong>MAILING LIST ARCHIVES</strong></a> before 
-    <a href="http://www.catb.org/~esr/faqs/smart-questions.html">posting a
-    new question</a>.
-    Like as not, it's already been asked and answered.
+        The Struts <a href="http://struts.apache.org/mail.html">Mailing Lists</a>
+        are a treasure trove of useful, interactive information.
+        The user list tends to carry a high volume,
+        so always check the published documentation and one of the
+        <a href="http://struts.apache.org/mail.html#Archives">
+        <strong>MAILING LIST ARCHIVES</strong></a> before
+        <a href="http://www.catb.org/~esr/faqs/smart-questions.html">posting a
+        new question</a>.
+        Like as not, it's already been asked and answered.
     </p>
 
     <p>
-    If you really can't find the answer to your question in the 
-    <a href="#faqs">FAQs</a> or one of the
-    <a href="mail.html#Archives">
-    list archives</a>, you can post your query to the Struts User list -- 
-    <strong>BUT YOU MUST SUBSCRIBE TO THE 
-    <a href="mailto:user-subscribe@struts.apache.org">USER LIST</a>
-    OR THE <a href="mailto:user-digest-subscribe@struts.apache.org">
-    USER LIST DIGEST</a> BEFORE POSTING</strong>. </p>
+        If you really can't find the answer to your question in the
+        <a href="#faqs">FAQs</a> or one of the
+        <a href="http://struts.apache.org/mail.html#Archives">
+        list archives</a>, you can post your query to the Struts User list --
+        <strong>BUT YOU MUST SUBSCRIBE TO THE
+        <a href="mailto:user-subscribe@struts.apache.org">USER LIST</a>
+        OR THE <a href="mailto:user-digest-subscribe@struts.apache.org">
+        USER LIST DIGEST</a> BEFORE POSTING</strong>. </p>
 
     <p>
-        The Apache Struts <a href="http://wiki.apache.org/struts"><strong>Wiki</strong></a> is a relatively
-        new addition to our documentation team.
-        Any Struts user (that means you!) is invited to post new material to the Wiki.
+        The Apache Struts <a href="http://wiki.apache.org/struts"><strong>
+        Wiki</strong></a> is a relatively new addition to our
+        documentation team.
+        Any Struts user (that means you!) is invited to post new material to
+        the Wiki.
         However, the Wiki is not the place to ask incidental questions.
-        <strong>All support questions should be directed to the <a href="using.html#Lists">Struts User list</a> or
+        <strong>All support questions should be directed to the
+        <a href="http://struts.apache.org/mail.html">Struts User list</a> or
         other support forum</strong>.
     </p>
 
     <p>
-    The <a href="roadmap.html"><strong>Roadmap</strong></a> page outlines our tentative plans for future development.
+        The <a href="roadmap.html"><strong>Roadmap</strong></a> page outlines
+        our tentative plans for future development.
     </p>
 
-</section>
+</subsection>
 
 <a name="resources"/>
-<section name="Struts Community Resources">
+<subsection name="Struts Community Resources">
     <p>
         Struts Core has attracted a large and robust community of developers,
         which have created a vast number of Struts related resources.
         Several pages on our wiki are devoted to listing
-        <a href="http://wiki.apache.org/struts/StrutsResources">Apache Struts resources</a>.
+        <a href="http://wiki.apache.org/struts/StrutsResources">Apache Struts
+            resources</a>.
     </p>
 
     <ul>
         <li>
-            <a href="http://wiki.apache.org/struts/StrutsArticles">articles</a>,
+            <a href="http://wiki.apache.org/struts/StrutsArticles">
+                articles</a>,
         </li>
 
     <li>
@@ -224,19 +261,21 @@
     </li>
 
         <li>
-            <a href="http://wiki.apache.org/struts/StrutsApplications">sample applications</a>,
+            <a href="http://wiki.apache.org/struts/StrutsApplications">sample
+                applications</a>,
         </li>
 
         <li>
-            <a href="http://wiki.apache.org/struts/StrutsTraining">training</a>, and more!
+            <a href="http://wiki.apache.org/struts/StrutsTraining">
+            training</a>, and more!
         </li>
 
     </ul>
 
-</section>
+</subsection>
     
 <a name="books"/>
-<section name="Books about Struts">
+<subsection name="Books about Struts">
 
        <p>
        The Apache Software Foundation does not provide printed manuals,
@@ -245,7 +284,8 @@
        <a href="http://wiki.apache.org/struts/StrutsBooks">wiki page</a>.
        </p>
 
-    </section>
+</subsection>
+</section>
 
     <section>
         <p class="right">

@@ -43,9 +43,7 @@
         and other presentation systems.
     </p>
 
-</section>
-    
-<section name="Struts Core in a Nutshell">
+<subsection name="Struts Core in a Nutshell">
 <a name="nutshell"/>
 
     <p>
@@ -144,9 +142,9 @@
         and the Developer Guides.
     </p>
 
-</section>
+</subsection>
 
- <section name="Is Struts Core the best choice for every project?">
+ <subsection name="Is Struts Core the best choice for every project?">
 
     <p>
         No. If you need to write a very simple application, with a handful of
@@ -166,11 +164,12 @@
         Issues in Struts Adoption</a>.
      </p>
 
+</subsection>
 </section>
 
 <section>
    <p class="right">
-   Next: <a href="Learning">Learning about Struts Core</a>
+   Next: <a href="learning.html">Learning about Struts Core</a>
    </p>
 </section>
 
