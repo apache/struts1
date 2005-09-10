@@ -268,7 +268,7 @@
     <subsection name="0.7 Java Servlets" href="servlets">
     <p>
     Since Java is an object-orientated language, the
-    <a href="http://java.sun.com/products/servlet/">Java Servlet</a>
+    <a href="http://www.novocode.com/doc/servlet-essentials/">Java Servlet</a>
     platform strives to cast HTTP into an object-orientated form.
     This strategy makes it easier for Java developers to concentrate on what they need their application to do --
     rather than the mechanics of HTTP.

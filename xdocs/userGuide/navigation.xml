@@ -38,26 +38,8 @@
 
     <menu name="Developer Guides">
         <item 
-            name="Bean Tags"
-            href="userGuide/dev_bean.html"/>
-        <item 
-            name="HTML Tags"
-            href="userGuide/dev_html.html"/>
-        <item 
-            name="Logic Tags"
-            href="userGuide/dev_logic.html"/>
-        <item 
-            name="Nested Tags"
-            href="userGuide/dev_nested.html"/>
-        <item 
-            name="Tiles Tags"
-            href="userGuide/dev_tiles.html"/>
-        <item 
             name="Utilities"
             href="userGuide/dev_util.html"/>
-        <item 
-            name="Validator"
-            href="userGuide/dev_validator.html"/>
     </menu>
 
     <menu name="Quick Links">
