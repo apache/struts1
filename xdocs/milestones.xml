@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-                <!--
-                    // ======================================================================== 78
-                -->
+<!--
+// ======================================================================== 78
+-->
 <document url="./milestones.xml">
     <properties>
         <title>Roadmap Milestones - Struts Core</title>
@@ -97,8 +97,8 @@
                         Move to Commons Resources (if available)
                     </li>
 		            <li>
-                        (TODO) Add a Ant-style properties file to make variable
-                        substitutions within the XML elements,
+                        (TODO) Add a Ant-style properties file to make
+                        variable substitutions within the XML elements,
                         as found in iBATIS and Spring.
                     </li>
 		            <li>
@@ -155,7 +155,8 @@
 		        <ul>
     		        <li>
                         Consider a "smart" action type: executes Action class
-                        or ActionCommand interface, as given.
+                        or ActionCommand interface, as given, in either
+                        request or session scope.
                     </li>
 	    	        <li>
                         Consider a "populate" method on ActionForm.
@@ -193,10 +194,12 @@
                         Consider adopting several popular extensions, including:
                         <ul>
                             <li>
-                                <a href="http://struts.application-servers.com/">Layout</a>
+                                <a href="http://struts.application-servers.com/">
+                                    Layout</a>
                             </li>
                             <li>
-                                <a href="http://sslext.sourceforge.net/">SSL Ext</a>
+                                <a href="http://sslext.sourceforge.net/">
+                                    SSL Ext</a>
                             </li>
                             <li>
                                 <a href="http://stxx.sourceforge.net">Stxx</a>
