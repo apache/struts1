@@ -23,21 +23,40 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * <code>ContextWrapper</code> is meant as a base class for any Context Implementation which
- * is primarily intended for use in a subchain.  Classes which extend <code>ContextWrapper</code>
- * may implement typesafe property methods which also leave their values in the underlying context.
+ * <p>
+ * Provide a base class for any Context Implementation which is primarily
+ * intended for use in a subchain.
+ * </p>
+ * <p>
+ * Classes which extend <code>ContextWrapper</code> may implement typesafe
+ * property methods which also leave their values in the underlying context.
+ * </p>
  */
 public class ContextWrapper implements Context {
 
+    /**
+     * <p>
+     * Instantiate object as a composite around the given Context.
+     * </p>
+     * @param context Context instance to wrap
+     */
     public ContextWrapper(Context context) {
         this.base = context;
     }
 
     private Context base;
 
+    /**
+     * Provide the underlying Context for this composite.
+     * @return The undelrying Context
+     */
     protected Context getBaseContext() {
         return this.base;
     }
+
+    // -------------------------------
+    // Map interface methods
+    // -------------------------------
 
     public Set entrySet() {
         return this.base.entrySet();
@@ -56,6 +75,7 @@ public class ContextWrapper implements Context {
     }
 
     public void putAll(Map map) {
+        // ISSUE: Should we check this call to putAll?
         this.base.putAll(map);
     }
 
@@ -64,6 +84,7 @@ public class ContextWrapper implements Context {
     }
 
     public Object put(Object key, Object value) {
+        // ISSUE: Should we check this call to put?
         return this.base.put(key, value);
     }
 

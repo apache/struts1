@@ -365,7 +365,7 @@ public interface ActionContext extends Context {
 
     /**
      * <p>
-     * Indicate whether a transaction token for the context is valid.
+     * Indicate whether a transaction token for this context is valid.
      * </p>
      * <p>
      * A typical implementation will place a transaction token in the
@@ -379,44 +379,32 @@ public interface ActionContext extends Context {
 
 
     /**
-     * <p>Return <code>true</code> if there is a transaction token stored in
-     * the user's current session, and the value submitted as a request
-     * parameter with this action matches it. Returns <code>false</code>.</p>
-     * <ul>
-     * <li>No session associated with this request</li>
-     * <li>No transaction token saved in the session</li>
-     * <li>No transaction token included as a request parameter</li>
-     * <li>The included transaction token value does not match the
-     *     transaction token in the user's session</li>
-     * </ul>
-     *
-     * @param request The servlet request we are processing
-     * @param reset Should we reset the token after checking it?
+     * <p>
+     * Indicate whether a transaction token is stored in the "session"
+     * scope for this context, optionally clearing the token,
+     * so that the next check would return false.
+     * </p>
+     * @param reset On true, clear the transactional token
      */
     boolean isTokenValid(boolean reset);
 
 
     /**
-     * <p>Reset the saved transaction token in the user's session. This
-     * indicates that transactional token checking will not be needed
-     * on the next request that is submitted.</p>
-     *
-     * @param request The servlet request we are processing
+     * <p>
+     * Clear any transactional token stored in the "session" scope for
+     * this context, so that the next check would return false.
+     * </p>
      */
     void resetToken();
 
 
-
     /**
-     * <p>Save a new transaction token in the user's current session, creating
-     * a new session if necessary.</p>
-     *
-     * @param request The servlet request we are processing
+     * <p>
+     * Save a new transaction token in the "session" scope for this context,
+     * creating new resources, if needed.
+     * </p>
      */
     void saveToken();
-
-
-
 
 
     // -------------------------------
@@ -424,18 +412,21 @@ public interface ActionContext extends Context {
     // -------------------------------
 
     /**
-     * <p>Returns <code>Boolean.TRUE</code> if the current form's cancel button was
-     * pressed. Rather than evaluating any system state,
-     * this simply reflects the value of the <code>cancelled</code> property,
-     * assuming it was set elsewhere by some other process.</p>
-     *
-     * @see org.apache.struts.taglib.html.CancelTag
+     * <p>
+     * Indicate if the "cancel event" state is set for for this context,
+     * </p>
+     * @see ActionContextBase.CANCEL_KEY
      */
     Boolean getCancelled();
 
     /**
-     * <p>Indicate that the current form was detected to be cancelled.</p>
-     * @param cancelled
+     * <p>
+     * Set the "cancel event" state for this context.
+     * </p>
+     * <p>
+     * @see ActionContextBase.CANCEL_KEY
+     * @param cancelled On true, set the cancel event state to true.
+     * On false, set the cancel event state to false.
      */
     void setCancelled(Boolean cancelled);
 
@@ -446,26 +437,20 @@ public interface ActionContext extends Context {
 
     /**
      * <p>Return the default message resources for the current module.</p>
-     *
      */
     MessageResources getMessageResources();
 
     /**
      * <p>Set the default message resources for the current module.</p>
-     *
-     * @return the default message resources for the current module.
      */
     void setMessageResources(MessageResources resources);
 
 
     /**
      * <p>Return the specified message resources for the current module.</p>
-     *
-     * @param request The servlet request we are processing
      * @param key The key specified in the
      *  <code>&lt;message-resources&gt;</code> element for the
      *  requested bundle
-     *
      */
     MessageResources getMessageResources(String key);
 
@@ -475,7 +460,6 @@ public interface ActionContext extends Context {
 
     /**
      * <p>Return the user's currently selected Locale.</p>
-     *
      */
     Locale getLocale();
 
@@ -483,7 +467,6 @@ public interface ActionContext extends Context {
 
     /**
      * <p>Set the user's currently selected <code>Locale</code>.</p>
-     *
      * @param locale The user's selected Locale to be set, or null
      *  to select the server's default Locale
      */

@@ -30,47 +30,103 @@ import org.apache.struts.config.ActionConfig;
 import org.apache.struts.util.MessageResources;
 
 /**
+ * <p>
  * Implement ActionContext interface while making Servlet API-specific
  * values available.
+ * </p>
  */
 public class ServletActionContext extends WebActionContext {
 
+    /**
+     * <p>
+     * Instantiate this composite by wrapping a ServletWebContext.
+     * </p>
+     * @param context The ServletWebContext to wrap
+     */
     public ServletActionContext(ServletWebContext context) {
         super(context);
     }
 
-    public ServletActionContext(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
+    /**
+     * <p>
+     * Instantiate this Context for a given ServletContext,
+     * HttpServletRequest, and HttpServletResponse.
+     * </p>
+     * @param context The instant ServletContext
+     * @param request The instant HttpServletRequest
+     * @param response The instant HttpServletResponse
+     */
+    public ServletActionContext(ServletContext context,
+                                HttpServletRequest request,
+                                HttpServletResponse response) {
         this(new ServletWebContext(context, request, response));
     }
 
-    protected ServletWebContext swcontext() {
+    /**
+     * <p>
+     * Provide the ServletWebContext for this composite.
+     * </p>
+     * @return Our ServletWebContext
+     */
+    protected ServletWebContext servletWebContext() {
         return (ServletWebContext) this.getBaseContext();
     }
 
     public void release() {
-        this.swcontext().release();
+        this.servletWebContext().release();
         super.release();
     }
 
     // -------------------------------
     // Servlet specific properties
     // -------------------------------
+
+    /**
+     * <p>
+     * Return the ServletContext for this context.
+     * </p>
+     * @return Our ServletContext
+     */
     public ServletContext getContext() {
-        return swcontext().getContext();
+        return servletWebContext().getContext();
     }
 
+    /**
+     * <p>
+     * Return the HttpServletRequest for this context.
+     * </p>
+     * @return Our HttpServletRequest
+     */
     public HttpServletRequest getRequest() {
-        return swcontext().getRequest();
+        return servletWebContext().getRequest();
     }
 
+    /**
+     * <p>
+     * Return the HttpServletResponse for this context.
+     * </p>
+     * @return Our HttpServletResponse
+     */
     public HttpServletResponse getResponse() {
-        return swcontext().getResponse();
+        return servletWebContext().getResponse();
     }
 
+    /**
+     * <p>
+     * Return the ActionServlet for this context.
+     * </p>
+     * @return Our ActionServlet
+     */
     public ActionServlet getActionServlet() {
         return (ActionServlet) this.get(Constants.ACTION_SERVLET_KEY);
     }
 
+    /**
+     * <p>
+     * Set the ActionServlet instance for this context.
+     * </p>
+     * @param servlet Our ActionServlet instance
+     */
     public void setActionServlet(ActionServlet servlet) {
         this.put(Constants.ACTION_SERVLET_KEY, servlet);
     }
@@ -78,25 +134,28 @@ public class ServletActionContext extends WebActionContext {
     // -------------------------------
     // Servlet specific modifications to base properties.
     // -------------------------------
+
     public void setActionConfig(ActionConfig actionConfig) {
         super.setActionConfig(actionConfig);
         this.getRequestScope().put(Globals.MAPPING_KEY, actionConfig);
+        // ISSUE: Should we check this call to put?
     }
 
     public MessageResources getMessageResources() {
-        return ((MessageResources) getRequest().getAttribute(Globals.MESSAGES_KEY));
+        return ((MessageResources)
+                getRequest().getAttribute(Globals.MESSAGES_KEY));
 
     }
+
+    // ISSUE: This method would probably be better handled by a "Struts"
+    // object which encapsulated the servler (Application) scope.
 
     public MessageResources getMessageResources(String key) {
         // Identify the current module
         ServletContext context = getActionServlet().getServletContext();
-
         // Return the requested message resources instance
-        /** @todo This method would probably be better handled by a "Struts"
-         * object which encapsulated the servler (Application) scope. */
-        return (MessageResources) context.getAttribute(key + getModuleConfig().getPrefix());
-
+        return (MessageResources) context.getAttribute(key +
+                getModuleConfig().getPrefix());
     }
 
     public void setMessageResources(MessageResources resources) {
@@ -104,21 +163,29 @@ public class ServletActionContext extends WebActionContext {
         this.getRequest().setAttribute(Globals.MESSAGES_KEY, resources);
     }
 
+    /**
+     * <p>
+     * Store the mesasage resources for the current module under the given
+     * request attribute key.
+     * </p>
+     * @param key Request attribute key
+     * @param resources Message resouces to store
+     */
     public void setMessageResources(String key, MessageResources resources) {
-        this.getRequest().setAttribute(key + getModuleConfig().getPrefix(), resources);
+        this.getRequest().setAttribute(key + getModuleConfig().getPrefix(),
+                resources);
     }
 
     // -------------------------------
     // ActionMessage Processing
     // -------------------------------
-    public void saveErrors(ActionMessages errors) {
 
+    public void saveErrors(ActionMessages errors) {
         // Remove any error messages attribute if none are required
         if ((errors == null) || errors.isEmpty()) {
             getRequest().removeAttribute(Globals.ERROR_KEY);
             return;
         }
-
         // Save the error messages we need
         getRequest().setAttribute(Globals.ERROR_KEY, errors);
 
@@ -163,16 +230,19 @@ public class ServletActionContext extends WebActionContext {
     }
 
     public ActionMessages getErrors() {
-        return (ActionMessages) this.getRequest().getAttribute(Globals.ERROR_KEY);
+        return (ActionMessages)
+                this.getRequest().getAttribute(Globals.ERROR_KEY);
     }
 
     public ActionMessages getMessages() {
-        return (ActionMessages) this.getRequest().getAttribute(Globals.MESSAGE_KEY);
+        return (ActionMessages)
+                this.getRequest().getAttribute(Globals.MESSAGE_KEY);
     }
 
     // -------------------------------
     // Token Processing
-    // Implementing the servlet-aware versions by using the TokenProcessor class
+    // Implementing the servlet-aware versions by using the
+    // TokenProcessor class
     // directly should ensure greater compatibility.
     // -------------------------------
 

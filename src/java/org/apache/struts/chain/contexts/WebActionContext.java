@@ -25,16 +25,27 @@ import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
 
 /**
- * Subclass of ActionContextBase which is understood to be wrapping
+ * <p>
+ * Provide a Subclass of ActionContextBase which is understood to be wrapping
  * an instance of <code>org.apache.commons.chain.web.WebContext</code>.
+ * </p>
  */
 public class WebActionContext extends ActionContextBase {
 
+    /**
+     * Instantiate this composite by wrapping an instance of WebContext.
+     * @param context The WebContext to wrap
+     */
     public WebActionContext(WebContext context) {
         super(context);
     }
 
-    protected WebContext wcontext() {
+
+    /**
+     * Provide the wrapped WebContext for this composite.
+     * @return The wrapped WebContext
+     */
+    protected WebContext webContext() {
         return (WebContext) this.getBaseContext();
     }
 
@@ -42,70 +53,98 @@ public class WebActionContext extends ActionContextBase {
         super.release();
     }
 
-    public Map getApplicationScope() {
-        return wcontext().getApplicationScope();
-    }
+    // -------------------------------
+    // WebContext property wrappers
+    // -------------------------------
 
+    /**
+     * <p>
+     * Return an immutable Map that maps header names to the first
+     * (or only) header value (as a String).
+     * </p>
+     * @return  A immutable Map of web request header names
+     */
     public Map getHeader() {
-        return wcontext().getHeader();
-    }
-
-    public Map getHeaderValues() {
-        return wcontext().getHeaderValues();
-    }
-
-    public Map getInitParam() {
-        return wcontext().getInitParam();
+        return webContext().getHeader();
     }
 
     /**
-     * Return a map whose keys are <code>String</code> request parameter names and whose values
-     * are <code>String</code> values.  For parameters which were submitted with more than one value,
-     * only one value will be returned, as if one called <code>ServletRequest.getParameter(String)</code>
-     * @return
+     * <p>
+     * Return an immutable Map that maps header names to the set of all
+     * values specified in the request (as a String array).
+     * Header names must be matched in a case-insensitive manner.
+     * </p>
+      * @return An immutable Map of web request header values
+     */
+    public Map getHeaderValues() {
+        return webContext().getHeaderValues();
+    }
+
+    /***
+     * <p>
+     * Return an immutable Map that maps context application initialization
+     * parameters to their values.
+     * </p>
+     * @return An immutable Map of web context initialization parameters
+     */
+    public Map getInitParam() {
+        return webContext().getInitParam();
+    }
+
+    /**
+     * <p>
+     * Return a map whose keys are <code>String</code> request parameter names
+     * and whose values are <code>String</code> values.
+     * </p>
+     * <p>
+     * For parameters which were submitted with more than one value,
+     * only one value will be returned, as if one called
+     * <code>ServletRequest.getParameter(String)</code>
+     * </p>
+     * @return A map of web request parameters
      */
     public Map getParam() {
-        return wcontext().getParam();
+        return webContext().getParam();
     }
 
     /**
-     * Return a map whose keys are <code>String</code> request parameter names and whose values
-     * are <code>String[]</code> values.
-     * @return
+     * <p>
+     * Return a map whose keys are <code>String</code> request parameter names
+     * and whose values are <code>String[]</code> values.
+     * </p>
+     * @return A map of web request parameter values (as an array)
      */
     public Map getParamValues() {
-        return wcontext().getParamValues();
+        return webContext().getParamValues();
+    }
+
+    public Map getApplicationScope() {
+        return webContext().getApplicationScope();
     }
 
     public Map getRequestScope() {
-        return wcontext().getRequestScope();
+        return webContext().getRequestScope();
     }
 
-    /**
-     * <p>Return the map returned by our nested <code>WebContext</code>'s
-     * <code>getParamValues()</code> method. </p>
-     */
     public Map getParameterMap() {
         return getParamValues();
     }
 
     public Map getSessionScope() {
-        return wcontext().getSessionScope();
+        return webContext().getSessionScope();
     }
 
-    /*
-     * @todo AbstractSelectModule set the precedent of doing this at the "web context" level
-     * instead of the ServletWebContext level.  Consider whether that's how we want to do it
-     * universally for other manipulations of the RequestScope or not...
-     */
+    // ISSUE: AbstractSelectModule set the precedent of doing this at the
+    // "web context" level instead of the ServletWebContext level.
+    // Consider whether that's how we want to do it universally for other
+    // manipulations of the RequestScope or not...
+
     public void setModuleConfig(ModuleConfig moduleConfig) {
         super.setModuleConfig(moduleConfig);
         this.getRequestScope().put(Globals.MODULE_KEY, moduleConfig);
     }
 
-    /*
-     *  (non-Javadoc)
-     * Should thi
+    /**
      * @see org.apache.struts.chain.contexts.ActionContext#getModuleConfig()
      */
     public ModuleConfig getModuleConfig() {
@@ -116,11 +155,10 @@ public class WebActionContext extends ActionContextBase {
         return mc;
     }
 
-    /*
-     * @todo AbstractSelectModule set the precedent of doing this at the "web context" level
-     * instead of the ServletWebContext level.  Consider whether that's how we want to do it
-     * universally for other manipulations of the RequestScope or not...
-     */
+    // ISSUE:  AbstractSelectModule set the precedent of doing this at the "web context" level
+    // instead of the ServletWebContext level.  Consider whether that's how we want to do it
+    // universally for other manipulations of the RequestScope or not...
+
     public void setCancelled(Boolean cancelled) {
         super.setCancelled(cancelled);
         // historic semantics of "isCancelled" are to consider any non-null
@@ -133,12 +171,11 @@ public class WebActionContext extends ActionContextBase {
 
     }
 
-
     public Boolean getCancelled() {
-        Boolean c = super.getCancelled();
-        if (c == null) {
-            c = (Boolean) this.getRequestScope().get(Globals.CANCEL_KEY);
+        Boolean cancelled = super.getCancelled();
+        if (cancelled == null) {
+            cancelled = (Boolean) this.getRequestScope().get(Globals.CANCEL_KEY);
         }
-        return c;
+        return cancelled;
     }
 }

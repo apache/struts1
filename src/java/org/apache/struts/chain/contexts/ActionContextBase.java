@@ -37,56 +37,125 @@ import org.apache.struts.util.TokenProcessor;
 
 
 /**
- * <p>Title: struts</p>
- * <p>Description: The core of the Struts framework is a flexible control layer based on standard technologies like Java Servlets, JavaBeans, ResourceBundles, and Extensible Markup Language (XML), as well as various Jakarta Commons packages. Struts encourages application architectures based on the Model 2 approach, a variation of the classic Model-View-Controller (MVC) design paradigm. Struts provides its own Controller component and integrates with other technologies to provide the Model and the View. For the Model, Struts can interact with any standard data access technology, including Enterprise Java Beans, JDBC, and Object Relational Bridge. For the View, Struts works well with JavaServer Pages, including JSTL and JSF, as well as Velocity Templates, XSLT, and other presentation systems. The Struts framework provides the invisible underpinnings every professional web application needs to survive. Struts helps you create an extensible development environment for your application, based on published standards and proven design patterns.</p>
- * <p>Copyright: Copyright (c) 2000-2004 The Apache Software Foundation - All Rights Reserved.</p>
- * <p>Company: The Apache Software Foundation</p>
- * @version 1.2.5
+ * <p>
+ * Provide an abstract but semi-complete implementation of ActionContext
+ * to serve as the base for concrete implementations.
+ * </p>
+ * <p>
+ * The abstract methods to implement are the accessors for the named states,
+ * <code>getApplicationScope</code>,
+ * <code>getRequestScope</code>, and
+ * <code>getSessionScope</code>.
+ * </p>
  */
-
 public abstract class ActionContextBase extends ContextWrapper implements ActionContext {
 
-
+    /**
+     * @see Constants.ACTION_KEY
+     */
     public static final String ACTION_KEY = Constants.ACTION_KEY;
 
+    /**
+     * @see
+     */
     public static final String ACTION_CONFIG_KEY = Constants.ACTION_CONFIG_KEY;
 
+    /**
+     * @see Constants.ACTION_FORM_KEY
+     */
     public static final String ACTION_FORM_KEY = Constants.ACTION_FORM_KEY;
 
+    /**
+     * @see Constants.FORWARD_CONFIG_KEY
+     */
     public static final String FORWARD_CONFIG_KEY = Constants.FORWARD_CONFIG_KEY;
 
+    /**
+     * @see Constants.MODULE_CONFIG_KEY
+     */
     public static final String MODULE_CONFIG_KEY = Constants.MODULE_CONFIG_KEY;
 
+    /**
+     * @see Constants.EXCEPTION_KEY
+     */
     public static final String EXCEPTION_KEY = Constants.EXCEPTION_KEY;
 
+    /**
+     * <p>
+     * Provide the default context attribute under which to store
+     * the ActionMessage cache for errors.
+     * </p>
+     */
     public static final String ERROR_ACTION_MESSAGES_KEY = "errors";
 
+    /**
+     * <p>
+     * Provide the default context attribute under which to store
+     * the ActionMessage cache.
+     * </p>
+     */
     public static final String MESSAGE_ACTION_MESSAGES_KEY = "messages";
 
+    /**
+     * @see Constants.MESSAGE_RESOURCES_KEY
+     */
     public static final String MESSAGE_RESOURCES_KEY = Constants.MESSAGE_RESOURCES_KEY;
 
+    /**
+     * @see Constants.INCLUDE_KEY
+     */
     public static final String INCLUDE_KEY = Constants.INCLUDE_KEY;
 
+    /**
+     * @see Constants.LOCALE_KEY
+     */
     public static final String LOCALE_KEY = Constants.LOCALE_KEY;
 
+    /**
+     * @see Constants.CANCEL_KEY
+     */
     public static final String CANCEL_KEY = Constants.CANCEL_KEY;
 
+    /**
+     * @see Constants.VALID_KEY
+     */
     public static final String VALID_KEY = Constants.VALID_KEY;
 
+    /**
+     * Provide the default context attribute under which to store
+     * the transaction token key.
+     */
     public static final String TRANSACTION_TOKEN_KEY = "TRANSACTION_TOKEN_KEY";
 
+    /**
+     * Provide the default context attribute under which to store
+     * the token key.
+     */
     public static final String TOKEN_KEY = "TOKEN_KEY";
 
+    /**
+     * Store the TokenProcessor instance for this Context.
+     */
     protected TokenProcessor token = null;
 
+    /**
+     * Store the Log instance for this Context.
+     */
     private Log logger = null;
 
+    /**
+     * Instantiate ActionContextBase, wrapping the given Context.
+     * @param context Context to wrap
+     */
     public ActionContextBase(Context context) {
         super(context);
         token = TokenProcessor.getInstance();
         logger = LogFactory.getLog(this.getClass());
     }
 
+    /**
+     * Instantiate ActionContextBase, wrapping a default ContextBase instance.
+     */
     public ActionContextBase() {
         this(new ContextBase());
     }
@@ -97,7 +166,7 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
 
     public void release() {
         this.token = null;
-     };
+     }
 
     public abstract Map getApplicationScope();
 
@@ -213,10 +282,18 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
         this.saveActionMessages(MESSAGE_ACTION_MESSAGES_KEY, messages);
     }
 
-    // do we want to add this to the public API?
-    public void addActionMessages(String key, ActionMessages msgs) {
+    // ISSUE: do we want to add this to the public API?
 
-        if (msgs == null) {
+    /**
+     * <p>
+     * Add the given messages to a cache stored in this Context, under key.
+     * </p>
+     * @param key The attribute name for the message cache
+     * @param messages The ActionMessages to add
+     */
+    public void addActionMessages(String key, ActionMessages messages) {
+
+        if (messages == null) {
             // bad programmer! *slap*
             return;
         }
@@ -227,30 +304,43 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
             requestMessages = new ActionMessages();
         }
         // add incoming messages
-        requestMessages.add(msgs);
+        requestMessages.add(messages);
 
         // if still empty, just wipe it out from the request
         this.remove(key);
 
-        // Save the messages
+        // save the messages
         this.saveActionMessages(key, requestMessages);
     }
 
-    // do we want to add this to the public API?
-    public void saveActionMessages(String key, ActionMessages msgs) {
-        if ((msgs == null) || msgs.isEmpty()) {
+    // ISSUE: do we want to add this to the public API?
+
+    /**
+     * <p>
+     * Save the given ActionMessages this Context under key,
+     * clearing the attribute if the messages are empty or null.
+     * </p>
+     * @param key The attribute name for the message cache
+     * @param messages The ActionMessages to add
+     */
+    public void saveActionMessages(String key, ActionMessages messages) {
+        if ((messages == null) || messages.isEmpty()) {
             this.remove(key);
             return;
         }
-        this.put(key, msgs);
+        this.put(key, messages);
     }
 
 
+    // ISSUE: Should we deprecate this method, since it is misleading?
+    // Do we need it for backward compatability?
+
     /**
-     * ActionContextBase only has one scope, so this method delegates
-     * to saveMessages(messages).
-     * @param scope
-     * @param messages
+     * <p>
+     * Adapt a legacy form of SaveMessages to the ActionContext API
+     * by storing the ActoinMessages under the default scope.
+     * @param scope The scope for the internal cache
+     * @param messages ActionMesssages to cache
      */
     public void saveMessages(String scope, ActionMessages messages) {
         this.saveMessages(messages);
@@ -261,10 +351,12 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     // Token Processing
     // -------------------------------
 
-    /** @todo Is there a problem trying to map this method from Action
-     * to ActionContext when we aren't necessarily sure how token
-     * processing maps into a context with an ill-defined "session"?
-     * There's no getToken() method, but maybe there should be. */
+    // ISSUE: Should there be a getToken method?
+    // Is there a problem trying to map this method from Action
+    // to ActionContext when we aren't necessarily sure how token
+    // processing maps into a context with an ill-defined "session"?
+    // There's no getToken() method, but maybe there should be. *
+
     public void saveToken() {
         String token = this.generateToken();
         this.put(TRANSACTION_TOKEN_KEY, token);
@@ -275,10 +367,12 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
 
     }
 
+    // ISSUE: The original implementation was based on the HttpSession identifier;
+    // what would be a way to do that without depending on the Servlet API?
+    // REPLY: uuid's
+    // http://java.sun.com/products/jini/2.0/doc/specs/api/net/jini/id/Uuid.html
+
     protected String getTokenGeneratorId() {
-        /** @todo The original implementation was based on the HttpSession identifier;
-         what would be a way to do that without depending on the Servlet API?
-         */
         return "";
 
     }
@@ -316,6 +410,7 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     // -------------------------------
     // Cancel Processing
     // -------------------------------
+
     public Boolean getCancelled() {
         return (Boolean) this.get(CANCEL_KEY);
     }
@@ -327,6 +422,7 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     // -------------------------------
     // MessageResources Processing
     // -------------------------------
+
     public void setMessageResources(MessageResources messageResources) {
         this.put(MESSAGE_RESOURCES_KEY, messageResources);
     }
@@ -342,6 +438,7 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     // -------------------------------
     // Locale Processing
     // -------------------------------
+
     public void setLocale(Locale locale) {
         this.put(LOCALE_KEY, locale);
     }
@@ -355,71 +452,98 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     // Convenience Methods: these are not part of the formal ActionContext API,
     // but are likely to be commonly useful.
     // -------------------------------
+
     /**
-     * <p>Return the currently configured commons-logging <code>Log</code> instance.</p>
-     * @return
+     * <p>
+     * Provide the currently configured commons-logging <code>Log</code>
+     * instance.
+     * </p>
+     * @return Log instance for this context
      */
     public Log getLogger() {
         return this.logger;
     }
 
     /**
-     * <p>Set the commons-logging <code>Log</code> instance which should be used to log messages.
-     * This is initialized at instantiation time but may be overridden.  Be advised not to set the value
-     * to null, as <code>ActionContextBase</code> uses the logger for some of its own operations.</p>
+     * <p>
+     * Set the commons-logging <code>Log</code> instance which should be
+     * used to log messages.
+     * This is initialized at instantiation time but may be overridden.
+     * Be advised not to set the value to null,
+     * as <code>ActionContextBase</code> uses the logger for some of its own
+     * operations.
+     * </p>
      */
     public void setLogger(Log logger) {
         this.logger = logger;
     }
 
     /**
-     * Using this <code>ActionContext</code>'s default <code>ModuleConfig</code>, return an existing
-     * <code>ActionForm</code> in the specified scope, or create a new one and add it to the specified scope.
-     * @param formName
-     * @param scopeName
-     * @return
+     * <p>
+     * Using this <code>ActionContext</code>'s default
+     * <code>ModuleConfig</code>, return an existing
+     * <code>ActionForm</code> in the specified scope,
+     * or create a new one and add it to the specified scope.
+     * </p>
+     * @param formName The name attribute of our ActionForm
+     * @param scopeName The scope identier (request, session)
+     * @return The ActionForm for this request
      * @throws IllegalAccessException
      * @throws InstantiationException
-     * @see findOrCreateActionForm(String, String, ModuleConfig)
+     * @see this.findOrCreateActionForm(String, String, ModuleConfig)
      */
-    public ActionForm findOrCreateActionForm(String formName, String scopeName) throws IllegalAccessException, InstantiationException {
-        return this.findOrCreateActionForm(formName, scopeName, this.getModuleConfig());
+    public ActionForm findOrCreateActionForm(String formName,
+                                             String scopeName) throws
+            IllegalAccessException, InstantiationException {
+        return this.findOrCreateActionForm(formName, scopeName,
+                this.getModuleConfig());
     }
 
     /**
-     * <p>In the context of the given <code>ModuleConfig</code> and this <code>ActionContext</code>,
-     * look for an existing <code>ActionForm</code> in the specified scope.  If one is found, return
-     * it; otherwise, create a new instance, add it to that scope, and then return it.</p>
-     * @param formName
-     * @param scopeName
-     * @return
-     * @throws IllegalAccessException
-     * @throws InstantiationException
+     * <p>
+     * In the context of the given <code>ModuleConfig</code>
+     * and this <code>ActionContext</code>,
+     * look for an existing <code>ActionForm</code> in the specified scope.
+     * If one is found, return it;
+     * otherwise, create a new instance, add it to that scope,
+     * and then return it.
+     * </p>
+     * @param formName The name attribute of our ActionForm
+     * @param scopeName The scope identier (request, session)
+     * @return The ActionForm for this request
+     * @throws IllegalAccessException If object cannot be created
+     * @throws InstantiationException If object cannot be created
+     * @throws IllegalArgumentException If form config is missing from module
+     * or scopeName is invalid
      */
-    public ActionForm findOrCreateActionForm(String formName, String scopeName, ModuleConfig moduleConfig) throws IllegalAccessException, InstantiationException {
+    public ActionForm findOrCreateActionForm(String formName, String
+            scopeName, ModuleConfig moduleConfig) throws
+            IllegalAccessException, InstantiationException {
         Map scope = this.getScope(scopeName);
 
-        ActionForm instance = null;
-        FormBeanConfig formBeanConfig = moduleConfig.findFormBeanConfig(formName);
+        ActionForm instance;
+        FormBeanConfig formBeanConfig =
+                moduleConfig.findFormBeanConfig(formName);
 
         if (formBeanConfig == null) {
-            throw new IllegalArgumentException("No form config found under " + formName + " in module " + moduleConfig.getPrefix() );
+            throw new IllegalArgumentException("No form config found under " +
+                    formName + " in module " + moduleConfig.getPrefix() );
         }
 
         instance = (ActionForm) scope.get(formName);
-        // Can we recycle the existing instance (if any)?
+        // ISSUE: Can we recycle the existing instance (if any)?
         if (instance != null) {
-            getLogger().trace("Found an instance in scope " + scopeName + "; test for reusability");
+            getLogger().trace("Found an instance in scope " + scopeName +
+                    "; test for reusability");
             if (formBeanConfig.canReuse(instance)) {
                 return instance;
             }
         }
 
         ActionForm form = formBeanConfig.createActionForm(this);
+        // ISSUE: Should we check this call to put?
         scope.put(formName, form);
         return form;
     }
-
-
 
 }

@@ -20,11 +20,15 @@ package org.apache.struts.chain.contexts;
 import java.util.HashMap;
 import java.util.Map;
 
+//  ISSUE: Are there any useful "assert" type methods we could add to this?
+
 /**
- * Implementation of <code>ActionContext</code> which begins with empty maps for
- * <code>applicationScope</code>, <code>sessionScope</code>, <code>requestScope</code>,
+ * <p>
+ * Implement <code>ActionContext</code> with empty maps for
+ * <code>applicationScope</code>, <code>sessionScope</code>,
+ * <code>requestScope</code>,
  * and <code>parameterMap</code> properties.
- * :TODO Are there any useful "assert" type methods we could add to this?
+ * </p>
  */
 public class MockActionContext extends ActionContextBase {
     private Map applicationScope = new HashMap();
