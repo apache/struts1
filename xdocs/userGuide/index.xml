@@ -24,6 +24,7 @@
               <li><a href="preface.html#jsp">0.8 JavaServer Pages, JSP Tag Libraries, and JavaServer Faces</a></li>
               <li><a href="preface.html#xml">0.9 Extensible Markup Language</a></li>
               <li><a href="preface.html#jaas">0.10 JAAS</a></li>
+              <li><a href="preface.html#layers">0.11 Other layers</a></li>
             </ul></li>
 
 
@@ -53,7 +54,7 @@
                 <li><a href="building_view.html#i18n">3.2 Internationalization</a></li>
                 <li><a href="building_view.html#form_beans">3.3 Forms and FormBean Interactions</a>
                     <ul>
-                    <li><a href="building_view.html#indexed">3.3.1 Indexed &amp; Mapped Properties</a></li>
+                    <li><a href="building_view.html#indexed">3.3.1 Indexed &amp; mapped Properties</a></li>
                     <li><a href="building_view.html#form_input">3.3.2 Input Field Types Supported</a></li>
                     <li><a href="building_view.html#presentation_tags">3.3.3 Other Useful Presentation Tags</a></li>
                     <li><a href="building_view.html#form_validation">3.3.4 Automatic Form Validation</a></li>

@@ -260,20 +260,72 @@
     For larger applications, these beans will often be stateful or stateless 
     Enterprise JavaBeans (EJBs) instead.
     </p>
-    
+
     <p>
-    For more about using a database with your application, see the 
-    <a href="../faqs/db-howto.html">Accessing a Database HowTo</a>.
+        Most teams still roll their own business logic layer using
+        plain old JavaBeans (POJOs).
+        Though, business layer frameworks are beginning to emerge,
+        and now include:
+    </p>
+        <ul>
+            <li>
+               <a href="http://jakarta.apache.org/commons/chain/">
+                   Commons Chain</a>
+                <ul>
+                    <li>
+                        <a href="http://www.onjava.com/lpt/a/5671">
+                          A look at Commons Chain</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="http://springframework.org/">Spring</a>
+            </li>
+            <li>
+                <a href="http://www.opensymphony.com/xwork/">XWork</a>
+            </li>
+        </ul>
+
+    <p>
+        Most often, the business layer is seen to be distinct from the
+        data access layer.
+        Some teams roll their own data access objects (DAOs),
+        but more and more teams are turning to one of the many data access
+        frameworks.
+        Some popular data access frameworks include:
     </p>
 
-</subsection>
+        <ul>
+            <li>
+                <a href="http://java.sun.com/products/ejb/index.html">Enterprise Java Beans</a>
+            </li>
+            <li>
+                <a href="http://www.hibernate.org/">Hibernate</a>
+            </li>
+            <li>
+                <a href="http://ibatis.apache.org">iBATIS</a>
+            </li>
+            <li>
+                <a href="http://java.sun.com/products/jdbc/index.html">JDBC</a>
+           </li>
+            <li>
+                <a href="http://db.apache.org/ojb/">Object Relational Bridge</a>
+            </li>
+        </ul>
 
-<subsection>
+
+    <p>
+    For more about using a database with your application, see the
+    <a href="../faqs/db-howto.html">Accessing a Database HowTo</a>.
+    </p>
+</subsection>
+</section>
+
+<section>
     <p class="right">
     Next: <a href="building_view.html">Building View Components</a>
     </p>
-</subsection>
-
 </section>
+
 </body>
 </document>
