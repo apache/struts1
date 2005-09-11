@@ -47,8 +47,8 @@ public interface ActionContext extends Context {
     // General Application Support
     // -------------------------------
     /**
-     * Signal to the instance that it will not be used any more, so that any resources which should
-     * be cleaned up can be cleaned up.
+     * Signal to the instance that it will not be used any more,
+     * so that any resources which should be cleaned up can be cleaned up.
      */
     void release();
 
@@ -59,9 +59,9 @@ public interface ActionContext extends Context {
      * the Servlet API, but it seems reasonable to expect that any
      * Struts implementation will have an equivalent concept.</p>
      *
-     * <p>The ultimate meaning of "application scope" is an implementation detail
-     * left unspecified by Struts.</p>
-     * @return
+     * <p>The ultimate meaning of "application scope" is an implementation
+     * detail left unspecified by Struts.</p>
+     * @return A Map of "application scope" attributes.
      */
     Map getApplicationScope();
 
@@ -75,7 +75,7 @@ public interface ActionContext extends Context {
      *
      * <p>The ultimate meaning of "session scope" is an implementation detail
      * left unspecified by Struts.</p>
-     * @return
+     * @return A Map of "session scope" attributes.
      */
     Map getSessionScope();
 
@@ -90,30 +90,35 @@ public interface ActionContext extends Context {
      *
      * <p>The ultimate meaning of "request scope" is an implementation detail
      * left unspecified by Struts.</p>
-     * @return
+     * @return a Map of "request scope" attributes.
      */
     Map getRequestScope();
 
     /**
-     * Return the Map representing the scope identified by <code>scopeName</code>.
-     * Implementations should support at minimum the names associated with the constants
+     * Return the Map representing the scope identified by
+     * <code>scopeName</code>.
+     * Implementations should support at minimum the names associated with
+     * the constants
      * <code>APPLICATION_SCOPE</code>, <code>SESSION_SCOPE</code>, and
-     * <code>REQUEST_SCOPE</code>, but are permitted to support others as well.
-     * @param scopeName
-     * @return
+     * <code>REQUEST_SCOPE</code>, but are permitted to support others
+     * as well.
+     * @param scopeName A token identifying a scope, including but not
+     * limited to <code>APPLICATION_SCOPE</code>, <code>SESSION_SCOPE</code>,
+     *  <code>REQUEST_SCOPE</code>.
+     * @return A Map of attributes for the specified scope.
      */
     Map getScope(String scopeName);
 
     /**
      * <p>Return a <code>Map</code> of parameters submitted by the user
-     * as part of this request.  The keys to this map will be request parameter
-     * names (of type <code>String</code>), and the values will be <code>String[]</code>.</p>
+     * as part of this request.  The keys to this map will be request
+     * parameter names (of type <code>String</code>), and the values will be
+     * <code>String[]</code>.</p>
      *
      * <p>This is implemented in analogy with the Request parameters of
      * the Servlet API, but it seems reasonable to expect that any
      * Struts implementation will have an equivalent concept.</p>
-     *
-     * @return
+     * @return A map of the request parameter attributes
      */
     Map getParameterMap();
 
@@ -122,117 +127,148 @@ public interface ActionContext extends Context {
     // -------------------------------
 
     /**
+     * <p>
      * Set the action which has been identified to be executed as part
      * of processing this request.
+     * </p>
      * @param action
      */
     void setAction(Action action);
 
     /**
+     *<p>
      * Get the action which has been identified to be executed as part
      * of processing this request.
-     *
-     * @return
+     * </p>
+     * @return The action to be executed with this request
      */
     Action getAction();
 
     /**
+     * <p>
      * Set the ActionForm instance which will carry any data submitted
      * as part of this request.
-
-     * @param form
+     * </p>
+     * @param form The ActionForm instance to use with this request
      */
     void setActionForm(ActionForm form);
 
     /**
+     * <p>
      * Get the ActionForm instance which will carry any data submitted as
      * part of this request.
-     *
-     * @return
+     * </p>
+     * @return The ActionForm being used with this request
      */
     ActionForm getActionForm();
 
     /**
+     * <p>
      * Set the ActionConfig class contains the details
      * for processing this request.
-     * @param config
+     * </p>
+     * @param config The ActionConfig class to use with this request
      */
     void setActionConfig(ActionConfig config);
 
     /**
-     * Get the ActionConfig which contains the details for processing this request.
-     * @return
+     * <p>
+     * Get the ActionConfig which contains the details for processing this
+     * request.
+     * @return The ActionConfig class being used with this request
+     * </p>
      */
     ActionConfig getActionConfig();
 
     /**
-     * Set the ForwardConfig which should be used as the basis of the view segment
-     * of the overall processing.  This is the primary method of "communication" with
+     * <p>
+     * Set the ForwardConfig which should be used as the basis of the view
+     * segment of the overall processing.
+     * This is the primary method of "communication" with
      * the "view" sub-chain.
-     *
-     * @param forward
+     * </p>
+     * @param forward The ForwardConfig to use with this request
      */
     void setForwardConfig(ForwardConfig forward);
 
     /**
-     * Get the ForwardConfig which has been identified as the basis for view-processing.
-     *
-     * @return
+     * <p>
+     * Get the ForwardConfig which has been identified as the basis for
+     * view-processing.
+     * </p>
+     * @return The ForwardConfig being used with this request
      */
     ForwardConfig getForwardConfig();
 
     /**
-     * Set the include path which should be processed as part of processing this request.
-     *
-     * @param forward
+     * <p>
+     * Set the include path which should be processed as part of processing
+     * this request.
+     * </p>
+     * @param include The include path to be used with this request
      */
     void setInclude(String include);
 
     /**
-     * Get the include path which should be processed as part of processing this request.
-     *
-     * @return
+     * <p>
+     * Get the include path which should be processed as part of processing
+     * this request.
+     * </p>
+     * @return The include path being used with this request
      */
     String getInclude();
 
     /**
+     * <p>
      * Set the ModuleConfig which is operative for the current request.
-     *
-     * @param config
+     * </p>
+     * @param config The ModuleConfig to be used with this request
      */
     void setModuleConfig(ModuleConfig config);
 
     /**
+     * <p>
      * Get the ModuleConfig which is operative for the current request.
-     * @return
+     * </p>
+     * @return The MooduleConfig being used with this request
      */
     ModuleConfig getModuleConfig();
 
     /**
-     * Is the ActionForm for this context valid?  This <em>does not</em> actually perform
-     * form validation.  It is simply a holder property where processes which perform validation
+     * <p>
+     * Is the ActionForm for this context valid?
+     * This method <em>does not</em> actually perform form validation.
+     * It is simply a holder property where processes which perform validation
      * can store the results of the validation for other processes' benefit.
-     *
-     * @return <code>Boolean.TRUE</code> if the form passed validation; <code>Boolean.FALSE</code>
-     * if the form failed validation; null if the form has not yet been validated.
+     * </p>
+     * @return <code>Boolean.TRUE</code> if the form passed validation;
+     * <code>Boolean.FALSE</code> if the form failed validation;
+     * null if the form has not yet been validated
      */
     Boolean getFormValid();
 
     /**
+     * <p>
      * Store the result of the validation of the Context's ActionForm.
-     * @param valid
+     * </p>
+     * @param valid Whether the ActionForm for this request passes validation
      */
     void setFormValid(Boolean valid);
 
     /**
-     * Retrieve an exception which may have been caught by some code using this ActionContext.
-     * @return
+     * <p>
+     * Retrieve an exception which may have been caught by some code using
+     * this ActionContext, usually by an exception handler.
+     * </p>
+     * @return Any exception that may have been caught by this ActionContext
      */
     Exception getException();
 
     /**
+     * <p>
      * Store an exception in this context for use by other handling code.
-     * @param e
+     * </p>
+     * @param e An exception to be stored for handling by another member
      */
     void setException(Exception e);
 
@@ -241,81 +277,78 @@ public interface ActionContext extends Context {
     // -------------------------------
 
     /**
-     * Adds the specified messages keys into the appropriate request
-     * attribute for use by the &lt;html:messages&gt; tag (if
-     * messages="true" is set), if any messages are required.
-     * Initialize the attribute if it has not already been.
-     * Otherwise, ensure that the request attribute is not set.
-     *
-     * @param messages  Messages object
+     * <p>
+     * Append the given messages keys to an internal cache,
+     * creating the cache if one is not already present.
+     * </p>
+     * @param messages New ActionMessages to cache
      */
     void addMessages(ActionMessages messages);
 
     /**
-     * Adds the specified errors keys into the appropriate request
-     * attribute for use by the for use by the &lt;html:errors&gt; tag,
-     * if any messages are required.
-     * Initialize the attribute if it has not already been.
-     * Otherwise, ensure that the request attribute is not set.
-     *
-     * @param errors  Errors object
+     * <p>
+     * Append the given errors keys to an internal cache,
+     * creating the cache if one is not already present.
+     * </p>
+     * @param errors New ActionMessages to cache as errors
      */
     void addErrors(ActionMessages errors);
 
     /**
-     * Retrieves any existing errors placed in the request by previous actions.  This method could be called instead
-     * of creating a <code>new ActionMessages()<code> at the beginning of an <code>Action<code>
-     * This will prevent saveErrors() from wiping out any existing Errors
-     *
-     * @return the Errors that already exist in the request, or a new ActionMessages object if empty.
-     * @param request The servlet request we are processing
+     * <p>
+     * Retrieve error messages from an internal cache,
+     * creating an empty cache if one is not already present.
+     * </p>
+     * @return The ActionMessage cache for errors
      */
     ActionMessages getErrors();
 
     /**
-     * Retrieves any existing messages placed in the request by previous actions.  This method could be called instead
-     * of creating a <code>new ActionMessages()<code> at the beginning of an <code>Action<code>
-     * This will prevent saveMessages() from wiping out any existing Messages
-     *
-     * @return the Messages that already exist in the request, or a new ActionMessages object if empty.
-     * @param request The servlet request we are processing
+     * <p>
+     * Retrieve messages from an internal cache,
+     * creating an empty cache if one is not already present.
+     * </p>
+     * @return The ActionMessage cache for errors
      */
     ActionMessages getMessages();
 
     /**
-     * <p>Save the specified error messages keys into the appropriate request
-     * attribute for use by the &lt;html:errors&gt; tag, if any messages
-     * are required. Otherwise, ensure that the request attribute is not
-     * created.</p>
-     *
-     * @param request The servlet request we are processing
-     * @param errors Error messages object
+     * <p>
+     * Save the given error messages to the internal cache,
+     * clearing any previous messages in the cache.
+     * </p>
+     * <p>
+     * If the parameter is null or empty, the internal cache is removed.
+     * </p>
+     * @param errors ActionMesssages to cache as errors
      */
     void saveErrors(ActionMessages errors);
 
 
     /**
-     * <p>Save the specified messages keys into the appropriate request
-     * attribute for use by the &lt;html:messages&gt; tag (if
-     * messages="true" is set), if any messages are required. Otherwise,
-     * ensure that the request attribute is not created.</p>
-     *
-     * @param messages The messages to save. <code>null</code> or empty
-     * messages removes any existing ActionMessages in the request.
-     *
+     * <p>
+     * Save the given messages to the internal cache,
+     * clearing any previous messages in the cache.
+     * </p>
+     * <p>
+     * If the parameter is null or empty, the internal cache is removed.
+     * </p>
+     * @param messages ActionMesssages to cache
      */
     void saveMessages(ActionMessages messages);
 
 
     /**
-     * <p>Save the specified messages keys into the appropriate scope
-     * for use by the &lt;html:messages&gt; tag (if
-     * messages="true" is set), if any messages are required. Otherwise,
-     * ensure that the session attribute is not created.</p>
-     *
-     * @param messages The messages to save. <code>null</code> or empty
-     * messages removes any existing ActionMessages in the session.
-     *
+     * <p>
+     * Save the given messages to the internal cache,
+     * clearing any previous messages in the cache,
+     * but only for the specified scope.
+     * </p>
+     * <p>
+     * If the parameter is null or empty, the internal cache is removed.
+     * </p>
+     * @param scope The scope for the internal cache
+     * @param messages ActionMesssages to cache
      */
     void saveMessages(String scope, ActionMessages messages);
 
@@ -331,19 +364,16 @@ public interface ActionContext extends Context {
     String generateToken();
 
     /**
-     * <p>Return <code>true</code> if there is a transaction token stored in
-     * the user's current session, and the value submitted as a request
-     * parameter with this action matches it. Returns <code>false</code>
-     * under any of the following circumstances:</p>
-     * <ul>
-     * <li>No session associated with this request</li>
-     * <li>No transaction token saved in the session</li>
-     * <li>No transaction token included as a request parameter</li>
-     * <li>The included transaction token value does not match the
-     *     transaction token in the user's session</li>
-     * </ul>
-     *
-     * @param request The servlet request we are processing
+     * <p>
+     * Indicate whether a transaction token for the context is valid.
+     * </p>
+     * <p>
+     * A typical implementation will place a transaction token in the
+     * session" scope Map and a matching value in the  "parameter" Map.
+     * If the "session" token does not match the "parameter" attribute,
+     * or the session token is missing,
+     * then the transactional token is deemed invalid.
+     * </p>
      */
     boolean isTokenValid();
 
