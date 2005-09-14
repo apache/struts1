@@ -2,7 +2,7 @@
 <document url="preface.html">
 
   <properties>
-    <title>The Struts User's Guide - Preface: Core Technologies</title>
+    <title>The Struts Core User's Guide - Preface: Core Technologies</title>
   </properties>
 
   <body>
@@ -44,7 +44,7 @@
     </p>
 
     <p>If you've created web applications for other platforms, you may be able to follow along
-    and visit the other references as needed. The core technologies used by Struts are
+    and visit the other references as needed. The core technologies used by Core are
     also used by most other Java web development products, so the background information will be
     useful in any Java project.
     </p>
@@ -96,7 +96,7 @@
     <p>A very important part of HTTP for the web developer is the request/response cycle. To use HTTP
     you have to make a request. A HTTP server, like a web server, is then obliged to respond. When you
     build your web application, you design it to react to a HTTP request by returning a HTTP response.
-    Frameworks like Struts abstract much of these nuts and bolts, but it is important to understand
+    Frameworks like Core abstract much of these nuts and bolts, but it is important to understand
     what is happening behind the scenes. </p>
 
     <p>If you are not familiar with the HTTP request/response cycle, we <strong>strongly</strong> recommend the
@@ -109,14 +109,14 @@
     <a name="java"/>
     <subsection name="0.4 The Java Language and Application Frameworks">
 
-    <p>Struts is written in the popular and versatile
+    <p>Struts Core is written in the popular and versatile
     <a href="http://java.sun.com/docs/books/jls/first_edition/html/index.html">Java programming language</a>.
-    Java is an object-orientated language, and Struts makes good use of many
+    Java is an object-orientated language, and Core makes good use of many
     object-orientated techniques.  In addition, Java natively supports the
     concept of <em>threads</em>, which allows more than one task to be
     performed at the same time.  A good understanding of Java, and especially
     object-orientated programming (OOP) and threading, will help
-    you get the most out of Struts and this User Guide. </p>
+    you get the most out of Struts Core and this User Guide. </p>
 
     <p>For more about Java and threads, see </p>
 
@@ -154,7 +154,7 @@
               "Gang of Four" design patterns book.</a>.
               The GoF summarizes the Chain of Responsibility pattern as
               "Avoid coupling  the sender of a reuest to its receiver
-              by giving more than object a chance to handle the request.
+              by giving more than one object a chance to handle the request.
               Chain the receiving objects
               and pass the request along the chain until an object handles it."
           </p>
@@ -167,7 +167,7 @@
               Most importantly, we can adjust the Chain without changing
               how callers invoke the Chain.
               As of Struts Core 1.3,
-              the Request Processor, which servers as the frameworks "kernal",
+              the Request Processor, which acts as the frameworks "kernal",
               is a Chain of Responsiblity.
           </p>
 
@@ -186,7 +186,7 @@
 
           <ul>
               <li>
-                  <a hhref="http://jakarta.apache.org/commons/chain/">
+                  <a href="http://jakarta.apache.org/commons/chain/">
                      Jakarta Commons Chain of Responsibility </a>
               </li>
               <li>
@@ -205,12 +205,12 @@
     <a name="javabeans"/>
     <subsection name="0.5 JavaBeans">
 
-    <p>Like many Java applications, most of the Struts objects are designed as
+    <p>Like many Java applications, most of the Struts Core objects are designed as
     <a href="http://java.sun.com/products/javabeans/">JavaBeans</a>. Following the JavaBean design patterns makes
-    the Struts classes easier to use -- both by Java developers and by Java development tools. </p>
+    the Struts Core classes easier to use -- both by Java developers and by Java development tools. </p>
 
     <p>Although JavaBeans were first created for visual elements, these object design patterns have been found to
-    be useful as the basis for any reusable component, like those used by the Struts framework.</p>
+    be useful as the basis for any reusable component, like those used by the Struts Core framework.</p>
 
     <p>For more about JavaBeans, see:</p>
 
@@ -240,7 +240,7 @@
     </p>
 
     <p>
-    The Struts framework uses Introspection to convert HTTP parameters into JavaBean properties and to populate HTML fields from JavaBean properties.
+    The Struts Core framework uses Introspection to convert HTTP parameters into JavaBean properties and to populate HTML fields from JavaBean properties.
     This technique makes it easy to "roundtrip" properties between HTML forms and JavaBeans.
     </p>
 
@@ -284,7 +284,7 @@
     </p>
 
     <p>
-    In a Struts application, you can use DynaBeans to describe your HTML forms.
+    In a Struts Core application, you can use DynaBeans to describe your HTML forms.
     This strategy can avoid creating a formal JavaBean subclass to store a few simple properties.
     </p>
 
@@ -311,7 +311,7 @@
     <p>Java applications, including web applications, are often configured using
     <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/Properties.html">Properties</a>
     files. Properties files are the basis for the
-    <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/ResourceBundle.html">ResourceBundles</a> that Struts uses to provide message resources
+    <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/ResourceBundle.html">ResourceBundles</a> that Core uses to provide message resources
     to an application. </p>
 
     <p>For more about Properties files, see: </p>
@@ -324,7 +324,7 @@
     <p>Java ResourceBundles use one or more Properties files to provide internationalized messages
     to users based their
     <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/Locale.html">Locale</a>.
-    Support for localizing an application was built into Struts from the ground-up.</p>
+    Support for localizing an application was built into Struts Core from the ground-up.</p>
 
     <p>For more about localization and ResourceBundles, see </p>
 
@@ -390,7 +390,7 @@
       </ul>
 
     <p>
-    Struts provides a ready-to-use servlet for your application [<code>org.apache.struts.action.ActionServlet</code>].
+    Struts Core provides a ready-to-use servlet for your application [<code>org.apache.struts.action.ActionServlet</code>].
     As a Struts developer, you can then just write objects that the Struts ActionServlet calls when needed.
     But it is still helpful to understand the basics of what servlets are,
     and the role they play in a Java web application.
@@ -610,8 +610,8 @@
 
       <p>The Struts 1.0, 1.1, and 1.2 versions require only version 2.2 or later
       of the Servlet Specification to be implemented by your servlet container,
-      so those versions of Struts do not use Filters. Beginning with the Struts
-      1.3 version, a container that supports version 2.3 or later of the Servlet
+      so those versions of Struts Core do not use Filters. Beginning with the Struts
+      Core 1.3 version, a container that supports version 2.3 or later of the Servlet
       Specification is required, and it is possible that Struts itself might use
       Filters in the future.</p>
       
@@ -690,7 +690,7 @@
       <p>
       The Java Servlet specification extends the HTTP request/response cycle by allowing the request to be dispatched,
       or forwarded, between resources.
-      Struts uses this feature to pass a request through specialized components,
+      Struts Core uses this feature to pass a request through specialized components,
       each handling one aspect of the response.
       In the normal course, a request may pass through a controller object, a model object,
       and finally to a view object as part of a single request/response cycle.
@@ -771,7 +771,7 @@
     <p>With <strong>JavaServer Pages</strong> you can start by writing the page in standard HTML and then add the
     dynamic features using statements in the Java language or by using
     <a href="http://java.sun.com/products/jsp/taglibraries.html">JSP tags</a>.
-    The Struts distribution includes several JSP tags that make it easy to access the framework's
+    The Struts Classic distribution includes several JSP tags that make it easy to access the framework's
     features from a JavaServer Page.</p>
 
     <p>For more about JavaServerPages and Custom JSP Tag Libraries see  </p>
@@ -792,7 +792,7 @@
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPBeans.html">JavaBeans Components in JSP Pages</a>
     in the Java Web Services Tutorial.</p>
 
-    <p>Struts also works well with the
+    <p>Struts Core also works well with the
     <a href="http://java.sun.com/products/jsp/jstl"><strong>JavaServer Pages Standard Tag Library</strong></a>
     (JSTL) and taglibs from other sources, like
     <a href="http://jsptags.com/">JSP Tags</a>,
@@ -809,7 +809,7 @@
         expressions) for dynamic attribute values.
     </p>
 
-    <p>There are also toolkits available that make Struts easy to use with
+    <p>There are also toolkits available that make Struts Core easy to use with
     <a href="http://stxx.sourceforge.net/">XSLT</a> and
     <a href="http://jakarta.apache.org/velocity/tools/index.html">Velocity Templates</a>.
     </p>
@@ -817,7 +817,7 @@
         <p>
             The newest star on the Java horizon is  <a href="http://java.sun.com/j2ee/javaserverfaces/">JavaServer Faces technology</a>.
             JSF simplifies building user interfaces for JavaServer applications, both for the web and for the desktop.
-            To keep pace, Struts is offering a new framework to go with this new technology, called
+            To keep pace, Apache Struts is offering a new framework to go with this new technology, called
             <a href="http://struts.apache.org/struts-shale/index.html">Struts Shale</a>.
             For teams looking for a smoother transition to JSF, we offer Struts-Faces taglib,
             which lets you use JSF components with your existing Actions.
@@ -851,7 +851,7 @@
     <a name="xml"/>
     <subsection name="0.9 Extensible Markup Language (XML)" href="">
 
-    <p>The features provided by the Struts framework relies on a number of objects that are
+    <p>The features provided by the Struts Core framework relies on a number of objects that are
     usually deployed using a configuration file written in
     <a href="http://www.w3.org/XML/">Extensible Markup Language</a>. XML is also used to
     configure Java web applications; so, this is yet another familiar approach.
@@ -886,7 +886,7 @@
 
         <p>
         The Java Servlet platform uses an XML configuration file to deploy servlets (among other things).
-        Likewise, Struts uses an XML configuration file to deploy objects used by the framework.
+        Likewise, Struts Core uses an XML configuration file to deploy objects used by the framework.
         </p>
 
     </subsection>
@@ -895,7 +895,7 @@
       <subsection name="0.10 JAAS" href="">
 
       <p>
-          While Struts can work with any approach to user authentication and authorization, Struts 1.1 and later offers
+          While Core can work with any approach to user authentication and authorization, Struts 1.1 and later offers
           direct support for the standard Java Authentication and Authorization Service (JAAS).
           You can now specify security roles on an action-by-action basis.
       </p>
@@ -906,7 +906,7 @@
       <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html">Java Web Services Tutorial</a>.</p>
 
       <p>
-          A popular extension for handling security in a Java web application, including a Struts application,
+          A popular extension for handling security in a Java web application, including a Struts Core application,
           is <a href="http://securityfilter.sourceforge.net/">SecurityFilter</a>.
       </p>
     </subsection>
