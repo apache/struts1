@@ -153,7 +153,7 @@
               <a href="http://www.amazon.com/exec/obidos/tg/detail/-/0201633612/apachesoftwar-20/">
               "Gang of Four" design patterns book.</a>.
               The GoF summarizes the Chain of Responsibility pattern as
-              "Avoid coupling  the sender of a reuest to its receiver
+              "Avoid coupling  the sender of a request to its receiver
               by giving more than one object a chance to handle the request.
               Chain the receiving objects
               and pass the request along the chain until an object handles it."
@@ -167,7 +167,7 @@
               Most importantly, we can adjust the Chain without changing
               how callers invoke the Chain.
               As of Struts Core 1.3,
-              the Request Processor, which acts as the frameworks "kernal",
+              the Request Processor, which acts as the framework's "kernel",
               is a Chain of Responsiblity.
           </p>
 
@@ -221,7 +221,7 @@
         <a href="http://java.sun.com/products/javabeans/docs/spec.html">
         JavaBeans 1.01 Specification</a></li>
     <li><a href="http://java.sun.com/docs/books/tutorial/javabeans/index.html">
-        <strong>The JavaBean Trail</strong></a> in the Java Tutorial</li>
+        <strong>The JavaBeans Trail</strong></a> in the Java Tutorial</li>
     <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPBeans.html">
         <strong>JavaBeans Components in JSP Pages</strong></a> in the Java Web Services Tutorial
         </li>
@@ -761,7 +761,7 @@
     </subsection>
 
     <a name="jsp"/>
-    <subsection name="0.8 JavaServer Pages, JSP Tag Libraries, and Java Server Faces" href="">
+    <subsection name="0.8 JavaServer Pages, JSP Tag Libraries, and JavaServer Faces" href="">
     <p><a href="http://java.sun.com/products/jsp/product.html">JavaServer Pages</a> (JSPs) are
     "inside-out servlets" that make it easier to create and maintain dynamic web pages. Instead
     of putting what you want to write to the HTTP response inside of a Java <code>print</code>
@@ -774,7 +774,7 @@
     The Struts Classic distribution includes several JSP tags that make it easy to access the framework's
     features from a JavaServer Page.</p>
 
-    <p>For more about JavaServerPages and Custom JSP Tag Libraries see  </p>
+    <p>For more about JavaServer Pages and Custom JSP Tag Libraries see  </p>
 
     <ul>
     <li><a href="http://java.sun.com/products/jsp/"><strong>The
@@ -900,7 +900,8 @@
           You can now specify security roles on an action-by-action basis.
       </p>
 
-      <p>For more about JAAS, see the <a href="http://java.sun.com/products/jaas/index-14.html">Javasoft product page</a>
+      <p>For more about JAAS, see the Sun Developer Network
+      <a href="http://java.sun.com/products/jaas">product page</a>
       and the <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebAppSecurity.html">
       Web Application Security</a> chapter of the
       <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html">Java Web Services Tutorial</a>.</p>

@@ -90,7 +90,7 @@
     </p>
 
     <p>
-        As a convenience, the subprojects repredenting the Struts 1.2.x
+        As a convenience, the subprojects representing the Struts 1.2.x
         code base are being bundled into a single distribution called
         "Struts Classic".
         Remarks previously made about the "Struts 1.x series" now apply to
@@ -125,7 +125,7 @@
     <p>
         Enhancement requests are logged in Bugzilla as they are suggested.
         <strong>The listing of an enhancement in Bugzilla does not imply that
-        is being "planned"</strong>,
+        it is being "planned"</strong>,
         merely that someone has suggested it,
         and the idea hasn't been ruled out (yet).
     </p>
@@ -229,7 +229,7 @@
         </p>
 
         <p>
-            In a later release, when the new members stabalize,
+            In a later release, when the new members stabilize,
             we could move the taglib dependencies from the servlet contexts
             to the ViewContext.
             View technologies could then look exclusively to the ViewContext
