@@ -21,25 +21,29 @@
         <a href="userGuide/preface.html">standard technologies</a> like Java
         Servlets, JavaBeans, ResourceBundles, and XML, as well as various
         <a href="http://jakarta.apache.org/commons/index.html">Jakarta
-        Commons</a> packages.
+        Commons</a> packages, like BeanUtils and Chain of Responsibility.
         Core helps you create an extensible development environment for your
         application, based on published standards and proven design patterns.
     </p>
 
     <p>
         Struts Core provides its own <strong>Controller</strong> component and
-        integrates with <a href="userGuide/preface.html#layers">
-        other technologies</a> to provide the Model and the View.
+        integrates with other technologies to provide the Model and the View.
         For the <strong>Model</strong>, Core can interact
         with standard data access technologies,
         like <a href="http://java.sun.com/products/jdbc/">JDBC</a> and
         <a href="http://java.sun.com/products/ejb/">EJB</a>,
         as well as most any third-party packages,
-        like Hibernate, iBATIS, or Object Relational Bridge.
+        like
+        <a href="http://hibernate.org/">Hibernate</a>,
+        <a href="http://ibatis.apache.org/">iBATIS</a>, or
+        <a href="http://db.apache.org/ojb/">Object Relational Bridge</a>.
         For the <strong>View</strong>, Core works well with
         <a href="http://java.sun.com/products/jsp/">JavaServer Pages</a>,
         including <a href="./faqs/kickstart.html#jsf">JSTL and JSF</a>,
-        as well as Velocity Templates, XSLT,
+        as well as
+        <a href="http://jakarta.apache.org/velocity/tools/struts/">Velocity Templates</a>,
+        <a href="http://stxx.sourceforge.net/">XSLT</a>,
         and other presentation systems.
     </p>
 
@@ -130,8 +134,8 @@
         <a href="http://jakarta.apache.org/commons/digester/"> Digester's</a>
         <code>set-property</code> feature.
         This is one reason why there are so many
-        <a href="http://struts.sourceforge.net/community/index.html">contributor
-        extensions</a> for Struts Core.
+        <a href="http://wiki.apache.org/struts/StrutsResources/">contributor
+        extensions</a> for Struts.
         Core provides a base framework, but you can still write <b>your</b>
         application <b>your</b> way.
      </p>

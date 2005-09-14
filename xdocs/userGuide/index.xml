@@ -47,6 +47,8 @@
                 <li><a href="building_model.html#actionform">2.3 ActionForm Beans</a></li>
                 <li><a href="building_model.html#system_state">2.4 System State Beans</a></li>
                 <li><a href="building_model.html#business_logic">2.5 Business Logic Beans</a></li>
+                <li><a href="building_model.html#logic_frameworks">2.6 Business Logic Frameworks</a></li>
+                 <li><a href="building_model.html#data_frameworks">2.7 Data Access Frameworks</a></li>
                 </ul></li>
             <li><a href="building_view.html">3. Building View Components</a>
                 <ul>

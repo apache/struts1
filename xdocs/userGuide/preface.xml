@@ -143,6 +143,65 @@
 
     </subsection>
 
+      <a name="chain"/>
+      <subsection name="0.4.1 Chain of Responsibility">
+
+          <p>
+              A popular technique for organizing the execution of complex
+              processing flows is the "Chain of Responsibility" pattern,
+              as described (among many other places) in the classic
+              <a href="http://www.amazon.com/exec/obidos/tg/detail/-/0201633612/apachesoftwar-20/">
+              "Gang of Four" design patterns book.</a>.
+              The GoF summarizes the Chain of Responsibility pattern as
+              "Avoid coupling  the sender of a reuest to its receiver
+              by giving more than object a chance to handle the request.
+              Chain the receiving objects
+              and pass the request along the chain until an object handles it."
+          </p>
+
+          <p>
+              The CoR pattern helps us keep software components loosely coupled.
+              A component can call a Chain of Responsbility,
+              without knowing what objects are on the chain or how they are
+              implemented.
+              Most importantly, we can adjust the Chain without changing
+              how callers invoke the Chain.
+              As of Struts Core 1.3,
+              the Request Processor, which servers as the frameworks "kernal",
+              is a Chain of Responsiblity.
+          </p>
+
+          <p>
+              To implement its Chain, the Request Processor uses the
+              <a hhref="http://jakarta.apache.org/commons/chain/">
+              Chain of Responsibility </a>component in the Jakarta Commons
+              provides a standard implementation of the CoR pattern,
+              along with various implementations of the Context and
+              Command objects used by the Chain to service a request.
+          </p>
+
+          <p>
+          For more about Chain of Responsiblity, see
+          </p>
+
+          <ul>
+              <li>
+                  <a hhref="http://jakarta.apache.org/commons/chain/">
+                     Jakarta Commons Chain of Responsibility </a>
+              </li>
+              <li>
+                  <a href="http://www.onjava.com/lpt/a/5671">
+                      A look at Commons Chain</a>
+              </li>
+              <li>
+                  <a href="http://www.infonoia.com/en/content.jsp?d=inf.05.06&amp;pr=1">
+                      Better Code with Struts 1t.3
+                  </a>
+              </li>
+          </ul>
+
+      </subsection>
+
     <a name="javabeans"/>
     <subsection name="0.5 JavaBeans">
 

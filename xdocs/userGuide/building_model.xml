@@ -13,6 +13,7 @@
 <body>
 <section name="2. Building Model Components">
 
+<a name="overview"/>
 <subsection name="2.1 Overview">
 
     <p>
@@ -32,6 +33,7 @@
     
 </subsection>
 
+<a name="javabeans"/>
 <subsection name="2.2 JavaBeans and Scope">
 
     <p>
@@ -101,14 +103,16 @@
 
 </subsection>
 
+<a name="actionform"/>
 <subsection name="2.3 ActionForm Beans">
 
     
-    <strong>Note:</strong> While ActionForm beans often have properties that 
-    correspond to properties in your Model beans, the form beans themselves 
-    should be considered a Controller component. 
+    <p>
+    <strong>Note:</strong> While ActionForm beans often have properties that
+    correspond to properties in your Model beans, the form beans themselves
+    should be considered a Controller component.
     As such, they are able to transfer data between the Model and View layers.
-    
+    </p>
 
     <p>
     The Struts framework generally assumes that you have defined an
@@ -194,6 +198,7 @@
 
 </subsection>
 
+<a name="system_state"/>
 <subsection name="2.4 System State Beans">
 
     <p>
@@ -224,6 +229,7 @@
 
 </subsection>
 
+<a name="business_logic"/>
 <subsection name="2.5 Business Logic Beans">
 
     <p>
@@ -261,6 +267,11 @@
     Enterprise JavaBeans (EJBs) instead.
     </p>
 
+</subsection>
+
+<a name="logic_frameworks"/>
+<subsection name="2.6 Business Logic Frameworks">
+
     <p>
         Most teams still roll their own business logic layer using
         plain old JavaBeans (POJOs).
@@ -271,12 +282,6 @@
             <li>
                <a href="http://jakarta.apache.org/commons/chain/">
                    Commons Chain</a>
-                <ul>
-                    <li>
-                        <a href="http://www.onjava.com/lpt/a/5671">
-                          A look at Commons Chain</a>
-                    </li>
-                </ul>
             </li>
             <li>
                 <a href="http://springframework.org/">Spring</a>
@@ -285,6 +290,11 @@
                 <a href="http://www.opensymphony.com/xwork/">XWork</a>
             </li>
         </ul>
+
+</subsection>
+
+<a name="data_frameworks"/>    
+<subsection name="2.6 Data Access Frameworks">
 
     <p>
         Most often, the business layer is seen to be distinct from the
@@ -297,7 +307,8 @@
 
         <ul>
             <li>
-                <a href="http://java.sun.com/products/ejb/index.html">Enterprise Java Beans</a>
+                <a href="http://java.sun.com/products/ejb/index.html">
+                    Enterprise Java Beans</a>
             </li>
             <li>
                 <a href="http://www.hibernate.org/">Hibernate</a>
@@ -306,10 +317,12 @@
                 <a href="http://ibatis.apache.org">iBATIS</a>
             </li>
             <li>
-                <a href="http://java.sun.com/products/jdbc/index.html">JDBC</a>
+                <a href="http://java.sun.com/products/jdbc/index.html">
+                    JDBC</a>
            </li>
             <li>
-                <a href="http://db.apache.org/ojb/">Object Relational Bridge</a>
+                <a href="http://db.apache.org/ojb/">
+                    Object Relational Bridge</a>
             </li>
         </ul>
 
