@@ -879,18 +879,37 @@ return(null);
     </p>
 
     <p>
-    For more see, <a href="../faqs/struts-el.html">Struts-El Extension</a> in the FAQ/HOWTO section.
+        For more see, <a href="../faqs/struts-el.html">Struts-El Extension</a>
+        in the FAQ/HOWTO section.
     </p>
 
 </subsection>
 
 <subsection>
+    Some popular presentation layer frameworks include:
+    <ul>
+        <li>
+            <a href="http://struts.apache.org/struts-taglib/">
+                JSP Custom Tags</a>
+       </li>
+        <li>
+            <a href="http://jakarta.apache.org/velocity/tools/struts/">
+                Velocity Struts</a>
+        </li>
+        <li>
+            <a href="http://stxx.sourceforge.net/">Stxx for XLST</a>
+       </li>
+    </ul>
+</subsection>
+
+</section>
+
+<section>
     <p class="right">
     Next: <a href="building_controller.html">Building Controller 
     Components</a>
     </p>
-</subsection>
-
 </section>
+
 </body>
 </document>

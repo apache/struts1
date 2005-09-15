@@ -167,7 +167,8 @@
               Most importantly, we can adjust the Chain without changing
               how callers invoke the Chain.
               As of Struts Core 1.3,
-              the Request Processor, which acts as the framework's "kernel",
+              the default Request Processor,
+              which acts as the framework's "kernal",
               is a Chain of Responsiblity.
           </p>
 
@@ -923,12 +924,14 @@
 
     <p>
        For more about creating business and data access layers,
-       see the "Building Model Components section".
+       see the "<a href="building_model.html">Building Model Components</a>"
+       section.
     </p>
 
     <p>
       For more about creating the presentation layer,
-      see the "Building View Components section".
+      see the "<a href="building_model.html">Building View Components</a>"
+      section.
     </p>
 
     </subsection>

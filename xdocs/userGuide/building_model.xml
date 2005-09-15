@@ -165,11 +165,11 @@
     <p>
     For more about coding <code>Actions</code> and <code>ActionForm</code>
     beans, see the "<a href="building_controller.html">Building
-    Controller Components</a>" chapter.
+    Controller Components</a>" section.
     </p>
 
     <p>
-    You should note that a "form", in the sense discussed here, does not
+    You should note that a "form" (in the sense discussed here) does not
     necessarily correspond to a single JSP page in the user interface.  
     It is common in many applications to have a "form" (from the user's 
     perspective) that extends over multiple pages. 
@@ -281,7 +281,7 @@
         <ul>
             <li>
                <a href="http://jakarta.apache.org/commons/chain/">
-                   Commons Chain</a>
+                   Commons Chain of Responsiblity</a>
             </li>
             <li>
                 <a href="http://springframework.org/">Spring</a>
@@ -291,6 +291,11 @@
             </li>
         </ul>
 
+    <p>
+        As of Struts 1.3, Commons Chain is used to construct the default
+        Request Processor for Struts Core.
+        See the "<a href="preface.html#chain">Preface</a>" section for more.
+    </p>
 </subsection>
 
 <a name="data_frameworks"/>    
