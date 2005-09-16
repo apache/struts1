@@ -47,11 +47,8 @@
             href="faqs/eclipse.html" 
             name="Eclipse"/>
         <item 
-            href="faqs/netbeans.html" 
-            name="NetBeans IDE 3.4"/>
-        <item 
             href="faqs/netbeans40.html" 
-            name="NetBeans IDE 4.0"/>
+            name="NetBeans IDE 4.x"/>
     </menu>
 
     <menu name="Quick Links">
