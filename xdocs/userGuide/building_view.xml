@@ -6,7 +6,7 @@
 -->
 
 <properties>
-    <title>The Struts User's Guide - Building View Components</title>
+    <title>Struts Core User's Guide - Building View Components</title>
 </properties>
 
 <body>
@@ -15,18 +15,27 @@
 <subsection name="3.1 Overview">
 
     <p>
-    This chapter focuses on the task of building the <em>View</em> components
-    for use with the Struts framework. 
-    Many applications rely on JavaServer Pages (JSP) technology to create the 
-    presentation layer. 
-    The Struts distribution includes a comprehensive JSP tag library that 
-    provides support for building internationalized applications, as well as 
-    for interacting with input forms.
-    Several other topics related to the View components are briefly discussed.
+        Struts Core provides infrastructural support for view components,
+        but does not provide any actual view components of its own.
+        Several options are available, such as
+        <a href="http://struts.apache.org/struts-taglib/">Struts Taglib</a>,
+        <a href="http://struts.sourceforge.net/struts-cocoon/">Struts Cocoon</a>,
+        <a href="http://jakarta.apache.org/velocity/tools/struts/">Struts Velocity</a>,
+        and <a href="http://stxx.sourceforge.net/">Stxx</a>,
+        among others.
+    </p>
+
+    <p>
+        Features provided by Struts Core for direct use by view components
+        include <a href="#resources">Message Resources</a>
+        for internationaling text and images,
+        and <a href="#formbeans">FormBeans</a> to provide for automatic
+        population and validation.
     </p>
 
 </subsection>
 
+<a name="resources"/>
 <subsection name="3.2 Internationalized Messages">
 
     <p>
@@ -204,15 +213,20 @@ org.apache.struts.action.ActionServlet
 
 </subsection>
 
+<a name="formbeans"/>
 <subsection name="3.3 Forms and FormBean Interactions">
 
 <p>
     <strong>Note:</strong> While the examples given here use JSP and custom tags,
     the ActionForm beans and the other Struts controller components are
     View neutral. 
-    Struts can be used with Velocity Templates, XSL, and any other 
+    Struts can be used with Coccoon, Velocity Templates, XSLT, and any other
     presentation technology that can be rendered via a Java servlet. 
 </p>
+
+</subsection>
+
+ <subsection name="3.3.1 Automatic Form Population">
 
     <p>
     At one time or another, most web developers have built forms using
@@ -270,157 +284,9 @@ value="<%= loginBean.getUsername() >"/>
     see the "<a href="../faqs/actionForm.html">
     Buiding an ActionForm Howto</a>".
     </p>
-
 </subsection>
 
-
-<subsection name="3.3.1 Indexed and Mapped Properties">
-
-    <p>
-    Property references in JSP pages using the Struts framework can reference
-    Java Bean properties as described in the JavaBeans specification. 
-    Most of these references refer to "scalar" bean properties, referring to 
-    primitive or single Object properties.  
-    However, Struts, along with the Jakarta Commons Beanutils library, allow 
-    you to use property references which refer to individual items in an array, 
-    collection, or map, which are represented by bean methods using 
-    well-defined naming and signature schemes.
-    </p>
-
-<p>
- Documentation on the Beanutils package can be found at 
- <a href="http://jakarta.apache.org/commons/beanutils/api/index.html">
- http://jakarta.apache.org/commons/beanutils/api/index.html</a>.
- More information about using indexed and mapped properties in Struts can
- be found in the FAQ describing <a
- href="../faqs/indexedprops.html"><em>Indexed Properties, Mapped Properties,
- and Indexed Tags</em></a>.
-</p>
-</subsection>
-
-<subsection name="3.3.2 Input Field Types Supported">
-
-    <p>
-    Struts defines HTML tags for all of the following types of input fields,
-    with hyperlinks to the corresponding reference information.
-    </p>
-
-    <ul>
-        
-        <li>
-        <a href="struts-html.html#checkbox">checkboxes</a>
-        </li>
-        
-        <li>
-        <a href="struts-html.html#hidden">hidden</a> fields
-        </li>
-        
-        <li>
-        <a href="struts-html.html#password">password</a> input fields
-        </li>
-        
-        <li>
-        <a href="struts-html.html#radio">radio</a> buttons
-        </li>
-        
-        <li>
-        <a href="struts-html.html#reset">reset</a> buttons
-        </li>
-        
-        <li>
-        <a href="struts-html.html#select">select</a> lists with embedded 
-        option or options items
-        </li>
-        
-        <li>
-        <a href="struts-html.html#option">option</a>
-        </li>
-        
-        <li>
-        <a href="struts-html.html#options">options</a>
-        </li>
-        
-        <li>
-        <a href="struts-html.html#submit">submit</a> buttons
-        </li>
-        
-        <li>
-        <a href="struts-html.html#text">text</a> input fields
-        </li>
-        
-        <li>
-        <a href="struts-html.html#textarea">textareas</a>
-        </li>
-        
-    </ul>
-
-    <p>
-    In every
-    case, a field tag must be nested within a <code>form</code> tag, so that
-    the field knows what bean to use for initializing displayed values.
-    </p>
-
-</subsection>
-
-<subsection name="3.3.3 Other Useful Presentation Tags">
-
-    <p>
-    There are several tags useful for creating presentations, consult the 
-    documentation on each specific tag library, along with the Tag Developers 
-    Guides, for more information:
-    </p>
-
-    <ul>
-
-    <li>
-    [logic] <a href="struts-logic.html#iterate">iterate</a> repeats its 
-    tag body once for each element of a specified collection (which can be an 
-    Enumeration, a Hashtable, a Vector, or an array of objects).
-    </li>
-    
-    <li>
-    [logic] <a href="struts-logic.html#present">present</a> depending on 
-    which  attribute is specified, this tag checks the current request, and 
-    evaluates the nested body content of this tag only if the specified value 
-    is present. 
-    Only one of the attributes may be used in one occurrence of this tag, 
-    unless you use the property attribute, in which case the name attribute 
-    is also required. 
-    The attributes include cookie, header, name, parameter, property, role, 
-    scope, and user.
-    </li>
-
-    <li>
-    [logic] <a href="struts-logic.html#notPresent">notPresent</a> the 
-    companion tag to present, notPresent provides the same functionality when 
-    the specified attribute is not present.
-    </li>
-    
-    <li>
-    [html] <a href="struts-html.html#link">link</a> generates a HTML 
-    &lt;a&gt; element as an anchor definition or a hyperlink to the specified 
-    URL, and automatically applies URL encoding to maintain session state in 
-    the absence of cookie support.
-    </li>
-    
-    <li>
-    [html] <a href="struts-html.html#img">img</a> generates a HTML 
-    &lt;img&gt; element with the ability to dynamically modify the URLs 
-    specified by the "src" and "lowsrc" attributes in the same manner that 
-    &lt;html:link> can.
-    </li>
-    
-    <li>
-    [bean] <a href="struts-bean.html#parameter">parameter</a> 
-    retrieves the value of the specified request parameter, and defines the 
-    result as a page scope attribute of type String or String[].
-    </li>
-    
-    </ul>
-
-</subsection>
-
-<subsection name="3.3.4 Automatic Form Validation">
+<subsection name="3.3.2 Automatic Form Validation">
 
     <p>
     In addition to the form and bean interactions described above, Struts
@@ -484,7 +350,7 @@ HttpServletRequest request);
     
 </subsection>
 
-<subsection name="3.3.5 The Struts Validator">
+<subsection name="3.3.3 The Struts Validator">
 
     <p>
     Configuring the Validator to perform form validation is easy.
@@ -546,8 +412,8 @@ value="/WEB-INF/validator-rules.xml,
 
     <p>
     Although the look and feel of your application can be completely
-    constructed based on the standard capabilities of JSP and the Struts
-    custom tag library, you should consider employing other techniques that
+    constructed based on the standard capabilities of JSP and Struts
+    Taglib, you should consider employing other techniques that
     will improve component reuse, reduce maintenance efforts, and/or reduce
     errors.  
     Several options are discussed in the following sections.
@@ -558,7 +424,7 @@ value="/WEB-INF/validator-rules.xml,
 <subsection name="3.4.1 Application-Specific Custom Tags">
 
     <p>
-    Beyond using the custom tags provided by the Struts library, it is easy
+    Beyond using the custom tags provided by Struts Taglib, it is easy
     to create tags that are specific to the application you are building, to
     assist in creating the user interface.  The MailReader example application included with
     Struts illustrates this principle by creating the following tags unique to
@@ -811,86 +677,22 @@ return(null);
 
 </subsection>
 
-    <subsection name="3.4.6 The Struts-EL Tag Library">
-    
+<subsection name="3.5 Presentation Frameworks">
     <p>
-    The <strong>Struts-EL</strong> tag library is a contributed library in
-    the Struts distribution.  
-    It represents an integration of the Struts tag library with the JavaServer 
-    Pages Standard Tag Library, or at least the "expression evaluation" 
-    engine that is used by the JSTL.
+        Struts Core is supported by many presentation frameworks,
+        and there are a great number of extensions to Struts Core
+        to help make creating view components even easier.
     </p>
 
-    <p>
-    The base Struts tag library contains tags which rely on the evaluation
-    of "rtexprvalue"s (runtime scriptlet expressions) to evaluate dynamic
-    attribute values.  For instance, to print a message from a properties
-    file based on a resource key, you would use the
-    <code>bean:write</code> tag, perhaps like this:</p>
-    <source>
-    <![CDATA[<bean:message key='<%= stringvar %>'/>]]>
-    </source>
-
-    <p>
-    This assumes that <code>stringvar</code> exists as a JSP scripting
-    variable.  If you're using the <strong>Struts-EL</strong> library, the
-    reference looks very similar, but slightly different, like this:</p>
-    <source>
-    <![CDATA[<bean-el:message key="${stringvar}"/>]]>
-    </source>
-
-    <p>
-    If you want to know how to properly use the <strong>Struts-EL</strong>
-    tag library, there are two important things you need to know:
-    </p>
-    
-    <ul>
-    
-        <li>
-        The Struts tag library
-        </li>
-
-        <li>
-        The JavaServer Pages Standard tag library
-        </li>
-
-    </ul>
-
-
-    <p>
-    Once you understand how to use these two, consider Struts tag
-    attribute values being evaluated the same way the JSTL tag attribute
-    values are.  
-    Past that, there is very little else you need to know to effectively use 
-    the <strong>Struts-EL</strong> tag library.
-    </p>
-    
-    <p>
-    Although the <strong>Struts-EL</strong> tag library is a direct "port"
-    of the tags from the Struts tag library, not all of the tags in the
-    Struts tag library were implemented in the <strong>Struts-EL</strong>
-    tag library.  
-    This was the case if it was clear that the functionality of a particular 
-    Struts tag could be entirely fulfilled by a tag in the JSTL.  
-    It is assumed that developers will want to use the 
-    <strong>Struts-EL</strong> tag library along with the JSTL, so it is 
-    reasonable to assume that they will use tags from the JSTL if they
-    fill their needs.
-    </p>
-
-    <p>
-        For more see, <a href="../faqs/struts-el.html">Struts-El Extension</a>
-        in the FAQ/HOWTO section.
-    </p>
-
-</subsection>
-
-<subsection>
     Some popular presentation layer frameworks include:
     <ul>
         <li>
             <a href="http://struts.apache.org/struts-taglib/">
-                JSP Custom Tags</a>
+                Struts Taglibs</a>
+       </li>
+        <li>
+            <a href="http://struts.sourceforge.net/struts-cocoon/">
+                Struts Cocoon</a>
        </li>
         <li>
             <a href="http://jakarta.apache.org/velocity/tools/struts/">
