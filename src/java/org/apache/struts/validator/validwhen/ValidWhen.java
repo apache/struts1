@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2003,2004 The Apache Software Foundation.
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.validator.Resources;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.util.MessageResources;
 
 /**
  * This class contains the validwhen validation that is used in the
@@ -44,6 +45,13 @@ public class ValidWhen {
      *  Commons Logging instance.
      */
     private static final Log log = LogFactory.getLog(ValidWhen.class);
+
+    /**
+     * The message resources for this package.
+     */
+    private static MessageResources sysmsgs =
+            MessageResources.getMessageResources(
+                    "org.apache.struts.validator.LocalStrings");
 
     /**
      * Returns true if <code>obj</code> is null or a String.
@@ -103,11 +111,15 @@ public class ValidWhen {
             value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
 
-        String test = field.getVarValue("test");
-        if (test == null) {
-            String msg = "ValidWhen Error 'test' parameter is missing for field ' " + field.getKey() + "'";
-            errors.add(field.getKey(), new ActionMessage(msg, false));
-            log.error(msg);
+        String test = null;
+        try {
+            test = Resources.getVarValue("test", field, validator, request, true);
+        } catch(IllegalArgumentException ex) {
+            String logErrorMsg = sysmsgs.getMessage("validation.failed",
+                              "validwhen", field.getProperty(), ex.toString());
+            log.error(logErrorMsg);
+            String userErrorMsg = sysmsgs.getMessage("system.error");
+            errors.add(field.getKey(), new ActionMessage(userErrorMsg, false));
             return false;
         }
 
@@ -116,10 +128,10 @@ public class ValidWhen {
         try {
             lexer = new ValidWhenLexer(new StringReader(test));
         } catch (Exception ex) {
-            String msg = "ValidWhenLexer Error for field ' " + field.getKey() + "' - " + ex;
-            errors.add(field.getKey(), new ActionMessage(msg + " - " + ex, false));
-            log.error(msg);
-            log.debug(msg, ex);
+            String logErrorMsg = "ValidWhenLexer Error for field ' " + field.getKey() + "' - " + ex;
+            log.error(logErrorMsg);
+            String userErrorMsg = sysmsgs.getMessage("system.error");
+            errors.add(field.getKey(), new ActionMessage(userErrorMsg, false));
             return false;
         }
 
@@ -128,10 +140,10 @@ public class ValidWhen {
         try {
             parser = new ValidWhenParser(lexer);
         } catch (Exception ex) {
-            String msg = "ValidWhenParser Error for field ' " + field.getKey() + "' - " + ex;
-            errors.add(field.getKey(), new ActionMessage(msg, false));
-            log.error(msg);
-            log.debug(msg, ex);
+            String logErrorMsg = "ValidWhenParser Error for field ' " + field.getKey() + "' - " + ex;
+            log.error(logErrorMsg);
+            String userErrorMsg = sysmsgs.getMessage("system.error");
+            errors.add(field.getKey(), new ActionMessage(userErrorMsg, false));
             return false;
         }
 
@@ -146,14 +158,10 @@ public class ValidWhen {
 
         } catch (Exception ex) {
 
-            // errors.add(
-            //    field.getKey(),
-            //    Resources.getActionMessage(validator, request, va, field));
-
-            String msg = "ValidWhen Error for field ' " + field.getKey() + "' - " + ex;
-            errors.add(field.getKey(), new ActionMessage(msg, false));
-            log.error(msg);
-            log.debug(msg, ex);
+            String logErrorMsg = "ValidWhen Error for field ' " + field.getKey() + "' - " + ex;
+            log.error(logErrorMsg);
+            String userErrorMsg = sysmsgs.getMessage("system.error");
+            errors.add(field.getKey(), new ActionMessage(userErrorMsg, false));
 
             return false;
         }

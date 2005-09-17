@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2000-2004 The Apache Software Foundation.
+ * Copyright 2000-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.validator.Arg;
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.Msg;
+import org.apache.commons.validator.Var;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
@@ -45,6 +48,18 @@ import org.apache.struts.config.ModuleConfig;
  * @since Struts 1.1
  */
 public class Resources {
+
+    /**
+     * The message resources for this package.
+     */
+    private static MessageResources sysmsgs =
+            MessageResources.getMessageResources(
+                    "org.apache.struts.validator.LocalStrings");
+
+    /**
+     * <p>Commons Logging instance.</p>
+     */
+    private static Log log = LogFactory.getLog(Resources.class);
 
     /**
      * Resources key the <code>ServletContext</code> is stored under.
@@ -126,6 +141,86 @@ public class Resources {
 
     }
 
+    /**
+     * Get the value of a variable.
+     * @param varName The variable name
+     * @param field the validator Field
+     * @param validator The Validator
+     * @param request the servlet request
+     * @param required Whether the variable is mandatory
+     * @return The variable's value
+     */
+    public static String getVarValue(String varName,
+                                     Field  field,
+                                     Validator validator,
+                                     HttpServletRequest request,
+                                     boolean required) {
+
+        Var var = field.getVar(varName);
+        if (var == null) {
+
+            String msg = sysmsgs.getMessage("variable.missing", varName);
+            if (required) {
+                throw new IllegalArgumentException(msg);
+            }
+            if (log.isDebugEnabled()) {
+                log.debug(field.getProperty() + ": " + msg);
+            }
+            return null;
+        }
+
+        ServletContext application = (ServletContext)validator
+                     .getParameterValue(SERVLET_CONTEXT_PARAM);
+        return getVarValue(var, application, request, required);
+    }
+
+    /**
+     * Get the value of a variable.
+     * @param var the validator variable
+     * @param application The ServletContext
+     * @param request the servlet request
+     * @param required Whether the variable is mandatory
+     * @return The variables values
+     */
+    public static String getVarValue(Var var,
+                                     ServletContext application,
+                                     HttpServletRequest request,
+                                     boolean required) {
+
+        String varName  = var.getName();
+        String varValue = var.getValue();
+
+        // Non-resource variable
+        if (!var.isResource()) {
+            return varValue;
+        }
+
+        // Get the message resources
+        String bundle = var.getBundle();
+        MessageResources messages = 
+                getMessageResources(application, request, bundle);
+
+        // Retrieve variable's value from message resources
+        Locale locale = RequestUtils.getUserLocale(request, null);
+        String value  = messages.getMessage(locale, varValue, null);
+
+        // Not found in message resources
+        if (value == null && required) {
+            throw new IllegalArgumentException(
+                   sysmsgs.getMessage("variable.resource.notfound",
+                              varName, varValue, bundle));
+        }
+
+        if (log.isDebugEnabled()) {
+            log.debug("Var=[" + varName  + "], " +
+                   "bundle=[" + bundle   + "], " +
+                      "key=[" + varValue + "], " +
+                    "value=[" + value    + "]");
+        }
+
+        return value;
+
+    }
 
     /**
      * Gets the <code>Locale</code> sensitive value based on the key passed in.

@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2000-2004 The Apache Software Foundation.
+ * Copyright 2000-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,8 +34,10 @@ import org.apache.commons.validator.UrlValidator;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.util.ValidatorUtils;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.MessageResources;
 
 /**
  * <p>
@@ -56,6 +58,14 @@ public class FieldChecks implements Serializable {
      *  Commons Logging instance.
      */
     private static final Log log = LogFactory.getLog(FieldChecks.class);
+
+    /**
+     * The message resources for this package.
+     */
+    private static MessageResources sysmsgs =
+            MessageResources.getMessageResources(
+                    "org.apache.struts.validator.LocalStrings");
+
 
     public static final String FIELD_TEST_NULL = "NULL";
     public static final String FIELD_TEST_NOTNULL = "NOTNULL";
@@ -217,11 +227,13 @@ public class FieldChecks implements Serializable {
                                        Validator validator,
                                        HttpServletRequest request) {
 
-        String mask = field.getVarValue("mask");
         String value = null;
         value = evaluateBean(bean, field);
 
         try {
+
+            String mask = Resources.getVarValue("mask", field, validator, request, true);
+
             if (!GenericValidator.isBlankOrNull(value)
                 && !GenericValidator.matchRegexp(value, mask)) {
 
@@ -234,9 +246,10 @@ public class FieldChecks implements Serializable {
                 return true;
             }
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            processFailure(errors, field, "mask", e);
+            return false;
         }
-        return true;
+
     }
 
 
@@ -736,8 +749,15 @@ public class FieldChecks implements Serializable {
         Object result = null;
         String value = null;
         value = evaluateBean(bean, field);
-        String datePattern = field.getVarValue("datePattern");
-        String datePatternStrict = field.getVarValue("datePatternStrict");
+        boolean isStrict = false;
+        String datePattern = Resources.getVarValue("datePattern", field, validator, request, false);
+        if (GenericValidator.isBlankOrNull(datePattern)) {
+            datePattern = Resources.getVarValue("datePatternStrict", field, validator, request, false);
+            if (!GenericValidator.isBlankOrNull(datePattern)) {
+                isStrict = true;
+            }
+        }
+
         Locale locale = RequestUtils.getUserLocale(request, null);
 
         if (GenericValidator.isBlankOrNull(value)) {
@@ -745,12 +765,10 @@ public class FieldChecks implements Serializable {
         }
 
         try {
-            if (datePattern != null && datePattern.length() > 0) {
-                result = GenericTypeValidator.formatDate(value, datePattern, false);
-            } else if (datePatternStrict != null && datePatternStrict.length() > 0) {
-                result = GenericTypeValidator.formatDate(value, datePatternStrict, true);
-            } else {
+            if (GenericValidator.isBlankOrNull(datePattern)) {
                 result = GenericTypeValidator.formatDate(value, locale);
+            } else {
+                result = GenericTypeValidator.formatDate(value, datePattern, isStrict);
             }
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -790,9 +808,15 @@ public class FieldChecks implements Serializable {
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
+                String minVar = Resources.getVarValue("min", field, validator, request, true);
+                String maxVar = Resources.getVarValue("max", field, validator, request, true);
                 long longValue = Long.parseLong(value);
-                long min = Long.parseLong(field.getVarValue("min"));
-                long max = Long.parseLong(field.getVarValue("max"));
+                long min = Long.parseLong(minVar);
+                long max = Long.parseLong(maxVar);
+                if (min > max) {
+                    throw new IllegalArgumentException(sysmsgs.getMessage(
+                                         "invalid.range", minVar, maxVar));
+                }
 
                 if (!GenericValidator.isInRange(longValue, min, max)) {
                     errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
@@ -800,7 +824,7 @@ public class FieldChecks implements Serializable {
                     return false;
                 }
             } catch (Exception e) {
-                errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+                processFailure(errors, field, "longRange", e);
                 return false;
             }
         }
@@ -835,9 +859,15 @@ public class FieldChecks implements Serializable {
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
+                String minVar = Resources.getVarValue("min", field, validator, request, true);
+                String maxVar = Resources.getVarValue("max", field, validator, request, true);
+                int min = Integer.parseInt(minVar);
+                int max = Integer.parseInt(maxVar);
                 int intValue = Integer.parseInt(value);
-                int min = Integer.parseInt(field.getVarValue("min"));
-                int max = Integer.parseInt(field.getVarValue("max"));
+                if (min > max) {
+                    throw new IllegalArgumentException(sysmsgs.getMessage(
+                                         "invalid.range", minVar, maxVar));
+                }
 
                 if (!GenericValidator.isInRange(intValue, min, max)) {
                     errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
@@ -845,7 +875,7 @@ public class FieldChecks implements Serializable {
                     return false;
                 }
             } catch (Exception e) {
-                errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+                processFailure(errors, field, "intRange", e);
                 return false;
             }
         }
@@ -879,9 +909,15 @@ public class FieldChecks implements Serializable {
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
+                String minVar = Resources.getVarValue("min", field, validator, request, true);
+                String maxVar = Resources.getVarValue("max", field, validator, request, true);
                 double doubleValue = Double.parseDouble(value);
-                double min = Double.parseDouble(field.getVarValue("min"));
-                double max = Double.parseDouble(field.getVarValue("max"));
+                double min = Double.parseDouble(minVar);
+                double max = Double.parseDouble(maxVar);
+                if (min > max) {
+                    throw new IllegalArgumentException(sysmsgs.getMessage(
+                                         "invalid.range", minVar, maxVar));
+                }
 
                 if (!GenericValidator.isInRange(doubleValue, min, max)) {
                     errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
@@ -889,7 +925,7 @@ public class FieldChecks implements Serializable {
                     return false;
                 }
             } catch (Exception e) {
-                errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+                processFailure(errors, field, "doubleRange", e);
                 return false;
             }
         }
@@ -923,9 +959,15 @@ public class FieldChecks implements Serializable {
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
+                String minVar = Resources.getVarValue("min", field, validator, request, true);
+                String maxVar = Resources.getVarValue("max", field, validator, request, true);
                 float floatValue = Float.parseFloat(value);
-                float min = Float.parseFloat(field.getVarValue("min"));
-                float max = Float.parseFloat(field.getVarValue("max"));
+                float min = Float.parseFloat(minVar);
+                float max = Float.parseFloat(maxVar);
+                if (min > max) {
+                    throw new IllegalArgumentException(sysmsgs.getMessage(
+                                         "invalid.range", minVar, maxVar));
+                }
 
                 if (!GenericValidator.isInRange(floatValue, min, max)) {
                     errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
@@ -933,7 +975,7 @@ public class FieldChecks implements Serializable {
                     return false;
                 }
             } catch (Exception e) {
-                errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+                processFailure(errors, field, "floatRange", e);
                 return false;
             }
         }
@@ -1039,7 +1081,8 @@ public class FieldChecks implements Serializable {
 
         if (value != null) {
             try {
-                int max = Integer.parseInt(field.getVarValue("maxlength"));
+                String maxVar = Resources.getVarValue("maxlength", field, validator, request, true);
+                int max = Integer.parseInt(maxVar);
 
                 if (!GenericValidator.maxLength(value, max)) {
                     errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
@@ -1047,7 +1090,7 @@ public class FieldChecks implements Serializable {
                     return false;
                 }
             } catch (Exception e) {
-                errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+                processFailure(errors, field, "floatRange", e);
                 return false;
             }
         }
@@ -1082,7 +1125,8 @@ public class FieldChecks implements Serializable {
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
-                int min = Integer.parseInt(field.getVarValue("minlength"));
+                String minVar = Resources.getVarValue("minlength", field, validator, request, true);
+                int min = Integer.parseInt(minVar);
 
                 if (!GenericValidator.minLength(value, min)) {
                     errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
@@ -1090,7 +1134,7 @@ public class FieldChecks implements Serializable {
                     return false;
                 }
             } catch (Exception e) {
-                errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
+                processFailure(errors, field, "minlength", e);
                 return false;
             }
         }
@@ -1142,18 +1186,22 @@ public class FieldChecks implements Serializable {
         }
 
         // Get the options and schemes Vars
-        boolean allowallschemes = "true".equalsIgnoreCase(field.getVarValue("allowallschemes"));
+        String allowallschemesVar = Resources.getVarValue("allowallschemes", field, validator, request, false);
+        boolean allowallschemes = "true".equalsIgnoreCase(allowallschemesVar);
         int options = allowallschemes ? UrlValidator.ALLOW_ALL_SCHEMES : 0;
 
-        if ("true".equalsIgnoreCase(field.getVarValue("allow2slashes"))) {
+        String allow2slashesVar = Resources.getVarValue("allow2slashes", field, validator, request, false);
+        if ("true".equalsIgnoreCase(allow2slashesVar)) {
           options += UrlValidator.ALLOW_2_SLASHES;
         }
 
-        if ("true".equalsIgnoreCase(field.getVarValue("nofragments"))) {
+        String nofragmentsVar = Resources.getVarValue("nofragments", field, validator, request, false);
+        if ("true".equalsIgnoreCase(nofragmentsVar)) {
           options += UrlValidator.NO_FRAGMENTS;
         }
 
-        String schemesVar = allowallschemes ? null : field.getVarValue("schemes");
+        String schemesVar = allowallschemes ? null : 
+                            Resources.getVarValue("schemes", field, validator, request, false);
 
         // No options or schemes - use GenericValidator as default
         if (options == 0 && schemesVar == null) {
@@ -1187,6 +1235,24 @@ public class FieldChecks implements Serializable {
             errors.add(field.getKey(), Resources.getActionMessage(validator, request, va, field));
             return false;
         }
+    }
+
+    /**
+     *  Process a validation failure.
+     */
+    private static void processFailure(ActionMessages errors,
+                                       Field field,
+                                       String validator,
+                                       Throwable t) {
+        // Log the error
+        String logErrorMsg = sysmsgs.getMessage("validation.failed",
+                              validator, field.getProperty(), t.toString());
+        log.error(logErrorMsg);
+
+        // Add general "system error" message to show to the user
+        String userErrorMsg = sysmsgs.getMessage("system.error");
+        errors.add(field.getKey(), new ActionMessage(userErrorMsg, false));
+
     }
 
     /**
