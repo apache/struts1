@@ -176,7 +176,7 @@
               To implement its Chain, the Request Processor uses the
               <a hhref="http://jakarta.apache.org/commons/chain/">
               Chain of Responsibility </a>component in the Jakarta Commons
-              provides a standard implementation of the CoR pattern,
+              which provides a standard implementation of the CoR pattern,
               along with various implementations of the Context and
               Command objects used by the Chain to service a request.
           </p>
@@ -196,7 +196,7 @@
               </li>
               <li>
                   <a href="http://www.infonoia.com/en/content.jsp?d=inf.05.06&amp;pr=1">
-                      Better Code with Struts 1t.3
+                      Better Code with Struts 1.3
                   </a>
               </li>
           </ul>
@@ -852,7 +852,7 @@
     <a name="xml"/>
     <subsection name="0.9 Extensible Markup Language (XML)" href="">
 
-    <p>The features provided by the Struts Core framework relies on a number of objects that are
+    <p>The features provided by the Struts Core framework rely on a number of objects that are
     usually deployed using a configuration file written in
     <a href="http://www.w3.org/XML/">Extensible Markup Language</a>. XML is also used to
     configure Java web applications; so, this is yet another familiar approach.

@@ -28,7 +28,7 @@
     <p>
         Features provided by Struts Core for direct use by view components
         include <a href="#resources">Message Resources</a>
-        for internationaling text and images,
+        for localizing text and images,
         and <a href="#formbeans">FormBeans</a> to provide for automatic
         population and validation.
     </p>
@@ -220,7 +220,7 @@ org.apache.struts.action.ActionServlet
     <strong>Note:</strong> While the examples given here use JSP and custom tags,
     the ActionForm beans and the other Struts controller components are
     View neutral. 
-    Struts can be used with Coccoon, Velocity Templates, XSLT, and any other
+    Struts can be used with Cocoon, Velocity Templates, XSLT, and any other
     presentation technology that can be rendered via a Java servlet. 
 </p>
 
