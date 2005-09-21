@@ -548,7 +548,6 @@
 
     </target>
 
-
 <!--
         Construct complete binary distribution
 -->
@@ -557,14 +556,27 @@
      description="Construct binary distribution"/>
 
 <!--
+        Construct the nightly build
+-->
+    <target name="nightly">
+      <tstamp>
+                 <format property="TODAY" pattern="yyyyMMdd" locale="en"/>
+      </tstamp>
+      <antcall target="release">
+        <param name="upload.file.base" value="${project.name}-SNAPSHOT-${TODAY}"/>
+      </antcall>
+    </target>
+
+
+<!--
         Construct complete release distributions
 -->
     <target name="release" depends="clean,dist"
     description="Construct release distribution">
-        <mkdir dir="${stage.bin.dir}/${upload.file.base}"/>
+        <mkdir dir="${stage.bin.dir}/${upload.file.base}-bin"/>
         <mkdir dir="${stage.lib.dir}/${upload.file.base}-lib"/>
         <mkdir dir="${stage.src.dir}/${upload.file.base}-src"/>
-        <copy todir="${stage.bin.dir}/${upload.file.base}">
+        <copy todir="${stage.bin.dir}/${upload.file.base}-bin">
             <fileset dir="${dist.home}"/>
         </copy>
         <copy todir="${stage.lib.dir}/${upload.file.base}-lib">
@@ -597,13 +609,13 @@
         <delete dir="${stage.src.dir}/${upload.file.base}-src/contrib/el"/>
 
         <mkdir dir="${upload.dir}"/>
-        <zip  zipfile="${upload.dir}/${upload.file.base}.zip"
+        <zip  zipfile="${upload.dir}/${upload.file.base}-bin.zip"
               basedir="${stage.bin.dir}"/>
         <zip  zipfile="${upload.dir}/${upload.file.base}-lib.zip"
               basedir="${stage.lib.dir}"/>
         <zip  zipfile="${upload.dir}/${upload.file.base}-src.zip"
               basedir="${stage.src.dir}"/>
-        <tar  tarfile="${upload.dir}/${upload.file.base}.tar"
+        <tar  tarfile="${upload.dir}/${upload.file.base}-bin.tar"
               basedir="${stage.bin.dir}"
              longfile="gnu"/>
         <tar  tarfile="${upload.dir}/${upload.file.base}-lib.tar"
@@ -612,8 +624,8 @@
         <tar  tarfile="${upload.dir}/${upload.file.base}-src.tar"
               basedir="${stage.src.dir}"
              longfile="gnu"/>
-        <gzip     src="${upload.dir}/${upload.file.base}.tar"
-              zipfile="${upload.dir}/${upload.file.base}.tar.gz"/>
+        <gzip     src="${upload.dir}/${upload.file.base}-bin.tar"
+              zipfile="${upload.dir}/${upload.file.base}-bin.tar.gz"/>
         <gzip     src="${upload.dir}/${upload.file.base}-lib.tar"
               zipfile="${upload.dir}/${upload.file.base}-lib.tar.gz"/>
         <gzip     src="${upload.dir}/${upload.file.base}-src.tar"
@@ -878,6 +890,16 @@
         <delete dir="${build.home}"/>
         <delete dir="${dist.home}"/>
         <delete dir="${release.home}"/>
+        <ant    dir="${basedir}/struts-examples/mailreader"
+             target="clean" inheritAll="false"/>
+    </target>
+
+<!--
+        Clean up build and distribution directories
+-->
+    <target name="clean-lib"
+     description="Clean the downloaded libs (you only run this if you also use 'download-dependencies' target)">
+        <delete dir="${libdir}"/>
     </target>
 
 <!--
