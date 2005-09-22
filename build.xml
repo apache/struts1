@@ -895,9 +895,9 @@
     </target>
 
 <!--
-        Clean up build and distribution directories
+        Clean up build and distribution directories, then remove the downloaded dependencies directory
 -->
-    <target name="clean-lib"
+    <target name="clean-lib" depends="clean"
      description="Clean the downloaded libs (you only run this if you also use 'download-dependencies' target)">
         <delete dir="${libdir}"/>
     </target>
