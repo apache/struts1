@@ -51,6 +51,13 @@
             </properties>
             <url>http://struts.apache.org/</url>
         </dependency>
+        <dependency>
+            <groupId>maven-taglib</groupId>
+            <artifactId>maven-taglib-plugin</artifactId>
+            <version>1.4</version>
+            <type>plugin</type>
+            <url>http://maven-taglib.sourceforge.net</url>
+        </dependency>
     </dependencies>
     <build>
         <sourceDirectory>src/java</sourceDirectory>
@@ -62,7 +69,38 @@
                 </includes>
                 <filtering>false</filtering>
             </resource>
+            <resource>
+                <directory>src/tld</directory>
+                <includes>
+                    <include>**/*.tld</include>
+                </includes>
+                <targetPath>META-INF/tlds</targetPath>
+            </resource>
         </resources>
     </build>
+    
+    <reports>
+        <!-- reports specific to tiles-->
+        <!--report>maven-cactus-plugin</report-->
+        <report>taglib</report>
+    
+        <report>maven-checkstyle-plugin</report>
+        <report>maven-changelog-plugin</report>
+        <report>maven-changes-plugin</report>
+        <report>maven-developer-activity-plugin</report>
+        <report>maven-faq-plugin</report>
+        <report>maven-file-activity-plugin</report>
+        <report>maven-javadoc-plugin</report>
+        <report>maven-jdepend-plugin</report>
+        <report>maven-junit-report-plugin</report>
+        <report>maven-jxr-plugin</report>
+        <!--report>maven-linkcheck-plugin</report-->
+        <report>maven-pmd-plugin</report>
+        <report>maven-simian-plugin</report>
+        <report>maven-tasklist-plugin</report>
+        <report>maven-jcoverage-plugin</report>
+        <!--report>maven-findbugs-plugin</report-->
+    </reports>
+    
 </project>
 

@@ -9,6 +9,9 @@
     <menu name="Tiles">
         <item href="installation.html" name="Installation"/>
     </menu>
+    <menu name="Taglib Reference">
+        <item name="Struts Tiles" href="tagreference-struts-tiles.html"/>    
+    </menu>
     <!--
     <menu name="Examples">
         <item href="examples/index.jsp" name="Home"/>
