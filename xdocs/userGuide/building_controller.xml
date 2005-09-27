@@ -18,8 +18,8 @@
     Now that we understand how to construct the Model and View components
     of your application, it is time to focus on the <code>Controller</code>
     components.  
-    Struts includes a servlet that implements the primary function of mapping 
-    a request URI to an <code>Action</code> class.  
+    Struts Core includes a servlet that implements the primary function of
+     mapping a request URI to an <code>Action</code> class.
     Therefore, your primary responsibilities related to the Controller are:
     </p>
 
@@ -48,16 +48,16 @@
     <p>
     To deploy your application, you will also need to:
     </p>
-    
+
     <ul>
 
         <li>
         Update the web application deployment descriptor file (in XML)
-        for your application to include the necessary Struts components.
+        for your application to reference the additional components.
         </li>
 
         <li>
-        Add the appropriate Struts components to your application.
+        Include the additional components with your application.
         </li>
         
     </ul>
@@ -99,7 +99,7 @@
     </ul>
     
     <p>
-    The Struts controller delegates most of this grunt work to the
+    Our controller delegates most of this grunt work to the
     <a href="#4_2_1_Request_Processor">Request Processor</a> and Action classes.
     </p>
     
@@ -112,7 +112,7 @@
     It then goes through an enumeration of all <code>init-param</code>
     elements, looking for those elements who's name starts with
     <code>config/</code>.  
-    For each of these elements, Struts loads the configuration file specified 
+    For each of these elements, Core loads the configuration file specified
     by the value of that <code>init-param</code>, and assigns a "prefix" 
     value to that module's ModuleConfig instance consisting of the piece
     of the <code>init-param</code> name following "config/".  
@@ -216,8 +216,8 @@
         </td>
         <td>
         If the mapping has a role associated with it, ensure the requesting 
-        user has the specified role.  
-        If they do not, raise an error and stop processing of the request.
+        client has the specified role.
+        If the client does not, raise an error and stop processing of the request.
         </td>
     </tr>
 
@@ -285,8 +285,8 @@
         <code>processActionPerform</code> 
         </td>
         <td>
-        This is the point at which your action's <code>perform</code> or 
-        <code>execute</code> method will be called.
+        This is the point at which your Action's <code>execute</code> method
+        will be called.
         </td>
     </tr>
 
@@ -296,7 +296,7 @@
         </td>
         <td>
         Finally, the process method of the RequestProcessor takes the 
-        ActionForward returned by your Action class, and uses to select the 
+        ActionForward returned by your Action class, and uses it to select the
         next resource (if any).
         Most often the ActionForward leads to the presentation page that
         renders the response.
@@ -315,10 +315,10 @@
     You will provide properties to hold the state of the form with getters 
     and setters to access them.  
     ActionForms can be stored in either the session (default) or request 
-    scopes.  
+    scope.
     If they're in the session it's important to implement the form's 
     <code>reset</code> method to initialize the form before each use.  
-    Struts sets the ActionForm's properties from the request parameters and 
+    Core sets the ActionForm's properties from the request parameters and
     sends the validated form to the appropriate Action's <code>execute</code> 
     method.
     </p>
@@ -342,9 +342,9 @@
     <li>
     The ActionForm object also offers a standard validation mechanism.
     If you override a "stub" method, and provide error messages in the
-    standard application resource, Struts will automatically validate the
+    standard application resource, Core will automatically validate the
     input from the form (using your method). 
-    See "<a href="./building_view.html#3_3_4_Automatic_Form_Validation">Automatic Form
+    See "<a href="building_view.html#3_3_4_Automatic_Form_Validation">Automatic Form
     Validation</a>" for details. Of course, you can also ignore the
     ActionForm validation and provide your own in the Action object.
     </li>
@@ -383,9 +383,9 @@
     For example, you might have a "customer" bean on your ActionForm, and 
     then refer to the property "customer.name" in your presentation page.
     This would correspond to the methods <code>customer.getName()</code> and
-    <code>customer.setName(string Name)</code> on your customer bean. 
-    See the Tag Library Developer Guides for more about using nested syntax 
-    with the Struts JSP tags.
+    <code>customer.setName(String Name)</code> on your customer bean.
+    See the Apache Struts Taglib Developer Guides for more about
+    using the nested syntax.
     </li>
     
     <li>
@@ -407,7 +407,7 @@
 
     <p>
     Maintaining a separate concrete ActionForm class for each form in your
-    Struts application is time-consuming.
+    Struts Core application is time-consuming.
     It is particularly frustrating when all the ActionForm does is gather
     and validate simple properties that are passed along to a business
     JavaBean.
@@ -416,7 +416,7 @@
     This bottleneck can be alleviated through the use of DynaActionForm classes.
     Instead of creating a new ActionForm subclass and new get/set methods for 
     each of your bean's properties, you can list its properties, type, and 
-    defaults in the Struts configuration file.
+    defaults in the Struts Core configuration file.
     </p>
     
     <p>
@@ -520,7 +520,7 @@
     </p>
     
     <p>
-    In JSP pages using the original Struts custom tags, attributes of
+    In JSP pages using the Apache Struts Taglib, attributes of
     <code>DynaActionForm</code> objects can be referenced just like ordinary
     <code>ActionForm</code> objects. Wherever a Struts tag refers to a
     "property", the tags will automatically use the DynaActionForm properties
@@ -531,8 +531,8 @@
     </p>
 
     <p>
-    If you are using the Struts JSTL EL taglib, the references are different,
-    however.
+    If you are using the Apache Struts EL taglib for JSTL, the references are
+    different, however.
     Only properties of ordinary <code>ActionForm</code> objects can be directly
     accessed through the JSTL expression language syntax.  
     The <code>DynaActionForm</code> properties must be accessed through a
@@ -575,7 +575,7 @@
     DynaActionForms cannot be instantiated using a no-argument constructor.
     In order to simulate the extra properties,
     there is a lot of machinery involved in their construction.
-    You must rely on Struts to instantiate a DynaActionForm for you,
+    You must rely on Struts Core to instantiate a DynaActionForm for you,
     via the ActionMapping.
     </p>
 
@@ -613,15 +613,15 @@
     <p>
     The DynaActionForm classes offer the ability to create ActionForm beans 
     at initialization time, based on a list of properties enumerated in the 
-    Struts configuration file. 
+    Struts Core configuration file.
     However, many HTML forms are generated dynamically at request time. 
     Since the properties of these forms' ActionForm beans are not all known 
     ahead of time, we need a new approach.
     </p>
     
     <p>
-    Struts allows you to make one or more of your ActionForm's properties' 
-    values a Map instead of a traditional atomic object. 
+    Struts Core allows you to make one or more of your ActionForm's
+    properties' values a Map instead of a traditional atomic object.
     You can then store the data from your form's dynamic fields in that Map. 
     Here is an example of a map-backed ActionForm class:
     </p>
@@ -655,9 +655,9 @@
         </li>
 
         <li>
-        Struts should look for get/set methods that take a String key 
+        Struts Core should look for get/set methods that take a String key
         parameter to find the correct sub-property value. 
-        Struts will, of course, use the <code>keyname</code> value from the 
+        Core will, of course, use the <code>keyname</code> value from the
         parentheses when it calls the get/set methods.
         </li>
     
@@ -720,8 +720,8 @@
     <code>listname[index]</code>. 
     The braces in the bean property name indicate that the bean property named 
     <code>listname</code> is indexed (probably backed by a List), and that 
-    Struts should look for get/set methods that take an index parameter in 
-    order to find the correct sub-property value.
+    Core should look for get/set methods that take an index parameter
+    in order to find the correct sub-property value.
     </p>
 
     <p>
@@ -729,7 +729,8 @@
         available to conventional or DynaActionForms.
         You might have difficulty referencing <a href="../faqs/indexedprops.html">indexed or mapped properties</a>
         using a map-backed ActionForm.
-        The <code>validwhen</code> validator (since Struts 1.2.1) also does not support map-backed ActionForms.
+        The <code>validwhen</code> validator (since Apache Struts 1.2.1) also
+        does not support map-backed ActionForms.
     </p>
 
 </subsection>
@@ -755,7 +756,7 @@ throws Exception;
 </source>
 
     <p>
-    Since the majority of Struts projects are focused on building web 
+    Since the majority of teams using Apache Struts are focused on building web
     applications, most projects will only use the "HttpServletRequest" 
     version.
     A non-HTTP execute() method has been provided for applications that are 
@@ -822,7 +823,7 @@ throws Exception;
     </ul>
 
     <p>
-    In Struts 1.0, Actions called a <code>perform</code> method instead of 
+    In Apache Struts 1.0, Actions called a <code>perform</code> method instead of
     the now-preferred <code>execute</code> method. 
     These methods use the same parameters and differ only in which exceptions 
     they throw. 
@@ -830,15 +831,17 @@ throws Exception;
     and <code>IOException</code>. 
     The new <code>execute</code> method simply throws <code>Exception</code>. 
     The change was to facilitate the Declarative Exception handling feature 
-    introduced in Struts 1.1.
+    introduced in Apache Struts 1.1.
     </p>
     
     <p>
-    The <code>perform</code> method may still be used in Struts 1.1 but is 
-    deprecated.
-    The Struts 1.1 method simply calls the new <code>execute</code> method 
-    and wraps any <code>Exception</code> thrown as a 
+    The <code>perform</code> method may still be used in Apache Struts 1.1
+    but is deprecated.
+    The Apache Struts 1.1 method simply calls the new <code>execute</code>
+    method and wraps any <code>Exception</code> thrown as a
     <code>ServletException</code>.
+    The deprecated <code>perform</code> method was removed
+    in Apache Struts 1.2.
     </p>
 
    </subsection>
@@ -854,7 +857,7 @@ throws Exception;
     
         <li>
         <strong>Write code for a multi-threaded environment</strong> -
-        The controller servlet creates <strong>only one instance of your
+        Our controller servlet creates <strong>only one instance of your
         <code>Action</code> class</strong>, and uses this one instance to service
         all requests.  
         Thus, you need to write thread-safe <code>Action</code> classes.
@@ -905,7 +908,7 @@ throws Exception;
         Now is your chance to deal with these application errors - in the 
         <code>Action</code> class.  
         If your application specific code throws expections you should catch these 
-        exceptions  in your Action class, log them in your application's log 
+        exceptions  in your Action class, log them in your application's log
         (<code>servlet.log("Error message", exception)</code>) and return the 
         appropriate ActionForward.
         </li>
@@ -925,23 +928,12 @@ throws Exception;
     to another conceptual layer; 
     otherwise, you may be left with an inflexible application which can only 
     be accessed in a web-application environment.
-    Struts should be viewed as simply the <strong>foundation</strong> for implementing 
-    MVC in your applications. 
-    Struts provides you with a useful control layer, but it is not a fully 
+    Struts Core should be viewed as simply the <strong>foundation</strong>
+    for implementing MVC in your applications.
+    Core provides a useful control layer, but it is not a fully
     featured platform for building MVC applications, soup to nuts.
     </p>
 
-    <p>
-    The MailReader example application included with Struts stretches this design
-    principle somewhat, because the business logic itself is embedded in the
-    <code>Action</code> classes. 
-    This should be considered something of a bug in the design of the example,
-    rather than an intrinsic feature of the Struts architecture, or an 
-    approach to be emulated.
-    In order to demonstrate, in simple terms, the different ways Struts can be
-    used, the MailReader application does not always follow best practices.
-    </p>
-      
 </subsection>
    
 <subsection name="4.5 Exception Handler">
@@ -953,7 +945,7 @@ throws Exception;
     <code>org.apache.struts.action.ExceptionHandler</code> and override the 
     <code>execute</code> method.
     Your <code>execute</code> method should process the Exception and return 
-    an ActionForward object to tell Struts where to forward to next.  
+    an ActionForward object to tell Core where to forward to next.
     Then you configure your handler in struts-config.xml like this:
     </p>
     
@@ -1125,7 +1117,7 @@ throws Exception;
     
     <p>
     PlugIns are configured using &lt;plug-in&gt; elements within the
-    Struts configuration file. 
+    Struts Core configuration file.
     See <a href="configuration.html#5_2_3_PlugIn_Configuration">PlugIn Configuration</a> 
     for details.
     </p>
@@ -1135,7 +1127,7 @@ throws Exception;
 <subsection name="4.7 The ActionMapping Implementation">
 
     <p>
-    In order to operate successfully, the Struts controller servlet needs
+    In order to operate successfully, our controller servlet needs
     to know several things about how each request URI should be mapped to an
     appropriate <code>Action</code> class.  
     The required knowledge has been encapsulated in a Java class named 
@@ -1191,9 +1183,11 @@ throws Exception;
     It would be possible (but tedious) to write a small Java class that simply
     instantiated new <code>ActionMapping</code> instances, and called all of
     the appropriate setter methods.  
-    To make this process easier, Struts uses the Jakarta Commons Digester component
-    to parse an XML-based description of the desired mappings and create the 
-    appropriate objects initialized to the appropriate default values.
+    To make this process easier,
+    Struts Core uses the Jakarta Commons Digester component
+    to parse an XML-based description of the desired mappings
+    and create the appropriate objects initialized
+    to the appropriate default values.
     See the <a href="http://jakarta.apache.org/commons">Jakarta Commons 
     website</a> for more information about the Digester.
     </p>
@@ -1204,14 +1198,14 @@ throws Exception;
     your application. 
     This format of this document is described by the Document Type Definition
     (DTD) maintained at
-    <a href="http://struts.apache.org/dtds/struts-config_1_2.dtd">
-    http://struts.apache.org/dtds/struts-config_1_2.dtd</a>.
+    <a href="http://struts.apache.org/dtds/struts-config_1_3.dtd">
+    http://struts.apache.org/dtds/struts-config_1_3.dtd</a>.
     This chapter covers the configuration elements that you will typically 
     write as part of developing your application.
     There are several other elements that can be placed in the 
     struts-config file to customize your application. 
     See "<a href="configuration.html">Configuring Applications</a>" for more 
-    about the other elements in the Struts configuration file. 
+    about the other elements in the Struts Core configuration file.
     </p>
 
     <p>
@@ -1346,10 +1340,10 @@ throws Exception;
     <p>
     For a complete description of the elements that can be used with the 
     <code>action</code> element, see the
-    <a href="http://struts.apache.org/dtds/struts-config_1_2.dtd">
-    Struts Configuration DTD</a> and the
-    <a href="../struts-core/apidocs/org/apache/struts/action/ActionMapping.html">ActionMapping 
-    documentation</a>.
+    <a href="http://struts.apache.org/dtds/struts-config_1_3.dtd">
+    Apache Struts Core Configuration DTD</a> and the
+    <a href="../struts-core/apidocs/org/apache/struts/action/ActionMapping.html">
+    ActionMapping documentation</a>.
     </p>
 
 </subsection>
@@ -1451,7 +1445,7 @@ throws Exception;
     </p>
 
     <p>
-    The Struts configuration file includes several other elements that you 
+    The Struts Core configuration file includes several other elements that you
     can use to customize your application. 
     See "<a href="configuration.html">Configuring Applications</a>" for details.
     </p>
@@ -1482,9 +1476,10 @@ throws Exception;
 <subsection name="4.10 Using Wildcards in ActionMappings">
 
     <p>
-    [Since Struts 1.2.0] As a Struts application grows in size, so will the number of action
-    mappings. Wildcards can be used to combine similiar mappings into one
-    more generic mapping.  
+    [Since Apache Struts 1.2.0] As an application grows in size,
+    so will the number of action mappings.
+    Wildcards can be used to combine similiar mappings
+    into one more generic mapping.
     </p>
     <p>
     The best way to explain wildcards is to show an example and walk through 
@@ -1518,13 +1513,13 @@ throws Exception;
     the URI matched by the wildcard will then be substituted into various 
     attributes of the action mapping and its action forwards replacing 
     <code>{1}</code>.
-    For the rest of the request, Struts will see the action mapping and its 
+    For the rest of the request, Core will see the action mapping and its
     action forwards containing the new values.
     </p>
    
     <p>
     Mappings are matched against the request in the order they appear in
-    the Struts configuration file. If more than one pattern matches the
+    the Struts Core configuration file. If more than one pattern matches the
     last one wins, so less specific patterns must appear before more
     specific ones. However, if the request URL can be matched against
     a path without any wildcards in it, no wildcard matching is performed
@@ -1607,7 +1602,7 @@ throws Exception;
 
 <subsection name="4.11 Commons Logging Interface">
     <p>
-    Struts doesn't configure logging itself -- it's all done by
+    Struts Core doesn't configure logging itself -- it's all done by
     <a href="http://jakarta.apache.org/commons/">commons-logging</a> 
     under the covers. 
     The default algorithm is a search:
@@ -1642,10 +1637,10 @@ throws Exception;
     </p>
     
     <p>
-    Because Struts uses commons-logging and, therefore, includes the necessary 
-    JAR files for <strong>you</strong> to use commons-logging, you've probably had the 
-    occasional fleeting thought, <em>"Should I use
-    commons-logging?"</em> 
+    Because Struts Core uses commons-logging and, therefore,
+    includes the necessary JAR files,
+    you've probably had the occasional fleeting thought,
+    <em>"Should I use commons-logging?"</em>
     The answer (surprise!) depends on the requirements for your particular 
     project. 
     If one of your requirements is the ability to easily change logging 
@@ -1694,7 +1689,7 @@ public class Foo {
     </p>
 
     <p>
-    For examples of using logging in Struts classes, see the
+    For examples of using logging in Struts Core classes, see the
     Action classes in the Struts MailReader example application.
     </p>
 

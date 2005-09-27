@@ -94,12 +94,12 @@
 
     <ul>
         <li>
-            The <a href="./faqs/kickstart.html">Kickstart FAQ</a>
+            The <a href="faqs/kickstart.html">Kickstart FAQ</a>
             answers the most common non-technical questions
             people first ask about Struts Core.
         </li>
         <li>
-            The <a href="./faqs/newbie.html">Struts Core Newbie FAQ</a>
+            The <a href="faqs/newbie.html">Struts Core Newbie FAQ</a>
             answers the most common technical questions asked by first-timer
             Struts Core developers.
         </li>

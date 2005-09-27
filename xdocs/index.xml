@@ -40,7 +40,7 @@
         <a href="http://db.apache.org/ojb/">Object Relational Bridge</a>.
         For the <strong>View</strong>, Core works well with
         <a href="http://java.sun.com/products/jsp/">JavaServer Pages</a>,
-        including <a href="./faqs/kickstart.html#jsf">JSTL and JSF</a>,
+        including <a href="faqs/kickstart.html#jsf">JSTL and JSF</a>,
         as well as
         <a href="http://jakarta.apache.org/velocity/tools/struts/">Velocity Templates</a>,
         <a href="http://stxx.sourceforge.net/">XSLT</a>,
@@ -119,8 +119,8 @@
     ]]></code></pre>
 
     <p>
-        There are several other resources you can specify in an Apache
-        Struts configuration file.
+        There are several other resources you can specify in an Struts
+        Core configuration file.
         You can specify validations for the ActionForms in an XML descriptor,
         using the <a href="userGuide/dev_validator.html">Struts Validator</a>.
         A standard extension, <a href="userGuide/dev_tiles.html">Tiles</a>,
@@ -135,7 +135,7 @@
         <code>set-property</code> feature.
         This is one reason why there are so many
         <a href="http://wiki.apache.org/struts/StrutsResources/">contributor
-        extensions</a> for Struts.
+        extensions</a> for Struts Core.
         Core provides a base framework, but you can still write <b>your</b>
         application <b>your</b> way.
      </p>
@@ -161,7 +161,7 @@
         But, if you are writing a more complicated application,
         with dozens of pages,
         that need to be maintained over time, then Struts Core can help.
-        For more about whether Model 1 or or MVC/Model 2 is right for you, see
+        For more about whether Model 1 or MVC/Model 2 is right for you, see
         <a href="http://www.javaworld.com/javaworld/jw-12-1999/jw-12-ssj-jspmvc.html">
         Understanding JavaServer Pages Model 2 architecture</a> and
         <a href="http://www.scioworks.net/devnews/articles/struts_adoption_issues/index.html">

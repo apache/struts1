@@ -96,39 +96,39 @@
                     <li>
                         Move to Commons Resources (if available)
                     </li>
-		            <li>
+                    <li>
                         (TODO) Add a Ant-style properties file to make
                         variable substitutions within the XML elements,
                         as found in iBATIS and Spring.
                     </li>
-		            <li>
+                    <li>
                         (Pending) Bundle subproject GA releases into
                         Linux-style  distributions
                         (Struts Classic 1.3.0 = (Core 1.3.x + Taglibs 1.3.x +
                         Extras 1.3.x))
                     </li>
                 </ul>
-		        <p>
-		            Experimental members (TODO)
-		        </p>
-		        <ul>
-		            <li>
+                <p>
+                    Experimental members (TODO)
+                </p>
+                <ul>
+                    <li>
                         ActionCommand - A <i>Commons Chain</i>
                         Command<i>-like</i> interface with one method:
                         <code>void Execute(ActionContext context)</code>
                     </li>
-		            <li>
+                    <li>
                         ActionContext - A <i>Commons Chain Context</i> that
                         implements the Action class logical API (same
                         signatures).
                     </li>
-		            <li>
+                    <li>
                         ViewContext - A <i>Commons Chain Context</i> that
                         implements the combined
                         <a href="http://jakarta.apache.org/velocity/tools/struts/">
                         VelocityStruts</a> logical API (same signatures).
                     </li>
-		        </ul>
+                </ul>
             </subsection>
 
             <a name="struts_1_4_x"/>
@@ -138,50 +138,50 @@
                         Consider adding support for Portlets by specifying an
                         alternate Request Processor catalog.
                     </li>
-		            <li>
+                    <li>
                         Consider combining DTDs.
                     </li>
-		            <li>
+                    <li>
                         Consider adding catalog element.
                     </li>
-		            <li>
+                    <li>
                         Consider refactoring for Spring.
                     </li>
                 </ul>
             </subsection>
 
             <a name="struts_1_5_x"/>
-	        <subsection  name="Struts Classic 1.5.x">
-		        <ul>
-    		        <li>
+            <subsection  name="Struts Classic 1.5.x">
+               <ul>
+                    <li>
                         Consider a "smart" action type: executes Action class
                         or ActionCommand interface, as given, in either
                         request or session scope.
                     </li>
-	    	        <li>
+                    <li>
                         Consider a "populate" method on ActionForm.
                     </li>
-		            <li>
+                    <li>
                         Consider a "FormContext" mechanism.
                     </li>
-		        </ul>
-	        </subsection>
+                </ul>
+            </subsection>
 
             <a name="struts_1_6_x"/>
             <subsection name="Struts Classic 1.6.x">
-		        <ul>
-    		        <li>
+               <ul>
+                   <li>
                         Consider multiple controllers.
                     </li>
-	    	        <li>
+                   <li>
                         Consider an alternate configuration file.
                     </li>
                     <li>
                         Consider "Nested" or "hierarchical" and
                         locale-sensitive modules
                     </li>
-		        </ul>
-	        </subsection>
+               </ul>
+            </subsection>
 
             <a name="struts_1_x_x"/>
             <subsection name="Other potential enhancements for the Classic series">
@@ -218,7 +218,7 @@
                     </li>
                 </ul>
             </subsection>
-	</section>
+        </section>
         <section>
           <p class="right">Back:
           <a href="roadmap.html">Roadmap</a></p>

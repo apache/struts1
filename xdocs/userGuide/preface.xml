@@ -174,7 +174,7 @@
 
           <p>
               To implement its Chain, the Request Processor uses the
-              <a hhref="http://jakarta.apache.org/commons/chain/">
+              <a href="http://jakarta.apache.org/commons/chain/">
               Chain of Responsibility </a>component in the Jakarta Commons
               which provides a standard implementation of the CoR pattern,
               along with various implementations of the Context and
