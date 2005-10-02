@@ -1,5 +1,5 @@
 <%@ page import="java.util.Iterator"%>
-<%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 <%-- Layout component 
   Render a list of tiles in a vertical column
@@ -44,7 +44,7 @@ while( i.hasNext() )
   Use struts <iterate> tag. Work on jsp1.2 and greater web container.
  --%>
 <%-- 
-<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <logic:iterate id="name" name="list" type="java.lang.String">
   <tiles:insert beanName="name" flush="false" />
 <br>

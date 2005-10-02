@@ -1,4 +1,4 @@
 <%@ page language="java" %>
-<%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 <tiles:insert definition="examples.tabs.page" flush="true" />

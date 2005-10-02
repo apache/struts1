@@ -1,4 +1,4 @@
-<%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 <%-- Test tiles and struts action integration (require factory) 
 --%>

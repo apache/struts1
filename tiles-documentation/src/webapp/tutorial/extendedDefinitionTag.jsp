@@ -1,4 +1,4 @@
-<%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 <tiles:definition id="definitionName" extends="myFirstDefinition" >
   <tiles:put name="title"  value="My first extended definition tag page" />

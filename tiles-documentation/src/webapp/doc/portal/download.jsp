@@ -90,4 +90,4 @@
 	  <EM><STRONG>Tiles </STRONG></EM>is also distributed with<STRONG> <EM>Struts 1.1 . 
       <BR>   
       </EM></STRONG>You can download it by downloading <A 
-      href="http://jakarta.apache.org/struts"><STRONG><EM>Struts</EM></STRONG></A><STRONG><EM>.</EM></STRONG></FONT></FONT></DIV></DIV></td></tr></table>
+      href="http://struts.apache.org"><STRONG><EM>Struts</EM></STRONG></A><STRONG><EM>.</EM></STRONG></FONT></FONT></DIV></DIV></td></tr></table>

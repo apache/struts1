@@ -20,6 +20,14 @@
               </properties>
       </dependency>
 
+      <dependency>
+        <groupId>struts</groupId>
+        <artifactId>struts-taglib</artifactId>
+        <version>1.3.0-dev</version>
+              <properties>
+                <war.bundle>true</war.bundle>
+              </properties>
+      </dependency>
 
   </dependencies>
 

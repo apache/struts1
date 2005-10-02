@@ -1,4 +1,4 @@
-<%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 <%-- Layout Tiles 
   This layout create a html page with <header> and <body> tags. It render

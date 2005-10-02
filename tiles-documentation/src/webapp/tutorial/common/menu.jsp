@@ -1,4 +1,4 @@
-<%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 <tiles:insert page="/layout/vboxLayout.jsp" flush="true" >
   <tiles:putList name="componentsList" >

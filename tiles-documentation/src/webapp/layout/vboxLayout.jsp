@@ -1,5 +1,5 @@
 <%@ page import="java.util.Iterator"%>
-<%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 <%-- Layout component 
   Render a list on severals columns
