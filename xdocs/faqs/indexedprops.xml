@@ -96,7 +96,7 @@ import org.apache.struts.action.ActionForm;
 public class StringBean2 extends ActionForm {
     private String strAry[] = { "String 0", "String 1", "String 2", "String 3", "String 4" };
 
-    public java.util.List getStringIndexed(int index) { 
+    public java.util.List getStringIndexed() { 
         return java.util.Arrays.asList(strAry);
     }
 }</pre>
