@@ -24,6 +24,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Enumeration;
@@ -759,7 +760,10 @@ public class ActionServlet extends HttpServlet {
         InputStream input = null;
         try {
             InputSource is = new InputSource(url.toExternalForm());
-            input = url.openStream();
+            URLConnection conn = url.openConnection();
+            conn.setUseCaches(false);
+            conn.connect();
+            input = conn.getInputStream();
             is.setByteStream(input);
             digester.parse(is);
 

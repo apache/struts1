@@ -21,6 +21,7 @@ package org.apache.struts.plugins;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLConnection;
 
 import javax.servlet.ServletException;
 
@@ -130,7 +131,10 @@ public class DigestingPlugIn implements PlugIn {
                       + this.configPath
                       + ", source: "
                       + this.configSource + "]");
-            obj = digester.parse(configURL.openStream());
+            URLConnection conn = configURL.openConnection();
+            conn.setUseCaches(false);
+            conn.connect();
+            obj = digester.parse(conn.getInputStream());
 
         } catch (IOException e) {
             // TODO Internationalize msg
