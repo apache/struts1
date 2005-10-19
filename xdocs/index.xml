@@ -26,8 +26,11 @@
         application, based on published standards and proven design patterns.
     </p>
 
+<subsection name="Struts Core in a Nutshell">
+<a name="nutshell"/>
+
     <p>
-        Struts Core provides its own <strong>Controller</strong> component and
+        Struts Core provides its own web <strong>Controller</strong> component and
         integrates with other technologies to provide the Model and the View.
         For the <strong>Model</strong>, Core can interact
         with standard data access technologies,
@@ -46,9 +49,28 @@
         <a href="http://stxx.sourceforge.net/">XSLT</a>,
         and other presentation systems.
     </p>
+    
+    <p>
+    	The Struts Core Controller acts as a bridge between the application's 
+    	Model and the web View. When a request is received, the Controller invokes 
+    	the Struts <strong>Action</strong> class. The Action consults with the Model 
+    	(or, preferably, a <strong>Facade</strong> representing your Model) 
+    	to examine or update the application's state.
+    	Struts Core provides an <strong>ActionForm</strong> class to help transfer 
+    	data between Model and View.     	
+    </p>
+    
+    <p>
+    	Most often, the Model is represented as a set of <strong>JavaBeans</strong>. 
+    	Typically, developers will use the Commons <strong>BeanUtils</strong> to 
+    	transfer data between ActionForms and the Model objects (or a Facade). 
+    	Preferably, the Model will do the "heavy lifting", 
+    	and the Action will act as a "traffic cop" or adapter.
+    </p>
+</subsection>
 
-<subsection name="Struts Core in a Nutshell">
-<a name="nutshell"/>
+<subsection name="Struts Config in a Nutshell">
+<a name="nutshell-config"/>
 
     <p>
         A
