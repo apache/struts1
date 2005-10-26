@@ -101,6 +101,9 @@
                   Arbitrary configuration properties
               </li>
               <li>
+                  Catalog and Command Elements
+              </li>
+              <li>
                   Enhanced Global Exception Handlers
               </li>
               <li>
@@ -166,7 +169,23 @@
               provides similar logic for finding a globally mapped exception handler for the given exception class
               or any of its superclasses.
           </p>
+          
+          
+          <h4> Catalog and Command elements</h4>          
+	  <p>
+	      Available for both the Controller and any Action Mapping
+	  </p>
+	  <p>
+              catalog - The name of a commons-chain catalog in which to look up a command 
+              to be executed as part of servicing this request. Only meaningful if "command" 
+              is also specified.
+          </p>
+          <p>
+              command - The name of a commons-chain command which should be looked up and 
+              executed as part of servicing this request.
+          </p>
 
+          
           <h4>Extends attribute</h4>
           <p>
               In the Struts configuration file,

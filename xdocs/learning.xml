@@ -143,7 +143,8 @@
             Blank - A simple template for starting new Struts applications.
         </li>
         <li>
-            <strong>MailReader</strong> - The original Struts example
+            <a href="http://opensource2.atlassian.com/confluence/oss/display/STRUTS/MailReader">
+            MailReader</a> - The original Struts example
             application. <em>Try me first!</em>
         </li>
         <li>
