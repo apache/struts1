@@ -15,7 +15,7 @@
 <section name="Learning About Struts Core">
 
     <p>
-        The <strong>official documentation</strong> for the framework is
+        The <strong>official documentation</strong> for Struts Core is
         provided online and may be built locally from the source code
         distribution.
         To build the documentation, change to the subproject's
@@ -27,24 +27,16 @@
     </p>
 
     <p>
-        The documentation bundle includes:
+        The Core documentation includes a <a href="userGuide/index.html">User Guide</a>,
+	<a href="./faqs/index.html">FAQ and Howto Guides</a>, 
+	along with this top-level introduction.
     </p>
-
-    <ul>
-        <li>
-            <a href="userGuide/index.html">User Guide</a>,
-        </li>
-        <li>
-            <a href="javadoc.html">Comprehensive Javadocs</a>,
-        </li>
-        <li>
-            <a href="./faqs/index.html">FAQ and Howto Guides</a>,
-        </li>
-
-        <li>
-            and everything else you find here.
-        </li>
-    </ul>
+    
+    <p>
+    	The <a href="apidocs/index.html">JavaDocs</a> 
+    	and <a href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/">source code</a> 
+    	can also be browsed.
+    </p>
 
  <a name="Versions"/>
  <subsection name="Documentation Versions">
@@ -62,6 +54,10 @@
         <strong>be sure to refer to the documentation for the version
         you are actually using</strong>.
     </p>
+</subsection>
+
+ <a name="userGuide"/>
+ <subsection name="User Guide">
 
     <p>
         The concise Struts Core <a href="userGuide/index.html"><strong>
@@ -73,21 +69,12 @@
         the User Guide also includes detailed installation instructions
         and release notes for each version of Struts Core.
     </p>
+</subsection>
+
+ <a name="FAQS"/>
+ <subsection name="FAQS and HowTos">
 
     <p>
-        For more detail about a specific class or package,
-        the Struts Core <a href="api/index.html"><strong>
-        Javadocs</strong></a> are <strong>surprisingly comprehensive and
-        carefully maintained</strong>.
-        It is <em>strongly</em> recommended that you refer to the
-        <a href="api/index.html"> Javadoc</a> for each class
-        as you begin to use it.
-        This will help ensure that important features and options are not
-        overlooked.
-        <em>What you don't know, can't help you.</em>
-    </p>
-
-    <p id="faqs">
         The Struts Core <strong>FAQs</strong> are designed to fill in
         any gaps left by the Javadocs or the User Guides.
     </p>
@@ -105,7 +92,7 @@
         </li>
     </ul>
 
-    <p id="howtos">
+    <p>
         The <strong>Howto Guides</strong> are designed to help you get started
         with some of the optional extensions and components available
         for Struts Core.
@@ -127,6 +114,22 @@
         For the complete, buildable source code to the entire
         Struts Core product,
         see the "src" folder in your <strong>source distribution</strong>.
+    </p>
+</subsection>
+
+ <a name="JavaDocs"/>
+ <subsection name="JavaDocs">
+    <p>
+        For more detail about a specific class or package,
+        the Struts Core <a href="apidocs/index.html"><strong>
+        Javadocs</strong></a> are <strong>surprisingly comprehensive and
+        carefully maintained</strong>.
+        It is <em>strongly</em> recommended that you refer to the
+        <a href="apidocs/index.html">JavaDocs</a> for each class
+        as you begin to use it.
+        This will help ensure that important features and options are not
+        overlooked.
+        <em>What you don't know, can't help you.</em>
     </p>
 </subsection>
 
@@ -238,7 +241,6 @@
         The <a href="roadmap.html"><strong>Roadmap</strong></a> page outlines
         our tentative plans for future development.
     </p>
-
 </subsection>
 
 <a name="resources"/>
@@ -272,7 +274,6 @@
         </li>
 
     </ul>
-
 </subsection>
     
 <a name="books"/>
@@ -284,7 +285,6 @@
        A current list of books about Struts subprojects is maintained as a
        <a href="http://wiki.apache.org/struts/StrutsBooks">wiki page</a>.
        </p>
-
 </subsection>
 </section>
 

@@ -17,6 +17,9 @@
     <p>
         Struts Core provides the invisible underpinnings every
         professional web application needs to survive.
+    </p>
+    
+    <p>        
         Struts Core is a flexible control layer based on
         <a href="userGuide/preface.html">standard technologies</a> like Java
         Servlets, JavaBeans, ResourceBundles, and XML, as well as various
