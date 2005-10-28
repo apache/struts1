@@ -125,12 +125,12 @@ public class TestActionConfigMatcher extends TestMockBase {
         
         assertTrue("Name hasn't been replaced", "name,Bar".equals(m.getName()));
         assertTrue("Path hasn't been replaced", "/fooBar".equals(m.getPath()));
-        assertTrue("Prefix isn't correct", "foo".equals(m.getPrefix()));
         assertTrue("Scope isn't correct", "request".equals(m.getScope()));
-        assertTrue("Suffix isn't correct", "bar".equals(m.getSuffix()));
         assertTrue("Unknown isn't correct", !m.getUnknown());
         assertTrue("Validate isn't correct", m.getValidate());
 
+        assertTrue("Prefix hasn't been replaced", "foo,Bar".equals(m.getPrefix()));
+        assertTrue("Suffix hasn't been replaced", "bar,Bar".equals(m.getSuffix()));
         assertTrue("Type hasn't been replaced", "foo.bar.BarAction".equals(m.getType()));
         assertTrue("Roles hasn't been replaced", "public,Bar".equals(m.getRoles()));
         assertTrue("Parameter hasn't been replaced", "param,Bar".equals(m.getParameter()));
@@ -149,6 +149,7 @@ public class TestActionConfigMatcher extends TestMockBase {
             if ("name".equals(cfg.getName())) {
                 found = true;
                 assertTrue("Path hasn't been replaced", "path,Bar".equals(cfg.getPath()));
+                assertTrue("Property foo hasn't been replaced", "bar,Bar".equals(cfg.getProperty("foo")));
             }
         }
         assertTrue("The forward config 'name' cannot be found", found);
@@ -171,12 +172,13 @@ public class TestActionConfigMatcher extends TestMockBase {
 
         mapping.setName("name,{1}");
         mapping.setPath(path);
-        mapping.setPrefix("foo");
         mapping.setScope("request");
-        mapping.setSuffix("bar");
         mapping.setUnknown(false);
         mapping.setValidate(true);
 
+        mapping.setPrefix("foo,{1}");
+        mapping.setSuffix("bar,{1}");
+        
         mapping.setType("foo.bar.{1}Action");
         mapping.setRoles("public,{1}");
         mapping.setParameter("param,{1}");
@@ -188,6 +190,7 @@ public class TestActionConfigMatcher extends TestMockBase {
         ForwardConfig cfg = new ActionForward();
         cfg.setName("name");
         cfg.setPath("path,{1}");
+        cfg.setProperty("foo", "bar,{1}");
         mapping.addForwardConfig(cfg);
         
         cfg = new ActionForward();

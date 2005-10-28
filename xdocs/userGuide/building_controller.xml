@@ -1573,14 +1573,19 @@ throws Exception;
     </p>
 
     <ul>
-        <li><code>type</code></li>
-        <li><code>name</code></li>
-        <li><code>roles</code></li>
-        <li><code>parameter</code></li>
         <li><code>attribute</code></li>
+        <li><code>catalog</code></li>
+        <li><code>command</code></li>
         <li><code>forward</code></li>
         <li><code>include</code></li>
         <li><code>input</code></li>
+        <li><code>multipartClass</code></li>
+        <li><code>name</code></li>
+        <li><code>parameter</code></li>
+        <li><code>prefix</code></li>
+        <li><code>roles</code></li>
+        <li><code>suffix</code></li>
+        <li><code>type</code></li>
     </ul>
 
     <p>
@@ -1593,10 +1598,18 @@ throws Exception;
     The action forward attributes that will accept wildcard-matched strings
     are:
     </p>
-
+    
     <ul>
+        <li><code>catalog</code></li>
+        <li><code>command</code></li>
         <li><code>path</code></li>
     </ul>
+    
+    <p>
+    Like the action mapping, the action forward properties (set using the 
+    <code>&lt;set-property key="foo" value="bar"&gt;</code> syntax) will 
+    accept wildcard-matched strings in their <code>value</code> attribute.
+    </p>
 
 </subsection>
 

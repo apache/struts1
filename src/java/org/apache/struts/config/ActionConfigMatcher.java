@@ -163,6 +163,9 @@ public class ActionConfigMatcher implements Serializable {
         config.setInput(convertParam(orig.getInput(), vars));
         config.setCatalog(convertParam(orig.getCatalog(), vars));
         config.setCommand(convertParam(orig.getCommand(), vars));
+        config.setMultipartClass(convertParam(orig.getMultipartClass(), vars));
+        config.setPrefix(convertParam(orig.getPrefix(), vars));
+        config.setSuffix(convertParam(orig.getSuffix(), vars));
 
         ForwardConfig[] fConfigs = orig.findForwardConfigs();
         ForwardConfig cfg;
@@ -173,18 +176,14 @@ public class ActionConfigMatcher implements Serializable {
             cfg.setRedirect(fConfigs[x].getRedirect());
             cfg.setCommand(convertParam(fConfigs[x].getCommand(), vars));
             cfg.setCatalog(convertParam(fConfigs[x].getCatalog(), vars));
+            
+            replaceProperties(fConfigs[x].getProperties(), cfg.getProperties(), vars);
+            
             config.removeForwardConfig(fConfigs[x]);
             config.addForwardConfig(cfg);
         }
 
-        Properties origProps = orig.getProperties();
-        Properties configProps = config.getProperties();
-        Map.Entry entry = null;
-        for (Iterator i = origProps.entrySet().iterator(); i.hasNext(); ) {
-            entry = (Map.Entry) i.next();
-            configProps.setProperty((String)entry.getKey(), 
-                convertParam((String)entry.getValue(), vars));
-        } 
+        replaceProperties(orig.getProperties(), config.getProperties(), vars);
 
         ExceptionConfig[] exConfigs = orig.findExceptionConfigs();
         for (int x = 0; x < exConfigs.length; x++) {
@@ -194,6 +193,15 @@ public class ActionConfigMatcher implements Serializable {
         config.freeze();
 
         return config;
+    }
+    
+    protected void replaceProperties(Properties orig, Properties props, Map vars) {
+        Map.Entry entry = null;
+        for (Iterator i = orig.entrySet().iterator(); i.hasNext(); ) {
+            entry = (Map.Entry) i.next();
+            props.setProperty((String)entry.getKey(), 
+                convertParam((String)entry.getValue(), vars));
+        } 
     }
 
     /**
