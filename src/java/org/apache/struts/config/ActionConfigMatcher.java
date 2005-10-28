@@ -195,6 +195,13 @@ public class ActionConfigMatcher implements Serializable {
         return config;
     }
     
+    /**
+     *  Replaces placeholders from one Properties values set to another.
+     *
+     * @param  orig  The original properties set with placehold values
+     * @param  props The target properties to store the processed values
+     * @param  vars  A Map of wildcard-matched strings
+     */
     protected void replaceProperties(Properties orig, Properties props, Map vars) {
         Map.Entry entry = null;
         for (Iterator i = orig.entrySet().iterator(); i.hasNext(); ) {
