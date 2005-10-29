@@ -7,6 +7,7 @@
   <body>
 
     <menu name="Tiles">
+        <item href="index.html" name="Tiles Home"/>
         <item href="installation.html" name="Installation"/>
     </menu>
     <menu name="Taglib Reference">
