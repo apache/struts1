@@ -8,6 +8,7 @@
 <body>
 <section name="5. Configuring Applications">
 
+<a name="config-overview"/>
 <subsection name="5.1 Overview">
 
     <p>
@@ -19,7 +20,8 @@
     </p>
 
  </subsection>
-
+    
+ <a name="struts-config"/>
  <subsection name="5.2 The Struts configuration file">
 
     <p>
@@ -54,6 +56,7 @@
 
  </subsection>
 
+ <a name="controller_config"/>
  <subsection name="5.2.1 Controller Configuration">
 
     <p>
@@ -227,6 +230,7 @@
 
 </subsection>
 
+<a name="resources_config"/>
 <subsection name="5.2.2 Message Resources Configuration">
 
     <p>
@@ -287,6 +291,7 @@
 
 </subsection>
 
+<a name="plugin_config"/>
 <subsection name="5.2.3 PlugIn Configuration">
 
     <p>
@@ -316,6 +321,7 @@
 
 </subsection>
 
+<a name="dd_config_modules"/>
 <subsection name="5.3 Configuring Your Application for Modules">
 
     <p>
@@ -342,6 +348,7 @@
 
 </subsection>
 
+<a name="module_config-files"/>
 <subsection name="5.3.1 Module Configuration Files">
 
     <p>
@@ -368,6 +375,7 @@
 
 </subsection>
 
+<a name="module_config-inform_controller"/>
 <subsection name="5.3.2 Informing the Controller">
 
     <p>
@@ -423,6 +431,7 @@
 </subsection>
 
 
+<a name="module_config-switching"/>
 <subsection name="5.3.3 Switching Modules">
 
     <p>
@@ -529,6 +538,7 @@
 
 </subsection>
 
+<a name="dd_config"/>
 <subsection name="5.4 The Web Application Deployment Descriptor">
 
     <p>
@@ -541,7 +551,8 @@
     </p>
 
 </subsection>
-
+    
+<a name="dd_config_servlet"/>
 <subsection name="5.4.1 Configure the ActionServlet Instance">
 
     <p>
@@ -648,6 +659,7 @@
 
 </subsection>
 
+<a name="dd_config_mapping"/>
 <subsection name="5.4.2 Configure the ActionServlet Mapping">
 
     <p>
@@ -731,6 +743,7 @@
 
 </subsection>
 
+<a name="dd_config_taglib"/>
 <subsection name="5.4.3 Configure the Struts Tag Libraries">
 
         <p>
@@ -827,6 +840,7 @@
 
 </subsection>
 
+<a name="dd_config_taglib_uri"/>
 <subsection name="5.4.3.1 Configure the Struts Tag Libraries (Servlet 2.3/2.4)">
 
     <p>
@@ -861,6 +875,7 @@
 
 </subsection>
 
+<a name="config_add"/>
 <subsection name="5.5 Add Struts Components To Your Application">
 
     <p>
@@ -960,7 +975,7 @@
     </div>
 
 </subsection>
-
+<a name="config_logging"/>
 <subsection name="5.6 Logging in Struts Based Applications">
 
   <p>

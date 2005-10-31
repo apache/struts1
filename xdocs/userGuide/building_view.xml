@@ -12,6 +12,7 @@
 <body>
 <section name="3. Building View Components">
 
+<a name="overview"/>
 <subsection name="3.1 Overview">
 
     <p>
@@ -35,7 +36,7 @@
 
 </subsection>
 
-<a name="resources"/>
+<a name="i18n"/>
 <subsection name="3.2 Internationalized Messages">
 
     <p>
@@ -213,7 +214,7 @@ org.apache.struts.action.ActionServlet
 
 </subsection>
 
-<a name="formbeans"/>
+<a name="form_beans"/>
 <subsection name="3.3 Forms and FormBean Interactions">
 
 <p>
@@ -226,6 +227,7 @@ org.apache.struts.action.ActionServlet
 
 </subsection>
 
+ <a name="form_population"/>
  <subsection name="3.3.1 Automatic Form Population">
 
     <p>
@@ -286,6 +288,7 @@ value="<%= loginBean.getUsername() >"/>
     </p>
 </subsection>
 
+<a name="form_validation"/>
 <subsection name="3.3.2 Automatic Form Validation">
 
     <p>
@@ -350,6 +353,7 @@ HttpServletRequest request);
     
 </subsection>
 
+<a name="validator"/>
 <subsection name="3.3.3 The Struts Validator">
 
     <p>
@@ -408,6 +412,7 @@ value="/WEB-INF/validator-rules.xml,
     
 </subsection>
 
+<a name="other_presentations"/>
 <subsection name="3.4 Other Presentation Techniques">
 
     <p>
@@ -421,6 +426,7 @@ value="/WEB-INF/validator-rules.xml,
   
 </subsection>
 
+<a name="custom_tags"/>
 <subsection name="3.4.1 Application-Specific Custom Tags">
 
     <p>
@@ -454,6 +460,7 @@ value="/WEB-INF/validator-rules.xml,
     </p>
 </subsection>
 
+<a name="includes"/>
 <subsection name="3.4.2 Page Composition With Includes">
 
     <p>
@@ -535,6 +542,7 @@ value="/WEB-INF/validator-rules.xml,
 
 </subsection>
 
+<a name="Tiles"/>
 <subsection name="3.4.3 Page Composition With Tiles">
 
     <p>
@@ -626,6 +634,7 @@ parameter="homepage"/>
   
   </subsection>
 
+  <a name="image_rendering"/>
   <subsection name="3.4.4 Image Rendering Components">
 
         <p>
@@ -659,6 +668,7 @@ parameter="homepage"/>
     
   </subsection>
 
+  <a name="text_rendering"/>
   <subsection name="3.4.5 Rendering Text">
 
     <p>
@@ -677,6 +687,7 @@ return(null);
 
 </subsection>
 
+<a name="presentation_frameworks"/>
 <subsection name="3.5 Presentation Frameworks">
     <p>
         Struts Core is supported by many presentation frameworks,

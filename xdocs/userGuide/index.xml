@@ -18,11 +18,34 @@
               <li><a href="preface.html#http">0.2 HTTP, HTML, and User Agents</a></li>
               <li><a href="preface.html#cycle">0.3 The HTTP Request/Response Cycle</a></li>
               <li><a href="preface.html#java">0.4 The Java Language and Application Frameworks</a></li>
+                  <ul>
+                      <li><a href="preface.html#chain">0.4.1 Chain of Responsibility</a></li>
+                  </ul>
               <li><a href="preface.html#javabeans">0.5 JavaBeans</a></li>
+                  <ul>
+                      <li><a href="preface.html#reflection">0.5.1 Reflection and Introspection</a></li>
+                      <li><a href="preface.html#maps">0.5.2 Maps</a></li>
+                      <li><a href="preface.html#dynabeans">0.5.3 DynaBeans</a></li>
+                  </ul>
               <li><a href="preface.html#resources">0.6 Properties Files and  ResourceBundles</a></li>
               <li><a href="preface.html#servlets">0.7 Java Servlets</a></li>
+                  <ul>
+                      <li><a href="preface.html#threads">0.7.1 Servlets and threads</a></li>
+                      <li><a href="preface.html#context">0.7.2 Servlet Context</a></li>
+                      <li><a href="preface.html#request">0.7.3 Servlet Request</a></li>
+                      <li><a href="preface.html#response">0.7.4 Servlet Response</a></li>
+                      <li><a href="preface.html#filter">0.7.5 Filtering</a></li>
+                      <li><a href="preface.html#session">0.7.6 Sessions</a></li>
+                      <li><a href="preface.html#dispatch">0.7.7 Dispatching Requests</a></li>
+                      <li><a href="preface.html#webapp">0.7.8 Web Applications</a></li>
+                      <li><a href="preface.html#events">0.7.9 Web application deployment descriptor</a></li>
+                      <li><a href="preface.html#security">0.7.10 Security</a></li>
+                  </ul>
               <li><a href="preface.html#jsp">0.8 JavaServer Pages, JSP Tag Libraries, and JavaServer Faces</a></li>
               <li><a href="preface.html#xml">0.9 Extensible Markup Language</a></li>
+                <ul>
+                    <li><a href="preface.html#descriptors">0.9.1 Descriptors</a></li>
+                </ul>
               <li><a href="preface.html#jaas">0.10 JAAS</a></li>
               <li><a href="preface.html#layers">0.11 Other layers</a></li>
             </ul></li>
@@ -38,7 +61,7 @@
                     <li><a href="introduction.html#controllerConcepts">1.2.3 The Controller: ActionServlet and ActionMapping</a></li>
                     </ul>
                     </li>
-                <li><a href="introduction.html#controllerConcepts">1.3 Struts Control Flow</a></li>
+                <li><a href="introduction.html#flow">1.3 Struts Control Flow</a></li>
                 </ul></li>
             <li><a href="building_model.html">2. Building Model Components</a>
                 <ul>
@@ -56,11 +79,9 @@
                 <li><a href="building_view.html#i18n">3.2 Internationalization</a></li>
                 <li><a href="building_view.html#form_beans">3.3 Forms and FormBean Interactions</a>
                     <ul>
-                    <li><a href="building_view.html#indexed">3.3.1 Indexed &amp; mapped Properties</a></li>
-                    <li><a href="building_view.html#form_input">3.3.2 Input Field Types Supported</a></li>
-                    <li><a href="building_view.html#presentation_tags">3.3.3 Other Useful Presentation Tags</a></li>
-                    <li><a href="building_view.html#form_validation">3.3.4 Automatic Form Validation</a></li>
-                    <li><a href="building_view.html#validator">3.3.5 Struts Validator</a></li>
+                    <li><a href="building_view.html#form_population">3.3.1 Automatic Form Population</a></li>
+                    <li><a href="building_view.html#form_validation">3.3.2 Automatic Form Validation</a></li>
+                    <li><a href="building_view.html#validator">3.3.3 The Struts Validator</a></li>
                     </ul></li>
                 <li><a href="building_view.html#other_presentations">3.4 Other Presentation Techniques</a>
                     <ul>
@@ -71,6 +92,7 @@
                     <li><a href="building_view.html#text_rendering">3.4.5 Rendering Text</a></li>
                     <li><a href="building_view.html#struts-el">3.4.6 The Struts-EL Tag Library</a></li>
                     </ul></li>
+                <li><a href="building_view.html#presentation_frameworks">3.5 Presentation Frameworks</a></li>
                 </ul></li>
                 
             <li><a href="building_controller.html">4. Building Controller Components</a>
@@ -126,7 +148,11 @@
                     <ul>
                     <li><a href="configuration.html#dd_config_servlet">5.4.1 Configure the Action Servlet Instance</a></li>
                     <li><a href="configuration.html#dd_config_mapping">5.4.2 Configure the Action Servlet Mapping</a></li>
-                    <li><a href="configuration.html#dd_config_taglib">5.4.3 Configure the Struts Tag Libraries"</a></li>
+                    <li><a href="configuration.html#dd_config_taglib">5.4.3 Configure the Struts Tag Libraries"</a>
+                        <ul>
+                            <li><a href="configuration.html#dd_config_taglib_uri">5.4.3.1 Configure the Struts Tag Libraries (Servlet 2.3/2.4)</a></li>
+                        </ul>
+                    </li>
                     </ul>
                  </li>
                 <li><a href="configuration.html#config_add">5.5 Add Struts Components To Your Application</a></li>

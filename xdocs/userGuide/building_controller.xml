@@ -12,6 +12,7 @@
 <body>
 <section name="4. Building Controller Components">
 
+<a name="overview"/>
 <subsection name="4.1 Overview">
 
     <p>
@@ -68,7 +69,8 @@
     </p>
 
 </subsection>
-
+    
+<a name="action_servlet"/>
 <subsection name="4.2 The ActionServlet">
 
     <p>
@@ -136,6 +138,7 @@
 
 </subsection>
 
+<a name="request_processor"/>
 <subsection name="4.2.1 Request Processor">
 
     <p>
@@ -307,6 +310,7 @@
 
 </subsection>
 
+<a name="action_form_classes"/>
 <subsection name="4.3 ActionForm Classes">
 
     <p>
@@ -403,6 +407,7 @@
 
 </subsection>
 
+<a name="dyna_action_form_classes"/>
 <subsection name="4.3.1 DynaActionForm Classes">
 
     <p>
@@ -608,6 +613,7 @@
 
 </subsection>
 
+<a name="map_action_form_classes"/>
 <subsection name="4.3.2 Map-backed ActionForms">
 
     <p>
@@ -735,6 +741,7 @@
 
 </subsection>
 
+<a name="action_classes"/>
 <subsection name="4.4 Action Classes">
 
     <p>
@@ -846,6 +853,7 @@ throws Exception;
 
    </subsection>
    
+   <a name="action_design_guide"/>
    <subsection name="4.4.1 Action Class Design Guidelines">
 
     <p>
@@ -936,6 +944,7 @@ throws Exception;
 
 </subsection>
    
+<a name="exception_handler"/>
 <subsection name="4.5 Exception Handler">
 
     <p>
@@ -1094,6 +1103,7 @@ throws Exception;
     
 </subsection>
 
+<a name="plugin_classes"/>
 <subsection name="4.6 PlugIn Classes">
 
     <p>
@@ -1124,6 +1134,7 @@ throws Exception;
 
 </subsection>
 
+<a name="actionmapping"/>
 <subsection name="4.7 The ActionMapping Implementation">
 
     <p>
@@ -1176,6 +1187,7 @@ throws Exception;
 
 </subsection>
 
+<a name="config"/>
 <subsection name="4.8 Writing Action Mappings">
 
     <p>
@@ -1348,6 +1360,7 @@ throws Exception;
 
 </subsection>
 
+<a name="action_mapping_example"/>
 <subsection name="4.8.1 ActionMapping Example">
 
     <p>
@@ -1452,6 +1465,7 @@ throws Exception;
 
 </subsection>
 
+<a name="module_config-use_actions"/>
 <subsection name="4.9 Using ActionMappings for Pages">
 
     <p>
@@ -1473,6 +1487,7 @@ throws Exception;
 
 </subsection>
 
+<a name="action_mapping_wildcards"/>
 <subsection name="4.10 Using Wildcards in ActionMappings">
 
     <p>
@@ -1613,6 +1628,7 @@ throws Exception;
 
 </subsection>
 
+<a name="logging"/>
 <subsection name="4.11 Commons Logging Interface">
     <p>
     Struts Core doesn't configure logging itself -- it's all done by
