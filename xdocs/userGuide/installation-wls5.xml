@@ -6,7 +6,7 @@
   </properties>
 
   <body>
-<section name="5.2 Installation" href="installation">
+<section name="6.2 Installation" href="installation">
 <subsection name="Installing Struts with your servlet container" href="Containers">
 
 <h4 id="wls5">Weblogic 5.1 (service pack 8)</h4>

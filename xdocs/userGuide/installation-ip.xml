@@ -4,7 +4,7 @@
 <title>The Struts Framework Project - Installation - iPlanet</title>
 </properties>
 <body>
-<section name="5.2 Installation" href="installation">
+<section name="6.2 Installation" href="installation">
 <subsection name="Installing Struts with your servlet container" href="Containers">
 <h4 id="ipws60">iPlanet Application Server 6.0</h4>
 <p>Service Pack 2 is recommended.</p>

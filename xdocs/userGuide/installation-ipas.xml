@@ -4,7 +4,7 @@
         <title>The Struts Framework Project - Installation - iPortal Application Server</title>
     </properties>
     <body>
-    <section name="5.2 Installation" href="installation">
+    <section name="6.2 Installation" href="installation">
         <subsection name="Installing Struts with your servlet container" href="Containers">
             <h4>
                 <a name="ipas13">iPortal Application Server 1.3</a>

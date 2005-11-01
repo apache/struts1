@@ -6,7 +6,7 @@
   </properties>
 
   <body>
-<section name="5.2 Installation" href="installation">
+<section name="6.2 Installation" href="installation">
 <subsection name="Installing Struts with your servlet container" href="Containers">
 
 <h4 id="sas">SilverStream Application Server 3.7.1 and later</h4>
