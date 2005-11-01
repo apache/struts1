@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<document url="./examples.xml">
+<properties>
+  <title>The Tiles 1.1 Framework Project - Examples</title>
+</properties>
+
+<body>
+
+<section name="Creating Templates">
+
+    <subsection name="Basic Template">
+    </subsection>
+    
+    <subsection name="Specify Attribute Types">
+    </subsection>
+    
+    <subsection name="Set Attribute With Tag Body">
+    </subsection>
+    
+    <subsection name="Using Inheritance:  Overloading parameters">
+    </subsection>
+    
+    <subsection name="No Body Defined">
+    </subsection>
+    
+    <subsection name="List Usage">
+    </subsection>
+</section>
+
+<section name="JSP Usage">
+    <subsection name="Defining Tiles In A JSP Page">
+    </subsection>
+    
+    <subsection name="Inserting Definitions Defined In A Factory">
+    </subsection>
+    
+    <subsection name="Overloading Attributes">
+    </subsection>
+</section>
+
+<section name="Tiles Controllers">
+</section>
+
+<section name="Using Tiles With Struts">
+
+    <subsection name="Tiles Controller Invoking a Struts Action">
+    </subsection>
+    
+    <subsection name="Forwarding To A Tiles Definition">
+    </subsection>
+    
+</section>
+
+</body>
+</document>

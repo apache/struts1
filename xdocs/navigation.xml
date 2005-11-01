@@ -9,6 +9,8 @@
     <menu name="Tiles">
         <item href="index.html" name="Tiles Home"/>
         <item href="installation.html" name="Installation"/>
+        <item href="usersGuide.html" name="Users Guide"/>
+        <item href="examples.html" name="Examples"/>
     </menu>
     <menu name="Taglib Reference">
         <item name="Struts Tiles" href="tagreference-struts-tiles.html"/>    

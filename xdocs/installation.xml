@@ -88,19 +88,17 @@
             <li><strong>Using Tiles With Struts</strong> -
                 Modify the <code>WEB-INF/web.xml</code> file
                 for your web application to use a <code>&lt;servlet&gt;
-                </code> that initializes the factory and catches Struts action
-                forwards to check for definition name. 
-            <pre>
-  &lt;servlet&gt;
-     ...
-     &lt;servlet-name&gt;action&lt;/servlet-name&gt;
-     &lt;servlet-class&gt;org.apache.struts.action.ActionServlet&lt;/servlet-class
-     &lt;init-param&gt;
-       &lt;param-name&gt;definitions-config&lt;/param-name&gt;
-       &lt;param-value&gt;/WEB-INF/tiles-config.xml&lt;/param-value&gt;
-     &lt;/init-param&gt;
-     ...
-</pre>
+                </code> that responds to Struts actions.  You will need to 
+                configure the Tiles Plugin and the Tiles Request Processor to
+                allow Struts to respond to Tiles-based Action Forwards.  Below
+                is a sample Tiles Plugin configuration.
+    <source><![CDATA[
+    <plug-in className="org.apache.struts.tiles.TilesPlugin">
+    <set-property
+        property="definitions-config"
+           value="/WEB-INF/tiles-defs.xml"/>
+    </plug-in>
+    ]]></source>
             </li>
             <li><strong>Using Tiles Without Struts</strong> -
                 If you don't want to use Struts, use the
@@ -114,26 +112,35 @@
         </li>
         <li>Modify the <code>WEB-INF/web.xml</code> file of your web application
             to include the following tag library declarations: 
-            Note that this step is not necessary in a Servlet 2.4 envrironment.</li>
-    </ul>
-<pre>&lt;taglib&gt;
-  &lt;taglib-uri&gt;/WEB-INF/tiles.tld&lt;/taglib-uri&gt;
-  &lt;taglib-location&gt;/WEB-INF/tiles.tld&lt;/taglib-location&gt;
-&lt;/taglib&gt;
-</pre>
+            Note that this step is not necessary in a Servlet 2.3/2.4 envrironment.
 
+    <source><![CDATA[
+<taglib>
+  <taglib-uri>/WEB-INF/tiles.tld</taglib-uri>
+  <taglib-location>/WEB-INF/tiles.tld</taglib-location>
+</taglib>
+    ]]></source>
+        </li>
+    </ul>
     <ul>
         <li>At the top of each JSP page that will use the Tiles custom tags,
             add line(s) declaring the Tiles custom tag libraries used on this
-            particular page, like this:</li>
+            particular page, like this:
+
+    <source><![CDATA[
+    <%@ taglib uri="/WEB-INF/tiles.tld" prefix="tiles" %>
+    ]]></source>
+
+        </li>
     </ul>
-<pre>&lt;%@ taglib uri="/WEB-INF/tiles.tld" prefix="tiles" %&gt;
-</pre>
     <ul>
-        <li>For Servlet 2.4 applications replace the above taglib reference with
-            the following:</li>
-<pre>&lt;%@ taglib uri="http://jakarta.apache.org/tiles" prefix="tiles" %&gt;
-</pre>
+        <li>For Servlet 2.3/2.4 applications replace the above taglib reference with
+            the following:
+
+    <source><![CDATA[
+    <%@ taglib uri="http://jakarta.apache.org/tiles" prefix="tiles" %>
+    ]]></source>
+        </li>
         <li>When compiling the Java classes that comprise your application,
             be sure to include the <code>tiles.jar</code> and
             <code>commons-*.jar</code> files (copied earlier) on the
@@ -151,10 +158,12 @@
         <li>You should also initialize a <code>TilesRequestProcessor</code>.</li>
         <li>To do so, add following lines in your <code>struts-config.xml</code>
             file :
-<pre>
-   &lt;controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"&gt;
-   &lt;/controller&gt;
-</pre>
+
+    <source><![CDATA[
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor">
+    </controller>
+    ]]></source>
+
         </li>
     </ul>
 </section>
