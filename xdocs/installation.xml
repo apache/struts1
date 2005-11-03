@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <document url="./installation.xml">
 <properties>
-  <title>The Tiles 1.1 Framework Project - Installation (1.1)</title>
+  <title>The Tiles Framework Project - Installation (1.1)</title>
 </properties>
 
 <body>
@@ -138,7 +138,7 @@
             the following:
 
     <source><![CDATA[
-    <%@ taglib uri="http://jakarta.apache.org/tiles" prefix="tiles" %>
+    <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
     ]]></source>
         </li>
         <li>When compiling the Java classes that comprise your application,

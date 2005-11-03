@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <document url="./usersGuide.xml">
 <properties>
-  <title>The Tiles 1.1 Framework Project - Users Guide</title>
+  <title>The Tiles Framework Project - Users Guide</title>
 </properties>
 
 <body>
@@ -38,7 +38,7 @@
     <source><![CDATA[
    <servlet>
       <servlet-name>Tiles Servlet</servlet-name>
-      <servlet-class>org.apache.tiles.servlets.TilesServlet</servlet-class>
+      <servlet-class>org.apache.struts.tiles.servlets.TilesServlet</servlet-class>
       <init-param>
          <param-name>definitions-config</param-name>
          <param-value>/WEB-INF/tiles-defs.xml</param-value>
@@ -75,7 +75,7 @@
       taglib in JSP pages like this:
 
     <source><![CDATA[
-    <%@ taglib uri="http://jakarta.apache.org/tiles" prefix="tiles" %>
+    <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
     ]]></source>
       
     </p>      
@@ -89,8 +89,8 @@
     <?xml version="1.0" encoding="ISO-8859-1" ?>
     
     <!DOCTYPE tiles-definitions PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
-       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.3//EN"
+       "http://struts.apache.org/dtds/tiles-config_1_3.dtd">
     
     <tiles-definitions>
     
