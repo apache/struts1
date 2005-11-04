@@ -3,7 +3,7 @@
 <document url="./actionForm.xml">
 
  <properties>
-  <title>Building an ActionForm</title>
+  <title>Building an ActionForm - Apache Struts</title>
  </properties>
 
 <body>
@@ -13,10 +13,10 @@
 
     <p>
     This is a simple example of a login form to illustrate how Struts
-    makes dealing with forms much less painful than using straight HTML
+    Core makes dealing with forms much less painful than using straight HTML
     and standard JSP facilities.  
-    Consider the following page (based on the example MailReader application 
-    included  with Struts) named <code>logon.jsp</code>:
+    Consider the following page (based on the Struts MailReader, found in 
+    the Application subproject) named <code>logon.jsp</code>:
     </p>
 
 <hr/>
@@ -77,7 +77,7 @@
 <hr/>
 
     <p>
-    The following items illustrate the key features of form handling in Struts,
+    The following items illustrate the key features of form handling in Struts Core,
     based on this example:
     </p>
 
@@ -85,7 +85,7 @@
 
         <li>
         The <code>taglib</code> directive tells the JSP page compiler where to
-        find the <em>tag library descriptor</em> for the Struts tag library.  
+        find the <em>tag library descriptor</em> for the Struts JSP tags.  
         In this case, we are using <code>bean</code> as the prefix that 
         identifies tags from the struts-bean library, and "html" as the prefix  
         that identifies tags from the struts-html library.  
@@ -150,7 +150,7 @@
         configuration.
         The <code>logon</code> mapping tells the tag that the form bean is
         stored in the session context under the key <code>logonForm</code>.
-        The Struts developer provides the Java implementation of the 
+        The Struts Core developer provides the Java implementation of the 
         ActionForm bean, subclassing the Struts class <code>ActionForm</code>
         (see <a href="../userGuide/building_controller.html#4_3_ActionForm_Classes">Building
         Controller</a> components).
@@ -264,13 +264,13 @@ public class UploadForm extends ActionForm {
 
     <p>
     Look at the Javadocs for 
-    <code><a href="../struts-core/apidocs/org/apache/struts/upload/FormFile.html">
+    <code><a href="../apidocs/org/apache/struts/upload/FormFile.html">
     FormFile</a></code> to see the methods it exposes to manipulate files in 
     file uploading.
     Also look at the Javadocs for
-    <a href="../struts-core/apidocs/org/apache/struts/action/ActionServlet.html">
+    <a href="../apidocs/org/apache/struts/action/ActionServlet.html">
     ActionServlet</a> and
-    <a href="../struts-core/apidocs/org/apache/struts/action/ActionMapping.html">
+    <a href="../apidocs/org/apache/struts/action/ActionMapping.html">
     ActionMapping</a> for the various parameters you can specify to change 
     how files are uploaded.  
     Basically in your <code>execute</code> method in your action class you 

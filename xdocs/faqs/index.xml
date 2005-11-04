@@ -37,6 +37,10 @@
  <ul>
 
     <li>
+    <a href="db-howto.html">Accessing a Database</a>
+    </li>
+
+    <li>
     <a href="actionForm.html">Building an Action Form</a>
     </li>
     
@@ -55,6 +59,7 @@
     <li>
     <a href="struts-el.html">Struts EL Extension</a>
     </li>
+
 
  </ul>
 
