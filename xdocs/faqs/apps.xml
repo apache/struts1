@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <document url="./apps.xml">
 <properties>
-<title>Building Applications</title>
+<title>Building Applications - Apache Struts</title>
 </properties>
 <body>
 <section name="How to Build Applications">
 <subsection name="About This Document">
 <p>
 This document outlines one possible sequence of development steps that can be followed to create a
-Struts application.  It is not intended as a complete description of each
+Struts Core application.  It is not intended as a complete description of each
 referenced development activity.  More detailed documentation is available
 elsewhere and is referenced by "(more...)" links where possible.
 </p>
@@ -17,13 +17,13 @@ elsewhere and is referenced by "(more...)" links where possible.
 <subsection name="Caveats">
 <ol>
 <li>Requirements development and design are outside of the scope of this  document.</li>
-<li>For help installing Struts, see the <a href="../userGuide/installation.html">Getting Started</a> chapter.</li>
-<li>There are many other ways to approach Struts development and there are many
+<li>For help installing Struts Core, see the <a href="../userGuide/installation.html">Getting Started</a> chapter.</li>
+<li>There are many other ways to approach Struts Core development and there are many
     other features available besides the ones discussed below. This document
     outlines only one way to get started.</li>
 <li>This document focuses on form/data centric applications, but may also work with
     other types of applications.</li>
-<li>This material was written for Struts 1.1 (beta 2) and now 1.2.2</li>
+<li>This material was written for Struts 1.1 (beta 2), and reviewed for the 1.2.2 and 1.3.0 releases.</li>
 </ol>
 </subsection>
 
@@ -39,7 +39,7 @@ elsewhere and is referenced by "(more...)" links where possible.
 <li>Create <code>struts-config.xml</code> to associate forms with
     actions.</li>
 <li>Create or update <code>web.xml</code> to reference
-    <code>ActionServlet</code>, taglibs used by Struts.</li>
+    <code>ActionServlet</code>, taglibs used by Struts Core.</li>
 <li>Parallel Tasks
 <ol>
 <li>Building</li>
@@ -55,11 +55,11 @@ elsewhere and is referenced by "(more...)" links where possible.
 <li>Implement data entry forms as JSP files.
 <ol>
 <li>Use elements from the <code>html</code> taglib
-    to define the form elements. <a href="../userGuide/struts-html.html">
+    to define the form elements. <a href="http://struts.apache.org/struts-taglib/tagreference-struts-bean.html">
     (more...)</a></li>
 <li>Use <code>message</code> and other elements from the <code>bean</code>
     taglib to define the labels and other static text of the form. 
-    <a href="../userGuide/struts-bean.html">(more...)</a>
+    <a href="http://struts.apache.org/struts-taglib/tagreference-struts-bean.html">(more...)</a>
 <ol>
 <li>Create and maintain a properties file of the text elements
     to be displayed. <a href="../userGuide/preface.html#0_6_Properties_Files_and_ResourceBundles">(more...) 
