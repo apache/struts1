@@ -660,8 +660,8 @@ public class RequestProcessor {
         }
 
         // No mapping can be found to process this request
-        String msg = getInternal().getMessage("processInvalid", path);
-        log.error(msg);
+        String msg = getInternal().getMessage("processInvalid");
+        log.error(msg + " " + path);
         response.sendError(HttpServletResponse.SC_NOT_FOUND, msg);
         
         return null;
@@ -745,10 +745,9 @@ public class RequestProcessor {
         }
         String prefix = moduleConfig.getPrefix();
         if (!path.startsWith(prefix)) {
-            String msg =
-                getInternal().getMessage("processPath", request.getRequestURI());
+            String msg = getInternal().getMessage("processPath");
             
-            log.error(msg);
+            log.error(msg + " " + request.getRequestURI());
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, msg);
 
             return null;
