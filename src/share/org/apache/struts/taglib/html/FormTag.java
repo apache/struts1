@@ -501,9 +501,8 @@ public class FormTag extends TagSupport {
         StringBuffer results = new StringBuffer("<form");
 
         // render attributes
-        if (!this.isXhtml()) {
-            renderName(results);
-        }
+        renderName(results);
+        
         renderAttribute(results, "method", getMethod() == null ? "post" : getMethod());
         renderAction(results);
         renderAttribute(results, "accept-charset", getAcceptCharset());
@@ -512,7 +511,6 @@ public class FormTag extends TagSupport {
         renderAttribute(results, "onreset", getOnreset());
         renderAttribute(results, "onsubmit", getOnsubmit());
         renderAttribute(results, "style", getStyle());
-        renderAttribute(results, "id", getStyleId());
         renderAttribute(results, "target", getTarget());
 
         // Hook for additional attributes
@@ -523,12 +521,20 @@ public class FormTag extends TagSupport {
     }
 
     /**
-     * Renders the name attribute
+     * Renders the name of the form.  If XHTML is set to true, the name will
+     * be rendered as an 'id' attribute, otherwise as a 'name' attribute.
      */
     protected void renderName(StringBuffer results) {
-        results.append(" name=\"");
-        results.append(beanName);
-        results.append("\"");
+        if (this.isXhtml()) {
+            if (getStyleId() == null) {
+                renderAttribute(results, "id", beanName);
+            } else {
+                renderAttribute(results, "id", getStyleId());
+            }
+        } else {    
+            renderAttribute(results, "name", beanName);
+            renderAttribute(results, "id", getStyleId());
+        }    
     }
 
     /**

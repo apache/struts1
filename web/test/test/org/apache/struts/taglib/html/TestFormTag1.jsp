@@ -201,7 +201,7 @@
 		</html:form>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<form name="testFormBean" method="misc" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>" id="id.goes.here">
+		<form name="testFormBean" id="id.goes.here" method="misc" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>">
 		</form>
 	</bean:define>
 </logic:equal>
