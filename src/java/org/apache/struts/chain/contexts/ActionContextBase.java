@@ -317,23 +317,34 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
 
     /**
      * <p>
-     * Save the given ActionMessages this Context under key,
+     * Save the given ActionMessages into the request scope under the given key,
      * clearing the attribute if the messages are empty or null.
      * </p>
      * @param key The attribute name for the message cache
      * @param messages The ActionMessages to add
      */
     public void saveActionMessages(String key, ActionMessages messages) {
-        if ((messages == null) || messages.isEmpty()) {
-            this.remove(key);
-            return;
-        }
-        this.put(key, messages);
+        this.saveActionMessages(REQUEST_SCOPE, key, messages);
     }
 
+    /**
+     * <p>Save the given <code>messages</code> into the map identified by the given <code>scopeId</code> under
+     * the given <code>key</code>.</p>
+     * @param scopeId
+     * @param key
+     * @param messages
+     */
+    public void saveActionMessages(String scopeId, String key, ActionMessages messages) {
+        Map scope = getScope(scopeId);
+        if ((messages == null) || messages.isEmpty()) {
+            scope.remove(key);
+            return;
+        }
+        scope.put(key, messages);
+    }
 
     // ISSUE: Should we deprecate this method, since it is misleading?
-    // Do we need it for backward compatability?
+    // Do we need it for backward compatibility?
 
     /**
      * <p>
