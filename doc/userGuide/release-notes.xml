@@ -40,6 +40,13 @@
                  <th>Modification</th><th>Revision</th><th>Bugzilla</th><th>Description</th>
              </tr></thead>
              <tr>
+                 <td align="center">2005-11-07</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs?rev=331261&amp;view=rev">331261</a>
+                     (<a href="http://svn.apache.org/viewcvs.cgi?rev=331265&amp;view=rev">331265</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=37131">37131</a></td>
+                 <td>Escape newlines in Validator variables.</td>
+             </tr>
+             <tr>
                  <td align="center">2005-11-05</td>
                  <td align="center"><a href="http://svn.apache.org/viewcvs?rev=191272&amp;view=rev">191272</a>
                      and <a href="http://svn.apache.org/viewcvs?rev=192949&amp;view=rev">192949</a>
