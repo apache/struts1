@@ -47,20 +47,15 @@
     <li>
     <a href="apps.html">Building Applications</a>
     </li>
-    
-    <li>
-    <a href="indexedprops.html">Indexed Properties, Mapped Properties, and Indexed Tags</a>
-    </li>
 
     <li>
-    <a href="ssl.html">Using the SSL protocol</a>
+    <a href="dispatchValidator.html">Dispatching And Validating</a>
+      <ul>
+     	<li>
+ 	  <a href="dispatchValidator.zip">Example Code</a>
+	</li>
+      </ul>    		
     </li>
-    
-    <li>
-    <a href="struts-el.html">Struts EL Extension</a>
-    </li>
-
-
  </ul>
 
 </section>
