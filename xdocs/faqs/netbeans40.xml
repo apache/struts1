@@ -18,11 +18,11 @@ Please read <a href="http://jakarta.apache.org/site/idedevelopers.html">this</a>
 <p>
 * DISCLAIMER - This simple How-To shows you how easy it is to use NetBeans IDE 4.0 to write code for the Struts<br/>
 framework.  It just works straight out of the box. Simply specify where your sources are<br/>
-and where you want to store your Struts application, and NetBeans IDE 4.0 does everything<br/>
+and where you want to store your Struts Core application, and NetBeans IDE 4.0 does everything<br/>
 you need -- it even generates a customized Ant build script for you and hooks its targets<br/>
 up to IDE commands such as "Build" and "Run".<br/>
 <br/>
-This is mainly geared toward struts users who are new to NetBeans IDE 4.0, and don't want to spend
+This is mainly geared toward Struts users who are new to NetBeans IDE 4.0, and don't want to spend
 a lot of time figuring out the differences between their old IDE and this one.
 <br/>
 </p>
@@ -31,10 +31,10 @@ a lot of time figuring out the differences between their old IDE and this one.
 
 <section name="Let's get started">
 
-You will use wizards to set up and deploy the struts-example in 5 steps.<br/> 
+You will use wizards to set up and deploy the struts-mailreader in 5 steps.<br/> 
 <br/>
-Before we begin, let's create (or reuse) a folder to hold the project. Copy the struts-example.war<br/>
-from the Struts distribution and extract it, with the result that it looks like this:<br/>
+Before we begin, let's create (or reuse) a folder to hold the project. Copy the struts-mailreader.war<br/>
+from the Struts Applications distribution and extract it, with the result that it looks like this:<br/>
 <br/>
 <img alt="" src="../images/how-to/netbeans4/directory.jpg"></img><br/><br/><br/>
 <ol>
@@ -64,7 +64,7 @@ from the Struts distribution and extract it, with the result that it looks like 
   Now click Finish. That's it! You're done.<br/>
 
   Let's take a look at the result in the Projects window, and notice how<br/>
-  the Source Editor provides JSP code completion for Struts tag libraries:<br/>
+  the Source Editor provides JSP code completion for Struts JSP tag libraries:<br/>
   <br/>
   <img alt="" src="../images/how-to/netbeans4/creating-project7.jpg"></img><br/>
   <br/>
@@ -79,7 +79,7 @@ from the Struts distribution and extract it, with the result that it looks like 
   <img alt="" src="../images/how-to/netbeans4/creating-project8.jpg"></img><br/><br/><br/>
   </li>
   <li>
-  Finally, run the Struts application. Right-click the project node in the Projects window<br/>
+  Finally, run the Mailreader application. Right-click the project node in the Projects window<br/>
   and choose Run Project.<br/>
   <br/>
   The Run Project command is hooked to the Run target in the IDE-generated Ant script.<br/>
@@ -96,7 +96,7 @@ from the Struts distribution and extract it, with the result that it looks like 
 
 </section>
 
-<section name="Let's set up a blank Struts application">
+<section name="Let's set up a blank Struts Core application">
 Now you will use wizards to set up a new Struts application in NetBeans IDE 4.0, again in 5 steps.<br/> 
 <br/>
 <ol>

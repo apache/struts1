@@ -69,10 +69,6 @@
     </li>
 
     <li>
-    <a href="netbeans.html">Installing the Netbeans IDE (Version 3.4)</a>
-    </li>
-    
-    <li>
     <a href="netbeans40.html">Installing the Netbeans IDE (Version 4.0)</a>
     </li>
     
@@ -100,17 +96,23 @@
    </li>
 </ul>
 
- <ul>
-    <li>
-    <a href="http://strutstestcase.sourceforge.net">Unit Testing with Struts TestCase</a> by Deryl Seale
-    </li>
- </ul>
+<ul>
+   <li>
+   <a href="http://opensource2.atlassian.com/confluence/oss/display/STRUTS/Home">Struts University</a>
+   </li>
+</ul>
 
 <ul>
    <li>
    <a href="http://www.raibledesigns.com/page/rd/20030226#struts_validator_validating_two_fields">Struts Validator: Validating Two Fields Match</a> by Matt Raible
    </li>
 </ul>
+
+ <ul>
+    <li>
+    <a href="http://strutstestcase.sourceforge.net">Unit Testing with Struts TestCase</a> by Deryl Seale
+    </li>
+ </ul>
 
 </section>
 

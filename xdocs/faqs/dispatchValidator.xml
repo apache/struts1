@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 
-<document url="./disValidate.xml">
+<document url="./dispatchValidator.xml">
 
  <properties>
-  <title> Using the DispatchAction and Validator</title>
+  <title> Using the DispatchAction and Validator - Apache Struts</title>
  </properties>
 
 <body>
@@ -196,7 +196,7 @@ the validations associated with the current page.
           onclick="this.form.submitName.value='previous'; this.form.page.value='1'"/>
 ]]></source>
 
-For cancel, there are two options.  We could use the Struts
+For cancel, there are two options.  We could use the Struts Taglib 
 Cancel button or create an action specifically designed to process
 a cancel request.  The <code>cancel</code> action has no associated validations.
 
