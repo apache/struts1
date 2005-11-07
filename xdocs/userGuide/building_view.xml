@@ -424,8 +424,8 @@ value="/WEB-INF/validator-rules.xml,
     <p>
     Beyond using the custom tags provided by Struts Taglibs, it is easy
     to create tags that are specific to the application you are building, to
-    assist in creating the user interface.  The MailReader example application included with
-    Struts Classic illustrates this principle by creating the
+    assist in creating the user interface.  The MailReader example included with
+    the Struts Applications subproject illustrates this principle by creating the
     following tags unique to
     the implementation of this application:
     </p>
@@ -461,8 +461,8 @@ value="/WEB-INF/validator-rules.xml,
     <p>
     Creating the entire presentation of a page in one JSP file (with custom
     tags and beans to access the required dynamic data) is a very common 
-    design approach, and was employed in the example application included 
-    with Struts Classic.
+    design approach, and was employed in the MailReader example included 
+    with Struts Applications.
     However, many applications require the display of multiple logically 
     distinct portions of your application together on a single page.
     </p>

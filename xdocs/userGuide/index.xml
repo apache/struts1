@@ -105,7 +105,8 @@
                 <li><a href="building_controller.html#action_form_classes">4.3 ActionForm Classes</a>
                     <ul>
                     <li><a href="building_controller.html#dyna_action_form_classes">4.3.1 DynaActionForm Classes</a></li>
-                    <li><a href="building_controller.html#map_action_form_classes">4.3.2 Map-backed ActionForm Classes</a></li>
+                    <li><a href="building_controller.html#dyna_action_form_classes">4.3.2 LazyActionForm Classes</a></li>
+                    <li><a href="building_controller.html#map_action_form_classes">4.3.3 Map-backed ActionForm Classes</a></li>
                     </ul>
                 </li>                    
                 <li><a href="building_controller.html#action_classes">4.4 Action Classes</a>

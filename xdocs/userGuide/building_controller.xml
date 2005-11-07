@@ -17,31 +17,31 @@
 
     <p>
     Now that we understand how to construct the Model and View components
-    of your application, it is time to focus on the <code>Controller</code>
+    of your application, it is time to focus on the Controller
     components.  
     Struts Core includes a servlet that implements the primary function of
-     mapping a request URI to an <code>Action</code> class.
+     mapping a request URI to an Action class.
     Therefore, your primary responsibilities related to the Controller are:
     </p>
 
     <ul>
     
         <li>
-        Write an <code>ActionForm</code> class to mediate between the Model
+        Write an ActionForm class to mediate between the Model
         and the View. (See also <a href="../faqs/actionForm.html">Building
         an ActionForm</a>).
         </li>
 
         <li>
-        Write an <code>Action</code> class for each logical request that may
-        be received (extend <code>org.apache.struts.action.Action</code>).
+        Write an Action class for each logical request that may
+        be received (extend org.apache.struts.action.Action).
         </li>
 
         <li>
         Configure a ActionMapping (in XML) for each logical request that may
         be submitted. 
         The XML configuration file is usually named 
-        <code>struts-config.xml</code>.
+        struts-config.xml.
         </li>
 
     </ul>
@@ -111,15 +111,15 @@
     clean-up of resources.  
     When the controller initializes, it first loads the application config 
     corresponding to the "config" init-param.
-    It then goes through an enumeration of all <code>init-param</code>
+    It then goes through an enumeration of all init-param
     elements, looking for those elements who's name starts with
-    <code>config/</code>.  
+    config/.  
     For each of these elements, Core loads the configuration file specified
-    by the value of that <code>init-param</code>, and assigns a "prefix" 
+    by the value of that init-param, and assigns a "prefix" 
     value to that module's ModuleConfig instance consisting of the piece
-    of the <code>init-param</code> name following "config/".  
+    of the init-param name following "config/".  
     For example, the module prefix specified by the 
-    <code>init-param config/foo</code> would be "foo". 
+    init-param config/foo would be "foo". 
     This is important to know, since this is how the controller determines 
     which module will be given control of processing the request.  
     To access the module foo, you would use a URL like:
@@ -129,7 +129,7 @@
     
     <p>
     For each request made of the controller, the method
-    <code>process(HttpServletRequest, HttpServletResponse)</code> will be
+    process(HttpServletRequest, HttpServletResponse) will be
     called.  
     This method simply determines which module should service the request and 
     then invokes that module's RequestProcessor's process method, passing the 
@@ -151,7 +151,7 @@
     <table>
     <tr>
         <td>
-        <code>processPath</code>
+        processPath
         </td>
         <td>
         Determine the path that invoked us.  
@@ -161,7 +161,7 @@
 
     <tr>
         <td>
-        <code>processLocale</code>
+        processLocale
         </td>
         <td>
         Select a locale for this request, if one hasn't already been 
@@ -171,7 +171,7 @@
 
     <tr>
         <td>
-        <code>processContent</code> 
+        processContent 
         </td>
         <td>
         Set the default content type (with optional character encoding) for 
@@ -181,7 +181,7 @@
 
     <tr>
         <td>
-        <code>processNoCache</code>
+        processNoCache
         </td>
         <td>
         If appropriate, set the following response headers: "Pragma", 
@@ -191,22 +191,22 @@
 
     <tr>
         <td>
-        <code>processPreprocess</code>
+        processPreprocess
         </td>
         <td>
         This is one of the "hooks" the RequestProcessor makes available for 
         subclasses to override.  
-        The default implementation simply returns <code>true</code>.  
+        The default implementation simply returns true.  
         If you subclass RequestProcessor and override processPreprocess you 
-        should either return <code>true</code> (indicating process should 
-        continue processing the request) or <code>false</code> (indicating 
+        should either return true (indicating process should 
+        continue processing the request) or false (indicating 
         you have handled the request and the process should return)
         </td>
     </tr>
 
     <tr>
         <td>
-        <code>processMapping</code> 
+        processMapping 
         </td>
         <td>
         Determine the ActionMapping associated with this path.
@@ -215,7 +215,7 @@
 
     <tr>
         <td>
-        <code>processRoles</code> 
+        processRoles 
         </td>
         <td>
         If the mapping has a role associated with it, ensure the requesting 
@@ -226,7 +226,7 @@
 
     <tr>
         <td>
-        <code>processActionForm</code> 
+        processActionForm 
         </td>
         <td>
         Instantiate (if necessary) the ActionForm associated with this 
@@ -236,7 +236,7 @@
 
     <tr>
         <td>
-        <code>processPopulate</code>
+        processPopulate
         </td>
         <td>
         Populate the ActionForm associated with this request, if any.
@@ -245,7 +245,7 @@
 
     <tr>
         <td>
-        <code>processValidate</code> 
+        processValidate 
         </td>
         <td>
         Perform validation (if requested) on the ActionForm associated with 
@@ -255,7 +255,7 @@
     
     <tr>
         <td>
-        <code>processForward</code>
+        processForward
         </td>
         <td>
         If this mapping represents a forward, forward to the path specified 
@@ -265,7 +265,7 @@
     
     <tr>
         <td>
-        <code>processInclude</code> 
+        processInclude 
         </td>
         <td>
         If this mapping represents an include, include the result of 
@@ -275,7 +275,7 @@
     
     <tr>
         <td>
-        <code>processActionCreate</code>
+        processActionCreate
         </td>
         <td>
         Instantiate an instance of the class specified by the current 
@@ -285,17 +285,17 @@
     
     <tr>
         <td>
-        <code>processActionPerform</code> 
+        processActionPerform 
         </td>
         <td>
-        This is the point at which your Action's <code>execute</code> method
+        This is the point at which your Action's execute method
         will be called.
         </td>
     </tr>
 
     <tr>
         <td>
-         <code>processForwardConfig</code>
+         processForwardConfig
         </td>
         <td>
         Finally, the process method of the RequestProcessor takes the 
@@ -321,25 +321,25 @@
     ActionForms can be stored in either the session (default) or request 
     scope.
     If they're in the session it's important to implement the form's 
-    <code>reset</code> method to initialize the form before each use.  
+    reset method to initialize the form before each use.  
     Core sets the ActionForm's properties from the request parameters and
-    sends the validated form to the appropriate Action's <code>execute</code> 
+    sends the validated form to the appropriate Action's execute 
     method.
     </p>
 
     <p>
-    When you code your <code>ActionForm</code> beans, keep the following
+    When you code your ActionForm beans, keep the following
     principles in mind:
     </p>
 
     <ul>
     
     <li>
-    The <code>ActionForm</code> class itself requires no specific
+    The ActionForm class itself requires no specific
     methods to be implemented.  
     It is used to identify the role these particular beans play in the overall 
     architecture.  
-    Typically, an <code>ActionForm</code> bean will have only property getter 
+    Typically, an ActionForm bean will have only property getter 
     and property setter methods, with no business logic.
     </li>
     
@@ -354,15 +354,15 @@
     </li>
 
     <li>
-    Define a property (with associated <code>getXxx</code> and
-    <code>setXxx</code> methods) for each field that is present in the
+    Define a property (with associated getXxx and
+    setXxx methods) for each field that is present in the
     form.  
     The field name and property name must match according to the usual 
     JavaBeans conventions (see the Javadoc for the 
-    <code>java.beans.Introspector</code> class for a start on information
+    java.beans.Introspector class for a start on information
     about this).  
-    For example, an input field named <code>username</code> will cause the 
-    <code>setUsername</code> method to be called.
+    For example, an input field named username will cause the 
+    setUsername method to be called.
     </li>
 
     <li>
@@ -375,7 +375,7 @@
     
     <li>
     Think of your ActionForm beans as a firewall between HTTP and the Action.
-    Use the <code>validate</code> method to ensure all required properties 
+    Use the validate method to ensure all required properties 
     are present, and that they contain reasonable values. 
     An ActionForm that fails validation will not even be presented to the 
     Action for handling.
@@ -386,8 +386,8 @@
     references. 
     For example, you might have a "customer" bean on your ActionForm, and 
     then refer to the property "customer.name" in your presentation page.
-    This would correspond to the methods <code>customer.getName()</code> and
-    <code>customer.setName(String Name)</code> on your customer bean.
+    This would correspond to the methods customer.getName() and
+    customer.setName(String Name) on your customer bean.
     See the Apache Struts Taglib Developer Guides for more about
     using the nested syntax.
     </li>
@@ -513,21 +513,21 @@
     </ul>
 
     <p>
-        You may also specify Arrays of these types (e.g. <code>String[]</code>).
+        You may also specify Arrays of these types (e.g. String[]).
         You may also specify a concrete implementation of the Map Interface,
-        such as <code>java.util.HashMap</code>,
-        or a List implementation, such as <code>java.util.ArrayList</code>.
+        such as java.util.HashMap,
+        or a List implementation, such as java.util.ArrayList.
     </p>
 
     <p>
     If you do not supply an initial attribute, numbers will be initialized to 
-    0 and objects to <code>null</code>.
+    0 and objects to null.
     </p>
     
     <p>
     In JSP pages using the Apache Struts Taglib, attributes of
-    <code>DynaActionForm</code> objects can be referenced just like ordinary
-    <code>ActionForm</code> objects. Wherever a Struts tag refers to a
+    DynaActionForm objects can be referenced just like ordinary
+    ActionForm objects. Wherever a Struts tag refers to a
     "property", the tags will automatically use the DynaActionForm properties
     just like those of a conventional JavaBean.
     You can even expose DynaActionForm properties using bean:define.
@@ -538,40 +538,40 @@
     <p>
     If you are using the Apache Struts EL taglib for JSTL, the references are
     different, however.
-    Only properties of ordinary <code>ActionForm</code> objects can be directly
+    Only properties of ordinary ActionForm objects can be directly
     accessed through the JSTL expression language syntax.  
-    The <code>DynaActionForm</code> properties must be accessed through a
+    The DynaActionForm properties must be accessed through a
     slightly different syntax. 
     The JSTL EL syntax for referencing a property
-    of an <code>ActionForm</code> goes like this:
+    of an ActionForm goes like this:
     </p>
     
 <source>${formbean.prop}</source>
     
     <p>
-    The syntax for referencing a property of a <code>DynaActionForm</code>
+    The syntax for referencing a property of a DynaActionForm
     would be:
     </p>
 
 <source>${dynabean.map.prop}</source>
 
     <p>
-    The <code>map</code> property is a property of 
-    <code>DynaActionForm</code> which represents the <code>HashMap</code>
-    containing the <code>DynaActionForm</code> properties.
+    The map property is a property of 
+    DynaActionForm which represents the HashMap
+    containing the DynaActionForm properties.
     </p>
 
     <p>
     DynaActionForms are meant as an easy solution to a common problem:
     <em>Your ActionForms use simple properties and standard validations,
     and you just pass these properties over to another JavaBean</em>
-    (say using <code>BeanUtils.copyProperties(myBusinessBean,form)</code>).
+    (say using BeanUtils.copyProperties(myBusinessBean,form)).
     </p>
 
     <p>
     DynaActionForms are <strong>not</strong> a drop-in replacement for ActionForms.
     If you need to access ActionForm properties in your Action, you will need to
-    use the map-style accessor, like <code>myForm.get("name")</code>.
+    use the map-style accessor, like myForm.get("name").
     If you actively use the ActionForm object in your Action,
     then you may want to use conventional ActionForms instead.
     </p>
@@ -595,13 +595,13 @@
 
     <p>
     To use DynaActionForms with the Struts Validator, specify
-    <code>org.apache.struts.validator.ValidatorActionForm</code>
+    org.apache.struts.validator.ValidatorActionForm
     (or your subclass) as the form-bean class.
     </p>
 
     <p>
     And, of course, while the  DynaActionForm may support various binary types,
-    properties used with the <code>html:text</code> tag should still be
+    properties used with the html:text tag should still be
     String properties.
     </p>
 
@@ -613,8 +613,104 @@
 
 </subsection>
 
+<a name="lazy_action_form_classes"/>
+<subsection name="4.3.2 LazyActionForm Classes">
+
+    <p>
+    Struts <i>Lazy</i> ActionForm which <i>wraps</i> a LazyDynaBean.
+    </p>
+
+    <p>
+    There isn't really that much to this implementation as most of the <i>lazy</i> behaviour is in
+    LazyDynaBean and <i>wrapping</i> the LazyDynaBean is handled in the parent
+    BeanValidatorForm. The only thing it really does is populate <i>indexed</i> properties
+    which are a List type with a LazyDynaBean in the get(name, index)
+    method.
+    </p>
+
+    <p>
+    <i>Lazy</i> DynaBeans provide several types of <i>lazy</i> behaviour:
+    </p>
+
+    <ul>
+    <li><b><i>lazy</i> property addition</b> - properties which do not exist
+        are automatically added.</li>
+    <li><b><i>lazy</i> List facilities</b> - automatically <i>grows</i> a List or
+        Array to accomodate the index value being set.</li>
+    <li><b><i>lazy</i> List creation</b> - automatic creation of a List
+        or Array for <i>indexed</i> properties, if it doesn't exist.</li>
+    <li><b><i>lazy</i> Map creation</b> - automatic creation of a Map
+        for <i>mapped</i> properties, if it doesn't exist.</li>
+     </ul>
+
+    <p>
+    Using this <i>lazy</i> ActionForm means that you don't have to define the ActionForm's
+    properties in the struts-config.xml. However, a word of warning, everything in the
+    Request gets populated into this ActionForm circumventing the normal <i>firewall</i>
+    function of Struts forms. Therefore you should only <i>take out</i> of this form properties you expect
+    to be there rather than blindly populating all the properties into the business tier.
+    </p>
+
+     <p>
+     Having said that it is not necessary to pre-define properties in the struts-config.xml, it is
+     useful to sometimes do so for <i>mapped</i> or <i>indexed</i> properties. For example, if you want to use
+     a different Map implementation from the default HashMap or an array for indexed
+     properties, rather than the default List type:
+     </p>
+
+<source>
+  &lt;form-bean name="myForm" type="org.apache.struts.validator.LazyValidatorForm"&gt;
+    &lt;form-property name="myMap" type="java.util.TreeMap" /&gt;
+    &lt;form-property name="myBeans" type="org.apache.commons.beanutils.LazyDynaBean[]" /&gt;
+  &lt;/form-bean&gt;
+</source>
+
+    <p>
+    Another reason for defining <i>indexed</i> properties in the struts-config.xml is that
+    if you are validating indexed properties using the Validator and none are submitted then the indexed
+    property will be null which causes validator to fail. Pre-defining them in the
+    struts-config.xml will result in a zero-length indexed property (array or List) being
+    instantiated, avoiding an issue with validator in that circumstance.
+    </p>
+
+    <p>
+    This implementation validates using the ActionForm <i>name</i>. If you require a version that
+    validates according to the <i>path</i> then it can be easily created in the following manner:
+    </p>
+
+ <source>
+   public class MyLazyForm extends LazyValidatorForm {
+
+       public MyLazyForm () {
+           super();
+           setPathValidation(true);
+       }
+
+   }
+</source>
+
+    <p>
+    Rather than using this class, another alternative is to either use a LazyDynaBean or
+    custom version of LazyDynaBean directly. Struts now automatically <i>wraps</i> objects
+    which are not ActionForms in a BeanValidatorForm. For example:
+    </p>
+
+<source>
+  &lt;form-bean name="myForm" type="org.apache.commons.beanutils.LazyDynaBean"&gt;
+    &lt;form-property name="myBeans" type="org.apache.commons.beanutils.LazyDynaBean[]" /&gt;
+  &lt;/form-bean&gt;
+</source>
+
+<p>
+  For more coding examples, see the <a href="http://www.niallp.pwp.blueyonder.co.uk/lazyactionform.html">
+  LazyValidatorForm How-To</a>.
+</p>
+
+</subsection>
+
+
 <a name="map_action_form_classes"/>
-<subsection name="4.3.2 Map-backed ActionForms">
+<subsection name="4.3.3 Map-backed ActionForms">
 
     <p>
     The DynaActionForm classes offer the ability to create ActionForm beans 
@@ -649,21 +745,21 @@
 
     <p>
     In its corresponding JSP page, you can access objects stored in the 
-    values map using a special notation: <code>mapname(keyname)</code>. 
+    values map using a special notation: mapname(keyname). 
     The parentheses in the bean property name indicate that:
     </p>
     
     <ul>
     
         <li>
-        The bean property named <code>mapname</code> is indexed using Strings
+        The bean property named mapname is indexed using Strings
         (probably backed by a Map), and that 
         </li>
 
         <li>
         Struts Core should look for get/set methods that take a String key
         parameter to find the correct sub-property value. 
-        Core will, of course, use the <code>keyname</code> value from the
+        Core will, of course, use the keyname value from the
         parentheses when it calls the get/set methods.
         </li>
     
@@ -676,8 +772,8 @@
 <source><![CDATA[<html:text property="value(foo)"/>]]></source>
 
     <p>
-    This will call the <code>getValue</code> method on FooForm with a key 
-    value of "<code>foo</code>" to find the property value. 
+    This will call the getValue method on FooForm with a key 
+    value of "foo" to find the property value. 
     To create a form with dynamic field names, you could do the following:
     </p>
 
@@ -694,9 +790,9 @@
 ]]></source>
 
     <p>
-    Note that there is nothing special about the name <code>value</code>. 
-    Your map-backed property could instead be named <code>property</code>, 
-    <code>thingy</code>, or any other bean property name you prefer. 
+    Note that there is nothing special about the name value. 
+    Your map-backed property could instead be named property, 
+    thingy, or any other bean property name you prefer. 
     You can even have multiple map-backed properties on the same bean.
     </p>
     
@@ -723,9 +819,9 @@
     <p>
     In your presentation pages, you access individual entries in a list-backed 
     property by using a different special notation: 
-    <code>listname[index]</code>. 
+    listname[index]. 
     The braces in the bean property name indicate that the bean property named 
-    <code>listname</code> is indexed (probably backed by a List), and that 
+    listname is indexed (probably backed by a List), and that 
     Core should look for get/set methods that take an index parameter
     in order to find the correct sub-property value.
     </p>
@@ -735,7 +831,7 @@
         available to conventional or DynaActionForms.
         You might have difficulty referencing <a href="../faqs/indexedprops.html">indexed or mapped properties</a>
         using a map-backed ActionForm.
-        The <code>validwhen</code> validator (since Apache Struts 1.2.1) also
+        The validwhen validator (since Apache Struts 1.2.1) also
         does not support map-backed ActionForms.
     </p>
 
@@ -745,7 +841,7 @@
 <subsection name="4.4 Action Classes">
 
     <p>
-    The <code>Action</code> class defines two methods that could be
+    The Action class defines two methods that could be
     executed depending on your servlet environment:
     </p>
 
@@ -771,14 +867,14 @@ throws Exception;
     </p>
 
     <p>
-    The goal of an <code>Action</code> class is to process a request, via
-    its <code>execute</code> method, and return an <code>ActionForward</code> 
+    The goal of an Action class is to process a request, via
+    its execute method, and return an ActionForward 
     object that identifies where control should be forwarded (e.g. a JSP, 
     Tile definition, Velocity template, or another Action) to provide the 
     appropriate response.  
-    In the <em>MVC/Model 2</em> design pattern, a typical <code>Action</code> 
+    In the <em>MVC/Model 2</em> design pattern, a typical Action 
     class will often implement logic like the following in its 
-    <code>execute</code> method:
+    execute method:
     </p>
     
     <ul>
@@ -786,7 +882,7 @@ throws Exception;
         <li>
         Validate the current state of the user's session (for example, 
         checking that the user has successfully logged on).
-        If the <code>Action</code> class finds that no logon exists, the 
+        If the Action class finds that no logon exists, the 
         request can be forwarded to the presentation page that displays the 
         username and password prompts for logging on.  
         This could occur because a user tried to enter an application "in the 
@@ -806,7 +902,7 @@ throws Exception;
         Perform the processing required to deal with this request (such as
         saving a row into a database).  
         This <em>can</em> be done by logic code embedded within the 
-        <code>Action</code> class itself, <strong>but</strong> should generally be 
+        Action class itself, <strong>but</strong> should generally be 
         performed by calling an appropriate method of a business logic bean.
         </li>
 
@@ -817,11 +913,11 @@ throws Exception;
         </li>
 
         <li>
-        Return an appropriate <code>ActionForward</code> object that 
+        Return an appropriate ActionForward object that 
         identifies the presentation page to be used to generate this response, 
         based on the newly updated beans. 
         Typically, you will acquire a reference to such an object by calling 
-        <code>findForward</code> on either the <code>ActionMapping</code> 
+        findForward on either the ActionMapping 
         object you received (if you are using a logical name local to this 
         mapping), or on the controller servlet itself (if you are using a 
         logical name global to the application).
@@ -830,24 +926,24 @@ throws Exception;
     </ul>
 
     <p>
-    In Apache Struts 1.0, Actions called a <code>perform</code> method instead of
-    the now-preferred <code>execute</code> method. 
+    In Apache Struts 1.0, Actions called a perform method instead of
+    the now-preferred execute method. 
     These methods use the same parameters and differ only in which exceptions 
     they throw. 
-    The elder <code>perform</code> method throws <code>SerlvetException</code> 
-    and <code>IOException</code>. 
-    The new <code>execute</code> method simply throws <code>Exception</code>. 
+    The elder perform method throws SerlvetException 
+    and IOException. 
+    The new execute method simply throws Exception. 
     The change was to facilitate the Declarative Exception handling feature 
     introduced in Apache Struts 1.1.
     </p>
     
     <p>
-    The <code>perform</code> method may still be used in Apache Struts 1.1
+    The perform method may still be used in Apache Struts 1.1
     but is deprecated.
-    The Apache Struts 1.1 method simply calls the new <code>execute</code>
-    method and wraps any <code>Exception</code> thrown as a
-    <code>ServletException</code>.
-    The deprecated <code>perform</code> method was removed
+    The Apache Struts 1.1 method simply calls the new execute
+    method and wraps any Exception thrown as a
+    ServletException.
+    The deprecated perform method was removed
     in Apache Struts 1.2.
     </p>
 
@@ -857,7 +953,7 @@ throws Exception;
    <subsection name="4.4.1 Action Class Design Guidelines">
 
     <p>
-    Remember the following design guidelines when coding <code>Action</code> 
+    Remember the following design guidelines when coding Action 
     classes:
     </p>
 
@@ -866,9 +962,9 @@ throws Exception;
         <li>
         <strong>Write code for a multi-threaded environment</strong> -
         Our controller servlet creates <strong>only one instance of your
-        <code>Action</code> class</strong>, and uses this one instance to service
+        Action class</strong>, and uses this one instance to service
         all requests.  
-        Thus, you need to write thread-safe <code>Action</code> classes.
+        Thus, you need to write thread-safe Action classes.
         Follow the same guidelines you would use to write thread-safe 
         Servlets.  
         Here are two general guidelines that will help you write scalable, 
@@ -879,11 +975,11 @@ throws Exception;
             <li>
             <strong>Only Use Local Variables</strong> - The most important principle 
             that aids in thread-safe coding is to use only local variables, 
-            <strong>not instance variables</strong>, in your <code>Action</code> class.  
+            <strong>not instance variables</strong>, in your Action class.  
             Local variables are created on a stack that is assigned (by your 
             JVM) to each request thread, so there is no need to worry about 
             sharing them.  
-            An <code>Action</code> can be factored into several local methods, 
+            An Action can be factored into several local methods, 
             so  long as all variables needed are passed as method parameters. 
             This assures thread safety, as the JVM handles such variables 
             internally using the call stack which is associated with a single 
@@ -914,10 +1010,10 @@ throws Exception;
         typed in your credit card number and clicked the purchase button?  
         Let's just say it doesn't inspire confidence.  
         Now is your chance to deal with these application errors - in the 
-        <code>Action</code> class.  
+        Action class.  
         If your application specific code throws expections you should catch these 
         exceptions  in your Action class, log them in your application's log
-        (<code>servlet.log("Error message", exception)</code>) and return the 
+        (servlet.log("Error message", exception)) and return the 
         appropriate ActionForward.
         </li>
     
@@ -925,8 +1021,8 @@ throws Exception;
 
     <p>
     It is wise to avoid creating lengthy and complex Action classes.
-    If you start to embed too much logic in the <code>Action</code> class 
-    itself, you will begin to find the <code>Action</code> class hard to 
+    If you start to embed too much logic in the Action class 
+    itself, you will begin to find the Action class hard to 
     understand, maintain, and impossible to reuse.  
     Rather than creating overly complex Action classes, it is generally a 
     good practice to move most of the persistence, and "business logic" to a 
@@ -949,11 +1045,11 @@ throws Exception;
 
     <p>
     You can define an ExceptionHandler to execute when an Action's 
-    <code>execute</code> method throws an Exception.  
+    execute method throws an Exception.  
     First, you need to subclass 
-    <code>org.apache.struts.action.ExceptionHandler</code> and override the 
-    <code>execute</code> method.
-    Your <code>execute</code> method should process the Exception and return 
+    org.apache.struts.action.ExceptionHandler and override the 
+    execute method.
+    Your execute method should process the Exception and return 
     an ActionForward object to tell Core where to forward to next.
     Then you configure your handler in struts-config.xml like this:
     </p>
@@ -968,15 +1064,15 @@ throws Exception;
     
     <p>
     This configuration element says that 
-    <code>com.yourcorp.ExceptionHandler.execute</code> will be called when 
+    com.yourcorp.ExceptionHandler.execute will be called when 
     any IOException is thrown by an Action.  
-    The <code>key</code> is a key into your message resources properties file 
+    The key is a key into your message resources properties file 
     that can be used to retrieve an error message.
     </p>
     <p>
-    If the <code>handler</code> attribute is not specified, the default handler
+    If the handler attribute is not specified, the default handler
     stores the exception in the request attribute under the value of the 
-    <code>Globals.EXCEPTION_KEY</code> global key.
+    Globals.EXCEPTION_KEY global key.
     </p>
 
     <p>
@@ -990,21 +1086,21 @@ throws Exception;
     </tr>    
     <tr>
         <td>
-        <code>bundle</code>
+        bundle
         </td>
         <td>
             Servlet context attribute for the message resources bundle
             associated with this handler. The default attribute is the
             value specified by the string constant declared at
-            <code>Globals.MESSAGES_KEY</code>.
+            Globals.MESSAGES_KEY.
         </td>
         <td>
-            <code>org.apache.struts.Globals.MESSAGES_KEY</code>
+            org.apache.struts.Globals.MESSAGES_KEY
         </td>
     </tr>
     <tr>
         <td>
-        <code>className</code>
+        className
         </td>
         <td>
             The configuration bean for this ExceptionHandler object.
@@ -1012,12 +1108,12 @@ throws Exception;
             configuration bean
         </td>
         <td>
-            "<code>org.apache.struts.config.ExceptionConfig</code>"
+            "org.apache.struts.config.ExceptionConfig"
         </td>
     </tr>
     <tr>
         <td>
-        <code>extends</code>
+        extends
         </td>
         <td>
             The name of the exception handler that this 
@@ -1029,18 +1125,18 @@ throws Exception;
     </tr>
     <tr>
         <td>
-        <code>handler</code>
+        handler
         </td>
         <td>
             Fully qualified Java class name for this exception handler.
         </td>
         <td>
-            "<code>org.apache.struts.action.ExceptionHandler</code>"
+            "org.apache.struts.action.ExceptionHandler"
         </td>
     </tr>
     <tr>
         <td>
-        <code>key</code>
+        key
         </td>
         <td>
             The key to use with this handler's message resource bundle
@@ -1053,7 +1149,7 @@ throws Exception;
     </tr>
     <tr>
         <td>
-        <code>path</code>
+        path
         </td>
         <td>
             The module-relative URI to the resource that will complete
@@ -1065,7 +1161,7 @@ throws Exception;
     </tr>
     <tr>
         <td>
-        <code>scope</code>
+        scope
         </td>
         <td>
             The context ("request" or "session") that is used to access
@@ -1073,12 +1169,12 @@ throws Exception;
             for this exception.
         </td>
         <td>
-            "<code>request</code>"
+            "request"
         </td>
     </tr>
     <tr>
         <td>
-        <code>type</code>
+        type
         </td>
         <td>
             Fully qualified Java class name of the exception type to
@@ -1097,7 +1193,7 @@ throws Exception;
     
     <p>
     A common use of ExceptionHandlers is to configure one for 
-    <code>java.lang.Exception</code> so it's called for any exception and log 
+    java.lang.Exception so it's called for any exception and log 
     the exception to some data store.
     </p>
     
@@ -1109,15 +1205,15 @@ throws Exception;
     <p>
     The <em>PlugIn</em> interface extends Action and so that applications can
     easily hook into the ActionServlet lifecycle. 
-    This interface defines two methods, <code>init()</code> and 
-    <code>destroy()</code>, which are called at application startup and 
+    This interface defines two methods, init() and 
+    destroy(), which are called at application startup and 
     shutdown, respectively. 
     A common use of a Plugin Action is to configure or load 
     application-specific data as the web application is starting up.
     </p>
     
     <p>
-    At runtime, any resource setup by <code>init</code> would be accessed by 
+    At runtime, any resource setup by init would be accessed by 
     Actions or business tier classes. 
     The PlugIn interface allows you to setup resources, but does not provide 
     any special way to access them. 
@@ -1140,7 +1236,7 @@ throws Exception;
     <p>
     In order to operate successfully, our controller servlet needs
     to know several things about how each request URI should be mapped to an
-    appropriate <code>Action</code> class.  
+    appropriate Action class.  
     The required knowledge has been encapsulated in a Java class named 
     <em>ActionMapping</em>, the most important properties are as follows:
     </p>
@@ -1148,39 +1244,39 @@ throws Exception;
     <ul>
     
         <li>
-        <code>type</code> - Fully qualified Java class name of the Action 
+        type - Fully qualified Java class name of the Action 
         implementation class used by this mapping.
         </li>
 
         <li>
-        <code>name</code> - The name of the form bean defined in the config file
+        name - The name of the form bean defined in the config file
         that this action will use.
         </li>
 
         <li>
-        <code>path</code> - The request URI path that is matched to select this
+        path - The request URI path that is matched to select this
         mapping.  
         See below for examples of how matching works and how to use wildcards 
         to match multiple request URIs.
         </li>
 
         <li>
-        <code>unknown</code> - Set to <code>true</code> if this action
+        unknown - Set to true if this action
         should be configured as the default for this application, to handle
         all requests not handled by another action.  
         Only one action can be defined as a default within a single application.
         </li>
 
         <li>
-        <code>validate</code> - Set to <code>true</code> if the 
-        <code>validate</code> method of the action associated with this mapping 
+        validate - Set to true if the 
+        validate method of the action associated with this mapping 
         should be called.
         </li>
 
         <li>
-        <code>forward</code> - The request URI path to which control is passed
+        forward - The request URI path to which control is passed
         when this mapping is invoked. 
-        This is an alternative to declaring a <code>type</code> property. 
+        This is an alternative to declaring a type property. 
         </li>
 
     </ul>
@@ -1193,7 +1289,7 @@ throws Exception;
     <p>
     How does the controller servlet learn about the mappings you want?
     It would be possible (but tedious) to write a small Java class that simply
-    instantiated new <code>ActionMapping</code> instances, and called all of
+    instantiated new ActionMapping instances, and called all of
     the appropriate setter methods.  
     To make this process easier,
     Struts Core uses the Jakarta Commons Digester component
@@ -1206,7 +1302,7 @@ throws Exception;
 
     <p>
     The developer's responsibility is to create an XML file named
-    <code>struts-config.xml</code> and place it in the WEB-INF directory of 
+    struts-config.xml and place it in the WEB-INF directory of 
     your application. 
     This format of this document is described by the Document Type Definition
     (DTD) maintained at
@@ -1226,7 +1322,7 @@ throws Exception;
     </p>
 
     <p>
-    The outermost XML element must be <code>&lt;struts-config&gt;</code>. 
+    The outermost XML element must be &lt;struts-config&gt;. 
     Inside of the &lt;struts-config&gt; element, there are three important 
     elements that are used to describe your actions:
     </p>
@@ -1234,21 +1330,21 @@ throws Exception;
     <ul>
     
         <li>
-        <code>&lt;form-beans&gt;</code>
+        &lt;form-beans&gt;
         </li>
     
         <li>
-        <code>&lt;global-forwards&gt;</code>
+        &lt;global-forwards&gt;
         </li>
     
         <li>
-        <code>&lt;action-mappings&gt;</code>
+        &lt;action-mappings&gt;
         </li>
 
     </ul>
     
     <p>
-    <code><strong>&lt;form-beans&gt;</strong></code><br />
+    <strong>&lt;form-beans&gt;</strong><br />
     This section contains your form bean definitions.  
     Form beans are descriptors that are used to create ActionForm instances 
     at runtime. 
@@ -1259,14 +1355,14 @@ throws Exception;
     <ul>
     
         <li>
-        <code>name</code>: A unique identifier for this bean, which will be 
+        name: A unique identifier for this bean, which will be 
         used to reference it in corresponding action mappings. 
         Usually, this is also the name of the request or session attribute 
         under which this form bean will be stored.
         </li>
 
         <li>
-        <code>type</code>: The fully-qualified Java classname of the 
+        type: The fully-qualified Java classname of the 
         ActionForm subclass to use with this form bean.
         </li>
 
@@ -1276,30 +1372,30 @@ throws Exception;
     <strong>&lt;global-forwards&gt;</strong><br />
     This section contains your global forward definitions.  
     Forwards are instances of the ActionForward class returned from an 
-    ActionForm's <code>execute</code> method. 
+    ActionForm's execute method. 
     These map logical names to specific resources (typically JSPs), allowing 
     you to change the resource without changing references to it throughout 
     your application.
-    You use a <code>&lt;forward&gt;</code> element for each forward 
+    You use a &lt;forward&gt; element for each forward 
     definition, which has the following important attributes:
     </p>
     
     <ul>
     
         <li>
-        <code>name</code>: The logical name for this forward.  
-        This is used in your ActionForm's <code>execute</code> method to 
+        name: The logical name for this forward.  
+        This is used in your ActionForm's execute method to 
         forward to the next appropriate resource. 
         Example: homepage
         </li>
 
         <li>
-        <code>path</code>: The context relative path to the resource.
+        path: The context relative path to the resource.
         Example: /index.jsp or /index.do
         </li>
 
         <li>
-        <code>redirect</code>: <code>True</code> or <code>false</code> 
+        redirect: True or false 
         (default).  
         Should the ActionServlet redirect to the resource instead of forward?
         </li>
@@ -1307,9 +1403,9 @@ throws Exception;
     </ul>
     
     <p>
-    <code><strong>&lt;action-mappings&gt;</strong></code><br />
+    <strong>&lt;action-mappings&gt;</strong><br />
     This section contains your action definitions.  
-    You use an <code>&lt;action&gt;</code> element for each of the mappings 
+    You use an &lt;action&gt; element for each of the mappings 
     you would like to define.  
     Most action elements will define at least the following attributes:
     </p>
@@ -1317,18 +1413,18 @@ throws Exception;
     <ul>
 
         <li>
-        <code>path</code>: The application context-relative path to the 
+        path: The application context-relative path to the 
         action.
         </li>
 
         <li>
-        <code>type</code>: The fully qualified java classname of your 
+        type: The fully qualified java classname of your 
         Action class.
         </li>
 
         <li>
-        <code>name</code>: The name of your 
-        <code>&lt;form-bean&gt;</code> element to use with this action
+        name: The name of your 
+        &lt;form-bean&gt; element to use with this action
         </li>
 
     </ul>
@@ -1338,12 +1434,12 @@ throws Exception;
     <ul>
     
         <li>
-        <code>parameter</code>: A general-purpose attribute often used by 
+        parameter: A general-purpose attribute often used by 
         "standard" Actions to pass a required property.
         </li>
     
         <li>
-        <code>roles</code>: A comma-delimited list of the user security roles 
+        roles: A comma-delimited list of the user security roles 
         that can access this mapping.
         </li>
     
@@ -1351,7 +1447,7 @@ throws Exception;
 
     <p>
     For a complete description of the elements that can be used with the 
-    <code>action</code> element, see the
+    action element, see the
     <a href="http://struts.apache.org/dtds/struts-config_1_3.dtd">
     Apache Struts Core Configuration DTD</a> and the
     <a href="../struts-core/apidocs/org/apache/struts/action/ActionMapping.html">
@@ -1366,7 +1462,7 @@ throws Exception;
     <p>
     Here's a mapping entry based on the MailReader example
     application. The MailReader application now uses DynaActionForms.
-    But in this example, we'll show a conventinal
+    But in this example, we'll show a conventional
     ActionForm instead, to illustrate the usual workflow.
     Note that the entries for all the other actions are left out:
     </p>
@@ -1399,33 +1495,33 @@ throws Exception;
 
     <p>
     First the form bean is defined.  
-    A basic bean of class "<code>org.apache.struts.webapp.example.LogonForm</code>"
-    is mapped to the logical name "<code>logonForm</code>". 
+    A basic bean of class "org.apache.struts.webapp.example.LogonForm"
+    is mapped to the logical name "logonForm". 
     This name is used as a request attribute name for the form
     bean.
     </p>
 
     <p>
-    The "<code>global-forwards</code>" section is used to create logical name 
+    The "global-forwards" section is used to create logical name 
     mappings for commonly used presentation pages.  
     Each of these forwards is available through a call to your action mapping 
-    instance, i.e. <code>mapping.findForward("logicalName")</code>.
+    instance, i.e. mapping.findForward("logicalName").
     </p>
 
     <p>
-    As you can see, this mapping matches the path <code>/logon</code> 
+    As you can see, this mapping matches the path /logon 
     (actually, because the MailReader example application uses extension 
     mapping, the request URI you specify in a JSP page would end in 
-    <code>/logon.do</code>).
+    /logon.do).
     When a request that matches this path is received, an instance of the
     <em>LogonAction</em> class will be created (the first time only) and used.
     The controller servlet will look for a bean in request scope under key
-    <code>logonForm</code>, creating and saving a bean of the specified class
+    logonForm, creating and saving a bean of the specified class
     if needed.
     </p>
    
     <p>
-    Optional but very useful are the local "<code>forward</code>" elements. 
+    Optional but very useful are the local "forward" elements. 
     In the MailReader example application, many actions include a local 
     "success" and/or "failure" forward as part of an action mapping.
     </p>
@@ -1453,7 +1549,7 @@ throws Exception;
     impact on the Action classes themselves.
     If the names of the "next" pages were hard coded into the Action classes, 
     all of these classes would also need to be modified. 
-    Of course, you can define whatever local <code>forward</code> properties 
+    Of course, you can define whatever local forward properties 
     makes sense for your own application.
     </p>
 
@@ -1479,7 +1575,7 @@ throws Exception;
     </p>
     
     <p>
-    The simplest way to do this is to use the <code>forward</code> property 
+    The simplest way to do this is to use the forward property 
     of the ActionMapping:
     </p>
     
@@ -1500,7 +1596,7 @@ throws Exception;
     The best way to explain wildcards is to show an example and walk through 
     how it works.  This example modifies the previous mapping in the <a 
     href="#4_8_1_ActionMapping_Example">ActionMapping Example</a> section to use
-    wildcards to match all pages that start with <code>/edit</code>:
+    wildcards to match all pages that start with /edit:
     </p> 
 
 <source><![CDATA[<!-- Generic edit* mapping -->
@@ -1520,14 +1616,14 @@ throws Exception;
 ]]></source>
 
     <p>
-    The "<code>*</code>" in the path attribute allows the mapping to match the 
-    request URIs <code>/editSubscription</code>, <code>editRegistration</code>,
+    The "*" in the path attribute allows the mapping to match the 
+    request URIs /editSubscription, editRegistration,
     or any other URI that starts with 
-    <code>/edit</code>, however <code>/editSubscription/add</code> would not be 
+    /edit, however /editSubscription/add would not be 
     matched.  The part of 
     the URI matched by the wildcard will then be substituted into various 
     attributes of the action mapping and its action forwards replacing 
-    <code>{1}</code>.
+    {1}.
     For the rest of the request, Core will see the action mapping and its
     action forwards containing the new values.
     </p>
@@ -1547,7 +1643,7 @@ throws Exception;
     <table>
         <tr>
             <td>
-            <code>*</code>
+            *
             </td>
             <td>
             Matches zero or more characters excluding the 
@@ -1555,7 +1651,7 @@ throws Exception;
             </td>
         </tr>       <tr>
             <td>
-            <code>**</code>
+            **
             </td>
             <td>
             Matches zero or more characters including the 
@@ -1563,12 +1659,12 @@ throws Exception;
             </td>
         </tr>       <tr>
             <td>
-            <code>\character</code>
+            \character
             </td>
             <td>
             The backslash character is used as an escape
-            sequence.  Thus <code>\*</code> matches the character asterisk 
-            ('*'), and <code>\\</code>
+            sequence.  Thus \* matches the character asterisk 
+            ('*'), and \\
             matches the character backslash ('\').
             </td>
         </tr>
@@ -1576,10 +1672,10 @@ throws Exception;
 
     <p>
     In the action mapping and action forwards, the wildcard-matched values can
-    be accessed with the token <code>{N}</code> where <code>N</code>
+    be accessed with the token {N} where N
     is a number from 1 to 9 indicating
     which wildcard-matched value to substitute.  The whole request URI can be
-    accessed with the <code>{0}</code> token.
+    accessed with the {0} token.
     </p>
 
     <p>
@@ -1588,25 +1684,25 @@ throws Exception;
     </p>
 
     <ul>
-        <li><code>attribute</code></li>
-        <li><code>catalog</code></li>
-        <li><code>command</code></li>
-        <li><code>forward</code></li>
-        <li><code>include</code></li>
-        <li><code>input</code></li>
-        <li><code>multipartClass</code></li>
-        <li><code>name</code></li>
-        <li><code>parameter</code></li>
-        <li><code>prefix</code></li>
-        <li><code>roles</code></li>
-        <li><code>suffix</code></li>
-        <li><code>type</code></li>
+        <li>attribute</li>
+        <li>catalog</li>
+        <li>command</li>
+        <li>forward</li>
+        <li>include</li>
+        <li>input</li>
+        <li>multipartClass</li>
+        <li>name</li>
+        <li>parameter</li>
+        <li>prefix</li>
+        <li>roles</li>
+        <li>suffix</li>
+        <li>type</li>
     </ul>
 
     <p>
-    Also, the action mapping properties (set using the <code>&lt;set-property key="foo"
-     value="bar"&gt;</code> syntax) will accept wildcard-matched strings in their 
-    <code>value</code> attribute.
+    Also, the action mapping properties (set using the &lt;set-property key="foo"
+     value="bar"&gt; syntax) will accept wildcard-matched strings in their 
+    value attribute.
     </p>
 
    <p>
@@ -1615,15 +1711,15 @@ throws Exception;
     </p>
     
     <ul>
-        <li><code>catalog</code></li>
-        <li><code>command</code></li>
-        <li><code>path</code></li>
+        <li>catalog</li>
+        <li>command</li>
+        <li>path</li>
     </ul>
     
     <p>
     Like the action mapping, the action forward properties (set using the 
-    <code>&lt;set-property key="foo" value="bar"&gt;</code> syntax) will 
-    accept wildcard-matched strings in their <code>value</code> attribute.
+    &lt;set-property key="foo" value="bar"&gt; syntax) will 
+    accept wildcard-matched strings in their value attribute.
     </p>
 
 </subsection>
@@ -1661,7 +1757,7 @@ throws Exception;
     For more information about the currently-supported implementations, 
     please refer to the
     <a href="http://jakarta.apache.org/commons/logging/api/index.html">
-    the description for the <code>org.apache.commons.logging</code> 
+    the description for the org.apache.commons.logging 
     package</a>.
     </p>
     
