@@ -144,24 +144,20 @@
     <p>
     The RequestProcessor is where the majority of the core processing 
     occurs for each request.  
-    Let's take a look at the helper functions the process method invokes 
-    in-turn:
+    Since Struts 1.3, the default Request Processor is composed using 
+    <a href="http://jakarta.apache.org/commons/chain/">Jakarta Commons Chain</a>. 
+    Each step of the processing is represented as a separate Commaind in the Chain.
+    By inserting, substituting, or removing Commands, 
+    you can customize Struts to work <i>your</i> way.
+    Let's take a look at the commands on the RequestProcessor Chain in turn. 
+    Each of these Command classes are in the [org.apache.struts.chain.commands.servlet]
+    package.
     </p>
 
     <table>
     <tr>
         <td>
-        processPath
-        </td>
-        <td>
-        Determine the path that invoked us.  
-        This will be used later to retrieve an ActionMapping.
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-        processLocale
+        SelectLocale
         </td>
         <td>
         Select a locale for this request, if one hasn't already been 
@@ -171,7 +167,7 @@
 
     <tr>
         <td>
-        processContent 
+        SetContentType
         </td>
         <td>
         Set the default content type (with optional character encoding) for 
@@ -181,7 +177,7 @@
 
     <tr>
         <td>
-        processNoCache
+        RequestNoCache
         </td>
         <td>
         If appropriate, set the following response headers: "Pragma", 
@@ -191,22 +187,20 @@
 
     <tr>
         <td>
-        processPreprocess
+        ProcessPreprocess
         </td>
         <td>
-        This is one of the "hooks" the RequestProcessor makes available for 
-        subclasses to override.  
+	LookupCommand with optional="true".  Multiple
+        occurrences of this can easily be added, to
+        support additional processing hooks at any
+        point in the chain without modifying the
         The default implementation simply returns true.  
-        If you subclass RequestProcessor and override processPreprocess you 
-        should either return true (indicating process should 
-        continue processing the request) or false (indicating 
-        you have handled the request and the process should return)
         </td>
     </tr>
 
     <tr>
         <td>
-        processMapping 
+        SelectAction 
         </td>
         <td>
         Determine the ActionMapping associated with this path.
@@ -215,7 +209,7 @@
 
     <tr>
         <td>
-        processRoles 
+        AuthorizeAction 
         </td>
         <td>
         If the mapping has a role associated with it, ensure the requesting 
@@ -226,7 +220,7 @@
 
     <tr>
         <td>
-        processActionForm 
+        CreateActionForm 
         </td>
         <td>
         Instantiate (if necessary) the ActionForm associated with this 
@@ -236,7 +230,7 @@
 
     <tr>
         <td>
-        processPopulate
+        PopulateActionForm
         </td>
         <td>
         Populate the ActionForm associated with this request, if any.
@@ -245,7 +239,7 @@
 
     <tr>
         <td>
-        processValidate 
+        ValidateActionForm 
         </td>
         <td>
         Perform validation (if requested) on the ActionForm associated with 
@@ -255,7 +249,7 @@
     
     <tr>
         <td>
-        processForward
+        SelectForward
         </td>
         <td>
         If this mapping represents a forward, forward to the path specified 
@@ -265,7 +259,7 @@
     
     <tr>
         <td>
-        processInclude 
+        SelectInclude 
         </td>
         <td>
         If this mapping represents an include, include the result of 
@@ -275,7 +269,7 @@
     
     <tr>
         <td>
-        processActionCreate
+        CreateAction
         </td>
         <td>
         Instantiate an instance of the class specified by the current 
@@ -285,17 +279,15 @@
     
     <tr>
         <td>
-        processActionPerform 
+        ExecuteAction 
         </td>
         <td>
         This is the point at which your Action's execute method
         will be called.
         </td>
-    </tr>
-
     <tr>
         <td>
-         processForwardConfig
+         ExecuteForwardCommand
         </td>
         <td>
         Finally, the process method of the RequestProcessor takes the 
@@ -305,8 +297,84 @@
         renders the response.
         </td>
     </tr>
+    </tr>
 
     </table>
+        
+</subsection>
+
+<a name="process"/>
+<subsection name="4.2.2 Where did they go?">
+
+<p>
+The Struts 1.2.x RequestProcessor utilized a similar but different set of 
+messages. Here we provide a table summarizing the changes.
+</p>
+
+<table>
+<tr><td colspan="2">
+           This chain attempts to emulate (most of) the standard request
+           processing in the standard org.apache.struts.action.RequestProcessor
+           class, by performing the corresponding tasks in individual Commands
+           that are composable.  The following list defines a cross reference
+           between the processXxx methods and the Commands that perform the
+           corresponding functionality:
+</td></tr>
+
+<tr><td>
+           processMultipart        </td><td>Integrated into servlet and legacy classes
+</td></tr>
+<tr><td>
+           processPath             </td><td>SelectAction (which also does processMapping)
+</td></tr>
+<tr><td>
+           processException        </td><td>ExceptionCatcher / ExceptionHandler
+</td></tr>
+<tr><td>
+           processLocale           </td><td>SelectLocale
+</td></tr>
+<tr><td>
+           processContent          </td><td>SetContentType
+</td></tr>
+<tr><td>
+           processNoCache          </td><td>RequestNoCache
+</td></tr>
+<tr><td>
+           processPreprocess       </td><td>LookupCommand with optional="true".  Multiple
+                                   occurrences of this can easily be added, to
+                                   support additional processing hooks at any
+                                   point in the chain without modifying the
+                                   standard definition.
+</td></tr>
+<tr><td>
+           processMapping          </td><td>SelectAction (which also does processPath)
+</td></tr>
+<tr><td>
+           processRoles            </td><td>AuthorizeAction
+</td></tr>
+<tr><td>
+           processActionForm       </td><td>CreateActionForm
+</td></tr>
+<tr><td>
+           processPopulate         </td><td>PopulateActionForm
+</td></tr>
+<tr><td>
+           processValidate         </td><td>ValidateActionForm / SelectInput
+</td></tr>
+<tr><td>
+           processForward          </td><td>SelectForward
+</td></tr>
+<tr><td>
+           processInclude          </td><td>SelectInclude / PerformInclude
+</td></tr>
+<tr><td>
+           processActionCreate     </td><td>CreateAction
+</td></tr>
+<tr><td>
+           processActionPerform    </td><td>ExecuteAction
+</td></tr>
+</table>
+
 
 </subsection>
 
