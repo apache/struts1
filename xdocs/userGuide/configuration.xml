@@ -2,7 +2,7 @@
 <document url="configuration.html">
 
 <properties>
-    <title>The Struts User's Guide - Configuring Applications</title>
+    <title>Struts Core Users Guide - Configuring Applications</title>
 </properties>
 
 <body>
@@ -14,23 +14,23 @@
     <p>
     Before you can build an application, you need to lay a solid foundation.
     There are several setup tasks you need to perform before deploying
-    your Struts application.
-    These include components in the Struts configuration file
+    your Struts Core application.
+    These include components in the Struts Core configuration file
     and in the Web Application Deployment Descriptor.
     </p>
 
  </subsection>
     
  <a name="struts-config"/>
- <subsection name="5.2 The Struts configuration file">
+ <subsection name="5.2 The Struts Core configuration file">
 
     <p>
     The <a href="building_controller.html#4_8_Writing_Action_Mappings">Writing Action
     Mappings</a> section covered writing the <code>&lt;form-bean&gt;</code> and
-    <code>&lt;action-mapping&gt;</code> portions of the Struts configuration file.
+    <code>&lt;action-mapping&gt;</code> portions of the Struts Core configuration file.
     These elements usually play an important role in the development of a
-    Struts application.
-    The other elements in Struts configuration file tend to be static:
+    Struts Core application.
+    The other elements in Struts Core configuration file tend to be static:
     you set them once and leave them alone.
     </p>
 
@@ -67,8 +67,8 @@
     moved to this section of <code>struts-config.xml</code> in order to allow
     different modules in the same web application to be configured differently.
     For full details on available parameters see the
-    <a href="http://struts.apache.org/dtds/struts-config_1_2.dtd">
-    struts-config_1_2.dtd</a> or the list below.
+    <a href="http://struts.apache.org/dtds/struts-config_1_3.dtd">
+    struts-config_1_3.dtd</a> or the list below.
     </p>
 
 
@@ -82,10 +82,21 @@
         </li>
 
         <li>
+        <strong>catalog</strong> - Name of the catalog to use when processing requests
+        for this module.
+        [struts]
+        </li>
+ 
+        <li>
         <strong>className</strong> - Classname of configuration bean.
         [org.apache.struts.config.ControllerConfig] (optional)
         </li>
 
+        <li>
+        <strong>command</strong> - Name of the command to execute to process a request.
+        [servlet-standard]
+        </li>
+        
         <li>
         <strong>contentType</strong> - Default content type (and optional character
         encoding) to be set on each response.
@@ -153,7 +164,17 @@
         respectively.
         [250M] (optional)
         </li>
-
+        
+        <li>
+        <strong>memFileSize</strong> - The maximum size (in bytes) of a file whose contents will
+        be retained in memory after uploading. Files larger than
+        this threshold will be written to some alternative storage
+        medium, typically a hard disk. Can be expressed as a number
+        followed by a "K", "M", or "G", which are interpreted to
+        mean kilobytes, megabytes, or gigabytes, respectively.
+        ["256K"]
+        </li>
+       
         <li>
         <strong>multipartClass</strong> - The fully qualified Java class name of the
         multipart request handler class to be used with this module.
@@ -211,10 +232,8 @@
         file uploads.
         [{the directory provided by the servlet container}]
         </li>
-
+        
     </ul>
-
-
 
     <p>
     This example uses the default values for several controller parameters.
@@ -234,14 +253,12 @@
 <subsection name="5.2.2 Message Resources Configuration">
 
     <p>
-    Struts has built in support for internationalization (I18N).
+    Struts Core has built in support for internationalization (I18N).
     You can define one or more <code>&lt;message-resources&gt;</code> elements
     for your webapp; modules can define their own resource bundles.
     Different bundles can be used simultaneously in your application, the 'key'
     attribute is used to specify the desired bundle.
     </p>
-
-
 
     <ul>
 
@@ -295,8 +312,8 @@
 <subsection name="5.2.3 PlugIn Configuration">
 
     <p>
-    Struts PlugIns are configured using the <code>&lt;plug-in&gt;</code>
-    element within the Struts configuration file.
+    Struts Core PlugIns are configured using the <code>&lt;plug-in&gt;</code>
+    element within the Struts Core configuration file.
     This element has only one valid attribute, 'className', which is the fully
     qualified name of the Java class which implements the
     <code>org.apache.struts.action.PlugIn</code> interface.
@@ -326,7 +343,7 @@
 
     <p>
     Very little is required in order to start taking advantage of the Struts
-    module feature.
+    Core module feature.
     Just go through the following steps:
     </p>
 
@@ -382,7 +399,7 @@
     Since Struts 1.0, you listed your configuration file as an initialization
     parameter to the action servlet in <code>web.xml</code>.
     This is still done since Struts 1.1, but the parameter can be extended.
-    In order to tell the Struts machinery about your different modules, you
+    In order to tell the Struts Core machinery about your different modules, you
     specify multiple 'config' initialization parameters, with a slight twist.
     You'll still use 'config' to tell the ActionServlet about your "default"
     module, however, for each additional module, you will
@@ -418,7 +435,7 @@
     <p>
     (The <code>struts-default.xml</code> would be equivalent to what most folks call
     <code>struts-config.xml</code>.
-    I just like the symmetry of having all my Struts module configuration files being
+    I just like the symmetry of having all my Struts Core module configuration files being
     named <code>struts-<em>module</em>.xml</code>)
     </p>
 
@@ -438,7 +455,7 @@
     There are three approaches for switching from one module to another.
     You can use the built-in <code>org.apache.struts.actions.SwitchAction</code>,
     you can use a <code>&lt;forward&gt;</code> (global or local) and specify the contextRelative attribute with a value of true,
-    or you can specify the "module" parameter as part of any of the Struts hyperlink tags (Include, Img, Link, Rewrite, or Forward).
+    or you can specify the "module" parameter as part of any of the Struts JSP hyperlink tags (Include, Img, Link, Rewrite, or Forward).
     </p>
 
     <p>
@@ -544,7 +561,7 @@
     <p>
     The final step in setting up the application is to configure the
     application deployment descriptor (stored in file
-    <code>WEB-INF/web.xml</code>) to  include all the Struts components that
+    <code>WEB-INF/web.xml</code>) to  include all the Struts Core or Taglib components that
     are required.
     Using the deployment descriptor for the example application as a guide,
     we see that the following entries need to be created or modified.
@@ -581,7 +598,7 @@
     The initialization parameters supported by the action servlet are
     described below.
     (You can also find these details in the
-    <a href="../struts-core/apidocs/org/apache/struts/action/ActionServlet.html">
+    <a href="../apidocs/org/apache/struts/action/ActionServlet.html">
     Javadocs</a> for the ActionServlet class.)
     Square brackets describe the default values that are assumed if you do
     not provide a value for that initialization parameter.
@@ -589,6 +606,13 @@
 
     <ul>
 
+        <li>
+        <strong>chainConfig</strong> - Comma-separated list of either 
+        context-relative or classloader path(s) to load commons-chain catalog
+        definitions from.  If none specified, the default catalog that is
+        provided with Struts Core will be used. (Since Struts Core 1.3)
+        </li>
+        
         <li>
         <strong>config</strong> - Context-relative path to the XML resource
         containing the configuration information for the default module.
@@ -606,6 +630,13 @@
         module that will use the specified prefix (/${module}).
         This can be repeated as many times as required for multiple
         application modules. (Since Struts 1.1)
+        </li>
+
+	<li>
+	<strong>configFactory</strong> - The Java class name of the 
+	ModuleConfigFactory used to create the implementation of the 
+	ModuleConfig interface. (Since Struts Core 1.3)
+	[org.apache.struts.config.impl.DefaultModuleConfigFactory]
         </li>
 
         <li>
@@ -631,25 +662,11 @@
         process the configuration file (strongly recommended)?
         [true]
         </li>
-
-        <li>
-        <strong>configFactory</strong> - The Java class name of the 
-        <code>ModuleConfigFactory</code> used to create the implementation of the 
-        <code>ModuleConfig</code> interface. 
-         [org.apache.struts.config.impl.DefaultModuleConfigFactory]
-        </li>
-        <li>
-        <strong>chainConfig</strong> - Comma-separated list of either 
-        context-relative or classloader path(s) to load commons-chain catalog
-        definitions from.  If none specified, the default Struts catalog that is
-        provided with Struts will be used. (Since Struts 1.3)
-        </li>
-        
  
     </ul>
 
      <p>
-       <strong>WARNING</strong> - Struts will not
+       <strong>WARNING</strong> - Struts Core will not
        operate correctly if you define more than one
        <code>&lt;servlet&gt;</code> element for a controller
        servlet, or a subclass of the standard controller servlet class.
@@ -664,11 +681,11 @@
 
     <p>
     <strong>Note:</strong> The material in this section is not specific to
-    Struts.
+    Struts Core.
     The configuration of servlet mappings is defined in the Java Servlet
     Specification.
     This section describes the most common means of configuring a Struts
-    application.
+    Core application.
     </p>
 
     <p>
@@ -729,7 +746,7 @@
 <source>http://www.mycompany.com/myapplication/logon.do</source>
 
         <p>
-        <strong>WARNING</strong> - Struts will not
+        <strong>WARNING</strong> - Struts Core will not
         operate correctly if you define more than one
         <code>&lt;servlet-mapping&gt;</code> element for the controller
         servlet.
@@ -743,118 +760,13 @@
 
 </subsection>
 
-<a name="dd_config_taglib"/>
-<subsection name="5.4.3 Configure the Struts Tag Libraries">
-
-        <p>
-        Next, you must add an entry defining the Struts tag libraries.
-        </p>
-
-        <p>
-        The <a href="dev_bean.html">struts-bean</a> taglib contains tags useful in accessing beans and their
-        properties, as well as defining new beans (based on these accesses)
-        that are accessible to the remainder of the page via scripting
-        variables and page scope attributes.
-        Convenient mechanisms to create new beans based on the value of request
-        cookies, headers, and parameters are also provided.
-        </p>
-
-        <p>
-        The <a href="dev_html.html">struts-html</a> taglib contains tags used to create Struts input forms,
-        as well as other tags generally useful in the creation of HTML-based
-        user interfaces.
-        </p>
-
-        <p>
-        The <a href="dev_logic.html">struts-logic</a> taglib contains tags that are useful in managing
-        conditional generation of output text,
-        looping over object collections for repetitive generation of output
-        text,  and application flow management.
-        </p>
-
-        <p>
-        The <a href="dev_tiles.html">struts-tiles</a> taglib contains tags used for combining various view
-        components, called "tiles", into a final composite view.
-        </p>
-
-        <p>
-        The <a href="dev_nested.html">struts-nested</a> taglib is an extension of other struts taglibs that
-        allows the use of nested beans.
-        </p>
-
-        <p>
-        Below is how you would define all Struts taglibs for use within your
-        application.
-        In practice, you would only specify the taglibs that your application
-        uses:
-        </p>
-
-<source><![CDATA[
-<taglib>
-     <taglib-uri>
-     http://struts.apache.org/tags-bean
-     </taglib-uri>
-     <taglib-location>
-     /WEB-INF/struts-bean.tld
-     </taglib-location>
-</taglib>
-<taglib>
-     <taglib-uri>
-     http://struts.apache.org/tags-html
-     </taglib-uri>
-     <taglib-location>
-     /WEB-INF/struts-html.tld
-     </taglib-location>
-</taglib>
-<taglib>
-     <taglib-uri>
-     http://struts.apache.org/tags-logic
-     </taglib-uri>
-     <taglib-location>
-     /WEB-INF/struts-logic.tld
-     </taglib-location>
-</taglib>
-<taglib>
-     <taglib-uri>
-     http://struts.apache.org/tags-tiles
-     </taglib-uri>
-     <taglib-location>
-     /WEB-INF/struts-tiles.tld
-     </taglib-location>
-</taglib>
-<taglib>
-     <taglib-uri>
-     http://struts.apache.org/tags-nested
-     </taglib-uri>
-     <taglib-location>
-     /WEB-INF/struts-nested.tld
-     </taglib-location>
-</taglib>
-]]></source>
-
-    <p>
-    This tells the JSP system where to find the tag library descriptor
-    for this library (in your application's <code>WEB-INF</code> directory, instead of
-    out on the Internet somewhere).
-    </p>
-
-</subsection>
-
 <a name="dd_config_taglib_uri"/>
-<subsection name="5.4.3.1 Configure the Struts Tag Libraries (Servlet 2.3/2.4)">
+<subsection name="5.4.3.1 Configure the Struts JSP Tag Libraries (Servlet 2.3/2.4)">
 
     <p>
-    <strong>Servlet 2.3/2.4 users only:</strong> The Servlet 2.3 and 2.4 specifications simplify
-    the deployment and configuration of tag libraries.
-    The instructions above will work on older containers as well as 2.3 and 2.4
-    containers (Struts only requires a servlet 2.2 container);
-    however, if you're using a 2.3/2.4 container such as Tomcat 4.x/5.x,
-    you can take advantage of a simplified deployment.
-    </p>
-
-    <p>
-    All that's required to install the Struts tag libraries is to copy
-    <code>struts.jar</code> into your <code>/WEB-INF/lib</code> directory and reference the tags in
+    The Servlet 2.3 and 2.4 specifications simplify the deployment and configuration of tag libraries.
+    All that's now required to install the Struts tag libraries is to copy
+    <code>struts-taglib.jar</code> into your <code>/WEB-INF/lib</code> directory and reference the tags in
     your code like this:
     </p>
 
@@ -872,6 +784,10 @@
     You don't have to alter your <code>web.xml</code> file or copy tlds into any
     application directories.
     </p>
+    
+    <p>
+    Of course, the configuration techniques use for older containers do still work. 
+    </p>
 
 </subsection>
 
@@ -879,10 +795,11 @@
 <subsection name="5.5 Add Struts Components To Your Application">
 
     <p>
-    To use Struts, you must copy the .tld files that you require into
-    your <code>WEB-INF</code> directory, and copy <code>struts.jar</code>
+    To use Struts Core, you must copy <code>struts.jar</code>
     (and all of the <code>commons-*.jar</code> files) into your
-    <code>WEB-INF/lib</code> directory.
+    <code>WEB-INF/lib</code> directory. To use Struts Taglib, 
+    you must also copy the .tld files that you require into
+    your <code>WEB-INF</code> directory and the struts-taglib.jar.
     </p>
 
     <p>
@@ -925,25 +842,25 @@
           in the web application's class loader, unless they are specifically
           programmed to use the Thread context class loader.
 
-            For example, Struts dynamically loads your action and form bean
+            For example, Struts Core dynamically loads your action and form bean
             classes, and normally would not be able to find those classes.
-            Struts has been programmed to deal with this in <em>most</em>
+            Struts Core has been programmed to deal with this in <em>most</em>
             scenarios, but it has not been thoroughly audited to ensure that
             it works in <em>all</em> scenarios.  The Commons libraries that
-            Struts uses have <strong>NOT</strong> been audited to catch all
+            Struts Core uses have <strong>NOT</strong> been audited to catch all
             possible scenarios where this might become a problem.
 
         </li>
         <li>
           When a class is loaded from a shared class loader, static variables
-          used within that class become global as well.  This can cause
+          used within that class become global as well. This can cause
           inter-webapp conflicts when the underlying code assumes that the
           statics are global only within a particular web applicaiton (which
           would be true if the class was loaded from the webapp class loader).
 
-            There are many cases where Struts, and the Commons libraries it
+            There are many cases where Struts Core, and the Commons libraries it
             relies on, use static variables to maintain information that is
-            presumed to be visible only within a single web applicaiton.
+            presumed to be visible only within a single web application.
             Sharing these JAR files can cause unwanted interactions, and
             probably cause incorrect behavior.
 
@@ -951,7 +868,7 @@
         <li>
           When JAR files are shared like this, it is not possible to update
           the JAR file versions employed by a single web application without
-          updating all of them.  In addition, because updating a Struts version
+          updating all of them. In addition, because updating a Struts version
           normally requires recompilation of the applications that use it,
           you will have to recompile all of your applications as well, instead
           of being able to manage them independently.
@@ -960,7 +877,7 @@
 
       <p>
         In spite of these difficulties, it is possible that sharing the
-        Struts and Commons JAR files <em>might</em> appear to work for you.
+        Struts Core and Commons JAR files <em>might</em> appear to work for you.
         However, this is <strong>NOT</strong> a supported configuration.
       </p>
 
@@ -976,14 +893,14 @@
 
 </subsection>
 <a name="config_logging"/>
-<subsection name="5.6 Logging in Struts Based Applications">
+<subsection name="5.6 Logging in Struts Core BAsed Applications">
 
   <p>
   Since Struts 1.0, the logging functionality was fairly limited.  You could
   set a debugging detail level with a servlet initialization parameter, and
   all log messages were written to wherever <code>ServletContext.log()</code>
   output is sent by your servlet container.  With Struts 1.1, however, all
-  logging messages written by Struts itself, as well as the commons libraries
+  logging messages written by Struts Core itself, as well as the commons libraries
   that it utilizes, flow through an abstract wrapper called
   <a href="http://jakarta.apache.org/commons/logging">Commons Logging</a>,
   which can be used as a wrapper around any logging implementation.  The most
@@ -997,17 +914,17 @@
   <p>
   This section does not attempt to fully explain how Commons Logging is
   configured and used.  Instead, it focuses on pertinent details of using
-  Commons Logging in a Struts based environment.  For complete documentation
+  Commons Logging in a Struts Core based environment. For complete documentation
   on using Commons Logging, consult the documentation for the logging system
   you are using, plus the Commons Logging
-  <a href="http://jakarta.apache.org/commons/logging/api/org/apache/commons/logging/package-summary.html#package_description">
+  <a href="http://jakarta.apache.org/commons/logging/commons-logging-1.0.3/docs/api/">
   Javadocs</a>.
   </p>
 
   <p>
   Commons Logging provides fine-grained control over the logging messages
-  created by a <code>Log</code> instance.  By convention, the <code>Log</code>
-  instances for Struts (and the Commons packages in general) are named the
+  created by a <code>Log</code> instance. By convention, the <code>Log</code>
+  instances for Struts Core (and the Commons packages in general) are named the
   fully qualified class name of the class whose messages are being logged.
   Therefore, log messages created by the <code>RequestProcessor</code> class are, naturally
   enough, directed to a logger named
@@ -1054,7 +971,7 @@
 
   <p>
   You can seamlessly integrate logging from your own components into the same
-  logging implementation that Struts and the Commons libraries use, by
+  logging implementation that Struts Core and the Commons libraries use, by
   following the instructions in
   <a href="building_controller.html#4_11_Commons_Logging_Interface">
   Section 4.11</a>.  If you do

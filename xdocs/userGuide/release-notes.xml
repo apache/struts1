@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <document url="release-notes.html">
   <properties>
-    <title>Struts Release Notes (since 1.2.7)</title>
+    <title>Apach Struts Core User Guide - Release Notes (since 1.2.7)</title>
   </properties>
  <body>
  <section name="6.1 Release Notes - Version 1.3.0-dev">
@@ -51,25 +51,25 @@
               to join us.
           </p>
 
-          <h3>Struts Classic</h3>
+          <h3>Struts Core Library</h3>
 
           <p>
               Since Struts 1.2.7, we have subdivided Struts into several subprojects,
               each with its own release cycle.
-              The codebases that were part of Struts 1.2.7 will inherit version 1.3.0,
-              but, hereafter, subproject revisions will increment independently of each other.
+              The set of seven subprojects derived from Struts 1.2 is sometimes referred to as "Struts Classic".
+              The Struts Classic subprojects are Applications, Core, EL, Extras, Site, Taglibs, and Tiles.
+              These subprojects will all inherit version 1.3.0, but, thereafter, 
+              subproject revisions will increment independently of each other.
           </p>
 
           <p>
-              Since many teams will use more than one Struts subproject,
-              we are bundling several of the subprojects in a single distribution
-              called "Struts Classic".
-              The seven subprojects included in the Struts Classic 1.3.0 distribution
-              are: Applications, Core, EL, Plugins, Site, Taglibs, and Tiles.
+              Since many teams will use Struts Core with one or more Struts subprojects,
+              we are bundling the jars for subprojects that utilize Struts Core into a single distribution
+              called "Struts Core Library".
           </p>
 
           <p>
-              The Struts website and Struts Classic distribution are being built with Maven.
+              The Struts subprojects, including the website, are being built with Maven.
               But, of course, you can continue to build your own projects any way you like!)
           </p>
 
