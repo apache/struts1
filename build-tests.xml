@@ -158,6 +158,7 @@
       <pathelement location="${servlet.jar}"/>
       <pathelement location="${struts.jar}"/>
       <pathelement location="${antlr.jar}"/>
+      <pathelement location="${xerces.jar}"/>
 
       <!-- cactus lib jars -->
       <path refid="cactus.lib.classpath"/>
