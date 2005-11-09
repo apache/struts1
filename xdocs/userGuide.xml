@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <document url="./usersGuide.xml">
 <properties>
-  <title>The Tiles Framework Project - Users Guide</title>
+  <title>The Tiles Framework Project - User Guide</title>
 </properties>
 
 <body>
@@ -251,27 +251,132 @@
     </subsection>
     
     <subsection name="1.2.4 Add">
+        <p>The <strong>add</strong> element describes an element of a list. It 
+           is similar to the <strong>put</strong> element except that it is only
+           used in lists.  It supports the following attributes.</p>
+           
+        <ul>
+            <li><strong>content</strong>
+                Same as value.</li>
+
+            <li><strong>direct</strong>
+                Same as type="string".</li>
+
+            <li><strong>name</strong> (Required)
+                The unique identifier for this put.</li>
+                
+            <li><strong>type</strong>
+                The type of the value. Can be: string, page, template or 
+                definition. By default, no type is associated to a value. If a 
+                type is associated, it will be used as a hint to process the 
+                value when the attribute will be used in the inserted tiles. A
+                type of "string" indicates that the value should be inserted
+                directly into the content of the page.  A type of "page" or
+                "template" indicates that the value is the URL of a page that
+                should be included.  A type of "definition" indicates that the
+                value is the name of another Tiles definition that should be
+                included in the page.</li>
+                
+            <li><strong>value</strong>
+                The value associated to this tiles attribute. The "value" 
+                attribute is required if the value is not specified in the 
+                content of the "add" tag.
+                </li>
+           </ul>
+
     </subsection>
     
     <subsection name="1.2.5 Bean">
+        <p>The <strong>bean</strong> element describes an element of a list. It 
+           causes a bean of the specified java classtype to be created. This 
+           bean is initialized with appropriate nested 
+           <strong>set-property</strong> elements.</p>
+
+        <ul>
+            <li><strong>classtype</strong> (Required).
+                The fully qualified classname for this bean.</li>
+        </ul>
     </subsection>
     
     <subsection name="1.2.6 Set-Property">
+        <p>The <strong>set-property</strong> element specifies the method name 
+           and initial value of a bean property. When the object representing
+           the surrounding element is instantiated, the accessor for the 
+           indicated property is called and passed the indicated value.</p>
+           
+        <ul>
+            <li><strong>property</strong> (Required).
+                Name of the JavaBeans property whose setter method will be 
+                called.</li>
+
+            <li><strong>value</strong> (Required).
+                String representation of the value to which this property will 
+                be set, after suitable type conversion</li>
+        </ul>
+        
     </subsection>
     
-    <subsection name="1.2.7 Description">
+    <subsection name="1.2.7 Item">
+        <p>The <strong>item</strong> element describes an element of a list. 
+           It causes a bean of the specified classtype to be created and added
+           to the list. Each bean can contain different properties: value, link,
+           icon, tooltip. These properties are to be interpreted by the jsp 
+           page using them.</p>
+
+        <p>Using the Item element is a good way to build menus.  By default the 
+           bean is of type 
+           <code>org.apache.struts.tiles.beans.SimpleMenuItem</code>.  The 
+           following attributes are supported.</p>
+           
+        <ul>
+            <li><strong>classtype</strong>
+                The fully qualified classtype for this bean. If specified, the 
+                classtype must be a subclass of the interface
+                <code>org.apache.struts.tiles.beans.MenuItem</code>.</li>
+
+            <li><strong>icon</strong>
+                Link to the icon for the menu item.</li>
+
+            <li><strong>link</strong> (Required).
+                URL of the location pointed to by the menu item.</li>
+
+            <li><strong>tooltip</strong>
+                Alternative text describing the menu item.</li>
+
+            <li><strong>value</strong> (Required)
+                The String to be displayed on the menu.</li>
+        </ul>
     </subsection>
     
-    <subsection name="1.2.8 Display-Name">
+    <subsection name="1.2.8 Description">
+        <p>The <strong>description</strong> element contains descriptive 
+           (paragraph length) text about the surrounding element, suitable for 
+           use in GUI tools.</p>
     </subsection>
     
-    <subsection name="1.2.9 Icon">
+    <subsection name="1.2.9 Display-Name">
+        <p>The <strong>display-name</strong> element contains a short (one line) 
+           description of the surrounding element, suitable for use in GUI 
+           tools.</p>
     </subsection>
     
-    <subsection name="1.2.10 Large-Icon">
+    <subsection name="1.2.10 Icon">
+        <p>The <strong>icon</strong> element contains a small-icon and 
+           large-icon element which specify the location, relative to the 
+           Tiles configuration file, for small and large images used to 
+           represent the surrounding element in GUI tools.</p>
     </subsection>
     
-    <subsection name="1.2.11 Small-Icon">
+    <subsection name="1.2.11 Large-Icon">
+        <p>The <strong>large-icon</strong> element specifies the location, 
+           relative to the Struts configuration file, of a resource containing 
+           a large (32x32 pixel) icon image.</p>
+    </subsection>
+    
+    <subsection name="1.2.12 Small-Icon">
+        <p>The <strong>large-icon</strong> element specifies the location, 
+           relative to the Struts configuration file, of a resource containing 
+           a large (16x16 pixel) icon image.</p>
     </subsection>
 </section>
 
