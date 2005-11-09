@@ -236,11 +236,6 @@ public class TilesPreProcessor implements Command
 
         HttpServletRequest request = context.getRequest();
 
-        // Unwrap the multipart request, if there is one.
-        if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper) request).getRequest();
-        }
-
         HttpServletResponse response = context.getResponse();
         RequestDispatcher rd = context.getContext().getRequestDispatcher(uri);
         if (rd == null) {
