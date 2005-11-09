@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="Struts Core">
+<title>Apache Struts - Struts Core</title>
     <body>
 
-        <menu name="Struts Core">
+        <menu name="Struts Core Framework">
             <item
                 name="Welcome"
                 href="index.html"
@@ -30,7 +31,7 @@
                 href="userGuide/index.html"
                 />
             <item
-                name="FAQs and HowTos"
+                name="FAQs and HOWTOs"
                 href="faqs/index.html"
                 />
             <item
@@ -42,7 +43,7 @@
                 href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/?root=Apache-SVN"
                 />
             <item
-                name="Apache Struts"
+                name="Apache Struts Home"
                 href="../index.html"/>
         </menu>
     </body>

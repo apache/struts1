@@ -1,48 +1,39 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <project 
-    name="Apache Struts Web Application Framework"
+    name="Struts Core"
     href="http://struts.apache.org/faqs"
     image="images/struts.gif"
     authors="true">
 
-    <title>Apache Struts Web Application Framework</title>
+  <title>Apache Struts - Struts Core - FAQs and HOWTOs</title>
   <body>
     <menu name="FAQs">
         <item 
             href="faqs/kickstart.html" 
-            name="Kickstart"/>
+            name="Kickstart FAQ"/>
         <item 
             href="faqs/newbie.html" 
-            name="Newbie"/>
+            name="Newbie FAQ"/>
         <item 
-            href="faqs/helping.html" 
-            name="How to Help"/>
+            href="faqs/works.html" 
+            name="How Does Struts Core Work?"/>
     </menu>
 
-    <menu name="Howto Guides">
+    <menu name="HOWTOs">
+        <item 
+            href="faqs/db-howto.html" 
+            name="How to Access a Database"/>
         <item 
             href="faqs/actionForm.html" 
-            name="Action Forms"/>
+            name="How to Build an Action Form"/>
         <item 
             href="faqs/apps.html" 
-            name="Building Apps"/>
-        <item 
-            href="faqs/database.html" 
-            name="Database"/>
-        <item 
-            href="faqs/indexedprops.html" 
-            name="Indexed Properties"/>
-        <item 
-            href="faqs/ssl.html" 
-            name="SSL"/>
+            name="How to Build Applications"/>
 
-        <item
-            href="faqs/struts-el.html"
-            name="Struts-EL (JSTL)"/>
     </menu>
 
-    <menu name="IDE Guides">
+    <menu name="IDE HOWTOs">
         <item 
             href="faqs/eclipse.html" 
             name="Eclipse"/>
@@ -63,7 +54,7 @@
             name="Source Repository"
             href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/?root=Apache-SVN"/>
         <item 
-            name="Struts Core"
+            name="Struts Core Home"
             href="index.html"/>
     </menu>
   </body>

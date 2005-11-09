@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="Struts User's Guide"
+<project name="Apache Struts"
          href="http://struts.apache.org/userGuide"
         image="../images/struts.gif"
       authors="false">
-
-    <title>Getting Started</title>
+<title>Apache Struts - Struts Core - User Guide</title>
   <body>
-    <menu name="User Guide">
+    <menu name="Struts Core User Guide">
       <item 
         name="Table of Contents"     
         href="userGuide/index.html"/>
@@ -36,7 +35,7 @@
         href="userGuide/installation.html"/>
     </menu>
 
-    <menu name="Developer Guides">
+    <menu name="Struts Core Developer Guides">
         <item 
             name="Utilities"
             href="userGuide/dev_util.html"/>
@@ -44,7 +43,7 @@
 
     <menu name="Quick Links">
         <item 
-            name="FAQs and HowTos"         
+            name="FAQs and HOWTOs"         
             href="faqs/index.html"/>
        <item
             name="JavaDocs"
@@ -53,7 +52,7 @@
             name="Source Repository"
             href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/?root=Apache-SVN"/>
         <item 
-            name="Struts Core"                 
+            name="Struts Core Home"                 
             href="index.html"/>
     </menu>
   </body>
