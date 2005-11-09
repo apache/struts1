@@ -1,5 +1,5 @@
 /*
- * Copyright 2003,2004 The Apache Software Foundation.
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.chain.commands.AbstractPerformInclude;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
-import org.apache.struts.upload.MultipartRequestWrapper;
 
 
 /**
@@ -51,11 +50,7 @@ public class PerformInclude extends AbstractPerformInclude {
 
         ServletActionContext swcontext = (ServletActionContext) context;
 
-        // Get the underlying request in the case of a multipart wrapper
         HttpServletRequest request = swcontext.getRequest();
-        if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper) request).getRequest();
-        }
 
         RequestDispatcher rd =
                 swcontext.getContext().getRequestDispatcher(uri);

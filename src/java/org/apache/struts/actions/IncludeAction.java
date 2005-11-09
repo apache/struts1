@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2001-2004 The Apache Software Foundation.
+ * Copyright 2001-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.upload.MultipartRequestWrapper;
 
 /**
  * <p>An <strong>Action</strong> that includes the context-relative
@@ -94,11 +93,6 @@ public class IncludeAction extends BaseAction {
 
         if (rd == null) {
             throw new ServletException(messages.getMessage("include.rd", path));
-        }
-
-        // Unwrap the multipart request, if there is one.
-        if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper) request).getRequest();
         }
 
         // Forward control to the specified resource

@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,50 +19,28 @@
 package org.apache.struts.upload;
 
 import java.util.Map;
-import java.util.Locale;
 import java.util.Vector;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.security.Principal;
-import javax.servlet.ServletInputStream;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 
 /**
  * This class functions as a wrapper around HttpServletRequest to
- * provide working getParameter methods for multipart requests.  Once
- * Struts requires Servlet 2.3, this class will definately be changed to
- * extend javax.servlet.http.HttpServletRequestWrapper instead of
- * implementing HttpServletRequest.  Servlet 2.3 methods are implemented
- * to return <code>null</code> or do nothing if called on.  Use
- * {@link #getRequest() getRequest} to retrieve the underlying HttpServletRequest
- * object and call on the 2.3 method there, the empty methods are here only
- * so that this will compile with the Servlet 2.3 jar.  This class exists temporarily
- * in the process() method of ActionServlet, just before the ActionForward is processed
- * and just after the Action is performed, the request is set back to the original
- * HttpServletRequest object.
+ * provide working getParameter methods for multipart requests.
  */
-public class MultipartRequestWrapper implements HttpServletRequest {
+public class MultipartRequestWrapper extends HttpServletRequestWrapper {
 
     /**
      * The parameters for this multipart request
      */
     protected Map parameters;
 
-    /**
-     * The underlying HttpServletRequest
-     */
-    protected HttpServletRequest request;
-
     public MultipartRequestWrapper(HttpServletRequest request) {
-        this.request = request;
+        super(request);
         this.parameters = new HashMap();
     }
 
@@ -90,7 +68,7 @@ public class MultipartRequestWrapper implements HttpServletRequest {
      * request
      */
     public String getParameter(String name) {
-        String value = request.getParameter(name);
+        String value = getRequest().getParameter(name);
         if (value == null) {
             String[] mValue = (String[]) parameters.get(name);
             if ((mValue != null) && (mValue.length > 0)) {
@@ -106,7 +84,7 @@ public class MultipartRequestWrapper implements HttpServletRequest {
      * names plus the parameters read from the multipart request
      */
     public Enumeration getParameterNames() {
-        Enumeration baseParams = request.getParameterNames();
+        Enumeration baseParams = getRequest().getParameterNames();
         Vector list = new Vector();
         while (baseParams.hasMoreElements()) {
             list.add(baseParams.nextElement());
@@ -119,8 +97,14 @@ public class MultipartRequestWrapper implements HttpServletRequest {
         return Collections.enumeration(list);
     }
 
+    /**
+     * Returns the values of a parameter in this request.
+     * It first looks in the underlying HttpServletRequest object 
+     * for the parameter, and if that doesn't exist it looks for 
+     * the parameter retrieved from the multipart request.
+     */
     public String[] getParameterValues(String name) {
-        String[] value = request.getParameterValues(name);
+        String[] value = getRequest().getParameterValues(name);
         if (value == null) {
             value = (String[]) parameters.get(name);
         }
@@ -128,184 +112,14 @@ public class MultipartRequestWrapper implements HttpServletRequest {
     }
 
     /**
-     * Returns the underlying HttpServletRequest for this wrapper
-     */
-    public HttpServletRequest getRequest() {
-        return request;
-    }
-
-    //WRAPPER IMPLEMENTATIONS OF SERVLET REQUEST METHODS
-    public Object getAttribute(String name) {
-        return request.getAttribute(name);
-    }
-    public Enumeration getAttributeNames() {
-        return request.getAttributeNames();
-    }
-    public String getCharacterEncoding() {
-        return request.getCharacterEncoding();
-    }
-    public int getContentLength() {
-        return request.getContentLength();
-    }
-    public String getContentType() {
-        return request.getContentType();
-    }
-    public ServletInputStream getInputStream() throws IOException {
-        return request.getInputStream();
-    }
-    public String getProtocol() {
-        return request.getProtocol();
-    }
-    public String getScheme() {
-        return request.getScheme();
-    }
-    public String getServerName() {
-        return request.getServerName();
-    }
-    public int getServerPort() {
-        return request.getServerPort();
-    }
-    public BufferedReader getReader() throws IOException {
-        return request.getReader();
-    }
-    public String getRemoteAddr() {
-        return request.getRemoteAddr();
-    }
-    public String getRemoteHost() {
-        return request.getRemoteHost();
-    }
-    public void setAttribute(String name, Object o) {
-        request.setAttribute(name, o);
-    }
-    public void removeAttribute(String name) {
-        request.removeAttribute(name);
-    }
-    public Locale getLocale() {
-        return request.getLocale();
-    }
-    public Enumeration getLocales() {
-        return request.getLocales();
-    }
-    public boolean isSecure() {
-        return request.isSecure();
-    }
-    public RequestDispatcher getRequestDispatcher(String path) {
-        return request.getRequestDispatcher(path);
-    }
-    public String getRealPath(String path) {
-        return request.getRealPath(path);
-    }
-
-    //WRAPPER IMPLEMENTATIONS OF HTTPSERVLETREQUEST METHODS
-    public String getAuthType() {
-        return request.getAuthType();
-    }
-    public Cookie[] getCookies() {
-        return request.getCookies();
-    }
-    public long getDateHeader(String name) {
-        return request.getDateHeader(name);
-    }
-    public String getHeader(String name) {
-        return request.getHeader(name);
-    }
-    public Enumeration getHeaders(String name) {
-        return request.getHeaders(name);
-    }
-    public Enumeration getHeaderNames() {
-        return request.getHeaderNames();
-    }
-    public int getIntHeader(String name) {
-        return request.getIntHeader(name);
-    }
-    public String getMethod() {
-        return request.getMethod();
-    }
-    public String getPathInfo() {
-        return request.getPathInfo();
-    }
-    public String getPathTranslated() {
-        return request.getPathTranslated();
-    }
-    public String getContextPath() {
-        return request.getContextPath();
-    }
-    public String getQueryString() {
-        return request.getQueryString();
-    }
-    public String getRemoteUser() {
-        return request.getRemoteUser();
-    }
-    public boolean isUserInRole(String user) {
-        return request.isUserInRole(user);
-    }
-    public Principal getUserPrincipal() {
-        return request.getUserPrincipal();
-    }
-    public String getRequestedSessionId() {
-        return request.getRequestedSessionId();
-    }
-    public String getRequestURI() {
-        return request.getRequestURI();
-    }
-    public String getServletPath() {
-        return request.getServletPath();
-    }
-    public HttpSession getSession(boolean create) {
-        return request.getSession(create);
-    }
-    public HttpSession getSession() {
-        return request.getSession();
-    }
-    public boolean isRequestedSessionIdValid() {
-        return request.isRequestedSessionIdValid();
-    }
-    public boolean isRequestedSessionIdFromURL() {
-        return request.isRequestedSessionIdFromURL();
-    }
-    public boolean isRequestedSessionIdFromUrl() {
-        return request.isRequestedSessionIdFromUrl();
-    }
-
-    //SERVLET 2.3 EMPTY METHODS
-    /**
-     * This method returns null.  To use any Servlet 2.3 methods,
-     * call on getRequest() and use that request object.  Once Servlet 2.3
-     * is required to build Struts, this will no longer be an issue.
+     * Combines the parameters stored here with those in the underlying
+     * request. If paramater values in the underlying request take
+     * precedence over those stored here.
      */
     public Map getParameterMap() {
-        return null;
+        Map map = new HashMap(parameters);
+        map.putAll(getRequest().getParameterMap());
+        return map;
     }
-    /**
-     * This method does nothing.  To use any Servlet 2.3 methods,
-     * call on getRequest() and use that request object.  Once Servlet 2.3
-     * is required to build Struts, this will no longer be an issue.
-     */
-    public void setCharacterEncoding(String encoding) {
-        ;
-    }
-    /**
-     * This method returns null.  To use any Servlet 2.3 methods,
-     * call on getRequest() and use that request object.  Once Servlet 2.3
-     * is required to build Struts, this will no longer be an issue.
-     */
-    public StringBuffer getRequestURL() {
-        return null;
-    }
-    /**
-     * This method returns false.  To use any Servlet 2.3 methods,
-     * call on getRequest() and use that request object.  Once Servlet 2.3
-     * is required to build Struts, this will no longer be an issue.
-     */
-    public boolean isRequestedSessionIdFromCookie() {
-        return false;
-    }
-
-
-
-
-
-
-
 
 }

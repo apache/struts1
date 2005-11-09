@@ -1089,11 +1089,6 @@ public class RequestProcessor {
         HttpServletResponse response)
         throws IOException, ServletException {
 
-        // Unwrap the multipart request, if there is one.
-        if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper) request).getRequest();
-        }
-
         RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
         if (rd == null) {
             response.sendError(
@@ -1119,11 +1114,6 @@ public class RequestProcessor {
         HttpServletRequest request,
         HttpServletResponse response)
         throws IOException, ServletException {
-
-        // Unwrap the multipart request, if there is one.
-        if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper) request).getRequest();
-        }
 
         RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
         if (rd == null) {
