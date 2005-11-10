@@ -35,7 +35,6 @@
     <shortDescription>Tiles library for defining view components.</shortDescription>
     <description>Tiles can be used to simply define reusable layout components for multiple Servlet "view"
     technologies.  This library has been extracted from the Struts core.</description>
-    <url>http://struts.apache.org/tiles</url>
     <repository>
         <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/tiles/trunk</connection>
         <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/tiles/trunk</developerConnection>
