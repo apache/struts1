@@ -99,16 +99,16 @@ limitations under the License.
                     <li><a href="building_view.html#form_population">3.3.1 Automatic Form Population</a></li>
                     <li><a href="building_view.html#form_validation">3.3.2 Automatic Form Validation</a></li>
                     <li><a href="building_view.html#validator">3.3.3 The Struts Validator</a></li>
-                    </ul></li>
-                <li><a href="building_view.html#other_presentations">3.4 Other Presentation Techniques</a>
+                    <li><a href="building_view.html#Tiles">3.3.4 Page Composition With Tiles</a></li>
+                    </ul>
+                </li>
+                <li><a href="building_view.html#presentation_frameworks">3.4 Presentation Frameworks</a></li>
+                <li><a href="building_view.html#other_presentations">3.4 Direct Presentation Techniques</a>
                     <ul>
-                    <li><a href="building_view.html#custom_tags">3.4.1 Application-Specific Custom Tags</a></li>
-                    <li><a href="building_view.html#includes">3.4.2 Page Composition With Includes</a></li>
-                    <li><a href="building_view.html#Tiles">3.4.3 Page Composition With Tiles</a></li>
-                    <li><a href="building_view.html#image_rendering">3.4.4 Image Rendering Components</a></li>
-                    <li><a href="building_view.html#text_rendering">3.4.5 Rendering Text</a></li>
-                    </ul></li>
-                <li><a href="building_view.html#presentation_frameworks">3.5 Presentation Frameworks</a></li>
+                    <li><a href="building_view.html#image_rendering">3.4.1 Image Rendering Components</a></li>
+                    <li><a href="building_view.html#text_rendering">3.4.2 Rendering Text</a></li>
+                    </ul>
+                </li>
                 </ul></li>
                 
             <li><a href="building_controller.html">4. Building Controller Components</a>

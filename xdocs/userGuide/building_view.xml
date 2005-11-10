@@ -417,141 +417,9 @@ value="/WEB-INF/validator-rules.xml,
     
 </subsection>
 
-<a name="other_presentations"/>
-<subsection name="3.4 Other Presentation Techniques">
-
-    <p>
-    Although the look and feel of your application can be completely
-    constructed based on the standard capabilities of JSP and Struts
-    Taglibs, you should consider employing other techniques that
-    will improve component reuse, reduce maintenance efforts, and/or reduce
-    errors.  
-    Several options are discussed in the following sections.
-    </p>
-  
-</subsection>
-
-<a name="custom_tags"/>
-<subsection name="3.4.1 Application-Specific Custom Tags">
-
-    <p>
-    Beyond using the custom tags provided by Struts Taglibs, it is easy
-    to create tags that are specific to the application you are building, to
-    assist in creating the user interface.  The MailReader example included with
-    the Struts Applications subproject illustrates this principle by creating the
-    following tags unique to
-    the implementation of this application:
-    </p>
-
-    <ul>
-    <li><strong>checkLogon</strong> - Checks for the existence of a particular session
-    object, and forwards control to the logon page if it is missing.  This is
-    used to catch cases where a user has bookmarked a page in the middle of
-    your application and tries to bypass logging on, or if the user's session
-    has been timed out. (Note that there are better ways to authenticate users; the
-    checkLogon tag is simply meant to demonstrate writing your own custom tags.) </li>
-    <li><strong>linkSubscription</strong> - Generates a hyperlink to a details page
-    for a Subscription, which passes the required primary key values as
-    request attributes. This is used when listing the subscriptions associated
-    with a user, and providing links to edit or delete them.</li>
-    <li><strong>linkUser</strong> - Generates a hyperlink to a details page
-    for a User, which passes the required primary key values as
-    request attributes.</li>
-    </ul>
-
-    <p>
-    The source code for these tags is in the <code>shared/src/java</code>
-    directory of the Applications subpackage,
-    in package <code>org.apache.struts.apps.mailreader.taglib</code>,
-    along with the other Java
-    classes that are used in this application.
-    </p>
-</subsection>
-
-<a name="includes"/>
-<subsection name="3.4.2 Page Composition With Includes">
-
-    <p>
-    Creating the entire presentation of a page in one JSP file (with custom
-    tags and beans to access the required dynamic data) is a very common 
-    design approach, and was employed in the MailReader example included 
-    with Struts Applications.
-    However, many applications require the display of multiple logically 
-    distinct portions of your application together on a single page.
-    </p>
-
-    <p>
-    For example, a portal application might have some or all of the following
-    functional capabilities available on the portal's "home" page:
-    </p>
-
-    <ul>
-    
-        <li>
-        Access to a search engine for this portal.
-        </li>
-
-        <li>
-        One or more "news feed" displays, with the topics of interest 
-        customized from the user's registration profile.
-        </li>
-
-        <li>
-        Access to discussion topics related to this portal.
-        </li>
-
-        <li>
-        A "mail waiting" indicator if your portal provides free email
-        accounts.
-        </li>
-    
-    </ul>
-
-    <p>
-    The development of the various segments of this site is easier if you
-    can divide up the work, and assign different developers to the different
-    segments.  
-    Then, you can use the <em>include</em> capability of JavaServer Pages
-    technology to combine the results into a single result page, or use the 
-    include tag provided with Struts Taglibs.  
-    There are three types of <em>include</em> available, depending on
-    when you want the combination of output to occur:
-    </p>
-
-    <ul>
-    
-        <li>
-        An <code>&lt;%@ include file="xxxxx" %&gt;</code> directive can 
-        include a file that contains Java code or JSP tags. 
-        The code in the included file can even reference variables declared 
-        earlier in the outer jsp page. 
-        The code is inlined into the other JavaServer Page before it is 
-        compiled so it can definitely contain more than just HTML.
-        </li>
-
-        <li>
-        The include <em>action</em> (<code>&lt;jsp:include page="xxxxx"
-        flush="true" /&gt;</code>) is processed at request time, and is 
-        handled transparently by the server.  
-        Among other things, that means you can conditionally perform the 
-        include by nesting it within a tag like 
-        <a href="struts-logic.html#equal">equal</a> by using it's
-        parameter attribute.
-        </li>
-
-        <li>
-        The <a href="struts-bean.html#include">bean:include</a> 
-        tag takes either a an argument "forward" representing a logical name 
-        mapped to the jsp to include, or the "id" argument, which represents a 
-        page context String variable to print out to the jsp page.
-        </li>
-    
-    </ul>
-
-</subsection>
 
 <a name="Tiles"/>
-<subsection name="3.4.3 Page Composition With Tiles">
+<subsection name="3.3.4 Page Composition With Tiles">
 
     <p>
     Tiles is a powerful templating library that allows you to construct views 
@@ -642,8 +510,47 @@ parameter="homepage"/>
   
   </subsection>
 
+<a name="presentation_frameworks"/>
+<subsection name="3.4 Presentation Frameworks">
+    <p>
+        Struts Core is supported by many presentation frameworks,
+        and there are a great number of extensions to Struts Core
+        to help make creating view components even easier.
+    </p>
+
+    Some popular presentation layer frameworks include:
+    <ul>
+        <li>
+            <a href="http://struts.apache.org/struts-taglib/">
+                Struts Taglibs</a>
+       </li>
+        <li>
+            <a href="http://struts.sourceforge.net/struts-cocoon/">
+                Struts Cocoon</a>
+       </li>
+        <li>
+            <a href="http://jakarta.apache.org/velocity/tools/struts/">
+                Velocity Struts</a>
+        </li>
+        <li>
+            <a href="http://stxx.sourceforge.net/">Stxx for XLST</a>
+       </li>
+    </ul>
+</subsection>
+
+<a name="other_presentations"/>
+<subsection name="3.5 Other Presentation Techniques">
+
+    <p>
+    Although the look and feel of your application can be completely
+    constructed based on the standard capabilities of presentation libraries, 
+    you may need to employ other techniques to render some responses directly.
+    </p>
+  
+</subsection>
+
   <a name="image_rendering"/>
-  <subsection name="3.4.4 Image Rendering Components">
+  <subsection name="3.5.1 Image Rendering Components">
 
         <p>
         Some applications require dynamically generated images, like the 
@@ -677,7 +584,7 @@ parameter="homepage"/>
   </subsection>
 
   <a name="text_rendering"/>
-  <subsection name="3.4.5 Rendering Text">
+  <subsection name="3.5.2 Rendering Text">
 
     <p>
     Some applications require dynamically generated text or markup,
@@ -695,33 +602,6 @@ return(null);
 
 </subsection>
 
-<a name="presentation_frameworks"/>
-<subsection name="3.5 Presentation Frameworks">
-    <p>
-        Struts Core is supported by many presentation frameworks,
-        and there are a great number of extensions to Struts Core
-        to help make creating view components even easier.
-    </p>
-
-    Some popular presentation layer frameworks include:
-    <ul>
-        <li>
-            <a href="http://struts.apache.org/struts-taglib/">
-                Struts Taglibs</a>
-       </li>
-        <li>
-            <a href="http://struts.sourceforge.net/struts-cocoon/">
-                Struts Cocoon</a>
-       </li>
-        <li>
-            <a href="http://jakarta.apache.org/velocity/tools/struts/">
-                Velocity Struts</a>
-        </li>
-        <li>
-            <a href="http://stxx.sourceforge.net/">Stxx for XLST</a>
-       </li>
-    </ul>
-</subsection>
 
 </section>
 
