@@ -26,10 +26,10 @@
       <p>Insert a tiles/component/template with the possibility to pass 
       parameters (called attribute).
       A tile can be seen as a procedure that can take parameters or attributes.
-      <code>&lt;tiles:insert;gt;</code> allows to define these attributes 
+      <code>&lt;tiles:insert&gt;</code> allows to define these attributes 
       and pass them to the inserted jsp page, called template.
-      Attributes are defined using nested tag <code>&lt;tiles:put;gt;</code> or
-      <code>&lt;tiles:putList;gt;</code>.
+      Attributes are defined using nested tag <code>&lt;tiles:put&gt;</code> or
+      <code>&lt;tiles:putList&gt;</code>.
       </p>
       <p>You must specify one of this tag attribute :</p>
       <ul>
@@ -117,7 +117,7 @@
          <p>Name of the definition to insert. Definition are defined in a
          centralized file. For now, only definition from factory can be inserted
          with this attribute. To insert a definition defined with tag
-         <code>&lt;tiles:definition;gt;</code>, use beanName="".</p>
+         <code>&lt;tiles:definition&gt;</code>, use beanName="".</p>
          ]]>
          </description>
       </attribute>
@@ -415,7 +415,7 @@
            <li>String : Content is printed directly.</li>
            <li>page | template : Content is included from specified URL. Name is used as an URL.</li>
            <li>definition : Value is the name of a definition defined in factory (xml file). Definition will be searched
-           in the inserted tile, in a <code>&lt;tiles:insert attribute="attributeName";gt;</code> tag, where 'attributeName'
+           in the inserted tile, in a <code>&lt;tiles:insert attribute="attributeName"&gt;</code> tag, where 'attributeName'
            is the name used for this tag.</li>
          </ul>
          ]]>
@@ -558,7 +558,7 @@
             <li>String : Content is printed directly.</li>
             <li>page | template : Content is included from specified URL. Name is used as an URL.</li>
             <li>definition : Value denote a definition defined in factory (xml file). Definition will be searched
-            in the inserted tile, in a <code>&lt;insert attribute="attributeName";gt;</code> tag, where 'attributeName'
+            in the inserted tile, in a <code>&lt;insert attribute="attributeName"&gt;</code> tag, where 'attributeName'
             is the name used for this tag.</li>
          </ul>
          ]]>
@@ -613,7 +613,7 @@
          <![CDATA[
          <p>If the user is in the specified role, the tag is taken into account;
          otherwise, the tag is ignored (skipped).</p>
-         <p>The role isn't taken into account if <code>&lt;add;gt;</code> 
+         <p>The role isn't taken into account if <code>&lt;add&gt;</code> 
          tag is used in a definition.</p>
          ]]>
          </description>
