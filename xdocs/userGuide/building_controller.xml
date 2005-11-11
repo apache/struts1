@@ -710,7 +710,7 @@ messages. Here we provide a table summarizing the changes.
 
     <p>
     DynaActionForms are <strong>not</strong> a drop-in replacement for ActionForms.
-    If you need to access ActionForm properties in your Action, you will need to
+    If you need to access DynaActionForm properties in your Action, you will need to
     use the map-style accessor, like myForm.get("name").
     If you actively use the ActionForm object in your Action,
     then you may want to use conventional ActionForms instead.
@@ -740,15 +740,16 @@ messages. Here we provide a table summarizing the changes.
     </p>
 
     <p>
-    And, of course, while the  DynaActionForm may support various binary types,
+    And, of course, while the DynaActionForm may support various binary types,
     properties used with the html:text tag should still be
     String properties.
     </p>
 
     <p>
     DynaActionForms relieve developers of maintaining simple ActionForms. For even
-    less maintenance, try Niall Pemberton's
-    <a href="http://www.niallp.pwp.blueyonder.co.uk/">LazyActionForm</a>.
+    less maintenance, try the
+    <a href="#lazy_action_form_classes">LazyActionForm</a> described in the following
+    section.
     </p>
 
 </subsection>
@@ -757,7 +758,9 @@ messages. Here we provide a table summarizing the changes.
 <subsection name="4.3.2 LazyActionForm Classes">
 
     <p>
-    Struts <i>Lazy</i> ActionForm which <i>wraps</i> a LazyDynaBean.
+    Struts <i>Lazy</i> ActionForm which <i>wraps</i> a LazyDynaBean (see 
+    <a href="http://jakarta.apache.org/commons/beanutils/apidocs/org/apache/commons/beanutils/package-summary.html#dynamic.lazy">
+    Commons BeanUtils JavaDoc</a>).
     </p>
 
     <p>
