@@ -1453,7 +1453,7 @@ throws Exception;
     <strong>&lt;global-forwards&gt;</strong><br />
     This section contains your global forward definitions.  
     Forwards are instances of the ActionForward class returned from an 
-    ActionForm's execute method. 
+    Action's execute method. 
     These map logical names to specific resources (typically JSPs), allowing 
     you to change the resource without changing references to it throughout 
     your application.
@@ -1465,7 +1465,7 @@ throws Exception;
     
         <li>
         name: The logical name for this forward.  
-        This is used in your ActionForm's execute method to 
+        This is used in your Action's execute method to 
         forward to the next appropriate resource. 
         Example: homepage
         </li>
