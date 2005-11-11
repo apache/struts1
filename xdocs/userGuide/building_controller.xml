@@ -532,11 +532,11 @@ messages. Here we provide a table summarizing the changes.
     <ul>
     
         <li>
-        java.lang.BigDecimal
+        java.math.BigDecimal
         </li>
 
         <li>
-        java.lang.BigInteger
+        java.math.BigInteger
         </li>
 
         <li>
