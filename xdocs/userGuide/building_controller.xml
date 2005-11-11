@@ -156,15 +156,19 @@ limitations under the License.
 
     <p>
     The RequestProcessor is where the majority of the core processing 
-    occurs for each request.  
-    Since Struts 1.3, the default Request Processor is composed using 
-    <a href="http://jakarta.apache.org/commons/chain/">Jakarta Commons Chain</a>. 
-    Each step of the processing is represented as a separate Commaind in the Chain.
+    occurs for each request. Since Struts 1.3, the default Request Processor
+    (<code>ComposableRequestProcessor</code>) is composed using 
+    <a href="http://jakarta.apache.org/commons/chain/">Jakarta Commons Chain</a>,
+    which is an implementation of the <i>Chain of Responsibility</i> pattern (CoR). 
+    It is designed as a drop-in replacement of the Struts 1.2.x behaviour and brings
+    greater flexibility and easier customization to the request processing process.
+    Each step of the processing is represented as a separate Command in the Chain.
     By inserting, substituting, or removing Commands, 
     you can customize Struts to work <i>your</i> way.
-    Let's take a look at the commands on the RequestProcessor Chain in turn. 
-    Each of these Command classes are in the [org.apache.struts.chain.commands.servlet]
-    package.
+    Let's take a look at the <i>default</i> commands for the ComposableRequestProcessor
+    Chain in turn. These Command classes are in either the 
+    <code>org.apache.struts.chain.commands</code> or 
+    or <code>org.apache.struts.chain.commands.servlet</code> packages.
     </p>
 
     <table>
@@ -180,11 +184,10 @@ limitations under the License.
 
     <tr>
         <td>
-        SetContentType
+        SetOriginalURI
         </td>
         <td>
-        Set the default content type (with optional character encoding) for 
-        all responses if requested.
+        Store the URI of the original request in the request.
         </td>
     </tr>
 
@@ -200,14 +203,11 @@ limitations under the License.
 
     <tr>
         <td>
-        ProcessPreprocess
+        SetContentType
         </td>
         <td>
-	LookupCommand with optional="true".  Multiple
-        occurrences of this can easily be added, to
-        support additional processing hooks at any
-        point in the chain without modifying the
-        The default implementation simply returns true.  
+        Set the default content type (with optional character encoding) for 
+        all responses if requested.
         </td>
     </tr>
 
@@ -262,6 +262,25 @@ limitations under the License.
     
     <tr>
         <td>
+        SelectInput
+        </td>
+        <td>
+        If validation failed, select the appropriate ForwardConfig for return
+        to the input page.
+        </td>
+    </tr>
+    
+    <tr>
+        <td>
+        ExecuteCommand
+        </td>
+        <td>
+        Lookup and execute a chain command if the current ActionConfig is so-configured.
+        </td>
+    </tr>
+    
+    <tr>
+        <td>
         SelectForward
         </td>
         <td>
@@ -275,8 +294,16 @@ limitations under the License.
         SelectInclude 
         </td>
         <td>
-        If this mapping represents an include, include the result of 
-        invoking the path in this request.
+        Select the include uri (if any) for the current action mapping.
+        </td>
+    </tr>
+    
+    <tr>
+        <td>
+        PerformInclude 
+        </td>
+        <td>
+        If selected, include the result of invoking the path in this request.
         </td>
     </tr>
     
@@ -298,9 +325,20 @@ limitations under the License.
         This is the point at which your Action's execute method
         will be called.
         </td>
+    </tr>
+
     <tr>
         <td>
          ExecuteForwardCommand
+        </td>
+        <td>
+        Lookup and execute a chain command if the current ForwardConfig is so-configured.
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+         PerformForward
         </td>
         <td>
         Finally, the process method of the RequestProcessor takes the 
@@ -310,10 +348,31 @@ limitations under the License.
         renders the response.
         </td>
     </tr>
-    </tr>
 
     </table>
-        
+
+    <p>
+    In Struts 1.2.x, Tiles processing required configuring Struts to use the
+    <code>TilesRequestProcessor</code> implementation. In the Struts 1.3
+    <i>Chain</i> based request processor using Tiles simply 
+    involves configuring it to use an additional Tiles Command, and
+    deploying the tiles sub-project jar. The following Command is in the
+    <code>org.apache.struts.tiles.commands</code> package.
+    </p>
+
+    <table>
+    <tr>
+        <td>
+        TilesPreProcessor
+        </td>
+        <td>
+        Command class intended to perform responsibilities of the
+        TilesRequestProcessor in Struts 1.2.x
+        </td>
+    </tr>
+    </table>
+
+
 </subsection>
 
 <a name="process"/>
