@@ -32,6 +32,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.impl.ModuleConfigImpl;
+import org.apache.struts.mock.MockHttpServletRequest;
 
 
 /**
@@ -611,6 +612,61 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
         assertTrue("Can not see unknown key",
                 !dynaForm.contains("mappedProperty", "Unknown Key"));
 
+    }
+    
+    
+    /**
+     * Test the reset method when the request method is GET.  
+     */ 
+    public void testResetGet() {
+        // set a choice set of props with non-initial values
+        dynaForm.set("booleanProperty", Boolean.FALSE);
+        dynaForm.set("booleanSecond", Boolean.FALSE);
+        dynaForm.set("doubleProperty", new Double(456.0));
+        dynaForm.set("floatProperty", new Float((float) 456.0));
+        dynaForm.set("intProperty", new Integer(456));
+        
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setMethod("GET");
+        dynaForm.reset(mapping, request);
+        
+        assertEquals("booleanProperty should be reset", Boolean.TRUE,
+                     (Boolean) dynaForm.get("booleanProperty"));
+        assertEquals("booleanSecond should be reset", Boolean.TRUE,
+                     (Boolean) dynaForm.get("booleanSecond"));
+        assertEquals("doubleProperty should be reset", new Double(321.0),
+                     (Double) dynaForm.get("doubleProperty"));
+        assertEquals("floatProperty should NOT be reset", new Float((float) 456.0),
+                     (Float) dynaForm.get("floatProperty"));
+        assertEquals("intProperty should NOT be reset", new Integer(456),
+                     (Integer) dynaForm.get("intProperty"));
+    }
+
+    /**
+     * Test the reset method when the request method is GET.  
+     */ 
+    public void testResetPost() {
+        // set a choice set of props with non-initial values
+        dynaForm.set("booleanProperty", Boolean.FALSE);
+        dynaForm.set("booleanSecond", Boolean.FALSE);
+        dynaForm.set("doubleProperty", new Double(456.0));
+        dynaForm.set("floatProperty", new Float((float) 456.0));
+        dynaForm.set("intProperty", new Integer(456));
+        
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setMethod("POST");
+        dynaForm.reset(mapping, request);
+        
+        assertEquals("booleanProperty should be reset", Boolean.TRUE,
+                     (Boolean) dynaForm.get("booleanProperty"));
+        assertEquals("booleanSecond should be reset", Boolean.TRUE,
+                     (Boolean) dynaForm.get("booleanSecond"));
+        assertEquals("doubleProperty should NOT be reset", new Double(456),
+                     (Double) dynaForm.get("doubleProperty"));
+        assertEquals("floatProperty should be reset", new Float((float) 123.0),
+                     (Float) dynaForm.get("floatProperty"));
+        assertEquals("intProperty should NOT be reset", new Integer(456),
+                     (Integer) dynaForm.get("intProperty"));
     }
 
 

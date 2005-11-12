@@ -143,6 +143,12 @@ public class MockHttpServletRequest implements HttpServletRequest {
      * The HttpSession with which we are associated.
      */
     protected HttpSession session = null;
+    
+    
+    /**
+     * The HTTP request method.
+     */ 
+    protected String method = null;
 
 
     // --------------------------------------------------------- Public Methods
@@ -169,6 +175,11 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
     public void setLocale(Locale locale) {
         this.locale = locale;
+    }
+    
+    
+    public void setMethod(String method) {
+        this.method = method;
     }
 
 
@@ -233,7 +244,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 
     public String getMethod() {
-        throw new UnsupportedOperationException();
+        return (method);
     }
 
 

@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -130,21 +131,57 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * <p>Reset bean properties to their default state, as needed.  This method
-     * is called before the properties are repopulated by the controller.</p>
-     *
-     * <p>The default implementation (since Struts 1.1) does nothing.
-     * Subclasses may override this method to reset bean properties to
-     * default values, or the <code>initialize</code> method may be used to
-     * initialize property values to those provided in the form property
-     * configuration information (which was the behavior of
-     * this method in some release candidates).</p>
+     * <p>Reset the properties to their <code>initial</code> value if their
+     * <code>reset</code> configuration is set to true or if <code>reset</code>
+     * is set to a list of HTTP request methods that includes the method of
+     * given <code>request</code> object.</p>
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
      */
     public void reset(ActionMapping mapping, HttpServletRequest request) {
-        super.reset(mapping, request);
+        
+        String name = getDynaClass().getName();
+        if (name == null) {
+            return;
+        }
+        
+        FormBeanConfig config = 
+                mapping.getModuleConfig().findFormBeanConfig(name);
+        if (config == null) {
+            return;
+        }
+        
+        // look for properties we should reset
+        FormPropertyConfig[] props = config.findFormPropertyConfigs();
+        for (int i = 0; i < props.length; i++) {
+            
+            String resetValue = props[i].getReset();
+            // skip this property if there's no reset value 
+            if ((resetValue == null) || (resetValue.length() <= 0)) {
+                continue;
+            }
+            
+            boolean reset = Boolean.valueOf(resetValue).booleanValue();
+            if (!reset) {
+                // check for the request method
+
+                // use a StringTokenizer with the default delimiters + a comma
+                StringTokenizer st = new StringTokenizer(resetValue, ", \t\n\r\f");
+                while (st.hasMoreTokens()) {
+                    String token = st.nextToken();
+                    if (token.equalsIgnoreCase(request.getMethod())) {
+                        reset = true;
+                        break;
+                    }
+                }
+            }
+
+            if (reset) {
+                set(props[i].getName(), props[i].initial());
+            }
+        }
+        
     }
 
 

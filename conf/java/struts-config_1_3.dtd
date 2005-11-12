@@ -152,8 +152,17 @@ The "form-bean" element describes a particular form bean, which is a
                      objects initialized to the zero-argument instantiation of that
                      object class.  For example, Strings will be initialized to ""
 
-
      name            The name of the JavaBean property described by this element.
+
+     reset           The flag that indicates when this property should be reset 
+                     to its "initial" value when the form's "reset()" method is 
+                     called.  If this is set to "true", the property is always 
+                     reset when "reset()" is called.  This can also be set to 
+                     one or more HTTP methods, such as GET or POST. In such a 
+                     case, the property will be reset only when the HTTP method 
+                     used for the request being processed is included in this 
+                     attribute's value(s).  Multiple HTTP methods can be 
+                     specified by separating them with whitespace or commas.
 
      size            The number of array elements to create if the value of the
                      "type" attribute specifies an array, but there is no value
@@ -167,6 +176,7 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST form-property  className      %ClassName;     #IMPLIED>
 <!ATTLIST form-property  initial        CDATA           #IMPLIED>
 <!ATTLIST form-property  name           %PropName;      #REQUIRED>
+<!ATTLIST form-property  reset          %Boolean;       #IMPLIED>
 <!ATTLIST form-property  size           %Integer;       #IMPLIED>
 <!ATTLIST form-property  type           %ClassName;     #REQUIRED>
 

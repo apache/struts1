@@ -79,16 +79,54 @@ public class FormPropertyConfig extends BaseConfig {
      * @param name Name of this property
      * @param type Fully qualified class name of this property
      * @param initial Initial value of this property (if any)
+     * @param reset The conditions under which this property will be reset
+     *              to its initial value.
+     */
+    public FormPropertyConfig(String name, String type, 
+                              String initial, String reset) {
+
+        this(name, type, initial, reset, 0);
+
+    }
+
+
+    /**
+     * Constructor that preconfigures the relevant properties.
+     *
+     * @param name Name of this property
+     * @param type Fully qualified class name of this property
+     * @param initial Initial value of this property (if any)
      * @param size Size of the array to be created if this property is an
      *  array with no defined initial value
      */
     public FormPropertyConfig(String name, String type,
                               String initial, int size) {
 
+        this(name, type, initial, null, size);
+
+    }
+    
+    
+    /**
+     * Constructor that preconfigures the relevant properties.
+     *
+     * @param name Name of this property
+     * @param type Fully qualified class name of this property
+     * @param initial Initial value of this property (if any)
+     * @param size Size of the array to be created if this property is an
+     *  array with no defined initial value
+     * @param reset The conditions under which this property will be reset
+     *              to its initial value.
+     */
+    public FormPropertyConfig(String name, String type,
+                              String initial, String reset,
+                              int size) {
+
         super();
         setName(name);
         setType(type);
         setInitial(initial);
+        setReset(reset);
         setSize(size);
 
     }
@@ -133,6 +171,29 @@ public class FormPropertyConfig extends BaseConfig {
         }
         this.name = name;
     }
+
+
+    /**
+     * <p>The conditions under which the property described by this element 
+     * should be reset to its <code>initial</code> value when the form's 
+     * <code>reset</code> method is called.</p>
+     * <p>This may be set to true (to always reset the property) or a 
+     * comma-separated list of HTTP request methods.</p>
+     * @since Struts 1.3
+     */
+    protected String reset = null;
+
+    public String getReset() {
+        return (this.reset);
+    }
+
+    public void setReset(String reset) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.reset = reset;
+    }
+
 
 
     /**
@@ -372,6 +433,8 @@ public class FormPropertyConfig extends BaseConfig {
         sb.append(this.type);
         sb.append(",initial=");
         sb.append(this.initial);
+        sb.append(",reset=");
+        sb.append(this.reset);
         sb.append("]");
         return (sb.toString());
 

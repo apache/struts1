@@ -85,10 +85,10 @@ public class TestDynaActionFormClass extends TestCase
      * creating our <code>FormBeanConfig</code>.
      */
     protected static final FormPropertyConfig[] dynaProperties = {
-        new FormPropertyConfig("booleanProperty", "boolean", "true"),
-        new FormPropertyConfig("booleanSecond", "boolean", "true"),
-        new FormPropertyConfig("doubleProperty", "double", "321.0"),
-        new FormPropertyConfig("floatProperty", "float", "123.0"),
+        new FormPropertyConfig("booleanProperty", "boolean", "true", "true"),
+        new FormPropertyConfig("booleanSecond", "boolean", "true", "true"),
+        new FormPropertyConfig("doubleProperty", "double", "321.0", "GET"),
+        new FormPropertyConfig("floatProperty", "float", "123.0", "POST, HEAD"),
         new FormPropertyConfig("intArray", "int[]",
                                "{ 0, 10,20, \"30\" '40' }"),
         new FormPropertyConfig("intIndexed", "int[]",
