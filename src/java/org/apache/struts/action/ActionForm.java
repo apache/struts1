@@ -126,8 +126,7 @@ public abstract class ActionForm implements Serializable {
 
     /**
      * <p>Set the servlet instance to which we are attached (if
-     * <code>servlet</code> is non-null), or release any allocated resources
-     * (if <code>servlet</code> is null).</p>
+     * <code>servlet</code> is non-null).</p>
      *
      * @param servlet The new controller servlet, if any
      */
@@ -155,7 +154,7 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * <p>Reset all bean properties to their default state.  This method is
+     * <p>>Can be used to reset all bean properties to their default state.  This method is
      * called before the properties are repopulated by the controller.</p>
      *
      * <p>The default implementation attempts to forward to the HTTP
@@ -176,7 +175,7 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * <p>Reset bean properties to their default state, as needed.  This method
+     * <p>Can be used to reset bean properties to their default state, as needed.  This method
      * is called before the properties are repopulated by the controller.</p>
      *
      * <p>The default implementation does nothing. In practice, the only
@@ -209,7 +208,7 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * <p>Validate the properties that have been set for this non-HTTP request,
+     * <p>Can be used to validate the properties that have been set for this non-HTTP request,
      * and return an <code>ActionErrors</code> object that encapsulates any
      * validation errors that have been found. If no errors are found, return
      * <code>null</code> or an <code>ActionErrors</code> object with no
@@ -236,7 +235,7 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * <p>Validate the properties that have been set for this HTTP request,
+     * <p>Can be used to validate the properties that have been set for this HTTP request,
      * and return an <code>ActionErrors</code> object that encapsulates any
      * validation errors that have been found. If no errors are found,
      * return <code>null</code> or an <code>ActionErrors</code> object with
